@@ -7,5 +7,9 @@
 	vspeed = 0.0;
 	shape = 0;
 
-	constructor
+	constructor(_x, _y)
+	{
+		base.constructor(_x, _y);
+		
+	}
 }
