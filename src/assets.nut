@@ -2,6 +2,7 @@
 | ASSETS |
 \*======*/
 
+//Sprites
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 16, 16, 0);
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0, 0);
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0, 0);
@@ -10,5 +11,12 @@
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0, 0);
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0, 0);
 
+//Tilesets
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0);
 ::tsIgloo <- newSprite("res/igloo.png", 16, 16, 0, 0, 0, 0, 0);
+
+//Maps
+::mpTest <- "res/test.json";
+//Maps won't be loaded all at once.
+//The map will be unloaded when done and replaced
+//with a new one when the level changes.
