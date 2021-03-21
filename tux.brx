@@ -1,11 +1,20 @@
 #!/usr/bin/brux
-/*-------------------------------*\
+/*===============================*\
 |                                 |
 |  SUPER TUX ADVANCE              |
 |                                 |
-|  LICENSE: GPL v3                |
+|  LICENSE: GPL v3.0              |
 |  AUTHOR: Kelvin Shadewing       |
 |  DESC: A 16-bit game featuring  |
 |    Tux the penguin.             |
 |                                 |
-\*-------------------------------*/
+\*===============================*/
+
+//Standard libs
+donut("std/shapes.nut");
+donut("std/tilemap.nut");
+
+//Game source
+donut("src/assets.nut");
+donut("src/physactor.nut");
+donut("src/tux.nut");
