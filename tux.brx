@@ -18,3 +18,14 @@ donut("std/tilemap.nut");
 donut("src/assets.nut");
 donut("src/physactor.nut");
 donut("src/tux.nut");
+
+////////////////
+//    MAIN    //
+////////////////
+
+::quit <- false;
+while(!quit)
+{
+	if(keyPress(k_escape)) quit = true;
+	update();
+}

@@ -10,6 +10,8 @@
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0, 0);
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0, 0);
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0, 0);
+::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 0, 0, 0);
+::sprHealth <- newSprite("res/heart.png",32, 32, 0, 0, 0, 0, 0);
 
 //Tilesets
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0);
