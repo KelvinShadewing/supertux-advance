@@ -16,6 +16,9 @@ donut("std/tilemap.nut");
 
 //Game source
 donut("src/assets.nut");
+donut("src/global.nut");
+donut("src/gmmain.nut");
+donut("src/gmplay.nut");
 donut("src/physactor.nut");
 donut("src/tux.nut");
 
@@ -24,8 +27,10 @@ donut("src/tux.nut");
 ////////////////
 
 ::quit <- false;
+gvGameMode = gmMain;
 while(!quit)
 {
+	gvGameMode();
 	if(keyPress(k_escape)) quit = true;
 	update();
 }
