@@ -26,6 +26,9 @@ donut("src/tux.nut");
 //    MAIN    //
 ////////////////
 
+setResolution(320, 180);
+setBackgroundColor(0x0080f8ff);
+
 ::quit <- false;
 gvGameMode = gmMain;
 while(!quit)

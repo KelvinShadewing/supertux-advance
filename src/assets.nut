@@ -12,6 +12,9 @@
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0, 0);
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 0, 0, 0);
 ::sprHealth <- newSprite("res/heart.png",32, 32, 0, 0, 0, 0, 0);
+::sprFont <- newSprite("res/font.png", 12, 14, 0, 0, 0, 0, 0);
+
+::fntMain <- newFont(sprFont, 33, 0, 0, -4);
 
 //Tilesets
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0);
