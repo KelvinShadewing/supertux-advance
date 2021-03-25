@@ -10,8 +10,8 @@
 
 	//Draw options
 	for(local i = 0; i < menu.len(); i++){
-		if(cursor == i) drawText(font2, 200 -(menu[i].name().len() * 4), 238 - (menu.len() * 14) + (i * 14), menu[i].name());
-		else drawText(font, 200 -(menu[i].name().len() * 4), 238 - (menu.len() * 14) + (i * 14), menu[i].name());
+		if(cursor == i) drawText(font2, 160 -(menu[i].name().len() * 4), 120 - (menu.len() * 14) + (i * 14), menu[i].name());
+		else drawText(font, 160 -(menu[i].name().len() * 4), 120 - (menu.len() * 14) + (i * 14), menu[i].name());
 	};
 
 	//Keyboard input
@@ -34,11 +34,11 @@
 //they're brought up again.
 ::meMain <- [
 	{
-		name = function(){ return "Singleplayer"; },
+		name = function(){ return "New Game"; },
 		func = function(){ gvPlayers = 1; gvDual = 0; startPlay(0); }
 	},
 	{
-		name = function(){ return "Multiplayer"; },
+		name = function(){ return "Load Game"; },
 		func = function(){ gvPlayers = 2; gvDual = 0; startPlay(1); }
 	},
 	{
@@ -57,15 +57,7 @@
 		func = function(){ cursor = 0; menu = meDifficulty; }
 	},
 	{
-		name = function(){ return "Prey 1: " + config.prey0; },
-		func = function(){}
-	},
-	{
-		name = function(){ return "Prey 2: " + config.prey1; },
-		func = function(){}
-	},
-	{
-		name = function(){ return "Predator: " + config.pred; },
+		name = function(){ return "Controls"; },
 		func = function(){}
 	},
 	{
@@ -77,14 +69,17 @@
 ::meDifficulty <- [
 	{
 		name = function(){ return "Easy"; },
-		func = function(){ config.difficulty = 0; cursor = 0; menu = meOptions; }
+		func = function(){ config.difficulty = 0; cursor = 0; menu = meOptions; },
+		desc = function(){ return "No time limit, no death penalty, extra health."; }
 	},
 	{
 		name = function(){ return "Normal"; },
-		func = function(){ config.difficulty = 1; cursor = 0; menu = meOptions; }
+		func = function(){ config.difficulty = 1; cursor = 0; menu = meOptions; },
+		desc = function(){ return "Lose coins on death, normal health, no time limit."; }
 	},
 	{
 		name = function(){ return "Hard"; },
-		func = function(){ config.difficulty = 2; cursor = 0; menu = meOptions; }
+		func = function(){ config.difficulty = 2; cursor = 0; menu = meOptions; },
+		desc = function(){ return "Low health, lose more coins on death, time limit."; }
 	}
 ];
