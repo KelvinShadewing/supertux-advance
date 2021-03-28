@@ -21,6 +21,7 @@
 {
 	data = {};
 	tileset = [];
+	tilef = [];
 	tilew = 0;
 	tileh = 0;
 	mapw = 0;
@@ -61,6 +62,7 @@
 					{
 						print("Attempting to add full filename");
 						tileset.push(newSprite(filename, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0, 0));
+						tilef.push(data.tilesets[i].firstgid);
 						print("Added tileset " + shortname + ".");
 					}
 					else for(local j = 0; j < tileSearchDir.len(); j++)

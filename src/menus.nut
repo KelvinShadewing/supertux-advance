@@ -35,34 +35,42 @@
 ::meMain <- [
 	{
 		name = function(){ return "New Game"; },
-		func = function(){ gvPlayers = 1; gvDual = 0; startPlay(0); }
+		func = function(){ gvPlayers = 1; gvDual = 0; startPlay(0); },
+		desc = function(){ return "Begin new game from the beginning."; }
 	},
 	{
 		name = function(){ return "Load Game"; },
-		func = function(){ gvPlayers = 2; gvDual = 0; startPlay(1); }
+		func = function(){ gvPlayers = 2; gvDual = 0; startPlay(1); },
+		desc = function(){ return "Continue a previous save"; }
 	},
 	{
 		name = function(){ return "Options"; },
-		func = function(){ cursor = 0; menu = meOptions; }
+		func = function(){ cursor = 0; menu = meOptions; },
+		desc = function(){ return "Change game settings."; }
 	},
 	{
 		name = function(){ return "Quit"; },
-		func = function(){ gvQuit = 1; }
+		func = function(){ gvQuit = 1; },
+		desc = function(){ return "Don't leave!"; }
 	}
 ];
 
 ::meOptions <- [
 	{
 		name = function(){ return "Difficulty: " + strDifficulty[config.difficulty]; },
-		func = function(){ cursor = 0; menu = meDifficulty; }
+		func = function(){ cursor = 0; menu = meDifficulty; },
+		desc = function(){ return "Change game difficulty"; }
+
 	},
 	{
 		name = function(){ return "Controls"; },
-		func = function(){}
+		func = function(){},
+		desc = function(){ return "Rebind keys."; }
 	},
 	{
 		name = function(){ return "Back"; },
-		func = function(){ cursor = 0; menu = meMain; }
+		func = function(){ cursor = 0; menu = meMain; },
+		desc = function(){ return "Return to main menu."; }
 	}
 ];
 
@@ -83,3 +91,5 @@
 		desc = function(){ return "Low health, lose more coins on death, time limit."; }
 	}
 ];
+
+

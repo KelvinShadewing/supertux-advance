@@ -28,6 +28,7 @@ donut("src/tux.nut");
 
 setResolution(320, 180);
 setBackgroundColor(0x0080f8ff);
+tileSearchDir.push("res");
 
 ::quit <- false;
 gvGameMode = gmMain;
