@@ -1,2 +1,4 @@
 log.txt
 */log.txt
+*.swp
+*/*.swp

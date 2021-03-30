@@ -28,10 +28,13 @@ donut("src/tux.nut");
 
 setResolution(320, 180);
 setBackgroundColor(0x0080f8ff);
+setWindowTitle("SuperTux Advance");
 tileSearchDir.push("res");
 
 ::quit <- false;
 gvGameMode = gmMain;
+startPlay("res/test.json");
+
 while(!quit)
 {
 	gvGameMode();

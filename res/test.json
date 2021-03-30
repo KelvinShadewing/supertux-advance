@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":15,
  "infinite":false,
  "layers":[
@@ -140,7 +147,7 @@
                  "visible":true,
                  "width":16,
                  "x":16,
-                 "y":208
+                 "y":192
                 }, 
                 {
                  "gid":57,
@@ -317,7 +324,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":19,
+ "nextobjectid":23,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

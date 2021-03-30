@@ -62,7 +62,6 @@
 					{
 						print("Attempting to add full filename");
 						tileset.push(newSprite(filename, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0, 0));
-						tilef.push(data.tilesets[i].firstgid);
 						print("Added tileset " + shortname + ".");
 					}
 					else for(local j = 0; j < tileSearchDir.len(); j++)
@@ -75,6 +74,8 @@
 						}
 					}
 				}
+
+				tilef.push(data.tilesets[i].firstgid);
 
 				print("Added " + spriteName(tileset[i]) + ".\n");
 			}
@@ -118,7 +119,6 @@
 		}
 		if(t == -1)
 		{
-			print("no");
 			return; //Quit if no tile layer by that name was found
 		}
 

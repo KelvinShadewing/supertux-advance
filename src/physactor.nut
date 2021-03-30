@@ -37,7 +37,7 @@
 		}
 
 		//If it does, check against each shape on that layer
-		for(local i = 0; i < gvMap.geo[layer][1])
+		for(local i = 0; i < gvMap.geo[layer][1]; i++)
 		{
 			if(hitTest(shape, gvMap.geo[layer][1][i])){
 				result = true;
