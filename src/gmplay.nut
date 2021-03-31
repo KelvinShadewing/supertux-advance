@@ -57,6 +57,9 @@
 			case 0:
 				newActor(Tux, i.x, i.y);
 				break;
+			case 1:
+				newActor(Coin, i.x, i.y - 16);
+				break;
 		}
 	}
 

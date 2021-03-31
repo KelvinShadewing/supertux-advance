@@ -9,7 +9,8 @@
 	coins = 0,
 	lives = 0,
 	health = 4,
-	maxHealth = 0
+	maxHealth = 0,
+	player = 0 //Pointer to player actor
 }
 /*\
  # The game does not actually have
@@ -32,7 +33,8 @@
 		jump = k_z,
 		shoot = k_x,
 		run = k_lshift
-	}
+	},
+	player = 0
 }
 ::camx <- 0.0;
 ::camy <- 60.0;

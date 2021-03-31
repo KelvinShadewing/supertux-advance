@@ -21,6 +21,7 @@ donut("src/gmmain.nut");
 donut("src/gmplay.nut");
 donut("src/physactor.nut");
 donut("src/tux.nut");
+donut("src/items.nut");
 
 ////////////////
 //    MAIN    //
@@ -33,10 +34,15 @@ tileSearchDir.push("res");
 
 ::quit <- false;
 gvGameMode = gmMain;
+config.player = Tux;
 startPlay("res/test.json");
 
 while(!quit)
 {
+	if(keyDown(k_w)) camy--;
+	if(keyDown(k_a)) camx--;
+	if(keyDown(k_s)) camy++;
+	if(keyDown(k_d)) camx++;
 	gvGameMode();
 	if(keyPress(k_escape)) quit = true;
 	update();

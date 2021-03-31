@@ -12,7 +12,7 @@
 		base.constructor(_x, _y);
 	}
 
-	function placeFree(_x, _y, l)
+	function placeFree(_x, _y)
 	{
 		//Save current location and move
 		local px = x;
@@ -26,7 +26,7 @@
 		local layer = -1;
 		for(local i = 0; i < gvMap.geo.len(); i++)
 		{
-			if(gvMap.geo[i][0] == l) layer = i;
+			if(gvMap.geo[i][0] == "solid") layer = i;
 		}
 
 		if(layer == -1)
@@ -37,7 +37,7 @@
 		}
 
 		//If it does, check against each shape on that layer
-		for(local i = 0; i < gvMap.geo[layer][1]; i++)
+		for(local i = 0; i < gvMap.geo[layer][1].len(); i++)
 		{
 			if(hitTest(shape, gvMap.geo[layer][1][i])){
 				result = true;
