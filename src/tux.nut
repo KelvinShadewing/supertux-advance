@@ -10,15 +10,16 @@
 	frame = 0.0;
 	flip = 0;
 	canMove = true; //If player has control
+	mspeed = 4; //Maximum running speed
 
 	//Animations
 	anim = []; //Animation frame delimiters: [start, end, speed]
 	anStand = [0.0, 0.0];
-	anWalk = [8.0, 15.0];
-	anRun = [16.0, 23.0];
-	anDive = [24.0, 25.0];
-	anSlide = [26.0, 29.0];
-	anHurt = [30.0, 31.0];
+	anWalk = [8.0, 15.5];
+	anRun = [16.0, 23.5];
+	anDive = [24.0, 25.5];
+	anSlide = [26.0, 29.5];
+	anHurt = [30.0, 31.5];
 	anJumpU = [32.0, 33.5];
 	anJumpT = [34.0, 35.5];
 	anFall = [36.0, 37.5];
@@ -60,7 +61,7 @@
 				}
 				break;
 			case anWalk:
-				frame += abs(hspeed) / 16;
+				frame += abs(hspeed) / 12;
 				if(hspeed == 0) anim = anStand;
 				if(abs(hspeed) > 4) anim = anRun;
 				if(placeFree(x, y + 2))
@@ -71,7 +72,7 @@
 				}
 				break;
 			case anRun:
-				frame += abs(hspeed) / 16;
+				frame += abs(hspeed) / 12;
 				if(abs(hspeed) < 3) anim = anWalk;
 				if(placeFree(x, y + 2))
 				{
@@ -128,8 +129,10 @@
 		if(!freeDown) canJump = true;
 		if(canMove)
 		{
-			if(keyDown(config.key.right) && hspeed < 4) hspeed += 0.2;
-			if(keyDown(config.key.left) && hspeed > -4) hspeed -= 0.2;
+			if(keyDown(config.key.run)) mspeed = 4;
+			else mspeed = 2;
+			if(keyDown(config.key.right) && hspeed < mspeed) hspeed += 0.2;
+			if(keyDown(config.key.left) && hspeed > -mspeed) hspeed -= 0.2;
 			if(keyPress(config.key.jump) && canJump)
 			{
 				vspeed = -3.5;
@@ -165,12 +168,22 @@
 		if(placeFree(x, y + vspeed)) y += vspeed;
 		else vspeed -= vspeed / abs(vspeed);
 
-		if(placeFree(x + hspeed, y)) x += hspeed;
-		else if(placeFree(x + hspeed, y - 2))
+		if(hspeed != 0)
 		{
-			x += hspeed;
-			y -= 2;
-		} else hspeed -= hspeed / abs(hspeed);
+			if(placeFree(x + hspeed, y))
+			{
+				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1))
+				{
+					y += 1;
+				}
+				x += hspeed;
+			}
+			else if(placeFree(x + hspeed, y - 2))
+			{
+				x += hspeed;
+				y -= 2;
+			} else hspeed -= hspeed / abs(hspeed);
+		}
 
 		shape.setPos(x, y, 0);
 
