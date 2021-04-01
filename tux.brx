@@ -37,13 +37,12 @@ gvGameMode = gmMain;
 config.player = Tux;
 startPlay("res/test.json");
 
+print(jsonWrite(gvMap.geo));
+
 while(!quit)
 {
-	if(keyDown(k_w)) camy--;
-	if(keyDown(k_a)) camx--;
-	if(keyDown(k_s)) camy++;
-	if(keyDown(k_d)) camx++;
 	gvGameMode();
+	//gvMap.drawShapes(-camx, -camy, "solid");
 	if(keyPress(k_escape)) quit = true;
 	update();
 }

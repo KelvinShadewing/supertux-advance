@@ -309,6 +309,9 @@ Squares and rectangles will just be polygons generated with specific parameters.
 
 ::hitPolyPoly <- function(a, b)
 {
+	//Check rectangle
+	//if(a.ux <= b.lx || a.lx >= b.ux || a.ly >= b.uy || a.uy <= b.ly) return false;
+
 	if(a.p.len() == 0 || b.p.len() == 0) return false;
 	if(a.p.len() == 1) return hitPointPoly(a, b);
 	if(b.p.len() == 1) return hitPointPoly(b, a);

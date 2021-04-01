@@ -15,39 +15,39 @@
 	function placeFree(_x, _y)
 	{
 		//Save current location and move
-		local px = x;
-		local py = y;
-		x = _x;
-		y = _y;
-		local result = false;
+		shape.setPos(_x, _y, 0);
+		local result = true;
 
 		//Check shape against a layer from the current map
 		//Find if requested layer exists
 		local layer = -1;
 		for(local i = 0; i < gvMap.geo.len(); i++)
 		{
-			if(gvMap.geo[i][0] == "solid") layer = i;
+			if(gvMap.geo[i][0] == "solid")
+			{
+				layer = i;
+				break;
+			}
 		}
 
 		if(layer == -1)
 		{
-			x = px;
-			y = py;
-			return false;
+			shape.setPos(x, y, 0);
+			print("Solid layer does not exist.");
+			return true;
 		}
 
 		//If it does, check against each shape on that layer
 		for(local i = 0; i < gvMap.geo[layer][1].len(); i++)
 		{
 			if(hitTest(shape, gvMap.geo[layer][1][i])){
-				result = true;
+				result = false;
 				break;
 			}
 		}
 
 		//Return to current coordinates
-		x = px;
-		y = py;
+		shape.setPos(x, y, 0);
 		return result;
 	}
 }
