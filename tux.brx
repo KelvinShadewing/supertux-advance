@@ -28,7 +28,7 @@ donut("src/items.nut");
 ////////////////
 
 setResolution(320, 180);
-setBackgroundColor(0x0080f8ff);
+setBackgroundColor(0x0080d0ff);
 setWindowTitle("SuperTux Advance");
 tileSearchDir.push("res");
 
@@ -37,7 +37,6 @@ gvGameMode = gmMain;
 config.player = Tux;
 startPlay("res/test.json");
 
-print(jsonWrite(gvMap.geo));
 
 while(!quit)
 {

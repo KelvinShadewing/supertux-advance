@@ -19,15 +19,16 @@
 	anDive = [24.0, 25.0];
 	anSlide = [26.0, 29.0];
 	anHurt = [30.0, 31.0];
-	anJumpU = [32.0, 33.0];
-	anJumpT = [34.0, 35.0];
-	anFall = [36.0, 37.0];
+	anJumpU = [32.0, 33.5];
+	anJumpT = [34.0, 35.5];
+	anFall = [36.0, 37.5];
 
 	constructor(_x, _y)
 	{
 		base.constructor(_x, _y);
 		anim = anStand;
 		shape = Polygon(x, y, [[2, 14], [7, 10], [7, -3], [2, -8], [-2, -8], [-7, -3], [-7, 10], [-2, 14]]);
+		game.player = this;
 	}
 
 	function run()
@@ -80,7 +81,7 @@
 				}
 				break;
 			case anJumpU:
-				frame += 0.3;
+				if(frame < anim[0] + 1) frame += 0.3;
 				if(!freeDown)
 				{
 					anim = anStand;
@@ -93,7 +94,7 @@
 				}
 				break;
 			case anJumpT:
-				frame += 0.3;
+				frame += 0.2;
 				if(!freeDown)
 				{
 					anim = anStand;
@@ -119,8 +120,8 @@
 
 		if(anim[0] != anim[1])
 		{
-			if(frame > anim[1]) frame -= anim[1] - anim[0];
-			if(frame < anim[0]) frame += anim[1] - anim[0];
+			if(floor(frame) > anim[1]) frame -= anim[1] - anim[0];
+			if(floor(frame) < anim[0]) frame += anim[1] - anim[0];
 		}
 
 		//Controls
@@ -173,12 +174,12 @@
 
 		shape.setPos(x, y, 0);
 
+
+
 		//Draw
-		drawSpriteEx(sprTux, frame, round(x) - camx, round(y) - camy, 0, flip, 1, 1, 1);
+		drawSpriteEx(sprTux, floor(frame), round(x) - camx, round(y) - camy, 0, flip, 1, 1, 1);
 		//setDrawColor(0xff0000ff);
 		//shape.drawPos(-camx, -camy)
-		camx = floor((x - 160) + camx) / 2;
-		camy = floor((y - 90) + camy) / 2;
 	}
 
 	function _typeof(){ return "Tux"; }

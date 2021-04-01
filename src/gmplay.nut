@@ -77,4 +77,20 @@
 	runActors();
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 13, "fg");
 
+	local px = 0;
+	local py = 0;
+	local ux = (gvMap.data.width * gvMap.data.tilewidth) - 320;
+	local uy = (gvMap.data.height * gvMap.data.tileheight) - 180;
+	if(game.player != 0)
+	{
+		px = game.player.x - 160;
+		py = game.player.y - 90;
+	}
+	camx = floor(px + camx) / 2;
+	camy = floor(py + camy) / 2;
+
+	if(camx > ux) camx = ux;
+	if(camx < 0) camx = 0;
+	if(camy > uy) camy = uy;
+	if(camy < 0) camy = 0;
 }
