@@ -276,7 +276,7 @@ Squares and rectangles will just be polygons generated with specific parameters.
 	if(p.pc.len() == 2) return hitLinePoint(p.pc[0][0], p.pc[0][1], p.pc[1][0], p.pc[1][1], x, y);
 
 	//Check that point is in bounds
-	if(x < p.lx || x > p.ux || y < p.ly || y > p.uy) return false;
+	if(!(x >= p.lx && x <= p.ux && y >= p.ly && y <= p.uy)) return false;
 
 	//If so, count how many lines it touches
 	local count = 0;

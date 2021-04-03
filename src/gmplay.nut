@@ -55,7 +55,7 @@
 		switch(n)
 		{
 			case 0:
-				newActor(Tux, i.x, i.y);
+				newActor(Tux, i.x, i.y - 16);
 				break;
 			case 1:
 				newActor(Coin, i.x, i.y - 16);
@@ -83,11 +83,16 @@
 	local uy = (gvMap.data.height * gvMap.data.tileheight) - 180;
 	if(game.player != 0)
 	{
-		px = game.player.x - 160;
-		py = game.player.y - 90;
+		px = round(game.player.x - 160);
+		py = round(game.player.y - 90);
 	}
 	camx = floor(px + camx) / 2;
 	camy = floor(py + camy) / 2;
+	if(distance2(px, py, camx, camy) <= 2)
+	{
+		camx = px;
+		camy = py;
+	}
 
 	if(camx > ux) camx = ux;
 	if(camx < 0) camx = 0;
