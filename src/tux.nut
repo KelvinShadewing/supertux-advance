@@ -160,7 +160,8 @@
 		frame = wrap(frame, anim[0], anim[1]);
 
 		//Controls
-		if(!freeDown) canJump = true;
+		if(!placeFree(x, y + 2)) canJump = 4;
+		else if(canJump > 0) canJump--;
 		if(canMove)
 		{
 			if(keyDown(config.key.run)) mspeed = 4;
@@ -168,11 +169,11 @@
 			if(keyDown(config.key.right) && hspeed < mspeed) hspeed += 0.2;
 			if(keyDown(config.key.left) && hspeed > -mspeed) hspeed -= 0.2;
 
-			if(keyPress(config.key.jump) && canJump)
+			if(keyPress(config.key.jump) && canJump > 0)
 			{
 				vspeed = -5;
 				didJump = true;
-				canJump = false;
+				canJump = 0;
 			}
 			if(keyRelease(config.key.jump) && vspeed < 0 && didJump)
 			{
@@ -237,7 +238,7 @@
 			{
 				x += hspeed;
 				y -= 2;
-			} else hspeed -= hspeed / abs(hspeed);
+			} else hspeed -= (hspeed / abs(hspeed)) / 2;
 		}
 
 		shape.setPos(x, y, 0);

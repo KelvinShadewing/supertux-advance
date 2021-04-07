@@ -79,8 +79,8 @@
 
 	local px = 0;
 	local py = 0;
-	local ux = (gvMap.data.width * gvMap.data.tilewidth) - 320;
-	local uy = (gvMap.data.height * gvMap.data.tileheight) - 180;
+	local ux = gvMap.w - 320;
+	local uy = gvMap.h - 180;
 	if(game.player != 0)
 	{
 		px = round(game.player.x - 160);

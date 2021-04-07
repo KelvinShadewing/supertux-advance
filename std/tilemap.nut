@@ -27,6 +27,8 @@
 	mapw = 0;
 	maph = 0;
 	geo = [];
+	w = 0;
+	h = 0;
 
 	constructor(filename)
 	{
@@ -38,6 +40,8 @@
 			maph = data.height;
 			tilew = data.tilewidth;
 			tileh = data.tileheight;
+			w = mapw * tilew;
+			h = maph * tileh;
 
 			for(local i = 0; i < data.tilesets.len(); i++)
 			{
