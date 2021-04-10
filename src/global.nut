@@ -9,9 +9,9 @@
 	coins = 0,
 	lives = 0,
 	health = 4,
-	maxHealth = 0,
-	player = 0 //Pointer to player actor
+	maxHealth = 4
 }
+::gvPlayer <- 0; //Pointer to player actor
 /*\
  # The game does not actually have
  # limited lives. instead, game.lives
@@ -34,7 +34,10 @@
 		shoot = k_x,
 		run = k_lshift
 	},
-	player = 0
+	playerchar = 0
 }
 ::camx <- 0;
 ::camy <- 0;
+
+//Debug variabls
+::gvFPS <- 0;

@@ -76,23 +76,19 @@
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 13, "bg");
 	runActors();
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 13, "fg");
+	drawDebug();
 
 	local px = 0;
 	local py = 0;
 	local ux = gvMap.w - 320;
 	local uy = gvMap.h - 180;
-	if(game.player != 0)
+	if(gvPlayer != 0)
 	{
-		px = round(game.player.x - 160);
-		py = round(game.player.y - 90);
+		px = round(gvPlayer.x - 160);
+		py = round(gvPlayer.y - 90);
 	}
-	camx = floor(px + camx) / 2;
-	camy = floor(py + camy) / 2;
-	if(distance2(px, py, camx, camy) <= 2)
-	{
-		camx = px;
-		camy = py;
-	}
+	camx = px;
+	camy = py;
 
 	if(camx > ux) camx = ux;
 	if(camx < 0) camx = 0;

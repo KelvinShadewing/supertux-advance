@@ -5,8 +5,8 @@
 ::Tux <- class extends PhysAct{
 	canJump = 16;
 	didJump = false; //Checks if up speed can be slowed by letting go of jump
-	friction = 0.1;
-	gravity = 0.2;
+	friction = 0.2;
+	gravity = 0.0;
 	frame = 0.0;
 	flip = 0;
 	canMove = true; //If player has control
@@ -32,7 +32,7 @@
 		base.constructor(_x, _y);
 		anim = anStand;
 		shape = Polygon(x, y, [[2, 14], [7, 10], [7, -3], [2, -8], [-2, -8], [-7, -3], [-7, 10], [-2, 14]]);
-		game.player = this;
+		gvPlayer = this;
 	}
 
 	function run()
@@ -136,9 +136,9 @@
 				vspeed = 0;
 				if(floor(frame) > anim[1])
 				{
-					vspeed = -5;
-					if(flip == 0) hspeed = 4;
-					else hspeed = -4;
+					vspeed = -6;
+					if(flip == 0) hspeed = 6;
+					else hspeed = -6;
 					anim = anJumpU;
 					frame = anim[0];
 				}
@@ -166,12 +166,12 @@
 		{
 			if(keyDown(config.key.run)) mspeed = 4;
 			else mspeed = 2;
-			if(keyDown(config.key.right) && hspeed < mspeed) hspeed += 0.2;
-			if(keyDown(config.key.left) && hspeed > -mspeed) hspeed -= 0.2;
+			if(keyDown(config.key.right) && hspeed < mspeed) hspeed += 0.4;
+			if(keyDown(config.key.left) && hspeed > -mspeed) hspeed -= 0.4;
 
 			if(keyPress(config.key.jump) && canJump > 0)
 			{
-				vspeed = -5;
+				vspeed = -7;
 				didJump = true;
 				canJump = 0;
 			}
@@ -207,38 +207,29 @@
 		if(!freeDown && vspeed > 0) vspeed = 0.0;
 
 		//Gravity cases
-		gravity = 0.2;
+		gravity = 0.4;
 		if(anim == anClimb || anim == anWall) gravity = 0;
 
-		/*
-		if(hspeed != 0) for(local i = 0; i < abs(hspeed); i++)
-		{
-			if(placeFree(x + (hspeed / abs(hspeed)), y)) x += hspeed / abs(hspeed);
+		for(local i = 0; i < 4; i++) {
+			if(placeFree(x, y + vspeed / 4)) y += vspeed / 4;
+			else vspeed -= vspeed / abs(vspeed);
 		}
-		if(vspeed != 0) for(local i = 0; i < abs(vspeed); i++)
-		{
-			if(placeFree(x, y + (vspeed / abs(vspeed)))) y += vspeed / abs(vspeed);
-		}
-		*/
-
-		if(placeFree(x, y + vspeed)) y += vspeed;
-		else vspeed -= vspeed / abs(vspeed);
 
 		if(hspeed != 0)
-		{
-			if(placeFree(x + hspeed, y))
+		for(local i = 0; i < 4; i++) {
+			if(placeFree(x + hspeed / 4, y))
 			{
-				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1))
+				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed / 4, y + 0.25))
 				{
-					y += 1;
+					y += 0.25;
 				}
-				x += hspeed;
+				x += hspeed / 4;
 			}
-			else if(placeFree(x + hspeed, y - 2))
+			else if(placeFree(x + hspeed / 4, y - 0.5))
 			{
-				x += hspeed;
-				y -= 2;
-			} else hspeed -= (hspeed / abs(hspeed)) / 2;
+				x += hspeed / 4;
+				y -= 0.5;
+			} else hspeed -= (hspeed / abs(hspeed)) / 4;
 		}
 
 		shape.setPos(x, y, 0);

@@ -286,7 +286,8 @@ Squares and rectangles will just be polygons generated with specific parameters.
 		if(i < p.pc.len() -1)
 		{
 			//Check between each point
-			if(hitLineLine(x, y, p.lx - 1, y, p.pc[i][0], p.pc[i][1], p.pc[i + 1][0], p.pc[i + 1][1])) count++;
+			if(hitLineLine(x, y, p.lx - 1, y + randInt(64), p.pc[i][0], p.pc[i][1], p.pc[i + 1][0], p.pc[i + 1][1])) count++;
+			//The random integer can really be any number. I just picked 64 because I'm a nerd.
 		} else {
 			//Connect last point to first point
 			if(hitLineLine(x, y, p.lx - 1, y, p.pc[i][0], p.pc[i][1], p.pc[0][0], p.pc[0][1])) count++;
