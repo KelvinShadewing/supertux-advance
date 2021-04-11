@@ -29,7 +29,9 @@
 
 	message += "SPD:"
 	if(gvPlayer != 0) for(local i = 0; i < abs(round(gvPlayer.hspeed)); i++) message += chint(16);
-	message += "\n";
+	message += "\n\n";
+	message += "Map W: " + gvMap.w + "\n";
+	message += "Map H: " + gvMap.h + "\n";
 
 	drawText(font, 0, 0, message);
 }

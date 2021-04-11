@@ -142,19 +142,20 @@
 				}
 				break;
 			case anDive:
-				frame += 0.5;
+				frame += 0.25;
 				if(floor(frame) >= anim[1]) {
 					anim = anSlide;
 					frame = anim[0];
 				}
 				break;
 			case anSlide:
+				frame = anim[0];
 				break;
 		}
 
 		//Sliding acceleration
 		if(anim == anDive || anim == anSlide) {
-			if(!freeDown && abs(hspeed) < 16) {
+			if(!freeDown && abs(hspeed) < 32) {
 				if(placeFree(x + 4, y + 2)) hspeed += 0.4;
 				if(placeFree(x - 4, y + 2)) hspeed -= 0.4;
 				if(placeFree(x + 4, y + 4)) {
@@ -286,6 +287,18 @@
 				y -= 0.5;
 			} else hspeed -= (hspeed / abs(hspeed)) / 4;
 		}
+
+		if(gvMap.w > 320) {
+			if(x < 4) {
+				if(hspeed < 0) hspeed = 1;
+				x == 4;
+			}
+
+			if(x > gvMap.w - 4) {
+				if(hspeed > 0) hspeed = -1;
+				x = gvMap.w - 4;
+			}
+		} else x = wrap(x, 0, gvMap.w);
 
 		shape.setPos(x, y, 0);
 

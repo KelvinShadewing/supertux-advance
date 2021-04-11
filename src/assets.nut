@@ -22,6 +22,8 @@
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 0, 0, 0);
 ::sprHealth <- newSprite("res/heart.png",32, 32, 0, 0, 0, 0, 0);
 
+::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8, 0);
+
 ::fntMain <- newFont(sprFont, 33, 0, 0, -4);
 
 //Tilesets

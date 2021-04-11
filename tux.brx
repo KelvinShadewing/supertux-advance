@@ -22,6 +22,7 @@ donut("src/gmplay.nut");
 donut("src/physactor.nut");
 donut("src/tux.nut");
 donut("src/items.nut");
+donut("src/effects.nut");
 donut("src/debug.nut");
 
 ////////////////
@@ -32,7 +33,7 @@ setResolution(320, 180);
 setBackgroundColor(0x0080d0ff);
 setWindowTitle("SuperTux Advance");
 tileSearchDir.push("res");
-setFPS(30);
+setFPS(45);
 
 ::quit <- false;
 gvGameMode = gmMain;
