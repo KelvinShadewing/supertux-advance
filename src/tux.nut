@@ -31,7 +31,7 @@
 	{
 		base.constructor(_x, _y);
 		anim = anStand;
-		shape = Polygon(x, y, [[2, 14], [7, 10], [7, -3], [2, -8], [-2, -8], [-7, -3], [-7, 10], [-2, 14]]);
+		shape = Polygon(x, y, [[3, 14], [8, 10], [8, -3], [3, -8], [-3, -8], [-8, -3], [-8, 10], [-3, 14]]);
 		gvPlayer = this;
 	}
 
@@ -99,49 +99,75 @@
 				break;
 			case anJumpT:
 				frame += 0.2;
-				if(!freeDown)
-				{
+				if(!freeDown) {
 					anim = anStand;
 					frame = 0.0;
 				}
-				if(frame > anim[1])
-				{
+
+				if(frame > anim[1]) {
 					anim = anFall;
 					frame = anim[0];
 				}
 				break;
 			case anFall:
 				frame += 0.2;
-				if(!freeDown)
-				{
+				if(!freeDown) {
 					anim = anStand;
 					frame = 0.0;
 				}
 				break;
 			case anClimb:
-				if(frame < anim[0])
-				{
+				if(frame < anim[0]) {
 					frame = anim[0];
 					climbf = 1;
 				}
-				if(frame > anim[1])
-				{
+
+				if(frame > anim[1]) {
 					frame = anim[1]
 					climbf = -1;
 				}
+
 				frame += (vspeed / 4) * climbf;
 				break;
 			case anWall:
 				frame += 0.25;
 				vspeed = 0;
-				if(floor(frame) > anim[1])
-				{
+
+				if(floor(frame) > anim[1]) {
 					vspeed = -6;
 					if(flip == 0) hspeed = 6;
 					else hspeed = -6;
 					anim = anJumpU;
 					frame = anim[0];
 				}
+				break;
+			case anDive:
+				frame += 0.5;
+				if(floor(frame) >= anim[1]) {
+					anim = anSlide;
+					frame = anim[0];
+				}
+				break;
+			case anSlide:
+				break;
+		}
+
+		//Sliding acceleration
+		if(anim == anDive || anim == anSlide) {
+			if(!freeDown && abs(hspeed) < 16) {
+				if(placeFree(x + 4, y + 2)) hspeed += 0.4;
+				if(placeFree(x - 4, y + 2)) hspeed -= 0.4;
+				if(placeFree(x + 4, y + 4)) {
+					hspeed += 0.4;
+					vspeed += 1;
+				}
+				if(placeFree(x - 4, y + 4)) {
+					hspeed -= 0.4;
+					vspeed += 1;
+				}
+			}
+
+			if(!keyDown(config.key.down) || hspeed == 0) anim = anWalk;
 		}
 
 		if(anim != anClimb && anim != anWall)
@@ -150,13 +176,6 @@
 			if(hspeed < -1) flip = 1;
 		}
 
-		/*
-		if(anim[0] != anim[1])
-		{
-			if(floor(frame) > anim[1]) frame -= anim[1] - anim[0];
-			if(floor(frame) < anim[0]) frame += anim[1] - anim[0];
-		}
-		*/
 		frame = wrap(frame, anim[0], anim[1]);
 
 		//Controls
@@ -166,14 +185,19 @@
 		{
 			if(keyDown(config.key.run)) mspeed = 4;
 			else mspeed = 2;
-			if(keyDown(config.key.right) && hspeed < mspeed) hspeed += 0.4;
-			if(keyDown(config.key.left) && hspeed > -mspeed) hspeed -= 0.4;
+			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.4;
+			if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide) hspeed -= 0.4;
 
+			//Jumping
 			if(keyPress(config.key.jump) && canJump > 0)
 			{
 				vspeed = -7;
 				didJump = true;
 				canJump = 0;
+				if(anim == anDive || anim == anSlide) {
+					anim = anJumpU;
+					frame = anim[0];
+				}
 			}
 			if(keyRelease(config.key.jump) && vspeed < 0 && didJump)
 			{
@@ -181,6 +205,7 @@
 				vspeed /= 2;
 			}
 
+			//Wall jumping
 			if(freeDown && keyDown(config.key.jump))
 			{
 				if(!placeFree(x - 2, y) && keyPress(config.key.right))
@@ -196,18 +221,48 @@
 					frame = anim[0];
 				}
 			}
+
+			//Going into slide
+			if(!freeDown && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
+				if(placeFree(x + 2, y + 1) || hspeed >= 4) {
+					anim = anDive;
+					frame = anim[0];
+					flip = 0;
+				}
+
+				if(placeFree(x - 2, y + 1) || hspeed <= -4) {
+					anim = anDive;
+					frame = anim[0];
+					flip = 1;
+				}
+			}
 		}
 
 		//Movement
-		if(hspeed > 0) hspeed -= friction;
-		if(hspeed < 0) hspeed += friction;
+		if(!freeDown) {
+			if(anim == anSlide) {
+				if(hspeed > 0) hspeed -= friction / 2;
+				if(hspeed < 0) hspeed += friction / 2;
+			} else {
+				if(hspeed > 0) hspeed -= friction;
+				if(hspeed < 0) hspeed += friction;
+			}
+		}
+
 		if(abs(hspeed) < friction) hspeed = 0.0;
 		if(freeDown && vspeed < 8) vspeed += gravity;
 		if(!freeUp && vspeed < 0) vspeed = 0.0; //If Tux bumped his head
-		if(!freeDown && vspeed > 0) vspeed = 0.0;
+		if(!freeDown && vspeed >= 0) {
+			//If Tux hits the ground while sliding
+			if(anim == anSlide) {
+				if(flip) hspeed -= vspeed / 4;
+				else hspeed += vspeed / 4;
+			} else vspeed = 0.0;
+		}
 
 		//Gravity cases
 		gravity = 0.4;
+		if(anim == anDive || anim == anSlide) gravity = 0.6;
 		if(anim == anClimb || anim == anWall) gravity = 0;
 
 		for(local i = 0; i < 4; i++) {
@@ -219,7 +274,7 @@
 		for(local i = 0; i < 4; i++) {
 			if(placeFree(x + hspeed / 4, y))
 			{
-				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed / 4, y + 0.25))
+				for(local i = 0; i < 2; i++) if(!placeFree(x, y + 1) && placeFree(x + hspeed / 4, y + 0.25))
 				{
 					y += 0.25;
 				}
