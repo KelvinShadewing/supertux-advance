@@ -1,4 +1,4 @@
-::debugMode <- tru;
+::debugMode <- true
 ::drawDebug <- function() {
 	if(keyPress(k_f12)) debugMode = !debugMode
 
