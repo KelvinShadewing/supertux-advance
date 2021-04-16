@@ -2,8 +2,8 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvMap <- 0;
-::gvGameMode <- 0;
+::gvMap <- 0
+::gvGameMode <- 0
 ::game <- {
 	score = 0,
 	coins = 0,
@@ -18,11 +18,13 @@
  # tracks how many times the player
  # has died in total.
 \*/
+
 ::strDifficulty <- [
 	"Easy",
 	"Normal",
 	"Hard"
-];
+]
+
 ::config <- {
 	difficulty = 0,
 	key = {
@@ -36,8 +38,9 @@
 	},
 	playerchar = 0
 }
-::camx <- 0;
-::camy <- 0;
+
+::camx <- 0
+::camy <- 0
 
 //Debug variabls
-::gvFPS <- 0;
+::gvFPS <- 0

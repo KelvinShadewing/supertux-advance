@@ -11,40 +11,40 @@
 \*===============================*/
 
 //Standard libs
-donut("std/shapes.nut");
-donut("std/tilemap.nut");
+donut("std/shapes.nut")
+donut("std/tilemap.nut")
 
 //Game source
-donut("src/assets.nut");
-donut("src/global.nut");
-donut("src/gmmain.nut");
-donut("src/gmplay.nut");
-donut("src/physactor.nut");
-donut("src/tux.nut");
-donut("src/items.nut");
-donut("src/effects.nut");
-donut("src/debug.nut");
+donut("src/assets.nut")
+donut("src/global.nut")
+donut("src/gmmain.nut")
+donut("src/gmplay.nut")
+donut("src/physactor.nut")
+donut("src/tux.nut")
+donut("src/items.nut")
+donut("src/effects.nut")
+donut("src/debug.nut")
 
 ////////////////
 //    MAIN    //
 ////////////////
 
-setResolution(320, 180);
-setBackgroundColor(0x0080d0ff);
-setWindowTitle("SuperTux Advance");
-tileSearchDir.push("res");
-setFPS(45);
+setResolution(320, 180)
+setBackgroundColor(0x0080d0ff)
+setWindowTitle("SuperTux Advance")
+tileSearchDir.push("res")
+setFPS(45)
 
-::quit <- false;
-gvGameMode = gmMain;
-config.playerchar = "Tux";
-startPlay("res/test.json");
+::quit <- false
+gvGameMode = gmMain
+config.playerchar = "Tux"
+startPlay("res/test.json")
 
 
 while(!quit)
 {
-	gvGameMode();
-	//gvMap.drawShapes(-camx, -camy, "solid");
-	if(keyPress(k_escape)) quit = true;
-	update();
+	gvGameMode()
+	//gvMap.drawShapes(-camx, -camy, "solid")
+	if(keyPress(k_escape)) quit = true
+	update()
 }
