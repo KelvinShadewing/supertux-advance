@@ -7,6 +7,9 @@
 	//If drawing is disabled, exit
 	if(!debugMode) return
 
+	setDrawColor(0x80)
+	drawRect(0, 0, 72, 180, 1)
+
 	local message = ""
 
 	if(gvPlayer != 0) {

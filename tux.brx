@@ -24,6 +24,7 @@ donut("src/tux.nut")
 donut("src/items.nut")
 donut("src/effects.nut")
 donut("src/debug.nut")
+donut("src/bg.nut")
 
 ////////////////
 //    MAIN    //
@@ -39,6 +40,7 @@ setFPS(45)
 gvGameMode = gmMain
 config.playerchar = "Tux"
 startPlay("res/test.json")
+drawBG = dbgCave
 
 
 while(!quit)

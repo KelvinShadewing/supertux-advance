@@ -29,6 +29,10 @@
 //Tilesets
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0)
 ::tsIgloo <- newSprite("res/igloo.png", 16, 16, 0, 0, 0, 0, 0)
+::tsPipes <- newSprite("res/pipetiles.png", 16, 16, 0, 0, 0, 0, 0)
+
+//Backgrounds
+::bgIridia <- newSprite("res/iridia.png", 100, 56, 0, 0, 0, 0, 0)
 
 //Maps
 ::mpTest <- "res/test.json"
