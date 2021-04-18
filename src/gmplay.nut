@@ -8,8 +8,9 @@
 	gvMap = Tilemap(level)
 
 	//Clear actors and start creating new ones
-	delete actor
-	::actor <- {}
+	foreach(i in actor) {
+		if(typeof i != "table" && typeof i != "Tux") deleteActor(i.id)
+	}
 
 	//Get tiles used to mark actors
 	local actset = -1

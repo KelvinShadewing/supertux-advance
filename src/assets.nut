@@ -16,6 +16,7 @@
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0, 0)
 
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0, 0)
+::sprDeathcap <- newSprite("res/deathcap.png", 16, 16, 0, 0, 8, 8, 0)
 
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0, 0)
