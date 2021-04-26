@@ -36,17 +36,15 @@ setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
 setFPS(45)
 
-::quit <- false
 gvGameMode = gmMain
 config.playerchar = "Tux"
 startPlay("res/test.json")
 drawBG = dbgCave
 
 
-while(!quit)
+while(!getQuit())
 {
 	gvGameMode()
 	//gvMap.drawShapes(-camx, -camy, "solid")
-	if(keyPress(k_escape)) quit = true
 	update()
 }

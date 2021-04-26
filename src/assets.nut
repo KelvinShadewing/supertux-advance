@@ -9,7 +9,7 @@
 ::font2 <- newFont(sprFont2, 33, 0, 0, 0)
 ::sprDebug <- newSprite("res/debugkeys.png", 8, 8, 0, 0, 0, 0, 0)
 
-::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 16, 0)
+::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 17, 0)
 
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0, 0)

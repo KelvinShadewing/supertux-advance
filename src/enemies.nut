@@ -24,6 +24,10 @@
 }
 
 ::Deathcap <- class extends Enemy {
-	constructor() {
+	frame = 0.0
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		r = 8
+		shape = Polygon(x, y, [[-4, -2], [-2, -4], [2, -4], [4, -2], [4, 2], [2, 4], [-2, 4], [-4, 2]])
 	}
 }

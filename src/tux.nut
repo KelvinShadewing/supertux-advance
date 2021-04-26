@@ -31,8 +31,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		anim = anStand
-		shape = Polygon(x, y, [[3, 14], [8, 10], [8, -3], [3, -8], [-3, -8], [-8, -3], [-8, 10], [-3, 14]])
-		gvPlayer = this
+		shape = Polygon(x, y, [[2, 14], [7, 10], [7, -3], [2, -8], [-2, -8], [-7, -3], [-7, 10], [-2, 14]])
+		if(gvPlayer == 0) gvPlayer = this
 	}
 
 	function run() {
