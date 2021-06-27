@@ -17,6 +17,37 @@
 	return path;
 }
 
+////////////
+// SHAPES //
+////////////
+
+::Rec <- class {
+	x = 0.0
+	y = 0.0
+	w = 0.0
+	h = 0.0
+	slope = 0
+	// 0 no slope
+	// 1 top right
+	// 2 top left
+	// 3 bottom right
+	// 4 bottom left
+
+	constructor(_x, _y, _w, _h, _slope) {
+		x = _x
+		y = _y
+		w = _w
+		h = _h
+		slope = _slope
+	}
+
+	function _typeof() { return "Rec" }
+}
+
+///////////////////
+// TILEMAP CLASS //
+///////////////////
+
 ::Tilemap <- class
 {
 	data = {};
@@ -92,14 +123,39 @@
 					local nl = [data.layers[i].name, []]; //New layer, stores name and object list
 					for(local j = 0; j < data.layers[i].objects.len(); j++)
 					{
-						if(data.layers[i].objects[j].rawin("polygon"))
-						{
+						if(data.layers[i].objects[j].rawin("polygon")) {
+							/*
 							local np = Polygon(data.layers[i].objects[j].x, data.layers[i].objects[j].y, []);
 							for(local k = 0; k < data.layers[i].objects[j].polygon.len(); k++)
 							{
 								np.addPoint(data.layers[i].objects[j].polygon[k].x, data.layers[i].objects[j].polygon[k].y);
 							}
 							nl[1].push(np);
+							*/
+						}
+						else if(data.layers[i].objects[j].rawin("ellipse")) {}
+						else if(data.layers[i].objects[j].rawin("point")) {}
+						else {
+							local obj = data.layers[i].objects[j]
+							local np = 0
+							switch(obj["type"]) {
+								case "tr":
+									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 1)
+									break
+								case "tl":
+									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 2)
+									break
+								case "br":
+									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 3)
+									break
+								case "bl":
+									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 4)
+									break
+								default:
+									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+									break
+							}
+							nl[l].push(np);
 						}
 					}
 					geo.push(nl);
