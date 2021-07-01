@@ -34,7 +34,8 @@
 		right = k_right,
 		jump = k_z,
 		shoot = k_x,
-		run = k_lshift
+		run = k_lshift,
+		sneak = k_lctrl
 	},
 	playerchar = 0
 }

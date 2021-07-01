@@ -9,7 +9,7 @@
 ::font2 <- newFont(sprFont2, 33, 0, 0, 0)
 ::sprDebug <- newSprite("res/debugkeys.png", 8, 8, 0, 0, 0, 0, 0)
 
-::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 17, 0)
+::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19, 0)
 
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0, 0)
@@ -35,6 +35,10 @@
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/rockgapsBG.png", 400, 392, 0, 0, 0, 0, 0)
 ::bgIridia <- newSprite("res/iridia.png", 100, 56, 0, 0, 0, 0, 0)
+::bgForest0 <- newSprite("res/parallax-forest-back-trees.png", 272, 180, 0, 0, 0, 0, 0)
+::bgForest1 <- newSprite("res/parallax-forest-middle-trees.png", 272, 180, 0, 0, 0, 0, 0)
+::bgForest2 <- newSprite("res/parallax-forest-lights.png", 272, 180, 0, 0, 0, 0, 0)
+::bgForest3 <- newSprite("res/parallax-forest-front-trees.png", 272, 180, 0, 0, 0, 0, 0)
 
 //Maps
 ::mpTest <- "res/test.json"

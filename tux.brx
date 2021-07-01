@@ -34,12 +34,12 @@ setResolution(320, 180)
 setBackgroundColor(0x0080d0ff)
 setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
-setFPS(45)
+setFPS(60)
 
 gvGameMode = gmMain
 config.playerchar = "Tux"
 startPlay("res/test.json")
-drawBG = dbgCave
+drawBG = dbgForest
 
 
 while(!getQuit())

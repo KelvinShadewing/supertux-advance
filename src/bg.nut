@@ -13,3 +13,12 @@
 		}
 	}
 }
+
+::dbgForest <- function() {
+	local offset = -camx //Constantly scrolling for now for testing purposes
+
+	for(local i = 0; i < 3; i++) drawSprite(bgForest0, 0, ((offset / 4) % 272) + (i * 272), 0)
+	for(local i = 0; i < 3; i++) drawSprite(bgForest1, 0, ((offset / 3) % 272) + (i * 272), 0)
+	for(local i = 0; i < 3; i++) drawSprite(bgForest2, 0, ((offset / 2) % 272) + (i * 272), 0)
+	for(local i = 0; i < 3; i++) drawSprite(bgForest3, 0, (offset % 272) + (i * 272), 0)
+}

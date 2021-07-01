@@ -31,7 +31,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		anim = anStand
-		shape = Rec(x, y + 2, 6, 14, 0)
+		shape = Rec(x, y + 2, 6, 12, 0)
 		if(gvPlayer == 0) gvPlayer = this
 	}
 
@@ -266,22 +266,19 @@
 		if(anim == anDive || anim == anSlide) gravity = 0.6
 		if(anim == anClimb || anim == anWall) gravity = 0
 
-		for(local i = 0; i < 4; i++) {
-			if(placeFree(x, y + vspeed / 4)) y += vspeed / 4
-			else vspeed -= vspeed / abs(vspeed)
-		}
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 4
 
-		if(hspeed != 0)
-		for(local i = 0; i < 4; i++) {
-			if(placeFree(x + hspeed / 4, y)) {
-				for(local i = 0; i < 2; i++) if(!placeFree(x, y + 1) && placeFree(x + hspeed / 4, y + 0.25)) {
-					y += 0.25
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) {
+				for(local i = 0; i < 2; i++) if(!placeFree(x, y + 1) && placeFree(x + hspeed, y + 1)) {
+					y += 1
 				}
-				x += hspeed / 4
-			} else if(placeFree(x + hspeed / 4, y - 0.5)) {
-				x += hspeed / 4
-				y -= 0.5
-			} else hspeed -= (hspeed / abs(hspeed)) / 4
+				x += hspeed
+			} else if(placeFree(x + hspeed, y - 1)) {
+				x += hspeed
+				y -= 1
+			} else hspeed -= (hspeed / abs(hspeed))
 		}
 
 		if(gvMap.w > 320) {
@@ -296,7 +293,7 @@
 			}
 		} else x = wrap(x, 0, gvMap.w)
 
-		shape.setPos(x, y, 0)
+		shape.setPos(x, y + 2, 0)
 
 
 

@@ -4,7 +4,7 @@
 ::debugTickList <- array(64, 0)
 
 ::drawDebug <- function() {
-	if(keyPress(k_f12)) debugMode = !debugMode
+	if(keyPress(k_f12)) debug = !debug
 
 	local fps = getFPS()
 	debugTickSum -= debugTickList[debugTickIndex]
