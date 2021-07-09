@@ -56,8 +56,8 @@
 		switch(n)
 		{
 			case 0:
-				newActor(Tux, i.x, i.y - 16)
-				//if(gvPlayer == 0) newActor(Tux, i.x, i.y - 16)
+				//newActor(Tux, i.x, i.y - 16)
+				if(gvPlayer == 0) newActor(Tux, i.x, i.y - 16)
 				break
 			case 1:
 				newActor(Coin, i.x, i.y - 16)

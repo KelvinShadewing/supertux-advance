@@ -2,6 +2,16 @@
 | ENEMIES |
 \*=======*/
 
+::NMEloader <- class extends Actor {
+	e = 0 //Enemy class to create
+	m = 0 //Respawn mode
+	a = 0 //Current actor ID
+
+	function step() {
+		
+	}
+}
+
 ::Enemy <- class extends PhysAct {
 	r = 0
 	health = 1
