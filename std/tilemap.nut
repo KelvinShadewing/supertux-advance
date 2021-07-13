@@ -77,22 +77,64 @@
 				print("Added " + spriteName(tileset[i]) + ".\n")
 			}
 
-			//Generate polygon lists
+			//Generate shape lists
+			local regions = []
+			local zones = []
+			local blocks = []
 			for(local i = 0; i < data.layers.len(); i++) {
 				if(data.layers[i].type == "objectgroup") {
+					local lana = data.layers[i].name //Layer name
+					for(local j = 0; j < data.layers[i].objects.len(); j++) {
+						local obj = data.layers[i].objects[j]
+						local np = 0
+						switch(lana) {
+							case "solid":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+								blocks.push([np, 0])
+								break
+							case "tr":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 1)
+								blocks.push([np, 0])
+								break
+							case "tl":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 2)
+								blocks.push([np, 0])
+								break
+							case "br":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 3)
+								blocks.push([np, 0])
+								break
+							case "bl":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 4)
+								blocks.push([np, 0])
+								break
+							case "zones":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+								zones.push([np, []])
+								break
+							case "regions":
+								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+								regions.push([np, []])
+								break
+						}
+					}
+
+					/* Old shape creation function
 					local nl = [data.layers[i].name, []]; //New layer, stores name and object list
 					for(local j = 0; j < data.layers[i].objects.len(); j++) {
 						if(data.layers[i].objects[j].rawin("polygon")) {
-							/*
+							
 							local np = Polygon(data.layers[i].objects[j].x, data.layers[i].objects[j].y, [])
 							for(local k = 0; k < data.layers[i].objects[j].polygon.len(); k++) {
 								np.addPoint(data.layers[i].objects[j].polygon[k].x, data.layers[i].objects[j].polygon[k].y)
 							}
 							nl[1].push(np)
-							*/
+							
 						}
+						//Support for other shapes will be added as I work out collision math for them
 						else if(data.layers[i].objects[j].rawin("ellipse")) {}
 						else if(data.layers[i].objects[j].rawin("point")) {}
+						//Rotated rectangles are currently not supported
 						else {
 							local obj = data.layers[i].objects[j]
 							local np = 0
@@ -117,7 +159,13 @@
 						}
 					}
 					geo.push(nl)
+					*/
 				}
+			}
+
+			//Check which boxes go to which zone
+			for(local i = 0; i < blocks.len(); i++) {
+
 			}
 		}
 		else print("Map file " + filename + " does not exist!")

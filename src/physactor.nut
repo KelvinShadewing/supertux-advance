@@ -18,46 +18,31 @@
 
 	function placeFree(_x, _y) {
 		//Save current location and move
-		shape.setPos(_x, _y, 0)
-		local result = true
+		local ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		local np = Rec(_x, _y, 0, 0, 0)
 
-		//Check shape against a layer from the current map
-		//Find if requested layer exists
-		local layer = -1
+		//Find a region
 		for(local i = 0; i < gvMap.geo.len(); i++) {
-			if(gvMap.geo[i][0] == "solid") {
-				layer = i
-				break
+			if(hitTest(ns, gvMap.geo[i][0])) {
+				//Find a zone
+				for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
+					if(hitTest(ns, gvMap.geo[i][1][j][0])) {
+						//Check the boxes
+						for(local k = 0; k < gvMap.geo[i][1][j][1].len(); k++) {
+							switch(gvMap.geo[i][1][j][1][k][1]) {
+								case 0:
+									if(hitTest(ns, gvMap.geo[i][1][j][1][k][0])) return false
+									break
+								case 1:
+									if(hitTest(np, gvMap.geo[i][1][j][1][k][0])) return false
+									break
+							}
+						}
+					}
+				}
 			}
 		}
 
-		//If it does, check against each shape on that layer
-		for(local i = 0; i < gvMap.geo[layer][1].len(); i++) {
-			if(hitTest(shape, gvMap.geo[layer][1][i])) {
-				result = false
-				break
-			}
-		}
-
-		//Do all that again, but for slopes this time
-		local layer = -1
-		for(local i = 0; i < gvMap.geo.len(); i++) {
-			if(gvMap.geo[i][0] == "slope") {
-				layer = i
-				break
-			}
-		}
-
-		//If it does, check against each shape on that layer
-		for(local i = 0; i < gvMap.geo[layer][1].len(); i++) {
-			if(hitTest(shape, gvMap.geo[layer][1][i])) {
-				result = false
-				break
-			}
-		}
-
-		//Return to current coordinates
-		shape.setPos(x, y, 0)
-		return result
+		return true
 	}
 }

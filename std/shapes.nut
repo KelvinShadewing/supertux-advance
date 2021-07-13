@@ -7,19 +7,20 @@
 	y = 0.0
 	w = 0.0
 	h = 0.0
-	slope = 0
-	// 0 no slope
+	kind = 0
+	// 0 normal
 	// 1 top right
 	// 2 top left
 	// 3 bottom right
 	// 4 bottom left
+	// 5 liquid
 
-	constructor(_x, _y, _w, _h, _slope) {
+	constructor(_x, _y, _w, _h, _kind) {
 		x = _x
 		y = _y
 		w = _w
 		h = _h
-		slope = _slope
+		kind = _kind
 
 		//Prevent zero dimensions
 		//It's important, trust me
@@ -43,11 +44,11 @@
 					if(abs(a.x - b.x) > abs(a.w + b.w)) return false
 					if(abs(a.y - b.y) > abs(a.h + b.h)) return false
 
-					//Slopes
-					if(a.slope != 0 || b.slope != 0) {
-						switch(a.slope) {
+					//kinds
+					if(a.kind != 0 || b.kind != 0) {
+						switch(a.kind) {
 							case 0:
-								switch(b.slope) {
+								switch(b.kind) {
 									case 0:
 										break
 									case 1:
@@ -60,11 +61,13 @@
 									case 3:
 										break
 									case 4:
+										break
+									case 5:
 										break
 								}
 								break
 							case 1:
-								switch(b.slope) {
+								switch(b.kind) {
 									case 0:
 										break
 									case 1:
@@ -77,12 +80,14 @@
 									case 3:
 										break
 									case 4:
+										break
+									case 5:
 										break
 								}
 								break
 
 							case 2:
-								switch(b.slope) {
+								switch(b.kind) {
 									case 0:
 										break
 									case 1:
@@ -92,12 +97,14 @@
 									case 3:
 										break
 									case 4:
+										break
+									case 5:
 										break
 								}
 								break
 
 							case 3:
-								switch(b.slope) {
+								switch(b.kind) {
 									case 0:
 										break
 									case 1:
@@ -107,12 +114,14 @@
 									case 3:
 										break
 									case 4:
+										break
+									case 5:
 										break
 								}
 								break
 
 							case 4:
-								switch(b.slope) {
+								switch(b.kind) {
 									case 0:
 										break
 									case 1:
@@ -122,6 +131,25 @@
 									case 3:
 										break
 									case 4:
+										break
+									case 5:
+										break
+								}
+								break
+
+							case 5:
+								switch(b.kind) {
+									case 0:
+										break
+									case 1:
+										break
+									case 2:
+										break
+									case 3:
+										break
+									case 4:
+										break
+									case 5:
 										break
 								}
 								break
