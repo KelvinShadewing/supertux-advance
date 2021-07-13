@@ -38,8 +38,8 @@ setFPS(25)
 
 gvGameMode = gmMain
 config.playerchar = "Tux"
-startPlay("res/test.json")
-drawBG = dbgForest
+startPlay("res/zebish.json")
+drawBG = dbgCave
 
 
 while(!getQuit() && !keyPress(k_escape))

@@ -119,6 +119,23 @@
 						}
 					}
 
+					//Add zones to regions
+					for(local i = 0; i < regions.len(); i++) {
+						for(local j = 0; j < zones.len(); j++) {
+							if(hitTest(regions[i][0], zones[j][0])) regions[i][1].push(zones[j])
+						}
+					}
+
+					//Add blocks to zones
+					for(local i = 0; i < zones.len(); i++) {
+						for(local j = 0; j < blocks.len(); j++) {
+							if(hitTest(zones[i][0], blocks[j][0])) zones[i][1].push(blocks[j])
+						}
+					}
+
+					//Set level geometry
+					geo = regions
+
 					/* Old shape creation function
 					local nl = [data.layers[i].name, []]; //New layer, stores name and object list
 					for(local j = 0; j < data.layers[i].objects.len(); j++) {
@@ -161,11 +178,6 @@
 					geo.push(nl)
 					*/
 				}
-			}
-
-			//Check which boxes go to which zone
-			for(local i = 0; i < blocks.len(); i++) {
-
 			}
 		}
 		else print("Map file " + filename + " does not exist!")
