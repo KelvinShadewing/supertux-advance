@@ -34,7 +34,7 @@ setResolution(320, 180)
 setBackgroundColor(0x0080d0ff)
 setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
-setFPS(25)
+setFPS(32)
 
 gvGameMode = gmMain
 config.playerchar = "Tux"

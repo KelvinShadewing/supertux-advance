@@ -225,13 +225,13 @@
 
 			//Going into slide
 			if(!freeDown && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
-				if(placeFree(x + 2, y + 1) || hspeed >= 4) {
+				if((freeRight && freeDown) || hspeed >= 4) {
 					anim = anDive
 					frame = anim[0]
 					flip = 0
 				}
 
-				if(placeFree(x - 2, y + 1) || hspeed <= -4) {
+				if((freeLeft && freeDown) || hspeed <= -4) {
 					anim = anDive
 					frame = anim[0]
 					flip = 1
@@ -267,11 +267,11 @@
 		if(anim == anClimb || anim == anWall) gravity = 0
 
 		if(placeFree(x, y + vspeed)) y += vspeed
-		else vspeed /= 4
+		else vspeed /= 2
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) {
-				for(local i = 0; i < 2; i++) if(!placeFree(x, y + 1) && placeFree(x + hspeed, y + 1)) {
+				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1)) {
 					y += 1
 				}
 				x += hspeed

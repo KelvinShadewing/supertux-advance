@@ -50,6 +50,7 @@
 							case 0:
 								switch(b.kind) {
 									case 0:
+										return true
 										break
 									case 1:
 										//Get slope angle

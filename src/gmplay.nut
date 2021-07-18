@@ -76,9 +76,9 @@
 ::gmPlay <- function()
 {
 	drawBG()
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 13, "bg")
+	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	runActors()
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 13, "fg")
+	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
 	drawDebug()
 
 	local px = 0
