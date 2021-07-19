@@ -22,3 +22,9 @@
 	for(local i = 0; i < 3; i++) drawSprite(bgForest2, 0, ((offset / 2) % 272) + (i * 272), 0)
 	for(local i = 0; i < 3; i++) drawSprite(bgForest3, 0, (offset % 272) + (i * 272), 0)
 }
+
+::dbgAurora <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgAurora, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	}
+}

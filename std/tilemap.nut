@@ -116,6 +116,10 @@
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 								regions.push([np, []])
 								break
+							case "trigger":
+								local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+								actor[c].code = obj.name
 						}
 					}
 
@@ -140,13 +144,13 @@
 					local nl = [data.layers[i].name, []]; //New layer, stores name and object list
 					for(local j = 0; j < data.layers[i].objects.len(); j++) {
 						if(data.layers[i].objects[j].rawin("polygon")) {
-							
+
 							local np = Polygon(data.layers[i].objects[j].x, data.layers[i].objects[j].y, [])
 							for(local k = 0; k < data.layers[i].objects[j].polygon.len(); k++) {
 								np.addPoint(data.layers[i].objects[j].polygon[k].x, data.layers[i].objects[j].polygon[k].y)
 							}
 							nl[1].push(np)
-							
+
 						}
 						//Support for other shapes will be added as I work out collision math for them
 						else if(data.layers[i].objects[j].rawin("ellipse")) {}

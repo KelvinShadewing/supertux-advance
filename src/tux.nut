@@ -133,7 +133,7 @@
 
 				if(floor(frame) > anim[1]) {
 					vspeed = -6
-					if(flip == 0) hspeed = 6
+					if(flip == 0) hspeed = 5
 					else hspeed = -6
 					anim = anJumpU
 					frame = anim[0]
@@ -183,7 +183,7 @@
 		if(!placeFree(x, y + 2)) canJump = 8
 		else if(canJump > 0) canJump--
 		if(canMove) {
-			if(keyDown(config.key.run)) mspeed = 3
+			if(keyDown(config.key.run)) mspeed = 4
 			else mspeed = 2
 
 			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.4

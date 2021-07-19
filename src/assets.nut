@@ -39,6 +39,7 @@
 ::bgForest1 <- newSprite("res/parallax-forest-middle-trees.png", 272, 180, 0, 0, 0, 0, 0)
 ::bgForest2 <- newSprite("res/parallax-forest-lights.png", 272, 180, 0, 0, 0, 0, 0)
 ::bgForest3 <- newSprite("res/parallax-forest-front-trees.png", 272, 180, 0, 0, 0, 0, 0)
+::bgAurora <- newSprite("res/aurora.png", 720, 240, 0, 0, 0, 0, 0)
 
 //Maps
 ::mpTest <- "res/test.json"
