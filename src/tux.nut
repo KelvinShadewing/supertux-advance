@@ -64,7 +64,7 @@
 			case anWalk:
 				frame += abs(hspeed) / 8
 				if(hspeed == 0) anim = anStand
-				if(abs(hspeed) > 4) anim = anRun
+				if(abs(hspeed) > 2.8) anim = anRun
 
 				if(placeFree(x, y + 2)) {
 					if(vspeed >= 0) anim = anFall
@@ -74,7 +74,7 @@
 				break
 			case anRun:
 				frame += abs(hspeed) / 8
-				if(abs(hspeed) < 3) anim = anWalk
+				if(abs(hspeed) < 2.2) anim = anWalk
 
 				if(placeFree(x, y + 2)) {
 					if(vspeed >= 0) anim = anFall
@@ -154,7 +154,7 @@
 
 		//Sliding acceleration
 		if(anim == anDive || anim == anSlide) {
-			if(!freeDown && abs(hspeed) < 32) {
+			if(!freeDown && abs(hspeed) < 16) {
 				if(placeFree(x + 4, y + 2)) hspeed += 0.4
 				if(placeFree(x - 4, y + 2)) hspeed -= 0.4
 
@@ -180,10 +180,10 @@
 		frame = wrap(frame, anim[0], anim[1])
 
 		//Controls
-		if(!placeFree(x, y + 2)) canJump = 4
+		if(!placeFree(x, y + 2)) canJump = 8
 		else if(canJump > 0) canJump--
 		if(canMove) {
-			if(keyDown(config.key.run)) mspeed = 4
+			if(keyDown(config.key.run)) mspeed = 3
 			else mspeed = 2
 
 			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.4
@@ -225,13 +225,13 @@
 
 			//Going into slide
 			if(!freeDown && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
-				if((freeRight && freeDown) || hspeed >= 4) {
+				if((freeRight && freeDown) || hspeed >= 3) {
 					anim = anDive
 					frame = anim[0]
 					flip = 0
 				}
 
-				if((freeLeft && freeDown) || hspeed <= -4) {
+				if((freeLeft && freeDown) || hspeed <= -3) {
 					anim = anDive
 					frame = anim[0]
 					flip = 1
@@ -242,8 +242,8 @@
 		//Movement
 		if(!freeDown) {
 			if(anim == anSlide) {
-				if(hspeed > 0) hspeed -= friction / 2
-				if(hspeed < 0) hspeed += friction / 2
+				if(hspeed > 0) hspeed -= friction / 3
+				if(hspeed < 0) hspeed += friction / 3
 			} else {
 				if(hspeed > 0) hspeed -= friction
 				if(hspeed < 0) hspeed += friction
@@ -251,7 +251,7 @@
 		}
 
 		if(abs(hspeed) < friction) hspeed = 0.0
-		if(freeDown && vspeed < 8) vspeed += gravity
+		if(freeDown && vspeed < 6) vspeed += gravity
 		if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 		if(!freeDown && vspeed >= 0) {
 			//If Tux hits the ground while sliding
@@ -285,7 +285,7 @@
 						break
 					}
 				}
-				
+
 				//If no step was taken, slow down
 				if(didstep == false) hspeed -= (hspeed / abs(hspeed))
 			}

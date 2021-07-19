@@ -60,10 +60,22 @@
 										if(a1 > a0) return false
 										break
 									case 2:
+										//Get slope angle
+										local a0 = b.h / -b.w
+										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x + a.w) - (b.x - b.w))
+										if(a1 < a0) return false
 										break
 									case 3:
+										//Get slope angle
+										local a0 = -b.h / b.w
+										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x + b.w))
+										if(a1 < a0) return false
 										break
 									case 4:
+										//Get slope angle
+										local a0 = -b.h / -b.w
+										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x + a.w) - (b.x - b.w))
+										if(a1 > a0) return false
 										break
 									case 5:
 										break

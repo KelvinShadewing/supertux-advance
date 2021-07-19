@@ -83,13 +83,13 @@
 
 	local px = 0
 	local py = 0
-	local ux = gvMap.w - 320
-	local uy = gvMap.h - 180
+	local ux = gvMap.w - screenW()
+	local uy = gvMap.h - screenH()
 
 	if(gvPlayer != 0)
 	{
-		px = round(gvPlayer.x - 160)
-		py = round(gvPlayer.y - 90)
+		px = round(gvPlayer.x - (screenW() / 2))
+		py = round(gvPlayer.y - (screenH() / 2))
 	}
 
 	camx = px
