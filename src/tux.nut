@@ -270,15 +270,25 @@
 		else vspeed /= 2
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
 				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1)) {
 					y += 1
 				}
 				x += hspeed
-			} else if(placeFree(x + hspeed, y - 1)) {
-				x += hspeed
-				y -= 1
-			} else hspeed -= (hspeed / abs(hspeed))
+			} else {
+				local didstep = false
+				for(local i = 1; i <= 8; i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - i)) {
+						x += hspeed
+						y -= i
+						didstep = true
+						break
+					}
+				}
+				
+				//If no step was taken, slow down
+				if(didstep == false) hspeed -= (hspeed / abs(hspeed))
+			}
 		}
 
 		if(gvMap.w > 320) {

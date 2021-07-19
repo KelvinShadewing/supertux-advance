@@ -16,10 +16,10 @@
 	// 5 liquid
 
 	constructor(_x, _y, _w, _h, _kind) {
-		x = _x
-		y = _y
-		w = _w
-		h = _h
+		x = _x.tofloat()
+		y = _y.tofloat()
+		w = _w.tofloat()
+		h = _h.tofloat()
 		kind = _kind
 
 		//Prevent zero dimensions
@@ -31,8 +31,8 @@
 	function _typeof() { return "Rec" }
 
 	function setPos(_x, _y, _a) {
-		x = _x
-		y = _y
+		x = _x.tofloat()
+		y = _y.tofloat()
 	}
 }
 
@@ -47,15 +47,17 @@
 					//kinds
 					if(a.kind != 0 || b.kind != 0) {
 						switch(a.kind) {
-							case 0:
+							case 0: //Rectangle
 								switch(b.kind) {
 									case 0:
+										//If rectangle/rectangle somehow gets in anyway
 										return true
 										break
 									case 1:
 										//Get slope angle
-										local a0 = abs(a.h / a.w)
-										local a1 = abs(((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x - b.w)))
+										local a0 = b.h / b.w
+										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
+										if(a1 > a0) return false
 										break
 									case 2:
 										break
@@ -67,18 +69,17 @@
 										break
 								}
 								break
-							case 1:
+
+							case 1: //Top right
 								switch(b.kind) {
 									case 0:
-										break
 									case 1:
+									case 2:
+									case 3:
 										//Get slope angle
-										local a0 = abs(a.h / a.w)
-										local a1 = abs(((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x - b.w)))
-										break
-									case 2:
-										break
-									case 3:
+										local a0 = b.h / b.w
+										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
+										if(a1 > a0) return false
 										break
 									case 4:
 										break
@@ -87,7 +88,7 @@
 								}
 								break
 
-							case 2:
+							case 2: //Top left
 								switch(b.kind) {
 									case 0:
 										break
@@ -104,7 +105,7 @@
 								}
 								break
 
-							case 3:
+							case 3: //Bottom right
 								switch(b.kind) {
 									case 0:
 										break
@@ -121,7 +122,7 @@
 								}
 								break
 
-							case 4:
+							case 4: //Bottom left
 								switch(b.kind) {
 									case 0:
 										break
@@ -138,7 +139,7 @@
 								}
 								break
 
-							case 5:
+							case 5: //Liquid
 								switch(b.kind) {
 									case 0:
 										break
