@@ -31,7 +31,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		anim = anStand
-		shape = Rec(x, y + 2, 6, 12, 0)
+		shape = Rec(x, y + 2, 5, 12, 0)
 		if(gvPlayer == 0) gvPlayer = this
 	}
 
@@ -256,8 +256,8 @@
 		if(!freeDown && vspeed >= 0) {
 			//If Tux hits the ground while sliding
 			if(anim == anSlide) {
-				if(flip) hspeed -= vspeed / 4
-				else hspeed += vspeed / 4
+				if(flip) hspeed -= vspeed / 8
+				else hspeed += vspeed / 8
 			} else vspeed = 0.0
 		}
 
