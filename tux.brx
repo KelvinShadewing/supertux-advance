@@ -42,7 +42,7 @@ config.playerchar = "Tux"
 startPlay("res/zebish.json")
 drawBG = dbgAurora
 
-
+update()
 while(!getQuit() && !keyPress(k_escape))
 {
 	gvGameMode()

@@ -31,6 +31,7 @@
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0)
 ::tsIgloo <- newSprite("res/igloo.png", 16, 16, 0, 0, 0, 0, 0)
 ::tsPipes <- newSprite("res/pipetiles.png", 16, 16, 0, 0, 0, 0, 0)
+::tsGrass <- newSPrite("res/tsGrasstop.png", 16, 16, 0, 0, 0, 0, 0)
 
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/rockgapsBG.png", 400, 392, 0, 0, 0, 0, 0)

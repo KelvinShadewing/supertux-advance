@@ -225,13 +225,13 @@
 
 			//Going into slide
 			if(!freeDown && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
-				if((freeRight && freeDown) || hspeed >= 3) {
+				if((freeRight && freeDown) || hspeed >= 4) {
 					anim = anDive
 					frame = anim[0]
 					flip = 0
 				}
 
-				if((freeLeft && freeDown) || hspeed <= -3) {
+				if((freeLeft && freeDown) || hspeed <= -4) {
 					anim = anDive
 					frame = anim[0]
 					flip = 1
@@ -244,6 +244,7 @@
 			if(anim == anSlide) {
 				if(hspeed > 0) hspeed -= friction / 3
 				if(hspeed < 0) hspeed += friction / 3
+				if(abs(hspeed) < 1) anim = anStand
 			} else {
 				if(hspeed > 0) hspeed -= friction
 				if(hspeed < 0) hspeed += friction
@@ -256,8 +257,8 @@
 		if(!freeDown && vspeed >= 0) {
 			//If Tux hits the ground while sliding
 			if(anim == anSlide) {
-				if(flip) hspeed -= vspeed / 8
-				else hspeed += vspeed / 8
+				if(flip) hspeed -= vspeed / 6
+				else hspeed += vspeed / 6
 			} else vspeed = 0.0
 		}
 
