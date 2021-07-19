@@ -4,13 +4,14 @@
 
 ::startPlay <- function(level)
 {
-	//Load map to play
-	gvMap = Tilemap(level)
 
 	//Clear actors and start creating new ones
 	foreach(i in actor) {
 		if(typeof i != "table" && typeof i != "Tux") deleteActor(i.id)
 	}
+
+	//Load map to play
+	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors
 	local actset = -1

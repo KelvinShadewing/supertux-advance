@@ -120,6 +120,8 @@
 								local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 								actor[c].code = obj.name
+								print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
+								print(actor[c].shape)
 						}
 					}
 

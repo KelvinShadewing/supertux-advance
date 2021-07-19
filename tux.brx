@@ -49,3 +49,5 @@ while(!getQuit() && !keyPress(k_escape))
 	//gvMap.drawShapes(-camx, -camy, "solid")
 	update()
 }
+
+print(jsonWrite(actor))
