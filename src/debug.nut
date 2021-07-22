@@ -24,7 +24,7 @@
 		message += "Y: " + floor(gvPlayer.y) + "\n"
 	}
 
-	message += "FPS: " + floor(fps) + " (" + getFPS() + ")\n\n\n\n"
+	message += "FPS: " + round(fps) + " (" + getFPS() + ")\n\n\n\n"
 
 	//Debug keys
 	drawSprite(sprDebug, keyDown(config.key.left).tointeger(), 4, 28)

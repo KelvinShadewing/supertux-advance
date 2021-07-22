@@ -13,6 +13,8 @@
 	mspeed = 4 //Maximum running speed
 	climbf = 0
 	blinking = 0 //Invincibility frames
+	startx = 0.0
+	starty = 0.0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -33,6 +35,8 @@
 		anim = anStand
 		shape = Rec(x, y + 2, 5, 12, 0)
 		if(gvPlayer == 0) gvPlayer = this
+		startx = _x.tofloat()
+		starty = _y.tofloat()
 	}
 
 	function run() {
@@ -133,8 +137,8 @@
 
 				if(floor(frame) > anim[1]) {
 					vspeed = -6
-					if(flip == 0) hspeed = 5
-					else hspeed = -6
+					if(flip == 0) hspeed = 4
+					else hspeed = -4
 					anim = anJumpU
 					frame = anim[0]
 				}
@@ -268,7 +272,10 @@
 		if(anim == anClimb || anim == anWall) gravity = 0
 
 		if(placeFree(x, y + vspeed)) y += vspeed
-		else vspeed /= 2
+		else {
+			vspeed /= 2
+			if(placeFree(x, y + vspeed)) y += vspeed
+		}
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
@@ -305,6 +312,10 @@
 		} else x = wrap(x, 0, gvMap.w)
 
 		shape.setPos(x, y + 2, 0)
+		if(y > gvMap.h + 16) {
+			x = startx
+			y = starty
+		}
 
 
 

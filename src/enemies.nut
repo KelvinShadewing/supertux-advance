@@ -8,7 +8,7 @@
 	a = 0 //Current actor ID
 
 	function step() {
-		
+
 	}
 }
 
@@ -44,6 +44,8 @@
 ::Deathcap <- class extends Enemy {
 	frame = 0.0
 	gravity = 0.0
+	flip = false
+
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		r = 8
@@ -53,6 +55,6 @@
 	function run() {
 		base.run()
 
-		
+
 	}
 }

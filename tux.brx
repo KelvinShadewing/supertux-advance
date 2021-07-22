@@ -39,7 +39,7 @@ setFPS(30)
 
 gvGameMode = gmMain
 config.playerchar = "Tux"
-startPlay("res/zebish.json")
+startPlay("res/lv0-0.json")
 drawBG = dbgAurora
 
 update()
