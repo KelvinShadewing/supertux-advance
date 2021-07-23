@@ -22,11 +22,16 @@
 		//Collision with player
 		if(gvPlayer != 0) {
 			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= r + 8) { //8 for player radius
-				if((y > gvPlayer.y && vspeed < gvPlayer.vspeed) || gvPlayer.anim == gvPlayer.anSlide) gethurt()
+				if(y > gvPlayer.y && vspeed < gvPlayer.vspeed) gethurt()
+				else if(gvPlayer.rawin("anSlide")) {
+					if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
+					else hurtplayer()
+				}
 				else hurtplayer()
 			}
 		}
 
+		//Collision with fireball
 		if(actor.rawin("Fireball")) foreach(i in actor[Fireball]) {
 			if(distance2(x, y, i.x, i.y) <= r + 4) {
 				hurtfire()
@@ -85,13 +90,70 @@
 			drawSpriteEx(sprDeathcap, wrap(getFrames() / 6, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
 		else {
-
+			squishTime += 0.05
+			if(squishTime >= 1) deleteActor(id)
+			drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
 
 		shape.setPos(x, y, 0)
 	}
 
-	function hurtplayer() {gvPlayer.vspeed -= 1}
+	function hurtplayer() {
+		if(squish) return
+		
+		gvPlayer.vspeed = -4
+		if(gvPlayer.x < x) gvPlayer.hspeed = -2
+		else gvPlayer.hspeed = 2
+	}
+
+	function gethurt() {
+		if(squish) return
+
+		if(gvPlayer.rawin("anSlide")) {
+			if(gvPlayer.anim == gvPlayer.anSlide) {
+				local c = newActor(DeadNME, x, y)
+				actor[c].sprite = sprDeathcap
+				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.5)
+				deleteActor(id)
+			}
+			else if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
+			else gvPlayer.vspeed = -4
+			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+				gvPlayer.anim = gvPlayer.anJumpU
+				gvPlayer.frame = gvPlayer.anJumpU[0]
+			}
+		}
+		else if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
+		else gvPlayer.vspeed = -4
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+
+		squish = true
+	}
 
 	function _typeof() {return "Deathcap"}
+}
+
+::DeadNME <- class extends Actor {
+	sprite = 0
+	hspeed = 0.0
+	vspeed = 0.0
+	angle = 0.0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		vspeed = -6.0
+		hspeed = randFloat(4) - 2
+	}
+
+	function run() {
+		vspeed += 0.5
+		x += hspeed
+		y += vspeed
+		angle += 45
+		if(y > gvMap.h + 32) deleteActor(id)
+		drawSpriteEx(sprite, 0, floor(x - camx), floor(y - camy), angle, 0, 1, 1, 1)
+	}
 }
