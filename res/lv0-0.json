@@ -30,13 +30,24 @@
                 {
                  "height":8.54545454545456,
                  "id":92,
-                 "name":"gvPlayer.y = 256; gvPlayer.x = 960; gvPlayer.hspeed = 8",
+                 "name":"gvPlayer.y = 256; gvPlayer.x = 1024; gvPlayer.hspeed = 8",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":18.9090909090909,
                  "x":518.363636363636,
                  "y":283.636363636364
+                }, 
+                {
+                 "height":20.1513811068515,
+                 "id":113,
+                 "name":"gvPlayer.x = 528; gvPlayer.y = 260; gvPlayer.vspeed = -12; gvPlayer.anim = gvPlayer.anJump",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8.84694780300799,
+                 "x":938.759461319178,
+                 "y":244.76555588322
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1302,7 +1313,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":112,
+ "nextobjectid":114,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
