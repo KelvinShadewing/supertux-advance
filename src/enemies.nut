@@ -43,18 +43,55 @@
 
 ::Deathcap <- class extends Enemy {
 	frame = 0.0
-	gravity = 0.0
 	flip = false
+	squish = false
+	squishTime = 0.0
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
-		r = 8
+		r = 4
 		shape = Rec(x, y, 4, 8, 0)
 	}
 
 	function run() {
 		base.run()
 
+		if(!squish) {
+			if(placeFree(x, y + 1)) vspeed += 0.1
+			if(placeFree(x, y + vspeed)) y += vspeed
+			else vspeed /= 2
 
+			if(y > gvMap.h + 8) deleteActor(id)
+
+			if(flip) {
+				if(placeFree(x - 1, y)) x -= 1
+				else if(placeFree(x - 1.0, y - 1.0)) {
+					x -= 1.0
+					y -= 1.0
+				} else flip = false
+
+				if(x <= 0) flip = false
+			}
+			else {
+				if(placeFree(x + 1, y)) x += 1
+				else if(placeFree(x + 1.0, y - 1.0)) {
+					x += 1.0
+					y -= 1.0
+				} else flip = true
+
+				if(x >= gvMap.w) flip = true
+			}
+
+			drawSpriteEx(sprDeathcap, wrap(getFrames() / 6, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		}
+		else {
+
+		}
+
+		shape.setPos(x, y, 0)
 	}
+
+	function hurtplayer() {gvPlayer.vspeed -= 1}
+
+	function _typeof() {return "Deathcap"}
 }

@@ -63,6 +63,13 @@
 			case 1:
 				newActor(Coin, i.x, i.y - 16)
 				break
+			case 11:
+				local c = newActor(Deathcap, i.x + 8, i.y - 8)
+				actor[c].flip = true
+				break
+			case 12:
+				newActor(Deathcap, i.x + 8, i.y - 8)
+				break
 		}
 	}
 
