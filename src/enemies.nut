@@ -53,7 +53,7 @@
 	squishTime = 0.0
 
 	constructor(_x, _y) {
-		base.constructor(_x, _y)
+		base.constructor(_x.tofloat(), _y.tofloat())
 		r = 4
 		shape = Rec(x, y, 4, 8, 0)
 	}
@@ -70,16 +70,42 @@
 
 			if(flip) {
 				if(placeFree(x - 1, y)) x -= 1
-				else if(placeFree(x - 1.0, y - 1.0)) {
+				else if(placeFree(x - 2.0, y - 1.0)) {
+					x -= 1.0
+					y -= 0.5
+				} else if(placeFree(x - 2.0, y - 2.0)) {
 					x -= 1.0
 					y -= 1.0
 				} else flip = false
+				/*
+				There's a simpler way to do this in theory,
+				but it doesn't work in practice.
+				It should be this:
+
+				else if(placeFree(x - 1.0, y - 1.0)) {
+					x -= 1.0
+					y -= 1.0
+				}
+
+				But for whatever reason, this prevents any
+				movement over a slope that looks like \_.
+				Instead, they just turn around when they reach
+				the bottom of a slope facing right.
+
+				This weird trick of checking twice ahead works,
+				though. Credit to Admiral Spraker for giving me
+				the idea. Another fine example of (/d/d/d).
+				*/
+
 
 				if(x <= 0) flip = false
 			}
 			else {
 				if(placeFree(x + 1, y)) x += 1
-				else if(placeFree(x + 1.0, y - 1.0)) {
+				else if(placeFree(x + 2.0, y - 1.0)) {
+					x += 1.0
+					y -= 0.5
+				} else if(placeFree(x + 2.0, y - 2.0)) {
 					x += 1.0
 					y -= 1.0
 				} else flip = true
@@ -100,7 +126,7 @@
 
 	function hurtplayer() {
 		if(squish) return
-		
+
 		gvPlayer.vspeed = -4
 		if(gvPlayer.x < x) gvPlayer.hspeed = -2
 		else gvPlayer.hspeed = 2
@@ -136,8 +162,12 @@
 	function _typeof() {return "Deathcap"}
 }
 
+
+//Dead enemy effect for enemies that get sent flying,
+//like when hit with a melee attack
 ::DeadNME <- class extends Actor {
 	sprite = 0
+	frame = 0
 	hspeed = 0.0
 	vspeed = 0.0
 	angle = 0.0
@@ -154,6 +184,6 @@
 		y += vspeed
 		angle += 45
 		if(y > gvMap.h + 32) deleteActor(id)
-		drawSpriteEx(sprite, 0, floor(x - camx), floor(y - camy), angle, 0, 1, 1, 1)
+		drawSpriteEx(sprite, frame, floor(x - camx), floor(y - camy), angle, 0, 1, 1, 1)
 	}
 }

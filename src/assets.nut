@@ -2,7 +2,7 @@
 | ASSETS |
 \*======*/
 
-//Sprites
+//Main sprites
 ::sprFont <- newSprite("res/font.png", 6, 8, 0, 0, 0, 0, 0)
 ::font <- newFont(sprFont, 0, 0, 0, 0)
 ::sprFont2 <- newSprite("res/font2.png", 12, 14, 0, 0, 0, 0, 0)
@@ -11,21 +11,23 @@
 
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19, 0)
 
+//Blocks
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0, 0)
 
+//Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0, 0)
 ::sprDeathcap <- newSprite("res/deathcap.png", 16, 16, 0, 0, 8, 7, 0)
 
+//Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprHealth <- newSprite("res/heart.png",32, 32, 0, 0, 0, 0, 0)
 
+//Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8, 0)
-
-::fntMain <- newFont(sprFont, 33, 0, 0, -4)
 
 //Tilesets
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0)
