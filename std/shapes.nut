@@ -34,6 +34,10 @@
 		x = _x.tofloat()
 		y = _y.tofloat()
 	}
+
+	function draw() {
+		drawRect(x - w - camx, y - h - camy, (w * 2) + 1, (h * 2) + 1, false)
+	}
 }
 
 ::hitTest <- function(a, b) {
