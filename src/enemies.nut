@@ -125,7 +125,7 @@
 
 		shape.setPos(x, y)
 		setDrawColor(0xff0000ff)
-		shape.draw()
+		if(debug) shape.draw()
 	}
 
 	function hurtplayer() {
@@ -145,7 +145,7 @@
 				actor[c].sprite = sprDeathcap
 				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.5)
 				actor[c].hspeed = (gvPlayer.hspeed / 4)
-				actor[c].spin = (gvPlayer.hspeed * 1.5)
+				actor[c].spin = (gvPlayer.hspeed * 4)
 				actor[c].angle = 180
 				deleteActor(id)
 			}

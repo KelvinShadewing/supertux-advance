@@ -1,4 +1,4 @@
-::debug <- true
+::debug <- false
 ::debugTickIndex <- 0
 ::debugTickSum <- 0
 ::debugTickList <- array(64, 0)

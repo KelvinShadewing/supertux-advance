@@ -323,7 +323,7 @@
 				case 0: //Noot
 					break
 				case 1: //Fireball
-					local c = actor[newActor(Fireball, x, y)]
+					local c = actor[newActor(Fireball, x, y - 4)]
 					if(!flip) c.hspeed = 5
 					else c.hspeed = -5
 			}
