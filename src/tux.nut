@@ -15,6 +15,7 @@
 	blinking = 0 //Invincibility frames
 	startx = 0.0
 	starty = 0.0
+	firetime = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -177,8 +178,8 @@
 		}
 
 		if(anim != anClimb && anim != anWall) {
-			if(hspeed > 1) flip = 0
-			if(hspeed < -1) flip = 1
+			if(hspeed > 0.5) flip = 0
+			if(hspeed < -0.5) flip = 1
 		}
 
 		frame = wrap(frame, anim[0], anim[1])
@@ -295,7 +296,8 @@
 				}
 
 				//If no step was taken, slow down
-				if(didstep == false) hspeed -= (hspeed / abs(hspeed))
+				if(didstep == false && abs(hspeed) >= 1) hspeed -= (hspeed / abs(hspeed))
+				else if(didstep == false && abs(hspeed) < 1) hspeed = 0
 			}
 		}
 
@@ -318,7 +320,8 @@
 		}
 
 		//Attacks
-		if(keyPress(config.key.shoot)) {
+		if(firetime > 0) firetime--
+		if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
 			switch(game.tuxwep) {
 				case 0: //Noot
 					break
@@ -326,6 +329,7 @@
 					local c = actor[newActor(Fireball, x, y - 4)]
 					if(!flip) c.hspeed = 5
 					else c.hspeed = -5
+					firetime = 30
 			}
 		}
 
