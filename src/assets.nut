@@ -18,7 +18,7 @@
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0, 0)
-::sprDeathcap <- newSprite("res/deathcap.png", 16, 16, 0, 0, 8, 7, 0)
+::sprDeathcap <- newSprite("res/deathcap.png", 16, 16, 0, 0, 8, 8, 0)
 
 //Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 0, 0, 0)
@@ -28,6 +28,8 @@
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8, 0)
+::sprFireball <- newSprite("res/fireball.png", 8, 8, 0, 0, 4, 4, 0)
+::sprPoof <- newSprite("res/poof.png", 16, 16, 0, 0, 8, 8, 0)
 
 //Tilesets
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0, 0)

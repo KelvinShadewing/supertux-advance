@@ -10,6 +10,7 @@
 	lives = 0,
 	health = 4,
 	maxHealth = 4
+	tuxwep = 1
 }
 ::gvPlayer <- 0; //Pointer to player actor
 /*\

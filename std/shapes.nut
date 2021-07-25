@@ -30,7 +30,7 @@
 
 	function _typeof() { return "Rec" }
 
-	function setPos(_x, _y, _a) {
+	function setPos(_x, _y) {
 		x = _x.tofloat()
 		y = _y.tofloat()
 	}

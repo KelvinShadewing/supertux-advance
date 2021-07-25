@@ -311,13 +311,23 @@
 			}
 		} else x = wrap(x, 0, gvMap.w)
 
-		shape.setPos(x, y + 2, 0)
+		shape.setPos(x, y + 2)
 		if(y > gvMap.h + 16) {
 			x = startx
 			y = starty
 		}
 
-
+		//Attacks
+		if(keyPress(config.key.shoot)) {
+			switch(game.tuxwep) {
+				case 0: //Noot
+					break
+				case 1: //Fireball
+					local c = actor[newActor(Fireball, x, y)]
+					if(!flip) c.hspeed = 5
+					else c.hspeed = -5
+			}
+		}
 
 		//Draw
 		if(blinking % 2 == 0) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
@@ -325,3 +335,41 @@
 
 	function _typeof(){ return "Tux" }
 }
+
+::Fireball <- class extends PhysAct {
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 2, 2, 0)
+	}
+
+	function run() {
+		if(!placeFree(x, y + 1)) vspeed = -4
+		if(!placeFree(x, y - 1)) vspeed = 4
+		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -4
+			else deleteActor(id)
+		}
+		vspeed += 0.5
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x + hspeed, y - 4)) {
+			x += hspeed
+			y += -4
+			vspeed = -4
+		} else deleteActor(id)
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h) deleteActor(id)
+
+		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames(), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else drawSpriteEx(sprFireball, getFrames(), floor(x - camx), floor(y - camy), 0, 1, 1, 1, 1)
+
+		shape.setPos(x, y)
+	}
+
+	function _typeof () {return "Fireball"}
+}
+
