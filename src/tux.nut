@@ -196,6 +196,7 @@
 		else if(canJump > 0) canJump--
 		if(canMove) {
 			if(keyDown(config.key.run)) mspeed = 4
+			else if(keyDown(config.key.sneak)) mspeed = 1
 			else mspeed = 2
 
 			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.4
@@ -293,7 +294,7 @@
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 8; i++){ //Try to move up hill
+				for(local i = 1; i <= 4; i++){ //Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -369,7 +370,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y, 2, 2, 0)
+		shape = Rec(x, y, 3, 3, 0)
 	}
 
 	function run() {
@@ -403,15 +404,15 @@
 }
 
 ::TuxDie <- class extends Actor {
-	vspeed = -8.0
+	vspeed = -6.0
 
 	function run() {
-		vspeed += 0.5
+		vspeed += 0.2
 		y += vspeed
-		if(y > camy + 256) {
+		if(y > camy + 320) {
 			startPlay(gvMap.name)
 			deleteActor(id)
 		}
-		drawSprite(sprTux, 31, floor(x - camx), floor(y - camy))
+		drawSprite(sprTux, 50, floor(x - camx), floor(y - camy))
 	}
 }

@@ -24,7 +24,7 @@
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0, 0)
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 0, 0, 0)
-::sprHealth <- newSprite("res/heart.png",32, 32, 0, 0, 0, 0, 0)
+::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0, 0)
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8, 0)

@@ -11,3 +11,8 @@
 [ ] Flying deathcaps
 [ ] Swoops
 [ ] Cannon Bobs
+
+## Powerups
+
+[ ] Muffins
+[ ] Konqi (Yoshi-like)

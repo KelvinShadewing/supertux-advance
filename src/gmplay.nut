@@ -95,7 +95,10 @@
 	runActors()
 	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
-	drawSprite(sprHealth, game.health, 16, 16)
+	for(local i = 0; i < game.maxHealth; i++) {
+		if(i < game.health) drawSprite(sprHealth, 1, 16 + (16 * i), 16)
+		else drawSprite(sprHealth, 0, 16 + (16 * i), 16)
+	}
 	drawDebug()
 
 	local px = 0
