@@ -211,6 +211,7 @@
 					anim = anJumpU
 					frame = anim[0]
 				}
+				playSound(sndJump, 0)
 			}
 
 			if(keyRelease(config.key.jump) && vspeed < 0 && didJump)
@@ -242,12 +243,14 @@
 					anim = anDive
 					frame = anim[0]
 					flip = 0
+					playSound(sndSlide, 0)
 				}
 
 				if((freeLeft && freeDown) || hspeed <= -4) {
 					anim = anDive
 					frame = anim[0]
 					flip = 1
+					playSound(sndSlide, 0)
 				}
 			}
 		}
@@ -339,6 +342,7 @@
 					if(!flip) c.hspeed = 6
 					else c.hspeed = -6
 					firetime = 30
+					playSound(sndFireball, 0)
 			}
 		}
 
@@ -355,6 +359,7 @@
 					gvPlayer = 0
 					newActor(TuxDie, x, y)
 				}
+				playSound(sndHurt, 0)
 			}
 		}
 		if(blinking > 0) blinking--

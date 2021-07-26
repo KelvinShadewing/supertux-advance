@@ -147,9 +147,13 @@
 				actor[c].spin = (gvPlayer.hspeed * 4)
 				actor[c].angle = 180
 				deleteActor(id)
+				playSound(sndKick, 0)
 			}
 			else if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
-			else gvPlayer.vspeed = -4
+			else {
+				gvPlayer.vspeed = -4
+				playSound(sndSquish, 0)
+			}
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 				gvPlayer.anim = gvPlayer.anJumpU
 				gvPlayer.frame = gvPlayer.anJumpU[0]
@@ -168,6 +172,7 @@
 	function hurtfire() {
 		newActor(Poof, x, y)
 		deleteActor(id)
+		playSound(sndFlame, 0)
 	}
 
 	function _typeof() { return "Deathcap" }
@@ -208,6 +213,7 @@
 	function hurtfire() {
 		newActor(Poof, x, y + 14)
 		deleteActor(id)
+		playSound(sndFlame, 0)
 	}
 
 	function _typeof() { return "Snake" }

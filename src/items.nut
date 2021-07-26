@@ -18,6 +18,7 @@
 		if(gvPlayer != 0) if(distance2(x + 8, y + 8, gvPlayer.x, gvPlayer.y + 2) <= 16) {
 			deleteActor(id)
 			newActor(Spark, x + 8, y + 8)
+			playSound(sndCoin, 0)
 		}
 	}
 

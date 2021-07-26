@@ -47,6 +47,16 @@
 ::bgForest3 <- newSprite("res/parallax-forest-front-trees.png", 272, 180, 0, 0, 0, 0, 0)
 ::bgAurora <- newSprite("res/aurora.png", 720, 240, 0, 0, 0, 0, 0)
 
+//Sounds
+::sndFireball <- loadSound("res/fireball.wav")
+::sndJump <- loadSound("res/jump.wav")
+::sndHurt <- loadSound("res/hurt.wav")
+::sndKick <- loadSound("res/kick.wav")
+::sndSquish <- loadSound("res/squish.wav")
+::sndCoin <- loadSound("res/coin.wav")
+::sndSlide <- loadSound("res/slide.wav")
+::sndFlame <- loadSound("res/flame.wav")
+
 //Maps
 ::mpTest <- "res/test.json"
 //Maps won't be loaded all at once.
