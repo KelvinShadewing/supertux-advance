@@ -41,9 +41,11 @@
 
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
 	function hurtplayer() { //Default player damage
+		if(gvPlayer.blinking > 0) return
 		gvPlayer.vspeed = -4
 		if(gvPlayer.x < x) gvPlayer.hspeed = -2
 		else gvPlayer.hspeed = 2
+		gvPlayer.hurt = true
 		}
 	function hurtfire() {} //If the object is hit by a fireball
 	function _typeof() { return "Enemy" }
@@ -130,10 +132,7 @@
 
 	function hurtplayer() {
 		if(squish) return
-
-		gvPlayer.vspeed = -4
-		if(gvPlayer.x < x) gvPlayer.hspeed = -2
-		else gvPlayer.hspeed = 2
+		base.hurtplayer()
 	}
 
 	function gethurt() {

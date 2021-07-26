@@ -30,6 +30,7 @@
 	geo = []
 	w = 0
 	h = 0
+	name = ""
 
 	constructor(filename) {
 		if(fileExists(filename)) {
@@ -184,6 +185,11 @@
 					geo.push(nl)
 					*/
 				}
+			}
+
+			name = filename
+			if(data.rawin("properties")) foreach(i in data.properties) {
+				if(i.name == "code") dostr(i.value)
 			}
 		}
 		else print("Map file " + filename + " does not exist!")

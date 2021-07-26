@@ -6,9 +6,9 @@
 {
 
 	//Clear actors and start creating new ones
-	foreach(i in actor) {
-		if(typeof i != "table" && typeof i != "Tux") deleteActor(i.id)
-	}
+	gvPlayer = 0
+	actor = {}
+	game.health = game.maxHealth
 
 	//Load map to play
 	gvMap = Tilemap(level)
@@ -95,6 +95,7 @@
 	runActors()
 	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
+	drawSprite(sprHealth, game.health, 16, 16)
 	drawDebug()
 
 	local px = 0
@@ -106,6 +107,9 @@
 	{
 		px = round(gvPlayer.x - (screenW() / 2))
 		py = round(gvPlayer.y - (screenH() / 2))
+	} else {
+		px = camx
+		py = camy
 	}
 
 	camx = px

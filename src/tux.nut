@@ -16,6 +16,7 @@
 	startx = 0.0
 	starty = 0.0
 	firetime = 0
+	hurt = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -155,6 +156,12 @@
 			case anSlide:
 				frame = anim[0]
 				break
+			case anHurt:
+				frame += 0.2
+				if(floor(frame) > anim[1]) {
+					anim = anStand
+					frame = anim[0]
+				}
 		}
 
 		//Sliding acceleration
@@ -315,8 +322,9 @@
 
 		shape.setPos(x, y + 2)
 		if(y > gvMap.h + 16) {
-			x = startx
-			y = starty
+			deleteActor(id)
+			gvPlayer = 0
+			newActor(TuxDie, x, gvMap.h)
 		}
 
 		//Attacks
@@ -327,14 +335,31 @@
 					break
 				case 1: //Fireball
 					local c = actor[newActor(Fireball, x, y - 4)]
-					if(!flip) c.hspeed = 5
-					else c.hspeed = -5
+					if(!flip) c.hspeed = 6
+					else c.hspeed = -6
 					firetime = 30
 			}
 		}
 
+		//Hurt
+		if(hurt) {
+			hurt = false
+			if(blinking == 0) {
+				blinking = 60
+				anim = anHurt
+				frame = anim[0]
+				if(game.health > 0) game.health--
+				if(game.health == 0) {
+					deleteActor(id)
+					gvPlayer = 0
+					newActor(TuxDie, x, y)
+				}
+			}
+		}
+		if(blinking > 0) blinking--
+
 		//Draw
-		if(blinking % 2 == 0) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
+		if(blinking % 2 == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
 	}
 
 	function _typeof(){ return "Tux" }
@@ -377,3 +402,16 @@
 	function _typeof () {return "Fireball"}
 }
 
+::TuxDie <- class extends Actor {
+	vspeed = -8.0
+
+	function run() {
+		vspeed += 0.5
+		y += vspeed
+		if(y > camy + 256) {
+			startPlay(gvMap.name)
+			deleteActor(id)
+		}
+		drawSprite(sprTux, 31, floor(x - camx), floor(y - camy))
+	}
+}
