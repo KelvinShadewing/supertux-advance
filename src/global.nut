@@ -37,6 +37,7 @@
 		shoot = k_x,
 		run = k_lshift,
 		sneak = k_lctrl
+		pause = k_enter
 	},
 	playerchar = 0
 }
