@@ -16,25 +16,33 @@
 	health = 1
 	hspeed = 0.0
 	vspeed = 0.0
+	active = false
 
 	function run() {
 		//Collision with player
-		if(gvPlayer != 0) {
-			if(hitTest(shape, gvPlayer.shape)) { //8 for player radius
-				if(y > gvPlayer.y && vspeed < gvPlayer.vspeed) gethurt()
-				else if(gvPlayer.rawin("anSlide")) {
-					if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
+		if(active) {
+			if(gvPlayer != 0) {
+				if(hitTest(shape, gvPlayer.shape)) { //8 for player radius
+					if(y > gvPlayer.y && vspeed < gvPlayer.vspeed) gethurt()
+					else if(gvPlayer.rawin("anSlide")) {
+						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
+						else hurtplayer()
+					}
 					else hurtplayer()
 				}
-				else hurtplayer()
+			}
+
+			//Collision with fireball
+			if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
+				if(hitTest(shape, i.shape)) {
+					hurtfire()
+					deleteActor(i.id)
+				}
 			}
 		}
-
-		//Collision with fireball
-		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
-			if(hitTest(shape, i.shape)) {
-				hurtfire()
-				deleteActor(i.id)
+		else {
+			if(gvPlayer != 0) {
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 160) active = true
 			}
 		}
 	}
@@ -65,69 +73,71 @@
 	function run() {
 		base.run()
 
-		if(!squish) {
-			if(placeFree(x, y + 1)) vspeed += 0.1
-			if(placeFree(x, y + vspeed)) y += vspeed
-			else vspeed /= 2
+		if(active) {
+			if(!squish) {
+				if(placeFree(x, y + 1)) vspeed += 0.1
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
 
-			if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) deleteActor(id)
 
-			if(flip) {
-				if(placeFree(x - 1, y)) x -= 1
-				else if(placeFree(x - 2.0, y - 1.0)) {
-					x -= 1.0
-					y -= 0.5
-				} else if(placeFree(x - 2.0, y - 2.0)) {
-					x -= 1.0
-					y -= 1.0
-				} else flip = false
-				/*
-				There's a simpler way to do this in theory,
-				but it doesn't work in practice.
-				It should be this:
+				if(flip) {
+					if(placeFree(x - 1, y)) x -= 1
+					else if(placeFree(x - 2.0, y - 1.0)) {
+						x -= 1.0
+						y -= 0.5
+					} else if(placeFree(x - 2.0, y - 2.0)) {
+						x -= 1.0
+						y -= 1.0
+					} else flip = false
+					/*
+					There's a simpler way to do this in theory,
+					but it doesn't work in practice.
+					It should be this:
 
-				else if(placeFree(x - 1.0, y - 1.0)) {
-					x -= 1.0
-					y -= 1.0
+					else if(placeFree(x - 1.0, y - 1.0)) {
+						x -= 1.0
+						y -= 1.0
+					}
+
+					But for whatever reason, this prevents any
+					movement over a slope that looks like \_.
+					Instead, they just turn around when they reach
+					the bottom of a slope facing right.
+
+					This weird trick of checking twice ahead works,
+					though. Credit to Admiral Spraker for giving me
+					the idea. Another fine example of (/d/d/d).
+					*/
+
+
+					if(x <= 0) flip = false
 				}
+				else {
+					if(placeFree(x + 1, y)) x += 1
+					else if(placeFree(x + 2.0, y - 1.0)) {
+						x += 1.0
+						y -= 0.5
+					} else if(placeFree(x + 2.0, y - 2.0)) {
+						x += 1.0
+						y -= 1.0
+					} else flip = true
 
-				But for whatever reason, this prevents any
-				movement over a slope that looks like \_.
-				Instead, they just turn around when they reach
-				the bottom of a slope facing right.
-
-				This weird trick of checking twice ahead works,
-				though. Credit to Admiral Spraker for giving me
-				the idea. Another fine example of (/d/d/d).
-				*/
-
-
-				if(x <= 0) flip = false
+					if(x >= gvMap.w) flip = true
+				}
+	
+				drawSpriteEx(sprDeathcap, wrap(getFrames() / 6, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 			else {
-				if(placeFree(x + 1, y)) x += 1
-				else if(placeFree(x + 2.0, y - 1.0)) {
-					x += 1.0
-					y -= 0.5
-				} else if(placeFree(x + 2.0, y - 2.0)) {
-					x += 1.0
-					y -= 1.0
-				} else flip = true
-
-				if(x >= gvMap.w) flip = true
+				squishTime += 0.05
+				if(squishTime >= 1) deleteActor(id)
+				drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
-			drawSpriteEx(sprDeathcap, wrap(getFrames() / 6, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
 		}
-		else {
-			squishTime += 0.05
-			if(squishTime >= 1) deleteActor(id)
-			drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		}
-
-		shape.setPos(x, y)
-		setDrawColor(0xff0000ff)
-		if(debug) shape.draw()
 	}
 
 	function hurtplayer() {
@@ -188,7 +198,7 @@
 		base.constructor(_x, _y)
 		ystart = y
 		shape = Rec(x, y, 4, 12, 0)
-		timer = randInt(60)
+		timer = (x * y) % 60
 	}
 
 	function run() {

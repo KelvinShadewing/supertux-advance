@@ -185,8 +185,8 @@
 		}
 
 		if(anim != anClimb && anim != anWall) {
-			if(hspeed > 0.5) flip = 0
-			if(hspeed < -0.5) flip = 1
+			if(hspeed > 0.1) flip = 0
+			if(hspeed < -0.1) flip = 1
 		}
 
 		frame = wrap(frame, anim[0], anim[1])
