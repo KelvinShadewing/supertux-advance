@@ -9,3 +9,7 @@
 [thekingphoenix](https://opengameart.org/content/tileset-platform-forest) Forest Decorations
 
 [SuperTux](https://github.com/supertux/supertux) Sounds (shoot, jump, hurt, slide, coin)
+
+[Nemysis](https://opengameart.org/users/nemisys) Sign post
+
+[devnewton](https://opengameart.org/users/devnewton) Cloud tiles

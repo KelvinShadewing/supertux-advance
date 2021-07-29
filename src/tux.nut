@@ -329,6 +329,7 @@
 			deleteActor(id)
 			gvPlayer = 0
 			newActor(TuxDie, x, gvMap.h)
+			game.health = 0
 		}
 
 		//Attacks
@@ -339,8 +340,8 @@
 					break
 				case 1: //Fireball
 					local c = actor[newActor(Fireball, x, y - 4)]
-					if(!flip) c.hspeed = 6
-					else c.hspeed = -6
+					if(!flip) c.hspeed = 5
+					else c.hspeed = -5
 					firetime = 30
 					playSound(sndFireball, 0)
 			}
@@ -379,19 +380,19 @@
 	}
 
 	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -4
+		if(!placeFree(x, y + 1)) vspeed = -2
 		if(!placeFree(x, y - 1)) vspeed = 4
 		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -4
 			else deleteActor(id)
 		}
-		vspeed += 0.5
+		vspeed += 0.2
 
 		if(placeFree(x + hspeed, y)) x += hspeed
 		else if(placeFree(x + hspeed, y - 4)) {
 			x += hspeed
 			y += -4
-			vspeed = -4
+			vspeed = -2
 		} else deleteActor(id)
 
 		if(placeFree(x, y + vspeed)) y += vspeed
@@ -399,8 +400,8 @@
 
 		if(y > gvMap.h) deleteActor(id)
 
-		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames(), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		else drawSpriteEx(sprFireball, getFrames(), floor(x - camx), floor(y - camy), 0, 1, 1, 1, 1)
+		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 1, 1, 1, 1)
 
 		shape.setPos(x, y)
 	}

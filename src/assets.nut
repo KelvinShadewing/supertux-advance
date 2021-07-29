@@ -19,6 +19,7 @@
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0, 0)
 ::sprDeathcap <- newSprite("res/deathcap.png", 16, 16, 0, 0, 8, 8, 0)
+::sprNolok <- newSprite("res/nolok.png", 64, 64, 0, 0, 32, 40, 0)
 
 //Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 0, 0, 0)

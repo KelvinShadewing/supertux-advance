@@ -42,7 +42,7 @@
 		}
 		else {
 			if(gvPlayer != 0) {
-				if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 160) active = true
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 180) active = true
 			}
 		}
 	}
@@ -125,7 +125,7 @@
 
 					if(x >= gvMap.w) flip = true
 				}
-	
+
 				drawSpriteEx(sprDeathcap, wrap(getFrames() / 6, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 			else {
@@ -208,7 +208,7 @@
 		if(!up && y < ystart) y += 2
 
 		timer--
-		if(timer == 0) {
+		if(timer <= 0) {
 			up = !up
 			timer = 60
 		}
