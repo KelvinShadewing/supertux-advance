@@ -50,7 +50,7 @@
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
 	function hurtplayer() { //Default player damage
 		if(gvPlayer.blinking > 0) return
-		gvPlayer.vspeed = -2.0
+		gvPlayer.vspeed = -2.2
 		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 		else gvPlayer.hspeed = 1.0
 		gvPlayer.hurt = true
@@ -197,7 +197,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		ystart = y
-		shape = Rec(x, y, 4, 12, 0)
+		shape = Rec(x, y, 8, 12, 0)
 		timer = (x * y) % 60
 	}
 

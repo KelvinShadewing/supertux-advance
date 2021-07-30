@@ -199,8 +199,8 @@
 			else if(keyDown(config.key.sneak)) mspeed = 0.5
 			else mspeed = 1
 
-			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.1
-			if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide) hspeed -= 0.1
+			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
+			if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
 
 			//Jumping
 			if(keyPress(config.key.jump) && canJump > 0) {
@@ -360,8 +360,7 @@
 		if(blinking > 0) blinking--
 
 		//Draw
-		if(blinking == 0 || anim != anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
-		else drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 0.5)
+		if((blinking / 2) % 2 == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
 	}
 
 	function _typeof(){ return "Tux" }
@@ -375,7 +374,7 @@
 	}
 
 	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -1
+		if(!placeFree(x, y + 1)) vspeed = -1.2
 		if(!placeFree(x, y - 1)) vspeed = 1
 		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1

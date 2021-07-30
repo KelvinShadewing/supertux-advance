@@ -57,7 +57,7 @@
                 {
                  "height":25.2121166666667,
                  "id":181,
-                 "name":"gvPlayer.y = 256; gvPlayer.x = 960; gvPlayer.hspeed = 8; drawBG = dbgAurora",
+                 "name":"gvPlayer.y = 256; gvPlayer.x = 960; gvPlayer.hspeed = 4; drawBG = dbgAurora",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -68,7 +68,7 @@
                 {
                  "height":8.54545,
                  "id":182,
-                 "name":"gvPlayer.y = 192; gvPlayer.x = 4500; gvPlayer.hspeed = 4; drawBG = dbgCave",
+                 "name":"gvPlayer.y = 192; gvPlayer.x = 4500; gvPlayer.hspeed = 2; drawBG = dbgCave",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1846,7 +1846,7 @@
          "value":"drawBG = dbgAurora"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.0",
  "tileheight":16,
  "tilesets":[
         {
