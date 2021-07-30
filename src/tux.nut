@@ -5,7 +5,7 @@
 ::Tux <- class extends PhysAct {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
-	friction = 0.2
+	friction = 0.05
 	gravity = 0.0
 	frame = 0.0
 	flip = 0
@@ -70,7 +70,7 @@
 			case anWalk:
 				frame += abs(hspeed) / 8
 				if(hspeed == 0) anim = anStand
-				if(abs(hspeed) > 2.8) anim = anRun
+				if(abs(hspeed) > 2) anim = anRun
 
 				if(placeFree(x, y + 2)) {
 					if(vspeed >= 0) anim = anFall
@@ -80,7 +80,7 @@
 				break
 			case anRun:
 				frame += abs(hspeed) / 8
-				if(abs(hspeed) < 2.2) anim = anWalk
+				if(abs(hspeed) < 1.2) anim = anWalk
 
 				if(placeFree(x, y + 2)) {
 					if(vspeed >= 0) anim = anFall
@@ -89,7 +89,7 @@
 				}
 				break
 			case anJumpU:
-				if(frame < anim[0] + 1) frame += 0.3
+				if(frame < anim[0] + 1) frame += 0.1
 
 				if(!freeDown) {
 					anim = anStand
@@ -134,17 +134,17 @@
 				frame += (vspeed / 4) * climbf
 				break
 			case anWall:
-				frame += 0.25
+				frame += 0.2
 				vspeed = 0
 
 				if(floor(frame) > anim[1]) {
-					vspeed = -6
-					if(flip == 0) hspeed = 4
-					else hspeed = -4
+					vspeed = -3
+					if(flip == 0) hspeed = 2
+					else hspeed = -2
 					anim = anJumpU
 					frame = anim[0]
 				}
-				break;
+				break
 			case anDive:
 				frame += 0.25
 
@@ -152,32 +152,34 @@
 					anim = anSlide
 					frame = anim[0]
 				}
-				break;
+				break
 			case anSlide:
-				frame = anim[0]
+				frame = getFrames() / 8
 				break
 			case anHurt:
-				frame += 0.2
+				frame += 0.1
 				if(floor(frame) > anim[1]) {
 					anim = anStand
 					frame = anim[0]
 				}
 		}
 
+		frame = wrap(frame, anim[0], anim[1])
+
 		//Sliding acceleration
 		if(anim == anDive || anim == anSlide) {
-			if(!freeDown && abs(hspeed) < 16) {
-				if(placeFree(x + 4, y + 2)) hspeed += 0.4
-				if(placeFree(x - 4, y + 2)) hspeed -= 0.4
+			if(!freeDown && abs(hspeed) < 6) {
+				if(placeFree(x + 4, y + 2)) hspeed += 0.1
+				if(placeFree(x - 4, y + 2)) hspeed -= 0.1
 
 				if(placeFree(x + 4, y + 4)) {
-					hspeed += 0.4
-					vspeed += 1
+					hspeed += 0.1
+					vspeed += 0.5
 				}
 
 				if(placeFree(x - 4, y + 4)) {
-					hspeed -= 0.4
-					vspeed += 1
+					hspeed -= 0.1
+					vspeed += 0.5
 				}
 			}
 
@@ -189,22 +191,20 @@
 			if(hspeed < -0.1) flip = 1
 		}
 
-		frame = wrap(frame, anim[0], anim[1])
-
 		//Controls
 		if(!placeFree(x, y + 2)) canJump = 8
 		else if(canJump > 0) canJump--
 		if(canMove) {
-			if(keyDown(config.key.run)) mspeed = 4
-			else if(keyDown(config.key.sneak)) mspeed = 1
-			else mspeed = 2
+			if(keyDown(config.key.run)) mspeed = 2
+			else if(keyDown(config.key.sneak)) mspeed = 0.5
+			else mspeed = 1
 
-			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.4
-			if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide) hspeed -= 0.4
+			if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide) hspeed += 0.1
+			if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide) hspeed -= 0.1
 
 			//Jumping
 			if(keyPress(config.key.jump) && canJump > 0) {
-				vspeed = -7
+				vspeed = -3.8
 				didJump = true
 				canJump = 0
 				if(anim == anDive || anim == anSlide) {
@@ -239,14 +239,14 @@
 
 			//Going into slide
 			if(!freeDown && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
-				if((freeRight && freeDown) || hspeed >= 4) {
+				if((freeRight && freeDown) || hspeed >= 2) {
 					anim = anDive
 					frame = anim[0]
 					flip = 0
 					playSound(sndSlide, 0)
 				}
 
-				if((freeLeft && freeDown) || hspeed <= -4) {
+				if((freeLeft && freeDown) || hspeed <= -2) {
 					anim = anDive
 					frame = anim[0]
 					flip = 1
@@ -268,7 +268,7 @@
 		}
 
 		if(abs(hspeed) < friction) hspeed = 0.0
-		if(freeDown && vspeed < 6) vspeed += gravity
+		if(freeDown && vspeed < 3) vspeed += gravity
 		if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 		if(!freeDown && vspeed >= 0) {
 			//If Tux hits the ground while sliding
@@ -279,13 +279,13 @@
 		}
 
 		//Gravity cases
-		gravity = 0.4
-		if(anim == anDive || anim == anSlide) gravity = 0.6
+		gravity = 0.11
 		if(anim == anClimb || anim == anWall) gravity = 0
 
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2
+			if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
@@ -313,15 +313,9 @@
 		}
 
 		if(gvMap.w > 320) {
-			if(x < 4) {
-				if(hspeed < 0) hspeed = 1
-				x == 4
-			}
+			if(x < 4) x = 4
 
-			if(x > gvMap.w - 4) {
-				if(hspeed > 0) hspeed = -1
-				x = gvMap.w - 4
-			}
+			if(x > gvMap.w - 4) x = gvMap.w - 4
 		} else x = wrap(x, 0, gvMap.w)
 
 		shape.setPos(x, y + 2)
@@ -340,9 +334,9 @@
 					break
 				case 1: //Fireball
 					local c = actor[newActor(Fireball, x, y - 4)]
-					if(!flip) c.hspeed = 5
-					else c.hspeed = -5
-					firetime = 30
+					if(!flip) c.hspeed = 3
+					else c.hspeed = -3
+					firetime = 60
 					playSound(sndFireball, 0)
 			}
 		}
@@ -351,7 +345,7 @@
 		if(hurt) {
 			hurt = false
 			if(blinking == 0) {
-				blinking = 60
+				blinking = 120
 				anim = anHurt
 				frame = anim[0]
 				if(game.health > 0) game.health--
@@ -366,7 +360,8 @@
 		if(blinking > 0) blinking--
 
 		//Draw
-		if(blinking % 2 == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
+		if(blinking == 0 || anim != anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
+		else drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 0.5)
 	}
 
 	function _typeof(){ return "Tux" }
@@ -380,19 +375,19 @@
 	}
 
 	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -2
-		if(!placeFree(x, y - 1)) vspeed = 4
+		if(!placeFree(x, y + 1)) vspeed = -1
+		if(!placeFree(x, y - 1)) vspeed = 1
 		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
-			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -4
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
 			else deleteActor(id)
 		}
-		vspeed += 0.2
+		vspeed += 0.1
 
 		if(placeFree(x + hspeed, y)) x += hspeed
-		else if(placeFree(x + hspeed, y - 4)) {
+		else if(placeFree(x + hspeed, y - 2)) {
 			x += hspeed
-			y += -4
-			vspeed = -2
+			y += -2
+			vspeed = -1
 		} else deleteActor(id)
 
 		if(placeFree(x, y + vspeed)) y += vspeed
@@ -410,10 +405,10 @@
 }
 
 ::TuxDie <- class extends Actor {
-	vspeed = -6.0
+	vspeed = -3.0
 
 	function run() {
-		vspeed += 0.2
+		vspeed += 0.05
 		y += vspeed
 		if(y > camy + 320) {
 			startPlay(gvMap.name)

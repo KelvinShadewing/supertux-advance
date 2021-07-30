@@ -50,9 +50,9 @@
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
 	function hurtplayer() { //Default player damage
 		if(gvPlayer.blinking > 0) return
-		gvPlayer.vspeed = -4
-		if(gvPlayer.x < x) gvPlayer.hspeed = -2
-		else gvPlayer.hspeed = 2
+		gvPlayer.vspeed = -2.0
+		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
+		else gvPlayer.hspeed = 1.0
 		gvPlayer.hurt = true
 		}
 	function hurtfire() {} //If the object is hit by a fireball
@@ -82,13 +82,13 @@
 				if(y > gvMap.h + 8) deleteActor(id)
 
 				if(flip) {
-					if(placeFree(x - 1, y)) x -= 1
-					else if(placeFree(x - 2.0, y - 1.0)) {
-						x -= 1.0
+					if(placeFree(x - 0.5, y)) x -= 0.5
+					else if(placeFree(x - 1.0, y - 0.5)) {
+						x -= 0.5
+						y -= 0.25
+					} else if(placeFree(x - 1.0, y - 1.0)) {
+						x -= 0.5
 						y -= 0.5
-					} else if(placeFree(x - 2.0, y - 2.0)) {
-						x -= 1.0
-						y -= 1.0
 					} else flip = false
 					/*
 					There's a simpler way to do this in theory,
@@ -114,22 +114,22 @@
 					if(x <= 0) flip = false
 				}
 				else {
-					if(placeFree(x + 1, y)) x += 1
-					else if(placeFree(x + 2.0, y - 1.0)) {
-						x += 1.0
+					if(placeFree(x + 1, y)) x += 0.5
+					else if(placeFree(x + 1.0, y - 0.5)) {
+						x += 0.5
+						y -= 0.25
+					} else if(placeFree(x + 1.0, y - 1.0)) {
+						x += 0.5
 						y -= 0.5
-					} else if(placeFree(x + 2.0, y - 2.0)) {
-						x += 1.0
-						y -= 1.0
 					} else flip = true
 
 					if(x >= gvMap.w) flip = true
 				}
 
-				drawSpriteEx(sprDeathcap, wrap(getFrames() / 6, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 			else {
-				squishTime += 0.05
+				squishTime += 0.025
 				if(squishTime >= 1) deleteActor(id)
 				drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
@@ -152,16 +152,16 @@
 			if(gvPlayer.anim == gvPlayer.anSlide) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprDeathcap
-				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.5)
-				actor[c].hspeed = (gvPlayer.hspeed / 4)
+				actor[c].vspeed = -abs(gvPlayer.hspeed / 2)
+				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 4)
 				actor[c].angle = 180
 				deleteActor(id)
 				playSound(sndKick, 0)
 			}
-			else if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
+			else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
 			else {
-				gvPlayer.vspeed = -4
+				gvPlayer.vspeed = -2
 				playSound(sndSquish, 0)
 			}
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -169,8 +169,8 @@
 				gvPlayer.frame = gvPlayer.anJumpU[0]
 			}
 		}
-		else if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
-		else gvPlayer.vspeed = -4
+		else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
+		else gvPlayer.vspeed = -2
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
@@ -204,18 +204,18 @@
 	function run() {
 		base.run()
 
-		if(up && y > ystart - 24) y -= 2
-		if(!up && y < ystart) y += 2
+		if(up && y > ystart - 24) y--
+		if(!up && y < ystart) y++
 
 		timer--
 		if(timer <= 0) {
 			up = !up
-			timer = 60
+			timer = 120
 		}
 
 		shape.setPos(x, y + 16)
-		if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+		if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 	}
 
 	function gethurt() { hurtplayer() }
@@ -241,11 +241,11 @@
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
-		vspeed = -6.0
+		vspeed = -3.0
 	}
 
 	function run() {
-		vspeed += 0.5
+		vspeed += 0.04
 		x += hspeed
 		y += vspeed
 		angle += spin

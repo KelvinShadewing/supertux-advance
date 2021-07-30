@@ -37,7 +37,7 @@
 	drawSprite(sprDebug, keyDown(config.key.run).tointeger() + 12, 20, 40)
 
 	message += "SPD:"
-	if(gvPlayer != 0) for(local i = 0; i < abs(round(gvPlayer.hspeed)); i++) message += chint(16)
+	if(gvPlayer != 0) for(local i = 0; i < abs(round(gvPlayer.hspeed * 2)); i++) message += chint(16)
 	message += "\n\n"
 	message += "Map W: " + gvMap.w + "\n"
 	message += "Map H: " + gvMap.h + "\n"

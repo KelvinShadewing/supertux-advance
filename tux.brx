@@ -37,7 +37,7 @@ donut("src/trigger.nut")
 setResolution(320, 180)
 setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
-setFPS(30)
+setFPS(60)
 
 gvGameMode = gmMain
 config.playerchar = "Tux"
@@ -49,6 +49,5 @@ while(!getQuit() && !keyPress(k_escape))
 {
 	gvGameMode()
 	if(keyPress(config.key.pause)) togglePause()
-	//gvMap.drawShapes(-camx, -camy, "solid")
 	update()
 }

@@ -90,17 +90,6 @@
 
 ::gmPlay <- function()
 {
-	drawBG()
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "bg")
-	runActors()
-	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
-	for(local i = 0; i < game.maxHealth; i++) {
-		if(i < game.health) drawSprite(sprHealth, 1, 16 + (16 * i), 16)
-		else drawSprite(sprHealth, 0, 16 + (16 * i), 16)
-	}
-	drawDebug()
-
 	local px = 0
 	local py = 0
 	local ux = gvMap.w - screenW()
@@ -108,8 +97,8 @@
 
 	if(gvPlayer != 0)
 	{
-		px = floor(gvPlayer.x - (screenW() / 2))
-		py = floor(gvPlayer.y - (screenH() / 2))
+		px = gvPlayer.x - (screenW() / 2)
+		py = gvPlayer.y - (screenH() / 2)
 	} else {
 		px = camx
 		py = camy
@@ -122,4 +111,15 @@
 	if(camx < 0) camx = 0
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
+
+	drawBG()
+	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "bg")
+	runActors()
+	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
+	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
+	for(local i = 0; i < game.maxHealth; i++) {
+		if(i < game.health) drawSprite(sprHealth, 1, 16 + (16 * i), 16)
+		else drawSprite(sprHealth, 0, 16 + (16 * i), 16)
+	}
+	drawDebug()
 }
