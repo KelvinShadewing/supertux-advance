@@ -70,7 +70,7 @@
 			case anWalk:
 				frame += abs(hspeed) / 8
 				if(hspeed == 0) anim = anStand
-				if(abs(hspeed) > 2) anim = anRun
+				if(abs(hspeed) > 1.8) anim = anRun
 
 				if(placeFree(x, y + 2)) {
 					if(vspeed >= 0) anim = anFall
@@ -114,7 +114,7 @@
 				}
 				break
 			case anFall:
-				frame += 0.2
+				frame += 0.15
 				if(!freeDown) {
 					anim = anStand
 					frame = 0.0
@@ -138,7 +138,7 @@
 				vspeed = 0
 
 				if(floor(frame) > anim[1]) {
-					vspeed = -3
+					vspeed = -3.2
 					if(flip == 0) hspeed = 2
 					else hspeed = -2
 					anim = anJumpU
@@ -192,7 +192,7 @@
 		}
 
 		//Controls
-		if(!placeFree(x, y + 2)) canJump = 8
+		if(!placeFree(x, y + 2)) canJump = 15
 		else if(canJump > 0) canJump--
 		if(canMove) {
 			if(keyDown(config.key.run)) mspeed = 2
@@ -273,8 +273,8 @@
 		if(!freeDown && vspeed >= 0) {
 			//If Tux hits the ground while sliding
 			if(anim == anSlide) {
-				if(flip) hspeed -= vspeed / 6
-				else hspeed += vspeed / 6
+				if(flip) hspeed -= vspeed / 5
+				else hspeed += vspeed / 5
 			} else vspeed = 0.0
 		}
 

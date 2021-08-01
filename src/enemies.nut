@@ -83,10 +83,10 @@
 
 				if(flip) {
 					if(placeFree(x - 0.5, y)) x -= 0.5
-					else if(placeFree(x - 1.0, y - 0.5)) {
+					else if(placeFree(x - 1.1, y - 0.5)) {
 						x -= 0.5
 						y -= 0.25
-					} else if(placeFree(x - 1.0, y - 1.0)) {
+					} else if(placeFree(x - 1.1, y - 1.0)) {
 						x -= 0.5
 						y -= 0.5
 					} else flip = false
@@ -115,10 +115,10 @@
 				}
 				else {
 					if(placeFree(x + 1, y)) x += 0.5
-					else if(placeFree(x + 1.0, y - 0.5)) {
+					else if(placeFree(x + 1.1, y - 0.5)) {
 						x += 0.5
 						y -= 0.25
-					} else if(placeFree(x + 1.0, y - 1.0)) {
+					} else if(placeFree(x + 1.1, y - 1.0)) {
 						x += 0.5
 						y -= 0.5
 					} else flip = true
@@ -152,9 +152,9 @@
 			if(gvPlayer.anim == gvPlayer.anSlide) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprDeathcap
-				actor[c].vspeed = -abs(gvPlayer.hspeed / 2)
+				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.05)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
-				actor[c].spin = (gvPlayer.hspeed * 4)
+				actor[c].spin = (gvPlayer.hspeed * 6)
 				actor[c].angle = 180
 				deleteActor(id)
 				playSound(sndKick, 0)
@@ -245,7 +245,7 @@
 	}
 
 	function run() {
-		vspeed += 0.04
+		vspeed += 0.1
 		x += hspeed
 		y += vspeed
 		angle += spin

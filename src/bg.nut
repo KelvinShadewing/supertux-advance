@@ -15,16 +15,19 @@
 }
 
 ::dbgForest <- function() {
-	local offset = -camx //Constantly scrolling for now for testing purposes
-
-	for(local i = 0; i < 3; i++) drawSprite(bgForest0, 0, ((offset / 4) % 272) + (i * 272), 0)
-	for(local i = 0; i < 3; i++) drawSprite(bgForest1, 0, ((offset / 3) % 272) + (i * 272), 0)
-	for(local i = 0; i < 3; i++) drawSprite(bgForest2, 0, ((offset / 2) % 272) + (i * 272), 0)
-	for(local i = 0; i < 3; i++) drawSprite(bgForest3, 0, (offset % 272) + (i * 272), 0)
+	for(local i = 0; i < 2; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+	for(local i = 0; i < 3; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 255) + (i * 255), gvMap.h - camy - 180)
+	for(local i = 0; i < 3; i++) drawSprite(bgForest1, 0, (-camx % 255) + (i * 255), gvMap.h - camy - 180)
 }
 
 ::dbgAurora <- function() {
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgAurora, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	}
+}
+
+::dbgRiverCity <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }

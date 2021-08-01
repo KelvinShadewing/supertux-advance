@@ -61,13 +61,13 @@
 				else { //Search for file
 					if(fileExists(filename)) {
 						print("Attempting to add full filename")
-						tileset.push(newSprite(filename, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0, 0))
+						tileset.push(newSprite(filename, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0))
 						print("Added tileset " + shortname + ".")
 					}
 					else for(local j = 0; j < tileSearchDir.len(); j++) {
 						if(fileExists(tileSearchDir[j] + "/" + shortname)) {
 							print("Adding from search path: " + tileSearchDir[j])
-							tileset.push(newSprite(tileSearchDir[j] + "/" + shortname, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0, 0))
+							tileset.push(newSprite(tileSearchDir[j] + "/" + shortname, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0))
 							break
 						}
 					}

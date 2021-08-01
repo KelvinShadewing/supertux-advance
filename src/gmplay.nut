@@ -97,8 +97,8 @@
 
 	if(gvPlayer != 0)
 	{
-		px = gvPlayer.x - (screenW() / 2)
-		py = gvPlayer.y - (screenH() / 2)
+		px = round(gvPlayer.x) - (screenW() / 2)
+		py = round(gvPlayer.y) - (screenH() / 2)
 	} else {
 		px = camx
 		py = camy
