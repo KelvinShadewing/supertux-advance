@@ -31,6 +31,7 @@
 	anFall = [36.0, 37.0]
 	anClimb = [44.0, 47.0]
 	anWall = [48.0, 49.0]
+	anSwim = [51.0, 55.0]
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
