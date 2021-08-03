@@ -35,7 +35,7 @@
 ::meMain <- [
 	{
 		name = function() { return "New Game" },
-		func = function() { gvPlayers = 1; gvDual = 0; startPlay(0) },
+		func = function() { gvPlayers = 1; gvDual = 0; startPlay("res/lv0-0.nut") },
 		desc = function() { return "Begin new game from the beginning." }
 	},
 	{
