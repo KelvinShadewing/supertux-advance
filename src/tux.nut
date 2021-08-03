@@ -17,6 +17,7 @@
 	starty = 0.0
 	firetime = 0
 	hurt = false
+	swimming = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -31,7 +32,11 @@
 	anFall = [36.0, 37.0]
 	anClimb = [44.0, 47.0]
 	anWall = [48.0, 49.0]
-	anSwim = [52.0, 55.0]
+	anSwimF = [52.0, 55.0]
+	anSwimUF = [56.0, 59.0]
+	anSwimDF = [60.0, 63.0]
+	anSwimU = [64.0, 67.0]
+	anSwimD = [68.0, 71.0]
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
@@ -52,122 +57,143 @@
 		//quickly reused. Location checks will likely need to be done multiple
 		//times per frame.
 
-		//Animation states
-		switch(anim) {
-			case anStand:
-				frame = 0.0
+		/////////////
+		// ON LAND //
+		/////////////
+		if(!inWater(x, y)) {
+			swimming = false
 
-				if(hspeed != 0) {
-					anim = anWalk
-					frame = anim[0]
-				}
-
-				if(placeFree(x, y + 2)) {
-					if(vspeed >= 0) anim = anFall
-					else anim = anJumpU
-					frame = anim[0]
-				}
-				break
-			case anWalk:
-				frame += abs(hspeed) / 8
-				if(hspeed == 0) anim = anStand
-				if(abs(hspeed) > 1.8) anim = anRun
-
-				if(placeFree(x, y + 2)) {
-					if(vspeed >= 0) anim = anFall
-					else anim = anJumpU
-					frame = anim[0]
-				}
-				break
-			case anRun:
-				frame += abs(hspeed) / 8
-				if(abs(hspeed) < 1.2) anim = anWalk
-
-				if(placeFree(x, y + 2)) {
-					if(vspeed >= 0) anim = anFall
-					else anim = anJumpU
-					frame = anim[0]
-				}
-				break
-			case anJumpU:
-				if(frame < anim[0] + 1) frame += 0.1
-
-				if(!freeDown) {
-					anim = anStand
+			//Animation states
+			switch(anim) {
+				case anStand:
 					frame = 0.0
-				}
 
-				if(vspeed > 0) {
+					if(hspeed != 0) {
+						anim = anWalk
+						frame = anim[0]
+					}
+
+					if(placeFree(x, y + 2)) {
+						if(vspeed >= 0) anim = anFall
+						else anim = anJumpU
+						frame = anim[0]
+					}
+					break
+				case anWalk:
+					frame += abs(hspeed) / 8
+					if(hspeed == 0) anim = anStand
+					if(abs(hspeed) > 1.8) anim = anRun
+
+					if(placeFree(x, y + 2)) {
+						if(vspeed >= 0) anim = anFall
+						else anim = anJumpU
+						frame = anim[0]
+					}
+					break
+				case anRun:
+					frame += abs(hspeed) / 8
+					if(abs(hspeed) < 1.2) anim = anWalk
+
+					if(placeFree(x, y + 2)) {
+						if(vspeed >= 0) anim = anFall
+						else anim = anJumpU
+						frame = anim[0]
+					}
+					break
+				case anJumpU:
+					if(frame < anim[0] + 1) frame += 0.1
+
+					if(!freeDown) {
+						anim = anStand
+						frame = 0.0
+					}
+
+					if(vspeed > 0) {
+						anim = anJumpT
+						frame = anim[0]
+					}
+					break
+				case anJumpT:
+					frame += 0.2
+					if(!freeDown) {
+						anim = anStand
+						frame = 0.0
+					}
+
+					if(frame > anim[1]) {
+						anim = anFall
+						frame = anim[0]
+					}
+					break
+				case anFall:
+					frame += 0.05
+					if(!freeDown) {
+						anim = anStand
+						frame = 0.0
+					}
+					break
+				case anClimb:
+					if(frame < anim[0]) {
+						frame = anim[0]
+						climbf = 1
+					}
+
+					if(frame > anim[1]) {
+						frame = anim[1]
+						climbf = -1
+					}
+
+					frame += (vspeed / 4) * climbf
+					break
+				case anWall:
+					frame += 0.2
+					vspeed = 0
+
+					if(floor(frame) > anim[1]) {
+						vspeed = -3.2
+						if(flip == 0) hspeed = 2
+						else hspeed = -2
+						anim = anJumpU
+						frame = anim[0]
+					}
+					break
+				case anDive:
+					frame += 0.25
+
+					if(floor(frame) >= anim[1]) {
+						anim = anSlide
+						frame = anim[0]
+					}
+					break
+				case anSlide:
+					frame = getFrames() / 8
+					break
+				case anHurt:
+					frame += 0.1
+					if(floor(frame) > anim[1]) {
+						anim = anStand
+						frame = anim[0]
+					}
+					break
+				case anSwimF:
 					anim = anJumpT
 					frame = anim[0]
-				}
-				break
-			case anJumpT:
-				frame += 0.2
-				if(!freeDown) {
-					anim = anStand
-					frame = 0.0
-				}
-
-				if(frame > anim[1]) {
-					anim = anFall
-					frame = anim[0]
-				}
-				break
-			case anFall:
-				frame += 0.15
-				if(!freeDown) {
-					anim = anStand
-					frame = 0.0
-				}
-				break
-			case anClimb:
-				if(frame < anim[0]) {
-					frame = anim[0]
-					climbf = 1
-				}
-
-				if(frame > anim[1]) {
-					frame = anim[1]
-					climbf = -1
-				}
-
-				frame += (vspeed / 4) * climbf
-				break
-			case anWall:
-				frame += 0.2
-				vspeed = 0
-
-				if(floor(frame) > anim[1]) {
-					vspeed = -3.2
-					if(flip == 0) hspeed = 2
-					else hspeed = -2
+					break
+				case anSwimUF:
+				case anSwimU:
 					anim = anJumpU
 					frame = anim[0]
-				}
-				break
-			case anDive:
-				frame += 0.25
-
-				if(floor(frame) >= anim[1]) {
-					anim = anSlide
+					vspeed -= 1
+					break
+				case anSwimDF:
+				case anSwimD:
+					anim = anFall
 					frame = anim[0]
-				}
-				break
-			case anSlide:
-				frame = getFrames() / 8
-				break
-			case anHurt:
-				frame += 0.1
-				if(floor(frame) > anim[1]) {
-					anim = anStand
-					frame = anim[0]
-				}
-		}
+					break
+			}
 
-		frame = wrap(frame, anim[0], anim[1])
+			frame = wrap(frame, anim[0], anim[1])
 
-		if(!inWater(x, y)) {
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
 				if(!freeDown && abs(hspeed) < 6) {
@@ -284,50 +310,6 @@
 			gravity = 0.11
 			if(anim == anClimb || anim == anWall) gravity = 0
 
-			if(placeFree(x, y + vspeed)) y += vspeed
-			else {
-				vspeed /= 2
-				if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
-				if(placeFree(x, y + vspeed)) y += vspeed
-			}
-
-			if(hspeed != 0) {
-				if(placeFree(x + hspeed, y)) { //Try to move straight
-					for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1)) {
-						y += 1
-					}
-					x += hspeed
-				} else {
-					local didstep = false
-					for(local i = 1; i <= 4; i++){ //Try to move up hill
-						if(placeFree(x + hspeed, y - i)) {
-							x += hspeed
-							y -= i
-							didstep = true
-							break
-						}
-					}
-
-					//If no step was taken, slow down
-					if(didstep == false && abs(hspeed) >= 1) hspeed -= (hspeed / abs(hspeed))
-					else if(didstep == false && abs(hspeed) < 1) hspeed = 0
-				}
-			}
-
-			if(gvMap.w > 320) {
-				if(x < 4) x = 4
-
-				if(x > gvMap.w - 4) x = gvMap.w - 4
-			} else x = wrap(x, 0, gvMap.w)
-
-			shape.setPos(x, y + 2)
-			if(y > gvMap.h + 16) {
-				deleteActor(id)
-				gvPlayer = 0
-				newActor(TuxDie, x, gvMap.h)
-				game.health = 0
-			}
-
 			//Attacks
 			if(firetime > 0) firetime--
 			if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
@@ -343,8 +325,114 @@
 				}
 			}
 		}
-		else { //While swimming
+		//////////////
+		// IN WATER //
+		//////////////
+		else {
+			swimming = true
 
+			//Animation states
+			switch(anim) {
+				case anSwimF:
+				case anSwimU:
+				case anSwimD:
+				case anSwimUF:
+				case anSwimDF:
+					frame += sqrt(abs(hspeed * hspeed) + abs(vspeed * vspeed)) / 12
+					break
+				case anHurt:
+					frame += 0.2
+					if(floor(frame) > anim[1]) {
+						anim = anFall
+						frame = anim[0]
+					}
+				case anFall:
+					frame += 0.01
+					break
+			}
+
+			frame = wrap(frame, anim[0], anim[1])
+
+			//Swich swim directions
+			if(anim != anHurt) {
+				if(abs(hspeed) < 0.3 && abs(vspeed) < 0.2) anim = anFall //To be replaced with regular swim sprites later
+				if(abs(hspeed) > 0.3) anim = anSwimF
+				if(vspeed > 0.2) anim = anSwimD
+				if(vspeed < -0.2) anim = anSwimU
+				if(abs(hspeed) > 0.3 && vspeed > 0.2) anim = anSwimDF
+				if(abs(hspeed) > 0.3 && vspeed < -0.2) anim = anSwimUF
+			}
+
+			//Movement
+			if(canMove) {
+				if(keyDown(config.key.run)) mspeed = 2
+				else if(keyDown(config.key.sneak)) mspeed = 0.5
+				else mspeed = 1
+
+				if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.05
+				if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.05
+				if(keyDown(config.key.down) && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.05
+				if(keyDown(config.key.up) && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.05
+			}
+
+			//Friction
+			if(hspeed > 0) hspeed -= friction / 3
+			if(hspeed < 0) hspeed += friction / 3
+			if(abs(hspeed) < friction / 3) hspeed = 0.0
+			if(vspeed > 0) vspeed -= friction / 3
+			if(vspeed < 0) vspeed += friction / 3
+			if(abs(vspeed) < friction / 3) vspeed = 0.0
+
+			//Change facing
+			if(anim != anClimb && anim != anWall) {
+				if(hspeed > 0.1) flip = 0
+				if(hspeed < -0.1) flip = 1
+			}
+		}
+
+		//Base movement
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else {
+			vspeed /= 2
+			if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
+			if(placeFree(x, y + vspeed)) y += vspeed
+		}
+
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
+				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0) {
+					y += 1
+				}
+				x += hspeed
+			} else {
+				local didstep = false
+				for(local i = 1; i <= 4; i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - i)) {
+						x += hspeed
+						y -= i
+						didstep = true
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && abs(hspeed) >= 1) hspeed -= (hspeed / abs(hspeed))
+				else if(didstep == false && abs(hspeed) < 1) hspeed = 0
+			}
+		}
+
+		if(gvMap.w > 320) {
+			if(x < 4) x = 4
+
+			if(x > gvMap.w - 4) x = gvMap.w - 4
+		} else x = wrap(x, 0, gvMap.w)
+
+		shape.setPos(x, y + 2)
+		if(y > gvMap.h + 16) {
+			deleteActor(id)
+			gvPlayer = 0
+			newActor(TuxDie, x, gvMap.h)
+			game.health = 0
 		}
 
 		//Hurt
@@ -398,7 +486,10 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
-		if(y > gvMap.h) deleteActor(id)
+		if(y > gvMap.h || inWater(x, y)) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
 
 		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 		else drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 1, 1, 1, 1)

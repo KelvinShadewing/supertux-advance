@@ -123,9 +123,11 @@
 								actor[c].code = obj.name
 								//print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
 								//print(actor[c].shape)
+								break
 							case "water":
 								local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 5)
+								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
+								break
 						}
 					}
 

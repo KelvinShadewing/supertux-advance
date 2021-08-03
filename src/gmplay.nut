@@ -115,11 +115,12 @@
 	drawBG()
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	runActors()
+	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
 	for(local i = 0; i < game.maxHealth; i++) {
-		if(i < game.health) drawSprite(sprHealth, 1, 16 + (16 * i), 16)
-		else drawSprite(sprHealth, 0, 16 + (16 * i), 16)
+		if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
+		else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 	}
 	drawDebug()
 }
