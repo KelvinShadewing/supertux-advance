@@ -29,14 +29,7 @@
 					if(hitTest(ns, gvMap.geo[i][1][j][0])) {
 						//Check the boxes
 						for(local k = 0; k < gvMap.geo[i][1][j][1].len(); k++) {
-							switch(gvMap.geo[i][1][j][1][k][1]) {
-								case 0:
-									if(hitTest(ns, gvMap.geo[i][1][j][1][k][0])) return false
-									break
-								case 1:
-									if(hitTest(np, gvMap.geo[i][1][j][1][k][0])) return false
-									break
-							}
+							if(hitTest(ns, gvMap.geo[i][1][j][1][k][0])) return false	
 						}
 					}
 				}
@@ -44,5 +37,18 @@
 		}
 
 		return true
+	}
+
+	function inWater(_x, _y) {
+		local ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		local np = Rec(_x, _y, 0, 0, 0)
+
+		if(actor.rawin("Water")) {
+			foreach(i in actor["Water"]) {
+				if(hitTest(ns, i.shape)) return true
+			}
+		}
+
+		return false
 	}
 }

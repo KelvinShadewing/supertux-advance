@@ -45,28 +45,28 @@
 
 			for(local i = 0; i < data.tilesets.len(); i++) {
 				//Extract filename
-				print("Get filename")
+				//print("Get filename")
 				local filename = data.tilesets[i].image
 				local shortname = findFileName(filename)
-				print("Full map name: " + filename + ".")
-				print("Short map name: " + shortname + ".")
+				//print("Full map name: " + filename + ".")
+				//print("Short map name: " + shortname + ".")
 
 				local tempspr = findSprite(shortname)
-				print("Temp sprite: " + shortname)
+				//("Temp sprite: " + shortname)
 
 				if(tempspr != 0) {
 					tileset.push(tempspr)
-					print("Added tempspr: " + shortname)
+					//print("Added tempspr: " + shortname)
 				}
 				else { //Search for file
 					if(fileExists(filename)) {
-						print("Attempting to add full filename")
+						//print("Attempting to add full filename")
 						tileset.push(newSprite(filename, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0))
-						print("Added tileset " + shortname + ".")
+						//print("Added tileset " + shortname + ".")
 					}
 					else for(local j = 0; j < tileSearchDir.len(); j++) {
 						if(fileExists(tileSearchDir[j] + "/" + shortname)) {
-							print("Adding from search path: " + tileSearchDir[j])
+							//print("Adding from search path: " + tileSearchDir[j])
 							tileset.push(newSprite(tileSearchDir[j] + "/" + shortname, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0))
 							break
 						}
@@ -75,7 +75,7 @@
 
 				tilef.push(data.tilesets[i].firstgid)
 
-				print("Added " + spriteName(tileset[i]) + ".\n")
+				//print("Added " + spriteName(tileset[i]) + ".\n")
 			}
 
 			//Generate shape lists
@@ -121,8 +121,11 @@
 								local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 								actor[c].code = obj.name
-								print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
-								print(actor[c].shape)
+								//print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
+								//print(actor[c].shape)
+							case "water":
+								local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 5)
 						}
 					}
 

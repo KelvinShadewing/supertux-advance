@@ -82,6 +82,8 @@
 										if(a1 > a0) return false
 										break
 									case 5:
+										if(abs(a.x - b.x) > abs(a.x)) return false
+										if(abs(a.y - b.y) > abs(a.y)) return false
 										break
 								}
 								break
