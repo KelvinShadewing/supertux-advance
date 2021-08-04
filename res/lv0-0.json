@@ -2094,6 +2094,12 @@
  "nextlayerid":13,
  "nextobjectid":226,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"code",
+         "type":"string",
+         "value":"drawBG = dbgAurora"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.7.1",
  "tileheight":16,
