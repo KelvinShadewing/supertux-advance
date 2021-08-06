@@ -12,7 +12,7 @@ Capturing Gnu was only the beginning of Nolok's plan. While Tux and his friends 
 
 ## Installation
 
-Follow the install instructions for Brux GDK, then run `tux.brx` with Brux.
+Follow the install instructions for [Brux GDK](https://github.com/kelvinshadewing/brux-gdk), then run `tux.brx` with Brux.
 
 ## Controls
 
