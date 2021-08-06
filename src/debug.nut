@@ -23,18 +23,21 @@
 		message += "X: " + floor(gvPlayer.x) + "\n"
 		message += "Y: " + floor(gvPlayer.y) + "\n"
 	}
+	else {
+		message += "X: YOU'RE\nY:  DEAD\n"
+	}
 
 	message += "FPS: " + round(fps) + " (" + getFPS() + ")\n\n\n\n"
 
 	//Debug keys
-	drawSprite(sprDebug, keyDown(config.key.left).tointeger(), 4, 28)
-	drawSprite(sprDebug, keyDown(config.key.up).tointeger() + 4, 12, 24)
-	drawSprite(sprDebug, keyDown(config.key.down).tointeger() + 6, 12, 32)
-	drawSprite(sprDebug, keyDown(config.key.right).tointeger() + 2, 20, 28)
+	drawSprite(sprDebug, keyDown(config.key.left).tointeger(), 4, 60)
+	drawSprite(sprDebug, keyDown(config.key.up).tointeger() + 4, 12, 56)
+	drawSprite(sprDebug, keyDown(config.key.down).tointeger() + 6, 12, 64)
+	drawSprite(sprDebug, keyDown(config.key.right).tointeger() + 2, 20, 60)
 
-	drawSprite(sprDebug, keyDown(config.key.jump).tointeger() + 8, 4, 40)
-	drawSprite(sprDebug, keyDown(config.key.shoot).tointeger() + 10, 12, 40)
-	drawSprite(sprDebug, keyDown(config.key.run).tointeger() + 12, 20, 40)
+	drawSprite(sprDebug, keyDown(config.key.jump).tointeger() + 8, 4, 72)
+	drawSprite(sprDebug, keyDown(config.key.shoot).tointeger() + 10, 12, 72)
+	drawSprite(sprDebug, keyDown(config.key.run).tointeger() + 12, 20, 72)
 
 	message += "HSPD:"
 	if(gvPlayer != 0) for(local i = 0; i < abs(round(gvPlayer.hspeed * 2)); i++) message += chint(16)
@@ -50,5 +53,5 @@
 
 
 
-	drawText(font, 0, 0, message)
+	drawText(font, 0, 32, message)
 }

@@ -19,8 +19,6 @@
          "height":20,
          "id":2,
          "name":"fg",
-         "offsetx":590,
-         "offsety":-48,
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -34,8 +32,6 @@
          "id":3,
          "name":"trigger",
          "objects":[],
-         "offsetx":573,
-         "offsety":-47,
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -148,11 +144,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
+ "nextlayerid":14,
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -169,21 +165,21 @@
          "tilewidth":16
         }, 
         {
-         "columns":15,
+         "columns":16,
          "firstgid":155,
          "image":"actors.png",
          "imageheight":16,
-         "imagewidth":240,
+         "imagewidth":256,
          "margin":0,
          "name":"actors",
          "spacing":0,
-         "tilecount":15,
+         "tilecount":16,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":29,
-         "firstgid":170,
+         "firstgid":171,
          "image":"tsGrasstop.png",
          "imageheight":176,
          "imagewidth":464,
@@ -196,7 +192,7 @@
         }, 
         {
          "columns":6,
-         "firstgid":489,
+         "firstgid":490,
          "image":"pipetiles.png",
          "imageheight":96,
          "imagewidth":96,
@@ -209,7 +205,7 @@
         }, 
         {
          "columns":12,
-         "firstgid":525,
+         "firstgid":526,
          "image":"igloo.png",
          "imageheight":64,
          "imagewidth":192,
@@ -222,7 +218,7 @@
         }, 
         {
          "columns":29,
-         "firstgid":573,
+         "firstgid":574,
          "image":"tsSnow.png",
          "imageheight":176,
          "imagewidth":464,
