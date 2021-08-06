@@ -28,6 +28,7 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 * You gain more speed from sliding off a drop than down a hill. Falling speed is translated into horizontal momentum upon landing. Use this to maximize your speed.
 * Practice wall jumping. Hold jump against the wall and press away from it. This isn't just helpful at navigating levels, it can save you if you fall into a pit.
 * Fireballs have long range, but a slow rate of fire. Use them tactically; don't rely on them for up-close combat. That's best left to jumping and sliding.
-* Muffins found in [?] boxes will restore health. Blueberry restores 4 health points, and strawberry restores all your health. Moldy green muffins will take health from you.
+* Muffins found in [?] boxes will restore health. Blueberry restores 1 health points, and strawberry restores 4 health. Moldy green muffins will take health from you.
 * On normal and easy mode, you'll recieve an extra life point after each boss. You don't get such boons on hard mode; you'll have to make do with the starting amount.
-* Tux's fireballs don't rely on powerups for him to use them. Don't worry about being left defenseless if you get hurt.
+* Tux's fireballs don't rely on powerups for him to use them, so don't worry about being left defenseless if you get hurt. You can also aim them up and down.
+* You can swim in all directions, but fireballs will not work in water. Head for the surface if you get into trouble.
