@@ -60,20 +60,25 @@
 				//newActor(Tux, i.x, i.y - 16)
 				if(gvPlayer == 0) newActor(Tux, i.x, i.y - 16)
 				break
+
 			case 1:
 				newActor(Coin, i.x, i.y - 16)
 				break
+
 			case 10:
 				newActor(PipeSnake, i.x, i.y)
 				break
+
 			case 11:
 				local c = actor[newActor(PipeSnake, i.x, i.y - 16)]
 				c.flip = -1
 				break
+
 			case 12:
 				local c = newActor(Deathcap, i.x + 8, i.y - 8)
 				actor[c].flip = true
 				break
+
 			case 13:
 				newActor(Deathcap, i.x + 8, i.y - 8)
 				break

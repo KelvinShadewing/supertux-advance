@@ -1,9 +1,9 @@
 ::Water <- class extends Actor {
-    shape = 0
+	shape = 0
 
-    constructor(_x, _y) {
-        base.constructor(_x, _y)
-    }
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+	}
 
 	function draw() {
 		setDrawColor(0x2020a040)
@@ -14,5 +14,5 @@
 		drawLine(x - shape.w - camx, y - shape.h - camy - 3, x + shape.w + 1 - camx, y - shape.h - camy - 3)
 	}
 
-    function _typeof() { return "Water" }
+	function _typeof() { return "Water" }
 }

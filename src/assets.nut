@@ -15,6 +15,7 @@
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0)
+::sprSpring <- newSprite("res/spring.png", 16, 16, 0, 0, 0, 0)
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)

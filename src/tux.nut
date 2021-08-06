@@ -322,6 +322,11 @@
 						else c.hspeed = -3
 						firetime = 60
 						playSound(sndFireball, 0)
+						if(keyDown(config.key.up)) c.vspeed = -2
+						if(keyDown(config.key.down)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
 				}
 			}
 		}
@@ -454,7 +459,8 @@
 		if(blinking > 0) blinking--
 
 		//Draw
-		if((blinking / 2) % 2 == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
+		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
+		else drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 	}
 
 	function _typeof(){ return "Tux" }
