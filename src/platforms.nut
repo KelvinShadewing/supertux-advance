@@ -60,16 +60,18 @@
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
-		shape = Rec(x + 8, y + 8, 8, 8)
+		shape = Rec(x + 8, y + 8, 4, 4, 0)
 	}
 
 	function run() {
+		base.run()
+
 		if(gvPlayer != 0) {
 			if(hitTest(shape, gvPlayer.shape)) {
 				fspeed = 0.2
 				switch(dir) {
 					case 0: //Up
-						gvPlayer.vspeed = -4
+						gvPlayer.vspeed = -5
 						break
 
 					case 1: //Down
@@ -83,22 +85,34 @@
 					case 3: //Left
 						gvPlayer.hspeed = -4
 						break
+				}
 			}
 		}
 
-		if(floor(frame) > 2) {
+		frame += fspeed
+		if(floor(frame) > 3) {
 			frame = 0.0
 			fspeed = 0.0
 		}
 
 		switch(dir) { //Draw sprite based on direction
 			case 0: //Up
-				drawSprite(sprSpring, frame, x, y)
+				drawSprite(sprSpring, round(frame), x - camx, y - camy)
 				break
 
-			case 1:
-				drawSpriteEx(sprSpring, frame, x, y + 16, 0, 2, 1, 1, 1)
+			case 1: //Down
+				drawSpriteEx(sprSpring, round(frame), x + 16 - camx, y + 14 - camy, 180, 0, 1, 1, 1)
+				break
+
+			case 2: //Right
+				drawSpriteEx(sprSpring, round(frame), x + 14 - camx, y - camy, 90, 0, 1, 1, 1)
+				break
+
+			case 3: //Left
+				drawSpriteEx(sprSpring, round(frame), x - camx + 2, y + 16 - camy, 270, 0, 1, 1, 1)
 				break
 		}
+
+		if(debug) shape.draw()
 	}
 }

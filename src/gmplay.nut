@@ -82,6 +82,25 @@
 			case 13:
 				newActor(Deathcap, i.x + 8, i.y - 8)
 				break
+
+			case 16:
+				newActor(Spring, i.x, i.y - 16)
+				break
+
+			case 17:
+				local c = actor[newActor(Spring, i.x, i.y - 16)]
+				c.dir = 1
+				break
+
+			case 18:
+				local c = actor[newActor(Spring, i.x, i.y - 16)]
+				c.dir = 2
+				break
+
+			case 19:
+				local c = actor[newActor(Spring, i.x, i.y - 16)]
+				c.dir = 3
+				break
 		}
 	}
 

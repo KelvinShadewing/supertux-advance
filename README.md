@@ -22,6 +22,8 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 * Jump: Z
 * Shoot: X
 * Run: left shift
+* Sneak: left control
+* Slide: down (while running)
 
 ## Tips
 

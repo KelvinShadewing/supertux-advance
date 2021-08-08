@@ -184,6 +184,7 @@
 					anim = anJumpU
 					frame = anim[0]
 					vspeed -= 1
+					if(keyDown(config.key.jump)) vspeed -= 1
 					break
 				case anSwimDF:
 				case anSwimD:
