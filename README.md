@@ -2,7 +2,7 @@
 
 ## Intro
 
-SupterTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone.
+SupterTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speedrunning in mind, it is not an essential skill; the game can be played and beaten casually.
 
 Some assets from SuperTux will be used, with graphics being remixed to match the game's visual style.
 
@@ -34,3 +34,4 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 * On normal and easy mode, you'll recieve an extra life point after each boss. You don't get such boons on hard mode; you'll have to make do with the starting amount.
 * Tux's fireballs don't rely on powerups for him to use them, so don't worry about being left defenseless if you get hurt. You can also aim them up and down.
 * You can swim in all directions, but fireballs will not work in water. Head for the surface if you get into trouble.
+* If you're going for a speed run, slide just before leaving an edge for a small boost, then jump to preserve the momentum. There's no friction in the air, so keep off the ground as much as you can!
