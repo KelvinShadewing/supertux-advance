@@ -128,6 +128,10 @@
 								local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
 								break
+							case "ladder":
+								local c = newActor(Ladder, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
+								break
 						}
 					}
 

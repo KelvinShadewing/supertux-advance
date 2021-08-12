@@ -50,6 +50,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 	}
+
+	function _typeof() {return "Ladder" }
 }
 
 ::Spring <- class extends Actor {

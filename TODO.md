@@ -13,11 +13,13 @@
 [ ] One-way platforms
 [ ] Breakable bricks
 [ ] Item boxes
-[ ] Ropes/ladders
+[X] Ropes/ladders
 [ ] Springs
 
 ## Enemies
 
+[X] Deathcaps
+[X] Pipe snakes
 [ ] Snails (turtle-likes)
 [ ] Flying deathcaps
 [ ] Swoops

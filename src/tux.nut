@@ -11,7 +11,7 @@
 	flip = 0
 	canMove = true //If player has control
 	mspeed = 4 //Maximum running speed
-	climbf = 0
+	climbdir = 1.0
 	blinking = 0 //Invincibility frames
 	startx = 0.0
 	starty = 0.0
@@ -79,6 +79,7 @@
 						frame = anim[0]
 					}
 					break
+
 				case anWalk:
 					frame += abs(hspeed) / 8
 					if(hspeed == 0) anim = anStand
@@ -90,6 +91,7 @@
 						frame = anim[0]
 					}
 					break
+
 				case anRun:
 					frame += abs(hspeed) / 8
 					if(abs(hspeed) < 1.2) anim = anWalk
@@ -100,6 +102,7 @@
 						frame = anim[0]
 					}
 					break
+
 				case anJumpU:
 					if(frame < anim[0] + 1) frame += 0.1
 
@@ -113,6 +116,7 @@
 						frame = anim[0]
 					}
 					break
+
 				case anJumpT:
 					frame += 0.2
 					if(!freeDown) {
@@ -125,6 +129,7 @@
 						frame = anim[0]
 					}
 					break
+
 				case anFall:
 					frame += 0.05
 					if(!freeDown) {
@@ -132,19 +137,7 @@
 						frame = 0.0
 					}
 					break
-				case anClimb:
-					if(frame < anim[0]) {
-						frame = anim[0]
-						climbf = 1
-					}
 
-					if(frame > anim[1]) {
-						frame = anim[1]
-						climbf = -1
-					}
-
-					frame += (vspeed / 4) * climbf
-					break
 				case anWall:
 					frame += 0.2
 					vspeed = 0
@@ -157,6 +150,7 @@
 						frame = anim[0]
 					}
 					break
+
 				case anDive:
 					frame += 0.25
 
@@ -165,9 +159,11 @@
 						frame = anim[0]
 					}
 					break
+
 				case anSlide:
 					frame = getFrames() / 8
 					break
+
 				case anHurt:
 					frame += 0.1
 					if(floor(frame) > anim[1]) {
@@ -175,10 +171,12 @@
 						frame = anim[0]
 					}
 					break
+
 				case anSwimF:
 					anim = anJumpT
 					frame = anim[0]
 					break
+
 				case anSwimUF:
 				case anSwimU:
 					anim = anJumpU
@@ -186,6 +184,7 @@
 					vspeed -= 1
 					if(keyDown(config.key.jump)) vspeed -= 1
 					break
+
 				case anSwimDF:
 				case anSwimD:
 					anim = anFall
@@ -193,7 +192,7 @@
 					break
 			}
 
-			frame = wrap(frame, anim[0], anim[1])
+			if(anim != anClimb) frame = wrap(frame, anim[0], anim[1])
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
@@ -221,25 +220,77 @@
 			}
 
 			//Controls
-			if(!placeFree(x, y + 2)) canJump = 15
+			if(!placeFree(x, y + 2) || anim == anClimb) canJump = 15
 			else if(canJump > 0) canJump--
 			if(canMove) {
 				if(keyDown(config.key.run)) mspeed = 2
 				else if(keyDown(config.key.sneak)) mspeed = 0.5
 				else mspeed = 1
 
-				if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
-				if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
+				//Moving left and right
+				if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed += 0.1
+				if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed -= 0.1
+
+				//On a ladder
+				if(anim == anClimb) {
+					vspeed = 0
+					
+					//Ladder controls
+					if(keyDown(config.key.up)) if(placeFree(x, y - 1)) {
+						frame -= climbdir / 8
+						y--
+					}
+
+					if(keyDown(config.key.down)) if(placeFree(x, y + 1)) {
+						frame += climbdir / 8
+						y++
+					}
+
+					//Check if still on ladder
+					local felloff = true
+					if(actor.rawin("Ladder")) foreach(i in actor["Ladder"]) {
+						if(hitTest(shape, i.shape)) {
+							felloff = false
+							break
+						}
+					}
+					if(felloff) {
+						anim = anFall
+						frame = anim[0]
+					}
+
+					//Change direction
+					if(keyPress(config.key.right)) flip = 0
+					if(keyPress(config.key.left)) flip = 1
+
+					//Ping-pong animation
+					if(frame >= anim[1] + 0.4 || frame <= anim[0] + 0.4) {
+						climbdir = -climbdir
+						if(frame > anim[1] + 0.4) frame -= abs(climbdir / 8)
+						if(frame < anim[0] + 0.4) frame += abs(climbdir / 8)
+					}
+				}
+
+				//Get on ladder
+				if((keyPress(config.key.down) || keyPress(config.key.up)) && anim != anHurt && anim != anClimb && actor.rawin("Ladder")) {
+					foreach(i in actor["Ladder"]) {
+						if(hitTest(shape, i.shape)) {
+							anim = anClimb
+							frame = anim[0]
+							hspeed = 0
+							vspeed = 0
+							x = i.x
+						}
+					}
+				}
 
 				//Jumping
 				if(keyPress(config.key.jump) && canJump > 0) {
 					vspeed = -3.8
 					didJump = true
 					canJump = 0
-					if(anim == anDive || anim == anSlide) {
-						anim = anJumpU
-						frame = anim[0]
-					}
+					anim = anJumpU
+					frame = anim[0]
 					playSound(sndJump, 0)
 				}
 
