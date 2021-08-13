@@ -457,7 +457,7 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 2; i++) if(!freeDown && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0) {
+				for(local i = 0; i < 2; i++) if(!placeFree(x, y + 2) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0) {
 					y += 1
 				}
 				x += hspeed
