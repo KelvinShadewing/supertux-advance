@@ -29,7 +29,7 @@
 					if(hitTest(ns, gvMap.geo[i][1][j][0])) {
 						//Check the boxes
 						for(local k = 0; k < gvMap.geo[i][1][j][1].len(); k++) {
-							if(hitTest(ns, gvMap.geo[i][1][j][1][k][0])) return false	
+							if(hitTest(ns, gvMap.geo[i][1][j][1][k])) return false	
 						}
 					}
 				}

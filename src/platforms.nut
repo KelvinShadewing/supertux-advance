@@ -1,9 +1,12 @@
 ::PlatformV <- class extends Actor {
 	shape = 0
 	r = 0 //Travel range
+	w = 0 //Platform width
 	ystart = 0
 	mode = 0
 	timer = 0
+	mapshape = 0
+	init = 0
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
@@ -11,16 +14,32 @@
 		ystart = _y
 	}
 
-	function init(w, _r) {
-		shape = Rec(x, y, w, 8)
-		r = _r
-	}
-
 	function run() {
 		base.run()
 
+		if(init == 1) { //If ready to initiate
+			init = 0
+			shape = Rec(x, y, w, 8, 0)
+			mapshape = mapNewSolid(Rec(x, y, w, 8, 0))
+		}
+
+		//Draw shape
+		if(w / 8 <= 1) drawSprite(tsWoodPlat, 0, x - 8 - camx, y - 8 - camy)
+		else for(local i = 1; i <= w / 8; i++) {
+			if(i == 1) drawSprite(tsWoodPlat, 1, (x - w) + ((i - 1) * 16) - camx, y - 8 - camy)
+			else if(i == w / 8) drawSprite(tsWoodPlat, 3, (x - w) + ((i - 1) * 16) - camx, y - 8 - camy)
+			else drawSprite(tsWoodPlat, 2, (x - w) + ((i - 1) * 16) - camx, y - 8 - camy)
+		}
+
+		//Movement
+		mapshape.setPos(x, y)
+
 		if(mode == 0) {
-			if(y > ystart - r) y--
+			shape.setPos(x, y - 1)
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
+			mapshape.setPos(x, y)
+
+			if(y > ystart) y--
 			else mode = 1
 		}
 		else if(mode == 1) {
@@ -31,8 +50,18 @@
 			}
 		}
 		else if(mode == 2) {
-			if(y < ystart + x) y++
+			if(y < ystart + r) y++
 			else mode = 3
+			mapshape.setPos(x, y)
+
+			shape.setPos(x, y - 1)
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y++
+
+			shape.setPos(x, y)
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
+
+			shape.setPos(x, y + 2)
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y += 2
 		}
 		else {
 			if(timer < 60) timer++

@@ -91,23 +91,23 @@
 						switch(lana) {
 							case "solid":
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-								blocks.push([np, 0])
+								blocks.push(np)
 								break
 							case "tr":
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 1)
-								blocks.push([np, 0])
+								blocks.push(np)
 								break
 							case "tl":
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 2)
-								blocks.push([np, 0])
+								blocks.push(np)
 								break
 							case "br":
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 3)
-								blocks.push([np, 0])
+								blocks.push(np)
 								break
 							case "bl":
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 4)
-								blocks.push([np, 0])
+								blocks.push(np)
 								break
 							case "zones":
 								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
@@ -132,6 +132,16 @@
 								local c = newActor(Ladder, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
 								break
+							case "vmp":
+								local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
+								c.w = (obj.width / 2)
+								c.r = obj.height - 16
+								c.init = 1
+								if(obj.name == "up") {
+									c.mode = 2
+									c.y = c.ystart + c.r
+								}
+								break
 						}
 					}
 
@@ -145,7 +155,7 @@
 					//Add blocks to zones
 					for(local i = 0; i < zones.len(); i++) {
 						for(local j = 0; j < blocks.len(); j++) {
-							if(hitTest(zones[i][0], blocks[j][0])) zones[i][1].push(blocks[j])
+							if(hitTest(zones[i][0], blocks[j])) zones[i][1].push(blocks[j])
 						}
 					}
 
@@ -251,4 +261,19 @@
 			}
 		}
 	}
+}
+
+::mapNewSolid <- function(shape) {
+	for(local i = 0; i < gvMap.geo.len(); i++) {
+			if(hitTest(shape, gvMap.geo[i][0])) {
+				//Find a zone
+				for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
+					if(hitTest(shape, gvMap.geo[i][1][j][0])) {
+						gvMap.geo[i][1][j][1].push(shape)
+					}
+				}
+			}
+		}
+
+	return shape
 }
