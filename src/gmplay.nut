@@ -101,6 +101,10 @@
 				local c = actor[newActor(Spring, i.x, i.y - 16)]
 				c.dir = 3
 				break
+			
+			case 20:
+				local c = newActor(Ouchin, i.x + 8, i.y - 8)
+				break
 		}
 	}
 

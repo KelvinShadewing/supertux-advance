@@ -433,12 +433,12 @@
 			}
 
 			//Friction
-			if(hspeed > 0) hspeed -= friction / 3
-			if(hspeed < 0) hspeed += friction / 3
-			if(abs(hspeed) < friction / 3) hspeed = 0.0
-			if(vspeed > 0) vspeed -= friction / 3
-			if(vspeed < 0) vspeed += friction / 3
-			if(abs(vspeed) < friction / 3) vspeed = 0.0
+			if(hspeed > 0) hspeed -= friction / 2
+			if(hspeed < 0) hspeed += friction / 2
+			if(abs(hspeed) < friction / 2) hspeed = 0.0
+			if(vspeed > 0) vspeed -= friction / 2
+			if(vspeed < 0) vspeed += friction / 2
+			if(abs(vspeed) < friction / 2) vspeed = 0.0
 
 			//Change facing
 			if(anim != anClimb && anim != anWall) {

@@ -2,16 +2,6 @@
 | ENEMIES |
 \*=======*/
 
-::NMEloader <- class extends Actor {
-	e = 0 //Enemy class to create
-	m = 0 //Respawn mode
-	a = 0 //Current actor ID
-
-	function step() {
-
-	}
-}
-
 ::Enemy <- class extends PhysAct {
 	health = 1
 	hspeed = 0.0
@@ -50,7 +40,6 @@
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
 	function hurtplayer() { //Default player damage
 		if(gvPlayer.blinking > 0) return
-		gvPlayer.vspeed = -2.2
 		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 		else gvPlayer.hspeed = 1.0
 		gvPlayer.hurt = true
@@ -227,6 +216,26 @@
 	}
 
 	function _typeof() { return "Snake" }
+}
+
+::Ouchin <- class extends Enemy {
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+	function run() {
+		base.run()
+
+		drawSprite(sprOuchin, getFrames() / 4, x - camx, y - camy)
+	}
+
+	function gethurt() { hurtplayer() }
+
+	function hurtfire() {
+		newActor(Poof, x, y)
+		deleteActor(id)
+		playSound(sndFlame, 0)
+	}
 }
 
 //Dead enemy effect for enemies that get sent flying,
