@@ -125,15 +125,15 @@
 
 	if(gvPlayer != 0)
 	{
-		px = round(gvPlayer.x) - (screenW() / 2)
-		py = round(gvPlayer.y) - (screenH() / 2)
+		px = (gvPlayer.x + gvPlayer.hspeed * 20) - (screenW() / 2)
+		py = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2)
 	} else {
 		px = camx
 		py = camy
 	}
 
-	camx = px
-	camy = py
+	camx += (px - camx) / 16
+	camy += (py - camy) / 16
 
 	if(camx > ux) camx = ux
 	if(camx < 0) camx = 0
@@ -151,4 +151,22 @@
 		else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 	}
 	drawDebug()
+}
+
+::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time
+	if(gvPlayer == 0) return
+	if(gvMap == 0) return
+
+	local ux = gvMap.w - screenW()
+	local uy = gvMap.h - screenH()
+
+	gvPlayer.x = _x.tofloat()
+	gvPlayer.y = _y.tofloat()
+	camx = _x.tofloat() - (screenW() / 2)
+	camy = _y.tofloat() - (screenH() / 2)
+
+	if(camx > ux) camx = ux
+	if(camx < 0) camx = 0
+	if(camy > uy) camy = uy
+	if(camy < 0) camy = 0
 }

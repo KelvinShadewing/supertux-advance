@@ -31,9 +31,7 @@
 			}
 		}
 		else {
-			if(gvPlayer != 0) {
-				if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 180) active = true
-			}
+			if(distance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2)) <= 180) active = true
 		}
 	}
 
@@ -221,7 +219,7 @@
 ::Ouchin <- class extends Enemy {
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
-		shape = Rec(x, y, 4, 4, 0)
+		shape = Rec(x, y, 8, 8, 0)
 	}
 	function run() {
 		base.run()

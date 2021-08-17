@@ -43,7 +43,7 @@ setFPS(60)
 gvGameMode = gmMain
 config.playerchar = "Tux"
 drawBG = dbgAurora
-startPlay("res/lv0-1.json")
+startPlay("res/lv0-0.json")
 
 update()
 while(!getQuit() && !keyPress(k_escape))

@@ -7,7 +7,6 @@
 
 ::endGoal <- function() {
 	gvPlayer.canMove = false
-	if(gvPlayer.hspeed < 3) gvPlayer.hspeed = 3
-	gvPlayer.vspeed = 1
+	gvPlayer.endmode = true
 	gvPlayer = 0
 }

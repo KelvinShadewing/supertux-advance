@@ -18,6 +18,7 @@
 	firetime = 0
 	hurt = false
 	swimming = false
+	endmode = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -333,10 +334,12 @@
 						playSound(sndSlide, 0)
 					}
 				}
+			} else {
+				if(hspeed < 2) hspeed += 0.1
 			}
 
 			//Movement
-			if(!freeDown) {
+			if(!placeFree(x, y + 2)) {
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3
 					if(hspeed < 0) hspeed += friction / 3
@@ -511,8 +514,8 @@
 		if(blinking > 0) blinking--
 
 		//Draw
-		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, 1)
-		else drawSpriteEx(sprTux, floor(frame), floor(x - camx), floor(y - camy), 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSpriteEx(sprTux, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 	}
 
 	function _typeof(){ return "Tux" }
