@@ -101,7 +101,7 @@
 				local c = actor[newActor(Spring, i.x, i.y - 16)]
 				c.dir = 3
 				break
-			
+
 			case 20:
 				local c = newActor(Ouchin, i.x + 8, i.y - 8)
 				break
@@ -125,7 +125,7 @@
 
 	if(gvPlayer != 0)
 	{
-		px = (gvPlayer.x + gvPlayer.hspeed * 20) - (screenW() / 2)
+		px = (gvPlayer.x + gvPlayer.hspeed * 24) - (screenW() / 2)
 		py = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2)
 	} else {
 		px = camx

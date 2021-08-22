@@ -9,8 +9,9 @@
 	coins = 0,
 	lives = 0,
 	health = 4,
-	maxHealth = 4
-	tuxwep = 1
+	maxHealth = 4,
+	tuxwep = 1,
+	completed = [] //List of completed level names
 }
 ::gvPlayer <- 0; //Pointer to player actor
 /*\

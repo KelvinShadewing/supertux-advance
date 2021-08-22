@@ -13,7 +13,7 @@
 		if(active) {
 			if(gvPlayer != 0) {
 				if(hitTest(shape, gvPlayer.shape)) { //8 for player radius
-					if(y > gvPlayer.y && vspeed < gvPlayer.vspeed) gethurt()
+					if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp) gethurt()
 					else if(gvPlayer.rawin("anSlide")) {
 						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
 						else hurtplayer()
@@ -205,7 +205,10 @@
 		if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 	}
 
-	function gethurt() { hurtplayer() }
+	function gethurt() {
+		if(gvPlayer.anim != gvPlayer.anSlide) hurtplayer()
+		else hurtfire()
+	}
 
 	function hurtfire() {
 		newActor(Poof, x, y + 14)
@@ -217,14 +220,40 @@
 }
 
 ::Ouchin <- class extends Enemy {
+	sf = 0.0
+
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 8, 0)
+		sf = randInt(8)
 	}
+
 	function run() {
 		base.run()
 
-		drawSprite(sprOuchin, getFrames() / 4, x - camx, y - camy)
+		drawSprite(sprOuchin, sf + (getFrames() / 16), x - camx, y - camy)
+
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
+			if(x > gvPlayer.x) {
+				gvPlayer.x--
+				gvPlayer.hspeed -= 0.1
+			}
+
+			if(x < gvPlayer.x) {
+				gvPlayer.x++
+				gvPlayer.hspeed += 0.1
+			}
+
+			if(y > gvPlayer.y) {
+				gvPlayer.y--
+				gvPlayer.vspeed -= 0.1
+			}
+
+			if(y < gvPlayer.y) {
+				gvPlayer.y++
+				gvPlayer.vspeed += 0.1
+			}
+		}
 	}
 
 	function gethurt() { hurtplayer() }

@@ -668,31 +668,20 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
+                 "width":80,
                  "x":4048,
                  "y":208
                 }, 
                 {
-                 "height":80,
+                 "height":160,
                  "id":186,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16,
+                 "width":64,
                  "x":4064,
-                 "y":128
-                }, 
-                {
-                 "height":32,
-                 "id":187,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":48,
-                 "x":4096,
-                 "y":96
+                 "y":48
                 }, 
                 {
                  "height":64,
@@ -859,28 +848,6 @@
                  "width":64,
                  "x":3616,
                  "y":256
-                }, 
-                {
-                 "height":16,
-                 "id":189,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":4064,
-                 "y":112
-                }, 
-                {
-                 "height":16,
-                 "id":190,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":4096,
-                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1644,18 +1611,6 @@
                 {
                  "gid":165,
                  "height":16,
-                 "id":143,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":528,
-                 "y":240
-                }, 
-                {
-                 "gid":165,
-                 "height":16,
                  "id":144,
                  "name":"",
                  "rotation":0,
@@ -2101,7 +2056,7 @@
          "value":"drawBG = dbgAurora"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {

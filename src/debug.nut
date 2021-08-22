@@ -50,6 +50,7 @@
 	message += "Map W: " + gvMap.w + "\n"
 	message += "Map H: " + gvMap.h + "\n"
 	message += "SRT: " + floor(getTicks() / 1000) + "\n"
+	message += "Map: " + gvMap.name + "\n"
 
 
 

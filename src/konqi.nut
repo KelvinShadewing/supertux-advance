@@ -2,7 +2,7 @@
 | TUX ACTOR |
 \*=========*/
 
-::Tux <- class extends PhysAct {
+::Konqi <- class extends PhysAct {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
 	friction = 0.05
@@ -23,11 +23,11 @@
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
-	anStand = [0.0, 0.0]
+	anStand = [0.0, 1.0]
 	anWalk = [8.0, 15.0]
 	anRun = [16.0, 23.0]
-	anDive = [24.0, 25.0]
-	anSlide = [26.0, 29.0]
+	anDive = [0.0, 0.0] //Dummy slot
+	anSlide = [0.0, 0.0] //Dummy slot
 	anHurt = [30.0, 31.0]
 	anJumpU = [32.0, 33.0]
 	anJumpT = [34.0, 35.0]
@@ -52,7 +52,6 @@
 	function run() {
 		//Side checks
 		local freeDown = placeFree(x, y + 1)
-		local freeDown2 = placeFree(x, y + 2)
 		local freeLeft = placeFree(x - 1, y)
 		local freeRight = placeFree(x + 1, y)
 		local freeUp = placeFree(x, y - 1)
@@ -157,7 +156,7 @@
 				case anDive:
 					frame += 0.25
 
-					if(floor(frame) > anim[1]) {
+					if(floor(frame) >= anim[1]) {
 						anim = anSlide
 						frame = anim[0]
 					}
@@ -223,7 +222,7 @@
 			}
 
 			//Controls
-			if(!freeDown2 || anim == anClimb) canJump = 15
+			if(!placeFree(x, y + 2) || anim == anClimb) canJump = 15
 			else if(canJump > 0) canJump--
 			if(canMove) {
 				if(keyDown(config.key.run)) mspeed = 2
@@ -292,10 +291,8 @@
 					vspeed = -3.8
 					didJump = true
 					canJump = 0
-					if(anim != anHurt && anim != anDive) {
-						anim = anJumpU
-						frame = anim[0]
-					}
+					anim = anJumpU
+					frame = anim[0]
 					playSound(sndJump, 0)
 				}
 
@@ -323,7 +320,7 @@
 				}
 
 				//Going into slide
-				if(!freeDown2 && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
+				if(!freeDown && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
 					if((freeRight && freeDown) || hspeed >= 2) {
 						anim = anDive
 						frame = anim[0]
@@ -343,7 +340,7 @@
 			}
 
 			//Movement
-			if(!freeDown2) {
+			if(!placeFree(x, y + 2)) {
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3
 					if(hspeed < 0) hspeed += friction / 3
@@ -519,6 +516,46 @@
 	}
 
 	function _typeof(){ return "Tux" }
+}
+
+::Fireball <- class extends PhysAct {
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function run() {
+		if(!placeFree(x, y + 1)) vspeed = -1.2
+		if(!placeFree(x, y - 1)) vspeed = 1
+		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
+			else deleteActor(id)
+		}
+		vspeed += 0.1
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x + hspeed, y - 2)) {
+			x += hspeed
+			y += -2
+			vspeed = -1
+		} else deleteActor(id)
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h || inWater(x, y)) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 1, 1, 1, 1)
+
+		shape.setPos(x, y)
+	}
+
+	function _typeof () {return "Fireball"}
 }
 
 ::TuxDie <- class extends Actor {
