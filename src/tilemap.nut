@@ -9,7 +9,7 @@
 	if(path.len() == 0) return ""
 
 	for(local i = path.len() - 1; i >= 0; i--) {
-		if(path[i] == "/" || path[i] == "\\") return path.slice(i + 1)
+		if(chint(path[i]) == "/" || chint(path[i]) == "\\") return path.slice(i + 1)
 	}
 
 	return path
@@ -31,6 +31,7 @@
 	w = 0
 	h = 0
 	name = ""
+	file = ""
 
 	constructor(filename) {
 		if(fileExists(filename)) {
@@ -43,13 +44,17 @@
 			w = mapw * tilew
 			h = maph * tileh
 
+			file = filename
+			name = findFileName(filename)
+			name = name.slice(0, -5)
+
 			for(local i = 0; i < data.tilesets.len(); i++) {
 				//Extract filename
 				//print("Get filename")
 				local filename = data.tilesets[i].image
 				local shortname = findFileName(filename)
 				//print("Full map name: " + filename + ".")
-				//print("Short map name: " + shortname + ".")
+				print("Short map name: " + shortname + ".")
 
 				local tempspr = findSprite(shortname)
 				//("Temp sprite: " + shortname)
@@ -206,7 +211,6 @@
 				}
 			}
 
-			name = filename
 			if(data.rawin("properties")) foreach(i in data.properties) {
 				if(i.name == "code") dostr(i.value)
 			}
@@ -265,15 +269,32 @@
 
 ::mapNewSolid <- function(shape) {
 	for(local i = 0; i < gvMap.geo.len(); i++) {
-			if(hitTest(shape, gvMap.geo[i][0])) {
-				//Find a zone
-				for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
-					if(hitTest(shape, gvMap.geo[i][1][j][0])) {
-						gvMap.geo[i][1][j][1].push(shape)
-					}
+		if(hitTest(shape, gvMap.geo[i][0])) {
+			//Find a zone
+			for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
+				if(hitTest(shape, gvMap.geo[i][1][j][0])) {
+					gvMap.geo[i][1][j][1].push(shape)
 				}
 			}
 		}
+	}
 
 	return shape
+}
+
+::mapDeleteSolid <- function(shape) {
+	if(typeof shape != "Rec") return
+
+	for(local i = 0; i < gvMap.geo.len(); i++) {
+		if(hitTest(shape, gvMap.geo[i][0])) {
+			//Find a zone
+			for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
+				if(hitTest(shape, gvMap.geo[i][1][j][0])) {
+					local sid = gvMap.geo[i][1][j][1].find(shape) //Shape ID
+					if(sid != null) gvMap.geo[i][1][j][1].remove(sid)
+					//gvMap.geo[i][1][j][1].push(shape)
+				}
+			}
+		}
+	}
 }

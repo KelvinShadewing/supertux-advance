@@ -31,6 +31,7 @@ donut("src/trigger.nut")
 donut("src/water.nut")
 donut("src/levelend.nut")
 donut("src/platforms.nut")
+donut("src/blocks.nut")
 
 ////////////////
 //    MAIN    //
@@ -44,7 +45,7 @@ setFPS(60)
 gvGameMode = gmMain
 config.playerchar = "Tux"
 drawBG = dbgAurora
-startPlay("res/lv0-0.json")
+startPlay("res/0-0.json")
 
 update()
 while(!getQuit() && !keyPress(k_escape))

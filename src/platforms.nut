@@ -117,6 +117,7 @@
 						gvPlayer.hspeed = -4
 						break
 				}
+				if(frame == 0.0) playSound(sndSpring, 0)
 			}
 		}
 

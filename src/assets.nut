@@ -16,6 +16,7 @@
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0)
 ::sprSpring <- newSprite("res/spring.png", 16, 16, 0, 0, 0, 0)
+::sprWoodBox <- newSprite("res/woodbox.png", 16, 16, 0, 0, 0, 0)
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)
@@ -62,6 +63,7 @@
 ::sndCoin <- loadSound("res/coin.wav")
 ::sndSlide <- loadSound("res/slide.wav")
 ::sndFlame <- loadSound("res/flame.wav")
+::sndSpring <- loadSound("res/trampoline.wav")
 
 //Maps
 ::mpTest <- "res/test.json"

@@ -558,14 +558,14 @@
 	function _typeof () {return "Fireball"}
 }
 
-::TuxDie <- class extends Actor {
+::KonqiDie <- class extends Actor {
 	vspeed = -3.0
 
 	function run() {
 		vspeed += 0.05
 		y += vspeed
 		if(y > camy + 320) {
-			startPlay(gvMap.name)
+			startPlay(gvMap.file)
 			deleteActor(id)
 		}
 		drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))

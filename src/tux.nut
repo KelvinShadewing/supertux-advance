@@ -275,7 +275,7 @@
 				}
 
 				//Get on ladder
-				if((keyPress(config.key.down) || keyPress(config.key.up)) && anim != anHurt && anim != anClimb && actor.rawin("Ladder")) {
+				if((keyDown(config.key.down) || keyDown(config.key.up)) && anim != anHurt && anim != anClimb && actor.rawin("Ladder") && vspeed >= 0) {
 					foreach(i in actor["Ladder"]) {
 						if(hitTest(shape, i.shape)) {
 							anim = anClimb
@@ -528,7 +528,7 @@
 		vspeed += 0.05
 		y += vspeed
 		if(y > camy + 320) {
-			startPlay(gvMap.name)
+			startPlay(gvMap.file)
 			deleteActor(id)
 		}
 		drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))

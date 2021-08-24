@@ -65,6 +65,10 @@
 				newActor(Coin, i.x, i.y - 16)
 				break
 
+			case 2:
+				newActor(CoinBlock, i.x + 8, i.y - 8)
+				break
+
 			case 10:
 				newActor(PipeSnake, i.x, i.y)
 				break
@@ -81,6 +85,10 @@
 
 			case 13:
 				newActor(Deathcap, i.x + 8, i.y - 8)
+				break
+
+			case 15:
+				newActor(WoodBlock, i.x + 8, i.y - 8)
 				break
 
 			case 16:
