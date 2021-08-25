@@ -13,3 +13,7 @@
 [Nemysis](https://opengameart.org/users/nemisys) Sign post
 
 [devnewton](https://opengameart.org/users/devnewton) Cloud tiles
+
+[Little Robot Sound Factory](https://opengameart.org/content/8-bit-sound-effects-library) Misc sounds
+
+[Subspace Audio](https://opengameart.org/content/512-sound-effects-8-bit-style) Misc sounds
