@@ -7,11 +7,15 @@
 ::game <- {
 	score = 0,
 	coins = 0,
+	levelcoins = 0, //Total coins in the level
 	lives = 0,
 	health = 4,
 	maxHealth = 4,
 	tuxwep = 1,
-	completed = [] //List of completed level names
+	completed = [], //List of completed level names
+	allcoins = [], //Levels that the player has gotten all enemies in
+	allenemies = [], //Levels that the player has beaten all enemies in
+	allsecrets = [] //Levels the player has found all secrets in
 }
 ::gvPlayer <- 0; //Pointer to player actor
 /*\

@@ -456,7 +456,7 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2
-			if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
+			//if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
@@ -523,6 +523,11 @@
 
 ::TuxDie <- class extends Actor {
 	vspeed = -3.0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		playSound(sndDie, 0)
+	}
 
 	function run() {
 		vspeed += 0.05

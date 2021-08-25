@@ -6,7 +6,10 @@
 }
 
 ::endGoal <- function() {
-	gvPlayer.canMove = false
-	gvPlayer.endmode = true
+	if(gvPlayer != 0){
+		gvPlayer.canMove = false
+		gvPlayer.endmode = true
+		playSound(sndWin, 0)
+	}
 	gvPlayer = 0
 }

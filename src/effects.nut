@@ -27,3 +27,23 @@
 		else drawSpriteEx(sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 }
+
+::CoinEffect <- class extends Actor {
+	vspeed = -4.0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		playSound(sndCoin, 0)
+		game.coins++
+	}
+
+	function run() {
+		vspeed += 0.3
+		y += vspeed
+		drawSprite(sprCoin, getFrames(), x - camx, y - camy)
+		if(vspeed >= 2) {
+			deleteActor(id)
+			newActor(Spark, x, y)
+		}
+	}
+}

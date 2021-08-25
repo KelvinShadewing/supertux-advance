@@ -62,11 +62,27 @@
 				break
 
 			case 1:
-				newActor(Coin, i.x, i.y - 16)
+				newActor(Coin, i.x + 8, i.y - 8)
 				break
 
 			case 2:
-				newActor(CoinBlock, i.x + 8, i.y - 8)
+				newActor(ItemBlock, i.x + 8, i.y - 8)
+				game.levelcoins++
+				break
+
+			case 4:
+				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+				c.item = 1
+				break
+
+			case 5:
+				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+				c.item = 2
+				break
+
+			case 6:
+				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+				c.item = 3
 				break
 
 			case 10:

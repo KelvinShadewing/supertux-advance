@@ -17,6 +17,7 @@
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0)
 ::sprSpring <- newSprite("res/spring.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodBox <- newSprite("res/woodbox.png", 16, 16, 0, 0, 0, 0)
+::sprWoodChunks <- newSprite("res/woodchunks.png", 8, 8, 0, 0, 4, 4)
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)
@@ -27,9 +28,9 @@
 ::sprOuchin <- newSprite("res/ouchin.png", 16, 16, 0, 0, 8, 8)
 
 //Items
-::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 0, 0)
+::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 8, 8)
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0)
-::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 0, 0)
+::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 8, 8)
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
 
 //Effects
@@ -64,6 +65,10 @@
 ::sndSlide <- loadSound("res/slide.wav")
 ::sndFlame <- loadSound("res/flame.wav")
 ::sndSpring <- loadSound("res/trampoline.wav")
+::sndDie <- loadSound("res/die.ogg")
+::sndWin <- loadSound("res/win.wav")
+::sndBump <- loadSound("res/bump.wav")
+::sndHeal <- loadSound("res/heal.wav")
 
 //Maps
 ::mpTest <- "res/test.json"

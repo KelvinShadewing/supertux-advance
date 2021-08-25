@@ -41,7 +41,7 @@
 		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 		else gvPlayer.hspeed = 1.0
 		gvPlayer.hurt = true
-		}
+	}
 	function hurtfire() {} //If the object is hit by a fireball
 	function _typeof() { return "Enemy" }
 }
