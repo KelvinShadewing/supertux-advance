@@ -1979,6 +1979,30 @@
                  "width":16,
                  "x":4928,
                  "y":192
+                }, 
+                {
+                 "gid":160,
+                 "height":16,
+                 "id":246,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3200,
+                 "y":240
+                }, 
+                {
+                 "gid":163,
+                 "height":16,
+                 "id":247,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":5056,
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1987,13 +2011,13 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":245,
+ "nextobjectid":248,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora"
+         "value":"drawBG = dbgAurora\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.1",

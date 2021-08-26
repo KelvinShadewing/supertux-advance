@@ -11,7 +11,7 @@
 	lives = 0,
 	health = 4,
 	maxHealth = 4,
-	tuxwep = 1,
+	weapon = 0,
 	completed = [], //List of completed level names
 	allcoins = [], //Levels that the player has gotten all enemies in
 	allenemies = [], //Levels that the player has beaten all enemies in

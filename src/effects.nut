@@ -40,7 +40,7 @@
 	function run() {
 		vspeed += 0.3
 		y += vspeed
-		drawSprite(sprCoin, getFrames(), x - camx, y - camy)
+		drawSprite(sprCoin, getFrames() / 2, x - camx, y - camy)
 		if(vspeed >= 2) {
 			deleteActor(id)
 			newActor(Spark, x, y)

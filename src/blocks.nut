@@ -83,6 +83,10 @@
 				case 3:
 					newActor(MuffinEvil, x, y - 16)
 					break
+
+				case 4:
+					newActor(FlowerFire, x, y - 16)
+					break
 			}
 		}
 

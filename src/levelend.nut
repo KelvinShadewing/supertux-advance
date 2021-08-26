@@ -9,7 +9,9 @@
 	if(gvPlayer != 0){
 		gvPlayer.canMove = false
 		gvPlayer.endmode = true
+		gvPlayer.hspeed = 0.5
 		playSound(sndWin, 0)
+		stopMusic()
 	}
 	gvPlayer = 0
 }

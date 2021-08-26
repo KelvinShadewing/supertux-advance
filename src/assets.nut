@@ -32,6 +32,7 @@
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0)
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 8, 8)
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
+::sprFlowerFire <- newSprite("res/fireflower.png", 16, 16, 0, 0, 8, 8)
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8)
@@ -69,6 +70,16 @@
 ::sndWin <- loadSound("res/win.wav")
 ::sndBump <- loadSound("res/bump.wav")
 ::sndHeal <- loadSound("res/heal.wav")
+
+//Music
+::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
+::musDisko <- "res/chipdisko.ogg"
+
+::songPlay <- function(song) {
+	deleteMusic(gvMusic)
+	gvMusic = loadMusic(song)
+	playMusic(gvMusic, -1)
+}
 
 //Maps
 ::mpTest <- "res/test.json"

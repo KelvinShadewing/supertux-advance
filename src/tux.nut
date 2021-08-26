@@ -339,7 +339,7 @@
 					}
 				}
 			} else {
-				if(hspeed < 2) hspeed += 0.1
+				if(hspeed < 0.5 && endmode) hspeed += 0.1
 			}
 
 			//Movement
@@ -370,22 +370,26 @@
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
-			//Fireballs are going to be given to Konqi instead of Tux
-			/*
 			if(firetime > 0) firetime--
-			if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
-				local c = actor[newActor(Fireball, x, y - 4)]
-				if(!flip) c.hspeed = 3
-				else c.hspeed = -3
-				firetime = 60
-				playSound(sndFireball, 0)
-				if(keyDown(config.key.up)) c.vspeed = -2
-				if(keyDown(config.key.down)) {
-					c.vspeed = 2
-					c.hspeed /= 1.5
-				}
+			switch(game.weapon) {
+				case 1:
+					if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
+						if(flip == 0) local fx = 6
+						else local fx = -6
+						local c = actor[newActor(Fireball, x + fx, y - 4)]
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						firetime = 60
+						playSound(sndFireball, 0)
+						if(keyDown(config.key.up)) c.vspeed = -2
+						if(keyDown(config.key.down)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+					}
+					break
 			}
-			*/
+
 		}
 		//////////////
 		// IN WATER //
@@ -527,6 +531,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		playSound(sndDie, 0)
+		game.weapon = 0
 	}
 
 	function run() {

@@ -3,7 +3,7 @@
 \*============*/
 
 ::Coin <- class extends Actor{
-	frame = 0.0;
+	frame = 0.0
 
 	constructor(_x, _y)
 	{
@@ -16,14 +16,35 @@
 	{
 		frame += 0.1
 		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprCoin, frame, x - camx, y - camy)
-		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
 	}
 
 	function _typeof() { return "Coin" }
-};
+}
+
+::FlowerFire <- class extends Actor{
+
+	constructor(_x, _y)
+	{
+		base.constructor(_x, _y)
+	}
+
+	function run()
+	{
+		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+			deleteActor(id)
+			newActor(Spark, x, y)
+			game.weapon = 1
+			playSound(sndHeal, 0)
+		}
+	}
+
+	function _typeof() { return "FlowerFire" }
+}
 
 ::MuffinBlue <- class extends PhysAct {
 	flip = false
@@ -71,7 +92,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
 			if(game.health < game.maxHealth) game.health++
 			deleteActor(id)
 			playSound(sndHeal, 0)
@@ -127,7 +148,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
 			if(game.health < game.maxHealth - 3) game.health += 4
 			else game.health = game.maxHealth
 			deleteActor(id)
@@ -184,7 +205,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
