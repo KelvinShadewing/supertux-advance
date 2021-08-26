@@ -105,12 +105,12 @@
 				break
 
 			case 12:
-				local c = newActor(Deathcap, i.x + 8, i.y - 8)
-				actor[c].flip = true
+				newActor(Deathcap, i.x + 8, i.y - 8)
 				break
 
 			case 13:
-				newActor(Deathcap, i.x + 8, i.y - 8)
+				local c = newActor(Deathcap, i.x + 8, i.y - 8)
+				actor[c].smart = true
 				break
 
 			case 15:

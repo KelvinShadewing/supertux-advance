@@ -61,10 +61,12 @@
 	flip = false
 	squish = false
 	squishTime = 0.0
+	smart = false
 
 	constructor(_x, _y) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 4, 6, 0)
+		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
 	}
 
 	function run() {
@@ -107,6 +109,7 @@
 					the idea. Another fine example of (/d/d/d).
 					*/
 
+					if(smart) if(placeFree(x - 8, y + 16)) flip = false
 
 					if(x <= 0) flip = false
 				}
@@ -120,15 +123,19 @@
 						y -= 0.5
 					} else flip = true
 
+					if(smart) if(placeFree(x + 8, y + 16)) flip = true
+
 					if(x >= gvMap.w) flip = true
 				}
 
-				drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) deleteActor(id)
-				drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			shape.setPos(x, y)
