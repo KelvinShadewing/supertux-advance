@@ -85,6 +85,11 @@
 				c.item = 3
 				break
 
+			case 7:
+				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+				c.item = 5
+				break
+
 			case 8:
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 4

@@ -216,3 +216,36 @@
 		drawSprite(sprMuffin, 2, x - camx, y - camy)
 	}
 }
+
+::Starnyan <- class extends PhysAct {
+	hspeed = 0
+	vspeed = -2
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		if(gvPlayer != 0) if(gvPlayer.x > x) hspeed = -1
+		else hspeed = 1
+
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+		if(!placeFree(x, y + 1)) vspeed = -3
+		if(!placeFree(x + 1, y)) hspeed = -1
+		if(!placeFree(x - 1, y)) hspeed = 1
+		vspeed += 0.1
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		if(placeFree(x, y + vspeed)) y += vspeed
+		shape.setPos(x, y)
+
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+			gvPlayer.invincible = 60 * 30
+			deleteActor(id)
+			playSound(sndHeal, 0)
+		}
+
+		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)
+	}
+}

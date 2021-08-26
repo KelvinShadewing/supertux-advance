@@ -37,6 +37,7 @@
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8)
+::sprGlimmer <- newSprite("res/glimmer.png", 10, 10, 0, 0, 5, 5)
 ::sprFireball <- newSprite("res/fireball.png", 8, 8, 0, 0, 4, 4)
 ::sprPoof <- newSprite("res/poof.png", 16, 16, 0, 0, 8, 8)
 

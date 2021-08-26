@@ -13,7 +13,8 @@
 		if(active) {
 			if(gvPlayer != 0) {
 				if(hitTest(shape, gvPlayer.shape)) { //8 for player radius
-					if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp) gethurt()
+					if(gvPlayer.invincible > 0) hurtinvinc()
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp) gethurt()
 					else if(gvPlayer.rawin("anSlide")) {
 						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
 						else hurtplayer()
@@ -36,13 +37,22 @@
 	}
 
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
+
 	function hurtplayer() { //Default player damage
 		if(gvPlayer.blinking > 0) return
 		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 		else gvPlayer.hspeed = 1.0
 		gvPlayer.hurt = true
 	}
+
 	function hurtfire() {} //If the object is hit by a fireball
+
+	function hurtinvinc() {
+		newActor(Poof, x, y)
+		deleteActor(id)
+		playSound(sndFlame, 0)
+	}
+
 	function _typeof() { return "Enemy" }
 }
 

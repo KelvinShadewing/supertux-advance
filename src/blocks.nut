@@ -87,6 +87,10 @@
 				case 4:
 					newActor(FlowerFire, x, y - 16)
 					break
+
+				case 5:
+					newActor(Starnyan, x, y - 16)
+					break
 			}
 		}
 

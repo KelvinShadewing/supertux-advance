@@ -21,6 +21,7 @@
 	endmode = false
 	canstomp = true //If they can use jumping as an attack
 	sprite = sprTux
+	invincible = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -521,6 +522,8 @@
 				sprite = sprTuxFire
 				break
 		}
+		if(invincible > 0) invincible--
+		if(invincible % 4) newActor(Glimmer, x + 10 - randInt(20), y + 12 - randInt(24))
 		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
 		else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 	}
