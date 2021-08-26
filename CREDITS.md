@@ -17,3 +17,5 @@
 [Little Robot Sound Factory](https://opengameart.org/content/8-bit-sound-effects-library) Misc sounds
 
 [Subspace Audio](https://opengameart.org/content/512-sound-effects-8-bit-style) Misc sounds
+
+[TheNess](https://opengameart.org/users/theness) Forest parallax

@@ -54,8 +54,8 @@
 ::bgIridia <- newSprite("res/iridia.png", 100, 56, 0, 0, 0, 0)
 ::bgAurora <- newSprite("res/aurora.png", 720, 240, 0, 0, 0, 0)
 ::bgRiverCity <- newSprite("res/rivercity.png", 380, 240, 0, 0, 0, 0)
-::bgForest0 <- newSprite("res/forest0.png", 255, 180, 0, 0, 0, 0)
-::bgForest1 <- newSprite("res/forest1.png", 255, 180, 0, 0, 0, 0)
+::bgForest0 <- newSprite("res/forest0.png", 128, 180, 0, 0, 0, 0)
+::bgForest1 <- newSprite("res/forest1.png", 128, 180, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/woodedmountain.png", 720, 240, 0, 0, 0, 0)
 
 //Sounds
