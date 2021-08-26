@@ -10,6 +10,7 @@
 ::sprDebug <- newSprite("res/debugkeys.png", 8, 8, 0, 0, 0, 0)
 
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19)
+::sprTuxFire <- newSprite("res/tuxfire.png", 32, 32, 0, 0, 15, 19)
 
 //Blocks
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0)

@@ -20,6 +20,7 @@
 	swimming = false
 	endmode = false
 	canstomp = true //If they can use jumping as an attack
+	sprite = sprTux
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -339,7 +340,7 @@
 					}
 				}
 			} else {
-				if(hspeed < 0.5 && endmode) hspeed += 0.1
+				if(hspeed < 0.75 && endmode) hspeed += 0.1
 			}
 
 			//Movement
@@ -511,8 +512,17 @@
 		if(blinking > 0) blinking--
 
 		//Draw
-		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprTux, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
-		else drawSpriteEx(sprTux, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+		switch(game.weapon) {
+			case 0:
+				sprite = sprTux
+				break
+
+			case 1:
+				sprite = sprTuxFire
+				break
+		}
+		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 	}
 
 	function die() {
