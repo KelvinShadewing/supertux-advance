@@ -30,7 +30,7 @@
 
 //Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 8, 8)
-::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 0, 0)
+::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 8, 8)
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 8, 8)
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
 ::sprFlowerFire <- newSprite("res/fireflower.png", 16, 16, 0, 0, 8, 8)

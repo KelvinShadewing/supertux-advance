@@ -227,7 +227,7 @@
 		if(gvPlayer != 0) if(gvPlayer.x > x) hspeed = -1
 		else hspeed = 1
 
-		shape = Rec(x, y, 8, 8, 0)
+		shape = Rec(x, y, 6, 6, 0)
 	}
 
 	function run() {
@@ -238,6 +238,7 @@
 
 		if(placeFree(x + hspeed, y)) x += hspeed
 		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
 		shape.setPos(x, y)
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {

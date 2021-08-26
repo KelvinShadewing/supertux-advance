@@ -376,8 +376,8 @@
 			switch(game.weapon) {
 				case 1:
 					if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
-						if(flip == 0) local fx = 6
-						else local fx = -6
+						local fx = 6
+						if(flip == 1) fx = -6
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
