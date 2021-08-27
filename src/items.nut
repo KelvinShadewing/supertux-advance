@@ -263,9 +263,9 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
-			gvPlayer.invincible = 60 * 30
+			gvPlayer.invincible = 60 * 20
 			deleteActor(id)
-			playSound(sndHeal, 0)
+			playSound(sndInvinicible, 0)
 			pauseMusic()
 		}
 

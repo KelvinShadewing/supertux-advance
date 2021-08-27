@@ -283,7 +283,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":240,
+                 "width":208,
                  "x":1088,
                  "y":288
                 }, 
@@ -789,8 +789,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":448,
-                 "x":1328,
+                 "width":480,
+                 "x":1296,
                  "y":304
                 }, 
                 {
@@ -1301,7 +1301,7 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1328,
+                 "x":1296,
                  "y":288
                 }],
          "opacity":1,

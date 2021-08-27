@@ -76,6 +76,7 @@
 ::sndWin <- loadSound("res/win.wav")
 ::sndBump <- loadSound("res/bump.wav")
 ::sndHeal <- loadSound("res/heal.wav")
+::sndInvinicible <- loadSound("res/invincible.wav")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
