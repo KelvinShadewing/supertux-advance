@@ -21,3 +21,5 @@
 [TheNess](https://opengameart.org/users/theness) Forest parallax
 
 [RodHakGames](https://opengameart.org/users/rodhakgames) Portals
+
+[bluecarrot16](https://opengameart.org/users/bluecarrot16) Palm trees

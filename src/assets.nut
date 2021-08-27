@@ -16,6 +16,7 @@
 //Blocks
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxItem <- newSprite("res/itembox.png", 16, 16, 0, 0, 0, 0)
+::sprBoxRed <- newSprite("res/redbox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0)
 ::sprSpring <- newSprite("res/spring.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodBox <- newSprite("res/woodbox.png", 16, 16, 0, 0, 0, 0)

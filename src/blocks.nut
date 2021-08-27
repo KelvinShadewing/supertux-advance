@@ -123,3 +123,43 @@
 		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }
+
+::TriggerBlock <- class extends Actor {
+	shape = 0
+	mapshape = 0
+	full = true
+	v = 0.0
+	vspeed = 0.0
+	item = 0
+	code = ""
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 3, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+	}
+
+	function run() {
+		if(v > 0) {
+			vspeed = 0
+			v = 0
+		}
+		if(v <= -8) {
+			vspeed = 0.5
+			dostr(code)
+		}
+
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0) if(full){
+			gvPlayer.vspeed = 0
+			full = false
+			vspeed = -1
+			playSound(sndBump, 0)
+		}
+
+		v += vspeed
+
+		if(full || vspeed < 0) drawSprite(sprBoxRed, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
+		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+	}
+}

@@ -142,7 +142,12 @@
 				break
 
 			case 20:
-				local c = newActor(Ouchin, i.x + 8, i.y - 8)
+				newActor(Ouchin, i.x + 8, i.y - 8)
+				break
+
+			case 21:
+				local c = actor[newActor(TriggerBlock, i.x + 8, i.y - 8)]
+				c.code = i.name
 				break
 		}
 	}
