@@ -11,6 +11,7 @@
 
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxFire <- newSprite("res/tuxfire.png", 32, 32, 0, 0, 15, 19)
+::sprTuxIce <- newSprite("res/tuxice.png", 32, 32, 0, 0, 15, 19)
 
 //Blocks
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0)
@@ -35,11 +36,13 @@
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 8, 8)
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
 ::sprFlowerFire <- newSprite("res/fireflower.png", 16, 16, 0, 0, 8, 8)
+::sprFlowerIce <- newSprite("res/iceflower.png", 16, 16, 0, 0, 8, 8)
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8)
 ::sprGlimmer <- newSprite("res/glimmer.png", 10, 10, 0, 0, 5, 5)
 ::sprFireball <- newSprite("res/fireball.png", 8, 8, 0, 0, 4, 4)
+::sprIceball <- newSprite("res/iceball.png", 6, 6, 0, 0, 3, 3)
 ::sprPoof <- newSprite("res/poof.png", 16, 16, 0, 0, 8, 8)
 
 //Tilesets

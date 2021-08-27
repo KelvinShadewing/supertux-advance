@@ -46,6 +46,27 @@
 	function _typeof() { return "FlowerFire" }
 }
 
+::FlowerIce <- class extends Actor{
+
+	constructor(_x, _y)
+	{
+		base.constructor(_x, _y)
+	}
+
+	function run()
+	{
+		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+			deleteActor(id)
+			newActor(Spark, x, y)
+			game.weapon = 2
+			playSound(sndHeal, 0)
+		}
+	}
+
+	function _typeof() { return "FlowerIce" }
+}
+
 ::MuffinBlue <- class extends PhysAct {
 	flip = false
 
@@ -245,6 +266,7 @@
 			gvPlayer.invincible = 60 * 30
 			deleteActor(id)
 			playSound(sndHeal, 0)
+			pauseMusic()
 		}
 
 		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)

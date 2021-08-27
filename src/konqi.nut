@@ -518,46 +518,6 @@
 	function _typeof(){ return "Tux" }
 }
 
-::Fireball <- class extends PhysAct {
-	constructor(_x, _y) {
-		base.constructor(_x, _y)
-
-		shape = Rec(x, y, 3, 3, 0)
-	}
-
-	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -1.2
-		if(!placeFree(x, y - 1)) vspeed = 1
-		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
-			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
-			else deleteActor(id)
-		}
-		vspeed += 0.1
-
-		if(placeFree(x + hspeed, y)) x += hspeed
-		else if(placeFree(x + hspeed, y - 2)) {
-			x += hspeed
-			y += -2
-			vspeed = -1
-		} else deleteActor(id)
-
-		if(placeFree(x, y + vspeed)) y += vspeed
-		else vspeed /= 2
-
-		if(y > gvMap.h || inWater(x, y)) {
-			deleteActor(id)
-			newActor(Poof, x, y)
-		}
-
-		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		else drawSpriteEx(sprFireball, getFrames() / 2, floor(x - camx), floor(y - camy), 0, 1, 1, 1, 1)
-
-		shape.setPos(x, y)
-	}
-
-	function _typeof () {return "Fireball"}
-}
-
 ::KonqiDie <- class extends Actor {
 	vspeed = -3.0
 

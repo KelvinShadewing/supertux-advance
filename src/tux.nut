@@ -390,6 +390,23 @@
 						}
 					}
 					break
+
+				case 2:
+					if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = actor[newActor(Iceball, x + fx, y - 4)]
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						firetime = 60
+						playSound(sndFireball, 0)
+						if(keyDown(config.key.up)) c.vspeed = -2
+						if(keyDown(config.key.down)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+					}
+					break
 			}
 
 		}
@@ -521,9 +538,19 @@
 			case 1:
 				sprite = sprTuxFire
 				break
+
+			case 2:
+				sprite = sprTuxIce
+				break
 		}
-		if(invincible > 0) invincible--
-		if(invincible % 4) newActor(Glimmer, x + 10 - randInt(20), y + 12 - randInt(24))
+
+		//Invincibility
+		if(invincible > 0) {
+			invincible--
+			if(invincible == 0) resumeMusic()
+		}
+		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
+
 		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
 		else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 	}

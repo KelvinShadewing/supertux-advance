@@ -70,29 +70,34 @@
 				game.levelcoins++
 				break
 
-			case 4:
+			case 3:
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 1
 				break
 
-			case 5:
+			case 4:
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 2
 				break
 
-			case 6:
+			case 5:
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 3
 				break
 
-			case 7:
+			case 6:
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 5
 				break
 
-			case 8:
+			case 7:
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 4
+				break
+
+			case 8:
+				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+				c.item = 6
 				break
 
 			case 10:

@@ -1,21 +1,33 @@
 ::WoodBlock <- class extends Actor {
 	shape = 0
 	mapshape = 0
+	slideshape = 0
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 3, 8, 8, 0)
 		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		slideshape = Rec(x, y, 12, 8, 0)
 	}
 
 	function run() {
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0){
-			gvPlayer.vspeed = 0
-			mapDeleteSolid(mapshape)
-			deleteActor(id)
-			newActor(WoodChunks, x, y)
-			playSound(sndBump, 0)
+		if(gvPlayer != 0) {
+			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
+				gvPlayer.vspeed = 0
+				mapDeleteSolid(mapshape)
+				deleteActor(id)
+				newActor(WoodChunks, x, y)
+				playSound(sndBump, 0)
+			}
+
+			if(abs(gvPlayer.hspeed) >= 3 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+				gvPlayer.vspeed = 0
+				mapDeleteSolid(mapshape)
+				deleteActor(id)
+				newActor(WoodChunks, x, y)
+				playSound(sndBump, 0)
+			}
 		}
 
 		drawSprite(sprWoodBox, 0, x - 8 - camx, y - 8 - camy)
@@ -90,6 +102,10 @@
 
 				case 5:
 					newActor(Starnyan, x, y - 16)
+					break
+
+				case 6:
+					newActor(FlowerIce, x, y - 16)
 					break
 			}
 		}
