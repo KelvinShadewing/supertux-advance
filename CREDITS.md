@@ -23,3 +23,7 @@
 [RodHakGames](https://opengameart.org/users/rodhakgames) Portals
 
 [bluecarrot16](https://opengameart.org/users/bluecarrot16) Palm trees
+
+[KnoblePersona](https://opengameart.org/users/knoblepersona) Ocean BG
+
+[SugarMoonWitch](http://sugarmoonwitch.com/) Underwater BG

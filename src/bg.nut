@@ -31,3 +31,9 @@
 		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }
+
+::dbgOcean <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgOcean, 0, ((-camx / 8) % 480) + (i * 380), (screenH() / 2) - 120)
+	}
+}
