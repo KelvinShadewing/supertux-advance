@@ -10,6 +10,7 @@
 		gvPlayer.canMove = false
 		gvPlayer.endmode = true
 		gvPlayer.hspeed = 0.5
+		gvPlayer.invincible = 999
 		playSound(sndWin, 0)
 		stopMusic()
 	}

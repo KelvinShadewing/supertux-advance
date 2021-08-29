@@ -2,6 +2,9 @@
 | PLAY MODE |
 \*=========*/
 
+::gvInfoBox <- ""
+::gvLangObj <- ""
+
 ::startPlay <- function(level)
 {
 
@@ -149,6 +152,11 @@
 				local c = actor[newActor(TriggerBlock, i.x + 8, i.y - 8)]
 				c.code = i.name
 				break
+
+			case 22:
+				local c = actor[newActor(InfoBlock, i.x + 8, i.y - 8)]
+				if(i.name != "") c.text = gvLangObj["info"][i.name]
+				break
 		}
 	}
 
@@ -190,9 +198,20 @@
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
-	for(local i = 0; i < game.maxHealth; i++) {
+
+	if(gvInfoBox == "") for(local i = 0; i < game.maxHealth; i++) {
 		if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 		else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
+	}
+	else {
+		local ln = 3
+		for(local i = 0; i < gvInfoBox.len(); i++) {
+			if(chint(gvInfoBox[i])  == "\n") ln++
+		}
+		setDrawColor(0x000000d0)
+		drawRec(0, 0, 320, 8 * ln, true)
+		drawText(font, 8, 8, gvInfoBox)
+
 	}
 	drawDebug()
 }

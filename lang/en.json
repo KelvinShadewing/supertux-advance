@@ -1,0 +1,11 @@
+{
+	"menu" : {
+		"new" : "New Game"
+	},
+
+	"info" : {
+		"welcome" : "Welcome to SuperTux Advance! Press PAUSE to dismiss\nthese messages.",
+		"tutWall" : "Hold JUMP and press away from the wall to perform a\nwall jump.",
+		"tutSlide" : "Press DOWN while running to slide."
+	}
+}

@@ -6,7 +6,7 @@
 ::sprFont <- newSprite("res/font.png", 6, 8, 0, 0, 0, 0)
 ::font <- newFont(sprFont, 0, 0, 0, 0)
 ::sprFont2 <- newSprite("res/font2.png", 12, 14, 0, 0, 0, 0)
-::font2 <- newFont(sprFont2, 33, 0, 0, 0)
+::font2 <- newFont(sprFont2, 33, 0, 0, -4)
 ::sprDebug <- newSprite("res/debugkeys.png", 8, 8, 0, 0, 0, 0)
 
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19)
@@ -21,6 +21,7 @@
 ::sprSpring <- newSprite("res/spring.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodBox <- newSprite("res/woodbox.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodChunks <- newSprite("res/woodchunks.png", 8, 8, 0, 0, 4, 4)
+::sprBoxInfo <- newSprite("res/infobox.png", 16, 16, 0, 0, 0, 0)
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)
