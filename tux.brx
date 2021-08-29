@@ -53,9 +53,6 @@ update()
 while(!getQuit() && !keyPress(k_escape))
 {
 	gvGameMode()
-	if(keyPress(config.key.pause)) {
-		if(gvInfoBox == "") togglePause()
-		else gvInfoBox = ""
-	}
+	if(keyPress(config.key.pause) && gvPlayer != 0) togglePause()
 	update()
 }

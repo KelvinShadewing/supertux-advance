@@ -1,10 +1,26 @@
 {
-	"menu" : {
-		"new" : "New Game"
+	"main-menu" : {
+		"new" : "New Game",
+		"load" : "Load Game",
+		"options" : "Options",
+		"quit" : "Quit Game"
+	},
+
+	"options-menu" : {
+		"difficulty" : "Difficulty",
+		"language" : "Language",
+		"controls" : "Controls"
+	},
+
+	"difficulty-levels" : {
+		"easy" : "Easy",
+		"normal" : "Normal",
+		"hard" : "Hard",
+		"super" : "Super Tux"
 	},
 
 	"info" : {
-		"welcome" : "Welcome to SuperTux Advance! Press PAUSE to dismiss\nthese messages.",
+		"welcome" : "Welcome to SuperTux Advance! This message will go\naway when you walk away from the block.",
 		"tutWall" : "Hold JUMP and press away from the wall to perform a\nwall jump.",
 		"tutSlide" : "Press DOWN while running to slide."
 	}

@@ -189,11 +189,15 @@
 			vspeed = 0.5
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0) if(full){
-			gvPlayer.vspeed = 0
-			vspeed = -1
-			playSound(sndBump, 0)
-			gvInfoBox = text
+		if(gvPlayer != 0) {
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0) if(full){
+				gvPlayer.vspeed = 0
+				vspeed = -1
+				playSound(sndBump, 0)
+				gvInfoBox = text
+			}
+
+			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
 		}
 
 		v += vspeed
