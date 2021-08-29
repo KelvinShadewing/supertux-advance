@@ -22,7 +22,7 @@
 		angle = 45 * randInt(8)
 	}
 	function run() {
-		frame += 0.5
+		frame += 0.25
 		if(frame >= 3) deleteActor(id)
 		else drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 	}

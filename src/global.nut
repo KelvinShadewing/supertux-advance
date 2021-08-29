@@ -44,7 +44,8 @@
 		sneak = k_lctrl
 		pause = k_enter
 	},
-	playerchar = 0
+	playerchar = 0,
+	lang = "en"
 }
 
 ::camx <- 0
