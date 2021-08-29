@@ -157,6 +157,11 @@
 				local c = actor[newActor(InfoBlock, i.x + 8, i.y - 8)]
 				if(i.name != "") c.text = gvLangObj["info"][i.name]
 				break
+
+			case 23:
+				local c = actor[newActor(KelvinScarf, i.x + 8, i.y - 8)]
+				if(i.name != "") c.text = gvLangObj["devcom"][i.name]
+				break
 		}
 	}
 

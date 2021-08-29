@@ -2166,6 +2166,90 @@
                  "width":16,
                  "x":2432,
                  "y":96
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":276,
+                 "name":"welcome",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":240
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":278,
+                 "name":"hiff-0",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":272
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":279,
+                 "name":"pipes",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":496,
+                 "y":224
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":280,
+                 "name":"firetux",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":5056,
+                 "y":192
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":281,
+                 "name":"coins",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1488,
+                 "y":272
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":282,
+                 "name":"sliding",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2544,
+                 "y":144
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":283,
+                 "name":"trees",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3152,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2174,7 +2258,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":276,
+ "nextobjectid":284,
  "orientation":"orthogonal",
  "properties":[
         {

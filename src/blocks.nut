@@ -206,3 +206,32 @@
 		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }
+
+::KelvinScarf <- class extends Actor {
+	shape = 0
+	mapshape = 0
+	full = true
+	v = 0.0
+	vspeed = 0.0
+	item = 0
+	text = ""
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+
+		if(gvPlayer != 0) {
+			if(devcom) if(hitTest(shape, gvPlayer.shape)){
+				gvInfoBox = text
+			}
+
+			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+		}
+
+		if(devcom) drawSprite(sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
+	}
+}

@@ -22,6 +22,7 @@
 ::sprWoodBox <- newSprite("res/woodbox.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodChunks <- newSprite("res/woodchunks.png", 8, 8, 0, 0, 4, 4)
 ::sprBoxInfo <- newSprite("res/infobox.png", 16, 16, 0, 0, 0, 0)
+::sprKelvinScarf <- newSprite("res/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)
