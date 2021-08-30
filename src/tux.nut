@@ -295,7 +295,7 @@
 				}
 
 				//Jumping
-				if(keyPress(config.key.jump) && canJump > 0) if(placeFree(x, y - 8)) {
+				if(keyPress(config.key.jump) && canJump > 0) {
 					vspeed = -3.8
 					didJump = true
 					canJump = 0
