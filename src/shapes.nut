@@ -8,6 +8,8 @@
 	w = 0.0
 	h = 0.0
 	kind = 0
+	ox = 0.0
+	oy = 0.0
 	// 0 normal
 	// 1 top right
 	// 2 top left
@@ -15,7 +17,7 @@
 	// 4 bottom left
 	// 5 liquid
 
-	constructor(_x, _y, _w, _h, _kind) {
+	constructor(_x, _y, _w, _h, _kind, _ox = 0.0, _oy = 0.0) {
 		x = _x.tofloat()
 		y = _y.tofloat()
 		w = _w.tofloat()
@@ -26,13 +28,15 @@
 		//It's important, trust me
 		if(w <= 0) w = 0.1
 		if(h <= 0) h = 0.1
+		ox = _ox.tofloat()
+		oy = _oy.tofloat()
 	}
 
 	function _typeof() { return "Rec" }
 
 	function setPos(_x, _y) {
-		x = _x.tofloat()
-		y = _y.tofloat()
+		x = _x.tofloat() + ox
+		y = _y.tofloat() + oy
 	}
 
 	function draw() {

@@ -18,7 +18,7 @@
 
 	function placeFree(_x, _y) {
 		//Save current location and move
-		local ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
 		local np = Rec(_x, _y, 0, 0, 0)
 
 		//Find a region
@@ -29,7 +29,7 @@
 					if(hitTest(ns, gvMap.geo[i][1][j][0])) {
 						//Check the boxes
 						for(local k = 0; k < gvMap.geo[i][1][j][1].len(); k++) {
-							if(hitTest(ns, gvMap.geo[i][1][j][1][k])) return false	
+							if(hitTest(ns, gvMap.geo[i][1][j][1][k])) return false
 						}
 					}
 				}

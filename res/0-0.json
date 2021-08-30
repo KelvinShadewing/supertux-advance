@@ -2250,6 +2250,18 @@
                  "width":16,
                  "x":3152,
                  "y":272
+                }, 
+                {
+                 "gid":177,
+                 "height":16,
+                 "id":284,
+                 "name":"waterjump",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":4720,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2258,7 +2270,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":284,
+ "nextobjectid":285,
  "orientation":"orthogonal",
  "properties":[
         {

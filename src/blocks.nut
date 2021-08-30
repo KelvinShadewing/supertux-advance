@@ -110,7 +110,7 @@
 			}
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0) if(full){
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 			gvPlayer.vspeed = 0
 			full = false
 			vspeed = -1
@@ -150,7 +150,7 @@
 			dostr(code)
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0) if(full){
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 			gvPlayer.vspeed = 0
 			full = false
 			vspeed = -1
@@ -190,7 +190,7 @@
 		}
 
 		if(gvPlayer != 0) {
-			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0) if(full){
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 0
 				vspeed = -1
 				playSound(sndBump, 0)

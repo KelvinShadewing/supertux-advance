@@ -32,6 +32,12 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 * Fireballs have long range, but a slow rate of fire. Use them tactically; don't rely on them for up-close combat. That's best left to jumping and sliding.
 * Muffins found in [?] boxes will restore health. Blueberry restores 1 health points, and strawberry restores 4 health. Moldy green muffins will take health from you.
 * On normal and easy mode, you'll recieve an extra life point after each boss. You don't get such boons on hard mode; you'll have to make do with the starting amount.
-* Tux's fireballs don't rely on powerups for him to use them, so don't worry about being left defenseless if you get hurt. You can also aim them up and down.
+* Tux's fireballs won't be lost if you get hurt. You can also aim them up and down.
 * You can swim in all directions, but fireballs will not work in water. Head for the surface if you get into trouble.
 * If you're going for a speed run, slide just before leaving an edge for a small boost, then jump to preserve the momentum. There's no friction in the air, so keep off the ground as much as you can!
+
+## FAQ
+
+Q: The game crashed. The log says a function wasn't defined.
+
+A: The game may need a newer version of Brux GDK.

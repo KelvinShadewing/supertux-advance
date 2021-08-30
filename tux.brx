@@ -47,7 +47,7 @@ gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
 gvGameMode = gmMain
 config.playerchar = "Tux"
 drawBG = dbgAurora
-startPlay("res/0-0.json")
+startPlay("res/zebish.json")
 
 update()
 while(!getQuit() && !keyPress(k_escape))

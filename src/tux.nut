@@ -22,6 +22,8 @@
 	canstomp = true //If they can use jumping as an attack
 	sprite = sprTux
 	invincible = 0
+	shapeStand = 0
+	shapeSlide = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -45,7 +47,9 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		anim = anStand
-		shape = Rec(x, y + 2, 5, 12, 0)
+		shapeStand = Rec(x, y, 5, 12, 0, 0, 1)
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 7)
+		shape = shapeStand
 		if(gvPlayer == 0) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
@@ -162,6 +166,7 @@
 					if(floor(frame) > anim[1]) {
 						anim = anSlide
 						frame = anim[0]
+						shape = shapeSlide
 					}
 					break
 
@@ -290,7 +295,7 @@
 				}
 
 				//Jumping
-				if(keyPress(config.key.jump) && canJump > 0) {
+				if(keyPress(config.key.jump) && canJump > 0) if(placeFree(x, y - 8)) {
 					vspeed = -3.8
 					didJump = true
 					canJump = 0
@@ -349,11 +354,23 @@
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3
 					if(hspeed < 0) hspeed += friction / 3
-					if(abs(hspeed) < 1) anim = anStand
+					if(abs(hspeed) < 1) {
+						if(placeFree(x, y - 16)) {
+							anim = anStand
+							shape = shapeStand
+						} else {
+							if(keyDown(config.key.left)) hspeed -= 0.1
+							if(keyDown(config.key.right)) hspeed += 0.1
+						}
+					}
 				} else {
 					if(hspeed > 0) hspeed -= friction
 					if(hspeed < 0) hspeed += friction
 				}
+			}
+			if(anim != anSlide) {
+				if(placeFree(x, y - 8)) shape = shapeStand
+				if(!placeFree(x, y)) shape = shapeSlide
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
@@ -512,7 +529,9 @@
 			if(x > gvMap.w - 4) x = gvMap.w - 4
 		} else x = wrap(x, 0, gvMap.w)
 
-		shape.setPos(x, y + 2)
+		if(anim == anSlide) shape = shapeSlide
+		else shape = shapeStand
+		shape.setPos(x, y)
 		if(y > gvMap.h + 16) die()
 
 		//Hurt
@@ -553,6 +572,10 @@
 
 		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
 		else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+		if(debug) {
+			setDrawColor(0x008000ff)
+			shape.draw()
+		}
 	}
 
 	function die() {

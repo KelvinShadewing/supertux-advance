@@ -24,6 +24,8 @@
 			x = gvOverX
 			y = gvOverY
 		}
+
+		shape = Rec(x, y, 6, 6, 0)
 	}
 
 	function run() {
