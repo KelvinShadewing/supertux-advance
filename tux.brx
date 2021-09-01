@@ -54,7 +54,7 @@ drawBG = dbgAurora
 update()
 while(!getQuit() && !keyPress(k_escape))
 {
+	if(keyPress(config.key.pause) && gvPlayer != 0 && gvGameMode != gmMain) togglePause()
 	gvGameMode()
-	if(keyPress(config.key.pause) && gvPlayer != 0) togglePause()
 	update()
 }
