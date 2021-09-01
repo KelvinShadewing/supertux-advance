@@ -47,8 +47,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		anim = anStand
-		shapeStand = Rec(x, y, 5, 12, 0, 0, 1)
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 7)
+		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
 		shape = shapeStand
 		if(gvPlayer == 0) gvPlayer = this
 		startx = _x.tofloat()

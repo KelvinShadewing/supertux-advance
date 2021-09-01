@@ -15,6 +15,7 @@ donut("src/shapes.nut")
 donut("src/tilemap.nut")
 donut("src/assets.nut")
 donut("src/global.nut")
+donut("src/menus.nut")
 donut("src/gmmain.nut")
 donut("src/gmplay.nut")
 donut("src/gmpause.nut")
@@ -45,9 +46,10 @@ setFPS(60)
 
 gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
 gvGameMode = gmMain
+menu = meMain
 config.playerchar = "Tux"
 drawBG = dbgAurora
-startPlay("res/0-0.json")
+//startPlay("res/0-0.json")
 
 update()
 while(!getQuit() && !keyPress(k_escape))

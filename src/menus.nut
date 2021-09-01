@@ -10,8 +10,8 @@
 
 	//Draw options
 	for(local i = 0; i < menu.len(); i++) {
-		if(cursor == i) drawText(font2, 160 -(menu[i].name().len() * 4), 120 - (menu.len() * 14) + (i * 14), menu[i].name())
-		else drawText(font, 160 -(menu[i].name().len() * 4), 120 - (menu.len() * 14) + (i * 14), menu[i].name())
+		if(cursor == i) drawText(font2, 144 -(menu[i].name().len() * 4), screenH() - 16 - (menu.len() * 14) + (i * 14), "> " + menu[i].name() + " <")
+		else drawText(font2, 160 -(menu[i].name().len() * 4), screenH() - 16 - (menu.len() * 14) + (i * 14), menu[i].name())
 	}
 
 	//Keyboard input
@@ -25,7 +25,7 @@
 		if(cursor < 0) cursor = menu.len() - 1
 	}
 
-	if(keyPress(k_space) || keyPress(k_return)) {
+	if(keyPress(config.key.jump) || keyPress(config.key.pause)) {
 		menu[cursor].func()
 	}
 }
@@ -34,61 +34,51 @@
 //they're brought up again.
 ::meMain <- [
 	{
-		name = function() { return "New Game" },
-		func = function() { gvPlayers = 1; gvDual = 0; startPlay("res/lv0-0.nut") },
-		desc = function() { return "Begin new game from the beginning." }
+		name = function() { return gvLangObj["main-menu"]["new"] },
+		func = function() { startPlay("res/0-0.json") }
 	},
 	{
-		name = function() { return "Load Game" },
-		func = function() { gvPlayers = 2; gvDual = 0; startPlay(1) },
-		desc = function() { return "Continue a previous save" }
+		name = function() { return gvLangObj["main-menu"]["load"] },
+		func = function() { return }
 	},
 	{
-		name = function() { return "Options" },
-		func = function() { cursor = 0; menu = meOptions },
-		desc = function() { return "Change game settings." }
+		name = function() { return gvLangObj["main-menu"]["options"] },
+		func = function() { cursor = 0; menu = meOptions }
 	},
 	{
-		name = function() { return "Quit" },
-		func = function() { gvQuit = 1 },
-		desc = function() { return "Don't leave!" }
+		name = function() { return gvLangObj["main-menu"]["quit"] },
+		func = function() { gvQuit = 1 }
 	}
 ]
 
 ::meOptions <- [
 	{
 		name = function() { return "Difficulty: " + strDifficulty[config.difficulty] },
-		func = function() { cursor = 0; menu = meDifficulty },
-		desc = function() { return "Change game difficulty" }
+		func = function() { cursor = 0; menu = meDifficulty }
 
 	},
 	{
 		name = function() { return "Controls" },
-		func = function() {},
-		desc = function() { return "Rebind keys." }
+		func = function() {}
 	},
 	{
 		name = function() { return "Back" },
-		func = function() { cursor = 0; menu = meMain },
-		desc = function() { return "Return to main menu." }
+		func = function() { cursor = 0; menu = meMain }
 	}
 ]
 
 ::meDifficulty <- [
 	{
 		name = function() { return "Easy" },
-		func = function() { config.difficulty = 0; cursor = 0; menu = meOptions },
-		desc = function() { return "No time limit, no death penalty, extra health." }
+		func = function() { config.difficulty = 0; cursor = 0; menu = meOptions }
 	},
 	{
 		name = function() { return "Normal"; },
-		func = function() { config.difficulty = 1; cursor = 0; menu = meOptions },
-		desc = function() { return "Lose coins on death, normal health, no time limit." }
+		func = function() { config.difficulty = 1; cursor = 0; menu = meOptions }
 	},
 	{
 		name = function() { return "Hard"; },
-		func = function() { config.difficulty = 2; cursor = 0; menu = meOptions },
-		desc = function() { return "Low health, lose more coins on death, time limit." }
+		func = function() { config.difficulty = 2; cursor = 0; menu = meOptions }
 	}
 ]
 
