@@ -53,8 +53,8 @@
 	message += "Map H: " + gvMap.h + "\n"
 	message += "SRT: " + floor(getTicks() / 1000) + "\n"
 	message += "Map: " + gvMap.name + "\n"
-
-
-
+	message += "Display: " + displayW() + "x" + displayH() + " (" + (displayW().tofloat() / displayH().tofloat()) + ")\n"
+	message += "Game res: " + screenW() + "x" + screenH() + " (" + (screenW().tofloat() / screenH().tofloat()) + ")\n"
+	
 	drawText(font, 0, 32, message)
 }
