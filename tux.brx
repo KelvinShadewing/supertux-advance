@@ -39,7 +39,9 @@ donut("src/weapons.nut")
 //    MAIN    //
 ////////////////
 
-setResolution(320, 180)
+if(displayW() / displayH() == 320 / 180) setResolution(320, 180)
+if(displayW() / displayH() == 320 / 200) setResolution(320, 200)
+
 setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
 setFPS(60)

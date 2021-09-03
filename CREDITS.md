@@ -1,36 +1,40 @@
 # Credits
 
-## Graphical Assets
+## Graphical and Sound Assets
 
-[Kelvin Shadewing](http://kelvinshadewing.net) Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics
+[Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics
 
-[Adam Atomic](http://www.adamatomic.com) Iridia BG
+[Adam Atomic](http://www.adamatomic.com) - Iridia BG
 
-[Luke Bunday](http://pixeljoint.com/p/43158.htm) Anneroy
+[Luke Bunday](http://pixeljoint.com/p/43158.htm) - Anneroy
 
-[thekingphoenix](https://opengameart.org/content/tileset-platform-forest) Forest Decorations
+[thekingphoenix](https://opengameart.org/content/tileset-platform-forest) - Forest Decorations
 
-[SuperTux](https://github.com/supertux/supertux) Sounds (shoot, jump, hurt, slide, coin, trampoline)
+[SuperTux](https://github.com/supertux/supertux) - Sounds (shoot, jump, hurt, slide, coin, trampoline)
 
-[Nemysis](https://opengameart.org/users/nemisys) Sign post
+[Nemysis](https://opengameart.org/users/nemisys) - Sign post
 
-[devnewton](https://opengameart.org/users/devnewton) Cloud tiles
+[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles
 
-[Little Robot Sound Factory](https://opengameart.org/content/8-bit-sound-effects-library) Misc sounds
+[Little Robot Sound Factory](https://opengameart.org/content/8-bit-sound-effects-library) - Misc sounds
 
-[Subspace Audio](https://opengameart.org/content/512-sound-effects-8-bit-style) Misc sounds
+[Subspace Audio](https://opengameart.org/content/512-sound-effects-8-bit-style) - Misc sounds
 
-[TheNess](https://opengameart.org/users/theness) Forest parallax
+[TheNess](https://opengameart.org/users/theness) - Forest parallax
 
-[RodHakGames](https://opengameart.org/users/rodhakgames) Portals
+[RodHakGames](https://opengameart.org/users/rodhakgames) - Portals
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) Palm trees
+[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
 
-[KnoblePersona](https://opengameart.org/users/knoblepersona) Ocean BG
+[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG
 
-[SugarMoonWitch](http://sugarmoonwitch.com/) Underwater BG
+[SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
 
-## Financial Contributors
+## Music
+
+Lukas Nystrand - Chippdisko
+
+## Donors
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
 
