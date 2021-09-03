@@ -1,5 +1,7 @@
 # Credits
 
+## Graphical Assets
+
 [Kelvin Shadewing](http://kelvinshadewing.net) Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics
 
 [Adam Atomic](http://www.adamatomic.com) Iridia BG
@@ -27,3 +29,9 @@
 [KnoblePersona](https://opengameart.org/users/knoblepersona) Ocean BG
 
 [SugarMoonWitch](http://sugarmoonwitch.com/) Underwater BG
+
+## Financial Contributors
+
+**Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
+
+Blinkehyo, Cosmo Space Dragon, Hazel Roo, Kevin Pandaheart, Keyla Otter, Luke the Foxen, Neon Blade, Bazzel
