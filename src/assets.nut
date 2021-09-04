@@ -66,6 +66,8 @@
 ::bgForest0 <- newSprite("res/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/forest1.png", 128, 180, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/woodedmountain.png", 720, 240, 0, 0, 0, 0)
+::bgStarSky <- newSprite("res/starsky.png", 240, 240, 0, 0, 0, 0)
+::bgUnderwater <- newSprite("res/underwaterbg.png", 320, 240, 0, 0, 0, 0)
 
 //Sounds
 ::sndFireball <- loadSound("res/fireball.wav")

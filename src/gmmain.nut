@@ -1,8 +1,8 @@
 ::gmMain <- function()
 {
 	//TODO: Put main menu here
-	dbgOcean()
-	camx++
+	drawBG = dbgUnderwater
+	drawBG()
 	drawSprite(sprTitle, 0, 160, 16)
 
 	textMenu()

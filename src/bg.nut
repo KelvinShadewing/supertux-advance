@@ -44,3 +44,15 @@
 		drawSprite(bgOcean, 0, ((-camx / 8) % 480) + (i * 380), (screenH() / 2) - 120)
 	}
 }
+
+::dbgStarSky <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgStarSky, 0, ((-camx / 8) % 480) + (i * 380), (screenH() / 2) - 120)
+	}
+}
+
+::dbgUnderwater <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgUnderwater, 0, 0, (screenH() / 2) - 120)
+	}
+}
