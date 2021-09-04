@@ -44,6 +44,13 @@
 		sneak = k_lctrl
 		pause = k_enter
 	},
+	joy = {
+		jump = 0,
+		shoot = 2,
+		run = 4,
+		sneak = 5,
+		pause = 7
+	}
 	playerchar = 0,
 	lang = "en"
 }

@@ -192,7 +192,7 @@
 					anim = anJumpU
 					frame = anim[0]
 					vspeed -= 1
-					if(keyDown(config.key.jump)) vspeed -= 1
+					if(getcon("jump", "hold")) vspeed -= 1
 					break
 
 				case anSwimDF:
@@ -221,7 +221,7 @@
 					}
 				}
 
-				if(!keyDown(config.key.down) || hspeed == 0) anim = anWalk
+				if(!getcon("down", "hold") || hspeed == 0) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -233,25 +233,25 @@
 			if(!freeDown2 || anim == anClimb) canJump = 15
 			else if(canJump > 0) canJump--
 			if(canMove) {
-				if(keyDown(config.key.run)) mspeed = 2
-				else if(keyDown(config.key.sneak)) mspeed = 0.5
+				if(getcon("run", "hold")) mspeed = 2
+				else if(getcon("sneak", "hold")) mspeed = 0.5
 				else mspeed = 1
 
 				//Moving left and right
-				if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed += 0.1
-				if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed -= 0.1
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed += 0.1
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed -= 0.1
 
 				//On a ladder
 				if(anim == anClimb) {
 					vspeed = 0
 
 					//Ladder controls
-					if(keyDown(config.key.up)) if(placeFree(x, y - 1)) {
+					if(getcon("up", "hold")) if(placeFree(x, y - 1)) {
 						frame -= climbdir / 8
 						y--
 					}
 
-					if(keyDown(config.key.down)) if(placeFree(x, y + 1)) {
+					if(getcon("down", "hold")) if(placeFree(x, y + 1)) {
 						frame += climbdir / 8
 						y++
 					}
@@ -270,8 +270,8 @@
 					}
 
 					//Change direction
-					if(keyPress(config.key.right)) flip = 0
-					if(keyPress(config.key.left)) flip = 1
+					if(getcon("right", "press")) flip = 0
+					if(getcon("left", "press")) flip = 1
 
 					//Ping-pong animation
 					if(frame >= anim[1] + 0.4 || frame <= anim[0] + 0.4) {
@@ -282,7 +282,7 @@
 				}
 
 				//Get on ladder
-				if((keyDown(config.key.down) || keyDown(config.key.up)) && anim != anHurt && anim != anClimb && actor.rawin("Ladder") && vspeed >= 0) {
+				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && actor.rawin("Ladder") && vspeed >= 0) {
 					foreach(i in actor["Ladder"]) {
 						if(hitTest(shape, i.shape)) {
 							anim = anClimb
@@ -295,7 +295,7 @@
 				}
 
 				//Jumping
-				if(keyPress(config.key.jump) && canJump > 0) {
+				if(getcon("jump", "press") && canJump > 0) {
 					vspeed = -3.8
 					didJump = true
 					canJump = 0
@@ -306,23 +306,23 @@
 					playSound(sndJump, 0)
 				}
 
-				if(keyRelease(config.key.jump) && vspeed < 0 && didJump)
+				if(getcon("jump", "release") && vspeed < 0 && didJump)
 				{
 					didJump = false
 					vspeed /= 2
 				}
 
 				//Wall jumping
-				if(freeDown && keyDown(config.key.jump))
+				if(freeDown && getcon("jump", "hold"))
 				{
-					if(!placeFree(x - 2, y) && keyPress(config.key.right)) {
+					if(!placeFree(x - 2, y) && getcon("right", "press") && anim != anWall) {
 						flip = 0
 						anim = anWall
 						frame = anim[0]
 
 					}
 
-					if(!placeFree(x + 2, y) && keyPress(config.key.left)) {
+					if(!placeFree(x + 2, y) && getcon("left", "press") && anim != anWall) {
 						flip = 1
 						anim = anWall
 						frame = anim[0]
@@ -330,7 +330,7 @@
 				}
 
 				//Going into slide
-				if(!freeDown2 && keyDown(config.key.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
+				if(!freeDown2 && getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
 					if((freeRight && freeDown) || hspeed >= 2) {
 						anim = anDive
 						frame = anim[0]
@@ -359,8 +359,8 @@
 							anim = anStand
 							shape = shapeStand
 						} else {
-							if(keyDown(config.key.left)) hspeed -= 0.1
-							if(keyDown(config.key.right)) hspeed += 0.1
+							if(getcon("left", "hold")) hspeed -= 0.1
+							if(getcon("right", "hold")) hspeed += 0.1
 						}
 					}
 				} else {
@@ -392,7 +392,7 @@
 			if(firetime > 0) firetime--
 			switch(game.weapon) {
 				case 1:
-					if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
@@ -400,8 +400,8 @@
 						else c.hspeed = -3
 						firetime = 60
 						playSound(sndFireball, 0)
-						if(keyDown(config.key.up)) c.vspeed = -2
-						if(keyDown(config.key.down)) {
+						if(getcon("up", "hold")) c.vspeed = -2
+						if(getcon("down", "hold")) {
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
@@ -409,7 +409,7 @@
 					break
 
 				case 2:
-					if(keyPress(config.key.shoot) && anim != anSlide && anim != anHurt && firetime == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
@@ -417,8 +417,8 @@
 						else c.hspeed = -3
 						firetime = 60
 						playSound(sndFireball, 0)
-						if(keyDown(config.key.up)) c.vspeed = -2
-						if(keyDown(config.key.down)) {
+						if(getcon("up", "hold")) c.vspeed = -2
+						if(getcon("down", "hold")) {
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
@@ -467,14 +467,14 @@
 
 			//Movement
 			if(canMove) {
-				if(keyDown(config.key.run)) mspeed = 2
-				else if(keyDown(config.key.sneak)) mspeed = 0.5
+				if(getcon("run", "hold")) mspeed = 2
+				else if(getcon("sneak", "hold")) mspeed = 0.5
 				else mspeed = 1
 
-				if(keyDown(config.key.right) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.05
-				if(keyDown(config.key.left) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.05
-				if(keyDown(config.key.down) && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.05
-				if(keyDown(config.key.up) && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.05
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.05
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.05
+				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.05
+				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.05
 			}
 
 			//Friction

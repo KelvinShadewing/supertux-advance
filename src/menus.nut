@@ -15,17 +15,17 @@
 	}
 
 	//Keyboard input
-	if(keyPress(k_down)) {
+	if(getcon("down", "press")) {
 		cursor++
 		if(cursor >= menu.len()) cursor = 0
 	}
 
-	if(keyPress(k_up)) {
+	if(getcon("up", "press")) {
 		cursor--
 		if(cursor < 0) cursor = menu.len() - 1
 	}
 
-	if(keyPress(config.key.jump) || keyPress(config.key.pause)) {
+	if(getcon("jump", "press") || getcon("pause", "press")) {
 		menu[cursor].func()
 	}
 }
