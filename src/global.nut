@@ -4,6 +4,7 @@
 
 ::gvMap <- 0
 ::gvGameMode <- 0
+::gvQuit <- false
 ::game <- {
 	score = 0,
 	coins = 0,

@@ -38,6 +38,6 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 
 ## FAQ
 
-Q: The game crashed. The log says a function wasn't defined.
+Q: The game crashed. The log says a function or identifier wasn't defined.
 
-A: The game may need a newer version of Brux GDK.
+A: The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation destructions.

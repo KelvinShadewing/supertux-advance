@@ -2,3 +2,5 @@ log.txt
 */log.txt
 *.swp
 */*.swp
+config.json
+game.json

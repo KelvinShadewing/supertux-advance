@@ -9,7 +9,8 @@
 	"options-menu" : {
 		"difficulty" : "Difficulty",
 		"language" : "Language",
-		"controls" : "Controls"
+		"keyboard" : "Set Keyboard Controls",
+		"joystick" : "Set Gamepad Controls"
 	},
 
 	"difficulty-levels" : {

@@ -30,6 +30,10 @@
 
 [SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
 
+[Soluna Software](https://opengameart.org/users/soluna-software) STA Logo Upper Half
+
+[ZiNGOT Games](https://opengameart.org/users/zingot) STA Logo Lower Half
+
 ## Music
 
 Lukas Nystrand - Chippdisko

@@ -8,6 +8,7 @@
 ::sprFont2 <- newSprite("res/font2.png", 12, 14, 0, 0, 0, 0)
 ::font2 <- newFont(sprFont2, 33, 0, 0, -4)
 ::sprDebug <- newSprite("res/debugkeys.png", 8, 8, 0, 0, 0, 0)
+::sprTitle <- newSprite("res/title.png", 220, 55, 0, 0, 110, 0)
 
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxFire <- newSprite("res/tuxfire.png", 32, 32, 0, 0, 15, 19)

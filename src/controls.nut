@@ -56,3 +56,161 @@
 
 	return false
 }
+
+::rebindKeys <- function() {
+	local done = false
+	local keystep = 0
+
+	update()
+
+	while(!done) {
+		drawBG()
+
+		local message = "Press key for "
+		switch(keystep) {
+			case 0:
+				message += "up"
+				if(anyKeyPress() != -1) {
+					config.key.up = anyKeyPress()
+					keystep++
+				}
+				break
+			case 1:
+				message += "down"
+				if(anyKeyPress() != -1) {
+					config.key.down = anyKeyPress()
+					keystep++
+				}
+				break
+			case 2:
+				message += "left"
+				if(anyKeyPress() != -1) {
+					config.key.left = anyKeyPress()
+					keystep++
+				}
+				break
+			case 3:
+				message += "right"
+				if(anyKeyPress() != -1) {
+					config.key.right = anyKeyPress()
+					keystep++
+				}
+				break
+			case 4:
+				message += "jump"
+				if(anyKeyPress() != -1) {
+					config.key.jump = anyKeyPress()
+					keystep++
+				}
+				break
+			case 5:
+				message += "shoot"
+				if(anyKeyPress() != -1) {
+					config.key.shoot = anyKeyPress()
+					keystep++
+				}
+				break
+			case 6:
+				message += "run"
+				if(anyKeyPress() != -1) {
+					config.key.run = anyKeyPress()
+					keystep++
+				}
+				break
+			case 7:
+				message += "sneak"
+				if(anyKeyPress() != -1) {
+					config.key.sneak = anyKeyPress()
+					keystep++
+				}
+				break
+			case 8:
+				message += "pause"
+				if(anyKeyPress() != -1) {
+					config.key.pause = anyKeyPress()
+					keystep++
+				}
+				break
+			default:
+				done = true
+				break
+		}
+		message += "..."
+
+		if(keyPress(k_escape)){
+			update()
+			return
+		}
+
+		drawText(font, 8, 8, message)
+		update()
+	}
+
+	fileWrite("config.json", jsonWrite(config))
+}
+
+::rebindGamepad <- function() {
+	local done = false
+	local joystep = 4
+
+	update()
+
+	while(!done) {
+		drawBG()
+
+		local message = "Press button for "
+		switch(joystep) {
+			case 4:
+				message += "jump"
+				if(anyJoyPress(0) != -1) {
+					config.joy.jump = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 5:
+				message += "shoot"
+				if(anyJoyPress(0) != -1) {
+					config.joy.shoot = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 6:
+				message += "run"
+				if(anyJoyPress(0) != -1) {
+					config.joy.run = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 7:
+				message += "sneak"
+				if(anyJoyPress(0) != -1) {
+					config.joy.sneak = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 8:
+				message += "pause"
+				if(anyJoyPress(0) != -1) {
+					config.joy.pause = anyJoyPress(0)
+					joystep++
+				}
+				break
+			default:
+				done = true
+				break
+		}
+		message += "..."
+
+		if(keyPress(k_escape)){
+			update()
+			return
+		}
+
+		setDrawColor(0x00000080)
+		drawRec(0, 0, 320, 24, true)
+		drawText(font, 8, 8, message)
+		update()
+	}
+
+	fileWrite("config.json", jsonWrite(config))
+}

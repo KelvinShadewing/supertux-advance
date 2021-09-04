@@ -53,17 +53,21 @@
 
 ::meOptions <- [
 	{
-		name = function() { return "Difficulty: " + strDifficulty[config.difficulty] },
+		name = function() { return gvLangObj["options-menu"]["difficulty"] + ": " + strDifficulty[config.difficulty] },
 		func = function() { cursor = 0; menu = meDifficulty }
 
 	},
 	{
-		name = function() { return "Controls" },
-		func = function() {}
+		name = function() { return gvLangObj["options-menu"]["keyboard"] },
+		func = function() { rebindKeys() }
+	},
+	{
+		name = function() { return gvLangObj["options-menu"]["joystick"] },
+		func = function() { rebindGamepad() }
 	},
 	{
 		name = function() { return "Back" },
-		func = function() { cursor = 0; menu = meMain }
+		func = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}
 ]
 
@@ -82,4 +86,9 @@
 	}
 ]
 
-
+::meLanguage <- [
+	{
+		name = function() { return "English" },
+		func = function() { config.lang = "en"; cursor = 0; menu = meOptions; gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json")) }
+	}
+]

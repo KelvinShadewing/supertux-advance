@@ -73,6 +73,7 @@ setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
 setFPS(60)
 
+if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
 gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
 gvGameMode = gmMain
 menu = meMain
@@ -81,7 +82,7 @@ drawBG = dbgAurora
 //startPlay("res/0-0.json")
 
 update()
-while(!getQuit() && !keyPress(k_escape))
+while(!getQuit() && !gvQuit)
 {
 	if(getcon("pause", "press") && gvPlayer != 0 && gvGameMode != gmMain) togglePause()
 	gvGameMode()
