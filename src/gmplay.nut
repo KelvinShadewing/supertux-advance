@@ -165,6 +165,15 @@
 		}
 	}
 
+	if(gvPlayer != 0) {
+		camx = gvPlayer.x
+		camy = gvPlayer.y
+	}
+	else {
+		camx = 0
+		camy = 0
+	}
+
 	//Switch game mode to play
 	gvGameMode = gmPlay
 	//If the map loading fails at any point, then it will not change

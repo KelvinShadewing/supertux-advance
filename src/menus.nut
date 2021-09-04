@@ -10,8 +10,11 @@
 
 	//Draw options
 	for(local i = 0; i < menu.len(); i++) {
-		if(cursor == i) drawText(font2, 144 -(menu[i].name().len() * 4), screenH() - 16 - (menu.len() * 14) + (i * 14), "> " + menu[i].name() + " <")
-		else drawText(font2, 160 -(menu[i].name().len() * 4), screenH() - 16 - (menu.len() * 14) + (i * 14), menu[i].name())
+		if(cursor == i) {
+			drawSprite(font2, 97, 160 - (menu[i].name().len() * 4) - 16, screenH() - 16 - (menu.len() * 14) + (i * 14))
+			drawSprite(font2, 102, 160 + (menu[i].name().len() * 4) + 7, screenH() - 16 - (menu.len() * 14) + (i * 14))
+		}
+		drawText(font2, 160 - (menu[i].name().len() * 4), screenH() - 16 - (menu.len() * 14) + (i * 14), menu[i].name())
 	}
 
 	//Keyboard input

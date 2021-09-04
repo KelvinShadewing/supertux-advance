@@ -6,8 +6,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y + 3, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		shape = Rec(x, y + 2, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 1, 8, 6, 0))
 		slideshape = Rec(x, y, 12, 8, 0)
 	}
 
@@ -68,8 +68,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y + 3, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		shape = Rec(x, y + 2, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 1, 8, 6, 0))
 	}
 
 	function run() {
@@ -136,8 +136,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y + 3, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		shape = Rec(x, y + 2, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 1, 8, 6, 0))
 	}
 
 	function run() {
@@ -176,8 +176,8 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y + 3, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		shape = Rec(x, y + 2, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 1, 8, 6, 0))
 	}
 
 	function run() {
