@@ -32,14 +32,14 @@
 	message += "FPS: " + round(fps) + " (" + getFPS() + ")\n\n\n\n"
 
 	//Debug keys
-	drawSprite(sprDebug, keyDown(config.key.left).tointeger(), 4, 60)
-	drawSprite(sprDebug, keyDown(config.key.up).tointeger() + 4, 12, 56)
-	drawSprite(sprDebug, keyDown(config.key.down).tointeger() + 6, 12, 64)
-	drawSprite(sprDebug, keyDown(config.key.right).tointeger() + 2, 20, 60)
+	drawSprite(sprDebug, getcon("left", "hold").tointeger(), 4, 60)
+	drawSprite(sprDebug, getcon("up", "hold").tointeger() + 4, 12, 56)
+	drawSprite(sprDebug, getcon("down", "hold").tointeger() + 6, 12, 64)
+	drawSprite(sprDebug, getcon("right", "hold").tointeger() + 2, 20, 60)
 
-	drawSprite(sprDebug, keyDown(config.key.jump).tointeger() + 8, 4, 72)
-	drawSprite(sprDebug, keyDown(config.key.shoot).tointeger() + 10, 12, 72)
-	drawSprite(sprDebug, keyDown(config.key.run).tointeger() + 12, 20, 72)
+	drawSprite(sprDebug, getcon("jump", "hold").tointeger() + 8, 4, 72)
+	drawSprite(sprDebug, getcon("shoot", "hold").tointeger() + 10, 12, 72)
+	drawSprite(sprDebug, getcon("run", "hold").tointeger() + 12, 20, 72)
 
 	message += "HSPD:"
 	if(gvPlayer != 0) for(local i = 0; i < abs(round(gvPlayer.hspeed * 2)); i++) message += chint(16)
@@ -52,9 +52,6 @@
 	message += "Map W: " + gvMap.w + "\n"
 	message += "Map H: " + gvMap.h + "\n"
 	message += "SRT: " + floor(getTicks() / 1000) + "\n"
-	message += "Map: " + gvMap.name + "\n"
-	message += "Display: " + displayW() + "x" + displayH() + " (" + (displayW().tofloat() / displayH().tofloat()) + ")\n"
-	message += "Game res: " + screenW() + "x" + screenH() + " (" + (screenW().tofloat() / screenH().tofloat()) + ")\n"
-	
+
 	drawText(font, 0, 32, message)
 }

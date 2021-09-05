@@ -2014,18 +2014,6 @@
                 {
                  "gid":170,
                  "height":16,
-                 "id":254,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1264,
-                 "y":272
-                }, 
-                {
-                 "gid":170,
-                 "height":16,
                  "id":255,
                  "name":"",
                  "rotation":0,
@@ -2262,6 +2250,18 @@
                  "width":16,
                  "x":4720,
                  "y":272
+                }, 
+                {
+                 "gid":178,
+                 "height":16,
+                 "id":286,
+                 "name":"snakes",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":944,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2270,7 +2270,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":285,
+ "nextobjectid":287,
  "orientation":"orthogonal",
  "properties":[
         {

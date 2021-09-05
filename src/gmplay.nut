@@ -14,6 +14,7 @@
 	game.health = game.maxHealth
 
 	//Load map to play
+	gvMap = {}
 	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors
@@ -213,9 +214,12 @@
 	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
 
-	if(gvInfoBox == "") for(local i = 0; i < game.maxHealth; i++) {
-		if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
-		else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
+	if(gvInfoBox == "") {
+		drawText(font2, 280 - (gvMap.name.len() * 10), 8, "LV: " + gvMap.name)
+		for(local i = 0; i < game.maxHealth; i++) {
+			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
+			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
+		}
 	}
 	else {
 		local ln = 3
@@ -232,6 +236,7 @@
 	if(keyPress(k_escape)) {
 		gvGameMode = gmMain
 		stopMusic()
+		gvMap = 0
 	}
 }
 

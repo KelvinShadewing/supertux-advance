@@ -41,13 +41,13 @@
 
 ::dbgOcean <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgOcean, 0, ((-camx / 8) % 480) + (i * 380), (screenH() / 2) - 120)
+		drawSprite(bgOcean, 0, ((-camx / 8) % 480) + (i * 480), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgStarSky <- function() {
-	for(local i = 0; i < 2; i++) {
-		drawSprite(bgStarSky, 0, ((-camx / 8) % 480) + (i * 380), (screenH() / 2) - 120)
+	for(local i = 0; i < 3; i++) {
+		drawSprite(bgStarSky, 0, ((-camx / 8) % 240) + (i * 240), (screenH() / 2) - 120)
 	}
 }
 

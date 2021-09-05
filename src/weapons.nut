@@ -1,4 +1,6 @@
 ::Fireball <- class extends PhysAct {
+	gravity = 0.1
+
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
@@ -12,7 +14,7 @@
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
 			else deleteActor(id)
 		}
-		vspeed += 0.1
+		vspeed += gravity
 
 		if(placeFree(x + hspeed, y)) x += hspeed
 		else if(placeFree(x + hspeed, y - 2)) {

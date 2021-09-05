@@ -34,6 +34,13 @@
 	file = ""
 
 	constructor(filename) {
+		tileset = []
+		tilef = []
+		//For some strange reason, these variables persist
+		//between loading maps. I don't know why or where
+		//they are staying, but for now, reinitializing
+		//them at least clears up the symptoms.
+
 		if(fileExists(filename)) {
 			data = jsonRead(fileRead(filename))
 
@@ -48,30 +55,32 @@
 			name = findFileName(filename)
 			name = name.slice(0, -5)
 
+			print("\nLoading map: " + name)
+
 			for(local i = 0; i < data.tilesets.len(); i++) {
 				//Extract filename
 				//print("Get filename")
 				local filename = data.tilesets[i].image
 				local shortname = findFileName(filename)
 				//print("Full map name: " + filename + ".")
-				print("Short map name: " + shortname + ".")
+				print("Searching for tileset: " + shortname)
 
 				local tempspr = findSprite(shortname)
 				//("Temp sprite: " + shortname)
 
 				if(tempspr != 0) {
 					tileset.push(tempspr)
-					//print("Added tempspr: " + shortname)
+					print("Found " + shortname)
 				}
 				else { //Search for file
 					if(fileExists(filename)) {
 						//print("Attempting to add full filename")
 						tileset.push(newSprite(filename, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0))
-						//print("Added tileset " + shortname + ".")
+						print("Added tileset " + shortname + ".")
 					}
 					else for(local j = 0; j < tileSearchDir.len(); j++) {
 						if(fileExists(tileSearchDir[j] + "/" + shortname)) {
-							//print("Adding from search path: " + tileSearchDir[j])
+							print("Adding " + shortname + " from search path: " + tileSearchDir[j])
 							tileset.push(newSprite(tileSearchDir[j] + "/" + shortname, data.tilewidth, data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing, 0, 0))
 							break
 						}

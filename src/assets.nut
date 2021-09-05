@@ -48,14 +48,22 @@
 ::sprFireball <- newSprite("res/fireball.png", 8, 8, 0, 0, 4, 4)
 ::sprIceball <- newSprite("res/iceball.png", 6, 6, 0, 0, 3, 3)
 ::sprPoof <- newSprite("res/poof.png", 16, 16, 0, 0, 8, 8)
+::sprFlame <- newSprite("res/flame.png", 14, 20, 0, 0, 7, 12)
+::sprFlameTiny <- newSprite("res/tinyflame.png", 8, 8, 0, 0, 4, 4)
 
 //Tilesets
+::tsActors <- newSprite("res/actors.png", 16, 16, 0, 0, 0, 0)
 ::tsIceCave <- newSprite("res/icecavetiles.png", 16, 16, 0, 0, 0, 0)
 ::tsIgloo <- newSprite("res/igloo.png", 16, 16, 0, 0, 0, 0)
 ::tsPipes <- newSprite("res/pipetiles.png", 16, 16, 0, 0, 0, 0)
 ::tsGrass <- newSprite("res/tsGrasstop.png", 16, 16, 0, 0, 0, 0)
 ::tsDark <- newSprite("res/darktiles.png", 16, 16, 0, 0, 0, 0)
 ::tsWoodPlat <- newSprite("res/woodplat.png", 16, 16, 0, 0, 0, 0)
+::tsRopes <- newSprite("res/rope.png", 16, 16, 0, 0, 0, 0)
+::tsSnow <- newSprite("res/tsSnow.png", 16, 16, 0, 0, 0, 0)
+::tsSigns <- newSprite("res/signpost.png", 16, 16, 0, 0, 0, 0)
+::tsGoal <- newSprite("res/goal.png", 16, 16, 0, 0, 0, 0)
+
 
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/rockgapsBG.png", 400, 392, 0, 0, 0, 0)
@@ -66,7 +74,7 @@
 ::bgForest0 <- newSprite("res/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/forest1.png", 128, 180, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/woodedmountain.png", 720, 240, 0, 0, 0, 0)
-::bgStarSky <- newSprite("res/starsky.png", 240, 240, 0, 0, 0, 0)
+::bgStarSky <- newSprite("res/starysky.png", 240, 240, 0, 0, 0, 0)
 ::bgUnderwater <- newSprite("res/underwaterbg.png", 320, 240, 0, 0, 0, 0)
 
 //Sounds

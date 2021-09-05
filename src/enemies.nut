@@ -184,7 +184,7 @@
 	}
 
 	function hurtfire() {
-		newActor(Poof, x, y)
+		newActor(Flame, x, y)
 		deleteActor(id)
 		playSound(sndFlame, 0)
 	}
@@ -228,7 +228,7 @@
 	}
 
 	function hurtfire() {
-		newActor(Poof, x, y + 14)
+		newActor(Flame, x, y + 14)
 		deleteActor(id)
 		playSound(sndFlame, 0)
 	}
