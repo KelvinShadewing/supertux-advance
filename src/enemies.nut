@@ -31,6 +31,12 @@
 					deleteActor(i.id)
 				}
 			}
+			if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"]) {
+				if(hitTest(shape, i.shape)) {
+					hurtfire()
+					deleteActor(i.id)
+				}
+			}
 			if(actor.rawin("Iceball")) foreach(i in actor["Iceball"]) {
 				if(hitTest(shape, i.shape)) {
 					hurtice()

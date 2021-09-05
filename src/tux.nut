@@ -172,10 +172,6 @@
 
 				case anSlide:
 					frame = getFrames() / 8
-					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
-						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
-						if(game.weapon == 2) newActor(Glimmer, x - (8 * (hspeed / abs(hspeed))), y + 10)
-					}
 					break
 
 				case anHurt:
@@ -419,7 +415,7 @@
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						firetime = 30
+						firetime = 60
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {
@@ -535,8 +531,7 @@
 
 		if(anim == anSlide) shape = shapeSlide
 		else shape = shapeStand
-		shapeStand.setPos(x, y)
-		shapeSlide.setPos(x, y)
+		shape.setPos(x, y)
 		if(y > gvMap.h + 16) die()
 
 		//Hurt
@@ -595,20 +590,17 @@
 
 ::TuxDie <- class extends Actor {
 	vspeed = -3.0
-	timer = 300
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		playSound(sndDie, 0)
 		game.weapon = 0
-		stopMusic()
 	}
 
 	function run() {
 		vspeed += 0.05
 		y += vspeed
-		timer--
-		if(timer == 0) {
+		if(y > camy + 320) {
 			startPlay(gvMap.file)
 			deleteActor(id)
 		}
