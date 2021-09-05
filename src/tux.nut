@@ -172,7 +172,10 @@
 
 				case anSlide:
 					frame = getFrames() / 8
-					if(game.weapon == 1) if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) newActor(FlameTiny, x, y + 10)
+					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
+						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
+						if(game.weapon == 2) newActor(Glimmer, x - (8 * (hspeed / abs(hspeed))), y + 10)
+					}
 					break
 
 				case anHurt:
@@ -416,7 +419,7 @@
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						firetime = 60
+						firetime = 30
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {

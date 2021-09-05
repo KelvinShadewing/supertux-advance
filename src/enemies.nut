@@ -7,12 +7,13 @@
 	hspeed = 0.0
 	vspeed = 0.0
 	active = false
+	frozen = 0
 
 	function run() {
 		//Collision with player
 		if(active) {
 			if(gvPlayer != 0) {
-				if(hitTest(shape, gvPlayer.shape)) { //8 for player radius
+				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtinvinc()
 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp) gethurt()
 					else if(gvPlayer.rawin("anSlide")) {
@@ -30,10 +31,18 @@
 					deleteActor(i.id)
 				}
 			}
+			if(actor.rawin("Iceball")) foreach(i in actor["Iceball"]) {
+				if(hitTest(shape, i.shape)) {
+					hurtice()
+					deleteActor(i.id)
+				}
+			}
 		}
 		else {
 			if(distance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2)) <= 180) active = true
 		}
+
+		if(active && frozen > 0) frozen--
 	}
 
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
@@ -46,6 +55,7 @@
 	}
 
 	function hurtfire() {} //If the object is hit by a fireball
+	function hurtice() { frozen = 300 }
 
 	function hurtinvinc() {
 		newActor(Poof, x, y)
@@ -80,55 +90,61 @@
 
 				if(y > gvMap.h + 8) deleteActor(id)
 
-				if(flip) {
-					if(placeFree(x - 0.5, y)) x -= 0.5
-					else if(placeFree(x - 1.1, y - 0.5)) {
-						x -= 0.5
-						y -= 0.25
-					} else if(placeFree(x - 1.1, y - 1.0)) {
-						x -= 0.5
-						y -= 0.5
-					} else flip = false
-					/*
-					There's a simpler way to do this in theory,
-					but it doesn't work in practice.
-					It should be this:
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 0.5, y)) x -= 0.5
+						else if(placeFree(x - 1.1, y - 0.5)) {
+							x -= 0.5
+							y -= 0.25
+						} else if(placeFree(x - 1.1, y - 1.0)) {
+							x -= 0.5
+							y -= 0.5
+						} else flip = false
+						/*
+						There's a simpler way to do this in theory,
+						but it doesn't work in practice.
+						It should be this:
 
-					else if(placeFree(x - 1.0, y - 1.0)) {
-						x -= 1.0
-						y -= 1.0
+						else if(placeFree(x - 1.0, y - 1.0)) {
+							x -= 1.0
+							y -= 1.0
+						}
+
+						But for whatever reason, this prevents any
+						movement over a slope that looks like \_.
+						Instead, they just turn around when they reach
+						the bottom of a slope facing right.
+
+						This weird trick of checking twice ahead works,
+						though. Credit to Admiral Spraker for giving me
+						the idea. Another fine example of (/d/d/d).
+						*/
+
+						if(smart) if(placeFree(x - 8, y + 16)) flip = false
+
+						if(x <= 0) flip = false
 					}
+					else {
+						if(placeFree(x + 1, y)) x += 0.5
+						else if(placeFree(x + 1.1, y - 0.5)) {
+							x += 0.5
+							y -= 0.25
+						} else if(placeFree(x + 1.1, y - 1.0)) {
+							x += 0.5
+							y -= 0.5
+						} else flip = true
 
-					But for whatever reason, this prevents any
-					movement over a slope that looks like \_.
-					Instead, they just turn around when they reach
-					the bottom of a slope facing right.
+						if(smart) if(placeFree(x + 8, y + 16)) flip = true
 
-					This weird trick of checking twice ahead works,
-					though. Credit to Admiral Spraker for giving me
-					the idea. Another fine example of (/d/d/d).
-					*/
-
-					if(smart) if(placeFree(x - 8, y + 16)) flip = false
-
-					if(x <= 0) flip = false
-				}
-				else {
-					if(placeFree(x + 1, y)) x += 0.5
-					else if(placeFree(x + 1.1, y - 0.5)) {
-						x += 0.5
-						y -= 0.25
-					} else if(placeFree(x + 1.1, y - 1.0)) {
-						x += 0.5
-						y -= 0.5
-					} else flip = true
-
-					if(smart) if(placeFree(x + 8, y + 16)) flip = true
-
-					if(x >= gvMap.w) flip = true
+						if(x >= gvMap.w) flip = true
+					}
 				}
 
-				if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(frozen) {
+					drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					drawSprite(sprIceTrapSmall, 0, x - camx, y - camy)
+				}
+				else if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 			else {
@@ -208,8 +224,8 @@
 	function run() {
 		base.run()
 
-		if(up && y > ystart - 24) y--
-		if(!up && y < ystart) y++
+		if(up && y > ystart - 24 && !frozen) y--
+		if(!up && y < ystart && !frozen) y++
 
 		timer--
 		if(timer <= 0) {
@@ -218,8 +234,15 @@
 		}
 
 		shape.setPos(x, y + 16)
-		if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+		if(frozen) {
+			if(flip == 1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+			drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
+		}
+		else {
+			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+		}
 	}
 
 	function gethurt() {

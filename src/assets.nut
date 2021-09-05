@@ -50,6 +50,9 @@
 ::sprPoof <- newSprite("res/poof.png", 16, 16, 0, 0, 8, 8)
 ::sprFlame <- newSprite("res/flame.png", 14, 20, 0, 0, 7, 12)
 ::sprFlameTiny <- newSprite("res/tinyflame.png", 8, 8, 0, 0, 4, 4)
+::sprIceTrapSmall <- newSprite("res/icetrapsmall.png", 16, 16, 0, 0, 8, 8)
+::sprIceTrapLarge <- newSprite("res/icetraplarge.png", 32, 32, 0, 0, 16, 16)
+::sprIceTrapTall <- newSprite("res/icetraptall.png", 16, 32, 0, 0, 8, 16)
 
 //Tilesets
 ::tsActors <- newSprite("res/actors.png", 16, 16, 0, 0, 0, 0)
