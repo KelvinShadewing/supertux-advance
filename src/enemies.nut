@@ -42,7 +42,13 @@
 			if(distance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2)) <= 180) active = true
 		}
 
-		if(active && frozen > 0) frozen--
+		if(active && frozen > 0) {
+			frozen--
+			if(getFrames() % 15 == 0) {
+				newActor(Glimmer, shape.x - (shape.w + 4) + randInt((shape.w * 2) + 8), shape.y - (shape.h + 4) + randInt((shape.h * 2) + 8))
+				if(randInt(50) % 2 == 0) newActor(Glimmer, shape.x - (shape.w + 4) + randInt((shape.w * 2) + 8), shape.y - (shape.h + 4) + randInt((shape.h * 2) + 8))
+			}
+		}
 	}
 
 	function gethurt() {} //Spiked enemies can just call hurtplayer() here
@@ -55,7 +61,7 @@
 	}
 
 	function hurtfire() {} //If the object is hit by a fireball
-	function hurtice() { frozen = 300 }
+	function hurtice() { frozen = 600 }
 
 	function hurtinvinc() {
 		newActor(Poof, x, y)

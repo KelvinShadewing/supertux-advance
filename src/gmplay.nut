@@ -233,11 +233,7 @@
 	}
 	drawDebug()
 
-	if(keyPress(k_escape)) {
-		gvGameMode = gmMain
-		stopMusic()
-		gvMap = 0
-	}
+	if(keyPress(k_escape)) startMain()
 }
 
 ::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time

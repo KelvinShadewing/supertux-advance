@@ -20,14 +20,14 @@
 ///////////////////
 
 ::Tilemap <- class {
-	data = {}
-	tileset = []
-	tilef = []
+	data = null
+	tileset = null
+	tilef = null
 	tilew = 0
 	tileh = 0
 	mapw = 0
 	maph = 0
-	geo = []
+	geo = null
 	w = 0
 	h = 0
 	name = ""
@@ -36,10 +36,8 @@
 	constructor(filename) {
 		tileset = []
 		tilef = []
-		//For some strange reason, these variables persist
-		//between loading maps. I don't know why or where
-		//they are staying, but for now, reinitializing
-		//them at least clears up the symptoms.
+		geo = []
+		data = {}
 
 		if(fileExists(filename)) {
 			data = jsonRead(fileRead(filename))

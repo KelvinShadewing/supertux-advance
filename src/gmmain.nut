@@ -1,7 +1,12 @@
+::startMain <- function() {
+	game = clone(gameDefault)
+	drawBG = dbgUnderwater
+	gvGameMode = gmMain
+	actor = {}
+}
+
 ::gmMain <- function()
 {
-	//TODO: Put main menu here
-	drawBG = dbgUnderwater
 	drawBG()
 	drawSprite(sprTitle, 0, 160, 16)
 

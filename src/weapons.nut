@@ -73,6 +73,8 @@
 
 		drawSprite(sprIceball, getFrames() / 2, x - camx, y - camy)
 
+		if(getFrames() % 5 == 0) newActor(Glimmer, x - 4 + randInt(8), y - 4 + randInt(8))
+
 		shape.setPos(x, y)
 	}
 

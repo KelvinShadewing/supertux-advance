@@ -18,6 +18,7 @@
 	allenemies = [], //Levels that the player has beaten all enemies in
 	allsecrets = [] //Levels the player has found all secrets in
 }
+::gameDefault <- clone(game)
 ::gvPlayer <- 0; //Pointer to player actor
 /*\
  # The game does not actually have
