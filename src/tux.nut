@@ -27,7 +27,7 @@
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
-	anStand = [0.0, 0.0]
+	anStand = [0.0, 3.0]
 	anWalk = [8.0, 15.0]
 	anRun = [16.0, 23.0]
 	anDive = [24.0, 25.0]
@@ -75,7 +75,7 @@
 			//Animation states
 			switch(anim) {
 				case anStand:
-					frame = 0.0
+					frame += 0.03
 
 					if(hspeed != 0) {
 						anim = anWalk

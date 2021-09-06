@@ -79,7 +79,7 @@ gvGameMode = gmMain
 menu = meMain
 config.playerchar = "Tux"
 drawBG = dbgAurora
-startPlay("res/test.json")
+startPlay("res/zebish.json")
 
 update()
 while(!getQuit() && !gvQuit)
