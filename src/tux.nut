@@ -172,6 +172,10 @@
 
 				case anSlide:
 					frame = getFrames() / 8
+					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
+						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
+						if(game.weapon == 2) newActor(Glimmer, x - (12 * (hspeed / abs(hspeed))), y + 10)
+					}
 					break
 
 				case anHurt:
@@ -590,9 +594,11 @@
 
 ::TuxDie <- class extends Actor {
 	vspeed = -3.0
+	timer = 300
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
+		stopMusic()
 		playSound(sndDie, 0)
 		game.weapon = 0
 	}
@@ -600,7 +606,8 @@
 	function run() {
 		vspeed += 0.05
 		y += vspeed
-		if(y > camy + 320) {
+		timer--
+		if(timer == 0) {
 			startPlay(gvMap.file)
 			deleteActor(id)
 		}
