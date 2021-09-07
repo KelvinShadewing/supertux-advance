@@ -24,6 +24,7 @@
 	invincible = 0
 	shapeStand = 0
 	shapeSlide = 0
+	tftime = -1 //Timer for transformation
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -582,6 +583,14 @@
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()
+		}
+
+		//Transformation flash
+		if(tftime != -1) {
+			if(tftime < 4) {
+				drawSprite(sprTFflash, tftime, x - camx, y - camy)
+				tftime += 0.25
+			} else tftime = -1
 		}
 	}
 

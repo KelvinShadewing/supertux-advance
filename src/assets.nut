@@ -33,6 +33,7 @@
 ::sprSnowBounce <- newSprite("res/bouncysnow.png", 16, 16, 0, 0, 8, 8)
 ::sprCannonBob <- newSprite("res/cannonbob.png", 16, 16, 0, 0, 8, 8)
 ::sprOuchin <- newSprite("res/ouchin.png", 16, 16, 0, 0, 8, 8)
+::sprTFflash <- newSprite("res/tfFlash.png", 32, 40, 0, 0, 16, 20)
 
 //Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 8, 8)
