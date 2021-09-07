@@ -66,3 +66,11 @@
 
 	function _typeof() { return "StageIcon" }
 }
+
+::startOverworld <- function(world) {
+
+}
+
+::gmOverworld <- function() {
+	
+}

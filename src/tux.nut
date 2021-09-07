@@ -75,7 +75,9 @@
 			//Animation states
 			switch(anim) {
 				case anStand:
-					frame += 0.03
+					if(game.weapon == 2 && floor(frame) == 0) frame += 0.005
+					else if(game.weapon == 2 || game.weapon == 1) frame += 0.1
+					else frame += 0.03
 
 					if(hspeed != 0) {
 						anim = anWalk
@@ -419,7 +421,7 @@
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						firetime = 60
+						firetime = 30
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {

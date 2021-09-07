@@ -19,6 +19,13 @@
 	//If drawing is disabled, exit
 	if(!debug) return
 
+	//Set weapon
+	if(keyDown(k_lcontrol)) {
+		if(keyPress(k_1)) game.weapon = 0
+		if(keyPress(k_2)) game.weapon = 1
+		if(keyPress(k_3)) game.weapon = 2
+	}
+
 	local message = ""
 
 	if(gvPlayer != 0) {
