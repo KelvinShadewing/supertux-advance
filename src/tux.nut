@@ -537,7 +537,8 @@
 
 		if(anim == anSlide) shape = shapeSlide
 		else shape = shapeStand
-		shape.setPos(x, y)
+		shapeStand.setPos(x, y)
+		shapeSlide.setPos(x, y)
 		if(y > gvMap.h + 16) die()
 
 		//Hurt
