@@ -212,7 +212,7 @@
 	}
 
 	function hurtfire() {
-		newActor(Flame, x, y)
+		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
 	}
@@ -263,7 +263,7 @@
 	}
 
 	function hurtfire() {
-		newActor(Flame, x, y + 14)
+		newActor(Flame, x, ystart - 6)
 		deleteActor(id)
 		playSound(sndFlame, 0)
 	}

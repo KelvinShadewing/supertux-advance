@@ -76,7 +76,7 @@
 			//Animation states
 			switch(anim) {
 				case anStand:
-					if(game.weapon == 2 && floor(frame) == 0) frame += 0.005
+					if(game.weapon == 2 && floor(frame) == 0) frame += 0.01
 					else if(game.weapon == 2 || game.weapon == 1) frame += 0.1
 					else frame += 0.03
 
@@ -105,7 +105,8 @@
 					break
 
 				case anRun:
-					frame += abs(hspeed) / 8
+					if(game.weapon == 2) frame+= abs(hspeed) / 16
+					else frame += abs(hspeed) / 8
 					if(abs(hspeed) < 1.2) anim = anWalk
 
 					if(placeFree(x, y + 2)) {
@@ -143,7 +144,7 @@
 					break
 
 				case anFall:
-					frame += 0.05
+					frame += 0.1
 					if(!freeDown) {
 						anim = anStand
 						frame = 0.0
@@ -174,7 +175,7 @@
 					break
 
 				case anSlide:
-					frame = getFrames() / 8
+					frame = getFrames() / 12
 					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
 						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
 						if(game.weapon == 2) newActor(Glimmer, x - (12 * (hspeed / abs(hspeed))), y + 10)
