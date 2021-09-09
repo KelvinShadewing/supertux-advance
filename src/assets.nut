@@ -95,13 +95,15 @@
 ::sndWin <- loadSound("res/win.wav")
 ::sndBump <- loadSound("res/bump.wav")
 ::sndHeal <- loadSound("res/heal.wav")
-::sndInvinicible <- loadSound("res/invincible.wav")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
+::gvMusicName <- ""
 ::musDisko <- "res/chipdisko.ogg"
+::musInvincible <- loadMusic("res/invincible.wav")
 
 ::songPlay <- function(song) {
+	gvMusicName = song
 	deleteMusic(gvMusic)
 	gvMusic = loadMusic(song)
 	playMusic(gvMusic, -1)

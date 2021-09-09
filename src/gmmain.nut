@@ -1,4 +1,5 @@
 ::startMain <- function() {
+	stopMusic()
 	game = clone(gameDefault)
 	drawBG = dbgUnderwater
 	gvGameMode = gmMain

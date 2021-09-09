@@ -265,8 +265,7 @@
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
 			gvPlayer.invincible = 60 * 25
 			deleteActor(id)
-			playSound(sndInvinicible, 0)
-			pauseMusic()
+			playMusic(musInvincible, -1)
 		}
 
 		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)
