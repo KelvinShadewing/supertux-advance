@@ -75,10 +75,9 @@ setFPS(60)
 
 if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
 gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
-gvGameMode = gmMain
+startMain()
 menu = meMain
 config.playerchar = "Tux"
-drawBG = dbgAurora
 //startPlay("res/test.json")
 
 update()
