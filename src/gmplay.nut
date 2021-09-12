@@ -10,7 +10,7 @@
 
 	//Clear actors and start creating new ones
 	gvPlayer = 0
-	actor = {}
+	actor.clear()
 	game.health = game.maxHealth
 
 	//Load map to play

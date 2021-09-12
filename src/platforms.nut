@@ -149,4 +149,6 @@
 
 		if(debug) shape.draw()
 	}
+
+	function _typeof() { return "Spring" }
 }

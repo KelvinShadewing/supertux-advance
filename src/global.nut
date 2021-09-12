@@ -16,7 +16,11 @@
 	completed = [], //List of completed level names
 	allcoins = [], //Levels that the player has gotten all enemies in
 	allenemies = [], //Levels that the player has beaten all enemies in
-	allsecrets = [] //Levels the player has found all secrets in
+	allsecrets = [], //Levels the player has found all secrets in
+	characters [ //List of unlocked characters
+		[Tux, sprTux]
+	],
+	playerchar = 0 //Current player character
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- 0; //Pointer to player actor
@@ -25,6 +29,11 @@
  # limited lives. instead, game.lives
  # tracks how many times the player
  # has died in total.
+ #
+ # When characters are unlocked, they will
+ # be added to game.characters. Mods can
+ # push a similar array to make their
+ # custom characters playable.
 \*/
 
 ::strDifficulty <- [
