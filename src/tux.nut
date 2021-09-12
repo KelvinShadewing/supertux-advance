@@ -303,7 +303,7 @@
 				}
 
 				//Jumping
-				if(getcon("jump", "press") && canJump > 0) {
+				if(getcon("jump", "press") && (canJump > 0 || debug)) {
 					vspeed = -3.8
 					didJump = true
 					canJump = 0
@@ -520,6 +520,7 @@
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
+						if(i > 2) hspeed /= 2
 						didstep = true
 						break
 					}

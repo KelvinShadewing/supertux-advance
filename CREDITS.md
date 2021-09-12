@@ -34,6 +34,8 @@
 
 [ZiNGOT Games](https://opengameart.org/users/zingot) STA Logo Lower Half
 
+[Iaavis](https://opengameart.org/users/laavis) 2D Pixel City Pack
+
 ## Music
 
 Lukas Nystrand - Chippdisko

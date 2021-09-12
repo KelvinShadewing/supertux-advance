@@ -32,6 +32,8 @@
 	h = 0
 	name = ""
 	file = ""
+	solidfid = 0 //First tile ID for the solid tileset
+	shape = null
 
 	constructor(filename) {
 		tileset = []
@@ -86,137 +88,49 @@
 				}
 
 				tilef.push(data.tilesets[i].firstgid)
-
-				//print("Added " + spriteName(tileset[i]) + ".\n")
+				if(data.tilesets[i].name == "solid") solidfid = data.tilesets[i].firstgid
 			}
 
-			//Generate shape lists
-			local regions = []
-			local zones = []
-			local blocks = []
+			//print("Added " + spriteName(tileset[i]) + ".\n")
+
 			for(local i = 0; i < data.layers.len(); i++) {
-				if(data.layers[i].type == "objectgroup") {
-					local lana = data.layers[i].name //Layer name
-					for(local j = 0; j < data.layers[i].objects.len(); j++) {
-						local obj = data.layers[i].objects[j]
-						local np = 0
-						switch(lana) {
-							case "solid":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-								blocks.push(np)
-								break
-							case "tr":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 1)
-								blocks.push(np)
-								break
-							case "tl":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 2)
-								blocks.push(np)
-								break
-							case "br":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 3)
-								blocks.push(np)
-								break
-							case "bl":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 4)
-								blocks.push(np)
-								break
-							case "zones":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-								zones.push([np, []])
-								break
-							case "regions":
-								np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-								regions.push([np, []])
-								break
-							case "trigger":
-								local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-								actor[c].code = obj.name
-								//print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
-								//print(actor[c].shape)
-								break
-							case "water":
-								local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
-								break
-							case "ladder":
-								local c = newActor(Ladder, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-								actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
-								break
-							case "vmp":
-								local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
-								c.w = (obj.width / 2)
-								c.r = obj.height - 16
-								c.init = 1
-								if(obj.name == "up") {
-									c.mode = 2
-									c.y = c.ystart + c.r
-								}
-								break
-						}
-					}
-
-					//Add zones to regions
-					for(local i = 0; i < regions.len(); i++) {
-						for(local j = 0; j < zones.len(); j++) {
-							if(hitTest(regions[i][0], zones[j][0])) regions[i][1].push(zones[j])
-						}
-					}
-
-					//Add blocks to zones
-					for(local i = 0; i < zones.len(); i++) {
-						for(local j = 0; j < blocks.len(); j++) {
-							if(hitTest(zones[i][0], blocks[j])) zones[i][1].push(blocks[j])
-						}
-					}
-
-					//Set level geometry
-					geo = regions
-
-					/* Old shape creation function
-					local nl = [data.layers[i].name, []]; //New layer, stores name and object list
-					for(local j = 0; j < data.layers[i].objects.len(); j++) {
-						if(data.layers[i].objects[j].rawin("polygon")) {
-
-							local np = Polygon(data.layers[i].objects[j].x, data.layers[i].objects[j].y, [])
-							for(local k = 0; k < data.layers[i].objects[j].polygon.len(); k++) {
-								np.addPoint(data.layers[i].objects[j].polygon[k].x, data.layers[i].objects[j].polygon[k].y)
+			if(data.layers[i].type == "objectgroup") {
+				local lana = data.layers[i].name //Layer name
+				for(local j = 0; j < data.layers[i].objects.len(); j++) {
+					local obj = data.layers[i].objects[j]
+					switch(lana) {
+						case "trigger":
+							local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+							actor[c].code = obj.name
+							//print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
+							//print(actor[c].shape)
+							break
+						case "water":
+							local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
+							break
+						case "ladder":
+							local c = newActor(Ladder, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
+							break
+						case "vmp":
+							local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
+							c.w = (obj.width / 2)
+							c.r = obj.height - 16
+							c.init = 1
+							if(obj.name == "up") {
+								c.mode = 2
+								c.y = c.ystart + c.r
 							}
-							nl[1].push(np)
-
-						}
-						//Support for other shapes will be added as I work out collision math for them
-						else if(data.layers[i].objects[j].rawin("ellipse")) {}
-						else if(data.layers[i].objects[j].rawin("point")) {}
-						//Rotated rectangles are currently not supported
-						else {
-							local obj = data.layers[i].objects[j]
-							local np = 0
-							switch(obj["type"]) {
-								case "tr":
-									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 1)
-									break
-								case "tl":
-									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 2)
-									break
-								case "br":
-									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 3)
-									break
-								case "bl":
-									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 4)
-									break
-								default:
-									np = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-									break
-							}
-							nl[1].push(np)
+							break
 						}
 					}
-					geo.push(nl)
-					*/
 				}
 			}
+			
+
+			shape = (Rec(0, 0, 8, 8, 0))
 
 			if(data.rawin("properties")) foreach(i in data.properties) {
 				if(i.name == "code") dostr(i.value)
@@ -262,46 +176,13 @@
 			}
 		}
 	}
-
-	function drawShapes(_x, _y, l) {
-		if(geo.len() == 0) return
-
-		for(local i = 0; i < geo.len(); i++) {
-			if(geo[i][0] == l) {
-				for(local j = 0; j < geo[i][1].len(); j++) geo[i][1][j].drawPos(_x, _y)
-			}
-		}
-	}
 }
 
 ::mapNewSolid <- function(shape) {
-	for(local i = 0; i < gvMap.geo.len(); i++) {
-		if(hitTest(shape, gvMap.geo[i][0])) {
-			//Find a zone
-			for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
-				if(hitTest(shape, gvMap.geo[i][1][j][0])) {
-					gvMap.geo[i][1][j][1].push(shape)
-				}
-			}
-		}
-	}
-
-	return shape
+	gvMap.geo.push(shape)
+	return gvMap.geo.len() - 1
 }
 
-::mapDeleteSolid <- function(shape) {
-	if(typeof shape != "Rec") return
-
-	for(local i = 0; i < gvMap.geo.len(); i++) {
-		if(hitTest(shape, gvMap.geo[i][0])) {
-			//Find a zone
-			for(local j = 0; j < gvMap.geo[i][1].len(); j++) {
-				if(hitTest(shape, gvMap.geo[i][1][j][0])) {
-					local sid = gvMap.geo[i][1][j][1].find(shape) //Shape ID
-					if(sid != null) gvMap.geo[i][1][j][1].remove(sid)
-					//gvMap.geo[i][1][j][1].push(shape)
-				}
-			}
-		}
-	}
+::mapDeleteSolid <- function(index) {
+	if(index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) gvMap.geo[index] = null
 }

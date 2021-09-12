@@ -6,6 +6,7 @@
 	mode = 0
 	timer = 0
 	mapshape = 0
+	mapshapeid = 0
 	init = 0
 
 	constructor(_x, _y) {
@@ -20,7 +21,8 @@
 		if(init == 1) { //If ready to initiate
 			init = 0
 			shape = Rec(x, y, w, 8, 0)
-			mapshape = mapNewSolid(Rec(x, y, w, 8, 0))
+			mapshape = Rec(x, y, w, 8, 0)
+			mapshapeid = mapNewSolid(mapshape)
 		}
 
 		//Draw shape

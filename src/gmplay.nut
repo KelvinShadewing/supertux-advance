@@ -213,6 +213,7 @@
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	//gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
+	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	if(gvInfoBox == "") {
 		drawText(font2, 280 - (gvMap.name.len() * 10), 8, "LV: " + gvMap.name)

@@ -8,14 +8,14 @@
 	w = 0.0
 	h = 0.0
 	kind = 0
-	ox = 0.0
-	oy = 0.0
 	// 0 normal
 	// 1 top right
 	// 2 top left
 	// 3 bottom right
 	// 4 bottom left
 	// 5 liquid
+	ox = 0.0
+	oy = 0.0
 
 	constructor(_x, _y, _w, _h, _kind, _ox = 0.0, _oy = 0.0) {
 		x = _x.tofloat()
