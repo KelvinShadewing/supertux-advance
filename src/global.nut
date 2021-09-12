@@ -17,8 +17,8 @@
 	allcoins = [], //Levels that the player has gotten all enemies in
 	allenemies = [], //Levels that the player has beaten all enemies in
 	allsecrets = [], //Levels the player has found all secrets in
-	characters [ //List of unlocked characters
-		[Tux, sprTux]
+	characters = [ //List of unlocked characters
+		["Tux", sprTux]
 	],
 	playerchar = 0 //Current player character
 }
