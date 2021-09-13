@@ -110,10 +110,6 @@
 							local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
 							break
-						case "ladder":
-							local c = newActor(Ladder, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
-							break
 						case "vmp":
 							local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
 							c.w = (obj.width / 2)
@@ -128,7 +124,7 @@
 					}
 				}
 			}
-			
+
 
 			shape = (Rec(0, 0, 8, 8, 0))
 
