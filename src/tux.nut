@@ -637,7 +637,6 @@
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
-		playSound(sndBummer, 0)
 		game.weapon = 0
 	}
 
