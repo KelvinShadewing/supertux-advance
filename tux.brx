@@ -71,7 +71,7 @@ switch(reschoice) {
 //Set up window
 setWindowTitle("SuperTux Advance")
 tileSearchDir.push("res")
-setFPS(60)
+setFPS(50)
 
 if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
 gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))

@@ -266,12 +266,7 @@
 
 					//Check if still on ladder
 					local felloff = true
-					if(actor.rawin("Ladder")) foreach(i in actor["Ladder"]) {
-						if(hitTest(shape, i.shape)) {
-							felloff = false
-							break
-						}
-					}
+					if(atLadder()) felloff = false
 					if(felloff) {
 						anim = anFall
 						frame = anim[0]
@@ -290,15 +285,13 @@
 				}
 
 				//Get on ladder
-				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && actor.rawin("Ladder") && vspeed >= 0) {
-					foreach(i in actor["Ladder"]) {
-						if(hitTest(shape, i.shape)) {
-							anim = anClimb
-							frame = anim[0]
-							hspeed = 0
-							vspeed = 0
-							x = i.x
-						}
+				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && vspeed >= 0) {
+					if(atLadder()) {
+						anim = anClimb
+						frame = anim[0]
+						hspeed = 0
+						vspeed = 0
+						x = (x - (x % 16)) + 8
 					}
 				}
 
@@ -596,6 +589,36 @@
 		}
 	}
 
+	function atLadder() {
+		//Save current location and move
+		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
+		local cx = floor(x / 16)
+		local cy = floor(y / 16)
+
+		//Check that the solid layer exists
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Check against places in solid layer
+		if(wl != null) {
+			local tile = cx + (cy * wl.width)
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29) {
+				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+				gvMap.shape.kind = 0
+				gvMap.shape.w = 1.0
+				gvMap.shape.h = 8.0
+				if(hitTest(ns, gvMap.shape)) return true
+			}
+		}
+
+		return false
+	}
+
 	function die() {
 		deleteActor(id)
 		gvPlayer = 0
@@ -614,6 +637,7 @@
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
+		playSound(sndBummer, 0)
 		game.weapon = 0
 	}
 
