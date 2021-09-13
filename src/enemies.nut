@@ -8,6 +8,7 @@
 	vspeed = 0.0
 	active = false
 	frozen = 0
+	icebox = -1
 
 	function run() {
 		//Collision with player
@@ -153,11 +154,27 @@
 				}
 
 				if(frozen) {
-					drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					drawSprite(sprIceTrapSmall, 0, x - camx, y - camy)
+					//Create ice block
+					if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+						icebox = mapNewSolid(shape)
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 2)
 				}
-				else if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						mapDeleteSolid(icebox)
+						icebox = -1
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
 			}
 			else {
 				squishTime += 0.025
@@ -247,11 +264,22 @@
 
 		shape.setPos(x, y + 16)
 		if(frozen) {
+			//Create ice block
+			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				icebox = mapNewSolid(shape)
+			}
+
 			if(flip == 1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 			if(flip == -1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 			drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
 		}
 		else {
+			//Delete ice block
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				icebox = -1
+			}
+
 			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 		}
