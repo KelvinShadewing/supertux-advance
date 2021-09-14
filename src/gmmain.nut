@@ -10,6 +10,7 @@
 {
 	drawBG()
 	drawSprite(sprTitle, 0, 160, 16)
+	drawDebug()
 
 	textMenu()
 	if(keyPress(k_escape)) gvQuit = true

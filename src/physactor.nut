@@ -19,8 +19,8 @@
 	function placeFree(_x, _y) {
 		//Save current location and move
 		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
-		local cx = round(_x / 16)
-		local cy = round(_y / 16)
+		local cx = floor(_x / 16)
+		local cy = floor(_y / 16)
 		local cw = ceil(shape.w / 16)
 		local ch = ceil(shape.h / 16)
 
