@@ -162,13 +162,21 @@
 					//Draw
 					if(smart) drawSpriteEx(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 					else drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 2)
+
+					if(frozen <= 120) {
+					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					}
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
 					if(icebox != -1) {
 						mapDeleteSolid(icebox)
+						newActor(IceChunks, x, y)
 						icebox = -1
+						if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+						else flip = false
 					}
 
 					//Draw
@@ -271,12 +279,17 @@
 
 			if(flip == 1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 			if(flip == -1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
-			drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy + 16)
+				else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
+			}
+			else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
 		}
 		else {
 			//Delete ice block
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, ystart - 6)
 				icebox = -1
 			}
 

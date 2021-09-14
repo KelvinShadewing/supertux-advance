@@ -91,3 +91,26 @@
 		}
 	}
 }
+
+::IceChunks <- class extends Actor {
+	h = 0.0
+	v = 0.0
+	vspeed = -3.0
+	timer = 30
+	a = 0
+
+	function run() {
+		vspeed += 0.2
+		v += vspeed
+		h += 1
+		a += 4
+
+		drawSpriteEx(sprGlimmer, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteEx(sprGlimmer, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteEx(sprGlimmer, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteEx(sprGlimmer, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+}

@@ -95,7 +95,7 @@
 				case anWalk:
 					frame += abs(hspeed) / 8
 					if(hspeed == 0) anim = anStand
-					if(abs(hspeed) > 1.8) anim = anRun
+					if(abs(hspeed) > 1.4) anim = anRun
 
 					if(placeFree(x, y + 2)) {
 						if(vspeed >= 0) anim = anFall
@@ -214,7 +214,7 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
-				if(!freeDown && abs(hspeed) < 6) {
+				if(!freeDown && abs(hspeed) < 4) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.1
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.1
 
@@ -241,7 +241,7 @@
 			if(!freeDown2 || anim == anClimb) canJump = 15
 			else if(canJump > 0) canJump--
 			if(canMove) {
-				if(getcon("run", "hold")) mspeed = 2
+				if(getcon("run", "hold")) mspeed = 1.75
 				else if(getcon("sneak", "hold")) mspeed = 0.5
 				else mspeed = 1
 
@@ -332,14 +332,14 @@
 
 				//Going into slide
 				if(!freeDown2 && getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
-					if((freeRight && freeDown) || hspeed >= 2) {
+					if((freeRight && freeDown) || hspeed >= 1.5) {
 						anim = anDive
 						frame = anim[0]
 						flip = 0
 						playSound(sndSlide, 0)
 					}
 
-					if((freeLeft && freeDown) || hspeed <= -2) {
+					if((freeLeft && freeDown) || hspeed <= -1.5) {
 						anim = anDive
 						frame = anim[0]
 						flip = 1
@@ -382,6 +382,9 @@
 				if(anim == anSlide) {
 					if(flip) hspeed -= vspeed / 5
 					else hspeed += vspeed / 5
+
+					if(hspeed > 4) hspeed = 4
+					if(hspeed < -4) hspeed = -4
 				} else vspeed = 0.0
 			}
 
@@ -468,9 +471,9 @@
 
 			//Movement
 			if(canMove) {
-				if(getcon("run", "hold")) mspeed = 2
+				if(getcon("run", "hold")) mspeed = 1.75
 				else if(getcon("sneak", "hold")) mspeed = 0.5
-				else mspeed = 1
+				else mspeed = 1.0
 
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.05
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.05
