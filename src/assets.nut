@@ -54,6 +54,7 @@
 ::sprIceTrapSmall <- newSprite("res/icetrapsmall.png", 16, 16, 0, 0, 8, 8)
 ::sprIceTrapLarge <- newSprite("res/icetraplarge.png", 32, 32, 0, 0, 16, 16)
 ::sprIceTrapTall <- newSprite("res/icetraptall.png", 16, 32, 0, 0, 8, 16)
+::sprIceChunks <- newSprite("res/icechunk.png", 8, 8, 0, 0, 4, 4)
 
 //Tilesets
 ::tsActors <- newSprite("res/actors.png", 16, 16, 0, 0, 0, 0)

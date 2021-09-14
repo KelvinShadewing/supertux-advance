@@ -105,10 +105,10 @@
 		h += 1
 		a += 4
 
-		drawSpriteEx(sprGlimmer, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
-		drawSpriteEx(sprGlimmer, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
-		drawSpriteEx(sprGlimmer, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
-		drawSpriteEx(sprGlimmer, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+		drawSpriteEx(sprIceChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteEx(sprIceChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteEx(sprIceChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteEx(sprIceChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
 
 		timer--
 		if(timer == 0) deleteActor(id)
