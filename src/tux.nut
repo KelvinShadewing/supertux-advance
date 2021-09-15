@@ -313,7 +313,7 @@
 						if(game.weapon != 3) playSound(sndJump, 0)
 						else playSound(sndFlap, 0)
 					}
-					else if(flaps > 0) {
+					else if(flaps > 0 && game.weapon == 3) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 1.5
 						didJump = true
