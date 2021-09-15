@@ -152,7 +152,7 @@
 					break
 
 				case anWall:
-					frame += 0.2
+					frame += 0.15
 					vspeed = 0
 
 					if(floor(frame) > anim[1]) {
