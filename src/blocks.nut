@@ -107,6 +107,10 @@
 				case 6:
 					newActor(FlowerIce, x, y - 16)
 					break
+
+				case 7:
+					newActor(AirFeather, x, y - 16)
+					break
 			}
 		}
 

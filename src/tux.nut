@@ -25,6 +25,7 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
+	flaps = 8
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -78,6 +79,7 @@
 				case anStand:
 					if(game.weapon == 2 && floor(frame) == 0) frame += 0.01
 					else if(game.weapon == 2 || game.weapon == 1) frame += 0.1
+					else if(game.weapon == 3) frame += 0.05
 					else frame += 0.03
 
 					if(hspeed != 0) {
@@ -238,7 +240,10 @@
 			}
 
 			//Controls
-			if(!freeDown2 || anim == anClimb) canJump = 15
+			if(!freeDown2 || anim == anClimb) {
+				canJump = 16
+				flaps = 4
+			}
 			else if(canJump > 0) canJump--
 			if(canMove) {
 				if(getcon("run", "hold")) mspeed = 1.75
@@ -296,15 +301,31 @@
 				}
 
 				//Jumping
-				if(getcon("jump", "press") && (canJump > 0 || debug)) {
-					vspeed = -3.8
-					didJump = true
-					canJump = 0
-					if(anim != anHurt && anim != anDive) {
-						anim = anJumpU
-						frame = anim[0]
+				if(getcon("jump", "press")) {
+					 if(canJump > 0 || debug) {
+						vspeed = -3.8
+						didJump = true
+						if(game.weapon != 3) canJump = 0
+						if(anim != anHurt && anim != anDive) {
+							anim = anJumpU
+							frame = anim[0]
+						}
+						if(game.weapon != 3) playSound(sndJump, 0)
+						else playSound(sndFlap, 0)
 					}
-					playSound(sndJump, 0)
+					else if(flaps > 0) {
+						if(vspeed > 0) vspeed = 0.0
+						if(vspeed > -4) vspeed -= 1.5
+						didJump = true
+						if(game.weapon != 3) canJump = 0
+						if(anim != anHurt && anim != anDive) {
+							anim = anJumpU
+							frame = anim[0]
+						}
+						if(game.weapon != 3) playSound(sndJump, 0)
+						else playSound(sndFlap, 0)
+						flaps--
+					}
 				}
 
 				if(getcon("jump", "release") && vspeed < 0 && didJump)
@@ -375,7 +396,7 @@
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(freeDown && vspeed < 3) vspeed += gravity
+			if(freeDown && (vspeed < 1.5 || (vspeed < 3 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 			if(!freeDown && vspeed >= 0) {
 				//If Tux hits the ground while sliding
@@ -389,7 +410,8 @@
 			}
 
 			//Gravity cases
-			gravity = 0.11
+			if(game.weapon == 3) gravity = 0.05
+			else gravity = 0.11
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
@@ -566,6 +588,10 @@
 
 			case 2:
 				sprite = sprTuxIce
+				break
+
+			case 3:
+				sprite = sprTuxAir
 				break
 		}
 

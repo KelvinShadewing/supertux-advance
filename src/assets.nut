@@ -13,6 +13,7 @@
 ::sprTux <- newSprite("res/tux.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxFire <- newSprite("res/tuxfire.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxIce <- newSprite("res/tuxice.png", 32, 32, 0, 0, 15, 19)
+::sprTuxAir <- newSprite("res/tuxair.png", 32, 32, 0, 0, 15, 19)
 
 //Blocks
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0)
@@ -42,6 +43,7 @@
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
 ::sprFlowerFire <- newSprite("res/fireflower.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerIce <- newSprite("res/iceflower.png", 16, 16, 0, 0, 8, 8)
+::sprAirFeather <- newSprite("res/airfeather.png", 16, 16, 0, 0, 8, 8)
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8)
@@ -96,6 +98,7 @@
 ::sndWin <- loadSound("res/win.wav")
 ::sndBump <- loadSound("res/bump.wav")
 ::sndHeal <- loadSound("res/heal.wav")
+::sndFlap <- loadSound("res/flap.wav")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once

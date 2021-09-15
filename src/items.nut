@@ -271,3 +271,41 @@
 		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)
 	}
 }
+
+::AirFeather <- class extends PhysAct {
+	vspeed = -2.0
+	hspeed = 0.0
+	frame = 1.5
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		if(gvPlayer != 0) if(x > gvPlayer.x) frame = 3.5
+		shape = Rec(x, y, 6, 6, 0)
+	}
+
+	function run() {
+		if(vspeed < 0.2) vspeed += 0.05
+
+		if(floor(frame) == 0 || floor(frame) == 2) frame += 0.01
+		else frame += 0.1
+
+		if(frame >= 4.0) frame -= 4.0
+
+		if(floor(frame) == 1) hspeed += 0.1
+		if(floor(frame) == 3) hspeed -= 0.1
+
+		x += hspeed
+		y += vspeed
+		shape.setPos(x, y)
+
+		drawSprite(sprAirFeather, frame, x - camx, y - camy)
+
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)){
+			playSound(sndHeal, 0)
+			game.weapon = 3
+			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
+			deleteActor(id)
+		}
+	}
+}
