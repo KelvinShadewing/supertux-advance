@@ -131,6 +131,20 @@
 			if(data.rawin("properties")) foreach(i in data.properties) {
 				if(i.name == "code") dostr(i.value)
 			}
+
+			//Add sky protection
+			local l = -1
+			for(local i = 0; i < data.layers.len(); i++) {
+				if(data.layers[i].name == "solid") {
+					l = data.layers[i]
+					break
+				}
+			}
+			if(l != -1) {
+				for(local i = 0; i < l.width; i++) {
+					if(l.data[i] != 0) geo.push(Rec((i * 16) + 8, -1000, 8, 1000, 0))
+				}
+			}
 		}
 		else print("Map file " + filename + " does not exist!")
 	}

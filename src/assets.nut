@@ -34,16 +34,18 @@
 ::sprSnowBounce <- newSprite("res/bouncysnow.png", 16, 16, 0, 0, 8, 8)
 ::sprCannonBob <- newSprite("res/cannonbob.png", 16, 16, 0, 0, 8, 8)
 ::sprOuchin <- newSprite("res/ouchin.png", 16, 16, 0, 0, 8, 8)
-::sprTFflash <- newSprite("res/tfFlash.png", 32, 40, 0, 0, 16, 20)
+::sprCarlBoom <- newSprite("res/carlboom.png", 16, 16, 0, 0, 8, 8)
 
 //Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 8, 8)
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 8, 8)
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 8, 8)
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
+::sprEnergy <- newSprite("res/energy.png" 16, 16, 0, 0, 0, 0)
 ::sprFlowerFire <- newSprite("res/fireflower.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerIce <- newSprite("res/iceflower.png", 16, 16, 0, 0, 8, 8)
 ::sprAirFeather <- newSprite("res/airfeather.png", 16, 16, 0, 0, 8, 8)
+::sprFlyRefresh <- newSprite("res/featherspin.png", 16, 16, 0, 0, 8, 8)
 
 //Effects
 ::sprSpark <- newSprite("res/spark.png", 12, 16, 0, 0, 6, 8)
@@ -57,6 +59,12 @@
 ::sprIceTrapLarge <- newSprite("res/icetraplarge.png", 32, 32, 0, 0, 16, 16)
 ::sprIceTrapTall <- newSprite("res/icetraptall.png", 16, 32, 0, 0, 8, 16)
 ::sprIceChunks <- newSprite("res/icechunk.png", 8, 8, 0, 0, 4, 4)
+::sprTinyWind <- newSprite("res/tinywind.png", 16, 16, 0, 0, 8, 8)
+::sprTFflash <- newSprite("res/tfFlash.png", 32, 40, 0, 0, 16, 20)
+::sprExplodeF <- newSprite("res/explodeF.png", 24, 24, 0, 0, 12, 12)
+::sprExplodeI <- newSprite("res/explodeI.png", 30, 30, 0, 0, 15, 15)
+::sprExplodeN <- newSprite("res/explodeN.png", 30, 30, 0, 0, 15, 15)
+::sprExplodeT <- newSprite("res/explodeT.png", 32, 32, 0, 0, 16, 16)
 
 //Tilesets
 ::tsActors <- newSprite("res/actors.png", 16, 16, 0, 0, 0, 0)
