@@ -79,9 +79,6 @@ startMain()
 menu = meMain
 config.playerchar = "Tux"
 startPlay("res/test.json")
-for(local i = 0; i < gvMap.geo.len(); i++) {
-	print(gvMap.geo[i].x.tostring() + "\n")
-}
 
 update()
 while(!getQuit() && !gvQuit)

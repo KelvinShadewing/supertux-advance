@@ -107,6 +107,8 @@
 ::sndBump <- loadSound("res/bump.wav")
 ::sndHeal <- loadSound("res/heal.wav")
 ::sndFlap <- loadSound("res/flap.wav")
+::sndExplodeF <- loadSound("res/explodeF.wav")
+::sndFizz <- loadSound("res/fizz.wav")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
