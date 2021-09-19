@@ -7,7 +7,6 @@
 
 ::startPlay <- function(level)
 {
-
 	//Clear actors and start creating new ones
 	gvPlayer = 0
 	actor.clear()
@@ -168,6 +167,14 @@
 				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 				c.item = 7
 				break
+
+			case 25:
+				newActor(FlyRefresh, i.x + 8, i.y - 8)
+				break
+
+			case 26:
+				newActor(CarlBoom, i.x + 8, i.y - 8)
+				break
 		}
 	}
 
@@ -225,6 +232,14 @@
 		for(local i = 0; i < game.maxHealth; i++) {
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
+		}
+		for(local i = 0; i < 4; i++) {
+			if(gvPlayer != 0) {
+				if(gvPlayer.rawin("flaps")) {
+					if(i < floor(gvPlayer.flaps)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
+					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
+				}
+			}
 		}
 	}
 	else {

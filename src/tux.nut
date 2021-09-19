@@ -25,7 +25,7 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	flaps = 8
+	flaps = 4
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -231,7 +231,7 @@
 					}
 				}
 
-				if(!getcon("down", "hold") || hspeed == 0) anim = anWalk
+				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.01) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -242,9 +242,13 @@
 			//Controls
 			if(!freeDown2 || anim == anClimb) {
 				canJump = 16
-				flaps = 4
+				if(flaps < 4) flaps += 0.1
 			}
-			else if(canJump > 0) canJump--
+			else {
+				if(canJump > 0) canJump--
+				if(flaps < 1) flaps += 0.01
+			}
+			if(flaps > 4) flaps = 4
 			if(canMove) {
 				if(getcon("run", "hold")) mspeed = 1.75
 				else if(getcon("sneak", "hold")) mspeed = 0.5
@@ -290,7 +294,7 @@
 				}
 
 				//Get on ladder
-				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && vspeed >= 0) {
+				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
 					if(atLadder()) {
 						anim = anClimb
 						frame = anim[0]
@@ -313,9 +317,9 @@
 						if(game.weapon != 3) playSound(sndJump, 0)
 						else playSound(sndFlap, 0)
 					}
-					else if(flaps > 0 && game.weapon == 3) {
+					else if(floor(flaps) > 0 && game.weapon == 3) {
 						if(vspeed > 0) vspeed = 0.0
-						if(vspeed > -4) vspeed -= 1.5
+						if(vspeed > -4) vspeed -= 1.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive) {
@@ -376,7 +380,7 @@
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3
 					if(hspeed < 0) hspeed += friction / 3
-					if(abs(hspeed) < 1) {
+					if(abs(hspeed) == 0) {
 						if(placeFree(x, y - 16)) {
 							anim = anStand
 							shape = shapeStand
@@ -450,6 +454,16 @@
 						}
 					}
 					break
+
+				case 3:
+					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall)) {
+						anim = anDive
+						frame = anim[0]
+						playSound(sndSlide, 0)
+						if(flip == 0 && hspeed < 2) hspeed = 2
+						if(flip == 1 && hspeed > -2) hspeed = -2
+					}
+					break
 			}
 
 		}
@@ -458,6 +472,7 @@
 		//////////////
 		else {
 			swimming = true
+			if(game.weapon == 3 && flaps < 4) flaps += 0.1
 
 			//Animation states
 			switch(anim) {
@@ -561,6 +576,7 @@
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
 		if(y > gvMap.h + 16) die()
+		if(y < -100) y = -100.0
 
 		//Hurt
 		if(hurt) {
@@ -666,7 +682,6 @@
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
-		game.weapon = 0
 	}
 
 	function run() {
@@ -676,7 +691,21 @@
 		if(timer == 0) {
 			startPlay(gvMap.file)
 			deleteActor(id)
+			game.weapon = 0
 		}
-		drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+		switch(game.weapon) {
+			case 0:
+				drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				break
+			case 1:
+				drawSprite(sprTuxFire, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				break
+			case 2:
+				drawSprite(sprTuxIce, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				break
+			case 3:
+				drawSprite(sprTuxAir, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				break
+		}
 	}
 }
