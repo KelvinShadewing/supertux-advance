@@ -25,6 +25,7 @@
 	world = "res/overworld-0.json"
 	owx = 0
 	owy = 0
+	owd = 0
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- 0; //Pointer to player actor

@@ -3,7 +3,6 @@
 ///////////////
 
 ::OverPlayer <- class extends PhysAct {
-	dir = 0
 	//0 = right
 	//1 = up
 	//2 = left
@@ -47,36 +46,36 @@
 
 		//Move right
 		if(getcon("right", "hold") && (placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || dir == 0) {
+			if(level == "" || game.owd == 0) {
 				hspeed = 1
-				dir = 2
+				game.owd = 2
 			}
 			else if(game.completed.rawin(level)) hspeed = 1
 		}
 
 		//Move up
 		if(getcon("up", "hold") && (placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || dir == 1) {
+			if(level == "" || game.owd == 1) {
 				vspeed = -1
-				dir = 3
+				game.owd = 3
 			}
 			else if(game.completed.rawin(level)) vspeed = -1
 		}
 
 		//Move left
 		if(getcon("left", "hold") && (placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || dir == 2) {
+			if(level == "" || game.owd == 2) {
 				hspeed = -1
-				dir = 0
+				game.owd = 0
 			}
 			else if(game.completed.rawin(level)) hspeed = -1
 		}
 
 		//Move down
 		if(getcon("down", "hold") && (placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || dir == 3) {
+			if(level == "" || game.owd == 3) {
 				vspeed = 1
-				dir = 1
+				game.owd = 1
 			}
 			else if(game.completed.rawin(level)) vspeed = 1
 		}
