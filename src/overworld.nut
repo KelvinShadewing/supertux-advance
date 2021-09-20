@@ -2,10 +2,6 @@
 // OVERWORLD //
 ///////////////
 
-//Player coordinates
-::gvOverX <- 0
-::gvOverY <- 0
-
 ::OverPlayer <- class extends PhysAct {
 	dir = 0
 	//0 = right
@@ -16,13 +12,13 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		if(gvOverX == 0 && gvOverY == 0) {
+		if(game.owx == 0 && game.owy == 0) {
 			x = _x
 			y = _y
 		}
 		else {
-			x = gvOverX
-			y = gvOverY
+			x = game.owx
+			y = game.owy
 		}
 
 		shape = Rec(x, y, 7, 7, 0)
@@ -36,8 +32,8 @@
 		if((y - 8) % 16 == 0) vspeed = 0
 
 		shape.setPos(x, y)
-		gvOverX = x
-		gvOverY = y
+		game.owx = x
+		game.owy = y
 
 		local level = ""
 		if(actor.rawin("StageIcon")) {//Find what level was landed on

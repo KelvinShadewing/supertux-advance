@@ -38,7 +38,7 @@
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { gvOverX = 0; gvOverY = 0; startOverworld("res/overworld-0.json") }
+		func = function() { game = clone(gameDefault); game.completed.clear(); game.allcoins.clear(); game.allenemies.clear(); game.allsecrets.clear(); startOverworld("res/overworld-0.json") }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
