@@ -47,12 +47,14 @@
 
 ::dbgStarSky <- function() {
 	for(local i = 0; i < 3; i++) {
-		drawSprite(bgStarSky, 0, ((-camx / 8) % 240) + (i * 240), (screenH() / 2) - 120)
+		drawSprite(bgStarSky, 0, ((-camx / 16) % 240) + (i * 240), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgUnderwater <- function() {
-	for(local i = 0; i < 2; i++) {
-		drawSprite(bgUnderwater, 0, 0, (screenH() / 2) - 120)
-	}
+	drawSprite(bgUnderwater, 0, 0, (screenH() / 2) - 120)
+}
+
+::dbgCastle <- function() {
+	drawSprite(bgUnderwater, 0, 0, 0)
 }

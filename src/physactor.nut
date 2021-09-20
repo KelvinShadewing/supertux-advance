@@ -8,6 +8,8 @@
 	box = [0, 0, 0, 0]
 	xstart = 0.0
 	ystart = 0.0
+	xprev = 0.0
+	yprev = 0.0
 	shape = 0
 
 	constructor(_x, _y) {

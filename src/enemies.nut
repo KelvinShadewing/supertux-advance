@@ -351,15 +351,31 @@
 				gvPlayer.vspeed += 0.1
 			}
 		}
+
+		if(frozen) {
+			//Create ice block
+			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				icebox = mapNewSolid(shape)
+			}
+
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else {
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, y)
+				icebox = -1
+			}
+		}
 	}
 
 	function gethurt() { hurtplayer() }
 
-	function hurtfire() {
-		newActor(Poof, x, y)
-		deleteActor(id)
-		playSound(sndFlame, 0)
-	}
+	function hurtfire() {}
 }
 
 //Dead enemy effect for enemies that get sent flying,

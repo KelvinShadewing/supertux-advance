@@ -3,22 +3,24 @@
 \*================*/
 
 ::gvMap <- 0
+::gvWorld <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
 ::game <- {
 	score = 0,
 	coins = 0,
-	levelcoins = 0, //Total coins in the level
+	levelcoins = 0,
+	maxcoins = 0, //Total coins in the level
 	lives = 0,
 	health = 4,
 	maxHealth = 4,
 	weapon = 0,
-	completed = [], //List of completed level names
-	allcoins = [], //Levels that the player has gotten all enemies in
-	allenemies = [], //Levels that the player has beaten all enemies in
-	allsecrets = [], //Levels the player has found all secrets in
+	completed = {}, //List of completed level names
+	allcoins = {}, //Levels that the player has gotten all enemies in
+	allenemies = {}, //Levels that the player has beaten all enemies in
+	allsecrets = {}, //Levels the player has found all secrets in
 	characters = [ //List of unlocked characters
-		["Tux", sprTux]
+		["Tux", sprTuxOverworld]
 	],
 	playerchar = 0 //Current player character
 }

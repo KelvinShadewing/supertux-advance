@@ -3,6 +3,10 @@
 ::LevelEnder <- class extends Actor {
 	timer = 600
 
+	function run() {
+		timer--
+		if(timer == 0) startOverworld(gvWorld)
+	}
 }
 
 ::endGoal <- function() {
@@ -13,6 +17,8 @@
 		gvPlayer.invincible = 999
 		playSound(sndWin, 0)
 		stopMusic()
+		if(!game.completed.rawin(gvMap.name)) game.completed[gvMap.name] <- true
+		newActor(LevelEnder, 0, 0)
 	}
 	gvPlayer = 0
 }

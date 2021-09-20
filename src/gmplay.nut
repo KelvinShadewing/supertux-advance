@@ -13,7 +13,6 @@
 	game.health = game.maxHealth
 
 	//Load map to play
-	gvMap = {}
 	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors
@@ -70,7 +69,7 @@
 
 			case 2:
 				newActor(ItemBlock, i.x + 8, i.y - 8)
-				game.levelcoins++
+				game.maxcoins++
 				break
 
 			case 3:
@@ -179,8 +178,8 @@
 	}
 
 	if(gvPlayer != 0) {
-		camx = gvPlayer.x
-		camy = gvPlayer.y
+		camx = gvPlayer.x - (screenW() / 2)
+		camy = gvPlayer.y - (screenH() / 2)
 	}
 	else {
 		camx = 0

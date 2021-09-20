@@ -35,6 +35,7 @@ donut("src/levelend.nut")
 donut("src/platforms.nut")
 donut("src/blocks.nut")
 donut("src/weapons.nut")
+donut("src/overworld.nut")
 
 ////////////////
 //    MAIN    //
@@ -78,7 +79,7 @@ gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
 startMain()
 menu = meMain
 config.playerchar = "Tux"
-startPlay("res/test.json")
+startOverworld("res/overworld-0.json")
 
 update()
 while(!getQuit() && !gvQuit)

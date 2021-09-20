@@ -14,6 +14,12 @@
 ::sprTuxFire <- newSprite("res/tuxfire.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxIce <- newSprite("res/tuxice.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxAir <- newSprite("res/tuxair.png", 32, 32, 0, 0, 15, 19)
+::sprTuxOverworld <- newSprite("res/tuxO.png", 14, 17, 0, 0, 7, 15)
+
+//GUI
+::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
+::sprEnergy <- newSprite("res/energy.png" 16, 16, 0, 0, 0, 0)
+::sprLevels <- newSprite("res/levelicons.png", 16, 16, 0, 0, 8, 8)
 
 //Blocks
 ::sprBoxIce <- newSprite("res/icebox.png", 16, 16, 0, 0, 0, 0)
@@ -25,6 +31,7 @@
 ::sprWoodChunks <- newSprite("res/woodchunks.png", 8, 8, 0, 0, 4, 4)
 ::sprBoxInfo <- newSprite("res/infobox.png", 16, 16, 0, 0, 0, 0)
 ::sprKelvinScarf <- newSprite("res/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
+::sprBoxBounce <- newSprite("res/bouncebox.png", 16, 16, 0, 0, 0, 0)
 
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)
@@ -40,8 +47,6 @@
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 8, 8)
 ::sprStar <- newSprite("res/starnyan.png", 16, 16, 0, 0, 8, 8)
 ::sprCoin <- newSprite("res/coin.png", 16, 16, 0, 0, 8, 8)
-::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
-::sprEnergy <- newSprite("res/energy.png" 16, 16, 0, 0, 0, 0)
 ::sprFlowerFire <- newSprite("res/fireflower.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerIce <- newSprite("res/iceflower.png", 16, 16, 0, 0, 8, 8)
 ::sprAirFeather <- newSprite("res/airfeather.png", 16, 16, 0, 0, 8, 8)
@@ -65,6 +70,7 @@
 ::sprExplodeI <- newSprite("res/explodeI.png", 30, 30, 0, 0, 15, 15)
 ::sprExplodeN <- newSprite("res/explodeN.png", 30, 30, 0, 0, 15, 15)
 ::sprExplodeT <- newSprite("res/explodeT.png", 32, 32, 0, 0, 16, 16)
+::sprWaterSurface <- newSprite("res/watersurface.png" 16, 4, 0, 0, 0, 0)
 
 //Tilesets
 ::tsActors <- newSprite("res/actors.png", 16, 16, 0, 0, 0, 0)
@@ -78,7 +84,7 @@
 ::tsSnow <- newSprite("res/tsSnow.png", 16, 16, 0, 0, 0, 0)
 ::tsSigns <- newSprite("res/signpost.png", 16, 16, 0, 0, 0, 0)
 ::tsGoal <- newSprite("res/goal.png", 16, 16, 0, 0, 0, 0)
-
+::tsCastle <-
 
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/rockgapsBG.png", 400, 392, 0, 0, 0, 0)
@@ -91,6 +97,7 @@
 ::bgWoodedMountain <- newSprite("res/woodedmountain.png", 720, 240, 0, 0, 0, 0)
 ::bgStarSky <- newSprite("res/starysky.png", 240, 240, 0, 0, 0, 0)
 ::bgUnderwater <- newSprite("res/underwaterbg.png", 320, 240, 0, 0, 0, 0)
+::bgCastle <- newSprite("res/castlebg.png", 320, 240, 0, 0, 0, 0)
 
 //Sounds
 ::sndFireball <- loadSound("res/fireball.wav")

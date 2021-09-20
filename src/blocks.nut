@@ -1,3 +1,7 @@
+/*============*\
+| BLOCK SOURCE |
+\*============*/
+
 ::WoodBlock <- class extends Actor {
 	shape = 0
 	mapshape = 0
@@ -8,7 +12,7 @@
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
-		slideshape = Rec(x, y, 12, 8, 0)
+		slideshape = Rec(x, y - 1, 12, 8, 0)
 	}
 
 	function run() {
@@ -237,5 +241,56 @@
 		}
 
 		if(devcom) drawSprite(sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
+	}
+}
+
+::BounceBlock <- class extends Actor {
+	shape = 0
+	mapshape = 0
+	full = true
+	v = 0.0
+	vspeed = 0.0
+	item = 0
+	text = ""
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+	}
+
+	function run() {
+		if(v > 0) {
+			vspeed = 0
+			v = 0
+		}
+		if(v <= -8) {
+			vspeed = 0.5
+		}
+
+		if(gvPlayer != 0) {
+			shape.setPos(x, y - 2)
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+				gvPlayer.vspeed = 1
+				vspeed = -1
+				playSound(sndBump, 0)
+			}
+
+			shape.setPos(x, y + 2)
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+				gvPlayer.vspeed = 2
+				if(getcon("jump", "hold")) gvPlayer.vspeed = -4
+				vspeed = 1
+				playSound(sndBump, 0)
+			}
+
+			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+		}
+
+		v += vspeed
+
+		if(full || vspeed < 0) drawSprite(sprBoxInfo, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
+		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }

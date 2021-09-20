@@ -9,7 +9,7 @@
 	{
 		base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.levelcoins++
+		game.maxcoins++
 	}
 
 	function run()

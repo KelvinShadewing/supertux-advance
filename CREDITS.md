@@ -38,6 +38,8 @@
 
 [BenCreating](https://opengameart.org/users/bencreating) Overworld Tiles
 
+[Lanea Zimmerman](https://opengameart.org/users/sharm) Moon sprite, street light
+
 ## Music
 
 Lukas Nystrand - Chippdisko
