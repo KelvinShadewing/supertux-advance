@@ -79,7 +79,6 @@ gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
 startMain()
 menu = meMain
 config.playerchar = "Tux"
-startOverworld("res/overworld-0.json")
 
 update()
 while(!getQuit() && !gvQuit)

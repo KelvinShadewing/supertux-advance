@@ -3,7 +3,6 @@
 \*================*/
 
 ::gvMap <- 0
-::gvWorld <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
 ::game <- {
@@ -23,6 +22,7 @@
 		["Tux", sprTuxOverworld]
 	],
 	playerchar = 0 //Current player character
+	world = "res/overworld-0.json"
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- 0; //Pointer to player actor

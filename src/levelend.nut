@@ -5,7 +5,7 @@
 
 	function run() {
 		timer--
-		if(timer == 0) startOverworld(gvWorld)
+		if(timer == 0) startOverworld(game.world)
 	}
 }
 

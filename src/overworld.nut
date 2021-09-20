@@ -50,7 +50,7 @@
 		}
 
 		//Move right
-		if(getcon("right", "hold") && placeFree(x + 16, y) && hspeed == 0 && vspeed == 0) {
+		if(getcon("right", "hold") && (placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || dir == 0) {
 				hspeed = 1
 				dir = 2
@@ -59,7 +59,7 @@
 		}
 
 		//Move up
-		if(getcon("up", "hold") && placeFree(x, y - 16) && hspeed == 0 && vspeed == 0) {
+		if(getcon("up", "hold") && (placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || dir == 1) {
 				vspeed = -1
 				dir = 3
@@ -68,7 +68,7 @@
 		}
 
 		//Move left
-		if(getcon("left", "hold") && placeFree(x - 16, y) && hspeed == 0 && vspeed == 0) {
+		if(getcon("left", "hold") && (placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || dir == 2) {
 				hspeed = -1
 				dir = 0
@@ -77,7 +77,7 @@
 		}
 
 		//Move down
-		if(getcon("down", "hold") && placeFree(x, y + 16) && hspeed == 0 && vspeed == 0) {
+		if(getcon("down", "hold") && (placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || dir == 3) {
 				vspeed = 1
 				dir = 1
@@ -126,7 +126,7 @@
 
 	//Load map to play
 	gvMap = Tilemap(world)
-	gvWorld = world
+	game.world = world
 
 	//Get tiles used to mark actors
 	local actset = -1

@@ -38,7 +38,7 @@
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { startPlay("res/0-0.json") }
+		func = function() { gvOverX = 0; gvOverY = 0; startOverworld("res/overworld-0.json") }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
