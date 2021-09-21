@@ -44,6 +44,10 @@
 
 Lukas Nystrand - Chippdisko
 
+[TAD](https://opengameart.org/users/tad) - LoFi Ice Cave
+
+[Trex0n](https://opengameart.org/users/trex0n) - Peace At Last (Overworld)
+
 ## Donors
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**

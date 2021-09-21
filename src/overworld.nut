@@ -106,7 +106,7 @@
 		if(game.allcoins.rawin(level)) drawSprite(sprLevels, 2, x - camx, y - camy)
 
 		//Selected
-		if(getcon("jump", "press") || getcon("pause", "press" || getcon("shoot", "press"))) {
+		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/" + level + ".json")
 		}
 	}

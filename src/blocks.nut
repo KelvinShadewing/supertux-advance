@@ -38,6 +38,51 @@
 	}
 }
 
+::IceBlock <- class extends Actor {
+	shape = 0
+	mapshape = 0
+	slideshape = 0
+	fireshape = 0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		slideshape = Rec(x, y - 1, 12, 8, 0)
+		fireshape = Rec(x, y, 9, 9, 0)
+	}
+
+	function run() {
+		if(gvPlayer != 0) {
+			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
+				gvPlayer.vspeed = 0
+				mapDeleteSolid(mapshape)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				playSound(sndBump, 0)
+			}
+
+			if(abs(gvPlayer.hspeed) >= 3 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+				gvPlayer.vspeed = 0
+				mapDeleteSolid(mapshape)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				playSound(sndBump, 0)
+			}
+		}
+
+		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
+			mapDeleteSolid(mapshape)
+			deleteActor(id)
+			newActor(Poof, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		drawSprite(sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
+	}
+}
+
 ::WoodChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0

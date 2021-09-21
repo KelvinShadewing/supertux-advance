@@ -120,6 +120,10 @@
 				actor[c].smart = true
 				break
 
+			case 14:
+				newActor(IceBlock, i.x + 8, i.y - 8)
+				break
+
 			case 15:
 				newActor(WoodBlock, i.x + 8, i.y - 8)
 				break
@@ -173,6 +177,10 @@
 
 			case 26:
 				newActor(CarlBoom, i.x + 8, i.y - 8)
+				break
+
+			case 27:
+				newActor(SnowBounce, i.x + 8, i.y - 8)
 				break
 		}
 	}

@@ -28,6 +28,7 @@
 ::sprBoxEmpty <- newSprite("res/emptybox.png", 16, 16, 0, 0, 0, 0)
 ::sprSpring <- newSprite("res/spring.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodBox <- newSprite("res/woodbox.png", 16, 16, 0, 0, 0, 0)
+::sprIceBlock <- newSprite("res/iceblock.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodChunks <- newSprite("res/woodchunks.png", 8, 8, 0, 0, 4, 4)
 ::sprBoxInfo <- newSprite("res/infobox.png", 16, 16, 0, 0, 0, 0)
 ::sprKelvinScarf <- newSprite("res/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
@@ -121,6 +122,8 @@
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
 ::gvMusicName <- ""
 ::musDisko <- "res/chipdisko.ogg"
+::musCave <- "res/cave.mp3"
+::musOverworld <- "res/overworld.mp3"
 ::musInvincible <- loadMusic("res/invincible.wav")
 
 ::songPlay <- function(song) {

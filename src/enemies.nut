@@ -591,3 +591,82 @@
 		if(frame >= 5) deleteActor(id)
 	}
 }
+
+::SnowBounce <- class extends Enemy {
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	smart = false
+
+	constructor(_x, _y) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 6, 6, 0)
+		if(gvPlayer != 0) {
+			if(x > gvPlayer.x) hspeed = -0.5
+			else hspeed = 0.5
+		}
+		else hspeed = 0.5
+
+		vspeed = -2.5
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x, y + 1)) vspeed = -2.5
+			if(!placeFree(x + 1, y)) hspeed = -0.5
+			if(!placeFree(x - 1, y)) hspeed = 0.5
+			vspeed += 0.05
+
+			if(hspeed > 0) flip = 0
+			else flip = 1
+
+			if(!frozen) {
+				if(placeFree(x + hspeed, y)) x += hspeed
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
+			}
+
+			shape.setPos(x, y)
+
+			if(frozen) {
+				//Create ice block
+				if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					icebox = mapNewSolid(shape)
+				}
+
+				//Draw
+				drawSpriteEx(sprSnowBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+				if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+				}
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else {
+				//Delete ice block
+				if(icebox != -1) {
+					mapDeleteSolid(icebox)
+					newActor(IceChunks, x, y)
+					icebox = -1
+					if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+					else flip = false
+				}
+			}
+
+			//Draw
+			drawSpriteEx(sprSnowBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		}
+	}
+
+	function gethurt() {
+		newActor(Poof, x, y)
+		deleteActor(id)
+		playSound(sndSquish, 0)
+		if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
+		else gvPlayer.vspeed = -2
+	}
+}
