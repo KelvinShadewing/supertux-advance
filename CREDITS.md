@@ -30,15 +30,15 @@
 
 [SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
 
-[Soluna Software](https://opengameart.org/users/soluna-software) STA Logo Upper Half
+[Soluna Software](https://opengameart.org/users/soluna-software)-  STA Logo Upper Half
 
-[ZiNGOT Games](https://opengameart.org/users/zingot) STA Logo Lower Half
+[ZiNGOT Games](https://opengameart.org/users/zingot) - STA Logo Lower Half
 
-[Iaavis](https://opengameart.org/users/laavis) 2D Pixel City Pack
+[Iaavis](https://opengameart.org/users/laavis) - 2D Pixel City Pack
 
-[BenCreating](https://opengameart.org/users/bencreating) Overworld Tiles
+[BenCreating](https://opengameart.org/users/bencreating) - Overworld Tiles
 
-[Lanea Zimmerman](https://opengameart.org/users/sharm) Moon sprite, street light
+[Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
 
 ## Music
 
@@ -47,6 +47,8 @@ Lukas Nystrand - Chippdisko
 [TAD](https://opengameart.org/users/tad) - LoFi Ice Cave
 
 [Trex0n](https://opengameart.org/users/trex0n) - Peace At Last (Overworld)
+
+[Ted Kerr](https://opengameart.org/users/wolfgang) - 8bit Upbeat Town
 
 ## Donors
 
