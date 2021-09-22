@@ -15,15 +15,22 @@
 [ ] Item boxes
 [X] Ropes/ladders
 [ ] Springs
+[ ] Animated tiles
 
 ## Enemies
 
 [X] Deathcaps
 [X] Pipe snakes
+[X] Carl Boom (walking bomb)
+[X] Bouncing snow
+[X] Ouchin (stationary enemy)
 [ ] Snails (turtle-likes)
 [ ] Flying deathcaps
 [ ] Swoops
 [ ] Cannon Bobs
+[ ] Spinning castle fire
+[ ] Bouncing castle fire
+[ ] Fish
 
 ## Powerups
 

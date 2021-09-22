@@ -631,6 +631,9 @@
 
 			shape.setPos(x, y)
 
+			//Draw
+			drawSpriteEx(sprSnowBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
 			if(frozen) {
 				//Create ice block
 				if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
@@ -656,9 +659,6 @@
 					else flip = false
 				}
 			}
-
-			//Draw
-			drawSpriteEx(sprSnowBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
 	}
 
@@ -668,5 +668,11 @@
 		playSound(sndSquish, 0)
 		if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
 		else gvPlayer.vspeed = -2
+	}
+
+	function hurtfire() {
+		newActor(Flame, x, y - 1)
+		deleteActor(id)
+		playSound(sndFlame, 0)
 	}
 }

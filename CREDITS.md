@@ -40,6 +40,8 @@
 
 [Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
 
+[Spring](https://opengameart.org/users/spring-spring) - Large flame
+
 ## Music
 
 Lukas Nystrand - Chippdisko
