@@ -124,6 +124,9 @@
 ::musDisko <- "res/chipdisko.ogg"
 ::musCave <- "res/cave.mp3"
 ::musOverworld <- "res/overworld.mp3"
+::musCity <- "res/village-mixed.mp3"
+
+//Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/invincible.wav")
 
 ::songPlay <- function(song) {

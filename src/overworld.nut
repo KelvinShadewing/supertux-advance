@@ -188,6 +188,8 @@
 		camx = 0
 		camy = 0
 	}
+
+	update()
 }
 
 ::gmOverworld <- function() {

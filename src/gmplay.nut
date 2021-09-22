@@ -200,6 +200,8 @@
 	//the mode and simply remain where it was. A message is printed
 	//in the log if the map fails, so users can check why a level
 	//refuses to run.
+
+	update()
 }
 
 ::gmPlay <- function()

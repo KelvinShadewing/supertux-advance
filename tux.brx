@@ -79,7 +79,7 @@ gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
 startMain()
 menu = meMain
 config.playerchar = "Tux"
-startPlay("res/test.json")
+//startPlay("res/test.json")
 
 update()
 while(!getQuit() && !gvQuit)
