@@ -71,6 +71,7 @@ switch(reschoice) {
 
 //Set up window
 setWindowTitle("SuperTux Advance")
+setWindowIcon("icon.png")
 tileSearchDir.push("res")
 setFPS(60)
 
