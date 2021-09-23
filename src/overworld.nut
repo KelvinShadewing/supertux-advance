@@ -45,7 +45,7 @@
 		}
 
 		//Move right
-		if(getcon("right", "hold") && (placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
+		if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || game.owd == 0) {
 				hspeed = 1
 				game.owd = 2
@@ -54,7 +54,7 @@
 		}
 
 		//Move up
-		if(getcon("up", "hold") && (placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
+		if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || game.owd == 1) {
 				vspeed = -1
 				game.owd = 3
@@ -63,7 +63,7 @@
 		}
 
 		//Move left
-		if(getcon("left", "hold") && (placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
+		if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || game.owd == 2) {
 				hspeed = -1
 				game.owd = 0
@@ -72,7 +72,7 @@
 		}
 
 		//Move down
-		if(getcon("down", "hold") && (placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
+		if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
 			if(level == "" || game.owd == 3) {
 				vspeed = 1
 				game.owd = 1
