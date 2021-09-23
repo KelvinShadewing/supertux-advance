@@ -55,8 +55,8 @@
 		else for(local i = 0; i < abs(round(gvPlayer.vspeed * 2)); i++) message += chint(31)
 	}
 	message += "\n\n"
-	message += "Map W: " + gvMap.w + "\n"
-	message += "Map H: " + gvMap.h + "\n"
+	if(gvMap != 0) message += "Map W: " + gvMap.w + "\n"
+	if(gvMap != 0) message += "Map H: " + gvMap.h + "\n"
 	message += "SRT: " + floor(getTicks() / 1000) + "\n"
 
 	drawText(font, 0, 32, message)

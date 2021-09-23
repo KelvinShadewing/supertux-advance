@@ -16,6 +16,49 @@
 }
 
 ///////////////////
+// ANIMATED TILE //
+///////////////////
+
+::AnimTile <- class {
+	frameID = null
+	frameList = null
+	frameTime = null
+	sprite = null
+
+	constructor(animList, _sprite) {
+		frameID = animList.id
+		frameList = []
+		frameTime = []
+		for(local i = 0; i < animList.animation.len(); i++) {
+			frameList.push(animList.animation[i].tileid)
+			if(i == 0) frameTime.push(animList.animation[i].duration)
+			else frameTime.push(animList.animation[i].duration + frameTime[i - 1])
+		}
+		sprite = _sprite
+	}
+
+	function draw(x, y, alpha) {
+		local currentTime = wrap(getTicks(), 0, frameTime.top())
+		for(local i = 0; i < frameList.len(); i++) {
+			if(currentTime >= frameTime[i]) {
+				if(i < frameTime.len() - 1) {
+					if(currentTime < frameTime[i + 1]) {
+						drawSpriteEx(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha)
+						return
+					}
+				}
+				else if(currentTime <= frameTime[i] && i == 0) {
+					drawSpriteEx(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha)
+					return
+				} 
+			}
+		}
+
+		drawSpriteEx(sprite, frameList.top(), floor(x), floor(y), 0, 0, 1, 1, alpha)
+	}
+}
+
+///////////////////
 // TILEMAP CLASS //
 ///////////////////
 
@@ -34,12 +77,14 @@
 	file = ""
 	solidfid = 0 //First tile ID for the solid tileset
 	shape = null
+	anim = null //List of animated tiles
 
 	constructor(filename) {
 		tileset = []
 		tilef = []
 		geo = []
 		data = {}
+		anim = {}
 
 		if(fileExists(filename)) {
 			data = jsonRead(fileRead(filename))
@@ -89,6 +134,11 @@
 
 				tilef.push(data.tilesets[i].firstgid)
 				if(data.tilesets[i].name == "solid") solidfid = data.tilesets[i].firstgid
+
+				//Add animations
+				if(data.tilesets[i].rawin("tiles")) for(local j = 0; j < data.tilesets[i].tiles.len(); j++) {
+					anim[data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
+				}
 			}
 
 			//print("Added " + spriteName(tileset[i]) + ".\n")
@@ -177,7 +227,11 @@
 				if(n != 0) {
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
-							drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity)
+							if(anim.rawin(n - data.tilesets[k].firstgid)) {
+								if(tileset[k] == anim[n - data.tilesets[k].firstgid].sprite) anim[n - data.tilesets[k].firstgid].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity)
+								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity)
+							}
+							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity)
 							k = -1
 							break
 						}
