@@ -245,8 +245,13 @@
 		}
 		for(local i = 0; i < 4; i++) {
 			if(gvPlayer != 0) {
-				if(gvPlayer.rawin("flaps")) {
+				if(gvPlayer.rawin("flaps") && game.weapon == 3) {
 					if(i < floor(gvPlayer.flaps)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
+					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
+				}
+
+				if(gvPlayer.rawin("mana")) { //For Midi's bombs
+					if(i < floor(gvPlayer.mana)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
 				}
 			}
