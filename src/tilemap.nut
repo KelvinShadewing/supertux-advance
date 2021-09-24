@@ -50,7 +50,7 @@
 				else if(currentTime <= frameTime[i] && i == 0) {
 					drawSpriteEx(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha)
 					return
-				} 
+				}
 			}
 		}
 
@@ -153,8 +153,6 @@
 							local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 							actor[c].code = obj.name
-							//print("Made trigger at (" + actor[c].x + ", " + actor[c].y + ") with code [" + actor[c].code + "]")
-							//print(actor[c].shape)
 							break
 						case "water":
 							local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
@@ -169,6 +167,11 @@
 								c.mode = 2
 								c.y = c.ystart + c.r
 							}
+							break
+						case "secret":
+							local c = actor[newActor(SecretWall, obj.x, obj.y)]
+							c.dw = obj.width / 16
+							c.dh = obj.height / 16
 							break
 						}
 					}
@@ -199,7 +202,7 @@
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = 1) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -228,10 +231,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n - data.tilesets[k].firstgid)) {
-								if(tileset[k] == anim[n - data.tilesets[k].firstgid].sprite) anim[n - data.tilesets[k].firstgid].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity)
-								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity)
+								if(tileset[k] == anim[n - data.tilesets[k].firstgid].sprite) anim[n - data.tilesets[k].firstgid].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a)
+								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
 							}
-							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity)
+							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
 							k = -1
 							break
 						}

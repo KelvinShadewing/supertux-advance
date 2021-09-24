@@ -13,7 +13,7 @@
 	// 2 top left
 	// 3 bottom right
 	// 4 bottom left
-	// 5 liquid
+	// 5 liquid (requires other to be at least halfway inside, does not work well with other liquids)
 	ox = 0.0
 	oy = 0.0
 

@@ -36,6 +36,7 @@ donut("src/platforms.nut")
 donut("src/blocks.nut")
 donut("src/weapons.nut")
 donut("src/overworld.nut")
+donut("src/secret.nut")
 
 ////////////////
 //    MAIN    //

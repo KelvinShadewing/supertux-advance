@@ -5,7 +5,10 @@
 ::devcom <- false
 
 ::drawDebug <- function() {
-	if(keyPress(k_f12)) debug = !debug
+	if(keyPress(k_f12)) {
+		debug = !debug
+		if(debug) foreach(i in actor) print(typeof i)
+	}
 	if(keyPress(k_f1)) devcom = !devcom
 
 	local fps = getFPS()
