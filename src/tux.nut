@@ -73,6 +73,7 @@
 		/////////////
 		if(!inWater(x, y)) {
 			swimming = false
+			shapeStand.h = 12.0
 
 			//Animation states
 			switch(anim) {
@@ -473,6 +474,7 @@
 		else {
 			swimming = true
 			if(game.weapon == 3 && flaps < 4) flaps += 0.1
+			shapeStand.h = 8.0
 
 			//Animation states
 			switch(anim) {
