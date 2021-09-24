@@ -412,7 +412,7 @@
 
 	constructor(_x, _y) {
 		base.constructor(_x.tofloat(), _y.tofloat())
-		shape = Rec(x, y, 6, 6, 0)
+		shape = Rec(x, y, 6, 6, 0, 0, 1)
 		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
 	}
 

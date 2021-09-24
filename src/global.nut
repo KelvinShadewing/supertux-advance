@@ -48,26 +48,26 @@
 ]
 
 ::config <- {
-	difficulty = 0,
+	difficulty = 0
 	key = {
-		up = k_up,
-		down = k_down,
-		left = k_left,
-		right = k_right,
-		jump = k_z,
-		shoot = k_x,
-		run = k_lshift,
+		up = k_up
+		down = k_down
+		left = k_left
+		right = k_right
+		jump = k_z
+		shoot = k_x
+		run = k_lshift
 		sneak = k_lctrl
 		pause = k_enter
 	},
 	joy = {
-		jump = 0,
-		shoot = 2,
-		run = 4,
-		sneak = 5,
+		jump = 0
+		shoot = 2
+		run = 4
+		sneak = 5
 		pause = 7
 	}
-	playerchar = 0,
+	playerchar = 0
 	lang = "en"
 }
 

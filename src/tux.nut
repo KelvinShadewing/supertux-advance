@@ -217,7 +217,7 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
-				if(!freeDown && abs(hspeed) < 4) {
+				if(!freeDown && (abs(hspeed) < 4 || (abs(hspeed) < 6 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.1
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.1
 
@@ -253,7 +253,10 @@
 			}
 			if(flaps > 4) flaps = 4
 			if(canMove) {
-				if(getcon("run", "hold")) mspeed = 1.75
+				if(getcon("run", "hold")) {
+					if(game.weapon == 2) mspeed = 2.25
+					else mspeed = 1.75
+				}
 				else if(getcon("sneak", "hold")) mspeed = 0.5
 				else mspeed = 1
 
@@ -411,8 +414,14 @@
 					if(flip) hspeed -= vspeed / 5
 					else hspeed += vspeed / 5
 
-					if(hspeed > 4) hspeed = 4
-					if(hspeed < -4) hspeed = -4
+					if(game.weapon == 2) {
+						if(hspeed > 6) hspeed = 6
+						if(hspeed < -6) hspeed = -6
+					}
+					else {
+						if(hspeed > 4) hspeed = 4
+						if(hspeed < -4) hspeed = -4
+					}
 				} else vspeed = 0.0
 			}
 
