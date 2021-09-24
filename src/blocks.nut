@@ -75,6 +75,7 @@
 		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
 			mapDeleteSolid(mapshape)
 			deleteActor(id)
+			deleteActor(i.id)
 			newActor(Poof, x, y)
 			playSound(sndFlame, 0)
 		}

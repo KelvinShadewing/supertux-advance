@@ -224,11 +224,13 @@
 					if(placeFree(x + 4, y + 4)) {
 						hspeed += 0.1
 						vspeed += 0.5
+						if(!placeFree(x - 2, y - 2) && hspeed < 0) hspeed += 0.2
 					}
 
 					if(placeFree(x - 4, y + 4)) {
 						hspeed -= 0.1
 						vspeed += 0.5
+						if(!placeFree(x + 2, y - 2) && hspeed > 0) hspeed -= 0.2
 					}
 				}
 
