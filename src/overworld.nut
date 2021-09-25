@@ -104,6 +104,8 @@
 		else drawSprite(sprLevels, 0, x - camx, y - camy)
 
 		if(game.allcoins.rawin(level)) drawSprite(sprLevels, 2, x - camx, y - camy)
+		if(game.allenemies.rawin(level)) drawSprite(sprLevels, 3, x - camx, y - camy)
+		if(game.allsecrets.rawin(level)) drawSprite(sprLevels, 4, x - camx, y - camy)
 
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {

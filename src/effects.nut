@@ -78,7 +78,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		playSound(sndCoin, 0)
-		game.coins++
+		game.levelcoins++
 	}
 
 	function run() {

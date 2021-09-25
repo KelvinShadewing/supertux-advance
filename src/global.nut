@@ -10,6 +10,8 @@
 	coins = 0
 	levelcoins = 0
 	maxcoins = 0 //Total coins in the level
+	secrets = 0
+	enemies = 0
 	lives = 0
 	health = 4
 	maxHealth = 4

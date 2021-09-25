@@ -11,6 +11,10 @@
 	gvPlayer = 0
 	actor.clear()
 	game.health = game.maxHealth
+	game.levelcoins = 0
+	game.maxcoins = 0
+	game.secrets = 0
+	game.enemies = 0
 
 	//Load map to play
 	gvMap = Tilemap(level)
@@ -104,20 +108,25 @@
 
 			case 10:
 				newActor(PipeSnake, i.x, i.y)
+				//Enemies are counted at level creation so ones created indefinitely don't count against achievements
+				game.enemies++
 				break
 
 			case 11:
 				local c = actor[newActor(PipeSnake, i.x, i.y - 16)]
 				c.flip = -1
+				game.enemies++
 				break
 
 			case 12:
 				newActor(Deathcap, i.x + 8, i.y - 8)
+				game.enemies++
 				break
 
 			case 13:
 				local c = newActor(Deathcap, i.x + 8, i.y - 8)
 				actor[c].smart = true
+				game.enemies++
 				break
 
 			case 14:
@@ -149,6 +158,7 @@
 
 			case 20:
 				newActor(Ouchin, i.x + 8, i.y - 8)
+				game.enemies++
 				break
 
 			case 21:
@@ -177,10 +187,12 @@
 
 			case 26:
 				newActor(CarlBoom, i.x + 8, i.y - 8)
+				game.enemies++
 				break
 
 			case 27:
 				newActor(SnowBounce, i.x + 8, i.y - 8)
+				game.enemies++
 				break
 		}
 	}
@@ -256,6 +268,8 @@
 				}
 			}
 		}
+		drawSprite(sprCoin, 0, 16, screenH() - 16)
+		drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
 	}
 	else {
 		local ln = 3

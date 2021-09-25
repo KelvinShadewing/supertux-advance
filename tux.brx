@@ -90,3 +90,5 @@ while(!getQuit() && !gvQuit)
 	gvGameMode()
 	update()
 }
+
+print(jsonWrite(game))

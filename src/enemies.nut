@@ -74,6 +74,7 @@
 		newActor(Poof, x, y)
 		deleteActor(id)
 		playSound(sndFlame, 0)
+		game.enemies--
 	}
 
 	function _typeof() { return "Enemy" }
@@ -204,6 +205,7 @@
 
 	function gethurt() {
 		if(squish) return
+		game.enemies--
 
 		if(gvPlayer.rawin("anSlide")) {
 			if(gvPlayer.anim == gvPlayer.anSlide) {
@@ -240,6 +242,7 @@
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
+		game.enemies--
 	}
 
 	function _typeof() { return "Deathcap" }
@@ -304,6 +307,7 @@
 			newActor(Poof, x, ystart - 8)
 			deleteActor(id)
 			playSound(sndKick, 0)
+			game.enemies--
 		}
 	}
 
@@ -311,6 +315,7 @@
 		newActor(Flame, x, ystart - 6)
 		deleteActor(id)
 		playSound(sndFlame, 0)
+		game.enemies--
 	}
 
 	function _typeof() { return "Snake" }
@@ -512,6 +517,7 @@
 				if(squishTime >= 300) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
+					game.enemies--
 				}
 				drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
@@ -550,6 +556,7 @@
 		newActor(BadExplode, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
+		game.enemies--
 	}
 
 	function _typeof() { return "CarlBoom" }
@@ -668,11 +675,13 @@
 		playSound(sndSquish, 0)
 		if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
 		else gvPlayer.vspeed = -2
+		game.enemies--
 	}
 
 	function hurtfire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
+		game.enemies--
 	}
 }
