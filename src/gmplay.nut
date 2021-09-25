@@ -106,6 +106,10 @@
 				c.item = 6
 				break
 
+			case 9:
+				newActor(BadCannon, i.x + 8, i.y - 8)
+				break
+
 			case 10:
 				newActor(PipeSnake, i.x, i.y)
 				//Enemies are counted at level creation so ones created indefinitely don't count against achievements

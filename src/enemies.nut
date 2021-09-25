@@ -686,3 +686,116 @@
 		if(!nocount) game.enemies--
 	}
 }
+
+::BadCannon <- class extends Actor {
+	frame = 3.5
+	timer = 240
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		mapNewSolid(Rec(x, y, 8, 8, 0))
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer != 0) {
+			if(x > gvPlayer.x + 8 && frame > 0.5) frame -= 0.1
+			if(x < gvPlayer.x - 8 && frame < 4.5) frame += 0.1
+
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 200 && timer == 0 && (frame < 1 || frame > 4)) {
+				if(frame < 1) {
+					local c = actor[newActor(CannonBob, x - 4, y - 4)]
+					c.hspeed = ((gvPlayer.x - x) / 96)
+					local d = (y - gvPlayer.y) / 64
+					if(d > 2) d = 2
+					if(y > gvPlayer.y) c.vspeed -= d
+					newActor(Poof, x - 4, y - 4)
+				}
+				if(frame > 4) {
+					local c = actor[newActor(CannonBob, x + 4, y - 4)]
+					c.hspeed = ((gvPlayer.x - x) / 96)
+					local d = (y - gvPlayer.y) / 64
+					if(d > 2) d = 2
+					if(y > gvPlayer.y) c.vspeed -= d
+					newActor(Poof, x + 4, y - 4)
+				}
+				timer = 240
+			}
+
+			if(timer > 0) timer--
+		}
+
+		drawSprite(sprCannon, frame, x - camx, y - camy)
+	}
+
+	function _typeof() { return "BadCannon" }
+}
+
+::CannonBob <- class extends Enemy {
+	vspeed = -2
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 6, 6, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(!frozen) {
+			if(hspeed < 0) drawSpriteEx(sprCannonBob, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, 1)
+			else drawSpriteEx(sprCannonBob, getFrames() / 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+
+			vspeed += 0.05
+			x += hspeed
+			y += vspeed
+			shape.setPos(x, y)
+
+			if(y > gvMap.h) deleteActor(id)
+
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, y)
+				icebox = -1
+				hspeed = 0
+				vspeed = -1.0
+			}
+		}
+		else {
+			if(hspeed < 0) drawSpriteEx(sprCannonBob, 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+			else drawSpriteEx(sprCannonBob, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
+
+			//Create ice block
+			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				icebox = mapNewSolid(shape)
+			}
+
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+	}
+
+	function gethurt() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprCannonBob
+		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+		actor[c].hspeed = (gvPlayer.hspeed / 16)
+		deleteActor(id)
+		playSound(sndKick, 0)
+		if(getcon("jump", "hold")) gvPlayer.vspeed = -5
+		else {
+			gvPlayer.vspeed = -2
+			playSound(sndSquish, 0)
+		}
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+	}
+
+	function _typeof() { return "CannonBob" }
+}
