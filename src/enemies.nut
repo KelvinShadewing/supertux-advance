@@ -514,8 +514,8 @@
 			}
 			else {
 				squishTime++
-				frame += 0.001 * squishTime
-				if(squishTime >= 300) {
+				frame += 0.002 * squishTime
+				if(squishTime >= 150) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
 					if(!nocount) game.enemies--
@@ -668,6 +668,9 @@
 				}
 			}
 		}
+
+		if(x < 0) hspeed = 0.5
+		if(x > gvMap.w) hspeed = -0.5
 	}
 
 	function gethurt() {
@@ -798,4 +801,20 @@
 	}
 
 	function _typeof() { return "CannonBob" }
+}
+
+::BlueFish <- class extends Enemy {
+	timer = 0
+
+	constructor(_x, _y) {
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 0.5
+	}
+
+	function run() {
+		if(!placeFree(x - 1, 0) && hspeed < 0) hspeed = 0.5
+		if(!placeFree(x + 1, 0) && hspeed > 0) hspeed = -0.5
+	}
+
+	function _typeof() { return "BlueFish" }
 }

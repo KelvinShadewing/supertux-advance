@@ -307,25 +307,28 @@
 	}
 
 	function run() {
-		if(v > 0) {
+		if(v == 0) {
 			vspeed = 0
 			v = 0
 		}
 		if(v <= -8) {
 			vspeed = 0.5
 		}
+		if(v >= 8) {
+			vspeed = 0.5
+		}
 
 		if(gvPlayer != 0) {
-			shape.setPos(x, y - 2)
+			shape.setPos(x, y + 2)
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
 				playSound(sndBump, 0)
 			}
 
-			shape.setPos(x, y + 2)
+			shape.setPos(x, y - 2)
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
-				gvPlayer.vspeed = 2
+				gvPlayer.vspeed = -2
 				if(getcon("jump", "hold")) gvPlayer.vspeed = -4
 				vspeed = 1
 				playSound(sndBump, 0)

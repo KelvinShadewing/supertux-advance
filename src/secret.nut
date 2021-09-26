@@ -26,7 +26,7 @@
 		if(debug) {
 			drawText(font, x + 2 - camx, y + 2 - camy, "X: " + x + "\nY: " + y + "\nW: " + dw + "\nH: " + dh + "\nA: " + alpha)
 			setDrawColor(0xffffffff)
-			shape.draw()
+			if(shape != null) shape.draw()
 		}
 	}
 

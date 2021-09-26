@@ -14,7 +14,7 @@
 ::sprTuxFire <- newSprite("res/tuxfire.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxIce <- newSprite("res/tuxice.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxAir <- newSprite("res/tuxair.png", 32, 32, 0, 0, 15, 19)
-::sprTuxOverworld <- newSprite("res/tuxO.png", 14, 17, 0, 0, 7, 15)
+::sprTuxOverworld <- newSprite("res/tuxO.png", 14, 17, 0, 0, 7, 14)
 
 //GUI
 ::sprHealth <- newSprite("res/heart.png",16, 16, 0, 0, 0, 0)
@@ -126,6 +126,7 @@
 ::musCave <- "res/cave.mp3"
 ::musOverworld <- "res/overworld.mp3"
 ::musCity <- "res/village-mixed.mp3"
+::musCastle <- "res/castle.wav"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/invincible.wav")

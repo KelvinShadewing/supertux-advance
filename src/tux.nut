@@ -254,7 +254,7 @@
 			if(flaps > 4) flaps = 4
 			if(canMove) {
 				if(getcon("run", "hold")) {
-					if(game.weapon == 2) mspeed = 2.25
+					if(game.weapon == 2) mspeed = 2.0
 					else mspeed = 1.75
 				}
 				else if(getcon("sneak", "hold")) mspeed = 0.5
@@ -690,11 +690,14 @@
 ::TuxDie <- class extends Actor {
 	vspeed = -3.0
 	timer = 300
+	mywep = 0
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
+		mywep = game.weapon
+		game.weapon = 0
 	}
 
 	function run() {
@@ -706,7 +709,7 @@
 			deleteActor(id)
 			game.weapon = 0
 		}
-		switch(game.weapon) {
+		switch(mywep) {
 			case 0:
 				drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
 				break

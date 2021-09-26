@@ -92,6 +92,7 @@
 
 ::StageIcon <- class extends PhysAct {
 	level = ""
+	visible = true
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
@@ -100,8 +101,10 @@
 	}
 
 	function run() {
-		if(game.completed.rawin(level)) drawSprite(sprLevels, 1, x - camx, y - camy)
-		else drawSprite(sprLevels, 0, x - camx, y - camy)
+		if(visible) {
+			if(game.completed.rawin(level)) drawSprite(sprLevels, 1, x - camx, y - camy)
+			else drawSprite(sprLevels, 0, x - camx, y - camy)
+		}
 
 		if(game.allcoins.rawin(level)) drawSprite(sprLevels, 2, x - camx, y - camy)
 		if(game.allenemies.rawin(level)) drawSprite(sprLevels, 3, x - camx, y - camy)
@@ -176,6 +179,7 @@
 			case 1:
 				local c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
+				c.visible = i.visible
 				break
 		}
 	}

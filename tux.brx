@@ -70,6 +70,9 @@ switch(reschoice) {
 		break
 }
 
+//Uncomment this function if you want to play at actual GBA resolution
+//setResolution(240, 160)
+
 //Set up window
 setWindowTitle("SuperTux Advance")
 setWindowIcon("icon.png")

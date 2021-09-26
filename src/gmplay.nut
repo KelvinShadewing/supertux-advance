@@ -162,7 +162,6 @@
 
 			case 20:
 				newActor(Ouchin, i.x + 8, i.y - 8)
-				game.enemies++
 				break
 
 			case 21:
@@ -254,7 +253,7 @@
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	if(gvInfoBox == "") {
-		drawText(font2, 280 - (gvMap.name.len() * 10), 8, "LV: " + gvMap.name)
+		drawText(font2, screenW() - (gvMap.name.len() * 10) - 4, 8, gvMap.name)
 		for(local i = 0; i < game.maxHealth; i++) {
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
