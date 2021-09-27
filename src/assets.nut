@@ -44,6 +44,8 @@
 ::sprCannonBob <- newSprite("res/cannonbob.png", 16, 16, 0, 0, 8, 8)
 ::sprOuchin <- newSprite("res/ouchin.png", 16, 16, 0, 0, 8, 8)
 ::sprCarlBoom <- newSprite("res/carlboom.png", 16, 16, 0, 0, 8, 8)
+::sprBlueFish <- newSprite("res/fishblue.png", 28, 20, 0, 0, 16, 12)
+::sprRedFish <- newSprite("res/fishred.png", 28, 20, 0, 0, 16, 12)
 
 //Items
 ::sprMuffin <- newSprite("res/muffin.png", 16, 16, 0, 0, 8, 8)

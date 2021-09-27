@@ -197,6 +197,10 @@
 				newActor(SnowBounce, i.x + 8, i.y - 8)
 				game.enemies++
 				break
+
+			case 28:
+				newActor(BlueFish, i.x + 8, i.y - 8)
+				break
 		}
 	}
 

@@ -153,8 +153,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":128,
-                 "y":432
+                 "x":2576,
+                 "y":352
                 }, 
                 {
                  "gid":207,
@@ -815,6 +815,30 @@
                  "width":16,
                  "x":768,
                  "y":496
+                }, 
+                {
+                 "gid":216,
+                 "height":16,
+                 "id":186,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2336,
+                 "y":528
+                }, 
+                {
+                 "gid":216,
+                 "height":16,
+                 "id":187,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2656,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -823,7 +847,7 @@
          "y":0
         }],
  "nextlayerid":22,
- "nextobjectid":186,
+ "nextobjectid":188,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -832,7 +856,7 @@
          "value":"drawBG = dbgForest"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -969,12 +993,12 @@
          "columns":8,
          "firstgid":1025,
          "image":"waterfall.png",
-         "imageheight":48,
+         "imageheight":64,
          "imagewidth":128,
          "margin":0,
          "name":"waterfall",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":32,
          "tileheight":16,
          "tiles":[
                 {

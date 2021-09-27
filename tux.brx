@@ -86,6 +86,10 @@ menu = meMain
 config.playerchar = "Tux"
 //startPlay("res/test.json")
 
+foreach(i in actor) {
+	if(typeof i == "BlueFish") print("X: " + i.x + "\nY: " + i.y)
+}
+
 update()
 while(!getQuit() && !gvQuit)
 {
@@ -93,5 +97,3 @@ while(!getQuit() && !gvQuit)
 	gvGameMode()
 	update()
 }
-
-print(jsonWrite(game))
