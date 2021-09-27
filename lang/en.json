@@ -47,7 +47,9 @@
 		"trees" :
 		"Trees don't grow in Antarctica. That's why penguins\ncarve them out of ice.",
 		"snakes" :
-		"I know it makes about as much sense to have snakes\nin Antarctica as it does to have hungry plants.\n"
+		"I know it makes about as much sense to have snakes\nin Antarctica as it does to have hungry plants.\n",
+		"waterfalls" :
+		"This part of the cave looks especially nice to me.\nI love the spacious background with waterfalls in\nfront of it. I wanted the level to feel like you\nwere meant to explore it, so a scene like this that\nmakes it feel big is meant to convey a sense of\nexploration."
 	},
 
 	"key" : {

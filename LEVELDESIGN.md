@@ -18,6 +18,12 @@ The tile layers include:
 
 * **fg** - Foreground tiles. These are drawn on top of actors and water.
 
+* **mg** - Midground tiles. Draw behind actors but above background. Used for extra decoration.
+
 * **bg** - Background tiles. Drawn behind actors.
 
 * **solid** - Pink blocks define solid geometry for the level. The green blocks are used to make ladders.
+
+## Level Size
+
+Level dimensions should have an area around 320x20 tiles. Levels don't need to be purely horizontal, but should have a similar area so that they aren't too long. Rather than use checkpoints, I prefer to have a higher quantity of short levels. The reason for this is level achievements: coins, enemies, and secrets. Starting over from a checkpoint means losing the chance of getting these without having to backtrack. A level that's short enough to comfortably play from the beginning mitigates this.

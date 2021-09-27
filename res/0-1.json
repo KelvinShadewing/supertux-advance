@@ -1871,6 +1871,18 @@
                  "width":16,
                  "x":2000,
                  "y":880
+                }, 
+                {
+                 "gid":211,
+                 "height":16,
+                 "id":206,
+                 "name":"waterfalls",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":960,
+                 "y":848
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1879,7 +1891,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":206,
+ "nextobjectid":207,
  "orientation":"orthogonal",
  "properties":[
         {

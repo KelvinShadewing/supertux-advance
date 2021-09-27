@@ -119,6 +119,41 @@
 	function _typeof() { return "StageIcon" }
 }
 
+::WorldIcon <- class extends PhysAct {
+	level = ""
+	world = ""
+	visible = true
+	px = 0
+	py = 0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+		if(world == "" && level != "") {
+			local arr = split(level, ",")
+			world = arr[0]
+			px = arr[1].tointeger()
+			py = arr[2].tointeger()
+			print("World: " + world + "\nX: " + px + "\nY: " + py)
+		}
+
+		//Selected
+		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+				game.owx = px
+				game.owy = py
+				startOverworld("res/" + level + ".json")
+			}
+		}
+	}
+
+	function _typeof() { return "WorldIcon" }
+}
+
 ::startOverworld <- function(world) {
 	//Clear actors and start creating new ones
 	gvPlayer = 0
@@ -181,6 +216,11 @@
 				c.level = i.name
 				c.visible = i.visible
 				break
+
+			case 2:
+				local c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
+				c.level = i.name
+				break
 		}
 	}
 
@@ -203,7 +243,9 @@
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
 	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
+	//Actor types are explicitly called this way to ensure the player is drawn on top
 	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
+	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
 	if(gvPlayer != 0) gvPlayer.run()
 
 	drawDebug()

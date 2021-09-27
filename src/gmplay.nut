@@ -7,6 +7,8 @@
 
 ::startPlay <- function(level)
 {
+	if(!fileExists(level)) return
+	
 	//Clear actors and start creating new ones
 	gvPlayer = 0
 	actor.clear()
