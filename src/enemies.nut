@@ -592,6 +592,7 @@
 				if(hitTest(shape, i.shape)) {
 					newActor(BadExplode, i.x, i.y)
 					if(i.icebox != -1) mapDeleteSolid(i.icebox)
+					if(!i.nocount) game.enemies--
 					deleteActor(i.id)
 				}
 			}

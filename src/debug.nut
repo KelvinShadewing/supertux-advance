@@ -61,6 +61,8 @@
 	if(gvMap != 0) message += "Map W: " + gvMap.w + "\n"
 	if(gvMap != 0) message += "Map H: " + gvMap.h + "\n"
 	message += "SRT: " + floor(getTicks() / 1000) + "\n"
+	message += "Enemies: " + game.enemies + "\n"
+	message += "Secrets: " + game.secrets + "\n"
 
 	drawText(font, 0, 32, message)
 }
