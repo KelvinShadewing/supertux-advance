@@ -396,14 +396,20 @@
 						}
 					}
 				} else {
-					if(hspeed > 0) hspeed -= friction
-					if(hspeed < 0) hspeed += friction
+					if(hspeed > 0) {
+						if(!getcon("right", "hold")) hspeed -= friction
+						else hspeed -= friction / 4
+					}
+					if(hspeed < 0) {
+						if(!getcon("left", "hold")) hspeed += friction
+						else hspeed += friction / 4
+					}
 				}
 			}
-			else {
-					if(hspeed > 0) hspeed -= friction / 6
-					if(hspeed < 0) hspeed += friction / 6
-				}
+			else if(anim != anSlide && anim != anDive) {
+				if(hspeed > 0 && !getcon("right", "hold")) hspeed -= friction / 3
+				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3
+			}
 			if(anim != anSlide) {
 				if(placeFree(x, y - 8)) shape = shapeStand
 				if(!placeFree(x, y)) shape = shapeSlide
@@ -547,6 +553,72 @@
 			if(anim != anClimb && anim != anWall) {
 				if(hspeed > 0.1) flip = 0
 				if(hspeed < -0.1) flip = 1
+			}
+
+			//Attacks
+			if(firetime > 0) firetime--
+			switch(game.weapon) {
+				case 1:
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = actor[newActor(Fireball, x + fx, y - 4)]
+						if(!flip) c.hspeed = 1.5
+						else c.hspeed = -1.5
+						firetime = 30
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold")) {
+							c.vspeed = -1.0
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -1.5
+							}
+						}
+						if(getcon("down", "hold")) {
+							c.vspeed = 1.0
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 1.5
+							}
+						}
+
+						c.hspeed += hspeed / 1.5
+						c.vspeed += vspeed / 1.5
+					}
+					break
+
+				case 2:
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = actor[newActor(Iceball, x + fx, y - 4)]
+						if(!flip) c.hspeed = 1.5
+						else c.hspeed = -1.5
+						firetime = 30
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold")) {
+							c.vspeed = -1.0
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -1.5
+							}
+						}
+						if(getcon("down", "hold")) {
+							c.vspeed = 1.0
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 1.5
+							}
+						}
+
+						c.hspeed += hspeed / 2
+						c.vspeed += vspeed / 2
+					}
+					break
 			}
 		}
 

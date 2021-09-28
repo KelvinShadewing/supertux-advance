@@ -1,5 +1,5 @@
 ::Fireball <- class extends PhysAct {
-	gravity = 0.1
+	timer = 90
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
@@ -8,13 +8,20 @@
 	}
 
 	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
 		if(!placeFree(x, y + 1)) vspeed = -1.2
 		if(!placeFree(x, y - 1)) vspeed = 1
 		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
 			else deleteActor(id)
 		}
-		vspeed += gravity
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.99
+			vspeed *= 0.99
+		}
 
 		if(placeFree(x + hspeed, y)) x += hspeed
 		else if(placeFree(x + hspeed, y - 2)) {
@@ -26,7 +33,7 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
-		if(y > gvMap.h || inWater(x, y)) {
+		if(y > gvMap.h) {
 			deleteActor(id)
 			newActor(Poof, x, y)
 		}
@@ -41,6 +48,8 @@
 }
 
 ::Iceball <- class extends PhysAct {
+	timer = 90
+
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
@@ -48,13 +57,20 @@
 	}
 
 	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
 		if(!placeFree(x, y + 1)) vspeed = -1.2
 		if(!placeFree(x, y - 1)) vspeed = 1
 		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
 			else deleteActor(id)
 		}
-		vspeed += 0.1
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.99
+			vspeed *= 0.99
+		}
 
 		if(placeFree(x + hspeed, y)) x += hspeed
 		else if(placeFree(x + hspeed, y - 2)) {
@@ -66,7 +82,7 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
-		if(y > gvMap.h || inWater(x, y)) {
+		if(y > gvMap.h) {
 			deleteActor(id)
 			newActor(Poof, x, y)
 		}

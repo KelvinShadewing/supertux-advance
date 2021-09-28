@@ -138,7 +138,6 @@
 			world = arr[0]
 			px = arr[1].tointeger()
 			py = arr[2].tointeger()
-			print("World: " + world + "\nX: " + px + "\nY: " + py)
 		}
 
 		//Selected

@@ -393,6 +393,8 @@
 	vspeed = 0.0
 	angle = 0.0
 	spin = 0
+	flip = 0
+	gravity = 0.1
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
@@ -400,12 +402,12 @@
 	}
 
 	function run() {
-		vspeed += 0.1
+		vspeed += gravity
 		x += hspeed
 		y += vspeed
 		angle += spin
 		if(y > gvMap.h + 32) deleteActor(id)
-		drawSpriteEx(sprite, frame, floor(x - camx), floor(y - camy), angle, 0, 1, 1, 1)
+		drawSpriteEx(sprite, frame, floor(x - camx), floor(y - camy), angle, flip, 1, 1, 1)
 	}
 }
 
@@ -851,6 +853,20 @@
 	}
 
 	function gethurt() {}
+
+	function hurtfire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprBlueFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+	}
 
 	function _typeof() { return "BlueFish" }
 }
