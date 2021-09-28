@@ -20,10 +20,10 @@
 	allcoins = {} //Levels that the player has gotten all enemies in
 	allenemies = {} //Levels that the player has beaten all enemies in
 	allsecrets = {} //Levels the player has found all secrets in
-	characters = [ //List of unlocked characters
-		["Tux", sprTuxOverworld]
-	]
-	playerchar = 0 //Current player character
+	characters = { //List of unlocked characters
+		Tux = sprTuxOverworld
+	}
+	playerchar = "Tux" //Current player character
 	world = "res/overworld-0.json"
 	owx = 0
 	owy = 0

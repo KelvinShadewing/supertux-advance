@@ -83,8 +83,8 @@
 		x += hspeed
 		y += vspeed
 
-		if(hspeed == 0 && vspeed == 0) drawSprite(sprTuxOverworld, 0, x - camx, y - camy)
-		else drawSprite(sprTuxOverworld, getFrames() / 8, x - camx, y - camy)
+		if(hspeed == 0 && vspeed == 0) drawSprite(game.characters[game.playerchar], 0, x - camx, y - camy)
+		else drawSprite(game.characters[game.playerchar], getFrames() / 8, x - camx, y - camy)
 	}
 
 	function _typeof() { return "OverPlayer" }

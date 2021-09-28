@@ -8,7 +8,7 @@
 ::startPlay <- function(level)
 {
 	if(!fileExists(level)) return
-	
+
 	//Clear actors and start creating new ones
 	gvPlayer = 0
 	actor.clear()
@@ -66,7 +66,7 @@
 		{
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
-				if(gvPlayer == 0) newActor(Tux, i.x, i.y - 16)
+				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) newActor(getroottable()[game.playerchar], i.x, i.y - 16)
 				break
 
 			case 1:
