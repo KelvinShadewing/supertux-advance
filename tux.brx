@@ -81,6 +81,13 @@ setFPS(60)
 
 if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
 gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
+strDifficulty = [
+	gvLangObj["difficulty-levels"]["easy"],
+	gvLangObj["difficulty-levels"]["normal"],
+	gvLangObj["difficulty-levels"]["hard"],
+	gvLangObj["difficulty-levels"]["super"]
+]
+
 startMain()
 menu = meMain
 config.playerchar = "Tux"

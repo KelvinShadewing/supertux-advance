@@ -43,11 +43,7 @@
  # custom characters playable.
 \*/
 
-::strDifficulty <- [
-	"Easy",
-	"Normal",
-	"Hard"
-]
+::strDifficulty <- []
 
 ::config <- {
 	difficulty = 0

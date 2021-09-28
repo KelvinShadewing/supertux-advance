@@ -76,16 +76,20 @@
 
 ::meDifficulty <- [
 	{
-		name = function() { return "Easy" },
+		name = function() { return gvLangObj["difficulty-levels"]["easy"] },
 		func = function() { config.difficulty = 0; cursor = 0; menu = meOptions }
 	},
 	{
-		name = function() { return "Normal"; },
+		name = function() { return gvLangObj["difficulty-levels"]["normal"] },
 		func = function() { config.difficulty = 1; cursor = 0; menu = meOptions }
 	},
 	{
-		name = function() { return "Hard"; },
+		name = function() { return gvLangObj["difficulty-levels"]["hard"] },
 		func = function() { config.difficulty = 2; cursor = 0; menu = meOptions }
+	},
+	{
+		name = function() { return gvLangObj["difficulty-levels"]["super"] },
+		func = function() { config.difficulty = 3; cursor = 0; menu = meOptions }
 	}
 ]
 
