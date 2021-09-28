@@ -400,6 +400,10 @@
 					if(hspeed < 0) hspeed += friction
 				}
 			}
+			else {
+					if(hspeed > 0) hspeed -= friction / 6
+					if(hspeed < 0) hspeed += friction / 6
+				}
 			if(anim != anSlide) {
 				if(placeFree(x, y - 8)) shape = shapeStand
 				if(!placeFree(x, y)) shape = shapeSlide

@@ -315,7 +315,7 @@
 			vspeed = 0.5
 		}
 		if(v >= 8) {
-			vspeed = 0.5
+			vspeed = -0.5
 		}
 
 		if(gvPlayer != 0) {
@@ -327,9 +327,9 @@
 			}
 
 			shape.setPos(x, y - 2)
-			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
-				gvPlayer.vspeed = -2
-				if(getcon("jump", "hold")) gvPlayer.vspeed = -4
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed >= 0 && v == 0) if(full){
+				gvPlayer.vspeed = -2.5
+				if(getcon("jump", "hold")) gvPlayer.vspeed = -5
 				vspeed = 1
 				playSound(sndBump, 0)
 			}
@@ -339,7 +339,7 @@
 
 		v += vspeed
 
-		if(full || vspeed < 0) drawSprite(sprBoxInfo, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
+		if(full || vspeed < 0) drawSprite(sprBoxBounce, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
 		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }

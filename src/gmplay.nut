@@ -203,6 +203,10 @@
 			case 28:
 				newActor(BlueFish, i.x + 8, i.y - 8)
 				break
+
+			case 30:
+				newActor(BounceBlock, i.x + 8, i.y - 8)
+				break
 		}
 	}
 
