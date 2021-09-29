@@ -9,7 +9,7 @@
 ::gmMain <- function()
 {
 	drawBG()
-	drawSprite(sprTitle, 0, 160, 16)
+	drawSprite(sprTitle, 0, screenW() / 2, 16)
 	drawDebug()
 
 	textMenu()
