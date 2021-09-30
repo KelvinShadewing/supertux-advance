@@ -52,6 +52,8 @@ Lukas Nystrand - Chippdisko
 
 [Ted Kerr](https://opengameart.org/users/wolfgang) - 8bit Upbeat Town
 
+[Joth](https://opengameart.org/users/joth) - Black Diamond
+
 ## Donors
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**

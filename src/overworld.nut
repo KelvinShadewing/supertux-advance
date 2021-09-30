@@ -119,6 +119,26 @@
 	function _typeof() { return "StageIcon" }
 }
 
+::TownIcon <- class extends PhysAct {
+	level = ""
+	visible = true
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+		//Selected
+		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/" + level + ".json")
+		}
+	}
+
+	function _typeof() { return "TownIcon" }
+}
+
 ::WorldIcon <- class extends PhysAct {
 	level = ""
 	world = ""
@@ -220,6 +240,11 @@
 				local c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
 				break
+
+			case 3:
+				local c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
+				c.level = i.name
+				break
 		}
 	}
 
@@ -245,6 +270,7 @@
 	//Actor types are explicitly called this way to ensure the player is drawn on top
 	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
 	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
+	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
 	if(gvPlayer != 0) gvPlayer.run()
 
 	drawDebug()
