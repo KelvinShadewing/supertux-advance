@@ -244,7 +244,7 @@
 
 	if(gvPlayer != 0)
 	{
-		px = (gvPlayer.x + gvPlayer.hspeed * 24) - (screenW() / 2)
+		px = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
 		py = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2)
 	} else {
 		px = camx
