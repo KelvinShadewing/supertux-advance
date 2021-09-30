@@ -34,6 +34,9 @@
 ::sprKelvinScarf <- newSprite("res/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxBounce <- newSprite("res/bouncebox.png", 16, 16, 0, 0, 0, 0)
 
+//NPCs
+::sprRadGuin <- newSprite("res/radguin.png", 22, 32, 0, 0, 16, 32)
+
 //Enemies
 ::sprSnake <- newSprite("res/snake.png", 16, 32, 0, 0, 8, 0)
 ::sprDeathcap <- newSprite("res/deathcap.png", 16, 16, 0, 0, 8, 9)

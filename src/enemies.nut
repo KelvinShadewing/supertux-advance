@@ -718,13 +718,21 @@
 					if(y > gvPlayer.y) c.vspeed -= d
 					newActor(Poof, x - 4, y - 4)
 				}
-				if(frame > 4) {
+				if(frame >= 4) {
 					local c = actor[newActor(CannonBob, x + 4, y - 4)]
 					c.hspeed = ((gvPlayer.x - x) / 96)
 					local d = (y - gvPlayer.y) / 64
 					if(d > 2) d = 2
 					if(y > gvPlayer.y) c.vspeed -= d
 					newActor(Poof, x + 4, y - 4)
+				}
+				if(frame >= 1 && frame <= 4) {
+					local c = actor[newActor(CannonBob, x, y - 4)]
+					c.hspeed = ((gvPlayer.x - x) / 96)
+					local d = (y - gvPlayer.y) / 64
+					if(d > 2) d = 2
+					if(y > gvPlayer.y) c.vspeed -= d
+					newActor(Poof, x, y - 4)
 				}
 				timer = 240
 			}

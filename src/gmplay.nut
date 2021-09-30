@@ -208,6 +208,11 @@
 			case 30:
 				newActor(BounceBlock, i.x + 8, i.y - 8)
 				break
+
+			case 31:
+				local c = actor[newActor(NPC, i.x, i.y)]
+				c.args = i.name
+				break
 		}
 	}
 

@@ -145,18 +145,6 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":188,
-                 "height":16,
-                 "id":1,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2576,
-                 "y":352
-                }, 
-                {
                  "gid":207,
                  "height":16,
                  "id":48,
@@ -863,6 +851,30 @@
                  "width":16,
                  "x":2688,
                  "y":288
+                }, 
+                {
+                 "gid":219,
+                 "height":16,
+                 "id":190,
+                 "name":"rad0,sprRadGuin,0",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2560,
+                 "y":304
+                }, 
+                {
+                 "gid":188,
+                 "height":16,
+                 "id":192,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2592,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -871,7 +883,7 @@
          "y":0
         }],
  "nextlayerid":22,
- "nextobjectid":190,
+ "nextobjectid":193,
  "orientation":"orthogonal",
  "properties":[
         {

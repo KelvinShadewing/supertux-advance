@@ -52,6 +52,12 @@
 		"This part of the cave looks especially nice to me.\nI love the spacious background with waterfalls in\nfront of it. I wanted the level to feel like you\nwere meant to explore it, so a scene like this that\nmakes it feel big is meant to convey a sense of\nexploration."
 	},
 
+	"npc" : {
+		"rad0" :
+		"Hey, where's your board? Are you gonna slide on\nyour belly like a square? I bet you couldn't get\nevery coin on this hill like that. If you do,\nI'll give ya something that'll really help you\ncatch some air!"
+
+	},
+
 	"key" : {
 		"0" : "_0",
 		"1" : "_1",
