@@ -668,6 +668,8 @@
 		if(y < -100) y = -100.0
 
 		//Hurt
+		if(onHazard(x, y)) hurt = true
+		
 		if(hurt) {
 			hurt = false
 			if(blinking == 0) {

@@ -338,22 +338,22 @@
 
 		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
 			if(x > gvPlayer.x) {
-				gvPlayer.x--
+				if(gvPlayer.placeFree(gvPlayer.x - 1, gvPlayer.y)) gvPlayer.x--
 				gvPlayer.hspeed -= 0.1
 			}
 
 			if(x < gvPlayer.x) {
-				gvPlayer.x++
+				if(gvPlayer.placeFree(gvPlayer.x + 1, gvPlayer.y)) gvPlayer.x++
 				gvPlayer.hspeed += 0.1
 			}
 
 			if(y > gvPlayer.y) {
-				gvPlayer.y--
+				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y - 1)) gvPlayer.y--
 				gvPlayer.vspeed -= 0.1
 			}
 
 			if(y < gvPlayer.y) {
-				gvPlayer.y++
+				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 1)) gvPlayer.y++
 				gvPlayer.vspeed += 0.1
 			}
 		}
