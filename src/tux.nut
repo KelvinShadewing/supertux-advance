@@ -669,7 +669,7 @@
 
 		//Hurt
 		if(onHazard(x, y)) hurt = true
-		
+
 		if(hurt) {
 			hurt = false
 			if(blinking == 0) {
@@ -772,7 +772,7 @@
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
-		stopMusic()
+		if(game.lives == 0) stopMusic()
 		playSound(sndDie, 0)
 		mywep = game.weapon
 		game.weapon = 0
@@ -783,9 +783,11 @@
 		y += vspeed
 		timer--
 		if(timer == 0) {
-			startPlay(gvMap.file)
+			if(game.lives == 0 || game.check == false) startPlay(gvMap.file)
+			else gvPlayer = actor[newActor(getroottable()[game.playerchar], game.chx, game.y)]
 			deleteActor(id)
 			game.weapon = 0
+			if(game.lives > 0) game.lives--
 		}
 		switch(mywep) {
 			case 0:

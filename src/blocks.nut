@@ -344,3 +344,23 @@
 		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }
+
+::Checkpoint <- class extends Actor {
+	shape = null
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 8, 8, 8, 0)
+	}
+
+	function run() {
+		if(gvPlayer != 0 && game.check == false) if(hitTest(shape, gvPlayer.shape)) {
+			game.check = true
+			game.chx = x
+			game.chy = y
+		}
+	}
+
+	function _typeof() { return "Checkpoint" }
+}

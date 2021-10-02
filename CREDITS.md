@@ -54,6 +54,10 @@ Lukas Nystrand - Chippdisko
 
 [Joth](https://opengameart.org/users/joth) - Black Diamond
 
+## Level Contributors
+
+[Frost Milestone](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - 0-2
+
 ## Donors
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**

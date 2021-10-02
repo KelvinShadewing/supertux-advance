@@ -259,6 +259,12 @@
 		camy = 0
 	}
 
+	//Reset auto/locked controls
+	autocon.up = false
+	autocon.down = false
+	autocon.left = false
+	autocon.right = false
+
 	update()
 }
 

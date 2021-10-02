@@ -18,6 +18,7 @@
 	game.maxcoins = 0
 	game.secrets = 0
 	game.enemies = 0
+	game.check = false
 
 	//Load map to play
 	gvMap = Tilemap(level)
@@ -233,6 +234,12 @@
 	//in the log if the map fails, so users can check why a level
 	//refuses to run.
 
+	//Reset auto/locked controls
+	autocon.up = false
+	autocon.down = false
+	autocon.left = false
+	autocon.right = false
+
 	update()
 }
 
@@ -290,6 +297,8 @@
 		}
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
 		drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
+		drawSprite(game.characters[game.playerchar], 0, screenW() - 16, screenH() - 12)
+		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 	}
 	else {
 		local ln = 3

@@ -33,6 +33,7 @@
 ::sprBoxInfo <- newSprite("res/infobox.png", 16, 16, 0, 0, 0, 0)
 ::sprKelvinScarf <- newSprite("res/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxBounce <- newSprite("res/bouncebox.png", 16, 16, 0, 0, 0, 0)
+::sprCheckBell <- newSprite("res/bell.png", 16, 16, 0, 0, 8, 0)
 
 //NPCs
 ::sprRadGuin <- newSprite("res/radguin.png", 22, 32, 0, 0, 16, 32)
@@ -91,7 +92,7 @@
 ::tsSnow <- newSprite("res/tsSnow.png", 16, 16, 0, 0, 0, 0)
 ::tsSigns <- newSprite("res/signpost.png", 16, 16, 0, 0, 0, 0)
 ::tsGoal <- newSprite("res/goal.png", 16, 16, 0, 0, 0, 0)
-::tsCastle <-
+::tsCastle <- newSprite("res/tsCastle.png", 16, 16, 0, 0, 0, 0)
 
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/rockgapsBG.png", 400, 392, 0, 0, 0, 0)

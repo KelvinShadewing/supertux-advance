@@ -28,6 +28,9 @@
 	owx = 0
 	owy = 0
 	owd = 0
+	check = false //If a checkpoint has been activated
+	chx = 0
+	chy = 0
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- 0; //Pointer to player actor

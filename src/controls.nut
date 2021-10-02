@@ -1,3 +1,10 @@
+::autocon <- { //Has nothing to do with Transformers
+	up = false
+	down = false
+	left = false
+	right = false
+}
+
 ::getcon <- function(control, state) {
 	local keyfunc = 0
 	local joyfunc = 0
@@ -26,16 +33,16 @@
 
 	switch(control) {
 		case "up":
-			if(keyfunc(config.key.up) || hatfunc(0, js_up) || joyY(0) < -js_max / 10) return true
+			if(keyfunc(config.key.up) || hatfunc(0, js_up) || joyY(0) < -js_max / 10 || autocon.up) return true
 			break
 		case "down":
-			if(keyfunc(config.key.down) || hatfunc(0, js_down) || joyY(0) > js_max / 10) return true
+			if(keyfunc(config.key.down) || hatfunc(0, js_down) || joyY(0) > js_max / 10 || autocon.down) return true
 			break
 		case "left":
-			if(keyfunc(config.key.left) || hatfunc(0, js_left) || joyX(0) < -js_max / 10) return true
+			if(keyfunc(config.key.left) || hatfunc(0, js_left) || joyX(0) < -js_max / 10 || autocon.left) return true
 			break
 		case "right":
-			if(keyfunc(config.key.right) || hatfunc(0, js_right) || joyX(0) > js_max / 10) return true
+			if(keyfunc(config.key.right) || hatfunc(0, js_right) || joyX(0) > js_max / 10 || autocon.right) return true
 			break
 		case "jump":
 			if(keyfunc(config.key.jump) || joyfunc(0, config.joy.jump)) return true

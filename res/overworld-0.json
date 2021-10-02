@@ -83,7 +83,7 @@
                  "gid":822,
                  "height":16,
                  "id":4,
-                 "name":"",
+                 "name":"0-2",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -251,7 +251,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -761,12 +761,12 @@
          "columns":8,
          "firstgid":821,
          "image":"actors.png",
-         "imageheight":64,
+         "imageheight":80,
          "imagewidth":128,
          "margin":0,
          "name":"actor",
          "spacing":0,
-         "tilecount":32,
+         "tilecount":40,
          "tileheight":16,
          "tilewidth":16
         }],
