@@ -219,6 +219,15 @@
 			case 32:
 				newActor(Checkpoint, i.x + 8, i.y - 16)
 				break
+
+			case 33:
+				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+				c.item = 8
+				break
+
+			case 34:
+				newActor(TNT, i.x + 8, i.y - 8)
+				break
 		}
 	}
 
@@ -300,7 +309,8 @@
 			}
 		}
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
-		drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
+		if(game.maxcoins > 0) drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
+		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		drawSprite(game.characters[game.playerchar], 0, screenW() - 16, screenH() - 12)
 		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 	}

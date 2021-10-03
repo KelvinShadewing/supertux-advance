@@ -792,7 +792,7 @@
 				gvPlayer.invincible = 240
 				game.health = game.maxHealth
 			}
-			if(game.lives > 0) game.lives--
+			if(game.check == false || config.difficulty > 0) if(game.lives > 0) game.lives--
 		}
 		switch(mywep) {
 			case 0:

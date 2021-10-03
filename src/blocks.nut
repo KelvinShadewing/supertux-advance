@@ -167,6 +167,10 @@
 				case 7:
 					newActor(AirFeather, x, y - 16)
 					break
+
+				case 8:
+					//1up item
+					break
 			}
 		}
 
@@ -366,4 +370,48 @@
 	}
 
 	function _typeof() { return "Checkpoint" }
+}
+
+::TNT <- class extends Actor {
+	shape = null
+	mapshape = null
+	gothit = false
+	hittime = 0.0
+	frame = 0.0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 12, 12, 0)
+		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+	}
+
+	function run() {
+		if(gothit) {
+			hittime++
+			frame += 0.002 * hittime
+			if(hittime >= 150) {
+				deleteActor(id)
+				newActor(BadExplode, x, y)
+			}
+		}
+		else {
+			//Hit by player
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
+				gothit = true
+				playSound(sndFizz, 0)
+			}
+
+			if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) if(hitTest(shape, i.shape)) {
+				mapDeleteSolid(mapshape)
+				deleteActor(id)
+				newActor(BadExplode, x, y)
+				deleteActor(i.id)
+			}
+		}
+
+		drawSprite(sprTNT, frame, x - 8 - camx, y - 8 - camy)
+	}
+
+	function _typeof() { return "TNT" }
 }

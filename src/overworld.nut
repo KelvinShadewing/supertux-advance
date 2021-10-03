@@ -279,6 +279,11 @@
 	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
 	if(gvPlayer != 0) gvPlayer.run()
 
+	drawSprite(sprCoin, 0, 16, screenH() - 16)
+	drawText(font2, 24, screenH() - 23, game.coins.tostring())
+	drawSprite(game.characters[game.playerchar], 0, screenW() - 16, screenH() - 12)
+	drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
+
 	drawDebug()
 
 	if(keyPress(k_escape)) startMain()

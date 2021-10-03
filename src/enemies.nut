@@ -598,6 +598,22 @@
 					deleteActor(i.id)
 				}
 			}
+
+			if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
+				if(hitTest(shape, i.shape)) {
+					newActor(WoodChunks, i.x, i.y)
+					if(i.mapshape != -1) mapDeleteSolid(i.mapshape)
+					deleteActor(i.id)
+				}
+			}
+
+			if(actor.rawin("TNT")) foreach(i in actor["TNT"]) {
+				if(hitTest(shape, i.shape)) {
+					newActor(BadExplode, i.x, i.y)
+					if(i.mapshape != -1) mapDeleteSolid(i.mapshape)
+					deleteActor(i.id)
+				}
+			}
 		}
 		if(frame >= 5) deleteActor(id)
 	}

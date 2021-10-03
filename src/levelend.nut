@@ -23,6 +23,7 @@
 		stopMusic()
 		if(!game.completed.rawin(gvMap.name)) game.completed[gvMap.name] <- true
 		newActor(LevelEnder, 0, 0)
+		game.lives += floor(game.levelcoins / 50)
 	}
 	gvPlayer = 0
 }
