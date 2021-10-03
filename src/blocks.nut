@@ -360,6 +360,9 @@
 			game.chx = x
 			game.chy = y
 		}
+
+		if(game.check) drawSprite(sprCheckBell, getFrames() / 16, x - camx, y - camy)
+		else drawSprite(sprCheckBell, 0, x - camx, y - camy)
 	}
 
 	function _typeof() { return "Checkpoint" }

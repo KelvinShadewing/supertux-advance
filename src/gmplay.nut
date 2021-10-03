@@ -215,6 +215,10 @@
 				local c = actor[newActor(NPC, i.x, i.y)]
 				c.args = i.name
 				break
+
+			case 32:
+				newActor(Checkpoint, i.x + 8, i.y - 16)
+				break
 		}
 	}
 
@@ -253,14 +257,14 @@
 	if(gvPlayer != 0)
 	{
 		px = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
-		py = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2)
+		py = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
 	} else {
 		px = camx
 		py = camy
 	}
 
 	camx += (px - camx) / 16
-	camy += (py - camy) / 16
+	camy += (py - camy) / 2
 
 	if(camx > ux) camx = ux
 	if(camx < 0) camx = 0

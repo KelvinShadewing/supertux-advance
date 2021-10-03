@@ -627,8 +627,8 @@
 
 		if(active) {
 			if(!placeFree(x, y + 1)) vspeed = -2.5
-			if(!placeFree(x + 1, y)) hspeed = -0.5
-			if(!placeFree(x - 1, y)) hspeed = 0.5
+			if(!placeFree(x + 2, y)) hspeed = -0.5
+			if(!placeFree(x - 2, y)) hspeed = 0.5
 			vspeed += 0.05
 
 			if(hspeed > 0) flip = 0

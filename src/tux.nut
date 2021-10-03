@@ -775,7 +775,7 @@
 		if(game.lives == 0) stopMusic()
 		playSound(sndDie, 0)
 		mywep = game.weapon
-		game.weapon = 0
+		if(game.lives == 0 && config.difficulty > 0) game.weapon = 0
 	}
 
 	function run() {
@@ -784,9 +784,14 @@
 		timer--
 		if(timer == 0) {
 			if(game.lives == 0 || game.check == false) startPlay(gvMap.file)
-			else gvPlayer = actor[newActor(getroottable()[game.playerchar], game.chx, game.y)]
-			deleteActor(id)
-			game.weapon = 0
+			else {
+				gvPlayer = actor[newActor(getroottable()[game.playerchar], 0, 0)]
+				playerTeleport(game.chx, game.chy)
+				deleteActor(id)
+				gvPlayer.tftime = 0
+				gvPlayer.invincible = 240
+				game.health = game.maxHealth
+			}
 			if(game.lives > 0) game.lives--
 		}
 		switch(mywep) {

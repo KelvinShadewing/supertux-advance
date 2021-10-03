@@ -27,6 +27,13 @@
 	if(keyPress(k_2)) game.weapon = 1
 	if(keyPress(k_3)) game.weapon = 2
 	if(keyPress(k_4)) game.weapon = 3
+	if(keyPress(k_equals)) game.lives++
+
+	//Teleport
+	if(gvPlayer != 0 && mousePress(0)) {
+		gvPlayer.x = mouseX() + camx
+		gvPlayer.y = mouseY() + camy
+	}
 
 	local message = ""
 
@@ -65,4 +72,8 @@
 	message += "Secrets: " + game.secrets + "\n"
 
 	drawText(font, 0, 32, message)
+
+	setDrawColor(0xff0000ff)
+	drawLine(mouseX() - 8, mouseY(), mouseX() + 8, mouseY())
+	drawLine(mouseX(), mouseY() - 8, mouseX(), mouseY() + 8)
 }
