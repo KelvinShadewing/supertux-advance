@@ -42,6 +42,8 @@
 
 [Spring](https://opengameart.org/users/spring-spring) - Large flame
 
+[Frost Milestone](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin
+
 ## Music
 
 Lukas Nystrand - Chippdisko
