@@ -36,6 +36,8 @@
 
 		drawSprite(sprWoodBox, 0, x - 8 - camx, y - 8 - camy)
 	}
+
+	function _typeof() { return "WoodBlock" }
 }
 
 ::IceBlock <- class extends Actor {
@@ -382,7 +384,7 @@
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y, 12, 12, 0)
+		shape = Rec(x, y, 10, 10, 0)
 		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
 	}
 
