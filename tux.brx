@@ -92,7 +92,7 @@ strDifficulty = [
 startMain()
 menu = meMain
 config.playerchar = "Tux"
-startPlay("res/test.json")
+//startPlay("res/test.json")
 
 foreach(i in actor) {
 	if(typeof i == "BlueFish") print("X: " + i.x + "\nY: " + i.y)

@@ -772,7 +772,7 @@
 
 	constructor(_x, _y) {
 		base.constructor(_x, _y)
-		if(game.lives == 0) stopMusic()
+		if(game.lives == 0 || game.check == false) stopMusic()
 		playSound(sndDie, 0)
 		mywep = game.weapon
 		if(game.lives == 0 && config.difficulty > 0) game.weapon = 0

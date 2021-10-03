@@ -266,14 +266,14 @@
 	if(gvPlayer != 0)
 	{
 		px = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
-		py = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+		py = (gvPlayer.y + gvPlayer.vspeed * 8) - (screenH() / 2)
 	} else {
 		px = camx
 		py = camy
 	}
 
 	camx += (px - camx) / 16
-	camy += (py - camy) / 2
+	camy += (py - camy) / 8
 
 	if(camx > ux) camx = ux
 	if(camx < 0) camx = 0
