@@ -391,6 +391,7 @@
 			hittime++
 			frame += 0.002 * hittime
 			if(hittime >= 150) {
+				mapDeleteSolid(mapshape)
 				deleteActor(id)
 				newActor(BadExplode, x, y)
 			}
