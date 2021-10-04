@@ -54,7 +54,7 @@ Lukas Nystrand - Chippdisko
 
 [Ted Kerr](https://opengameart.org/users/wolfgang) - 8bit Upbeat Town
 
-[Joth](https://opengameart.org/users/joth) - Black Diamond
+[Joth](https://opengameart.org/users/joth) - Black Diamond, Emotional Deluge
 
 ## Level Contributors
 
