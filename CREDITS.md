@@ -42,7 +42,9 @@
 
 [Spring](https://opengameart.org/users/spring-spring) - Large flame
 
-[Frost Milestone](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin, strawberry muffin
+
+[TheCheeseWeez]() - Mega muffin
 
 ## Music
 
@@ -58,7 +60,13 @@ Lukas Nystrand - Chippdisko
 
 ## Level Contributors
 
-[Frost Milestone](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - 0-2
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - 0-2
+
+## Translators
+
+[TheCheeseWeez]() - French
+
+[Vankata453]() - Bulgarian
 
 ## Donors
 
