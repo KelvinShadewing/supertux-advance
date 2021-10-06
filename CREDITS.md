@@ -70,6 +70,8 @@ Lukas Nystrand - Chippdisko
 
 [mrkubax10]() - Polish
 
+[bydariogamer](https://github.com/bydariogamer) - Spanish
+
 ## Donors
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
