@@ -69,6 +69,10 @@
 		func = function() { rebindGamepad() }
 	},
 	{
+		name = function() { return gvLangObj["options-menu"]["language"] },
+		func = function() { selectLanguage() }
+	},
+	{
 		name = function() { return "Back" },
 		func = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}
@@ -90,12 +94,5 @@
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
 		func = function() { config.difficulty = 3; cursor = 0; menu = meOptions }
-	}
-]
-
-::meLanguage <- [
-	{
-		name = function() { return "English" },
-		func = function() { config.lang = "en"; cursor = 0; menu = meOptions; gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json")) }
 	}
 ]
