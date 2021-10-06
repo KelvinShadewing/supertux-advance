@@ -6,6 +6,10 @@ SupterTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK]
 
 Some assets from SuperTux will be used, with graphics being remixed to match the game's visual style.
 
+## Community
+
+We have a Discord server! https://discord.gg/PJsSmND5GP
+
 ## Story
 
 Capturing Gnu was only the beginning of Nolok's plan. While Tux and his friends ran the Grand Prix to challenge Nolok for Gnu's life, Nolok was busy setting traps for Tux's other friends. Now he holds them hostage while he works on his ultimate weapon, the Sliva Cannon! Tux must storm each of Nolok's forts and rescue his friends. He may even make some new friends along the way. Can Tux defeat Nolok in time to end the Third World War? And who the heck is Kooh?! One of these questions will be answered in SuperTux Advance!
