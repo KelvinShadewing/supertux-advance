@@ -418,3 +418,24 @@
 
 	function _typeof() { return "TNT" }
 }
+
+::C4 <- class extends Actor {
+	shape = null
+	mapshape = null
+	gothit = false
+	hittime = 0.0
+	frame = 0.0
+
+	constructor(_x, _y) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 10, 10, 0)
+		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+	}
+
+	function run() {
+		drawSprite(sprC4, frame, x - 8 - camx, y - 8 - camy)
+	}
+
+	function _typeof() { return "TNT" }
+}
