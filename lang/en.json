@@ -24,7 +24,7 @@
 		"welcome" :
 		"Welcome to SuperTux Advance! This message will go\naway when you walk away from the block.\n\nPress F1 if you would like to see commentary notes\nfrom Kelvin Shadewing.",
 		"tutWall" :
-		"Hold JUMP and press away from the wall to perform a\nwall jump.",
+		"Press JUMP against the wall to do a wall jump.",
 		"tutSlide" :
 		"Press DOWN while running to slide.",
 		"waterjump" :
