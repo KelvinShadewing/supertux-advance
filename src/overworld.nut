@@ -20,15 +20,12 @@
 			y = game.owy
 		}
 
-		shape = Rec(x, y, 7, 7, 0)
+		shape = Rec(x, y, 1, 1, 0)
 		if(gvPlayer == 0) gvPlayer = this
 	}
 
 	function run() {
 		base.run()
-
-		if((x - 8) % 16 == 0) hspeed = 0
-		if((y - 8) % 16 == 0) vspeed = 0
 
 		shape.setPos(x, y)
 		game.owx = x
@@ -44,40 +41,150 @@
 			}
 		}
 
-		//Move right
-		if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || game.owd == 0) {
-				hspeed = 1
-				game.owd = 2
-			}
-			else if(game.completed.rawin(level)) hspeed = 1
+		if(level != "") {
+			if((x - 8) % 16 == 0) hspeed = 0
+			if((y - 8) % 16 == 0) vspeed = 0
 		}
 
-		//Move up
-		if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || game.owd == 1) {
-				vspeed = -1
-				game.owd = 3
-			}
-			else if(game.completed.rawin(level)) vspeed = -1
-		}
+		//Movement dir reminder
+		//0 = right
+		//1 = up
+		//2 = left
+		//3 = down
 
-		//Move left
-		if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || game.owd == 2) {
-				hspeed = -1
-				game.owd = 0
-			}
-			else if(game.completed.rawin(level)) hspeed = -1
-		}
+		if((x - 8) % 16 == 0 && (y - 8) % 16 == 0) {
+			local opendirs = 0
+			local nextdir = -1
 
-		//Move down
-		if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
-			if(level == "" || game.owd == 3) {
-				vspeed = 1
-				game.owd = 1
+			//Find next step
+			if(hspeed != 0 || vspeed != 0) {
+				if(game.owd == 0 && nextdir == -1) {
+					if(!placeFree(x - 16, y)) {
+						opendirs++
+						nextdir = 2
+					}
+					if(!placeFree(x, y - 16)) {
+						opendirs++
+						nextdir = 1
+					}
+					if(!placeFree(x, y + 16)) {
+						opendirs++
+						nextdir = 3
+					}
+				}
+
+				if(game.owd == 2 && nextdir == -1) {
+					if(!placeFree(x + 16, y)) {
+						opendirs++
+						nextdir = 0
+					}
+					if(!placeFree(x, y - 16)) {
+						opendirs++
+						nextdir = 1
+					}
+					if(!placeFree(x, y + 16)) {
+						opendirs++
+						nextdir = 3
+					}
+				}
+
+				if(game.owd == 3 && nextdir == -1) {
+					if(!placeFree(x + 16, y)) {
+						opendirs++
+						nextdir = 0
+					}
+					if(!placeFree(x, y - 16)) {
+						opendirs++
+						nextdir = 1
+					}
+					if(!placeFree(x - 16, y)) {
+						opendirs++
+						nextdir = 2
+					}
+				}
+
+				if(game.owd == 1 && nextdir == -1) {
+					if(!placeFree(x + 16, y)) {
+						opendirs++
+						nextdir = 0
+					}
+					if(!placeFree(x, y + 16)) {
+						opendirs++
+						nextdir = 3
+					}
+					if(!placeFree(x - 16, y)) {
+						opendirs++
+						nextdir = 2
+					}
+				}
 			}
-			else if(game.completed.rawin(level)) vspeed = 1
+
+			//Continue moving until place is found
+			if(level == "" && opendirs == 1) {
+				switch(nextdir) {
+					case 0:
+						vspeed = 0
+						hspeed = 1
+						game.owd = 2
+						break
+					case 1:
+						vspeed = -1
+						hspeed = 0
+						game.owd = 3
+						break
+					case 2:
+						vspeed = 0
+						hspeed = -1
+						game.owd = 0
+						break
+					case 3:
+						vspeed = 1
+						hspeed = 0
+						game.owd = 1
+						break
+				}
+			}
+
+			if(opendirs != 1) {
+				hspeed = 0
+				vspeed = 0
+			}
+
+			//Move right
+			if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
+				if(level == "" || game.owd == 0) {
+					hspeed = 1
+					game.owd = 2
+				}
+				else if(game.completed.rawin(level)) hspeed = 1
+			}
+
+			//Move up
+			if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
+				if(level == "" || game.owd == 1) {
+					vspeed = -1
+					game.owd = 3
+				}
+				else if(game.completed.rawin(level)) vspeed = -1
+			}
+
+			//Move left
+			if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
+				if(level == "" || game.owd == 2) {
+					hspeed = -1
+					game.owd = 0
+				}
+				else if(game.completed.rawin(level)) hspeed = -1
+			}
+
+			//Move down
+			if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
+				if(level == "" || game.owd == 3) {
+					vspeed = 1
+					game.owd = 1
+				}
+				else if(game.completed.rawin(level)) vspeed = 1
+			}
 		}
 
 		x += hspeed

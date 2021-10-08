@@ -306,7 +306,7 @@
 						frame = anim[0]
 						hspeed = 0
 						vspeed = 0
-						x = (x - (x % 16)) + 8
+						x = (x - (x % 16)) + 7
 					}
 				}
 
