@@ -79,6 +79,9 @@ switch(reschoice) {
 setWindowTitle("SuperTux Advance")
 setWindowIcon("icon.png")
 tileSearchDir.push("res")
+tileSearchDir.push("res/gfx")
+tileSearchDir.push("res/map")
+tileSearchDir.push("res/snd")
 setFPS(60)
 
 if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))

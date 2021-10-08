@@ -294,7 +294,6 @@
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	if(gvInfoBox == "") {
-		drawText(font2, screenW() - (gvMap.name.len() * 10) - 4, 8, gvMap.name)
 		for(local i = 0; i < game.maxHealth; i++) {
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)

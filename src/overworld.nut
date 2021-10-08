@@ -229,8 +229,10 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/" + level + ".json")
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
 		}
+
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (level.len() * 5), 8, level)
 	}
 
 	function _typeof() { return "StageIcon" }
@@ -249,7 +251,7 @@
 	function run() {
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/" + level + ".json")
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
 		}
 	}
 
@@ -282,7 +284,7 @@
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.owx = px
 				game.owy = py
-				startOverworld("res/" + level + ".json")
+				startOverworld("res/map/" + level + ".json")
 			}
 		}
 	}
