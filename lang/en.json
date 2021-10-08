@@ -55,8 +55,15 @@
 	},
 
 	"npc" : {
-		"rad0" :
-		"Hey, where's your board? Are you gonna slide on\nyour belly like a square? I bet you couldn't get\nevery coin on this hill like that. If you do,\nI'll give ya something that'll really help you\ncatch some air!"
+		"null" : "",
+		"rad-0t" :
+		"Hey, where's your board? Are you gonna slide on\nyour belly like a square? I bet you couldn't get\nevery coin on this hill like that. If you do,\nI'll give ya something that'll really help you\ncatch some air!",
+		"rad-0k" :
+		"Hey, where's your board? You look way too slow for\na course like this!",
+		"rad-0m" :
+		"Are you gonna use that ball of yourse for this\ncourse? Good luck.",
+		"rad-0d" :
+		"Get all the coins on this hill if you want a\ntotally nautical prize!"
 
 	},
 

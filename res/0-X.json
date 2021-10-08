@@ -116,7 +116,7 @@
                  "gid":219,
                  "height":16,
                  "id":1,
-                 "name":"rad0,sprRadGuin,0",
+                 "name":"sprRadGuin,0,sayChar,rad-0t,rad-0k,rad-0m,rad-0d",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1532,7 +1532,7 @@
          "value":"songPlay(musRace)\ndrawBG = dbgAurora"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {

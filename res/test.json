@@ -140,7 +140,7 @@
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
          "id":12,
          "name":"actor",
          "objects":[
@@ -856,25 +856,13 @@
                  "gid":219,
                  "height":16,
                  "id":190,
-                 "name":"rad0,sprRadGuin,0",
+                 "name":"sprRadGuin,0,sayRand,rad-0t,rad-0k,rad-0m,rad-0d",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
                  "x":2560,
                  "y":304
-                }, 
-                {
-                 "gid":188,
-                 "height":16,
-                 "id":192,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2592,
-                 "y":352
                 }, 
                 {
                  "gid":221,
@@ -1007,6 +995,30 @@
                  "width":16,
                  "x":2400,
                  "y":320
+                }, 
+                {
+                 "gid":219,
+                 "height":16,
+                 "id":236,
+                 "name":"sprRadGuin,0,sayChar,rad-0t,rad-0k,rad-0m,rad-0d",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2912,
+                 "y":304
+                }, 
+                {
+                 "gid":188,
+                 "height":16,
+                 "id":239,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2848,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1015,7 +1027,7 @@
          "y":0
         }],
  "nextlayerid":22,
- "nextobjectid":236,
+ "nextobjectid":240,
  "orientation":"orthogonal",
  "properties":[
         {

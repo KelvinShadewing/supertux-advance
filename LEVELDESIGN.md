@@ -27,3 +27,13 @@ The tile layers include:
 ## Level Size
 
 Level dimensions should have an area around 320x20 tiles. Levels don't need to be purely horizontal, but should have a similar area so that they aren't too long. Rather than use checkpoints, I prefer to have a higher quantity of short levels. The reason for this is level achievements: coins, enemies, and secrets. Starting over from a checkpoint means losing the chance of getting these without having to backtrack. A level that's short enough to comfortably play from the beginning mitigates this.
+
+## NPCs
+
+The NPC actor (bald human in the map editor) has several mandatory arguments that must be defined in this order: sprite, flip mode, talk function, and lines. The sprite is the name of the sprite to be used as its variable is defined in `assets.nut`. Flip mode 0 will use different frames, and 1 will make the sprite actually flip to follow the player. The following functions exist for talk modes:
+
+* `sayRand` - Will pick a random line from the following arguments to say each time the character is spoken to. Can be used with just one line if an NPC should say the same thing every time.
+
+* `sayChar` - Says a different line for each playable character. Requires an entry for Tux, Konqi, Midi, and default, in that order.
+
+Lines are all arguments following talk mode. There can be any number depending on the function being used. They should be the name of entries in the language file's `npc` field.
