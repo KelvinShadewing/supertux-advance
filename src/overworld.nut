@@ -32,16 +32,26 @@
 		game.owy = y
 
 		local level = ""
+		local onstage = false
 		if(actor.rawin("StageIcon")) {//Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
 					level = i.level
+					onstage = true
+					break
+				}
+			}
+		}
+		if(actor.rawin("TownIcon")) {//Find what level was landed on
+			foreach(i in actor["TownIcon"]) {
+				if(hitTest(shape, i.shape)) {
+					onstage = true
 					break
 				}
 			}
 		}
 
-		if(level != "") {
+		if(onstage) {
 			if((x - 8) % 16 == 0) hspeed = 0
 			if((y - 8) % 16 == 0) vspeed = 0
 		}
@@ -57,7 +67,7 @@
 			local nextdir = -1
 
 			//Find next step
-			if(hspeed != 0 || vspeed != 0) {
+			if((hspeed != 0 || vspeed != 0) && !debug) {
 				if(game.owd == 0 && nextdir == -1) {
 					if(!placeFree(x - 16, y)) {
 						opendirs++
