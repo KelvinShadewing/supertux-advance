@@ -24,7 +24,7 @@
 		Tux = sprTuxOverworld
 	}
 	playerchar = "Tux" //Current player character
-	world = "res/overworld-0.json"
+	world = "res/map/overworld-0.json"
 	owx = 0
 	owy = 0
 	owd = 0

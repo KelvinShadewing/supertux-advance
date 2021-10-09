@@ -42,6 +42,7 @@
 					local tile = (cx + i) + ((cy + j) * wl.width)
 					if(tile >= 0 && tile < wl.data.len()) switch(wl.data[tile] - gvMap.solidfid) {
 						case 0: //Full solid
+						case 40:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
@@ -295,6 +296,53 @@
 				for(local j = -ch; j <= ch; j++) {
 					local tile = (cx + i) + ((cy + j) * wl.width)
 					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 37) {
+						gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 6.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 40) {
+						gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 9.0
+						gvMap.shape.h = 6.0
+						if(hitTest(ns, gvMap.shape)) return true
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 9.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(debug) gvMap.shape.draw()
+				}
+			}
+		}
+
+		return false
+	}
+
+	function onDeath(_x, _y) {
+		//Save current location and move
+		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		local cx = floor(_x / 16)
+		local cy = floor(_y / 16)
+		local cw = ceil(shape.w / 16)
+		local ch = ceil(shape.h / 16)
+
+		//Check that the solid layer exists
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Check against places in solid layer
+		if(wl != null) {
+			for(local i = -cw; i <= cw; i++) {
+				for(local j = -ch; j <= ch; j++) {
+					local tile = (cx + i) + ((cy + j) * wl.width)
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 41) {
 						gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
 						gvMap.shape.kind = 0
 						gvMap.shape.w = 6.0

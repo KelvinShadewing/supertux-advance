@@ -136,6 +136,7 @@
 ::musCity <- "res/snd/village-mixed.mp3"
 ::musCastle <- "res/snd/castle.wav"
 ::musRace <- "res/snd/blackdiamond.mp3"
+::musDeluge <- "res/snd/deluge.mp3"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.wav")

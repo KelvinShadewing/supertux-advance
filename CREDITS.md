@@ -52,6 +52,8 @@
 
 [TheCheeseWeez]() - Mega muffin
 
+[Neorice](https://www.deviantart.com/neoriceisgood) - Rock tiles (edited), sand tiles (edited)
+
 ## Music
 
 Lukas Nystrand - Chippdisko

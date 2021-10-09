@@ -495,7 +495,7 @@
 		else {
 			swimming = true
 			if(game.weapon == 3 && flaps < 4) flaps += 0.1
-			shapeStand.h = 8.0
+			shapeStand.h = 6.0
 
 			//Animation states
 			switch(anim) {
@@ -669,6 +669,7 @@
 
 		//Hurt
 		if(onHazard(x, y)) hurt = true
+		if(onDeath(x, y)) game.health = 0
 
 		if(hurt) {
 			hurt = false
@@ -677,11 +678,11 @@
 				anim = anHurt
 				frame = anim[0]
 				if(game.health > 0) game.health--
-				if(game.health == 0) die()
 				playSound(sndHurt, 0)
 			}
 		}
 		if(blinking > 0) blinking--
+		if(game.health == 0) die()
 
 		//Draw
 		switch(game.weapon) {
