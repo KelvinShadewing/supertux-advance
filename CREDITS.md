@@ -66,7 +66,7 @@ Lukas Nystrand - Chippdisko
 
 ## Level Contributors
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - 0-2
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble
 
 ## Translators
 
