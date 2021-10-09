@@ -43,6 +43,8 @@
 					if(tile >= 0 && tile < wl.data.len()) switch(wl.data[tile] - gvMap.solidfid) {
 						case 0: //Full solid
 						case 40:
+						case 42:
+						case 43:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
@@ -310,6 +312,20 @@
 						if(hitTest(ns, gvMap.shape)) return true
 						gvMap.shape.w = 6.0
 						gvMap.shape.h = 9.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 42) {
+						gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 9.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 43) {
+						gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 9.0
+						gvMap.shape.h = 6.0
 						if(hitTest(ns, gvMap.shape)) return true
 					}
 					if(debug) gvMap.shape.draw()
