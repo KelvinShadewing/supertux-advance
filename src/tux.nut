@@ -25,7 +25,7 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	energy = 4
+	energy = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -245,11 +245,11 @@
 			//Controls
 			if(!freeDown2 || anim == anClimb) {
 				canJump = 16
-				if(energy < 4) energy += 0.1
+				if(game.weapon == 3 && energy < 4) energy += 0.1
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(energy < 1) energy += 0.01
+				if(game.weapon == 3 && energy < 1) energy += 0.01
 			}
 			if(energy > 4) energy = 4
 			if(canMove) {
@@ -446,7 +446,6 @@
 			}
 
 			if(firetime == 0 && energy < game.maxenergy) {
-				firetime--
 				energy++
 				firetime = 60
 			}
@@ -468,11 +467,12 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
+						energy--
 					}
 					break
 
 				case 2:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
@@ -484,6 +484,7 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
+						energy--
 					}
 					break
 
@@ -566,10 +567,18 @@
 			}
 
 			//Attacks
-			if(firetime > 0) firetime--
+			if(firetime > 0 && game.weapon != 3) {
+				firetime--
+			}
+
+			if(firetime == 0 && energy < game.maxenergy) {
+				energy++
+				firetime = 60
+			}
+			
 			switch(game.weapon) {
 				case 1:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
@@ -597,10 +606,11 @@
 						c.hspeed += hspeed / 1.5
 						c.vspeed += vspeed / 1.5
 					}
+					energy--
 					break
 
 				case 2:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
@@ -628,6 +638,7 @@
 						c.hspeed += hspeed / 2
 						c.vspeed += vspeed / 2
 					}
+					energy--
 					break
 			}
 		}

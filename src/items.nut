@@ -37,7 +37,10 @@
 		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
-			if(game.weapon == 0) game.weapon = 1
+			if(game.weapon == 0) {
+				game.weapon = 1
+				game.maxenergy = 1
+			}
 			else if(game.weapon == 1) {
 				if(game.maxenergy < 4) game.maxenergy++
 				else game.subitem = 1
@@ -67,7 +70,10 @@
 		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
-			if(game.weapon == 0) game.weapon = 2
+			if(game.weapon == 0) {
+				game.weapon = 2
+				game.maxenergy = 1
+			}
 			else if(game.weapon == 2) {
 				if(game.maxenergy < 4) game.maxenergy++
 				else game.subitem = 1

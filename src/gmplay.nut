@@ -298,7 +298,7 @@
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 		}
-		for(local i = 0; i < 4; i++) {
+		for(local i = 0; i < game.maxenergy; i++) {
 			if(gvPlayer != 0) {
 				if(gvPlayer.rawin("energy") && game.maxenergy > 0) {
 					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
