@@ -2,39 +2,67 @@
 
 ## Game modes
 
-[ ] Platform
-  [X] Main play
-  [ ] Level end
-[ ] Overworld
+[x] Platform
+  [x] Main play
+  [x] Level end
+[x] Overworld
+[ ] Forward racing
 
 ## Level assets
 
 [ ] Moving platforms
 [ ] One-way platforms
-[ ] Breakable bricks
-[ ] Item boxes
-[X] Ropes/ladders
-[ ] Springs
-[ ] Animated tiles
+[x] Breakable bricks
+[x] Item boxes
+[x] Ropes/ladders
+[x] Springs
+[x] Animated tiles
+[x] Damage tiles
+[x] Death tiles
 
 ## Enemies
 
-[X] Deathcaps
-[X] Pipe snakes
-[X] Carl Boom (walking bomb)
-[X] Bouncing snow
-[X] Ouchin (stationary enemy)
+[x] Deathcaps
+[x] Pipe snakes
+[x] Carl Boom (walking bomb)
+[x] Bouncing snow
+[x] Ouchin (stationary enemy)
 [ ] Snails (turtle-likes)
 [ ] Flying deathcaps
 [ ] Swoops
-[ ] Cannon Bobs
+[x] Cannon Bobs
 [ ] Spinning castle fire
 [ ] Bouncing castle fire
 [ ] Fish
 
+## Bosses
+
+[ ] Nolok
+[ ] Yeti
+[ ] Orca
+
 ## Powerups
 
-[ ] Muffins
-[ ] Konqi (Yoshi-like)
-[ ] Fire flower (reduces cooldown between fireballs)
-[ ] Starnyan
+[x] Muffins
+[x] Starnyan
+**TUx ITEMS**
+[x] Fire flower
+[x] Ice flower
+[x] Air feather
+[ ] Earth shell
+**KONQI ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**MIDI ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+
+## Misc
+
+[ ] Powerup leveling
+[ ] Sub items
+[ ] General store
