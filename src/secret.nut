@@ -5,7 +5,7 @@
 	dh = 0
 	shape = null
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		game.secrets++
 	}

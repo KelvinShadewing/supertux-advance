@@ -1,7 +1,7 @@
 ::Fireball <- class extends PhysAct {
 	timer = 90
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 3, 3, 0)
@@ -50,7 +50,7 @@
 ::Iceball <- class extends PhysAct {
 	timer = 90
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 3, 3, 0)
@@ -101,7 +101,7 @@
 	frame = 0.0
 	angle = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		shape = Rec(x, y, 4, 4, 0)
 		base.constructor(_x, _y)
 		vspeed = 0.5 - randFloat(1.0)

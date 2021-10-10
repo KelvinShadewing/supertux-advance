@@ -7,7 +7,7 @@
 	mapshape = 0
 	slideshape = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
@@ -46,7 +46,7 @@
 	slideshape = 0
 	fireshape = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
@@ -117,7 +117,7 @@
 	vspeed = 0.0
 	item = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
@@ -199,7 +199,7 @@
 	item = 0
 	code = ""
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
@@ -239,7 +239,7 @@
 	item = 0
 	text = ""
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
@@ -277,7 +277,7 @@
 	shape = 0
 	text = ""
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
@@ -306,7 +306,7 @@
 	item = 0
 	text = ""
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
@@ -354,7 +354,7 @@
 ::Checkpoint <- class extends Actor {
 	shape = null
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 8, 8, 8, 0)
@@ -381,7 +381,7 @@
 	hittime = 0.0
 	frame = 0.0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)
@@ -426,7 +426,7 @@
 	hittime = 0.0
 	frame = 0.0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)

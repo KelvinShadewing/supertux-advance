@@ -2,7 +2,7 @@
 	frame = 0.0
 	angle = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = 45* randInt(8)
 	}
@@ -17,7 +17,7 @@
 	frame = 0.0
 	angle = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = 45 * randInt(8)
 	}
@@ -32,7 +32,7 @@
 	frame = 0.0
 	angle = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
 	}
@@ -47,7 +47,7 @@
 	frame = 0.0
 	angle = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
 	}
@@ -62,7 +62,7 @@
 	frame = 0.0
 	angle = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
 	function run() {
@@ -75,7 +75,7 @@
 ::CoinEffect <- class extends Actor {
 	vspeed = -4.0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		playSound(sndCoin, 0)
 		game.levelcoins++

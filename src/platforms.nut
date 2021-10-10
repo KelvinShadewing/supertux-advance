@@ -9,7 +9,7 @@
 	mapshapeid = 0
 	init = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		ystart = _y
@@ -81,7 +81,7 @@
 	frame = 0.0
 	fspeed = 0.0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x + 8, y + 8, 4, 4, 0)
 	}

@@ -40,7 +40,7 @@
 	anSwimU = [64.0, 67.0]
 	anSwimD = [68.0, 71.0]
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		anim = anStand
 		shape = Rec(x, y + 2, 5, 12, 0)

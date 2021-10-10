@@ -46,7 +46,7 @@
 	anSwimU = [64.0, 67.0]
 	anSwimD = [68.0, 71.0]
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		anim = anStand
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
@@ -771,7 +771,7 @@
 	timer = 300
 	mywep = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		if(game.lives == 0 || game.check == false) stopMusic()
 		playSound(sndDie, 0)

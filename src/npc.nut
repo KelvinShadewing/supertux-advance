@@ -8,7 +8,7 @@
 	sayfunc = null
 	arr = null
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y - 16, 16, 16, 0)

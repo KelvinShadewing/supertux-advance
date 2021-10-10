@@ -5,7 +5,7 @@
 ::Coin <- class extends Actor{
 	frame = 0.0
 
-	constructor(_x, _y)
+	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
 		frame = randFloat(4)
@@ -27,7 +27,7 @@
 
 ::FlowerFire <- class extends Actor{
 
-	constructor(_x, _y)
+	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
 	}
@@ -48,7 +48,7 @@
 
 ::FlowerIce <- class extends Actor{
 
-	constructor(_x, _y)
+	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
 	}
@@ -70,7 +70,7 @@
 ::MuffinBlue <- class extends PhysAct {
 	flip = false
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 4, 7, 0)
 
@@ -126,7 +126,7 @@
 ::MuffinRed <- class extends PhysAct {
 	flip = false
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 4, 7, 0)
 
@@ -183,7 +183,7 @@
 ::MuffinEvil <- class extends PhysAct {
 	flip = false
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 4, 7, 0)
 
@@ -242,7 +242,7 @@
 	hspeed = 0
 	vspeed = -2
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		if(gvPlayer != 0) if(gvPlayer.x > x) hspeed = -1
@@ -277,7 +277,7 @@
 	hspeed = 0.0
 	frame = 1.5
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		if(gvPlayer != 0) if(x > gvPlayer.x) frame = 3.5

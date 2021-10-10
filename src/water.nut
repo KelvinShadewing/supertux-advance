@@ -1,7 +1,7 @@
 ::Water <- class extends Actor {
 	shape = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
 

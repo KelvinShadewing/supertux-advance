@@ -8,7 +8,7 @@
 	//2 = left
 	//3 = down
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		if(game.owx == 0 && game.owy == 0) {
@@ -211,7 +211,7 @@
 	level = ""
 	visible = true
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
@@ -242,7 +242,7 @@
 	level = ""
 	visible = true
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
@@ -267,7 +267,7 @@
 	px = 0
 	py = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)

@@ -12,7 +12,7 @@
 	yprev = 0.0
 	shape = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		xstart = _x
 		ystart = _y

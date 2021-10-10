@@ -88,7 +88,7 @@
 	squishTime = 0.0
 	smart = false
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 4, 6, 0)
 		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
@@ -255,7 +255,7 @@
 	up = false
 	flip = 1
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		ystart = y
 		shape = Rec(x, y, 8, 12, 0)
@@ -325,7 +325,7 @@
 ::Ouchin <- class extends Enemy {
 	sf = 0.0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 8, 0)
 		sf = randInt(8)
@@ -396,7 +396,7 @@
 	flip = 0
 	gravity = 0.1
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		vspeed = -3.0
 	}
@@ -418,7 +418,7 @@
 	squish = false
 	squishTime = 0.0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0, 0, 1)
 		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
@@ -569,7 +569,7 @@
 	frame = 0.0
 	shape = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		playSound(sndExplodeF, 0)
@@ -626,7 +626,7 @@
 	squishTime = 0.0
 	smart = false
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 		if(gvPlayer != 0) {
@@ -713,7 +713,7 @@
 	frame = 3.5
 	timer = 240
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		mapNewSolid(Rec(x, y, 8, 8, 0))
 	}
@@ -765,7 +765,7 @@
 ::CannonBob <- class extends Enemy {
 	vspeed = -2
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 6, 6, 0)
 	}
@@ -836,7 +836,7 @@
 	biting = false
 	flip = 0
 
-	constructor(_x, _y) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 6, 0)
 		hspeed = 0.5
