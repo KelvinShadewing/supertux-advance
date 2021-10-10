@@ -11,7 +11,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y - 16, 16, 16, 0)
+		shape = Rec(x, y - 16, 20, 16, 0)
 	}
 
 	function run() {

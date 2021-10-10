@@ -16,6 +16,8 @@
 	health = 4
 	maxHealth = 4
 	weapon = 0
+	maxenergy = 0
+	subitem = 0
 	completed = {} //List of completed level names
 	allcoins = {} //Levels that the player has gotten all enemies in
 	allenemies = {} //Levels that the player has beaten all enemies in

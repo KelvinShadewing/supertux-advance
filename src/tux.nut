@@ -25,7 +25,7 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	flaps = 4
+	energy = 4
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -245,13 +245,13 @@
 			//Controls
 			if(!freeDown2 || anim == anClimb) {
 				canJump = 16
-				if(flaps < 4) flaps += 0.1
+				if(energy < 4) energy += 0.1
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(flaps < 1) flaps += 0.01
+				if(energy < 1) energy += 0.01
 			}
-			if(flaps > 4) flaps = 4
+			if(energy > 4) energy = 4
 			if(canMove) {
 				if(getcon("run", "hold")) {
 					if(game.weapon == 2) mspeed = 2.0
@@ -323,7 +323,7 @@
 						if(game.weapon != 3) playSound(sndJump, 0)
 						else playSound(sndFlap, 0)
 					}
-					else if(floor(flaps) > 0 && game.weapon == 3) {
+					else if(floor(energy) > 0 && game.weapon == 3) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 1.8
 						didJump = true
@@ -334,7 +334,7 @@
 						}
 						if(game.weapon != 3) playSound(sndJump, 0)
 						else playSound(sndFlap, 0)
-						flaps--
+						energy--
 					}
 				}
 
@@ -441,16 +441,27 @@
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
-			if(firetime > 0) firetime--
+			if(firetime > 0 && game.weapon != 3) {
+				firetime--
+			}
+
+			if(firetime == 0 && energy < game.maxenergy) {
+				firetime--
+				energy++
+				firetime = 60
+			}
+
+			if(game.weapon == 0) game.maxenergy = 0
+			if(game.weapon == 3) game.maxenergy = 4
+
 			switch(game.weapon) {
 				case 1:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && firetime == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						firetime = 60
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {
@@ -467,7 +478,6 @@
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						firetime = 30
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {
@@ -494,7 +504,7 @@
 		//////////////
 		else {
 			swimming = true
-			if(game.weapon == 3 && flaps < 4) flaps += 0.1
+			if(game.weapon == 3 && energy < 4) energy += 0.1
 			shapeStand.h = 6.0
 
 			//Animation states

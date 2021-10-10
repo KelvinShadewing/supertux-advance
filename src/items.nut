@@ -37,7 +37,16 @@
 		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
-			game.weapon = 1
+			if(game.weapon == 0) game.weapon = 1
+			else if(game.weapon == 1) {
+				if(game.maxenergy < 4) game.maxenergy++
+				else game.subitem = 1
+			}
+			else {
+				game.subitem = game.weapon
+				game.maxenergy = 1
+				game.weapon = 1
+			}
 			playSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
@@ -58,7 +67,16 @@
 		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
-			game.weapon = 2
+			if(game.weapon == 0) game.weapon = 2
+			else if(game.weapon == 2) {
+				if(game.maxenergy < 4) game.maxenergy++
+				else game.subitem = 1
+			}
+			else {
+				game.subitem = game.weapon
+				game.maxenergy = 1
+				game.weapon = 2
+			}
 			playSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
@@ -115,6 +133,7 @@
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
 			if(game.health < game.maxHealth) game.health++
+			else if(game.subitem != 6) game.subitem = 5
 			deleteActor(id)
 			playSound(sndHeal, 0)
 		}
@@ -171,7 +190,8 @@
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
 			if(game.health < game.maxHealth - 3) game.health += 4
-			else game.health = game.maxHealth
+			else if(game.health < game.maxHealth) game.health = game.maxHealth
+			else game.subitem = 6
 			deleteActor(id)
 			playSound(sndHeal, 0)
 		}
@@ -303,7 +323,12 @@
 
 		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)){
 			playSound(sndHeal, 0)
-			game.weapon = 3
+			if(game.weapon == 0) game.weapon = 3
+			else {
+				game.subitem = game.weapon
+				game.maxenergy = 1
+				game.weapon = 3
+			}
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 			deleteActor(id)
 		}

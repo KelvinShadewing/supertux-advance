@@ -300,13 +300,8 @@
 		}
 		for(local i = 0; i < 4; i++) {
 			if(gvPlayer != 0) {
-				if(gvPlayer.rawin("flaps") && game.weapon == 3) {
-					if(i < floor(gvPlayer.flaps)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
-					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
-				}
-
-				if(gvPlayer.rawin("mana")) { //For Midi's bombs
-					if(i < floor(gvPlayer.mana)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
+				if(gvPlayer.rawin("energy") && game.maxenergy > 0) {
+					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
 				}
 			}
@@ -316,6 +311,30 @@
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		drawSprite(game.characters[game.playerchar], 0, screenW() - 16, screenH() - 12)
 		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
+		drawSprite(sprSubItem, 0, screenW() - 18, 18)
+		switch(game.subitem) {
+			case 1:
+				drawSprite(sprFlowerFire, getFrames() / 16, screenW() - 18, 18)
+				break
+			case 2:
+				drawSprite(sprFlowerIce, getFrames() / 16, screenW() - 18, 18)
+				break
+			case 3:
+				drawSprite(sprAirFeather, getFrames() / 16, screenW() - 18, 18)
+				break
+			case 4:
+				drawSprite(sprWoodBox, getFrames() / 16, screenW() - 18, 18)
+				break
+			case 5:
+				drawSprite(sprMuffin, 0, screenW() - 18, 18)
+				break
+			case 6:
+				drawSprite(sprMuffin, 1, screenW() - 18, 18)
+				break
+			case 7:
+				drawSprite(sprStar, getFrames() / 16, screenW() - 18, 18)
+				break
+		}
 	}
 	else {
 		local ln = 3

@@ -20,6 +20,7 @@
 ::sprHealth <- newSprite("res/gfx/heart.png",16, 16, 0, 0, 0, 0)
 ::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)
 ::sprLevels <- newSprite("res/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
+::sprSubItem <- newSprite("res/gfx/itemcard.png", 20, 20, 0, 0, 10, 10)
 
 //Blocks
 ::sprBoxIce <- newSprite("res/gfx/icebox.png", 16, 16, 0, 0, 0, 0)
