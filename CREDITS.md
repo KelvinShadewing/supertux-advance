@@ -54,6 +54,8 @@
 
 [Neorice](https://www.deviantart.com/neoriceisgood) - Rock tiles (edited), sand tiles (edited)
 
+[XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection (Minecraft-like tiles, with edits)
+
 ## Music
 
 Lukas Nystrand - Chippdisko
