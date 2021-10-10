@@ -359,7 +359,7 @@
 				for(local j = -ch; j <= ch; j++) {
 					local tile = (cx + i) + ((cy + j) * wl.width)
 					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 41) {
-						gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+						gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 						gvMap.shape.kind = 0
 						gvMap.shape.w = 6.0
 						gvMap.shape.h = 6.0

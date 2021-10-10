@@ -96,7 +96,7 @@ strDifficulty = [
 startMain()
 menu = meMain
 config.playerchar = "Tux"
-startPlay("res/map/test.json")
+//startPlay("res/map/test.json")
 
 update()
 while(!getQuit() && !gvQuit)
