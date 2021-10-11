@@ -25,7 +25,7 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	energy = 0
+	energy = 0.0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -67,6 +67,21 @@
 		//Checks are done at the beginning and stored here so that they can be
 		//quickly reused. Location checks will likely need to be done multiple
 		//times per frame.
+
+		//Recharge
+		if(firetime > 0 && game.weapon != 3) {
+			firetime--
+		}
+
+		if(firetime == 0 && energy < game.maxenergy) {
+			energy++
+			firetime = 60
+		}
+
+
+		if(game.weapon == 0) game.maxenergy = 0
+		if(game.weapon == 3) game.maxenergy = 4
+		if(energy > game.maxenergy) energy = game.maxenergy
 
 		/////////////
 		// ON LAND //
@@ -251,7 +266,6 @@
 				if(canJump > 0) canJump--
 				if(game.weapon == 3 && energy < 1) energy += 0.01
 			}
-			if(energy > 4) energy = 4
 			if(canMove) {
 				if(getcon("run", "hold")) {
 					if(game.weapon == 2) mspeed = 2.0
@@ -441,18 +455,6 @@
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
-			if(firetime > 0 && game.weapon != 3) {
-				firetime--
-			}
-
-			if(firetime == 0 && energy < game.maxenergy) {
-				energy++
-				firetime = 60
-			}
-
-			if(game.weapon == 0) game.maxenergy = 0
-			if(game.weapon == 3) game.maxenergy = 4
-
 			switch(game.weapon) {
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
@@ -468,6 +470,7 @@
 							c.hspeed /= 1.5
 						}
 						energy--
+						firetime = 60
 					}
 					break
 
@@ -485,6 +488,7 @@
 							c.hspeed /= 1.5
 						}
 						energy--
+						firetime = 60
 					}
 					break
 
@@ -566,16 +570,7 @@
 				if(hspeed < -0.1) flip = 1
 			}
 
-			//Attacks
-			if(firetime > 0 && game.weapon != 3) {
-				firetime--
-			}
-
-			if(firetime == 0 && energy < game.maxenergy) {
-				energy++
-				firetime = 60
-			}
-			
+			//Attacks	
 			switch(game.weapon) {
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
@@ -584,7 +579,6 @@
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 1.5
 						else c.hspeed = -1.5
-						firetime = 30
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -1.0
@@ -607,6 +601,7 @@
 						c.vspeed += vspeed / 1.5
 					}
 					energy--
+					firetime = 60
 					break
 
 				case 2:
@@ -616,7 +611,6 @@
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 1.5
 						else c.hspeed = -1.5
-						firetime = 30
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -1.0
@@ -639,6 +633,7 @@
 						c.vspeed += vspeed / 2
 					}
 					energy--
+					firetime = 60
 					break
 			}
 		}
