@@ -314,16 +314,16 @@
 		drawSprite(sprSubItem, 0, screenW() - 18, 18)
 		switch(game.subitem) {
 			case 1:
-				drawSprite(sprFlowerFire, getFrames() / 16, screenW() - 18, 18)
+				drawSprite(sprFlowerFire, 0, screenW() - 18, 18)
 				break
 			case 2:
-				drawSprite(sprFlowerIce, getFrames() / 16, screenW() - 18, 18)
+				drawSprite(sprFlowerIce, 0, screenW() - 18, 18)
 				break
 			case 3:
-				drawSprite(sprAirFeather, getFrames() / 16, screenW() - 18, 18)
+				drawSprite(sprAirFeather, 0, screenW() - 18, 18)
 				break
 			case 4:
-				drawSprite(sprWoodBox, getFrames() / 16, screenW() - 18, 18)
+				drawSprite(sprWoodBox, 0, screenW() - 18, 18)
 				break
 			case 5:
 				drawSprite(sprMuffin, 0, screenW() - 18, 18)
@@ -332,7 +332,7 @@
 				drawSprite(sprMuffin, 1, screenW() - 18, 18)
 				break
 			case 7:
-				drawSprite(sprStar, getFrames() / 16, screenW() - 18, 18)
+				drawSprite(sprStar, 0, screenW() - 18, 18)
 				break
 		}
 	}

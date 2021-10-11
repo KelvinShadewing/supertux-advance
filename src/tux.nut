@@ -570,7 +570,7 @@
 				if(hspeed < -0.1) flip = 1
 			}
 
-			//Attacks	
+			//Attacks
 			switch(game.weapon) {
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
@@ -599,9 +599,10 @@
 
 						c.hspeed += hspeed / 1.5
 						c.vspeed += vspeed / 1.5
+
+						energy--
+						firetime = 60
 					}
-					energy--
-					firetime = 60
 					break
 
 				case 2:
@@ -631,9 +632,10 @@
 
 						c.hspeed += hspeed / 2
 						c.vspeed += vspeed / 2
+
+						energy--
+						firetime = 60
 					}
-					energy--
-					firetime = 60
 					break
 			}
 		}

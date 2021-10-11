@@ -310,7 +310,7 @@
 						gvMap.shape.w = 9.0
 						gvMap.shape.h = 6.0
 						if(hitTest(ns, gvMap.shape)) return true
-						gvMap.shape.w = 4.0
+						gvMap.shape.w = 9.0
 						gvMap.shape.h = 6.0
 						if(hitTest(ns, gvMap.shape)) return true
 					}
