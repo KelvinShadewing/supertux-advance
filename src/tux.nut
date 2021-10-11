@@ -643,8 +643,11 @@
 		//Swap item
 		if(canMove && getcon("swap", "press")) {
 			local swap = game.subitem
-			game.subitem = game.weapon
-			if(swap < 5) game.weapon = 0
+
+			if(swap < 5) {
+				game.subitem = game.weapon
+				game.weapon = 0
+			}
 
 			switch(swap) {
 				case 1:
