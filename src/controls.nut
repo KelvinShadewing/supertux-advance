@@ -59,6 +59,9 @@
 		case "pause":
 			if(keyfunc(config.key.pause) || joyfunc(0, config.joy.pause)) return true
 			break
+		case "swap":
+			if(keyfunc(config.key.swap) || joyfunc(0, config.joy.swap)) return true
+			break
 	}
 
 	return false
@@ -138,6 +141,13 @@
 					keystep++
 				}
 				break
+			case 9:
+				message += "swap"
+				if(anyKeyPress() != -1) {
+					config.key.swap = anyKeyPress()
+					keystep++
+				}
+				break
 			default:
 				done = true
 				break
@@ -199,6 +209,13 @@
 				message += "pause"
 				if(anyJoyPress(0) != -1) {
 					config.joy.pause = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 8:
+				message += "swap"
+				if(anyJoyPress(0) != -1) {
+					config.joy.swap = anyJoyPress(0)
 					joystep++
 				}
 				break

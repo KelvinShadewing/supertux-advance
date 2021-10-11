@@ -62,6 +62,7 @@
 		run = k_lshift
 		sneak = k_lctrl
 		pause = k_enter
+		swap = k_a
 	},
 	joy = {
 		jump = 0
@@ -69,6 +70,7 @@
 		run = 4
 		sneak = 5
 		pause = 7
+		swap = 3
 	}
 	playerchar = 0
 	lang = "en"

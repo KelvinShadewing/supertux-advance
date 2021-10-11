@@ -640,6 +640,36 @@
 			}
 		}
 
+		//Swap item
+		if(canMove && getcon("swap", "press")) {
+			local swap = game.subitem
+			game.subitem = game.weapon
+			if(swap < 5) game.weapon = 0
+
+			switch(swap) {
+				case 1:
+					newActor(FlowerFire, x, y)
+					break
+				case 2:
+					newActor(FlowerIce, x, y)
+					break
+				case 3:
+					newActor(AirFeather, x, y)
+					break
+				case 4:
+					break
+				case 5:
+					newActor(MuffinBlue, x, y)
+					break
+				case 6:
+					newActor(MuffinRed, x, y)
+					break
+				case 7:
+					newActor(Starnyan, x, y)
+					break
+			}
+		}
+
 		//Base movement
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {

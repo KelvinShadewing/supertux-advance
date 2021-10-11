@@ -32,16 +32,18 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 ## Tips
 
 * You gain more speed from sliding off a drop than down a hill. Falling speed is translated into horizontal momentum upon landing. Use this to maximize your speed.
-* Practice wall jumping. Hold jump against the wall and press away from it. This isn't just helpful at navigating levels, it can save you if you fall into a pit.
+* Practice wall jumping. Press jump against the wall in the air. This isn't just helpful at navigating levels, it can save you if you fall into a pit.
 * Fireballs have long range, but a slow rate of fire. Use them tactically; don't rely on them for up-close combat. That's best left to jumping and sliding.
 * Muffins found in [?] boxes will restore health. Blueberry restores 1 health points, and strawberry restores 4 health. Moldy green muffins will take health from you.
-* On normal and easy mode, you'll recieve an extra life point after each boss. You don't get such boons on hard mode; you'll have to make do with the starting amount.
+* On easy mode, you'll recieve an extra life point after each boss. You don't get such boons on normal mode; you'll have to make do with the starting amount. Hard and Super prevent healing, so be careful!
 * Tux's fireballs won't be lost if you get hurt. You can also aim them up and down.
-* You can swim in all directions, but fireballs will not work in water. Head for the surface if you get into trouble.
+* You can swim in all directions, but fireballs will work differently in water. Head for the surface if you get into trouble.
 * If you're going for a speed run, slide just before leaving an edge for a small boost, then jump to preserve the momentum. There's no friction in the air, so keep off the ground as much as you can!
+* Blueberry muffins will not overwrite your sub item box if it contains a strawberry muffin.
+* Green boxes with a picture of the item they produce will only do so if you have coins. Be careful, as there are no buy-backs!
 
 ## FAQ
 
-Q: The game crashed. The log says a function or identifier wasn't defined.
+**Q:** The game crashed. The log says a function or identifier wasn't defined.
 
-A: The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation destructions.
+**A:** The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation destructions.
