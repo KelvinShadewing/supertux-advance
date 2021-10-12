@@ -19,6 +19,7 @@
 	game.secrets = 0
 	game.enemies = 0
 	game.check = false
+	gvInfoBox = ""
 
 	//Load map to play
 	gvMap = Tilemap(level)
@@ -175,12 +176,12 @@
 
 			case 22:
 				local c = actor[newActor(InfoBlock, i.x + 8, i.y - 8)]
-				if(i.name != "") c.text = gvLangObj["info"][i.name]
+				if(i.name != "") c.text = textLineLen(gvLangObj["info"][i.name], 52)
 				break
 
 			case 23:
 				local c = actor[newActor(KelvinScarf, i.x + 8, i.y - 8)]
-				if(i.name != "") c.text = gvLangObj["devcom"][i.name]
+				if(i.name != "") c.text = textLineLen(gvLangObj["devcom"][i.name], 52)
 				break
 
 			case 24:

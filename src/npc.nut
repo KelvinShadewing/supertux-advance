@@ -27,7 +27,7 @@
 			arr = []
 
 			for(local i = 3; i < argv.len(); i++) {
-				arr.push(gvLangObj["npc"][argv[i]])
+				arr.push(textLineLen(gvLangObj["npc"][argv[i]], 52))
 			}
 		}
 

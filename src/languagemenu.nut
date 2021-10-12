@@ -11,7 +11,12 @@
             {
                 languageIndex = i,
                 name = function() { return languageList["languages"][languageIndex][0] },
-                func = function() { config.lang = languageList["languages"][languageIndex][1]; cursor = i; menu = meOptions; gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json")) }
+                func = function() {
+					config.lang = languageList["languages"][languageIndex][1]
+					cursor = i
+					menu = meOptions
+					gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
+				}
             }
         )
     }

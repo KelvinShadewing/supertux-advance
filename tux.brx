@@ -11,6 +11,7 @@
 \*===============================*/
 
 //Game source
+donut("src/text.nut")
 donut("src/shapes.nut")
 donut("src/tilemap.nut")
 donut("src/assets.nut")
@@ -84,8 +85,11 @@ tileSearchDir.push("res/map")
 tileSearchDir.push("res/snd")
 setFPS(60)
 
+//Load game text
 if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
 gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
+
+//Set difficulty strings
 strDifficulty = [
 	gvLangObj["difficulty-levels"]["easy"],
 	gvLangObj["difficulty-levels"]["normal"],
