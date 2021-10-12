@@ -847,7 +847,7 @@
 
 		if(active) {
 			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
-			if(!placeFree(x + (vspeed * 2), y)) vspeed = -vspeed
+			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
 			flip = (hspeed < 0).tointeger()
 
 			timer--
@@ -881,6 +881,86 @@
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprBlueFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+	}
+
+	function _typeof() { return "BlueFish" }
+}
+
+::JellyFish <- class extends Enemy {
+	timer = 0
+	frame = 0.0
+	pump = false
+	fliph = 0
+	flipv = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+		hspeed = 0.5
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x + hspeed, y)) hspeed = -hspeed
+			if(!placeFree(x, y + vspeed)) vspeed = -vspeed
+
+			if(hspeed > 0) fliph = 0
+			if(hspeed < 0) fliph = 1
+			if(vspeed > 0) flipv = 1
+			if(vspeed < 0) flipv = 0
+			if(hspeed )
+
+			timer--
+			if(timer <= 0) {
+				timer = 120
+				pump = true
+			}
+
+			if(pump) {
+				if(frame < 3) frame += 0.1
+				else frame += 0.05
+
+				if(frame >= 4) {
+					frame = 0.0
+					pump = false
+				}
+
+				if(frame > 2 && frame < 3) {
+					if(fliph == 0) hspeed = 1.0
+					else hspeed = -1.0
+					if(flipv == 0) vspeed = -1.0
+					else vspeed = 1.0
+				}
+			}
+
+			if(!inWater(x, y)) vspeed += 0.1
+			vspeed *= 0.99
+			hspeed *= 0.99
+
+			drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
+
+			if(placeFree(x + hspeed, y)) x += hspeed
+			if(placeFree(x, y + vspeed)) y += vspeed
+			shape.setPos(x, y)
+		}
+	}
+
+	function gethurt() {}
+
+	function hurtfire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprJellyFish
 		actor[c].vspeed = -0.5
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed

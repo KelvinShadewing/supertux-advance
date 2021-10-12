@@ -56,7 +56,7 @@
 
 ::meOptions <- [
 	{
-		name = function() { return gvLangObj["options-menu"]["difficulty"] + ": " + strDifficulty[config.difficulty] },
+		name = function() { return gvLangObj["options-menu"]["difficulty"] + ": " + strDifficulty[game.difficulty] },
 		func = function() { cursor = 0; menu = meDifficulty }
 
 	},
@@ -81,18 +81,18 @@
 ::meDifficulty <- [
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["easy"] },
-		func = function() { config.difficulty = 0; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 0; cursor = 0; menu = meOptions }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["normal"] },
-		func = function() { config.difficulty = 1; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 1; cursor = 0; menu = meOptions }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["hard"] },
-		func = function() { config.difficulty = 2; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 2; cursor = 0; menu = meOptions }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
-		func = function() { config.difficulty = 3; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 3; cursor = 0; menu = meOptions }
 	}
 ]

@@ -6,6 +6,7 @@
 ::gvGameMode <- 0
 ::gvQuit <- false
 ::game <- {
+	difficulty = 0
 	score = 0
 	coins = 0
 	levelcoins = 0
@@ -51,7 +52,6 @@
 ::strDifficulty <- []
 
 ::config <- {
-	difficulty = 0
 	key = {
 		up = k_up
 		down = k_down

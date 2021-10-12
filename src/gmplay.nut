@@ -233,6 +233,9 @@
 			case 35:
 				newActor(C4, i.x + 8, i.y - 8)
 				break
+			case 36:
+				newActor(JellyFish, i.x + 8, i.y - 8)
+				break
 		}
 	}
 

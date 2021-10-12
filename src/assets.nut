@@ -53,6 +53,7 @@
 ::sprCarlBoom <- newSprite("res/gfx/carlboom.png", 16, 16, 0, 0, 8, 8)
 ::sprBlueFish <- newSprite("res/gfx/fishblue.png", 28, 20, 0, 0, 16, 12)
 ::sprRedFish <- newSprite("res/gfx/fishred.png", 28, 20, 0, 0, 16, 12)
+::sprJellyFish <- newSprite("res/gfx/jellyfish.png", 16, 16, 0, 0, 8, 8)
 
 //Items
 ::sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 0, 0, 8, 8)
@@ -148,9 +149,3 @@
 	gvMusic = loadMusic(song)
 	playMusic(gvMusic, -1)
 }
-
-//Maps
-::mpTest <- "res/map/test.json"
-//Maps won't be loaded all at once.
-//The map will be unloaded when done and replaced
-//with a new one when the level changes.

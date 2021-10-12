@@ -130,7 +130,7 @@
 			v = 0
 		}
 
-		if(config.difficulty == 2 && (item == 1 || item == 2)) full = false
+		if(game.difficulty == 2 && (item == 1 || item == 2)) full = false
 
 		if(v <= -8) {
 			vspeed = 0.5
@@ -140,12 +140,12 @@
 					break
 
 				case 1:
-					if(config.difficulty == 3) newActor(MuffinEvil, x, y - 16)
+					if(game.difficulty == 3) newActor(MuffinEvil, x, y - 16)
 					else newActor(MuffinBlue, x, y - 16)
 					break
 
 				case 2:
-					if(config.difficulty == 3) newActor(MuffinEvil, x, y - 16)
+					if(game.difficulty == 3) newActor(MuffinEvil, x, y - 16)
 					else newActor(MuffinRed, x, y - 16)
 					break
 
@@ -158,7 +158,7 @@
 					break
 
 				case 5:
-					if(config.difficulty >= 2) newActor(MuffinEvil, x, y - 16)
+					if(game.difficulty >= 2) newActor(MuffinEvil, x, y - 16)
 					else newActor(Starnyan, x, y - 16)
 					break
 
