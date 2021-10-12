@@ -662,10 +662,16 @@
 				case 4:
 					break
 				case 5:
-					newActor(MuffinBlue, x, y)
+					if(game.health < game.maxHealth) {
+						newActor(MuffinBlue, x, y)
+						game.subitem = 0
+					}
 					break
 				case 6:
-					newActor(MuffinRed, x, y)
+					if(game.health < game.maxHealth) {
+						newActor(MuffinRed, x, y)
+						game.subitem = 0
+					}
 					break
 				case 7:
 					newActor(Starnyan, x, y)
