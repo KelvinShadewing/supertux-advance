@@ -111,36 +111,36 @@
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 
 //Sounds
-::sndFireball <- loadSound("res/snd/fireball.wav")
-::sndJump <- loadSound("res/snd/jump.wav")
-::sndHurt <- loadSound("res/snd/hurt.wav")
-::sndKick <- loadSound("res/snd/kick.wav")
-::sndSquish <- loadSound("res/snd/squish.wav")
-::sndCoin <- loadSound("res/snd/coin.wav")
-::sndSlide <- loadSound("res/snd/slide.wav")
-::sndFlame <- loadSound("res/snd/flame.wav")
-::sndSpring <- loadSound("res/snd/trampoline.wav")
+::sndFireball <- loadSound("res/snd/fireball.ogg")
+::sndJump <- loadSound("res/snd/jump.ogg")
+::sndHurt <- loadSound("res/snd/hurt.ogg")
+::sndKick <- loadSound("res/snd/kick.ogg")
+::sndSquish <- loadSound("res/snd/squish.ogg")
+::sndCoin <- loadSound("res/snd/coin.ogg")
+::sndSlide <- loadSound("res/snd/slide.ogg")
+::sndFlame <- loadSound("res/snd/flame.ogg")
+::sndSpring <- loadSound("res/snd/trampoline.ogg")
 ::sndDie <- loadSound("res/snd/die.ogg")
-::sndWin <- loadSound("res/snd/win.wav")
-::sndBump <- loadSound("res/snd/bump.wav")
-::sndHeal <- loadSound("res/snd/heal.wav")
-::sndFlap <- loadSound("res/snd/flap.wav")
-::sndExplodeF <- loadSound("res/snd/explodeF.wav")
-::sndFizz <- loadSound("res/snd/fizz.wav")
+::sndWin <- loadSound("res/snd/win.ogg")
+::sndBump <- loadSound("res/snd/bump.ogg")
+::sndHeal <- loadSound("res/snd/heal.ogg")
+::sndFlap <- loadSound("res/snd/flap.ogg")
+::sndExplodeF <- loadSound("res/snd/explodeF.ogg")
+::sndFizz <- loadSound("res/snd/fizz.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
 ::gvMusicName <- ""
 ::musDisko <- "res/snd/chipdisko.ogg"
-::musCave <- "res/snd/cave.mp3"
-::musOverworld <- "res/snd/overworld.mp3"
-::musCity <- "res/snd/village-mixed.mp3"
-::musCastle <- "res/snd/castle.wav"
-::musRace <- "res/snd/blackdiamond.mp3"
-::musDeluge <- "res/snd/deluge.mp3"
+::musCave <- "res/snd/cave.ogg"
+::musOverworld <- "res/snd/overworld.ogg"
+::musCity <- "res/snd/village-mixed.ogg"
+::musCastle <- "res/snd/castle.ogg"
+::musRace <- "res/snd/blackdiamond.ogg"
+::musDeluge <- "res/snd/deluge.ogg"
 
 //Saved separately so that it can be reused frequently
-::musInvincible <- loadMusic("res/snd/invincible.wav")
+::musInvincible <- loadMusic("res/snd/invincible.ogg")
 
 ::songPlay <- function(song) {
 	gvMusicName = song
