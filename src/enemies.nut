@@ -923,7 +923,7 @@
 
 			timer--
 			if(timer <= 0) {
-				timer = 120
+				timer = 30 + randInt(90)
 				pump = true
 			}
 
