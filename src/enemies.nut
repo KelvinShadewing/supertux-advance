@@ -961,12 +961,12 @@
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprJellyFish
-		actor[c].vspeed = -0.5
-		actor[c].flip = flip
-		actor[c].hspeed = hspeed
-		if(flip == 1) actor[c].spin = -1
+		actor[c].vspeed = -0.2
+		actor[c].flip = fliph + (flipv * 2)
+		actor[c].hspeed = hspeed / 2
+		if(fliph == 1) actor[c].spin = -1
 		else actor[c].spin = 1
-		actor[c].gravity = 0.02
+		actor[c].gravity = 0.01
 		deleteActor(id)
 		playSound(sndKick, 0)
 		game.enemies--

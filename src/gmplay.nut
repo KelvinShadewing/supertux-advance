@@ -235,6 +235,7 @@
 				break
 			case 36:
 				newActor(JellyFish, i.x + 8, i.y - 8)
+				game.enemies++
 				break
 		}
 	}
