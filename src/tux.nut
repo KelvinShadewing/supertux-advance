@@ -364,14 +364,14 @@
 				//Wall jumping
 				if(freeDown && getcon("jump", "press"))
 				{
-					if(!placeFree(x - 2, y) && anim != anWall && hspeed >= 0) {
+					if(!placeFree(x - 2, y) && anim != anWall && hspeed <= 0) {
 						flip = 0
 						anim = anWall
 						frame = anim[0]
 
 					}
 
-					if(!placeFree(x + 2, y) && anim != anWall && hspeed <= 0) {
+					if(!placeFree(x + 2, y) && anim != anWall && hspeed >= 0) {
 						flip = 1
 						anim = anWall
 						frame = anim[0]
