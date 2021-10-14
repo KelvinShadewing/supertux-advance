@@ -132,6 +132,9 @@
 						else anim = anJumpU
 						frame = anim[0]
 					}
+
+					if(flip == 0 && hspeed < 0) hspeed += 0.05
+					if(flip == 1 && hspeed > 0) hspeed -= 0.05
 					break
 
 				case anJumpU:
@@ -253,8 +256,8 @@
 			}
 
 			if(anim != anClimb && anim != anWall) {
-				if(hspeed > 0.1) flip = 0
-				if(hspeed < -0.1) flip = 1
+				if(hspeed > 0.1 && (getcon("right", "hold") || anim == anSlide)) flip = 0
+				if(hspeed < -0.1 && (getcon("left", "hold") || anim == anSlide)) flip = 1
 			}
 
 			//Controls
@@ -361,14 +364,14 @@
 				//Wall jumping
 				if(freeDown && getcon("jump", "press"))
 				{
-					if(!placeFree(x - 2, y) && anim != anWall) {
+					if(!placeFree(x - 2, y) && anim != anWall && hspeed >= 0) {
 						flip = 0
 						anim = anWall
 						frame = anim[0]
 
 					}
 
-					if(!placeFree(x + 2, y) && anim != anWall) {
+					if(!placeFree(x + 2, y) && anim != anWall && hspeed <= 0) {
 						flip = 1
 						anim = anWall
 						frame = anim[0]
