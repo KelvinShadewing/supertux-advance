@@ -45,6 +45,7 @@
 	anSwimDF = [60.0, 63.0]
 	anSwimU = [64.0, 67.0]
 	anSwimD = [68.0, 71.0]
+	anSkid = [4.0, 5.0]
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -123,6 +124,17 @@
 					break
 
 				case anRun:
+				case anSkid:
+					if(flip == 0 && hspeed < 0) {
+						hspeed += 0.05
+						anim = anSkid
+					}
+					else if(flip == 1 && hspeed > 0) {
+						hspeed -= 0.05
+						anim = anSkid
+					}
+					else anim = anRun
+
 					if(game.weapon == 2) frame+= abs(hspeed) / 16
 					else frame += abs(hspeed) / 8
 					if(abs(hspeed) < 1.2) anim = anWalk
@@ -133,8 +145,6 @@
 						frame = anim[0]
 					}
 
-					if(flip == 0 && hspeed < 0) hspeed += 0.05
-					if(flip == 1 && hspeed > 0) hspeed -= 0.05
 					break
 
 				case anJumpU:
@@ -853,7 +863,7 @@
 				gvPlayer.invincible = 240
 				game.health = game.maxHealth
 			}
-			if(game.check == false || game.difficulty > 0) if(game.lives > 0) game.lives--
+			if(game.check == true || game.difficulty > 0) if(game.lives > 0) game.lives--
 		}
 		switch(mywep) {
 			case 0:

@@ -380,12 +380,14 @@
 	gothit = false
 	hittime = 0.0
 	frame = 0.0
+	fireshape = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)
 		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		fireshape = Rec(x, y, 12, 12, 0)
 	}
 
 	function run() {
@@ -404,13 +406,13 @@
 				gothit = true
 				playSound(sndFizz, 0)
 			}
+		}
 
-			if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) if(hitTest(shape, i.shape)) {
-				mapDeleteSolid(mapshape)
-				deleteActor(id)
-				newActor(BadExplode, x, y)
-				deleteActor(i.id)
-			}
+		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) if(hitTest(fireshape, i.shape)) {
+			mapDeleteSolid(mapshape)
+			deleteActor(id)
+			newActor(BadExplode, x, y)
+			deleteActor(i.id)
 		}
 
 		drawSprite(sprTNT, frame, x - 8 - camx, y - 8 - camy)

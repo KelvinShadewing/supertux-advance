@@ -56,6 +56,8 @@
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection (Minecraft-like tiles, with edits)
 
+[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel (with edits)
+
 ## Sounds
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - 1up
