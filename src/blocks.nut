@@ -365,6 +365,7 @@
 			game.check = true
 			game.chx = x
 			game.chy = y
+			playSound(sndBell, 0)
 		}
 
 		if(game.check) drawSprite(sprCheckBell, getFrames() / 16, x - camx, y - camy)

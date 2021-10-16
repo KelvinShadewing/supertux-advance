@@ -232,7 +232,7 @@
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "StageIcon" }
@@ -254,7 +254,7 @@
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "TownIcon" }
@@ -290,7 +290,7 @@
 			}
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, "To " + gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, "To " + gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "WorldIcon" }

@@ -114,6 +114,7 @@
 ::sndFlap <- loadSound("res/snd/flap.ogg")
 ::sndExplodeF <- loadSound("res/snd/explodeF.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
+::sndBell <- loadSound("res/snd/bell.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
