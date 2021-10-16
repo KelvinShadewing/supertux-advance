@@ -56,11 +56,6 @@
 
 ::meOptions <- [
 	{
-		name = function() { return gvLangObj["options-menu"]["difficulty"] + ": " + strDifficulty[game.difficulty] },
-		func = function() { cursor = 0; menu = meDifficulty }
-
-	},
-	{
 		name = function() { return gvLangObj["options-menu"]["keyboard"] },
 		func = function() { rebindKeys() }
 	},
