@@ -67,6 +67,17 @@
 
 	},
 
+	"level" : {
+		"overworld-0" : "Antarctica",
+		"0-t0" : "Pennyton",
+		"0-0" : "Learning the Slopes",
+		"0-1" : "Crystal Pass",
+		"0-2" : "Slip and Slide",
+		"0-3" : "Subsea",
+		"0-4" : "Tux 'N' Trouble",
+		"0-x" : "Xtreme Hills"
+	},
+
 	"key" : {
 		"0" : "_0",
 		"1" : "_1",

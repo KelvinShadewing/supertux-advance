@@ -84,20 +84,6 @@
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png" 16, 4, 0, 0, 0, 0)
 
-//Tilesets
-::tsActors <- newSprite("res/gfx/actors.png", 16, 16, 0, 0, 0, 0)
-::tsIceCave <- newSprite("res/gfx/icecavetiles.png", 16, 16, 0, 0, 0, 0)
-::tsIgloo <- newSprite("res/gfx/igloo.png", 16, 16, 0, 0, 0, 0)
-::tsPipes <- newSprite("res/gfx/pipetiles.png", 16, 16, 0, 0, 0, 0)
-::tsGrass <- newSprite("res/gfx/tsGrasstop.png", 16, 16, 0, 0, 0, 0)
-::tsDark <- newSprite("res/gfx/darktiles.png", 16, 16, 0, 0, 0, 0)
-::tsWoodPlat <- newSprite("res/gfx/woodplat.png", 16, 16, 0, 0, 0, 0)
-::tsRopes <- newSprite("res/gfx/rope.png", 16, 16, 0, 0, 0, 0)
-::tsSnow <- newSprite("res/gfx/tsSnow.png", 16, 16, 0, 0, 0, 0)
-::tsSigns <- newSprite("res/gfx/signpost.png", 16, 16, 0, 0, 0, 0)
-::tsGoal <- newSprite("res/gfx/goal.png", 16, 16, 0, 0, 0, 0)
-::tsCastle <- newSprite("res/gfx/tsCastle.png", 16, 16, 0, 0, 0, 0)
-
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392, 0, 0, 0, 0)
 ::bgIridia <- newSprite("res/gfx/iridia.png", 100, 56, 0, 0, 0, 0)

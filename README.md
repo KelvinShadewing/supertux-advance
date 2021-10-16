@@ -8,7 +8,7 @@ Some assets from SuperTux will be used, with graphics being remixed to match the
 
 ## Community
 
-We have a Discord server! https://discord.gg/PJsSmND5GP
+We have a Discord server! https://discord.gg/bcyC2Q6a9x
 
 ## Story
 

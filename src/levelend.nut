@@ -1,7 +1,7 @@
 ::levelEndRunner <- 0
 
 ::LevelEnder <- class extends Actor {
-	timer = 600
+	timer = 360
 
 	function run() {
 		timer--

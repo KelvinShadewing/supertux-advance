@@ -44,22 +44,10 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":821,
-                 "height":16,
-                 "id":1,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":80,
-                 "y":64
-                }, 
-                {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":2,
-                 "name":"Learning the Slopes",
+                 "name":"0-0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -68,10 +56,10 @@
                  "y":80
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":3,
-                 "name":"Crystal Pass",
+                 "name":"0-1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -80,10 +68,10 @@
                  "y":144
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":4,
-                 "name":"Slip and Slide",
+                 "name":"0-2",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -92,10 +80,10 @@
                  "y":288
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":6,
-                 "name":"Tux 'N Trouble",
+                 "name":"0-4",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -104,7 +92,7 @@
                  "y":352
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":7,
                  "name":"",
@@ -116,7 +104,7 @@
                  "y":352
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":8,
                  "name":"",
@@ -128,7 +116,7 @@
                  "y":240
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":9,
                  "name":"",
@@ -140,7 +128,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":10,
                  "name":"",
@@ -152,7 +140,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":11,
                  "name":"",
@@ -164,7 +152,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":823,
+                 "gid":828,
                  "height":16,
                  "id":12,
                  "name":"overworld-1,0,0",
@@ -176,7 +164,7 @@
                  "y":32
                 }, 
                 {
-                 "gid":824,
+                 "gid":829,
                  "height":16,
                  "id":16,
                  "name":"",
@@ -188,7 +176,7 @@
                  "y":48
                 }, 
                 {
-                 "gid":824,
+                 "gid":829,
                  "height":16,
                  "id":17,
                  "name":"",
@@ -200,10 +188,10 @@
                  "y":80
                 }, 
                 {
-                 "gid":824,
+                 "gid":829,
                  "height":16,
                  "id":18,
-                 "name":"Xtreme Hills",
+                 "name":"0-xs",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -212,7 +200,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":824,
+                 "gid":829,
                  "height":16,
                  "id":19,
                  "name":"",
@@ -224,7 +212,7 @@
                  "y":368
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":20,
                  "name":"0-C",
@@ -236,16 +224,40 @@
                  "y":80
                 }, 
                 {
-                 "gid":822,
+                 "gid":827,
                  "height":16,
                  "id":21,
-                 "name":"Subsea",
+                 "name":"0-3",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
                  "x":144,
                  "y":368
+                }, 
+                {
+                 "gid":829,
+                 "height":16,
+                 "id":22,
+                 "name":"0-t0",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":64
+                }, 
+                {
+                 "gid":826,
+                 "height":16,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -254,7 +266,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":22,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -263,7 +275,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -760,18 +772,18 @@
          "columns":5,
          "firstgid":781,
          "image":"..\/gfx\/solid.png",
-         "imageheight":128,
+         "imageheight":144,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":40,
+         "tilecount":45,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":8,
-         "firstgid":821,
+         "firstgid":826,
          "image":"..\/gfx\/actors.png",
          "imageheight":80,
          "imagewidth":128,
