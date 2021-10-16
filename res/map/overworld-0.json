@@ -191,7 +191,7 @@
                  "gid":829,
                  "height":16,
                  "id":18,
-                 "name":"0-xs",
+                 "name":"0-x",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -275,7 +275,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {
