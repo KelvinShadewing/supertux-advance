@@ -4,21 +4,27 @@
 	dw = 0
 	dh = 0
 	shape = null
+	rehide = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		game.secrets++
+		if(_arr == "1") rehide = true
 	}
 
 	function run() {
 		if(shape == null && dw != 0 && dh != 0) shape = Rec(x + (dw * 8), y + (dh * 8), -4 + (dw * 8), -4 + (dh * 8), 5)
 
-		if(shape != null && gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(!found) {
-			found = true
-			game.secrets--
+		if(shape != null && gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
+			if(!found) {
+				found = true
+				game.secrets--
+			}
 		}
+		else if(rehide) found = false
 		if(found && alpha > 0) alpha -= 0.1
-		if(alpha <= 0) deleteActor(id)
+		if(!found && alpha < 1) alpha += 0.1
+		if(alpha <= 0 && !rehide) deleteActor(id)
 	}
 
 	function draw() {

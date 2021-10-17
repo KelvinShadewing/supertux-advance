@@ -985,18 +985,6 @@
                 {
                  "gid":210,
                  "height":16,
-                 "id":272,
-                 "name":"welcome",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":48,
-                 "y":240
-                }, 
-                {
-                 "gid":210,
-                 "height":16,
                  "id":273,
                  "name":"tutWall",
                  "rotation":0,

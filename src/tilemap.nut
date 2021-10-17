@@ -169,7 +169,7 @@
 							}
 							break
 						case "secret":
-							local c = actor[newActor(SecretWall, obj.x, obj.y)]
+							local c = actor[newActor(SecretWall, obj.x, obj.y, obj.name)]
 							c.dw = obj.width / 16
 							c.dh = obj.height / 16
 							break

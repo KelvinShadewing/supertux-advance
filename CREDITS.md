@@ -74,6 +74,8 @@ Lukas Nystrand - Chippdisko
 
 [Joth](https://opengameart.org/users/joth) - Black Diamond, Emotional Deluge
 
+[genaralskar](https://opengameart.org/users/genaralskar) - Winter Wonderland
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble

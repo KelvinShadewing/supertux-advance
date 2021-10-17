@@ -46,6 +46,7 @@
 
 //NPCs
 ::sprRadGuin <- newSprite("res/gfx/radguin.png", 22, 32, 0, 0, 16, 32)
+::sprPenny <- newSprite("res/gfx/penny.png", 14, 24, 0, 0, 7, 24)
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
@@ -133,6 +134,7 @@
 ::musCastle <- "res/snd/castle.ogg"
 ::musRace <- "res/snd/blackdiamond.ogg"
 ::musDeluge <- "res/snd/deluge.ogg"
+::musSnowTown <- "res/snd/winter_wonderland.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")

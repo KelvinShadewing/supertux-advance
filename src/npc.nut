@@ -12,6 +12,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y - 16, 20, 16, 0)
+		flip = randInt(2)
 	}
 
 	function run() {
@@ -37,8 +38,8 @@
 			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) gvInfoBox = ""
 
 			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 32) {
-				if(x > gvPlayer.x + 4) flip = 0
-				if(x < gvPlayer.x - 4) flip = 1
+				if(x > gvPlayer.x + 4) flip = 1
+				if(x < gvPlayer.x - 4) flip = 0
 			}
 		}
 
