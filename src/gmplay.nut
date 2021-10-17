@@ -22,7 +22,7 @@
 	gvInfoBox = ""
 
 	//Load map to play
-	gvMap.del()
+	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors
