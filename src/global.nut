@@ -72,6 +72,7 @@
 		sneak = 5
 		pause = 7
 		swap = 3
+		escape = 8
 	}
 	playerchar = 0
 	lang = "en"

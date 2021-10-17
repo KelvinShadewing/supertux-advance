@@ -364,7 +364,7 @@
 	}
 	drawDebug()
 
-	if(keyPress(k_escape)) startOverworld(game.world)
+	if(getcon("escape", "press")) startOverworld(game.world)
 }
 
 ::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time

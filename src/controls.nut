@@ -62,6 +62,9 @@
 		case "swap":
 			if(keyfunc(config.key.swap) || joyfunc(0, config.joy.swap)) return true
 			break
+		case "escape":
+			if(keyfunc(k_escape) || joyfunc(0, config.joy.escape)) return true
+			break
 	}
 
 	return false
@@ -216,6 +219,13 @@
 				message += "swap"
 				if(anyJoyPress(0) != -1) {
 					config.joy.swap = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 9:
+				message += "escape"
+				if(anyJoyPress(0) != -1) {
+					config.joy.escape = anyJoyPress(0)
 					joystep++
 				}
 				break

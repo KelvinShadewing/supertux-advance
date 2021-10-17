@@ -383,6 +383,13 @@
 		camy = 0
 	}
 
+	//Execute level code
+	print("Running level code...")
+	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
+		if(i.name == "code") dostr(i.value)
+	}
+	print("End level code")
+
 	//Reset auto/locked controls
 	autocon.up = false
 	autocon.down = false
