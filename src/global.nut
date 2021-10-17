@@ -26,6 +26,7 @@
 	characters = { //List of unlocked characters
 		Tux = sprTuxOverworld
 	}
+	friends = {} //List of rescued friend characters
 	playerchar = "Tux" //Current player character
 	world = "res/map/overworld-0.json"
 	owx = 0

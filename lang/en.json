@@ -81,7 +81,15 @@
 		"rad-t0m" :
 		"What's a squirrel doing this far south? Ain't it too cold for ya? Get inside before ya freeze your fuzzy little toes off, heheh.",
 		"rad-t0d" :
-		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!"
+		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
+		"xue-pt-t" :
+		"Next time I see that Nolok, I'll give him a face full of exploding cupcakes! That'll teach him for messing with us, chu!",
+		"xue-pt-k" :
+		"Hey, Konqi! Give Nolok a good torching when you see him! No one messes with us, on or off the kart track, chu!",
+		"xue-pt-m" :
+		"Whoa, a fellow rodent who also likes explosions! (And pretty cute, chu...) Whah? N-nothing, chu! I, uh, was wondering if you'd like to go cart racing! N-not as a date or anything! (Shut up, Xue, shut up!)",
+		"xue-pt-d" :
+		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!"
 	},
 
 	"level" : {

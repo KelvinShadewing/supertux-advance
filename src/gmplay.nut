@@ -214,8 +214,7 @@
 				break
 
 			case 31:
-				local c = actor[newActor(NPC, i.x, i.y)]
-				c.args = i.name
+				actor[newActor(NPC, i.x, i.y, i.name)]
 				break
 
 			case 32:
@@ -266,6 +265,13 @@
 	autocon.down = false
 	autocon.left = false
 	autocon.right = false
+
+	//Execute level code
+	print("Running level code...")
+	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
+		if(i.name == "code") dostr(i.value)
+	}
+	print("End level code")
 
 	update()
 }

@@ -181,10 +181,6 @@
 
 			shape = (Rec(0, 0, 8, 8, 0))
 
-			if(data.rawin("properties")) foreach(i in data.properties) {
-				if(i.name == "code") dostr(i.value)
-			}
-
 			//Add sky protection
 			local l = -1
 			for(local i = 0; i < data.layers.len(); i++) {

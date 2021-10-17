@@ -195,18 +195,6 @@
                  "y":480
                 }, 
                 {
-                 "gid":188,
-                 "height":16,
-                 "id":12,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":32,
-                 "y":480
-                }, 
-                {
                  "gid":211,
                  "height":16,
                  "id":13,
@@ -217,6 +205,30 @@
                  "width":16,
                  "x":112,
                  "y":464
+                }, 
+                {
+                 "gid":219,
+                 "height":16,
+                 "id":14,
+                 "name":"sprXue,1,sayChar,xue-pt-t,xue-pt-k,xue-pt-m,xue-pt-d",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":464,
+                 "y":464
+                }, 
+                {
+                 "gid":188,
+                 "height":16,
+                 "id":15,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":480
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -225,13 +237,13 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":14,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\nsongPlay(musSnowTown)"
+         "value":"drawBG = dbgAurora\nsongPlay(musSnowTown)\n\nforeach(i in actor[\"NPC\"]) {\n print(i.sprite)\n if(i.sprite == sprXue) print(\"Found Xue\")\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) {\n  deleteActor(i.id)\n  print(\"Deleted Xue\")\n }\n}"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.1",
