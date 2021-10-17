@@ -68,4 +68,14 @@
 		}
 		gvInfoBox = text
 	}
+
+	function freeKonqi() {
+		sayChar()
+		if(!game.characters.rawin("Konqi")) game.characters.Konqi <- sprKonqiOverworld
+	}
+
+	function freeMidi() {
+		sayChar()
+		if(!game.characters.rawin("Midi")) game.characters.Midi <- sprMidiOverworld
+	}
 }
