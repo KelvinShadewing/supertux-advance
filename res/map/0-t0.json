@@ -243,7 +243,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\nsongPlay(musSnowTown)\n\nforeach(i in actor[\"NPC\"]) {\n print(i.sprite)\n if(i.sprite == sprXue) print(\"Found Xue\")\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) {\n  deleteActor(i.id)\n  print(\"Deleted Xue\")\n }\n}"
+         "value":"drawBG = dbgAurora\nsongPlay(musSnowTown)\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) deleteActor(i.id)\n}"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.1",

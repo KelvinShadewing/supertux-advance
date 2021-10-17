@@ -48,6 +48,7 @@
 ::sprRadGuin <- newSprite("res/gfx/radguin.png", 22, 32, 0, 0, 16, 32)
 ::sprPenny <- newSprite("res/gfx/penny.png", 14, 24, 0, 0, 7, 24)
 ::sprXue <- newSprite("res/gfx/xue.png", 20, 23, 0, 0, 12, 23)
+::sprPlasmaBreeze <- newSprite("res/gfx/plasmabreeze.png", 30, 32, 0, 0, 15, 32)
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
