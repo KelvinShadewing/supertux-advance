@@ -372,7 +372,7 @@
 				}
 
 				//Wall jumping
-				if(freeDown && getcon("jump", "press"))
+				if(freeDown && getcon("jump", "press") && anim != anClimb)
 				{
 					if(!placeFree(x - 2, y) && anim != anWall && hspeed <= 0) {
 						flip = 0
@@ -843,10 +843,10 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		if(game.lives == 0 || game.check == false) stopMusic()
+		stopMusic()
 		playSound(sndDie, 0)
 		mywep = game.weapon
-		if(game.lives == 0 || game.check == false) game.weapon = 0
+		if((game.lives == 0 || game.check == false) && game.difficulty == 0) game.weapon = 0
 	}
 
 	function run() {
@@ -854,16 +854,8 @@
 		y += vspeed
 		timer--
 		if(timer == 0) {
-			if(game.lives == 0 || game.check == false) startPlay(gvMap.file)
-			else {
-				gvPlayer = actor[newActor(getroottable()[game.playerchar], 0, 0)]
-				playerTeleport(game.chx, game.chy)
-				deleteActor(id)
-				gvPlayer.tftime = 0
-				gvPlayer.invincible = 240
-				game.health = game.maxHealth
-			}
 			if(game.check == true || game.difficulty > 0) if(game.lives > 0) game.lives--
+			startPlay(gvMap.file)
 		}
 		switch(mywep) {
 			case 0:

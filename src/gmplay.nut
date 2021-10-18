@@ -18,7 +18,6 @@
 	game.maxcoins = 0
 	game.secrets = 0
 	game.enemies = 0
-	game.check = false
 	gvInfoBox = ""
 
 	//Load map to play
@@ -70,7 +69,10 @@
 		{
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
-				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) newActor(getroottable()[game.playerchar], i.x, i.y - 16)
+				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) {
+					if(game.check == false) newActor(getroottable()[game.playerchar], i.x, i.y - 16)
+					else newActor(getroottable()[game.playerchar], game.chx, game.chy)
+				}
 				break
 
 			case 1:
@@ -265,6 +267,7 @@
 	autocon.down = false
 	autocon.left = false
 	autocon.right = false
+	if(game.lives == 0) game.check = false
 
 	//Execute level code
 	print("Running level code...")

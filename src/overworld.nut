@@ -229,7 +229,10 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+				game.check = false
+				startPlay("res/map/" + level + ".json")
+			}
 		}
 
 		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
@@ -251,7 +254,10 @@
 	function run() {
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+				game.check = false
+				startPlay("res/map/" + level + ".json")
+			}
 		}
 
 		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
