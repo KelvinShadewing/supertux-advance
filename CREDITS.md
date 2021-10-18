@@ -94,7 +94,7 @@ Lukas Nystrand - Chippdisko
 
 Click each mascot to learn more about them and the projects they're associated with.
 
-[Konqi](https://community.kde.org/Konqi), [Rocky Raccoon](https://wiki.minix3.org/doku.php?id=mascot), [Tux](https://en.wikipedia.org/wiki/Tux_(mascot)), [Xue](https://docs.xfce.org/)
+[Konqi](https://community.kde.org/Konqi), [Plasma Breeze](https://www.deviantart.com/sheeppony/art/Plasma-Breeze-814699638), [Rocky Raccoon](https://wiki.minix3.org/doku.php?id=mascot), [Tux](https://en.wikipedia.org/wiki/Tux_(mascot)), [Xue](https://docs.xfce.org/)
 
 ## Donors
 
