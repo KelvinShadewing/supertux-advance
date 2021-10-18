@@ -90,6 +90,12 @@ Lukas Nystrand - Chippdisko
 
 [bydariogamer](https://github.com/bydariogamer) - Spanish
 
+## Mascots
+
+Click each mascot to learn more about them and the projects they're associated with.
+
+[Konqi](https://community.kde.org/Konqi), [Rocky Raccoon](https://wiki.minix3.org/doku.php?id=mascot), [Tux](https://en.wikipedia.org/wiki/Tux_(mascot)), [Xue](https://docs.xfce.org/)
+
 ## Donors
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
