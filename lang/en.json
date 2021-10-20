@@ -93,14 +93,16 @@
 	},
 
 	"level" : {
-		"overworld-0" : "Antarctica",
+		"overworld-0" : "Aurora Isles",
+		"overworld-1" : "Antarctica",
 		"0-t0" : "Pennyton",
 		"0-0" : "Learning the Slopes",
 		"0-1" : "Crystal Pass",
 		"0-2" : "Slip and Slide",
 		"0-3" : "Subsea",
 		"0-4" : "Tux 'N' Trouble",
-		"0-x" : "Xtreme Hills"
+		"0-x" : "Xtreme Hills",
+		"0-c" : "Fort Borealis"
 	},
 
 	"key" : {

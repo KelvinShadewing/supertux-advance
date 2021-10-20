@@ -30,9 +30,14 @@
 	if(keyPress(k_equals)) game.lives++
 
 	//Teleport
-	if(gvPlayer != 0 && mousePress(0)) {
+	if(gvPlayer != 0 && mouseDown(0)) {
 		gvPlayer.x = mouseX() + camx
 		gvPlayer.y = mouseY() + camy
+
+		if(gvGameMode == gmOverworld) {
+			gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
+			gvPlayer.y = (gvPlayer.y - (gvPlayer.y % 16)) + 8
+		}
 	}
 
 	local message = ""

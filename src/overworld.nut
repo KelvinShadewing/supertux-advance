@@ -289,14 +289,14 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
 				game.owx = px
 				game.owy = py
-				startOverworld("res/map/" + level + ".json")
+				startOverworld("res/map/" + world + ".json")
 			}
 		}
 
-		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, "To " + gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][world].len() * 4), 8, "To " + gvLangObj["level"][world])
 	}
 
 	function _typeof() { return "WorldIcon" }
