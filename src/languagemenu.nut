@@ -15,6 +15,7 @@
 					config.lang = languageList["languages"][languageIndex][1]
 					cursor = i
 					menu = meOptions
+					gvLangObj = jsonRead(fileRead("lang/en.json"))
 					gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
 				}
 			}
