@@ -5,7 +5,7 @@
 //These functions may end up being added to the runtime core file.
 //They will be marked as such if this happens.
 
-::mergeTable(a, b) {
+::mergeTable <- function(a, b) {
 	//Create new table
 	local nt = clone(a)
 
@@ -14,4 +14,6 @@
 		if(nt.rawin(slot)) nt[slot] = i
 		else nt[slot] <- i
 	}
+
+	return nt
 }
