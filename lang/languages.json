@@ -1,8 +1,9 @@
 {
-    "languages":[
-        ["English","en"],
-        ["French","fr"],
-        ["Bulgarian","bg"],
-        ["Polish","pl"]
-    ]
+	"languages":[
+		["English","en"],
+		["French","fr"],
+		["Bulgarian","bg"],
+		["Polish","pl"],
+		["Spanish","es"]
+	]
 }

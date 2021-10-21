@@ -11,6 +11,7 @@
 \*===============================*/
 
 //Game source
+donut("src/util.nut")
 donut("src/text.nut")
 donut("src/shapes.nut")
 donut("src/tilemap.nut")
@@ -87,7 +88,8 @@ setFPS(60)
 
 //Load game text
 if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
-gvLangObj = jsonRead(fileRead("lang/" + config.lang + ".json"))
+gvLangObj = jsonRead(fileRead("lang/en.json"))
+gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
 
 //Set difficulty strings
 strDifficulty = [
@@ -108,4 +110,12 @@ while(!getQuit() && !gvQuit)
 	if(getcon("pause", "press") && gvPlayer != 0 && gvGameMode != gmMain) togglePause()
 	gvGameMode()
 	update()
+}
+
+foreach(k, i in gvLangObj) {
+	print(k + " = {")
+	foreach(j, l in i) {
+		print(j + " = " + l)
+	}
+	print("}")
 }

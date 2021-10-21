@@ -140,12 +140,18 @@
 					break
 
 				case 1:
-					if(game.difficulty == 3) newActor(MuffinEvil, x, y - 16)
+					if(game.difficulty == 3) {
+						local c = actor[newActor(CannonBob, x, y - 4)]
+						c.hspeed = ((gvPlayer.x - x) / 96)
+					}
 					else newActor(MuffinBlue, x, y - 16)
 					break
 
 				case 2:
-					if(game.difficulty == 3) newActor(MuffinEvil, x, y - 16)
+					if(game.difficulty == 3) {
+						local c = actor[newActor(CannonBob, x, y - 4)]
+						c.hspeed = ((gvPlayer.x - x) / 96)
+					}
 					else newActor(MuffinRed, x, y - 16)
 					break
 
@@ -365,6 +371,7 @@
 			game.check = true
 			game.chx = x
 			game.chy = y
+			playSound(sndBell, 0)
 		}
 
 		if(game.check) drawSprite(sprCheckBell, getFrames() / 16, x - camx, y - camy)

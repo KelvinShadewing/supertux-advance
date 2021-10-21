@@ -169,7 +169,7 @@
 							}
 							break
 						case "secret":
-							local c = actor[newActor(SecretWall, obj.x, obj.y)]
+							local c = actor[newActor(SecretWall, obj.x, obj.y, obj.name)]
 							c.dw = obj.width / 16
 							c.dh = obj.height / 16
 							break
@@ -180,10 +180,6 @@
 
 
 			shape = (Rec(0, 0, 8, 8, 0))
-
-			if(data.rawin("properties")) foreach(i in data.properties) {
-				if(i.name == "code") dostr(i.value)
-			}
 
 			//Add sky protection
 			local l = -1

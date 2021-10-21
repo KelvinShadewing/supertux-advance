@@ -28,7 +28,9 @@
 		"tutSlide" :
 		"Press DOWN while running to slide.",
 		"waterjump" :
-		"Hold JUMP when leaving the water to gain height."
+		"Hold JUMP when leaving the water to gain height.",
+		"noend" :
+		"Levels that you don't need to complete to move on also do not have normal exits. Press ESCAPE to leave areas like this."
 	},
 
 	"devcom" : {
@@ -63,19 +65,44 @@
 		"rad-0m" :
 		"Are you gonna use that ball of yourse for this course? Good luck.",
 		"rad-0d" :
-		"Get all the coins on this hill if you want a totally nautical prize!"
-
+		"Get all the coins on this hill if you want a totally nautical prize!",
+		"penny-0t" :
+		"Oh, Tux! I'm so happy to see you! Nolok has kidnapped our friends! Last I heard, they were being taken to his forts all around the world. I wish I knew why. Please save them, Tux!",
+		"penny-0k" :
+		"Konqi! It's so good to see you! I'm sure Plasma Breeze is fine. Please help Tux. I know you two can beat Nolok together!",
+		"penny-0m" :
+		"So you're Midi. I've heard you're quite a capable fighter. I'm so glad to hear you're helping Tux. I'll be sure to reward you well.",
+		"penny-0d" :
+		"Pleased to meet you. Are you helping Tux save our friends? I'm so happy to hear that.",
+		"rad-t0t" :
+		"Yo, Tux! Mayor Penny is looking for ya. By the way, catch me on the slopes sometime. I wanna see if you live up to your rep as a snow racer.",
+		"rad-t0k" :
+		"Hey, you're Konqi, right? Man, watch the fire around here. Doesn't really mix well with ice, ya feel me?",
+		"rad-t0m" :
+		"What's a squirrel doing this far south? Ain't it too cold for ya? Get inside before ya freeze your fuzzy little toes off, heheh.",
+		"rad-t0d" :
+		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
+		"xue-pt-t" :
+		"Next time I see that Nolok, I'll give him a face full of exploding cupcakes! That'll teach him for messing with us, chu!",
+		"xue-pt-k" :
+		"Hey, Konqi! Give Nolok a good torching when you see him! No one messes with us, on or off the kart track, chu!",
+		"xue-pt-m" :
+		"Whoa, a fellow rodent who also likes explosions! (And pretty cute, chu...) Whah? N-nothing, chu! I, uh, was wondering if you'd like to go cart racing! N-not as a date or anything! (Shut up, Xue, shut up!)",
+		"xue-pt-d" :
+		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!"
 	},
 
 	"level" : {
-		"overworld-0" : "Antarctica",
+		"overworld-0" : "Aurora Isles",
+		"overworld-1" : "Antarctica",
 		"0-t0" : "Pennyton",
 		"0-0" : "Learning the Slopes",
 		"0-1" : "Crystal Pass",
 		"0-2" : "Slip and Slide",
 		"0-3" : "Subsea",
 		"0-4" : "Tux 'N' Trouble",
-		"0-x" : "Xtreme Hills"
+		"0-x" : "Xtreme Hills",
+		"0-c" : "Fort Borealis"
 	},
 
 	"key" : {

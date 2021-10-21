@@ -18,11 +18,10 @@
 	game.maxcoins = 0
 	game.secrets = 0
 	game.enemies = 0
-	game.check = false
 	gvInfoBox = ""
 
 	//Load map to play
-	gvMap.del()
+	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors
@@ -70,7 +69,10 @@
 		{
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
-				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) newActor(getroottable()[game.playerchar], i.x, i.y - 16)
+				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) {
+					if(game.check == false) newActor(getroottable()[game.playerchar], i.x, i.y - 16)
+					else newActor(getroottable()[game.playerchar], game.chx, game.chy)
+				}
 				break
 
 			case 1:
@@ -214,8 +216,7 @@
 				break
 
 			case 31:
-				local c = actor[newActor(NPC, i.x, i.y)]
-				c.args = i.name
+				actor[newActor(NPC, i.x, i.y, i.name)]
 				break
 
 			case 32:
@@ -236,6 +237,10 @@
 				break
 			case 36:
 				newActor(JellyFish, i.x + 8, i.y - 8)
+				game.enemies++
+				break
+			case 37:
+				newActor(Clamor, i.x + 8, i.y - 8, i.name)
 				game.enemies++
 				break
 		}
@@ -262,6 +267,14 @@
 	autocon.down = false
 	autocon.left = false
 	autocon.right = false
+	if(game.lives == 0) game.check = false
+
+	//Execute level code
+	print("Running level code...")
+	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
+		if(i.name == "code") dostr(i.value)
+	}
+	print("End level code")
 
 	update()
 }
@@ -354,7 +367,7 @@
 	}
 	drawDebug()
 
-	if(keyPress(k_escape)) startOverworld(game.world)
+	if(getcon("escape", "press")) startOverworld(game.world)
 }
 
 ::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time

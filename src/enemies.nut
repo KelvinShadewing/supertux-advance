@@ -895,6 +895,71 @@
 	function _typeof() { return "BlueFish" }
 }
 
+::RedFish <- class extends Enemy {
+	timer = 0
+	frame = 0.0
+	biting = false
+	flip = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 0.5
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
+			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
+			flip = (hspeed < 0).tointeger()
+
+			timer--
+			if(timer <= 0) {
+				timer = 240
+				vspeed = -0.5 + randFloat(1)
+			}
+			if(!inWater(x, y)) vspeed += 0.1
+			vspeed *= 0.99
+
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) biting = true
+			if(frame >= 4) {
+				biting = false
+				frame = 0.0
+			}
+
+			if(biting) {
+				drawSpriteEx(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+				frame += 0.125
+			}
+			else drawSpriteEx(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+
+			if(placeFree(x + hspeed, y)) x += hspeed
+			if(placeFree(x, y + vspeed)) y += vspeed
+			shape.setPos(x, y)
+		}
+	}
+
+	function gethurt() {}
+
+	function hurtfire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprBlueFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+	}
+
+	function _typeof() { return "RedFish" }
+}
+
 ::JellyFish <- class extends Enemy {
 	timer = 0
 	frame = 0.0
@@ -973,4 +1038,81 @@
 	}
 
 	function _typeof() { return "BlueFish" }
+}
+
+::Clamor <- class extends Enemy {
+	huntdir = 0
+	timer = 0
+	flip = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 6, 6, 0)
+		if(_arr == "1") flip = 1
+
+		if(flip == 0) huntdir = 1
+		else huntdir = -1
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer != 0) {
+			if(distance2(x + (huntdir * 48), y - 32, gvPlayer.x, gvPlayer.y) <= 64 && timer == 0) {
+				timer = 240
+				newActor(ClamorPearl, x, y, null)
+			}
+		}
+
+		if(timer > 0) timer--
+
+		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function hurtfire() {
+		if(timer < 30) {
+			newActor(Poof, x, y - 1)
+			deleteActor(id)
+			playSound(sndFlame, 0)
+			if(!nocount) game.enemies--
+		}
+	}
+
+	function _typeof() { return "Clamor" }
+}
+
+::ClamorPearl <- class extends PhysAct {
+	hspeed = 0
+	vspeed = 0
+	timer = 1200
+	shape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		if(gvPlayer == 0) {
+			deleteActor(id)
+			return
+		}
+
+		local aim = pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+		hspeed = lendirX(1, aim)
+		vspeed = lendirY(1, aim)
+
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		x += hspeed
+		y += vspeed
+		shape.setPos(x, y)
+		timer--
+
+		if(timer == 0 || !placeFree(x, y)) deleteActor(id)
+
+		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
+
+		drawSprite(sprIceball, 0, x - camx, y - camy)
+	}
 }

@@ -229,10 +229,13 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+				game.check = false
+				startPlay("res/map/" + level + ".json")
+			}
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "StageIcon" }
@@ -251,10 +254,13 @@
 	function run() {
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") startPlay("res/map/" + level + ".json")
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+				game.check = false
+				startPlay("res/map/" + level + ".json")
+			}
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "TownIcon" }
@@ -283,14 +289,14 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
 				game.owx = px
 				game.owy = py
-				startOverworld("res/map/" + level + ".json")
+				startOverworld("res/map/" + world + ".json")
 			}
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, "To " + gvLangObj["level"][level])
+		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][world].len() * 4), 8, "To " + gvLangObj["level"][world])
 	}
 
 	function _typeof() { return "WorldIcon" }
@@ -302,6 +308,7 @@
 	actor.clear()
 
 	//Load map to play
+	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(world)
 	game.world = world
 
@@ -381,6 +388,13 @@
 		camx = 0
 		camy = 0
 	}
+
+	//Execute level code
+	print("Running level code...")
+	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
+		if(i.name == "code") dostr(i.value)
+	}
+	print("End level code")
 
 	//Reset auto/locked controls
 	autocon.up = false

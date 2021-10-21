@@ -22,42 +22,53 @@
 
 	"info" : {
 		"welcome" :
-		"Witaj w grze SuperTux Advance! Ta wiadomość\nzniknie kiedy oddalisz się od tego bloku.\n\nNaciśnij F1 jeżeli chcesz zobaczyć informacje od\nKelvin Shadewing.",
+		"Witaj w grze SuperTux Advance! Ta wiadomość zniknie kiedy oddalisz się od tego bloku. Naciśnij F1 jeżeli chcesz zobaczyć informacje od Kelvin Shadewing.",
 		"tutWall" :
-		"Przytrzymaj SKOK i odepchnij się od ściany aby\nwykonać skok od ściany",
+		"Przytrzymaj SKOK i odepchnij się od ściany aby wykonać skok od ściany",
 		"tutSlide" :
 		"Naciśnij DÓŁ podczas biegania aby się ślizgać",
 		"waterjump" :
-		"Przytrzymaj SKOK podczas wychodzenia z wody aby\nwyskoczyć wyżej"
+		"Przytrzymaj SKOK podczas wychodzenia z wody aby wyskoczyć wyżej"
 	},
 
 	"devcom" : {
 		"welcome" :
-		"Jeżeli to widzisz, aktywowałeś tryb komentarzy\ndeweloperskich. Dotknij czerwonych szalików aby\nprzeczytać notatki o rozwoju gry.",
+		"Jeżeli to widzisz, aktywowałeś tryb komentarzy deweloperskich. Dotknij czerwonych szalików aby przeczytać notatki o rozwoju gry.",
 		"hiff-0" :
-		"Jedna z wielu rzeczy, która mnie wkurzyła było\nzrobienie tak żeby deathcap wchodził pod to\nwzgórze. Z jakiegoś powodu sprawdzanie dwa razy\ndalej spowodowało, że zachowują się poprawnie...",
+		"Jedna z wielu rzeczy, która mnie wkurzyła było zrobienie tak żeby deathcap wchodził pod to wzgórze. Z jakiegoś powodu sprawdzanie dwa razy dalej spowodowało, że zachowują się poprawnie...",
 		"pipes" :
-		"Chciałem aby rury zachowywały się tak samo jak\nte w Mario ale wydawało mi się denerwujące, że\nw tych grach trzeba było naciśnąć góra/dół\naby sprawdzić czy są otwarte więc zamiast\ntego po prostu wpadasz do nich.",
+		"Chciałem aby rury zachowywały się tak samo jak te w Mario ale wydawało mi się denerwujące, że w tych grach trzeba było naciśnąć góra/dół aby sprawdzić czy są otwarte więc zamiast tego po prostu wpadasz do nich.",
 		"firetux" :
-		"Oryginalnie, Ognisty Tux miał mieć hełm tak jak w\noryginalnym SuperTux'ie. Członek serwera\nDiscord SuperTux'a zasugerował aby użyć projektu autorstwa\nRustyBox. Zgodziłem się, że wyglądało to\nlepiej. Oryginalny projekt Ognistego Tux'a może być\nznaleziony na stronie OpenGameArt.org.",
+		"Oryginalnie, Ognisty Tux miał mieć hełm tak jak w oryginalnym SuperTux'ie. Członek serwera Discord SuperTux'a zasugerował aby użyć projektu autorstwa RustyBox. Zgodziłem się, że wyglądało to lepiej. Oryginalny projekt Ognistego Tux'a może być znaleziony na stronie OpenGameArt.org.",
 		"coins" :
-		"Monety są używane tylko do osiągnięć. Nigdy nie lubiłem\nmechaniki dodatkowych żyć, ponieważ to powoduje, że\ngracz musi czekać dłużej aby spróbować zagrać w poziom ponownie jeżeli skończą się mu się życia.\n",
+		"Monety są używane tylko do osiągnięć. Nigdy nie lubiłem mechaniki dodatkowych żyć, ponieważ to powoduje, że gracz musi czekać dłużej aby spróbować zagrać w poziom ponownie jeżeli skończą się mu się życia. ",
 		"sliding" :
-		"Pomysł na mechanikę zwiększania się prędkości\npodczas spadania z krawędzi przyszedł mi na myśl z powodu\npotrzeby zrekompensowania tego, że spadki\nnie przyspieszają gracza wystarczająco.\nTechnicznie jest to błędem, który zdecydowałem\nsię pozostawić ponieważ był zabawny.\nTo samo zalicza się do wielu innych mechanik.",
+		"Pomysł na mechanikę zwiększania się prędkości podczas spadania z krawędzi przyszedł mi na myśl z powodu potrzeby zrekompensowania tego, że spadki nie przyspieszają gracza wystarczająco. Technicznie jest to błędem, który zdecydowałem się pozostawić ponieważ był zabawny. To samo zalicza się do wielu innych mechanik.",
 		"trees" :
-		"Drzewa nie rosną na Antarktydzie, dlatego pingwiny\nrzeźbią je z lodu.",
+		"Drzewa nie rosną na Antarktydzie, dlatego pingwiny rzeźbią je z lodu.",
 		"snakes" :
-		"Wiem że posiadanie węży na Antarktydzie ma tyle\nsensu co posiadanie głodnych roślin.\n",
+		"Wiem że posiadanie węży na Antarktydzie ma tyle sensu co posiadanie głodnych roślin. ",
 		"waterfalls" :
-		"Ta część jaskini jest według mnie bardzo ładna.\nPodoba mi się przestronne tło z wodospadami przed\nnim. Chciałem aby poziom miał poczucie\neksploracji więc scena jak taka, która daje\npoczucie przestrzeni ma na celu przekazanie\npoczucia eksploracji.",
+		"Ta część jaskini jest według mnie bardzo ładna. Podoba mi się przestronne tło z wodospadami przed nim. Chciałem aby poziom miał poczucie eksploracji więc scena jak taka, która daje poczucie przestrzeni ma na celu przekazanie poczucia eksploracji.",
 		"loops" :
-		"Przykro mi, czy oczekiwałeś, że ta pętla będzie\ndziałać? Ha! Nie jestem ani trochę\nblisko aby to zaprogramować... jeszcze."
+		"Przykro mi, czy oczekiwałeś, że ta pętla będzie działać? Ha! Nie jestem ani trochę blisko aby to zaprogramować... jeszcze."
 	},
 
 	"npc" : {
 		"rad0" :
-		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się\nna swoim brzuchu? Wydaje mi się,\nże nie dasz rady zebrać wszystkich monet na\ntym wzgórzu w ten sposób. Jeżeli ci się uda\ndam ci coś co pomoże ci złapać trochę powietrza!"
+		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuchu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!"
 
+	},
+
+	"level" : {
+		"overworld-0" : "Antarktyda",
+		"0-t0" : "Pennyton",
+		"0-0" : "Nauka Stoków",
+		"0-1" : "Kryształowe Przejście",
+		"0-2" : "Ślizganie i Zjeżdżanie",
+		"0-3" : "Pod wodą",
+		"0-4" : "Problem z TNT",
+		"0-x" : "Ekstremalne Wzgórza"
 	},
 
 	"key" : {

@@ -16,6 +16,12 @@
 ::sprTuxAir <- newSprite("res/gfx/tuxair.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxOverworld <- newSprite("res/gfx/tuxO.png", 14, 17, 0, 0, 7, 14)
 
+::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 20)
+
+::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 15, 19)
+::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 20)
+
 //GUI
 ::sprHealth <- newSprite("res/gfx/heart.png",16, 16, 0, 0, 0, 0)
 ::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)
@@ -40,6 +46,10 @@
 
 //NPCs
 ::sprRadGuin <- newSprite("res/gfx/radguin.png", 22, 32, 0, 0, 16, 32)
+::sprPenny <- newSprite("res/gfx/penny.png", 14, 24, 0, 0, 7, 24)
+::sprXue <- newSprite("res/gfx/xue.png", 20, 23, 0, 0, 12, 23)
+::sprPlasmaBreeze <- newSprite("res/gfx/plasmabreeze.png", 30, 32, 0, 0, 15, 32)
+::sprRockyRaccoon <- newSprite("res/gfx/rockyraccoon.png", 23, 27, 0, 0, 15, 26)
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
@@ -54,6 +64,7 @@
 ::sprBlueFish <- newSprite("res/gfx/fishblue.png", 28, 20, 0, 0, 16, 12)
 ::sprRedFish <- newSprite("res/gfx/fishred.png", 28, 20, 0, 0, 16, 12)
 ::sprJellyFish <- newSprite("res/gfx/jellyfish.png", 16, 16, 0, 0, 8, 8)
+::sprClamor <- newSprite("res/gfx/clamor.png", 16, 16, 0, 0, 8, 8)
 
 //Items
 ::sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 0, 0, 8, 8)
@@ -114,6 +125,7 @@
 ::sndFlap <- loadSound("res/snd/flap.ogg")
 ::sndExplodeF <- loadSound("res/snd/explodeF.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
+::sndBell <- loadSound("res/snd/bell.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
@@ -125,6 +137,7 @@
 ::musCastle <- "res/snd/castle.ogg"
 ::musRace <- "res/snd/blackdiamond.ogg"
 ::musDeluge <- "res/snd/deluge.ogg"
+::musSnowTown <- "res/snd/winter_wonderland.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")

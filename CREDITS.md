@@ -56,7 +56,7 @@
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection (Minecraft-like tiles, with edits)
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel (with edits)
+[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel (with edits), end gate (edited from cage)
 
 ## Sounds
 
@@ -74,6 +74,8 @@ Lukas Nystrand - Chippdisko
 
 [Joth](https://opengameart.org/users/joth) - Black Diamond, Emotional Deluge
 
+[genaralskar](https://opengameart.org/users/genaralskar) - Winter Wonderland
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble
@@ -87,6 +89,12 @@ Lukas Nystrand - Chippdisko
 [mrkubax10]() - Polish
 
 [bydariogamer](https://github.com/bydariogamer) - Spanish
+
+## Mascots
+
+Click each mascot to learn more about them and the projects they're associated with.
+
+[Konqi](https://community.kde.org/Konqi), [Plasma Breeze](https://www.deviantart.com/sheeppony/art/Plasma-Breeze-814699638), [Rocky Raccoon](https://wiki.minix3.org/doku.php?id=mascot), [Tux](https://en.wikipedia.org/wiki/Tux_(mascot)), [Xue](https://docs.xfce.org/)
 
 ## Donors
 

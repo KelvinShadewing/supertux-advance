@@ -3,7 +3,6 @@
 	text = ""
 	useflip = false
 	flip = 0
-	args = null
 	sprite = 0
 	sayfunc = null
 	arr = null
@@ -12,13 +11,10 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y - 16, 20, 16, 0)
-	}
+		flip = randInt(2)
 
-	function run() {
-
-		if(text == "" && args != null) {
-			local argv = split(args, ",")
-
+		if(_arr != null) {
+			local argv = split(_arr, ",")
 
 			if(getroottable().rawin(argv[0])) sprite = getroottable()[argv[0]]
 			useflip = argv[1].tointeger()
@@ -30,15 +26,17 @@
 				arr.push(textLineLen(gvLangObj["npc"][argv[i]], 52))
 			}
 		}
+	}
 
+	function run() {
 		if(gvPlayer != 0 && sayfunc != null) {
 			if(hitTest(shape, gvPlayer.shape) && getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
 
 			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) gvInfoBox = ""
 
 			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 32) {
-				if(x > gvPlayer.x + 4) flip = 0
-				if(x < gvPlayer.x - 4) flip = 1
+				if(x > gvPlayer.x + 2) flip = 1
+				if(x < gvPlayer.x - 2) flip = 0
 			}
 		}
 
@@ -68,4 +66,24 @@
 		}
 		gvInfoBox = text
 	}
+
+	function freeKonqi() {
+		sayChar()
+		if(!game.characters.rawin("Konqi")) game.characters.Konqi <- sprKonqiOverworld
+		if(!game.friends.rawin("Konqi")) game.friends.Konqi <- true
+	}
+
+	function freeMidi() {
+		sayChar()
+		if(!game.characters.rawin("Midi")) game.characters.Midi <- sprMidiOverworld
+		if(!game.friends.rawin("Midi")) game.friends.Midi <- true
+	}
+
+	function freeFriend() {
+		sayChar()
+		//Find who to free based on sprite
+		if(sprite = sprXue) if(!game.friends.rawin("Xue")) game.friends.Xue <- true
+	}
+
+	function _typeof() { return "NPC" }
 }
