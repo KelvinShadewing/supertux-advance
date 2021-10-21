@@ -11,7 +11,8 @@
 
 	//Merge B table slots into A table
 	foreach(slot, i in b) {
-		if(nt.rawin(slot)) nt[slot] = i
+		if(!nt.rawin(slot)) nt[slot] <- i
+		else if(typeof nt[slot] == "table" && typeof b[slot] == "table") nt[slot] = mergeTable(nt[slot], b[slot])
 		else nt[slot] <- i
 	}
 
