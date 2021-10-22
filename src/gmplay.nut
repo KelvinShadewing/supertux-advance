@@ -211,6 +211,11 @@
 				game.enemies++
 				break
 
+			case 29:
+				newActor(RedFish, i.x + 8, i.y - 8)
+				game.enemies++
+				break
+
 			case 30:
 				newActor(BounceBlock, i.x + 8, i.y - 8)
 				break

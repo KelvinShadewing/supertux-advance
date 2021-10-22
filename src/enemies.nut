@@ -919,21 +919,47 @@
 			if(timer <= 0) {
 				timer = 240
 				vspeed = -0.5 + randFloat(1)
+				if(hspeed == 0) hspeed = 1
+				else hspeed *= 1 / abs(hspeed)
 			}
 			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
 
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) biting = true
+			if(gvPlayer != 0) {
+				if(hitTest(shape, gvPlayer.shape)) biting = true
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 64 && inWater(x, y)) {
+					biting = true
+					timer = 240
+
+					//Chase player
+					if(x < gvPlayer.x && hspeed < 1) hspeed += 0.02
+					if(x > gvPlayer.x && hspeed > -1) hspeed -= 0.02
+
+					if(y < gvPlayer.y && vspeed < 1) vspeed += 0.02
+					if(y > gvPlayer.y && vspeed > -1) vspeed -= 0.02
+
+					//Swim harder if far from the player
+					if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) {
+						if(x < gvPlayer.x && hspeed < 1) hspeed += 0.02
+						if(x > gvPlayer.x && hspeed > -1) hspeed -= 0.02
+
+						if(y < gvPlayer.y && vspeed < 1) vspeed += 0.02
+						if(y > gvPlayer.y && vspeed > -1) vspeed -= 0.02
+					}
+				}
+			}
+
+
 			if(frame >= 4) {
 				biting = false
 				frame = 0.0
 			}
 
 			if(biting) {
-				drawSpriteEx(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+				drawSpriteEx(sprRedFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 				frame += 0.125
 			}
-			else drawSpriteEx(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+			else drawSpriteEx(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 
 			if(placeFree(x + hspeed, y)) x += hspeed
 			if(placeFree(x, y + vspeed)) y += vspeed
@@ -945,7 +971,7 @@
 
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprBlueFish
+		actor[c].sprite = sprRedFish
 		actor[c].vspeed = -0.5
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed

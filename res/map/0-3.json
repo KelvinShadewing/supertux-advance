@@ -1090,6 +1090,30 @@
                  "width":16,
                  "x":2384,
                  "y":96
+                }, 
+                {
+                 "gid":217,
+                 "height":16,
+                 "id":93,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2080,
+                 "y":336
+                }, 
+                {
+                 "gid":217,
+                 "height":16,
+                 "id":94,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1984,
+                 "y":672
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1098,7 +1122,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":93,
+ "nextobjectid":95,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1107,7 +1131,7 @@
          "value":"drawBG = dbgUnderwater\nsongPlay(musDeluge)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
