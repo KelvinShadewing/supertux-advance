@@ -111,11 +111,3 @@ while(!getQuit() && !gvQuit)
 	gvGameMode()
 	update()
 }
-
-foreach(k, i in gvLangObj) {
-	print(k + " = {")
-	foreach(j, l in i) {
-		print(j + " = " + l)
-	}
-	print("}")
-}
