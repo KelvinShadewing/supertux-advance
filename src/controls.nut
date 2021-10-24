@@ -215,14 +215,14 @@
 					joystep++
 				}
 				break
-			case 8:
+			case 9:
 				message += "swap"
 				if(anyJoyPress(0) != -1) {
 					config.joy.swap = anyJoyPress(0)
 					joystep++
 				}
 				break
-			case 9:
+			case 10:
 				message += "escape"
 				if(anyJoyPress(0) != -1) {
 					config.joy.escape = anyJoyPress(0)
