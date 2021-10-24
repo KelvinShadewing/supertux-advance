@@ -63,6 +63,6 @@
 
 ## Misc
 
-[ ] Powerup leveling
-[ ] Sub items
+[x] Powerup leveling
+[x] Sub items
 [ ] General store

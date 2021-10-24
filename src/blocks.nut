@@ -178,6 +178,7 @@
 
 				case 8:
 					//1up item
+					newActor(OneUp, x, y - 16)
 					break
 			}
 		}
