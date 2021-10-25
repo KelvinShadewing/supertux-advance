@@ -51,7 +51,21 @@
 		"waterfalls" :
 		"Ta część jaskini jest według mnie bardzo ładna. Podoba mi się przestronne tło z wodospadami przed nim. Chciałem aby poziom miał poczucie eksploracji więc scena jak taka, która daje poczucie przestrzeni ma na celu przekazanie poczucia eksploracji.",
 		"loops" :
-		"Przykro mi, czy oczekiwałeś, że ta pętla będzie działać? Ha! Nie jestem ani trochę blisko aby to zaprogramować... jeszcze."
+		"Przykro mi, czy oczekiwałeś, że ta pętla będzie działać? Ha! Nie jestem ani trochę blisko aby to zaprogramować... jeszcze.",
+		"contrib" :
+		"FROSTC: Cześć! To jest pierwszy komentarz deweloperski nie napisany przez Kelvin'a, ponieważ to jest poziom mojego autorstwa",
+		"walldev" :
+		"FROSTC: Tak właściwie to nie wiedziałem, że możesz po prostu wskoczyć tutaj po ścianach kiedy zrobiłem ten obszar. Później pomyślałem żeby dodać tutaj coś co uniemożliwi wchodzenie tutaj, jednak zdecydowałem się tego nie robić",
+		"tnt" :
+		"FROSTC: Zobaczyłem, że to TNT jest użyte w poziomie Ekstremalne Wzgórza więc zdecydowałem się na zrobienie poziomu pokazującego możliwości tego TNT. Ciekawostka: ten poziom został ukończony zanim powstał poziom Pod wodą",
+		"trans" :
+		"FROSTC: Zajęło mi dużo czasu aby zrobienie tak żeby przejście tła zaczęło działać, było to spowodowane tym, że był to pierwszy raz kiedy używałem aktywatorów",
+		"lifenote" :
+		"FROSTC: Dla tych, którzy grali w starsze wersje, mam nadzieję, że spodoba się wam całkiem nowe, dużo trudniejsze miejsce 1-UP'u! hahahahahaha!!",
+		"signnote" :
+		"FROSTC: Jeżeli czujesz się trochę leniwie, możesz po prostu wysadzić rurę używając ognistych pocisków aby ją otworzyć zamiast prześlizgnąć się przez nią. Może to jest dobra strategia speedrunowania??",
+		"sense":
+		"FROSTC: Mój trzeci poziom, chciałem zrobić poziom troszkę inspirowany poziomem Grumbel's Sense of Snow ze standardowego SuperTux'a. Zabawne jest to, że ten poziom nie jest w najnowszych wersjach standardowego SuperTux'a"
 	},
 
 	"npc" : {
