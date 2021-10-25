@@ -57,7 +57,21 @@
 		"waterfalls" :
 		"KELVIN: This part of the cave looks especially nice to me. I love the spacious background with waterfalls in front of it. I wanted the level to feel like you were meant to explore it, so a scene like this that makes it feel big is meant to convey a sense of exploration.",
 		"loops" :
-		"KELVIN: Sorry, did you expect this loop to work? Ha! I'm nowhere near good enough to program that... yet."
+		"KELVIN: Sorry, did you expect this loop to work? Ha! I'm nowhere near good enough to program that... yet.",
+		"contrib" :
+		"FROSTC: hello! this is the first dev commentary not written by kelvin, as this is the first contrib level.",
+		"walldev" :
+		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it",
+		"tnt" :
+		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off. Also, fun fact, this level was competed before subsea",
+		"trans" :
+		"FROSTC: took me a good while to get the background transition to work, as this was for the most part the first time i used triggers",
+		"lifenote" :
+		"FROSTC: for those who played the older versions, hope you like the all new, much harder 1-up position! hahahahahaha!!",
+		"signnote" :
+		"FROSTC: if you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. maybe a good speedrunning strat??",
+		"sense":
+		"FROSTC: my 3rd level, just wanted to make a level losely inspired off of grumbel's sense of snow from the classic supertux. the funny part is that level isn't even in modern versions of the classic supertux!"
 	},
 
 	"npc" : {

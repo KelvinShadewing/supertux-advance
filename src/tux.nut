@@ -327,7 +327,7 @@
 				}
 
 				//Get on ladder
-				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= -1 || getcon("down", "press") || getcon("up", "press"))) {
+				if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
 					if(atLadder()) {
 						anim = anClimb
 						frame = anim[0]
