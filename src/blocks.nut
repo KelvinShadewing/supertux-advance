@@ -297,7 +297,10 @@
 				gvInfoBox = text
 			}
 
-			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+			if(gvInfoBox == text) {
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+				else if(gvPlayer.invincible <= 1) gvPlayer.invincible = 10
+			}
 		}
 
 		if(devcom) drawSprite(sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy)

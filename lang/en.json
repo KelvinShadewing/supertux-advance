@@ -71,7 +71,11 @@
 		"signnote" :
 		"FROSTC: if you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. maybe a good speedrunning strat??",
 		"sense":
-		"FROSTC: my 3rd level, just wanted to make a level losely inspired off of grumbel's sense of snow from the classic supertux. the funny part is that level isn't even in modern versions of the classic supertux!"
+		"FROSTC: my 3rd level, just wanted to make a level losely inspired off of grumbel's sense of snow from the classic supertux. the funny part is that level isn't even in modern versions of the classic supertux!",
+		"subsea" :
+		"KELVIN: I wasn't sure how I wanted to handle underwater levels at first. I thought of the levels from SMB 1 and 3, but they seemed like something Tux could just shoot right through. Then I remembered DKC's underwater levels, how they were more like mazes where you had to dodge dangerous enemies. I figured that would work well for this game, since Tux is fast under water, and Konqi and Midi retain offensive capabilities in their neutral forms.",
+		"subsea-name" :
+		"The name, Subsea, comes from the track of the same name in SuperTuxKart. I was thinking it'd be cool to take areas from that game and reimagine them as platform levels instead of kart tracks. Candela City is planned as well, and the final level where you fight Nolok will be Fort Magma. Others from STK may appear as well."
 	},
 
 	"npc" : {

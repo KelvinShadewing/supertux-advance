@@ -58,6 +58,8 @@
 
 [bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel (with edits), end gate (edited from cage)
 
+[Kutejnikov](https://opengameart.org/users/kutejnikov) - Shipwreck tiles
+
 ## Sounds
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - 1up

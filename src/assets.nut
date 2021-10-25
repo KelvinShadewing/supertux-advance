@@ -130,6 +130,8 @@
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
 ::gvMusicName <- ""
+::gvLastSong <- ""
+
 ::musDisko <- "res/snd/chipdisko.ogg"
 ::musCave <- "res/snd/cave.ogg"
 ::musOverworld <- "res/snd/overworld.ogg"
@@ -144,7 +146,11 @@
 
 ::songPlay <- function(song) {
 	gvMusicName = song
+	if(gvMusicName == gvLastSong) return
+
 	deleteMusic(gvMusic)
 	gvMusic = loadMusic(song)
 	playMusic(gvMusic, -1)
+
+	gvLastSong = song
 }
