@@ -26,6 +26,7 @@
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
 	energy = 0.0
+	hidden = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -755,45 +756,49 @@
 		if(game.health == 0) die()
 
 		//Draw
-		switch(game.weapon) {
-			case 0:
-				sprite = sprTux
-				break
+		if(!hidden) {
+			switch(game.weapon) {
+				case 0:
+					sprite = sprTux
+					break
 
-			case 1:
-				sprite = sprTuxFire
-				break
+				case 1:
+					sprite = sprTuxFire
+					break
 
-			case 2:
-				sprite = sprTuxIce
-				break
+				case 2:
+					sprite = sprTuxIce
+					break
 
-			case 3:
-				sprite = sprTuxAir
-				break
-		}
+				case 3:
+					sprite = sprTuxAir
+					break
+			}
 
-		//Invincibility
-		if(invincible > 0) {
-			invincible--
-			if(invincible == 0) songPlay(gvMusicName)
-		}
-		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
+			//Invincibility
+			if(invincible > 0) {
+				invincible--
+				if(invincible == 0) songPlay(gvMusicName)
+			}
+			if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
-		if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
-		else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
-		if(debug) {
-			setDrawColor(0x008000ff)
-			shape.draw()
+			if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
+			else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+			if(debug) {
+				setDrawColor(0x008000ff)
+				shape.draw()
+			}
 		}
 
 		//Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
-				drawSprite(sprTFflash, tftime, x - camx, y - camy)
+				if(!hidden) drawSprite(sprTFflash, tftime, x - camx, y - camy)
 				tftime += 0.25
 			} else tftime = -1
 		}
+
+		hidden = false
 	}
 
 	function atLadder() {

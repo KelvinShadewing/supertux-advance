@@ -45,7 +45,7 @@
          "name":"secret",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":320,
          "x":0,
          "y":0
@@ -1231,6 +1231,18 @@
                  "width":16,
                  "x":2864,
                  "y":240
+                }, 
+                {
+                 "gid":210,
+                 "height":16,
+                 "id":301,
+                 "name":"pipes",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":544,
+                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1239,7 +1251,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":301,
+ "nextobjectid":302,
  "orientation":"orthogonal",
  "properties":[
         {

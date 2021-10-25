@@ -45,6 +45,7 @@
 		if(actor.rawin("TownIcon")) {//Find what level was landed on
 			foreach(i in actor["TownIcon"]) {
 				if(hitTest(shape, i.shape)) {
+					level = i.level
 					onstage = true
 					break
 				}
@@ -202,6 +203,8 @@
 
 		if(hspeed == 0 && vspeed == 0) drawSprite(game.characters[game.playerchar], 0, x - camx, y - camy)
 		else drawSprite(game.characters[game.playerchar], getFrames() / 8, x - camx, y - camy)
+
+		if(level != "") drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "OverPlayer" }
@@ -234,8 +237,6 @@
 				startPlay("res/map/" + level + ".json")
 			}
 		}
-
-		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
 
 	function _typeof() { return "StageIcon" }
@@ -260,7 +261,7 @@
 			}
 		}
 
-		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+		if(level != "" && !game.completed.rawin(level)) game.completed[level] <- true
 	}
 
 	function _typeof() { return "TownIcon" }
@@ -295,8 +296,6 @@
 				startOverworld("res/map/" + world + ".json")
 			}
 		}
-
-		if(gvPlayer != 0 && level != "") if(hitTest(shape, gvPlayer.shape)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][world].len() * 4), 8, "To " + gvLangObj["level"][world])
 	}
 
 	function _typeof() { return "WorldIcon" }
