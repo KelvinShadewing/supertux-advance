@@ -47,3 +47,23 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 **Q:** The game crashed. The log says a function or identifier wasn't defined.
 
 **A:** The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation destructions.
+
+**Q:** Does this game have Mac support?
+
+**A:** Not at the time of writing this, unfortunately. 
+
+**Q:** I can't find the secret area in the first level.
+
+**A:** All I can say is that you'll need something rather warm to find it!
+
+**Q:** How do I deal with those spiked orbs in the second level?
+
+**A:** Just avoid them. There currently isn't any way to kill them.
+
+**Q:** I found a glitch!
+
+**A:** Great job! Report it in the "Issues" tab of the Github Repository! (Make sure you're playing the most recent version, too!)
+
+**Q:** How do I know how long I can use the flying powerup before I stop flying?
+
+**A:** There's a bar on the bottom left corner of the screen that shows how long you can fly.
