@@ -44,7 +44,7 @@ donut("src/languagemenu.nut")
 
 //Load mods
 local modlist = lsdir("mods")
-for(local i = 0; i < modlist.len(); i++) donut("mods/" + modlist[i])
+for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "..") donut("mods/" + modlist[i])
 
 ////////////////
 //    MAIN    //
