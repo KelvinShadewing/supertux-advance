@@ -138,7 +138,12 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
-			if(game.health < game.maxHealth) game.health++
+			if(game.health < game.maxHealth) {
+				game.health++
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
+				}
+			}
 			else if(game.subitem != 6) game.subitem = 5
 			deleteActor(id)
 			playSound(sndHeal, 0)
@@ -195,8 +200,18 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
-			if(game.health < game.maxHealth - 3) game.health += 4
-			else if(game.health < game.maxHealth) game.health = game.maxHealth
+			if(game.health < game.maxHealth - 3) {
+				game.health += 4
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
+				}
+			}
+			else if(game.health < game.maxHealth) {
+				game.health = game.maxHealth
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
+				}
+			}
 			else game.subitem = 6
 			deleteActor(id)
 			playSound(sndHeal, 0)

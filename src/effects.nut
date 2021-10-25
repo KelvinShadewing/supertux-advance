@@ -114,3 +114,18 @@
 		if(timer == 0) deleteActor(id)
 	}
 }
+
+::Heal <- class extends Actor {
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+	function run() {
+		if(frame < 1) frame += 0.05
+		frame += 0.1
+		y -= 0.5
+		if(frame >= 3) deleteActor(id)
+		else drawSpriteEx(sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+	}
+}

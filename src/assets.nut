@@ -94,6 +94,7 @@
 ::sprExplodeN <- newSprite("res/gfx/explodeN.png", 30, 30, 0, 0, 15, 15)
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png" 16, 4, 0, 0, 0, 0)
+::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 
 //Backgrounds
 ::bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392, 0, 0, 0, 0)
