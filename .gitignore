@@ -4,3 +4,4 @@ log.txt
 */*.swp
 config.json
 game.json
+*.blame

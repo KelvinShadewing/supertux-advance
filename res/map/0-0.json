@@ -155,6 +155,28 @@
                  "width":19.2727272727273,
                  "x":1750.18181818182,
                  "y":300.363636363636
+                }, 
+                {
+                 "height":16,
+                 "id":299,
+                 "name":"pipeFunnel()",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":512,
+                 "y":224
+                }, 
+                {
+                 "height":16,
+                 "id":300,
+                 "name":"pipeFunnel()",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1744,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1217,7 +1239,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":299,
+ "nextobjectid":301,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1226,7 +1248,7 @@
          "value":"drawBG = dbgAurora\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {

@@ -30,7 +30,11 @@
 		"waterjump" :
 		"Hold JUMP when leaving the water to gain height.",
 		"noend" :
-		"Levels that you don't need to complete to move on also do not have normal exits. Press ESCAPE to leave areas like this."
+		"Levels that you don't need to complete to move on also do not have normal exits. Press ESCAPE to leave areas like this.",
+		"hills" :
+		"Hills are very important! Practice sliding every chance you get.",
+		"pipes" :
+		"Pipes can be entered just by falling in."
 	},
 
 	"devcom" : {
