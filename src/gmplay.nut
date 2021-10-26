@@ -19,6 +19,7 @@
 	game.secrets = 0
 	game.enemies = 0
 	gvInfoBox = ""
+	gvLastSong = ""
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
@@ -245,7 +246,7 @@
 				newActor(JellyFish, i.x + 8, i.y - 8)
 				game.enemies++
 				break
-				
+
 			case 37:
 				newActor(Clamor, i.x + 8, i.y - 8, i.name)
 				game.enemies++
@@ -335,7 +336,7 @@
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
 		if(game.maxcoins > 0) drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
-		drawSprite(game.characters[game.playerchar], 0, screenW() - 16, screenH() - 12)
+		drawSprite(game.characters[game.playerchar][1], game.weapon, screenW() - 16, screenH() - 12)
 		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 		drawSprite(sprSubItem, 0, screenW() - 18, 18)
 		switch(game.subitem) {

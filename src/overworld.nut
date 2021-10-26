@@ -201,8 +201,8 @@
 		x += hspeed
 		y += vspeed
 
-		if(hspeed == 0 && vspeed == 0) drawSprite(game.characters[game.playerchar], 0, x - camx, y - camy)
-		else drawSprite(game.characters[game.playerchar], getFrames() / 8, x - camx, y - camy)
+		if(hspeed == 0 && vspeed == 0) drawSprite(game.characters[game.playerchar][0], 0, x - camx, y - camy)
+		else drawSprite(game.characters[game.playerchar][0], getFrames() / 8, x - camx, y - camy)
 
 		if(level != "") drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
 	}
@@ -417,7 +417,7 @@
 
 	drawSprite(sprCoin, 0, 16, screenH() - 16)
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())
-	drawSprite(game.characters[game.playerchar], 0, screenW() - 16, screenH() - 12)
+	drawSprite(game.characters[game.playerchar][1], game.weapon, screenW() - 16, screenH() - 12)
 	drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 
 	drawDebug()

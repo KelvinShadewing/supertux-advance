@@ -735,7 +735,10 @@
 		else shape = shapeStand
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
-		if(y > gvMap.h + 16) die()
+		if(y > gvMap.h + 16) {
+			die()
+			return
+		}
 		if(y < -100) y = -100.0
 
 		//Hurt
@@ -753,7 +756,10 @@
 			}
 		}
 		if(blinking > 0) blinking--
-		if(game.health == 0) die()
+		if(game.health == 0) {
+			die()
+			return
+		}
 
 		//Draw
 		if(!hidden) {

@@ -15,12 +15,14 @@
 ::sprTuxIce <- newSprite("res/gfx/tuxice.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxAir <- newSprite("res/gfx/tuxair.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxOverworld <- newSprite("res/gfx/tuxO.png", 14, 17, 0, 0, 7, 14)
+::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 14)
 
 ::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 15, 19)
 ::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 20)
 
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 15, 19)
 ::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 20)
+::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 14)
 
 //GUI
 ::sprHealth <- newSprite("res/gfx/heart.png",16, 16, 0, 0, 0, 0)

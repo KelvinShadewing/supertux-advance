@@ -24,7 +24,7 @@
 	allenemies = {} //Levels that the player has beaten all enemies in
 	allsecrets = {} //Levels the player has found all secrets in
 	characters = { //List of unlocked characters
-		Tux = sprTuxOverworld
+		Tux = [sprTuxOverworld, sprTuxDoll]
 	}
 	friends = {} //List of rescued friend characters
 	playerchar = "Tux" //Current player character
