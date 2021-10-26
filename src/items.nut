@@ -307,6 +307,7 @@
 			gvPlayer.invincible = 60 * 25
 			deleteActor(id)
 			playMusic(musInvincible, -1)
+			gvLastSong = ""
 		}
 
 		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)

@@ -124,7 +124,7 @@
 	function run() {
 		if(frame < 1) frame += 0.02
 		frame += 0.05
-		y -= 0.2
+		y -= 0.5
 		if(frame >= 3) deleteActor(id)
 		else drawSpriteEx(sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}

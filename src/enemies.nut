@@ -880,7 +880,7 @@
 
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprBlueFish
+		actor[c].sprite = sprDeadFish
 		actor[c].vspeed = -0.5
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed
@@ -890,6 +890,8 @@
 		deleteActor(id)
 		playSound(sndKick, 0)
 		game.enemies--
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
 	}
 
 	function _typeof() { return "BlueFish" }
@@ -971,7 +973,7 @@
 
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprRedFish
+		actor[c].sprite = sprDeadFish
 		actor[c].vspeed = -0.5
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed
@@ -981,6 +983,8 @@
 		deleteActor(id)
 		playSound(sndKick, 0)
 		game.enemies--
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
 	}
 
 	function _typeof() { return "RedFish" }
@@ -1061,6 +1065,7 @@
 		deleteActor(id)
 		playSound(sndKick, 0)
 		game.enemies--
+		newActor(Poof, x, y)
 	}
 
 	function _typeof() { return "BlueFish" }

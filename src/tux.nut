@@ -658,6 +658,16 @@
 		if(canMove && getcon("swap", "press")) {
 			local swap = game.subitem
 
+			if(game.weapon == game.subitem) {
+				if(game.maxenergy < 4) {
+					game.maxenergy++
+					game.subitem = 0
+					tftime = 0
+					playSound(sndHeal, 0)
+				}
+				return
+			}
+
 			if(swap < 5) {
 				game.subitem = game.weapon
 				game.weapon = 0
