@@ -251,6 +251,25 @@
 				newActor(Clamor, i.x + 8, i.y - 8, i.name)
 				game.enemies++
 				break
+
+			case 40:
+				newActor(SpringD, i.x, i.y - 16)
+				break
+
+			case 41:
+				local c = actor[newActor(SpringD, i.x, i.y - 16)]
+				c.dir = 1
+				break
+
+			case 42:
+				local c = actor[newActor(SpringD, i.x, i.y - 16)]
+				c.dir = 2
+				break
+
+			case 43:
+				local c = actor[newActor(SpringD, i.x, i.y - 16)]
+				c.dir = 3
+				break
 		}
 	}
 

@@ -102,11 +102,11 @@
 						break
 
 					case 2: //Right
-						gvPlayer.hspeed = 4
+						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4
 						break
 
 					case 3: //Left
-						gvPlayer.hspeed = -4
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4
 						break
 				}
 				if(frame == 0.0) playSound(sndSpring, 0)
@@ -134,6 +134,78 @@
 
 			case 3: //Left
 				drawSpriteEx(sprSpring, round(frame), x - camx + 2, y + 16 - camy, 270, 0, 1, 1, 1)
+				break
+		}
+
+		if(debug) shape.draw()
+	}
+
+	function _typeof() { return "Spring" }
+}
+
+::SpringD <- class extends Actor {
+	shape = 0
+	dir = 0
+	frame = 0.0
+	fspeed = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x + 8, y + 8, 4, 4, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer != 0) {
+			if(hitTest(shape, gvPlayer.shape)) {
+				fspeed = 0.2
+				switch(dir) {
+					case 0: //Up Right
+						gvPlayer.vspeed = -5
+						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4
+						break
+
+					case 1: //Down Right
+						gvPlayer.vspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4
+						gvPlayer.hspeed = 4
+						break
+
+					case 2: //Down Left
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4
+						gvPlayer.vspeed = 4
+						break
+
+					case 3: //Up Left
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4
+						gvPlayer.vspeed = -5
+						break
+				}
+				if(frame == 0.0) playSound(sndSpring, 0)
+			}
+		}
+
+		frame += fspeed
+		if(floor(frame) > 3) {
+			frame = 0.0
+			fspeed = 0.0
+		}
+
+		switch(dir) { //Draw sprite based on direction
+			case 0: //Up
+				drawSprite(sprSpringD, round(frame), x - camx, y - camy)
+				break
+
+			case 1: //Down
+				drawSpriteEx(sprSpringD, round(frame), x + 14 - camx, y - camy, 90, 0, 1, 1, 1)
+				break
+
+			case 2: //Right
+				drawSpriteEx(sprSpringD, round(frame), x + 16 - camx, y + 14 - camy, 180, 0, 1, 1, 1)
+				break
+
+			case 3: //Left
+				drawSpriteEx(sprSpringD, round(frame), x - camx + 2, y + 16 - camy, 270, 0, 1, 1, 1)
 				break
 		}
 
