@@ -655,53 +655,7 @@
 		}
 
 		//Swap item
-		if(canMove && getcon("swap", "press")) {
-			local swap = game.subitem
-
-			if(game.weapon == game.subitem) {
-				if(game.maxenergy < 4) {
-					game.maxenergy++
-					game.subitem = 0
-					tftime = 0
-					playSound(sndHeal, 0)
-				}
-				return
-			}
-
-			if(swap < 5) {
-				game.subitem = game.weapon
-				game.weapon = 0
-			}
-
-			switch(swap) {
-				case 1:
-					newActor(FlowerFire, x, y)
-					break
-				case 2:
-					newActor(FlowerIce, x, y)
-					break
-				case 3:
-					newActor(AirFeather, x, y)
-					break
-				case 4:
-					break
-				case 5:
-					if(game.health < game.maxHealth) {
-						newActor(MuffinBlue, x, y)
-						game.subitem = 0
-					}
-					break
-				case 6:
-					if(game.health < game.maxHealth) {
-						newActor(MuffinRed, x, y)
-						game.subitem = 0
-					}
-					break
-				case 7:
-					newActor(Starnyan, x, y)
-					break
-			}
-		}
+		if(canMove && getcon("swap", "press")) swapitem()
 
 		//Base movement
 		if(placeFree(x, y + vspeed)) y += vspeed
@@ -852,6 +806,55 @@
 		gvPlayer = 0
 		newActor(TuxDie, x, y)
 		game.health = 0
+	}
+
+	function swapitem() {
+		if(game.subitem == 0) return
+		local swap = game.subitem
+
+		if(game.weapon == game.subitem) {
+			if(game.maxenergy < 4) {
+				game.maxenergy++
+				game.subitem = 0
+				tftime = 0
+				playSound(sndHeal, 0)
+			}
+			return
+		}
+
+		if(swap < 5) {
+			game.subitem = game.weapon
+			game.weapon = 0
+		}
+
+		switch(swap) {
+			case 1:
+				newActor(FlowerFire, x, y)
+				break
+			case 2:
+				newActor(FlowerIce, x, y)
+				break
+			case 3:
+				newActor(AirFeather, x, y)
+				break
+			case 4:
+				break
+			case 5:
+				if(game.health < game.maxHealth) {
+					newActor(MuffinBlue, x, y)
+					game.subitem = 0
+				}
+				break
+			case 6:
+				if(game.health < game.maxHealth) {
+					newActor(MuffinRed, x, y)
+					game.subitem = 0
+				}
+				break
+			case 7:
+				newActor(Starnyan, x, y)
+				break
+		}
 	}
 
 	function _typeof(){ return "Tux" }
