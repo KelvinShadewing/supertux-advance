@@ -2,7 +2,7 @@
 
 ## Intro
 
-SupterTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speedrunning in mind, it is not an essential skill; the game can be played and beaten casually.
+SuperTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speedrunning in mind, it is not an essential skill; the game can be played and beaten casually.
 
 Some assets from SuperTux will be used, with graphics being remixed to match the game's visual style.
 
@@ -58,7 +58,7 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 
 *Q:* I found a glitch!
 
-**A:** Great job! Report it in the "Issues" tab of the Github Repository! (Make sure you're playing the most recent version, too!)
+**A:** Great job! Report it in the "Issues" tab of the GitHub Repository! (Make sure you're playing the most recent version, too!)
 
 *Q:* How do I know how long I can use the flying powerup before I stop flying?
 
