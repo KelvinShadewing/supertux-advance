@@ -1243,6 +1243,18 @@
                  "width":16,
                  "x":544,
                  "y":208
+                }, 
+                {
+                 "gid":202,
+                 "height":16,
+                 "id":302,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3104,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1251,7 +1263,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":302,
+ "nextobjectid":303,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1260,7 +1272,7 @@
          "value":"drawBG = dbgAurora\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {

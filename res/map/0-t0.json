@@ -229,6 +229,18 @@
                  "width":16,
                  "x":32,
                  "y":480
+                }, 
+                {
+                 "gid":210,
+                 "height":16,
+                 "id":17,
+                 "name":"controls",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":528,
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -237,7 +249,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":16,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -44,26 +44,30 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 
 ## FAQ
 
-**Q:** The game crashed. The log says a function or identifier wasn't defined.
+*Q:* The game crashed. The log says a function or identifier wasn't defined.
 
 **A:** The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation destructions.
 
-**Q:** Does this game have Mac support?
+*Q:* Does this game have Mac support?
 
-**A:** Not at the time of writing this, unfortunately. 
+**A:** Not at the time of writing this, unfortunately.
 
-**Q:** I can't find the secret area in the first level.
+*Q:* I can't find the secret area in the first level.
 
 **A:** All I can say is that you'll need something rather warm to find it!
 
-**Q:** How do I deal with those spiked orbs in the second level?
+*Q:* How do I deal with those spiked orbs in the second level?
 
 **A:** Just avoid them. There currently isn't any way to kill them.
 
-**Q:** I found a glitch!
+*Q:* I found a glitch!
 
 **A:** Great job! Report it in the "Issues" tab of the Github Repository! (Make sure you're playing the most recent version, too!)
 
-**Q:** How do I know how long I can use the flying powerup before I stop flying?
+*Q:* How do I know how long I can use the flying powerup before I stop flying?
 
 **A:** There's a bar on the bottom left corner of the screen that shows how long you can fly.
+
+*Q:* Why are there mods? Isn't this game open source?
+
+**A:** Yes, and you're free to make whatever edits you want. Mods just make it easier to share your changes and allow others to remove those changes without having to manually pick them out of the game's source.
