@@ -65,7 +65,11 @@
 		"signnote" :
 		"FROSTC: Jeżeli czujesz się trochę leniwie, możesz po prostu wysadzić rurę używając ognistych pocisków aby ją otworzyć zamiast prześlizgnąć się przez nią. Może to jest dobra strategia speedrunowania??",
 		"sense":
-		"FROSTC: Mój trzeci poziom, chciałem zrobić poziom troszkę inspirowany poziomem Grumbel's Sense of Snow ze standardowego SuperTux'a. Zabawne jest to, że ten poziom nie jest w najnowszych wersjach standardowego SuperTux'a"
+		"FROSTC: Mój trzeci poziom, chciałem zrobić poziom troszkę inspirowany poziomem Grumbel's Sense of Snow ze standardowego SuperTux'a. Zabawne jest to, że ten poziom nie jest w najnowszych wersjach standardowego SuperTux'a",
+		"subsea" :
+		"KELVIN: Na początku nie byłem pewny w jaki sposób obchodzić się z podwodnymi poziomami. Myślałem o poziomach takich jak w SMB 1 i 3 ale wyglądały na coś co Tux mógłby szybko przelecieć. Później przypomniałem sobie o podwodnych poziomach w DKC, wyglądają one trochę jak labirynty gdzie musisz unikać niebezpiecznych wrogów. Pomyślałem, że to może się sprawdzić dla tej gry, ponieważ Tux jest szybki pod wodą a Konqi i Midi zachowują ofensywne możliwości w ich neutralnych formach.",
+		"subsea-name" :
+		"Nazwa, Pod wodą pochodzi z trasy o tej samej nazwie z gry SuperTuxKart. Pomyślałem, że byłoby fajnie wziąć części tras z tej try i wyobrazić sobie je na nowo jako poziomy w platformówce. Miasto Candela także jest planowane, finalny poziom, w którym będzie odbywać się walka z Nolok'iem będzie nazywać się Fort Magma. Inne nazwy z gry SuperTuxKart też mogą się pojawić."
 	},
 
 	"npc" : {
