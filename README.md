@@ -52,13 +52,9 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 
 **A:** Not at the time of writing this, unfortunately.
 
-*Q:* I can't find the secret area in the first level.
-
-**A:** All I can say is that you'll need something rather warm to find it!
-
 *Q:* How do I deal with those spiked orbs in the second level?
 
-**A:** Just avoid them. There currently isn't any way to kill them.
+**A:** Ouchins are invincible. Think of them like Gordos from Kirby.
 
 *Q:* I found a glitch!
 
