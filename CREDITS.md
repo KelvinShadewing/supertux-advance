@@ -84,11 +84,11 @@ Lukas Nystrand - Chippdisko
 
 ## Translators
 
-[TheCheeseWeez]() - French
+[TheCheeseWeez](https://github.com/TheTort) - French
 
-[Vankata453]() - Bulgarian
+[Vankata453](https://github.com/Vankata453) - Bulgarian
 
-[mrkubax10]() - Polish
+[mrkubax10](https://github.com/mrkubax10) - Polish
 
 [bydariogamer](https://github.com/bydariogamer) - Spanish
 
