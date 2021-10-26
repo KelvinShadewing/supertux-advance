@@ -58,7 +58,7 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 
 *Q:* I found a glitch!
 
-**A:** Great job! Report it in the "Issues" tab of the Github Repository! (Make sure you're playing the most recent version, too!)
+**A:** Great job! Report it in the "Issues" tab of the GitHub Repository! (Make sure you're playing the most recent version, too!)
 
 *Q:* How do I know how long I can use the flying powerup before I stop flying?
 
