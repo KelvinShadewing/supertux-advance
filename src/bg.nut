@@ -33,6 +33,18 @@
 	}
 }
 
+::dbgSnowNight <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgSnowNight, 0, ((-camx / 8) % 800) + (i * 800), (screenH() / 2) - 120)
+	}
+}
+
+::dbgSnowPlain <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgRiverCity, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+	}
+}
+
 ::dbgRiverCity <- function() {
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
