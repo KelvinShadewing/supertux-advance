@@ -41,13 +41,13 @@
 
 ::dbgSnowPlain <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgRiverCity, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
+		drawSprite(bgSnowPlain, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgRiverCity <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
+		drawSprite(bgSnowNight, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }
 
