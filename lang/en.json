@@ -113,7 +113,19 @@
 		"xue-pt-m" :
 		"Whoa, a fellow rodent who also likes explosions! (And pretty cute, chu...) Whah? N-nothing, chu! I, uh, was wondering if you'd like to go cart racing! N-not as a date or anything! (Shut up, Xue, shut up!)",
 		"xue-pt-d" :
-		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!"
+		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!",
+		"fireguin-0" :
+		"Not much use for a firefighter here, huh? Ice can melt, sure, but it takes the fire out with it, and then we just put new ice in.",
+		"fireguin-1" :
+		"Maybe I'd be better off in a town with wood houses. Hard to find wood out here, so even the trees are made of ice!",
+		"fireguin-2" :
+		"A lot of the houses here are empty. I'm sure our friends will return once they're safe from Nolok.",
+		"fireguin-3" :
+		"Blocks of weak, uncompacted ice will melt if you hit them with a fireball. You can also break them by sliding.",
+		"fireguin-4" :
+		"Look out for thin ice! It'll break if you stand on it too long.",
+		"fireguin-5" :
+		"If you need to brush up on your skills, head to the obstacle course just outside of town. You'll find it to the right from here."
 	},
 
 	"level" : {

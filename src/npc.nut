@@ -6,6 +6,7 @@
 	sprite = 0
 	sayfunc = null
 	arr = null
+	talki = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -14,7 +15,7 @@
 		flip = randInt(2)
 
 		if(_arr != null) {
-			local argv = split(_arr, ",")
+			local argv = split(_arr, ", ")
 
 			if(getroottable().rawin(argv[0])) sprite = getroottable()[argv[0]]
 			useflip = argv[1].tointeger()
@@ -42,6 +43,13 @@
 
 		if(useflip) drawSpriteEx(sprite, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
 		else drawSpriteEx(sprite, flip, x - camx, y - camy, 0, 0, 1, 1, 1)
+	}
+
+	function say() {
+		text = arr[talki]
+		gvInfoBox = text
+		talki++
+		if(talki >= arr.len()) talki = 0
 	}
 
 	function sayRand() {
