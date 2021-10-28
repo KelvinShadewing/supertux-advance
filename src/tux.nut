@@ -340,7 +340,7 @@
 
 				//Jumping
 				if(getcon("jump", "press")) {
-					 if(canJump > 0 || debug) {
+					 if(canJump > 0) {
 						vspeed = -3.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0

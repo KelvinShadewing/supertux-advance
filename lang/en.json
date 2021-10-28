@@ -28,7 +28,7 @@
 		"tutSlide" :
 		"Press DOWN while running or on a hill to slide.",
 		"waterjump" :
-		"Hold JUMP when leaving the water to gain height.",
+		"Hold JUMP when leaving the water to gain height. Mix it with the RUN button to go even higher.",
 		"noend" :
 		"Levels that you don't need to complete to move on also do not have normal exits. Press ESCAPE to leave areas like this.",
 		"hills" :
@@ -77,7 +77,9 @@
 		"subsea" :
 		"KELVIN: I wasn't sure how I wanted to handle underwater levels at first. I thought of the levels from SMB 1 and 3, but they seemed like something Tux could just shoot right through. Then I remembered DKC's underwater levels, how they were more like mazes where you had to dodge dangerous enemies. I figured that would work well for this game, since Tux is fast under water, and Konqi and Midi retain offensive capabilities in their neutral forms.",
 		"subsea-name" :
-		"The name, Subsea, comes from the track of the same name in SuperTuxKart. I was thinking it'd be cool to take areas from that game and reimagine them as platform levels instead of kart tracks. Candela City is planned as well, and the final level where you fight Nolok will be Fort Magma. Others from STK may appear as well."
+		"KELVIN: The name, Subsea, comes from the track of the same name in SuperTuxKart. I was thinking it'd be cool to take areas from that game and reimagine them as platform levels instead of kart tracks. Candela City is planned as well, and the final level where you fight Nolok will be Fort Magma. Others from STK may appear as well.",
+		"tutorial-zone" :
+		"KELVIN: After getting some playtest feedback from Aurora Sol, I decided I should make this tutorial area to more clearly demonstrate basic mechanics. In his playtest, he actually skipped the first pipe, despite it having a sign hinting there's something about it, which led to him skipping the spot to learn swimming, too. Sliding places weren't clearly marked, either, and were also missed. This area won't let you progress until you've learned each mechanic, but can still be skipped if you already know the basics."
 	},
 
 	"npc" : {
