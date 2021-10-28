@@ -106,6 +106,8 @@
 		"What's a squirrel doing this far south? Ain't it too cold for ya? Get inside before ya freeze your fuzzy little toes off, heheh.",
 		"rad-t0d" :
 		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
+		"xue-c" :
+		"Thanks for saving me, chu! I'll see you back in Pennyton!",
 		"xue-pt-t" :
 		"Next time I see that Nolok, I'll give him a face full of exploding cupcakes! That'll teach him for messing with us, chu!",
 		"xue-pt-k" :
@@ -125,7 +127,51 @@
 		"fireguin-4" :
 		"Look out for thin ice! It'll break if you stand on it too long.",
 		"fireguin-5" :
-		"If you need to brush up on your skills, head to the obstacle course just outside of town. You'll find it to the right from here."
+		"If you need to brush up on your skills, head to the obstacle course just outside of town. You'll find it to the right from here.",
+		"konqi-c" :
+		"Hey, thanks for getting me out of here. I got caught trying to find Plasma Breeze. I hope she's alright. Nolok's probably got her in another fort. I'll join you to help get her back!",
+		"rocky-c" :
+		"Alright, I'm saved! Man, Nolok is the kind of trash even I wouldn't wanna touch. Good luck against him!",
+		"rocky-pt-t" :
+		"Hey, Tux! Catch me later. I'll buy ya a fish.",
+		"rocky-pt-k" :
+		"Nolok's a crocodile, right? Man, I hope your scales are harder than his. I'd hate to be chomped by that guy!",
+		"rocky-pt-m" :
+		"You remind me of me. Small, fast, good at picking up garbage. You're braver than me, though. Show Nolok no mercy!",
+		"rocky-pt-d" :
+		"Yeah, this place is pretty cold, but it's a lot safer. The worst of Nolok's minions are on the mainland and other areas, so I'm gonna stay in Pennyton for now.",
+		"python-c" :
+		"Thankssss for the sssave! I'll ssssee you back in town.",
+		"python-pt-t" :
+		"Hey there Tuxss. I hope it'ssss sssafe to go back home sssoon. I'm freezing here!",
+		"python-pt-k" :
+		"Any chance you should usssse that flame of yoursss on me? I'm sssso cold here...",
+		"python-pt-m" :
+		"I wish you and Xue would ssstop looking at me like that. Even if I got hungry, I wouldn't consssider either of you a sssnack!",
+		"python-pt-d" :
+		"I sssure hope you're better with the cold than I am. No wonder Nolok hatesss thisss place.",
+		"garuda-c" :
+		"Alright! Thanks for getting rid of that guy! I can't wait to get out of this place and stretch my wings again.",
+		"garuda-pt-t" :
+		"I used to feel sorry for penguins not being able to fly, but then I saw the way they move under water. Their swimming is just like flying!",
+		"garuda-pt-k" :
+		"I hear dragons love gold as much as gryphons do. Lucky for us, there's lots of coins around! I wonder what makes them float, though...",
+		"garuda-pt-m" :
+		"You use bombs, eh? I bet if I carried you, we could make a great aerial strike team! Except... I'm afraid I'll get shot down again. That's how Nolok caught me the first time.",
+		"garuda-pt-d" :
+		"Thanks for your help. It feels so good being able to fly again.",
+		"breeze-c-k" :
+		"Konqi! I knew you'd come for me! I'm so happy to see you! Let's get out of here! I'll be right behind you.",
+		"breeze-c-d" :
+		"Thanks for getting me out of here. I'll head back to Pennyton. Kick Nolok's flank for me!",
+		"breeze-pt-t" :
+		"Aww, you're such a cute little penguin! I know a mare who's really good with birds. You'd probably like her.",
+		"breeze-pt-k" :
+		"I'm always happy to see you, Konqi! Good luck against Nolok. I'll be rooting for you the loudest!",
+		"breeze-pt-m" :
+		"Your magic is really unusual. I've never seen a nut bomb spell before. And that ball too... oh, that's not magic? Strange.",
+		"breeze-pt-d" :
+		"It'll take all kinds to defeat Nolok. I'm glad to have you on our side."
 	},
 
 	"level" : {
