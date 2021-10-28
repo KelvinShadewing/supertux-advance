@@ -520,6 +520,18 @@
                  "width":16,
                  "x":2496,
                  "y":240
+                }, 
+                {
+                 "gid":219,
+                 "height":16,
+                 "id":53,
+                 "name":"sprPygame,1,sayChar,python-pt-t,python-pt-k,python-pt-m,python-pt-d",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1480,
+                 "y":464
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -528,16 +540,16 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":53,
+ "nextobjectid":54,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\nsongPlay(musSnowTown)\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) {\n  deleteActor(i.id)\n  print(\"Deleted Xue\")\n }\n}"
+         "value":"drawBG = dbgAurora\nsongPlay(musSnowTown)\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) deleteActor(i.id)\n if(i.sprite == sprPygame && !game.friends.rawin(\"Pygame\")) deleteActor(i.id)\n}"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
