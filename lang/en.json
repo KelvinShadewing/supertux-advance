@@ -36,7 +36,9 @@
 		"pipes" :
 		"Pipes can be entered just by falling in. You can also hold DOWN to funnel yourself into them.",
 		"controls" :
-		"Don't forget to set your controls in the options menu on the main screen! If you really mess up setting them up, delete your config.json file."
+		"Don't forget to set your controls in the options menu on the main screen! If you really mess up setting them up, delete your config.json file.",
+		"secrets" :
+		"Secret passages are everywhere! Feel against the wall to reveal them, or watch for enemy movements."
 	},
 
 	"devcom" : {
