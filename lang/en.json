@@ -22,7 +22,7 @@
 
 	"info" : {
 		"welcome" :
-		"Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary.",
+		"Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary. Press UP near NPCs to talk to them. Some have more than one thing to say.",
 		"tutWall" :
 		"Press JUMP against the wall to do a wall jump.",
 		"tutSlide" :
