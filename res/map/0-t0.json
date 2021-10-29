@@ -532,6 +532,18 @@
                  "width":16,
                  "x":1480,
                  "y":464
+                }, 
+                {
+                 "gid":210,
+                 "height":16,
+                 "id":54,
+                 "name":"coyotetime",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":4800,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -540,7 +552,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":54,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "properties":[
         {
