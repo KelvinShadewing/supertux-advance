@@ -177,7 +177,19 @@
 		"breeze-pt-m" :
 		"Your magic is really unusual. I've never seen a nut bomb spell before. And that ball too... oh, that's not magic? Strange.",
 		"breeze-pt-d" :
-		"It'll take all kinds to defeat Nolok. I'm glad to have you on our side."
+		"It'll take all kinds to defeat Nolok. I'm glad to have you on our side.",
+		"gnu-c" :
+		"I regret getting captured by Nolok once more. Thank you for releasing me.",
+		"gnu-pt-0" :
+		"It is good to excel, but better to do so with vim.",
+		"gnu-pt-1" :
+		"A pacman frog is an apt hunter.",
+		"gnu-pt-2" :
+		"True freedom is found by blazing a gnu trail.",
+		"gnu-pt-3" :
+		"Some mysteries are solved by finding prints, others by making them.",
+		"midi-c" :
+		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?"
 	},
 
 	"level" : {

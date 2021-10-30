@@ -73,8 +73,39 @@
 	},
 
 	"npc" : {
+		"null" : "",
 		"rad0" :
-		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuchu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!"
+		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuchu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!",
+		"rad-0k" :
+		"Hej, gdzie jest twoja deska? Jeździsz zbyt wolno na zjazd taki jak ten!",
+		"rad-0m" :
+		"Czy zamierzasz użyć tej piłki na tej zjazd? Powodzenia.",
+		"rad-0d" :
+		"Zdobądź wszystkie monety na tym wzgórzu jeżeli chcesz nautyczną nagrodę!",
+		"penny-0t" :
+		"Och, Tux! Bardzo cieszę się, że cię widzę! Nolok porwał naszych przyjaciół! Słyszałam, że zostali zabrani do różnych fortec rozmieszczonych po całym świecie. Chciałabym widzieć dlaczego. Postaraj się ich uratować, Tux!",
+		"penny-0k" :
+		"Konqi! Cieszę się, że cię widzę! Jestem pewna, że Bryza Plazmowa jest w porządku. Proszę pomóż Tux'owi. Razem uda się wam pokonać Nolok'a!",
+		"penny-0m" :
+		"Więc ty jesteś Midi. Słyszałam, że jesteś całkiem zdolnym wojownikiem. Cieszę się, że pomagasz Tux'owi. Upewnię się, że dostaniesz dobrą nagrodę.",
+		"penny-0d" :
+		"Miło mi cię poznać. Czy pomagasz Tux'owi uratować naszych przyjaciół? Jestem bardzo zadowolona słysząc to.",
+		"rad-t0t" :
+		"Hej, Tux! Prezydent Penny szuka ciebie. Przy okazji, złap mnie kiedyś na stoku. Chciałbym zobaczyć czy dobrze ścigasz się na śniegu.",
+		"rad-t0k" :
+		"Hej, jesteś Konqi, prawda? Człowieku, uważaj na ogień w okolicy. Lód z tym to nie jest to dobre połączenie.",
+		"rad-t0m" :
+		"Co wiewiórka robi tak daleko na południe? Czy nie jest tutaj zbyt zimno dla ciebie? Wejdź do środka zanim zmarzniesz.",
+		"rad-t0d" :
+		"Wow, nowa twarz. Nie znam ciebie. Jeżeli szukasz Prezydenta Penny, jest ona w największym igloo w środku miasta. Lubię nazywać je dużym iglem.",
+		"xue-pt-t" :
+		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! Tym sposobem pokażę mu, za zadzieranie z nami, chu!",
+		"xue-pt-k" :
+		"Hej, Konqi! Daj Nolok'owi niezłe podpalenie kiedy go spotkasz! Nikt nie zadziera z nami, na czy poza trasą dla go-kartów, chu!",
+		"xue-pt-m" :
+		"Wow, inny gryzoń, który także lubi wybuchy! (i całkiem ładny, chu...) Co? N-nic, chu! Ja, och, zastanawiałam się czy chciałbyś pójść pościgać się go-kartami! N-nie jako randka czy coś takiego! (Ucisz się, Xue, ucisz się!)",
+		"xue-pt-d" :
+		"Dziękuję ci za twoją pomoc, chu! Pokażmy Nolok'owi, żeby nigdy z nami nie zadzierał!"
 
 	},
 
