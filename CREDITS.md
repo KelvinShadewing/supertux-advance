@@ -92,6 +92,10 @@ Lukas Nystrand - Chippdisko
 
 [bydariogamer](https://github.com/bydariogamer) - Spanish
 
+## Misc
+
+[Martin P. Hellwig]() - GNU puns 4-7
+
 ## Mascots
 
 Click each mascot to learn more about them and the projects they're associated with.
