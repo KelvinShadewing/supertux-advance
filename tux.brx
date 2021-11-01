@@ -81,6 +81,9 @@ switch(reschoice) {
 //Uncomment this function if you want to play at actual GBA resolution
 //setResolution(240, 160)
 
+gvScreen = newTexture(screenW(), screenH())
+bgPause = newTexture(screenW(), screenH())
+
 //Set up window
 setWindowTitle("SuperTux Advance")
 setWindowIcon("icon.png")

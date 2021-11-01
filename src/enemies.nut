@@ -578,7 +578,7 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, 0, randInt(4), 1, 1, 1)
+		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		frame += 0.1
 
 		if(gvPlayer != 0) {

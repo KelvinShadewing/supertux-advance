@@ -330,6 +330,9 @@
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
 
+	//Draw
+	setDrawTarget(gvScreen)
+
 	drawBG()
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "mg")
@@ -393,6 +396,10 @@
 
 	}
 	drawDebug()
+
+	//Draw surface to screen
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
 
 	if(getcon("escape", "press")) {
 		startOverworld(game.world)

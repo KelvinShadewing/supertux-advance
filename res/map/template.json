@@ -43,7 +43,7 @@
          "height":20,
          "id":14,
          "name":"solid",
-         "opacity":1,
+         "opacity":0.3,
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -111,6 +111,12 @@
  "nextlayerid":19,
  "nextobjectid":2,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"code",
+         "type":"string",
+         "value":""
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.7.1",
  "tileheight":16,

@@ -405,6 +405,8 @@
 }
 
 ::gmOverworld <- function() {
+	setDrawTarget(gvScreen)
+
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "fg")
 	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "solid")
@@ -421,6 +423,10 @@
 	drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 
 	drawDebug()
+
+	//Draw surface to screen
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
 
 	if(keyPress(k_escape)) startMain()
 

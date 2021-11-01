@@ -43,7 +43,7 @@
          "height":20,
          "id":14,
          "name":"solid",
-         "opacity":1,
+         "opacity":0.3,
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -112,7 +112,7 @@
  "nextobjectid":2,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -132,18 +132,18 @@
          "columns":8,
          "firstgid":188,
          "image":"..\/gfx\/actors.png",
-         "imageheight":80,
+         "imageheight":96,
          "imagewidth":128,
          "margin":0,
          "name":"actors",
          "spacing":0,
-         "tilecount":40,
+         "tilecount":48,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":29,
-         "firstgid":228,
+         "firstgid":236,
          "image":"..\/gfx\/tsGrasstop.png",
          "imageheight":176,
          "imagewidth":464,
@@ -156,7 +156,7 @@
         }, 
         {
          "columns":6,
-         "firstgid":547,
+         "firstgid":555,
          "image":"..\/gfx\/pipetiles.png",
          "imageheight":96,
          "imagewidth":96,
@@ -169,7 +169,7 @@
         }, 
         {
          "columns":12,
-         "firstgid":583,
+         "firstgid":591,
          "image":"..\/gfx\/igloo.png",
          "imageheight":80,
          "imagewidth":192,
@@ -182,7 +182,7 @@
         }, 
         {
          "columns":29,
-         "firstgid":643,
+         "firstgid":651,
          "image":"..\/gfx\/tsSnow.png",
          "imageheight":176,
          "imagewidth":464,
@@ -190,6 +190,19 @@
          "name":"snow",
          "spacing":0,
          "tilecount":319,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":5,
+         "firstgid":970,
+         "image":"..\/gfx\/solid.png",
+         "imageheight":144,
+         "imagewidth":80,
+         "margin":0,
+         "name":"solid",
+         "spacing":0,
+         "tilecount":45,
          "tileheight":16,
          "tilewidth":16
         }],

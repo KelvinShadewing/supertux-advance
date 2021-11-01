@@ -104,6 +104,7 @@
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 
 //Backgrounds
+::bgPause <- 0
 ::bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392, 0, 0, 0, 0)
 ::bgIridia <- newSprite("res/gfx/iridia.png", 100, 56, 0, 0, 0, 0)
 ::bgAurora <- newSprite("res/gfx/aurora.png", 720, 240, 0, 0, 0, 0)

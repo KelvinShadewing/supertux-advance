@@ -1,12 +1,16 @@
 
 ::gmPause <- function() {
-	drawText(font, 16, 16, "Pause is incomplete, so this screen is black.")
+	setDrawTarget(gvScreen)
+	drawText(font2, (screenW() / 2) - 20, screenH() / 2, "PAUSE")
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
 }
 
 ::togglePause <- function() {
 	if(gvGameMode == gmPlay) {
 		gvGameMode = gmPause
-		//TODO Add taking screenshot to use as pause background
+		setDrawTarget(bgPause)
+		drawImage(gvScreen, 0, 0)
 	}
 	else if(gvGameMode == gmPause) gvGameMode = gmPlay
 }
