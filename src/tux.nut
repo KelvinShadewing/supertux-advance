@@ -246,20 +246,20 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
-				if(!freeDown && (abs(hspeed) < 4 || (abs(hspeed) < 6 && game.weapon == 2))) {
+				if(!placeFree(x, y + 2) && (abs(hspeed) < 4 || (abs(hspeed) < 6 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.1
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.1
 
 					if(placeFree(x + 4, y + 4)) {
 						hspeed += 0.1
 						vspeed += 0.5
-						if(!placeFree(x - 2, y - 2) && hspeed < 0) hspeed += 0.2
+						if(!placeFree(x - 2, y + 2) && hspeed < 0) hspeed += 0.02
 					}
 
 					if(placeFree(x - 4, y + 4)) {
 						hspeed -= 0.1
 						vspeed += 0.5
-						if(!placeFree(x + 2, y - 2) && hspeed > 0) hspeed -= 0.2
+						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.02
 					}
 				}
 
