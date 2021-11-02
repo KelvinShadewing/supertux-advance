@@ -270,6 +270,10 @@
 				local c = actor[newActor(SpringD, i.x, i.y - 16)]
 				c.dir = 3
 				break
+
+			case 44:
+				newActor(GreenFish, i.x, i.y)
+				break
 		}
 	}
 

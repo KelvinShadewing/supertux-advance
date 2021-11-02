@@ -1147,3 +1147,113 @@
 		drawSprite(sprIceball, 0, x - camx, y - camy)
 	}
 }
+
+::GreenFish <- class extends Enemy {
+	timer = 120
+	frame = 0.0
+	biting = false
+	flip = 0
+	canjump = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 0.5
+		if(gvPlayer != 0) if(x > gvPlayer.x) hspeed = -0.5
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			flip = (hspeed < 0).tointeger()
+
+			timer--
+			if(timer <= 0) {
+				timer = 120
+				if(vspeed > -0.5 && inWater(x, y)) vspeed = -0.5
+				if(hspeed == 0) hspeed = 1
+				else hspeed *= 1 / abs(hspeed)
+				canjump = true
+			}
+			if(!inWater(x, y)) vspeed += 0.05
+			vspeed *= 0.99
+
+			if(gvPlayer != 0) {
+				if(hitTest(shape, gvPlayer.shape)) biting = true
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 256 && inWater(x, y)) {
+					biting = true
+
+					//Chase player
+					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.01
+					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.01
+
+					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.05
+					if(y > gvPlayer.y && vspeed > -4) {
+						if(canjump && !gvPlayer.inWater(gvPlayer.x, gvPlayer.y) && ((hspeed > 0 && gvPlayer.x > x) || (hspeed < 0 && gvPlayer.x < x))) {
+							vspeed = -4
+							canjump = false
+						}
+
+						vspeed -= 0.2
+					}
+
+					//Swim harder if far from the player
+					if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) {
+						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
+
+						if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
+						if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
+					}
+				}
+			}
+
+
+			if(frame >= 4) {
+				biting = false
+				frame = 0.0
+			}
+
+			if(biting) {
+				drawSpriteEx(sprGreenFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+				frame += 0.125
+			}
+			else drawSpriteEx(sprGreenFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
+
+			x += hspeed
+			y += vspeed
+
+			shape.setPos(x, y)
+		}
+	}
+
+	function gethurt() {}
+
+	function hurtfire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+	}
+
+	function _typeof() { return "GreenFish" }
+}
