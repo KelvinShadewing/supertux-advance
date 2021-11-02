@@ -62,7 +62,7 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 
 *Q:* How do I know how long I can use the flying powerup before I stop flying?
 
-**A:** There's a bar on the bottom left corner of the screen that shows how long you can fly.
+**A:** There's a bar on the top left corner of the screen that shows how long you can fly.
 
 *Q:* Why are there mods? Isn't this game open source?
 

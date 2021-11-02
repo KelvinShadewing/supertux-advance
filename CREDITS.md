@@ -96,6 +96,8 @@ Lukas Nystrand - Chippdisko
 
 [Martin P. Hellwig]() - GNU puns 4-7
 
+[Busybody64](https://github.com/Busybody64) - Help with FAQ
+
 ## Mascots
 
 Click each mascot to learn more about them and the projects they're associated with.
