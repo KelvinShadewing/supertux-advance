@@ -272,7 +272,11 @@
 				break
 
 			case 44:
-				newActor(GreenFish, i.x, i.y)
+				newActor(GreenFish, i.x + 8, i.y - 8)
+				break
+
+			case 45:
+				newActor(Icicle, i.x + 8, i.y - 8)
 				break
 		}
 	}

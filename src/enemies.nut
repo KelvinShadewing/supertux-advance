@@ -1257,3 +1257,39 @@
 
 	function _typeof() { return "GreenFish" }
 }
+
+::Icicle <- class extends Enemy {
+	timer = 30
+	counting = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 6, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer != 0) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
+			counting = true
+			playSound(sndIcicle, 0)
+		}
+
+		if(counting && timer > 0) timer--
+		if(timer <= 0) vspeed += 0.1
+		y += vspeed
+		shape.setPos(x, y)
+
+		if(!placeFree(x, y)) {
+			deleteActor(id)
+			newActor(IceChunks, x, y)
+		}
+
+		drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy)
+	}
+
+	function hurtfire() {
+		deleteActor(id)
+		newActor(Poof, x, y)
+	}
+}

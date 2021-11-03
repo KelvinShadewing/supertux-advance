@@ -99,6 +99,11 @@
 	timer = 30
 	a = 0
 
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		playSound(sndIceBreak, 0)
+	}
+
 	function run() {
 		vspeed += 0.2
 		v += vspeed

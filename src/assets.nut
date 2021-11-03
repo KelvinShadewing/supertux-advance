@@ -73,6 +73,7 @@
 ::sprDeadFish <- newSprite("res/gfx/deadfish.png", 23, 14, 0, 0, 14, 7)
 ::sprJellyFish <- newSprite("res/gfx/jellyfish.png", 16, 16, 0, 0, 8, 8)
 ::sprClamor <- newSprite("res/gfx/clamor.png", 16, 16, 0, 0, 8, 8)
+::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 2)
 
 //Items
 ::sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 0, 0, 8, 8)
@@ -138,6 +139,8 @@
 ::sndExplodeF <- loadSound("res/snd/explodeF.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
 ::sndBell <- loadSound("res/snd/bell.ogg")
+::sndIcicle <- loadSound("res/snd/icicle.ogg")
+::sndIceBreak <- loadSound("res/snd/icebreak.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
