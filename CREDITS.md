@@ -82,7 +82,7 @@ Lukas Nystrand - Chippdisko
 
 ## Level Contributors
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow, The Ocean Bridge, Arctic Wind
 
 ## Translators
 
