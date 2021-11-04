@@ -75,6 +75,8 @@
 ::sprJellyFish <- newSprite("res/gfx/jellyfish.png", 16, 16, 0, 0, 8, 8)
 ::sprClamor <- newSprite("res/gfx/clamor.png", 16, 16, 0, 0, 8, 8)
 ::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 2)
+::sprBounceCap <- newSprite("res/gfx/bouncecap.png", 16, 16, 0, 0, 8, 8)
+::sprFlyingAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
 
 //Items
 ::sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 0, 0, 8, 8)
@@ -156,6 +158,7 @@
 ::musRace <- "res/snd/blackdiamond.ogg"
 ::musDeluge <- "res/snd/deluge.ogg"
 ::musSnowTown <- "res/snd/winter_wonderland.ogg"
+::musAirship <- "res/snd/airship.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")
