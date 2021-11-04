@@ -60,6 +60,8 @@
 
 [Kutejnikov](https://opengameart.org/users/kutejnikov) - Shipwreck tiles
 
+[Nushio](http://opengameart.org/users/nushio) - LPC Terrain 2
+
 ## Sounds
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - 1up

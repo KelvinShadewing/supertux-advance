@@ -743,6 +743,10 @@
 				case 3:
 					sprite = sprTuxAir
 					break
+
+				case 4:
+					sprite = sprTuxEarth
+					break
 			}
 
 			//Invincibility

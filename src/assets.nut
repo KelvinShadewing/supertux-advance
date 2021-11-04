@@ -14,6 +14,7 @@
 ::sprTuxFire <- newSprite("res/gfx/tuxfire.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxIce <- newSprite("res/gfx/tuxice.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxAir <- newSprite("res/gfx/tuxair.png", 32, 32, 0, 0, 15, 19)
+::sprTuxEarth <- newSprite("res/gfx/tuxearth.png", 32, 32, 0, 0, 15, 19)
 ::sprTuxOverworld <- newSprite("res/gfx/tuxO.png", 14, 17, 0, 0, 7, 14)
 ::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 14)
 
