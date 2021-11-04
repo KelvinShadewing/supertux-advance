@@ -870,6 +870,14 @@
 			}
 			else drawSpriteEx(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
 			if(placeFree(x + hspeed, y)) x += hspeed
 			if(placeFree(x, y + vspeed)) y += vspeed
 			shape.setPos(x, y)
@@ -963,6 +971,14 @@
 			}
 			else drawSpriteEx(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
 			if(placeFree(x + hspeed, y)) x += hspeed
 			if(placeFree(x, y + vspeed)) y += vspeed
 			shape.setPos(x, y)
@@ -1038,6 +1054,14 @@
 					else vspeed = 1.0
 				}
 			}
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
 
 			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
