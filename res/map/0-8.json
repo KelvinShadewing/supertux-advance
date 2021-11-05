@@ -1560,7 +1560,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":3288,
+                 "x":3296,
                  "y":496
                 }, 
                 {
@@ -1610,6 +1610,30 @@
                  "width":16,
                  "x":5680,
                  "y":240
+                }, 
+                {
+                 "gid":218,
+                 "height":16,
+                 "id":725,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3488,
+                 "y":384
+                }, 
+                {
+                 "gid":218,
+                 "height":16,
+                 "id":726,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3280,
+                 "y":496
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1618,7 +1642,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":725,
+ "nextobjectid":727,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1627,7 +1651,7 @@
          "value":"drawBG = dbgSnowNight\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {

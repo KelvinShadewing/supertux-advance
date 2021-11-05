@@ -1317,3 +1317,12 @@
 		newActor(Poof, x, y)
 	}
 }
+
+::FlyAmanita <- class extends Enemy {
+	range = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(canint(_arr)) range = _arr.tointeger()
+	}
+}

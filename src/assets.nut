@@ -76,7 +76,7 @@
 ::sprClamor <- newSprite("res/gfx/clamor.png", 16, 16, 0, 0, 8, 8)
 ::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 2)
 ::sprBounceCap <- newSprite("res/gfx/bouncecap.png", 16, 16, 0, 0, 8, 8)
-::sprFlyingAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
+::sprFlyAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
 
 //Items
 ::sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 0, 0, 8, 8)
