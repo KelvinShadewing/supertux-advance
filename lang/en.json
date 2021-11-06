@@ -215,10 +215,13 @@
 		"gnu-pt-8" :
 		"That young guin, Rad, has such spirit. He lives life to Emacs.",
 		"midi-c" :
-		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?"
+		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?",
+		"sam-0" :
+		"Plenty of adventure gear at fair... wait, you use gold? This stuff would be a lot cheaper if you had emeralds."
 	},
 
 	"level" : {
+		"shop" : "Sam's Trade Post",
 		"overworld-0" : "Aurora Isles",
 		"overworld-1" : "Antarctica",
 		"0-t0" : "Pennyton",

@@ -1300,7 +1300,11 @@
 		}
 
 		if(counting && timer > 0) timer--
-		if(timer <= 0) vspeed += 0.1
+		if(timer <= 0) {
+			if(inWater(x, y) && vspeed < 0.5) vspeed += 0.05
+			else vspeed += 0.1
+		}
+		if(inWater(x, y) && vspeed > 0.5) vspeed = 0.1
 		y += vspeed
 		shape.setPos(x, y)
 

@@ -71,7 +71,7 @@
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
 				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) {
-					if(game.check == false) newActor(getroottable()[game.playerchar], i.x, i.y - 16)
+					if(game.check == false) newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
 					else newActor(getroottable()[game.playerchar], game.chx, game.chy)
 				}
 				break
@@ -222,7 +222,7 @@
 				break
 
 			case 31:
-				actor[newActor(NPC, i.x, i.y, i.name)]
+				actor[newActor(NPC, i.x + 8, i.y, i.name)]
 				break
 
 			case 32:

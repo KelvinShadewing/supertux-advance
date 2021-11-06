@@ -67,3 +67,7 @@ The controls menu hasn't been made yet. For now, remapping can be done in `globa
 *Q:* Why are there mods? Isn't this game open source?
 
 **A:** Yes, and you're free to make whatever edits you want. Mods just make it easier to share your changes and allow others to remove those changes without having to manually pick them out of the game's source.
+
+*Q:* Who is Midi?
+
+**A:** Midi Waffle is the main character of another game I'm working on, Kyrodian Legends. He's also the mascot for Brux GDK!

@@ -57,6 +57,8 @@
 ::sprTinyFireGuin <- newSprite("res/gfx/tinyfireguin.png", 13, 23, 0, 0, 6, 23)
 ::sprPygame <- newSprite("res/gfx/pygame.png", 32, 38, 0, 0, 16, 38)
 ::sprGnu <- newSprite("res/gfx/gnu.png", 29, 45, 0, 0, 15, 45)
+::sprSam <- newSprite("res/gfx/sam.png", 12, 32, 0, 0, 6, 32)
+::sprTuckles <- newSprite("res/gfx/tuckles.png", 18, 34, 0, 0, 8, 34)
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
