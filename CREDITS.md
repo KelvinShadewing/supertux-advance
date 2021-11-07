@@ -80,6 +80,12 @@ Lukas Nystrand - Chippdisko
 
 [genaralskar](https://opengameart.org/users/genaralskar) - Winter Wonderland
 
+[Eric Matyas](https://soundimage.org) - Spooky Enchantment
+
+[wipics](https://opengameart.org/users/wipics) - Spooky Loop
+
+[Alex McCulloch](https://opengameart.org/users/pro-sensory) - Halloween
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow, The Ocean Bridge, Arctic Wind
