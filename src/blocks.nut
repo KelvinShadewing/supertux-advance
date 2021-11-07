@@ -119,6 +119,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
+		item = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
@@ -206,8 +207,9 @@
 	item = 0
 	code = ""
 
-	constructor(_x, _y, _arr = null) {
+	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
+		code = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
@@ -246,8 +248,9 @@
 	item = 0
 	text = ""
 
-	constructor(_x, _y, _arr = null) {
+	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
+		text = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
@@ -284,8 +287,9 @@
 	shape = 0
 	text = ""
 
-	constructor(_x, _y, _arr = null) {
+	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
+		text = _arr
 
 		shape = Rec(x, y, 8, 8, 0)
 	}

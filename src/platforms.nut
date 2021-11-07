@@ -84,6 +84,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x + 8, y + 8, 4, 4, 0)
+		dir = _arr
 	}
 
 	function run() {
@@ -152,6 +153,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x + 8, y + 8, 4, 4, 0)
+		dir = _arr
 	}
 
 	function run() {

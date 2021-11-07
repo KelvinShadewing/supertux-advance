@@ -86,33 +86,27 @@
 				break
 
 			case 3:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 1
+				newActor(ItemBlock, i.x + 8, i.y - 8, 1)
 				break
 
 			case 4:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 2
+				newActor(ItemBlock, i.x + 8, i.y - 8, 2)
 				break
 
 			case 5:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 3
+				newActor(ItemBlock, i.x + 8, i.y - 8, 3)
 				break
 
 			case 6:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 5
+				newActor(ItemBlock, i.x + 8, i.y - 8, 5)
 				break
 
 			case 7:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 4
+				newActor(ItemBlock, i.x + 8, i.y - 8, 4)
 				break
 
 			case 8:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 6
+				newActor(ItemBlock, i.x + 8, i.y - 8, 6)
 				break
 
 			case 9:
@@ -120,25 +114,23 @@
 				break
 
 			case 10:
-				newActor(PipeSnake, i.x, i.y)
+				newActor(PipeSnake, i.x, i.y, 1)
 				//Enemies are counted at level creation so ones created indefinitely don't count against achievements
 				game.enemies++
 				break
 
 			case 11:
-				local c = actor[newActor(PipeSnake, i.x, i.y - 16)]
-				c.flip = -1
+				newActor(PipeSnake, i.x, i.y - 16, -1)
 				game.enemies++
 				break
 
 			case 12:
-				newActor(Deathcap, i.x + 8, i.y - 8)
+				newActor(Deathcap, i.x + 8, i.y - 8, false)
 				game.enemies++
 				break
 
 			case 13:
-				local c = newActor(Deathcap, i.x + 8, i.y - 8)
-				actor[c].smart = true
+				newActor(Deathcap, i.x + 8, i.y - 8, true)
 				game.enemies++
 				break
 
@@ -151,22 +143,19 @@
 				break
 
 			case 16:
-				newActor(Spring, i.x, i.y - 16)
+				newActor(Spring, i.x, i.y - 16, 0)
 				break
 
 			case 17:
-				local c = actor[newActor(Spring, i.x, i.y - 16)]
-				c.dir = 1
+				newActor(Spring, i.x, i.y - 16, 1)
 				break
 
 			case 18:
-				local c = actor[newActor(Spring, i.x, i.y - 16)]
-				c.dir = 2
+				newActor(Spring, i.x, i.y - 16, 2)
 				break
 
 			case 19:
-				local c = actor[newActor(Spring, i.x, i.y - 16)]
-				c.dir = 3
+				newActor(Spring, i.x, i.y - 16, 3)
 				break
 
 			case 20:
@@ -174,18 +163,15 @@
 				break
 
 			case 21:
-				local c = actor[newActor(TriggerBlock, i.x + 8, i.y - 8)]
-				c.code = i.name
+				newActor(TriggerBlock, i.x + 8, i.y - 8, i.name)
 				break
 
 			case 22:
-				local c = actor[newActor(InfoBlock, i.x + 8, i.y - 8)]
-				if(i.name != "") c.text = textLineLen(gvLangObj["info"][i.name], 52)
+				newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
 				break
 
 			case 23:
-				local c = actor[newActor(KelvinScarf, i.x + 8, i.y - 8)]
-				if(i.name != "") c.text = textLineLen(gvLangObj["devcom"][i.name], 52)
+				newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
 				break
 
 			case 24:
@@ -230,8 +216,7 @@
 				break
 
 			case 33:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 8
+				newActor(ItemBlock, i.x + 8, i.y - 8, 8)
 				break
 
 			case 34:
@@ -253,22 +238,19 @@
 				break
 
 			case 40:
-				newActor(SpringD, i.x, i.y - 16)
+				newActor(SpringD, i.x, i.y - 16, 0)
 				break
 
 			case 41:
-				local c = actor[newActor(SpringD, i.x, i.y - 16)]
-				c.dir = 1
+				newActor(SpringD, i.x, i.y - 16, 1)
 				break
 
 			case 42:
-				local c = actor[newActor(SpringD, i.x, i.y - 16)]
-				c.dir = 2
+				newActor(SpringD, i.x, i.y - 16, 2)
 				break
 
 			case 43:
-				local c = actor[newActor(SpringD, i.x, i.y - 16)]
-				c.dir = 3
+				newActor(SpringD, i.x, i.y - 16, 3)
 				break
 
 			case 44:

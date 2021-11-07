@@ -92,6 +92,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 4, 6, 0)
 		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+		smart = _arr
 	}
 
 	function run() {
@@ -260,6 +261,7 @@
 		ystart = y
 		shape = Rec(x, y, 8, 12, 0)
 		timer = (x * y) % 60
+		flip = _arr
 	}
 
 	function run() {
