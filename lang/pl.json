@@ -28,7 +28,19 @@
 		"tutSlide" :
 		"Naciśnij DÓŁ podczas biegania aby się ślizgać",
 		"waterjump" :
-		"Przytrzymaj SKOK podczas wychodzenia z wody aby wyskoczyć wyżej"
+		"Przytrzymaj SKOK podczas wychodzenia z wody aby wyskoczyć wyżej",
+ 		"noend" :
+ 		"Poziomy, których nie musisz ukończyć aby przejść dalej nie mają normalnych wyjść. Naciśnij ESCAPE aby opuścić strefy takie jak ta.",
+ 		"hills" :
+ 		"Wzgórza są bardzo ważne! Ćwicz ślizganie się kiedy jest tylko szansa na to.",
+ 		"pipes" :
+ 		"Możesz wejść do rur po prostu wpadając do nich. Możesz też przytrzymać DÓŁ aby wlecieć w nie.",
+ 		"controls" :
+ 		"Nie zapomnij aby ustawić sterowanie w opcjach w menu głównym! Jeżeli naprawdę coś popsujesz ustawiając sterowanie, usuń plik config.json.",
+ 		"secrets" :
+		"Sekretne przejścia są wszędzie! Oprzyj się o ścianę aby je odsłonić lub oglądaj w jaki sposób poruszają się przeciwnicy.",
+		"coyotetime" :
+		"Masz krótki moment po opuszczeniu podłoża kiedy możesz jeszcze skoczyć. Trenuj zbieganie z krawędzi i skakanie od razu po tym jak twoje stopy opuszczą podłoże."
 	},
 
 	"devcom" : {
@@ -69,13 +81,25 @@
 		"subsea" :
 		"KELVIN: Na początku nie byłem pewny w jaki sposób obchodzić się z podwodnymi poziomami. Myślałem o poziomach takich jak w SMB 1 i 3 ale wyglądały na coś co Tux mógłby szybko przelecieć. Później przypomniałem sobie o podwodnych poziomach w DKC, wyglądają one trochę jak labirynty gdzie musisz unikać niebezpiecznych wrogów. Pomyślałem, że to może się sprawdzić dla tej gry, ponieważ Tux jest szybki pod wodą a Konqi i Midi zachowują ofensywne możliwości w ich neutralnych formach.",
 		"subsea-name" :
-		"Nazwa, Pod wodą pochodzi z trasy o tej samej nazwie z gry SuperTuxKart. Pomyślałem, że byłoby fajnie wziąć części tras z tej try i wyobrazić sobie je na nowo jako poziomy w platformówce. Miasto Candela także jest planowane, finalny poziom, w którym będzie odbywać się walka z Nolok'iem będzie nazywać się Fort Magma. Inne nazwy z gry SuperTuxKart też mogą się pojawić."
+		"KELVIN: Nazwa, Pod wodą pochodzi z trasy o tej samej nazwie z gry SuperTuxKart. Pomyślałem, że byłoby fajnie wziąć części tras z tej try i wyobrazić sobie je na nowo jako poziomy w platformówce. Miasto Candela także jest planowane, finalny poziom, w którym będzie odbywać się walka z Nolok'iem będzie nazywać się Fort Magma. Inne nazwy z gry SuperTuxKart też mogą się pojawić.",
+		"tutorial-zone" :
+		"KELVIN: Po dostaniu opini o rozgrywce od Aurora Sol, zdecydowałem, że powinienem tak aby ta część samouczka jaśniej pokazywała podstawowe mechaniki. Kiedy testował grę pominął pierwszą rurę mimo, że stoi tutaj tabliczka podpowiadająca, że coś tutaj jest, spowodowało to, że także pominął miejsce pokazujące mechanikę pływania. Miejsca, w których powinieneś się ślizgać nie były jasno zaznaczone co spowodowało pominięcie też i tego. Ta strefa nie pozwoli ci na kontynuowanie dopóki nie nauczysz się każdej mechaniki ale cały czas może być pominięta jeżeli znasz podstawy.",
+		"speedrunex":
+		"FROSTC: Zaprojektowałem ten poziom z myślą o osobach speedrunujących go, więc sprawdź jak szybko potrafisz go ukończyć!",
+		"secretredex":
+		"FROSTC: Aktualna wersja tego sekretu bardzo różni się od tego jaka była kiedyś, jedną z różnic jest to, że kiedyś miała zakręt. Nie umiałem zrobić tego tak, żeby działało poprawinie więc jest to powodem pozbycia się tego.",
+		"fishex":
+		"FROSTC: Tak jak poziom Problem z TNT, ten poziom został zrobiony przed kilkoma wcześniejszymi poziomami.",
+		"mezex":
+		"FROSTC: Musiałem zrobić kilka własnych płytek aby ten labirynt wyglądał dobrze, wydaje mi się, że warto było to zrobić! Uważam, że jest to najlepsza rzecz w tym poziomie.",
+		"outage":
+		"FROSTC: Kolejny losowy fakt... Ten i ostatni poziom zajął tylko 3 dni aby go ukończyć! Najprawdopodobniej pomogło, to że szkoła była zamknięta pierwszego dnia kiedy zacząłem pracować nad tymi poziomami, było to spowodowane brakiem prądu lub czymś innym."
 	},
 
 	"npc" : {
 		"null" : "",
 		"rad0" :
-		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuchu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!",
+		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuczu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!",
 		"rad-0k" :
 		"Hej, gdzie jest twoja deska? Jeździsz zbyt wolno na zjazd taki jak ten!",
 		"rad-0m" :
@@ -85,7 +109,7 @@
 		"penny-0t" :
 		"Och, Tux! Bardzo cieszę się, że cię widzę! Nolok porwał naszych przyjaciół! Słyszałam, że zostali zabrani do różnych fortec rozmieszczonych po całym świecie. Chciałabym widzieć dlaczego. Postaraj się ich uratować, Tux!",
 		"penny-0k" :
-		"Konqi! Cieszę się, że cię widzę! Jestem pewna, że Bryza Plazmowa jest w porządku. Proszę pomóż Tux'owi. Razem uda się wam pokonać Nolok'a!",
+		"Konqi! Cieszę się, że cię widzę! Jestem pewna, że Plasma Breeze jest w porządku. Proszę pomóż Tux'owi. Razem uda się wam pokonać Nolok'a!",
 		"penny-0m" :
 		"Więc ty jesteś Midi. Słyszałam, że jesteś całkiem zdolnym wojownikiem. Cieszę się, że pomagasz Tux'owi. Upewnię się, że dostaniesz dobrą nagrodę.",
 		"penny-0d" :
@@ -99,25 +123,107 @@
 		"rad-t0d" :
 		"Wow, nowa twarz. Nie znam ciebie. Jeżeli szukasz Prezydenta Penny, jest ona w największym igloo w środku miasta. Lubię nazywać je dużym iglem.",
 		"xue-pt-t" :
-		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! Tym sposobem pokażę mu, za zadzieranie z nami, chu!",
+		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! Tym sposobem pokażę mu, za zadzieranie z nami, czu!",
 		"xue-pt-k" :
-		"Hej, Konqi! Daj Nolok'owi niezłe podpalenie kiedy go spotkasz! Nikt nie zadziera z nami, na czy poza trasą dla go-kartów, chu!",
+		"Hej, Konqi! Daj Nolok'owi niezłe podpalenie kiedy go spotkasz! Nikt nie zadziera z nami, na czy poza trasą dla go-kartów, czu!",
 		"xue-pt-m" :
-		"Wow, inny gryzoń, który także lubi wybuchy! (i całkiem ładny, chu...) Co? N-nic, chu! Ja, och, zastanawiałam się czy chciałbyś pójść pościgać się go-kartami! N-nie jako randka czy coś takiego! (Ucisz się, Xue, ucisz się!)",
+		"Wow, inny gryzoń, który także lubi wybuchy! (i całkiem ładny, czu...) Co? N-nic, czu! Ja, och, zastanawiałam się czy chciałbyś pójść pościgać się go-kartami! N-nie jako randka czy coś takiego! (Ucisz się, Xue, ucisz się!)",
 		"xue-pt-d" :
-		"Dziękuję ci za twoją pomoc, chu! Pokażmy Nolok'owi, żeby nigdy z nami nie zadzierał!"
+		"Dziękuję ci za twoją pomoc, czu! Pokażmy Nolok'owi, żeby nigdy z nami nie zadzierał!",
+		"fireguin-0" :
+		"Nie ma tutaj zbyt dużo zadań dla strażaka, co? Lód może się roztopić, to prawda, ale gasi też ogień a potem po prostu wkładamy nowy lód.",
+		"fireguin-1" :
+		"Może byłoby mi lepiej w miasteczku z domami z drewna. Ciężko tutaj znaleźć drewno więc nawet drzewa są zrobione z lodu!",
+		"fireguin-2" :
+		"Wiele domów tutaj jest pustych. Jestem pewien, że nasi przyjaciele wrócą kiedy zostaną ocaleni od Nolok'a.",
+		"fireguin-3" :
+		"Niestabilne bloki, cieńki lód roztopi się kiedy uderzysz w niego kulą ognia. Możesz także go rozwalić ślizgając się.",
+		"fireguin-4" :
+		"Uważaj na cieńki lód! Rozwali się gdy będziesz stał na nim zbyt długo.",
+		"fireguin-5" :
+		"Jeżeli chcesz poprawić swoje umiejętności w ślizganiu się, idź do zjazdu poza miastem. Znajdziesz go po prawo od tego miejsca.",
+		"konqi-c" :
+		"Hej, dziękuję za wydostanie mnie stąd. Zostałem złapany próbując odnaleźć Plasma Breeze. Mam nadzieję, że ona jest w porządku. Najprawdopodobniej Nolok porwał ją do innej fortecy. Pomogę ci ją uratować!",
+		"rocky-c" :
+		"W porządku, jestem uratowany! Człowieku, Nolok jest rodzajem śmieci, których nie chciałbym nawet dotykać. Powodzenia w walce z nim!",
+		"rocky-pt-t" :
+		"Hej, Tux! Złap mnie później. Kupię ci rybę.",
+		"rocky-pt-k" :
+		"Nolok jest krokodylem, prawda? Człowieku, mam nadzieję, że twoje łuski są cięższe niż jego. Nie chciałbym, żeby ten facet mnie obgryzał!",
+		"rocky-pt-m" :
+		"Przypominasz mi mnie. Mały, szybki i dobry w zbieraniu śmieci. Ale jesteś odważniejszy ode mnie. Nie okazuj Nolok'owi żadnej litości!",
+		"rocky-pt-d" :
+		"Tak, to miejsce jest dość zimne ale jest dużo bezpieczniejsze. Najgorsze miniony Nolok'a są na kontynencie i innych strefach więc mam zamiar na razie zostać w Pennyton.",
+		"python-c" :
+		"Dziękuję za ocalenie! Spotkamy się w mieście.",
+		"python-pt-t" :
+		"Hej tutaj Tux. Mam nadzieję, że jest bezpiecznie niedługo pójść się do domu. Zamarzam tutaj!",
+		"python-pt-k" :
+		"Czy są jakieś szanse ogrzać mnie twoim płomieniem? Tutaj jest strasznie zimno...",
+		"python-pt-m" :
+		"Chciałbym aby ty i Xue nie denerwowali się tak. Nawet jeżeli zrobiłbym się głodny, nie zjadłbym was!",
+		"python-pt-d" :
+		"Wydaje mi się, że tobie jest lepiej kiedy jest zimno niż mi. Nie bez powodu Nolok nie lubi tego miejsca.",
+		"garuda-c" :
+		"W porządku! Dziękuję za pomoc w pozbyciu się tego człowieka! Nie mogę doczekać się aby wyjść z tego miejsca i rozprostować moje skrzydła.",
+		"garuda-pt-t" :
+		"Kiedyś było mi przykro z powodu, że pingwiny nie mogą latać ale później zobaczyłem w jaki sposób poruszają się pod wodą. Pływają tak jakby latali!",
+		"garuda-pt-k" :
+		"Słyszałem, że smoki uwielbiają złoto tak jak gryfy. Na szczęście dla nas, w okolicy jest dużo monet! Chociaż zastanawiam się co powoduje, że unoszą się...",
+		"garuda-pt-m" :
+		"Używasz bomb, tak? Wydaje mi się, że gdybym uniósł cię w powietrze moglibyśmy zespół strajku powietrznego! Ale... boję się zostać ponownie zestrzelonym. W ten sposób Nolok złapał mnie pierwszym razem.",
+		"garuda-pt-d" :
+		"Dziękuję za twoją pomoc. Czuję się świetne mogąc znów latać.",
+		"breeze-c-k" :
+		"Konqi! Wiedziałam, że po mnie przyjdziesz! Bardzo cieszę się, że cię widzę! Wydostańmy się stąd! Będę za tobą.",
+		"breeze-c-d" :
+		"Dziękuję za wydostanie mnie stąd. Będę kierowała się w stronę Pennyton. Kopnij Nolok'a dla mnie!",
+		"breeze-pt-t" :
+		"Och, jesteś bardzo słodkim, małym pingwinem! Znam klacz, która bardzo lubi ptaki. Pewnie polubiłbyś ją.",
+		"breeze-pt-k" :
+		"Zawsze cieszę się kiedy cię spotykam, Konqi! Powodzenia w walce z Nolok'iem. Będę ci kibicowała najgłośniej!",
+		"breeze-pt-d" :
+		"Każda pomoc jest potrzebna w walce z Nolok'iem. Cieszę się, że jesteś po naszej stronie.",
+		"gnu-c" :
+		"Żałuję, że znowu zostałem złapany przez Nolok'a. Dziękuję ci za wypuszczenie mnie.",
+		"gnu-pt-0" :
+		"Jest dobrze excelować, ale lepiej jest to zrobić za pomocą vim'a.",
+		"gnu-pt-1" :
+		"Żaba pacman jest łowcą apt.",
+		"gnu-pt-2" :
+		"Prawdziwa wolność jest odnajdowana na trasie gnu.",
+		"gnu-pt-3" :
+		"Niektóre tajemnice są rozwiązywane za pomocą odnajdowywania print'ów, inne za pomocą robienia ich.",
+		"gnu-pt-4" :
+		"Podczas chodzenia z fork'iem, lekko stąpaj.",
+		"gnu-pt-5" :
+		"Nie używaj cat'a jeżeli możesz zrobić więcej lub mniej.",
+		"gnu-pt-6" :
+		"Jeżeli info nie jest dla ciebie opcją, man jest wyborem.",
+		"gnu-pt-7" :
+		"007 ma wszystkie uprawnienia, których potrzebujesz.",
+		"midi-c" :
+		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i kopnął tego Nolok'a w ogon?"
 
 	},
 
 	"level" : {
-		"overworld-0" : "Antarktyda",
+		"overworld-0" : "Wyspy Zorzy Polarnej",
+		"overworld-1" : "Antarktyda",
 		"0-t0" : "Pennyton",
 		"0-0" : "Nauka Stoków",
 		"0-1" : "Kryształowe Przejście",
 		"0-2" : "Ślizganie i Zjeżdżanie",
 		"0-3" : "Pod wodą",
 		"0-4" : "Problem z TNT",
-		"0-x" : "Ekstremalne Wzgórza"
+		"0-5" : "Zmysł Śniegu Frost'a",
+		"0-x" : "Ekstremalne Wzgórza",
+		"0-c" : "Forteca Borealis",
+		"0-6A" : "Mroźny Raj",
+		"0-6B" : "Thick of it",
+		"0-7" : "Oceaniczny Most",
+		"0-8" : "Arktyczny Wiatr",
+		"0-9" : "Zatopione kroki"
 	},
 
 	"key" : {

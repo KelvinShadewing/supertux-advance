@@ -94,19 +94,19 @@
 				fspeed = 0.2
 				switch(dir) {
 					case 0: //Up
-						gvPlayer.vspeed = -5
+						gvPlayer.vspeed = -5.5
 						break
 
 					case 1: //Down
-						gvPlayer.vspeed = 4
+						gvPlayer.vspeed = 4.0
 						break
 
 					case 2: //Right
-						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4
+						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4.0
 						break
 
 					case 3: //Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4.0
 						break
 				}
 				if(frame == 0.0) playSound(sndSpring, 0)
@@ -162,23 +162,23 @@
 				fspeed = 0.2
 				switch(dir) {
 					case 0: //Up Right
-						gvPlayer.vspeed = -5
-						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4
+						gvPlayer.vspeed = -5.0
+						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4.0
 						break
 
 					case 1: //Down Right
-						gvPlayer.vspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4
-						gvPlayer.hspeed = 4
+						gvPlayer.vspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 4.0
+						gvPlayer.hspeed = 4.0
 						break
 
 					case 2: //Down Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4
-						gvPlayer.vspeed = 4
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4.0
+						gvPlayer.vspeed = 4.0
 						break
 
 					case 3: //Up Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4
-						gvPlayer.vspeed = -5
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -4.0
+						gvPlayer.vspeed = -5.0
 						break
 				}
 				if(frame == 0.0) playSound(sndSpring, 0)
