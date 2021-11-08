@@ -1326,9 +1326,81 @@
 
 ::FlyAmanita <- class extends Enemy {
 	range = 0
+	dir = 0.5
+	flip = 0
 
-	constructor(_x, _y, _arr = null) {
+	constructor(_x, _y, _arr = 0) {
 		base.constructor(_x, _y)
-		if(canint(_arr)) range = _arr.tointeger()
+		range = _arr.tointeger() * 16
+		shape = Rec(x, y, 6, 6, 0)
 	}
+
+	function run() {
+		base.run()
+		if(gvPlayer != 0) gvPlayer.x < x ? flip = 1 : flip = 0
+
+		if(distance2(x, y, x, ystart) < 16) vspeed = ((1.0 / 16.0) * distance2(x, y, x, ystart)) * dir
+		else if(distance2(x, y, x, ystart + range) < 16) vspeed = ((1.0 / 16.0) * distance2(x, y, x, ystart + range)) * dir
+		else vspeed = dir
+
+		vspeed += dir * 0.2
+
+		//Change direction
+		if(range > 0) {
+			if(y > ystart + range) dir = -0.5
+			if(y < ystart) dir = 0.5
+		}
+
+		if(range < 0) {
+			if(y > ystart) dir = -0.5
+			if(y < ystart + range) dir = 0.5
+		}
+
+		if(!frozen) {
+			y += vspeed
+			drawSpriteEx(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
+		} else {
+			drawSpriteEx(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
+			drawSprite(sprIceTrapSmall, 0, x - camx, y - camy)
+		}
+
+		shape.setPos(x, y)
+	}
+
+	function hurtplayer() {
+		base.hurtplayer()
+	}
+
+	function gethurt() {
+		if(!nocount) game.enemies--
+
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprFlyAmanita
+		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+		actor[c].hspeed = (gvPlayer.hspeed / 16)
+		actor[c].spin = (gvPlayer.hspeed * 6)
+		actor[c].angle = 180
+		deleteActor(id)
+		playSound(sndKick, 0)
+
+		if(getcon("jump", "hold")) gvPlayer.vspeed = -5
+		else {
+			gvPlayer.vspeed = -2
+			playSound(sndSquish, 0)
+		}
+
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+
+		else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
+		else gvPlayer.vspeed = -2
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+	}
+
+	hurtfire = Deathcap.hurtfire
 }

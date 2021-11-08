@@ -1233,6 +1233,30 @@
                  "width":16,
                  "x":1216,
                  "y":432
+                }, 
+                {
+                 "gid":234,
+                 "height":16,
+                 "id":265,
+                 "name":"4t",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1104,
+                 "y":464
+                }, 
+                {
+                 "gid":234,
+                 "height":16,
+                 "id":266,
+                 "name":"-4",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1088,
+                 "y":528
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1241,7 +1265,7 @@
          "y":0
         }],
  "nextlayerid":22,
- "nextobjectid":265,
+ "nextobjectid":267,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1250,7 +1274,7 @@
          "value":"drawBG = dbgForest"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {

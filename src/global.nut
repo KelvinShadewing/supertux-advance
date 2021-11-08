@@ -84,3 +84,5 @@
 
 //Debug variabls
 ::gvFPS <- 0
+
+::gvWeather <- 0
