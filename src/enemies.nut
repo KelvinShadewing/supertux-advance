@@ -1404,3 +1404,13 @@
 
 	hurtfire = Deathcap.hurtfire
 }
+
+::Snail <- class extends Enemy {
+	dir = 0
+	squish = 0
+	hitTimer = 0 //Small delay timer between getting kicked by Tux and being able to hurt him while moving
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+}

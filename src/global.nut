@@ -5,9 +5,9 @@
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
-::game <- {
+::game <- { //Globals stored in this table will be saved
 	difficulty = 0
-	score = 0
+	file = 0
 	coins = 0
 	levelcoins = 0
 	maxcoins = 0 //Total coins in the level
