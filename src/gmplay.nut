@@ -336,6 +336,9 @@
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	if(gvInfoBox == "") {
+		for(local i = 0; i < 4 - game.difficulty; i++) {
+			drawSprite(sprEnergy, 2, 8 + (16 * i), 24)
+		}
 		for(local i = 0; i < game.maxHealth; i++) {
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
@@ -365,7 +368,7 @@
 				drawSprite(sprAirFeather, 0, screenW() - 18, 18)
 				break
 			case 4:
-				drawSprite(sprWoodBox, 0, screenW() - 18, 18)
+				drawSprite(sprEarthShell, 0, screenW() - 18, 18)
 				break
 			case 5:
 				drawSprite(sprMuffin, 0, screenW() - 18, 18)
