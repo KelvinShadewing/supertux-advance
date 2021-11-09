@@ -40,7 +40,13 @@
  		"secrets" :
 		"Sekretne przejścia są wszędzie! Oprzyj się o ścianę aby je odsłonić lub oglądaj w jaki sposób poruszają się przeciwnicy.",
 		"coyotetime" :
-		"Masz krótki moment po opuszczeniu podłoża kiedy możesz jeszcze skoczyć. Trenuj zbieganie z krawędzi i skakanie od razu po tym jak twoje stopy opuszczą podłoże."
+		"Masz krótki moment po opuszczeniu podłoża kiedy możesz jeszcze skoczyć. Trenuj zbieganie z krawędzi i skakanie od razu po tym jak twoje stopy opuszczą podłoże.",
+		"tntex" :
+		"Bloki TNT wybuchają chwile po dotknięciu ich.",
+		"chainex" :
+		"Bloki TNT także wybuchają od innego wybuchu, skutkuje to czymś w rodzaju wybuchu łańcuchowego kiedy wiele bloków TNT jest blisko siebie.",
+		"fireex" :
+		"Kule ognia mogą podpalić bloki TNT, zdobądź ognisty kwiat i wypróbuj to!"
 	},
 
 	"devcom" : {
@@ -98,7 +104,7 @@
 
 	"npc" : {
 		"null" : "",
-		"rad0" :
+		"rad-0t" :
 		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuczu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!",
 		"rad-0k" :
 		"Hej, gdzie jest twoja deska? Jeździsz zbyt wolno na zjazd taki jak ten!",
@@ -122,6 +128,8 @@
 		"Co wiewiórka robi tak daleko na południe? Czy nie jest tutaj zbyt zimno dla ciebie? Wejdź do środka zanim zmarzniesz.",
 		"rad-t0d" :
 		"Wow, nowa twarz. Nie znam ciebie. Jeżeli szukasz Prezydenta Penny, jest ona w największym igloo w środku miasta. Lubię nazywać je dużym iglem.",
+		"xue-c" :
+		"Dzięki za uratowanie mnie, czu! Spotkamy się w Pennyton!",
 		"xue-pt-t" :
 		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! Tym sposobem pokażę mu, za zadzieranie z nami, czu!",
 		"xue-pt-k" :
@@ -202,12 +210,16 @@
 		"Jeżeli info nie jest dla ciebie opcją, man jest wyborem.",
 		"gnu-pt-7" :
 		"007 ma wszystkie uprawnienia, których potrzebujesz.",
+		"gnu-pt-8" :
+		"Ten młody pingwin, Rad, ma takiego ducha. Żyje życiem dla Emacsa.",
 		"midi-c" :
-		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i kopnął tego Nolok'a w ogon?"
-
+		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i kopnął tego Nolok'a w ogon?",
+		"sam-0" :
+		"Mnóstwo sprzętu przygodowego na stanie... czekaj, używasz złota? Te rzeczy byłby dużo tańsze gdybyś miał szmaragdy."
 	},
 
 	"level" : {
+		"shop" : "Punkt handlowy Sam'a",
 		"overworld-0" : "Wyspy Zorzy Polarnej",
 		"overworld-1" : "Antarktyda",
 		"0-t0" : "Pennyton",
