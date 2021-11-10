@@ -15,7 +15,7 @@
 	function run()
 	{
 		frame += 0.1
-		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprCoin, frame, x - camx, y - camy)
+		drawSprite(sprCoin, frame, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
@@ -34,7 +34,7 @@
 
 	function run()
 	{
-		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
+		drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
 			if(game.weapon == 0) {
@@ -42,7 +42,7 @@
 				game.maxenergy = 1
 			}
 			else if(game.weapon == 1) {
-				if(game.maxenergy < 4) game.maxenergy++
+				if(game.maxenergy < 4 - game.difficulty) game.maxenergy++
 				else game.subitem = 1
 			}
 			else {
@@ -67,7 +67,7 @@
 
 	function run()
 	{
-		if(x > camx - 16 && x < camx + 320 && y > camy - 16 && y < camy + 180) drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
+		drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
 			if(game.weapon == 0) {
@@ -75,7 +75,7 @@
 				game.maxenergy = 1
 			}
 			else if(game.weapon == 2) {
-				if(game.maxenergy < 4) game.maxenergy++
+				if(game.maxenergy < 4 - game.difficulty) game.maxenergy++
 				else game.subitem = 1
 			}
 			else {

@@ -71,6 +71,7 @@
 }
 
 ::rebindKeys <- function() {
+	resetDrawTarget()
 	local done = false
 	local keystep = 0
 
@@ -145,7 +146,7 @@
 				}
 				break
 			case 9:
-				message += "swap"
+				message += "item swap"
 				if(anyKeyPress() != -1) {
 					config.key.swap = anyKeyPress()
 					keystep++
@@ -162,6 +163,8 @@
 			return
 		}
 
+		setDrawColor(0x00000080)
+		drawRec(0, 0, 320, 24, true)
 		drawText(font, 8, 8, message)
 		update()
 	}
@@ -170,6 +173,7 @@
 }
 
 ::rebindGamepad <- function() {
+	resetDrawTarget()
 	local done = false
 	local joystep = 4
 
@@ -216,14 +220,14 @@
 				}
 				break
 			case 9:
-				message += "swap"
+				message += "item swap"
 				if(anyJoyPress(0) != -1) {
 					config.joy.swap = anyJoyPress(0)
 					joystep++
 				}
 				break
 			case 10:
-				message += "escape"
+				message += "escape/quit level"
 				if(anyJoyPress(0) != -1) {
 					config.joy.escape = anyJoyPress(0)
 					joystep++

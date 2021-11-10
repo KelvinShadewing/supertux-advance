@@ -217,7 +217,17 @@
 		"midi-c" :
 		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?",
 		"sam-0" :
-		"Plenty of adventure gear at fair... wait, you use gold? This stuff would be a lot cheaper if you had emeralds."
+		"Plenty of adventure gear at fair... wait, you use gold? This stuff would be a lot cheaper if you had emeralds.",
+		"sam-1" :
+		"Don't get me wrong, gold's great, but it's just so common. I can't imagine having to carry that much around to use as money!",
+		"sam-2" :
+		"You think us overworlders love emeralds? Try even letting a hedgehog near them!",
+		"sam-3" :
+		"I don't mean to be rude, but are you going to buy anything? I don't get paid to talk.",
+		"sam-4" :
+		"Yeah, I dug for and crafted all these items, and now I sell them. So what does my boss do to earn his cut? He owns the company!",
+		"sam-5" :
+		"While we're on the subject of money, this game we're in? Totally free, even to edit and sell what you make. So please consider donating to the people who worked on it!"
 	},
 
 	"level" : {

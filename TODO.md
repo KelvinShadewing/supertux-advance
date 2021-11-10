@@ -28,12 +28,13 @@
 [x] Bouncing snow
 [x] Ouchin (stationary enemy)
 [ ] Snails (turtle-likes)
-[ ] Flying deathcaps
+[x] Flying deathcaps
 [ ] Swoops
 [x] Cannon Bobs
 [ ] Spinning castle fire
 [ ] Bouncing castle fire
-[ ] Fish
+[x] Fish
+[ ] Haywire
 
 ## Bosses
 
@@ -45,7 +46,7 @@
 
 [x] Muffins
 [x] Starnyan
-**TUx ITEMS**
+**TUX ITEMS**
 [x] Fire flower
 [x] Ice flower
 [x] Air feather
@@ -66,3 +67,4 @@
 [x] Powerup leveling
 [x] Sub items
 [ ] General store
+[ ] World Travel
