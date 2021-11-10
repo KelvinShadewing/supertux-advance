@@ -560,9 +560,12 @@
 
 			//Movement
 			if(canMove) {
-				if(getcon("run", "hold")) mspeed = 1.75
-				else if(getcon("sneak", "hold")) mspeed = 0.5
-				else mspeed = 1.0
+				if(getcon("run", "hold") || abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9) {
+					if(game.weapon == 2) mspeed = 2.0
+					else mspeed = 1.75
+				}
+				else if(getcon("sneak", "hold") || abs(joyX(0)) <= js_max * 0.4 || abs(joyY(0)) <= js_max * 0.4) mspeed = 0.5
+				else mspeed = 1
 
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.05
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.05
