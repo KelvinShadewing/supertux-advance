@@ -281,11 +281,11 @@
 				if(game.weapon == 3 && energy < 1) energy += 0.01
 			}
 			if(canMove) {
-				if(getcon("run", "hold")) {
+				if(getcon("run", "hold") || abs(joyX(0)) >= js_max * 0.9) {
 					if(game.weapon == 2) mspeed = 2.0
 					else mspeed = 1.75
 				}
-				else if(getcon("sneak", "hold")) mspeed = 0.5
+				else if(getcon("sneak", "hold") || abs(joyX(0)) <= js_max * 0.4) mspeed = 0.5
 				else mspeed = 1
 
 				//Moving left and right
