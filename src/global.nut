@@ -39,11 +39,6 @@
 ::gameDefault <- clone(game)
 ::gvPlayer <- 0; //Pointer to player actor
 /*\
- # The game does not actually have
- # limited lives. instead, game.lives
- # tracks how many times the player
- # has died in total.
- #
  # When characters are unlocked, they will
  # be added to game.characters. Mods can
  # push a similar array to make their

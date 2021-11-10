@@ -26,7 +26,7 @@ The tile layers include:
 
 ## Level Size
 
-Level dimensions should have an area around 320x20 tiles. Levels don't need to be purely horizontal, but should have a similar area so that they aren't too long. Rather than use checkpoints, I prefer to have a higher quantity of short levels. The reason for this is level achievements: coins, enemies, and secrets. Starting over from a checkpoint means losing the chance of getting these without having to backtrack. A level that's short enough to comfortably play from the beginning mitigates this.
+Level dimensions should have an area around 320x20 tiles. Levels don't need to be purely horizontal, but should have a similar area so that they aren't too long. I have no yet added support for multiple checkpoints, but it is planned. Still, levels should be short, since the achievements for them require it all to be done in a single pass.
 
 ## NPCs
 
