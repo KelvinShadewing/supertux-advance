@@ -886,6 +886,7 @@
 		timer--
 		if(timer == 0) {
 			if(game.check == true || game.difficulty > 0) if(game.lives > 0) game.lives--
+			if(game.lives == 0) game.check = false
 			startPlay(gvMap.file)
 		}
 		switch(mywep) {

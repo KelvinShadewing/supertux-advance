@@ -255,6 +255,7 @@
 
 			case 44:
 				newActor(GreenFish, i.x + 8, i.y - 8)
+				game.enemies++
 				break
 
 			case 45:
@@ -263,6 +264,8 @@
 
 			case 46:
 				newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
+				game.enemies++
+				break
 		}
 	}
 
