@@ -68,6 +68,8 @@
 
 ## Music
 
+[Automusic](https://www.youtube.com/watch?v=xPxCaCN_dCQ) - Main Theme
+
 Lukas Nystrand - Chippdisko
 
 [TAD](https://opengameart.org/users/tad) - LoFi Ice Cave

@@ -153,6 +153,7 @@
 ::gvMusicName <- ""
 ::gvLastSong <- ""
 
+::musTheme <- "res/snd/supertuxtheme.ogg"
 ::musDisko <- "res/snd/chipdisko.ogg"
 ::musCave <- "res/snd/cave.ogg"
 ::musOverworld <- "res/snd/overworld.ogg"
