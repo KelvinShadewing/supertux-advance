@@ -340,7 +340,8 @@
 
 				//Jumping
 				if(getcon("jump", "press")) {
-					 if(canJump > 0) {
+					if(onPlatform() && getcon("down", "hold")) y++
+					else if(canJump > 0) {
 						vspeed = -3.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
@@ -379,7 +380,6 @@
 						flip = 0
 						anim = anWall
 						frame = anim[0]
-
 					}
 
 					if(!placeFree(x + 2, y) && anim != anWall && hspeed >= 0) {

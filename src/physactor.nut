@@ -42,6 +42,7 @@
 					local tile = (cx + i) + ((cy + j) * wl.width)
 					if(tile >= 0 && tile < wl.data.len()) switch(wl.data[tile] - gvMap.solidfid) {
 						case 0: //Full solid
+						case 39:
 						case 40:
 						case 42:
 						case 43:
@@ -247,6 +248,12 @@
 							gvMap.shape.h = 8.0
 							if(hitTest(ns, gvMap.shape)) return false
 							break
+						case 38: //Half Up
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(ns.y > shape.y + shape.oy && vspeed >= 0) if(hitTest(ns, gvMap.shape) && !hitTest(shape, gvMap.shape)) return false
 					}
 					if(debug) gvMap.shape.draw()
 				}
@@ -367,6 +374,36 @@
 					}
 					if(debug) gvMap.shape.draw()
 				}
+			}
+		}
+
+		return false
+	}
+
+	function onPlatform() {
+		//Save current location and move
+		local ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
+		local cx = floor(x / 16)
+		local cy = floor(y / 16) + 1
+
+		//Check that the solid layer exists
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Check against places in solid layer
+		if(wl != null) {
+			local tile = cx + (cy * wl.width)
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 38) {
+				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 4)
+				gvMap.shape.kind = 0
+				gvMap.shape.w = 8.0
+				gvMap.shape.h = 4.0
+				if(hitTest(ns, gvMap.shape)) return true
 			}
 		}
 
