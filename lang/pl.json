@@ -46,7 +46,9 @@
 		"chainex" :
 		"Bloki TNT także wybuchają od innego wybuchu, skutkuje to czymś w rodzaju wybuchu łańcuchowego kiedy wiele bloków TNT jest blisko siebie.",
 		"fireex" :
-		"Kule ognia mogą podpalić bloki TNT, zdobądź ognisty kwiat i wypróbuj to!"
+		"Kule ognia mogą podpalić bloki TNT, zdobądź ognisty kwiat i wypróbuj to!",
+		"owplats" :
+		"Możesz zeskoczyć z jednokierunkowych platform naciskając DÓŁ i SKOK w tym samym czasie. Jeżeli zeskoczysz przez przypadek masz dwa razy więcej czasu niż przy spadnięciu z krawędzi, aby wskoczyć z powrotem."
 	},
 
 	"devcom" : {
@@ -215,7 +217,17 @@
 		"midi-c" :
 		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i kopnął tego Nolok'a w ogon?",
 		"sam-0" :
-		"Mnóstwo sprzętu przygodowego na stanie... czekaj, używasz złota? Te rzeczy byłby dużo tańsze gdybyś miał szmaragdy."
+		"Mnóstwo sprzętu przygodowego na stanie... czekaj, używasz złota? Te rzeczy byłby dużo tańsze gdybyś miał szmaragdy.",
+		"sam-1" :
+		"Nie zrozum mnie źle, złoto jest wspaniałe ale jest po prostu zbyt częste. Nie wyobrażam sobie musieć nosić tyle i używać jako pieniędzy!",
+		"sam-2" :
+		"Czy wydaje ci się, że my lubimy szmaragdy? Spróbuj tylko zblizyć jeża do nich!",
+		"sam-3" :
+		"Nie chcę być niemiły ale czy zamierzasz coś kupić? Nie płacą mi za rozmawianie.",
+		"sam-4" :
+		"Tak, wykopałem i zrobiłem te wszystkie rzeczy i teraz je sprzedaję. Więc co mój szef robi aby dostać swoją część zarobków? On jest właścicielem firmy!",
+		"sam-5" :
+		"Przy okazji kiedy rozmawiamy o pieniądzach, gra w której jesteśmy? Jest darmowa, nawet możesz modyfikować i sprzedawać to co zrobisz, więc weź pod uwagę możliwość przekazania darowizny osobom, które nad nią pracowały!"
 	},
 
 	"level" : {
@@ -231,8 +243,8 @@
 		"0-5" : "Zmysł Śniegu Frost'a",
 		"0-x" : "Ekstremalne Wzgórza",
 		"0-c" : "Forteca Borealis",
-		"0-6A" : "Mroźny Raj",
-		"0-6B" : "Thick of it",
+		"0-6a" : "Mroźny Raj",
+		"0-6b" : "Thick of it",
 		"0-7" : "Oceaniczny Most",
 		"0-8" : "Arktyczny Wiatr",
 		"0-9" : "Zatopione kroki"
