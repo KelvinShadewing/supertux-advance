@@ -61,6 +61,9 @@
 
 	function run() {
 		//Side checks
+		shapeSlide.setPos(x, y)
+		shapeStand.setPos(x, y)
+		if(shape == shapeStand && !placeFree(x, y)) shape = shapeSlide
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
 		local freeLeft = placeFree(x - 1, y)
@@ -439,6 +442,8 @@
 				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3
 			}
 			if(anim != anSlide) {
+				shapeStand.setPos(x, y)
+				shapeSlide.setPos(x, y)
 				if(placeFree(x, y - 8)) shape = shapeStand
 				if(!placeFree(x, y)) shape = shapeSlide
 			}
