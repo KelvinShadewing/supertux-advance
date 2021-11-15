@@ -42,11 +42,13 @@
 		"coyotetime" :
 		"You have a brief moment after leaving the ground when you can still jump. Practice running off the edges and jumping just after your feet leave the ground.",
 		"tntex" :
-		"Tnt blocks explode a short time after coming in contact with one.",
+		"TNT blocks explode a short time after coming in contact with one.",
 		"chainex" :
-		"tnt blocks are also set off by explosions, which can lead to a sort of chain reaction when many tnt blocks are close to one another.",
+		"TNT blocks are also set off by explosions, which can lead to a sort of chain reaction when many TNT blocks are close to one another.",
 		"fireex" :
-		"fireballs can set off tnt blocks, get a fire flower and try it out!"
+		"Fireballs can set off TNT blocks, get a fire flower and try it out!",
+		"owplats" :
+		"One-way platforms can be dropped down from by pressing DOWN and JUMP at once. If you drop on accident, you have twice as long as when going over an edge to jump back up."
 	},
 
 	"devcom" : {
@@ -243,8 +245,8 @@
 		"0-5" : "Frost's Sense of Snow",
 		"0-x" : "Xtreme Hills",
 		"0-c" : "Fort Borealis",
-		"0-6A" : "Frozen paradise",
-		"0-6B" : "Thick of it",
+		"0-6a" : "Frozen paradise",
+		"0-6b" : "Thick of it",
 		"0-7" : "The Ocean Bridge",
 		"0-8" : "Artic wind",
 		"0-9" : "Sunken steps"

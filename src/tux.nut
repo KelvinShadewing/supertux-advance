@@ -343,7 +343,10 @@
 
 				//Jumping
 				if(getcon("jump", "press")) {
-					if(onPlatform() && getcon("down", "hold")) y++
+					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
+						y++
+						canJump = 32
+					}
 					else if(canJump > 0) {
 						vspeed = -3.8
 						didJump = true
@@ -660,7 +663,7 @@
 		if(canMove && getcon("swap", "press")) swapitem()
 
 		//Base movement
-		if(anim == anSlide || !placeFree(x, y)) shape = shapeSlide
+		if(anim == anSlide || placeFree(x, y)) shape = shapeSlide
 		else shape = shapeStand
 		shape.setPos(x, y)
 
@@ -669,14 +672,6 @@
 			vspeed /= 2
 			//if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
-			else {
-				vspeed /= 2
-				if(placeFree(x, y + vspeed)) y += vspeed
-				else {
-					vspeed /= 2
-					if(placeFree(x, y + vspeed)) y += vspeed
-				}
-			}
 		}
 
 		if(hspeed != 0) {
