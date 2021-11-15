@@ -348,7 +348,8 @@
 						canJump = 32
 					}
 					else if(canJump > 0) {
-						vspeed = -3.8
+						if(game.weapon == 3) vspeed = -3
+						else vspeed = -3.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive) {
@@ -357,6 +358,16 @@
 						}
 						if(game.weapon != 3) playSound(sndJump, 0)
 						else playSound(sndFlap, 0)
+					}
+					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0) {
+						flip = 0
+						anim = anWall
+						frame = anim[0]
+					}
+					else if(freeDown && anim != anClimb && !placeFree(x + 2, y) && anim != anWall && hspeed >= 0) {
+						flip = 1
+						anim = anWall
+						frame = anim[0]
 					}
 					else if(floor(energy) > 0 && game.weapon == 3) {
 						if(vspeed > 0) vspeed = 0.0
@@ -377,22 +388,6 @@
 				{
 					didJump = false
 					vspeed /= 2
-				}
-
-				//Wall jumping
-				if(freeDown && getcon("jump", "press") && anim != anClimb)
-				{
-					if(!placeFree(x - 2, y) && anim != anWall && hspeed <= 0) {
-						flip = 0
-						anim = anWall
-						frame = anim[0]
-					}
-
-					if(!placeFree(x + 2, y) && anim != anWall && hspeed >= 0) {
-						flip = 1
-						anim = anWall
-						frame = anim[0]
-					}
 				}
 
 				//Going into slide
