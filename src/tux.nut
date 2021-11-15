@@ -663,8 +663,6 @@
 		if(canMove && getcon("swap", "press")) swapitem()
 
 		//Base movement
-		if(anim == anSlide || placeFree(x, y)) shape = shapeSlide
-		else shape = shapeStand
 		shape.setPos(x, y)
 
 		if(placeFree(x, y + vspeed)) y += vspeed
