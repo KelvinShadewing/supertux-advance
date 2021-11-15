@@ -441,15 +441,9 @@
 				if(hspeed > 0 && !getcon("right", "hold")) hspeed -= friction / 3
 				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3
 			}
-			if(anim != anSlide) {
-				shapeStand.setPos(x, y)
-				shapeSlide.setPos(x, y)
-				if(placeFree(x, y - 8)) shape = shapeStand
-				if(!placeFree(x, y)) shape = shapeSlide
-			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(freeDown && (vspeed < 1.5 || (vspeed < 3 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 1.5 || (vspeed < 3 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 			if(!freeDown && vspeed >= 0) {
 				//If Tux hits the ground while sliding
@@ -666,11 +660,23 @@
 		if(canMove && getcon("swap", "press")) swapitem()
 
 		//Base movement
+		if(anim == anSlide || !placeFree(x, y)) shape = shapeSlide
+		else shape = shapeStand
+		shape.setPos(x, y)
+
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2
 			//if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
+			else {
+				vspeed /= 2
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else {
+					vspeed /= 2
+					if(placeFree(x, y + vspeed)) y += vspeed
+				}
+			}
 		}
 
 		if(hspeed != 0) {

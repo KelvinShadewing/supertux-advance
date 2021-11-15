@@ -775,8 +775,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1776,
-                 "y":512
+                 "x":1488,
+                 "y":384
                 }, 
                 {
                  "gid":197,
@@ -1187,18 +1187,6 @@
                  "y":640
                 }, 
                 {
-                 "gid":188,
-                 "height":16,
-                 "id":260,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1168,
-                 "y":432
-                }, 
-                {
                  "gid":233,
                  "height":16,
                  "id":261,
@@ -1269,6 +1257,18 @@
                  "width":16,
                  "x":1088,
                  "y":528
+                }, 
+                {
+                 "gid":188,
+                 "height":16,
+                 "id":267,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1888,
+                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1277,7 +1277,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":267,
+ "nextobjectid":268,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1286,7 +1286,7 @@
          "value":"drawBG = dbgForest"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {

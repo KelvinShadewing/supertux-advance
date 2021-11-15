@@ -248,14 +248,18 @@
 							gvMap.shape.h = 8.0
 							if(hitTest(ns, gvMap.shape)) return false
 							break
-						case 38: //Half Up
+						case 38: //One Way
+							local nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
-							if(ns.y > shape.y + shape.oy && vspeed >= 0) if(hitTest(ns, gvMap.shape) && !hitTest(shape, gvMap.shape)) return false
+							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape)) return false
 					}
-					if(debug) gvMap.shape.draw()
+					if(debug) {
+						gvMap.shape.draw()
+						ns.draw()
+					}
 				}
 			}
 		}
