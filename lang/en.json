@@ -243,13 +243,13 @@
 		"0-3" : "Subsea",
 		"0-4" : "Tux 'N' Trouble",
 		"0-5" : "Frost's Sense of Snow",
-		"0-x" : "Xtreme Hills",
-		"0-c" : "Fort Borealis",
-		"0-6a" : "Frozen paradise",
-		"0-6b" : "Thick of it",
+		"0-6a" : "Frozen Paradise",
+		"0-6b" : "Branching Path",
 		"0-7" : "The Ocean Bridge",
-		"0-8" : "Artic wind",
-		"0-9" : "Sunken steps"
+		"0-8" : "Artic Wind",
+		"0-9" : "Sunken Steps",
+		"0-x" : "Xtreme Hills",
+		"0-c" : "Fort Borealis"
 	},
 
 	"key" : {
