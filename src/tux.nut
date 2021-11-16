@@ -232,10 +232,11 @@
 
 				case anSwimUF:
 				case anSwimU:
-					anim = anJumpU
+					if(abs(hspeed) > 1.5) anim = anSlide
+					else anim = anJumpU
 					frame = anim[0]
 					vspeed -= 1
-					if(getcon("jump", "hold")) vspeed -= 1
+					if(getcon("jump", "hold") && vspeed > -4) vspeed = -4
 					break
 
 				case anSwimDF:
