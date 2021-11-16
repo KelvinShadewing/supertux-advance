@@ -125,6 +125,18 @@
                  "width":16,
                  "x":112,
                  "y":208
+                }, 
+                {
+                 "gid":201,
+                 "height":16,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -133,7 +145,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":4,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -142,7 +154,7 @@
          "value":""
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {

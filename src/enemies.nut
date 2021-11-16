@@ -12,6 +12,7 @@
 	nocount = false //If enemy is exempt from completion tracking
 
 	function run() {
+		base.run()
 		//Collision with player
 		if(active) {
 			if(gvPlayer != 0) {
@@ -136,7 +137,7 @@
 						the idea. Another fine example of (/d/d/d).
 						*/
 
-						if(smart) if(placeFree(x - 4, y + 8)) flip = false
+						if(smart) if(placeFree(x - 6, y + 8)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -150,7 +151,7 @@
 							y -= 0.5
 						} else flip = true
 
-						if(smart) if(placeFree(x + 4, y + 8)) flip = true
+						if(smart) if(placeFree(x + 6, y + 8)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -308,6 +309,7 @@
 		if(gvPlayer.anim != gvPlayer.anSlide) hurtplayer()
 		else {
 			newActor(Poof, x, ystart - 8)
+			newActor(Poof, x, ystart + 8)
 			deleteActor(id)
 			playSound(sndKick, 0)
 			if(!nocount) game.enemies--
@@ -316,6 +318,7 @@
 
 	function hurtfire() {
 		newActor(Flame, x, ystart - 6)
+		newActor(Flame, x, ystart + 8)
 		deleteActor(id)
 		playSound(sndFlame, 0)
 		if(!nocount) game.enemies--
@@ -467,7 +470,7 @@
 						the idea. Another fine example of (/d/d/d).
 						*/
 
-						if(placeFree(x - 4, y + 8)) flip = false
+						if(placeFree(x - 6, y + 8)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -481,7 +484,7 @@
 							y -= 0.5
 						} else flip = true
 
-						if(placeFree(x + 4, y + 8)) flip = true
+						if(placeFree(x + 6, y + 8)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}

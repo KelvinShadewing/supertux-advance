@@ -1267,8 +1267,32 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1888,
+                 "x":1840,
                  "y":512
+                }, 
+                {
+                 "gid":201,
+                 "height":16,
+                 "id":268,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1904,
+                 "y":464
+                }, 
+                {
+                 "gid":201,
+                 "height":16,
+                 "id":269,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1984,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1277,7 +1301,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":268,
+ "nextobjectid":270,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1286,7 +1310,7 @@
          "value":"drawBG = dbgForest"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {

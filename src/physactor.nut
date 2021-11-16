@@ -18,6 +18,11 @@
 		ystart = _y
 	}
 
+	function run() {
+		xprev = x
+		yprev = y
+	}
+
 	function placeFree(_x, _y) {
 		//Save current location and move
 		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
@@ -254,7 +259,9 @@
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
-							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape)) return false
+							if(debug) nps.draw()
+							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
 					}
 					if(debug) {
 						gvMap.shape.draw()
