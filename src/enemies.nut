@@ -1334,7 +1334,8 @@
 
 	constructor(_x, _y, _arr = 0) {
 		base.constructor(_x, _y)
-		range = _arr.tointeger() * 16
+		if(_arr == "") range = 0
+		else range = _arr.tointeger() * 16
 		shape = Rec(x, y, 6, 6, 0)
 	}
 
@@ -1347,6 +1348,7 @@
 		else vspeed = dir
 
 		vspeed += dir * 0.2
+		if(range == 0) vspeed = 0
 
 		//Change direction
 		if(range > 0) {

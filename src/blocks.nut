@@ -367,6 +367,7 @@
 
 ::Checkpoint <- class extends Actor {
 	shape = null
+	found = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -375,14 +376,18 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0 && game.check == false) if(hitTest(shape, gvPlayer.shape)) {
+		if(gvPlayer != 0 && found == false) if(hitTest(shape, gvPlayer.shape)) {
+			foreach(i in actor["Checkpoint"]) {
+				i.found = false
+			}
+			found = true
 			game.check = true
 			game.chx = x
 			game.chy = y
 			playSound(sndBell, 0)
 		}
 
-		if(game.check) drawSprite(sprCheckBell, getFrames() / 16, x - camx, y - camy)
+		if(found) drawSprite(sprCheckBell, getFrames() / 16, x - camx, y - camy)
 		else drawSprite(sprCheckBell, 0, x - camx, y - camy)
 	}
 
