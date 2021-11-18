@@ -259,13 +259,11 @@
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
-							if(debug) nps.draw()
 							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
 							break
 					}
 					if(debug) {
 						gvMap.shape.draw()
-						ns.draw()
 					}
 				}
 			}
