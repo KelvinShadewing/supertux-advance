@@ -885,9 +885,9 @@
 		y += vspeed
 		timer--
 		if(timer == 0) {
+			startPlay(gvMap.file)
 			if(game.check == true || game.difficulty > 0) if(game.lives > 0) game.lives--
 			if(game.lives == 0) game.check = false
-			startPlay(gvMap.file)
 		}
 		switch(mywep) {
 			case 0:

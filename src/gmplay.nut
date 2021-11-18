@@ -20,6 +20,7 @@
 	game.enemies = 0
 	gvInfoBox = ""
 	gvLastSong = ""
+	if(game.lives == 0) game.check = false
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()

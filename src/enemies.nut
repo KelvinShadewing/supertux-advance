@@ -88,11 +88,12 @@
 	squish = false
 	squishTime = 0.0
 	smart = false
+	moving = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 4, 6, 0)
-		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+
 		smart = _arr
 	}
 
@@ -100,6 +101,11 @@
 		base.run()
 
 		if(active) {
+			if(!moving) if(gvPlayer != 0) if(x > gvPlayer.x) {
+				flip = true
+				moving = true
+			}
+
 			if(!squish) {
 				if(placeFree(x, y + 1)) vspeed += 0.1
 				if(placeFree(x, y + vspeed)) y += vspeed
@@ -634,11 +640,6 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
-		if(gvPlayer != 0) {
-			if(x > gvPlayer.x) hspeed = -0.5
-			else hspeed = 0.5
-		}
-		else hspeed = 0.5
 
 		vspeed = -2.5
 	}
@@ -647,6 +648,11 @@
 		base.run()
 
 		if(active) {
+			if(gvPlayer != 0 && hspeed == 0) {
+				if(x > gvPlayer.x) hspeed = -0.5
+				else hspeed = 0.5
+			}
+
 			if(!placeFree(x, y + 1)) vspeed = -2.5
 			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -0.5
 			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = 0.5
