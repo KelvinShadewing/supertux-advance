@@ -27,6 +27,10 @@
 	}
 }
 
+::dbgMountain <- function() {
+	for(local i = 0; i < 2; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+}
+
 ::dbgAurora <- function() {
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgAurora, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)

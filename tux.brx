@@ -109,7 +109,7 @@ strDifficulty = [
 startMain()
 menu = meMain
 config.playerchar = "Tux"
-//startPlay("res/map/mario0.json")
+startPlay("res/map/mario0.json")
 
 update()
 while(!getQuit() && !gvQuit)

@@ -1870,7 +1870,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musAirship)"
+         "value":"drawBG = dbgMountain\nsongPlay(musAirship)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
