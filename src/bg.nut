@@ -68,5 +68,5 @@
 }
 
 ::dbgCastle <- function() {
-	drawSprite(bgUnderwater, 0, 0, 0)
+	drawSprite(bgCastle, 0, 0, (screenH() / 2) - 120)
 }
