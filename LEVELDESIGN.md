@@ -34,6 +34,8 @@ The object layers include:
 
   `songPlay(song)` Sets the level music. Replace `song` with one of the songs found in `assets.nut`.
 
+  `game.maxcoins = x` Set the number of coins to get the level's coin achievement.
+
 * **water** - Zones full of water. Because water is dynamically-sized as well, it uses recangles.
 
 * **actor** - Actors are made using tile objects who's image matches the type of actor they create. Infoblocks and comment nodes must have names defined that match a respective entry in the language file. Actors that take other special properties will also use the name.
@@ -71,3 +73,11 @@ The NPC actor (bald human in the map editor) has several mandatory arguments tha
 * `sayChar` - Says a different line for each playable character. Requires an entry for Tux, Konqi, Midi, and default, in that order.
 
 Lines are all arguments following talk mode. There can be any number depending on the function being used. They should be the name of entries in the language file's `npc` field.
+
+## Other Notes
+
+The player gains an extra life for finding at least 50 coins in a level. Try to have at least this much so they always have an opportunity. Extra lives can also be found in item boxes. To avoid easy farming, it's best to have them after the first checkpoint.
+
+You can have multiple checkpoints in a level. Use this to your advantage if you want to create levels with multiple paths. Remember that everything resets when the player dies, so, for instance, enemies that are necessary to progress, like hopping on them to cross a gap, will respawn upon a new life. Be sure not to put enemies too close to a checkpoint.
+
+External tilesets are not supported; you will have to embed tilesets. I'll work on supporting external tilesets in the future.
