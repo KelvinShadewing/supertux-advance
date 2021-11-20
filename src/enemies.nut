@@ -143,7 +143,7 @@
 						the idea. Another fine example of (/d/d/d).
 						*/
 
-						if(smart) if(placeFree(x - 6, y + 8)) flip = false
+						if(smart) if(placeFree(x - 6, y + 12)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -157,7 +157,7 @@
 							y -= 0.5
 						} else flip = true
 
-						if(smart) if(placeFree(x + 6, y + 8)) flip = true
+						if(smart) if(placeFree(x + 6, y + 12)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -476,7 +476,7 @@
 						the idea. Another fine example of (/d/d/d).
 						*/
 
-						if(placeFree(x - 6, y + 8)) flip = false
+						if(placeFree(x - 6, y + 12)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -490,7 +490,7 @@
 							y -= 0.5
 						} else flip = true
 
-						if(placeFree(x + 6, y + 8)) flip = true
+						if(placeFree(x + 6, y + 12)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}

@@ -20,7 +20,7 @@ Follow the install instructions for [Brux GDK](https://github.com/kelvinshadewin
 
 ## Controls
 
-The controls menu hasn't been made yet. For now, remapping can be done in `global.nut`.
+You can rebind the controls from the Options menu found on the title screen.
 
 * Movement: arrow keys
 * Jump: Z
