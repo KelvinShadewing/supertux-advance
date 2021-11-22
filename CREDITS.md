@@ -62,6 +62,8 @@
 
 [Nushio](http://opengameart.org/users/nushio) - LPC Terrain 2
 
+UbuntuJackson - UFO
+
 ## Sounds
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - 1up
