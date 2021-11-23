@@ -69,3 +69,4 @@
 [ ] General store
 [ ] World travel
 [ ] In-game timer
+[ ] Jump buffering

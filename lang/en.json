@@ -48,7 +48,9 @@
 		"fireex" :
 		"Fireballs can set off TNT blocks, get a fire flower and try it out!",
 		"owplats" :
-		"One-way platforms can be dropped down from by pressing DOWN and JUMP at once. If you drop on accident, you have twice as long as when going over an edge to jump back up."
+		"One-way platforms can be dropped down from by pressing DOWN and JUMP at once. If you drop on accident, you have twice as long as when going over an edge to jump back up.",
+		"slidewarn" :
+		"Levels like this will force you to slide! (It's going to be replaced with something else in the future.)"
 	},
 
 	"devcom" : {
