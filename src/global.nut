@@ -23,6 +23,7 @@
 	allcoins = {} //Levels that the player has gotten all enemies in
 	allenemies = {} //Levels that the player has beaten all enemies in
 	allsecrets = {} //Levels the player has found all secrets in
+	besttime = {}
 	colorswitch = {} //Color blocks activated by respective switches
 	characters = { //List of unlocked characters
 		Tux = [sprTuxOverworld, sprTuxDoll]

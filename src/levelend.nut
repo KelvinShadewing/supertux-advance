@@ -7,6 +7,8 @@
 		timer--
 		if(timer == 0) startOverworld(game.world)
 	}
+
+	function _typeof() { return "LevelEnder" }
 }
 
 ::endGoal <- function() {

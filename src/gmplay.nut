@@ -267,6 +267,17 @@
 				newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
 				game.enemies++
 				break
+
+			case 64: //Custom actor gear
+				if(i.name == "") break
+				local arg = split(i.name, ",")
+				local n = arg[0]
+				arg.remove(0)
+				if(arg.len() == 1) arg = arg[0]
+				else if(arg.len() == 0) arg = null
+				print(n)
+				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
+				break
 		}
 	}
 

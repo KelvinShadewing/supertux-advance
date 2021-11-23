@@ -37,6 +37,12 @@
 	}
 }
 
+::dbgIceForest <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgIceForest, 0, ((-camx / 8) % 320) + (i * 320), screenH() - 240)
+	}
+}
+
 ::dbgSnowNight <- function() {
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowNight, 0, ((-camx / 8) % 800) + (i * 800), (screenH() / 2) - 120)

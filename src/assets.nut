@@ -126,6 +126,7 @@
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 ::bgSnowPlain <- newSprite("res/gfx/bgSnowPlain.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNight <- newSprite("res/gfx/bgSnowNight.png", 800, 240, 0, 0, 0, 0)
+::bgIceForest <- newSprite("res/gfx/iceforest.png", 320, 240, 0, 0, 0, 0)
 
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")

@@ -67,4 +67,5 @@
 [x] Powerup leveling
 [x] Sub items
 [ ] General store
-[ ] World Travel
+[ ] World travel
+[ ] In-game timer

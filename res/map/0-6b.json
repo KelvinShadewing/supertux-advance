@@ -475,7 +475,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowNight\nsongPlay(musDisko)"
+         "value":"drawBG = dbgIceForest\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
