@@ -5,7 +5,7 @@
 
 	function run() {
 		timer--
-		if(timer == 0) startOverworld(game.world)
+		if(timer == 0 || getcon("pause", "press")) startOverworld(game.world)
 	}
 
 	function _typeof() { return "LevelEnder" }
