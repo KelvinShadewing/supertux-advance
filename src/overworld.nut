@@ -231,7 +231,7 @@
 		if(game.allsecrets.rawin(level)) drawSprite(sprLevels, 4, x - camx, y - camy)
 
 		//Selected
-		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
+		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
 				startPlay("res/map/" + level + ".json")
@@ -254,7 +254,7 @@
 
 	function run() {
 		//Selected
-		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
+		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
 				startPlay("res/map/" + level + ".json")
@@ -289,7 +289,7 @@
 		}
 
 		//Selected
-		if(getcon("jump", "press") || getcon("pause", "press") || getcon("shoot", "press")) {
+		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
 				game.owx = px
 				game.owy = py
@@ -427,8 +427,6 @@
 	//Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
-
-	if(keyPress(k_escape)) startMain()
 
 	//Follow player
 	local px = 0

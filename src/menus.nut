@@ -28,7 +28,7 @@
 		if(cursor < 0) cursor = menu.len() - 1
 	}
 
-	if(getcon("jump", "press") || getcon("pause", "press")) {
+	if(getcon("jump", "press") || getcon("accept", "press")) {
 		menu[cursor].func()
 	}
 }
@@ -51,6 +51,32 @@
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
+	}
+]
+
+::mePausePlay <- [
+	{
+		name = function() { return gvLangObj["pause-menu"]["continue"]},
+		func = function() { gvGameMode = gmPlay }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
+		func = function() { startOverworld(game.world); cursor = 0 }
+	}
+]
+
+::mePauseOver <- [
+	{
+		name = function() { return gvLangObj["pause-menu"]["continue"]},
+		func = function() { gvGameMode = gmOverworld }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["character"]},
+		func = function() {  }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["quit-game"]},
+		func = function() { startMain(); cursor = 0 }
 	}
 ]
 

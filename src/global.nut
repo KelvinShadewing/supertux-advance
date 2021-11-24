@@ -59,8 +59,9 @@
 		shoot = k_x
 		run = k_lshift
 		sneak = k_lctrl
-		pause = k_enter
+		pause = k_escape
 		swap = k_a
+		accept = k_enter
 	},
 	joy = {
 		jump = 0
@@ -69,7 +70,7 @@
 		sneak = 5
 		pause = 7
 		swap = 3
-		escape = 8
+		accept = 0
 	}
 	playerchar = 0
 	lang = "en"

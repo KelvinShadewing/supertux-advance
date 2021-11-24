@@ -5,6 +5,7 @@
 	drawBG = dbgUnderwater
 	gvGameMode = gmMain
 	actor = {}
+	menu = meMain
 }
 
 ::gmMain <- function()
@@ -15,7 +16,6 @@
 	drawDebug()
 
 	textMenu()
-	if(keyPress(k_escape)) gvQuit = true
 
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)

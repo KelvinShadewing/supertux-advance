@@ -70,8 +70,8 @@
 		case "swap":
 			if(keyfunc(config.key.swap) || joyfunc(0, config.joy.swap)) return true
 			break
-		case "escape":
-			if(keyfunc(k_escape) || joyfunc(0, config.joy.escape)) return true
+		case "accept":
+			if(keyfunc(config.key.accept) || joyfunc(0, config.joy.accept)) return true
 			break
 	}
 
@@ -160,16 +160,17 @@
 					keystep++
 				}
 				break
+			case 10:
+				message += "menu accept"
+				if(anyKeyPress() != -1) {
+					config.key.accept = anyKeyPress()
+					keystep++
+				}
 			default:
 				done = true
 				break
 		}
 		message += "..."
-
-		if(keyPress(k_escape)){
-			update()
-			return
-		}
 
 		setDrawColor(0x00000080)
 		drawRec(0, 0, 320, 24, true)
@@ -235,9 +236,9 @@
 				}
 				break
 			case 10:
-				message += "escape/quit level"
+				message += "manu accept"
 				if(anyJoyPress(0) != -1) {
-					config.joy.escape = anyJoyPress(0)
+					config.joy.accept = anyJoyPress(0)
 					joystep++
 				}
 				break
@@ -246,11 +247,6 @@
 				break
 		}
 		message += "..."
-
-		if(keyPress(k_escape)){
-			update()
-			return
-		}
 
 		setDrawColor(0x00000080)
 		drawRec(0, 0, 320, 24, true)
