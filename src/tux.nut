@@ -27,6 +27,7 @@
 	tftime = -1 //Timer for transformation
 	energy = 0.0
 	hidden = false
+	jumpBuffer = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -343,12 +344,13 @@
 				}
 
 				//Jumping
-				if(getcon("jump", "press")) {
+				if(getcon("jump", "press") || jumpBuffer > 0) {
 					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
 						y++
 						canJump = 32
 					}
 					else if(canJump > 0) {
+						jumpBuffer = 0
 						if(game.weapon == 3) vspeed = -3
 						else vspeed = -3.8
 						didJump = true
@@ -384,6 +386,8 @@
 						energy--
 					}
 				}
+				if(getcon("jump", "press") && jumpBuffer <= 0 && freeDown) jumpBuffer = 16
+				if(jumpBuffer > 0) jumpBuffer--
 
 				if(getcon("jump", "release") && vspeed < 0 && didJump)
 				{
