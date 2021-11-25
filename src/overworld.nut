@@ -204,7 +204,14 @@
 		if(hspeed == 0 && vspeed == 0) drawSprite(game.characters[game.playerchar][0], 0, x - camx, y - camy)
 		else drawSprite(game.characters[game.playerchar][0], getFrames() / 8, x - camx, y - camy)
 
-		if(level != "") drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+		if(level != "") {
+			drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
+			if(game.besttime.rawin(level)) {
+				local pb = formatTime(game.besttime[level])
+				local pbx = (pb.len() / 2) * 8
+				drawText(font2, (screenW() / 2) - pbx, 24, pb)
+			}
+		}
 	}
 
 	function _typeof() { return "OverPlayer" }
@@ -305,6 +312,7 @@
 	//Clear actors and start creating new ones
 	gvPlayer = 0
 	actor.clear()
+	gvIGT = 0
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()

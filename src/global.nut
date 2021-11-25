@@ -23,7 +23,8 @@
 	allcoins = {} //Levels that the player has gotten all enemies in
 	allenemies = {} //Levels that the player has beaten all enemies in
 	allsecrets = {} //Levels the player has found all secrets in
-	besttime = {}
+	besttime = {} //Fastest time for a level
+	igt = 0 //Global IGT, which increments throughout the game's runtime
 	colorswitch = {} //Color blocks activated by respective switches
 	characters = { //List of unlocked characters
 		Tux = [sprTuxOverworld, sprTuxDoll]
@@ -84,3 +85,4 @@
 ::gvFPS <- 0
 
 ::gvWeather <- 0
+::gvIGT <- 0 //In-game time for the current level

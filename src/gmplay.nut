@@ -351,13 +351,16 @@
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	if(gvInfoBox == "") {
+		//Draw max energy
 		for(local i = 0; i < 4 - game.difficulty; i++) {
 			drawSprite(sprEnergy, 2, 8 + (16 * i), 24)
 		}
+		//Draw health
 		for(local i = 0; i < game.maxHealth; i++) {
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 		}
+		//Draw energy
 		for(local i = 0; i < game.maxenergy; i++) {
 			if(gvPlayer != 0) {
 				if(gvPlayer.rawin("energy") && game.maxenergy > 0) {
@@ -366,11 +369,15 @@
 				}
 			}
 		}
+
+		//Draw coins and lives
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
 		if(game.maxcoins > 0) drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		drawSprite(game.characters[game.playerchar][1], game.weapon, screenW() - 16, screenH() - 12)
 		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
+
+		//Draw subitem
 		drawSprite(sprSubItem, 0, screenW() - 18, 18)
 		switch(game.subitem) {
 			case 1:
@@ -395,6 +402,9 @@
 				drawSprite(sprStar, 0, screenW() - 18, 18)
 				break
 		}
+
+		//Draw IGT
+		drawText(font2, 8, 32, formatTime(gvIGT))
 	}
 	else {
 		local ln = 3
@@ -407,6 +417,9 @@
 
 	}
 	drawDebug()
+
+	if(levelEndRunner == 0) gvIGT++
+	game.igt++
 
 	//Draw surface to screen
 	resetDrawTarget()

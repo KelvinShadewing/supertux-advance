@@ -20,6 +20,13 @@
 		"super" : "Super Tux"
 	},
 
+	"pause-menu" : {
+		"continue" : "Kontynuuj",
+		"character" : "Zmień Postać",
+		"quit-game" : "Wyjdź z Gry",
+		"quit-level" : "Opuść Poziom"
+	},
+
 	"info" : {
 		"welcome" :
 		"Witaj w grze SuperTux Advance! Ta wiadomość zniknie kiedy oddalisz się od tego bloku. Naciśnij F1 jeżeli chcesz zobaczyć informacje od Kelvin Shadewing.",
@@ -48,7 +55,9 @@
 		"fireex" :
 		"Kule ognia mogą podpalić bloki TNT, zdobądź ognisty kwiat i wypróbuj to!",
 		"owplats" :
-		"Możesz zeskoczyć z jednokierunkowych platform naciskając DÓŁ i SKOK w tym samym czasie. Jeżeli zeskoczysz przez przypadek masz dwa razy więcej czasu niż przy spadnięciu z krawędzi, aby wskoczyć z powrotem."
+		"Możesz zeskoczyć z jednokierunkowych platform naciskając DÓŁ i SKOK w tym samym czasie. Jeżeli zeskoczysz przez przypadek masz dwa razy więcej czasu niż przy spadnięciu z krawędzi, aby wskoczyć z powrotem.",
+		"slidewarn" :
+		"Poziomy takie jak ten zmuszą cię do ślizgania się! (Zostanie to zamienione czymś innym w przyszłości.)"
 	},
 
 	"devcom" : {
@@ -133,7 +142,7 @@
 		"xue-c" :
 		"Dzięki za uratowanie mnie, czu! Spotkamy się w Pennyton!",
 		"xue-pt-t" :
-		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! Tym sposobem pokażę mu, za zadzieranie z nami, czu!",
+		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! W ten sposób pokażę mu, za zadzieranie z nami, czu!",
 		"xue-pt-k" :
 		"Hej, Konqi! Daj Nolok'owi niezłe podpalenie kiedy go spotkasz! Nikt nie zadziera z nami, na czy poza trasą dla go-kartów, czu!",
 		"xue-pt-m" :
@@ -141,7 +150,7 @@
 		"xue-pt-d" :
 		"Dziękuję ci za twoją pomoc, czu! Pokażmy Nolok'owi, żeby nigdy z nami nie zadzierał!",
 		"fireguin-0" :
-		"Nie ma tutaj zbyt dużo zadań dla strażaka, co? Lód może się roztopić, to prawda, ale gasi też ogień a potem po prostu wkładamy nowy lód.",
+		"Nie ma tutaj zbyt dużo zadań dla strażaka, co? Lód może się roztopić, to prawda, ale gasi też ogień.",
 		"fireguin-1" :
 		"Może byłoby mi lepiej w miasteczku z domami z drewna. Ciężko tutaj znaleźć drewno więc nawet drzewa są zrobione z lodu!",
 		"fireguin-2" :
@@ -221,7 +230,7 @@
 		"sam-1" :
 		"Nie zrozum mnie źle, złoto jest wspaniałe ale jest po prostu zbyt częste. Nie wyobrażam sobie musieć nosić tyle i używać jako pieniędzy!",
 		"sam-2" :
-		"Czy wydaje ci się, że my lubimy szmaragdy? Spróbuj tylko zblizyć jeża do nich!",
+		"Czy wydaje ci się, że my lubimy szmaragdy? Spróbuj tylko zblizyć się do nich!",
 		"sam-3" :
 		"Nie chcę być niemiły ale czy zamierzasz coś kupić? Nie płacą mi za rozmawianie.",
 		"sam-4" :

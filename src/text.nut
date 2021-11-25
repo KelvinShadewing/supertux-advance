@@ -59,3 +59,13 @@
 
 	drawText(_f, _x, _y, newstr)
 }
+
+::formatTime <- function(time) {
+	local seconds = (time % 6000).tofloat() / 100.0
+	local minutes = floor(time / 6000)
+	local val = minutes.tostring() + ":"
+	if(seconds < 10) val += "0"
+	val += seconds.tostring()
+	if(seconds == floor(seconds)) val += ".00"
+	return val
+}

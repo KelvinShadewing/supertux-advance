@@ -213,18 +213,6 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":188,
-                 "height":16,
-                 "id":15,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":32,
-                 "y":288
-                }, 
-                {
                  "gid":189,
                  "height":16,
                  "id":58,
@@ -522,30 +510,6 @@
                  "visible":true,
                  "width":16,
                  "x":1936,
-                 "y":208
-                }, 
-                {
-                 "gid":200,
-                 "height":16,
-                 "id":151,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1712,
-                 "y":208
-                }, 
-                {
-                 "gid":200,
-                 "height":16,
-                 "id":152,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1456,
                  "y":208
                 }, 
                 {
@@ -1171,6 +1135,78 @@
                  "width":16,
                  "x":1584,
                  "y":128
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":305,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1376,
+                 "y":208
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":306,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1616,
+                 "y":208
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":307,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1648,
+                 "y":208
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":308,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1872,
+                 "y":208
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":309,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1904,
+                 "y":208
+                }, 
+                {
+                 "gid":188,
+                 "height":16,
+                 "id":310,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1179,7 +1215,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":304,
+ "nextobjectid":311,
  "orientation":"orthogonal",
  "properties":[
         {
