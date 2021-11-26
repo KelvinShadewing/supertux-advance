@@ -38,7 +38,7 @@
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { game = clone(gameDefault); game.completed.clear(); game.allcoins.clear(); game.allenemies.clear(); game.allsecrets.clear(); startPlay("res/map/0-t0.json") }
+		func = function() { game = clone(gameDefault); game.completed.clear(); game.allcoins.clear(); game.allenemies.clear(); game.allsecrets.clear(); game.besttime.clear(); gvDoIGT = false; startPlay("res/map/0-t0.json") }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
@@ -59,6 +59,10 @@
 		name = function() { return gvLangObj["pause-menu"]["continue"]},
 		func = function() { gvGameMode = gmPlay }
 	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["restart"]},
+		func = function() { startPlay(gvMap.file) }
+	}
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
 		func = function() { startOverworld(game.world); cursor = 0 }

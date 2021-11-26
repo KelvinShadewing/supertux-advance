@@ -241,6 +241,7 @@
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
+				gvDoIGT = true
 				startPlay("res/map/" + level + ".json")
 			}
 		}
@@ -264,6 +265,7 @@
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
+				gvDoIGT = false
 				startPlay("res/map/" + level + ".json")
 			}
 		}

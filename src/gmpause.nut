@@ -9,6 +9,7 @@
 }
 
 ::togglePause <- function() {
+	cursor = 0
 	if(gvGameMode == gmPlay) {
 		gvGameMode = gmPause
 		setDrawTarget(bgPause)

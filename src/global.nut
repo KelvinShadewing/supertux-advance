@@ -86,3 +86,4 @@
 
 ::gvWeather <- 0
 ::gvIGT <- 0 //In-game time for the current level
+::gvDoIGT <- true

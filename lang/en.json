@@ -23,6 +23,7 @@
 	"pause-menu" : {
 		"continue" : "Continue",
 		"character" : "Change Character",
+		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
 		"quit-level" : "Quit Level"
 	},

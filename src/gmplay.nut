@@ -413,7 +413,7 @@
 		}
 
 		//Draw IGT
-		drawText(font2, 8, 32, formatTime(gvIGT))
+		if(gvDoIGT) drawText(font2, 8, 32, formatTime(gvIGT))
 	}
 	else {
 		local ln = 3
