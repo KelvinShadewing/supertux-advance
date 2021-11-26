@@ -20,7 +20,10 @@
 	game.enemies = 0
 	gvInfoBox = ""
 	gvLastSong = ""
-	if(game.lives == 0) game.check = false
+	if(game.lives == 0) {
+		game.check = false
+		gvIGT = 0
+	}
 	autocon = {
 		up = false
 		down = false
