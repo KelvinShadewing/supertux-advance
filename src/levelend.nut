@@ -4,7 +4,7 @@
 	timer = 360
 
 	constructor(_x, _y, _arr = null) {
-		levelEndRunner = actor[id]
+		base.constructor(0, 0)
 	}
 
 	function run() {
@@ -20,7 +20,7 @@
 }
 
 ::endGoal <- function() {
-	if(gvPlayer != 0){
+	if(levelEndRunner == 0){
 		gvPlayer.canMove = false
 		gvPlayer.endmode = true
 		gvPlayer.hspeed = 0.5
@@ -29,13 +29,15 @@
 		if(game.levelcoins >= game.maxcoins && !game.allcoins.rawin(gvMap.name)) game.allcoins[gvMap.name] <- true
 		if(game.secrets <= 0 && !game.allsecrets.rawin(gvMap.name)) game.allsecrets[gvMap.name] <- true
 		if(game.enemies <= 0 && !game.allenemies.rawin(gvMap.name)) game.allenemies[gvMap.name] <- true
-		if(!game.besttime.rawin(gvMap.name)) game.besttime[gvMap.name] <- gvIGT
-		else if(game.besttime[gvMap.name] > gvIGT) game.besttime[gvMap.name] = gvIGT
+
 		playSound(sndWin, 0)
 		stopMusic()
 		if(!game.completed.rawin(gvMap.name)) game.completed[gvMap.name] <- true
-		newActor(LevelEnder, 0, 0)
+		levelEndRunner = newActor(LevelEnder, 0, 0)
 		game.lives += floor(game.levelcoins / 50)
+		if(game.coins >= 50) playSound(snd1up, 0)
+
+		if(!game.besttime.rawin(gvMap.name)) game.besttime[gvMap.name] <- gvIGT
+		else if(game.besttime[gvMap.name] > gvIGT) game.besttime[gvMap.name] = gvIGT
 	}
-	gvPlayer = 0
 }

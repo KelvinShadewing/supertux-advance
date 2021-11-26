@@ -114,7 +114,7 @@ config.playerchar = "Tux"
 update()
 while(!getQuit() && !gvQuit)
 {
-	if(getcon("pause", "press") && gvPlayer != 0 && gvGameMode != gmMain) togglePause()
+	if(getcon("pause", "press") && levelEndRunner == 0 && gvGameMode != gmMain) togglePause()
 	gvGameMode()
 	update()
 }

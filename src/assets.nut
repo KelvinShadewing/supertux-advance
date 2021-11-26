@@ -148,6 +148,7 @@
 ::sndBell <- loadSound("res/snd/bell.ogg")
 ::sndIcicle <- loadSound("res/snd/icicle.ogg")
 ::sndIceBreak <- loadSound("res/snd/icebreak.ogg")
+::snd1up <- loadSound("res/snd/1up.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once

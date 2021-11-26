@@ -393,7 +393,7 @@
 
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
 			game.lives++
-			playSound(sndHeal, 0)
+			playSound(snd1up, 0)
 			deleteActor(id)
 		}
 
