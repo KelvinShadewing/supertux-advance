@@ -6,6 +6,12 @@
 	gvGameMode = gmMain
 	actor = {}
 	menu = meMain
+	autocon = {
+		up = false
+		down = false
+		left = false
+		right = false
+	}
 }
 
 ::gmMain <- function()

@@ -21,6 +21,12 @@
 	gvInfoBox = ""
 	gvLastSong = ""
 	if(game.lives == 0) game.check = false
+	autocon = {
+		up = false
+		down = false
+		left = false
+		right = false
+	}
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()

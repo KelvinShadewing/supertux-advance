@@ -15,6 +15,12 @@
 		drawImage(gvScreen, 0, 0)
 		gvPauseMode = false
 		menu = mePausePlay
+		autocon = {
+			up = false
+			down = false
+			left = false
+			right = false
+		}
 	}
 	else if(gvGameMode == gmOverworld){
 		gvGameMode = gmPause
@@ -22,6 +28,12 @@
 		drawImage(gvScreen, 0, 0)
 		gvPauseMode = true
 		menu = mePauseOver
+		autocon = {
+			up = false
+			down = false
+			left = false
+			right = false
+		}
 	}
 	else if(gvGameMode == gmPause) {
 		if(gvPauseMode == false) gvGameMode = gmPlay

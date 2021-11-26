@@ -313,6 +313,12 @@
 	gvPlayer = 0
 	actor.clear()
 	gvIGT = 0
+	autocon = {
+		up = false
+		down = false
+		left = false
+		right = false
+	}
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()

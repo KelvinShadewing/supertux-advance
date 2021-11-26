@@ -68,13 +68,13 @@
                  "y":0
                 }, 
                 {
-                 "height":112,
+                 "height":1200,
                  "id":51,
                  "name":"autocon.down = true",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16,
+                 "width":4352,
                  "x":144,
                  "y":0
                 }, 
