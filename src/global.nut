@@ -75,6 +75,7 @@
 	}
 	playerchar = 0
 	lang = "en"
+	showigt = false
 }
 
 ::gvScreen <- 0

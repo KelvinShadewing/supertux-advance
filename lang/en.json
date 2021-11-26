@@ -9,8 +9,14 @@
 	"options-menu" : {
 		"difficulty" : "Difficulty",
 		"language" : "Language",
-		"keyboard" : "Set Keyboard Controls",
-		"joystick" : "Set Gamepad Controls"
+		"keyboard" : "Keyboard Controls",
+		"joystick" : "Gamepad Controls",
+		"speedrun" : "Speedrun Timer"
+	},
+
+	"bool" : {
+		"on" : "On",
+		"off" : "Off"
 	},
 
 	"difficulty-levels" : {

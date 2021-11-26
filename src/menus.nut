@@ -98,6 +98,10 @@
 		func = function() { selectLanguage() }
 	},
 	{
+		name = function() { return gvLangObj["options-menu"]["speedrun"] + ": " + (config.showigt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
+		func = function() { config.showigt = !config.showigt}
+	},
+	{
 		name = function() { return "Back" },
 		func = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}

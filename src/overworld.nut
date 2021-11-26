@@ -440,6 +440,12 @@
 
 	drawDebug()
 
+	game.igt++
+	if(config.showigt) {
+		local gtd = formatTime(game.igt) //Game time to draw
+		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
+	}
+
 	//Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
