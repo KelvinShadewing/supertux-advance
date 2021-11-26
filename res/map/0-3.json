@@ -1442,11 +1442,11 @@
                 {
                  "animation":[
                         {
-                         "duration":500,
+                         "duration":50,
                          "tileid":5
                         }, 
                         {
-                         "duration":500,
+                         "duration":50,
                          "tileid":14
                         }],
                  "id":5

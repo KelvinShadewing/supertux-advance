@@ -137,7 +137,7 @@
 
 				//Add animations
 				if(data.tilesets[i].rawin("tiles")) for(local j = 0; j < data.tilesets[i].tiles.len(); j++) {
-					anim[data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
+					anim[data.tilesets[i].firstgid + data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
 				}
 			}
 
@@ -226,8 +226,8 @@
 				if(n != 0) {
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
-							if(anim.rawin(n - data.tilesets[k].firstgid)) {
-								if(tileset[k] == anim[n - data.tilesets[k].firstgid].sprite) anim[n - data.tilesets[k].firstgid].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a)
+							if(anim.rawin(n)) {
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a)
 								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
 							}
 							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
