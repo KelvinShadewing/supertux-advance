@@ -131,11 +131,11 @@
 				case anRun:
 				case anSkid:
 					if(flip == 0 && hspeed < 0) {
-						hspeed += 0.05
+						hspeed += 0.01
 						anim = anSkid
 					}
 					else if(flip == 1 && hspeed > 0) {
-						hspeed -= 0.05
+						hspeed -= 0.01
 						anim = anSkid
 					}
 					else anim = anRun
@@ -272,8 +272,8 @@
 			}
 
 			if(anim != anClimb && anim != anWall) {
-				if(hspeed > 0.1 && (getcon("right", "hold") || anim == anSlide)) flip = 0
-				if(hspeed < -0.1 && (getcon("left", "hold") || anim == anSlide)) flip = 1
+				if((getcon("right", "hold") && !getcon("left", "hold") && anim != anSlide) || (hspeed > 0.1 && anim == anSlide)) flip = 0
+				if((getcon("left", "hold") && !getcon("right", "hold") && anim != anSlide) || (hspeed < -0.1 && anim == anSlide)) flip = 1
 			}
 
 			//Controls
