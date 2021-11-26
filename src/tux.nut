@@ -372,7 +372,7 @@
 						anim = anWall
 						frame = anim[0]
 					}
-					else if(floor(energy) > 0 && game.weapon == 3) {
+					else if(floor(energy) > 0 && game.weapon == 3 && getcon("jump", "press")) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 1.8
 						didJump = true
