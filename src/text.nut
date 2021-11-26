@@ -67,5 +67,6 @@
 	if(seconds < 10) val += "0"
 	val += seconds.tostring()
 	if(seconds == floor(seconds)) val += ".00"
+	if(seconds * 10 == floor(seconds * 10) && (seconds * 100) % 100 != 0) val += "0"
 	return val
 }
