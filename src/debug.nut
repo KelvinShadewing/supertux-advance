@@ -113,7 +113,8 @@
 			output += history[i]
 			output += "\n"
 		}
-		output += input
+		if(input.len() < 52) output += input
+		else output += input.slice(-52)
 		if(floor(getFrames() / 32) % 2 == 0) output += "|"
 		drawText(font, 0, 0, output)
 
