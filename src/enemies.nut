@@ -252,6 +252,10 @@
 		deleteActor(id)
 		playSound(sndFlame, 0)
 		if(!nocount) game.enemies--
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 	}
 
 	function _typeof() { return "Deathcap" }
@@ -712,12 +716,7 @@
 		if(!nocount) game.enemies--
 	}
 
-	function hurtfire() {
-		newActor(Flame, x, y - 1)
-		deleteActor(id)
-		playSound(sndFlame, 0)
-		if(!nocount) game.enemies--
-	}
+	hurtfire = Deathcap.hurtfire
 }
 
 ::BadCannon <- class extends Actor {

@@ -145,7 +145,7 @@
 						local c = actor[newActor(CannonBob, x, y - 4)]
 						c.hspeed = ((gvPlayer.x - x) / 96)
 					}
-					else newActor(MuffinBlue, x, y - 16)
+					else newActor(MuffinBlue, x, y - 16, true)
 					break
 
 				case 2:

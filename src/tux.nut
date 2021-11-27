@@ -272,8 +272,8 @@
 			}
 
 			if(anim != anClimb && anim != anWall) {
-				if((getcon("right", "hold") && !getcon("left", "hold") && anim != anSlide) || (hspeed > 0.1 && anim == anSlide)) flip = 0
-				if((getcon("left", "hold") && !getcon("right", "hold") && anim != anSlide) || (hspeed < -0.1 && anim == anSlide)) flip = 1
+				if((getcon("right", "hold") && !getcon("left", "hold") && anim != anSlide && canMove) || (hspeed > 0.1 && anim == anSlide)) flip = 0
+				if((getcon("left", "hold") && !getcon("right", "hold") && anim != anSlide && canMove) || (hspeed < -0.1 && anim == anSlide)) flip = 1
 			}
 
 			//Controls
@@ -321,8 +321,8 @@
 					}
 
 					//Change direction
-					if(getcon("right", "press")) flip = 0
-					if(getcon("left", "press")) flip = 1
+					if(getcon("right", "press") && canMove) flip = 0
+					if(getcon("left", "press") && canMove) flip = 1
 
 					//Ping-pong animation
 					if(frame >= anim[1] + 0.4 || frame <= anim[0] + 0.4) {
@@ -386,7 +386,7 @@
 						energy--
 					}
 				}
-				if(getcon("jump", "press") && jumpBuffer <= 0 && freeDown) jumpBuffer = 16
+				if(getcon("jump", "press") && jumpBuffer <= 0 && freeDown) jumpBuffer = 12
 				if(jumpBuffer > 0) jumpBuffer--
 
 				if(getcon("jump", "release") && vspeed < 0 && didJump)

@@ -93,6 +93,7 @@
 
 ::MuffinBlue <- class extends PhysAct {
 	flip = false
+	willwrite = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -101,6 +102,8 @@
 		if(gvPlayer != 0) {
 			if(x < gvPlayer.x) flip = true
 		}
+
+		if(_arr != null) willwrite = _arr
 	}
 
 	function run() {
@@ -144,7 +147,7 @@
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
 			}
-			else if(game.subitem != 6) game.subitem = 5
+			else if(game.subitem != 6 && (game.subitem == 0 || willwrite)) game.subitem = 5
 			deleteActor(id)
 			playSound(sndHeal, 0)
 		}
