@@ -45,6 +45,10 @@
 		func = function() { return }
 	},
 	{
+		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
+		func = function() { cursor = 0; selectContrib(); }
+	}
+	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { cursor = 0; menu = meOptions }
 	},

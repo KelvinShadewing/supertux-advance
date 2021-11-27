@@ -41,6 +41,7 @@ donut("src/overworld.nut")
 donut("src/secret.nut")
 donut("src/npc.nut")
 donut("src/languagemenu.nut")
+donut("src/contriblevels.nut")
 
 //Load mods
 local modlist = lsdir("mods")

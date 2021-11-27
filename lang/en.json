@@ -2,8 +2,13 @@
 	"main-menu" : {
 		"new" : "New Game",
 		"load" : "Load Game",
+		"contrib-levels" : "Contrib Levels",
 		"options" : "Options",
 		"quit" : "Quit Game"
+	},
+
+	"contrib-menu" : {
+		"empty" : "[No contrib levels available]"
 	},
 
 	"options-menu" : {

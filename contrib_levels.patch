@@ -1,0 +1,123 @@
+diff --git a/lang/en.json b/lang/en.json
+index c9efde3..dfceb12 100644
+--- a/lang/en.json
++++ b/lang/en.json
+@@ -2,10 +2,15 @@
+ 	"main-menu" : {
+ 		"new" : "New Game",
+ 		"load" : "Load Game",
++		"contrib-levels" : "Contrib Levels",
+ 		"options" : "Options",
+ 		"quit" : "Quit Game"
+ 	},
+ 
++	"contrib-menu" : {
++		"empty" : "[No contrib levels available]"
++	},
++
+ 	"options-menu" : {
+ 		"difficulty" : "Difficulty",
+ 		"language" : "Language",
+@@ -486,4 +491,4 @@
+ 		"214" : "",
+ 		"215" : ""
+ 	}
+-}
+\ No newline at end of file
++}
+diff --git a/src/contriblevels.nut b/src/contriblevels.nut
+new file mode 100644
+index 0000000..bbef90f
+--- /dev/null
++++ b/src/contriblevels.nut
+@@ -0,0 +1,49 @@
++::meContribLevels <- [
++
++]
++::selectContrib <- function(){
++	meContribLevels = []
++	if(fileExists("contrib")){
++		local contrib=lsdir("contrib")
++		foreach(item in contrib){
++			if(item!="." && item!=".." && isdir("contrib/"+item) && fileExists("contrib/"+item+"/info.json")){
++				local data=jsonRead(fileRead("contrib/"+item+"/info.json"))
++				meContribLevels.push(
++					{
++						contribFolder=item,
++						contribName=data["name"],
++						contribWorldmap=data["worldmap"],
++						name = function() { return contribName },
++						func = function(){
++							game=clone(gameDefault)
++							game.completed.clear();
++							game.allcoins.clear();
++							game.allenemies.clear();
++							game.allsecrets.clear();
++							game.besttime.clear();
++							gvDoIGT = false;
++							startOverworld("contrib/"+contribFolder+"/"+contribWorldmap)
++						}
++					}
++				)
++			}
++		}
++	}
++	if(meContribLevels.len()==0){
++		meContribLevels.push(
++			{
++				name = function() { return gvLangObj["contrib-menu"]["empty"] }
++				func = function() { }
++			}
++	        )
++	}
++	meContribLevels.push(
++		{
++			name = function() { return "Back" }
++			func = function(){
++				menu = meMain
++			}
++		}
++	)
++	menu = meContribLevels
++}
+diff --git a/src/menus.nut b/src/menus.nut
+index ea5784c..42b215c 100644
+--- a/src/menus.nut
++++ b/src/menus.nut
+@@ -44,6 +44,10 @@
+ 		name = function() { return gvLangObj["main-menu"]["load"] },
+ 		func = function() { return }
+ 	},
++	{
++		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
++		func = function() { cursor = 0; selectContrib(); }
++	}
+ 	{
+ 		name = function() { return gvLangObj["main-menu"]["options"] },
+ 		func = function() { cursor = 0; menu = meOptions }
+@@ -124,4 +128,4 @@
+ 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
+ 		func = function() { game.difficulty = 3; cursor = 0; menu = meOptions }
+ 	}
+-]
+\ No newline at end of file
++]
+diff --git a/tux.brx b/tux.brx
+index f7f691c..b95d696 100644
+--- a/tux.brx
++++ b/tux.brx
+@@ -41,6 +41,7 @@ donut("src/overworld.nut")
+ donut("src/secret.nut")
+ donut("src/npc.nut")
+ donut("src/languagemenu.nut")
++donut("src/contriblevels.nut")
+ 
+ //Load mods
+ local modlist = lsdir("mods")
+@@ -118,4 +119,4 @@ while(!getQuit() && !gvQuit)
+ 	gvGameMode()
+ 	if(keyPress(k_tick)) debugConsole()
+ 	update()
+-}
+\ No newline at end of file
++}
