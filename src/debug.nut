@@ -82,3 +82,43 @@
 	drawLine(mouseX() - 8, mouseY(), mouseX() + 8, mouseY())
 	drawLine(mouseX(), mouseY() - 8, mouseX(), mouseY() + 8)
 }
+
+::debugConsole <- function() {
+	setDrawTarget(bgPause)
+	drawImage(gvScreen, 0, 0)
+	resetDrawTarget()
+	update()
+
+	local output = ""
+	local history = []
+	local input = ""
+
+	while(!keyPress(k_tick) && !keyPress(k_escape)) {
+		if(keyPress(k_backspace) && input.len() > 0) input = input.slice(0, -1)
+		if(keyPress(k_enter)) {
+			dostr(input)
+			history.push(input)
+			if(history.len() > 15) history.remove(0)
+			input = ""
+		}
+		local newchar = keyString()
+		if(newchar != "`") input += newchar
+
+		drawImage(bgPause, 0, 0)
+		setDrawColor(0x00000080)
+		drawRec(0, 0, screenW(), 8 * 16, true)
+
+		output = ""
+		for(local i = 0; i < history.len(); i++) {
+			output += history[i]
+			output += "\n"
+		}
+		output += input
+		if(floor(getFrames() / 32) % 2 == 0) output += "|"
+		drawText(font, 0, 0, output)
+
+		update()
+	}
+
+
+}
