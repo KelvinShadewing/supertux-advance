@@ -294,8 +294,8 @@
 				else mspeed = 1
 
 				//Moving left and right
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed += 0.1
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb) hspeed -= 0.1
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed += 0.1
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed -= 0.1
 
 				//On a ladder
 				if(anim == anClimb) {
