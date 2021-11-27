@@ -38,8 +38,16 @@
 }
 
 ::dbgIceForest <- function() {
-	for(local i = 0; i < 2; i++) {
-		drawSprite(bgIceForest, 0, ((-camx / 8) % 320) + (i * 320), screenH() - 240)
+	if(gvMap != 0) {
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest, 0, ((-camx / 16) % 320) + (i * 320), 0)
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest2, 0, ((-camx / 8) % 480) + (i * 480), gvMap.h - camy - 192)
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest1, 0, ((-camx / 4) % 640) + (i * 640), gvMap.h - camy - 256)
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest0, 0, ((-camx / 2) % 800) + (i * 800), gvMap.h - camy - 320)
+	}
+	else {
+		for(local i = 0; i < 2; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+		for(local i = 0; i < 4; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
+		for(local i = 0; i < 4; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 180)
 	}
 }
 
