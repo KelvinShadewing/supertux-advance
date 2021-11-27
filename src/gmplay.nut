@@ -353,6 +353,9 @@
 	drawBG()
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "mg")
+	for(local i = 0; i < screenW() / 16; i++) {
+		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
+	}
 	runActors()
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "fg")

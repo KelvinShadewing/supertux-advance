@@ -107,7 +107,10 @@
 	}
 
 	function run() {
-		if(placeFree(x, y + 1)) vspeed += 0.1
+		if(placeFree(x, y + 1)) {
+			if(inWater(x, y)) vspeed += 0.01
+			else vspeed += 0.1
+		}
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
@@ -169,7 +172,10 @@
 	}
 
 	function run() {
-		if(placeFree(x, y + 1)) vspeed += 0.1
+		if(placeFree(x, y + 1)) {
+			if(inWater(x, y)) vspeed += 0.01
+			else vspeed += 0.1
+		}
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 

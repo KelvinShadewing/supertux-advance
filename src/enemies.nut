@@ -910,6 +910,10 @@
 		game.enemies--
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 	}
 
 	function _typeof() { return "BlueFish" }
@@ -1011,6 +1015,10 @@
 		game.enemies--
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 	}
 
 	function _typeof() { return "RedFish" }
@@ -1088,6 +1096,10 @@
 	function gethurt() {}
 
 	function hurtfire() {
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprJellyFish
 		actor[c].vspeed = -0.2
@@ -1137,6 +1149,10 @@
 
 	function hurtfire() {
 		if(timer < 30) {
+			if(randInt(20) == 0) {
+				local a = actor[newActor(MuffinBlue, x, y)]
+				a.vspeed = -2
+			}
 			newActor(Poof, x, y - 1)
 			deleteActor(id)
 			playSound(sndFlame, 0)
@@ -1287,6 +1303,10 @@
 		game.enemies--
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 	}
 
 	function _typeof() { return "GreenFish" }

@@ -32,6 +32,7 @@
 ::sprSubItem <- newSprite("res/gfx/itemcard.png", 20, 20, 0, 0, 10, 10)
 
 //Blocks
+::sprVoid <- newSprite("res/gfx/void.png", 16, 32, 0, 0, 0, 0)
 ::sprBoxIce <- newSprite("res/gfx/icebox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxItem <- newSprite("res/gfx/itembox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxRed <- newSprite("res/gfx/redbox.png", 16, 16, 0, 0, 0, 0)
