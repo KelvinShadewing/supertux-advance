@@ -4,12 +4,22 @@
 
 ::menu <- []
 ::cursor <- 0
+::cursorOffset <- 0
+::menuMax <- 7 //Maximum number of slots that can be shown on screen
 ::textMenu <- function(){
 	//If no menu is loaded
 	if(menu == []) return
 
 	//Draw options
-	for(local i = 0; i < menu.len(); i++) {
+	//The number
+	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
+		if(cursor == i) {
+			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 8 - (menuMax * 14) + ((i - cursorOffset) * 14))
+			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 8 - (menuMax * 14) + ((i - cursorOffset) * 14))
+		}
+		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 8 - (menuMax * 14) + ((i - cursorOffset) * 14), menu[i].name())
+	}
+	else for(local i = 0; i < menu.len(); i++) {
 		if(cursor == i) {
 			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 8 - (menu.len() * 14) + (i * 14))
 			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 8 - (menu.len() * 14) + (i * 14))
@@ -20,12 +30,20 @@
 	//Keyboard input
 	if(getcon("down", "press")) {
 		cursor++
-		if(cursor >= menu.len()) cursor = 0
+		if(cursor >= cursorOffset + menuMax) cursorOffset++
+		if(cursor >= menu.len()) {
+			cursor = 0
+			cursorOffset = 0
+		}
 	}
 
 	if(getcon("up", "press")) {
 		cursor--
-		if(cursor < 0) cursor = menu.len() - 1
+		if(cursor < cursorOffset) cursorOffset--
+		if(cursor < 0) {
+			cursor = menu.len() - 1
+			if(menu.len() > menuMax) cursorOffset = menu.len() - menuMax
+		}
 	}
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
@@ -128,4 +146,47 @@
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
 		func = function() { game.difficulty = 3; cursor = 0; menu = meOptions }
 	}
+]
+
+::meLong <- [ //Just to test long menus
+	{
+		name = function() { return "A" },
+		func = function() { print("A") }
+	},
+	{
+		name = function() { return "B" },
+		func = function() { print("B") }
+	},
+	{
+		name = function() { return "C" },
+		func = function() { print("C") }
+	},
+	{
+		name = function() { return "D" },
+		func = function() { print("D") }
+	},
+	{
+		name = function() { return "E" },
+		func = function() { print("E") }
+	},
+	{
+		name = function() { return "F" },
+		func = function() { print("F") }
+	},
+	{
+		name = function() { return "G" },
+		func = function() { print("G") }
+	},
+	{
+		name = function() { return "H" },
+		func = function() { print("H") }
+	},
+	{
+		name = function() { return "I" },
+		func = function() { print("I") }
+	},
+	{
+		name = function() { return "J" },
+		func = function() { print("J") }
+	},
 ]
