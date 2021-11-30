@@ -1,0 +1,494 @@
+{
+	"main-menu" : {
+		"new" : "নতুন খেলা",
+		"load" : "লোড খেলা",
+		"contrib-levels" : "অবদান স্তর",
+		"options" : "অপশন",
+		"quit" : "খেলা প্রস্থান করার জন্য"
+	},
+
+	"contrib-menu" : {
+		"empty" : "[কোন অবদানের মাত্রা উপলব্ধ নেই]"
+  },
+
+	"options-menu" : {
+		"difficulty" : "অসুবিধা",
+		"language" : "ভাষা",
+		"keyboard" : "কীবোর্ড নিয়ন্ত্রণ",
+		"joystick" : "গেমপ্যাড নিয়ন্ত্রণ",
+		"speedrun" : "স্পিডরান টাইমার"
+	},
+
+	"bool" : {
+		"on" : "চালু",
+		"off" : "বন্ধ"
+	},
+
+	"difficulty-levels" : {
+		"easy" : "সহজ",
+		"normal" : "স্বাভাবিক",
+		"hard" : "কঠিন",
+		"super" : "সুপার টাক্স"
+	},
+
+	"pause-menu" : {
+		"continue" : "চালিয়ে যান",
+		"character" : "চরিত্র পরিবর্তন করুন",
+		"restart" : "পুনর্সূচনা স্তর",
+		"quit-game" : "খেলা প্রস্থান করার জন্য",
+		"quit-level" : "প্রস্থান স্তর"
+	},
+
+	"info" : {
+		"welcome" :
+		"সুপারটাক্স অ্যাডভান্সে স্বাগতম! আপনি ব্লক থেকে দূরে চলে গেলে এই বার্তাটি চলে যাবে। আপনি যদি বিকাশকারীর মন্তব্য দেখতে চান তবে F1 টিপুন। তাদের সাথে কথা বলতে NPC-এর কাছে UP টিপুন। কারও কারও একাধিক কথা বলার আছে।",
+		"tutWall" :
+		"দেয়ালে লাফ দিতে দেয়ালের বিপরীতে জাম্প টিপুন।",
+		"tutSlide" :
+		"দৌড়ানোর সময় বা পাহাড়ে স্লাইড করার জন্য নিচে চাপুন।",
+		"waterjump" :
+		"উচ্চতা বাড়ানোর জন্য জল ছাড়ার সময় জাম্প ধরুন। আরও উপরে যেতে রান বোতামের সাথে এটি মিশ্রিত করুন।",
+		"noend" :
+		"যে স্তরগুলিকে এগিয়ে যাওয়ার জন্য আপনাকে সম্পূর্ণ করতে হবে না সেখানেও স্বাভাবিক প্রস্থান নেই। এই মত এলাকা ছেড়ে বিরতি মেনু ব্যবহার করুন.",
+		"hills" :
+		"পাহাড় খুবই গুরুত্বপূর্ণ! প্রতিবার সুযোগ পেলে স্লাইডিং অনুশীলন করুন।",
+		"pipes" :
+		"পাইপগুলি কেবল পড়েই প্রবেশ করা যেতে পারে৷ আপনি সেগুলির মধ্যে নিজেকে ফানেল করার জন্য নিচে ধরে রাখতে পারেন৷",
+		"controls" :
+		"প্রধান স্ক্রিনে বিকল্প মেনুতে আপনার নিয়ন্ত্রণ সেট করতে ভুলবেন না! আপনি যদি সত্যিই তাদের সেট আপ জগাখিচুড়ি, আপনার config.json ফাইল মুছে দিন.",
+		"secrets" :
+		"গোপন প্যাসেজ সর্বত্র! তাদের প্রকাশ করার জন্য প্রাচীরের বিপরীতে অনুভব করুন বা শত্রুর গতিবিধি লক্ষ্য করুন।",
+		"coyotetime" :
+		"মাটি ছেড়ে যাওয়ার পরে আপনার কাছে একটি সংক্ষিপ্ত মুহূর্ত আছে যখন আপনি এখনও লাফ দিতে পারেন। আপনার পা মাটি ছেড়ে যাওয়ার পরে প্রান্ত থেকে দৌড়ানো এবং লাফ দেওয়ার অনুশীলন করুন।",
+		"tntex" :
+		"টিএনটি ব্লক একজনের সংস্পর্শে আসার পর অল্প সময়ের মধ্যেই বিস্ফোরিত হয়।",
+		"chainex" :
+		"টিএনটি ব্লকগুলিও বিস্ফোরণ দ্বারা বন্ধ হয়ে যায়, যা অনেকগুলি টিএনটি ব্লক একে অপরের কাছাকাছি থাকলে এক ধরণের চেইন প্রতিক্রিয়া হতে পারে।",
+		"fireex" :
+		"ফায়ারবলগুলি টিএনটি ব্লক সেট করতে পারে, আগুনের ফুল পেতে এবং এটি চেষ্টা করে দেখতে পারে!",
+		"owplats" :
+		"একমুখী প্ল্যাটফর্মগুলি একবারে ডাউন এবং জাম্প চেপে নিচে নামানো যেতে পারে। যদি আপনি দুর্ঘটনায় পড়ে যান, তবে আপনার কাছে দ্বিগুণ দীর্ঘ সময় আছে যখন আপনি একটি প্রান্তের উপর দিয়ে ফিরে যান।",
+		"slidewarn" :
+		"এই ধরনের স্তর আপনাকে স্লাইড করতে বাধ্য করবে! (এটি ভবিষ্যতে অন্য কিছু দিয়ে প্রতিস্থাপিত হবে।)"
+	},
+
+	"devcom" : {
+		"welcome" :
+		"KELVIN: আপনি যদি এটি দেখতে পান, আপনি বিকাশকারী মন্তব্য মোড সক্রিয় করেছেন৷ গেমের বিকাশের নোট পড়তে লাল স্কার্ফ স্পর্শ করুন।",
+		"hiff-0" :
+		"KELVIN: অনেক কিছুর মধ্যে একটি যা আমাকে হিফ করে তুলেছিল তা হল ডেথক্যাপগুলিকে এই পাহাড়ে হাঁটা। যে কারণেই হোক না কেন, তাদের দ্বিগুণ এগিয়ে পরীক্ষা করা তাদের সঠিকভাবে আচরণ করেছে...",
+		"pipes" :
+		"KELVIN: আমি পাইপগুলিকে মারিওর মতোই আচরণ করতে যাচ্ছিলাম, কিন্তু কোনটি খোলা আছে তা খুঁজে পেতে সেই গেমগুলিতে ট্যাপ করতে/নিচে ট্যাপ করতে হচ্ছে, তাই এর পরিবর্তে, আপনি কেবল ভিতরে পড়ে যাবেন।",
+		"firetux" :
+		"KELVIN: মূলত, ফায়ার টাক্সে একটি হেলমেট থাকবে, যেমনটি আসল সুপারটাক্সে ছিল। সুপারটাক্স ডিসকর্ড সার্ভারের একজন সদস্য রাস্টি বক্সের ডিজাইন ব্যবহার করার পরামর্শ দিয়েছেন। আমি এটা ভাল লাগছিল সম্মত. আসলটি এখনও OpenGameArt.org এ পাওয়া যাবে।",
+		"coins" :
+		"KELVIN: কয়েন শুধুমাত্র অর্জনের জন্য। আমি কখনই অতিরিক্ত লাইফ মেকানিক পছন্দ করিনি, কারণ এর মানে হল একজন খেলোয়াড়কে খেলা শেষ হলে আবার একটি স্তর চেষ্টা করার জন্য আরও বেশি সময় অপেক্ষা করা। আমি সম্পূর্ণরূপে কয়েন পরিত্রাণ পেতে চাইনি, যদিও, যেহেতু এটি স্তরগুলিকে খুব অনুর্বর করে তুলবে।",
+		"sliding" :
+		"KELVIN: একটি প্রান্ত থেকে ড্রপ থেকে গতি বৃদ্ধির মেকানিক প্লেয়ার যথেষ্ট ত্বরান্বিত না ঢাল জন্য ক্ষতিপূরণ প্রয়োজন থেকে এসেছিল. এটি প্রযুক্তিগতভাবে একটি ত্রুটি যা আমি নিক্ষেপ করার সিদ্ধান্ত নিয়েছি কারণ এটি মজার ছিল। অনেক মেকানিক্স আসলে যে.",
+		"trees" :
+		"KELVIN: অ্যান্টার্কটিকায় গাছ জন্মায় না। এই কারণেই পেঙ্গুইনরা বরফ থেকে খোদাই করে।",
+		"snakes" :
+		"KELVIN: আমি জানি অ্যান্টার্কটিকায় সাপ থাকা যতটা ক্ষুধার্ত গাছপালা আছে ততটাই বোধগম্য। ",
+		"waterfalls" :
+		"KELVIN: গুহার এই অংশটা আমার কাছে বিশেষ সুন্দর লাগে। আমি এর সামনে জলপ্রপাত সহ প্রশস্ত পটভূমি পছন্দ করি। আমি চেয়েছিলাম যে স্তরটি এমন অনুভব করুক যেন আপনি এটিকে অন্বেষণ করতে চেয়েছিলেন, তাই এর মতো একটি দৃশ্য যা এটিকে বড় মনে করে তা অন্বেষণের অনুভূতি বোঝানোর জন্য।",
+		"loops" :
+		"KELVIN: দুঃখিত, আপনি কি এই লুপ কাজ করার আশা করেছিলেন? হা! আমি এটি প্রোগ্রাম করার জন্য যথেষ্ট ভাল কোথাও নেই... এখনও.",
+		"contrib" :
+		"FROSTC: হ্যালো! এটিই প্রথম ডেভ ভাষ্য যা কেলভিন লিখেননি, কারণ এটিই প্রথম অবদান স্তর।",
+		"walldev" :
+		"FROSTC: আমি আসলে জানতাম না যে আমি যখন প্রথম এই এলাকাটি তৈরি করেছি তখন আপনি এখানে উঠতে দেয়াল লাফিয়ে যেতে পারেন। আমি পরে আপনাকে এটি করা থেকে বিরত রাখার জন্য কিছু যোগ করার কথা ভেবেছিলাম, কিন্তু এটির বিরুদ্ধে সিদ্ধান্ত নিয়েছিলাম",
+		"tnt" :
+		"FROSTC: আমি দেখেছি যে টিএনটি পাহাড়ে ব্যবহার করা হয়েছে, তাই আমি এটি দেখানোর একটি স্তর তৈরি করার সিদ্ধান্ত নিয়েছি। এছাড়াও, মজার সত্য, এই স্তরটি উপসাগর আগে প্রতিদ্বন্দ্বিতা করা হয়েছিল",
+		"trans" :
+		"FROSTC: ব্যাকগ্রাউন্ড ট্রানজিশনের কাজ করতে আমার বেশ সময় লেগেছে, কারণ আমি প্রথমবার ট্রিগার ব্যবহার করার সময় বেশিরভাগ ক্ষেত্রেই এটি ছিল",
+		"lifenote" :
+		"FROSTC: যারা পুরানো ভার্সন খেলেছেন, আশা করি আপনি সব নতুন, অনেক কঠিন 1-আপ পজিশন পছন্দ করবেন! হাহাহাহাহাহাহা!!",
+		"signnote" :
+		"FROSTC: আপনি যদি একটু অলস বোধ করেন, আপনি স্লাইডিংয়ের পরিবর্তে এটি খুলতে একটি ফায়ারবল দিয়ে পাইপটি বিস্ফোরিত করতে পারেন। সম্ভবত একটি ভাল গতিতে চলা স্ট্র্যাট??",
+		"sense":
+		"FROSTC: আমার 3য় স্তর, ক্লাসিক সুপারটাক্স থেকে গ্রম্বেলের তুষার অনুভূতি থেকে অনুপ্রাণিত একটি স্তর তৈরি করতে চেয়েছিলাম। মজার অংশ হল সেই স্তরটি ক্লাসিক সুপারটাক্সের আধুনিক সংস্করণেও নেই!",
+		"subsea" :
+		"KELVIN: আমি প্রথমে নিশ্চিত ছিলাম না কিভাবে আমি পানির নিচের স্তরগুলি পরিচালনা করতে চাই। আমি এসএমবি 1 এবং 3 এর স্তরের কথা ভেবেছিলাম, কিন্তু সেগুলি দেখে মনে হয়েছিল যে টাক্স সঠিকভাবে শুট করতে পারে। তখন আমার মনে পড়ে গেল DKC-এর পানির নিচের স্তরগুলি, কীভাবে সেগুলি গোলকধাঁধার মতো ছিল যেখানে আপনাকে বিপজ্জনক শত্রুদের এড়িয়ে যেতে হবে। আমি ভেবেছিলাম যে এই গেমটির জন্য ভাল কাজ করবে, যেহেতু টাক্স জলের নীচে দ্রুত, এবং কনকি এবং মিডি তাদের নিরপেক্ষ ফর্মগুলিতে আক্রমণাত্মক ক্ষমতা বজায় রাখে।",
+		"subsea-name" :
+		"KELVIN: নাম, উপসাগর, সুপারটাক্সকার্টের একই নামের ট্র্যাক থেকে এসেছে। আমি ভেবেছিলাম যে গেমটি থেকে এলাকাগুলি নেওয়া এবং কার্ট ট্র্যাকের পরিবর্তে প্ল্যাটফর্ম স্তর হিসাবে সেগুলিকে পুনরায় কল্পনা করা ভাল হবে৷ ক্যান্ডেলা সিটিও পরিকল্পনা করা হয়েছে, এবং চূড়ান্ত স্তর যেখানে আপনি নলোকের সাথে লড়াই করবেন সেটি হবে ফোর্ট ম্যাগমা। STK থেকে অন্যরাও উপস্থিত হতে পারে।",
+		"tutorial-zone" :
+		"KELVIN: অরোরা সোলের কাছ থেকে কিছু প্লেটেস্ট প্রতিক্রিয়া পাওয়ার পর, আমি সিদ্ধান্ত নিয়েছি যে আমার এই টিউটোরিয়াল এলাকাটি আরও স্পষ্টভাবে মৌলিক মেকানিক্স প্রদর্শনের জন্য করা উচিত। তার প্লে-টেস্টে, তিনি আসলে প্রথম পাইপটি এড়িয়ে গিয়েছিলেন, যদিও এটিতে একটি চিহ্ন রয়েছে যা ইঙ্গিত করে যে এটি সম্পর্কে কিছু আছে, যা তাকে সাঁতার শেখার জন্য স্পট এড়িয়ে যেতে বাধ্য করেছিল। স্লাইডিং স্থান স্পষ্টভাবে চিহ্নিত করা হয়নি, হয়, এবং এছাড়াও মিস করা হয়েছে. আপনি প্রতিটি মেকানিক না শেখা পর্যন্ত এই ক্ষেত্রটি আপনাকে অগ্রগতি করতে দেবে না, তবে আপনি যদি ইতিমধ্যে প্রাথমিক বিষয়গুলি জানেন তবে এখনও এড়িয়ে যেতে পারেন।",
+		"speedrunex":
+		"FROSTC: আমি এই স্তরটি লোকেদের গতিতে চালানোর অভিপ্রায়ে ডিজাইন করেছি, তাই দেখুন কত দ্রুত আপনি এটিকে হারাতে পারেন! ",
+		"secretredex":
+		"FROSTC: এই গোপনের বর্তমান সংস্করণটি আগের তুলনায় খুবই ভিন্ন, একটি পার্থক্য হল এটিতে একটি বাঁক ছিল। তবে আমি এটি সঠিকভাবে কাজ করতে পারিনি, এই কারণেই আমি এটি বাতিল করে দিয়েছি।",
+		"fishex":
+		"FROSTC: ঠিক যেমন টাক্স সমস্যায়, এই স্তরটি তৈরি করা হয়েছিল আগের কিছু স্তর যোগ করার আগে।",
+		"mezex":
+		"FROSTC: এই গোলকধাঁধাটিকে সুন্দর দেখানোর জন্য আমাকে কয়েকটি কাস্টম টাইল তৈরি করতে হয়েছিল, এটি মূল্যবান ছিল, আমি মনে করি! এটি নিশ্চিতভাবে এই স্তরের সেরা অংশ।",
+		"outage":
+		"FROSTC: আরেকটি এলোমেলো সত্য... এই এবং শেষ স্তরটি মোট তৈরি করতে মাত্র 3 দিন লেগেছে! সম্ভবত সাহায্য করেছে যে স্কুলটি বাতিল করা হয়েছিল প্রথম দিন আমি বিদ্যুৎ বিভ্রাট বা অন্য কিছুর কারণে সেগুলিতে কাজ শুরু করেছি। "
+	},
+
+	"npc" : {
+		"null" : "",
+		"rad-0t" :
+		"Hey, where's your board? Are you gonna slide on your belly like a square? I bet you couldn't get every coin on this hill like that. If you do, I'll give ya something that'll really help you catch some air!",
+		"rad-0k" :
+		"Hey, where's your board? You look way too slow for a course like this!",
+		"rad-0m" :
+		"Are you gonna use that ball of yourse for this course? Good luck.",
+		"rad-0d" :
+		"Get all the coins on this hill if you want a totally nautical prize!",
+		"penny-0t" :
+		"Oh, Tux! I'm so happy to see you! Nolok has kidnapped our friends! Last I heard, they were being taken to his forts all around the world. I wish I knew why. Please save them, Tux!",
+		"penny-0k" :
+		"Konqi! It's so good to see you! I'm sure Plasma Breeze is fine. Please help Tux. I know you two can beat Nolok together!",
+		"penny-0m" :
+		"So you're Midi. I've heard you're quite a capable fighter. I'm so glad to hear you're helping Tux. I'll be sure to reward you well.",
+		"penny-0d" :
+		"Pleased to meet you. Are you helping Tux save our friends? I'm so happy to hear that.",
+		"rad-t0t" :
+		"Yo, Tux! Mayor Penny is looking for ya. By the way, catch me on the slopes sometime. I wanna see if you live up to your rep as a snow racer.",
+		"rad-t0k" :
+		"Hey, you're Konqi, right? Man, watch the fire around here. Doesn't really mix well with ice, ya feel me?",
+		"rad-t0m" :
+		"What's a squirrel doing this far south? Ain't it too cold for ya? Get inside before ya freeze your fuzzy little toes off, heheh.",
+		"rad-t0d" :
+		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
+		"xue-c" :
+		"Thanks for saving me, chu! I'll see you back in Pennyton!",
+		"xue-pt-t" :
+		"Next time I see that Nolok, I'll give him a face full of exploding cupcakes! That'll teach him for messing with us, chu!",
+		"xue-pt-k" :
+		"Hey, Konqi! Give Nolok a good torching when you see him! No one messes with us, on or off the kart track, chu!",
+		"xue-pt-m" :
+		"Whoa, a fellow rodent who also likes explosions! (And pretty cute, chu...) Whah? N-nothing, chu! I, uh, was wondering if you'd like to go cart racing! N-not as a date or anything! (Shut up, Xue, shut up!)",
+		"xue-pt-d" :
+		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!",
+		"fireguin-0" :
+		"Not much use for a firefighter here, huh? Ice can melt, sure, but it takes the fire out with it, and then we just put new ice in.",
+		"fireguin-1" :
+		"Maybe I'd be better off in a town with wood houses. Hard to find wood out here, so even the trees are made of ice!",
+		"fireguin-2" :
+		"A lot of the houses here are empty. I'm sure our friends will return once they're safe from Nolok.",
+		"fireguin-3" :
+		"Blocks of weak, uncompacted ice will melt if you hit them with a fireball. You can also break them by sliding.",
+		"fireguin-4" :
+		"Look out for thin ice! It'll break if you stand on it too long.",
+		"fireguin-5" :
+		"If you need to brush up on your skills, head to the obstacle course just outside of town. You'll find it to the right from here.",
+		"konqi-c" :
+		"Hey, thanks for getting me out of here. I got caught trying to find Plasma Breeze. I hope she's alright. Nolok's probably got her in another fort. I'll join you to help get her back!",
+		"rocky-c" :
+		"Alright, I'm saved! Man, Nolok is the kind of trash even I wouldn't wanna touch. Good luck against him!",
+		"rocky-pt-t" :
+		"Hey, Tux! Catch me later. I'll buy ya a fish.",
+		"rocky-pt-k" :
+		"Nolok's a crocodile, right? Man, I hope your scales are harder than his. I'd hate to be chomped by that guy!",
+		"rocky-pt-m" :
+		"You remind me of me. Small, fast, good at picking up garbage. You're braver than me, though. Show Nolok no mercy!",
+		"rocky-pt-d" :
+		"Yeah, this place is pretty cold, but it's a lot safer. The worst of Nolok's minions are on the mainland and other areas, so I'm gonna stay in Pennyton for now.",
+		"python-c" :
+		"Thankssss for the sssave! I'll ssssee you back in town.",
+		"python-pt-t" :
+		"Hey there Tuxss. I hope it'ssss sssafe to go back home sssoon. I'm freezing here!",
+		"python-pt-k" :
+		"Any chance you should usssse that flame of yoursss on me? I'm sssso cold here...",
+		"python-pt-m" :
+		"I wish you and Xue would ssstop looking at me like that. Even if I got hungry, I wouldn't consssider either of you a sssnack!",
+		"python-pt-d" :
+		"I sssure hope you're better with the cold than I am. No wonder Nolok hatesss thisss place.",
+		"garuda-c" :
+		"Alright! Thanks for getting rid of that guy! I can't wait to get out of this place and stretch my wings again.",
+		"garuda-pt-t" :
+		"I used to feel sorry for penguins not being able to fly, but then I saw the way they move under water. Their swimming is just like flying!",
+		"garuda-pt-k" :
+		"I hear dragons love gold as much as gryphons do. Lucky for us, there's lots of coins around! I wonder what makes them float, though...",
+		"garuda-pt-m" :
+		"You use bombs, eh? I bet if I carried you, we could make a great aerial strike team! Except... I'm afraid I'll get shot down again. That's how Nolok caught me the first time.",
+		"garuda-pt-d" :
+		"Thanks for your help. It feels so good being able to fly again.",
+		"breeze-c-k" :
+		"Konqi! I knew you'd come for me! I'm so happy to see you! Let's get out of here! I'll be right behind you.",
+		"breeze-c-d" :
+		"Thanks for getting me out of here. I'll head back to Pennyton. Kick Nolok's flank for me!",
+		"breeze-pt-t" :
+		"Aww, you're such a cute little penguin! I know a mare who's really good with birds. You'd probably like her.",
+		"breeze-pt-k" :
+		"I'm always happy to see you, Konqi! Good luck against Nolok. I'll be rooting for you the loudest!",
+		"breeze-pt-m" :
+		"Your magic is really unusual. I've never seen a nut bomb spell before. And that ball too... oh, that's not magic? Strange.",
+		"breeze-pt-d" :
+		"It'll take all kinds to defeat Nolok. I'm glad to have you on our side.",
+		"gnu-c" :
+		"I regret getting captured by Nolok once more. Thank you for releasing me.",
+		"gnu-pt-0" :
+		"It is good to excel, but better to do so with vim.",
+		"gnu-pt-1" :
+		"A pacman frog is an apt hunter.",
+		"gnu-pt-2" :
+		"True freedom is found by blazing a gnu trail.",
+		"gnu-pt-3" :
+		"Some mysteries are solved by finding prints, others by making them.",
+		"gnu-pt-4" :
+		"When walking with a fork, thread lightly.",
+		"gnu-pt-5" :
+		"Don't use a cat if you could do more or less.",
+		"gnu-pt-6" :
+		"If the info doesn't work for you, man up.",
+		"gnu-pt-7" :
+		"007 has all the permissions you'd need.",
+		"gnu-pt-8" :
+		"That young guin, Rad, has such spirit. He lives life to Emacs.",
+		"midi-c" :
+		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?",
+		"sam-0" :
+		"Plenty of adventure gear at fair... wait, you use gold? This stuff would be a lot cheaper if you had emeralds.",
+		"sam-1" :
+		"Don't get me wrong, gold's great, but it's just so common. I can't imagine having to carry that much around to use as money!",
+		"sam-2" :
+		"You think us overworlders love emeralds? Try even letting a hedgehog near them!",
+		"sam-3" :
+		"I don't mean to be rude, but are you going to buy anything? I don't get paid to talk.",
+		"sam-4" :
+		"Yeah, I dug for and crafted all these items, and now I sell them. So what does my boss do to earn his cut? He owns the company!",
+		"sam-5" :
+		"While we're on the subject of money, this game we're in? Totally free, even to edit and sell what you make. So please consider donating to the people who worked on it!"
+	},
+
+	"level" : {
+		"shop" : "স্যাম এর ট্রেড পোস্ট",
+		"overworld-0" : "অরোরা দ্বীপপুঞ্জ",
+		"overworld-1" : "অ্যান্টার্কটিকা",
+		"0-t0" : "পেনিটন",
+		"0-0" : "ঢাল শেখা",
+		"0-1" : "ক্রিস্টাল পাস",
+		"0-2" : "স্লিপ এবং স্লাইড",
+		"0-3" : "উপসাগর",
+		"0-4" : "টাক্স 'এন' সমস্যা",
+		"0-5" : "তুষারপাতের সংবেদন",
+		"0-6a" : "হিমায়িত স্বর্গ",
+		"0-6b" : "শাখার পথ",
+		"0-7" : "সমুদ্র সেতু",
+		"0-8" : "আর্কটিক বায়ু",
+		"0-9" : "নিমজ্জিত পদক্ষেপ",
+		"0-x" : "এক্সট্রিম হিলস",
+		"0-c" : "ফোর্ট বোরিয়ালিস"
+	},
+
+	"key" : {
+		"0" : "_0",
+		"1" : "_1",
+		"2" : "_2",
+		"3" : "_3",
+		"4" : "A",
+		"5" : "B",
+		"6" : "C",
+		"7" : "D",
+		"8" : "E",
+		"9" : "F",
+		"10" : "G",
+		"11" : "H",
+		"12" : "I",
+		"13" : "J",
+		"14" : "K",
+		"15" : "L",
+		"16" : "M",
+		"17" : "N",
+		"18" : "O",
+		"19" : "P",
+		"20" : "Q",
+		"21" : "R",
+		"22" : "S",
+		"23" : "T",
+		"24" : "U",
+		"25" : "V",
+		"26" : "W",
+		"27" : "X",
+		"28" : "Y",
+		"29" : "Z",
+		"30" : "1",
+		"31" : "2",
+		"32" : "3",
+		"33" : "4",
+		"34" : "5",
+		"35" : "6",
+		"36" : "7",
+		"37" : "8",
+		"38" : "9",
+		"39" : "0",
+		"40" : "Enter",
+		"41" : "Escape",
+		"42" : "Backspace",
+		"43" : "Tab",
+		"44" : "Space",
+		"45" : "-",
+		"46" : "=",
+		"47" : "[",
+		"48" : "]",
+		"49" : "\\",
+		"50" : "/",
+		"51" : ";",
+		"52" : "'",
+		"53" : "`",
+		"54" : ",",
+		"55" : ".",
+		"56" : "/",
+		"57" : "CAP",
+		"58" : "F1",
+		"59" : "F2",
+		"60" : "F3",
+		"61" : "F4",
+		"62" : "F5",
+		"63" : "F6",
+		"64" : "F7",
+		"65" : "F8",
+		"66" : "F9",
+		"67" : "F10",
+		"68" : "F11",
+		"69" : "F12",
+		"70" : "Print",
+		"71" : "Scroll",
+		"72" : "Pause",
+		"73" : "Insert",
+		"74" : "Home",
+		"75" : "Pg Up",
+		"76" : "Delete",
+		"77" : "End",
+		"78" : "Pg Down",
+		"79" : "Right",
+		"80" : "Left",
+		"81" : "Down",
+		"82" : "Up",
+		"83" : "Num",
+		"84" : "#/",
+		"85" : "#*",
+		"86" : "#-",
+		"87" : "#+",
+		"88" : "#Ent",
+		"89" : "#1",
+		"90" : "#2",
+		"91" : "#3",
+		"92" : "#4",
+		"93" : "#5",
+		"94" : "#6",
+		"95" : "#7",
+		"96" : "#8",
+		"97" : "#9",
+		"98" : "#0",
+		"99" : "#.",
+		"100" : "\\",
+		"101" : "App",
+		"102" : "Pow",
+		"103" : "#=",
+		"104" : "F13",
+		"105" : "F14",
+		"106" : "F15",
+		"107" : "F16",
+		"108" : "F17",
+		"109" : "F18",
+		"110" : "F19",
+		"111" : "F20",
+		"112" : "F21",
+		"113" : "F22",
+		"114" : "F23",
+		"115" : "F24",
+		"116" : "Exe",
+		"117" : "Help",
+		"118" : "Menu",
+		"119" : "Select",
+		"120" : "Stop",
+		"121" : "Again",
+		"122" : "Undo",
+		"123" : "Cut",
+		"124" : "Copy",
+		"125" : "Paste",
+		"126" : "Find",
+		"127" : "Mute",
+		"128" : "Vol Up",
+		"129" : "Vol Down",
+		"130" : "#,",
+		"131" : "#=400",
+		"132" : "",
+		"133" : "",
+		"134" : "",
+		"135" : "",
+		"136" : "",
+		"137" : "",
+		"138" : "",
+		"139" : "",
+		"140" : "",
+		"141" : "",
+		"142" : "",
+		"143" : "",
+		"144" : "",
+		"145" : "",
+		"146" : "",
+		"147" : "",
+		"148" : "",
+		"149" : "",
+		"150" : "",
+		"151" : "",
+		"152" : "",
+		"153" : "",
+		"154" : "",
+		"155" : "",
+		"156" : "",
+		"157" : "",
+		"158" : "",
+		"159" : "",
+		"160" : "",
+		"161" : "",
+		"162" : "",
+		"163" : "",
+		"164" : "",
+		"165" : "",
+		"166" : "",
+		"167" : "",
+		"168" : "",
+		"169" : "",
+		"170" : "",
+		"171" : "",
+		"172" : "",
+		"173" : "",
+		"174" : "",
+		"175" : "",
+		"176" : "",
+		"177" : "",
+		"178" : "",
+		"179" : "",
+		"180" : "",
+		"181" : "",
+		"182" : "",
+		"183" : "",
+		"184" : "",
+		"185" : "",
+		"186" : "",
+		"187" : "",
+		"188" : "",
+		"189" : "",
+		"190" : "",
+		"191" : "",
+		"192" : "",
+		"193" : "",
+		"194" : "",
+		"195" : "",
+		"196" : "",
+		"197" : "",
+		"198" : "",
+		"199" : "",
+		"200" : "",
+		"201" : "",
+		"202" : "",
+		"203" : "",
+		"204" : "",
+		"205" : "",
+		"206" : "",
+		"207" : "",
+		"208" : "",
+		"209" : "",
+		"210" : "",
+		"211" : "",
+		"212" : "",
+		"213" : "",
+		"214" : "",
+		"215" : ""
+	}
+}
