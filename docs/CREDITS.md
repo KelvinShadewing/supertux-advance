@@ -104,6 +104,8 @@ Lukas Nystrand - Chippdisko
 
 [bydariogamer](https://github.com/bydariogamer) - Spanish
 
+[Busybody64](https://github.com/Busybody64) - Bangla
+
 ## Misc
 
 [Martin P. Hellwig]() - GNU puns 4-7
