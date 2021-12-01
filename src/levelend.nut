@@ -39,5 +39,7 @@
 
 		if(!game.besttime.rawin(gvMap.name)) game.besttime[gvMap.name] <- gvIGT
 		else if(game.besttime[gvMap.name] > gvIGT) game.besttime[gvMap.name] = gvIGT
+
+		saveGame()
 	}
 }

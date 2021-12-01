@@ -56,11 +56,11 @@
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { game = clone(gameDefault); game.completed.clear(); game.allcoins.clear(); game.allenemies.clear(); game.allsecrets.clear(); game.besttime.clear(); gvDoIGT = false; startPlay("res/map/0-t0.json") }
+		func = function() { cursor = 0; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
-		func = function() { return }
+		func = function() { cursor = 0; selectLoadGame() }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
@@ -148,45 +148,74 @@
 	}
 ]
 
-::meLong <- [ //Just to test long menus
+::meNewGame <- [
 	{
-		name = function() { return "A" },
-		func = function() { print("A") }
+		name = function() {
+			local m = "File 0"
+			if(fileExists("save/0.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 0
+			if(fileExists("save/0.json")) menu = meOverwrite
+			else newGame(0)
+			cursor = 0
+		}
 	},
 	{
-		name = function() { return "B" },
-		func = function() { print("B") }
+		name = function() {
+			local m = "File 1"
+			if(fileExists("save/1.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 1
+			if(fileExists("save/1.json")) menu = meOverwrite
+			else newGame(1)
+			cursor = 0
+		}
 	},
 	{
-		name = function() { return "C" },
-		func = function() { print("C") }
+		name = function() {
+			local m = "File 2"
+			if(fileExists("save/2.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 2
+			if(fileExists("save/2.json")) menu = meOverwrite
+			else newGame(2)
+			cursor = 0
+		}
 	},
 	{
-		name = function() { return "D" },
-		func = function() { print("D") }
+		name = function() {
+			local m = "File 3"
+			if(fileExists("save/3.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 3
+			if(fileExists("save/3.json")) menu = meOverwrite
+			else newGame(3)
+			cursor = 0
+		}
 	},
 	{
-		name = function() { return "E" },
-		func = function() { print("E") }
-	},
-	{
-		name = function() { return "F" },
-		func = function() { print("F") }
-	},
-	{
-		name = function() { return "G" },
-		func = function() { print("G") }
-	},
-	{
-		name = function() { return "H" },
-		func = function() { print("H") }
-	},
-	{
-		name = function() { return "I" },
-		func = function() { print("I") }
-	},
-	{
-		name = function() { return "J" },
-		func = function() { print("J") }
-	},
+		name = function() { return "Cancel" }
+		func = function() { cursor = 0; menu = meMain }
+	}
 ]
+
+::meOverwrite <- [
+	{
+		name = function() { return "No" }
+		func = function() { menu = meNewGame; cursor = 0 }
+	},
+	{
+		name = function() { return "Yes" }
+		func = function() { newGame(game.file) }
+	}
+]
+
+::meLoadGame <- []
