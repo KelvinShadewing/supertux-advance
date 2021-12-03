@@ -209,7 +209,7 @@
 
 ::meOverwrite <- [
 	{
-		name = function() { return "No" }
+		name = function() { drawText(font2, screenW() / 2 - (15 * 4), screenH() / 2, "Overwrite save?"); return "No" }
 		func = function() { menu = meNewGame; cursor = 0 }
 	},
 	{
