@@ -353,7 +353,7 @@
 	drawBG()
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "mg")
-	for(local i = 0; i < screenW() / 16; i++) {
+	if(gvMap.name != "shop") for(local i = 0; i < screenW() / 16; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
 	runActors()

@@ -4,12 +4,22 @@
 
 ::menu <- []
 ::cursor <- 0
+::cursorOffset <- 0
+::menuMax <- 7 //Maximum number of slots that can be shown on screen
 ::textMenu <- function(){
 	//If no menu is loaded
 	if(menu == []) return
 
 	//Draw options
-	for(local i = 0; i < menu.len(); i++) {
+	//The number
+	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
+		if(cursor == i) {
+			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 8 - (menuMax * 14) + ((i - cursorOffset) * 14))
+			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 8 - (menuMax * 14) + ((i - cursorOffset) * 14))
+		}
+		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 8 - (menuMax * 14) + ((i - cursorOffset) * 14), menu[i].name())
+	}
+	else for(local i = 0; i < menu.len(); i++) {
 		if(cursor == i) {
 			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 8 - (menu.len() * 14) + (i * 14))
 			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 8 - (menu.len() * 14) + (i * 14))
@@ -20,12 +30,20 @@
 	//Keyboard input
 	if(getcon("down", "press")) {
 		cursor++
-		if(cursor >= menu.len()) cursor = 0
+		if(cursor >= cursorOffset + menuMax) cursorOffset++
+		if(cursor >= menu.len()) {
+			cursor = 0
+			cursorOffset = 0
+		}
 	}
 
 	if(getcon("up", "press")) {
 		cursor--
-		if(cursor < 0) cursor = menu.len() - 1
+		if(cursor < cursorOffset) cursorOffset--
+		if(cursor < 0) {
+			cursor = menu.len() - 1
+			if(menu.len() > menuMax) cursorOffset = menu.len() - menuMax
+		}
 	}
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
@@ -38,11 +56,11 @@
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { game = clone(gameDefault); game.completed.clear(); game.allcoins.clear(); game.allenemies.clear(); game.allsecrets.clear(); game.besttime.clear(); gvDoIGT = false; startPlay("res/map/0-t0.json") }
+		func = function() { cursor = 0; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
-		func = function() { return }
+		func = function() { cursor = 0; selectLoadGame() }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
@@ -129,3 +147,75 @@
 		func = function() { game.difficulty = 3; cursor = 0; menu = meOptions }
 	}
 ]
+
+::meNewGame <- [
+	{
+		name = function() {
+			local m = "File 0"
+			if(fileExists("save/0.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 0
+			if(fileExists("save/0.json")) menu = meOverwrite
+			else newGame(0)
+			cursor = 0
+		}
+	},
+	{
+		name = function() {
+			local m = "File 1"
+			if(fileExists("save/1.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 1
+			if(fileExists("save/1.json")) menu = meOverwrite
+			else newGame(1)
+			cursor = 0
+		}
+	},
+	{
+		name = function() {
+			local m = "File 2"
+			if(fileExists("save/2.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 2
+			if(fileExists("save/2.json")) menu = meOverwrite
+			else newGame(2)
+			cursor = 0
+		}
+	},
+	{
+		name = function() {
+			local m = "File 3"
+			if(fileExists("save/3.json")) m += " [FILE EXISTS]"
+			return m
+		},
+		func = function() {
+			game.file = 3
+			if(fileExists("save/3.json")) menu = meOverwrite
+			else newGame(3)
+			cursor = 0
+		}
+	},
+	{
+		name = function() { return "Cancel" }
+		func = function() { cursor = 0; menu = meMain }
+	}
+]
+
+::meOverwrite <- [
+	{
+		name = function() { return "No" }
+		func = function() { menu = meNewGame; cursor = 0 }
+	},
+	{
+		name = function() { return "Yes" }
+		func = function() { newGame(game.file) }
+	}
+]
+
+::meLoadGame <- []

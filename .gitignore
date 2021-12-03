@@ -5,3 +5,4 @@ log.txt
 config.json
 game.json
 *.blame
+save/*.json
