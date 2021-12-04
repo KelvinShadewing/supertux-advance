@@ -56,7 +56,7 @@
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { cursor = 0; menu = meNewGame }
+		func = function() { cursor = 0; menu = meDifficulty }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
@@ -132,19 +132,19 @@
 ::meDifficulty <- [
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["easy"] },
-		func = function() { game.difficulty = 0; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 0; cursor = 0; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["normal"] },
-		func = function() { game.difficulty = 1; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 1; cursor = 0; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["hard"] },
-		func = function() { game.difficulty = 2; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 2; cursor = 0; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
-		func = function() { game.difficulty = 3; cursor = 0; menu = meOptions }
+		func = function() { game.difficulty = 3; cursor = 0; menu = meNewGame }
 	}
 ]
 
@@ -209,7 +209,7 @@
 
 ::meOverwrite <- [
 	{
-		name = function() { return "No" }
+		name = function() { drawText(font2, screenW() / 2 - (15 * 4), screenH() / 2, "Overwrite save?"); return "No" }
 		func = function() { menu = meNewGame; cursor = 0 }
 	},
 	{
@@ -219,3 +219,4 @@
 ]
 
 ::meLoadGame <- []
+//This menu is left empty intentionally; it will be created dynamically at runtime.

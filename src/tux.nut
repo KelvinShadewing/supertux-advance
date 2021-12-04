@@ -881,7 +881,7 @@
 		stopMusic()
 		playSound(sndDie, 0)
 		mywep = game.weapon
-		if((game.lives == 0 || game.check == false) && game.difficulty == 0) game.weapon = 0
+		if(game.lives == 0 || game.check == false) game.weapon = 0
 	}
 
 	function run() {

@@ -216,3 +216,18 @@
 
 	function _typeof() { return "Spring" }
 }
+
+::LevelSinker <- class extends Actor {
+	rate = 0.01
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(_arr != null) rate = _arr
+	}
+
+	function run() {
+		if(gvMap.h > 240) gvMap.h -= rate
+	}
+}
+
+::sinkLevel <- function(rate) { newActor(LevelSinker,0, 0, rate) }
