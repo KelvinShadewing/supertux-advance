@@ -83,7 +83,7 @@
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
-		func = function() { startPlay(gvMap.file) }
+		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file) }
 	}
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
@@ -145,6 +145,10 @@
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
 		func = function() { game.difficulty = 3; cursor = 0; menu = meNewGame }
+	},
+	{
+		name = function() { return "Cancel" },
+		func = function() { cursor = 0; menu = meMain }
 	}
 ]
 
