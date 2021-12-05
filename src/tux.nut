@@ -824,7 +824,7 @@
 		local swap = game.subitem
 
 		if(game.weapon == game.subitem) {
-			if(game.maxenergy < 4) {
+			if(game.maxenergy < 4 - game.difficulty) {
 				game.maxenergy++
 				game.subitem = 0
 				tftime = 0
