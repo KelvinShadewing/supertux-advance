@@ -92,6 +92,8 @@ Lukas Nystrand - Chippdisko
 
 [Alex McCulloch](https://opengameart.org/users/pro-sensory) - Halloween
 
+[Eric Matyas](https://soundimage.org/) - Puzzle Game 2
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow, The Ocean Bridge, Arctic Wind
