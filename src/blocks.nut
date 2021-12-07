@@ -461,3 +461,63 @@
 
 	function _typeof() { return "TNT" }
 }
+
+::ColorBlock <- class extends Actor {
+	color = null
+	filled = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(_arr == null) color = 0
+		else color = _arr
+
+		if(color != null) if(game.colorswitch.rawin(color)) {
+			//Get solid layer
+			local wl = null //Working layer
+			for(local i = 0; i < gvMap.data.layers.len(); i++) {
+				if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+					wl = gvMap.data.layers[i]
+					break
+				}
+			}
+
+			//Find tile
+			local cx = floor(x / 16)
+			local cy = floor(y / 16)
+			local tile = cx + (cy * wl.width)
+
+			//Make tile solid
+			if(tile >= 0 && tile < wl.data.len()) wl.data[tile] = gvMap.solidfid
+
+			filled = 1
+		}
+	}
+
+	function run() {
+		drawSprite(sprColorBlock, (color * 2) + filled, x - camx, y - camy)
+	}
+}
+
+::ColorSwitch <- class extends Actor {
+	color = 0
+	shape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(_arr == null) color = 0
+		else color = _arr
+
+		shape = Rec(x, y, 16, 16, 0)
+	}
+
+	function run() {
+		if(game.colorswitch.rawin(color)) drawSprite(sprColorSwitch, (color * 2) + 1, x - camx, y - camy)
+		else {
+			drawSprite(sprColorSwitch, color * 2, x - camx, y - camy)
+			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
+				gvPlayer.vspeed = -1.5
+				game.colorswitch[color] <- true
+			}
+		}
+	}
+}

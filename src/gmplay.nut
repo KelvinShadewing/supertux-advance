@@ -277,6 +277,14 @@
 				game.enemies++
 				break
 
+			case 48:
+				newActor(ColorSwitch, i.x, i.y - 16, 0)
+				break
+
+			case 56:
+				newActor(ColorBlock, i.x, i.y - 16, 0)
+				break
+
 			case 64: //Custom actor gear
 				if(i.name == "") break
 				local arg = split(i.name, ",")
@@ -417,6 +425,11 @@
 
 		//Draw IGT
 		if(gvDoIGT) drawText(font2, 8, 32, formatTime(gvIGT))
+
+		//Draw offscreen player
+		if(gvPlayer != 0) if(gvPlayer.y < -8) {
+			drawSprite(game.characters[game.playerchar][1], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+		}
 	}
 	else {
 		local ln = 3
