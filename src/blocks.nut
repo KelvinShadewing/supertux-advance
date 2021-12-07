@@ -471,31 +471,35 @@
 		if(_arr == null) color = 0
 		else color = _arr
 
-		if(color != null) if(game.colorswitch[color]) {
-			//Get solid layer
-			local wl = null //Working layer
-			for(local i = 0; i < gvMap.data.layers.len(); i++) {
-				if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
-					wl = gvMap.data.layers[i]
-					break
-				}
+		if(color != null) if(game.colorswitch[color]) filltile()
+	}
+
+	function filltile() {
+		//Get solid layer
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
 			}
-
-			//Find tile
-			local cx = floor(x / 16)
-			local cy = floor(y / 16)
-			local tile = cx + (cy * wl.width)
-
-			//Make tile solid
-			if(tile >= 0 && tile < wl.data.len()) wl.data[tile] = gvMap.solidfid
-
-			filled = 1
 		}
+
+		//Find tile
+		local cx = floor(x / 16)
+		local cy = floor(y / 16)
+		local tile = cx + (cy * wl.width)
+
+		//Make tile solid
+		if(tile >= 0 && tile < wl.data.len()) wl.data[tile] = gvMap.solidfid
+
+		filled = 1
 	}
 
 	function run() {
 		drawSprite(sprColorBlock, (color * 2) + filled, x - camx, y - camy)
 	}
+
+	function _typeof() { return "ColorBlock" }
 }
 
 
@@ -519,6 +523,9 @@
 				gvPlayer.vspeed = -1.5
 				game.colorswitch[this.color] = true
 				dostr("saveGame()")
+				if(actor.rawin("ColorBlock")) foreach(i in actor["ColorBlock"]) {
+					i.filltile()
+				}
 			}
 		}
 	}
