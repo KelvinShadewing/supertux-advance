@@ -1,5 +1,16 @@
 ::drawBG <- 0
 
+::dbgNone <- function() {
+	setDrawColor(0xff)
+	drawRec(0, 0, screenW(), screenH(), true)
+}
+
+::dbgEcho <- function() {
+	//drawImage(gvScreen, 0, 0)
+	setDrawColor(0x28)
+	drawRec(0, 0, screenW(), screenH(), true)
+}
+
 ::dbgCave <- function() {
 	for(local i = 0; i < 5; i++) {
 		for(local j = 0; j < 5; j++) {

@@ -64,6 +64,8 @@
 
 UbuntuJackson - UFO
 
+[Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
+
 ## Sounds
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - 1up

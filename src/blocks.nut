@@ -471,7 +471,7 @@
 		if(_arr == null) color = 0
 		else color = _arr
 
-		if(color != null) if(game.colorswitch.rawin(color)) {
+		if(color != null) if(game.colorswitch[color]) {
 			//Get solid layer
 			local wl = null //Working layer
 			for(local i = 0; i < gvMap.data.layers.len(); i++) {
@@ -498,6 +498,7 @@
 	}
 }
 
+
 ::ColorSwitch <- class extends Actor {
 	color = 0
 	shape = null
@@ -511,12 +512,13 @@
 	}
 
 	function run() {
-		if(game.colorswitch.rawin(color)) drawSprite(sprColorSwitch, (color * 2) + 1, x - camx, y - camy)
+		if(game.colorswitch[color]) drawSprite(sprColorSwitch, (color * 2) + 1, x - camx, y - camy)
 		else {
 			drawSprite(sprColorSwitch, color * 2, x - camx, y - camy)
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
 				gvPlayer.vspeed = -1.5
-				game.colorswitch[color] <- true
+				game.colorswitch[this.color] = true
+				dostr("saveGame()")
 			}
 		}
 	}

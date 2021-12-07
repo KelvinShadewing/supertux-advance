@@ -25,7 +25,16 @@
 	allsecrets = {} //Levels the player has found all secrets in
 	besttime = {} //Fastest time for a level
 	igt = 0 //Global IGT, which increments throughout the game's runtime
-	colorswitch = {} //Color blocks activated by respective switches
+	colorswitch = [
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
+	] //Color blocks activated by respective switches
 	characters = { //List of unlocked characters
 		Tux = [sprTuxOverworld, sprTuxDoll]
 	}
