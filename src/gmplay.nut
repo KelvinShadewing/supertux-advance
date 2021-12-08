@@ -370,6 +370,11 @@
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
+	//Copy current drawing to play screen
+	setDrawTarget(gvPlayScreen)
+	drawImage(gvScreen, 0, 0)
+	setDrawTarget(gvScreen)
+
 	if(gvInfoBox == "") {
 		//Draw max energy
 		for(local i = 0; i < 4 - game.difficulty; i++) {

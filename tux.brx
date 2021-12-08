@@ -84,6 +84,7 @@ switch(reschoice) {
 //setResolution(240, 160)
 
 gvScreen = newTexture(screenW(), screenH())
+gvPlayScreen = newTexture(screenW(), screenH())
 bgPause = newTexture(screenW(), screenH())
 
 //Set up window

@@ -7,7 +7,8 @@
 
 ::dbgEcho <- function() {
 	//drawImage(gvScreen, 0, 0)
-	setDrawColor(0x28)
+	drawImage(gvPlayScreen, ((getFrames() / 4) % 3) - 1, -1)
+	setDrawColor(0x60)
 	drawRec(0, 0, screenW(), screenH(), true)
 }
 

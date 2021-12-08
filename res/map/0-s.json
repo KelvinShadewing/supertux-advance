@@ -511,7 +511,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgNone\nsongPlay(musPuzzle)"
+         "value":"drawBG = dbgEcho\nsongPlay(musPuzzle)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

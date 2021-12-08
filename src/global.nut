@@ -88,6 +88,7 @@
 }
 
 ::gvScreen <- 0
+::gvPlayScreen <- 0
 ::camx <- 0
 ::camy <- 0
 
