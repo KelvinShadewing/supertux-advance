@@ -300,6 +300,10 @@
 				newActor(Jumpy, i.x + 8, i.y - 8)
 				game.enemies++
 				break
+
+			case 75:
+				newActor(EvilBlock, i.x + 8, i.y - 8)
+				break
 		}
 	}
 
