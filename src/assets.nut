@@ -82,6 +82,7 @@
 ::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 4)
 ::sprBounceCap <- newSprite("res/gfx/bouncecap.png", 16, 16, 0, 0, 8, 8)
 ::sprFlyAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
+::sprJumpy <- newSprite("res/gfx/bouncecap.png", 16, 16, 0, 0, 8, 8)
 
 //Items
 ::sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 0, 0, 8, 8)

@@ -6,6 +6,8 @@
 
 [mrkubax10](https://github.com/mrkubax10) - Language menu
 
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Jumpy
+
 ## Graphics and Sounds
 
 [Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics, elemental explosions
