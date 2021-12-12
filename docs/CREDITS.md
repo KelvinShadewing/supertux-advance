@@ -6,7 +6,7 @@
 
 [mrkubax10](https://github.com/mrkubax10) - Language menu
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Jumpy
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Jumpy, Darknyan
 
 ## Graphics and Sounds
 
@@ -50,7 +50,7 @@
 
 [Spring](https://opengameart.org/users/spring-spring) - Large flame
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin, strawberry muffin, bomb muffin, Haywire, Tux doll, Orange
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin, strawberry muffin, bomb muffin, Haywire, Tux doll, Orange, Darknyan
 
 [TheCheeseWeez]() - Mega muffin
 
