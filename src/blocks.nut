@@ -181,6 +181,10 @@
 					//1up item
 					newActor(OneUp, x, y - 16)
 					break
+				
+				case 9:
+					newActor(MuffinBomb, x, y - 16)
+					break
 			}
 		}
 
@@ -561,4 +565,44 @@
 	}
 
 	function _typeof() { return "WoodBlock" }
+}
+
+::BreakBlock <- class extends Actor {
+	shape = 0
+	mapshape = 0
+	slideshape = 0
+	tile = 0
+	solidtile = 0
+	layer = 0
+	solidlayer = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		slideshape = Rec(x, y - 1, 12, 8, 0)
+
+		//Get graphic layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "fg") {
+				layer = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Find tile
+		local cx = floor(x / 16)
+		local cy = floor(y / 16)
+		tile = cx + (cy * layer.width)
+
+		//Get graphic layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				solidlayer = gvMap.data.layers[i]
+				break
+			}
+		}
+	}
+
 }

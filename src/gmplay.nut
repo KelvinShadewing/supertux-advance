@@ -247,6 +247,10 @@
 				game.enemies++
 				break
 
+			case 38:
+				newActor(ItemBlock, i.x + 8, i.y - 8, 9)
+				break
+
 			case 40:
 				newActor(SpringD, i.x, i.y - 16, 0)
 				break
@@ -365,9 +369,13 @@
 	if(camy < 0) camy = 0
 
 	//Draw
-	setDrawTarget(gvScreen)
+	//Separate texture for game world allows post-processing effects without including HUD
+	setDrawTarget(gvPlayScreen)
 
 	drawBG()
+	camxprev = camx
+	camyprev = camy
+
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "mg")
 	if(gvMap.name != "shop") for(local i = 0; i < screenW() / 16; i++) {
@@ -379,10 +387,9 @@
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
-	//Copy current drawing to play screen
-	setDrawTarget(gvPlayScreen)
-	drawImage(gvScreen, 0, 0)
+	//HUDs
 	setDrawTarget(gvScreen)
+	drawImage(gvPlayScreen, 0, 0)
 
 	if(gvInfoBox == "") {
 		//Draw max energy

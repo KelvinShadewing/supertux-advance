@@ -91,6 +91,8 @@
 ::gvPlayScreen <- 0
 ::camx <- 0
 ::camy <- 0
+::camxprev <- 0
+::camyprev <- 0
 
 //Debug variabls
 ::gvFPS <- 0

@@ -409,3 +409,61 @@
 		drawSprite(game.characters[game.playerchar][1], game.weapon, x - camx, y + 8 - camy)
 	}
 }
+
+::MuffinBomb <- class extends PhysAct {
+	flip = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 7, 0)
+
+		if(gvPlayer != 0) {
+			if(x > gvPlayer.x) flip = true
+		}
+	}
+
+	function run() {
+		if(placeFree(x, y + 1)) vspeed += 0.1
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h + 8) deleteActor(id)
+
+		if(flip) {
+			if(placeFree(x - 0.5, y)) x -= 0.5
+			else if(placeFree(x - 1.1, y - 0.5)) {
+				x -= 0.5
+				y -= 0.25
+			} else if(placeFree(x - 1.1, y - 1.0)) {
+				x -= 0.5
+				y -= 0.5
+			} else flip = false
+
+			if(x <= 0) flip = false
+		}
+		else {
+			if(placeFree(x + 1, y)) x += 0.5
+			else if(placeFree(x + 1.1, y - 0.5)) {
+				x += 0.5
+				y -= 0.25
+			} else if(placeFree(x + 1.1, y - 1.0)) {
+				x += 0.5
+				y -= 0.5
+			} else flip = true
+
+			if(x >= gvMap.w) flip = true
+		}
+
+		shape.setPos(x, y)
+
+		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
+			if(gvPlayer.blinking > 0) return
+			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
+			else gvPlayer.hspeed = 1.0
+			newActor(BadExplode, x, y)
+			deleteActor(id)
+		}
+
+		drawSprite(sprMuffin, 3, x - camx, y - camy)
+	}
+}

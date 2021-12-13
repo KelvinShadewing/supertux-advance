@@ -42,6 +42,11 @@
 		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
 		else drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, 1, 1, 1, 1)
 
+		if(getFrames() % 3 == 0) {
+			local c = actor[newActor(FlameTiny, x, y)]
+			c.frame = 4
+		}
+
 		shape.setPos(x, y)
 	}
 
