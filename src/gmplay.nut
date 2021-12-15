@@ -72,242 +72,282 @@
 	//Start making actors
 	foreach(i in actlayer.objects)
 	{
-		local n = i.gid - tilef
+		//Tile actors
+		if(i.rawin("gid")) {
+			local n = i.gid - tilef
 
-		//Get the tile number and make an actor
-		//according to the image used in actors.png
-		switch(n)
-		{
-			case 0:
-				//newActor(Tux, i.x, i.y - 16)
-				if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) {
-					if(game.check == false) newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
-					else newActor(getroottable()[game.playerchar], game.chx, game.chy)
+			//Get the tile number and make an actor
+			//according to the image used in actors.png
+			switch(n)
+			{
+				case 0:
+					//newActor(Tux, i.x, i.y - 16)
+					if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) {
+						if(game.check == false) newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
+						else newActor(getroottable()[game.playerchar], game.chx, game.chy)
+					}
+					break
+
+				case 1:
+					newActor(Coin, i.x + 8, i.y - 8)
+					break
+
+				case 2:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 0)
+					game.maxcoins++
+					break
+
+				case 3:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 1)
+					break
+
+				case 4:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 2)
+					break
+
+				case 5:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 3)
+					break
+
+				case 6:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 5)
+					break
+
+				case 7:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 4)
+					break
+
+				case 8:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 6)
+					break
+
+				case 9:
+					newActor(BadCannon, i.x + 8, i.y - 8)
+					break
+
+				case 10:
+					newActor(PipeSnake, i.x, i.y, 1)
+					//Enemies are counted at level creation so ones created indefinitely don't count against achievements
+					game.enemies++
+					break
+
+				case 11:
+					newActor(PipeSnake, i.x, i.y - 16, -1)
+					game.enemies++
+					break
+
+				case 12:
+					newActor(Deathcap, i.x + 8, i.y - 8, false)
+					game.enemies++
+					break
+
+				case 13:
+					newActor(Deathcap, i.x + 8, i.y - 8, true)
+					game.enemies++
+					break
+
+				case 14:
+					newActor(IceBlock, i.x + 8, i.y - 8)
+					break
+
+				case 15:
+					newActor(WoodBlock, i.x + 8, i.y - 8)
+					break
+
+				case 16:
+					newActor(Spring, i.x, i.y - 16, 0)
+					break
+
+				case 17:
+					newActor(Spring, i.x, i.y - 16, 1)
+					break
+
+				case 18:
+					newActor(Spring, i.x, i.y - 16, 2)
+					break
+
+				case 19:
+					newActor(Spring, i.x, i.y - 16, 3)
+					break
+
+				case 20:
+					newActor(Ouchin, i.x + 8, i.y - 8)
+					break
+
+				case 21:
+					newActor(TriggerBlock, i.x + 8, i.y - 8, i.name)
+					break
+
+				case 22:
+					newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
+					break
+
+				case 23:
+					newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
+					break
+
+				case 24:
+					local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+					c.item = 7
+					break
+
+				case 25:
+					newActor(FlyRefresh, i.x + 8, i.y - 8)
+					break
+
+				case 26:
+					newActor(CarlBoom, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 27:
+					newActor(SnowBounce, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 28:
+					newActor(BlueFish, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 29:
+					newActor(RedFish, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 30:
+					newActor(BounceBlock, i.x + 8, i.y - 8)
+					break
+
+				case 31:
+					actor[newActor(NPC, i.x + 8, i.y, i.name)]
+					break
+
+				case 32:
+					newActor(Checkpoint, i.x + 8, i.y - 16)
+					break
+
+				case 33:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 8)
+					break
+
+				case 34:
+					newActor(TNT, i.x + 8, i.y - 8)
+					break
+
+				case 35:
+					newActor(C4, i.x + 8, i.y - 8)
+					break
+
+				case 36:
+					newActor(JellyFish, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 37:
+					newActor(Clamor, i.x + 8, i.y - 8, i.name)
+					game.enemies++
+					break
+
+				case 38:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 9)
+					break
+
+				case 40:
+					newActor(SpringD, i.x, i.y - 16, 0)
+					break
+
+				case 41:
+					newActor(SpringD, i.x, i.y - 16, 1)
+					break
+
+				case 42:
+					newActor(SpringD, i.x, i.y - 16, 2)
+					break
+
+				case 43:
+					newActor(SpringD, i.x, i.y - 16, 3)
+					break
+
+				case 44:
+					newActor(GreenFish, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 45:
+					newActor(Icicle, i.x + 8, i.y - 8)
+					break
+
+				case 46:
+					newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
+					game.enemies++
+					break
+
+				case 48:
+					newActor(ColorSwitch, i.x, i.y - 16, 0)
+					break
+
+				case 56:
+					newActor(ColorBlock, i.x, i.y - 16, 0)
+					break
+
+				case 64: //Custom actor gear
+					if(i.name == "") break
+					local arg = split(i.name, ",")
+					local n = arg[0]
+					arg.remove(0)
+					if(arg.len() == 1) arg = arg[0]
+					else if(arg.len() == 0) arg = null
+					print(n)
+					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
+					break
+
+				case 73:
+					newActor(Jumpy, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 75:
+					newActor(EvilBlock, i.x + 8, i.y - 8)
+					break
+			}
+		}
+
+		//Polygon actors
+		if(i.rawin("polygon")) if(i.name != "") {
+			local arg = split(i.name, ",")
+			local n = arg[0]
+			if(getroottable().rawin(n))
+			{
+				print(i.id)
+
+				//Create polygon to pass to object
+				local poly = []
+				for(local j = 0; j <= i.polygon.len(); j++) {
+					if(j == i.polygon.len()) poly.push([i.x + i.polygon[0].x, i.y + i.polygon[0].y])
+					else poly.push([i.x + i.polygon[j].x, i.y + i.polygon[j].y])
 				}
-				break
 
-			case 1:
-				newActor(Coin, i.x + 8, i.y - 8)
-				break
+				arg[0] = poly
+				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x, i.y, arg)
+			}
+		}
 
-			case 2:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 0)
-				game.maxcoins++
-				break
+		//Polygon actors
+		if(i.rawin("polyline")) if(i.name != "") {
+			local arg = split(i.name, ",")
+			local n = arg[0]
+			if(getroottable().rawin(n))
+			{
+				print(i.id)
 
-			case 3:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 1)
-				break
+				//Create polygon to pass to object
+				local poly = []
+				for(local j = 0; j < i.polyline.len(); j++) poly.push([i.x + i.polyline[j].x, i.y + i.polyline[j].y])
 
-			case 4:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 2)
-				break
-
-			case 5:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 3)
-				break
-
-			case 6:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 5)
-				break
-
-			case 7:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 4)
-				break
-
-			case 8:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 6)
-				break
-
-			case 9:
-				newActor(BadCannon, i.x + 8, i.y - 8)
-				break
-
-			case 10:
-				newActor(PipeSnake, i.x, i.y, 1)
-				//Enemies are counted at level creation so ones created indefinitely don't count against achievements
-				game.enemies++
-				break
-
-			case 11:
-				newActor(PipeSnake, i.x, i.y - 16, -1)
-				game.enemies++
-				break
-
-			case 12:
-				newActor(Deathcap, i.x + 8, i.y - 8, false)
-				game.enemies++
-				break
-
-			case 13:
-				newActor(Deathcap, i.x + 8, i.y - 8, true)
-				game.enemies++
-				break
-
-			case 14:
-				newActor(IceBlock, i.x + 8, i.y - 8)
-				break
-
-			case 15:
-				newActor(WoodBlock, i.x + 8, i.y - 8)
-				break
-
-			case 16:
-				newActor(Spring, i.x, i.y - 16, 0)
-				break
-
-			case 17:
-				newActor(Spring, i.x, i.y - 16, 1)
-				break
-
-			case 18:
-				newActor(Spring, i.x, i.y - 16, 2)
-				break
-
-			case 19:
-				newActor(Spring, i.x, i.y - 16, 3)
-				break
-
-			case 20:
-				newActor(Ouchin, i.x + 8, i.y - 8)
-				break
-
-			case 21:
-				newActor(TriggerBlock, i.x + 8, i.y - 8, i.name)
-				break
-
-			case 22:
-				newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
-				break
-
-			case 23:
-				newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
-				break
-
-			case 24:
-				local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-				c.item = 7
-				break
-
-			case 25:
-				newActor(FlyRefresh, i.x + 8, i.y - 8)
-				break
-
-			case 26:
-				newActor(CarlBoom, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 27:
-				newActor(SnowBounce, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 28:
-				newActor(BlueFish, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 29:
-				newActor(RedFish, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 30:
-				newActor(BounceBlock, i.x + 8, i.y - 8)
-				break
-
-			case 31:
-				actor[newActor(NPC, i.x + 8, i.y, i.name)]
-				break
-
-			case 32:
-				newActor(Checkpoint, i.x + 8, i.y - 16)
-				break
-
-			case 33:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 8)
-				break
-
-			case 34:
-				newActor(TNT, i.x + 8, i.y - 8)
-				break
-
-			case 35:
-				newActor(C4, i.x + 8, i.y - 8)
-				break
-
-			case 36:
-				newActor(JellyFish, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 37:
-				newActor(Clamor, i.x + 8, i.y - 8, i.name)
-				game.enemies++
-				break
-
-			case 38:
-				newActor(ItemBlock, i.x + 8, i.y - 8, 9)
-				break
-
-			case 40:
-				newActor(SpringD, i.x, i.y - 16, 0)
-				break
-
-			case 41:
-				newActor(SpringD, i.x, i.y - 16, 1)
-				break
-
-			case 42:
-				newActor(SpringD, i.x, i.y - 16, 2)
-				break
-
-			case 43:
-				newActor(SpringD, i.x, i.y - 16, 3)
-				break
-
-			case 44:
-				newActor(GreenFish, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 45:
-				newActor(Icicle, i.x + 8, i.y - 8)
-				break
-
-			case 46:
-				newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
-				game.enemies++
-				break
-
-			case 48:
-				newActor(ColorSwitch, i.x, i.y - 16, 0)
-				break
-
-			case 56:
-				newActor(ColorBlock, i.x, i.y - 16, 0)
-				break
-
-			case 64: //Custom actor gear
-				if(i.name == "") break
-				local arg = split(i.name, ",")
-				local n = arg[0]
-				arg.remove(0)
-				if(arg.len() == 1) arg = arg[0]
-				else if(arg.len() == 0) arg = null
-				print(n)
-				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
-				break
-
-			case 73:
-				newActor(Jumpy, i.x + 8, i.y - 8)
-				game.enemies++
-				break
-
-			case 75:
-				newActor(EvilBlock, i.x + 8, i.y - 8)
-				break
+				arg[0] = poly
+				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x, i.y, arg)
+			}
 		}
 	}
 

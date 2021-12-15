@@ -121,3 +121,17 @@
 		update()
 	}
 }
+
+::PolyTest <- class extends Actor {
+	path = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		path = _arr[0]
+	}
+
+	function run() {
+		setDrawColor(0xff0000ff)
+		for(local i = 0; i < path.len() - 1; i++) drawLine(path[i][0] - camx, path[i][1] - camy, path[i + 1][0] - camx, path[i + 1][1] - camy)
+	}
+}
