@@ -780,18 +780,22 @@
 
 ::CannonBob <- class extends Enemy {
 	vspeed = -2
+	sprite = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 6, 6, 0)
+
+		if(_arr == null) sprite = sprCannonBob
+		else sprite = _arr
 	}
 
 	function run() {
 		base.run()
 
 		if(!frozen) {
-			if(hspeed < 0) drawSpriteEx(sprCannonBob, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, 1)
-			else drawSpriteEx(sprCannonBob, getFrames() / 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+			if(hspeed < 0) drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, 1)
+			else drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 1, 1, 1, 1)
 
 			vspeed += 0.05
 			x += hspeed
@@ -809,8 +813,8 @@
 			}
 		}
 		else {
-			if(hspeed < 0) drawSpriteEx(sprCannonBob, 4, x - camx, y - camy, 0, 1, 1, 1, 1)
-			else drawSpriteEx(sprCannonBob, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
+			if(hspeed < 0) drawSpriteEx(sprite, 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+			else drawSpriteEx(sprite, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
 
 			//Create ice block
 			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
@@ -827,7 +831,7 @@
 
 	function gethurt() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprCannonBob
+		actor[c].sprite = sprite
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
 		actor[c].hspeed = (gvPlayer.hspeed / 16)
 		deleteActor(id)

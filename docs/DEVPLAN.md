@@ -13,3 +13,7 @@ In the air, Konqi can execute a ground pound by pressing down. This will let him
 Double tapping down or sliding into a narrow space will make him curl into his transphere, which behaves like the morphball from Metroid, except that it responds to slopes and only appears to be rolling when in motion. Bombs can be dropped in this form, and will behave like they do in Metroid, defying gravity and exploding after a short time. Due to limited energy, infinite bomb jumping can't be done.
 
 ## Enemies
+
+* **Snail**: Works like a koopa troopa. Red will walk off edges, blue will turn around, and punkle will climb walls.
+
+* **Haywire**: Works like Carl Boom, but instead of standing still, it chases after the player for a few seconds before exploding.
