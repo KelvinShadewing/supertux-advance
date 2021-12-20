@@ -128,4 +128,4 @@ Click each mascot to learn more about them and the projects they're associated w
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
 
-Blinkehyo, Cosmo Space Dragon, Hazel Roo, Kevin Pandaheart, Keyla Otter, Luke the Foxen, Neon Blade, Bazzel, Admiral Spraker
+[Blinkehyo](https://www.youtube.com/c/Blinkehyo), [Cosmo Space Dragon](https://www.youtube.com/channel/UCUWmz_daYiPH0YJ-SzLssAg), Hazel Roo, [Kevin Pandaheart](https://www.youtube.com/fichinga), Keyla Otter, [Luke the Foxen](https://www.deviantart.com/lukethefoxen), Neon Blade, Bazzel, [Admiral Spraker](https://www.twitch.tv/adm_spraker)

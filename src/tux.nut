@@ -582,6 +582,7 @@
 			if(vspeed > 0) vspeed -= friction / 2
 			if(vspeed < 0) vspeed += friction / 2
 			if(abs(vspeed) < friction / 2) vspeed = 0.0
+			if(vspeed > 2) vspeed -= 0.2
 
 			//Change facing
 			if(anim != anClimb && anim != anWall) {
