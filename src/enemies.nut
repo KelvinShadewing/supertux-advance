@@ -1413,7 +1413,11 @@
 			}
 
 			drawSpriteEx(sprFlyAmanita, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
-			drawSprite(sprIceTrapSmall, 0, x - camx, y - camy)
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
 
 		shape.setPos(x, y)
