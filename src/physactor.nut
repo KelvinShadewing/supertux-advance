@@ -254,6 +254,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 38: //One Way
+						case 50:
 							local nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
 							gvMap.shape.kind = 0
@@ -396,23 +397,32 @@
 		local cy = floor(y / 16) + 1
 
 		//Check that the solid layer exists
-		local wl = null //Working layer
-		for(local i = 0; i < gvMap.data.layers.len(); i++) {
-			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
-				wl = gvMap.data.layers[i]
-				break
-			}
-		}
+		local wl = gvMap.solidLayer
 
 		//Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
-			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 38) {
-				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 4)
-				gvMap.shape.kind = 0
-				gvMap.shape.w = 8.0
-				gvMap.shape.h = 4.0
-				if(hitTest(ns, gvMap.shape)) return true
+			if(tile >= 0 && tile < wl.data.len()) switch(wl.data[tile] - gvMap.solidfid) {
+				case 38:
+				case 50:
+					gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 4)
+					gvMap.shape.kind = 0
+					gvMap.shape.w = 8.0
+					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
+					break
+				case 44: //R diag
+					break
+				case 45: //L 2/2
+					break
+				case 46: //L 1/2
+					break
+				case 47: //R 1/2
+					break
+				case 48: //R 2/2
+					break
+				case 49: //L diag
+					break
 			}
 		}
 

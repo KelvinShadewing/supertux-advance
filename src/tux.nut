@@ -318,6 +318,7 @@
 					if(felloff) {
 						anim = anFall
 						frame = anim[0]
+						if(getcon("up", "hold")) vspeed = -2.0
 					}
 
 					//Change direction
@@ -801,11 +802,11 @@
 		//Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
-			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29) {
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50) {
 				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
 				gvMap.shape.kind = 0
 				gvMap.shape.w = 1.0
-				gvMap.shape.h = 8.0
+				gvMap.shape.h = 12.0
 				if(hitTest(ns, gvMap.shape)) return true
 			}
 		}
