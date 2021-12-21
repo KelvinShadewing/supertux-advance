@@ -4,14 +4,13 @@
 
 ::WoodBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	slideshape = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
+		tileSetSolid(x, y, 1)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
 		slideshape = Rec(x, y - 1, 12, 8, 0)
 	}
 
@@ -19,18 +18,18 @@
 		if(gvPlayer != 0) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
-				mapDeleteSolid(mapshape)
 				deleteActor(id)
 				newActor(WoodChunks, x, y)
 				playSound(sndBump, 0)
+				tileSetSolid(x, y, 0)
 			}
 
 			if(abs(gvPlayer.hspeed) >= 3 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
-				mapDeleteSolid(mapshape)
 				deleteActor(id)
 				newActor(WoodChunks, x, y)
 				playSound(sndBump, 0)
+				tileSetSolid(x, y, 0)
 			}
 		}
 
@@ -42,7 +41,6 @@
 
 ::IceBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	slideshape = 0
 	fireshape = 0
 
@@ -50,16 +48,16 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
 		slideshape = Rec(x, y - 1, 12, 8, 0)
 		fireshape = Rec(x, y, 12, 12, 0)
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
 		if(gvPlayer != 0) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
-				mapDeleteSolid(mapshape)
+				tileSetSolid(x, y, 0)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
 				playSound(sndBump, 0)
@@ -67,7 +65,7 @@
 
 			if(abs(gvPlayer.hspeed) >= 3 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
-				mapDeleteSolid(mapshape)
+				tileSetSolid(x, y, 0)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
 				playSound(sndBump, 0)
@@ -75,7 +73,7 @@
 		}
 
 		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
-			mapDeleteSolid(mapshape)
+			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			deleteActor(i.id)
 			newActor(Poof, x, y)
@@ -111,7 +109,6 @@
 
 ::ItemBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	full = true
 	v = 0.0
 	vspeed = 0.0
@@ -122,7 +119,7 @@
 		item = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
@@ -181,7 +178,7 @@
 					//1up item
 					newActor(OneUp, x, y - 16)
 					break
-				
+
 				case 9:
 					newActor(MuffinBomb, x, y - 16)
 					break
@@ -204,7 +201,6 @@
 
 ::TriggerBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	full = true
 	v = 0.0
 	vspeed = 0.0
@@ -216,7 +212,7 @@
 		code = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
@@ -245,7 +241,6 @@
 
 ::InfoBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	full = true
 	v = 0.0
 	vspeed = 0.0
@@ -257,7 +252,7 @@
 		text = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
@@ -317,7 +312,6 @@
 
 ::BounceBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	full = true
 	v = 0.0
 	vspeed = 0.0
@@ -327,8 +321,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		shape = Rec(x, y, 8, 9, 0)
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
@@ -400,7 +394,6 @@
 
 ::TNT <- class extends Actor {
 	shape = null
-	mapshape = null
 	gothit = false
 	hittime = 0.0
 	frame = 0.0
@@ -410,7 +403,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)
-		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		tileSetSolid(x, y, 1)
 		fireshape = Rec(x, y, 12, 12, 0)
 	}
 
@@ -419,7 +412,7 @@
 			hittime++
 			frame += 0.002 * hittime
 			if(hittime >= 150) {
-				mapDeleteSolid(mapshape)
+				tileSetSolid(x, y, 0)
 				deleteActor(id)
 				newActor(BadExplode, x, y)
 			}
@@ -433,7 +426,7 @@
 		}
 
 		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) if(hitTest(fireshape, i.shape)) {
-			mapDeleteSolid(mapshape)
+			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			newActor(BadExplode, x, y)
 			deleteActor(i.id)
@@ -447,7 +440,6 @@
 
 ::C4 <- class extends Actor {
 	shape = null
-	mapshape = null
 	gothit = false
 	hittime = 0.0
 	frame = 0.0
@@ -456,7 +448,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)
-		mapshape = mapNewSolid(Rec(x, y, 8, 8, 0))
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
@@ -537,14 +529,13 @@
 
 ::EvilBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	slideshape = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		tileSetSolid(x, y, 1)
 		slideshape = Rec(x, y - 1, 12, 8, 0)
 	}
 
@@ -569,7 +560,6 @@
 
 ::BreakBlock <- class extends Actor {
 	shape = 0
-	mapshape = 0
 	slideshape = 0
 	tile = 0
 	solidtile = 0
@@ -580,7 +570,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		mapshape = mapNewSolid(Rec(x, y - 2, 8, 6, 0))
+		tileSetSolid(x, y, 1)
 		slideshape = Rec(x, y - 1, 12, 8, 0)
 
 		//Get graphic layer
