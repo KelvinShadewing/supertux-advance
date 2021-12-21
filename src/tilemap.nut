@@ -78,6 +78,7 @@
 	solidfid = 0 //First tile ID for the solid tileset
 	shape = null
 	anim = null //List of animated tiles
+	solidLayer = null
 
 	constructor(filename) {
 		tileset = []
@@ -194,6 +195,13 @@
 					if(l.data[i] != 0) geo.push(Rec((i * 16) + 8, -1000, 8, 1000, 0))
 				}
 			}
+
+			for(local i = 0; i < data.layers.len(); i++) {
+			if(data.layers[i].type == "tilelayer" && data.layers[i].name == "solid") {
+				solidLayer = data.layers[i]
+				break
+			}
+		}
 		}
 		else print("Map file " + filename + " does not exist!")
 	}
@@ -254,4 +262,25 @@
 
 ::mapDeleteSolid <- function(index) {
 	if(index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) gvMap.geo[index] = null
+}
+
+::tileSetSolid <- function(tx, ty, st) { //Tile X, tile Y, solid type
+	if(st < 0) return
+	local cx = floor(tx / 16)
+	local cy = floor(ty / 16)
+	local tile = cx + (cy * gvMap.solidLayer.width)
+
+	if(st == 0) {
+		if(tile >= 0 && tile < gvMap.solidLayer.data.len()) gvMap.solidLayer.data[tile] = 0
+	}
+	else if(tile >= 0 && tile < gvMap.solidLayer.data.len()) gvMap.solidLayer.data[tile] = gvMap.solidfid + (st - 1)
+}
+
+::tileGetSolid <- function(tx, ty) {
+	local tile = floor(tx / 16) + (floor(ty / 16) * gvMap.solidLayer.width)
+
+	if(tile >= 0 && tile < gvMap.solidLayer.data.len()) {
+		if(gvMap.solidLayer.data[tile] == 0) return 0
+		else return (gvMap.solidLayer.data[tile] - gvMap.solidfid + 1)
+	}
 }
