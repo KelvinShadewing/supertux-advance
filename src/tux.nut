@@ -363,12 +363,12 @@
 						if(game.weapon != 3) playSound(sndJump, 0)
 						else playSound(sndFlap, 0)
 					}
-					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0) {
+					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0 && tileGetSolid(x - 8, y) != 40) {
 						flip = 0
 						anim = anWall
 						frame = anim[0]
 					}
-					else if(freeDown && anim != anClimb && !placeFree(x + 2, y) && anim != anWall && hspeed >= 0) {
+					else if(freeDown && anim != anClimb && !placeFree(x + 2, y) && anim != anWall && hspeed >= 0 && tileGetSolid(x + 8, y) != 40) {
 						flip = 1
 						anim = anWall
 						frame = anim[0]
@@ -713,6 +713,10 @@
 			return
 		}
 		if(y < -100) y = -100.0
+
+		//Set ice friction
+		if(tileGetSolid(x, y + 16) == 40) friction = 0.025
+		else friction = 0.05
 
 		//Hurt
 		if(onHazard(x, y)) hurt = true
