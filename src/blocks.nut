@@ -432,7 +432,11 @@
 			deleteActor(i.id)
 		}
 
-		drawSprite(sprTNT, frame, x - 8 - camx, y - 8 - camy)
+		if(gothit) {
+			if(hittime > 120) drawSpriteEx(sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), y - 8 - camy + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), 0, 0, 1.0 + ((0.25 / 150.0) * hittime), 1.0 + ((0.25 / 150.0) * hittime), 1)
+			else drawSprite(sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4), y - 8 - camy + ((randInt(8) - 4) / 4))
+		}
+		else drawSprite(sprTNT, frame, x - 8 - camx, y - 8 - camy)
 	}
 
 	function _typeof() { return "TNT" }
