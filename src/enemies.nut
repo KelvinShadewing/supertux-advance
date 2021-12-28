@@ -63,6 +63,25 @@
 				newActor(Glimmer, shape.x - (shape.w + 4) + randInt((shape.w * 2) + 8), shape.y - (shape.h + 4) + randInt((shape.h * 2) + 8))
 				if(randInt(50) % 2 == 0) newActor(Glimmer, shape.x - (shape.w + 4) + randInt((shape.w * 2) + 8), shape.y - (shape.h + 4) + randInt((shape.h * 2) + 8))
 			}
+
+			//Shatter when slid into while frozen
+			if(gvPlayer.rawin("anSlide")) {
+				if(gvPlayer.anim == gvPlayer.anSlide) {
+					shape.setPos(x - 2, y)
+					if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed >= 1) {
+						frozen = 0
+						gethurt()
+						mapDeleteSolid(icebox)
+					}
+					shape.setPos(x + 2, y)
+					if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed <= -1) {
+						frozen = 0
+						gethurt()
+						mapDeleteSolid(icebox)
+					}
+					shape.setPos(x, y)
+				}
+			}
 		}
 	}
 
