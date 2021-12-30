@@ -65,7 +65,7 @@
 			}
 
 			//Shatter when slid into while frozen
-			if(gvPlayer.rawin("anSlide")) {
+			if(gvPlayer != 0) if(gvPlayer.rawin("anSlide")) {
 				if(gvPlayer.anim == gvPlayer.anSlide) {
 					shape.setPos(x - 2, y)
 					if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed >= 1) {
