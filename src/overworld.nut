@@ -135,21 +135,21 @@
 				switch(nextdir) {
 					case 0:
 						vspeed = 0
-						hspeed = 1
+						hspeed = 2
 						game.owd = 2
 						break
 					case 1:
-						vspeed = -1
+						vspeed = -2
 						hspeed = 0
 						game.owd = 3
 						break
 					case 2:
 						vspeed = 0
-						hspeed = -1
+						hspeed = -2
 						game.owd = 0
 						break
 					case 3:
-						vspeed = 1
+						vspeed = 2
 						hspeed = 0
 						game.owd = 1
 						break
@@ -164,37 +164,37 @@
 			//Move right
 			if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
 				if(level == "" || game.owd == 0) {
-					hspeed = 1
+					hspeed = 2
 					game.owd = 2
 				}
-				else if(game.completed.rawin(level)) hspeed = 1
+				else if(game.completed.rawin(level)) hspeed = 2
 			}
 
 			//Move up
 			if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
 				if(level == "" || game.owd == 1) {
-					vspeed = -1
+					vspeed = -2
 					game.owd = 3
 				}
-				else if(game.completed.rawin(level)) vspeed = -1
+				else if(game.completed.rawin(level)) vspeed = -2
 			}
 
 			//Move left
 			if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
 				if(level == "" || game.owd == 2) {
-					hspeed = -1
+					hspeed = -2
 					game.owd = 0
 				}
-				else if(game.completed.rawin(level)) hspeed = -1
+				else if(game.completed.rawin(level)) hspeed = -2
 			}
 
 			//Move down
 			if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
 				if(level == "" || game.owd == 3) {
-					vspeed = 1
+					vspeed = 2
 					game.owd = 1
 				}
-				else if(game.completed.rawin(level)) vspeed = 1
+				else if(game.completed.rawin(level)) vspeed = 2
 			}
 		}
 

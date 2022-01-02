@@ -5,7 +5,7 @@
 ::Tux <- class extends PhysAct {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
-	friction = 0.05
+	friction = 0.1
 	gravity = 0.0
 	frame = 0.0
 	flip = 0
@@ -192,9 +192,9 @@
 					vspeed = 0
 
 					if(floor(frame) > anim[1]) {
-						vspeed = -3.2
-						if(flip == 0) hspeed = 2
-						else hspeed = -2
+						vspeed = -5.5
+						if(flip == 0) hspeed = 3.0
+						else hspeed = -3.0
 						anim = anJumpU
 						frame = anim[0]
 					}
@@ -237,7 +237,7 @@
 					else anim = anJumpU
 					frame = anim[0]
 					vspeed -= 1
-					if(getcon("jump", "hold") && vspeed > -4) vspeed = -4
+					if(getcon("jump", "hold") && vspeed > -4) vspeed = -6
 					break
 
 				case anSwimDF:
@@ -251,20 +251,21 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
-				if(!placeFree(x, y + 2) && (abs(hspeed) < 4 || (abs(hspeed) < 6 && game.weapon == 2))) {
-					if(placeFree(x + 4, y + 2)) hspeed += 0.1
-					if(placeFree(x - 4, y + 2)) hspeed -= 0.1
+				if(!placeFree(x, y + 2) && (abs(hspeed) < 16 || (abs(hspeed) < 16 && game.weapon == 2))) {
+					if(placeFree(x + 4, y + 2)) hspeed += 0.3
+					if(placeFree(x - 4, y + 2)) hspeed -= 0.3
+					vspeed += 0.8
 
 					if(placeFree(x + 4, y + 4)) {
-						hspeed += 0.1
-						vspeed += 1.0
-						if(!placeFree(x - 2, y + 2) && hspeed < 0) hspeed += 0.02
+						hspeed += 0.2
+						vspeed += 2.0
+						if(!placeFree(x - 2, y + 2) && hspeed < 0) hspeed += 0.2
 					}
 
 					if(placeFree(x - 4, y + 4)) {
-						hspeed -= 0.1
-						vspeed += 1.0
-						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.02
+						hspeed -= 0.2
+						vspeed += 2.0
+						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.2
 					}
 				}
 
@@ -286,16 +287,16 @@
 				if(game.weapon == 3 && energy < 1) energy += 0.01
 			}
 			if(canMove) {
-				if(getcon("run", "hold") || abs(joyX(0)) >= js_max * 0.9) {
-					if(game.weapon == 2) mspeed = 2.0
-					else mspeed = 1.75
+				if(getcon("run", "hold") || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9)) {
+					if(game.weapon == 2) mspeed = 5.0
+					else mspeed = 3.0
 				}
-				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1)) mspeed = 0.5
-				else mspeed = 1
+				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 1.0
+				else mspeed = 1.0
 
 				//Moving left and right
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed += 0.1
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed -= 0.1
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed += 0.2
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed -= 0.2
 
 				//On a ladder
 				if(anim == anClimb) {
@@ -352,8 +353,8 @@
 					}
 					else if(canJump > 0) {
 						jumpBuffer = 0
-						if(game.weapon == 3) vspeed = -3
-						else vspeed = -3.8
+						if(game.weapon == 3) vspeed = -4.0
+						else vspeed = -6.0
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive) {
@@ -393,7 +394,7 @@
 				if(getcon("jump", "release") && vspeed < 0 && didJump)
 				{
 					didJump = false
-					vspeed /= 2
+					vspeed /= 3
 				}
 
 				//Going into slide
@@ -419,15 +420,15 @@
 			//Movement
 			if(!freeDown2) {
 				if(anim == anSlide) {
-					if(hspeed > 0) hspeed -= friction / 3
-					if(hspeed < 0) hspeed += friction / 3
+					if(hspeed > 0) hspeed -= friction / 2
+					if(hspeed < 0) hspeed += friction / 2
 					if(abs(hspeed) == 0) {
 						if(placeFree(x, y - 16)) {
 							anim = anStand
 							shape = shapeStand
 						} else {
-							if(getcon("left", "hold")) hspeed -= 0.1
-							if(getcon("right", "hold")) hspeed += 0.1
+							if(getcon("left", "hold")) hspeed -= 0.2
+							if(getcon("right", "hold")) hspeed += 0.2
 						}
 					}
 				} else {
@@ -447,28 +448,28 @@
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 1.5 || (vspeed < 3 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 6 || (vspeed < 6 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 			if(!freeDown && vspeed >= 0) {
 				//If Tux hits the ground while sliding
-				if(anim == anSlide) {
-					if(flip) hspeed -= vspeed / 5
-					else hspeed += vspeed / 5
+				if(anim == anSlide && vspeed > 1) {
+					if(flip) hspeed -= vspeed / 12
+					else hspeed += vspeed / 12
 
 					if(game.weapon == 2) {
-						if(hspeed > 6) hspeed = 6
-						if(hspeed < -6) hspeed = -6
+						if(hspeed > 12) hspeed = 12
+						if(hspeed < -12) hspeed = -12
 					}
 					else {
-						if(hspeed > 4) hspeed = 4
-						if(hspeed < -4) hspeed = -4
+						if(hspeed > 8) hspeed = 8
+						if(hspeed < -8) hspeed = -8
 					}
 				} else vspeed = 0.0
 			}
 
 			//Gravity cases
-			if(game.weapon == 3) gravity = 0.05
-			else gravity = 0.11
+			if(game.weapon == 3) gravity = 0.1
+			else gravity = 0.3
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
@@ -564,16 +565,16 @@
 			//Movement
 			if(canMove) {
 				if(getcon("run", "hold") || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9)) {
-					if(game.weapon == 2) mspeed = 2.0
-					else mspeed = 1.75
+					if(game.weapon == 2) mspeed = 5.0
+					else mspeed = 3.0
 				}
-				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 0.5
-				else mspeed = 1
+				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 1.0
+				else mspeed = 1.0
 
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.05
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.05
-				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.05
-				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.05
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.2
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.2
+				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.2
+				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.2
 			}
 
 			//Friction
@@ -715,8 +716,8 @@
 		if(y < -100) y = -100.0
 
 		//Set ice friction
-		if(tileGetSolid(x, y + 16) == 40) friction = 0.025
-		else friction = 0.05
+		if(tileGetSolid(x, y + 16) == 40) friction = 0.05
+		else friction = 0.1
 
 		//Hurt
 		if(onHazard(x, y)) hurt = true

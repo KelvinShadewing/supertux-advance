@@ -62,13 +62,10 @@
 	drawSprite(sprDebug, getcon("shoot", "hold").tointeger() + 10, 12, 72)
 	drawSprite(sprDebug, getcon("run", "hold").tointeger() + 12, 20, 72)
 
-	message += "HSPD:"
-	if(gvPlayer != 0) for(local i = 0; i < abs(round(gvPlayer.hspeed * 2)); i++) message += chint(16)
-	message += "\nVSPD:"
-	if(gvPlayer != 0) {
-		if(gvPlayer.vspeed < 0) for(local i = 0; i < abs(round(gvPlayer.vspeed * 2)); i++) message += chint(30)
-		else for(local i = 0; i < abs(round(gvPlayer.vspeed * 2)); i++) message += chint(31)
-	}
+	message += "HSPD: "
+	message += round(gvPlayer.hspeed).tostring()
+	message += "\nVSPD: "
+	message += round(gvPlayer.vspeed).tostring()
 	message += "\n\n"
 	if(gvMap != 0) message += "Map W: " + gvMap.w + "\n"
 	if(gvMap != 0) message += "Map H: " + gvMap.h + "\n"
