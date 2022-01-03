@@ -422,8 +422,8 @@
 			//Movement
 			if(!freeDown2) {
 				if(anim == anSlide) {
-					if(hspeed > 0) hspeed -= friction / 2.0
-					if(hspeed < 0) hspeed += friction / 2.0
+					if(hspeed > 0) hspeed -= friction / 3.0
+					if(hspeed < 0) hspeed += friction / 3.0
 					if(abs(hspeed) <= 0.2) {
 						if(placeFree(x, y - 16)) {
 							anim = anStand

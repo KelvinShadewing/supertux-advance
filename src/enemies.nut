@@ -1354,9 +1354,9 @@
 		base.run()
 		if(gvPlayer != 0) gvPlayer.x < x ? flip = 1 : flip = 0
 
-		if(distance2(x, y, x, ystart) < 16) vspeed = ((1.0 / 16.0) * distance2(x, y, x, ystart)) * dir
-		else if(distance2(x, y, x, ystart + range) < 16) vspeed = ((1.0 / 16.0) * distance2(x, y, x, ystart + range)) * dir
-		else vspeed = dir
+		if(distance2(x, y, x, ystart) < 16) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart)) * dir
+		else if(distance2(x, y, x, ystart + range) < 16) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart + range)) * dir
+		else vspeed = dir * 2.0
 
 		vspeed += dir * 0.2
 		if(range == 0) vspeed = 0
@@ -1415,9 +1415,12 @@
 		deleteActor(id)
 		playSound(sndKick, 0)
 
-		if(getcon("jump", "hold")) gvPlayer.vspeed = -5
+		if(getcon("jump", "hold")) {
+			gvPlayer.vspeed = -8
+			playSound(sndSquish, 0)
+		}
 		else {
-			gvPlayer.vspeed = -2
+			gvPlayer.vspeed = -4
 			playSound(sndSquish, 0)
 		}
 
