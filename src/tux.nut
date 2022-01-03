@@ -58,6 +58,7 @@
 		if(gvPlayer == 0) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
+		energy = game.maxenergy
 	}
 
 	function run() {
@@ -488,7 +489,10 @@
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						playSound(sndFireball, 0)
-						if(getcon("up", "hold")) c.vspeed = -2
+						if(getcon("up", "hold")) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
 						if(getcon("down", "hold")) {
 							c.vspeed = 2
 							c.hspeed /= 1.5
