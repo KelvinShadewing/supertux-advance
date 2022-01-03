@@ -102,7 +102,7 @@
 					if(game.weapon == 2 && floor(frame) == 0) frame += 0.01
 					else if(game.weapon == 2 || game.weapon == 1) frame += 0.1
 					else if(game.weapon == 3) frame += 0.05
-					else frame += 0.03
+					else frame += 0.05
 
 					if(hspeed != 0) {
 						anim = anWalk
@@ -119,7 +119,7 @@
 				case anWalk:
 					frame += abs(hspeed) / 8
 					if(hspeed == 0) anim = anStand
-					if(abs(hspeed) > 1.4) anim = anRun
+					if(abs(hspeed) > 2.4) anim = anRun
 
 					if(placeFree(x, y + 2)) {
 						if(vspeed >= 0) anim = anFall
@@ -142,7 +142,7 @@
 
 					if(game.weapon == 2) frame+= abs(hspeed) / 16
 					else frame += abs(hspeed) / 8
-					if(abs(hspeed) < 1.2) anim = anWalk
+					if(abs(hspeed) < 2) anim = anWalk
 
 					if(placeFree(x, y + 2)) {
 						if(vspeed >= 0) anim = anFall
@@ -188,11 +188,11 @@
 					break
 
 				case anWall:
-					frame += 0.15
+					frame += 0.4
 					vspeed = 0
 
 					if(floor(frame) > anim[1]) {
-						vspeed = -5.5
+						vspeed = -5.0
 						if(flip == 0) hspeed = 3.0
 						else hspeed = -3.0
 						anim = anJumpU
@@ -251,25 +251,25 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
-				if(!placeFree(x, y + 2) && (abs(hspeed) < 16 || (abs(hspeed) < 16 && game.weapon == 2))) {
-					if(placeFree(x + 4, y + 2)) hspeed += 0.3
-					if(placeFree(x - 4, y + 2)) hspeed -= 0.3
-					vspeed += 0.8
+				if(!placeFree(x, y + 2) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
+					if(placeFree(x + 4, y + 2)) hspeed += 0.2
+					if(placeFree(x - 4, y + 2)) hspeed -= 0.2
+					if(freeDown)vspeed += 1.0
 
 					if(placeFree(x + 4, y + 4)) {
 						hspeed += 0.2
 						vspeed += 2.0
-						if(!placeFree(x - 2, y + 2) && hspeed < 0) hspeed += 0.2
+						if(!placeFree(x - 2, y + 2) && hspeed < 0) hspeed += 0.1
 					}
 
 					if(placeFree(x - 4, y + 4)) {
 						hspeed -= 0.2
 						vspeed += 2.0
-						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.2
+						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.1
 					}
 				}
 
-				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.01) anim = anWalk
+				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -292,7 +292,7 @@
 					else mspeed = 3.0
 				}
 				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 1.0
-				else mspeed = 1.0
+				else mspeed = 2.0
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed += 0.2
@@ -303,14 +303,14 @@
 					vspeed = 0
 
 					//Ladder controls
-					if(getcon("up", "hold")) if(placeFree(x, y - 1)) {
+					if(getcon("up", "hold")) if(placeFree(x, y - 2)) {
 						frame -= climbdir / 8
-						y--
+						y -= 2
 					}
 
-					if(getcon("down", "hold")) if(placeFree(x, y + 1)) {
+					if(getcon("down", "hold")) if(placeFree(x, y + 2)) {
 						frame += climbdir / 8
-						y++
+						y += 2
 					}
 
 					//Check if still on ladder
@@ -319,7 +319,7 @@
 					if(felloff) {
 						anim = anFall
 						frame = anim[0]
-						if(getcon("up", "hold")) vspeed = -2.0
+						if(getcon("up", "hold")) vspeed = -2.5
 					}
 
 					//Change direction
@@ -394,7 +394,7 @@
 				if(getcon("jump", "release") && vspeed < 0 && didJump)
 				{
 					didJump = false
-					vspeed /= 3
+					vspeed /= 2.5
 				}
 
 				//Going into slide
@@ -414,15 +414,15 @@
 					}
 				}
 			} else {
-				if(hspeed < 0.75 && endmode) hspeed += 0.1
+				if(hspeed < 1 && endmode) hspeed += 0.2
 			}
 
 			//Movement
 			if(!freeDown2) {
 				if(anim == anSlide) {
-					if(hspeed > 0) hspeed -= friction / 2
-					if(hspeed < 0) hspeed += friction / 2
-					if(abs(hspeed) == 0) {
+					if(hspeed > 0) hspeed -= friction / 2.0
+					if(hspeed < 0) hspeed += friction / 2.0
+					if(abs(hspeed) <= 0.2) {
 						if(placeFree(x, y - 16)) {
 							anim = anStand
 							shape = shapeStand
@@ -434,27 +434,28 @@
 				} else {
 					if(hspeed > 0) {
 						if(!getcon("right", "hold")) hspeed -= friction
-						else hspeed -= friction / 4
+						else hspeed -= friction / 4.0
 					}
 					if(hspeed < 0) {
 						if(!getcon("left", "hold")) hspeed += friction
-						else hspeed += friction / 4
+						else hspeed += friction / 4.0
 					}
 				}
 			}
 			else if(anim != anSlide && anim != anDive) {
-				if(hspeed > 0 && !getcon("right", "hold")) hspeed -= friction / 3
-				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3
+				if(hspeed > 0 && !getcon("right", "hold")) hspeed -= friction / 3.0
+				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3.0
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 6 || (vspeed < 6 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 5 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 			if(!freeDown && vspeed >= 0) {
 				//If Tux hits the ground while sliding
 				if(anim == anSlide && vspeed > 1) {
-					if(flip) hspeed -= vspeed / 12
-					else hspeed += vspeed / 12
+					if(flip) hspeed -= vspeed / 4
+					else hspeed += vspeed / 4
+					vspeed /= 2
 
 					if(game.weapon == 2) {
 						if(hspeed > 12) hspeed = 12
@@ -469,7 +470,7 @@
 
 			//Gravity cases
 			if(game.weapon == 3) gravity = 0.1
-			else gravity = 0.3
+			else gravity = 0.25
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
@@ -479,8 +480,8 @@
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
-						if(!flip) c.hspeed = 3
-						else c.hspeed = -3
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {
@@ -497,8 +498,8 @@
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
-						if(!flip) c.hspeed = 3
-						else c.hspeed = -3
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) c.vspeed = -2
 						if(getcon("down", "hold")) {
@@ -565,16 +566,16 @@
 			//Movement
 			if(canMove) {
 				if(getcon("run", "hold") || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9)) {
-					if(game.weapon == 2) mspeed = 5.0
-					else mspeed = 3.0
+					if(game.weapon == 2) mspeed = 3.0
+					else mspeed = 2.8
 				}
-				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 1.0
+				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 2.0
 				else mspeed = 1.0
 
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.2
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.2
-				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.2
-				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.2
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
+				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
+				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
 			}
 
 			//Friction
@@ -584,7 +585,7 @@
 			if(vspeed > 0) vspeed -= friction / 2
 			if(vspeed < 0) vspeed += friction / 2
 			if(abs(vspeed) < friction / 2) vspeed = 0.0
-			if(vspeed > 2) vspeed -= 0.2
+			if(vspeed > 4) vspeed -= 0.2
 
 			//Change facing
 			if(anim != anClimb && anim != anWall) {
@@ -598,29 +599,29 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Fireball, x + fx, y - 4)]
-						if(!flip) c.hspeed = 1.5
-						else c.hspeed = -1.5
+						local c = actor[newActor(Fireball, x + fx, y)]
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) {
-							c.vspeed = -1.0
+							c.vspeed = -3
 							if(hspeed != 0) c.hspeed *= 0.75
 							else {
 								c.hspeed = 0
-								c.vspeed = -1.5
+								c.vspeed = -3
 							}
 						}
 						if(getcon("down", "hold")) {
-							c.vspeed = 1.0
+							c.vspeed = 3
 							if(hspeed != 0) c.hspeed *= 0.75
 							else {
 								c.hspeed = 0
-								c.vspeed = 1.5
+								c.vspeed = 3
 							}
 						}
 
-						c.hspeed += hspeed / 1.5
-						c.vspeed += vspeed / 1.5
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
 
 						energy--
 						firetime = 60
@@ -631,24 +632,24 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Iceball, x + fx, y - 4)]
-						if(!flip) c.hspeed = 1.5
-						else c.hspeed = -1.5
+						local c = actor[newActor(Iceball, x + fx, y)]
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) {
-							c.vspeed = -1.0
+							c.vspeed = -3
 							if(hspeed != 0) c.hspeed *= 0.75
 							else {
 								c.hspeed = 0
-								c.vspeed = -1.5
+								c.vspeed = -3
 							}
 						}
 						if(getcon("down", "hold")) {
-							c.vspeed = 1.0
+							c.vspeed = 3
 							if(hspeed != 0) c.hspeed *= 0.75
 							else {
 								c.hspeed = 0
-								c.vspeed = 1.5
+								c.vspeed = 3
 							}
 						}
 
@@ -879,8 +880,8 @@
 }
 
 ::TuxDie <- class extends Actor {
-	vspeed = -3.0
-	timer = 300
+	vspeed = -4.0
+	timer = 150
 	mywep = 0
 
 	constructor(_x, _y, _arr = null) {
@@ -892,7 +893,7 @@
 	}
 
 	function run() {
-		vspeed += 0.05
+		vspeed += 0.1
 		y += vspeed
 		timer--
 		if(timer == 0) {

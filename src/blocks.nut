@@ -11,7 +11,7 @@
 		tileSetSolid(x, y, 1)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		slideshape = Rec(x, y - 1, 12, 8, 0)
+		slideshape = Rec(x, y - 1, 16, 8, 0)
 	}
 
 	function run() {
@@ -24,7 +24,7 @@
 				tileSetSolid(x, y, 0)
 			}
 
-			if(abs(gvPlayer.hspeed) >= 3 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+			if(abs(gvPlayer.hspeed) >= 5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				deleteActor(id)
 				newActor(WoodChunks, x, y)
@@ -48,7 +48,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
-		slideshape = Rec(x, y - 1, 12, 8, 0)
+		slideshape = Rec(x, y - 1, 16, 8, 0)
 		fireshape = Rec(x, y, 12, 12, 0)
 		tileSetSolid(x, y, 40)
 	}
@@ -63,7 +63,7 @@
 				playSound(sndBump, 0)
 			}
 
-			if(abs(gvPlayer.hspeed) >= 3 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+			if(abs(gvPlayer.hspeed) >= 4 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, 0)
 				deleteActor(id)
@@ -404,12 +404,12 @@
 
 		shape = Rec(x, y, 10, 10, 0)
 		tileSetSolid(x, y, 1)
-		fireshape = Rec(x, y, 12, 12, 0)
+		fireshape = Rec(x, y, 14, 12, 0)
 	}
 
 	function run() {
 		if(gothit) {
-			hittime++
+			hittime += 2
 			frame += 0.002 * hittime
 			if(hittime >= 150) {
 				tileSetSolid(x, y, 0)

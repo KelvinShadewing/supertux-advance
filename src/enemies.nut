@@ -37,7 +37,6 @@
 			if(actor.rawin("BadExplode")) foreach(i in actor["BadExplode"]) {
 				if(hitTest(shape, i.shape)) {
 					hurtfire()
-					deleteActor(i.id)
 				}
 			}
 			if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"]) {
@@ -140,46 +139,27 @@
 
 				if(!frozen) {
 					if(flip) {
-						if(placeFree(x - 0.5, y)) x -= 0.5
-						else if(placeFree(x - 1.1, y - 0.5)) {
-							x -= 0.5
-							y -= 0.25
-						} else if(placeFree(x - 1.1, y - 1.0)) {
-							x -= 0.5
-							y -= 0.5
-						} else flip = false
-						/*
-						There's a simpler way to do this in theory,
-						but it doesn't work in practice.
-						It should be this:
-
-						else if(placeFree(x - 1.0, y - 1.0)) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
 							x -= 1.0
 							y -= 1.0
-						}
-
-						But for whatever reason, this prevents any
-						movement over a slope that looks like \_.
-						Instead, they just turn around when they reach
-						the bottom of a slope facing right.
-
-						This weird trick of checking twice ahead works,
-						though. Credit to Admiral Spraker for giving me
-						the idea. Another fine example of (/d/d/d).
-						*/
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
 
 						if(smart) if(placeFree(x - 6, y + 12)) flip = false
 
 						if(x <= 0) flip = false
 					}
 					else {
-						if(placeFree(x + 1, y)) x += 0.5
-						else if(placeFree(x + 1.1, y - 0.5)) {
-							x += 0.5
-							y -= 0.25
-						} else if(placeFree(x + 1.1, y - 1.0)) {
-							x += 0.5
-							y -= 0.5
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
 						} else flip = true
 
 						if(smart) if(placeFree(x + 6, y + 12)) flip = true
@@ -245,16 +225,16 @@
 			if(gvPlayer.anim == gvPlayer.anSlide) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprDeathcap
-				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+				actor[c].vspeed = -abs(gvPlayer.hspeed)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
-				actor[c].spin = (gvPlayer.hspeed * 6)
+				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				deleteActor(id)
 				playSound(sndKick, 0)
 			}
-			else if(getcon("jump", "hold")) gvPlayer.vspeed = -5
+			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 			else {
-				gvPlayer.vspeed = -2
+				gvPlayer.vspeed = -4.0
 				playSound(sndSquish, 0)
 			}
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -262,8 +242,8 @@
 				gvPlayer.frame = gvPlayer.anJumpU[0]
 			}
 		}
-		else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
-		else gvPlayer.vspeed = -2
+		else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
+		else gvPlayer.vspeed = -4.0
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
@@ -434,7 +414,7 @@
 	angle = 0.0
 	spin = 0
 	flip = 0
-	gravity = 0.1
+	gravity = 0.2
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -452,7 +432,7 @@
 }
 
 ::CarlBoom <- class extends Enemy {
-
+	burnt = false
 	frame = 0.0
 	flip = false
 	squish = false
@@ -555,7 +535,7 @@
 				}
 			}
 			else {
-				squishTime++
+				squishTime += 1.5
 				frame += 0.002 * squishTime
 				if(squishTime >= 150) {
 					deleteActor(id)
@@ -596,10 +576,13 @@
 	}
 
 	function hurtfire() {
-		newActor(BadExplode, x, y - 1)
-		deleteActor(id)
-		playSound(sndFlame, 0)
-		if(!nocount) game.enemies--
+		if(!burnt) {
+			newActor(BadExplode, x, y - 1)
+			deleteActor(id)
+			playSound(sndFlame, 0)
+			if(!nocount) game.enemies--
+			burnt = true
+		}
 	}
 
 	function _typeof() { return "CarlBoom" }
@@ -619,26 +602,17 @@
 
 	function run() {
 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		frame += 0.1
+		frame += 0.2
 
 		if(gvPlayer != 0) {
 			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.3
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.3
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.4
+				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
 			}
 		}
 		if(frame >= 1) {
-			if(actor.rawin("CarlBoom")) foreach(i in actor["CarlBoom"]) {
-				if(hitTest(shape, i.shape)) {
-					newActor(BadExplode, i.x, i.y)
-					if(i.icebox != -1) mapDeleteSolid(i.icebox)
-					if(!i.nocount) game.enemies--
-					deleteActor(i.id)
-				}
-			}
-
 			if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
 				if(hitTest(shape, i.shape)) {
 					newActor(WoodChunks, i.x, i.y)
@@ -657,6 +631,8 @@
 		}
 		if(frame >= 5) deleteActor(id)
 	}
+
+	function _typeof() { return "BadExplode" }
 }
 
 ::SnowBounce <- class extends Enemy {
@@ -670,7 +646,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 
-		vspeed = -2.5
+		vspeed = -3.0
 	}
 
 	function run() {
@@ -682,10 +658,10 @@
 				else hspeed = 0.5
 			}
 
-			if(!placeFree(x, y + 1)) vspeed = -2.5
-			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -0.5
-			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = 0.5
-			vspeed += 0.05
+			if(!placeFree(x, y + 1)) vspeed = -3.0
+			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -1
+			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = 1
+			vspeed += 0.1
 
 			if(hspeed > 0) flip = 0
 			else flip = 1
@@ -736,8 +712,8 @@
 		newActor(Poof, x, y)
 		deleteActor(id)
 		playSound(sndSquish, 0)
-		if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
-		else gvPlayer.vspeed = -2
+		if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
+		else gvPlayer.vspeed = -4
 		if(!nocount) game.enemies--
 	}
 

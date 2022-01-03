@@ -43,8 +43,8 @@
 	local message = ""
 
 	if(gvPlayer != 0) {
-		message += "X: " + floor(gvPlayer.x) + "\n"
-		message += "Y: " + floor(gvPlayer.y) + "\n"
+		message += "X: " + gvPlayer.x + "\n"
+		message += "Y: " + gvPlayer.y + "\n"
 	}
 	else {
 		message += "X: YOU'RE\nY:  DEAD\n"

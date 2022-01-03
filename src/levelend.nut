@@ -1,7 +1,7 @@
 ::levelEndRunner <- 0 //Stores a reference to the currently-active LevelEnder
 
 ::LevelEnder <- class extends Actor {
-	timer = 360
+	timer = 180
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(0, 0)
@@ -23,7 +23,7 @@
 	if(levelEndRunner == 0){
 		gvPlayer.canMove = false
 		gvPlayer.endmode = true
-		gvPlayer.hspeed = 0.5
+		if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
 		gvPlayer.invincible = 999
 		game.coins += game.levelcoins
 		if(game.levelcoins >= game.maxcoins && !game.allcoins.rawin(gvMap.name)) game.allcoins[gvMap.name] <- true

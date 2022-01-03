@@ -52,7 +52,7 @@
 		angle = (360 / 8) * randInt(8)
 	}
 	function run() {
-		frame += 0.125
+		frame += 0.25
 		if(frame >= 8) deleteActor(id)
 		else drawSpriteEx(sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
@@ -66,7 +66,7 @@
 		base.constructor(_x, _y)
 	}
 	function run() {
-		frame += 0.2
+		frame += 0.25
 		if(frame >= 6) deleteActor(id)
 		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 	}
