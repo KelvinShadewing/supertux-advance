@@ -282,11 +282,11 @@
 			//Controls
 			if(!freeDown2 || anim == anClimb) {
 				canJump = 16
-				if(game.weapon == 3 && energy < 4) energy += 0.1
+				if(game.weapon == 3 && energy < 4) energy += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(game.weapon == 3 && energy < 1) energy += 0.01
+				if(game.weapon == 3 && energy < 1) energy += 0.02
 			}
 			if(canMove) {
 				if(getcon("run", "hold") || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9)) {
@@ -378,7 +378,7 @@
 					}
 					else if(floor(energy) > 0 && game.weapon == 3 && getcon("jump", "press")) {
 						if(vspeed > 0) vspeed = 0.0
-						if(vspeed > -4) vspeed -= 1.8
+						if(vspeed > -4) vspeed -= 2.5
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive) {

@@ -39,15 +39,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 1
-				game.maxenergy = 1
-			}
-			else if(game.weapon == 1) {
-				if(game.maxenergy < 4 - game.difficulty) game.maxenergy++
-				else game.subitem = 1
+				game.maxenergy = 4 - game.difficulty
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxenergy = 1
+				game.maxenergy = 4 - game.difficulty
 				game.weapon = 1
 			}
 			playSound(sndHeal, 0)
@@ -72,15 +68,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 2
-				game.maxenergy = 1
-			}
-			else if(game.weapon == 2) {
-				if(game.maxenergy < 4 - game.difficulty) game.maxenergy++
-				else game.subitem = 1
+				game.maxenergy = 4 - game.difficulty
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxenergy = 1
+				game.maxenergy = 4 - game.difficulty
 				game.weapon = 2
 			}
 			playSound(sndHeal, 0)
