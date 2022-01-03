@@ -24,7 +24,7 @@
 				tileSetSolid(x, y, 0)
 			}
 
-			if(abs(gvPlayer.hspeed) >= 5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+			if(abs(gvPlayer.hspeed) >= 4 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				deleteActor(id)
 				newActor(WoodChunks, x, y)

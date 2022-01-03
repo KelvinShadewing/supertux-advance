@@ -148,7 +148,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(smart) if(placeFree(x - 6, y + 12)) flip = false
+						if(smart) if(placeFree(x - 6, y + 16)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -162,7 +162,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(smart) if(placeFree(x + 6, y + 12)) flip = true
+						if(smart) if(placeFree(x + 6, y + 16)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -457,49 +457,30 @@
 
 				if(!frozen) {
 					if(flip) {
-						if(placeFree(x - 0.5, y)) x -= 0.5
-						else if(placeFree(x - 1.1, y - 0.5)) {
-							x -= 0.5
-							y -= 0.25
-						} else if(placeFree(x - 1.1, y - 1.0)) {
-							x -= 0.5
-							y -= 0.5
-						} else flip = false
-						/*
-						There's a simpler way to do this in theory,
-						but it doesn't work in practice.
-						It should be this:
-
-						else if(placeFree(x - 1.0, y - 1.0)) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
 							x -= 1.0
 							y -= 1.0
-						}
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
 
-						But for whatever reason, this prevents any
-						movement over a slope that looks like \_.
-						Instead, they just turn around when they reach
-						the bottom of a slope facing right.
-
-						This weird trick of checking twice ahead works,
-						though. Credit to Admiral Spraker for giving me
-						the idea. Another fine example of (/d/d/d).
-						*/
-
-						if(placeFree(x - 6, y + 12)) flip = false
+						if(placeFree(x - 6, y + 16)) flip = false
 
 						if(x <= 0) flip = false
 					}
 					else {
-						if(placeFree(x + 1, y)) x += 0.5
-						else if(placeFree(x + 1.1, y - 0.5)) {
-							x += 0.5
-							y -= 0.25
-						} else if(placeFree(x + 1.1, y - 1.0)) {
-							x += 0.5
-							y -= 0.5
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
 						} else flip = true
 
-						if(placeFree(x + 6, y + 12)) flip = true
+						if(placeFree(x + 6, y + 16)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -565,8 +546,8 @@
 		if(squish) return
 
 		playSound(sndFizz, 0)
-		if(getcon("jump", "hold")) gvPlayer.vspeed = -5
-		else gvPlayer.vspeed = -2
+		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
+		else gvPlayer.vspeed = -4
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]

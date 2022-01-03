@@ -188,7 +188,7 @@
 					break
 
 				case anWall:
-					frame += 0.4
+					frame += 0.3
 					vspeed = 0
 
 					if(floor(frame) > anim[1]) {
@@ -267,6 +267,8 @@
 						vspeed += 2.0
 						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.1
 					}
+
+					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed))) vspeed -= 1.0
 				}
 
 				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) anim = anWalk
@@ -354,7 +356,7 @@
 					else if(canJump > 0) {
 						jumpBuffer = 0
 						if(game.weapon == 3) vspeed = -4.0
-						else vspeed = -6.0
+						else vspeed = -5.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive) {
@@ -388,7 +390,7 @@
 						energy--
 					}
 				}
-				if(getcon("jump", "press") && jumpBuffer <= 0 && freeDown) jumpBuffer = 12
+				if(getcon("jump", "press") && jumpBuffer <= 0 && freeDown) jumpBuffer = 8
 				if(jumpBuffer > 0) jumpBuffer--
 
 				if(getcon("jump", "release") && vspeed < 0 && didJump)
@@ -453,19 +455,22 @@
 			if(!freeDown && vspeed >= 0) {
 				//If Tux hits the ground while sliding
 				if(anim == anSlide && vspeed > 1) {
-					if(flip) hspeed -= vspeed / 4
-					else hspeed += vspeed / 4
+					if(flip) hspeed -= vspeed / 3.0
+					else hspeed += vspeed / 3.0
 					vspeed /= 2
-
-					if(game.weapon == 2) {
-						if(hspeed > 12) hspeed = 12
-						if(hspeed < -12) hspeed = -12
-					}
-					else {
-						if(hspeed > 8) hspeed = 8
-						if(hspeed < -8) hspeed = -8
-					}
 				} else vspeed = 0.0
+			}
+
+			//Max ground speed
+			if(!freeDown){
+				if(game.weapon == 2) {
+					if(hspeed > 8) hspeed = 8
+					if(hspeed < -8) hspeed = -8
+				}
+				else {
+					if(hspeed > 6) hspeed = 6
+					if(hspeed < -6) hspeed = -6
+				}
 			}
 
 			//Gravity cases
@@ -678,7 +683,7 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 2; i++) if(!placeFree(x, y + 2) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0) {
+				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 2) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0) {
 					y += 1
 				}
 				x += hspeed
