@@ -254,7 +254,7 @@
 				if(!placeFree(x, y + 2) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.2
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.2
-					if(freeDown)vspeed += 1.0
+					if(freeDown2)vspeed += 1.0
 
 					if(placeFree(x + 4, y + 4)) {
 						hspeed += 0.2
@@ -268,7 +268,7 @@
 						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.1
 					}
 
-					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed))) vspeed -= 0.8
+					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2))) vspeed -= 0.25
 				}
 
 				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) anim = anWalk
@@ -693,7 +693,7 @@
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
-						if(i > 2) hspeed /= 2
+						if(i > 2) hspeed /= 3
 						didstep = true
 						break
 					}
