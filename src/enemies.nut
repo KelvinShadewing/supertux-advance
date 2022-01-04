@@ -268,7 +268,7 @@
 
 ::PipeSnake <- class extends Enemy {
 	ystart = 0
-	timer = 60
+	timer = 30
 	up = false
 	flip = 1
 
@@ -283,13 +283,13 @@
 	function run() {
 		base.run()
 
-		if(up && y > ystart - 24 && !frozen) y--
-		if(!up && y < ystart && !frozen) y++
+		if(up && y > ystart - 24 && !frozen) y -= 2
+		if(!up && y < ystart && !frozen) y += 2
 
 		timer--
 		if(timer <= 0) {
 			up = !up
-			timer = 120
+			timer = 60
 		}
 
 		shape.setPos(x, y + 16)
@@ -315,8 +315,8 @@
 				icebox = -1
 			}
 
-			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 20, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 		}
 	}
 
@@ -942,19 +942,19 @@
 					timer = 240
 
 					//Chase player
-					if(x < gvPlayer.x && hspeed < 1) hspeed += 0.02
-					if(x > gvPlayer.x && hspeed > -1) hspeed -= 0.02
+					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
-					if(y < gvPlayer.y && vspeed < 1) vspeed += 0.02
-					if(y > gvPlayer.y && vspeed > -1) vspeed -= 0.02
+					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
+					if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
 
 					//Swim harder if far from the player
 					if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) {
-						if(x < gvPlayer.x && hspeed < 1) hspeed += 0.02
-						if(x > gvPlayer.x && hspeed > -1) hspeed -= 0.02
+						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
-						if(y < gvPlayer.y && vspeed < 1) vspeed += 0.02
-						if(y > gvPlayer.y && vspeed > -1) vspeed -= 0.02
+						if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
+						if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
 					}
 				}
 			}
@@ -1460,8 +1460,6 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0, 0, 2)
-
-		vspeed = -3
 	}
 
 	function run() {
@@ -1473,10 +1471,10 @@
 				else flip = 0
 			}
 
-			if(!placeFree(x, y + 1)) vspeed = -2.5
+			if(!placeFree(x, y + 1)) vspeed = -4.0
 			if(!placeFree(x + 0, y - 2) && !placeFree(x + 2, y)) hspeed = 0
 			if(!placeFree(x - 0, y - 2) && !placeFree(x - 2, y)) hspeed = 0
-			vspeed += 0.05
+			vspeed += 0.1
 
 			if(!frozen) {
 				if(placeFree(x + hspeed, y)) x += hspeed

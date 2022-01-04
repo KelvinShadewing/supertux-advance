@@ -255,7 +255,7 @@
 				if(!placeFree(x, y + 2) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.2
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.2
-					if(freeDown)vspeed += 1.0
+					if(freeDown2)vspeed += 1.0
 
 					if(placeFree(x + 4, y + 4)) {
 						hspeed += 0.2
@@ -269,7 +269,7 @@
 						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.1
 					}
 
-					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed))) vspeed -= 1.0
+					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2))) vspeed -= 0.25
 				}
 
 				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) anim = anWalk
@@ -291,7 +291,7 @@
 			}
 			if(canMove) {
 				if(getcon("run", "hold") || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9)) {
-					if(game.weapon == 2) mspeed = 5.0
+					if(game.weapon == 2) mspeed = 3.5
 					else mspeed = 3.0
 				}
 				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 1.0
@@ -693,11 +693,11 @@
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 4; i++){ //Try to move up hill
+				for(local i = 1; i <= 8; i++){ //Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
-						if(i > 2) hspeed /= 2
+						if(i > 2) hspeed /= 3
 						didstep = true
 						break
 					}
@@ -741,6 +741,8 @@
 				frame = anim[0]
 				if(game.health > 0) game.health--
 				playSound(sndHurt, 0)
+				if(flip == 0) hspeed = -2.0
+				else hspeed = 2.0
 			}
 		}
 		if(blinking > 0) blinking--
