@@ -253,8 +253,8 @@
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide) {
 				if(!placeFree(x, y + 2) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
-					if(placeFree(x + 4, y + 2)) hspeed += 0.2
-					if(placeFree(x - 4, y + 2)) hspeed -= 0.2
+					if(placeFree(x + 4, y + 2)) hspeed += 0.25
+					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
 
 					if(placeFree(x + 4, y + 4)) {
@@ -453,14 +453,16 @@
 			if(abs(hspeed) < friction) hspeed = 0.0
 			if(placeFree(x, y + 2) && (vspeed < 5 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
-			if(!freeDown && vspeed >= 0) {
+
+
+			if(anim == anSlide && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
 				//If Tux hits the ground while sliding
-				if(anim == anSlide && vspeed > 1) {
-					if(flip) hspeed -= vspeed / 3.0
-					else hspeed += vspeed / 3.0
-					vspeed /= 2
-				} else vspeed = 0.0
+				if(flip) hspeed -= vspeed / 3.0
+				else hspeed += vspeed / 3.0
+				vspeed = 0
 			}
+
+
 
 			//Max ground speed
 			if(!freeDown){
@@ -697,7 +699,7 @@
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
-						if(i > 2) hspeed /= 3
+						if(i > 2) hspeed /= 1.5
 						didstep = true
 						break
 					}
