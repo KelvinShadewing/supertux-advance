@@ -524,7 +524,7 @@
 					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall)) {
 						anim = anDive
 						frame = anim[0]
-						playSound(sndSlide, 0)
+						playSoundChannel(sndSlide, 0, 0)
 						if(flip == 0 && hspeed < 2) hspeed = 2
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}

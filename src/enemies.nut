@@ -545,7 +545,8 @@
 	function gethurt() {
 		if(squish) return
 
-		playSound(sndFizz, 0)
+		stopSound(2)
+		playSoundChannel(sndFizz, 0, 2)
 		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -576,7 +577,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		playSound(sndExplodeF, 0)
+		stopSound(1)
+		playSoundChannel(sndExplodeF, 0, 1)
 
 		shape = Rec(x, y, 16, 16, 0)
 	}

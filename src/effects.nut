@@ -77,7 +77,8 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		playSound(sndCoin, 0)
+		stopSound(0)
+		playSoundChannel(sndCoin, 0, 0)
 		game.levelcoins++
 	}
 

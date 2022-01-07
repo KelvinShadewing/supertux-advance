@@ -421,7 +421,8 @@
 			//Hit by player
 			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
 				gothit = true
-				playSound(sndFizz, 0)
+				stopSound(2)
+				playSoundChannel(sndFizz, 0, 2)
 			}
 		}
 
