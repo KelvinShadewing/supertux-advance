@@ -4,9 +4,9 @@
 
 //Main sprites
 ::sprFont <- newSprite("res/gfx/font.png", 6, 8, 0, 0, 0, 0)
-::font <- newFont(sprFont, 0, 0, 0, 0)
+::font <- newFont(sprFont, 0, 0, true, 0)
 ::sprFont2 <- newSprite("res/gfx/font2.png", 12, 14, 0, 0, 0, 0)
-::font2 <- newFont(sprFont2, 33, 0, 0, -4)
+::font2 <- newFont(sprFont2, 33, 0, true, -4)
 ::sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8, 0, 0, 0, 0)
 ::sprTitle <- newSprite("res/gfx/title.png", 220, 55, 0, 0, 110, 0)
 

@@ -437,11 +437,9 @@
 				} else {
 					if(hspeed > 0) {
 						if(!getcon("right", "hold")) hspeed -= friction
-						else hspeed -= friction / 4.0
 					}
 					if(hspeed < 0) {
 						if(!getcon("left", "hold")) hspeed += friction
-						else hspeed += friction / 4.0
 					}
 				}
 			}
@@ -477,7 +475,7 @@
 			}
 
 			//Gravity cases
-			if(game.weapon == 3) gravity = 0.1
+			if(game.weapon == 3) gravity = 0.12
 			else gravity = 0.25
 			if(anim == anClimb || anim == anWall) gravity = 0
 
