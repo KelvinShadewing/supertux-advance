@@ -30,7 +30,7 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0 && sayfunc != null) {
+		if(gvPlayer && sayfunc != null) {
 			if(hitTest(shape, gvPlayer.shape) && getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
 
 			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) gvInfoBox = ""

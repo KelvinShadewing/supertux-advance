@@ -30,7 +30,7 @@
 	if(keyPress(k_equals)) game.lives++
 
 	//Teleport
-	if(gvPlayer != 0 && mouseDown(0)) {
+	if(gvPlayer && mouseDown(0)) {
 		gvPlayer.x = mouseX() + camx
 		gvPlayer.y = mouseY() + camy
 
@@ -42,7 +42,7 @@
 
 	local message = ""
 
-	if(gvPlayer != 0) {
+	if(gvPlayer) {
 		message += "X: " + gvPlayer.x + "\n"
 		message += "Y: " + gvPlayer.y + "\n"
 	}
@@ -63,9 +63,9 @@
 	drawSprite(sprDebug, getcon("run", "hold").tointeger() + 12, 20, 72)
 
 	message += "HSPD: "
-	message += round(gvPlayer.hspeed).tostring()
+	message += gvPlayer.hspeed.tostring()
 	message += "\nVSPD: "
-	message += round(gvPlayer.vspeed).tostring()
+	message += gvPlayer.vspeed.tostring()
 	message += "\n\n"
 	if(gvMap != 0) message += "Map W: " + gvMap.w + "\n"
 	if(gvMap != 0) message += "Map H: " + gvMap.h + "\n"

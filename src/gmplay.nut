@@ -351,7 +351,7 @@
 		}
 	}
 
-	if(gvPlayer != 0) {
+	if(gvPlayer) {
 		camx = gvPlayer.x - (screenW() / 2)
 		camy = gvPlayer.y - (screenH() / 2)
 	}
@@ -391,7 +391,7 @@
 	local ux = gvMap.w - screenW()
 	local uy = gvMap.h - screenH()
 
-	if(gvPlayer != 0)
+	if(gvPlayer)
 	{
 		px = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
 		py = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
@@ -443,7 +443,7 @@
 		}
 		//Draw energy
 		for(local i = 0; i < game.maxenergy; i++) {
-			if(gvPlayer != 0) {
+			if(gvPlayer) {
 				if(gvPlayer.rawin("energy") && game.maxenergy > 0) {
 					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
@@ -488,7 +488,7 @@
 		if(gvDoIGT) drawText(font2, 8, 32, formatTime(gvIGT))
 
 		//Draw offscreen player
-		if(gvPlayer != 0) if(gvPlayer.y < -8) {
+		if(gvPlayer) if(gvPlayer.y < -8) {
 			drawSprite(game.characters[game.playerchar][1], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 	}

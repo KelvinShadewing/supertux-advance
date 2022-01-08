@@ -38,7 +38,7 @@
 
 		if(mode == 0) {
 			shape.setPos(x, y - 1)
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
 			mapshape.setPos(x, y)
 
 			if(y > ystart) y--
@@ -57,13 +57,13 @@
 			mapshape.setPos(x, y)
 
 			shape.setPos(x, y - 1)
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y++
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y++
 
 			shape.setPos(x, y)
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
 
 			shape.setPos(x, y + 2)
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y += 2
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y += 2
 		}
 		else {
 			if(timer < 60) timer++
@@ -90,7 +90,7 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) {
 				fspeed = 0.2
 				switch(dir) {
@@ -159,7 +159,7 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) {
 				fspeed = 0.2
 				switch(dir) {

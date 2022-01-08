@@ -12,7 +12,7 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) dostr("x <- " + x + "; y <- " + y + "; " + code)
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) dostr("x <- " + x + "; y <- " + y + "; " + code)
 	}
 
 	function _typeof() { return "Trigger" }

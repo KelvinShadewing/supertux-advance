@@ -15,7 +15,7 @@
 		base.run()
 		//Collision with player
 		if(active) {
-			if(gvPlayer != 0) {
+			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtinvinc()
 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp) gethurt()
@@ -64,7 +64,7 @@
 			}
 
 			//Shatter when slid into while frozen
-			if(gvPlayer != 0) if(gvPlayer.rawin("anSlide")) {
+			if(gvPlayer) if(gvPlayer.rawin("anSlide")) {
 				if(gvPlayer.anim == gvPlayer.anSlide) {
 					shape.setPos(x - 2, y)
 					if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed >= 1) {
@@ -125,7 +125,7 @@
 		base.run()
 
 		if(active) {
-			if(!moving) if(gvPlayer != 0) if(x > gvPlayer.x) {
+			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
 				flip = true
 				moving = true
 			}
@@ -170,7 +170,7 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						icebox = mapNewSolid(shape)
 					}
 
@@ -190,7 +190,7 @@
 						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
 						icebox = -1
-						if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
 
@@ -295,7 +295,7 @@
 		shape.setPos(x, y + 16)
 		if(frozen) {
 			//Create ice block
-			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 				icebox = mapNewSolid(shape)
 			}
 
@@ -356,7 +356,7 @@
 
 		drawSprite(sprOuchin, sf + (getFrames() / 16), x - camx, y - camy)
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			if(x > gvPlayer.x) {
 				if(gvPlayer.placeFree(gvPlayer.x - 1, gvPlayer.y)) gvPlayer.x--
 				gvPlayer.hspeed -= 0.1
@@ -380,7 +380,7 @@
 
 		if(frozen) {
 			//Create ice block
-			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 				icebox = mapNewSolid(shape)
 			}
 
@@ -441,7 +441,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0, 0, 1)
-		if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+		if(gvPlayer) if(x > gvPlayer.x) flip = true
 	}
 
 	function run() {
@@ -488,7 +488,7 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						icebox = mapNewSolid(shape)
 					}
 
@@ -507,7 +507,7 @@
 						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
 						icebox = -1
-						if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
 
@@ -587,7 +587,7 @@
 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		frame += 0.2
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
 				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
@@ -636,7 +636,7 @@
 		base.run()
 
 		if(active) {
-			if(gvPlayer != 0 && hspeed == 0) {
+			if(gvPlayer && hspeed == 0) {
 				if(x > gvPlayer.x) hspeed = -0.5
 				else hspeed = 0.5
 			}
@@ -662,7 +662,7 @@
 
 			if(frozen) {
 				//Create ice block
-				if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 					icebox = mapNewSolid(shape)
 				}
 
@@ -681,7 +681,7 @@
 					mapDeleteSolid(icebox)
 					newActor(IceChunks, x, y)
 					icebox = -1
-					if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+					if(gvPlayer) if(x > gvPlayer.x) flip = true
 					else flip = false
 				}
 			}
@@ -715,7 +715,7 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(x > gvPlayer.x + 8 && frame > 0.5) frame -= 0.1
 			if(x < gvPlayer.x - 8 && frame < 4.5) frame += 0.1
 
@@ -795,7 +795,7 @@
 			else drawSpriteEx(sprite, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
 
 			//Create ice block
-			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 				icebox = mapNewSolid(shape)
 			}
 
@@ -856,7 +856,7 @@
 			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
 
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) biting = true
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) biting = true
 			if(frame >= 4) {
 				biting = false
 				frame = 0.0
@@ -937,7 +937,7 @@
 			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
 
-			if(gvPlayer != 0) {
+			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape)) biting = true
 				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 64 && inWater(x, y)) {
 					biting = true
@@ -1123,7 +1123,7 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(distance2(x + (huntdir * 48), y - 32, gvPlayer.x, gvPlayer.y) <= 64 && timer == 0) {
 				timer = 240
 				newActor(ClamorPearl, x, y, null)
@@ -1180,7 +1180,7 @@
 
 		if(timer == 0 || !placeFree(x, y)) deleteActor(id)
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
 
 		drawSprite(sprIceball, 0, x - camx, y - camy)
 	}
@@ -1197,7 +1197,7 @@
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 6, 0)
 		hspeed = 1.0
-		if(gvPlayer != 0) if(x > gvPlayer.x) hspeed = -1.0
+		if(gvPlayer) if(x > gvPlayer.x) hspeed = -1.0
 	}
 
 	function run() {
@@ -1217,7 +1217,7 @@
 			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
 
-			if(gvPlayer != 0) {
+			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape)) biting = true
 				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 256 && inWater(x, y)) {
 					biting = true
@@ -1312,7 +1312,7 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer != 0) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
+		if(gvPlayer) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
 			counting = true
 			playSound(sndIcicle, 0)
 		}
@@ -1354,7 +1354,7 @@
 
 	function run() {
 		base.run()
-		if(gvPlayer != 0) gvPlayer.x < x ? flip = 1 : flip = 0
+		if(gvPlayer) gvPlayer.x < x ? flip = 1 : flip = 0
 
 		if(distance2(x, y, x, ystart) < 16) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart)) * dir
 		else if(distance2(x, y, x, ystart + range) < 16) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart + range)) * dir
@@ -1386,7 +1386,7 @@
 			drawSpriteEx(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
 		} else {
 			//Create ice block
-			if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 				icebox = mapNewSolid(shape)
 			}
 
@@ -1468,7 +1468,7 @@
 		base.run()
 
 		if(active) {
-			if(gvPlayer != 0) {
+			if(gvPlayer) {
 				if(x > gvPlayer.x) flip = 1
 				else flip = 0
 			}
@@ -1491,7 +1491,7 @@
 
 			if(frozen) {
 				//Create ice block
-				if(gvPlayer != 0) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 					icebox = mapNewSolid(shape)
 				}
 
@@ -1510,7 +1510,7 @@
 					mapDeleteSolid(icebox)
 					newActor(IceChunks, x, y)
 					icebox = -1
-					if(gvPlayer != 0) if(x > gvPlayer.x) flip = true
+					if(gvPlayer) if(x > gvPlayer.x) flip = true
 					else flip = false
 				}
 			}
@@ -1539,7 +1539,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		if(gvPlayer != 0) if(gvPlayer.x > x) hspeed = -1
+		if(gvPlayer) if(gvPlayer.x > x) hspeed = -1
 		else hspeed = 1
 
 		shape = Rec(x, y, 6, 6, 0)
@@ -1556,7 +1556,7 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
 			gvPlayer.hurt = true
 		}
 

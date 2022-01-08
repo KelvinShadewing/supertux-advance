@@ -15,7 +15,7 @@
 	function run() {
 		if(shape == null && dw != 0 && dh != 0) shape = Rec(x + (dw * 8), y + (dh * 8), -4 + (dw * 8), -4 + (dh * 8), 5)
 
-		if(shape != null && gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
+		if(shape != null && gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			if(!found) {
 				found = true
 				game.secrets--

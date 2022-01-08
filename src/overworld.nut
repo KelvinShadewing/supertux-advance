@@ -239,7 +239,7 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
 				gvDoIGT = true
 				startPlay("res/map/" + level + ".json")
@@ -263,7 +263,7 @@
 	function run() {
 		//Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
 				gvDoIGT = false
 				startPlay("res/map/" + level + ".json")
@@ -299,7 +299,7 @@
 
 		//Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
 				game.owx = px
 				game.owy = py
 				startOverworld("res/map/" + world + ".json")
@@ -395,7 +395,7 @@
 
 	gvGameMode = gmOverworld
 
-	if(gvPlayer != 0) {
+	if(gvPlayer) {
 		camx = gvPlayer.x - (screenW() / 2)
 		camy = gvPlayer.y - (screenH() / 2)
 	}
@@ -431,7 +431,7 @@
 	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
 	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
 	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
-	if(gvPlayer != 0) gvPlayer.run()
+	if(gvPlayer) gvPlayer.run()
 
 	drawSprite(sprCoin, 0, 16, screenH() - 16)
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())
@@ -456,7 +456,7 @@
 	local ux = gvMap.w - screenW()
 	local uy = gvMap.h - screenH()
 
-	if(gvPlayer != 0)
+	if(gvPlayer)
 	{
 		px = (gvPlayer.x + gvPlayer.hspeed * 24) - (screenW() / 2)
 		py = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2)

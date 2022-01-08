@@ -55,7 +55,7 @@
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
 		shape = shapeStand
-		if(gvPlayer == 0) gvPlayer = this
+		if(!gvPlayer) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
 		energy = game.maxenergy
@@ -680,6 +680,7 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2
+			if(abs(vspeed) < 0.01) vspeed = 0
 			//if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
@@ -832,7 +833,7 @@
 
 	function die() {
 		deleteActor(id)
-		gvPlayer = 0
+		gvPlayer = false
 		newActor(TuxDie, x, y)
 		game.health = 0
 	}

@@ -49,7 +49,7 @@
 	chy = 0
 }
 ::gameDefault <- clone(game)
-::gvPlayer <- 0; //Pointer to player actor
+::gvPlayer <- false; //Pointer to player actor
 /*\
  # When characters are unlocked, they will
  # be added to game.characters. Mods can

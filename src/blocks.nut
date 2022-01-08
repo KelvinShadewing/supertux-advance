@@ -15,7 +15,7 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				deleteActor(id)
@@ -54,7 +54,7 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, 0)
@@ -185,7 +185,7 @@
 			}
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 			gvPlayer.vspeed = 0
 			full = false
 			vspeed = -1
@@ -225,7 +225,7 @@
 			dostr(code)
 		}
 
-		if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 			gvPlayer.vspeed = 0
 			full = false
 			vspeed = -1
@@ -264,7 +264,7 @@
 			vspeed = 0.5
 		}
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 0
 				vspeed = -1
@@ -295,7 +295,7 @@
 
 	function run() {
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(devcom) if(hitTest(shape, gvPlayer.shape)){
 				gvInfoBox = text
 			}
@@ -337,7 +337,7 @@
 			vspeed = -0.5
 		}
 
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			shape.setPos(x, y + 2)
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 1
@@ -374,7 +374,7 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0 && found == false) if(hitTest(shape, gvPlayer.shape)) {
+		if(gvPlayer && found == false) if(hitTest(shape, gvPlayer.shape)) {
 			foreach(i in actor["Checkpoint"]) {
 				i.found = false
 			}
@@ -419,7 +419,7 @@
 		}
 		else {
 			//Hit by player
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape)) {
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 				gothit = true
 				stopSound(2)
 				playSoundChannel(sndFizz, 0, 2)
@@ -520,7 +520,7 @@
 		if(game.colorswitch[color]) drawSprite(sprColorSwitch, (color * 2) + 1, x - camx, y - camy)
 		else {
 			drawSprite(sprColorSwitch, color * 2, x - camx, y - camy)
-			if(gvPlayer != 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
 				gvPlayer.vspeed = -1.5
 				game.colorswitch[this.color] = true
 				dostr("saveGame()")
@@ -545,7 +545,7 @@
 	}
 
 	function run() {
-		if(gvPlayer != 0) {
+		if(gvPlayer) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				mapDeleteSolid(mapshape)
