@@ -18,3 +18,8 @@
 
 	return nt
 }
+
+::gotoTest <- function() {
+	game.check = false
+	startPlay("res/map/test.json")
+}

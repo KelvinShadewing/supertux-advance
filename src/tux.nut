@@ -356,7 +356,8 @@
 					}
 					else if(canJump > 0) {
 						jumpBuffer = 0
-						if(game.weapon == 3) vspeed = -4.0
+						if(anim == anClimb) vspeed = -3
+						else if(game.weapon == 3) vspeed = -4.0
 						else vspeed = -5.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0

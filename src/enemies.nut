@@ -722,7 +722,7 @@
 			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 200 && timer == 0 && (frame < 1 || frame > 4)) {
 				if(frame < 1) {
 					local c = actor[newActor(CannonBob, x - 4, y - 4)]
-					c.hspeed = ((gvPlayer.x - x) / 96)
+					c.hspeed = ((gvPlayer.x - x) / 48)
 					local d = (y - gvPlayer.y) / 64
 					if(d > 2) d = 2
 					if(y > gvPlayer.y) c.vspeed -= d
@@ -730,7 +730,7 @@
 				}
 				if(frame >= 4) {
 					local c = actor[newActor(CannonBob, x + 4, y - 4)]
-					c.hspeed = ((gvPlayer.x - x) / 96)
+					c.hspeed = ((gvPlayer.x - x) / 48)
 					local d = (y - gvPlayer.y) / 64
 					if(d > 2) d = 2
 					if(y > gvPlayer.y) c.vspeed -= d
@@ -738,7 +738,7 @@
 				}
 				if(frame >= 1 && frame <= 4) {
 					local c = actor[newActor(CannonBob, x, y - 4)]
-					c.hspeed = ((gvPlayer.x - x) / 96)
+					c.hspeed = ((gvPlayer.x - x) / 48)
 					local d = (y - gvPlayer.y) / 64
 					if(d > 2) d = 2
 					if(y > gvPlayer.y) c.vspeed -= d
@@ -757,7 +757,7 @@
 }
 
 ::CannonBob <- class extends Enemy {
-	vspeed = -2
+	vspeed = -4
 	sprite = 0
 
 	constructor(_x, _y, _arr = null) {
@@ -775,7 +775,7 @@
 			if(hspeed < 0) drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, 1)
 			else drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 1, 1, 1, 1)
 
-			vspeed += 0.05
+			vspeed += 0.2
 			x += hspeed
 			y += vspeed
 			shape.setPos(x, y)
@@ -1196,8 +1196,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 6, 0)
-		hspeed = 0.5
-		if(gvPlayer != 0) if(x > gvPlayer.x) hspeed = -0.5
+		hspeed = 1.0
+		if(gvPlayer != 0) if(x > gvPlayer.x) hspeed = -1.0
 	}
 
 	function run() {
@@ -1214,7 +1214,7 @@
 				else hspeed *= 1 / abs(hspeed)
 				canjump = true
 			}
-			if(!inWater(x, y)) vspeed += 0.05
+			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
 
 			if(gvPlayer != 0) {
@@ -1223,13 +1223,13 @@
 					biting = true
 
 					//Chase player
-					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.01
-					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.01
+					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
-					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.05
+					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.1
 					if(y > gvPlayer.y && vspeed > -4) {
 						if(canjump && !gvPlayer.inWater(gvPlayer.x, gvPlayer.y) && ((hspeed > 0 && gvPlayer.x > x) || (hspeed < 0 && gvPlayer.x < x))) {
-							vspeed = -4
+							vspeed = -6
 							canjump = false
 						}
 
@@ -1319,8 +1319,8 @@
 
 		if(counting && timer > 0) timer--
 		if(timer <= 0) {
-			if(inWater(x, y) && vspeed < 0.5) vspeed += 0.05
-			else vspeed += 0.1
+			if(inWater(x, y) && vspeed < 1.0) vspeed += 0.05
+			else vspeed += 0.2
 		}
 		if(inWater(x, y) && vspeed > 0.5) vspeed = 0.1
 		y += vspeed
