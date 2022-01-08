@@ -10,7 +10,7 @@
 	if(!fileExists(level)) return
 
 	//Clear actors and start creating new ones
-	gvPlayer = 0
+	gvPlayer = false
 	actor.clear()
 	actlast = 0
 	game.health = game.maxHealth

@@ -510,7 +510,7 @@
 
 	function die() {
 		deleteActor(id)
-		gvPlayer = 0
+		gvPlayer = false
 		newActor(TuxDie, x, y)
 		game.health = 0
 	}

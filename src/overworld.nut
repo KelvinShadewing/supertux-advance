@@ -312,7 +312,7 @@
 
 ::startOverworld <- function(world) {
 	//Clear actors and start creating new ones
-	gvPlayer = 0
+	gvPlayer = false
 	actor.clear()
 	gvIGT = 0
 	autocon = {
