@@ -73,7 +73,7 @@
 }
 
 ::CoinEffect <- class extends Actor {
-	vspeed = -4.0
+	vspeed = -5.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -83,10 +83,10 @@
 	}
 
 	function run() {
-		vspeed += 0.3
+		vspeed += 0.5
 		y += vspeed
 		drawSprite(sprCoin, getFrames() / 2, x - camx, y - camy)
-		if(vspeed >= 2) {
+		if(vspeed >= 3) {
 			deleteActor(id)
 			newActor(Spark, x, y)
 		}

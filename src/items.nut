@@ -14,7 +14,7 @@
 
 	function run()
 	{
-		frame += 0.1
+		frame += 0.2
 		drawSprite(sprCoin, frame, x - camx, y - camy)
 		if(gvPlayer != 0) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
 			deleteActor(id)
@@ -101,7 +101,7 @@
 	function run() {
 		if(placeFree(x, y + 1)) {
 			if(inWater(x, y)) vspeed += 0.01
-			else vspeed += 0.1
+			else vspeed += 0.2
 		}
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
@@ -109,25 +109,25 @@
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 0.5
-			else if(placeFree(x - 1.1, y - 0.5)) {
-				x -= 0.5
-				y -= 0.25
-			} else if(placeFree(x - 1.1, y - 1.0)) {
-				x -= 0.5
-				y -= 0.5
+			if(placeFree(x - 0.5, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 1)) {
+				x -= 1.0
+				y -= 1.0
+			} else if(placeFree(x - 2, y - 2)) {
+				x -= 1.0
+				y -= 1.0
 			} else flip = false
 
 			if(x <= 0) flip = false
 		}
 		else {
-			if(placeFree(x + 1, y)) x += 0.5
-			else if(placeFree(x + 1.1, y - 0.5)) {
-				x += 0.5
-				y -= 0.25
-			} else if(placeFree(x + 1.1, y - 1.0)) {
-				x += 0.5
-				y -= 0.5
+			if(placeFree(x + 1, y)) x += 1.0
+			else if(placeFree(x + 2, y - 1)) {
+				x += 1.0
+				y -= 1.0
+			} else if(placeFree(x + 2, y - 2)) {
+				x += 1.0
+				y -= 1.0
 			} else flip = true
 
 			if(x >= gvMap.w) flip = true
@@ -166,7 +166,7 @@
 	function run() {
 		if(placeFree(x, y + 1)) {
 			if(inWater(x, y)) vspeed += 0.01
-			else vspeed += 0.1
+			else vspeed += 0.2
 		}
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
@@ -174,25 +174,25 @@
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 0.5
-			else if(placeFree(x - 1.1, y - 0.5)) {
-				x -= 0.5
-				y -= 0.25
-			} else if(placeFree(x - 1.1, y - 1.0)) {
-				x -= 0.5
-				y -= 0.5
+			if(placeFree(x - 0.5, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 1)) {
+				x -= 1.0
+				y -= 1.0
+			} else if(placeFree(x - 2, y - 2)) {
+				x -= 1.0
+				y -= 1.0
 			} else flip = false
 
 			if(x <= 0) flip = false
 		}
 		else {
-			if(placeFree(x + 1, y)) x += 0.5
-			else if(placeFree(x + 1.1, y - 0.5)) {
-				x += 0.5
-				y -= 0.25
-			} else if(placeFree(x + 1.1, y - 1.0)) {
-				x += 0.5
-				y -= 0.5
+			if(placeFree(x + 1, y)) x += 1.0
+			else if(placeFree(x + 2, y - 1)) {
+				x += 1.0
+				y -= 1.0
+			} else if(placeFree(x + 2, y - 2)) {
+				x += 1.0
+				y -= 1.0
 			} else flip = true
 
 			if(x >= gvMap.w) flip = true
@@ -235,32 +235,32 @@
 	}
 
 	function run() {
-		if(placeFree(x, y + 1)) vspeed += 0.1
+		if(placeFree(x, y + 1)) vspeed += 0.2
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 0.5
-			else if(placeFree(x - 1.1, y - 0.5)) {
-				x -= 0.5
-				y -= 0.25
-			} else if(placeFree(x - 1.1, y - 1.0)) {
-				x -= 0.5
-				y -= 0.5
+			if(placeFree(x - 0.5, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 1)) {
+				x -= 1.0
+				y -= 1.0
+			} else if(placeFree(x - 2, y - 2)) {
+				x -= 1.0
+				y -= 1.0
 			} else flip = false
 
 			if(x <= 0) flip = false
 		}
 		else {
-			if(placeFree(x + 1, y)) x += 0.5
-			else if(placeFree(x + 1.1, y - 0.5)) {
-				x += 0.5
-				y -= 0.25
-			} else if(placeFree(x + 1.1, y - 1.0)) {
-				x += 0.5
-				y -= 0.5
+			if(placeFree(x + 1, y)) x += 1.0
+			else if(placeFree(x + 2, y - 1)) {
+				x += 1.0
+				y -= 1.0
+			} else if(placeFree(x + 2, y - 2)) {
+				x += 1.0
+				y -= 1.0
 			} else flip = true
 
 			if(x >= gvMap.w) flip = true
@@ -282,7 +282,7 @@
 
 ::Starnyan <- class extends PhysAct {
 	hspeed = 0
-	vspeed = -2
+	vspeed = -4
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -294,10 +294,10 @@
 	}
 
 	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -3
-		if(!placeFree(x + 1, y)) hspeed = -1
-		if(!placeFree(x - 1, y)) hspeed = 1
-		vspeed += 0.1
+		if(!placeFree(x, y + 1)) vspeed = -5
+		if(!placeFree(x + 1, y)) hspeed = -2
+		if(!placeFree(x - 1, y)) hspeed = 2
+		vspeed += 0.25
 
 		if(placeFree(x + hspeed, y)) x += hspeed
 		if(placeFree(x, y + vspeed)) y += vspeed
@@ -415,32 +415,35 @@
 	}
 
 	function run() {
-		if(placeFree(x, y + 1)) vspeed += 0.1
+		if(placeFree(x, y + 1)) {
+			if(inWater(x, y)) vspeed += 0.01
+			else vspeed += 0.2
+		}
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 0.5
-			else if(placeFree(x - 1.1, y - 0.5)) {
-				x -= 0.5
-				y -= 0.25
-			} else if(placeFree(x - 1.1, y - 1.0)) {
-				x -= 0.5
-				y -= 0.5
+			if(placeFree(x - 0.5, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 1)) {
+				x -= 1.0
+				y -= 1.0
+			} else if(placeFree(x - 2, y - 2)) {
+				x -= 1.0
+				y -= 1.0
 			} else flip = false
 
 			if(x <= 0) flip = false
 		}
 		else {
-			if(placeFree(x + 1, y)) x += 0.5
-			else if(placeFree(x + 1.1, y - 0.5)) {
-				x += 0.5
-				y -= 0.25
-			} else if(placeFree(x + 1.1, y - 1.0)) {
-				x += 0.5
-				y -= 0.5
+			if(placeFree(x + 1, y)) x += 1.0
+			else if(placeFree(x + 2, y - 1)) {
+				x += 1.0
+				y -= 1.0
+			} else if(placeFree(x + 2, y - 2)) {
+				x += 1.0
+				y -= 1.0
 			} else flip = true
 
 			if(x >= gvMap.w) flip = true

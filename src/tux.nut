@@ -258,15 +258,13 @@
 					if(freeDown2)vspeed += 1.0
 
 					if(placeFree(x + 4, y + 4)) {
-						hspeed += 0.2
+						hspeed += 0.1
 						vspeed += 2.0
-						if(!placeFree(x - 2, y + 2) && hspeed < 0) hspeed += 0.1
 					}
 
 					if(placeFree(x - 4, y + 4)) {
-						hspeed -= 0.2
+						hspeed -= 0.1
 						vspeed += 2.0
-						if(!placeFree(x + 2, y + 2) && hspeed > 0) hspeed -= 0.1
 					}
 
 					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2))) vspeed -= 0.25
