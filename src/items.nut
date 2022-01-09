@@ -109,7 +109,7 @@
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 1.0
+			if(placeFree(x - 1, y)) x -= 1.0
 			else if(placeFree(x - 2, y - 1)) {
 				x -= 1.0
 				y -= 1.0

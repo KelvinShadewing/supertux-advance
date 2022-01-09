@@ -148,7 +148,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(smart) if(placeFree(x - 6, y + 16)) flip = false
+						if(smart) if(placeFree(x - 6, y + 12)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -162,7 +162,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(smart) if(placeFree(x + 6, y + 16)) flip = true
+						if(smart) if(placeFree(x + 6, y + 12)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -466,7 +466,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(placeFree(x - 6, y + 16)) flip = false
+						if(placeFree(x - 6, y + 12)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -480,7 +480,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(placeFree(x + 6, y + 16)) flip = true
+						if(placeFree(x + 6, y + 12)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
