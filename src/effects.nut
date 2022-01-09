@@ -77,9 +77,15 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		stopSound(0)
-		playSoundChannel(sndCoin, 0, 0)
 		game.levelcoins++
+		if(game.levelcoins % 50 == 0) {
+			playSoundChannel(snd1up, 0, 2)
+			game.lives++
+		}
+		else {
+			stopSound(0)
+			playSoundChannel(sndCoin, 0, 0)
+		}
 	}
 
 	function run() {

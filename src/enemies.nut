@@ -1160,7 +1160,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		if(gvPlayer == 0) {
+		if(!gvPlayer) {
 			deleteActor(id)
 			return
 		}

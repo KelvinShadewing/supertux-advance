@@ -34,8 +34,6 @@
 		stopMusic()
 		if(!game.completed.rawin(gvMap.name)) game.completed[gvMap.name] <- true
 		levelEndRunner = newActor(LevelEnder, 0, 0)
-		game.lives += floor(game.levelcoins / 50)
-		if(game.levelcoins >= 50) playSound(snd1up, 0)
 
 		if(!game.besttime.rawin(gvMap.name)) game.besttime[gvMap.name] <- gvIGT
 		else if(game.besttime[gvMap.name] > gvIGT) game.besttime[gvMap.name] = gvIGT

@@ -21,7 +21,7 @@
 		}
 
 		shape = Rec(x, y, 1, 1, 0)
-		if(gvPlayer == 0) gvPlayer = this
+		if(!gvPlayer) gvPlayer = this
 	}
 
 	function run() {
@@ -372,7 +372,7 @@
 		{
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
-				if(gvPlayer == 0) newActor(OverPlayer, i.x + 8, i.y - 8)
+				if(!gvPlayer) newActor(OverPlayer, i.x + 8, i.y - 8)
 				break
 
 			case 1:

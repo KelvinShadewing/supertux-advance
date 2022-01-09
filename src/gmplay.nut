@@ -82,7 +82,7 @@
 			{
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
-					if(gvPlayer == 0 && getroottable().rawin(game.playerchar)) {
+					if(!gvPlayer && getroottable().rawin(game.playerchar)) {
 						if(game.check == false) newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
 						else newActor(getroottable()[game.playerchar], game.chx, game.chy)
 					}
@@ -517,7 +517,7 @@
 }
 
 ::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time
-	if(gvPlayer == 0) return
+	if(!gvPlayer) return
 	if(gvMap == 0) return
 
 	local ux = gvMap.w - screenW()

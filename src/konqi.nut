@@ -44,7 +44,7 @@
 		base.constructor(_x, _y)
 		anim = anStand
 		shape = Rec(x, y + 2, 5, 12, 0)
-		if(gvPlayer == 0) gvPlayer = this
+		if(!gvPlayer) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
 	}
