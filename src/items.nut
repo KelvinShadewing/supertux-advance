@@ -89,7 +89,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		shape = Rec(x, y, 4, 7, 0)
+		shape = Rec(x, y, 6, 8, 0)
 
 		if(gvPlayer) {
 			if(x < gvPlayer.x) flip = true
@@ -110,10 +110,10 @@
 
 		if(flip) {
 			if(placeFree(x - 1, y)) x -= 1.0
-			else if(placeFree(x - 2, y - 1)) {
+			else if(placeFree(x - 2, y - 2)) {
 				x -= 1.0
 				y -= 1.0
-			} else if(placeFree(x - 2, y - 2)) {
+			} else if(placeFree(x - 1, y - 2)) {
 				x -= 1.0
 				y -= 1.0
 			} else flip = false
@@ -122,7 +122,7 @@
 		}
 		else {
 			if(placeFree(x + 1, y)) x += 1.0
-			else if(placeFree(x + 2, y - 1)) {
+			else if(placeFree(x + 1, y - 1)) {
 				x += 1.0
 				y -= 1.0
 			} else if(placeFree(x + 2, y - 2)) {
@@ -174,11 +174,11 @@
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 1.0
-			else if(placeFree(x - 2, y - 1)) {
+			if(placeFree(x - 1, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 2)) {
 				x -= 1.0
 				y -= 1.0
-			} else if(placeFree(x - 2, y - 2)) {
+			} else if(placeFree(x - 1, y - 2)) {
 				x -= 1.0
 				y -= 1.0
 			} else flip = false
@@ -187,7 +187,7 @@
 		}
 		else {
 			if(placeFree(x + 1, y)) x += 1.0
-			else if(placeFree(x + 2, y - 1)) {
+			else if(placeFree(x + 1, y - 1)) {
 				x += 1.0
 				y -= 1.0
 			} else if(placeFree(x + 2, y - 2)) {
@@ -242,11 +242,11 @@
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 1.0
-			else if(placeFree(x - 2, y - 1)) {
+			if(placeFree(x - 1, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 2)) {
 				x -= 1.0
 				y -= 1.0
-			} else if(placeFree(x - 2, y - 2)) {
+			} else if(placeFree(x - 1, y - 2)) {
 				x -= 1.0
 				y -= 1.0
 			} else flip = false
@@ -255,7 +255,7 @@
 		}
 		else {
 			if(placeFree(x + 1, y)) x += 1.0
-			else if(placeFree(x + 2, y - 1)) {
+			else if(placeFree(x + 1, y - 1)) {
 				x += 1.0
 				y -= 1.0
 			} else if(placeFree(x + 2, y - 2)) {
@@ -425,11 +425,11 @@
 		if(y > gvMap.h + 8) deleteActor(id)
 
 		if(flip) {
-			if(placeFree(x - 0.5, y)) x -= 1.0
-			else if(placeFree(x - 2, y - 1)) {
+			if(placeFree(x - 1, y)) x -= 1.0
+			else if(placeFree(x - 2, y - 2)) {
 				x -= 1.0
 				y -= 1.0
-			} else if(placeFree(x - 2, y - 2)) {
+			} else if(placeFree(x - 1, y - 2)) {
 				x -= 1.0
 				y -= 1.0
 			} else flip = false
@@ -438,7 +438,7 @@
 		}
 		else {
 			if(placeFree(x + 1, y)) x += 1.0
-			else if(placeFree(x + 2, y - 1)) {
+			else if(placeFree(x + 1, y - 1)) {
 				x += 1.0
 				y -= 1.0
 			} else if(placeFree(x + 2, y - 2)) {

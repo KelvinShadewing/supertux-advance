@@ -7,3 +7,4 @@ game.json
 *.blame
 save/*.json
 mods/*
+mods/*.*

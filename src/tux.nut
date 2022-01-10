@@ -28,26 +28,27 @@
 	energy = 0.0
 	hidden = false
 	jumpBuffer = 0
+	rspeed = 0.0 //Run animation speed
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
-	anStand = [0.0, 3.0]
-	anWalk = [8.0, 15.0]
-	anRun = [16.0, 23.0]
-	anDive = [24.0, 25.0]
-	anSlide = [26.0, 29.0]
-	anHurt = [30.0, 31.0]
-	anJumpU = [32.0, 33.0]
-	anJumpT = [34.0, 35.0]
-	anFall = [36.0, 37.0]
-	anClimb = [44.0, 47.0]
-	anWall = [48.0, 49.0]
-	anSwimF = [52.0, 55.0]
-	anSwimUF = [56.0, 59.0]
-	anSwimDF = [60.0, 63.0]
-	anSwimU = [64.0, 67.0]
-	anSwimD = [68.0, 71.0]
-	anSkid = [4.0, 5.0]
+	anStand = [0.0, 3.0, "stand"]
+	anWalk = [8.0, 15.0, "walk"]
+	anRun = [16.0, 23.0, "run"]
+	anDive = [24.0, 25.0, "dive"]
+	anSlide = [26.0, 29.0, "slide"]
+	anHurt = [30.0, 31.0, "hurt"]
+	anJumpU = [32.0, 33.0, "jumpU"]
+	anJumpT = [34.0, 35.0, "jumpT"]
+	anFall = [36.0, 37.0, "fall"]
+	anClimb = [44.0, 47.0, "climb"]
+	anWall = [48.0, 49.0, "wall"]
+	anSwimF = [52.0, 55.0, "swim"]
+	anSwimUF = [56.0, 59.0, "swim"]
+	anSwimDF = [60.0, 63.0, "swim"]
+	anSwimU = [64.0, 67.0, "swim"]
+	anSwimD = [68.0, 71.0, "swim"]
+	anSkid = [4.0, 5.0, "skid"]
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -105,7 +106,7 @@
 					else if(game.weapon == 3) frame += 0.05
 					else frame += 0.05
 
-					if(hspeed != 0) {
+					if(abs(rspeed) > 0.1) {
 						anim = anWalk
 						frame = anim[0]
 					}
@@ -118,9 +119,9 @@
 					break
 
 				case anWalk:
-					frame += abs(hspeed) / 8
-					if(hspeed == 0) anim = anStand
-					if(abs(hspeed) > 2.4) anim = anRun
+					frame += abs(rspeed) / 8
+					if(abs(rspeed) <= 0.1 || abs(hspeed) <= 0.1) anim = anStand
+					if(abs(rspeed) > 2.4) anim = anRun
 
 					if(placeFree(x, y + 2)) {
 						if(vspeed >= 0) anim = anFall
@@ -132,18 +133,19 @@
 				case anRun:
 				case anSkid:
 					if(flip == 0 && hspeed < 0) {
-						hspeed += 0.01
+						hspeed += 0.05
 						anim = anSkid
 					}
 					else if(flip == 1 && hspeed > 0) {
-						hspeed -= 0.01
+						hspeed -= 0.05
 						anim = anSkid
 					}
 					else anim = anRun
 
-					if(game.weapon == 2) frame+= abs(hspeed) / 16
-					else frame += abs(hspeed) / 8
-					if(abs(hspeed) < 2) anim = anWalk
+					if(anim == anSkid) frame += 0.2
+					else if(game.weapon == 2) frame += abs(rspeed) / 16
+					else frame += abs(rspeed) / 8
+					if(abs(rspeed) < 2 && anim != anSkid) anim = anWalk
 
 					if(placeFree(x, y + 2)) {
 						if(vspeed >= 0) anim = anFall
@@ -251,7 +253,7 @@
 			if(anim != anClimb) frame = wrap(frame, anim[0], anim[1])
 
 			//Sliding acceleration
-			if(anim == anDive || anim == anSlide) {
+			if(anim == anDive || anim == anSlide || onIce()) {
 				if(!placeFree(x, y + 2) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
@@ -267,10 +269,10 @@
 						vspeed += 2.0
 					}
 
-					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2))) vspeed -= 0.25
+					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
 				}
 
-				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) anim = anWalk
+				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) if(anim == anSlide || anim == anDive) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -296,8 +298,27 @@
 				else mspeed = 2.0
 
 				//Moving left and right
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed += 0.2
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) hspeed -= 0.2
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+					if(onIce()) hspeed += 0.1
+					else hspeed += 0.2
+				}
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+					if(onIce()) hspeed -= 0.1
+					else hspeed -= 0.2
+				}
+
+				//Change run animation speed
+				if(getcon("right", "hold") && rspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+					rspeed += 0.2
+					if(rspeed < hspeed) rspeed = hspeed
+				}
+				if(getcon("left", "hold") && rspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+					rspeed -= 0.2
+					if(rspeed > hspeed) rspeed = hspeed
+				}
+				if(rspeed > 0) rspeed -= 0.1
+				if(rspeed < 0) rspeed += 0.1
+				if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold") && !getcon("left", "hold")) rspeed = 0.0
 
 				//On a ladder
 				if(anim == anClimb) {
@@ -355,7 +376,7 @@
 					else if(canJump > 0) {
 						jumpBuffer = 0
 						if(anim == anClimb) vspeed = -3
-						else if(game.weapon == 3) vspeed = -4.0
+						else if(game.weapon == 3) vspeed = -5.0
 						else vspeed = -5.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
@@ -424,15 +445,6 @@
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3.0
 					if(hspeed < 0) hspeed += friction / 3.0
-					if(abs(hspeed) <= 0.2) {
-						if(placeFree(x, y - 16)) {
-							anim = anStand
-							shape = shapeStand
-						} else {
-							if(getcon("left", "hold")) hspeed -= 0.2
-							if(getcon("right", "hold")) hspeed += 0.2
-						}
-					}
 				} else {
 					if(hspeed > 0) {
 						if(!getcon("right", "hold")) hspeed -= friction
@@ -448,7 +460,7 @@
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 5 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
 
 
@@ -458,8 +470,6 @@
 				else hspeed += vspeed / 3.0
 				vspeed = 0
 			}
-
-
 
 			//Max ground speed
 			if(!freeDown){
@@ -726,7 +736,7 @@
 		if(y < -100) y = -100.0
 
 		//Set ice friction
-		if(tileGetSolid(x, y + 16) == 40) friction = 0.05
+		if(onIce()) friction = 0.05
 		else friction = 0.1
 
 		//Hurt
@@ -799,6 +809,8 @@
 		}
 
 		hidden = false
+
+		if(debug) drawText(font, x - camx - 8, y - 32 - camy, anim[2] + "\nR: " + rspeed)
 	}
 
 	function atLadder() {

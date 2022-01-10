@@ -18,7 +18,7 @@
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtinvinc()
-					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp) gethurt()
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) gethurt()
 					else if(gvPlayer.rawin("anSlide")) {
 						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
 						else hurtplayer()
@@ -116,7 +116,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
-		shape = Rec(x, y, 4, 6, 0)
+		shape = Rec(x, y, 6, 6, 0)
 
 		smart = _arr
 	}
@@ -148,7 +148,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(smart) if(placeFree(x - 6, y + 12)) flip = false
+						if(smart) if(placeFree(x - 6, y + 14)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -162,7 +162,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(smart) if(placeFree(x + 6, y + 12)) flip = true
+						if(smart) if(placeFree(x + 6, y + 14)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -195,8 +195,8 @@
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprDeathcap, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
@@ -398,9 +398,6 @@
 			}
 		}
 	}
-
-	function gethurt() { hurtplayer() }
-
 	function hurtfire() {}
 }
 
@@ -466,7 +463,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(placeFree(x - 6, y + 12)) flip = false
+						if(placeFree(x - 6, y + 14)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -480,7 +477,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(placeFree(x + 6, y + 12)) flip = true
+						if(placeFree(x + 6, y + 14)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -512,7 +509,7 @@
 					}
 
 					//Draw
-					drawSpriteEx(sprCarlBoom, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					drawSpriteEx(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
