@@ -438,6 +438,7 @@
 				}
 			} else {
 				if(hspeed < 1 && endmode) hspeed += 0.2
+				if(endmode) rspeed = hspeed
 			}
 
 			//Movement
