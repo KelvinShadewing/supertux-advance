@@ -33,7 +33,7 @@
 			}
 		}
 
-		drawSprite(sprWoodBox, 0, x - 8 - camx, y - 8 - camy)
+		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy)
 	}
 
 	function _typeof() { return "WoodBlock" }
@@ -80,7 +80,7 @@
 			playSound(sndFlame, 0)
 		}
 
-		drawSprite(sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
+		drawSpriteZ(2, sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
 }
 
@@ -97,10 +97,10 @@
 		h += 1
 		a += 4
 
-		drawSpriteEx(sprWoodChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
-		drawSpriteEx(sprWoodChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
-		drawSpriteEx(sprWoodChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
-		drawSpriteEx(sprWoodChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
 
 		timer--
 		if(timer == 0) deleteActor(id)
@@ -194,8 +194,8 @@
 
 		v += vspeed
 
-		if(full || vspeed < 0) drawSprite(sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
-		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+		if(full || vspeed < 0) drawSpriteZ(2, sprBoxItem, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }
 
@@ -234,8 +234,8 @@
 
 		v += vspeed
 
-		if(full || vspeed < 0) drawSprite(sprBoxRed, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
-		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+		if(full || vspeed < 0) drawSpriteZ(2, sprBoxRed, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }
 
@@ -277,8 +277,7 @@
 
 		v += vspeed
 
-		if(full || vspeed < 0) drawSprite(sprBoxInfo, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
-		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+		drawSpriteZ(2, sprBoxInfo, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 	}
 }
 
@@ -306,7 +305,7 @@
 			}
 		}
 
-		if(devcom) drawSprite(sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy)
+		if(devcom) drawSpriteZ(2, sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy)
 	}
 }
 
@@ -358,8 +357,7 @@
 
 		v += vspeed
 
-		if(full || vspeed < 0) drawSprite(sprBoxBounce, getFrames() / 16, x - 8 - camx, y - 8 - camy + v)
-		else drawSprite(sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+		drawSpriteZ(2, sprBoxBounce, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 	}
 }
 
@@ -385,7 +383,7 @@
 			playSound(sndBell, 0)
 		}
 
-		if(found) drawSprite(sprCheckBell, getFrames() / 16, x - camx, y - camy)
+		if(found) drawSprite(sprCheckBell, getFrames() / 8, x - camx, y - camy)
 		else drawSprite(sprCheckBell, 0, x - camx, y - camy)
 	}
 
@@ -434,10 +432,10 @@
 		}
 
 		if(gothit) {
-			if(hittime > 120) drawSpriteEx(sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), y - 8 - camy + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), 0, 0, 1.0 + ((0.25 / 150.0) * hittime), 1.0 + ((0.25 / 150.0) * hittime), 1)
-			else drawSprite(sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4), y - 8 - camy + ((randInt(8) - 4) / 4))
+			if(hittime > 120) drawSpriteExZ(2, sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), y - 8 - camy + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), 0, 0, 1.0 + ((0.25 / 150.0) * hittime), 1.0 + ((0.25 / 150.0) * hittime), 1)
+			else drawSpriteZ(2, sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4), y - 8 - camy + ((randInt(8) - 4) / 4))
 		}
-		else drawSprite(sprTNT, frame, x - 8 - camx, y - 8 - camy)
+		else drawSpriteZ(2, sprTNT, frame, x - 8 - camx, y - 8 - camy)
 	}
 
 	function _typeof() { return "TNT" }
@@ -457,7 +455,7 @@
 	}
 
 	function run() {
-		drawSprite(sprC4, frame, x - 8 - camx, y - 8 - camy)
+		drawSpriteZ(2, sprC4, frame, x - 8 - camx, y - 8 - camy)
 	}
 
 	function _typeof() { return "TNT" }
@@ -497,7 +495,7 @@
 	}
 
 	function run() {
-		drawSprite(sprColorBlock, (color * 2) + filled, x - camx, y - camy)
+		drawSpriteZ(2, sprColorBlock, (color * 2) + filled, x - camx, y - camy)
 	}
 
 	function _typeof() { return "ColorBlock" }
@@ -557,7 +555,7 @@
 
 		}
 
-		drawSprite(sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
+		drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
 	}
 
 	function _typeof() { return "WoodBlock" }

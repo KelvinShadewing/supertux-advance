@@ -43,6 +43,7 @@ donut("src/npc.nut")
 donut("src/languagemenu.nut")
 donut("src/contriblevels.nut")
 donut("src/save.nut")
+donut("src/zlist.nut")
 
 //Load mods
 local modlist = lsdir("mods")

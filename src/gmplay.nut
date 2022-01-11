@@ -422,6 +422,7 @@
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
 	runActors()
+	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), 24, 20, "fg")
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }

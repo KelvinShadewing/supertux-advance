@@ -49,6 +49,7 @@
 	anSwimU = [64.0, 67.0, "swim"]
 	anSwimD = [68.0, 71.0, "swim"]
 	anSkid = [4.0, 5.0, "skid"]
+	anPush = [6.0, 7.0, "push"]
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -153,6 +154,9 @@
 						frame = anim[0]
 					}
 
+					break
+
+				case anPush:
 					break
 
 				case anJumpU:
@@ -319,6 +323,7 @@
 				if(rspeed > 0) rspeed -= 0.1
 				if(rspeed < 0) rspeed += 0.1
 				if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold") && !getcon("left", "hold")) rspeed = 0.0
+				if(anim == anSlide) rspeed = hspeed
 
 				//On a ladder
 				if(anim == anClimb) {
@@ -793,8 +798,8 @@
 			}
 			if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
-			if(blinking == 0 || anim == anHurt) drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
-			else drawSpriteEx(sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+			if(blinking == 0 || anim == anHurt) drawSpriteExZ(0, sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
+			else drawSpriteExZ(0, sprite, floor(frame), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			if(debug) {
 				setDrawColor(0x008000ff)
 				shape.draw()
@@ -804,14 +809,14 @@
 		//Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
-				if(!hidden) drawSprite(sprTFflash, tftime, x - camx, y - camy)
+				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
 				tftime += 0.25
 			} else tftime = -1
 		}
 
 		hidden = false
 
-		if(debug) drawText(font, x - camx - 8, y - 32 - camy, anim[2] + "\nR: " + rspeed)
+		if(debug) drawText(font, x - camx - 8, y - 16 - camy, anim[2])
 	}
 
 	function atLadder() {
