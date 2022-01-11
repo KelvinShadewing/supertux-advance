@@ -151,7 +151,7 @@
 					break
 
 				case 15:
-					newActor(WoodBlock, i.x + 8, i.y - 8)
+					newActor(WoodBlock, i.x + 8, i.y - 8, i.name)
 					break
 
 				case 16:

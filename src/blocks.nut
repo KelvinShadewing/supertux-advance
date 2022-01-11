@@ -5,6 +5,9 @@
 ::WoodBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
+	coins = 0
+	v = 0.0
+	vspeed = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -12,28 +15,56 @@
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		slideshape = Rec(x, y - 1, 16, 8, 0)
+
+		if(_arr != null && _arr != "") coins = _arr.tointeger()
+		game.maxcoins += coins
 	}
 
 	function run() {
 		if(gvPlayer) {
-			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
-				gvPlayer.vspeed = 0
-				deleteActor(id)
-				newActor(WoodChunks, x, y)
-				playSound(sndBump, 0)
-				tileSetSolid(x, y, 0)
-			}
+			if(v == 0) {
+				vspeed = 0
+				if(coins <= 1) {
+					if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
+						gvPlayer.vspeed = 0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						playSoundChannel(sndBump, 0, 1)
+						tileSetSolid(x, y, 0)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+					}
 
-			if(abs(gvPlayer.hspeed) >= 3.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
-				gvPlayer.vspeed = 0
-				deleteActor(id)
-				newActor(WoodChunks, x, y)
-				playSound(sndBump, 0)
-				tileSetSolid(x, y, 0)
+					if(gvPlayer.rawin("anSlide")) if(abs(gvPlayer.hspeed) >= 3.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+						gvPlayer.vspeed = 0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						playSoundChannel(sndBump, 0, 1)
+						tileSetSolid(x, y, 0)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+					}
+				}
+				else {
+					if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						playSoundChannel(sndBump, 0, 1)
+					}
+
+					if(gvPlayer.rawin("anSlide")) if(abs(gvPlayer.hspeed) >= 3.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						playSoundChannel(sndBump, 0, 1)
+					}
+				}
 			}
 		}
 
-		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy)
+		if(v == -8) vspeed = 1
+		v += vspeed
+
+		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 
 	function _typeof() { return "WoodBlock" }
@@ -131,7 +162,7 @@
 		if(game.difficulty == 2 && (item == 1 || item == 2)) full = false
 
 		if(v <= -8) {
-			vspeed = 0.5
+			vspeed = 1
 			switch(item){
 				case 0:
 					newActor(CoinEffect, x, y - 16)
@@ -188,7 +219,7 @@
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 			gvPlayer.vspeed = 0
 			full = false
-			vspeed = -1
+			vspeed = -2
 			playSound(sndBump, 0)
 		}
 
