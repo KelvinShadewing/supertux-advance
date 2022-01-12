@@ -310,6 +310,10 @@
 				case 75:
 					newActor(EvilBlock, i.x + 8, i.y - 8)
 					break
+
+				case 78:
+					newActor(Berry, i.x + 8, i.y - 8)
+					break
 			}
 		}
 
@@ -525,6 +529,12 @@
 	//Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
+
+	//Handle berries
+	if(gvPlayer) if(game.berries == 64) {
+		game.berries = 0
+		newActor(Starnyan, gvPlayer.x, gvPlayer.y)
+	}
 }
 
 ::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time

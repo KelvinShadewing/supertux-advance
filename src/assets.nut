@@ -95,6 +95,7 @@
 ::sprAirFeather <- newSprite("res/gfx/airfeather.png", 16, 16, 0, 0, 8, 8)
 ::sprFlyRefresh <- newSprite("res/gfx/featherspin.png", 16, 16, 0, 0, 8, 8)
 ::sprEarthShell <- newSprite("res/gfx/earthshell.png", 16, 16, 0, 0, 8, 8)
+::sprBerry <- newSprite("res/gfx/strawberry.png", 10, 12, 0, 0, 5, 6)
 
 //Effects
 ::sprSpark <- newSprite("res/gfx/spark.png", 12, 16, 0, 0, 6, 8)
@@ -137,7 +138,6 @@
 ::bgIceForest1 <- newSprite("res/gfx/iceforest1.png", 640, 256, 0, 0, 0, 0)
 ::bgIceForest2 <- newSprite("res/gfx/iceforest2.png", 480, 192, 0, 0, 0, 0)
 
-
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")
 ::sndJump <- loadSound("res/snd/jump.ogg")
@@ -161,6 +161,7 @@
 ::snd1up <- loadSound("res/snd/1up.ogg")
 ::sndWallkick <- loadSound("res/snd/wallkick.ogg")
 ::sndWarning <- loadSound("res/snd/warning.ogg")
+::sndGulp <- loadSound("res/snd/gulp.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once

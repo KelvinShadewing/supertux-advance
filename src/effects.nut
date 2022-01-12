@@ -24,7 +24,7 @@
 	function run() {
 		frame += 0.25
 		if(frame >= 3) deleteActor(id)
-		else drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSpriteExZ(4, sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 	}
 }
 
@@ -84,7 +84,7 @@
 		}
 		else {
 			stopSound(0)
-			playSoundChannel(sndCoin, 0, 0)
+			playSoundChannel(sndCoin, 0, 1)
 		}
 	}
 

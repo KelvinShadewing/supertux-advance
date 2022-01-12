@@ -389,7 +389,7 @@
 							anim = anJumpU
 							frame = anim[0]
 						}
-						if(game.weapon != 3) playSound(sndJump, 0)
+						if(game.weapon != 3) playSoundChannel(sndJump, 0, 0)
 						else playSound(sndFlap, 0)
 					}
 					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0 && tileGetSolid(x - 8, y) != 40) {
@@ -413,7 +413,7 @@
 							anim = anJumpU
 							frame = anim[0]
 						}
-						if(game.weapon != 3) playSound(sndJump, 0)
+						if(game.weapon != 3) playSoundChannel(sndJump, 0, 0)
 						else playSound(sndFlap, 0)
 						energy--
 					}
@@ -433,14 +433,14 @@
 						anim = anDive
 						frame = anim[0]
 						flip = 0
-						playSound(sndSlide, 0)
+						playSoundChannel(sndSlide, 0, 0)
 					}
 
 					if(placeFree(x - 2, y + 1) || hspeed <= -1.5) {
 						anim = anDive
 						frame = anim[0]
 						flip = 1
-						playSound(sndSlide, 0)
+						playSoundChannel(sndSlide, 0, 0)
 					}
 				}
 			} else {

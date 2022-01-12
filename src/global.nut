@@ -47,6 +47,7 @@
 	check = false //If a checkpoint has been activated
 	chx = 0
 	chy = 0
+	berries = 0
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- false; //Pointer to player actor

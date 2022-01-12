@@ -25,6 +25,29 @@
 	function _typeof() { return "Coin" }
 }
 
+::Berry <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+		frame = randFloat(4)
+	}
+
+	function run()
+	{
+		drawSprite(sprBerry, frame, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+			deleteActor(id)
+			game.berries++
+			stopSound(0)
+			playSoundChannel(sndGulp, 0, 1)
+		}
+	}
+
+	function _typeof() { return "Coin" }
+}
+
 ::FlowerFire <- class extends Actor{
 
 	constructor(_x, _y, _arr = null)
@@ -46,7 +69,7 @@
 				game.maxenergy = 4 - game.difficulty
 				game.weapon = 1
 			}
-			playSound(sndHeal, 0)
+			playSoundChannel(sndHeal, 0, 1)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 	}
@@ -75,7 +98,7 @@
 				game.maxenergy = 4 - game.difficulty
 				game.weapon = 2
 			}
-			playSound(sndHeal, 0)
+			playSoundChannel(sndHeal, 0, 1)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 	}
@@ -144,7 +167,7 @@
 			}
 			else if(game.subitem != 6 && (game.subitem == 0 || willwrite)) game.subitem = 5
 			deleteActor(id)
-			playSound(sndHeal, 0)
+			playSoundChannel(sndHeal, 0, 1)
 		}
 
 		drawSprite(sprMuffin, 0, x - camx, y - camy)
@@ -215,7 +238,7 @@
 			}
 			else game.subitem = 6
 			deleteActor(id)
-			playSound(sndHeal, 0)
+			playSoundChannel(sndHeal, 0, 1)
 		}
 
 		drawSprite(sprMuffin, 1, x - camx, y - camy)
@@ -345,7 +368,7 @@
 		drawSprite(sprAirFeather, frame, x - camx, y - camy)
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)){
-			playSound(sndHeal, 0)
+			playSoundChannel(sndHeal, 0, 1)
 			if(game.weapon == 0) game.weapon = 3
 			else {
 				game.subitem = game.weapon
