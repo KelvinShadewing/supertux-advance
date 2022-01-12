@@ -89,7 +89,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		shape = Rec(x, y, 6, 8, 0)
+		shape = Rec(x, y, 6, 7, 0)
 
 		if(gvPlayer) {
 			if(x < gvPlayer.x) flip = true
