@@ -1455,10 +1455,13 @@
 	squish = false
 	squishTime = 0.0
 	smart = false
+	jump = -4.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0, 0, 2)
+
+		if(_arr != null && _arr != "") jump = abs(_arr.tofloat()) * -1.0
 	}
 
 	function run() {
@@ -1470,10 +1473,10 @@
 				else flip = 0
 			}
 
-			if(!placeFree(x, y + 1)) vspeed = -4.0
+			if(!placeFree(x, y + 1)) vspeed = jump
 			if(!placeFree(x + 0, y - 2) && !placeFree(x + 2, y)) hspeed = 0
 			if(!placeFree(x - 0, y - 2) && !placeFree(x - 2, y)) hspeed = 0
-			vspeed += 0.1
+			vspeed += 0.15
 
 			if(!frozen) {
 				if(placeFree(x + hspeed, y)) x += hspeed

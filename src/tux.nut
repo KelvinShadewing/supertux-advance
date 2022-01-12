@@ -390,7 +390,7 @@
 							frame = anim[0]
 						}
 						if(game.weapon != 3) playSoundChannel(sndJump, 0, 0)
-						else playSound(sndFlap, 0)
+						else playSoundChannel(sndFlap, 0, 0)
 					}
 					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0 && tileGetSolid(x - 8, y) != 40) {
 						flip = 0
@@ -414,7 +414,7 @@
 							frame = anim[0]
 						}
 						if(game.weapon != 3) playSoundChannel(sndJump, 0, 0)
-						else playSound(sndFlap, 0)
+						else playSoundChannel(sndFlap, 0, 0)
 						energy--
 					}
 				}

@@ -303,7 +303,7 @@
 					break
 
 				case 73:
-					newActor(Jumpy, i.x + 8, i.y - 8)
+					newActor(Jumpy, i.x + 8, i.y - 8, i.name)
 					game.enemies++
 					break
 

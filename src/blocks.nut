@@ -29,7 +29,7 @@
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
-						playSoundChannel(sndBump, 0, 1)
+						playSoundChannel(sndBump, 0, 2)
 						tileSetSolid(x, y, 0)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
@@ -38,7 +38,7 @@
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
-						playSoundChannel(sndBump, 0, 1)
+						playSoundChannel(sndBump, 0, 2)
 						tileSetSolid(x, y, 0)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
@@ -48,14 +48,14 @@
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
-						playSoundChannel(sndBump, 0, 1)
+						playSoundChannel(sndBump, 0, 2)
 					}
 
 					if(gvPlayer.rawin("anSlide")) if(abs(gvPlayer.hspeed) >= 3.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
-						playSoundChannel(sndBump, 0, 1)
+						playSoundChannel(sndBump, 0, 2)
 					}
 				}
 			}
@@ -411,7 +411,7 @@
 			game.check = true
 			game.chx = x
 			game.chy = y
-			playSound(sndBell, 0)
+			playSoundChannel(sndBell, 0, 4)
 		}
 
 		if(found) drawSprite(sprCheckBell, getFrames() / 8, x - camx, y - camy)
