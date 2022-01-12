@@ -30,6 +30,7 @@
 ::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)
 ::sprLevels <- newSprite("res/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
 ::sprSubItem <- newSprite("res/gfx/itemcard.png", 20, 20, 0, 0, 10, 10)
+::sprWarning <- newSprite("res/gfx/warning.png", 280, 72, 0, 0, 140, 36)
 
 //Blocks
 ::sprVoid <- newSprite("res/gfx/void.png", 16, 32, 0, 0, 0, 0)
@@ -158,6 +159,8 @@
 ::sndIcicle <- loadSound("res/snd/icicle.ogg")
 ::sndIceBreak <- loadSound("res/snd/icebreak.ogg")
 ::snd1up <- loadSound("res/snd/1up.ogg")
+::sndWallkick <- loadSound("res/snd/wallkick.ogg")
+::sndWarning <- loadSound("res/snd/warning.ogg")
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once

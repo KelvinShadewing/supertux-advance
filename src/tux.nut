@@ -312,11 +312,11 @@
 				}
 
 				//Change run animation speed
-				if(getcon("right", "hold") && rspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+				if(getcon("right", "hold") && rspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) if(freeRight || placeFree(x + 1, y - 2)) {
 					rspeed += 0.2
 					if(rspeed < hspeed) rspeed = hspeed
 				}
-				if(getcon("left", "hold") && rspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+				if(getcon("left", "hold") && rspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) if(freeLeft || placeFree(x - 1, y - 2)) {
 					rspeed -= 0.2
 					if(rspeed > hspeed) rspeed = hspeed
 				}
@@ -396,11 +396,13 @@
 						flip = 0
 						anim = anWall
 						frame = anim[0]
+						playSound(sndWallkick, 0)
 					}
 					else if(freeDown && anim != anClimb && !placeFree(x + 2, y) && anim != anWall && hspeed >= 0 && tileGetSolid(x + 8, y) != 40) {
 						flip = 1
 						anim = anWall
 						frame = anim[0]
+						playSound(sndWallkick, 0)
 					}
 					else if(floor(energy) > 0 && game.weapon == 3 && getcon("jump", "press")) {
 						if(vspeed > 0) vspeed = 0.0
@@ -472,8 +474,8 @@
 
 			if(anim == anSlide && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
 				//If Tux hits the ground while sliding
-				if(flip) hspeed -= vspeed / 3.0
-				else hspeed += vspeed / 3.0
+				if(flip) hspeed -= vspeed / 2.5
+				else hspeed += vspeed / 2.5
 				vspeed = 0
 			}
 

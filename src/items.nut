@@ -16,7 +16,7 @@
 	{
 		frame += 0.2
 		drawSprite(sprCoin, frame, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
