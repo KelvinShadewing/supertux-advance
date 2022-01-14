@@ -751,7 +751,7 @@
 		if(onHazard(x, y)) hurt = true
 		if(onDeath(x, y)) game.health = 0
 
-		if(hurt) {
+		if(hurt && invincible == 0) {
 			hurt = false
 			if(blinking == 0) {
 				blinking = 120

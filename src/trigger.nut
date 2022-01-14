@@ -1,6 +1,6 @@
 ::pipeFunnel <- function() {
-	if(gvPlayer.x < x && gvPlayer.hspeed < 0.5 && getcon("down", "hold")) gvPlayer.hspeed += 0.2
-	if(gvPlayer.x > x && gvPlayer.hspeed > -0.5 && getcon("down", "hold")) gvPlayer.hspeed -= 0.2
+	if(gvPlayer.x < x && gvPlayer.hspeed < 1 && getcon("down", "hold")) gvPlayer.hspeed += 0.25
+	if(gvPlayer.x > x && gvPlayer.hspeed > -1 && getcon("down", "hold")) gvPlayer.hspeed -= 0.25
 }
 
 ::Trigger <- class extends Actor {
