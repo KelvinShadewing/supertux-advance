@@ -95,7 +95,7 @@
 		/////////////
 		// ON LAND //
 		/////////////
-		if(!inWater(x, y)) {
+		if(!inWater(x, y) || game.weapon == 4) {
 			swimming = false
 			shapeStand.h = 12.0
 
@@ -212,13 +212,15 @@
 
 					if(floor(frame) > anim[1]) {
 						anim = anSlide
-						frame = anim[0]
 						shape = shapeSlide
 					}
 					break
 
 				case anSlide:
-					frame = getFrames() / 12
+					//For some reason, adding hspeed to frame the way it's done in anWalk and anRun causes this animation to go crazy
+					//If anyone has a fix for this, please let me know!
+					frame = getFrames() / 8
+
 					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
 						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
 						if(game.weapon == 2) newActor(Glimmer, x - (12 * (hspeed / abs(hspeed))), y + 10)
@@ -263,20 +265,20 @@
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
 
-					if(placeFree(x + 4, y + 4)) {
-						hspeed += 0.1
+					if(placeFree(x + 6, y + 4)) {
+						hspeed += 0.2
 						vspeed += 2.0
 					}
 
-					if(placeFree(x - 4, y + 4)) {
-						hspeed -= 0.1
+					if(placeFree(x - 6, y + 4)) {
+						hspeed -= 0.2
 						vspeed += 2.0
 					}
 
-					if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
+					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
 				}
 
-				if((!getcon("down", "hold") && !freeDown) || abs(hspeed) < 0.05) if(anim == anSlide || anim == anDive) anim = anWalk
+				if((!getcon("down", "hold") && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold"))) if(anim == anSlide || anim == anDive) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -385,7 +387,7 @@
 						else vspeed = -5.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
-						if(anim != anHurt && anim != anDive) {
+						if(anim != anHurt && anim != anDive && (game.weapon != 4 || anim != anSlide)) {
 							anim = anJumpU
 							frame = anim[0]
 						}
@@ -406,7 +408,7 @@
 					}
 					else if(floor(energy) > 0 && game.weapon == 3 && getcon("jump", "press")) {
 						if(vspeed > 0) vspeed = 0.0
-						if(vspeed > -4) vspeed -= 2.5
+						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive) {
@@ -428,7 +430,7 @@
 				}
 
 				//Going into slide
-				if(!freeDown2 && getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt) {
+				if(((!freeDown2 && getcon("down", "hold")) || (getcon("shoot", "hold") && game.weapon == 4)) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall) {
 					if(placeFree(x + 2, y + 1) || hspeed >= 1.5) {
 						anim = anDive
 						frame = anim[0]
@@ -538,7 +540,17 @@
 					break
 
 				case 3:
-					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall)) {
+					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall) && anim != anHurt) {
+						anim = anDive
+						frame = anim[0]
+						playSoundChannel(sndSlide, 0, 0)
+						if(flip == 0 && hspeed < 2) hspeed = 2
+						if(flip == 1 && hspeed > -2) hspeed = -2
+					}
+					break
+
+				case 4:
+					if(getcon("shoot", "press") && (anim != anHurt)) {
 						anim = anDive
 						frame = anim[0]
 						playSoundChannel(sndSlide, 0, 0)
@@ -818,7 +830,7 @@
 
 		hidden = false
 
-		if(debug) drawText(font, x - camx - 8, y - 16 - camy, anim[2])
+		if(debug) drawText(font, x - camx - 8, y - 32 - camy, anim[2] + "\n" + frame.tostring())
 	}
 
 	function atLadder() {
@@ -888,6 +900,7 @@
 				newActor(AirFeather, x, y)
 				break
 			case 4:
+				newActor(EarthShell, x, y)
 				break
 			case 5:
 				if(game.health < game.maxHealth) {
@@ -945,6 +958,9 @@
 				break
 			case 3:
 				drawSprite(sprTuxAir, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				break
+			case 4:
+				drawSprite(sprTuxEarth, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
 				break
 		}
 	}

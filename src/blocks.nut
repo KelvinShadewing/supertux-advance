@@ -213,6 +213,10 @@
 				case 9:
 					newActor(MuffinBomb, x, y - 16)
 					break
+
+				case 10:
+					newActor(EarthShell, x, y - 16)
+					break
 			}
 		}
 

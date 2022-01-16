@@ -27,6 +27,7 @@
 	if(keyPress(k_2)) game.weapon = 1
 	if(keyPress(k_3)) game.weapon = 2
 	if(keyPress(k_4)) game.weapon = 3
+	if(keyPress(k_5)) game.weapon = 4
 	if(keyPress(k_equals)) game.lives++
 
 	//Teleport
@@ -63,9 +64,9 @@
 	drawSprite(sprDebug, getcon("run", "hold").tointeger() + 12, 20, 72)
 
 	message += "HSPD: "
-	message += gvPlayer.hspeed.tostring()
+	if(gvPlayer) message += gvPlayer.hspeed.tostring()
 	message += "\nVSPD: "
-	message += gvPlayer.vspeed.tostring()
+	if(gvPlayer) message += gvPlayer.vspeed.tostring()
 	message += "\n\n"
 	if(gvMap != 0) message += "Map W: " + gvMap.w + "\n"
 	if(gvMap != 0) message += "Map H: " + gvMap.h + "\n"

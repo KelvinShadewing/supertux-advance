@@ -485,3 +485,32 @@
 		drawSprite(sprMuffin, 3, x - camx, y - camy)
 	}
 }
+
+::EarthShell <- class extends Actor{
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+	}
+
+	function run()
+	{
+		drawSprite(sprEarthShell, getFrames() / 16, x - camx, y - camy)
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+			deleteActor(id)
+			if(game.weapon == 0) {
+				game.weapon = 4
+				game.maxenergy = 4 - game.difficulty
+			}
+			else {
+				game.subitem = game.weapon
+				game.maxenergy = 4 - game.difficulty
+				game.weapon = 4
+			}
+			playSoundChannel(sndHeal, 0, 1)
+			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
+		}
+	}
+
+	function _typeof() { return "EarthShell" }
+}

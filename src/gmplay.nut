@@ -253,6 +253,10 @@
 					newActor(ItemBlock, i.x + 8, i.y - 8, 9)
 					break
 
+				case 39:
+					newActor(ItemBlock, i.x + 8, i.y - 8, 10)
+					break
+
 				case 40:
 					newActor(SpringD, i.x, i.y - 16, 0)
 					break
