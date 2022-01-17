@@ -100,13 +100,13 @@
 		"tnt" :
 		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off. Also, fun fact, this level was competed before subsea",
 		"trans" :
-		"FROSTC: took me a good while to get the background transition to work, as this was for the most part the first time i used triggers",
+		"FROSTC: It took me a good while to get the background transition to work, as this was for the most part the first time I used triggers.",
 		"lifenote" :
-		"FROSTC: for those who played the older versions, hope you like the all new, much harder 1-up position! hahahahahaha!!",
+		"FROSTC: For those who played the older versions, I hope you like the all new, much harder 1-up position! Hahahahahaha!!",
 		"signnote" :
-		"FROSTC: if you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. maybe a good speedrunning strat??",
+		"FROSTC: If you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. Maybe a good speedrunning strat??",
 		"sense":
-		"FROSTC: my 3rd level, just wanted to make a level losely inspired off of grumbel's sense of snow from the classic supertux. the funny part is that level isn't even in modern versions of the classic supertux!",
+		"FROSTC: My 3rd level, just wanted to make a level losely inspired off of Grumbel's Sense of Snow from the classic SuperTux. The funny part is that level isn't even in modern versions of the classic SuperTux!",
 		"subsea" :
 		"KELVIN: I wasn't sure how I wanted to handle underwater levels at first. I thought of the levels from SMB 1 and 3, but they seemed like something Tux could just shoot right through. Then I remembered DKC's underwater levels, how they were more like mazes where you had to dodge dangerous enemies. I figured that would work well for this game, since Tux is fast under water, and Konqi and Midi retain offensive capabilities in their neutral forms.",
 		"subsea-name" :
@@ -114,15 +114,17 @@
 		"tutorial-zone" :
 		"KELVIN: After getting some playtest feedback from Aurora Sol, I decided I should make this tutorial area to more clearly demonstrate basic mechanics. In his playtest, he actually skipped the first pipe, despite it having a sign hinting there's something about it, which led to him skipping the spot to learn swimming, too. Sliding places weren't clearly marked, either, and were also missed. This area won't let you progress until you've learned each mechanic, but can still be skipped if you already know the basics.",
 		"speedrunex":
-		"FROSTC:I had designed this level with the intention of people speedrunning it, so see how fast you can beat it! ",
+		"FROSTC: I had designed this level with the intention of people speedrunning it, so see how fast you can beat it! ",
 		"secretredex":
-		"FROSTC: the current version of this secret is very diffrent compared to how it used to be, one diffrence is that it used to have a bend in it. however i couldn't get that to work properly, that being the reason i scrapped it.",
+		"FROSTC: The current version of this secret is very diffrent compared to how it used to be. One diffrence is that it used to have a bend in it. however I couldn't get that to work properly, that being the reason I scrapped it.",
 		"fishex":
-		"FROSTC: just like tux in trouble, this level was made before some of the earlier levels were added.",
+		"FROSTC: Just like Tux 'N' Trouble, this level was made before some of the earlier levels were added.",
 		"mezex":
-		"FROSTC: I had to make a few custom tiles to make this maze look good, it was worth it, i think! it's for sure the best part of this level.",
+		"FROSTC: I had to make a few custom tiles to make this maze look good. It was worth it, I think! It's for sure the best part of this level.",
 		"outage":
-		"FROSTC: Another random fact... This and the last level only took 3 days to make in total! probably helped that school was canceled for the first day I started working on them due to a power outage or something. "
+		"FROSTC: Another random fact: this and the last level only took 3 days to make in total! It probably helped that school was canceled for the first day I started working on them due to a power outage or something.",
+		"oldxtreme":
+		"KELVIN: In previous versions of this level, the prize for getting all the coins was a powerup that isn't formally introduced until a few levels later. I thought it would be fun to earn the chance to break levels, but the design of them actually makes the powerup not as fun to use as I'd hoped. I instead decided to set up a collectible that could unlock new content later on."
 	},
 
 	"npc" : {

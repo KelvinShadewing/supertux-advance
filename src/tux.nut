@@ -29,6 +29,7 @@
 	hidden = false
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
+	slideframe = 0.0 //Because using just frame gets screwy for some reason
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -217,9 +218,8 @@
 					break
 
 				case anSlide:
-					//For some reason, adding hspeed to frame the way it's done in anWalk and anRun causes this animation to go crazy
-					//If anyone has a fix for this, please let me know!
-					frame = getFrames() / 8
+					slideframe += abs(hspeed / 8.0)
+					frame = slideframe
 
 					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
 						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
@@ -256,7 +256,7 @@
 					break
 			}
 
-			if(anim != anClimb) frame = wrap(frame, anim[0], anim[1])
+			if(anim != anClimb) frame = wrap(abs(frame), anim[0], anim[1])
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide || onIce()) {
@@ -278,7 +278,7 @@
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
 				}
 
-				if((!getcon("down", "hold") && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold"))) if(anim == anSlide || anim == anDive) anim = anWalk
+				if(((!getcon("down", "hold") || abs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold"))) if(anim == anSlide || anim == anDive) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -447,7 +447,8 @@
 				}
 			} else {
 				if(hspeed < 1 && endmode) hspeed += 0.2
-				if(endmode) rspeed = hspeed
+				if(endmode && placeFree(x + 2, y)) rspeed = hspeed
+				else rspeed = 0
 			}
 
 			//Movement
@@ -584,12 +585,13 @@
 						anim = anFall
 						frame = anim[0]
 					}
+					break
 				case anFall:
 					frame += 0.01
 					break
 			}
 
-			frame = wrap(frame, anim[0], anim[1])
+			frame = wrap(abs(frame), anim[0], anim[1])
 
 			//Swich swim directions
 			if(anim != anHurt) {
