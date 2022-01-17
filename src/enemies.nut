@@ -879,7 +879,9 @@
 		}
 	}
 
-	function gethurt() {}
+	function gethurt() {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	}
 
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
@@ -984,7 +986,9 @@
 		}
 	}
 
-	function gethurt() {}
+	function gethurt() {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	}
 
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)
@@ -1078,7 +1082,9 @@
 		}
 	}
 
-	function gethurt() {}
+	function gethurt() {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	}
 
 	function hurtfire() {
 		if(randInt(20) == 0) {
@@ -1130,6 +1136,10 @@
 		if(timer > 0) timer--
 
 		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function gethurt() {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
 	}
 
 	function hurtfire() {
@@ -1272,7 +1282,9 @@
 		}
 	}
 
-	function gethurt() {}
+	function gethurt() {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	}
 
 	function hurtfire() {
 		local c = newActor(DeadNME, x, y)

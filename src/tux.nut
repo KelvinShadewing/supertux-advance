@@ -260,23 +260,13 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide || onIce()) {
-				if(!placeFree(x, y + 2) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
+				if(!placeFree(x, y + 4) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
-
-					if(placeFree(x + 6, y + 4)) {
-						hspeed += 0.2
-						vspeed += 2.0
-					}
-
-					if(placeFree(x - 6, y + 4)) {
-						hspeed -= 0.2
-						vspeed += 2.0
-					}
-
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
 				}
+				else if(!placeFree(x, y + 8) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) vspeed += 0.2
 
 				if(((!getcon("down", "hold") || abs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold"))) if(anim == anSlide || anim == anDive) anim = anWalk
 			}
@@ -719,7 +709,7 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 2) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0) {
+				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
 					y += 1
 				}
 				x += hspeed
@@ -729,7 +719,10 @@
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
-						if(i > 2) hspeed /= 1.5
+						if(i > 2) {
+							if(hspeed > 0) hspeed -= 0.2
+							if(hspeed < 0) hspeed += 0.2
+						}
 						didstep = true
 						break
 					}
