@@ -58,6 +58,21 @@
 	}
 }
 
+::Splash <- class extends Actor {
+	frame = 0.0
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		angle = (360 / 8) * randInt(8)
+	}
+	function run() {
+		frame += 0.25
+		if(frame >= 4) deleteActor(id)
+		else drawSpriteExZ(7, sprSplash, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 0.8)
+	}
+}
+
 ::FlameTiny <- class extends Actor {
 	frame = 0.0
 	angle = 0

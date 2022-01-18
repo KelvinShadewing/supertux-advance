@@ -117,6 +117,7 @@
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png" 16, 4, 0, 0, 0, 0)
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
+::sprSplash <- newSprite("res/gfx/splash.png", 32, 32, 0, 0, 16, 20)
 
 //Backgrounds
 ::bgPause <- 0

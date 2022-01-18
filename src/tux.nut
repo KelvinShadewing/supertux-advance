@@ -30,6 +30,7 @@
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
 	slideframe = 0.0 //Because using just frame gets screwy for some reason
+	wasInWater = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -74,6 +75,7 @@
 		local freeLeft = placeFree(x - 1, y)
 		local freeRight = placeFree(x + 1, y)
 		local freeUp = placeFree(x, y - 1)
+		local nowInWater = inWater(x, y)
 		//Checks are done at the beginning and stored here so that they can be
 		//quickly reused. Location checks will likely need to be done multiple
 		//times per frame.
@@ -218,7 +220,8 @@
 					break
 
 				case anSlide:
-					slideframe += abs(hspeed / 8.0)
+					if(game.weapon == 4) slideframe += abs(hspeed / 8.0)
+					else slideframe += abs(hspeed / 16.0)
 					frame = slideframe
 
 					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
@@ -373,7 +376,7 @@
 					else if(canJump > 0) {
 						jumpBuffer = 0
 						if(anim == anClimb) vspeed = -3
-						else if(game.weapon == 3) vspeed = -5.0
+						else if(game.weapon == 3 || nowInWater) vspeed = -5.0
 						else vspeed = -5.8
 						didJump = true
 						if(game.weapon != 3) canJump = 0
@@ -461,8 +464,19 @@
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold"))))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold")) && !nowInWater))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
+
+			//Entering water
+			if(nowInWater && !wasInWater) {
+				wasInWater = true
+				vspeed /= 2.0
+				newActor(Splash, x, y)
+			}
+			if(!nowInWater && wasInWater) {
+				wasInWater = false
+				newActor(Splash, x, y)
+			}
 
 
 			if(anim == anSlide && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
@@ -485,7 +499,7 @@
 			}
 
 			//Gravity cases
-			if(game.weapon == 3) gravity = 0.12
+			if(game.weapon == 3 || nowInWater) gravity = 0.12
 			else gravity = 0.25
 			if(anim == anClimb || anim == anWall) gravity = 0
 
@@ -559,6 +573,11 @@
 			swimming = true
 			if(game.weapon == 3 && energy < 4) energy += 0.1
 			shapeStand.h = 6.0
+			if(!wasInWater) {
+				wasInWater = true
+				vspeed /= 2.0
+				newActor(Splash, x, y)
+			}
 
 			//Animation states
 			switch(anim) {
@@ -601,6 +620,7 @@
 				}
 				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 2.0
 				else mspeed = 1.0
+				if(nowInWater) mspeed *= 0.8
 
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
