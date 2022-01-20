@@ -10,7 +10,7 @@
 	frame = 0.0
 	flip = 0
 	canMove = true //If player has control
-	mspeed = 4 //Maximum running speed
+	mspeed = 6 //Maximum running speed
 	climbdir = 1.0
 	blinking = 0 //Invincibility frames
 	startx = 0.0
@@ -125,7 +125,7 @@
 				case anWalk:
 					frame += abs(rspeed) / 8
 					if(abs(rspeed) <= 0.1 || abs(hspeed) <= 0.1) anim = anStand
-					if(abs(rspeed) > 2.4) anim = anRun
+					if(abs(rspeed) > 2.8) anim = anRun
 
 					if(placeFree(x, y + 2)) {
 						if(vspeed >= 0) anim = anFall
@@ -202,9 +202,9 @@
 					vspeed = 0
 
 					if(floor(frame) > anim[1]) {
-						vspeed = -5.0
+						vspeed = -6
 						if(flip == 0) hspeed = 3.0
-						else hspeed = -3.0
+						else hspeed = -3
 						anim = anJumpU
 						frame = anim[0]
 					}
@@ -264,8 +264,8 @@
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide || onIce()) {
 				if(!placeFree(x, y + 4) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
-					if(placeFree(x + 4, y + 2)) hspeed += 0.25
-					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
+					if(placeFree(x + 4, y + 2)) hspeed += 0.5
+					if(placeFree(x - 4, y + 2)) hspeed -= 0.5
 					if(freeDown2)vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
 				}
@@ -378,7 +378,7 @@
 						jumpBuffer = 0
 						if(anim == anClimb) vspeed = -3
 						else if(game.weapon == 3 || nowInWater) vspeed = -5.0
-						else vspeed = -5.8
+						else vspeed = -7
 						didJump = true
 						if(game.weapon != 3) canJump = 0
 						if(anim != anHurt && anim != anDive && (game.weapon != 4 || anim != anSlide)) {
@@ -420,7 +420,7 @@
 				if(getcon("jump", "release") && vspeed < 0 && didJump)
 				{
 					didJump = false
-					vspeed /= 2.5
+					vspeed /= 4.5
 				}
 
 				//Going into slide
@@ -482,8 +482,8 @@
 
 			if(anim == anSlide && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
 				//If Tux hits the ground while sliding
-				if(flip) hspeed -= vspeed / 2.5
-				else hspeed += vspeed / 2.5
+				if(flip) hspeed -= vspeed / 2
+				else hspeed += vspeed / 2
 				vspeed = 0
 			}
 
@@ -500,8 +500,8 @@
 			}
 
 			//Gravity cases
-			if(game.weapon == 3 || nowInWater) gravity = 0.12
-			else gravity = 0.25
+			if(game.weapon == 3 || nowInWater) gravity = 0.2
+			else gravity = 0.35
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks

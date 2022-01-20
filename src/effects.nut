@@ -117,8 +117,8 @@
 ::IceChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0
-	vspeed = -3.0
-	timer = 30
+	vspeed = -6.0
+	timer = 60
 	a = 0
 
 	constructor(_x, _y, _arr = null) {
@@ -127,7 +127,7 @@
 	}
 
 	function run() {
-		vspeed += 0.2
+		vspeed += 0.4
 		v += vspeed
 		h += 1
 		a += 4

@@ -118,15 +118,15 @@
 ::WoodChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0
-	vspeed = -3.0
+	vspeed = -6.0
 	timer = 30
 	a = 0
 
 	function run() {
-		vspeed += 0.2
+		vspeed += 0.4
 		v += vspeed
 		h += 1
-		a += 4
+		a += 8
 
 		drawSpriteExZ(2, sprWoodChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprWoodChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)

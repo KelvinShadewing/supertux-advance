@@ -17,7 +17,7 @@
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
 			else deleteActor(id)
 		}
-		if(!inWater(x, y)) vspeed += 0.1
+		if(!inWater(x, y)) vspeed += 0.2
 		else {
 			hspeed *= 0.99
 			vspeed *= 0.99
@@ -72,7 +72,7 @@
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
 			else deleteActor(id)
 		}
-		if(!inWater(x, y)) vspeed += 0.1
+		if(!inWater(x, y)) vspeed += 0.2
 		else {
 			hspeed *= 0.99
 			vspeed *= 0.99
