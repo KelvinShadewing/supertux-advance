@@ -155,19 +155,23 @@
 					break
 
 				case 16:
-					newActor(Spring, i.x, i.y - 16, 0)
+					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 0)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 17:
-					newActor(Spring, i.x, i.y - 16, 1)
+					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 1)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 18:
-					newActor(Spring, i.x, i.y - 16, 2)
+					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 2)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 19:
-					newActor(Spring, i.x, i.y - 16, 3)
+					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 3)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 20:
@@ -258,19 +262,23 @@
 					break
 
 				case 40:
-					newActor(SpringD, i.x, i.y - 16, 0)
+					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 0)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 41:
-					newActor(SpringD, i.x, i.y - 16, 1)
+					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 1)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 42:
-					newActor(SpringD, i.x, i.y - 16, 2)
+					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 2)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 43:
-					newActor(SpringD, i.x, i.y - 16, 3)
+					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 3)]
+					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 44:

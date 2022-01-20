@@ -80,10 +80,11 @@
 	dir = 0
 	frame = 0.0
 	fspeed = 0.0
+	power = 10.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		shape = Rec(x + 8, y + 8, 4, 4, 0)
+		shape = Rec(x, y, 4, 4, 0)
 		dir = _arr
 	}
 
@@ -95,19 +96,19 @@
 				fspeed = 0.2
 				switch(dir) {
 					case 0: //Up
-						gvPlayer.vspeed = -10.0
+						gvPlayer.vspeed = -power
 						break
 
 					case 1: //Down
-						gvPlayer.vspeed = 8.0
+						gvPlayer.vspeed = power
 						break
 
 					case 2: //Right
-						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 8.0
+						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : power
 						break
 
 					case 3: //Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -8.0
+						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -power
 						break
 				}
 				if(frame == 0.0) playSound(sndSpring, 0)
@@ -126,15 +127,15 @@
 				break
 
 			case 1: //Down
-				drawSpriteEx(sprSpring, round(frame), x + 16 - camx, y + 14 - camy, 180, 0, 1, 1, 1)
+				drawSpriteEx(sprSpring, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
 				break
 
 			case 2: //Right
-				drawSpriteEx(sprSpring, round(frame), x + 14 - camx, y - camy, 90, 0, 1, 1, 1)
+				drawSpriteEx(sprSpring, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
 				break
 
 			case 3: //Left
-				drawSpriteEx(sprSpring, round(frame), x - camx + 2, y + 16 - camy, 270, 0, 1, 1, 1)
+				drawSpriteEx(sprSpring, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
 				break
 		}
 
@@ -149,10 +150,11 @@
 	dir = 0
 	frame = 0.0
 	fspeed = 0.0
+	power = 10.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		shape = Rec(x + 8, y + 8, 4, 4, 0)
+		shape = Rec(x, y, 4, 4, 0)
 		dir = _arr
 	}
 
@@ -164,23 +166,23 @@
 				fspeed = 0.2
 				switch(dir) {
 					case 0: //Up Right
-						gvPlayer.vspeed = -8.0
-						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 7.0
+						gvPlayer.vspeed = -power * 0.8
+						gvPlayer.hspeed = power * 0.6
 						break
 
 					case 1: //Down Right
-						gvPlayer.vspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : 7.0
-						gvPlayer.hspeed = 8.0
+						gvPlayer.vspeed = power * 0.7
+						gvPlayer.hspeed = power * 0.7
 						break
 
 					case 2: //Down Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -7.0
-						gvPlayer.vspeed = 8.0
+						gvPlayer.hspeed = -power * 0.7
+						gvPlayer.vspeed = power * 0.7
 						break
 
 					case 3: //Up Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -7.0
-						gvPlayer.vspeed = -8.0
+						gvPlayer.hspeed = -power * 0.6
+						gvPlayer.vspeed = -power * 0.8
 						break
 				}
 				if(frame == 0.0) playSound(sndSpring, 0)

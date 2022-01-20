@@ -38,8 +38,8 @@
 ::sprBoxItem <- newSprite("res/gfx/itembox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxRed <- newSprite("res/gfx/redbox.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxEmpty <- newSprite("res/gfx/emptybox.png", 16, 16, 0, 0, 0, 0)
-::sprSpring <- newSprite("res/gfx/spring.png", 16, 16, 0, 0, 0, 0)
-::sprSpringD <- newSprite("res/gfx/springd.png", 16, 16, 0, 0, 0, 0)
+::sprSpring <- newSprite("res/gfx/spring.png", 16, 16, 0, 0, 8, 8)
+::sprSpringD <- newSprite("res/gfx/springd.png", 16, 16, 0, 0, 8, 8)
 ::sprWoodBox <- newSprite("res/gfx/woodbox.png", 16, 16, 0, 0, 0, 0)
 ::sprIceBlock <- newSprite("res/gfx/iceblock.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodChunks <- newSprite("res/gfx/woodchunks.png", 8, 8, 0, 0, 4, 4)
@@ -117,7 +117,7 @@
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png" 16, 4, 0, 0, 0, 0)
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
-::sprSplash <- newSprite("res/gfx/splash.png", 32, 32, 0, 0, 16, 20)
+::sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 0, 0, 12, 16)
 
 //Backgrounds
 ::bgPause <- 0

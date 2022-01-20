@@ -26,17 +26,14 @@
 }
 
 ::Berry <- class extends Actor{
-	frame = 0.0
-
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
-		frame = randFloat(4)
 	}
 
 	function run()
 	{
-		drawSprite(sprBerry, frame, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
+		drawSprite(sprBerry, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
 		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
 			deleteActor(id)
 			game.berries++

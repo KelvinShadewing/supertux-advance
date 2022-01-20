@@ -99,13 +99,20 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
-		func = function() {  }
+		func = function() {
+			meCharMenu.clear()
+			foreach(key, i in game.characters) {
+
+			}
+		 }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-game"]},
 		func = function() { startMain(); cursor = 0 }
 	}
 ]
+
+::meCharMenu <- []
 
 ::meOptions <- [
 	{

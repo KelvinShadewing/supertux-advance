@@ -94,7 +94,7 @@
 	}
 
 	function hurtfire() {} //If the object is hit by a fireball
-	function hurtice() { frozen = 600 }
+	function hurtice() {}
 
 	function hurtinvinc() {
 		newActor(Poof, x, y)
@@ -263,6 +263,8 @@
 		}
 	}
 
+	function hurtice() { frozen = 600 }
+
 	function _typeof() { return "Deathcap" }
 }
 
@@ -339,6 +341,8 @@
 		if(!nocount) game.enemies--
 	}
 
+	function hurtice() { frozen = 600 }
+
 	function _typeof() { return "Snake" }
 }
 
@@ -399,6 +403,8 @@
 		}
 	}
 	function hurtfire() {}
+
+	function hurtice() { frozen = 600 }
 }
 
 //Dead enemy effect for enemies that get sent flying,
@@ -564,6 +570,8 @@
 		}
 	}
 
+	function hurtice() { frozen = 600 }
+
 	function _typeof() { return "CarlBoom" }
 }
 
@@ -698,6 +706,8 @@
 	}
 
 	hurtfire = Deathcap.hurtfire
+
+	function hurtice() { frozen = 600 }
 }
 
 ::BadCannon <- class extends Actor {
@@ -821,6 +831,8 @@
 			gvPlayer.frame = gvPlayer.anJumpU[0]
 		}
 	}
+
+	function hurtice() { frozen = 600 }
 
 	function _typeof() { return "CannonBob" }
 }
@@ -1449,6 +1461,8 @@
 	}
 
 	hurtfire = Deathcap.hurtfire
+
+	function hurtice() { frozen = 600 }
 }
 
 ::Snail <- class extends Enemy {
@@ -1459,6 +1473,10 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
+
+	hurtfire = Deathcap.hurtfire
+
+	function hurtice() { frozen = 600 }
 }
 
 ::Jumpy <- class extends Enemy {
@@ -1542,6 +1560,8 @@
 		playSound(sndFlame, 0)
 		if(!nocount) game.enemies--
 	}
+
+	function hurtice() { frozen = 600 }
 }
 
 ::Darknyan <- class extends PhysAct {
