@@ -201,15 +201,15 @@
 				break
 
 			case 1: //Down
-				drawSpriteEx(sprSpringD, round(frame), x + 14 - camx, y - camy, 90, 0, 1, 1, 1)
+				drawSpriteEx(sprSpringD, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
 				break
 
 			case 2: //Right
-				drawSpriteEx(sprSpringD, round(frame), x + 16 - camx, y + 14 - camy, 180, 0, 1, 1, 1)
+				drawSpriteEx(sprSpringD, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
 				break
 
 			case 3: //Left
-				drawSpriteEx(sprSpringD, round(frame), x - camx + 2, y + 16 - camy, 270, 0, 1, 1, 1)
+				drawSpriteEx(sprSpringD, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
 				break
 		}
 
