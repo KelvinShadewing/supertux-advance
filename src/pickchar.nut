@@ -1,0 +1,4 @@
+::pickChar <- function() {
+	local charlist = []
+
+}

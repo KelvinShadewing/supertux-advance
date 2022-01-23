@@ -25,7 +25,6 @@
 		gvPlayer.endmode = true
 		if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
 		gvPlayer.invincible = 999
-		game.coins += game.levelcoins
 		if(game.levelcoins >= game.maxcoins && !game.allcoins.rawin(gvMap.name)) game.allcoins[gvMap.name] <- true
 		if(game.secrets <= 0 && !game.allsecrets.rawin(gvMap.name)) game.allsecrets[gvMap.name] <- true
 		if(game.enemies <= 0 && !game.allenemies.rawin(gvMap.name)) game.allenemies[gvMap.name] <- true

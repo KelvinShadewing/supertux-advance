@@ -93,9 +93,11 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		game.levelcoins++
-		if(game.levelcoins % 50 == 0) {
+		game.coins++
+		if(game.coins >= 100) {
 			playSoundChannel(snd1up, 0, 2)
 			game.lives++
+			game.coins = 0
 		}
 		else {
 			stopSound(0)

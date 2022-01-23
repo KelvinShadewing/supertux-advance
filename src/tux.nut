@@ -790,6 +790,7 @@
 				else hspeed = 2.0
 			}
 		}
+		else hurt = false
 		if(blinking > 0) blinking--
 		if(game.health == 0) {
 			die()
@@ -949,6 +950,8 @@
 		playSound(sndDie, 0)
 		mywep = game.weapon
 		if(game.lives == 0 || game.check == false) game.weapon = 0
+		if(game.lives == 0) game.check = false
+		if(game.lives > 0) game.lives--
 	}
 
 	function run() {
@@ -957,8 +960,6 @@
 		timer--
 		if(timer == 0) {
 			startPlay(gvMap.file)
-			if(game.check == true || game.difficulty > 0) if(game.lives > 0) game.lives--
-			if(game.lives == 0) game.check = false
 			if(game.check == false) gvIGT = 0
 		}
 		switch(mywep) {

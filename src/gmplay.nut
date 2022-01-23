@@ -20,10 +20,6 @@
 	game.enemies = 0
 	gvInfoBox = ""
 	gvLastSong = ""
-	if(game.lives == 0) {
-		game.check = false
-		gvIGT = 0
-	}
 	autocon = {
 		up = false
 		down = false
@@ -470,8 +466,7 @@
 
 		//Draw coins and lives
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
-		if(game.maxcoins > 0) drawText(font2, 24, screenH() - 23, game.levelcoins.tostring() + "/" + game.maxcoins.tostring())
-		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
+		drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		drawSprite(game.characters[game.playerchar][1], game.weapon, screenW() - 16, screenH() - 12)
 		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 
