@@ -19,7 +19,8 @@
 ::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 14)
 
 ::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 15, 19)
-::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 20)
+::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 18)
+::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 14)
 
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 15, 19)
 ::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 20)

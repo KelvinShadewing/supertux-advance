@@ -99,7 +99,7 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
-		func = function() { if(game.characters.len() > 1) pickChar() }
+		func = function() { pickChar() }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-game"]},

@@ -35,11 +35,11 @@
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
 	anStand = [0.0, 3.0, "stand"]
-	anWalk = [8.0, 15.0, "walk"]
-	anRun = [16.0, 23.0, "run"]
-	anDive = [24.0, 25.0, "dive"]
+	anWalk = [16.0, 23.0, "walk"]
+	anRun = [24.0, 31.0, "run"]
+	anDive = [14.0, 15.0, "dive"]
 	anSlide = [26.0, 29.0, "slide"]
-	anHurt = [30.0, 31.0, "hurt"]
+	anHurt = [6.0, 7.0, "hurt"]
 	anJumpU = [32.0, 33.0, "jumpU"]
 	anJumpT = [34.0, 35.0, "jumpT"]
 	anFall = [36.0, 37.0, "fall"]
@@ -963,19 +963,19 @@
 		}
 		switch(mywep) {
 			case 0:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 1:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 2:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 3:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 4:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 		}
 	}
