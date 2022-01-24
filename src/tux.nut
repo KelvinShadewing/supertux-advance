@@ -221,7 +221,7 @@
 
 				case anSlide:
 					if(game.weapon == 4) slideframe += abs(hspeed / 8.0)
-					else slideframe += abs(hspeed / 16.0)
+					else slideframe += abs(hspeed / 24.0)
 					frame = slideframe
 
 					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
