@@ -118,6 +118,7 @@
 		frame += 0.2
 		x += hspeed
 		y += vspeed
+		if(gvPlayer) x += gvPlayer.hspeed
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)

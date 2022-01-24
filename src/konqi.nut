@@ -31,6 +31,7 @@
 	rspeed = 0.0 //Run animation speed
 	slideframe = 0.0 //Because using just frame gets screwy for some reason
 	wasInWater = false
+	cooldown = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -38,18 +39,19 @@
 	anWalk = [16.0, 23.0, "walk"]
 	anRun = [24.0, 31.0, "run"]
 	anDive = [14.0, 15.0, "dive"]
+	anCrawl = [40.0, 43.0, "crawl"]
 	anSlide = [26.0, 29.0, "slide"]
 	anHurt = [6.0, 7.0, "hurt"]
 	anJumpU = [32.0, 33.0, "jumpU"]
 	anJumpT = [34.0, 35.0, "jumpT"]
 	anFall = [36.0, 37.0, "fall"]
 	anClimb = [44.0, 47.0, "climb"]
-	anWall = [48.0, 49.0, "wall"]
-	anSwimF = [52.0, 55.0, "swim"]
-	anSwimUF = [56.0, 59.0, "swim"]
-	anSwimDF = [60.0, 63.0, "swim"]
-	anSwimU = [64.0, 67.0, "swim"]
-	anSwimD = [68.0, 71.0, "swim"]
+	anWall = [4.0, 5.0, "wall"]
+	anSwimF = [48.0, 51.0, "swim"]
+	anSwimUF = [48.0, 51.0, "swim"]
+	anSwimDF = [48.0, 51.0, "swim"]
+	anSwimU = [48.0, 51.0, "swim"]
+	anSwimD = [48.0, 51.0, "swim"]
 	anSkid = [4.0, 5.0, "skid"]
 	anPush = [6.0, 7.0, "push"]
 
@@ -214,7 +216,7 @@
 					frame += 0.25
 
 					if(floor(frame) > anim[1]) {
-						anim = anSlide
+						anim = anCrawl
 						shape = shapeSlide
 					}
 					break
@@ -262,7 +264,7 @@
 			if(anim != anClimb) frame = wrap(abs(frame), anim[0], anim[1])
 
 			//Sliding acceleration
-			if(anim == anDive || anim == anSlide || onIce()) {
+			if(anim == anSlide || onIce()) {
 				if(!placeFree(x, y + 4) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
@@ -459,7 +461,7 @@
 					}
 				}
 			}
-			else if(anim != anSlide && anim != anDive) {
+			else if(anim != anSlide) {
 				if(hspeed > 0 && !getcon("right", "hold")) hspeed -= friction / 3.0
 				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3.0
 			}
@@ -506,6 +508,13 @@
 
 			//Attacks
 			switch(game.weapon) {
+				case 0:
+					if(cooldown > 0) break
+					if(getcon("shoot", "press")) {
+						cooldown = 60
+						playSoundChannel(sndFlame, 0, 0)
+					}
+					break
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
@@ -566,6 +575,15 @@
 					break
 			}
 
+			if(cooldown > 0) cooldown--
+
+			if(cooldown >= 50 && cooldown % 2 == 0) {
+				local c = actor[newActor(FlameBreath, x, y - 6)]
+				if(flip == 0) c.hspeed = 1.75
+				else c.hspeed = -1.75
+				c.vspeed = (cooldown.tofloat() - 53.0) / 8.0
+			}
+
 		}
 		//////////////
 		// IN WATER //
@@ -573,7 +591,6 @@
 		else {
 			swimming = true
 			if(game.weapon == 3 && energy < 4) energy += 0.1
-			shapeStand.h = 6.0
 			if(!wasInWater) {
 				wasInWater = true
 				vspeed /= 2.0
@@ -616,8 +633,8 @@
 			//Movement
 			if(canMove) {
 				if(getcon("run", "hold") || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9)) {
-					if(game.weapon == 2) mspeed = 3.0
-					else mspeed = 2.8
+					if(game.weapon == 2) mspeed = 2.2
+					else mspeed = 2.0
 				}
 				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1)) mspeed = 2.0
 				else mspeed = 1.0
@@ -949,6 +966,8 @@
 		playSound(sndDie, 0)
 		mywep = game.weapon
 		if(game.lives == 0 || game.check == false) game.weapon = 0
+		if(game.lives == 0) game.check = false
+		if(game.lives > 0) game.lives--
 	}
 
 	function run() {

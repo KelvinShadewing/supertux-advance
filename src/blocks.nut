@@ -111,6 +111,30 @@
 			playSound(sndFlame, 0)
 		}
 
+		if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			deleteActor(i.id)
+			newActor(Poof, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		if(actor.rawin("Explode")) foreach(i in actor["Explode"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			deleteActor(i.id)
+			newActor(Poof, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			deleteActor(i.id)
+			newActor(Poof, x, y)
+			playSound(sndFlame, 0)
+		}
+
 		drawSpriteZ(2, sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
 }
