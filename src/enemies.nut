@@ -402,6 +402,12 @@
 			}
 		}
 	}
+
+	function gethurt() {
+		if(!gvPlayer.rawin("anSlide")) hurtplayer()
+		else if(gvPlayer.anim != gvPlayer.anSlide || game.weapon != 4) hurtplayer()
+	}
+
 	function hurtfire() {}
 
 	function hurtice() { frozen = 600 }
