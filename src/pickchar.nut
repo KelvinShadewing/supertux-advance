@@ -50,8 +50,8 @@
 
 		//Draw
 		drawText(font2, 8, 8, charlist[charslot][0])
-		if(didpick) drawSprite(charlist[charslot][1], charlist[charslot][2][1], screenW() / 2, screenH() / 2)
-		else drawSprite(charlist[charslot][1], charlist[charslot][2][0], screenW() / 2, screenH() / 2)
+		if(didpick) drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][1], screenW() / 2, screenH() / 2)
+		else drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][0], screenW() / 2, screenH() / 2)
 
 		update()
 	}

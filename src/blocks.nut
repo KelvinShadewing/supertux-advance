@@ -44,7 +44,7 @@
 					}
 
 					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
-						gvPlayer.vspeed = 0
+						gvPlayer.vspeed = -2.0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
@@ -68,7 +68,7 @@
 					}
 
 					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
-						gvPlayer.vspeed = 0
+						gvPlayer.vspeed = -2.0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
@@ -157,7 +157,7 @@
 			}
 
 			if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
-				gvPlayer.vspeed = 0
+				gvPlayer.vspeed = -2.0
 				tileSetSolid(x, y, 0)
 				deleteActor(id)
 				newActor(IceChunks, x, y)

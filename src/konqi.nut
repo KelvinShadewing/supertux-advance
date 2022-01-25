@@ -514,7 +514,7 @@
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold")) && !nowInWater))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold") || (anim == anStomp && vspeed < 8)) && !nowInWater))) vspeed += gravity
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Konqi bumped his head
 
 			//Entering water
@@ -556,11 +556,11 @@
 			//Attacks
 			if((anim == anJumpT || anim == anJumpU || anim == anFall) && getcon("down", "press") && placeFree(x, y + 8)) {
 				hspeed = 0.0
-				vspeed = 2.0
+				vspeed = 4.0
 				anim = anStomp
 				frame = anim[0]
 			}
-			if(!freeDown && anim == anStomp) {
+			if((!freeDown || vspeed < 0) && anim == anStomp) {
 				anim = anJumpU
 				vspeed = -2.0
 			}

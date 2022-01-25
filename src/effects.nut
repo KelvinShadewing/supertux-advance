@@ -9,7 +9,7 @@
 	function run() {
 		frame += 0.25
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprSpark, floor(frame), x - camx, y - camy, 45 * randInt(8), 0, 1, 1, 1)
+		else drawSpriteExZ(4, sprSpark, floor(frame), x - camx, y - camy, 45 * randInt(8), 0, 1, 1, 1)
 	}
 }
 
@@ -108,7 +108,7 @@
 	function run() {
 		vspeed += 0.5
 		y += vspeed
-		drawSprite(sprCoin, getFrames() / 2, x - camx, y - camy)
+		drawSpriteZ(4, sprCoin, getFrames() / 2, x - camx, y - camy)
 		if(vspeed >= 3) {
 			deleteActor(id)
 			newActor(Spark, x, y)
@@ -155,6 +155,6 @@
 		frame += 0.05
 		y -= 0.5
 		if(frame >= 3) deleteActor(id)
-		else drawSpriteEx(sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+		else drawSpriteExZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 }

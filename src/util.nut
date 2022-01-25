@@ -23,3 +23,8 @@
 	game.check = false
 	startPlay("res/map/test.json")
 }
+
+::gotoMario <- function() {
+	game.check = false
+	startPlay("res/map/mario0.json")
+}
