@@ -907,31 +907,31 @@
 
 		switch(swap) {
 			case 1:
-				newActor(FlowerFire, x, y)
+				newActor(FlowerFire, x + hspeed, y + vspeed)
 				break
 			case 2:
-				newActor(FlowerIce, x, y)
+				newActor(FlowerIce, x + hspeed y + vspeed)
 				break
 			case 3:
-				newActor(AirFeather, x, y)
+				newActor(AirFeather, x + hspeed, y + vspeed)
 				break
 			case 4:
-				newActor(EarthShell, x, y)
+				newActor(EarthShell, x + hspeed, y + vspeed)
 				break
 			case 5:
 				if(game.health < game.maxHealth) {
-					newActor(MuffinBlue, x, y)
+					newActor(MuffinBlue, x + hspeed, y + vspeed)
 					game.subitem = 0
 				}
 				break
 			case 6:
 				if(game.health < game.maxHealth) {
-					newActor(MuffinRed, x, y)
+					newActor(MuffinRed, x + hspeed, y + vspeed)
 					game.subitem = 0
 				}
 				break
 			case 7:
-				newActor(Starnyan, x, y)
+				newActor(Starnyan, x + hspeed, y + vspeed)
 				break
 		}
 	}
