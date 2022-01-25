@@ -19,6 +19,10 @@
 ::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 14)
 
 ::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiFire <- newSprite("res/gfx/konqifire.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiIce <- newSprite("res/gfx/konqiice.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiAir <- newSprite("res/gfx/konqiair.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiEarth <- newSprite("res/gfx/konqiearth.png", 32, 32, 0, 0, 15, 19)
 ::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 18)
 ::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 14)
 

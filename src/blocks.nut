@@ -61,6 +61,42 @@
 			}
 		}
 
+		if(actor.rawin("BadExplode")) foreach(i in actor["BadExplode"]) {
+			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
+				if(coins <= 1) {
+					deleteActor(id)
+					newActor(WoodChunks, x, y)
+					playSoundChannel(sndBump, 0, 2)
+					tileSetSolid(x, y, 0)
+					if(coins > 0) newActor(CoinEffect, x, y - 16)
+				}
+				else {
+					vspeed = -2
+					coins--
+					newActor(CoinEffect, x, y - 16)
+					playSoundChannel(sndBump, 0, 2)
+				}
+			}
+		}
+
+		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
+			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
+				if(coins <= 1) {
+					deleteActor(id)
+					newActor(WoodChunks, x, y)
+					playSoundChannel(sndBump, 0, 2)
+					tileSetSolid(x, y, 0)
+					if(coins > 0) newActor(CoinEffect, x, y - 16)
+				}
+				else {
+					vspeed = -2
+					coins--
+					newActor(CoinEffect, x, y - 16)
+					playSoundChannel(sndBump, 0, 2)
+				}
+			}
+		}
+
 		if(v == -8) vspeed = 1
 		v += vspeed
 
@@ -484,6 +520,12 @@
 		}
 
 		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			newActor(BadExplode, x, y)
+			deleteActor(i.id)
+		}
+		if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"]) if(hitTest(fireshape, i.shape)) {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			newActor(BadExplode, x, y)

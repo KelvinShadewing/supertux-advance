@@ -45,9 +45,20 @@
 					deleteActor(i.id)
 				}
 			}
+			if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
+				if(hitTest(shape, i.shape)) {
+					hurtfire()
+				}
+			}
 			if(actor.rawin("Iceball")) foreach(i in actor["Iceball"]) {
 				if(hitTest(shape, i.shape)) {
 					hurtice()
+					deleteActor(i.id)
+				}
+			}
+			if(actor.rawin("FireballK")) foreach(i in actor["FireballK"]) {
+				if(hitTest(shape, i.shape)) {
+					newActor(ExplodeF, i.x, i.y)
 					deleteActor(i.id)
 				}
 			}
@@ -607,14 +618,6 @@
 			}
 		}
 		if(frame >= 1) {
-			if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
-				if(hitTest(shape, i.shape)) {
-					newActor(WoodChunks, i.x, i.y)
-					tileSetSolid(i.x, i.y, 0)
-					deleteActor(i.id)
-				}
-			}
-
 			if(actor.rawin("TNT")) foreach(i in actor["TNT"]) {
 				if(hitTest(shape, i.shape)) {
 					newActor(BadExplode, i.x, i.y)

@@ -127,3 +127,74 @@
 
 	function _typeof() { return "FlameBreath" }
 }
+
+::ExplodeF <- class extends Actor{
+	frame = 0.0
+	shape = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		stopSound(1)
+		playSoundChannel(sndExplodeF, 0, 1)
+
+		shape = Rec(x, y, 16, 16, 0)
+	}
+
+	function run() {
+		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		frame += 0.2
+
+		if(frame >= 1) {
+			if(actor.rawin("TNT")) foreach(i in actor["TNT"]) {
+				if(hitTest(shape, i.shape)) {
+					newActor(BadExplode, i.x, i.y)
+					tileSetSolid(i.x, i.y, 0)
+					deleteActor(i.id)
+				}
+			}
+		}
+		if(frame >= 5) deleteActor(id)
+	}
+
+	function _typeof() { return "ExplodeF" }
+}
+
+::FireballK <- class extends PhysAct {
+	timer = 90
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+
+		x += hspeed
+		y += vspeed
+		if(!placeFree(x, y)) {
+			newActor(ExplodeF, x, y)
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+
+		if(hspeed > 0) drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+
+		shape.setPos(x, y)
+	}
+
+	function _typeof() {return "FireballK"}
+}

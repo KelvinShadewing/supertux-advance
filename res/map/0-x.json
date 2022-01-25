@@ -70,7 +70,7 @@
                 {
                  "height":1200,
                  "id":51,
-                 "name":"autocon.down = true",
+                 "name":"if(game.playerchar == \"Tux\") autocon.down = true",
                  "rotation":0,
                  "type":"",
                  "visible":true,

@@ -37,7 +37,7 @@
 	] //Color blocks activated by respective switches
 	characters = { //List of unlocked characters
 		Tux = [sprTuxOverworld, sprTuxDoll, sprTux, [40, 41]]
-		//Konqi = [sprKonqiOverworld, sprKonqiDoll, sprKonqi, [8, 9]]
+		Konqi = [sprKonqiOverworld, sprKonqiDoll, sprKonqi, [8, 9]]
 	}
 	friends = {} //List of rescued friend characters
 	playerchar = "Tux" //Current player character
