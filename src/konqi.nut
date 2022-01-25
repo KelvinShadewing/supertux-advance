@@ -474,7 +474,7 @@
 				}
 
 				if(anim == anCrawl) {
-					if(!getcon("down", "hold") && placeFree(x, y - 8)) anim = anStand
+					if(!getcon("down", "hold") && placeFree(x, y - 6)) anim = anStand
 
 					//Ping pong animation
 					frame += (hspeed / 8) * climbdir
