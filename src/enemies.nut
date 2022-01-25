@@ -578,6 +578,10 @@
 	}
 
 	function hurtfire() {
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
 		if(!burnt) {
 			newActor(BadExplode, x, y - 1)
 			deleteActor(id)

@@ -572,30 +572,18 @@
 					break
 
 				case 2:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
-						local fx = 6
-						if(flip == 1) fx = -5
-						local c = actor[newActor(Iceball, x + fx, y - 4)]
-						if(!flip) c.hspeed = 5
-						else c.hspeed = -5
-						playSound(sndFireball, 0)
-						if(getcon("up", "hold")) c.vspeed = -2
-						if(getcon("down", "hold")) {
-							c.vspeed = 2
-							c.hspeed /= 1.5
-						}
-						energy--
-						firetime = 60
+					if(cooldown > 0) break
+					if(getcon("shoot", "press")) {
+						cooldown = 60
+						playSoundChannel(sndFlame, 0, 0)
 					}
 					break
 
 				case 3:
-					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall) && anim != anHurt) {
-						anim = anDive
-						frame = anim[0]
-						playSoundChannel(sndSlide, 0, 0)
-						if(flip == 0 && hspeed < 2) hspeed = 2
-						if(flip == 1 && hspeed > -2) hspeed = -2
+					if(cooldown > 0) break
+					if(getcon("shoot", "press")) {
+						cooldown = 60
+						playSoundChannel(sndFlame, 0, 0)
 					}
 					break
 
@@ -613,7 +601,9 @@
 			if(cooldown > 0) cooldown--
 
 			if(cooldown >= 50 && cooldown % 2 == 0) {
-				local c = actor[newActor(FlameBreath, x, y - 6)]
+				local c = 0
+				if(game.weapon != 2) c = actor[newActor(FlameBreath, x, y - 6)]
+				else c = actor[newActor(IceBreath, x, y - 6)]
 				if(flip == 0) {
 					c.hspeed = 1.5
 					c.x += 8
