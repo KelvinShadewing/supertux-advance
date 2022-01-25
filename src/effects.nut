@@ -39,7 +39,7 @@
 	function run() {
 		frame += 0.125
 		if(frame >= 4) deleteActor(id)
-		else drawSpriteEx(sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+		else drawSpriteExZ(4, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 }
 

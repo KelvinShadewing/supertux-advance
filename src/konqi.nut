@@ -563,6 +563,8 @@
 			if((!freeDown || vspeed < 0) && anim == anStomp) {
 				anim = anJumpU
 				vspeed = -2.0
+				newActor(Poof, x + 8, y + 12)
+				newActor(Poof, x - 8, y + 12)
 			}
 			switch(game.weapon) {
 				case 0:

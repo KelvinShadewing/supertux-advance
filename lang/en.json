@@ -36,7 +36,8 @@
 		"character" : "Change Character",
 		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
-		"quit-level" : "Quit Level"
+		"quit-level" : "Quit Level",
+		"save" : "Save Game"
 	},
 
 	"info" : {
@@ -69,7 +70,9 @@
 		"owplats" :
 		"One-way platforms can be dropped down from by pressing DOWN and JUMP at once. If you drop on accident, you have twice as long as when going over an edge to jump back up.",
 		"slidewarn" :
-		"Levels like this will force you to slide! (It's going to be replaced with something else in the future.)"
+		"Levels like this will force you to slide! (It's going to be replaced with something else in the future.)",
+		"konqi" :
+		"Konqi can breath fire and stomp the ground, but he isn't as fast as Tux."
 	},
 
 	"devcom" : {

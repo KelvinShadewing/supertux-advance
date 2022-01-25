@@ -5,6 +5,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 3, 3, 0)
+		newActor(AfterFlame, x, y)
 	}
 
 	function run() {
@@ -60,6 +61,7 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 3, 3, 0)
+		newActor(AfterIce, x, y)
 	}
 
 	function run() {
@@ -112,6 +114,7 @@
 		shape = Rec(x, y, 4, 4, 0)
 		base.constructor(_x, _y)
 		vspeed = 0.5 - randFloat(1.0)
+		newActor(AfterFlame, x, y)
 	}
 	function run() {
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
@@ -191,7 +194,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y, 3, 3, 0)
+		shape = Rec(x, y, 4, 4, 0)
 	}
 
 	function run() {
@@ -220,5 +223,38 @@
 		shape.setPos(x, y)
 	}
 
-	function _typeof() {return "FireballK"}
+	function _typeof() { return "FireballK" }
+}
+
+//When a fireball spawns in a wall, they die before blocks can respond. This is to mitigate that.
+::AfterFlame <- class extends PhysAct {
+	timer = 4
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+
+	function _typeof() { return "Fireball" }
+}
+
+::AfterIce <- class extends PhysAct {
+	timer = 4
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+
+	function _typeof() { return "Iceball" }
 }
