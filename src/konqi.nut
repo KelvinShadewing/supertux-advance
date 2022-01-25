@@ -56,6 +56,7 @@
 	anSwimD = [48.0, 51.0, "swim"]
 	anSkid = [4.0, 5.0, "skid"]
 	anPush = [6.0, 7.0, "push"]
+	anStomp = [38.0, 39.0, "stomp"]
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -163,6 +164,9 @@
 
 					break
 
+				case anStomp:
+					if(frame <= anim[1]) frame += 0.2
+
 				case anPush:
 					break
 
@@ -267,8 +271,7 @@
 
 				case anSwimUF:
 				case anSwimU:
-					if(abs(hspeed) > 1.5) anim = anSlide
-					else anim = anJumpU
+					anim = anJumpU
 					frame = anim[0]
 					vspeed -= 1
 					if(getcon("jump", "hold") && vspeed > -4) vspeed = -6
@@ -318,6 +321,7 @@
 				else if(getcon("sneak", "hold") || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1) || anim == anCrawl) mspeed = 1.0
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
+				if(anim == anStomp) mspeed = 0.5
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
@@ -463,7 +467,7 @@
 				}
 
 				//Crawling
-				if(getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && !freeDown2 && anim != anCrouch && anim != anCrawl) {
+				if(getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && !freeDown2 && anim != anCrouch && anim != anCrawl && anim != anStomp) {
 					anim = anCrouch
 					frame = anim[0]
 					shape = shapeSlide
@@ -550,6 +554,16 @@
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
+			if((anim == anJumpT || anim == anJumpU || anim == anFall) && getcon("down", "press") && placeFree(x, y + 8)) {
+				hspeed = 0.0
+				vspeed = 2.0
+				anim = anStomp
+				frame = anim[0]
+			}
+			if(!freeDown && anim == anStomp) {
+				anim = anJumpU
+				vspeed = -2.0
+			}
 			switch(game.weapon) {
 				case 0:
 					if(cooldown > 0) break
@@ -562,18 +576,17 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0) {
 						cooldown = 40
 						local fx = 6
+						local fy = 0
+						if(anim == anCrouch) fy = 6
+						if(anim == anCrawl) fy = 12
 						if(flip == 1) fx = -5
-						local c = actor[newActor(FireballK, x + fx, y - 4)]
+						local c = actor[newActor(FireballK, x + fx, y - 4 + fy)]
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -2.5
-							c.hspeed /= 1.5
-						}
-						if(getcon("down", "hold")) {
-							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
 						energy--
@@ -708,7 +721,7 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Fireball, x + fx, y)]
+						local c = actor[newActor(Fireball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
 						playSound(sndFireball, 0)
