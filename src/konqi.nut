@@ -40,8 +40,9 @@
 	anRun = [24.0, 31.0, "run"]
 	anDive = [14.0, 15.0, "dive"]
 	anCrouch = [14.0, 15.0, "crouch"]
+	anGetUp = [14.0, 15.0, "getup"]
 	anCrawl = [40.0, 43.0, "crawl"]
-	anSlide = [26.0, 29.0, "slide"]
+	anSlide = [52.0, 55.0, "slide"]
 	anHurt = [6.0, 7.0, "hurt"]
 	anJumpU = [32.0, 33.0, "jumpU"]
 	anJumpT = [34.0, 35.0, "jumpT"]
@@ -228,6 +229,15 @@
 					if(floor(frame) > anim[1]) {
 						anim = anCrawl
 						shape = shapeSlide
+					}
+					break
+
+				case anGetUp:
+					frame -= 0.25
+
+					if(floor(frame) < 0) {
+						anim = anStand
+						shape = shapeStand
 					}
 					break
 
@@ -460,7 +470,7 @@
 				}
 
 				if(anim == anCrawl) {
-					if(!getcon("down", "hold")) anim = anStand
+					if(!getcon("down", "hold") && placeFree(x, y - 8)) anim = anStand
 
 					//Ping pong animation
 					frame += (hspeed / 8) * climbdir
@@ -839,6 +849,7 @@
 				else hspeed = 2.0
 			}
 		}
+		else hurt = false
 		if(blinking > 0) blinking--
 		if(game.health == 0) {
 			die()
@@ -1017,16 +1028,16 @@
 				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 1:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqiFire, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 2:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqiIce, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 3:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqiAir, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 			case 4:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
+				drawSprite(sprKonqiEarth, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 				break
 		}
 	}
