@@ -90,7 +90,11 @@
 	function freeFriend() {
 		sayChar()
 		//Find who to free based on sprite
-		if(sprite = sprXue) if(!game.friends.rawin("Xue")) game.friends.Xue <- true
+		if(sprite == sprXue) if(!game.friends.rawin("Xue")) game.friends.Xue <- true
+		if(sprite == sprGnu) if(!game.friends.rawin("Gnu")) game.friends.Gnu <- true
+		if(sprite == sprPlasmaBreeze) if(!game.friends.rawin("PlasmaBreeze")) game.friends.PlasmaBreeze <- true
+		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) game.friends.RockyRaccoon <- true
+		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) game.friends.Pygame <- true
 	}
 
 	function _typeof() { return "NPC" }
