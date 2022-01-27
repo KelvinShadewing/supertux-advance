@@ -95,6 +95,7 @@
 		if(sprite == sprPlasmaBreeze) if(!game.friends.rawin("PlasmaBreeze")) game.friends.PlasmaBreeze <- true
 		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) game.friends.RockyRaccoon <- true
 		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) game.friends.Pygame <- true
+		if(sprite == sprGaruda) if(!game.friends.rawin("Garuda")) game.friends.Garuda <- true
 	}
 
 	function _typeof() { return "NPC" }
