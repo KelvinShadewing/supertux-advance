@@ -576,7 +576,7 @@
 					break
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0) {
-						cooldown = 40
+						cooldown = 8
 						local fx = 6
 						local fy = 0
 						if(anim == anCrouch) fy = 6
