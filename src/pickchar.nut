@@ -24,7 +24,7 @@
 
 	//Set cursor to current character
 	for(local i = 0; i < charlist.len(); i++) {
-		if(charlist[i] == game.playerchar) {
+		if(charlist[i][0] == game.playerchar) {
 			charslot = i
 			break
 		}

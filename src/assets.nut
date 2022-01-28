@@ -23,11 +23,11 @@
 ::sprKonqiIce <- newSprite("res/gfx/konqiice.png", 32, 32, 0, 0, 15, 19)
 ::sprKonqiAir <- newSprite("res/gfx/konqiair.png", 32, 32, 0, 0, 15, 19)
 ::sprKonqiEarth <- newSprite("res/gfx/konqiearth.png", 32, 32, 0, 0, 15, 19)
-::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 18)
+::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 17)
 ::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 14)
 
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 15, 19)
-::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 20)
+::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 17)
 ::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 14)
 
 //GUI
