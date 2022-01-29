@@ -68,7 +68,7 @@
 ::sprGnu <- newSprite("res/gfx/gnu.png", 29, 45, 0, 0, 15, 45)
 ::sprSam <- newSprite("res/gfx/sam.png", 12, 32, 0, 0, 6, 32)
 ::sprTuckles <- newSprite("res/gfx/tuckles.png", 18, 34, 0, 0, 8, 34)
-::sprGaruda <- newSprite("/res/gfx/garuda.png", 35, 36, 0, 0, 17, 36)
+::sprGaruda <- newSprite("res/gfx/garuda.png", 35, 36, 0, 0, 17, 36)
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)

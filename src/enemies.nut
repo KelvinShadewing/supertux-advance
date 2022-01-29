@@ -1640,6 +1640,8 @@
 	squish = false
 	squishTime = 0.0
 	chasing = false
+	mspeed = 1.0
+	hspeed = 0.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -1651,45 +1653,73 @@
 		base.run()
 
 		if(active) {
-			if(!squish) {
-				if(placeFree(x, y + 1)) vspeed += 0.1
+			if(!squish || chasing) {
+				if(placeFree(x, y + 1)) vspeed += 0.2
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
+
+				if(chasing) mspeed = abs(hspeed)
+				else mspeed = 1.0
+
+				if(chasing) squishTime++
+				if(squishTime >= 200 && chasing) {
+					deleteActor(id)
+					newActor(BadExplode, x, y)
+					if(!nocount) game.enemies--
+				}
 
 				if(y > gvMap.h + 8) deleteActor(id)
 
 				if(!frozen) {
 					if(flip) {
-						if(placeFree(x - 1, y)) x -= 1.0
-						else if(placeFree(x - 2, y - 2)) {
-							x -= 1.0
+						if(placeFree(x - mspeed, y)) x -= mspeed
+						else if(placeFree(x - (mspeed * 2), y - (mspeed * 2))) {
+							x -= mspeed
 							y -= 1.0
-						} else if(placeFree(x - 1, y - 2)) {
-							x -= 1.0
+						} else if(placeFree(x - mspeed, y - (mspeed * 2))) {
+							x -= mspeed
 							y -= 1.0
 						} else flip = false
 
-						if(placeFree(x - 6, y + 14)) flip = false
+						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) {
+							if(!chasing) flip = false
+							else vspeed = -4
+						}
 
 						if(x <= 0) flip = false
+						if(hspeed > 0) flip = false
 					}
 					else {
-						if(placeFree(x + 1, y)) x += 1.0
-						else if(placeFree(x + 1, y - 1)) {
-							x += 1.0
+						if(placeFree(x + mspeed, y)) x += mspeed
+						else if(placeFree(x + mspeed, y - mspeed)) {
+							x += mspeed
 							y -= 1.0
-						} else if(placeFree(x + 2, y - 2)) {
-							x += 1.0
+						} else if(placeFree(x + (mspeed * 2), y - (mspeed * 2))) {
+							x += mspeed
 							y -= 1.0
 						} else flip = true
 
-						if(placeFree(x + 6, y + 14) && !placefree(x, y + 2)) {
+						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) {
 							if(!chasing) flip = true
 							else vspeed = -4
 						}
 
 						if(x >= gvMap.w) flip = true
+						if(hspeed < 0) flip = true
 					}
+				}
+
+				if(gvPlayer && chasing) {
+					if(x < gvPlayer.x - 8) if(hspeed < 3) {
+						hspeed += 0.1
+						if(hspeed < 0) hspeed += 0.1
+					}
+					if(x > gvPlayer.x + 8) if(hspeed > -3) {
+						hspeed -= 0.1
+						if(hspeed > 0) hspeed -= 0.1
+					}
+
+					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -4.0
 				}
 
 				if(frozen) {
@@ -1718,22 +1748,27 @@
 					}
 
 					//Draw
-					drawSpriteEx(sprHaywire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(chasing) drawSpriteEx(sprHaywire, wrap(getFrames() / 4, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprHaywire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 1.5
-				frame += 0.002 * squishTime
-				if(squishTime >= 60 && !chasing) {
+				if(chasing) frame += 0.25
+				else frame += 0.1
+				if(squishTime >= 90 && !chasing) {
 					chasing = true
 					squishTime = 0
+					stopSound(2)
+					playSoundChannel(sndFizz, 0, 2)
 				}
 				if(squishTime >= 300 && chasing) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
 					if(!nocount) game.enemies--
 				}
-				drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
 				if(frozen) {
 					squish = false
@@ -1756,8 +1791,6 @@
 	function gethurt() {
 		if(squish) return
 
-		stopSound(2)
-		playSoundChannel(sndFizz, 0, 2)
 		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {

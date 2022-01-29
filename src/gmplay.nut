@@ -310,6 +310,11 @@
 					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
 					break
 
+				case 65:
+					newActor(Haywire, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
 				case 73:
 					newActor(Jumpy, i.x + 8, i.y - 8, i.name)
 					game.enemies++

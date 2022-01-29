@@ -227,7 +227,7 @@
 		drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		frame += 0.2
 
-		if(frame >= 5) deleteActor(id)
+		if(frame >= 4) deleteActor(id)
 	}
 
 	function _typeof() { return "ExplodeN" }
