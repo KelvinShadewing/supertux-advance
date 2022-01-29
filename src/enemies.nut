@@ -1719,7 +1719,7 @@
 						if(hspeed > 0) hspeed -= 0.1
 					}
 
-					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -4.0
+					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0
 				}
 
 				if(frozen) {
@@ -1729,13 +1729,15 @@
 					}
 
 					//Draw
-					drawSpriteEx(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 					if(frozen <= 120) {
 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
 						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 					}
 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					chasing = false
+					squishTime = 0.0
 				}
 				else {
 					//Delete ice block
