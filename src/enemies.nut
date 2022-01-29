@@ -1791,6 +1791,10 @@
 	}
 
 	function gethurt() {
+		if(chasing) {
+			hurtplayer()
+			return
+		}
 		if(squish) return
 
 		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
