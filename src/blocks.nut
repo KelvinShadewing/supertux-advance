@@ -34,7 +34,7 @@
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 
-					if(gvPlayer.rawin("anSlide")) if(abs(gvPlayer.hspeed) >= 3.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+					if(gvPlayer.rawin("anSlide")) if(abs(gvPlayer.hspeed) >= 4.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -60,7 +60,7 @@
 						playSoundChannel(sndBump, 0, 2)
 					}
 
-					if(gvPlayer.rawin("anSlide")) if((abs(gvPlayer.hspeed) >= 3.5 || (game.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+					if(gvPlayer.rawin("anSlide")) if((abs(gvPlayer.hspeed) >= 4.5 || (game.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -98,6 +98,24 @@
 		}
 
 		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
+			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
+				if(coins <= 1) {
+					deleteActor(id)
+					newActor(WoodChunks, x, y)
+					playSoundChannel(sndBump, 0, 2)
+					tileSetSolid(x, y, 0)
+					if(coins > 0) newActor(CoinEffect, x, y - 16)
+				}
+				else {
+					vspeed = -2
+					coins--
+					newActor(CoinEffect, x, y - 16)
+					playSoundChannel(sndBump, 0, 2)
+				}
+			}
+		}
+
+		if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"]) {
 			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
 				if(coins <= 1) {
 					deleteActor(id)

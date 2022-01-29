@@ -46,7 +46,7 @@
 				}
 			}
 			if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
-				if(hitTest(shape, i.shape)) {
+				if(hitTest(shape, i.shape) && i.frame < 3) {
 					hurtfire()
 				}
 			}
@@ -60,6 +60,11 @@
 				if(hitTest(shape, i.shape)) {
 					newActor(ExplodeF, i.x, i.y)
 					deleteActor(i.id)
+				}
+			}
+			if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"]) {
+				if(hitTest(shape, i.shape) && i.frame < 3) {
+					hurtblast()
 				}
 			}
 		}
@@ -113,6 +118,8 @@
 		playSound(sndFlame, 0)
 		if(!nocount) game.enemies--
 	}
+
+	function hurtblast() { gethurt() }
 
 	function _typeof() { return "Enemy" }
 }
@@ -261,6 +268,17 @@
 		}
 
 		squish = true
+	}
+
+	function hurtblast() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeathcap
+		actor[c].vspeed = -4
+		actor[c].hspeed = (4 / 16)
+		actor[c].spin = (4 * 7)
+		actor[c].angle = 180
+		deleteActor(id)
+		playSound(sndKick, 0)
 	}
 
 	function hurtfire() {
@@ -1178,6 +1196,12 @@
 			playSound(sndFlame, 0)
 			if(!nocount) game.enemies--
 		}
+	}
+
+	function hurtblast() {
+		newActor(Poof, x, y - 1)
+		deleteActor(id)
+		if(!nocount) game.enemies--
 	}
 
 	function _typeof() { return "Clamor" }

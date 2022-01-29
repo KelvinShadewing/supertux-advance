@@ -187,6 +187,53 @@
 	function _typeof() { return "ExplodeF" }
 }
 
+::ExplodeN <- class extends Actor{
+	frame = 0.0
+	shape = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		stopSound(1)
+		playSoundChannel(sndBump, 0, 1)
+
+		shape = Rec(x, y, 16, 16, 0)
+	}
+
+	function run() {
+		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+	}
+
+	function _typeof() { return "ExplodeN" }
+}
+
+::StompPoof <- class extends Actor{
+	frame = 0.0
+	shape = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		stopSound(1)
+		playSoundChannel(sndBump, 0, 0)
+
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+		drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+	}
+
+	function _typeof() { return "ExplodeN" }
+}
+
+
 ::FireballK <- class extends PhysAct {
 	timer = 90
 	angle = 0
