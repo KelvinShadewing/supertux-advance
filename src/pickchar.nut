@@ -56,3 +56,13 @@
 		update()
 	}
 }
+
+::addChar <- function(char, overworld, doll, playable, frames) {
+	if(!getroottable().rawin(char)) {
+		print("No class for " + char + " has been defined!")
+		return
+	}
+
+	local newchar = [overworld, doll, playable, frames]
+	if(!game.characters.rawin(char)) game.characters[char] <- newchar
+}

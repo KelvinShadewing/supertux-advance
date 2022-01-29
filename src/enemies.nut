@@ -1608,3 +1608,157 @@
 		drawSprite(sprDarkStar, getFrames() / 10, x - camx, y - camy)
 	}
 }
+
+::Haywire <- class extends Enemy {
+	burnt = false
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	chasing = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 6, 6, 0, 0, 1)
+		if(gvPlayer) if(x > gvPlayer.x) flip = true
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!squish) {
+				if(placeFree(x, y + 1)) vspeed += 0.1
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
+
+				if(y > gvMap.h + 8) deleteActor(id)
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
+
+						if(placeFree(x - 6, y + 14)) flip = false
+
+						if(x <= 0) flip = false
+					}
+					else {
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
+						} else flip = true
+
+						if(placeFree(x + 6, y + 14) && !placefree(x, y + 2)) {
+							if(!chasing) flip = true
+							else vspeed = -4
+						}
+
+						if(x >= gvMap.w) flip = true
+					}
+				}
+
+				if(frozen) {
+					//Create ice block
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+						icebox = mapNewSolid(shape)
+					}
+
+					//Draw
+					drawSpriteEx(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+					if(frozen <= 120) {
+					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					}
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						mapDeleteSolid(icebox)
+						newActor(IceChunks, x, y)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+
+					//Draw
+					drawSpriteEx(sprHaywire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+			}
+			else {
+				squishTime += 1.5
+				frame += 0.002 * squishTime
+				if(squishTime >= 60 && !chasing) {
+					chasing = true
+					squishTime = 0
+				}
+				if(squishTime >= 300 && chasing) {
+					deleteActor(id)
+					newActor(BadExplode, x, y)
+					if(!nocount) game.enemies--
+				}
+				drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+
+				if(frozen) {
+					squish = false
+					squishTime = 0
+					chasing = false
+				}
+			}
+
+			shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function hurtplayer() {
+		if(squish && !chasing) return
+		base.hurtplayer()
+	}
+
+	function gethurt() {
+		if(squish) return
+
+		stopSound(2)
+		playSoundChannel(sndFizz, 0, 2)
+		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
+		else gvPlayer.vspeed = -4
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+
+		squish = true
+	}
+
+	function hurtfire() {
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+		if(!burnt) {
+			newActor(BadExplode, x, y - 1)
+			deleteActor(id)
+			playSound(sndFlame, 0)
+			if(!nocount) game.enemies--
+			burnt = true
+		}
+	}
+
+	function hurtice() { frozen = 600 }
+
+	function _typeof() { return "Haywire" }
+}
