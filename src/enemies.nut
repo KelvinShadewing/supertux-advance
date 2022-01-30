@@ -279,6 +279,7 @@
 		actor[c].angle = 180
 		deleteActor(id)
 		playSound(sndKick, 0)
+		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtfire() {
@@ -433,8 +434,10 @@
 	}
 
 	function gethurt() {
-		if(!gvPlayer.rawin("anSlide")) hurtplayer()
-		else if(gvPlayer.anim != gvPlayer.anSlide || game.weapon != 4) hurtplayer()
+		if(gvPlayer && !frozen) {
+			if(!gvPlayer.rawin("anSlide")) hurtplayer()
+			else if(gvPlayer.anim != gvPlayer.anSlide || game.weapon != 4) hurtplayer()
+		}
 	}
 
 	function hurtfire() {}
@@ -578,6 +581,18 @@
 	function hurtplayer() {
 		if(squish) return
 		base.hurtplayer()
+	}
+
+	function hurtblast() {
+		if(squish) return
+		if(frozen) frozen = 0
+		stopSound(2)
+		playSoundChannel(sndFizz, 0, 2)
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+		squish = true
 	}
 
 	function gethurt() {
@@ -734,6 +749,10 @@
 		if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
 		if(!nocount) game.enemies--
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
 	}
 
 	hurtfire = Deathcap.hurtfire
@@ -1466,6 +1485,11 @@
 	function gethurt() {
 		if(!nocount) game.enemies--
 
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprFlyAmanita
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
@@ -1588,7 +1612,19 @@
 	}
 
 	function gethurt() {
-	gvPlayer.hurt = true
+		gvPlayer.hurt = true
+	}
+
+	function hurtblast() {
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+		newActor(Poof, x, y - 1)
+		deleteActor(id)
+		playSound(sndFlame, 0)
+		if(!nocount) game.enemies--
+
 	}
 
 	function hurtfire() {
@@ -1788,6 +1824,18 @@
 	function hurtplayer() {
 		if(squish && !chasing) return
 		base.hurtplayer()
+	}
+
+	function hurtblast() {
+		if(squish) return
+		if(frozen) frozen = 0
+		stopSound(2)
+		playSoundChannel(sndFizz, 0, 2)
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+		squish = true
 	}
 
 	function gethurt() {

@@ -199,7 +199,7 @@
 			playSound(sndFlame, 0)
 		}
 
-		if(actor.rawin("Explode")) foreach(i in actor["Explode"])  if(hitTest(fireshape, i.shape)) {
+		if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"])  if(hitTest(fireshape, i.shape)) {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			newActor(IceChunks, x, y)
