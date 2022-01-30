@@ -360,7 +360,27 @@
 			deleteActor(id)
 			playSound(sndKick, 0)
 			if(!nocount) game.enemies--
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, ystart - 6)
+				icebox = -1
+			}
 		}
+	}
+
+	function hurtblast() { hurtinvinc() }
+
+	function hurtinvinc() {
+		newActor(Poof, x, ystart - 6)
+		newActor(Poof, x, ystart + 8)
+		deleteActor(id)
+		playSound(sndFlame, 0)
+		if(!nocount) game.enemies--
+		if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, ystart - 6)
+				icebox = -1
+			}
 	}
 
 	function hurtfire() {
@@ -369,6 +389,11 @@
 		deleteActor(id)
 		playSound(sndFlame, 0)
 		if(!nocount) game.enemies--
+		if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, ystart - 6)
+				icebox = -1
+			}
 	}
 
 	function hurtice() { frozen = 600 }
@@ -879,6 +904,23 @@
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+	}
+
+	function hurtblast() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprite
+		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+		actor[c].hspeed = (gvPlayer.hspeed / 16)
+		deleteActor(id)
+		playSound(sndKick, 0)
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
 		}
 	}
 
