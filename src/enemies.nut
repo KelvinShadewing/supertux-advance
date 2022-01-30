@@ -1737,7 +1737,7 @@
 				else vspeed /= 2
 
 				if(chasing) mspeed = abs(hspeed)
-				else mspeed = 1.0
+				else mspeed = 0.75
 
 				if(chasing) squishTime++
 				if(squishTime >= 200 && chasing) {
@@ -1872,10 +1872,11 @@
 		if(squish) return
 		if(frozen) frozen = 0
 		stopSound(2)
-		playSoundChannel(sndFizz, 0, 2)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
+			frozen = 0
+			icebox = -1
 		}
 		squish = true
 	}
@@ -1893,6 +1894,7 @@
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
 		}
+		playSound(sndKick, 0)
 
 		squish = true
 	}
