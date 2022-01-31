@@ -75,19 +75,17 @@
 		gvInfoBox = text
 	}
 
-	function freeKonqi() {
+	function rescueKonqi() {
 		sayChar()
-		if(!game.characters.rawin("Konqi")) game.characters.Konqi <- sprKonqiOverworld
-		if(!game.friends.rawin("Konqi")) game.friends.Konqi <- true
+		freeKonqi()
 	}
 
-	function freeMidi() {
+	function rescueMidi() {
 		sayChar()
-		if(!game.characters.rawin("Midi")) game.characters.Midi <- sprMidiOverworld
-		if(!game.friends.rawin("Midi")) game.friends.Midi <- true
+		freeMidi()
 	}
 
-	function freeFriend() {
+	function rescueFriend() {
 		sayChar()
 		//Find who to free based on sprite
 		if(sprite == sprXue) if(!game.friends.rawin("Xue")) game.friends.Xue <- true
@@ -99,4 +97,14 @@
 	}
 
 	function _typeof() { return "NPC" }
+}
+
+::freeKonqi <- function() {
+	if(!game.characters.rawin("Konqi")) game.characters["Konqi"] <- ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
+	if(!game.friends.rawin("Konqi")) game.friends["Konqi"] <- true
+}
+
+::freeMidi <- function() {
+	if(!game.characters.rawin("Midi")) game.characters["Midi"] <- ["sprMidiOverworld", "sprMidiDoll", "sprMidi", [177, 236]]
+	if(!game.friends.rawin("Midi")) game.friends["Midi"] <- true
 }
