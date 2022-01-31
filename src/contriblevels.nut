@@ -11,10 +11,10 @@
 				local data = jsonRead(fileRead("contrib/"+item+"/info.json"))
 				meContribLevels.push(
 					{
-						contribFolder = item,
-						contribName = data["name"],
-						contribWorldmap = data["worldmap"],
-						name = function() { return contribName },
+						contribFolder = item
+						contribName = data["name"]
+						contribWorldmap = data["worldmap"]
+						name = function() { return contribName }
 						func = function() {
 							game=clone(gameDefault)
 							game.completed.clear()
@@ -22,14 +22,16 @@
 							game.allenemies.clear()
 							game.allsecrets.clear()
 							game.besttime.clear()
-							game.file = name()
+							game.file = contribFolder
 							game.path = "contrib/" + contribFolder + "/"
+							game.world = contribWorldmap
 							gvDoIGT = false
 							if(fileExists("contrib/" + contribFolder + "/text.json")) {
 								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/text.json")))
 								print("Found text.json")
 							}
-							startOverworld("contrib/" + contribFolder + "/" + contribWorldmap)
+							if(fileExists("save/" + contribFolder + ".json")) loadGame(contribFolder)
+							else startOverworld("contrib/" + contribFolder + "/" + contribWorldmap)
 						}
 					}
 				)
