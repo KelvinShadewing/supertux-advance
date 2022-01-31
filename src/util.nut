@@ -28,3 +28,24 @@
 	game.check = false
 	startPlay("res/map/mario0.json")
 }
+
+::canint <- function(str) {
+	switch(typeof str) {
+		case "float":
+		case "integer":
+			return true
+			break
+		case "string":
+			if(str.len() == 0) return false
+			else {
+				for(local i = 0; i < 10; i++) {
+					if(str[0].tochar() == i.tostring()) return true
+				}
+			}
+			return false
+			break
+		default:
+			return false
+			break
+	}
+}

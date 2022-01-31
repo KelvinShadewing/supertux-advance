@@ -26,7 +26,11 @@
 							game.path = "contrib/" + contribFolder + "/"
 							game.world = contribWorldmap
 							gvDoIGT = false
-							if(fileExists("contrib/" + contribFolder + "/text.json")) {
+							if(fileExists("contrib/" + contribFolder + "/" + config.lang + ".json")) {
+								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/" + config.lang + ".json")))
+								print("Found text.json")
+							}
+							else if(fileExists("contrib/" + contribFolder + "/text.json")) {
 								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/text.json")))
 								print("Found text.json")
 							}
