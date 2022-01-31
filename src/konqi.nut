@@ -630,14 +630,15 @@
 				if(game.weapon != 2) c = actor[newActor(FlameBreath, x, y - 6)]
 				else c = actor[newActor(IceBreath, x, y - 6)]
 				if(flip == 0) {
-					c.hspeed = 1.5
+					c.hspeed = 1.0 + randFloat(0.5)
 					c.x += 8
 				}
 				else {
-					c.hspeed = -1.5
+					c.hspeed = -1.5 - randFloat(0.5)
 					c.x -= 8
 				}
-				c.vspeed = (cooldown.tofloat() - 53.0) / 8.0
+				if(vspeed > 0) c.vspeed = (-cooldown.tofloat() + 53.0) / 8.0
+				else c.vspeed = (cooldown.tofloat() - 53.0) / 8.0
 				if(anim == anCrawl) c.y += 8
 			}
 

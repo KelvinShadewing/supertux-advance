@@ -49,6 +49,7 @@
 	chx = 0
 	chy = 0
 	berries = 0
+	path = "res/map/"
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- false; //Pointer to player actor

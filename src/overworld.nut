@@ -242,7 +242,7 @@
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
 				gvDoIGT = true
-				startPlay("res/map/" + level + ".json")
+				startPlay(game.path + level + ".json")
 			}
 		}
 	}

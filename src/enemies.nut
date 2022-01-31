@@ -1828,8 +1828,8 @@
 					}
 
 					//Draw
-					if(chasing) drawSpriteEx(sprHaywire, wrap(getFrames() / 4, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprHaywire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(chasing) drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {

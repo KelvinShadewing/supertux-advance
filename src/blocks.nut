@@ -68,12 +68,10 @@
 					}
 
 					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
-						gvPlayer.vspeed = -2.0
-						deleteActor(id)
-						newActor(WoodChunks, x, y)
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
 						playSoundChannel(sndBump, 0, 2)
-						tileSetSolid(x, y, 0)
-						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 				}
 			}
