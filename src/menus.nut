@@ -51,7 +51,7 @@ const fontH = 14
 		menu[cursor].func()
 	}
 
-	if(getcon("pause", "press")) {
+	if(getcon("pause", "press") && menu != mePausePlay && menu != mePauseOver) {
 		menu[menu.len() - 1].func()
 	}
 }
