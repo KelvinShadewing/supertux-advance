@@ -141,7 +141,7 @@
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 ::bgSnowPlain <- newSprite("res/gfx/bgSnowPlain.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNight <- newSprite("res/gfx/bgSnowNight.png", 800, 240, 0, 0, 0, 0)
-::bgIceForest <- newSprite("res/gfx/iceforest.png", 320, 240, 0, 0, 0, 0)
+::bgIceForest <- newSprite("res/gfx/iceforest.png", 640, 240, 0, 0, 0, 0)
 ::bgIceForest0 <- newSprite("res/gfx/iceforest0.png", 800, 320, 0, 0, 0, 0)
 ::bgIceForest1 <- newSprite("res/gfx/iceforest1.png", 640, 256, 0, 0, 0, 0)
 ::bgIceForest2 <- newSprite("res/gfx/iceforest2.png", 480, 192, 0, 0, 0, 0)
