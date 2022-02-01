@@ -21,5 +21,12 @@
 			}
 		)
 	}
+	meLanguage.push(
+		{
+			languageIndex = languageList["languages"].len(),
+			name = function() { return "Back" },
+			func = function() { cursor = 0; menu = meOptions }
+		}
+	)
 	menu = meLanguage
 }
