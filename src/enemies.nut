@@ -238,7 +238,7 @@
 
 	function gethurt() {
 		if(squish) return
-		
+
 
 		if(gvPlayer.rawin("anSlide")) {
 			if(gvPlayer.anim == gvPlayer.anSlide) {
@@ -281,14 +281,14 @@
 		deleteActor(id)
 		playSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
-		
+
 	}
 
 	function hurtfire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
-		
+
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]
 			a.vspeed = -2
@@ -361,7 +361,7 @@
 			newActor(Poof, x, ystart + 8)
 			deleteActor(id)
 			playSound(sndKick, 0)
-			
+
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, ystart - 6)
@@ -377,7 +377,7 @@
 		newActor(Poof, x, ystart + 8)
 		deleteActor(id)
 		playSound(sndFlame, 0)
-		
+
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, ystart - 6)
@@ -390,7 +390,7 @@
 		newActor(Flame, x, ystart + 8)
 		deleteActor(id)
 		playSound(sndFlame, 0)
-		
+
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, ystart - 6)
@@ -589,7 +589,7 @@
 				if(squishTime >= 150) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
-					
+
 				}
 				drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
@@ -620,7 +620,7 @@
 			newActor(IceChunks, x, y)
 		}
 		squish = true
-		
+
 	}
 
 	function gethurt() {
@@ -647,7 +647,7 @@
 			newActor(BadExplode, x, y - 1)
 			deleteActor(id)
 			playSound(sndFlame, 0)
-			
+
 			burnt = true
 		}
 	}
@@ -776,7 +776,7 @@
 		playSound(sndSquish, 0)
 		if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
-		
+
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -925,7 +925,7 @@
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
 		}
-		
+
 	}
 
 	function hurtice() { frozen = 600 }
@@ -1259,14 +1259,14 @@
 			newActor(Poof, x, y - 1)
 			deleteActor(id)
 			playSound(sndFlame, 0)
-			
+
 		}
 	}
 
 	function hurtblast() {
 		newActor(Poof, x, y - 1)
 		deleteActor(id)
-		
+
 	}
 
 	function _typeof() { return "Clamor" }
@@ -1304,6 +1304,7 @@
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
 
 		drawSprite(sprIceball, 0, x - camx, y - camy)
+		if(!inWater(x, y)) vspeed += 0.2
 	}
 }
 
@@ -1529,7 +1530,7 @@
 	}
 
 	function gethurt() {
-		
+
 
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
@@ -1669,7 +1670,7 @@
 		newActor(Poof, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
-		
+
 
 	}
 
@@ -1677,7 +1678,7 @@
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
-		
+
 	}
 
 	function hurtice() { frozen = 600 }
@@ -1747,7 +1748,7 @@
 				if(squishTime >= 200 && chasing) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
-					
+
 				}
 
 				if(y > gvMap.h + 8) deleteActor(id)
@@ -1849,7 +1850,7 @@
 				if(squishTime >= 300 && chasing) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
-					
+
 				}
 				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
@@ -1912,7 +1913,7 @@
 			newActor(BadExplode, x, y - 1)
 			deleteActor(id)
 			playSound(sndFlame, 0)
-			
+
 			burnt = true
 		}
 	}
