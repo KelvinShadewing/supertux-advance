@@ -129,12 +129,27 @@ const fontH = 14
 		func = function() { selectLanguage() }
 	},
 	{
-		name = function() { return gvLangObj["options-menu"]["speedrun"] + ": " + (config.showigt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
-		func = function() { config.showigt = !config.showigt}
+		name = function() { return gvLangObj["options-menu"]["timers"] },
+		func = function() { cursor = 0; menu = meTimers }
 	},
 	{
 		name = function() { return "Back" },
 		func = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
+	}
+]
+
+::meTimers <- [
+	{
+		name = function() { return gvLangObj["timers-menu"]["speedrun-timer-level"] + ": " + (config.showleveligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },	
+		func = function() { config.showleveligt = !config.showleveligt }
+	},
+	{
+		name = function() { return gvLangObj["timers-menu"]["speedrun-timer-global"] + ": " + (config.showglobaligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },	
+		func = function() { config.showglobaligt = !config.showglobaligt }
+	},
+	{
+		name = function() { return "Back" },
+		func = function() { cursor = 0; menu = meOptions }
 	}
 ]
 

@@ -16,7 +16,12 @@
 		"language" : "Language",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
-		"speedrun" : "Speedrun Timer"
+		"timers" : "Speedrun Timers"
+	},
+
+	"timers-menu" : {
+		"speedrun-timer-level" : "Level Speedrun Timer",
+		"speedrun-timer-global" : "Global Speedrun Timer"
 	},
 
 	"bool" : {
