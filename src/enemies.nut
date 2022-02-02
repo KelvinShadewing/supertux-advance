@@ -120,7 +120,13 @@
 
 	function hurtblast() { gethurt() }
 
-	function destructor() { if(!nocount) game.enemies-- }
+	function destructor() {
+		if(!nocount) game.enemies--
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+	}
 
 	function _typeof() { return "Enemy" }
 }
@@ -1921,4 +1927,19 @@
 	function hurtice() { frozen = 600 }
 
 	function _typeof() { return "Haywire" }
+}
+
+::Sawblade <- class extends PathCrawler {
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 6, 6, 0)
+	}
+
+	function run() {
+		base.run()
+		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
+		//drawText(font, x - camx + 16, y - camy, dir.tostring())
+		shape.setPos(x, y)
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = true
+	}
 }

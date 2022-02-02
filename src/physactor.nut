@@ -472,3 +472,60 @@
 		return false
 	}
 }
+
+::PathCrawler <- class extends PhysAct {
+	path = null
+	speed = 0.0
+	tx = 0
+	ty = 0
+	loop = false
+	step = 0
+	reverse = false
+	dir = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		path = _arr[0]
+		speed = _arr[1].tofloat()
+		shape = Rec(x, y, 6, 6, 0)
+		if(path[0][0] == path[path.len() - 1][0] && path[0][1] == path[path.len() - 1][1]) loop = true
+		tx = path[0][0]
+		ty = path[0][1]
+		print(jsonWrite(path))
+	}
+
+	function run() {
+		//Follow path
+		if(distance2(x, y, tx, ty) > speed) {
+			dir = pointAngle(x, y, tx, ty)
+			x += lendirX(speed, dir)
+			y += lendirY(speed, dir)
+		}
+		else {
+			x = tx
+			y = ty
+			//Update target
+			if(reverse) {
+				if(step - 1 < 0) {
+					reverse = false
+					step++
+				}
+				else step--
+				if(step < 0) step = 0
+				tx = path[step][0]
+				ty = path[step][1]
+			}
+			else {
+				if(step + 1 < path.len()) step++
+				else if(loop) step = 0
+				else {
+					step--
+					reverse = true
+				}
+				if(step < 0) step = 0
+				tx = path[step][0]
+				ty = path[step][1]
+			}
+		}
+	}
+}

@@ -37,7 +37,7 @@
 		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
 			deleteActor(id)
 			game.berries++
-			stopSound(0)
+			stopSound(1)
 			playSoundChannel(sndGulp, 0, 1)
 		}
 	}
@@ -325,7 +325,7 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
-			gvPlayer.invincible = 60 * 25
+			gvPlayer.invincible = 645
 			deleteActor(id)
 			playMusic(musInvincible, -1)
 			gvLastSong = ""
