@@ -50,6 +50,10 @@ const fontH = 14
 	if(getcon("jump", "press") || getcon("accept", "press")) {
 		menu[cursor].func()
 	}
+
+	if(getcon("pause", "press") && !(menu == mePausePlay || menu == mePauseOver || menu == meMain)) {
+		menu[menu.len() - 1].func()
+	}
 }
 
 //Names are stored as functions because some need to change each time
