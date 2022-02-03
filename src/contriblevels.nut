@@ -62,9 +62,8 @@
 	meContribLevels.push(
 		{
 			name = function() { return "Back" }
-			func = function(){
-				menu = meMain
-			}
+			func = function(){ menu = meMain }
+			back = function(){ menu = meMain }
 		}
 	)
 

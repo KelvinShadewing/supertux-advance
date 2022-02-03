@@ -52,7 +52,12 @@ const fontH = 14
 	}
 
 	if(getcon("pause", "press") && !(menu == mePausePlay || menu == mePauseOver || menu == meMain)) {
-		menu[menu.len() - 1].func()
+		for(local i = 0; i < menu.len(); i++) {
+				if(menu[i].rawin("back")) {
+					menu[i]["back"]()
+					break
+				}
+		}
 	}
 }
 
@@ -78,6 +83,7 @@ const fontH = 14
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
+		back = function() { gvQuit = 1 }
 	}
 ]
 
@@ -135,21 +141,23 @@ const fontH = 14
 	{
 		name = function() { return "Back" },
 		func = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
+		back = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}
 ]
 
 ::meTimers <- [
 	{
-		name = function() { return gvLangObj["timers-menu"]["speedrun-timer-level"] + ": " + (config.showleveligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },	
+		name = function() { return gvLangObj["timers-menu"]["speedrun-timer-level"] + ": " + (config.showleveligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
 		func = function() { config.showleveligt = !config.showleveligt }
 	},
 	{
-		name = function() { return gvLangObj["timers-menu"]["speedrun-timer-global"] + ": " + (config.showglobaligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },	
+		name = function() { return gvLangObj["timers-menu"]["speedrun-timer-global"] + ": " + (config.showglobaligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
 		func = function() { config.showglobaligt = !config.showglobaligt }
 	},
 	{
 		name = function() { return "Back" },
 		func = function() { cursor = 0; menu = meOptions }
+		back = function() { cursor = 0; menu = meOptions }
 	}
 ]
 
@@ -173,6 +181,7 @@ const fontH = 14
 	{
 		name = function() { return "Cancel" },
 		func = function() { cursor = 0; menu = meMain }
+		back = function() { cursor = 0; menu = meMain }
 	}
 ]
 
@@ -232,6 +241,7 @@ const fontH = 14
 	{
 		name = function() { return "Cancel" }
 		func = function() { cursor = 0; menu = meMain }
+		back = function() { cursor = 0; menu = meMain }
 	}
 ]
 
@@ -239,6 +249,7 @@ const fontH = 14
 	{
 		name = function() { drawText(font2, screenW() / 2 - (15 * 4), screenH() / 2, "Overwrite save?"); return "No" }
 		func = function() { menu = meNewGame; cursor = 0 }
+		back = function() { menu = meNewGame; cursor = 0 }
 	},
 	{
 		name = function() { return "Yes" }

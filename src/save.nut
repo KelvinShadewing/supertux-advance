@@ -42,6 +42,7 @@
 	meLoadGame.push({
 		name = function() { return "Cancel" }
 		func = function() { cursor = 0; menu = meMain }
+		back = function() { cursor = 0; menu = meMain }
 	})
 
 	menu = meLoadGame
