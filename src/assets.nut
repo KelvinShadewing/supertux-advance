@@ -132,6 +132,7 @@
 ::bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392, 0, 0, 0, 0)
 ::bgIridia <- newSprite("res/gfx/iridia.png", 100, 56, 0, 0, 0, 0)
 ::bgAurora <- newSprite("res/gfx/aurora.png", 720, 240, 0, 0, 0, 0)
+::bgAuroraNight <- newSprite("res/gfx/aurora-night.png", 720, 240, 0, 0, 0, 0)
 ::bgRiverCity <- newSprite("res/gfx/rivercity.png", 380, 240, 0, 0, 0, 0)
 ::bgOcean <- newSprite("res/gfx/ocean.png", 480, 240, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
