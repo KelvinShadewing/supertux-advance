@@ -502,8 +502,8 @@
 				break
 		}
 
-		//Draw IGT
-		if(gvDoIGT) drawText(font2, 8, 32, formatTime(gvIGT))
+		//Draw level IGT
+		if(gvDoIGT && config.showleveligt) drawText(font2, 8, 32, formatTime(gvIGT))
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
@@ -534,7 +534,9 @@
 
 	if(levelEndRunner == 0) gvIGT++
 	game.igt++
-	if(config.showigt) {
+
+	//Draw global IGT
+	if(config.showglobaligt) {
 		local gtd = formatTime(game.igt) //Game time to draw
 		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
 	}

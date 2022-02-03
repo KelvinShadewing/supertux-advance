@@ -87,7 +87,8 @@
 	}
 	playerchar = 0
 	lang = "en"
-	showigt = false
+	showleveligt = false
+	showglobaligt = false
 }
 
 ::gvScreen <- 0
