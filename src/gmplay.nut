@@ -429,7 +429,8 @@
 	//Separate texture for game world allows post-processing effects without including HUD
 	setDrawTarget(gvPlayScreen)
 
-	drawBG()
+	if(drawBG != 0) drawBG()
+	if(drawWeather != 0) drawWeather()
 	camxprev = camx
 	camyprev = camy
 

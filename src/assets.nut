@@ -147,6 +147,10 @@
 ::bgIceForest1 <- newSprite("res/gfx/iceforest1.png", 640, 256, 0, 0, 0, 0)
 ::bgIceForest2 <- newSprite("res/gfx/iceforest2.png", 480, 192, 0, 0, 0, 0)
 
+//Weather
+::weRain <- newSprite("res/gfx/rainfall.png", 64, 64, 0, 0, 0, 0)
+::weSnow <- newSprite("res/gfx/snowfall.png", 64, 64, 0, 0, 0, 0)
+
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")
 ::sndJump <- loadSound("res/snd/jump.ogg")
