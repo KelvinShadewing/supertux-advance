@@ -228,6 +228,10 @@ const fontH = 14
 	{
 		name = function() { return "Yes" }
 		func = function() { newGame(game.file) }
+	},
+	{
+		name = function() { return "Cancel" }
+		func = function() { cursor = 0; menu = meNewGame }
 	}
 ]
 
