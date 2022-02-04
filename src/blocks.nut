@@ -8,9 +8,11 @@
 	coins = 0
 	v = 0.0
 	vspeed = 0
+	oldsolid = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
+		oldsolid = tileGetSolid(x, y)
 		tileSetSolid(x, y, 1)
 
 		shape = Rec(x, y, 7, 9, 0)
@@ -30,7 +32,7 @@
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
-						tileSetSolid(x, y, 0)
+						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 
@@ -39,7 +41,7 @@
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
-						tileSetSolid(x, y, 0)
+						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 
@@ -48,7 +50,7 @@
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
-						tileSetSolid(x, y, 0)
+						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 				}
@@ -83,7 +85,7 @@
 					deleteActor(id)
 					newActor(WoodChunks, x, y)
 					playSoundChannel(sndBump, 0, 2)
-					tileSetSolid(x, y, 0)
+					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
 				}
 				else {
@@ -101,7 +103,7 @@
 					deleteActor(id)
 					newActor(WoodChunks, x, y)
 					playSoundChannel(sndBump, 0, 2)
-					tileSetSolid(x, y, 0)
+					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
 				}
 				else {
@@ -119,7 +121,7 @@
 					deleteActor(id)
 					newActor(WoodChunks, x, y)
 					playSoundChannel(sndBump, 0, 2)
-					tileSetSolid(x, y, 0)
+					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
 				}
 				else {
@@ -144,6 +146,7 @@
 	shape = 0
 	slideshape = 0
 	fireshape = 0
+	oldsolid = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -151,6 +154,7 @@
 		shape = Rec(x, y, 7, 9, 0)
 		slideshape = Rec(x, y - 1, 16, 8, 0)
 		fireshape = Rec(x, y, 12, 12, 0)
+		oldsolid = tileGetSolid(x, y)
 		tileSetSolid(x, y, 40)
 	}
 
@@ -158,7 +162,7 @@
 		if(gvPlayer) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y > y + 4) {
 				gvPlayer.vspeed = 0
-				tileSetSolid(x, y, 0)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
 				playSound(sndBump, 0)
@@ -166,7 +170,7 @@
 
 			if((abs(gvPlayer.hspeed) >= 3.5 || (game.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
-				tileSetSolid(x, y, 0)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
 				playSound(sndBump, 0)
@@ -174,7 +178,7 @@
 
 			if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
 				gvPlayer.vspeed = -2.0
-				tileSetSolid(x, y, 0)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
 				playSound(sndBump, 0)
@@ -182,7 +186,7 @@
 		}
 
 		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, 0)
+			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			deleteActor(i.id)
 			newActor(Poof, x, y)
@@ -190,7 +194,7 @@
 		}
 
 		if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, 0)
+			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			deleteActor(i.id)
 			newActor(Poof, x, y)
@@ -198,7 +202,7 @@
 		}
 
 		if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, 0)
+			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			newActor(IceChunks, x, y)
 			newActor(Poof, x, y)
@@ -206,7 +210,7 @@
 		}
 
 		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, 0)
+			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			newActor(IceChunks, x, y)
 			newActor(Poof, x, y)
