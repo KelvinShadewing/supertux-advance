@@ -93,7 +93,7 @@
                 {
                  "height":192.896763396246,
                  "id":455,
-                 "name":"drawBG = dbgCave",
+                 "name":"drawBG = dbgCave; drawWeather = 0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -104,7 +104,7 @@
                 {
                  "height":174.026551737381,
                  "id":456,
-                 "name":"drawBG = dbgAurora",
+                 "name":"drawBG = dbgAurora; drawWeather = dweSnow",
                  "rotation":0,
                  "type":"",
                  "visible":true,
