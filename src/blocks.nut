@@ -680,11 +680,13 @@
 ::EvilBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
+	oldsolid = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y + 2, 8, 8, 0)
+		oldsolid = tileGetSolid(x, y)
 		tileSetSolid(x, y, 1)
 		slideshape = Rec(x, y - 1, 12, 8, 0)
 	}
@@ -693,7 +695,7 @@
 		if(gvPlayer) {
 			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
-				mapDeleteSolid(mapshape)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(Poof, x, y)
 				playSound(sndBump, 0)
