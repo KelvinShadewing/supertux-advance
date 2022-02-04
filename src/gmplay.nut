@@ -389,7 +389,6 @@
 	autocon.down = false
 	autocon.left = false
 	autocon.right = false
-	if(game.lives == 0) game.check = false
 
 	//Execute level code
 	print("Running level code...")
