@@ -980,4 +980,6 @@
 				break
 		}
 	}
+
+	function _typeof() { return "DeadPlayer" }
 }

@@ -11,16 +11,24 @@
 ::togglePause <- function() {
 	cursor = 0
 	if(gvGameMode == gmPlay) {
-		gvGameMode = gmPause
-		setDrawTarget(bgPause)
-		drawImage(gvScreen, 0, 0)
-		gvPauseMode = false
-		menu = mePausePlay
-		autocon = {
-			up = false
-			down = false
-			left = false
-			right = false
+		if(actor.rawin("DeadPlayer")) {
+			startPlay(gvMap.file)
+			if(game.check == true || game.difficulty > 0) if(game.lives > 0) game.lives--
+			if(game.lives == 0) game.check = false
+			if(game.check == false) gvIGT = 0
+		}
+		else {
+			gvGameMode = gmPause
+			setDrawTarget(bgPause)
+			drawImage(gvScreen, 0, 0)
+			gvPauseMode = false
+			menu = mePausePlay
+			autocon = {
+				up = false
+				down = false
+				left = false
+				right = false
+			}
 		}
 	}
 	else if(gvGameMode == gmOverworld){

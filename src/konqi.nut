@@ -632,10 +632,12 @@
 				if(flip == 0) {
 					c.hspeed = 1.0 + randFloat(0.5)
 					c.x += 8
+					if(game.weapon == 2) c.hspeed += 1.8
 				}
 				else {
 					c.hspeed = -1.5 - randFloat(0.5)
 					c.x -= 8
+					if(game.weapon == 2) c.hspeed -= 1.8
 				}
 				if(vspeed > 0) c.vspeed = (-cooldown.tofloat() + 53.0) / 8.0
 				else c.vspeed = (cooldown.tofloat() - 53.0) / 8.0
@@ -1057,4 +1059,6 @@
 				break
 		}
 	}
+
+	function _typeof() { return "DeadPlayer" }
 }
