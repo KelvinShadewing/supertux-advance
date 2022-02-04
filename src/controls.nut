@@ -88,80 +88,80 @@
 	while(!done) {
 		drawBG()
 
-		local message = "Press key for "
+		local message = gvLangObj["controls-menu"]["press-key-for"] + " "
 		switch(keystep) {
 			case 0:
-				message += "up"
+				message += gvLangObj["controls-menu"]["up"]
 				if(anyKeyPress() != -1) {
 					config.key.up = anyKeyPress()
 					keystep++
 				}
 				break
 			case 1:
-				message += "down"
+				message += gvLangObj["controls-menu"]["down"]
 				if(anyKeyPress() != -1) {
 					config.key.down = anyKeyPress()
 					keystep++
 				}
 				break
 			case 2:
-				message += "left"
+				message += gvLangObj["controls-menu"]["left"]
 				if(anyKeyPress() != -1) {
 					config.key.left = anyKeyPress()
 					keystep++
 				}
 				break
 			case 3:
-				message += "right"
+				message += gvLangObj["controls-menu"]["right"]
 				if(anyKeyPress() != -1) {
 					config.key.right = anyKeyPress()
 					keystep++
 				}
 				break
 			case 4:
-				message += "jump"
+				message += gvLangObj["controls-menu"]["jump"]
 				if(anyKeyPress() != -1) {
 					config.key.jump = anyKeyPress()
 					keystep++
 				}
 				break
 			case 5:
-				message += "shoot"
+				message += gvLangObj["controls-menu"]["shoot"]
 				if(anyKeyPress() != -1) {
 					config.key.shoot = anyKeyPress()
 					keystep++
 				}
 				break
 			case 6:
-				message += "run"
+				message += gvLangObj["controls-menu"]["run"]
 				if(anyKeyPress() != -1) {
 					config.key.run = anyKeyPress()
 					keystep++
 				}
 				break
 			case 7:
-				message += "sneak"
+				message += gvLangObj["controls-menu"]["sneak"]
 				if(anyKeyPress() != -1) {
 					config.key.sneak = anyKeyPress()
 					keystep++
 				}
 				break
 			case 8:
-				message += "pause"
+				message += gvLangObj["controls-menu"]["pause"]
 				if(anyKeyPress() != -1) {
 					config.key.pause = anyKeyPress()
 					keystep++
 				}
 				break
 			case 9:
-				message += "item swap"
+				message += gvLangObj["controls-menu"]["item-swap"]
 				if(anyKeyPress() != -1) {
 					config.key.swap = anyKeyPress()
 					keystep++
 				}
 				break
 			case 10:
-				message += "menu accept"
+				message += gvLangObj["controls-menu"]["menu-accept"]
 				if(anyKeyPress() != -1) {
 					config.key.accept = anyKeyPress()
 					keystep++

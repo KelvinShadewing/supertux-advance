@@ -24,7 +24,7 @@
 	meLanguage.push(
 		{
 			languageIndex = languageList["languages"].len(),
-			name = function() { return "Back" },
+			name = function() { return gvLangObj["menu-commons"]["back"] },
 			func = function() { cursor = 0; menu = meOptions }
 		}
 	)
