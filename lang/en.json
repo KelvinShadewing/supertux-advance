@@ -28,6 +28,21 @@
 		"speedrun-timer-global" : "Global Speedrun Timer"
 	},
 
+	"controls-menu" : {
+		"press-key-for" : "Press key for",
+		"up" : "up",
+		"down" : "down",
+		"left" : "left",
+		"right" : "right",
+		"jump" : "jump",
+		"shoot" : "shoot",
+		"run" : "run",
+		"sneak" : "sneak",
+		"pause" : "pause",
+		"item-swap" : "item swap",
+		"menu-accept" : "menu accept"
+	},
+
 	"menu-commons" : {
 		"yes" : "Yes",
 		"no" : "No",
