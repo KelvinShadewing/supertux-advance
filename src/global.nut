@@ -91,6 +91,8 @@
 	showglobaligt = false
 }
 
+::contribDidRun <- {}
+
 ::gvScreen <- 0
 ::gvPlayScreen <- 0
 ::camx <- 0
