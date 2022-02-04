@@ -7,6 +7,10 @@
 		"quit" : "Quit Game"
 	},
 
+	"new-game-menu" : {
+		"file-exists" : "[FILE EXISTS]"
+	},
+
 	"contrib-menu" : {
 		"empty" : "[No contrib levels available]"
 	},
@@ -22,6 +26,13 @@
 	"timers-menu" : {
 		"speedrun-timer-level" : "Level Speedrun Timer",
 		"speedrun-timer-global" : "Global Speedrun Timer"
+	},
+
+	"menu-commons" : {
+		"yes" : "Yes",
+		"no" : "No",
+		"back" : "Back",
+		"cancel" : "Cancel"
 	},
 
 	"bool" : {
