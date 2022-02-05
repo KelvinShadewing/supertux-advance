@@ -112,7 +112,6 @@ strDifficulty = [
 	gvLangObj["difficulty-levels"]["super"]
 ]
 
-startPlay("res/map/test.json") //This fixes something, don't ask how.
 startMain()
 menu = meMain
 config.playerchar = "Tux"
