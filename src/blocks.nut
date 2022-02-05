@@ -710,6 +710,39 @@
 	function _typeof() { return "WoodBlock" }
 }
 
+::EvilBlockB <- class extends Actor {
+	shape = 0
+	slideshape = 0
+	oldsolid = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
+		slideshape = Rec(x, y - 1, 12, 8, 0)
+	}
+
+	function run() {
+		if(gvPlayer) {
+			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
+				gvPlayer.vspeed = 0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(Poof, x, y)
+				playSound(sndBump, 0)
+				newActor(MuffinBomb, x, y - 8)
+			}
+
+		}
+
+		drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
+	}
+
+	function _typeof() { return "WoodBlock" }
+}
+
 ::BreakBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
@@ -747,4 +780,61 @@
 		}
 	}
 
+}
+
+
+::FireBlock <- class extends Actor {
+	shape = 0
+	slideshape = 0
+	fireshape = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		slideshape = Rec(x, y - 1, 12, 8, 0)
+		fireshape = Rec(x, y, 12, 12, 0)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+		
+		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			deleteActor(i.id)
+			newActor(Poof, x, y)
+			playSound(sndFlame, 0)
+		}
+		
+		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			deleteActor(i.id)
+			newActor(Poof, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy)
+	}
+}
+
+::TNTALT <- class extends Actor {
+	shape = null
+	gothit = false
+	hittime = 0.0
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 10, 10, 0)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+		drawSprite(sprC4, frame, x - 8 - camx, y - 8 - camy)
+	}
+
+	function _typeof() { return "TNTALT" }
 }

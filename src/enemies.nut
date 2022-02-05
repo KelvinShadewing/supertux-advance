@@ -696,12 +696,19 @@
 					deleteActor(i.id)
 				}
 			}
+			if(actor.rawin("TNTALT")) foreach(i in actor["TNTALT"]) {
+				if(hitTest(shape, i.shape)) {
+					newActor(BadExplode, i.x, i.y)
+					deleteActor(i.id)
+				}
+			}
 		}
 		if(frame >= 5) deleteActor(id)
 	}
 
 	function _typeof() { return "BadExplode" }
 }
+
 
 ::SnowBounce <- class extends Enemy {
 	frame = 0.0
