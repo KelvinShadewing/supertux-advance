@@ -28,7 +28,6 @@
 	}
 
 	//Load map to play
-	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors

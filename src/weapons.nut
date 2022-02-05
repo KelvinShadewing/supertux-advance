@@ -128,7 +128,7 @@
 		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 	}
 
-	function _typeof() { return "FlameBreath" }
+	function _typeof() { return "Fireball" }
 }
 
 ::IceBreath <- class extends PhysAct {

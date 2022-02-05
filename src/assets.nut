@@ -56,7 +56,6 @@
 ::sprC4 <- newSprite("res/gfx/c4.png", 16, 16, 0, 0, 0, 0)
 ::sprColorBlock <- newSprite("res/gfx/switchblocks.png", 16, 16, 0, 0, 0, 0)
 ::sprColorSwitch <- newSprite("res/gfx/colorswitches.png", 32, 32, 0, 0, 16, 16)
-::sprFireBlock <- newSprite("res/gfx/Fireblock.png", 16, 16, 0, 0, 0, 0)
 
 //NPCs
 ::sprRadGuin <- newSprite("res/gfx/radguin.png", 22, 32, 0, 0, 16, 32)
