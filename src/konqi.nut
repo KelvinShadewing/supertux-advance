@@ -501,10 +501,10 @@
 					if(hspeed < 0) hspeed += friction / 3.0
 				} else {
 					if(hspeed > 0) {
-						if(!getcon("right", "hold") || anim == anCrawl) hspeed -= friction
+						if(!(mspeed > 2 && getcon("right", "hold")) || anim == anCrawl) hspeed -= friction
 					}
 					if(hspeed < 0) {
-						if(!getcon("left", "hold") || anim == anCrawl) hspeed += friction
+						if(!(mspeed > 2 && getcon("left", "hold")) || anim == anCrawl) hspeed += friction
 					}
 				}
 			}
