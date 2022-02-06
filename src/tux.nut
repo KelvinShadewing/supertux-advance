@@ -465,6 +465,8 @@
 						frame = wrap(frame, anim[0], anim[1])
 						shape = shapeSlide
 					}
+
+					if(placeFree(x + 2, y + 1) && getcon("right", "hold") || placeFree(x - 2, y + 1) && getcon("left", "hold")) anim = anSlide
 				}
 			} else {
 				if(hspeed < 1 && endmode) hspeed += 0.2
