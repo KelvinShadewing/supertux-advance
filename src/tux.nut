@@ -551,6 +551,7 @@
 						}
 						energy--
 						firetime = 60
+						if(anim == anCrawl) c.y += 8
 					}
 					break
 
@@ -569,6 +570,7 @@
 						}
 						energy--
 						firetime = 60
+						if(anim == anCrawl) c.y += 8
 					}
 					break
 
