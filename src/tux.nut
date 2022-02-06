@@ -212,7 +212,7 @@
 					break
 
 				case anDive:
-					frame += 0.2
+					frame += 0.25
 
 					if(floor(frame) > anim[1]) {
 						if(abs(hspeed) < 0.5) anim = anCrawl
@@ -273,7 +273,7 @@
 				}
 				else if(!placeFree(x, y + 8) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold") || abs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold"))) if(anim == anSlide || anim == anDive || anim == anCrawl) {
+				if(((!getcon("down", "hold") || abs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold"))) if(anim == anSlide || anim == anCrawl) {
 					if(getcon("down", "hold") || !placeFree(x, y - 8)) anim = anCrawl
 					else anim = anWalk
 				}
