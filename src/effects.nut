@@ -100,8 +100,8 @@
 			game.coins = 0
 		}
 		else {
-			stopSound(0)
-			playSoundChannel(sndCoin, 0, 1)
+			stopSound(sndCoin)
+			playSound(sndCoin, 0)
 		}
 	}
 

@@ -10,7 +10,7 @@
 	function run() {
 		timer--
 		if(timer == 0 || getcon("pause", "press")) {
-			stopSound(-1)
+			stopChannel(-1)
 			startOverworld(game.world)
 			levelEndRunner = 0
 		}

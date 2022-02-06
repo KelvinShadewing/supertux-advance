@@ -560,8 +560,8 @@
 			//Hit by player
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 				gothit = true
-				stopSound(2)
-				playSoundChannel(sndFizz, 0, 2)
+				stopSound(sndFizz)
+				playSound(sndFizz, 0)
 			}
 		}
 

@@ -37,8 +37,8 @@
 		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
 			deleteActor(id)
 			game.berries++
-			stopSound(1)
-			playSoundChannel(sndGulp, 0, 1)
+			stopSound(sndGulp)
+			playSound(sndGulp, 0)
 		}
 	}
 

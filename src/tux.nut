@@ -385,8 +385,8 @@
 							anim = anJumpU
 							frame = anim[0]
 						}
-						if(game.weapon != 3) playSoundChannel(sndJump, 0, 0)
-						else playSoundChannel(sndFlap, 0, 0)
+						if(game.weapon != 3) playSound(sndJump, 0)
+						else playSound(sndFlap, 0)
 					}
 					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0 && tileGetSolid(x - 8, y) != 40) {
 						flip = 0
@@ -429,14 +429,16 @@
 						anim = anDive
 						frame = anim[0]
 						flip = 0
-						playSoundChannel(sndSlide, 0, 0)
+						stopSound(sndSlide)
+						playSound(sndSlide, 0)
 					}
 
 					if(placeFree(x - 2, y + 1) || hspeed <= -1.5) {
 						anim = anDive
 						frame = anim[0]
 						flip = 1
-						playSoundChannel(sndSlide, 0, 0)
+						stopSound(sndSlide)
+						playSound(sndSlide, 0)
 					}
 				}
 			} else {
@@ -549,7 +551,7 @@
 					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall) && anim != anHurt) {
 						anim = anDive
 						frame = anim[0]
-						playSoundChannel(sndSlide, 0, 0)
+						playSound(sndSlide, 0)
 						if(flip == 0 && hspeed < 2) hspeed = 2
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}
@@ -559,7 +561,7 @@
 					if(getcon("shoot", "press") && (anim != anHurt)) {
 						anim = anDive
 						frame = anim[0]
-						playSoundChannel(sndSlide, 0, 0)
+						playSound(sndSlide, 0)
 						if(flip == 0 && hspeed < 2) hspeed = 2
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}

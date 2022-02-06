@@ -305,7 +305,6 @@
 					arg.remove(0)
 					if(arg.len() == 1) arg = arg[0]
 					else if(arg.len() == 0) arg = null
-					print(n)
 					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
 					break
 
@@ -511,7 +510,7 @@
 		//Draw warning sign
 		if(gvWarning < 180) {
 			if(gvWarning == 0 || gvWarning == 90) {
-				stopSound(4)
+				stopChannel(4)
 				playSoundChannel(sndWarning, 0, 4)
 			}
 			drawSpriteEx(sprWarning, 0, screenW() / 2, screenH() / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))

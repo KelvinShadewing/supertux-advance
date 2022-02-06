@@ -162,8 +162,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		stopSound(1)
-		playSoundChannel(sndExplodeF, 0, 1)
+		stopSound(sndExplodeF)
+		playSound(sndExplodeF, 0)
 
 		shape = Rec(x, y, 16, 16, 0)
 	}
@@ -194,8 +194,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		stopSound(1)
-		playSoundChannel(sndBump, 0, 1)
+		stopSound(sndBump)
+		playSound(sndBump, 0)
 
 		shape = Rec(x, y, 16, 16, 0)
 	}
@@ -217,8 +217,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		stopSound(1)
-		playSoundChannel(sndBump, 0, 0)
+		stopSound(sndBump)
+		playSound(sndBump, 0)
 
 		shape = Rec(x, y, 8, 8, 0)
 	}
