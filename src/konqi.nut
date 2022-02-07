@@ -74,7 +74,10 @@
 		//Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
-		if(shape == shapeStand && !placeFree(x, y)) shape = shapeSlide
+		if(shape == shapeStand && !placeFree(x, y)) {
+			shape = shapeSlide
+			if(anim == anStand || anim == anWalk || anim == anRun) anim = anCrawl
+		}
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
 		local freeLeft = placeFree(x - 1, y)

@@ -70,7 +70,10 @@
 		//Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
-		if(shape == shapeStand && !placeFree(x, y)) shape = shapeSlide
+		if(shape == shapeStand && !placeFree(x, y)) {
+			shape = shapeSlide
+			if(anim == anStand || anim == anWalk || anim == anRun) anim = anCrawl
+		}
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
 		local freeLeft = placeFree(x - 1, y)
@@ -792,7 +795,7 @@
 			if(x > gvMap.w - 4) x = gvMap.w - 4
 		} else x = wrap(x, 0, gvMap.w)
 
-		if(anim == anSlide) shape = shapeSlide
+		if(anim == anSlide || anim == anCrawl) shape = shapeSlide
 		else shape = shapeStand
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)

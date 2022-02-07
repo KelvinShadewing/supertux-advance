@@ -80,7 +80,7 @@ UbuntuJackson - UFO
 
 Lukas Nystrand - Chippdisko
 
-[TAD](https://opengameart.org/users/tad) - LoFi Ice Cave
+[TAD](https://opengameart.org/users/tad) - LoFi Ice Cave, LoFi Ice Village
 
 [Trex0n](https://opengameart.org/users/trex0n) - Peace At Last (Overworld)
 

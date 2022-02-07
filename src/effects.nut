@@ -76,11 +76,15 @@
 ::FlameTiny <- class extends Actor {
 	frame = 0.0
 	angle = 0
+	hspeed = 0.0
+	vspeed = 0.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
 	function run() {
+		x += hspeed
+		y += vspeed
 		frame += 0.25
 		if(frame >= 6) deleteActor(id)
 		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)

@@ -598,6 +598,13 @@
 
 				}
 				drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				if(getFrames() % 20 == 0) {
+					local c
+					if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
+					else c = actor[newActor(FlameTiny, x + 6, y - 8)]
+					c.vspeed = -0.1
+					c.hspeed = randFloat(0.2) - 0.1
+				}
 
 				if(frozen) {
 					squish = false
@@ -1803,6 +1810,8 @@
 						if(x >= gvMap.w) flip = true
 						if(hspeed < 0) flip = true
 					}
+
+					if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= (64 + (16 * game.difficulty))) squish = true
 				}
 
 				if(gvPlayer && chasing) {
@@ -1846,14 +1855,23 @@
 					}
 
 					//Draw
-					if(chasing) drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+					if(chasing) {
+						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+						if(getFrames() % 8 == 0) {
+							local c
+							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
+							else c = actor[newActor(FlameTiny, x + 6, y - 8)]
+							c.vspeed = -0.1
+							c.hspeed = randFloat(0.2) - 0.1
+						}
+					}
 					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 1.5
 				if(chasing) frame += 0.25
-				else frame += 0.1
+				else frame += 0.075
 				if(squishTime >= 90 && !chasing) {
 					chasing = true
 					squishTime = 0
@@ -1899,6 +1917,7 @@
 	}
 
 	function gethurt() {
+		if(frozen > 0) return
 		if(chasing) {
 			hurtplayer()
 			return

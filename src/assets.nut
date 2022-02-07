@@ -195,6 +195,7 @@
 ::musSnowTown <- "res/snd/winter_wonderland.ogg"
 ::musAirship <- "res/snd/airship.ogg"
 ::musPuzzle <- "res/snd/puzzle.ogg"
+::musIceland <- "res/snd/iceland.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")
