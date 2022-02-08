@@ -186,7 +186,6 @@
 
 ::musTheme <- "res/snd/supertuxtheme.ogg"
 ::musDisko <- "res/snd/chipdisko.ogg"
-::musIce <- "res/snd/ice_music.ogg"
 ::musCave <- "res/snd/cave.ogg"
 ::musOverworld <- "res/snd/overworld.ogg"
 ::musCity <- "res/snd/village-mixed.ogg"
