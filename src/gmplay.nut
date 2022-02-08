@@ -313,6 +313,16 @@
 					game.enemies++
 					break
 
+				case 66:
+					newActor(Livewire, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
+				case 67:
+					newActor(Blazeborn, i.x + 8, i.y - 8)
+					game.enemies++
+					break
+
 				case 73:
 					newActor(Jumpy, i.x + 8, i.y - 8, i.name)
 					game.enemies++

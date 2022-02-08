@@ -482,6 +482,7 @@
 	step = 0
 	reverse = false
 	dir = 0.0
+	moving = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -496,6 +497,7 @@
 
 	function run() {
 		//Follow path
+		if(moving) {
 		if(distance2(x, y, tx, ty) > speed) {
 			dir = pointAngle(x, y, tx, ty)
 			x += lendirX(speed, dir)
@@ -526,6 +528,7 @@
 				tx = path[step][0]
 				ty = path[step][1]
 			}
+		}
 		}
 	}
 }

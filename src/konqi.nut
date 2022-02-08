@@ -840,7 +840,7 @@
 			if(x > gvMap.w - 4) x = gvMap.w - 4
 		} else x = wrap(x, 0, gvMap.w)
 
-		if(anim == anSlide) shape = shapeSlide
+		if(anim == anSlide || anim == anCrawl) shape = shapeSlide
 		else shape = shapeStand
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
