@@ -78,6 +78,8 @@ UbuntuJackson - UFO
 
 [Automusic](https://www.youtube.com/watch?v=xPxCaCN_dCQ) - Main Theme
 
+[ZhayTee](https://bandcamp.zhaytee.net/track/4096) - Ice music / 4096
+
 Lukas Nystrand - Chippdisko
 
 [TAD](https://opengameart.org/users/tad) - LoFi Ice Cave, LoFi Ice Village

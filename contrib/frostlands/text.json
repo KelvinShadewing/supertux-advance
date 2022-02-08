@@ -10,9 +10,10 @@
 		"are there blocks in the way? that means you didn't collect all fish. try again"
 	},
 	"level" : {
-		"FS" : "Feather Shrine",
 		"fw-t0" : "Icey outpost",
 		"fw-t1" : "Chill docks",
+		"fw-t2" : "Feather shrine",
+		"fw-t3" : "Bonus town",
 		"TSR" : "Coming soon...",
 		"Fw-1" : "Noted",
 		"Fw-2" : "Roots",
@@ -35,11 +36,11 @@
 		"rad-A" :
 		"The snow here is like, all purple and stuff... super weird. Also be sure to talk to sam, he wants to tell you something.",
 		"Sam-A" :
-		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. Would you and your friends mind exploring to help find out what is causing this?",	
+		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",	
 		"fire-A" :
 		"Hey, im the one managing the port at the moment. I don't have any boats, but I do have a few items for you.",
 		"fire-B" :
-		"I heard if you walk to the Right of nofoe, there's some ruins. I might check it out one day.",
+		"I heard if you walk to the Right of the first Forest level, there's some ruins. I might check it out one day.",
 		"mrq" :
 		"Hai! I'm Marqies. Welcome to the Feather Shrine! Something Cool is up ahead",
 		"mark" :

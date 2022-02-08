@@ -1893,7 +1893,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musBike)"
+         "value":"drawBG = dbgForest\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
