@@ -511,3 +511,7 @@
 
 	function _typeof() { return "EarthShell" }
 }
+
+::SpecialBall <- class extends Actor {
+
+}

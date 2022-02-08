@@ -25,7 +25,9 @@
 
 	function placeFree(_x, _y) {
 		//Save current location and move
-		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		local ns
+		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)
 		local cx = floor(_x / 16)
 		local cy = floor(_y / 16)
 		local cw = ceil(shape.w / 16)
@@ -289,7 +291,9 @@
 	}
 
 	function inWater(_x, _y) {
-		local ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		local ns
+		if(typeof shape == "Rec") ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x, _y, shape.r)
 
 		if(actor.rawin("Water")) {
 			foreach(i in actor["Water"]) {
@@ -302,7 +306,9 @@
 
 	function onHazard(_x, _y) {
 		//Save current location and move
-		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		local ns
+		if(typeof shape == "Rec") ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x, _y, shape.r)
 		local cx = floor(_x / 16)
 		local cy = floor(_y / 16)
 		local cw = ceil(shape.w / 16)
@@ -363,7 +369,9 @@
 
 	function onDeath(_x, _y) {
 		//Save current location and move
-		local ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		local ns
+		if(typeof shape == "Rec") ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x, _y, shape.r)
 		local cx = floor(_x / 16)
 		local cy = floor(_y / 16)
 		local cw = ceil(shape.w / 16)
@@ -400,7 +408,9 @@
 
 	function onPlatform() {
 		//Save current location and move
-		local ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
+		local ns
+		if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
 
@@ -440,7 +450,9 @@
 
 	function onIce() {
 		//Save current location and move
-		local ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
+		local ns
+		if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
 

@@ -680,7 +680,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Rec(x, y, 16, 16, 0)
+		shape = Cir(x, y, 16)
 	}
 
 	function run() {

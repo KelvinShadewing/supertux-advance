@@ -165,7 +165,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Rec(x, y, 16, 16, 0)
+		shape = Cir(x, y, 16)
 	}
 
 	function run() {
@@ -241,7 +241,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y, 4, 4, 0)
+		shape = Cir(x, y, 4)
 	}
 
 	function run() {

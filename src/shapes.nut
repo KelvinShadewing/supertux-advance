@@ -46,6 +46,37 @@
 	function _typeof() { return "Rec" }
 }
 
+::Cir <- class{
+	x = 0.0
+	y = 0.0
+	r = 0.0
+	ox = 0.0
+	oy = 0.0
+	w = 0.0
+	h = 0.0
+
+	constructor(_x, _y, _r, _ox = 0.0, _oy = 0.0) {
+		x = _x.tofloat()
+		y = _y.tofloat()
+		r = _r.tofloat()
+		ox = _ox.tofloat()
+		oy = _oy.tofloat()
+		w = _r.tofloat()
+		h = _r.tofloat()
+	}
+
+	function setPos(_x, _y) {
+		x = _x.tofloat() + ox
+		y = _y.tofloat() + oy
+	}
+
+	function draw() {
+		drawCircle(x - camx, y - camy, r, false)
+	}
+
+	function _typeof() { return "Cir" }
+}
+
 ::hitTest <- function(a, b) {
 	switch(typeof a) {
 		case "Rec":
@@ -183,6 +214,44 @@
 					}
 
 					return true
+					break
+
+				case "Cir": //Circle
+					local hx = b.x
+					local hy = b.y
+
+					//Find closest point
+					if(b.x < a.x - a.w) hx = a.x - a.w
+					if(b.x > a.x + a.w) hx = a.x + a.w
+
+					if(b.y < a.y - a.h) hy = a.y - a.h
+					if(b.y > a.y + a.h) hy = a.y + a.h
+
+					//Check distance
+					if(distance2(hx, hy, b.x, b.y) <= b.r) return true
+					break
+
+				default:
+					return false
+					break
+			}
+			break
+
+		case "Cir": //Circle
+			switch(typeof b) {
+				case "Rec":
+					local hx = a.x
+					local hy = a.y
+
+					//Find closest point
+					if(a.x < b.x - b.w) hx = b.x - b.w
+					if(a.x > b.x + b.w) hx = b.x + b.w
+
+					if(a.y < b.y - b.h) hy = b.y - b.h
+					if(a.y > b.y + b.h) hy = b.y + b.h
+
+					//Check distance
+					if(distance2(a.x, a.y, hx, hy) <= a.r) return true
 					break
 
 				default:
