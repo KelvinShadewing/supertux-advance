@@ -105,7 +105,9 @@
 		"konqi" :
 		"Konqi can breath fire and stomp the ground, but he isn't as fast as Tux.",
 		"momentum" :
-		"You won't lose speed if you keep running! Be sure to hold the run button or keep the stick pressed all the way over, and you'll keep whatever speed you gain from sliding. Icy hills will speed you up even if you can't slide."
+		"You won't lose speed if you keep running! Be sure to hold the run button or keep the stick pressed all the way over, and you'll keep whatever speed you gain from sliding. Icy hills will speed you up even if you can't slide.",
+		"warned" :
+		"You were warned..."
 	},
 
 	"devcom" : {

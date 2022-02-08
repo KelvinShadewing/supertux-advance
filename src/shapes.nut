@@ -230,6 +230,7 @@
 					//Check distance
 					if(distance2(hx, hy, b.x, b.y) <= b.r) return true
 					break
+					//Still need to check for collisions with slopes and liquid
 
 				default:
 					return false
@@ -253,6 +254,7 @@
 					//Check distance
 					if(distance2(a.x, a.y, hx, hy) <= a.r) return true
 					break
+					//Still need to check for collisions with slopes and liquid
 
 				default:
 					return false

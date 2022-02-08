@@ -818,7 +818,7 @@
 		if(y < -100) y = -100.0
 
 		//Set ice friction
-		if(onIce()) friction = 0.05
+		if(onIce()) friction = 0.01
 		else friction = 0.1
 
 		//Hurt
