@@ -469,7 +469,7 @@
 						shape = shapeSlide
 					}
 
-					if(placeFree(x + 2, y + 1) && getcon("right", "hold") || placeFree(x - 2, y + 1) && getcon("left", "hold")) anim = anSlide
+					if(placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) anim = anSlide
 				}
 			} else {
 				if(hspeed < 1 && endmode) hspeed += 0.2

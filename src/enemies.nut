@@ -1815,11 +1815,11 @@
 				}
 
 				if(gvPlayer && chasing) {
-					if(x < gvPlayer.x - 8) if(hspeed < 3) {
+					if(x < gvPlayer.x - 8) if(hspeed < 2.5) {
 						hspeed += 0.1
 						if(hspeed < 0) hspeed += 0.1
 					}
-					if(x > gvPlayer.x + 8) if(hspeed > -3) {
+					if(x > gvPlayer.x + 8) if(hspeed > -2.5) {
 						hspeed -= 0.1
 						if(hspeed > 0) hspeed -= 0.1
 					}
