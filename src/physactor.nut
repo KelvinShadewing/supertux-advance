@@ -265,7 +265,9 @@
 						case 38: //One Way
 						case 50:
 						case 51:
-							local nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
