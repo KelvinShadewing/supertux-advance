@@ -292,8 +292,8 @@
 
 	function inWater(_x, _y) {
 		local ns
-		if(typeof shape == "Rec") ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(_x, _y, shape.r)
+		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)
 
 		if(actor.rawin("Water")) {
 			foreach(i in actor["Water"]) {
@@ -307,8 +307,8 @@
 	function onHazard(_x, _y) {
 		//Save current location and move
 		local ns
-		if(typeof shape == "Rec") ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(_x, _y, shape.r)
+		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)
 		local cx = floor(_x / 16)
 		local cy = floor(_y / 16)
 		local cw = ceil(shape.w / 16)
@@ -370,8 +370,8 @@
 	function onDeath(_x, _y) {
 		//Save current location and move
 		local ns
-		if(typeof shape == "Rec") ns = Rec(_x, _y, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(_x, _y, shape.r)
+		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)
 		local cx = floor(_x / 16)
 		local cy = floor(_y / 16)
 		local cw = ceil(shape.w / 16)
@@ -409,8 +409,8 @@
 	function onPlatform() {
 		//Save current location and move
 		local ns
-		if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
+		if(typeof shape == "Rec") ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(x + shape.ox, y + shape.oy + 2, shape.r)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
 
@@ -424,7 +424,7 @@
 				case 38:
 				case 50:
 				case 51:
-					gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 4)
+					gvMap.shape.setPos(x, y + 4)
 					gvMap.shape.kind = 0
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
@@ -451,8 +451,8 @@
 	function onIce() {
 		//Save current location and move
 		local ns
-		if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
+		if(typeof shape == "Rec") ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(x + shape.ox, y + shape.oy + 2, shape.r)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
 
@@ -471,7 +471,8 @@
 				case 55:
 				case 56:
 				case 57:
-				case 58:
+				case 58:if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
 				case 59:
 					gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 4)
 					gvMap.shape.kind = 0
