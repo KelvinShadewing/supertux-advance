@@ -97,6 +97,9 @@
 		{"type":"normal","text":"Keyla Otter"},
 		{"type":"normal","text":"Luke the Foxen"},
 		{"type":"normal","text":"Neon Blade"},
+		{"type":"normal","text":""},
+		{"type":"normal","text":"See CREDITS.md for links"},
+		{"type":"normal","text":"to these awesome people!"},
 
 		{"type":"header","text":""},
 		{"type":"header","text":""},
@@ -124,7 +127,7 @@
 		{"type":"header","text":""},
 		{"type":"header","text":""},
 		{"type":"header","text":""},
-		{"type":"image","image":"res/gfx/tuckles.png","w":18,"h":34,"f":0,"l":02,"s":0.0},
+		{"type":"image","image":"res/gfx/tuckles.png","w":18,"h":34,"f":0,"l":0,"s":0.0},
 		{"type":"normal","text":"Tuckles loves you!"}
 	]
 }

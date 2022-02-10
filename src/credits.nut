@@ -22,7 +22,7 @@
 			if(creditsData["credits"][i]["type"]=="header") creditsLength += 4
 		}
 	}
-	creditsLength += 64 //Padding
+	creditsLength += 30 //Padding
 	update()
 }
 ::gmCredits <- function(){
