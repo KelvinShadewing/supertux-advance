@@ -85,7 +85,7 @@
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && game.weapon != 3) {
+		if(firetime > 0 && game.weapon != 3 && (game.weapon != 4 || anim != anSlide)) {
 			firetime--
 		}
 
@@ -218,7 +218,7 @@
 					frame += 0.25
 
 					if(floor(frame) > anim[1]) {
-						if(abs(hspeed) < 0.5) anim = anCrawl
+						if(abs(hspeed) < 0.5 && game.weapon != 4) anim = anCrawl
 						else anim = anSlide
 						shape = shapeSlide
 					}
@@ -829,12 +829,19 @@
 			hurt = false
 			if(blinking == 0) {
 				blinking = 120
-				anim = anHurt
-				frame = anim[0]
-				if(game.health > 0) game.health--
 				playSound(sndHurt, 0)
-				if(flip == 0) hspeed = -2.0
-				else hspeed = 2.0
+				if(game.weapon == 4 && anim == anSlide && energy > 0) {
+					energy--
+					firetime = 60
+					newActor(Spark, x, y)
+				}
+				else {
+					if(game.health > 0) game.health--
+					if(flip == 0) hspeed = -2.0
+					else hspeed = 2.0
+					anim = anHurt
+					frame = anim[0]
+				}
 			}
 		}
 		else hurt = false
