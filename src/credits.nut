@@ -43,7 +43,8 @@
 				break
 		}
 	}
-	creditsOffset += getcon("jump","hold")?2:0.5
+	creditsOffset += getcon("jump", "hold") || getcon("down", "hold") || getcon("accept", "hold") ? 2 : 0.5
+	creditsOffset -= getcon("up", "hold") && creditsOffset >= -10 ? 2 : 0
 	if(creditsOffset>=screenH()+creditsLength+10 || getcon("pause","press")){
 		for(local i=0; i<creditsSprites.len(); i+=1){
 			if(creditsSprites[i]==null)

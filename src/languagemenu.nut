@@ -25,8 +25,8 @@
 		{
 			languageIndex = languageList["languages"].len()
 			name = function() { return gvLangObj["menu-commons"]["back"] }
-			func = function() { cursor = 0; menu = meOptions }
-			back = function() { cursor = 0; menu = meOptions }
+			func = function() { cursor = 2; menu = meOptions }
+			back = function() { cursor = 2; menu = meOptions }
 		}
 	)
 	menu = meLanguage

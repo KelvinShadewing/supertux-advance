@@ -51,7 +51,7 @@ const fontH = 14
 		menu[cursor].func()
 	}
 
-	if(getcon("pause", "press") && !(menu == mePausePlay || menu == mePauseOver || menu == meMain)) {
+	if(getcon("pause", "press")) {
 		for(local i = 0; i < menu.len(); i++) {
 				if(menu[i].rawin("back")) {
 					menu[i]["back"]()
@@ -80,14 +80,13 @@ const fontH = 14
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { cursor = 0; menu = meOptions }
 	},
-    {
-        name = function() { return gvLangObj["main-menu"]["credits"] },
-        func = function() { cursor = 0; startCredits(); }
-    }
+    	{
+		name = function() { return gvLangObj["main-menu"]["credits"] },
+		func = function() { cursor = 0; startCredits(); }
+    	}	
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
-		back = function() { gvQuit = 1 }
 	}
 ]
 
@@ -144,8 +143,8 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
-		func = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
-		back = function() { cursor = 0; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
+		func = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
+		back = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}
 ]
 
@@ -160,8 +159,8 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
-		func = function() { cursor = 0; menu = meOptions }
-		back = function() { cursor = 0; menu = meOptions }
+		func = function() { cursor = 3; menu = meOptions }
+		back = function() { cursor = 3; menu = meOptions }
 	}
 ]
 

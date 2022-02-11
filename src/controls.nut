@@ -166,6 +166,7 @@
 					config.key.accept = anyKeyPress()
 					keystep++
 				}
+				break
 			default:
 				done = true
 				break
@@ -191,52 +192,53 @@
 	while(!done) {
 		drawBG()
 
-		local message = "Press button for "
+		local message = gvLangObj["controls-menu"]["press-button-for"] + " "
 		switch(joystep) {
 			case 4:
-				message += "jump"
+				message += gvLangObj["controls-menu"]["jump"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.jump = anyJoyPress(0)
 					joystep++
 				}
+				if(getcon("pause", "press")) done = true;
 				break
 			case 5:
-				message += "shoot"
+				message += gvLangObj["controls-menu"]["shoot"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.shoot = anyJoyPress(0)
 					joystep++
 				}
 				break
 			case 6:
-				message += "run"
+				message += gvLangObj["controls-menu"]["run"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.run = anyJoyPress(0)
 					joystep++
 				}
 				break
 			case 7:
-				message += "sneak"
+				message += gvLangObj["controls-menu"]["sneak"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.sneak = anyJoyPress(0)
 					joystep++
 				}
 				break
 			case 8:
-				message += "pause"
+				message += gvLangObj["controls-menu"]["pause"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.pause = anyJoyPress(0)
 					joystep++
 				}
 				break
 			case 9:
-				message += "item swap"
+				message += gvLangObj["controls-menu"]["item-swap"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.swap = anyJoyPress(0)
 					joystep++
 				}
 				break
 			case 10:
-				message += "manu accept"
+				message += gvLangObj["controls-menu"]["menu-accept"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.accept = anyJoyPress(0)
 					joystep++
