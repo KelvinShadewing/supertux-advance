@@ -434,6 +434,9 @@
 
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
+	setDrawTarget(gvLightScreen)
+	setDrawColor(gvLight)
+	drawRec(0, 0, screenW(), screenH(), true)
 	setDrawTarget(gvPlayScreen)
 
 	if(drawBG != 0) drawBG()
@@ -451,6 +454,7 @@
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), 24, 20, "fg")
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
+	drawImage(gvLightScreen, 0, 0)
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	//HUDs

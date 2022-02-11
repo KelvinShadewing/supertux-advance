@@ -32,6 +32,7 @@
 	slideframe = 0.0 //Because using just frame gets screwy for some reason
 	wasInWater = false
 	cooldown = 0
+	antigrav = 0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -530,7 +531,8 @@
 			}
 
 			if(abs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold") || (anim == anStomp && vspeed < 8)) && !nowInWater))) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold")) && !nowInWater)) && antigrav <= 0) vspeed += gravity
+			else if(antigrav > 0) antigrav--
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Konqi bumped his head
 
 			//Entering water
@@ -877,6 +879,7 @@
 				blinking = 120
 				playSound(sndHurt, 0)
 				if(game.weapon == 4 && anim == anSlide && energy > 0) {
+					blinking = 60
 					energy--
 					firetime = 60
 					newActor(Spark, x, y)

@@ -80,6 +80,10 @@ const fontH = 14
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { cursor = 0; menu = meOptions }
 	},
+    {
+        name = function() { return gvLangObj["main-menu"]["credits"] },
+        func = function() { cursor = 0; startCredits(); }
+    }
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }

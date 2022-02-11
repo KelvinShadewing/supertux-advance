@@ -2,15 +2,26 @@
 	"main-menu" : {
 		"new" : "Nowa Gra",
 		"load" : "Wczytaj Grę",
+		"contrib-levels" : "Dodatkowe Poziomy",
 		"options" : "Opcje",
 		"quit" : "Wyjdź z Gry"
 	},
 
+	"contrib-menu" : {
+		"empty" : "[Brak dodatkowych poziomów]"
+	},
+
 	"options-menu" : {
-		"difficulty" : "Poziom Trudności",
+		"difficulty" : "Poziom trudności",
 		"language" : "Język",
-		"keyboard" : "Zmień Sterowanie Klawiaturą",
-		"joystick" : "Zmień Sterowanie Kontrolerem"
+		"keyboard" : "Zmień sterowanie klawiaturą",
+		"joystick" : "Zmień sterowanie kontrolerem",
+		"speedrun" : "Licznik do speedrunowania"
+	},
+
+	"bool" : {
+		"on" : "Wł",
+		"off" : "Wył"
 	},
 
 	"difficulty-levels" : {
@@ -23,6 +34,7 @@
 	"pause-menu" : {
 		"continue" : "Kontynuuj",
 		"character" : "Zmień Postać",
+		"restart" : "Zrestartuj Poziom",
 		"quit-game" : "Wyjdź z Gry",
 		"quit-level" : "Opuść Poziom"
 	},
@@ -62,25 +74,25 @@
 
 	"devcom" : {
 		"welcome" :
-		"Jeżeli to widzisz, aktywowałeś tryb komentarzy deweloperskich. Dotknij czerwonych szalików aby przeczytać notatki o rozwoju gry.",
+		"KELVIN: Jeżeli to widzisz, aktywowałeś tryb komentarzy deweloperskich. Dotknij czerwonych szalików aby przeczytać notatki o rozwoju gry.",
 		"hiff-0" :
-		"Jedna z wielu rzeczy, która mnie wkurzyła było zrobienie tak żeby deathcap wchodził pod to wzgórze. Z jakiegoś powodu sprawdzanie dwa razy dalej spowodowało, że zachowują się poprawnie...",
+		"KELVIN: Jedna z wielu rzeczy, która mnie wkurzyła było zrobienie tak żeby deathcap wchodził pod to wzgórze. Z jakiegoś powodu sprawdzanie dwa razy dalej spowodowało, że zachowują się poprawnie...",
 		"pipes" :
-		"Chciałem aby rury zachowywały się tak samo jak te w Mario ale wydawało mi się denerwujące, że w tych grach trzeba było naciśnąć góra/dół aby sprawdzić czy są otwarte więc zamiast tego po prostu wpadasz do nich.",
+		"KELVIN: Chciałem aby rury zachowywały się tak samo jak te w Mario ale wydawało mi się denerwujące, że w tych grach trzeba było naciśnąć góra/dół aby sprawdzić czy są otwarte więc zamiast tego po prostu wpadasz do nich.",
 		"firetux" :
-		"Oryginalnie, Ognisty Tux miał mieć hełm tak jak w oryginalnym SuperTux'ie. Członek serwera Discord SuperTux'a zasugerował aby użyć projektu autorstwa RustyBox. Zgodziłem się, że wyglądało to lepiej. Oryginalny projekt Ognistego Tux'a może być znaleziony na stronie OpenGameArt.org.",
+		"KELVIN: Oryginalnie, Ognisty Tux miał mieć hełm tak jak w oryginalnym SuperTux'ie. Członek serwera Discord SuperTux'a zasugerował aby użyć projektu autorstwa RustyBox. Zgodziłem się, że wyglądało to lepiej. Oryginalny projekt Ognistego Tux'a może być znaleziony na stronie OpenGameArt.org.",
 		"coins" :
-		"Monety są używane tylko do osiągnięć. Nigdy nie lubiłem mechaniki dodatkowych żyć, ponieważ to powoduje, że gracz musi czekać dłużej aby spróbować zagrać w poziom ponownie jeżeli skończą się mu się życia. ",
+		"KELVIN: Monety są używane tylko do osiągnięć. Nigdy nie lubiłem mechaniki dodatkowych żyć, ponieważ to powoduje, że gracz musi czekać dłużej aby spróbować zagrać w poziom ponownie jeżeli skończą się mu się życia. ",
 		"sliding" :
-		"Pomysł na mechanikę zwiększania się prędkości podczas spadania z krawędzi przyszedł mi na myśl z powodu potrzeby zrekompensowania tego, że spadki nie przyspieszają gracza wystarczająco. Technicznie jest to błędem, który zdecydowałem się pozostawić ponieważ był zabawny. To samo zalicza się do wielu innych mechanik.",
+		"KELVIN: Pomysł na mechanikę zwiększania się prędkości podczas spadania z krawędzi przyszedł mi na myśl z powodu potrzeby zrekompensowania tego, że spadki nie przyspieszają gracza wystarczająco. Technicznie jest to błędem, który zdecydowałem się pozostawić ponieważ był zabawny. To samo zalicza się do wielu innych mechanik.",
 		"trees" :
-		"Drzewa nie rosną na Antarktydzie, dlatego pingwiny rzeźbią je z lodu.",
+		"KELVIN: Drzewa nie rosną na Antarktydzie, dlatego pingwiny rzeźbią je z lodu.",
 		"snakes" :
-		"Wiem że posiadanie węży na Antarktydzie ma tyle sensu co posiadanie głodnych roślin. ",
+		"KELVIN: Wiem że posiadanie węży na Antarktydzie ma tyle sensu co posiadanie głodnych roślin. ",
 		"waterfalls" :
-		"Ta część jaskini jest według mnie bardzo ładna. Podoba mi się przestronne tło z wodospadami przed nim. Chciałem aby poziom miał poczucie eksploracji więc scena jak taka, która daje poczucie przestrzeni ma na celu przekazanie poczucia eksploracji.",
+		"KELVIN: Ta część jaskini jest według mnie bardzo ładna. Podoba mi się przestronne tło z wodospadami przed nim. Chciałem aby poziom miał poczucie eksploracji więc scena jak taka, która daje poczucie przestrzeni ma na celu przekazanie poczucia eksploracji.",
 		"loops" :
-		"Przykro mi, czy oczekiwałeś, że ta pętla będzie działać? Ha! Nie jestem ani trochę blisko aby to zaprogramować... jeszcze.",
+		"KELVIN: Przykro mi, czy oczekiwałeś, że ta pętla będzie działać? Ha! Nie jestem ani trochę blisko aby to zaprogramować... jeszcze.",
 		"contrib" :
 		"FROSTC: Cześć! To jest pierwszy komentarz deweloperski nie napisany przez Kelvin'a, ponieważ to jest poziom mojego autorstwa",
 		"walldev" :
@@ -256,7 +268,8 @@
 		"0-6b" : "Thick of it",
 		"0-7" : "Oceaniczny Most",
 		"0-8" : "Arktyczny Wiatr",
-		"0-9" : "Zatopione kroki"
+		"0-9" : "Zatopione kroki",
+		"0-s" : "Strefa czerwonego przycisku"
 	},
 
 	"key" : {

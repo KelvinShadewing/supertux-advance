@@ -46,6 +46,8 @@ donut("src/save.nut")
 donut("src/zlist.nut")
 donut("src/pickchar.nut")
 donut("src/weather.nut")
+donut("src/light.nut")
+donut("src/credits.nut")
 
 //Load mods
 local modlist = lsdir("mods")
@@ -89,6 +91,8 @@ switch(reschoice) {
 gvScreen = newTexture(screenW(), screenH())
 gvPlayScreen = newTexture(screenW(), screenH())
 bgPause = newTexture(screenW(), screenH())
+gvLightScreen = newTexture(screenW(), screenH())
+textureSetBlendMode(gvLightScreen, bm_sub)
 
 //Set up window
 setWindowTitle("SuperTux Advance")
