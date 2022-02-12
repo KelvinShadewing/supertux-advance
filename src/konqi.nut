@@ -881,7 +881,7 @@
 				if(game.weapon == 4 && anim == anSlide && energy > 0) {
 					blinking = 60
 					energy--
-					firetime = 60
+					firetime = 120
 					newActor(Spark, x, y)
 				}
 				else {

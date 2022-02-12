@@ -28,6 +28,7 @@
 	}
 
 	//Load map to play
+	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
 	//Get tiles used to mark actors
@@ -559,7 +560,11 @@
 	//Handle berries
 	if(gvPlayer) if(game.berries == 64) {
 		game.berries = 0
-		newActor(Starnyan, gvPlayer.x, gvPlayer.y)
+		if(game.health < game.maxHealth) {
+			game.health++
+			playSound(sndHealth)
+		}
+		else newActor(Starnyan, gvPlayer.x, gvPlayer.y)
 	}
 }
 

@@ -515,3 +515,37 @@
 ::SpecialBall <- class extends Actor {
 
 }
+
+::CoinRing <- class extends Actor {
+	r = 0.0 //Radius
+	c = 0.0 //Count
+	s = 0.0 //Speed
+	a = 0.0 //Angle
+	l = null //List
+
+	constructor(_x, _y, _arr = null) {
+		x = _x
+		y = _y
+		base.constructor(_x, _y)
+		r = _arr[0].tofloat()
+		c = _arr[1].tointeger()
+		s = _arr[2].tofloat()
+		l = []
+		for(local i = 0; i < c; i++) {
+			l.push(newActor(Coin, x, y))
+		}
+	}
+
+	function run() {
+		local cl = c //Coins left
+		a += s / 60.0
+		for(local i = 0; i < c; i++) {
+			if(checkActor(l[i])) {
+				actor[l[i]].x = x + r * cos((i * 2 * pi / c) + a)
+				actor[l[i]].y = y + r * sin((i * 2 * pi / c) + a)
+			}
+			else cl--
+		}
+		if(cl == 0) deleteActor(id)
+	}
+}

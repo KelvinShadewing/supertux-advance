@@ -1,6 +1,23 @@
 {
 	"credits":[
 		{"type":"header","text":"SuperTux Advance"},
+
+		{"type":"header","text":""},
+		{"type":"header","text":""},
+		{"type":"normal","text":"Staring..."},
+
+		{"type":"header","text":""},
+		{"type":"header","text":""},
+		{"type":"header","text":"Our Heroes"},
+		{"type":"image","image":"res/gfx/tux.png","w":32,"h":32,"f":41,"l":2,"s":0.05},
+		{"type":"normal","text":"Tux the Penguin"},
+		{"type":"header","text":""},
+		{"type":"image","image":"res/gfx/konqi.png","w":32,"h":32,"f":9,"l":2,"s":0.04},
+		{"type":"normal","text":"Konqi the Dragon"},
+		{"type":"header","text":""},
+		{"type":"image","image":"res/gfx/midi.png","w":32,"h":32,"f":236,"l":2,"s":0.045},
+		{"type":"normal","text":"Midi Waffle the Kholu"},
+
 		{"type":"header","text":""},
 		{"type":"header","text":""},
 		{"type":"header","text":""},
@@ -101,17 +118,7 @@
 		{"type":"normal","text":"See CREDITS.md for links"},
 		{"type":"normal","text":"to these awesome people!"},
 
-		{"type":"header","text":""},
-		{"type":"header","text":""},
-		{"type":"header","text":"Our Heroes"},
-		{"type":"image","image":"res/gfx/tux.png","w":32,"h":32,"f":41,"l":2,"s":0.05},
-		{"type":"normal","text":"Tux the Penguin"},
-		{"type":"header","text":""},
-		{"type":"image","image":"res/gfx/konqi.png","w":32,"h":32,"f":9,"l":2,"s":0.04},
-		{"type":"normal","text":"Konqi the Dragon"},
-		{"type":"header","text":""},
-		{"type":"image","image":"res/gfx/midi.png","w":32,"h":32,"f":236,"l":2,"s":0.045},
-		{"type":"normal","text":"Midi Waffle the Kholu"},
+
 
 		{"type":"header","text":""},
 		{"type":"header","text":""},

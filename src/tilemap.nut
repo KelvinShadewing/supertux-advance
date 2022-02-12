@@ -247,6 +247,14 @@
 			}
 		}
 	}
+
+	function del() {
+		return //Needs fix on Brux side
+
+		for(local i = 0; i < tileset.len(); i++) {
+			deleteSprite(tileset[i])
+		}
+	}
 }
 
 ::mapNewSolid <- function(shape) {
