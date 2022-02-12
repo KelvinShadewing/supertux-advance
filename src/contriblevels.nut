@@ -66,8 +66,8 @@
 	meContribLevels.push(
 		{
 			name = function() { return gvLangObj["menu-commons"]["back"] }
-			func = function(){ menu = meMain }
-			back = function(){ menu = meMain }
+			func = function() { menu = meMain; cursor = 2 }
+			back = function() { menu = meMain; cursor = 2 }
 		}
 	)
 

@@ -31,6 +31,7 @@
 
 	"controls-menu" : {
 		"press-key-for" : "Press key for",
+		"press-button-for" : "Press button for",
 		"up" : "up",
 		"down" : "down",
 		"left" : "left",

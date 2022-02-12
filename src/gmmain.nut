@@ -21,6 +21,7 @@
 	drawSprite(sprTitle, 0, screenW() / 2, 16)
 	drawDebug()
 
+	drawText(font, 0, screenH() - 8, "Brux GDK " + bruxVersion())
 	textMenu()
 
 	resetDrawTarget()
