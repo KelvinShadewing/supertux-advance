@@ -3,7 +3,7 @@
 |                                 |
 |  SUPER TUX ADVANCE              |
 |                                 |
-|  LICENSE: GPL v3.0              |
+|  LICENSE: AGPL                  |
 |  AUTHOR: Kelvin Shadewing       |
 |  DESC: A 16-bit game featuring  |
 |    Tux the penguin.             |
@@ -116,6 +116,7 @@ strDifficulty = [
 	gvLangObj["difficulty-levels"]["super"]
 ]
 
+print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
 config.playerchar = "Tux"
