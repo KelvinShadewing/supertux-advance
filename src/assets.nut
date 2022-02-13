@@ -196,6 +196,8 @@
 ::musAirship <- "res/snd/airship.ogg"
 ::musPuzzle <- "res/snd/puzzle.ogg"
 ::musIceland <- "res/snd/iceland.ogg"
+::musretro2<- "res/snd/retro-2.ogg"
+
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")
