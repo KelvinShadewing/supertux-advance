@@ -244,7 +244,7 @@
 		base.constructor(_x, _y)
 		r = _arr[0].tointeger()
 		a = _arr[1].tofloat()
-		s = _arr[2].tofloat() / 60.0
+		s = _arr[2].tofloat()
 		hb = []
 		if(r > 0) for(local i = 0; i < r; i++) {
 			hb.push(Cir(x, y, 2))
@@ -256,7 +256,7 @@
 		a += s
 
 		if(r > 0) for(local i = 0; i < r; i++) {
-			hb[i].setPos(x + (i * 8) * cos((i * 2 * pi) + (a - i * s)), y + (i * 8) * sin((i * 2 * pi) + (a - i * s)))
+			hb[i].setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 60.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 60.0)))
 			drawSprite(sprFireball, getFrames() / 4, hb[i].x - camx, hb[i].y - camy)
 			if(gvPlayer) if(hitTest(hb[i], gvPlayer.shape)) {
 				gvPlayer.hurt = true
@@ -267,5 +267,7 @@
 				c.hspeed = randFloat(0.5) - 0.25
 			}
 		}
+
+		if(debug) drawText(font, x - camx, y - camy, wrap(a, 0, 360).tostring())
 	}
 }
