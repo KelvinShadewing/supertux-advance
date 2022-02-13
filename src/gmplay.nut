@@ -562,7 +562,7 @@
 		game.berries = 0
 		if(game.health < game.maxHealth) {
 			game.health++
-			playSound(sndHeal)
+			playSound(sndHeal, 0)
 		}
 		else newActor(Starnyan, gvPlayer.x, gvPlayer.y)
 	}
