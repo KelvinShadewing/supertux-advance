@@ -656,7 +656,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		if(_arr == null) color = 0
-		else color = _arr
+		else color = _arr.tointeger()
 
 		shape = Rec(x, y, 16, 16, 0)
 	}

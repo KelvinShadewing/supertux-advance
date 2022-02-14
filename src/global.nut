@@ -110,3 +110,9 @@
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
 ::gvCamTarget <- false
+
+//Temporary items
+::gvKeyCopper <- false
+::gvKeySilver <- false
+::gvKeyGold <- false
+::gvKeyMythril <- false

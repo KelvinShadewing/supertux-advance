@@ -549,3 +549,56 @@
 		if(cl == 0) deleteActor(id)
 	}
 }
+
+::MagicKey <- class extends Actor {
+	color = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(_arr != null) color = _arr.tointeger()
+	}
+
+	function run() {
+		//Pickup
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+			deleteActor(id)
+			switch(color) {
+				case 0:
+					gvKeyCopper = true
+					break
+				case 1:
+					gvKeySilver = true
+					break
+				case 2:
+					gvKeyGold = true
+					break
+				case 3:
+					gvKeyMythril = true
+					break
+				default:
+					gvKeyCopper = true
+					break
+			}
+			playSound(snd1up, 0)
+		}
+
+		//Draw
+		switch(color) {
+			case 0:
+				drawSprite(sprKeyCopper, getFrames() / 8, x - camx, y - camy)
+				break
+			case 1:
+				drawSprite(sprKeySilver, getFrames() / 8, x - camx, y - camy)
+				break
+			case 2:
+				drawSprite(sprKeyGold, getFrames() / 8, x - camx, y - camy)
+				break
+			case 3:
+				drawSprite(sprKeyMythril, getFrames() / 8, x - camx, y - camy)
+				break
+			default:
+				drawSprite(sprKeyCopper, getFrames() / 8, x - camx, y - camy)
+				break
+		}
+	}
+}

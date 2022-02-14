@@ -513,37 +513,37 @@
 	function run() {
 		//Follow path
 		if(moving) {
-		if(distance2(x, y, tx, ty) > speed) {
-			dir = pointAngle(x, y, tx, ty)
-			x += lendirX(speed, dir)
-			y += lendirY(speed, dir)
-		}
-		else {
-			x = tx
-			y = ty
-			//Update target
-			if(reverse) {
-				if(step - 1 < 0) {
-					reverse = false
-					step++
-				}
-				else step--
-				if(step < 0) step = 0
-				tx = path[step][0]
-				ty = path[step][1]
+			if(distance2(x, y, tx, ty) > speed) {
+				dir = pointAngle(x, y, tx, ty)
+				x += lendirX(speed, dir)
+				y += lendirY(speed, dir)
 			}
 			else {
-				if(step + 1 < path.len()) step++
-				else if(loop) step = 0
-				else {
-					step--
-					reverse = true
+				x = tx
+				y = ty
+				//Update target
+				if(reverse) {
+					if(step - 1 < 0) {
+						reverse = false
+						step++
+					}
+					else step--
+					if(step < 0) step = 0
+					tx = path[step][0]
+					ty = path[step][1]
 				}
-				if(step < 0) step = 0
-				tx = path[step][0]
-				ty = path[step][1]
+				else {
+					if(step + 1 < path.len()) step++
+					else if(loop) step = 0
+					else {
+						step--
+						reverse = true
+					}
+					if(step < 0) step = 0
+					tx = path[step][0]
+					ty = path[step][1]
+				}
 			}
-		}
 		}
 	}
 }

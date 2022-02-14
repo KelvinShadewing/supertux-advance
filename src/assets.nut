@@ -106,6 +106,10 @@
 ::sprFlyRefresh <- newSprite("res/gfx/featherspin.png", 16, 16, 0, 0, 8, 8)
 ::sprEarthShell <- newSprite("res/gfx/earthshell.png", 16, 16, 0, 0, 8, 8)
 ::sprBerry <- newSprite("res/gfx/strawberry.png", 10, 12, 0, 0, 5, 6)
+::sprKeyCopper <- newSprite("res/gfx/key-copper.png", 16, 16, 0, 0, 8, 8)
+::sprKeySilver <- newSprite("res/gfx/key-silver.png", 16, 16, 0, 0, 8, 8)
+::sprKeyGold <- newSprite("res/gfx/key-gold.png", 16, 16, 0, 0, 8, 8)
+::sprKeyMythril <- newSprite("res/gfx/key-mythril.png", 16, 16, 0, 0, 8, 8)
 
 //Effects
 ::sprSpark <- newSprite("res/gfx/spark.png", 12, 16, 0, 0, 6, 8)

@@ -27,6 +27,14 @@
 		right = false
 	}
 
+	//Reset keys
+	if(!game.check) {
+		gvKeyCopper = false
+		gvKeySilver = false
+		gvKeyGold = false
+		gvKeyMythril = false
+	}
+
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
@@ -78,14 +86,17 @@
 			{
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
+					local c
 					if(!gvPlayer && getroottable().rawin(game.playerchar)) {
 						if(game.check == false) {
-							newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
+							c = actor[newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)]
 						}
 						else {
-							newActor(getroottable()[game.playerchar], game.chx, game.chy)
+							c = actor[newActor(getroottable()[game.playerchar], game.chx, game.chy)]
 						}
 					}
+					camx = c.x - (screenW() / 2)
+					camy = c.y - (screenH() / 2)
 					break
 
 				case 1:
@@ -296,7 +307,19 @@
 					break
 
 				case 48:
-					newActor(ColorSwitch, i.x, i.y - 16, 0)
+					newActor(MagicKey, i.x, i.y - 16, 0)
+					break
+
+				case 49:
+					newActor(MagicKey, i.x, i.y - 16, 1)
+					break
+
+				case 50:
+					newActor(MagicKey, i.x, i.y - 16, 2)
+					break
+
+				case 51:
+					newActor(MagicKey, i.x, i.y - 16, 3)
 					break
 
 				case 56:
@@ -558,6 +581,12 @@
 			drawSpriteEx(sprWarning, 0, screenW() / 2, screenH() / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))
 			gvWarning += 1.5
 		}
+
+		//Keys
+		if(gvKeyCopper) drawSprite(sprKeyCopper, 0, screenW() - 36, 16)
+		if(gvKeySilver) drawSprite(sprKeySilver, 0, screenW() - 50, 16)
+		if(gvKeyGold) drawSprite(sprKeyGold, 0, screenW() - 64, 16)
+		if(gvKeyMythril) drawSprite(sprKeyMythril, 0, screenW() - 78, 16)
 	}
 	else {
 		local ln = 3
