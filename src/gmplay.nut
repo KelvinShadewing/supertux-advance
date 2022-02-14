@@ -81,11 +81,9 @@
 					if(!gvPlayer && getroottable().rawin(game.playerchar)) {
 						if(game.check == false) {
 							newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
-							playerTeleport(i.x + 8, i.y - 16)
 						}
 						else {
 							newActor(getroottable()[game.playerchar], game.chx, game.chy)
-							playerTeleport(game.chx, game.chy)
 						}
 					}
 					break
@@ -431,11 +429,13 @@
 				py = (gvCamTarget.y + gvPlayer.vspeed * 2) - (screenH() / 2)
 			}
 			else {
+				local pw = max(screenW(), 320)
+				local ph = max(screenH(), 240)
 				local ptx = (gvCamTarget.x) - (screenW() / 2)
 				local pty = (gvCamTarget.y) - (screenH() / 2)
 
-				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > screenW() / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
-				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > screenH() / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
+				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
 
 				px = ptx
 				py = pty

@@ -381,11 +381,11 @@
 
 				//Jumping
 				if(getcon("jump", "press") || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
+					if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold")) {
 						y++
 						canJump = 32
 					}
-					else if(canJump > 0) {
+					else if(canJump > 0 && placeFree(x, y - 2)) {
 						jumpBuffer = 0
 						if(anim == anClimb) vspeed = -3
 						else if(game.weapon == 3 || nowInWater) vspeed = -5.0
