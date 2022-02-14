@@ -79,8 +79,14 @@
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
 					if(!gvPlayer && getroottable().rawin(game.playerchar)) {
-						if(game.check == false) newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
-						else newActor(getroottable()[game.playerchar], game.chx, game.chy)
+						if(game.check == false) {
+							newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)
+							playerTeleport(i.x + 8, i.y - 16)
+						}
+						else {
+							newActor(getroottable()[game.playerchar], game.chx, game.chy)
+							playerTeleport(game.chx, game.chy)
+						}
 					}
 					break
 
