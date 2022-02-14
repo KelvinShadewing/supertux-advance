@@ -18,7 +18,12 @@
 		}
 		else{
 			creditsSprites.push(null)
-			creditsLength += fontH
+			if(creditsData["credits"][i]["type"] == "spacing") {
+				creditsLength += fontH * creditsData["credits"][i]["height"]
+			}
+			else {
+				creditsLength += fontH
+			}
 			if(creditsData["credits"][i]["type"]=="header") creditsLength += 4
 		}
 	}
@@ -40,6 +45,9 @@
 			case "image":
 				drawSprite(creditsSprites[i], creditsData["credits"][i]["f"] + ((getFrames() * creditsData["credits"][i]["s"]) % creditsData["credits"][i]["l"]), (screenW() - creditsData["credits"][i]["w"]) / 2, y + screenH() - creditsOffset)
 				y += creditsData["credits"][i]["h"] + 5
+				break
+			case "spacing":
+				y += fontH * creditsData["credits"][i]["height"]
 				break
 		}
 	}
