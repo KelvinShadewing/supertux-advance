@@ -210,10 +210,21 @@
                  "width":16,
                  "x":2264,
                  "y":376
+                }, 
+                {
+                 "height":48,
+                 "id":61,
+                 "name":"gvCamTarget = actor[id]",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":208,
+                 "x":896,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -564,7 +575,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":61,
+ "nextobjectid":62,
  "orientation":"orthogonal",
  "properties":[
         {

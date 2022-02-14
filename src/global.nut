@@ -109,3 +109,4 @@
 ::gvIGT <- 0 //In-game time for the current level
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
+::gvCamTarget <- false

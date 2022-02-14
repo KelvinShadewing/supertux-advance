@@ -154,6 +154,8 @@
 							local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 							actor[c].code = obj.name
+							actor[c].w = obj.width / 2
+							actor[c].h = obj.height / 2
 							break
 						case "water":
 							local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))

@@ -6,6 +6,8 @@
 ::Trigger <- class extends Actor {
 	code = ""
 	shape = 0
+	w = 0.0
+	h = 0.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)

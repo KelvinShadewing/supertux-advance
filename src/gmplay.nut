@@ -411,15 +411,34 @@
 
 ::gmPlay <- function()
 {
+	if(gvCamTarget == null && gvPlayer) gvCamTarget = gvPlayer
 	local px = 0
 	local py = 0
 	local ux = gvMap.w - screenW()
 	local uy = gvMap.h - screenH()
 
-	if(gvPlayer)
+	if(gvCamTarget != null && gvCamTarget != false)
 	{
-		px = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
-		py = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+		if(gvPlayer) {
+			if(gvCamTarget == gvPlayer) {
+				px = (gvCamTarget.x + gvPlayer.hspeed * 32) - (screenW() / 2)
+				py = (gvCamTarget.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+			}
+			else {
+				local ptx = (gvCamTarget.x) - (screenW() / 2)
+				local pty = (gvCamTarget.y) - (screenH() / 2)
+
+				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > screenW() / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
+				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > screenH() / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+
+				px = ptx
+				py = pty
+			}
+		}
+		else {
+			px = (gvCamTarget.x) - (screenW() / 2)
+			py = (gvCamTarget.y) - (screenH() / 2)
+		}
 	} else {
 		px = camx
 		py = camy
@@ -432,6 +451,8 @@
 	if(camx < 0) camx = 0
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
+
+	if(gvPlayer) gvCamTarget = gvPlayer
 
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
