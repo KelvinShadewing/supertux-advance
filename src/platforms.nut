@@ -271,3 +271,24 @@
 		if(debug) drawText(font, x - camx, y - camy, wrap(a, 0, 360).tostring())
 	}
 }
+
+::PathCarrier <- class extends PathCrawler {
+	obj = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		local newarr = []
+		if(_arr.len() > 3) for(local i = 3; i < _arr.len(); i++) newarr.push(_arr[i])
+		if(getroottable.rawin(_arr[2])) obj = newActor(getroottable()[_arr[2]], x, y, newarr)
+	}
+
+	function run() {
+		base.run()
+
+		if(checkActor(obj)) {
+			actor[obj].x = x
+			actor[obj].y = y
+		} else deleteActor(id)
+	}
+}
