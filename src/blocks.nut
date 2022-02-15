@@ -779,5 +779,64 @@
 			}
 		}
 	}
+}
 
+::LockBlock <- class extends Actor {
+	color = 0
+	oldsolid = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		if(_arr == null) color = 0
+		else color = _arr.tointeger()
+
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+		drawSpriteZ(2, sprLockBlock, color, x - camx, y - camy)
+
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 32) {
+			switch(color) {
+				case 0:
+					if(gvKeyCopper) {
+						tileSetSolid(x, y, oldsolid)
+						deleteActor(id)
+						newActor(Poof, x, y)
+						stopSound(sndBump)
+						playSound(sndBump, 0)
+					}
+					break
+				case 1:
+					if(gvKeySilver) {
+						tileSetSolid(x, y, oldsolid)
+						deleteActor(id)
+						newActor(Poof, x, y)
+						stopSound(sndBump)
+						playSound(sndBump, 0)
+					}
+					break
+				case 2:
+					if(gvKeyGold) {
+						tileSetSolid(x, y, oldsolid)
+						deleteActor(id)
+						newActor(Poof, x, y)
+						stopSound(sndBump)
+						playSound(sndBump, 0)
+					}
+					break
+				case 3:
+					if(gvKeyMythril) {
+						tileSetSolid(x, y, oldsolid)
+						deleteActor(id)
+						newActor(Poof, x, y)
+						stopSound(sndBump)
+						playSound(sndBump, 0)
+					}
+					break
+			}
+		}
+	}
 }

@@ -322,6 +322,22 @@
 					newActor(MagicKey, i.x, i.y - 16, 3)
 					break
 
+				case 52:
+					newActor(LockBlock, i.x + 8, i.y - 8, 0)
+					break
+
+				case 53:
+					newActor(LockBlock, i.x + 8, i.y - 8, 1)
+					break
+
+				case 54:
+					newActor(LockBlock, i.x + 8, i.y - 8, 2)
+					break
+
+				case 55:
+					newActor(LockBlock, i.x + 8, i.y - 8, 3)
+					break
+
 				case 56:
 					newActor(ColorBlock, i.x, i.y - 16, 0)
 					break
