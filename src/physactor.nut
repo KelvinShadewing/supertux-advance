@@ -450,13 +450,16 @@
 		return false
 	}
 
-	function onIce() {
+	function onIce(_x = -1, _y = -1) {
 		//Save current location and move
 		local ns
 		if(typeof shape == "Rec") ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
 		if(typeof shape == "Cir") ns = Cir(x + shape.ox, y + shape.oy + 2, shape.r)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
+		if(_x != -1) cx = floor(_x / 16)
+		if(_y != -1) cy = floor(_y / 16)
+		if(_x != -1 && _y != -1) ns.setPos(_x, _y + 2)
 
 		//Check that the solid layer exists
 		local wl = gvMap.solidLayer
@@ -473,14 +476,17 @@
 				case 55:
 				case 56:
 				case 57:
-				case 58:if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
+				case 58:
 				case 59:
-					gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 4)
+					if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
+					if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
+					gvMap.shape.setPos((cx * 16) + 8, (cy * 16))
 					gvMap.shape.kind = 0
-					gvMap.shape.w = 8.0
+					gvMap.shape.w = 10.0
 					gvMap.shape.h = 4.0
 					if(hitTest(ns, gvMap.shape)) return true
+					if(debug) gvMap.shape.draw()
+					break
 			}
 		}
 

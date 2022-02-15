@@ -562,6 +562,7 @@
 		//Pickup
 		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
 			deleteActor(id)
+			game.health += 4
 			switch(color) {
 				case 0:
 					gvKeyCopper = true

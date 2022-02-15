@@ -47,9 +47,11 @@
 	anHurt = [6.0, 7.0, "hurt"]
 	anJumpU = [32.0, 33.0, "jumpU"]
 	anJumpT = [34.0, 35.0, "jumpT"]
-	anFall = [36.0, 37.0, "fall"]
+	anFall = null
+	anFallN = [36.0, 37.0, "fall"]
 	anClimb = [44.0, 47.0, "climb"]
 	anWall = [4.0, 5.0, "wall"]
+	anFallW = [4.0, 4.0, "wall"]
 	anSwimF = [48.0, 51.0, "swim"]
 	anSwimUF = [48.0, 51.0, "swim"]
 	anSwimDF = [48.0, 51.0, "swim"]
@@ -69,6 +71,7 @@
 		startx = _x.tofloat()
 		starty = _y.tofloat()
 		energy = game.maxenergy
+		anFall = anFallN
 	}
 
 	function run() {
@@ -457,6 +460,28 @@
 						energy--
 					}
 				}
+
+				//Wall slide
+				if((anim == anFallN || anim == anFallW) && ((getcon("left", "hold") && !freeLeft) || (getcon("right", "hold") && !freeRight))) {
+					if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
+						if(vspeed > 0.5) vspeed = 0.5
+						if(getFrames() / 4 % 4 == 0) newActor(PoofTiny, x - 4, y + 12)
+						anFall = anFallW
+						anim = anFallW
+						flip = 0
+					}
+					if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
+						if(vspeed > 0.5) vspeed = 0.5
+						if(getFrames() / 4 % 4 == 0) newActor(PoofTiny, x + 4, y + 12)
+						anFall = anFallW
+						anim = anFallW
+						flip = 1
+					}
+				} else {
+					anFall = anFallN
+					if(anim == anFallW) anim = anFallN
+				}
+
 				if(getcon("jump", "press") && jumpBuffer <= 0 && freeDown) jumpBuffer = 8
 				if(jumpBuffer > 0) jumpBuffer--
 

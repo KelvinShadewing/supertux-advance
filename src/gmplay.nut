@@ -343,6 +343,34 @@
 					newActor(ColorBlock, i.x, i.y - 16, 0)
 					break
 
+				case 57:
+					newActor(ColorBlock, i.x, i.y - 16, 1)
+					break
+
+				case 58:
+					newActor(ColorBlock, i.x, i.y - 16, 2)
+					break
+
+				case 59:
+					newActor(ColorBlock, i.x, i.y - 16, 3)
+					break
+
+				case 60:
+					newActor(ColorBlock, i.x, i.y - 16, 4)
+					break
+
+				case 61:
+					newActor(ColorBlock, i.x, i.y - 16, 5)
+					break
+
+				case 62:
+					newActor(ColorBlock, i.x, i.y - 16, 6)
+					break
+
+				case 63:
+					newActor(ColorBlock, i.x, i.y - 16, 7)
+					break
+
 				case 64: //Custom actor gear
 					if(i.name == "") break
 					local arg = split(i.name, ",")
