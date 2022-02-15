@@ -732,7 +732,7 @@
 				deleteActor(id)
 				newActor(Poof, x, y)
 				playSound(sndBump, 0)
-				newActor(MuffinBomb, x, y - 8)
+				newActor(MuffinBomb, x, y - 16)
 			}
 
 		}

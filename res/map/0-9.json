@@ -111,6 +111,30 @@
                  "width":16,
                  "x":7558,
                  "y":-95
+                }, 
+                {
+                 "gid":214,
+                 "height":16,
+                 "id":1200,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2208,
+                 "y":304
+                }, 
+                {
+                 "gid":214,
+                 "height":16,
+                 "id":1201,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2288,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2914,7 +2938,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1200,
+ "nextobjectid":1202,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2923,7 +2947,7 @@
          "value":"drawBG = dbgSnowNight\nsongPlay(musretro2)\ndrawWeather = dweRain"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -3097,6 +3121,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":490
 }
