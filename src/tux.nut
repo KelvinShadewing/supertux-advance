@@ -16,7 +16,7 @@
 	startx = 0.0
 	starty = 0.0
 	firetime = 0
-	hurt = false
+	hurt = 0
 	swimming = false
 	endmode = false
 	canstomp = true //If they can use jumping as an attack
@@ -824,11 +824,10 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = true
+		if(onHazard(x, y)) hurt = 1
 		if(onDeath(x, y)) game.health = 0
 
-		if(hurt && invincible == 0) {
-			hurt = false
+		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 120
 				playSound(sndHurt, 0)
@@ -839,15 +838,16 @@
 					newActor(Spark, x, y)
 				}
 				else {
-					if(game.health > 0) game.health--
+					if(game.health > 0) game.health -= hurt
 					if(flip == 0) hspeed = -2.0
 					else hspeed = 2.0
 					anim = anHurt
 					frame = anim[0]
 				}
 			}
+			hurt = 0
 		}
-		else hurt = false
+		else hurt = 0
 		if(blinking > 0) blinking--
 		if(game.health == 0) {
 			die()

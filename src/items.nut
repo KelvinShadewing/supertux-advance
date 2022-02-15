@@ -292,7 +292,7 @@
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
-			gvPlayer.hurt = true
+			gvPlayer.hurt = 1
 			deleteActor(id)
 		}
 

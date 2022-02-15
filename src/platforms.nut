@@ -259,7 +259,7 @@
 			hb[i].setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 60.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 60.0)))
 			drawSprite(sprFireball, getFrames() / 4, hb[i].x - camx, hb[i].y - camy)
 			if(gvPlayer) if(hitTest(hb[i], gvPlayer.shape)) {
-				gvPlayer.hurt = true
+				gvPlayer.hurt = 1
 			}
 			if(randInt(60) == 0) {
 				local c = actor[newActor(FlameTiny, hb[i].x, hb[i].y)]
