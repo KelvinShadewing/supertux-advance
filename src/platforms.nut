@@ -280,7 +280,7 @@
 
 		local newarr = []
 		if(_arr.len() > 3) for(local i = 3; i < _arr.len(); i++) newarr.push(_arr[i])
-		if(getroottable.rawin(_arr[2])) obj = newActor(getroottable()[_arr[2]], x, y, newarr)
+		if(getroottable().rawin(_arr[2])) obj = newActor(getroottable()[_arr[2]], x, y, newarr)
 	}
 
 	function run() {

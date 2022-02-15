@@ -563,6 +563,7 @@
 			drawSprite(sprEnergy, 2, 8 + (16 * i), 24)
 		}
 		//Draw health
+		if(game.health > game.maxHealth) game.health = game.maxHealth
 		for(local i = 0; i < game.maxHealth; i++) {
 			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
