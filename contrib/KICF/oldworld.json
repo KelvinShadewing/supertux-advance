@@ -78,6 +78,18 @@
                  "width":16,
                  "x":48,
                  "y":48
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":29,
+                 "name":"0-0B",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -86,7 +98,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":29,
+ "nextobjectid":30,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -95,7 +107,7 @@
          "value":"songPlay(musOverworld)\nfreeKonqi()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -761,6 +773,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":40
 }
