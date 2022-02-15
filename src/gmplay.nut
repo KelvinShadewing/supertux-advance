@@ -307,19 +307,19 @@
 					break
 
 				case 48:
-					newActor(MagicKey, i.x, i.y - 16, 0)
+					newActor(MagicKey, i.x + 8, i.y - 8, 0)
 					break
 
 				case 49:
-					newActor(MagicKey, i.x, i.y - 16, 1)
+					newActor(MagicKey, i.x + 8, i.y - 8, 1)
 					break
 
 				case 50:
-					newActor(MagicKey, i.x, i.y - 16, 2)
+					newActor(MagicKey, i.x + 8, i.y - 8, 2)
 					break
 
 				case 51:
-					newActor(MagicKey, i.x, i.y - 16, 3)
+					newActor(MagicKey, i.x + 8, i.y - 8, 3)
 					break
 
 				case 52:
