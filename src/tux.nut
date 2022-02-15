@@ -281,6 +281,7 @@
 					if(getcon("down", "hold") || !placeFree(x, y - 8)) anim = anCrawl
 					else anim = anWalk
 				}
+				if(getcon("jump", "press") || getcon("up", "press")) if(placeFree(x, y + 2) && placeFree(x, y - 2)) anim = anFall
 			}
 
 			if(anim != anClimb && anim != anWall) {

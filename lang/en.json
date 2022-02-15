@@ -279,6 +279,12 @@
 		"007 has all the permissions you'd need.",
 		"gnu-pt-8" :
 		"That young guin, Rad, has such spirit. He lives life to Emacs.",
+		"gnu-pt-9" :
+		"If you see nothing but zeros, remember, the dev'null's in the details.",
+		"gnu-pt-10" :
+		"Before you can push on, you must be committed.",
+		"gnu-pt-11" :
+		"Wisdom compiled from many sources makes a plan executable.",
 		"midi-c" :
 		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?",
 		"sam-0" :
@@ -292,7 +298,21 @@
 		"sam-4" :
 		"Can you believe the guy who does the least work gets the most money? What a world we live in. I say let him pay for your saving-the-world items!",
 		"sam-5" :
-		"While we're on the subject of money, this game we're in? Totally free, even to edit and sell what you make. So please, consider donating to the people who worked on it!"
+		"While we're on the subject of money, this game we're in? Totally free, even to edit and sell what you make. So please, consider donating to the people who worked on it!",
+		"tuckles-0" :
+		"Even in the ice, it's easy to work up a sweat down here.",
+		"tuckles-1" :
+		"Why fish for fish, when you can mine it from the ice? That's what I'm here for!",
+		"tuckles-2" :
+		"Lift fish and eat weights!... No, hang on.",
+		"tuckles-3" :
+		"If you wanna get strong, you gotta get strong. If you wanna get big, you gotta get big. If you wanna get tough, you gotta get tough.",
+		"tuckles-4" :
+		"The key to the best hugs is big muscles and a soft belly. Fish'll give ya both!",
+		"tuckles-5" :
+		"All those muffins you eat can't compare to the fish we mine. They're bigger, stronger, and more delicious.",
+		"tuckles-6" :
+		"Have you seen Duke? He likes to get fish the lazy way: by pretending his rod's broken and bumming fish off others. I'd ignore him if he wasn't able to block roads just by sitting on them."
 	},
 
 	"level" : {
@@ -300,6 +320,7 @@
 		"overworld-0" : "Aurora Isles",
 		"overworld-1" : "Antarctica",
 		"0-t0" : "Pennyton",
+		"0-t1" : "Fish Mines",
 		"0-0" : "Learning the Slopes",
 		"0-1" : "Crystal Pass",
 		"0-2" : "Slip and Slide",

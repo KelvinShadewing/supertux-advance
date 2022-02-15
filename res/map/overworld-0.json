@@ -203,7 +203,7 @@
                  "gid":844,
                  "height":16,
                  "id":19,
-                 "name":"",
+                 "name":"0-t1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -285,7 +285,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
