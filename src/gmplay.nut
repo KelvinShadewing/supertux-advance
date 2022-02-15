@@ -97,6 +97,7 @@
 					}
 					camx = c.x - (screenW() / 2)
 					camy = c.y - (screenH() / 2)
+					if(gvPlayer) gvCamTarget = gvPlayer
 					break
 
 				case 1:
