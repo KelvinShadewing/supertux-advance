@@ -643,6 +643,7 @@
 
 	function run() {
 		drawSpriteZ(2, sprColorBlock, (color * 2) + filled, x - camx, y - camy)
+		if(color != null) if(game.colorswitch[color]) filltile()
 	}
 
 	function _typeof() { return "ColorBlock" }
@@ -838,5 +839,24 @@
 					break
 			}
 		}
+	}
+}
+
+::BossDoor <- class extends Actor {
+	dy = 0
+	moving = false
+
+	function run() {
+		if(gvWarning == 0 && dy == 0) {
+			moving = true
+			tileSetSolid(x, y, 1)
+			tileSetSolid(x, y - 16, 1)
+			tileSetSolid(x, y - 32, 1)
+			tileSetSolid(x, y - 48, 1)
+		}
+		if(moving && dy < 32) dy++
+
+		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - dy + 16)
+		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - 80 + dy)
 	}
 }

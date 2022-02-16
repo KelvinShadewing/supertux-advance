@@ -408,6 +408,10 @@
 				case 78:
 					newActor(Berry, i.x + 8, i.y - 8)
 					break
+
+				case 79:
+					newActor(BossDoor, i.x, i.y - 16)
+					break
 			}
 		}
 
