@@ -256,6 +256,7 @@
 		if(r > 0) for(local i = 0; i < r; i++) {
 			hb.setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 45.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 45.0)))
 			drawSprite(sprFireball, getFrames() / 4, hb.x - camx, hb.y - camy)
+			drawLightEx(sprLightFire, 0, hb.x - camx, hb.y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 			if(gvPlayer) if(hitTest(hb, gvPlayer.shape)) {
 				gvPlayer.hurt = 1
 			}

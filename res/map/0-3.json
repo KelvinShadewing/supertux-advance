@@ -226,7 +226,7 @@
                 {
                  "height":32,
                  "id":50,
-                 "name":"playerTeleport(2912, 416); gvPlayer.hspeed = -2; drawBG = dbgAurora",
+                 "name":"playerTeleport(2912, 416); gvPlayer.hspeed = -2; drawBG = dbgAurora; gvLightTarget = 0xffffffff",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1367,13 +1367,13 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":126,
+ "nextobjectid":127,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgUnderwater\nsongPlay(musDeluge)"
+         "value":"drawBG = dbgUnderwater\nsongPlay(musDeluge)\nsetLight(0x204080ff)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

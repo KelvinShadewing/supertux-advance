@@ -1202,6 +1202,7 @@
 			hspeed *= 0.99
 
 			drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
+			drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
 
 			if(placeFree(x + hspeed, y)) x += hspeed
 			if(placeFree(x, y + vspeed)) y += vspeed
@@ -1962,6 +1963,7 @@
 	function run() {
 		base.run()
 		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 1

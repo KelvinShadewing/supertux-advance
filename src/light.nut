@@ -38,11 +38,14 @@
 			local tb = (gvLightTarget >> 8) & 0xFF
 
 			//Fade to color
-			if(lr != tr) lr += (tr - lr) / 30
-			if(lg != tg) lg += (tg - lg) / 30
-			if(lb != tb) lb += (tb - lb) / 30
+			if(lr != tr) lr += (tr - lr) / 30.0
+			if(abs(lr - tr) < 1) lr = tr
+			if(lg != tg) lg += (tg - lg) / 30.0
+			if(abs(lg - tg) < 1) lg = tg
+			if(lb != tb) lb += (tb - lb) / 30.0
+			if(abs(lb - tb) < 1) lb = tb
 
-			gvLight = (lr << 24) | (lg << 16) | (lb << 8) | 0xFF // Last 0xFF is alpha
+			gvLight = (ceil(lr) << 24) | (ceil(lg) << 16) | (ceil(lb) << 8) | 0xFF // Last 0xFF is alpha
 		}
 
 		setDrawTarget(gvLightScreen)

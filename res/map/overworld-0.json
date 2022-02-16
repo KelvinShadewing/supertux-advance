@@ -40,6 +40,61 @@
         }, 
         {
          "draworder":"topdown",
+         "id":6,
+         "name":"trigger",
+         "objects":[
+                {
+                 "height":192,
+                 "id":26,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":320,
+                 "x":48,
+                 "y":192
+                }, 
+                {
+                 "height":80,
+                 "id":27,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":80,
+                 "x":368,
+                 "y":304
+                }, 
+                {
+                 "height":240,
+                 "id":28,
+                 "name":"gvLightTarget = 0x6080e0ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":192,
+                 "x":368,
+                 "y":64
+                }, 
+                {
+                 "height":192,
+                 "id":29,
+                 "name":"gvLightTarget = 0x6080e0ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":144,
+                 "x":224,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"actor",
          "objects":[
@@ -289,8 +344,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":5,
- "nextobjectid":26,
+ "nextlayerid":7,
+ "nextobjectid":30,
  "orientation":"orthogonal",
  "properties":[
         {

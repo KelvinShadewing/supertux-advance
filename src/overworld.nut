@@ -422,9 +422,11 @@
 	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), 21, 17, "solid")
 
 	//Actor types are explicitly called this way to ensure the player is drawn on top
+	//This was made before Z drawing was implemented, so it's not perfect
 	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
 	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
 	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
+	if(actor.rawin("Trigger")) foreach(i in actor["Trigger"]) i.run()
 	if(gvPlayer) gvPlayer.run()
 
 	runAmbientLight()
