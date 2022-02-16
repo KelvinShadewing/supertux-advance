@@ -1,3 +1,17 @@
+/*===============================*\
+|                                 |
+|  BRUX JSON MAP LOADER           |
+|                                 |
+|  LICENSE: AGPL                  |
+|  AUTHOR: Kelvin Shadewing       |
+|  DESC: For use in Brux GDK      |
+|    games to load JSON maps.     |
+|                                 |
+\*===============================*/
+
+//TODO:
+//Some SuperTux Advance-specific code exists and should be ported to a separate file
+
 ////////////////
 // TILED MAPS //
 ////////////////
