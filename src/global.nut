@@ -90,6 +90,7 @@
 	lang = "en"
 	showleveligt = false
 	showglobaligt = false
+	light = true
 }
 
 ::contribDidRun <- {}

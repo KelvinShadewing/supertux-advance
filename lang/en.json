@@ -21,7 +21,8 @@
 		"language" : "Language",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
-		"timers" : "Speedrun Timers"
+		"timers" : "Speedrun Timers",
+		"light" : "Lighting: "
 	},
 
 	"timers-menu" : {
@@ -49,7 +50,9 @@
 		"yes" : "Yes",
 		"no" : "No",
 		"back" : "Back",
-		"cancel" : "Cancel"
+		"cancel" : "Cancel",
+		"on" : "On",
+		"off" : "Off"
 	},
 
 	"bool" : {

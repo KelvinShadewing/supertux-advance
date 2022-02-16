@@ -2,6 +2,8 @@
 // OVERWORLD //
 ///////////////
 
+::gvLevel <- ""
+
 ::OverPlayer <- class extends PhysAct {
 	//0 = right
 	//1 = up
@@ -204,14 +206,7 @@
 		if(hspeed == 0 && vspeed == 0) drawSprite(getroottable()[game.characters[game.playerchar][0]], 0, x - camx, y - camy)
 		else drawSprite(getroottable()[game.characters[game.playerchar][0]], getFrames() / 8, x - camx, y - camy)
 
-		if(level != "") {
-			drawText(font2, (screenW() / 2) - (gvLangObj["level"][level].len() * 4), 8, gvLangObj["level"][level])
-			if(game.besttime.rawin(level)) {
-				local pb = formatTime(game.besttime[level])
-				local pbx = (pb.len() / 2) * 8
-				drawText(font2, (screenW() / 2) - pbx, 24, pb)
-			}
-		}
+		gvLevel = level
 	}
 
 	function _typeof() { return "OverPlayer" }
@@ -431,6 +426,18 @@
 	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
 	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
 	if(gvPlayer) gvPlayer.run()
+
+	runAmbientLight()
+	drawAmbientLight()
+
+	if(gvLevel != "") {
+		drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvLevel].len() * 4), 8, gvLangObj["level"][gvLevel])
+		if(game.besttime.rawin(gvLevel)) {
+			local pb = formatTime(game.besttime[gvLevel])
+			local pbx = (pb.len() / 2) * 8
+			drawText(font2, (screenW() / 2) - pbx, 24, pb)
+		}
+	}
 
 	drawSprite(sprCoin, 0, 16, screenH() - 16)
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())

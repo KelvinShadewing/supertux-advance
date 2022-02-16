@@ -83,7 +83,7 @@ const fontH = 14
     	{
 		name = function() { return gvLangObj["main-menu"]["credits"] },
 		func = function() { cursor = 0; startCredits(); }
-    	}	
+    	}
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
@@ -142,10 +142,20 @@ const fontH = 14
 		func = function() { cursor = 0; menu = meTimers }
 	},
 	{
+		name = function() {
+			local msg = gvLangObj["options-menu"]["light"]
+			if(config.light) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		}
+		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 		back = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}
+
 ]
 
 ::meTimers <- [

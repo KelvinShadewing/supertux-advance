@@ -159,6 +159,10 @@
 ::weRain <- newSprite("res/gfx/rainfall.png", 64, 64, 0, 0, 0, 0)
 ::weSnow <- newSprite("res/gfx/snowfall.png", 64, 64, 0, 0, 0, 0)
 
+//Lights
+::sprLightBasic <- newSprite("res/gfx/light-player-basic.png", 48, 48, 0, 0, 24, 24)
+spriteSetBlendMode(sprLightBasic, bm_add)
+
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")
 ::sndJump <- loadSound("res/snd/jump.ogg")

@@ -245,24 +245,22 @@
 		r = _arr[0].tointeger()
 		a = _arr[1].tofloat()
 		s = _arr[2].tofloat()
-		hb = []
-		if(r > 0) for(local i = 0; i < r; i++) {
-			hb.push(Cir(x, y, 2))
-		}
+		hb = (Cir(x, y, 2))
 	}
 
 	function run() {
 		//Rotate chain
+		//s = sin(getFrames() / 5.0) * 4.0 //Save for flamethrower animation
 		a += s
 
 		if(r > 0) for(local i = 0; i < r; i++) {
-			hb[i].setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 60.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 60.0)))
-			drawSprite(sprFireball, getFrames() / 4, hb[i].x - camx, hb[i].y - camy)
-			if(gvPlayer) if(hitTest(hb[i], gvPlayer.shape)) {
+			hb.setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 45.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 45.0)))
+			drawSprite(sprFireball, getFrames() / 4, hb.x - camx, hb.y - camy)
+			if(gvPlayer) if(hitTest(hb, gvPlayer.shape)) {
 				gvPlayer.hurt = 1
 			}
 			if(randInt(60) == 0) {
-				local c = actor[newActor(FlameTiny, hb[i].x, hb[i].y)]
+				local c = actor[newActor(FlameTiny, hb.x, hb.y)]
 				c.vspeed = -0.25
 				c.hspeed = randFloat(0.5) - 0.25
 			}

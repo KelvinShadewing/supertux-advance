@@ -930,6 +930,8 @@
 			} else tftime = -1
 		}
 
+		drawLight(sprLightBasic, 0, x - camx, y - camy)
+
 		hidden = false
 
 		if(debug) drawText(font, x - camx - 8, y - 32 - camy, anim[2] + "\n" + frame.tostring())
