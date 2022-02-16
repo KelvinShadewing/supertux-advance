@@ -162,6 +162,10 @@
 //Lights
 ::sprLightBasic <- newSprite("res/gfx/light-player-basic.png", 48, 48, 0, 0, 24, 24)
 spriteSetBlendMode(sprLightBasic, bm_add)
+::sprLightFire <- newSprite("res/gfx/light-fire.png", 128, 128, 0, 0, 64, 64)
+spriteSetBlendMode(sprLightFire, bm_add)
+::sprLightIce <- newSprite("res/gfx/light-ice.png", 128, 128, 0, 0, 64, 64)
+spriteSetBlendMode(sprLightIce, bm_add)
 
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")

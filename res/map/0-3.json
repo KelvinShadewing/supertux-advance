@@ -1263,6 +1263,102 @@
                  "width":16,
                  "x":1672,
                  "y":264
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":118,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":976,
+                 "y":320
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":119,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1056,
+                 "y":272
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":120,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1872,
+                 "y":304
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":121,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1856,
+                 "y":608
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":122,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1536,
+                 "y":848
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":123,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1104,
+                 "y":1008
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":124,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":928,
+                 "y":1024
+                }, 
+                {
+                 "gid":252,
+                 "height":16,
+                 "id":125,
+                 "name":"StaticLight,sprLightFire,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":544,
+                 "y":1312
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1271,7 +1367,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":118,
+ "nextobjectid":126,
  "orientation":"orthogonal",
  "properties":[
         {
