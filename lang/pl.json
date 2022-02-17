@@ -1,10 +1,10 @@
 {
 	"main-menu" : {
-		"new" : "Nowa Gra",
-		"load" : "Wczytaj Grę",
-		"contrib-levels" : "Dodatkowe Poziomy",
+		"new" : "Nowa gra",
+		"load" : "Wczytaj grę",
+		"contrib-levels" : "Dodatkowe poziomy",
 		"options" : "Opcje",
-		"quit" : "Wyjdź z Gry"
+		"quit" : "Wyjdź z gry"
 	},
 
 	"contrib-menu" : {
@@ -17,6 +17,36 @@
 		"keyboard" : "Zmień sterowanie klawiaturą",
 		"joystick" : "Zmień sterowanie kontrolerem",
 		"speedrun" : "Licznik do speedrunowania"
+	},
+	
+	"timers-menu" : {
+		"speedrun-timer-level" : "Licznik speedrunowania poziomu",
+		"speedrun-timer-global" : "Globalny licznik speedrunowania"
+	},
+
+	"controls-menu" : {
+		"press-key-for" : "Naciśnij klawisz dla",
+		"press-button-for" : "Naciśnij przycisk dla",
+		"up" : "góra",
+		"down" : "dół",
+		"left" : "lewo",
+		"right" : "prawo",
+		"jump" : "skok",
+		"shoot" : "strzelanie",
+		"run" : "bieganie",
+		"sneak" : "skradanie",
+		"pause" : "pauza",
+		"item-swap" : "zmiana przedmiotu",
+		"menu-accept" : "akceptowanie w menu"
+	},
+	
+	"menu-commons" : {
+		"yes" : "Tak",
+		"no" : "Nie",
+		"back" : "Powrót",
+		"cancel" : "Anuluj",
+		"on" : "Wł",
+		"off" : "Wył"
 	},
 
 	"bool" : {
@@ -33,10 +63,11 @@
 
 	"pause-menu" : {
 		"continue" : "Kontynuuj",
-		"character" : "Zmień Postać",
-		"restart" : "Zrestartuj Poziom",
-		"quit-game" : "Wyjdź z Gry",
-		"quit-level" : "Opuść Poziom"
+		"character" : "Zmień postać",
+		"restart" : "Zrestartuj poziom",
+		"quit-game" : "Wyjdź z gry",
+		"quit-level" : "Opuść poziom",
+		"save" : "Zapisz grę"
 	},
 
 	"info" : {
@@ -235,6 +266,12 @@
 		"007 ma wszystkie uprawnienia, których potrzebujesz.",
 		"gnu-pt-8" :
 		"Ten młody pingwin, Rad, ma takiego ducha. Żyje życiem dla Emacsa.",
+		"gnu-pt-9" :
+		"Jeżeli nie widzisz nic innego tylko zera, pamiętaj, dev'null dokładnie.",
+		"gnu-pt-10" :
+		"Zanim wyślesz swoje zmiany, muszą być zatwierdzone.",
+		"gnu-pt-11" :
+		"Mądrość złożona z wielu źródeł sprawia, że plan jest wykonywalny.",
 		"midi-c" :
 		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i kopnął tego Nolok'a w ogon?",
 		"sam-0" :
@@ -248,26 +285,41 @@
 		"sam-4" :
 		"Tak, wykopałem i zrobiłem te wszystkie rzeczy i teraz je sprzedaję. Więc co mój szef robi aby dostać swoją część zarobków? On jest właścicielem firmy!",
 		"sam-5" :
-		"Przy okazji kiedy rozmawiamy o pieniądzach, gra w której jesteśmy? Jest darmowa, nawet możesz modyfikować i sprzedawać to co zrobisz, więc weź pod uwagę możliwość przekazania darowizny osobom, które nad nią pracowały!"
+		"Przy okazji kiedy rozmawiamy o pieniądzach, gra w której jesteśmy? Jest darmowa, nawet możesz modyfikować i sprzedawać to co zrobisz, więc weź pod uwagę możliwość przekazania darowizny osobom, które nad nią pracowały!",
+		"tuckles-0" :
+		"Nawet pod lodem łatwo jest pracować ciężko.",
+		"tuckles-1" :
+		"Dlaczego wymieniać rybę za rybę skoro wykopać je z lodu? Właśnie z tego powodu tutaj jestem!",
+		"tuckles-2" :
+		"Podnoś ryby oraz jedz ciężarki... Nie, poczekaj.",
+		"tuckles-3" :
+		"Jeżeli chcesz być silny, musisz zostać silny. Jeżeli chcesz być duży, musisz zostać duży. Jeżeli chcesz być twardy, musisz zostać twardy.",
+		"tuckles-4" :
+		"Kluczem do najlepszych uścisków są duże mięśnie i miękki brzuch. Ryby dadzą ci te obie rzeczy.",
+		"tuckles-5" :
+		"Te wszystkie mufinki, które jesz nie są porównywalne do ryb, które wydobywujemy. Są większe, silniejsze i smaczniejsze.",
+		"tuckles-6" :
+		"Czy widziałeś Duke'a? On lubi zdobywać ryby leniwą metodą: udawając, że jego wędka jest zepsuta oraz wyłudzając ryby od innych. Ignorowałbym go jeżeli nie byłby w stanie blokować dróg siedząc na nich."
 	},
 
 	"level" : {
 		"shop" : "Punkt handlowy Sam'a",
-		"overworld-0" : "Wyspy Zorzy Polarnej",
+		"overworld-0" : "Wyspy zorzy polarnej",
 		"overworld-1" : "Antarktyda",
 		"0-t0" : "Pennyton",
-		"0-0" : "Nauka Stoków",
-		"0-1" : "Kryształowe Przejście",
-		"0-2" : "Ślizganie i Zjeżdżanie",
+		"0-t1" : "Kopalnie ryb",
+		"0-0" : "Nauka stoków",
+		"0-1" : "Kryształowe przejście",
+		"0-2" : "Ślizganie i zjeżdżanie",
 		"0-3" : "Pod wodą",
 		"0-4" : "Problem z TNT",
-		"0-5" : "Zmysł Śniegu Frost'a",
-		"0-x" : "Ekstremalne Wzgórza",
+		"0-5" : "Zmysł śniegu Frost'a",
+		"0-x" : "Ekstremalne wzgórza",
 		"0-c" : "Forteca Borealis",
-		"0-6a" : "Mroźny Raj",
-		"0-6b" : "Thick of it",
-		"0-7" : "Oceaniczny Most",
-		"0-8" : "Arktyczny Wiatr",
+		"0-6a" : "Mroźny raj",
+		"0-6b" : "Ścieżka się rozdziela",
+		"0-7" : "Oceaniczny most",
+		"0-8" : "Arktyczny wiatr",
 		"0-9" : "Zatopione kroki",
 		"0-s" : "Strefa czerwonego przycisku"
 	},
