@@ -197,7 +197,8 @@
 					break
 
 				case 22:
-					c = newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
+					if(gvLangObj["info"].rawin(i.name)) c = newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
+					else c = newActor(InfoBlock, i.x + 8, i.y - 8, "")
 					break
 
 				case 23:
