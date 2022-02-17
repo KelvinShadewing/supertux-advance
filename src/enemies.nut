@@ -684,6 +684,7 @@
 
 	function run() {
 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(gvPlayer) {
@@ -823,7 +824,7 @@
 			if(x > gvPlayer.x + 8 && frame > 0.5) frame -= 0.1
 			if(x < gvPlayer.x - 8 && frame < 4.5) frame += 0.1
 
-			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 200 && timer == 0 && (frame < 1 || frame > 4)) {
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 160 && timer == 0 && (frame < 1 || frame > 4)) {
 				if(frame < 1) {
 					local c = actor[newActor(CannonBob, x - 4, y - 4)]
 					c.hspeed = ((gvPlayer.x - x) / 48)
@@ -1492,6 +1493,7 @@
 	constructor(_x, _y, _arr = 0) {
 		base.constructor(_x, _y)
 		if(_arr == "") range = 0
+		else if(typeof _arr == "array") range = _arr[0].tointeger()
 		else range = _arr.tointeger() * 16
 		shape = Rec(x, y, 6, 6, 0)
 	}

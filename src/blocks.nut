@@ -522,6 +522,10 @@
 			game.chx = x
 			game.chy = y
 			playSoundChannel(sndBell, 0, 4)
+			if(game.difficulty < 3) {
+				if(game.health < game.maxHealth) game.health++
+				else if(game.subitem == 0) game.subitem = 5
+			}
 		}
 
 		if(found) drawSprite(sprCheckBell, getFrames() / 8, x - camx, y - camy)

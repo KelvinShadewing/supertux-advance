@@ -70,6 +70,7 @@
 		frame += 0.25
 		if(frame >= 8) deleteActor(id)
 		else drawSpriteEx(sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }
 
@@ -103,6 +104,7 @@
 		frame += 0.25
 		if(frame >= 6) deleteActor(id)
 		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, (1.0 / 8.0) - frame, (1.0 / 8.0) - frame)
 	}
 }
 

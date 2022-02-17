@@ -42,6 +42,7 @@
 
 		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
 		else drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, 1, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 
 		if(getFrames() % 3 == 0) {
 			local c = actor[newActor(FlameTiny, x, y)]
@@ -126,6 +127,7 @@
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
 		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function _typeof() { return "Fireball" }
@@ -266,6 +268,7 @@
 
 		if(hspeed > 0) drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
 		else drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 
 		shape.setPos(x, y)
 	}

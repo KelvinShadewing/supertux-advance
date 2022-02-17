@@ -343,8 +343,8 @@
 						gvMap.shape.w = 9.0
 						gvMap.shape.h = 6.0
 						if(hitTest(ns, gvMap.shape)) return true
-						gvMap.shape.w = 9.0
-						gvMap.shape.h = 6.0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 9.0
 						if(hitTest(ns, gvMap.shape)) return true
 					}
 					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 42) {
