@@ -5,6 +5,8 @@
 ::gvInfoBox <- ""
 ::gvLangObj <- ""
 
+::mapActor <- {} //Stores references to all actors created by the map
+
 ::startPlay <- function(level)
 {
 	if(!fileExists(level)) return
@@ -79,6 +81,7 @@
 		//Tile actors
 		if(i.rawin("gid")) {
 			local n = i.gid - tilef
+			local c = 0
 
 			//Get the tile number and make an actor
 			//according to the image used in actors.png
@@ -86,7 +89,6 @@
 			{
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
-					local c
 					if(!gvPlayer && getroottable().rawin(game.playerchar)) {
 						if(game.check == false) {
 							c = actor[newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)]
@@ -101,274 +103,274 @@
 					break
 
 				case 1:
-					newActor(Coin, i.x + 8, i.y - 8)
+					c = newActor(Coin, i.x + 8, i.y - 8)
 					break
 
 				case 2:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 0)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 0)
 					game.maxcoins++
 					break
 
 				case 3:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 1)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 1)
 					break
 
 				case 4:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 2)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 2)
 					break
 
 				case 5:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 3)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 3)
 					break
 
 				case 6:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 5)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 5)
 					break
 
 				case 7:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 4)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 4)
 					break
 
 				case 8:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 6)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 6)
 					break
 
 				case 9:
-					newActor(BadCannon, i.x + 8, i.y - 8)
+					c = newActor(BadCannon, i.x + 8, i.y - 8)
 					break
 
 				case 10:
-					newActor(PipeSnake, i.x, i.y, 1)
+					c = newActor(PipeSnake, i.x, i.y, 1)
 					//Enemies are counted at level creation so ones created indefinitely don't count against achievements
 					game.enemies++
 					break
 
 				case 11:
-					newActor(PipeSnake, i.x, i.y - 16, -1)
+					c = newActor(PipeSnake, i.x, i.y - 16, -1)
 					game.enemies++
 					break
 
 				case 12:
-					newActor(Deathcap, i.x + 8, i.y - 8, false)
+					c = newActor(Deathcap, i.x + 8, i.y - 8, false)
 					game.enemies++
 					break
 
 				case 13:
-					newActor(Deathcap, i.x + 8, i.y - 8, true)
+					c = newActor(Deathcap, i.x + 8, i.y - 8, true)
 					game.enemies++
 					break
 
 				case 14:
-					newActor(IceBlock, i.x + 8, i.y - 8)
+					c = newActor(IceBlock, i.x + 8, i.y - 8)
 					break
 
 				case 15:
-					newActor(WoodBlock, i.x + 8, i.y - 8, i.name)
+					c = newActor(WoodBlock, i.x + 8, i.y - 8, i.name)
 					break
 
 				case 16:
-					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 0)]
+					c = actor[newActor(Spring, i.x + 8, i.y - 8, 0)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 17:
-					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 1)]
+					c = actor[newActor(Spring, i.x + 8, i.y - 8, 1)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 18:
-					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 2)]
+					c = actor[newActor(Spring, i.x + 8, i.y - 8, 2)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 19:
-					local c = actor[newActor(Spring, i.x + 8, i.y - 8, 3)]
+					c = actor[newActor(Spring, i.x + 8, i.y - 8, 3)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 20:
-					newActor(Ouchin, i.x + 8, i.y - 8)
+					c = newActor(Ouchin, i.x + 8, i.y - 8)
 					break
 
 				case 21:
-					newActor(TriggerBlock, i.x + 8, i.y - 8, i.name)
+					c = newActor(TriggerBlock, i.x + 8, i.y - 8, i.name)
 					break
 
 				case 22:
-					newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
+					c = newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
 					break
 
 				case 23:
-					newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
+					c = newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
 					break
 
 				case 24:
-					local c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
+					c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
 					c.item = 7
 					break
 
 				case 25:
-					newActor(FlyRefresh, i.x + 8, i.y - 8)
+					c = newActor(FlyRefresh, i.x + 8, i.y - 8)
 					break
 
 				case 26:
-					newActor(CarlBoom, i.x + 8, i.y - 8)
+					c = newActor(CarlBoom, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 27:
-					newActor(SnowBounce, i.x + 8, i.y - 8)
+					c = newActor(SnowBounce, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 28:
-					newActor(BlueFish, i.x + 8, i.y - 8)
+					c = newActor(BlueFish, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 29:
-					newActor(RedFish, i.x + 8, i.y - 8)
+					c = newActor(RedFish, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 30:
-					newActor(BounceBlock, i.x + 8, i.y - 8)
+					c = newActor(BounceBlock, i.x + 8, i.y - 8)
 					break
 
 				case 31:
-					actor[newActor(NPC, i.x + 8, i.y, i.name)]
+					c = actor[newActor(NPC, i.x + 8, i.y, i.name)]
 					break
 
 				case 32:
-					newActor(Checkpoint, i.x + 8, i.y - 16)
+					c = newActor(Checkpoint, i.x + 8, i.y - 16)
 					break
 
 				case 33:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 8)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 8)
 					break
 
 				case 34:
-					newActor(TNT, i.x + 8, i.y - 8)
+					c = newActor(TNT, i.x + 8, i.y - 8)
 					break
 
 				case 35:
-					newActor(C4, i.x + 8, i.y - 8)
+					c = newActor(C4, i.x + 8, i.y - 8)
 					break
 
 				case 36:
-					newActor(JellyFish, i.x + 8, i.y - 8)
+					c = newActor(JellyFish, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 37:
-					newActor(Clamor, i.x + 8, i.y - 8, i.name)
+					c = newActor(Clamor, i.x + 8, i.y - 8, i.name)
 					game.enemies++
 					break
 
 				case 38:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 9)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 9)
 					break
 
 				case 39:
-					newActor(ItemBlock, i.x + 8, i.y - 8, 10)
+					c = newActor(ItemBlock, i.x + 8, i.y - 8, 10)
 					break
 
 				case 40:
-					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 0)]
+					c = actor[newActor(SpringD, i.x + 8, i.y - 8, 0)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 41:
-					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 1)]
+					c = actor[newActor(SpringD, i.x + 8, i.y - 8, 1)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 42:
-					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 2)]
+					c = actor[newActor(SpringD, i.x + 8, i.y - 8, 2)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 43:
-					local c = actor[newActor(SpringD, i.x + 8, i.y - 8, 3)]
+					c = actor[newActor(SpringD, i.x + 8, i.y - 8, 3)]
 					if(i.name != "") c.power = i.name.tofloat()
 					break
 
 				case 44:
-					newActor(GreenFish, i.x + 8, i.y - 8)
+					c = newActor(GreenFish, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 45:
-					newActor(Icicle, i.x + 8, i.y - 8)
+					c = newActor(Icicle, i.x + 8, i.y - 8)
 					break
 
 				case 46:
-					newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
+					c = newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
 					game.enemies++
 					break
 
 				case 48:
-					newActor(MagicKey, i.x + 8, i.y - 8, 0)
+					c = newActor(MagicKey, i.x + 8, i.y - 8, 0)
 					break
 
 				case 49:
-					newActor(MagicKey, i.x + 8, i.y - 8, 1)
+					c = newActor(MagicKey, i.x + 8, i.y - 8, 1)
 					break
 
 				case 50:
-					newActor(MagicKey, i.x + 8, i.y - 8, 2)
+					c = newActor(MagicKey, i.x + 8, i.y - 8, 2)
 					break
 
 				case 51:
-					newActor(MagicKey, i.x + 8, i.y - 8, 3)
+					c = newActor(MagicKey, i.x + 8, i.y - 8, 3)
 					break
 
 				case 52:
-					newActor(LockBlock, i.x + 8, i.y - 8, 0)
+					c = newActor(LockBlock, i.x + 8, i.y - 8, 0)
 					break
 
 				case 53:
-					newActor(LockBlock, i.x + 8, i.y - 8, 1)
+					c = newActor(LockBlock, i.x + 8, i.y - 8, 1)
 					break
 
 				case 54:
-					newActor(LockBlock, i.x + 8, i.y - 8, 2)
+					c = newActor(LockBlock, i.x + 8, i.y - 8, 2)
 					break
 
 				case 55:
-					newActor(LockBlock, i.x + 8, i.y - 8, 3)
+					c = newActor(LockBlock, i.x + 8, i.y - 8, 3)
 					break
 
 				case 56:
-					newActor(ColorBlock, i.x, i.y - 16, 0)
+					c = newActor(ColorBlock, i.x, i.y - 16, 0)
 					break
 
 				case 57:
-					newActor(ColorBlock, i.x, i.y - 16, 1)
+					c = newActor(ColorBlock, i.x, i.y - 16, 1)
 					break
 
 				case 58:
-					newActor(ColorBlock, i.x, i.y - 16, 2)
+					c = newActor(ColorBlock, i.x, i.y - 16, 2)
 					break
 
 				case 59:
-					newActor(ColorBlock, i.x, i.y - 16, 3)
+					c = newActor(ColorBlock, i.x, i.y - 16, 3)
 					break
 
 				case 60:
-					newActor(ColorBlock, i.x, i.y - 16, 4)
+					c = newActor(ColorBlock, i.x, i.y - 16, 4)
 					break
 
 				case 61:
-					newActor(ColorBlock, i.x, i.y - 16, 5)
+					c = newActor(ColorBlock, i.x, i.y - 16, 5)
 					break
 
 				case 62:
-					newActor(ColorBlock, i.x, i.y - 16, 6)
+					c = newActor(ColorBlock, i.x, i.y - 16, 6)
 					break
 
 				case 63:
-					newActor(ColorBlock, i.x, i.y - 16, 7)
+					c = newActor(ColorBlock, i.x, i.y - 16, 7)
 					break
 
 				case 64: //Custom actor gear
@@ -378,41 +380,44 @@
 					arg.remove(0)
 					if(arg.len() == 1) arg = arg[0]
 					else if(arg.len() == 0) arg = null
-					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
+					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
 					break
 
 				case 65:
-					newActor(Haywire, i.x + 8, i.y - 8)
+					c = newActor(Haywire, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 66:
-					newActor(Livewire, i.x + 8, i.y - 8)
+					c = newActor(Livewire, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 67:
-					newActor(Blazeborn, i.x + 8, i.y - 8)
+					c = newActor(Blazeborn, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 
 				case 73:
-					newActor(Jumpy, i.x + 8, i.y - 8, i.name)
+					c = newActor(Jumpy, i.x + 8, i.y - 8, i.name)
 					game.enemies++
 					break
 
 				case 75:
-					newActor(EvilBlock, i.x + 8, i.y - 8)
+					c = newActor(EvilBlock, i.x + 8, i.y - 8)
 					break
 
 				case 78:
-					newActor(Berry, i.x + 8, i.y - 8)
+					c = newActor(Berry, i.x + 8, i.y - 8)
 					break
 
 				case 79:
-					newActor(BossDoor, i.x, i.y - 16)
+					c = newActor(BossDoor, i.x, i.y - 16)
 					break
 			}
+
+			if(typeof c == "integer") mapActor[i.id] <- c
+			else mapActor[i.id] <- c.id
 		}
 
 		//Polygon actors
