@@ -167,7 +167,25 @@
 		"outage":
 		"FROSTC: Another random fact: this and the last level only took 3 days to make in total! It probably helped that school was canceled for the first day I started working on them due to a power outage or something.",
 		"oldxtreme":
-		"KELVIN: In previous versions of this level, the prize for getting all the coins was a powerup that isn't formally introduced until a few levels later. I thought it would be fun to earn the chance to break levels, but the design of them actually makes the powerup not as fun to use as I'd hoped. I instead decided to set up a collectible that could unlock new content later on."
+		"KELVIN: In previous versions of this level, the prize for getting all the coins was a powerup that isn't formally introduced until a few levels later. I thought it would be fun to earn the chance to break levels, but the design of them actually makes the powerup not as fun to use as I'd hoped. I instead decided to set up a collectible that could unlock new content later on.",
+		"fort-0":
+		"KELVIN: I wanted to teach players right away that if they wanted rewards, they had to take risks, so I put these coins over a fire chain. There's an even trickier secret in this room that's also risky.",
+		"fort-1":
+		"KELVIN: The sawblades here were originally the first challenge, but then I realized I was making players not only take one of the harder challenges first, but also leading them in a straight line down. Switching the order of the challenges made the learning curve a bit easier, and also make the map feel more metroidvania-like.",
+		"fort-2":
+		"KELVIN: I knew some players would come here with the earth shell, which makes the challenge for the gold key much harder, if not impossible. I added a room with a fire flower to make swimming easier without depowering the player. Placing it behind a silver lock, the same lock leading to the next challenge, means they'll have a chance to reach it when they need it.",
+		"fort-3":
+		"KELVIN: I really wanted a section where players would get chased by something indestructible. Messing around with fire chains, I found I could put four in one place to make them look like a wheel. Attaching them to my new path carriers makes them able to roll around just above the player's top speed makes this scene tense but manageable.",
+		"fort-4":
+		"KELVIN: I plan to revisit underwater sections in the future with spike mazes like this, but after using a giant fire chain in a secret treasure room, I thought it was too good not to use in one of the key challenges.",
+		"fort-5":
+		"KELVIN: Welcome to the freezer, the final platforming challenge for Fort Borealis. Given that this is the last level of the ice world, I wanted to give it a good, cold sendoff. Don't worry, ice tiles will be used again, but I wanted to test the player a bit harder with these.",
+		"fort-6":
+		"KELVIN: Checkpoints used to be just that, checkpoints. They didn't do anything but save your progress in a level. But with a level like this being so long, and health drops being a rare thing given that the game had been designed with short levels in mind up until now, I needed to give players a way to heal after long stretches. Since checkpoints are already a welcome sight to players, I decided to make them even more welcoming.",
+		"fort-7":
+		"KELVIN: This is it, the first boss of the game. Up until now, it's all been single-hit enemies and stage hazards. He hasn't been implemented yet, but I can't wait to see what I come up with for him.",
+		"fort-8":
+		"KELVIN: OK, I'll admit, I was just going crazy with this. I wanted to see if multiple ring carriers could be nested, and then I stuck the result onto a path carrier. The result is a storm of coins! One layer of slime later, and here we are. Have fun!"
 	},
 
 	"npc" : {
