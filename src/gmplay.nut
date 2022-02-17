@@ -202,7 +202,8 @@
 					break
 
 				case 23:
-					c = newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
+					if(gvLangObj["devcom"].rawin(i.name)) c = newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
+					else c = newActor(KelvinScarf, i.x + 8, i.y - 8, "")
 					break
 
 				case 24:
