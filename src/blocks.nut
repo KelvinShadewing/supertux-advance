@@ -863,4 +863,6 @@
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - dy + 16)
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - 80 + dy)
 	}
+
+	function _typeof() { return "BossDoor" }
 }
