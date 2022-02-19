@@ -11,7 +11,7 @@
 ## Level assets
 
 [ ] Moving platforms
-[ ] One-way platforms
+[x] One-way platforms
 [x] Breakable bricks
 [x] Item boxes
 [x] Ropes/ladders
@@ -31,10 +31,10 @@
 [x] Flying deathcaps
 [ ] Swoops
 [x] Cannon Bobs
-[ ] Spinning castle fire
+[x] Spinning castle fire
 [ ] Bouncing castle fire
 [x] Fish
-[ ] Haywire
+[x] Haywire
 
 ## Bosses
 
@@ -50,12 +50,12 @@
 [x] Fire flower
 [x] Ice flower
 [x] Air feather
-[ ] Earth shell
+[x] Earth shell
 **KONQI ITEMS**
-[ ] Fire flower
-[ ] Ice flower
-[ ] Air feather
-[ ] Earth shell
+[x] Fire flower
+[x] Ice flower
+[x] Air feather
+[x] Earth shell
 **MIDI ITEMS**
 [ ] Fire flower
 [ ] Ice flower
@@ -68,5 +68,5 @@
 [x] Sub items
 [ ] General store
 [ ] World travel
-[ ] In-game timer
-[ ] Jump buffering
+[x] In-game timer
+[x] Jump buffering

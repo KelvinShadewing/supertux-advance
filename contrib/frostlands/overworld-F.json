@@ -44,15 +44,15 @@
          "name":"trigger",
          "objects":[
                 {
-                 "height":21.8090990187332,
+                 "height":140.309099018733,
                  "id":82,
                  "name":"gvLightTarget = 0xffffffff",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":68.7784716027357,
+                 "width":203.778471602736,
                  "x":176,
-                 "y":256
+                 "y":137.5
                 }, 
                 {
                  "height":25.0000000000001,
@@ -331,7 +331,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":96,
+ "nextobjectid":97,
  "orientation":"orthogonal",
  "properties":[
         {
