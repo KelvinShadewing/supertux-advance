@@ -40,6 +40,83 @@
         }, 
         {
          "draworder":"topdown",
+         "id":6,
+         "name":"trigger",
+         "objects":[
+                {
+                 "height":21.8090990187332,
+                 "id":82,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":68.7784716027357,
+                 "x":176,
+                 "y":256
+                }, 
+                {
+                 "height":25.0000000000001,
+                 "id":83,
+                 "name":"gvLightTarget = 0x6080e0ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":42.2955974842768,
+                 "x":208.333333333333,
+                 "y":409
+                }, 
+                {
+                 "height":80,
+                 "id":92,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":80,
+                 "x":80,
+                 "y":304
+                }, 
+                {
+                 "height":47,
+                 "id":93,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":62.6666666666667,
+                 "x":276.666666666667,
+                 "y":384
+                }, 
+                {
+                 "height":61.3484400553952,
+                 "id":94,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":38.7785,
+                 "x":387,
+                 "y":485.730329972302
+                }, 
+                {
+                 "height":120,
+                 "id":95,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":210,
+                 "x":288,
+                 "y":668
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"actor",
          "objects":[
@@ -148,7 +225,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":448,
+                 "x":432,
                  "y":640
                 }, 
                 {
@@ -253,8 +330,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":80,
+ "nextlayerid":7,
+ "nextobjectid":96,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -263,7 +340,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -918,17 +995,17 @@
          "columns":8,
          "firstgid":841,
          "image":"..\/..\/res\/gfx\/actors.png",
-         "imageheight":176,
+         "imageheight":160,
          "imagewidth":128,
          "margin":0,
          "name":"actor",
          "spacing":0,
-         "tilecount":88,
+         "tilecount":80,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":70
 }
