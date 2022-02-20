@@ -43,7 +43,11 @@
 		"sneak" : "sneak",
 		"pause" : "pause",
 		"item-swap" : "item swap",
-		"menu-accept" : "menu accept"
+		"menu-accept" : "menu accept",
+		"cam-left-peek" : "left camera peek",
+		"cam-right-peek" : "right camera peek",
+		"cam-down-peek" : "down camera peek",
+		"cam-up-peek" : "up camera peek"
 	},
 
 	"menu-commons" : {

@@ -537,7 +537,19 @@
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
 
-	if(gvPlayer) gvCamTarget = gvPlayer
+	// Camera peek
+	if((getcon("leftPeek","hold") || getcon("rightPeek","hold") || getcon("downPeek","hold") || getcon("upPeek","hold")) && gvPlayer){
+		gvCamTarget = {x = gvPlayer.x, y = gvPlayer.y}
+		if(getcon("leftPeek","hold"))
+			gvCamTarget.x += 128
+		if(getcon("rightPeek","hold"))
+			gvCamTarget.x -= 128
+		if(getcon("downPeek","hold"))
+			gvCamTarget.y += 32
+		if(getcon("upPeek","hold"))
+			gvCamTarget.y -= 32
+	}
+	else if(gvPlayer) gvCamTarget = gvPlayer
 
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD

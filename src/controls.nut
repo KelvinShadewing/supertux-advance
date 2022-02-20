@@ -73,6 +73,18 @@
 		case "accept":
 			if(keyfunc(config.key.accept) || joyfunc(0, config.joy.accept)) return true
 			break
+		case "leftPeek":
+			if(keyfunc(config.key.leftPeek) || joyfunc(0, config.joy.leftPeek)) return true
+			break
+		case "rightPeek":
+			if(keyfunc(config.key.rightPeek) || joyfunc(0, config.joy.rightPeek)) return true
+			break
+		case "downPeek":
+			if(keyfunc(config.key.downPeek) || joyfunc(0, config.joy.downPeek)) return true
+			break
+		case "upPeek":
+			if(keyfunc(config.key.upPeek) || joyfunc(0, config.joy.upPeek)) return true
+			break
 	}
 
 	return false
@@ -167,6 +179,34 @@
 					keystep++
 				}
 				break
+			case 11:
+				message += gvLangObj["controls-menu"]["cam-left-peek"]
+				if(anyKeyPress() != -1) {
+					config.key.leftPeek = anyKeyPress()
+					keystep++
+				}
+				break
+			case 12:
+				message += gvLangObj["controls-menu"]["cam-right-peek"]
+				if(anyKeyPress() != -1) {
+					config.key.rightPeek = anyKeyPress()
+					keystep++
+				}
+				break
+			case 13:
+				message += gvLangObj["controls-menu"]["cam-down-peek"]
+				if(anyKeyPress() != -1) {
+					config.key.downPeek = anyKeyPress()
+					keystep++
+				}
+				break
+			case 14:
+				message += gvLangObj["controls-menu"]["cam-up-peek"]
+				if(anyKeyPress() != -1) {
+					config.key.upPeek = anyKeyPress()
+					keystep++
+				}
+				break
 			default:
 				done = true
 				break
@@ -241,6 +281,34 @@
 				message += gvLangObj["controls-menu"]["menu-accept"]
 				if(anyJoyPress(0) != -1) {
 					config.joy.accept = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 11:
+				message += gvLangObj["controls-menu"]["cam-left-peek"]
+				if(anyJoyPress(0) != -1) {
+					config.joy.leftPeek = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 12:
+				message += gvLangObj["controls-menu"]["cam-right-peek"]
+				if(anyJoyPress(0) != -1) {
+					config.joy.rightPeek = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 13:
+				message += gvLangObj["controls-menu"]["cam-down-peek"]
+				if(anyJoyPress(0) != -1) {
+					config.joy.downPeek = anyJoyPress(0)
+					joystep++
+				}
+				break
+			case 14:
+				message += gvLangObj["controls-menu"]["cam-up-peek"]
+				if(anyJoyPress(0) != -1) {
+					config.joy.upPeek = anyJoyPress(0)
 					joystep++
 				}
 				break

@@ -76,6 +76,10 @@
 		pause = k_escape
 		swap = k_a
 		accept = k_enter
+		leftPeek = k_home
+		rightPeek = k_end
+		downPeek = k_pagedown
+		upPeek = k_pageup
 	},
 	joy = {
 		jump = 0
@@ -85,6 +89,10 @@
 		pause = 7
 		swap = 3
 		accept = 0
+		leftPeek = -1
+		rightPeek = -1
+		downPeek = -1
+		upPeek = -1
 	}
 	playerchar = 0
 	lang = "en"
