@@ -245,7 +245,7 @@
 		r = _arr[0].tointeger()
 		a = _arr[1].tofloat()
 		s = _arr[2].tofloat()
-		hb = (Cir(x, y, 2))
+		hb = (Cir(x, y, 6))
 	}
 
 	function run() {
@@ -259,7 +259,7 @@
 			drawSprite(sprFireball, getFrames() / 4, hb.x - camx, hb.y - camy)
 			drawLightEx(sprLightFire, 0, hb.x - camx, hb.y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 
-			if(i % 2 == 0) {
+			if((i - 1) % 2 == 0) {
 				if(gvPlayer) if(hitTest(hb, gvPlayer.shape)) {
 					gvPlayer.hurt = 1
 				}

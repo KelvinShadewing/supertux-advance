@@ -973,35 +973,7 @@
                 {
                  "height":0,
                  "id":81,
-                 "name":"PathCarrier,4,FireChain,4,0,16",
-                 "polygon":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":0,
-                         "y":256
-                        }, 
-                        {
-                         "x":-304,
-                         "y":256
-                        }, 
-                        {
-                         "x":-304,
-                         "y":0
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":784,
-                 "y":608
-                }, 
-                {
-                 "height":0,
-                 "id":82,
-                 "name":"PathCarrier,4,FireChain,4,180,16",
+                 "name":"PathCarrier,4,FireChain,5,0,40",
                  "polygon":[
                         {
                          "x":0,
@@ -1029,35 +1001,7 @@
                 {
                  "height":0,
                  "id":86,
-                 "name":"PathCarrier,4,FireChain,4,0,16",
-                 "polygon":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":0,
-                         "y":-256
-                        }, 
-                        {
-                         "x":304,
-                         "y":-256
-                        }, 
-                        {
-                         "x":304,
-                         "y":0
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":480,
-                 "y":864
-                }, 
-                {
-                 "height":0,
-                 "id":88,
-                 "name":"PathCarrier,4,FireChain,4,180,16",
+                 "name":"PathCarrier,4,FireChain,5,0,40",
                  "polygon":[
                         {
                          "x":0,
