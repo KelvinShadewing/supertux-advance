@@ -504,13 +504,13 @@
 	local lx = 0
 	local ly = 0
 	if(gvPlayer) {
-		lx = ((joyZ(0) / js_max.tofloat()) * screenW() / 2.5) - (gvPlayer.hspeed * 2.0)
-		ly = ((joyH(0) / js_max.tofloat()) * screenH() / 2.5) - (gvPlayer.vspeed * 2.0)
+		lx = ((joyZ(0) / js_max.tofloat()) * screenW() / 2.5)
+		ly = ((joyH(0) / js_max.tofloat()) * screenH() / 2.5)
 
-		if(getcon("leftPeek", "hold")) lx = -(screenW() / 2.5) - (gvPlayer.hspeed * 2.0)
-		if(getcon("rightPeek", "hold")) lx = (screenW() / 2.5) - (gvPlayer.hspeed * 2.0)
-		if(getcon("upPeek", "hold")) ly = -(screenH() / 2.5) - (gvPlayer.vspeed * 2.0)
-		if(getcon("downPeek", "hold")) ly = (screenH() / 2.5) - (gvPlayer.vspeed * 2.0)
+		if(getcon("leftPeek", "hold")) lx = -(screenW() / 2.5)
+		if(getcon("rightPeek", "hold")) lx = (screenW() / 2.5)
+		if(getcon("upPeek", "hold")) ly = -(screenH() / 2.5)
+		if(getcon("downPeek", "hold")) ly = (screenH() / 2.5)
 	}
 
 	if(gvCamTarget != null && gvCamTarget != false && gvPlayer)
@@ -527,7 +527,7 @@
 				local pty = (gvCamTarget.y) - (screenH() / 2)
 
 				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
-				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2) + ly
+				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
 
 				px = ptx
 				py = pty
