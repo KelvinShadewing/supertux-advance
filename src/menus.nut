@@ -127,7 +127,7 @@ const fontH = 14
 ::meOptions <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["keyboard"] },
-		func = function() { rebindKeys() }
+		func = function() { cursor = 0; menu = meKeybinds }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick"] },
@@ -156,6 +156,74 @@ const fontH = 14
 		back = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
 	}
 
+]
+
+::meKeybinds <- [
+	{
+		name = function() { return gvLangObj["controls-menu"]["up"] + ": " + gvLangObj["key"][config.key.up.tostring()] },
+		func = function() { rebindKeys(0) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["down"] + ": " + gvLangObj["key"][config.key.down.tostring()] },
+		func = function() { rebindKeys(1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["left"] + ": " + gvLangObj["key"][config.key.left.tostring()] },
+		func = function() { rebindKeys(2) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["right"] + ": " + gvLangObj["key"][config.key.right.tostring()] },
+		func = function() { rebindKeys(3) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["jump"] + ": " + gvLangObj["key"][config.key.jump.tostring()] },
+		func = function() { rebindKeys(4) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["shoot"] + ": " + gvLangObj["key"][config.key.shoot.tostring()] },
+		func = function() { rebindKeys(5) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["run"] + ": " + gvLangObj["key"][config.key.run.tostring()] },
+		func = function() { rebindKeys(6) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["sneak"] + ": " + gvLangObj["key"][config.key.sneak.tostring()] },
+		func = function() { rebindKeys(7) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["pause"] + ": " + gvLangObj["key"][config.key.pause.tostring()] },
+		func = function() { rebindKeys(8) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["item-swap"] + ": " + gvLangObj["key"][config.key.swap.tostring()] },
+		func = function() { rebindKeys(9) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["menu-accept"] + ": " + gvLangObj["key"][config.key.accept.tostring()] },
+		func = function() { rebindKeys(10) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-left-peek"] + ": " + gvLangObj["key"][config.key.leftPeek.tostring()] },
+		func = function() { rebindKeys(11) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-right-peek"] + ": " + gvLangObj["key"][config.key.rightPeek.tostring()] },
+		func = function() { rebindKeys(12) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-down-peek"] + ": " + gvLangObj["key"][config.key.downPeek.tostring()] },
+		func = function() { rebindKeys(13) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-up-peek"] + ": " + gvLangObj["key"][config.key.upPeek.tostring()] },
+		func = function() { rebindKeys(14) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { cursor = 3; menu = meOptions }
+		back = function() { cursor = 3; menu = meOptions }
+	}
 ]
 
 ::meTimers <- [

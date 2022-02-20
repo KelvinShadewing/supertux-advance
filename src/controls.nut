@@ -90,10 +90,9 @@
 	return false
 }
 
-::rebindKeys <- function() {
+::rebindKeys <- function(newkey) {
 	resetDrawTarget()
 	local done = false
-	local keystep = 0
 
 	update()
 
@@ -101,110 +100,110 @@
 		drawBG()
 
 		local message = gvLangObj["controls-menu"]["press-key-for"] + " "
-		switch(keystep) {
+		switch(newkey) {
 			case 0:
 				message += gvLangObj["controls-menu"]["up"]
 				if(anyKeyPress() != -1) {
 					config.key.up = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 1:
 				message += gvLangObj["controls-menu"]["down"]
 				if(anyKeyPress() != -1) {
 					config.key.down = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 2:
 				message += gvLangObj["controls-menu"]["left"]
 				if(anyKeyPress() != -1) {
 					config.key.left = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 3:
 				message += gvLangObj["controls-menu"]["right"]
 				if(anyKeyPress() != -1) {
 					config.key.right = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 4:
 				message += gvLangObj["controls-menu"]["jump"]
 				if(anyKeyPress() != -1) {
 					config.key.jump = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 5:
 				message += gvLangObj["controls-menu"]["shoot"]
 				if(anyKeyPress() != -1) {
 					config.key.shoot = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 6:
 				message += gvLangObj["controls-menu"]["run"]
 				if(anyKeyPress() != -1) {
 					config.key.run = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 7:
 				message += gvLangObj["controls-menu"]["sneak"]
 				if(anyKeyPress() != -1) {
 					config.key.sneak = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 8:
 				message += gvLangObj["controls-menu"]["pause"]
 				if(anyKeyPress() != -1) {
 					config.key.pause = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 9:
 				message += gvLangObj["controls-menu"]["item-swap"]
 				if(anyKeyPress() != -1) {
 					config.key.swap = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 10:
 				message += gvLangObj["controls-menu"]["menu-accept"]
 				if(anyKeyPress() != -1) {
 					config.key.accept = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 11:
 				message += gvLangObj["controls-menu"]["cam-left-peek"]
 				if(anyKeyPress() != -1) {
 					config.key.leftPeek = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 12:
 				message += gvLangObj["controls-menu"]["cam-right-peek"]
 				if(anyKeyPress() != -1) {
 					config.key.rightPeek = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 13:
 				message += gvLangObj["controls-menu"]["cam-down-peek"]
 				if(anyKeyPress() != -1) {
 					config.key.downPeek = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			case 14:
 				message += gvLangObj["controls-menu"]["cam-up-peek"]
 				if(anyKeyPress() != -1) {
 					config.key.upPeek = anyKeyPress()
-					keystep++
+					done = true
 				}
 				break
 			default:
