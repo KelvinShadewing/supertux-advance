@@ -500,12 +500,25 @@
 	local ux = gvMap.w - screenW()
 	local uy = gvMap.h - screenH()
 
+	//Camera peek
+	local lx = 0
+	local ly = 0
+	if(gvPlayer) {
+		lx = ((joyZ(0) / js_max.tofloat()) * screenW() / 2.5) - (gvPlayer.hspeed * 2.0)
+		ly = ((joyH(0) / js_max.tofloat()) * screenH() / 2.5) - (gvPlayer.vspeed * 2.0)
+
+		if(getcon("leftPeek", "hold")) lx = -(screenW() / 2.5) - (gvPlayer.hspeed * 2.0)
+		if(getcon("rightPeek", "hold")) lx = (screenW() / 2.5) - (gvPlayer.hspeed * 2.0)
+		if(getcon("upPeek", "hold")) ly = -(screenH() / 2.5) - (gvPlayer.vspeed * 2.0)
+		if(getcon("downPeek", "hold")) ly = (screenH() / 2.5) - (gvPlayer.vspeed * 2.0)
+	}
+
 	if(gvCamTarget != null && gvCamTarget != false && gvPlayer)
 	{
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
-				px = (gvCamTarget.x + gvPlayer.hspeed * 32) - (screenW() / 2)
-				py = (gvCamTarget.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+				px = (gvCamTarget.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
+				py = (gvCamTarget.y + gvPlayer.vspeed * 32) - (screenH() / 2) + ly
 			}
 			else {
 				local pw = max(screenW(), 320)
@@ -513,8 +526,8 @@
 				local ptx = (gvCamTarget.x) - (screenW() / 2)
 				local pty = (gvCamTarget.y) - (screenH() / 2)
 
-				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2)
-				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2)
+				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
+				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 2) - (screenH() / 2) + ly
 
 				px = ptx
 				py = pty
@@ -530,26 +543,12 @@
 	}
 
 	camx += (px - camx) / 16
-	camy += (py - camy) / 2
+	camy += (py - camy) / 32
 
 	if(camx > ux) camx = ux
 	if(camx < 0) camx = 0
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
-
-	// Camera peek
-	if((getcon("leftPeek","hold") || getcon("rightPeek","hold") || getcon("downPeek","hold") || getcon("upPeek","hold")) && gvPlayer){
-		gvCamTarget = {x = gvPlayer.x, y = gvPlayer.y}
-		if(getcon("leftPeek","hold"))
-			gvCamTarget.x += 128
-		if(getcon("rightPeek","hold"))
-			gvCamTarget.x -= 128
-		if(getcon("downPeek","hold"))
-			gvCamTarget.y += 32
-		if(getcon("upPeek","hold"))
-			gvCamTarget.y -= 32
-	}
-	else if(gvPlayer) gvCamTarget = gvPlayer
 
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
