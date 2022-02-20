@@ -518,7 +518,7 @@
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
 				px = (gvCamTarget.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
-				py = (gvCamTarget.y + gvPlayer.vspeed * 32) - (screenH() / 2) + ly
+				py = (gvCamTarget.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
 			}
 			else {
 				local pw = max(screenW(), 320)
@@ -543,12 +543,14 @@
 	}
 
 	camx += (px - camx) / 16
-	camy += (py - camy) / 32
+	camy += (py - camy) / 16
 
 	if(camx > ux) camx = ux
 	if(camx < 0) camx = 0
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
+
+	if(gvPlayer) gvCamTarget = gvPlayer
 
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
