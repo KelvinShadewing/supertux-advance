@@ -34,6 +34,8 @@
 	if(gvPlayer && mouseDown(0)) {
 		gvPlayer.x = mouseX() + camx
 		gvPlayer.y = mouseY() + camy
+		gvPlayer.hspeed = 0.0
+		gvPlayer.vspeed = 0.0
 
 		if(gvGameMode == gmOverworld) {
 			gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
