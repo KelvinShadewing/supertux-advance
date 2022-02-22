@@ -3,6 +3,8 @@
 	down = false
 	left = false
 	right = false
+	jump = false
+	shoot = false
 }
 
 ::getcon <- function(control, state) {
@@ -33,22 +35,22 @@
 
 	switch(control) {
 		case "up":
-			if(keyfunc(config.key.up) || hatfunc(0, js_up) || (state == "hold" && joyY(0) < -js_max / 10) || autocon.up) return true
+			if(keyfunc(config.key.up) || hatfunc(0, js_up) || (state == "hold" && joyY(0) < -js_max / 10)) return true
 			if(state == "press" && joyAxisPress(0, 1, js_max / 20) == -1) return true
 			if(state == "release" && joyAxisRelease(0, 1, js_max / 20) == -1) return true
 			break
 		case "down":
-			if(keyfunc(config.key.down) || hatfunc(0, js_down) || (state == "hold" && joyY(0) > js_max / 10) || autocon.down) return true
+			if(keyfunc(config.key.down) || hatfunc(0, js_down) || (state == "hold" && joyY(0) > js_max / 10)) return true
 			if(state == "press" && joyAxisPress(0, 1, js_max / 20) == 1) return true
 			if(state == "release" && joyAxisRelease(0, 1, js_max / 20) == 1) return true
 			break
 		case "left":
-			if(keyfunc(config.key.left) || hatfunc(0, js_left) || (state == "hold" && joyX(0) < -js_max / 10) || autocon.left) return true
+			if(keyfunc(config.key.left) || hatfunc(0, js_left) || (state == "hold" && joyX(0) < -js_max / 10)) return true
 			if(state == "press" && joyAxisPress(0, 0, js_max / 20) == -1) return true
 			if(state == "release" && joyAxisRelease(0, 0, js_max / 20) == -1) return true
 			break
 		case "right":
-			if(keyfunc(config.key.right) || hatfunc(0, js_right) || (state == "hold" && joyX(0) > js_max / 10) || autocon.right) return true
+			if(keyfunc(config.key.right) || hatfunc(0, js_right) || (state == "hold" && joyX(0) > js_max / 10)) return true
 			if(state == "press" && joyAxisPress(0, 0, js_max / 20) == 1) return true
 			if(state == "release" && joyAxisRelease(0, 0, js_max / 20) == 1) return true
 			break
