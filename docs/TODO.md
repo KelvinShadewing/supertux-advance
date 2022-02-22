@@ -70,3 +70,5 @@
 [ ] World travel
 [x] In-game timer
 [x] Jump buffering
+[ ] Boiling Water
+[ ] Mod Tracking (for requirement checks)

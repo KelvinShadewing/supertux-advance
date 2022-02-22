@@ -9,7 +9,7 @@
 	{
 		base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.maxcoins++
+		game.maxCoins++
 	}
 
 	function run()
@@ -59,11 +59,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 1
-				game.maxenergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxenergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty
 				game.weapon = 1
 			}
 			playSoundChannel(sndHeal, 0, 1)
@@ -88,11 +88,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 2
-				game.maxenergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxenergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty
 				game.weapon = 2
 			}
 			playSoundChannel(sndHeal, 0, 1)
@@ -369,7 +369,7 @@
 			if(game.weapon == 0) game.weapon = 3
 			else {
 				game.subitem = game.weapon
-				game.maxenergy = 1
+				game.maxEnergy = 1
 				game.weapon = 3
 			}
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
@@ -418,7 +418,7 @@
 			deleteActor(id)
 		}
 
-		drawSprite(getroottable()[game.characters[game.playerchar][1]], game.weapon, x - camx, y + 8 - camy)
+		drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, x - camx, y + 8 - camy)
 	}
 }
 
@@ -497,11 +497,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 4
-				game.maxenergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxenergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty
 				game.weapon = 4
 			}
 			playSoundChannel(sndHeal, 0, 1)

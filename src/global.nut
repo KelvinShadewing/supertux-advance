@@ -10,21 +10,21 @@
 	difficulty = 0
 	file = 0
 	coins = 0
-	levelcoins = 0
-	maxcoins = 0 //Total coins in the level
+	levelCoins = 0
+	maxCoins = 0 //Total coins in the level
 	secrets = 0
 	enemies = 0
 	lives = 0
 	health = 4
 	maxHealth = 4
 	weapon = 0
-	maxenergy = 0
+	maxEnergy = 0
 	subitem = 0
 	completed = {} //List of completed level names
-	allcoins = {} //Levels that the player has gotten all enemies in
-	allenemies = {} //Levels that the player has beaten all enemies in
-	allsecrets = {} //Levels the player has found all secrets in
-	besttime = {} //Fastest time for a level
+	allCoins = {} //Levels that the player has gotten all enemies in
+	allEnemies = {} //Levels that the player has beaten all enemies in
+	allSecrets = {} //Levels the player has found all secrets in
+	bestTime = {} //Fastest time for a level
 	igt = 0 //Global IGT, which increments throughout the game's runtime
 	colorswitch = [
 		false,
@@ -41,7 +41,7 @@
 		//Konqi = ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
 	}
 	friends = {} //List of rescued friend characters
-	playerchar = "Tux" //Current player character
+	playerChar = "Tux" //Current player character
 	world = "res/map/overworld-0.json"
 	owx = 0
 	owy = 0
@@ -94,7 +94,7 @@
 		downPeek = -1
 		upPeek = -1
 	}
-	playerchar = 0
+	playerChar = 0
 	lang = "en"
 	showleveligt = false
 	showglobaligt = false

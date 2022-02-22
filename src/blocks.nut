@@ -19,7 +19,7 @@
 		slideshape = Rec(x, y - 1, 16, 8, 0)
 
 		if(_arr != null && _arr != "") coins = _arr.tointeger()
-		game.maxcoins += coins
+		game.maxCoins += coins
 	}
 
 	function run() {

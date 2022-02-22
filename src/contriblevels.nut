@@ -18,10 +18,10 @@
 						func = function() {
 							game=clone(gameDefault)
 							game.completed.clear()
-							game.allcoins.clear()
-							game.allenemies.clear()
-							game.allsecrets.clear()
-							game.besttime.clear()
+							game.allCoins.clear()
+							game.allEnemies.clear()
+							game.allSecrets.clear()
+							game.bestTime.clear()
 							game.file = contribFolder
 							game.path = "contrib/" + contribFolder + "/"
 							game.world = contribWorldmap

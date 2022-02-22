@@ -119,7 +119,7 @@ strDifficulty = [
 print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
-config.playerchar = "Tux"
+config.playerChar = "Tux"
 //startPlay("res/map/mario0.json")
 
 update()

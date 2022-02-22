@@ -2,10 +2,10 @@
 	local newdif = game.difficulty
 	game = clone(gameDefault)
 	game.completed.clear()
-	game.allcoins.clear()
-	game.allenemies.clear()
-	game.allsecrets.clear()
-	game.besttime.clear()
+	game.allCoins.clear()
+	game.allEnemies.clear()
+	game.allSecrets.clear()
+	game.bestTime.clear()
 	game.file = f
 	gvDoIGT = false
 	game.difficulty = newdif

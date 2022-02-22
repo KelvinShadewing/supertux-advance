@@ -16,8 +16,8 @@
 	actor.clear()
 	actlast = 0
 	game.health = game.maxHealth
-	game.levelcoins = 0
-	game.maxcoins = 0
+	game.levelCoins = 0
+	game.maxCoins = 0
 	game.secrets = 0
 	game.enemies = 0
 	gvInfoBox = ""
@@ -89,12 +89,12 @@
 			{
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
-					if(!gvPlayer && getroottable().rawin(game.playerchar)) {
+					if(!gvPlayer && getroottable().rawin(game.playerChar)) {
 						if(game.check == false) {
-							c = actor[newActor(getroottable()[game.playerchar], i.x + 8, i.y - 16)]
+							c = actor[newActor(getroottable()[game.playerChar], i.x + 8, i.y - 16)]
 						}
 						else {
-							c = actor[newActor(getroottable()[game.playerchar], game.chx, game.chy)]
+							c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
 						}
 					}
 					camx = c.x - (screenW() / 2)
@@ -108,7 +108,7 @@
 
 				case 2:
 					c = newActor(ItemBlock, i.x + 8, i.y - 8, 0)
-					game.maxcoins++
+					game.maxCoins++
 					break
 
 				case 3:
@@ -592,9 +592,9 @@
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 		}
 		//Draw energy
-		for(local i = 0; i < game.maxenergy; i++) {
+		for(local i = 0; i < game.maxEnergy; i++) {
 			if(gvPlayer) {
-				if(gvPlayer.rawin("energy") && game.maxenergy > 0) {
+				if(gvPlayer.rawin("energy") && game.maxEnergy > 0) {
 					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
 				}
@@ -604,7 +604,7 @@
 		//Draw coins and lives
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
 		drawText(font2, 24, screenH() - 23, game.coins.tostring())
-		drawSprite(getroottable()[game.characters[game.playerchar][1]], game.weapon, screenW() - 16, screenH() - 12)
+		drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - 16, screenH() - 12)
 		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 
 		//Draw subitem
@@ -638,7 +638,7 @@
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
-			drawSprite(getroottable()[game.characters[game.playerchar][1]], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+			drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 
 		//Draw warning sign

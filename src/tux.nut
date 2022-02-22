@@ -66,7 +66,7 @@
 		if(!gvPlayer) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
-		energy = game.maxenergy
+		energy = game.maxEnergy
 		anFall = anFallN
 	}
 
@@ -93,15 +93,15 @@
 			firetime--
 		}
 
-		if(firetime == 0 && energy < game.maxenergy) {
+		if(firetime == 0 && energy < game.maxEnergy) {
 			energy++
 			firetime = 60
 		}
 
 
-		if(game.weapon == 0) game.maxenergy = 0
-		if(game.weapon == 3) game.maxenergy = 4
-		if(energy > game.maxenergy) energy = game.maxenergy
+		if(game.weapon == 0) game.maxEnergy = 0
+		if(game.weapon == 3) game.maxEnergy = 4
+		if(energy > game.maxEnergy) energy = game.maxEnergy
 
 		/////////////
 		// ON LAND //
@@ -979,8 +979,8 @@
 		local swap = game.subitem
 
 		if(game.weapon == game.subitem) {
-			if(game.maxenergy < 4 - game.difficulty) {
-				game.maxenergy++
+			if(game.maxEnergy < 4 - game.difficulty) {
+				game.maxEnergy++
 				game.subitem = 0
 				tftime = 0
 				playSound(sndHeal, 0)

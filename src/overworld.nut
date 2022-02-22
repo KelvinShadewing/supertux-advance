@@ -203,8 +203,8 @@
 		x += hspeed
 		y += vspeed
 
-		if(hspeed == 0 && vspeed == 0) drawSprite(getroottable()[game.characters[game.playerchar][0]], 0, x - camx, y - camy)
-		else drawSprite(getroottable()[game.characters[game.playerchar][0]], getFrames() / 8, x - camx, y - camy)
+		if(hspeed == 0 && vspeed == 0) drawSprite(getroottable()[game.characters[game.playerChar][0]], 0, x - camx, y - camy)
+		else drawSprite(getroottable()[game.characters[game.playerChar][0]], getFrames() / 8, x - camx, y - camy)
 
 		gvLevel = level
 	}
@@ -228,9 +228,9 @@
 			else drawSprite(sprLevels, 0, x - camx, y - camy)
 		}
 
-		if(game.allcoins.rawin(level)) drawSprite(sprLevels, 2, x - camx, y - camy)
-		if(game.allenemies.rawin(level)) drawSprite(sprLevels, 3, x - camx, y - camy)
-		if(game.allsecrets.rawin(level)) drawSprite(sprLevels, 4, x - camx, y - camy)
+		if(game.allCoins.rawin(level)) drawSprite(sprLevels, 2, x - camx, y - camy)
+		if(game.allEnemies.rawin(level)) drawSprite(sprLevels, 3, x - camx, y - camy)
+		if(game.allSecrets.rawin(level)) drawSprite(sprLevels, 4, x - camx, y - camy)
 
 		//Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
@@ -434,8 +434,8 @@
 
 	if(gvLevel != "") {
 		drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvLevel].len() * 4), 8, gvLangObj["level"][gvLevel])
-		if(game.besttime.rawin(gvLevel)) {
-			local pb = formatTime(game.besttime[gvLevel])
+		if(game.bestTime.rawin(gvLevel)) {
+			local pb = formatTime(game.bestTime[gvLevel])
 			local pbx = (pb.len() / 2) * 8
 			drawText(font2, (screenW() / 2) - pbx, 24, pb)
 		}
@@ -443,7 +443,7 @@
 
 	drawSprite(sprCoin, 0, 16, screenH() - 16)
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())
-	drawSprite(getroottable()[game.characters[game.playerchar][1]], game.weapon, screenW() - 16, screenH() - 12)
+	drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - 16, screenH() - 12)
 	drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 
 	drawDebug()

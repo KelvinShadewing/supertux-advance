@@ -34,7 +34,7 @@ The object layers include:
 
   `songPlay(song)` Sets the level music. Replace `song` with one of the songs found in `assets.nut`.
 
-  `game.maxcoins = x` Set the number of coins to get the level's coin achievement.
+  `game.maxCoins = x` Set the number of coins to get the level's coin achievement.
 
 * **water** - Zones full of water. Because water is dynamically-sized as well, it uses recangles.
 
