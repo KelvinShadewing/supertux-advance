@@ -22,12 +22,13 @@
 ::endGoal <- function() {
 	if(levelEndRunner == 0){
 		gvPlayer.canMove = false
-		gvPlayer.endmode = true
+		gvPlayer.endMode = true
 		if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
 		gvPlayer.invincible = 999
 		if(game.levelCoins >= game.maxCoins && !game.allCoins.rawin(gvMap.name)) game.allCoins[gvMap.name] <- true
 		if(game.secrets <= 0 && !game.allSecrets.rawin(gvMap.name)) game.allSecrets[gvMap.name] <- true
 		if(game.enemies <= 0 && !game.allEnemies.rawin(gvMap.name)) game.allEnemies[gvMap.name] <- true
+		game.coins += game.levelCoins
 
 		playSound(sndWin, 0)
 		stopMusic()

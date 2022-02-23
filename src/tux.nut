@@ -18,7 +18,7 @@
 	firetime = 0
 	hurt = 0
 	swimming = false
-	endmode = false
+	endMode = false
 	canstomp = true //If they can use jumping as an attack
 	sprite = sprTux
 	invincible = 0
@@ -514,8 +514,8 @@
 					if(placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) anim = anSlide
 				}
 			} else {
-				if(hspeed < 1 && endmode) hspeed += 0.2
-				if(endmode && placeFree(x + 2, y)) rspeed = hspeed
+				if(hspeed < 1 && endMode) hspeed += 0.2
+				if(endMode && placeFree(x + 2, y)) rspeed = hspeed
 				else rspeed = 0
 			}
 
@@ -1030,16 +1030,11 @@
 ::TuxDie <- class extends Actor {
 	vspeed = -4.0
 	timer = 150
-	mywep = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
-		mywep = game.weapon
-		if(game.lives == 0 || game.check == false) game.weapon = 0
-		if(game.lives == 0) game.check = false
-		if(game.lives > 0) game.lives--
 	}
 
 	function run() {
@@ -1050,7 +1045,7 @@
 			startPlay(gvMap.file)
 			if(game.check == false) gvIGT = 0
 		}
-		switch(mywep) {
+		switch(game.weapon) {
 			case 0:
 				drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
 				break

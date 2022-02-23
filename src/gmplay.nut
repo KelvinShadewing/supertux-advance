@@ -132,6 +132,7 @@
 					break
 
 				case 8:
+					game.maxCoins += 50
 					c = newActor(ItemBlock, i.x + 8, i.y - 8, 6)
 					break
 
@@ -400,6 +401,16 @@
 					game.enemies++
 					break
 
+				case 68:
+					c = newActor(Coin5, i.x + 8, i.y - 8)
+					game.maxCoins += 5
+					break
+
+				case 69:
+					c = newActor(Coin10, i.x + 8, i.y - 8)
+					game.maxCoins += 10
+					break
+
 				case 73:
 					c = newActor(Jumpy, i.x + 8, i.y - 8, i.name)
 					game.enemies++
@@ -603,9 +614,9 @@
 
 		//Draw coins and lives
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
-		drawText(font2, 24, screenH() - 23, game.coins.tostring())
+		if(game.maxCoins > 0) drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - 16, screenH() - 12)
-		drawText(font2, screenW() - 26 - (game.lives.tostring().len() * 8), screenH() - 23, game.lives.tostring())
 
 		//Draw subitem
 		drawSprite(sprSubItem, 0, screenW() - 18, 18)
@@ -652,10 +663,10 @@
 		}
 
 		//Keys
-		if(gvKeyCopper) drawSprite(sprKeyCopper, 0, screenW() - 36, 16)
-		if(gvKeySilver) drawSprite(sprKeySilver, 0, screenW() - 50, 16)
-		if(gvKeyGold) drawSprite(sprKeyGold, 0, screenW() - 64, 16)
-		if(gvKeyMythril) drawSprite(sprKeyMythril, 0, screenW() - 78, 16)
+		if(gvKeyCopper) drawSprite(sprKeyCopper, 0, screenW() - 32, screenH() - 16)
+		if(gvKeySilver) drawSprite(sprKeySilver, 0, screenW() - 46, screenH() - 16)
+		if(gvKeyGold) drawSprite(sprKeyGold, 0, screenW() - 60, screenH() - 16)
+		if(gvKeyMythril) drawSprite(sprKeyMythril, 0, screenW() - 74, screenH() - 16)
 	}
 	else {
 		local ln = 3

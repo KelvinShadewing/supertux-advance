@@ -25,6 +25,52 @@
 	function _typeof() { return "Coin" }
 }
 
+::Coin5 <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+		frame = randFloat(4)
+		game.maxCoins++
+	}
+
+	function run()
+	{
+		frame += 0.2
+		drawSprite(sprCoin5, frame, x - camx, y - camy)
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y, 5)
+		}
+	}
+
+	function _typeof() { return "Coin" }
+}
+
+::Coin10 <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+		frame = randFloat(4)
+		game.maxCoins++
+	}
+
+	function run()
+	{
+		frame += 0.2
+		drawSprite(sprCoin10, frame, x - camx, y - camy)
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y, 10)
+		}
+	}
+
+	function _typeof() { return "Coin" }
+}
+
 ::Berry <- class extends Actor{
 	constructor(_x, _y, _arr = null)
 	{
@@ -413,7 +459,7 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
-			game.lives++
+			game.levelCoins += 50
 			playSound(snd1up, 0)
 			deleteActor(id)
 		}

@@ -19,6 +19,8 @@
 	maxHealth = 4
 	weapon = 0
 	maxEnergy = 0
+	fireBonus = 0
+	iceBonus = 0
 	subitem = 0
 	completed = {} //List of completed level names
 	allCoins = {} //Levels that the player has gotten all enemies in

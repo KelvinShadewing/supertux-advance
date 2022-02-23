@@ -3441,18 +3441,6 @@
                 {
                  "gid":65,
                  "height":16,
-                 "id":566,
-                 "name":"RingCarrier,96,4,2,RingCarrier,128,2,2,CoinRing,64,16,1",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":576,
-                 "y":1248
-                }, 
-                {
-                 "gid":65,
-                 "height":16,
                  "id":567,
                  "name":"StaticLight,sprLightFire,1",
                  "rotation":0,
@@ -3473,6 +3461,102 @@
                  "width":16,
                  "x":112,
                  "y":880
+                }, 
+                {
+                 "gid":70,
+                 "height":16,
+                 "id":570,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":448,
+                 "y":1344
+                }, 
+                {
+                 "gid":70,
+                 "height":16,
+                 "id":571,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":608,
+                 "y":1424
+                }, 
+                {
+                 "gid":70,
+                 "height":16,
+                 "id":572,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":720,
+                 "y":1392
+                }, 
+                {
+                 "gid":70,
+                 "height":16,
+                 "id":573,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":336,
+                 "y":1408
+                }, 
+                {
+                 "gid":69,
+                 "height":16,
+                 "id":574,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":496,
+                 "y":1424
+                }, 
+                {
+                 "gid":69,
+                 "height":16,
+                 "id":575,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":576,
+                 "y":1360
+                }, 
+                {
+                 "gid":69,
+                 "height":16,
+                 "id":576,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":688,
+                 "y":1328
+                }, 
+                {
+                 "gid":69,
+                 "height":16,
+                 "id":577,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":752,
+                 "y":1424
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3481,7 +3565,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":570,
+ "nextobjectid":578,
  "orientation":"orthogonal",
  "properties":[
         {
