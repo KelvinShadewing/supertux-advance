@@ -90,6 +90,18 @@
                  "width":16,
                  "x":80,
                  "y":112
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":33,
+                 "name":"0-7B",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -103,15 +115,15 @@
          "name":"trigger",
          "objects":[
                 {
-                 "height":400.2,
+                 "height":380.915873846128,
                  "id":32,
                  "name":"gvLightTarget = 0xffffffff",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":667,
-                 "x":-16,
-                 "y":16
+                 "width":705.502552309273,
+                 "x":-32,
+                 "y":-143.056625053519
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -120,7 +132,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":33,
+ "nextobjectid":36,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -129,7 +141,7 @@
          "value":"songPlay(musOverworld)\nfreeKonqi()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -795,6 +807,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":40
 }
