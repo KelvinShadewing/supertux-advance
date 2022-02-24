@@ -61,11 +61,11 @@
 }
 
 ::formatTime <- function(time) {
-	local seconds = (time % 6000).tofloat() / 60.0
+	local seconds = (time % 3600).tofloat() / 60.0
 	seconds *= 100.0
 	seconds = floor(seconds).tofloat()
 	seconds /= 100
-	local minutes = floor(time / 6000)
+	local minutes = floor(time / 3600)
 	local val = minutes.tostring() + ":"
 	if(seconds < 10) val += "0"
 	val += seconds.tostring()
