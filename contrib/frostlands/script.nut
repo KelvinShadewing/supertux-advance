@@ -32,7 +32,7 @@ print("Loading Frostlands")
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		slideshape = Rec(x, y - 1, 12, 8, 0)
-		fireshape = Rec(x, y, 12, 12, 0)
+		fireshape = Rec(x, y, 16, 16, 0)
 		tileSetSolid(x, y, 1)
 	}
 
