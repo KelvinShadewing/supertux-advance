@@ -287,7 +287,7 @@
 					if(getcon("down", "hold") || !placeFree(x, y - 8)) anim = anCrawl
 					else anim = anWalk
 				}
-				if(getcon("jump", "press") || getcon("up", "press")) if(placeFree(x, y + 2) && placeFree(x, y - 2)) anim = anFall
+				if(getcon("jump", "press") || getcon("up", "press")) if(!getcon("shoot", "hold")) if(placeFree(x, y + 2) && placeFree(x, y - 2)) anim = anFall
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -656,6 +656,8 @@
 				vspeed /= 2.0
 				newActor(Splash, x, y)
 			}
+			anFall = anFallN
+			if(anim == anFallW) anim = anFallN
 
 			//Animation states
 			switch(anim) {

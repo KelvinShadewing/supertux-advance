@@ -699,6 +699,8 @@
 				vspeed /= 2.0
 				newActor(Splash, x, y)
 			}
+			anFall = anFallN
+			if(anim == anFallW) anim = anFallN
 
 			//Animation states
 			switch(anim) {
