@@ -153,9 +153,31 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":12612.6666666667,
+                 "width":4132.6666666667,
                  "x":-29.5,
                  "y":544
+                }, 
+                {
+                 "height":349,
+                 "id":1144,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2384.67,
+                 "x":5088,
+                 "y":560
+                }, 
+                {
+                 "height":349,
+                 "id":1145,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2384.67,
+                 "x":8224,
+                 "y":576
                 }],
          "opacity":0.97,
          "type":"objectgroup",
@@ -4099,7 +4121,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1144,
+ "nextobjectid":1146,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -4108,7 +4130,7 @@
          "value":"drawBG = dbgOcean\nsongPlay(musAirship)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -4269,6 +4291,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":700
 }
