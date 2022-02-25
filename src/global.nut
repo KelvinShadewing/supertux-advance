@@ -41,6 +41,16 @@
 		Tux = ["sprTuxOverworld", "sprTuxDoll", "sprTux", [40, 41]]
 		//Konqi = ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
 	}
+	secretOrbs = [
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
+	]
 	friends = {} //List of rescued friend characters
 	playerChar = "Tux" //Current player character
 	world = "res/map/overworld-0.json"

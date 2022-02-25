@@ -420,6 +420,10 @@
 					c = newActor(EvilBlock, i.x + 8, i.y - 8)
 					break
 
+				case 77:
+					c = newActor(SpecialBall, i.x + 8, i.y - 8, i.name.tointeger())
+					break
+
 				case 78:
 					c = newActor(Berry, i.x + 8, i.y - 8)
 					break

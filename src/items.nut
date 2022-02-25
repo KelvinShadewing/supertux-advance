@@ -559,7 +559,24 @@
 }
 
 ::SpecialBall <- class extends Actor {
+	num = 0
+	shape = null
 
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Cir(x, y, 8)
+		num = _arr
+		if(game.secretOrbs[num]) deleteActor(id)
+	}
+
+	function run() {
+		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+			game.secretOrbs[num] = true
+			deleteActor(id)
+		}
+
+		drawSprite(sprSpecialBall, getFrames() / 4, x - camx, y - camy)
+	}
 }
 
 ::CoinRing <- class extends Actor {
