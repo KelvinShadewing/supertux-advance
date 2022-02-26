@@ -9,7 +9,7 @@
 	},
 
 	"new-game-menu" : {
-		"file-exists" : "[FILE EXISTS!]"
+		"file-exists" : "[FILE EXISTS]"
 	},
 
 	"contrib-menu" : {
