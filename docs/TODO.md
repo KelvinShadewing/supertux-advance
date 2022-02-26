@@ -32,7 +32,7 @@
 [ ] Swoops
 [x] Cannon Bobs
 [x] Spinning castle fire
-[ ] Bouncing castle fire
+[x] Bouncing castle fire
 [x] Fish
 [x] Haywire
 
@@ -67,6 +67,8 @@
 [x] Powerup leveling
 [x] Sub items
 [ ] General store
+[ ] Fix the infamous slope glitch
+[ ] add glow to Blazeborn
 [ ] World travel
 [x] In-game timer
 [x] Jump buffering

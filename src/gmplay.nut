@@ -616,11 +616,10 @@
 			}
 		}
 
-		//Draw coins and lives
+		//Draw coins
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
 		if(game.maxCoins > 0) drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
-		drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - 16, screenH() - 12)
 
 		//Draw subitem
 		drawSprite(sprSubItem, 0, screenW() - 18, 18)
