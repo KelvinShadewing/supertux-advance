@@ -102,6 +102,18 @@
                  "width":16,
                  "x":112,
                  "y":112
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":36,
+                 "name":"old-6b",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -132,7 +144,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":36,
+ "nextobjectid":37,
  "orientation":"orthogonal",
  "properties":[
         {
