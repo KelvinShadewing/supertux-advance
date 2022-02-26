@@ -840,6 +840,8 @@
 
 		//Base movement
 		shape.setPos(x, y)
+		xprev = x
+		yprev = y
 
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {

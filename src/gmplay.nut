@@ -22,12 +22,12 @@
 	game.enemies = 0
 	gvInfoBox = ""
 	gvLastSong = ""
-	autocon = {
-		up = false
-		down = false
-		left = false
-		right = false
-	}
+
+	//Reset auto/locked controls
+	autocon.up = false
+	autocon.down = false
+	autocon.left = false
+	autocon.right = false
 
 	//Reset keys
 	if(!game.check) {
@@ -491,12 +491,6 @@
 	//in the log if the map fails, so users can check why a level
 	//refuses to run.
 
-	//Reset auto/locked controls
-	autocon.up = false
-	autocon.down = false
-	autocon.left = false
-	autocon.right = false
-
 	//Execute level code
 	print("Running level code...")
 	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
@@ -532,8 +526,8 @@
 	{
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
-				px = (gvCamTarget.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
-				py = (gvCamTarget.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
+				px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (screenW() / 2) + lx
+				py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (screenH() / 2) + ly
 			}
 			else {
 				local pw = max(screenW(), 320)
