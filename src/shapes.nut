@@ -228,7 +228,7 @@
 					if(b.y > a.y + a.h) hy = a.y + a.h
 
 					//Check distance
-					if(distance2(hx, hy, b.x, b.y) <= b.r) return true
+					if(inDistance2(hx, hy, b.x, b.y, b.r)) return true
 					break
 					//Still need to check for collisions with slopes and liquid
 
@@ -252,7 +252,7 @@
 					if(a.y > b.y + b.h) hy = b.y + b.h
 
 					//Check distance
-					if(distance2(a.x, a.y, hx, hy) <= a.r) return true
+					if(inDistance2(a.x, a.y, hx, hy, a.r)) return true
 					break
 					//Still need to check for collisions with slopes and liquid
 

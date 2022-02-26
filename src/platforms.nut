@@ -251,7 +251,7 @@
 	function run() {
 		//Rotate chain
 		//s = sin(getFrames() / 5.0) * 4.0 //Save for flamethrower animation
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > screenW() * 0.8) return
+		if(gvPlayer) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, screenW() * 0.8)) return
 		a += s
 
 		if(r > 0) for(local i = 0; i < r; i++) {

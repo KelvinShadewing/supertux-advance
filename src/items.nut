@@ -16,7 +16,7 @@
 	{
 		frame += 0.2
 		drawSprite(sprCoin, frame, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
@@ -39,7 +39,7 @@
 	{
 		frame += 0.2
 		drawSprite(sprCoin5, frame, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 		}
@@ -62,7 +62,7 @@
 	{
 		frame += 0.2
 		drawSprite(sprCoin10, frame, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 		}
@@ -80,7 +80,7 @@
 	function run()
 	{
 		drawSprite(sprBerry, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			game.berries++
 			stopSound(sndGulp)
@@ -101,7 +101,7 @@
 	function run()
 	{
 		drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 1
@@ -130,7 +130,7 @@
 	function run()
 	{
 		drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 2
@@ -201,7 +201,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(game.health < game.maxHealth) {
 				game.health++
 				for(local i = 0; i < 4; i++) {
@@ -266,7 +266,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(game.health < game.maxHealth - 3) {
 				game.health += 4
 				for(local i = 0; i < 4; i++) {
@@ -334,7 +334,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
@@ -370,7 +370,7 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			gvPlayer.invincible = 645
 			deleteActor(id)
 			playMusic(musInvincible, -1)
@@ -426,7 +426,7 @@
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer) if(distance2(gvPlayer.x, gvPlayer.y, x, y) <= 16) if(gvPlayer.rawin("energy") && game.weapon == 3) gvPlayer.energy = 4
+		if(gvPlayer) if(inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16)) if(gvPlayer.rawin("energy") && game.weapon == 3) gvPlayer.energy = 4
 
 		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy - 8, 0, 2, 1, 1, 0.25)
 		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy + 8, 0, 0, 1, 1, 0.25)
@@ -458,7 +458,7 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			game.levelCoins += 50
 			playSound(snd1up, 0)
 			deleteActor(id)
@@ -517,7 +517,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
@@ -539,7 +539,7 @@
 	function run()
 	{
 		drawSprite(sprEarthShell, getFrames() / 16, x - camx, y - camy)
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y + 2) <= 14) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 4
@@ -570,7 +570,7 @@
 	}
 
 	function run() {
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			game.secretOrbs[num] = true
 			deleteActor(id)
 		}
@@ -623,7 +623,7 @@
 
 	function run() {
 		//Pickup
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			deleteActor(id)
 			game.health += 4
 			switch(color) {

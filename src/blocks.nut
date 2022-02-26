@@ -413,7 +413,7 @@
 				gvInfoBox = text
 			}
 
-			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+			if(gvInfoBox == text) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
 		}
 
 		v += vspeed
@@ -441,7 +441,7 @@
 			}
 
 			if(gvInfoBox == text) {
-				if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+				if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
 				else if(gvPlayer.invincible <= 1) gvPlayer.invincible = 10
 			}
 		}
@@ -493,7 +493,7 @@
 				playSound(sndBump, 0)
 			}
 
-			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) gvInfoBox = ""
+			if(gvInfoBox == text) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
 		}
 
 		v += vspeed
@@ -803,7 +803,7 @@
 	function run() {
 		drawSpriteZ(2, sprLockBlock, color, x - camx, y - camy)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 32) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
 			switch(color) {
 				case 0:
 					if(gvKeyCopper) {

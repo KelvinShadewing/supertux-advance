@@ -69,7 +69,7 @@
 			}
 		}
 		else {
-			if(distance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2)) <= 180) active = true
+			if(inDistance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2), 240)) active = true
 		}
 
 		if(active && frozen > 0) {
@@ -824,7 +824,7 @@
 			if(x > gvPlayer.x + 8 && frame > 0.5) frame -= 0.1
 			if(x < gvPlayer.x - 8 && frame < 4.5) frame += 0.1
 
-			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 160 && timer == 0 && (frame < 1 || frame > 4)) {
+			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 160) && timer == 0 && (frame < 1 || frame > 4)) {
 				if(frame < 1) {
 					local c = actor[newActor(CannonBob, x - 4, y - 4)]
 					c.hspeed = ((gvPlayer.x - x) / 48)
@@ -1066,7 +1066,7 @@
 
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape)) biting = true
-				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 64 && inWater(x, y)) {
+				if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64) && inWater(x, y)) {
 					biting = true
 					timer = 240
 
@@ -1078,7 +1078,7 @@
 					if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
 
 					//Swim harder if far from the player
-					if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) {
+					if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
 						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
 						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
@@ -1256,7 +1256,7 @@
 		base.run()
 
 		if(gvPlayer) {
-			if(distance2(x + (huntdir * 48), y - 32, gvPlayer.x, gvPlayer.y) <= 64 && timer == 0) {
+			if(inDistance2(x + (huntdir * 48), y - 32, gvPlayer.x, gvPlayer.y, 64) && timer == 0) {
 				timer = 240
 				newActor(ClamorPearl, x, y, null)
 			}
@@ -1362,7 +1362,7 @@
 
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape)) biting = true
-				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 256 && inWater(x, y)) {
+				if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 256) && inWater(x, y)) {
 					biting = true
 
 					//Chase player
@@ -1380,7 +1380,7 @@
 					}
 
 					//Swim harder if far from the player
-					if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 64) {
+					if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
 						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
 						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
@@ -1502,8 +1502,8 @@
 		base.run()
 		if(gvPlayer) gvPlayer.x < x ? flip = 1 : flip = 0
 
-		if(distance2(x, y, x, ystart) < 16) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart)) * dir
-		else if(distance2(x, y, x, ystart + range) < 16) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart + range)) * dir
+		if(inDistance2(x, y, x, ystart, 16)) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart)) * dir
+		else if(inDistance2(x, y, x, ystart + range, 16)) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart + range)) * dir
 		else vspeed = dir * 2.0
 
 		vspeed += dir * 0.2
@@ -1730,7 +1730,7 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 16) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			gvPlayer.hurt = 1
 		}
 
@@ -1813,7 +1813,7 @@
 						if(hspeed < 0) flip = true
 					}
 
-					if(gvPlayer) if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= (64 + (16 * game.difficulty))) squish = true
+					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64 + (16 * game.difficulty))) squish = true
 				}
 
 				if(gvPlayer && chasing) {

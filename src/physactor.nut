@@ -519,7 +519,7 @@
 	function run() {
 		//Follow path
 		if(moving) {
-			if(distance2(x, y, tx, ty) > speed) {
+			if(!inDistance2(x, y, tx, ty, speed)) {
 				dir = pointAngle(x, y, tx, ty)
 				x += lendirX(speed, dir)
 				y += lendirY(speed, dir)

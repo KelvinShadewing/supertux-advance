@@ -33,9 +33,9 @@
 		if(gvPlayer && sayfunc != null) {
 			if(hitTest(shape, gvPlayer.shape) && getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
 
-			if(gvInfoBox == text) if(distance2(x, y, gvPlayer.x, gvPlayer.y) > 32) gvInfoBox = ""
+			if(gvInfoBox == text) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) gvInfoBox = ""
 
-			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 32) {
+			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
 				if(x > gvPlayer.x + 2) flip = 1
 				if(x < gvPlayer.x - 2) flip = 0
 			}
