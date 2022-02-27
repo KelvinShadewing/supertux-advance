@@ -526,8 +526,14 @@
 	{
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
-				px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (screenW() / 2) + lx
-				py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (screenH() / 2) + ly
+				if(debug && mouseDown(0)) {
+					px = (gvCamTarget.x) - (screenW() / 2) + lx
+					py = (gvCamTarget.y) - (screenH() / 2) + ly
+				}
+				else {
+					px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (screenW() / 2) + lx
+					py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (screenH() / 2) + ly
+				}
 			}
 			else {
 				local pw = max(screenW(), 320)
@@ -535,8 +541,14 @@
 				local ptx = (gvCamTarget.x) - (screenW() / 2)
 				local pty = (gvCamTarget.y) - (screenH() / 2)
 
-				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
-				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
+				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) {
+					if(debug && mouseDown(0)) ptx = gvPlayer.x - (screenW() / 2) + lx
+					else ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
+				}
+				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
+					if(debug && mouseDown(0)) pty = gvPlayer.y - (screenH() / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
+				}
 
 				px = ptx
 				py = pty
