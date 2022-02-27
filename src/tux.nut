@@ -68,6 +68,8 @@
 		starty = _y.tofloat()
 		energy = game.maxEnergy
 		anFall = anFallN
+		xprev = x
+		yprev = y
 	}
 
 	function run() {
