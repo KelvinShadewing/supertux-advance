@@ -286,7 +286,7 @@
 				else if(!placeFree(x, y + 8) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
 				if(((!getcon("down", "hold") && !autocon.down || abs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) if(anim == anSlide || anim == anCrawl) {
-					if(getcon("down", "hold") || !placeFree(x, y - 8) || autocon.down) anim = anCrawl
+					if(getcon("down", "hold") || autocon.down|| !placeFree(x, y - 8) || autocon.down) anim = anCrawl
 					else anim = anWalk
 				}
 				if(getcon("jump", "press") || getcon("up", "press")) if(!getcon("shoot", "hold")) if(placeFree(x, y + 2) && placeFree(x, y - 2)) anim = anFall
@@ -500,7 +500,7 @@
 				}
 
 				if(anim == anCrawl) {
-					if((!getcon("down", "hold") || !autocon.down) && placeFree(x, y - 6)) anim = anStand
+					if((!getcon("down", "hold") && !autocon.down) && placeFree(x, y - 6)) anim = anStand
 					else {
 						//Ping pong animation
 						frame += (hspeed / 8) * climbdir
