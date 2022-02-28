@@ -71,6 +71,7 @@
 ::sprSam <- newSprite("res/gfx/sam.png", 12, 32, 0, 0, 6, 32)
 ::sprTuckles <- newSprite("res/gfx/tuckles.png", 18, 34, 0, 0, 8, 34)
 ::sprGaruda <- newSprite("res/gfx/garuda.png", 35, 36, 0, 0, 17, 36)
+::sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 0, 0, 16, 32)
 
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
