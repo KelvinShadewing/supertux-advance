@@ -95,24 +95,36 @@
 										return true
 										break
 									case 1:
+										if (((a.x - a.w) - (b.x + b.w)) == 0)
+											return false
+									
 										//Get slope angle
 										local a0 = b.h / b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
 										if(a1 > a0) return false
 										break
 									case 2:
+										if (((a.x + a.w) - (b.x - b.w)) == 0)
+											return false
+									
 										//Get slope angle
 										local a0 = b.h / -b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x + a.w) - (b.x - b.w))
 										if(a1 < a0) return false
 										break
 									case 3:
+										if (((a.x - a.w) - (b.x + b.w)) == 0)
+											return false
+									
 										//Get slope angle
 										local a0 = -b.h / b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x + b.w))
 										if(a1 < a0) return false
 										break
 									case 4:
+										if (((a.x + a.w) - (b.x - b.w)) == 0)
+											return false
+									
 										//Get slope angle
 										local a0 = -b.h / -b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x + a.w) - (b.x - b.w))
@@ -131,6 +143,8 @@
 									case 1:
 									case 2:
 									case 3:
+										if (((a.x - a.w) - (b.x + b.w)) == 0)
+											return false
 										//Get slope angle
 										local a0 = b.h / b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
