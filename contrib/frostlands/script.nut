@@ -6,6 +6,7 @@ print("Loading Frostlands")
 
 ::sprFireBlock <- newSprite("res/gfx/Fireblock.png", 16, 16, 0, 0, 0, 0)
 
+::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/tinyfireguinb.png", 13, 23, 0, 0, 6, 23)
 ::sprmark <- newSprite("contrib/frostlands/gfx/mark.png", 67, 48, 0, 0, 32, 47)
 ::sprmarq <- newSprite("contrib/frostlands/gfx/marqies.png", 34, 40, 0, 0, 32, 40)
 //background shiz
