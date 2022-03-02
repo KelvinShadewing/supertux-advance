@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.0.5 Nightly"
+::gvVersion <- "0.0.8 Nightly"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
