@@ -65,7 +65,12 @@
 			if(keyfunc(config.key.shoot) || joyfunc(0, config.joy.shoot)) return true
 			break
 		case "run":
-			if(keyfunc(config.key.run) || joyfunc(0, config.joy.run)) return true
+			if(config.autorun) {
+				if(!keyfunc(config.key.run) && !joyfunc(0, config.joy.run)) return true
+			}
+			else {
+				if(keyfunc(config.key.run) || joyfunc(0, config.joy.run)) return true
+			}
 			break
 		case "sneak":
 			if(keyfunc(config.key.sneak) || joyfunc(0, config.joy.sneak)) return true
@@ -227,101 +232,144 @@
 	fileWrite("config.json", jsonWrite(config))
 }
 
-::rebindGamepad <- function() {
+::rebindGamepad <- function(joystep) {
 	resetDrawTarget()
 	local done = false
-	local joystep = 4
 
 	update()
 
 	while(!done) {
 		drawBG()
 
+		if(keyPress(k_escape)) done = true
 		local message = gvLangObj["controls-menu"]["press-button-for"] + " "
 		switch(joystep) {
 			case 4:
 				message += gvLangObj["controls-menu"]["jump"]
+				if(keyPress(k_backspace)) {
+					config.joy.jump = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.jump = anyJoyPress(0)
-					joystep++
+					done = true
 				}
-				if(getcon("pause", "press")) done = true;
 				break
 			case 5:
 				message += gvLangObj["controls-menu"]["shoot"]
+				if(keyPress(k_backspace)) {
+					config.joy.shoot = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.shoot = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 6:
 				message += gvLangObj["controls-menu"]["run"]
+				if(keyPress(k_backspace)) {
+					config.joy.run = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.run = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 7:
 				message += gvLangObj["controls-menu"]["sneak"]
+				if(keyPress(k_backspace)) {
+					config.joy.sneak = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.sneak = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 8:
 				message += gvLangObj["controls-menu"]["pause"]
+				if(keyPress(k_backspace)) {
+					config.joy.pause = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.pause = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 9:
 				message += gvLangObj["controls-menu"]["item-swap"]
+				if(keyPress(k_backspace)) {
+					config.joy.swap = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.swap = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 10:
 				message += gvLangObj["controls-menu"]["menu-accept"]
+				if(keyPress(k_backspace)) {
+					config.joy.accept = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.accept = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 11:
 				message += gvLangObj["controls-menu"]["cam-left-peek"]
+				if(keyPress(k_backspace)) {
+					config.joy.leftPeek = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.leftPeek = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 12:
 				message += gvLangObj["controls-menu"]["cam-right-peek"]
+				if(keyPress(k_backspace)) {
+					config.joy.rightPeek = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.rightPeek = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 13:
 				message += gvLangObj["controls-menu"]["cam-down-peek"]
+				if(keyPress(k_backspace)) {
+					config.joy.downPeek = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.downPeek = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			case 14:
 				message += gvLangObj["controls-menu"]["cam-up-peek"]
+				if(keyPress(k_backspace)) {
+					config.joy.upPeek = -1
+					done = true
+				}
 				if(anyJoyPress(0) != -1) {
 					config.joy.upPeek = anyJoyPress(0)
-					joystep++
+					done = true
 				}
 				break
 			default:
 				done = true
 				break
 		}
-		message += "..."
+		message += "...\n" + gvLangObj["controls-menu"]["clear"]
 
 		setDrawColor(0x00000080)
 		drawRec(0, 0, 320, 24, true)

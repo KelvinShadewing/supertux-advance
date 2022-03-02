@@ -8,6 +8,8 @@
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Jumpy, Darknyan, Livewire, Blazeborn
 
+[dtsudo](https://github.com/dtsudo) - Bug fixes
+
 ## Graphics
 
 [Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics, elemental explosions

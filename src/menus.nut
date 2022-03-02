@@ -3,6 +3,7 @@
 ///////////
 
 ::menu <- []
+::menuLast <- []
 ::cursor <- 0
 ::cursorOffset <- 0
 const menuMax = 7 //Maximum number of slots that can be shown on screen
@@ -10,6 +11,12 @@ const fontH = 14
 ::textMenu <- function(){
 	//If no menu is loaded
 	if(menu == []) return
+
+	if(menu != menuLast) {
+		cursor = 0
+		cursorOffset = 0
+	}
+	menuLast = menu
 
 	//Draw options
 	//The number
@@ -66,23 +73,23 @@ const fontH = 14
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { cursor = 0; menu = meDifficulty }
+		func = function() { menu = meDifficulty }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
-		func = function() { cursor = 0; selectLoadGame() }
+		func = function() { selectLoadGame() }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
-		func = function() { cursor = 0; selectContrib(); }
+		func = function() { selectContrib(); }
 	}
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
-		func = function() { cursor = 0; menu = meOptions }
+		func = function() { menu = meOptions }
 	},
     	{
 		name = function() { return gvLangObj["main-menu"]["credits"] },
-		func = function() { cursor = 0; startCredits(); }
+		func = function() { startCredits(); }
     	}
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
@@ -127,11 +134,11 @@ const fontH = 14
 ::meOptions <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["keyboard"] },
-		func = function() { cursor = 0; menu = meKeybinds }
+		func = function() { menu = meKeybinds }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick"] },
-		func = function() { rebindGamepad() }
+		func = function() { menu = meJoybinds }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["language"] },
@@ -139,7 +146,7 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["timers"] },
-		func = function() { cursor = 0; menu = meTimers }
+		func = function() { menu = meTimers }
 	},
 	{
 		name = function() {
@@ -149,6 +156,28 @@ const fontH = 14
 			return msg
 		}
 		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() { return gvLangObj["options-menu"]["fullscreen"] },
+		func = function() { toggleFullscreen() }
+	},
+	{
+		name = function() {
+			local msg = gvLangObj["options-menu"]["stickspeed"]
+			if(config.stickspeed) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		}
+		func = function() { config.stickspeed = !config.stickspeed; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
+			local msg = gvLangObj["options-menu"]["autorun"]
+			if(config.autorun) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		}
+		func = function() { config.autorun = !config.autorun; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
@@ -221,8 +250,60 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
-		func = function() { cursor = 3; menu = meOptions }
-		back = function() { cursor = 3; menu = meOptions }
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
+	}
+]
+
+::meJoybinds <- [
+	{
+		name = function() { return gvLangObj["controls-menu"]["jump"] + ": " + (config.joy.jump != -1 ? config.joy.jump.tostring() : "") },
+		func = function() { rebindGamepad(4) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["shoot"] + ": " + (config.joy.shoot != -1 ? config.joy.shoot.tostring() : "") },
+		func = function() { rebindGamepad(5) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["run"] + ": " + config.joy.run.tostring() },
+		func = function() { rebindGamepad(6) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["sneak"] + ": " + config.joy.sneak.tostring() },
+		func = function() { rebindGamepad(7) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["pause"] + ": " + config.joy.pause.tostring() },
+		func = function() { rebindGamepad(8) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["item-swap"] + ": " + config.joy.swap.tostring() },
+		func = function() { rebindGamepad(9) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["menu-accept"] + ": " + config.joy.accept.tostring() },
+		func = function() { rebindGamepad(10) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-left-peek"] + ": " + config.joy.leftPeek.tostring() },
+		func = function() { rebindGamepad(11) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-right-peek"] + ": " + config.joy.rightPeek.tostring() },
+		func = function() { rebindGamepad(12) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-down-peek"] + ": " + config.joy.downPeek.tostring() },
+		func = function() { rebindGamepad(13) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-up-peek"] + ": " + config.joy.upPeek.tostring() },
+		func = function() { rebindGamepad(14) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
 	}
 ]
 
@@ -245,24 +326,24 @@ const fontH = 14
 ::meDifficulty <- [
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["easy"] },
-		func = function() { game.difficulty = 0; cursor = 0; menu = meNewGame }
+		func = function() { game.difficulty = 0; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["normal"] },
-		func = function() { game.difficulty = 1; cursor = 0; menu = meNewGame }
+		func = function() { game.difficulty = 1; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["hard"] },
-		func = function() { game.difficulty = 2; cursor = 0; menu = meNewGame }
+		func = function() { game.difficulty = 2; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
-		func = function() { game.difficulty = 3; cursor = 0; menu = meNewGame }
+		func = function() { game.difficulty = 3; menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["cancel"] },
-		func = function() { cursor = 0; menu = meMain }
-		back = function() { cursor = 0; menu = meMain }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
 	}
 ]
 
@@ -321,8 +402,8 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["cancel"] }
-		func = function() { cursor = 0; menu = meMain }
-		back = function() { cursor = 0; menu = meMain }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
 	}
 ]
 

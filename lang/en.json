@@ -22,7 +22,10 @@
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
 		"timers" : "Speedrun Timers",
-		"light" : "Lighting: "
+		"light" : "Lighting: ",
+		"fullscreen" : "Toggle Fullscreen",
+		"autorun" : "Invert Run Button: ",
+		"stickspeed" : "Stick Controls Speed: "
 	},
 
 	"timers-menu" : {
@@ -33,6 +36,7 @@
 	"controls-menu" : {
 		"press-key-for" : "Press key for",
 		"press-button-for" : "Press button for",
+		"clear" : "Press Backspace to clear.",
 		"up" : "Up",
 		"down" : "Down",
 		"left" : "Left",

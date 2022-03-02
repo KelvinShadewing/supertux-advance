@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.0.8 Nightly"
+::gvVersion <- "0.0.9 Nightly"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -91,7 +91,7 @@
 		rightPeek = k_end
 		downPeek = k_pagedown
 		upPeek = k_pageup
-	},
+	}
 	joy = {
 		jump = 0
 		shoot = 2
@@ -105,6 +105,8 @@
 		downPeek = -1
 		upPeek = -1
 	}
+	autorun = false
+	stickspeed = true
 	playerChar = 0
 	lang = "en"
 	showleveligt = false

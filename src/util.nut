@@ -6,6 +6,10 @@
 //They will be marked as such if this happens.
 
 ::mergeTable <- function(a, b) {
+	if(typeof a == null && typeof b == null) return null
+	if(typeof a == null) return b
+	if(typeof b == null) return a
+
 	//Create new table
 	local nt = clone(a)
 
