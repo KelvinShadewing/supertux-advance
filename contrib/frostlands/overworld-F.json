@@ -42,7 +42,73 @@
          "draworder":"topdown",
          "id":6,
          "name":"trigger",
-         "objects":[],
+         "objects":[
+                {
+                 "height":272.65,
+                 "id":121,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":331.111,
+                 "x":960,
+                 "y":272
+                }, 
+                {
+                 "height":149.333,
+                 "id":123,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":149.333,
+                 "x":1168,
+                 "y":576
+                }, 
+                {
+                 "height":61.8228,
+                 "id":124,
+                 "name":"gvLightTarget = 0x6080e0ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":104.593,
+                 "x":1120,
+                 "y":736
+                }, 
+                {
+                 "height":140.309,
+                 "id":125,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":203.778,
+                 "x":880,
+                 "y":688
+                }, 
+                {
+                 "height":36.2857,
+                 "id":127,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.5,
+                 "x":768,
+                 "y":784
+                }, 
+                {
+                 "height":59.3333,
+                 "id":130,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24.6667,
+                 "x":848,
+                 "y":784
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -229,7 +295,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":113,
+ "nextobjectid":131,
  "orientation":"orthogonal",
  "properties":[
         {
