@@ -513,8 +513,8 @@
 	local lx = 0
 	local ly = 0
 	if(gvPlayer) {
-		lx = ((joyZ(0) / js_max.tofloat()) * screenW() / 2.5)
-		ly = ((joyH(0) / js_max.tofloat()) * screenH() / 2.5)
+		lx = ((joyH(0) / js_max.tofloat()) * screenW() / 2.5)
+		ly = ((joyV(0) / js_max.tofloat()) * screenH() / 2.5)
 
 		if(getcon("leftPeek", "hold")) lx = -(screenW() / 2.5)
 		if(getcon("rightPeek", "hold")) lx = (screenW() / 2.5)
