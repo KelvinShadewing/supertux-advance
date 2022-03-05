@@ -1,8 +1,8 @@
 //asset stuffs
 print("Loading Frostlands")
 
-::bgAuroraALT <- newSprite("contrib/frostlands/gfx/aurora-alt.png", 720, 240, 0, 0, 0, 0)
-::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
+::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
+::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
 
 ::sprFireBlock <- newSprite("res/gfx/Fireblock.png", 16, 16, 0, 0, 0, 0)
 
