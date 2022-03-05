@@ -7,11 +7,11 @@ print("Loading Frostlands")
 ::sprFireBlock <- newSprite("res/gfx/Fireblock.png", 16, 16, 0, 0, 0, 0)
 
 //NPCS
-::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/tinyfireguinb.png", 13, 23, 0, 0, 6, 23)
-::sprRKO <- newSprite("contrib/frostlands/gfx/Rico.png", 18, 46, 0, 0, 9, 46)
-::sprmark <- newSprite("contrib/frostlands/gfx/mark.png", 67, 48, 0, 0, 32, 47)
-::sprmarq <- newSprite("contrib/frostlands/gfx/marqies.png", 34, 40, 0, 0, 32, 40)
-::sprTuckles2 <- newSprite("contrib/frostlands/gfx/tuckles2.png", 18, 34, 0, 0, 8, 34)
+::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/tinyfireguinb.png", 13, 23, 0, 0, 6, 23)
+::sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Frost.png", 18, 46, 0, 0, 9, 46)
+::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 67, 48, 0, 0, 32, 47)
+::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 34, 40, 0, 0, 32, 40)
+::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
 //background shiz
 
 ::dbgAuroraF <- function() {
