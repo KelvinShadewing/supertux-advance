@@ -29,7 +29,8 @@
 		"GT" : "The goldtown",
 		"B-1" : "NeverCity",
 		"B-2" : "freezing point",
-		"B-3" : "The funny(joke level)"
+		"B-3" : "Noted Bside",
+		"B-4" : "The funny"
 	},
 	"npc" : {
 		"null" : "",
@@ -45,12 +46,12 @@
 		"Hai! I'm Marqies. Welcome to the Feather Shrine! Something Cool is up ahead",
 		"mark" :
 		"...",
-		"Gold" :
-		"Hey there buddy, check the game's mod folder. there's a little suprise for you",
-		"flame" :
-		"One day I will get a game of my own.. just you wait!",
-		"pix" :
-		"Hi, im from an old scratch game made by the creator this mod. hope they update the game sometime! (dev note: I won't update it)",
+		"Frost" :
+		"oh, hello Tux. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. Soon, the Frostlands bonus levels will be available! so look out for those.",
+		"mrq2" :
+		"Yes, yes. I am also here.",
+		"mark2" :
+		"The earthshell isn't in any of the previous levels so.. uh.. here you go. ",
 		"ninja" :
 		"Oh... where am i?? Last thing I remember, I was in some shitty scratch game that could crash on the title screen.  ",
 		"tuc" :
