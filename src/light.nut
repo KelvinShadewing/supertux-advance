@@ -24,6 +24,14 @@
 
 ::runAmbientLight <- function() {
 	if(config.light) {
+		if((gvLightTarget & 0xFF) < 255) {
+			local newlight = gvLightTarget >> 8
+			gvLightTarget = (newlight << 8) + 255
+		}
+		if((gvLight & 0xFF) < 255) {
+			local newlight = gvLight >> 8
+			gvLight = (newlight << 8) + 255
+		}
 		if(gvLight != gvLightTarget) {
 			//Prevent floats
 			gvLight = gvLight.tointeger()
@@ -38,12 +46,12 @@
 			local tb = (gvLightTarget >> 8) & 0xFF
 
 			//Fade to color
-			if(lr != tr) lr += (tr - lr) / 30.0
-			if(abs(lr - tr) < 1) lr = tr
-			if(lg != tg) lg += (tg - lg) / 30.0
-			if(abs(lg - tg) < 1) lg = tg
-			if(lb != tb) lb += (tb - lb) / 30.0
-			if(abs(lb - tb) < 1) lb = tb
+			if(lr != tr) lr += (tr <=> lr) * 2
+			if(abs(lr - tr) < 2) lr = tr
+			if(lg != tg) lg += (tg <=> lg) * 2
+			if(abs(lg - tg) < 2) lg = tg
+			if(lb != tb) lb += (tb <=> lb) * 2
+			if(abs(lb - tb) < 2) lb = tb
 
 			gvLight = (ceil(lr) << 24) | (ceil(lg) << 16) | (ceil(lb) << 8) | 0xFF // Last 0xFF is alpha
 		}
