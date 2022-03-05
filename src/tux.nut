@@ -613,7 +613,10 @@
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						playSound(sndFireball, 0)
-						if(getcon("up", "hold")) c.vspeed = -2
+						if(getcon("up", "hold")) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
 						if(getcon("down", "hold")) {
 							c.vspeed = 2
 							c.hspeed /= 1.5
