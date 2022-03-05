@@ -6,6 +6,7 @@
 ::menuLast <- []
 ::cursor <- 0
 ::cursorOffset <- 0
+::cursorTimer <- 30
 const menuMax = 7 //Maximum number of slots that can be shown on screen
 const fontH = 14
 ::textMenu <- function(){
@@ -36,23 +37,29 @@ const fontH = 14
 	}
 
 	//Keyboard input
-	if(getcon("down", "press")) {
+	if(getcon("down", "press") || (getcon("down", "hold") && cursorTimer <= 0)) {
 		cursor++
 		if(cursor >= cursorOffset + menuMax) cursorOffset++
 		if(cursor >= menu.len()) {
 			cursor = 0
 			cursorOffset = 0
 		}
+		if(getcon("down", "press")) cursorTimer = 40
+		else cursorTimer = 10
 	}
 
-	if(getcon("up", "press")) {
+	if(getcon("up", "press") || (getcon("up", "hold") && cursorTimer <= 0)) {
 		cursor--
 		if(cursor < cursorOffset) cursorOffset--
 		if(cursor < 0) {
 			cursor = menu.len() - 1
 			if(menu.len() > menuMax) cursorOffset = menu.len() - menuMax
 		}
+		if(getcon("up", "press")) cursorTimer = 40
+		else cursorTimer = 10
 	}
+
+	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
 		menu[cursor].func()

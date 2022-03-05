@@ -13,7 +13,7 @@
 	if(gvGameMode == gmPlay) {
 		if(actor.rawin("DeadPlayer")) {
 			startPlay(gvMap.file)
-			if(game.check == true || game.difficulty > 0) 
+			if(game.check == true || game.difficulty > 0)
 			if(game.check == false) gvIGT = 0
 		}
 		else {
@@ -31,6 +31,7 @@
 		}
 	}
 	else if(gvGameMode == gmOverworld){
+		if(gvPlayer) if(gvPlayer.hspeed != 0 || gvPlayer.vspeed != 0) return
 		gvGameMode = gmPause
 		setDrawTarget(bgPause)
 		drawImage(gvScreen, 0, 0)

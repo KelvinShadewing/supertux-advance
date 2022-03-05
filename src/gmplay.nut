@@ -513,8 +513,8 @@
 	local lx = 0
 	local ly = 0
 	if(gvPlayer) {
-		lx = ((joyZ(0) / js_max.tofloat()) * screenW() / 2.5)
-		ly = ((joyH(0) / js_max.tofloat()) * screenH() / 2.5)
+		lx = ((joyH(0) / js_max.tofloat()) * screenW() / 2.5)
+		ly = ((joyV(0) / js_max.tofloat()) * screenH() / 2.5)
 
 		if(getcon("leftPeek", "hold")) lx = -(screenW() / 2.5)
 		if(getcon("rightPeek", "hold")) lx = (screenW() / 2.5)
@@ -672,10 +672,24 @@
 		}
 
 		//Keys
-		if(gvKeyCopper) drawSprite(sprKeyCopper, 0, screenW() - 32, screenH() - 16)
-		if(gvKeySilver) drawSprite(sprKeySilver, 0, screenW() - 46, screenH() - 16)
-		if(gvKeyGold) drawSprite(sprKeyGold, 0, screenW() - 60, screenH() - 16)
-		if(gvKeyMythril) drawSprite(sprKeyMythril, 0, screenW() - 74, screenH() - 16)
+		local kx = 10
+		if(gvKeyCopper) {
+			drawSprite(sprKeyCopper, 0, screenW() - kx, screenH() - 16)
+			kx += 16
+		}
+		if(gvKeySilver) {
+			drawSprite(sprKeySilver, 0, screenW() - kx, screenH() - 16)
+			kx += 16
+		}
+		if(gvKeyGold) {
+			drawSprite(sprKeyGold, 0, screenW() - kx, screenH() - 16)
+			kx += 16
+		}
+		if(gvKeyMythril) {
+			drawSprite(sprKeyMythril, 0, screenW() - kx, screenH() - 16)
+			kx += 16
+		}
+		//Other items could be put in the row like this as well
 	}
 	else {
 		local ln = 3
