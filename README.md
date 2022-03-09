@@ -12,7 +12,7 @@ We have a Discord server! https://discord.gg/bcyC2Q6a9x
 
 ## Story
 
-Capturing Gnu was only the beginning of Nolok's plan. While Tux and his friends ran the Grand Prix to challenge Nolok for Gnu's life, Nolok was busy setting traps for Tux's other friends. Now he holds them hostage while he works on his ultimate weapon, the Sliva Cannon! Tux must storm each of Nolok's forts and rescue his friends. He may even make some new friends along the way. Can Tux defeat Nolok in time to end the Third World War? And who the heck is Kooh?! One of these questions will be answered in SuperTux Advance!
+After being humiliated by Tux on the tracks, Nolok decides to get his revenge by kidnapping lots of his friends at once! Tux sets out once more, hoping to finally put an end to Nolok's schemes, only this time, he won't be doing it alone.
 
 ## Installation Destructions
 
