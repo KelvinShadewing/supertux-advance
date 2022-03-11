@@ -504,6 +504,7 @@
 	reverse = false
 	dir = 0.0
 	moving = true
+	started = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -519,6 +520,10 @@
 	function run() {
 		//Follow path
 		if(moving) {
+			if(!started) {
+				started = true
+				pathStart()
+			}
 			if(!inDistance2(x, y, tx, ty, speed)) {
 				dir = pointAngle(x, y, tx, ty)
 				x += lendirX(speed, dir)
@@ -532,6 +537,7 @@
 					if(step - 1 < 0) {
 						reverse = false
 						step++
+						pathZero()
 					}
 					else step--
 					if(step < 0) step = 0
@@ -544,6 +550,7 @@
 					else {
 						step--
 						reverse = true
+						pathEnd()
 					}
 					if(step < 0) step = 0
 					tx = path[step][0]
@@ -552,4 +559,9 @@
 			}
 		}
 	}
+
+	//Dummy functions
+	function pathStart() {} //When it first starts moving
+	function pathEnd() {} //When it reaches the last point moving forward
+	function pathZero() {} //When it reaches the first point moving backwards
 }
