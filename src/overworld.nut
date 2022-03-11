@@ -35,6 +35,7 @@
 
 		local level = ""
 		local onstage = false
+
 		if(actor.rawin("StageIcon")) {//Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
@@ -44,6 +45,7 @@
 				}
 			}
 		}
+
 		if(actor.rawin("TownIcon")) {//Find what level was landed on
 			foreach(i in actor["TownIcon"]) {
 				if(hitTest(shape, i.shape)) {
@@ -132,8 +134,6 @@
 					}
 				}
 			}
-
-			if(hspeed != 0 || vspeed != 0) print(opendirs)
 
 			//Continue moving until place is found
 			if(level == "" && opendirs == 1) {

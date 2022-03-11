@@ -92,6 +92,8 @@
 		if(gvPlayer) gvPlayer.canMove = false
 		anim = anWalk
 		flip = 1
+		hspeed = -1.0
+
 	}
 
 	function ruIntroCheer() {}
