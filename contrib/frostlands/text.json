@@ -18,7 +18,7 @@
 		"Fw-1" : "Noted",
 		"Fw-2" : "Roots",
 		"Fw-3" : "Fire & Ice",
-		"Fw-3b" : "Blast off!", 
+		"Fw-3b" : "Blast off!",
 		"Fw-4" : "Supernovae",
 		"lost" : "Cycles (unused)",
 		"Fw-5" : "To the left!",
@@ -37,7 +37,7 @@
 		"rad-A" :
 		"The snow here is like, all purple and stuff... super weird. Also be sure to talk to sam, he wants to tell you something.",
 		"Sam-A" :
-		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",	
+		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",
 		"fire-A" :
 		"Hey, im the one managing the port at the moment. I don't have any boats, but I do have a few items for you.",
 		"fire-B" :
@@ -58,4 +58,3 @@
 		"im     evil                                          tuckles"
 		}
 }
-// ORIGINAL MOD: https://github.com/JL0027/Sta-frostlands 
