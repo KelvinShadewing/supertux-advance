@@ -120,10 +120,9 @@ print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
 config.playerChar = "Tux"
-//startPlay("res/map/mario0.json")
 
 update()
-while(!getQuit() && !gvQuit)
+while(!getQuit() && !gvQuit) //Entire game happens here
 {
 	if(keyPress(k_f11)) toggleFullscreen()
 	if(getcon("pause", "press") && levelEndRunner == 0 && gvGameMode != gmMain) togglePause()

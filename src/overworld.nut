@@ -35,6 +35,7 @@
 
 		local level = ""
 		local onstage = false
+
 		if(actor.rawin("StageIcon")) {//Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
@@ -44,6 +45,7 @@
 				}
 			}
 		}
+
 		if(actor.rawin("TownIcon")) {//Find what level was landed on
 			foreach(i in actor["TownIcon"]) {
 				if(hitTest(shape, i.shape)) {
@@ -70,6 +72,7 @@
 			local nextdir = -1
 
 			//Find next step
+			//game.owd tracks the direction the player came from
 			if((hspeed != 0 || vspeed != 0) && !debug) {
 				if(game.owd == 0 && nextdir == -1) {
 					if(!placeFree(x - 16, y)) {
@@ -165,38 +168,34 @@
 
 			//Move right
 			if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed == 0 && vspeed == 0) {
-				if(level == "" || game.owd == 0) {
+				if(level == "" || game.owd == 0 || game.completed.rawin(level)) {
 					hspeed = 2
 					game.owd = 2
 				}
-				else if(game.completed.rawin(level)) hspeed = 2
 			}
 
 			//Move up
 			if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed == 0) {
-				if(level == "" || game.owd == 1) {
+				if(level == "" || game.owd == 1 || game.completed.rawin(level)) {
 					vspeed = -2
 					game.owd = 3
 				}
-				else if(game.completed.rawin(level)) vspeed = -2
 			}
 
 			//Move left
 			if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed == 0 && vspeed == 0) {
-				if(level == "" || game.owd == 2) {
+				if(level == "" || game.owd == 2 || game.completed.rawin(level)) {
 					hspeed = -2
 					game.owd = 0
 				}
-				else if(game.completed.rawin(level)) hspeed = -2
 			}
 
 			//Move down
 			if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed == 0) {
-				if(level == "" || game.owd == 3) {
+				if(level == "" || game.owd == 3 || game.completed.rawin(level)) {
 					vspeed = 2
 					game.owd = 1
 				}
-				else if(game.completed.rawin(level)) vspeed = 2
 			}
 		}
 
