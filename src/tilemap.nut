@@ -93,6 +93,7 @@
 	shape = null
 	anim = null //List of animated tiles
 	solidLayer = null
+	plat = null //List of platforms
 
 	constructor(filename) {
 		tileset = []
