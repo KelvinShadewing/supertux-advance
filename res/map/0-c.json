@@ -3617,6 +3617,18 @@
                  "width":16,
                  "x":1232,
                  "y":2096
+                }, 
+                {
+                 "gid":65,
+                 "height":16,
+                 "id":585,
+                 "name":"Yeti",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2424,
+                 "y":216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3625,7 +3637,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":584,
+ "nextobjectid":586,
  "orientation":"orthogonal",
  "properties":[
         {
