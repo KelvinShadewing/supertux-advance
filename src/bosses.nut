@@ -25,6 +25,11 @@
 	function animics() {}
 }
 
+::BossManager <- class extends Actor {
+	bossID = 0
+
+}
+
 ::Yeti <- class extends Boss {
 	//Animations
 	anIdle = [0.0, 7.0, "idle"]
