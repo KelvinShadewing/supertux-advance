@@ -419,6 +419,28 @@
                  "width":190.296,
                  "x":10912,
                  "y":304
+                }, 
+                {
+                 "height":16,
+                 "id":1154,
+                 "name":"pipeFunnel()",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":4128,
+                 "y":304
+                }, 
+                {
+                 "height":16,
+                 "id":1155,
+                 "name":"pipeFunnel()",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":272,
+                 "y":272
                 }],
          "offsetx":0,
          "offsety":6.06060606060606,
@@ -2444,7 +2466,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1154,
+ "nextobjectid":1156,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2453,7 +2475,7 @@
          "value":"drawBG = dbgForest\nsongPlay(musIceland)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -3223,6 +3245,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":730
 }
