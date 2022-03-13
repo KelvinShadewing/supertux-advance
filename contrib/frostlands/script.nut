@@ -46,7 +46,7 @@ print("Loading Frostlands")
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			deleteActor(i.id)
-			newActor(Poof, x, y)
+			newActor(Flame, x, y)
 			playSound(sndFlame, 0)
 		}
 
