@@ -868,29 +868,29 @@
 }
 
 ::Fishy <- class extends Actor {
-    shape = 0
-    slideshape = 0
+	shape = 0
+	slideshape = 0
 
-    constructor(_x, _y, _arr = null) {
-        base.constructor(_x, _y)
-        tileSetSolid(x, y, 1)
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		tileSetSolid(x, y, 1)
 
-        shape = Rec(x, y + 2, 8, 8, 0)
-        slideshape = Rec(x, y - 1, 12, 8, 0)
-    }
+		shape = Rec(x, y + 2, 8, 8, 0)
+		slideshape = Rec(x, y - 1, 12, 8, 0)
+	}
 
-    function run() {
-        if(gvPlayer != 0) {
-            if(game.maxredcoins == game.levelredcoins ){
-                deleteActor(id)
-                newActor(Poof, x, y)
-                tileSetSolid(x, y, 0)
-            }
+	function run() {
+		if(gvPlayer) {
+			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxredcoins == game.levelredcoins ){
+				deleteActor(id)
+				newActor(Poof, x, y)
+				tileSetSolid(x, y, 0)
+			}
 
-        }
+		}
 
-        drawSprite(sprFishblock, 0, x - 8 - camx, y - 8 - camy)
-    }
+		drawSprite(sprFishblock, 0, x - 8 - camx, y - 8 - camy)
+	}
 
-    function _typeof() { return "WoodBlock" }
+	function _typeof() { return "WoodBlock" }
 }

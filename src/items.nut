@@ -97,14 +97,14 @@
 	constructor(_x, _y, _arr = null)
 	{
 	base.constructor(_x, _y)
-        frame = randFloat(4)
-        game.maxredcoins++
+		frame = randFloat(4)
+		game.maxredcoins++
 	}
 
 	function run()
 	{
 		frame += 0.1
-		drawSprite(sprHerring, frame, x - camx, y - camy)
+		drawSprite(sprHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
