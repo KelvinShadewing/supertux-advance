@@ -91,6 +91,30 @@
 	function _typeof() { return "Coin" }
 }
 
+::RedCoin <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+	base.constructor(_x, _y)
+        frame = randFloat(4)
+        game.maxredcoins++
+	}
+
+	function run()
+	{
+		frame += 0.1
+		drawSprite(sprHerring, frame, x - camx, y - camy)
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			playSoundChannel(sndFish, 0, 1)
+			game.levelredcoins++
+		}
+	}
+
+	function _typeof() { return "Coin" }
+}
+
 ::FlowerFire <- class extends Actor{
 
 	constructor(_x, _y, _arr = null)

@@ -6,6 +6,8 @@
 
 [mrkubax10](https://github.com/mrkubax10) - Language menu
 
+[UbuntuJackson](https://github.com/UbuntuJackson) - Redcoin/Herring code
+
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Jumpy, Darknyan, Livewire, Blazeborn
 
 [dtsudo](https://github.com/dtsudo) - Bug fixes
@@ -121,6 +123,8 @@ Lukas Nystrand - Chippdisko
 ## Misc
 
 [Martin P. Hellwig]() - GNU puns 4-7
+
+[Misc Tux racer devs](http://tuxracer.sourceforge.net/) - herring sounds, some assets used in Frostlands 
 
 [Busybody64](https://github.com/Busybody64) - Help with FAQ
 
