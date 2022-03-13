@@ -28,7 +28,6 @@
 	if(keyPress(k_3)) { game.weapon = 2; game.maxEnergy = 4 - game.difficulty }
 	if(keyPress(k_4)) { game.weapon = 3; game.maxEnergy = 4 - game.difficulty }
 	if(keyPress(k_5)) { game.weapon = 4; game.maxEnergy = 4 - game.difficulty }
-	if(keyPress(k_equals)) game.lives++
 
 	//Teleport
 	if(gvPlayer && mouseDown(0)) {
