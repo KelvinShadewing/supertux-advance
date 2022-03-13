@@ -18,6 +18,9 @@
 	game.health = game.maxHealth
 	game.levelCoins = 0
 	game.maxCoins = 0
+	game.redcoins = 0
+    	game.levelredcoins = 0
+    	game.maxredcoins = 0
 	game.secrets = 0
 	game.enemies = 0
 	gvInfoBox = ""
@@ -621,11 +624,13 @@
 			}
 		}
 
-		//Draw coins
+		//Draw coins & herrings
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
 		if(game.maxCoins > 0) drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
-
+		 //Herrings (redcoins)
+        	if(game.maxredcoins > 0) drawSprite(::sprHerring, 0, 16, screenH() - 40)
+        	if(game.maxredcoins > 0) drawText(font2, 24, screenH() - 46, game.levelredcoins.tostring() + "/" + game.maxredcoins.tostring()) 
 		//Draw subitem
 		drawSprite(sprSubItem, 0, screenW() - 18, 18)
 		switch(game.subitem) {

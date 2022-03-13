@@ -49,12 +49,14 @@
 ::sprSpringD <- newSprite("res/gfx/springd.png", 16, 16, 0, 0, 8, 8)
 ::sprWoodBox <- newSprite("res/gfx/woodbox.png", 16, 16, 0, 0, 0, 0)
 ::sprIceBlock <- newSprite("res/gfx/iceblock.png", 16, 16, 0, 0, 0, 0)
+::sprFishblock <- newSprite("res/gfx/herringblock.png", 16, 16, 0, 0, 0, 0)
 ::sprWoodChunks <- newSprite("res/gfx/woodchunks.png", 8, 8, 0, 0, 4, 4)
 ::sprBoxInfo <- newSprite("res/gfx/infobox.png", 16, 16, 0, 0, 0, 0)
 ::sprKelvinScarf <- newSprite("res/gfx/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
 ::sprBoxBounce <- newSprite("res/gfx/bouncebox.png", 16, 16, 0, 0, 0, 0)
 ::sprCheckBell <- newSprite("res/gfx/bell.png", 16, 16, 0, 0, 8, 0)
 ::sprTNT <- newSprite("res/gfx/tnt.png", 16, 16, 0, 0, 0, 0)
+::sprMTNT <- newSprite("res/gfx/tntM.png", 16, 16, 0, 0, 0, 0)
 ::sprC4 <- newSprite("res/gfx/c4.png", 16, 16, 0, 0, 0, 0)
 ::sprColorBlock <- newSprite("res/gfx/switchblocks.png", 16, 16, 0, 0, 0, 0)
 ::sprColorSwitch <- newSprite("res/gfx/colorswitches.png", 32, 32, 0, 0, 16, 16)
@@ -107,6 +109,7 @@
 ::sprCoin <- newSprite("res/gfx/coin.png", 16, 16, 0, 0, 8, 8)
 ::sprCoin5 <- newSprite("res/gfx/5coin.png", 16, 16, 0, 0, 8, 8)
 ::sprCoin10 <- newSprite("res/gfx/10coin.png", 16, 16, 0, 0, 8, 8)
+::sprHerring <- newSprite("res/gfx/herring.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerFire <- newSprite("res/gfx/fireflower.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerIce <- newSprite("res/gfx/iceflower.png", 16, 16, 0, 0, 8, 8)
 ::sprAirFeather <- newSprite("res/gfx/airfeather.png", 16, 16, 0, 0, 8, 8)
@@ -198,6 +201,8 @@ spriteSetBlendMode(sprLightIce, bm_add)
 ::sndWallkick <- loadSound("res/snd/wallkick.ogg")
 ::sndWarning <- loadSound("res/snd/warning.ogg")
 ::sndGulp <- loadSound("res/snd/gulp.ogg")
+::sndFish <- loadSound("res/snd/fish.ogg")
+
 
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once

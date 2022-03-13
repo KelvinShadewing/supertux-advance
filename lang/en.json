@@ -145,11 +145,11 @@
 		"loops" :
 		"KELVIN: Sorry, did you expect this loop to work? Ha! I'm nowhere near good enough to program that... yet.",
 		"contrib" :
-		"FROSTC: hello! this is the first dev commentary not written by kelvin, as this is the first contrib level.",
+		"FROSTC: hello! this is the first dev commentary not written by kelvin.",
 		"walldev" :
 		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it",
 		"tnt" :
-		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off. Also, fun fact, this level was competed before subsea",
+		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off. Also, fun fact, V1 of this map was finished before subsea. You can find V1 in the extras world.",
 		"trans" :
 		"FROSTC: It took me a good while to get the background transition to work, as this was for the most part the first time I used triggers.",
 		"lifenote" :
@@ -157,7 +157,7 @@
 		"signnote" :
 		"FROSTC: If you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. Maybe a good speedrunning strat??",
 		"sense":
-		"FROSTC: My 3rd level, just wanted to make a level losely inspired off of Grumbel's Sense of Snow from the classic SuperTux. The funny part is that level isn't even in modern versions of the classic SuperTux!",
+		"FROSTC: My 3rd level, just wanted to make a level losely inspired off of Grumbel's Sense of Snow from the classic SuperTux. The funny part is, that level isn't even in modern versions of OG SuperTux!",
 		"subsea" :
 		"KELVIN: I wasn't sure how I wanted to handle underwater levels at first. I thought of the levels from SMB 1 and 3, but they seemed like something Tux could just shoot right through. Then I remembered DKC's underwater levels, how they were more like mazes where you had to dodge dangerous enemies. I figured that would work well for this game, since Tux is fast under water, and Konqi and Midi retain offensive capabilities in their neutral forms.",
 		"subsea-name" :

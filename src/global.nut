@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.0.11 Nightly"
+::gvVersion <- "0.0.12 Nightly"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -12,6 +12,9 @@
 	coins = 0
 	levelCoins = 0
 	maxCoins = 0 //Total coins in the level
+	redcoins = 0
+    	levelredcoins = 0
+    	maxredcoins = 0
 	secrets = 0
 	enemies = 0
 	health = 4
