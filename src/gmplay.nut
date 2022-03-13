@@ -132,7 +132,6 @@
 					break
 
 				case 8:
-					game.maxCoins += 50
 					c = newActor(ItemBlock, i.x + 8, i.y - 8, 6)
 					break
 
@@ -650,6 +649,9 @@
 				break
 			case 7:
 				drawSprite(sprStar, 0, screenW() - 18, 18)
+				break
+			case 8:
+				drawSprite(getroottable()[game.characters[game.playerChar][1]], 0, screenW() - 18, 24)
 				break
 		}
 
