@@ -32,7 +32,7 @@
 	{
 		base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.maxCoins++
+		game.maxCoins = game.maxCoins + 5
 	}
 
 	function run()
@@ -55,7 +55,7 @@
 	{
 		base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.maxCoins++
+		game.maxCoins = game.maxCoins + 10
 	}
 
 	function run()
