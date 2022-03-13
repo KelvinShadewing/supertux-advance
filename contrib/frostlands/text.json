@@ -1,7 +1,7 @@
 {
 	"info" : {
 		"welcome2" :
-		"Welcome to the FrostLands, a set of levels made by FrostC that has custom assets, objects, bad guys, and more! do note that this set of levels is quite diffucult, so be sure to collect coins and 1 ups for extra lives so you can use checkpoints.",
+		"Hello! welcome to frostlands, the very first mod/levelpack for supertux advance! Do note that this pack is made for somewhat experienced players of STA.",
 		"Fish" :
 		"Collect all the fish to reach the exit!",
 		"shit" :
@@ -47,7 +47,7 @@
 		"mark" :
 		"...",
 		"Frost" :
-		"oh, hello Tux. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. Soon, the Frostlands bonus levels will be available! so look out for those.",
+		"oh, hello Tux. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
 		"mrq2" :
 		"Yes, yes. I am also here.",
 		"mark2" :
