@@ -1,10 +1,18 @@
 //asset stuffs
 print("Loading Frostlands")
 
+//music
+
+::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
+::musball <- "contrib/frostlands/music/city-theme.ogg"
+
+//visual assets
 ::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
-
-::sprFireBlock <- newSprite("res/gfx/Fireblock.png", 16, 16, 0, 0, 0, 0)
+::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
+::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 320, 240, 0, 0, 0, 0)
+::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
+::sprFireBlock <- newSprite("contrib/frostlands/gfx/obj/Fireblock.png", 16, 16, 0, 0, 0, 0)
 
 //NPCS
 ::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/tinyfireguinb.png", 13, 23, 0, 0, 6, 23)
@@ -20,10 +28,20 @@ print("Loading Frostlands")
 	}
 }
 
+::dbgNever <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgSnowNever, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	}
+}
+
 ::dbgSnowPlainF <- function() {
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowPlainALT, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
+}
+
+::dbgRace <- function() {
+	drawSprite(bgRace, 0, 0, (screenH() / 2) - 120)
 }
 
 ::FireBlock <- class extends Actor {
@@ -80,6 +98,33 @@ print("Loading Frostlands")
 	}
 
 	function _typeof() { return "TNTALT" }
+}
+
+::Spakle <- class extends Actor{
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+	}
+		function run() {
+	if(getFrames() % 3 == 0){	
+	newActor(c1, x - 16 + randInt(32), y - 16 + randInt(100))
+	}
+	}
+}
+
+::c1 <- class extends Actor {
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+	function run() {
+		if(frame < 1) frame += 0.02
+		frame += 0.05
+		y -= 0.5
+		if(frame >= 3) deleteActor(id)
+		else drawSpriteEx(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+	}
 }
 
 print("Loaded Frostlands")
