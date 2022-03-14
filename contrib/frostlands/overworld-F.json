@@ -33,7 +33,7 @@
          "name":"solid",
          "opacity":0.3,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":101,
          "x":0,
          "y":0
@@ -130,10 +130,32 @@
                  "width":42.093,
                  "x":690,
                  "y":661.5
+                }, 
+                {
+                 "height":53.333,
+                 "id":141,
+                 "name":"gvLightTarget = 0xe0b080ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":25.333,
+                 "x":1323,
+                 "y":278
+                }, 
+                {
+                 "height":61.5008385405498,
+                 "id":142,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":49.1109999999999,
+                 "x":1316,
+                 "y":187
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -353,7 +375,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":141,
+ "nextobjectid":143,
  "orientation":"orthogonal",
  "properties":[
         {
