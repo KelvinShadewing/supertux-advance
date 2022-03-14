@@ -38,37 +38,34 @@ print("Loading Frostlands")
 ::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
 ::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
 
+::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
+::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
+::sprSubItemFL <- newSprite("contrib/frostlands/gfx/fl-itemcard.png", 20, 20, 0, 0, 10, 10)
+
 ::gfxOverrideFL <- function(never = false) {
-	if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
-		i.sprite = sprWoodBoxOG
-		i.spriteBreak = sprWoodChunksOG
-		i.spriteCoin = sprCoinOG
-	}
+	sprWoodBox = sprWoodBoxOG
+	sprWoodChunks = sprWoodChunksOG
 
-	if(actor.rawin("ItemBlock")) foreach(i in actor["ItemBlock"]) {
-		i.spriteFull = sprItemBoxOG
-		i.spriteEmpty = sprEmptyBoxOG
-		i.spriteCoin = sprCoinOG
-		i.spriteFire = sprFlowerFireOG
-		i.spriteIce = sprFlowerIceOG
-		i.spriteEarth = sprEarthShellOG
-		i.spriteStar = sprStarOG
-	}
 
-	if(actor.rawin("InfoBlock")) foreach(i in actor["InfoBlock"]) {
-		i.sprite = sprInfoBoxOG
-	}
+	sprFlowerFire = sprFlowerFireOG
+	sprFlowerIce = sprFlowerIceOG
+	sprEarthShell = sprEarthShellOG
+	sprStar = sprStarOG
 
-	if(never){
-		if(actor.rawin("Coin")) foreach(i in actor["Coin"]) {
-			i.sprite = sprCoinN1
-			i.sprite = sprCoinN5
-			i.sprite = sprCoinN10
-		}
-	}
-	else if(actor.rawin("Coin")) foreach(i in actor["Coin"]) {
-		i.sprite = sprCoinOG
-	}
+	sprBoxInfo = sprInfoBoxOG
+	sprBoxItem = sprItemBoxOG
+	sprBoxEmpty = sprEmptyBoxOG
+	sprBoxRed = sprTriggerBoxOG
+
+	if(never) {
+		sprCoin = sprCoinN1
+		sprCoin5 = sprCoinN5
+		sprCoin10 = sprCoinN10
+	} else sprCoin = sprCoinOG
+
+	sprHealth = sprHealthFL
+	sprEnergy = sprEnergyFl
+	sprSubItem = sprSubItemFL
 }
 
 //background shiz

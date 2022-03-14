@@ -9,9 +9,6 @@
 	v = 0.0
 	vspeed = 0
 	oldsolid = 0
-	sprite = sprWoodBox
-	spriteBreak = sprWoodChunks
-	spriteCoin = sprCoin
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -33,64 +30,49 @@
 					if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y > y + 4) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
-						local c = actor[newActor(WoodChunks, x, y)]
-						c.sprite = spriteBreak
+						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
 						tileSetSolid(x, y, oldsolid)
-						if(coins > 0) {
-							local c = actor[newActor(CoinEffect, x, y - 16)]
-							c.sprite = spriteCoin
-						}
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 
 					if(gvPlayer.rawin("anSlide")) if(abs(gvPlayer.hspeed) >= 4.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
-						local c = actor[newActor(WoodChunks, x, y)]
-						c.sprite = spriteBreak
+						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
 						tileSetSolid(x, y, oldsolid)
-						if(coins > 0) {
-							local c = actor[newActor(CoinEffect, x, y - 16)]
-							c.sprite = spriteCoin
-						}
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 
 					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
 						gvPlayer.vspeed = -2.0
 						deleteActor(id)
-						local c = actor[newActor(WoodChunks, x, y)]
-						c.sprite = spriteBreak
+						newActor(WoodChunks, x, y)
 						playSoundChannel(sndBump, 0, 2)
 						tileSetSolid(x, y, oldsolid)
-						if(coins > 0) {
-							local c = actor[newActor(CoinEffect, x, y - 16)]
-							c.sprite = spriteCoin
-						}
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
 					}
 				}
 				else {
 					if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
-						local c = actor[newActor(CoinEffect, x, y - 16)]
-						c.sprite = spriteCoin
+						newActor(CoinEffect, x, y - 16)
 						playSoundChannel(sndBump, 0, 2)
 					}
 
 					if(gvPlayer.rawin("anSlide")) if((abs(gvPlayer.hspeed) >= 4.5 || (game.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
-						local c = actor[newActor(CoinEffect, x, y - 16)]
-						c.sprite = spriteCoin
+						newActor(CoinEffect, x, y - 16)
 						playSoundChannel(sndBump, 0, 2)
 					}
 
 					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
 						vspeed = -2
 						coins--
-						local c = actor[newActor(CoinEffect, x, y - 16)]
-						c.sprite = spriteCoin
+						newActor(CoinEffect, x, y - 16)
 						playSoundChannel(sndBump, 0, 2)
 					}
 				}
@@ -101,8 +83,7 @@
 			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
 				if(coins <= 1) {
 					deleteActor(id)
-					local c = actor[newActor(WoodChunks, x, y)]
-					c.sprite = spriteBreak
+					newActor(WoodChunks, x, y)
 					playSoundChannel(sndBump, 0, 2)
 					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
@@ -120,8 +101,7 @@
 			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
 				if(coins <= 1) {
 					deleteActor(id)
-					local c = actor[newActor(WoodChunks, x, y)]
-					c.sprite = spriteBreak
+					newActor(WoodChunks, x, y)
 					playSoundChannel(sndBump, 0, 2)
 					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
@@ -139,8 +119,7 @@
 			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
 				if(coins <= 1) {
 					deleteActor(id)
-					local c = actor[newActor(WoodChunks, x, y)]
-					c.sprite = spriteBreak
+					newActor(WoodChunks, x, y)
 					playSoundChannel(sndBump, 0, 2)
 					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
@@ -157,7 +136,7 @@
 		if(v == -8) vspeed = 1
 		v += vspeed
 
-		drawSpriteZ(2, sprite, 0, x - 8 - camx, y - 8 - camy + v)
+		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 
 	function _typeof() { return "WoodBlock" }
@@ -248,7 +227,6 @@
 	vspeed = -3.0
 	timer = 30
 	a = 0
-	sprite = sprWoodChunks
 
 	function run() {
 		vspeed += 0.2
@@ -256,10 +234,10 @@
 		h += 1
 		a += 4
 
-		drawSpriteExZ(2, sprite, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
-		drawSpriteExZ(2, sprite, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
-		drawSpriteExZ(2, sprite, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
-		drawSpriteExZ(2, sprite, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprWoodChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
 
 		timer--
 		if(timer == 0) deleteActor(id)
@@ -272,14 +250,6 @@
 	v = 0.0
 	vspeed = 0.0
 	item = 0
-	spriteFull = sprBoxItem
-	spriteEmpty = sprBoxEmpty
-	spriteCoin = sprCoin
-	spriteFire = sprFlowerFire
-	spriteIce = sprFlowerIce
-	spriteAir = sprAirFeather
-	spriteEarth = sprEarthShell
-	spriteStar = sprStar
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -301,8 +271,7 @@
 			vspeed = 1
 			switch(item){
 				case 0:
-					local c = actor[newActor(CoinEffect, x, y)]
-					c.sprite = spriteCoin
+					newActor(CoinEffect, x, y - 16)
 					break
 
 				case 1:
@@ -366,11 +335,9 @@
 
 		v += vspeed
 
-		if(full || vspeed < 0) drawSpriteZ(4, spriteFull, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
-		else drawSpriteZ(4, spriteEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+		if(full || vspeed < 0) drawSpriteZ(2, sprBoxItem, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
-
-	function _typeof() { return "ItemBlock" }
 }
 
 ::TriggerBlock <- class extends Actor {
@@ -420,7 +387,6 @@
 	vspeed = 0.0
 	item = 0
 	text = ""
-	sprite = sprBoxInfo
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -452,10 +418,8 @@
 
 		v += vspeed
 
-		drawSpriteZ(2, sprite, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		drawSpriteZ(2, sprBoxInfo, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 	}
-
-	function _typeof() { return "InfoBlock" }
 }
 
 ::KelvinScarf <- class extends Actor {
@@ -925,7 +889,7 @@
 
 		}
 
-		drawSprite(sprFishblock, 0, x - 8 - camx, y - 8 - camy)
+		drawSprite(sprFishBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
 
 	function _typeof() { return "Fishy" }

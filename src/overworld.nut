@@ -317,6 +317,7 @@
 		left = false
 		right = false
 	}
+	gfxReset()
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()

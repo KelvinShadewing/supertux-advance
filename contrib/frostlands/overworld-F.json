@@ -381,7 +381,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)"
+         "value":"songPlay(musOverworld)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
