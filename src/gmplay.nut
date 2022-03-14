@@ -25,6 +25,7 @@
 	game.enemies = 0
 	gvInfoBox = ""
 	gvLastSong = ""
+	gfxReset()
 
 	//Reset auto/locked controls
 	autocon.up = false

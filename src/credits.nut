@@ -3,9 +3,9 @@
 ::creditsTimer <- 0
 ::creditsLength <- 0
 ::creditsSprites <- []
-::startCredits <- function(){
+::startCredits <- function(folder = "res"){
 	if(creditsData==null)
-		creditsData = jsonRead(fileRead("res/credits.json"))
+		creditsData = jsonRead(fileRead(folder + "/credits.json"))
 	gvGameMode = gmCredits
 	creditsOffset = 0
 	creditsTimer = 0
