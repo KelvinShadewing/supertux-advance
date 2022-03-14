@@ -454,6 +454,8 @@
 
 		drawSpriteZ(2, sprite, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 	}
+
+	function _typeof() { return "InfoBlock" }
 }
 
 ::KelvinScarf <- class extends Actor {
@@ -746,7 +748,7 @@
 		drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
 	}
 
-	function _typeof() { return "WoodBlock" }
+	function _typeof() { return "EvilBlock" }
 }
 
 ::EvilBlockB <- class extends Actor {
@@ -779,7 +781,7 @@
 		drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
 	}
 
-	function _typeof() { return "WoodBlock" }
+	function _typeof() { return "EvilBlockB" }
 }
 
 ::BreakBlock <- class extends Actor {
@@ -926,5 +928,5 @@
 		drawSprite(sprFishblock, 0, x - 8 - camx, y - 8 - camy)
 	}
 
-	function _typeof() { return "WoodBlock" }
+	function _typeof() { return "Fishy" }
 }

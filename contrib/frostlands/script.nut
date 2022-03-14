@@ -55,6 +55,10 @@ print("Loading Frostlands")
 		i.spriteStar = sprStarOG
 	}
 
+	if(actor.rawin("InfoBlock")) foreach(i in actor["InfoBlock"]) {
+		i.sprite = sprInfoBoxOG
+	}
+
 	if(never){
 		if(actor.rawin("Coin")) foreach(i in actor["Coin"]) {
 			i.sprite = sprCoinN1

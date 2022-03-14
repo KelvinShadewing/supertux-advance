@@ -109,7 +109,7 @@
 }
 
 ::CoinEffect <- class extends Actor {
-	vspeed = -5.5
+	vspeed = -6.0
 	value = 1
 	sprite = sprCoin
 	sprite10 = sprCoin10
