@@ -106,3 +106,9 @@
 ::dbgCastle <- function() {
 	drawSprite(bgCastle, 0, 0, (screenH() / 2) - 120)
 }
+
+::dbgFortMagma <- function() {
+	for(local i = 0; i < 2; i++) {
+		drawSprite(bgFortMagma, 0, ((-camx / 8) % 960) + (i * 960), (screenH() / 2) - 120)
+	}
+}

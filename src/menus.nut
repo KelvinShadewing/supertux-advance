@@ -96,7 +96,7 @@ const fontH = 14
 	},
     	{
 		name = function() { return gvLangObj["main-menu"]["credits"] },
-		func = function() { startCredits(); }
+		func = function() { startCredits("res"); }
     	}
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
