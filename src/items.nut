@@ -4,6 +4,7 @@
 
 ::Coin <- class extends Actor{
 	frame = 0.0
+	sprite = sprCoin
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -15,10 +16,11 @@
 	function run()
 	{
 		frame += 0.2
-		drawSprite(sprCoin, frame, x - camx, y - camy)
+		drawSprite(sprite, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			newActor(CoinEffect, x, y)
+			local c = actor[newActor(CoinEffect, x, y)]
+			c.sprite = sprite
 		}
 	}
 
@@ -27,6 +29,7 @@
 
 ::Coin5 <- class extends Actor{
 	frame = 0.0
+	sprite = sprCoin5
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -38,10 +41,11 @@
 	function run()
 	{
 		frame += 0.2
-		drawSprite(sprCoin5, frame, x - camx, y - camy)
+		drawSprite(sprite, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			newActor(CoinEffect, x, y, 5)
+			local c = actor[newActor(CoinEffect, x, y, 5)]
+			c.sprite5 = sprite
 		}
 	}
 
@@ -50,6 +54,7 @@
 
 ::Coin10 <- class extends Actor{
 	frame = 0.0
+	sprite = sprCoin10
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -61,10 +66,11 @@
 	function run()
 	{
 		frame += 0.2
-		drawSprite(sprCoin10, frame, x - camx, y - camy)
+		drawSprite(sprite, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			newActor(CoinEffect, x, y, 10)
+			local c = actor[newActor(CoinEffect, x, y, 10)]
+			c.sprite10 = sprite
 		}
 	}
 

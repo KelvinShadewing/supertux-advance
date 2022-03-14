@@ -1564,7 +1564,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgNever\nsongPlay(musball)"
+         "value":"drawBG = dbgNever\nsongPlay(musball)\ngfxOverrideFL(true)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

@@ -20,6 +20,53 @@ print("Loading Frostlands")
 ::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 67, 48, 0, 0, 32, 47)
 ::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 34, 40, 0, 0, 32, 40)
 ::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
+
+//OG style
+::sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 0, 0, 8, 8)
+::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
+::sprFlowerIceOG <- newSprite("contrib/frostlands/gfx/obj/fl-iceflower.png", 16, 16, 0, 0, 8, 8)
+::sprEarthShellOG <- newSprite("contrib/frostlands/gfx/obj/fl-earthshell.png", 16, 16, 0, 0, 8, 8)
+::sprInfoBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-infobox.png", 16, 16, 0, 0, 0, 0)
+::sprTriggerBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-redbox.png", 16, 16, 0, 0, 0, 0)
+::sprItemBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-itembox.png", 16, 16, 0, 0, 0, 0)
+::sprSnowballOG <- newSprite("contrib/frostlands/gfx/obj/fl-snowball.png", 16, 16, 0, 0, 8, 8)
+::sprStarOG <- newSprite("contrib/frostlands/gfx/obj/fl-star.png", 16, 16, 0, 0, 8, 8)
+::sprWoodBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodbox.png", 16, 16, 0, 0, 0, 0)
+::sprWoodChunksOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodchunks.png", 8, 8, 0, 0, 4, 4)
+::sprCoinN1 <- newSprite("contrib/frostlands/gfx/obj/coin-n1.png", 16, 16, 0, 0, 8, 8)
+::sprCoinN5 <- newSprite("contrib/frostlands/gfx/obj/coin-n5.png", 16, 16, 0, 0, 8, 8)
+::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
+::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
+
+::gfxOverrideFL <- function(never = false) {
+	if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
+		i.sprite = sprWoodBoxOG
+		i.spriteBreak = sprWoodChunksOG
+		i.spriteCoin = sprCoinOG
+	}
+
+	if(actor.rawin("ItemBlock")) foreach(i in actor["ItemBlock"]) {
+		i.spriteFull = sprItemBoxOG
+		i.spriteEmpty = sprEmptyBoxOG
+		i.spriteCoin = sprCoinOG
+		i.spriteFire = sprFlowerFireOG
+		i.spriteIce = sprFlowerIceOG
+		i.spriteEarth = sprEarthShellOG
+		i.spriteStar = sprStarOG
+	}
+
+	if(never){
+		if(actor.rawin("Coin")) foreach(i in actor["Coin"]) {
+			i.sprite = sprCoinN1
+			i.sprite = sprCoinN5
+			i.sprite = sprCoinN10
+		}
+	}
+	else if(actor.rawin("Coin")) foreach(i in actor["Coin"]) {
+		i.sprite = sprCoinOG
+	}
+}
+
 //background shiz
 
 ::dbgAuroraF <- function() {
@@ -106,7 +153,7 @@ print("Loading Frostlands")
 		base.constructor(_x, _y)
 	}
 		function run() {
-	if(getFrames() % 3 == 0){	
+	if(getFrames() % 3 == 0){
 	newActor(c1, x - 16 + randInt(32), y - 16 + randInt(100))
 	}
 	}

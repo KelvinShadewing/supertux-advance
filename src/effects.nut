@@ -109,8 +109,11 @@
 }
 
 ::CoinEffect <- class extends Actor {
-	vspeed = -5.0
+	vspeed = -5.5
 	value = 1
+	sprite = sprCoin
+	sprite10 = sprCoin10
+	sprite5 = sprCoin5
 
 	constructor(_x, _y, _arr = null) {
 		if(_arr == 5) value = 5
@@ -124,9 +127,9 @@
 	function run() {
 		vspeed += 0.5
 		y += vspeed
-		if(value == 10) drawSpriteZ(4, sprCoin10, getFrames() / 2, x - camx, y - camy)
-		else if(value == 5) drawSpriteZ(4, sprCoin5, getFrames() / 2, x - camx, y - camy)
-		else drawSpriteZ(4, sprCoin, getFrames() / 2, x - camx, y - camy)
+		if(value == 10) drawSpriteZ(3, sprite10, getFrames() / 2, x - camx, y - camy)
+		else if(value == 5) drawSpriteZ(3, sprite5, getFrames() / 2, x - camx, y - camy)
+		else drawSpriteZ(3, sprite, getFrames() / 2, x - camx, y - camy)
 		if(vspeed >= 3) {
 			deleteActor(id)
 			newActor(Spark, x, y)
