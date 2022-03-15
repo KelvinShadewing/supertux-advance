@@ -356,14 +356,28 @@
 		"This is Penny's new town. Sure was nice of her to give the displaced mascots a place to stay. I wonder if they'll ever find their way back...",
 		"tux-mines" :
 		"These mines are where we get most of our fish these days. It's much safer than swimming for live ones.",
+		"tux-bridge" :
+		"Look what Nolok's minions have done to the bridge! This place is like a maze now.",
+		"tux-borealis" :
+		"This fort used to be to protect us. Now it's a stronghold for the Yeti.",
+		"tux-borealis2" :
+		"Why did I come back here? I've already freed Konqi.",
 		"konqi-pennyton" :
 		"I'm glad the ice here can stand up to my flames. I'd hate to sneeze and melt someone's house!",
 		"konqi-mines" :
 		"Who would have thought so many frozen fish could be found in the ice?",
+		"konqi-bridge" :
+		"so frustrating that this wood just happens to be fireproof. At least I can still break some of it.",
+		"konqi-borealis" :
+		"Brr, it's warm in here, but I still get shivers thinking about the Yeti.",
 		"midi-pennyton" :
 		"I get she's trying to help, but I just couldn't live in a place like this. I'd rather keep on the move and find a way home.",
 		"midi-mines" :
-		"Heh, I bet I'd be great at mining. Maybe I'll take it up after we beat Nolok. Not much else for a merc to do around here."
+		"Heh, I bet I'd be great at mining. Maybe I'll take it up after we beat Nolok. Not much else for a merc to do around here.",
+		"midi-bridge" :
+		"Uh, last time I checked, bridges aren't supposed to look like this. Jeesh, what a pain.",
+		"midi-borealis" :
+		"Dang, this place is creepy. If the penguins didn't need this place, I'd totally blow it up."
 	},
 
 	"level" : {
