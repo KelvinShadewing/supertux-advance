@@ -67,6 +67,8 @@
 ::defSubItem <- sprSubItem
 ::sprWarning <- newSprite("res/gfx/warning.png", 280, 72, 0, 0, 140, 36)
 ::defWarning <- sprWarning
+::sprTalk <- newSprite("res/gfx/talk.png", 16, 16, 0, 0, 8, 16)
+::defTalk <- sprTalk
 
 
 //Blocks

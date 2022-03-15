@@ -24,14 +24,35 @@
 			arr = []
 
 			for(local i = 3; i < argv.len(); i++) {
-				arr.push(textLineLen(gvLangObj["npc"][argv[i]], 52))
+				if(i >= argv.len()) arr.push("")
+				else if(argv[i] == 0) arr.push("")
+				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], 52))
+				else arr.push("")
 			}
 		}
 	}
 
 	function run() {
 		if(gvPlayer && sayfunc != null) {
-			if(hitTest(shape, gvPlayer.shape) && getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
+			if(hitTest(shape, gvPlayer.shape)) {
+				if(getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
+				if(sprite == 0) {
+					if(sayfunc == "sayChar") switch(typeof gvPlayer) {
+						case "Tux":
+							if(arr[0] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
+							break
+						case "Konqi":
+							if(arr[1] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
+							break
+						case "Midi":
+							if(arr[2] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
+							break
+					}
+					
+				}
+				else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+				else drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			}
 
 			if(gvInfoBox == text) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) gvInfoBox = ""
 
