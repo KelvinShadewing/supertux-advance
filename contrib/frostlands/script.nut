@@ -20,6 +20,8 @@ print("Loading Frostlands")
 ::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 67, 48, 0, 0, 32, 47)
 ::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 34, 40, 0, 0, 32, 40)
 ::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
+::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 18, 42, 0, 0, 8, 42)
+::sprterryB <- newSprite("contrib/frostlands/gfx/NPC/terry-behind.png", 37, 51, 0, 0, 16, 51)
 
 //OG style
 ::sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 0, 0, 8, 8)
