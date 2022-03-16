@@ -133,7 +133,7 @@
 		"firetux" :
 		"KELVIN: Originally, Fire Tux was going to have a helmet, as in the original SuperTux. A member of the SuperTux Discord server suggested using the design by Rusty Box. I agreed it looked better. The original can still be found on OpenGameArt.org.",
 		"coins" :
-		"KELVIN: Coins are purely for achievements. I never liked the extra lives mechanic, as it just means making a player wait even longer to try a level again if they get a game over. I didn't want to get rid of coins entirely, though, since that would make the levels too barren.",
+		"KELVIN: Coins were originally just for achievements, but this made players who didn't care for that not bother picking them up. We went with lives for a while, but lives are an archaic concept of game design that were scrapped shortly after. Finally, we decided on adding upgrades to shops, on top of the free powerups.",
 		"sliding" :
 		"KELVIN: The mechanic of increasing speed from dropping off a ledge came from needing to compensate for slopes not accelerating the player enough. It's tech- nically a glitch that I decided to throw in because it was fun. Many mechanics are actually that.",
 		"trees" :
@@ -367,7 +367,7 @@
 		"konqi-mines" :
 		"Who would have thought so many frozen fish could be found in the ice?",
 		"konqi-bridge" :
-		"so frustrating that this wood just happens to be fireproof. At least I can still break some of it.",
+		"So frustrating that this wood just happens to be fireproof. At least I can still break some of it.",
 		"konqi-borealis" :
 		"Brr, it's warm in here, but I still get shivers thinking about the Yeti.",
 		"midi-pennyton" :
