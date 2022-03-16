@@ -4,7 +4,7 @@
 		"Hello! welcome to frostlands, the very first mod/levelpack for supertux advance! Do note that this pack is made for somewhat experienced players of STA.",
 		"Fish" :
 		"Collect all the fish to reach the exit!",
-		"shit" :
+		"poo" :
 		"This level sucks.",
 		"Ftwo" :
 		"are there blocks in the way? that means you didn't collect all fish. try again"
@@ -12,8 +12,8 @@
 	"level" : {
 		"fw-t0" : "Icey outpost",
 		"fw-t1" : "Chill docks",
-		"fw-t2" : "Feather shrine",
-		"fw-t3" : "Bonus town",
+		"fw-t2" : "Doll shrine",
+		"fw-t3" : "Ice-burg",
 		"TSR" : "Coming soon...",
 		"Fw-1" : "Noted",
 		"Fw-2" : "Roots",
@@ -43,7 +43,7 @@
 		"fire-B" :
 		"I heard if you walk to the Left of the first Forest level, there's some ruins. I might check it out one day.",
 		"mrq" :
-		"Hai! I'm Marqies. Welcome to the Feather Shrine! Something Cool is up ahead",
+		"Hai! I'm Marqies. Welcome to the Doll shrine! Something Cool is up ahead",
 		"mark" :
 		"...",
 		"Frost" :
@@ -52,8 +52,10 @@
 		"Yes, yes. I am also here.",
 		"mark2" :
 		"The earthshell isn't in any of the previous levels so.. uh.. here you go. ",
-		"ninja" :
-		"temptext",
+		"brg-flame" :
+		"I think these burgers would be better if they were actually.. you know.. cooked. ",
+		"brg-terry" :
+		"Hey hey hey! Welcome to my ice-burger shop! It's a fresh fish in a bun! ....and also a little cheese. Care to try one?",
 		"tuc" :
 		"im     evil                                          tuckles"
 		}
