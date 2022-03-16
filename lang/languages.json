@@ -1,11 +1,11 @@
 {
 	"languages":[
-		["English","en"],
-		["French","fr"],
-		["Bulgarian","bg"],
-		["Polish","pl"],
-		["Spanish","es"],
-		["Bangla","bn"],
-		["Exceptional","ex"]
+		["English","en",true],
+		["French","fr",true],
+		["Bulgarian","bg",true],
+		["Polish","pl",true],
+		["Spanish","es",true],
+		["Bangla","bn",true],
+		["Exceptional","ex",false]
 	]
 }

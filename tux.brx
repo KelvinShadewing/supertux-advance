@@ -121,6 +121,14 @@ startMain()
 menu = meMain
 config.playerChar = "Tux"
 
+//Check if the date is 1st April. If so, set the language to "Exceptional".
+local now = date()
+if(now.day = 1 && now.month == 3) {
+	config.lang = "ex"
+	gvLangObj = jsonRead(fileRead("lang/ex.json"))
+	gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/ex.json")))
+}
+
 update()
 while(!getQuit() && !gvQuit) //Entire game happens here
 {

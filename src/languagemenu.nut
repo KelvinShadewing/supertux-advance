@@ -7,6 +7,7 @@
 	if(languageList==null)
 		languageList = jsonRead(fileRead("lang/languages.json"))
 	for(local i = 0; i < languageList["languages"].len(); i+=1) {
+		if (!languageList["languages"][i][2]) continue //Do not show hidden languages.
 		meLanguage.push(
 			{
 				languageIndex = i,
