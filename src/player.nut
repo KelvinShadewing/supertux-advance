@@ -41,4 +41,21 @@
 	runSpeed = 3.0
 	accel = 0.2
 	friction = 0.1
+
+	routine = null
+
+	constructor(x, y, _arr = null) {
+		base.constructor(x, y, _arr)
+	}
+
+	function run() {
+		animics()
+		if(routine != null) routine()
+	}
+
+	function animics() {
+		//Animation
+
+		//Physics
+	}
 }
