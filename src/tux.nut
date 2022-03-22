@@ -32,6 +32,8 @@
 	slideframe = 0.0 //Because using just frame gets screwy for some reason
 	wasInWater = false
 	antigrav = 0
+	groundx = 0.0 //Remember last coordinates over solid ground
+	groundy = 0.0
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -648,6 +650,11 @@
 					break
 			}
 
+			//Check solid ground position
+			if(!placeFree(x, y + 1) && !onPlatform()) {
+				groundx = x
+				groundy = y
+			}
 		}
 		//////////////
 		// IN WATER //
@@ -977,10 +984,18 @@
 	}
 
 	function die() {
-		deleteActor(id)
-		gvPlayer = false
-		newActor(TuxDie, x, y)
-		game.health = 0
+		if(game.canres) {
+			game.health = game.maxHealth
+			blinking = 120
+			if(y > gvMap.h) playerTeleport(groundx, groundy)
+			game.canres = false
+		}
+		else {
+			deleteActor(id)
+			gvPlayer = false
+			newActor(TuxDie, x, y)
+			game.health = 0
+		}
 	}
 
 	function swapitem() {

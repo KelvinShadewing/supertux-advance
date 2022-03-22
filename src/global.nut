@@ -65,6 +65,7 @@
 	chy = 0
 	berries = 0
 	path = "res/map/"
+	canres = false //If the player can respawn
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- false; //Pointer to player actor

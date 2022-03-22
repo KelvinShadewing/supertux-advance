@@ -689,6 +689,10 @@
 
 		//Keys
 		local kx = 10
+		if(game.canres) {
+			drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - kx, screenH() - 10)
+			kx += 16
+		}
 		if(gvKeyCopper) {
 			drawSprite(sprKeyCopper, 0, screenW() - kx, screenH() - 16)
 			kx += 16

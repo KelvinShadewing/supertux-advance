@@ -483,7 +483,7 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
-			game.levelCoins += 50
+			game.canres = true
 			playSound(snd1up, 0)
 			deleteActor(id)
 		}
