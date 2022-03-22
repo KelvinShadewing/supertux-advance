@@ -3701,6 +3701,78 @@
                  "width":16,
                  "x":928,
                  "y":240
+                }, 
+                {
+                 "gid":2,
+                 "height":16,
+                 "id":592,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":464,
+                 "y":1392
+                }, 
+                {
+                 "gid":2,
+                 "height":16,
+                 "id":593,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":496,
+                 "y":1328
+                }, 
+                {
+                 "gid":2,
+                 "height":16,
+                 "id":594,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":608,
+                 "y":1328
+                }, 
+                {
+                 "gid":2,
+                 "height":16,
+                 "id":595,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":656,
+                 "y":1376
+                }, 
+                {
+                 "gid":2,
+                 "height":16,
+                 "id":596,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":688,
+                 "y":1424
+                }, 
+                {
+                 "gid":2,
+                 "height":16,
+                 "id":597,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":416,
+                 "y":1424
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3709,7 +3781,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":592,
+ "nextobjectid":598,
  "orientation":"orthogonal",
  "properties":[
         {

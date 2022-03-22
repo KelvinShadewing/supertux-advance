@@ -406,12 +406,10 @@
 
 				case 68:
 					c = newActor(Coin5, i.x + 8, i.y - 8)
-					game.maxCoins += 5
 					break
 
 				case 69:
 					c = newActor(Coin10, i.x + 8, i.y - 8)
-					game.maxCoins += 10
 					break
 
 				case 70:
