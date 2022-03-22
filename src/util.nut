@@ -45,6 +45,7 @@
 				for(local i = 0; i < 10; i++) {
 					if(str[0].tochar() == i.tostring()) return true
 				}
+				if(str[0] == "-") return true
 			}
 			return false
 			break
@@ -52,4 +53,10 @@
 			return false
 			break
 	}
+}
+
+::eval <- function(str) {
+	//Does not work properly right now
+	//Needs modification in the runtime
+	return dostr("return " + str)
 }

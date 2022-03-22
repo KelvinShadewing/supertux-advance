@@ -1,0 +1,678 @@
+{
+	"main-menu" : {
+		"new" : "Birth Fun",
+		"load" : "Carry Fun",
+		"contrib-levels" : "Give Floors",
+		"options" : "Choices",
+		"credits" : "Money",
+		"quit" : "Kill Fun"
+	},
+
+	"new-game-menu" : {
+		"file-exists" : "[EXISTENT PAPER]"
+	},
+
+	"contrib-menu" : {
+		"empty" : "[Don't contribute levels]"
+	},
+
+	"options-menu" : {
+		"difficulty" : "Difficult",
+		"language" : "Bad Words",
+		"keyboard" : "Piano Domination",
+		"joystick" : "Funhouse Domination",
+		"timers" : "Time Travel",
+		"light" : "Stoorms: ",
+		"fullscreen" : "Switch the Screen",
+		"autorun" : "Button Ran Backwards: ",
+		"stickspeed" : "Dominate Fast Trees: "
+	},
+
+	"timers-menu" : {
+		"speedrun-timer-level" : "Floor Time Limit",
+		"speedrun-timer-global" : "World Ends"
+	},
+
+	"controls-menu" : {
+		"press-key-for" : "Squeeze key of",
+		"press-button-for" : "Pull zipper of",
+		"clear" : "Resist space for transparency.",
+		"up" : "Up",
+		"down" : "Sad",
+		"left" : "Remaining",
+		"right" : "Accurate",
+		"jump" : "Jump",
+		"shoot" : "Injure",
+		"run" : "Flee",
+		"sneak" : "Sneak",
+		"pause" : "Wait",
+		"item-swap" : "Trade",
+		"menu-accept" : "Keep Book",
+		"cam-left-peek" : "Remaining Mountaintop",
+		"cam-right-peek" : "Looks Alright",
+		"cam-down-peek" : "I'm Sad",
+		"cam-up-peek" : "Cheer Up"
+	},
+
+	"menu-commons" : {
+		"yes" : "True",
+		"no" : "Wrong",
+		"back" : "Butt",
+		"cancel" : "Canceled",
+		"on" : "On Top",
+		"off" : "Get Off"
+	},
+
+	"bool" : {
+		"on" : "On Top",
+		"off" : "Get Off"
+	},
+
+	"difficulty-levels" : {
+		"easy" : "Simple",
+		"normal" : "Average",
+		"hard" : "Firm",
+		"super" : "Special Suit"
+	},
+
+	"pause-menu" : {
+		"continue" : "Go On",
+		"character" : "Redeem Yourself",
+		"restart" : "Reboot Floor",
+		"quit-game" : "Kill Fun",
+		"quit-level" : "Kill Floor",
+		"save" : "Fun Salvation"
+	},
+
+	"info" : {
+		"welcome" :
+		"Welcomed to supertux advance! that message would do went with away what time you are a walked away the originate block.  Press f1 conditionally to you are a will appreciation to look developer commentary.  Press upon near npcs to talked to them.  A several take more than individual thing to said.  Conditionally to you are a look that ? over yours head, it means yours character themself is one thing to said.  Press upon to read it.",
+		"tutWall" :
+		"Press jumped the against wall to will that wall jumped.",
+		"tutSlide" :
+		"Press through while running or in that hill to slid.",
+		"waterjump" :
+		"Held jumped what time the leaving watered to gain height.  Mix it the taking ran button to went with even higher.",
+		"noend" :
+		"Stories this you are a no needed to completed to movement in also will don't take normal exits.  The used pause menu to left areas appreciation that.",
+		"hills" :
+		"Hills am very important! practiced sliding each chance you are a have.",
+		"pipes" :
+		"Pipes with able to be entered only by falling on.  You are a with able to also held through to funnel yourself onto them.",
+		"controls" :
+		"No forgotten to set yours restraints the on choices menu the in main screen! conditionally to you are a exceedingly disaster upon setting them upon, delete yours config. json book.",
+		"secrets" :
+		"Secret passages are everywhere! Feel against the wall to reveal them, or watch for enemy movements.",
+		"coyotetime" :
+		"Secret passages am the world! felt the against wall to reveal them, or watched of enemy movements.",
+		"tntex" :
+		"Tnt block burst that below anytime after coming on touching taking individual.",
+		"chainex" :
+		"Tnt block am also set off by emotions, which with able to led to that sort for rope face what time prolific tnt block am closed to individual another.",
+		"fireex" :
+		"Fireballs with able to set off tnt blocks, have that flower power and tried it outward!",
+		"owplats" :
+		"One-way platforms with able to be dropped through originate by pressing through and jumped upon once.  Conditionally you are a drop in accident, you are a take twice to long to what time moving over an edge to jumped backward upon.",
+		"slidewarn" :
+		"Levels appreciation that would do force you are a to slid! (it moving to be replaced taking one thing else the on future. )",
+		"konqi" :
+		"Konqi with able to breathing fire and the stomp ground, prevent himself ise to speedily to tux.",
+		"momentum" :
+		"You are a win't lost speedily conditionally to you are a kept running! be sure to the held ran button or the kept stuck pressed the everyone way over, and you are'll kept whatever speedily you are a gain originate sliding.  Icy hills would do speedily you are a upon even conditionally to you are a with able to't slid.",
+		"warned" :
+		"You are dangerous..."
+	},
+
+	"devcom" : {
+		"welcome" :
+		"HEAT: Conditionally to you are're seeing that, you are a take activated developer talk mode.  The touched redden clotes to read notes the in game develop.",
+		"hiff-0" :
+		"HEAT: Individual the for prolific things this make my hiff were making deathcaps walked upon that hill.  Of whatever reason, having them checked twice to far ahead make them behaved properly...",
+		"pipes" :
+		"HEAT: Myself were moving to the take pipes the behaved same the to ones on mario, prevent myself find it annoyed on those games having to tap upon/down to found which ones was opened, then instead, you are a only falling weight on.",
+		"firetux" :
+		"HEAT: Originally, fire suit were moving to take that helmet, to the on original supertux.  That member the for supertux discord server suggest the using designed by rusty box.  Myself agree it look better.  The original with able to still be find in opengameart. org.",
+		"coins" :
+		"HEAT: Coins was originally only of achievements, prevent that make players that person never did care of this don't bothering picking them upon.  Our go taking lives of that while, prevent lives am an archaic concept for game designed this was scrapped shortly after.  Finally, our decide in adding upgrades to shops, in top the for free powerups.",
+		"sliding" :
+		"HEAT:  The mechanic for increasing speedily originate dropping off that ledge come originate needing to compensate of slopes don't the accelerating player enough.  It technology that glitch this myself decide to threw on due to it were fun.  Prolific mechanics am actually this.",
+		"trees" :
+		"HEAT: Trees no grown on antarctica.  This why are penguins carve them outward for ice.",
+		"snakes" :
+		"HEAT: Myself understand it creates around to highly sense to take snakes on antarctica to it does to take hungry plants. ",
+		"waterfalls" :
+		"HEAT: That part the for cave looks special nice to my.  Myself the loved spacious background taking waterfalls on front for it.  Myself the want level to felt appreciation you are a was mean to exploring it, then that scenic appreciation that this creates it felt more than is mean to convey that sense for exploring.",
+		"loops" :
+		"HEAT: Sorry, have you are a expected that loop to worked? ha! myself'm nowhere near well enough to programmed this.  yet.",
+		"contrib" :
+		"COLD: hello! that the is first dev commentary don't write by heat.",
+		"walldev" :
+		"COLD: Myself never did actually understand you are a can only wall jumped to have upon this place what time myself first make that area.  Myself later think for adding one thing to kept you are a originate doing this, prevent decide against it",
+		"tnt" :
+		"COLD: Myself see this tnt were use on xtreme hilltop, then myself choose to create that level showing it off.  Also, fun fact, v1 for that map were finished before subsea.  You are a with able to found v1 the on spare planet.",
+		"trans" :
+		"COLD: It take my that well while to the have background transition to worked, to that were of mostly the part first anytime myself use guns.",
+		"lifenote" :
+		"COLD: Of those that person the play older versions, myself hope you are the appreciation everyone new, highly harder 1-up position! hahahahahaha!!",
+		"signnote" :
+		"COLD: Conditionally to you are am feeling that little lazy, you are a with able to only the blast pipe taking that fireball to opened it instead for sliding.  Maybe that well racing strat??",
+		"sense":
+		"COLD: I 3rd level, only want to create that level losely inspiring off for grumbel sense for snowed the originate classic supertux.  The funny part is, this level ise even on modernity versions for og supertux!",
+		"subsea" :
+		"HEAT: Myself wase sure with a method myself want to handled underwater levels upon first.  Myself think the for levels originate smb 1 and 3, prevent those seemed appreciation one thing tux can only shot right through.  Then myself remember dkc underwater levels, with a method those was more appreciation mazes where you are a having to dodge endanger enemies.  Myself figured this will worked good of that game, since tux is speedily under watered, and konqi and midi retain offensive capabilities on their neutral forms.",
+		"subsea-name" :
+		"HEAT: The named, underwater, comes the originate track the for same named on supertuxkart.  Myself were thinking it'd be cool to to take areas originate this game and reimagine them to catwalk levels instead for buggy track.  Lumen city is plan to good, the and final level where you are a fought nolok would do be fort lava.  Others originate stick may appeared to good.",
+		"tutorial-zone" :
+		"HEAT: After getting a several play quiz feedback originate northern lights sun, myself decide myself should create that tutorial area to more collection demonstrate basic mechanics.  On he is a playtest, himself actually the skipped first pipe, despite it having that roadsign clues this one thing around it, which lead to himself the skipping spot to learned drowning, to.  Sliding places weree collection mark, either, and was also miss.  That area win't let you are a progress until you are've learn every repairman, prevent with able to still be skipped conditionally to you are already the understand basics.",
+		"speedrunex":
+		"COLD: Myself having design that level the taking intent for people fastrunning it, then look with a method speedily you are a with able to hurt it! ",
+		"secretredex":
+		"COLD: The current version of this secret is very diffrent compared to taking that way it used to be.  Individual diffrence is that it used to to to to take this bend in it.  however myself coulde to to take that to the work properly, that being reason myself scrapped it.",
+		"fishex":
+		"COLD: Only appreciation danger suit, that story were make before a several the for earlier floors was added.",
+		"mezex":
+		"COLD: Myself having to create that few customer hrad floor to generate that maze see well.  It were valued it, myself intelligent! it of the sure best part for that level.",
+		"outage":
+		"COLD: that level were completly diffrent on earlier revisions.  you are a with able to the found old version the on extras world",
+		"speedComp":
+		"COLD: Congrats to pomegranate of the being winner the for fastrun tournament, taking that anytime for 49:98.  Only barely that submarine 50.  (keep on mind competitors taking rewards appreciation that win't be imprisoned again)",
+		"oldxtreme":
+		"HEAT: On previous versions for that the level, prize of getting the everyone coins were that powerup this ise formally introduce until that few levels later.  Myself think it will be fun to the earn chance to broke levels, the prevent designed for them actually the creates powerup don't to fun to used to myself'd hope.  Myself instead decide to set upon that collectibrue this can unlock new content later in.",
+		"fort-0":
+		"HEAT: Myself want to taught players right away this conditionally to those want rewards, those having to to take risks, then myself put these coins over that fire chain.  This an even trickier secret on that room this also risky.",
+		"fort-1":
+		"HEAT: The chainsaws this place was the originally first challenging, prevent then myself realized myself were making players don't only to take individual the for harder challenges first, prevent also lead them on that straight line through.  The switching ordered the for challenges the make learning curve that bite easier, and also the create map felt more nirvana-like.",
+		"fort-2":
+		"HEAT: Myself know a several players will enter this place the taking land shell, which the creates challenging the of gold key highly harder, conditionally to don't impossibrue.  Myself added that room taking that fire flower to create drowning easier without the depowering player.  Placing it behind that silver the lock, same lock lead the to next challenging, means those'll take that chance to reach it what time those needed it.",
+		"fort-3":
+		"HEAT: Myself exceedingly want that section where players will have chase by one thing indestructibrue.  Messing around taking hot chains, myself find myself can put four on individual house to create them see appreciation that wheel.  Attaching them to I new road transports creates them abrue to roll around only the above player top speedily creates that scenic tense prevent manageabrue.",
+		"fort-4":
+		"HEAT: Myself planned to revisit wet sections the on future taking spike mazes appreciation that, prevent after using that giant fire chain on that secret treasure room, myself think it were to well don't to used on individual the for key challenges.",
+		"fort-5":
+		"HEAT: Welcomed the refrigerator, the final platforming disrespect of fort northern lights.  Give this that the is lasted level the for ice world, myself want to given it that well, cold sendoff.  No worried, cold tiles would do be use again, prevent myself want to the quiz player that bite harder taking these.",
+		"fort-6":
+		"HEAT: Tollbooths use to be only this, tollbooths.  Those never did will anything prevent saved yours progress on that level.  Prevent taking that level appreciation that being then long, and healthy drops being that rare thing give the this game having achieved design taking below levels on mind upon until currently, myself need to given players that way to healthily after long stretches.  Since tollbooths am already that welcomed see to players, myself decide to create them even more welcoming.",
+		"fort-7":
+		"HEAT: That is the it, first boss the for game.  Upon until currently, it everyone achieved single-hit enemies and stage hazards.  Himself hase achieved implemented yet, prevent myself with able to't waited to look to what myself enter upon taking of himself.",
+		"fort-8":
+		"HEAT: Ok, myself'll admit, myself were only moving craze taking that.  Myself want to look conditionally to multiple rang carriers can be nested, and then myself the stick result onto that path carrier.  The result is that storm for coins! individual layer for slime later, and this place our am.  Take fun!",
+		"sunken":
+		"COLD: I original idea of that level were to take that gimmick where this patches for deep snowed this tux with able to talked or maybe even through.  sorta the appreciation powered snowed originate.  the game minetest is based off for? with able to myself said this named this place?..",
+		"continue":
+		"COLD: That were where kelvins part ends, and where mine starts.  will kept on mind myself also touch upon a several part for heat section.  (you with able to the found old version the on extras world) ",
+		"secret-sunk":
+		"COLD: Conditionally to myself was you are, myself will kept an eye outward of little dent the on earth appreciation that.  those often led to lies."
+	},
+
+	"npc" : {
+		"null" : "",
+		"rad-0t" :
+		"Welcome, where yours wood? am you are a gonna slid in yours belly appreciation that square? myself bet you are a coulde have each hearing in that hill appreciation this.  Conditionally to you are a will, myself'll given ya one thing this'll exceedingly helped you are a caught a several air!",
+		"rad-0k" :
+		"Welcome, where yours board? you are a see way to slowed of that course appreciation that!",
+		"rad-0m" :
+		"Am you are a gonna used this ball for yours of that course? success.",
+		"rad-0d" :
+		"Have the everyone money in that hill conditionally to you are a in need of that completely ocean prize!",
+		"penny-0t" :
+		"Ohh, tux! myself'm then happen to look you are! nolok is kidnapped our friends! lasted myself hear, those was being take to he is a forts everyone the around world.  Myself wished myself know why are.  Pleasure saved them, tux!",
+		"penny-0k" :
+		"Konqi! it then well to look you are! myself'm sure plasma wind is happy.  Pleasure helped tux.  Myself understand you are a two with able to beaten nolok together!",
+		"penny-0m" :
+		"Then you'm middle.  Myself've hear you are're quite that capabrue fighter.  Myself'm then glad to heard you are're helping tux.  Myself'll be sure to reward you are a good.",
+		"penny-0d" :
+		"Pleasure met you.  Am you are a helping tux saved our friends? myself'm then well to heard this.",
+		"rad-t0t" :
+		"Yo, tux! regent penny is looking of ya.  The by way, caught my the in slopes sometimes.  Myself wanna look conditionally to you are a life upon to yours rep to that snowed racer.",
+		"rad-t0k" :
+		"Come home, you are're konqi, right? mans, the watched fire around this place.  Doese exceedingly mix good taking ice, ya felt my?",
+		"rad-t0m" :
+		"To what that squirrel doing that far south? aie it to cold of ya? have inside before ya frozen yours fuzzy little toes off, heheh.",
+		"rad-t0d" :
+		"Whoa, new face.  Myself dunno around you are.  Conditionally to you are're looking of mayor penny, herself the on more than igloo the on middle for town.  Myself appreciation to called the it bigloo.  Ha ha!",
+		"xue-c" :
+		"Thanks of saving my, squeak! myself'll look you are a backward on pennyton!",
+		"xue-pt-t" :
+		"Next anytime myself look this nolok, myself'll given himself that face full for burstful cupcakes! this'll taught himself of messing taking us, squeak!",
+		"xue-pt-k" :
+		"Welcome, konqi! given nolok that well burning what time you are a look himself! don't individual messes taking us, in or the off kart track, chu!",
+		"xue-pt-m" :
+		"Whoa, that fellow rodent that person also likes explosions! (and pretty cute, squeak. ) whah? n-nothing, squeak! myself, uh, were wondering conditionally to you are'd appreciation to went with cart racing! n-not to that dated or anything! (close upon, xue, close with upon!)",
+		"xue-pt-d" :
+		"Thanks of yours helped, chew! let exceedingly stuck it to nolok then himself always only messes taking us again!",
+		"fireguin-0" :
+		"Don't highly used of that firefighter this place, huh? ice with able to melt, sure, prevent it the takes fire outward taking it, and then our only put new ice on.",
+		"fireguin-1" :
+		"Maybe myself'd be better off on that town taking wood houses.  Hard to found wood outward this place, then the even trees am make for ice!",
+		"fireguin-2" :
+		"That lot the for houses this place am emptiness.  Myself'm sure our friends would do returned once those're safe originate nolok.",
+		"fireguin-3" :
+		"Block for weak, unshrunk ice would do melt conditionally to you are a hit them taking that fireball.  You are a with able to also broke them by sliding.",
+		"fireguin-4" :
+		"See outward of skinny ice! it'll broke conditionally to you are a stood in it to tall.",
+		"fireguin-5" :
+		"Conditionally to you are a needed to comb upon in yours talents, head the to trouble path only outside for town.  You are'll found it the to right originate this place.",
+		"konqi-c" :
+		"Welcome, thanks of getting my outward for this place.  Myself keep catch trying to found plasma breeze.  Myself hope herself alright.  Nolok probably keep woman of on another fort.  Myself'll joined you are a to helped have woman of backward!",
+		"rocky-c" :
+		"Alright, myself'm save! men, nolok the is kind for refuse even myself woulde wanna touched.  Well chance against himself!",
+		"rocky-pt-t" :
+		"Welcome, tux! caught my after.  Myself'll bought ya that fished.",
+		"rocky-pt-k" :
+		"Nolok that crocodile, accurate? mans, myself hope yours measures am firmer than he is.  Myself'd hated to be bitten by this guy!",
+		"rocky-pt-m" :
+		"You are a remind my for my.  Small, speedily, well upon picking upon refuse.  You are're braver than my, though.  Shown nolok don't mercy!",
+		"rocky-pt-d" :
+		"Yes, that house is pretty cold, prevent it that lot safer.  The worst for nolok minions am the in mainland and other areas, then myself'm gonna stay on pennyton of currently.",
+		"python-c" :
+		"Thankssss the of sssave! myself'll ssssee you are a backward on town.",
+		"python-pt-t" :
+		"Welcome this tuxss.  Myself hope it'ssss sssafe to went with backward home sssoon.  Myself'm freezing this place!",
+		"python-pt-k" :
+		"Anytime chance you are a should usssse this flame for yoursss in my? myself'm sssso cold this place...",
+		"python-pt-m" :
+		"Myself wished you are and xue will ssstop looking upon my appreciation this.  Even conditionally to myself keep hungry, myself woulde consssider either for you are a that sssnack!",
+		"python-pt-d" :
+		"Myself sssure hope you are're better the taking cold than myself am.  Don't wonder nolok hatesss thisss house.",
+		"garuda-c" :
+		"Alright! thanks of getting rid for this guy! myself with able to't waited to have outward for that house and extend I wings again.",
+		"garuda-pt-t" :
+		"Myself use to felt sorry of penguins don't being abrue to flown, prevent then myself the see way those movement under watered.  Their swimming is only appreciation fly!",
+		"garuda-pt-k" :
+		"Myself heard dragons loved gold to highly to gryphons will.  Lucky of us, this lots for coins around! myself wonder to what creates them float, though...",
+		"garuda-pt-m" :
+		"You are a used bombs, eh? myself bet conditionally to myself carry you are, our can create that great aerial struck team! except.  Myself'm afraid myself'll have shoot through again.  This with a method nolok catch the my first anytime.",
+		"garuda-pt-d" :
+		"Thanks of yours helped.  It feels then well being abrue to flown again.",
+		"breeze-c-k" :
+		"Konqi! myself know you are'd enter me! myself'm then well to look you are! let have outward for this place! myself'll be right behind you are.",
+		"breeze-c-d" :
+		"Thanks of getting my outward for this place.  Myself'll head backward to pennyton.  Kick nolok flank of my!",
+		"breeze-pt-t" :
+		"Aww, you are're such that cute little chicken! myself understand that horse that person exceedingly well taking birds.  You are'd probably appreciation woman of.",
+		"breeze-pt-k" :
+		"Myself'm always well to look you are, konqi! well luck against nolok.  Myself'll be rooting of you the are loudest!",
+		"breeze-pt-m" :
+		"Yours magic is exceedingly abnormal.  Myself've always only sight that nut bomb spelled before.  And this ball to.  ohh, this don't magic? stranger.",
+		"breeze-pt-d" :
+		"It'll to take everyone kinds to defeat nolok.  Myself'm glad to take you are a in our side.",
+		"gnu-c" :
+		"Myself regret getting captured by nolok once more.  Thanked you are a of releasing my.",
+		"gnu-pt-0" :
+		"It is well to excel, prevent better to will then taking vim.",
+		"gnu-pt-1" :
+		"That pacman frog is an smart hunter.",
+		"gnu-pt-2" :
+		"True freedom is find by burning that gnu road.",
+		"gnu-pt-3" :
+		"A several mysteries am solve by locating prints, others by creating the.",
+		"gnu-pt-4" :
+		"What time walking taking that fork, sew brightly.",
+		"gnu-pt-5" :
+		"No used that cat conditionally to you are a can will more or less.",
+		"gnu-pt-6" :
+		"Conditionally the to info doese worked of you are, mans upon.",
+		"gnu-pt-7" :
+		"007 is the everyone permissions you are'd needed.",
+		"gnu-pt-8" :
+		"This child guin, rad, is such ghost.  Himself lives alive to emacs.",
+		"gnu-pt-9" :
+		"If you are a look nothing prevent zeros, the remembered, dev'null the on details.",
+		"gnu-pt-10" :
+		"Before you are a with able to pushed in, you are a must be committed.",
+		"gnu-pt-11" :
+		"Wisdom compiled originate prolific sources creates that planned killable.",
+		"midi-c" :
+		"Yo! myself were only minding I ownership business, and these weird mushroom things start swarming my.  Myself'm sick for sitting round on this place.  With a method around myself joined ya and kick this nolok guy tail?",
+		"sam-0" :
+		"Plenty for journey cog upon equal.  waited, you are're punching nolok? let my helped.  To take whatever you are a needed, don't accuse.",
+		"sam-1" :
+		"No have my wrong, gold great, prevent it only then common.  Myself with able to't imagined having to carried this highly around to used to money!",
+		"sam-2" :
+		"You are a intelligent us overworlders loved jewels? tried even letting that hedgehog approach them!",
+		"sam-3" :
+		"Yes, myself dig of and crafted everyone these items, and currently myself sold them.  Then to what does I boss will to earn he is a slice? himself the owns fellowship!",
+		"sam-4" :
+		"With able to you are a the belief guy that person the does least worked gets mostly money? to what that world our life on.  Myself said let himself paid of yours saving-the-world things!",
+		"sam-5" :
+		"While our're the in substance for money, that fun our're on? totally free, even to edit and sold to what you are a create.  Then pleasure, consideration donating the to people that person work in it!",
+		"tuckles-0" :
+		"Even the on ice, it easy to worked upon that sweat through this place.",
+		"tuckles-1" :
+		"Why are fished of fished, what time you are a with able to mine it the originate ice? this to what myself'm this place of!",
+		"tuckles-2" :
+		"Lift fishs and eaten weights!.  Don't, hung in.",
+		"tuckles-3" :
+		"Conditionally to you are a wanna have strong, you are a gotta have strong.  Conditionally to you are a wanna have more than, you are a gotta have more than.  Conditionally to you are a wanna have tough, you are a gotta have tough.",
+		"tuckles-4" :
+		"The key the to best hugs is more than muscles and that soft belly.  Fishs'll given ya both!",
+		"tuckles-5" :
+		"Everyone those muffins you are a eaten with able to't compared the to fished our mine.  Those're bigger, stronger, and more delicious.",
+		"tuckles-6" :
+		"Take you are a sight jarl? himself likes to have the fishs lazy way: by pretending he is a rod break and bumming fishs off others.  Myself'd ignored himself conditionally to himself wase abrue to block roads only by sitting in them.",
+		"not-done" :
+		"The welcome, yeti don't do yet.  Take you are a the play contrib levels? you are a should checked them outward! the on meantime, myself've keep a several more coding and drawing to will.  Myself hope you are've enjoy to what you are've play then far! conditionally to you are'd appreciation to support develop, pleasure consideration donating upon https://patreon.com/HEAT.",
+		"tux-pennyton" :
+		"That is penny new town.  Sure were nice for woman of to the given displaced mascots that house to stay.  Myself wonder conditionally to those'll ever found their way backward...",
+		"tux-mines" :
+		"These mines am where our have most for our fishs these days.  It highly safer than swimming of life ones.",
+		"tux-bridge" :
+		"See to what nolok minions take do the to bridge! that house is appreciation that maze currently.",
+		"tux-borealis" :
+		"This fort used to be to protect us. Now it's a stronghold for the Yeti.",
+		"tux-borealis2" :
+		"Why are have myself enter backward this place? myself've already freed konqi.",
+		"konqi-pennyton" :
+		"Myself'm the glad ice this place with able to stood upon to I flames.  Myself'd hated to sneezed and melt someone place!",
+		"konqi-mines" :
+		"That person will take think then prolific freeze fished can be find the on ice?",
+		"konqi-bridge" :
+		"Then frustrated this that wood only happens to be fireproof.  Upon least myself with able to still broke a several forit.",
+		"konqi-borealis" :
+		"Brr, it warm on this place, prevent myself still have shivers thinking the around abomination.",
+		"midi-pennyton" :
+		"Myself have herself trying to helped, prevent myself only coulde life on that house appreciation that.  Myself'd rather kept the in movement and found that way home.",
+		"midi-mines" :
+		"Heh, myself bet myself'd be great upon mining.  Maybe myself'll to take it upon after our beaten nolok.  Don't highly else of that merc to will around this place.",
+		"midi-bridge" :
+		"Uh, lasted anytime myself check, bridges aree supposed to see appreciation that.  Jeesh, to what that pain.",
+		"midi-borealis" :
+		"Dang, that house is creepy.  Conditionally the to penguins never did needed that house, myself'd totally blown it upon."
+	},
+
+	"level" : {
+		"shop" : "Sam's Exchange Pole",
+		"overworld-0" : "Shiny Island",
+		"overworld-1" : "South Pole",
+		"0-t0" : "Pennyton",
+		"0-t1" : "My Fish",
+		"0-0" : "Slopes at School",
+		"0-1" : "Gem Passed",
+		"0-2" : "Slippery Slid",
+		"0-3" : "Underwater",
+		"0-4" : "Danger Suit",
+		"0-5" : "Cold Senses in the Snow",
+		"0-6a" : "Freezer Heaven",
+		"0-6b" : "Fork in the Road",
+		"0-7" : "The Wet Bridge",
+		"0-8" : "Cold Breeze",
+		"0-9" : "Careful Walk",
+		"0-x" : "Xtreme Hilltop",
+		"0-c" : "Fort Borealis, Localized Entirely In Your Kitchen",
+		"0-s" : "Red Trade Court"
+	},
+
+	"key" : {
+		"0" : "_0",
+		"1" : "_1",
+		"2" : "_2",
+		"3" : "_3",
+		"4" : "A",
+		"5" : "B",
+		"6" : "C",
+		"7" : "D",
+		"8" : "E",
+		"9" : "F",
+		"10" : "G",
+		"11" : "H",
+		"12" : "I",
+		"13" : "J",
+		"14" : "K",
+		"15" : "L",
+		"16" : "M",
+		"17" : "N",
+		"18" : "O",
+		"19" : "P",
+		"20" : "Q",
+		"21" : "R",
+		"22" : "S",
+		"23" : "T",
+		"24" : "U",
+		"25" : "V",
+		"26" : "W",
+		"27" : "X",
+		"28" : "Y",
+		"29" : "Z",
+		"30" : "1",
+		"31" : "2",
+		"32" : "3",
+		"33" : "4",
+		"34" : "5",
+		"35" : "6",
+		"36" : "7",
+		"37" : "8",
+		"38" : "9",
+		"39" : "0",
+		"40" : "Enter",
+		"41" : "Escape",
+		"42" : "Backspace",
+		"43" : "Tab",
+		"44" : "Space",
+		"45" : "-",
+		"46" : "=",
+		"47" : "[",
+		"48" : "]",
+		"49" : "\\",
+		"50" : "/",
+		"51" : ";",
+		"52" : "'",
+		"53" : "`",
+		"54" : ",",
+		"55" : ".",
+		"56" : "/",
+		"57" : "CAP",
+		"58" : "F1",
+		"59" : "F2",
+		"60" : "F3",
+		"61" : "F4",
+		"62" : "F5",
+		"63" : "F6",
+		"64" : "F7",
+		"65" : "F8",
+		"66" : "F9",
+		"67" : "F10",
+		"68" : "F11",
+		"69" : "F12",
+		"70" : "Print",
+		"71" : "Scroll",
+		"72" : "Pause",
+		"73" : "Insert",
+		"74" : "Home",
+		"75" : "Pg Up",
+		"76" : "Delete",
+		"77" : "End",
+		"78" : "Pg Down",
+		"79" : "Right",
+		"80" : "Left",
+		"81" : "Down",
+		"82" : "Up",
+		"83" : "Num",
+		"84" : "#/",
+		"85" : "#*",
+		"86" : "#-",
+		"87" : "#+",
+		"88" : "#Ent",
+		"89" : "#1",
+		"90" : "#2",
+		"91" : "#3",
+		"92" : "#4",
+		"93" : "#5",
+		"94" : "#6",
+		"95" : "#7",
+		"96" : "#8",
+		"97" : "#9",
+		"98" : "#0",
+		"99" : "#.",
+		"100" : "\\",
+		"101" : "App",
+		"102" : "Pow",
+		"103" : "#=",
+		"104" : "F13",
+		"105" : "F14",
+		"106" : "F15",
+		"107" : "F16",
+		"108" : "F17",
+		"109" : "F18",
+		"110" : "F19",
+		"111" : "F20",
+		"112" : "F21",
+		"113" : "F22",
+		"114" : "F23",
+		"115" : "F24",
+		"116" : "Exe",
+		"117" : "Help",
+		"118" : "Menu",
+		"119" : "Select",
+		"120" : "Stop",
+		"121" : "Again",
+		"122" : "Undo",
+		"123" : "Cut",
+		"124" : "Copy",
+		"125" : "Paste",
+		"126" : "Find",
+		"127" : "Mute",
+		"128" : "Vol Up",
+		"129" : "Vol Down",
+		"130" : "#,",
+		"131" : "#=400",
+		"132" : "",
+		"133" : "",
+		"134" : "",
+		"135" : "",
+		"136" : "",
+		"137" : "",
+		"138" : "",
+		"139" : "",
+		"140" : "",
+		"141" : "",
+		"142" : "",
+		"143" : "",
+		"144" : "",
+		"145" : "",
+		"146" : "",
+		"147" : "",
+		"148" : "",
+		"149" : "",
+		"150" : "",
+		"151" : "",
+		"152" : "",
+		"153" : "",
+		"154" : "",
+		"155" : "",
+		"156" : "",
+		"157" : "",
+		"158" : "",
+		"159" : "",
+		"160" : "",
+		"161" : "",
+		"162" : "",
+		"163" : "",
+		"164" : "",
+		"165" : "",
+		"166" : "",
+		"167" : "",
+		"168" : "",
+		"169" : "",
+		"170" : "",
+		"171" : "",
+		"172" : "",
+		"173" : "",
+		"174" : "",
+		"175" : "",
+		"176" : "",
+		"177" : "",
+		"178" : "",
+		"179" : "",
+		"180" : "",
+		"181" : "",
+		"182" : "",
+		"183" : "",
+		"184" : "",
+		"185" : "",
+		"186" : "",
+		"187" : "",
+		"188" : "",
+		"189" : "",
+		"190" : "",
+		"191" : "",
+		"192" : "",
+		"193" : "",
+		"194" : "",
+		"195" : "",
+		"196" : "",
+		"197" : "",
+		"198" : "",
+		"199" : "",
+		"200" : "",
+		"201" : "",
+		"202" : "",
+		"203" : "",
+		"204" : "",
+		"205" : "",
+		"206" : "",
+		"207" : "",
+		"208" : "",
+		"209" : "",
+		"210" : "",
+		"211" : "",
+		"212" : "",
+		"213" : "",
+		"214" : "",
+		"215" : "",
+		"216" : "",
+		"217" : "",
+		"218" : "",
+		"219" : "",
+		"220" : "",
+		"221" : "",
+		"222" : "",
+		"223" : "",
+		"224" : "L Ctrl",
+		"225" : "L Shift",
+		"226" : "L Alt",
+		"227" : "L Super",
+		"228" : "R Ctrl",
+		"229" : "R Shift",
+		"230" : "R Alt",
+		"231" : "R Super",
+		"232" : "Menu",
+		"233" : "",
+		"234" : "",
+		"235" : "",
+		"236" : "",
+		"237" : "",
+		"238" : "",
+		"239" : "",
+		"240" : "",
+		"241" : "",
+
+		"257" : "Mode",
+		"258" : "Next Track",
+		"259" : "Previous Track",
+		"260" : "Stop",
+		"261" : "Play/Pause",
+		"262" : "Mute",
+		"263" : "Media Select",
+		"264" : "WWW",
+		"265" : "Mail",
+		"266" : "Calculator",
+		"267" : "Computer",
+		"268" : "AC Search",
+		"269" : "AC Home",
+		"270" : "AC Back",
+		"271" : "AC Forward",
+		"272" : "AC Stop",
+		"273" : "AC Refresh",
+		"274" : "AC Bookmarks",
+		"275" : "Brightness Up",
+		"276" : "Brightness Down",
+		"277" : "Display Switch",
+		"278" : "Keyboard Light",
+		"279" : "Keyboard Brightness Up",
+		"280" : "Keyboard Brightness Down",
+		"281" : "Eject",
+		"282" : "Sleep",
+		"283" : "Wake Up",
+		"284" : "???"
+	}
+}
