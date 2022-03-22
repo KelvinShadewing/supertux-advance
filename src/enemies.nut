@@ -510,6 +510,7 @@
 	flip = false
 	squish = false
 	squishTime = 0.0
+	hspeed = 0.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -521,11 +522,11 @@
 		base.run()
 
 		if(active) {
-			if(!squish) {
-				if(placeFree(x, y + 1)) vspeed += 0.1
-				if(placeFree(x, y + vspeed)) y += vspeed
-				else vspeed /= 2
+			if(placeFree(x, y + 1)) vspeed += 0.1
+			if(placeFree(x, y + vspeed)) y += vspeed
+			else vspeed /= 2
 
+			if(!squish) {
 				if(y > gvMap.h + 8) deleteActor(id)
 
 				if(!frozen) {
@@ -609,6 +610,25 @@
 					squish = false
 					squishTime = 0
 				}
+
+				//Get carried
+				if(getcon("shoot", "hold") && gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+					if(gvPlayer.flip == 0) x = gvPlayer.x + 8
+					else x = gvPlayer.x - 8
+					y = gvPlayer.y
+					vspeed = 0
+					squishTime -= 1.0
+					hspeed = gvPlayer.hspeed
+				}
+
+				//Move
+				if(placeFree(x + hspeed, y)) x += hspeed
+				else if(placeFree(x + hspeed, y - 2)) {
+					x += hspeed
+					y -= 1.0
+				}
+				if(!placeFree(x, y + 1)) hspeed *= 0.9
+				if(abs(hspeed) < 0.1) hspeed = 0.0
 			}
 
 			shape.setPos(x, y)

@@ -29,6 +29,15 @@
 	if(keyPress(k_4)) { game.weapon = 3; game.maxEnergy = 4 - game.difficulty }
 	if(keyPress(k_5)) { game.weapon = 4; game.maxEnergy = 4 - game.difficulty }
 
+	if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
+		if(keyPress(k_k)) {
+			gvKeyCopper = true
+			gvKeySilver = true
+			gvKeyGold = true
+			gvKeyMythril = true
+		}
+	}
+
 	//Teleport
 	if(gvPlayer && mouseDown(0)) {
 		gvPlayer.x = mouseX() + camx

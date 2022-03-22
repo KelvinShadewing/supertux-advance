@@ -13,8 +13,10 @@
 	if(gvGameMode == gmPlay) {
 		if(actor.rawin("DeadPlayer")) {
 			startPlay(gvMap.file)
-			if(game.check == true || game.difficulty > 0)
-			if(game.check == false) gvIGT = 0
+			if(game.check == false) {
+				gvIGT = 0
+				game.weapon = 0
+			}
 		}
 		else {
 			gvGameMode = gmPause

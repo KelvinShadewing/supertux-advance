@@ -1106,7 +1106,10 @@
 		timer--
 		if(timer == 0) {
 			startPlay(gvMap.file)
-			if(game.check == false) gvIGT = 0
+			if(game.check == false) {
+				gvIGT = 0
+				game.weapon = 0
+			}
 		}
 		switch(game.weapon) {
 			case 0:
