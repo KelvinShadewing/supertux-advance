@@ -399,8 +399,7 @@
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6)
-				icebox = -1
+				newActor(IceChunks, x, ystart - 6) // Not resetting icebox here to avoid the ice box solid from remaining in place indefinitely.
 			}
 	}
 
