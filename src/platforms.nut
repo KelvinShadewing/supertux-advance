@@ -288,7 +288,10 @@
 	}
 
 	function run() {
-		base.run()
+		local dorun = true
+		//Check for conditions that should hold the object in place
+		if(actor[obj].rawin("frozen")) if(actor[obj].frozen > 0) dorun = false
+		if(dorun) base.run()
 
 		if(checkActor(obj)) {
 			actor[obj].x = x
@@ -301,7 +304,7 @@
 	r = 0.0 //Radius
 	c = 0.0 //Count
 	s = 0.0 //Speed
-	a = 0.0 //Angle
+	a = null //Angle
 	l = null //List
 
 	constructor(_x, _y, _arr = null) {
@@ -313,22 +316,28 @@
 		s = _arr[2].tofloat()
 
 		local newarr = []
+		a = []
 		if(_arr.len() > 4) for(local i = 4; i < _arr.len(); i++) newarr.push(_arr[i])
 		if(newarr.len() == 1) newarr = newarr[0]
 
 		l = []
-		for(local i = 0; i < c; i++) {
+		if(c == 0) deleteActor(id)
+		else for(local i = 0; i < c; i++) {
 			l.push(newActor(getroottable()[_arr[3]], x, y, newarr))
+			a.push((360.0 / c) * i / 180.0 * pi)
 		}
 	}
 
 	function run() {
 		local cl = c //Coins left
-		a += s / 60.0
 		for(local i = 0; i < c; i++) {
 			if(checkActor(l[i])) {
-				actor[l[i]].x = x + r * cos((i * 2 * pi / c) + a)
-				actor[l[i]].y = y + r * sin((i * 2 * pi / c) + a)
+				actor[l[i]].x = x + r * cos((2 * pi / c) + a[i])
+				actor[l[i]].y = y + r * sin((2 * pi / c) + a[i])
+
+				local canrotate = true
+				if(actor[l[i]].rawin("frozen")) if(actor[l[i]].frozen > 0) canrotate = false
+				if(canrotate) a[i] += s / 60.0
 			}
 			else cl--
 		}

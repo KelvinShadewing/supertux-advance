@@ -1028,6 +1028,8 @@
 			blinking = 120
 			if(y > gvMap.h) playerTeleport(groundx, groundy)
 			game.canres = false
+			hspeed = 0.0
+			vspeed = 0.0
 		}
 		else {
 			deleteActor(id)

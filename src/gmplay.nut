@@ -754,6 +754,8 @@
 
 	gvPlayer.x = _x.tofloat()
 	gvPlayer.y = _y.tofloat()
+	gvPlayer.xprev = gvPlayer.x
+	gvPlayer.yprev = gvPlayer.y
 	camx = _x.tofloat() - (screenW() / 2)
 	camy = _y.tofloat() - (screenH() / 2)
 
