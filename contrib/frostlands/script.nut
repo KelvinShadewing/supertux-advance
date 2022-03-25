@@ -12,7 +12,6 @@ print("Loading Frostlands")
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
 ::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 320, 240, 0, 0, 0, 0)
 ::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
-::sprFireBlock <- newSprite("contrib/frostlands/gfx/obj/Fireblock.png", 16, 16, 0, 0, 0, 0)
 
 //NPCS
 ::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/tinyfireguinb.png", 13, 23, 0, 0, 6, 23)
@@ -92,42 +91,6 @@ print("Loading Frostlands")
 
 ::dbgRace <- function() {
 	drawSprite(bgRace, 0, 0, (screenH() / 2) - 120)
-}
-
-::FireBlock <- class extends Actor {
-	shape = 0
-	slideshape = 0
-	fireshape = 0
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-
-		shape = Rec(x, y + 2, 8, 8, 0)
-		slideshape = Rec(x, y - 1, 12, 8, 0)
-		fireshape = Rec(x, y, 16, 16, 0)
-		tileSetSolid(x, y, 1)
-	}
-
-	function run() {
-
-		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, 0)
-			deleteActor(id)
-			deleteActor(i.id)
-			newActor(Flame, x, y)
-			playSound(sndFlame, 0)
-		}
-
-		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, 0)
-			deleteActor(id)
-			deleteActor(i.id)
-			newActor(Poof, x, y)
-			playSound(sndFlame, 0)
-		}
-
-		drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy)
-	}
 }
 
 ::TNTALT <- class extends Actor {

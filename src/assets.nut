@@ -114,6 +114,8 @@
 ::defLockBlock <- sprLockBlock
 ::sprBossDoor <- newSprite("res/gfx/boss-door.png", 16, 32, 0, 0, 0, 0)
 ::defBossDoor <- sprBossDoor
+::sprFireBlock <- newSprite("res/gfx/fireblock.png", 16, 16, 0, 0, 0, 0)
+::defFireBlock <- sprFireBlock
 
 
 //NPCs

@@ -611,13 +611,17 @@
 				}
 
 				//Get carried
-				if(getcon("shoot", "hold") && gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
-					if(gvPlayer.flip == 0) x = gvPlayer.x + 8
-					else x = gvPlayer.x - 8
-					y = gvPlayer.y
-					vspeed = 0
-					squishTime -= 1.0
-					hspeed = gvPlayer.hspeed
+				if(getcon("shoot", "hold") && gvPlayer) {
+					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.held == null || gvPlayer.held == id)) {
+						if(gvPlayer.flip == 0) x = gvPlayer.x + 8
+						else x = gvPlayer.x - 8
+						y = gvPlayer.y
+						vspeed = 0
+						squishTime -= 1.0
+						hspeed = gvPlayer.hspeed
+						gvPlayer.held = id
+					}
+					else if(gvPlayer.held == id) gvPlayer.held = null
 				}
 
 				//Move

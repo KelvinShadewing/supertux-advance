@@ -34,6 +34,7 @@
 	antigrav = 0
 	groundx = 0.0 //Remember last coordinates over solid ground
 	groundy = 0.0
+	held = null
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]

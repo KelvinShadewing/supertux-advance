@@ -42,6 +42,9 @@
 	accel = 0.2
 	friction = 0.1
 
+	//Misc
+	held = null
+
 	routine = null
 
 	constructor(x, y, _arr = null) {

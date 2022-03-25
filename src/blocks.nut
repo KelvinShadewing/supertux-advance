@@ -894,3 +894,45 @@
 
 	function _typeof() { return "Fishy" }
 }
+
+::FireBlock <- class extends Actor {
+	shape = 0
+	slideshape = 0
+	fireshape = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		slideshape = Rec(x, y - 1, 12, 8, 0)
+		fireshape = Rec(x, y, 16, 16, 0)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+
+		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			deleteActor(i.id)
+			newActor(Flame, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			newActor(Flame, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		if(actor.rawin("Flame")) foreach(i in actor["Flame"]) if(inDistance2(x, y, i.x, i.y, 20) && i.frame >= 4) {
+			tileSetSolid(x, y, 0)
+			deleteActor(id)
+			newActor(Flame, x, y)
+			playSound(sndFlame, 0)
+		}
+
+		drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy)
+	}
+}

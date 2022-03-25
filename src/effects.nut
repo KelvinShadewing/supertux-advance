@@ -72,6 +72,8 @@
 		else drawSpriteEx(sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
+
+	function _typeof() { return "Flame" }
 }
 
 ::Splash <- class extends Actor {
