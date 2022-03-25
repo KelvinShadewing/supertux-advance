@@ -126,6 +126,9 @@
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
 		}
+		if(gvPlayer) {
+			if(gvPlayer.held == id) gvPlayer.held = null
+		}
 	}
 
 	function _typeof() { return "Enemy" }
@@ -591,11 +594,6 @@
 			else {
 				squishTime += 1.5
 				frame += 0.002 * squishTime
-				if(squishTime >= 150) {
-					deleteActor(id)
-					newActor(BadExplode, x, y)
-
-				}
 				drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 				if(getFrames() % 20 == 0) {
 					local c
@@ -620,6 +618,7 @@
 						squishTime -= 1.0
 						hspeed = gvPlayer.hspeed
 						gvPlayer.held = id
+						if(squishTime >= 150) gvPlayer.held = null
 					}
 					else if(gvPlayer.held == id) gvPlayer.held = null
 				}
@@ -632,6 +631,13 @@
 				}
 				if(!placeFree(x, y + 1)) hspeed *= 0.9
 				if(abs(hspeed) < 0.1) hspeed = 0.0
+
+				//Explode
+				if(squishTime >= 150) {
+					deleteActor(id)
+					newActor(BadExplode, x, y)
+					if(gvPlayer.held == id) gvPlayer.held = null
+				}
 			}
 
 			shape.setPos(x, y)
