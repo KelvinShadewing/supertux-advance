@@ -13,14 +13,14 @@
 }
 
 ::dbgCave <- function() {
-	for(local i = 0; i < 5; i++) {
-		for(local j = 0; j < 5; j++) {
+	for(local i = 0; i < 6; i++) {
+		for(local j = 0; j < 6; j++) {
 			drawSprite(bgIridia, 0, ((-camx / 8) % 100) + (i * 100), ((-camy / 8) % 56) + (j * 56))
 		}
 	}
 
-	for(local i = 0; i < 2; i++) {
-		for(local j = 0; j < 2; j++) {
+	for(local i = 0; i < 4; i++) {
+		for(local j = 0; j < 4; j++) {
 			drawSprite(bgCaveHoles, 0, ((-camx / 4) % 400) + (i * 400), ((-camy / 4) % 392) + (j * 392))
 		}
 	}
@@ -28,19 +28,19 @@
 
 ::dbgForest <- function() {
 	if(gvMap != 0) {
-		for(local i = 0; i < 2; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < 4; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvMap.h - camy - 180)
-		for(local i = 0; i < 4; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvMap.h - camy - 180)
+		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvMap.h - camy - 180)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvMap.h - camy - 180)
 	}
 	else {
-		for(local i = 0; i < 2; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < 4; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
-		for(local i = 0; i < 4; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 180)
+		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 180)
 	}
 }
 
 ::dbgMountain <- function() {
-	for(local i = 0; i < 2; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+	for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
 }
 
 ::dbgAurora <- function() {
@@ -105,6 +105,7 @@
 
 ::dbgCastle <- function() {
 	drawSprite(bgCastle, 0, 0, (screenH() / 2) - 120)
+	drawSprite(bgCastle, 0, 320, (screenH() / 2) - 120)
 }
 
 ::dbgFortMagma <- function() {

@@ -40,6 +40,8 @@
 	anHurt = [32.0, 33.0, "hurt"]
 	anDizzy = [34.0, 35.0, "dizzy"]
 	anShake = [36.0, 39.0, "shake"]
+	anThrow = [40.0, 43.0, "throw"]
+	anCheer = [44.0, 47.0, "cheer"]
 
 	//Boss specific variables
 	eventTimer = 0
@@ -82,6 +84,8 @@
 			case anRun:
 			case anHurt:
 			case anShake:
+			case anThrow:
+			case anCheer:
 				frame += 0.3
 				break
 			case anJump:
@@ -98,7 +102,10 @@
 		anim = anWalk
 		flip = 1
 		hspeed = -1.0
-
+		if(x < camx + screenW() - 96) {
+			routine = ruIntroCheer
+			hspeed = 0.0
+		}
 	}
 
 	function ruIntroCheer() {}

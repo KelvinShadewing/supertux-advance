@@ -7,7 +7,7 @@
 ::cursor <- 0
 ::cursorOffset <- 0
 ::cursorTimer <- 30
-const menuMax = 7 //Maximum number of slots that can be shown on screen
+const menuMax = 11 //Maximum number of slots that can be shown on screen
 const fontH = 14
 ::textMenu <- function(){
 	//If no menu is loaded
@@ -23,17 +23,17 @@ const fontH = 14
 	//The number
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
 		if(cursor == i) {
-			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 8 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 8 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 		}
-		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 8 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
+		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
 	}
 	else for(local i = 0; i < menu.len(); i++) {
 		if(cursor == i) {
-			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 8 - (menu.len() * fontH) + (i * fontH))
-			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 8 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
 		}
-		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 8 - (menu.len() * fontH) + (i * fontH), menu[i].name())
+		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menu.len() * fontH) + (i * fontH), menu[i].name())
 	}
 
 	//Keyboard input

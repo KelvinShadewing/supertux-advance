@@ -61,7 +61,7 @@ for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "
 //Aspects may not perfectly match, so the closest one will be picked
 local disres = displayW().tofloat() / displayH().tofloat()
 local reschoice = 0
-local aspects = [(16.0 / 9.0), (8.0 / 5.0), (4.0 / 3.0)]
+local aspects = [(16.0 / 9.0), (5.0 / 3.0), (4.0 / 3.0)]
 local resdiff = 100 //Arbitrary high starting number
 for(local i = 0; i < aspects.len(); i++) {
 	if(abs(disres - aspects[i]) < resdiff) {
@@ -71,10 +71,10 @@ for(local i = 0; i < aspects.len(); i++) {
 }
 switch(reschoice) {
 	case 0:
-		setResolution(320, 180)
+		setResolution(420, 240)
 		break
 	case 1:
-		setResolution(320, 200)
+		setResolution(400, 240)
 		break
 	case 2:
 		setResolution(320, 240)
@@ -86,7 +86,7 @@ switch(reschoice) {
 }
 
 //Uncomment this function if you want to play at actual GBA resolution
-//setResolution(240, 160)
+//setResolution(420, 240)
 
 gvScreen = newTexture(screenW(), screenH())
 gvPlayScreen = newTexture(screenW(), screenH())
