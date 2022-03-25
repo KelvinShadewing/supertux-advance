@@ -548,10 +548,10 @@
 					if(hspeed < 0) hspeed += friction / 3.0
 				} else {
 					if(hspeed > 0) {
-						if(!(mspeed > 2 && getcon("right", "hold")) || anim == anCrawl) hspeed -= friction
+						if(!(mspeed > 2 && getcon("right", "hold")) || anim == anCrawl || !canMove) hspeed -= friction
 					}
 					if(hspeed < 0) {
-						if(!(mspeed > 2 && getcon("left", "hold")) || anim == anCrawl) hspeed += friction
+						if(!(mspeed > 2 && getcon("left", "hold")) || anim == anCrawl || !canMove) hspeed += friction
 					}
 				}
 			}
@@ -614,7 +614,8 @@
 				newActor(StompPoof, x + 8, y + 12)
 				newActor(StompPoof, x - 8, y + 12)
 			}
-			switch(game.weapon) {
+
+			if(canMove) switch(game.weapon) {
 				case 0:
 					if(cooldown > 0) break
 					if(getcon("shoot", "press")) {
@@ -776,7 +777,7 @@
 			}
 
 			//Attacks
-			switch(game.weapon) {
+			if(canMove) switch(game.weapon) {
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6

@@ -849,6 +849,13 @@
 ::BossDoor <- class extends Actor {
 	dy = 0
 	moving = false
+	delay = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		if(_arr != "") delay = _arr.tointeger()
+	}
 
 	function run() {
 		if(gvWarning == 0 && dy == 0) {
@@ -858,7 +865,10 @@
 			tileSetSolid(x, y - 32, 1)
 			tileSetSolid(x, y - 48, 1)
 		}
-		if(moving && dy < 32) dy++
+		if(moving && dy < 32) {
+			if(delay > 0) delay--
+			else dy++
+		}
 
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - dy + 16)
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - 80 + dy)

@@ -280,7 +280,7 @@
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 180, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 720, 240, 0, 0, 0, 0)
 ::bgStarSky <- newSprite("res/gfx/starysky.png", 240, 240, 0, 0, 0, 0)
-::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 420, 240, 0, 0, 0, 0)
+::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 ::bgSnowPlain <- newSprite("res/gfx/bgSnowPlain.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNight <- newSprite("res/gfx/bgSnowNight.png", 800, 240, 0, 0, 0, 0)
@@ -351,6 +351,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musPuzzle <- "res/snd/puzzle.ogg"
 ::musIceland <- "res/snd/iceland.ogg"
 ::musretro2<- "res/snd/retro-2.ogg"
+::musBoss <- "res/snd/boss.ogg"
+::musBossIntro <- "res/snd/boss-intro.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")

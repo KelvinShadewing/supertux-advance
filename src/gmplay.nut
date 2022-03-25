@@ -438,7 +438,7 @@
 					break
 
 				case 79:
-					c = newActor(BossDoor, i.x, i.y - 16)
+					c = newActor(BossDoor, i.x, i.y - 16, i.name)
 					break
 			}
 

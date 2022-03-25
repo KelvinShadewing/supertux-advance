@@ -71,7 +71,7 @@ for(local i = 0; i < aspects.len(); i++) {
 }
 switch(reschoice) {
 	case 0:
-		setResolution(420, 240)
+		setResolution(424, 240)
 		break
 	case 1:
 		setResolution(400, 240)
@@ -86,7 +86,7 @@ switch(reschoice) {
 }
 
 //Uncomment this function if you want to play at actual GBA resolution
-//setResolution(420, 240)
+//setResolution(240, 160)
 
 gvTextW = floor(screenW() / 6) - 1
 
