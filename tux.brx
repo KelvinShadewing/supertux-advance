@@ -88,6 +88,8 @@ switch(reschoice) {
 //Uncomment this function if you want to play at actual GBA resolution
 //setResolution(420, 240)
 
+gvTextW = floor(screenW() / 6) - 1
+
 gvScreen = newTexture(screenW(), screenH())
 gvPlayScreen = newTexture(screenW(), screenH())
 bgPause = newTexture(screenW(), screenH())

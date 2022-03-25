@@ -126,6 +126,7 @@
 ::camy <- 0
 ::camxprev <- 0
 ::camyprev <- 0
+::gvTextW <- 0
 
 //Debug variabls
 ::gvFPS <- 0

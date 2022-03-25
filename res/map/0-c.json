@@ -3787,7 +3787,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) actor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"tux-borealis2\"], 52)"
+         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) actor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"tux-borealis2\"], gvTextW)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

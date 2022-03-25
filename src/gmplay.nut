@@ -201,12 +201,12 @@
 					break
 
 				case 22:
-					if(gvLangObj["info"].rawin(i.name)) c = newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], 52))
+					if(gvLangObj["info"].rawin(i.name)) c = newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], gvTextW))
 					else c = newActor(InfoBlock, i.x + 8, i.y - 8, "")
 					break
 
 				case 23:
-					if(gvLangObj["devcom"].rawin(i.name)) c = newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], 52))
+					if(gvLangObj["devcom"].rawin(i.name)) c = newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], gvTextW))
 					else c = newActor(KelvinScarf, i.x + 8, i.y - 8, "")
 					break
 
@@ -715,7 +715,7 @@
 			if(chint(gvInfoBox[i])  == "\n") ln++
 		}
 		setDrawColor(0x000000d0)
-		drawRec(0, 0, 320, 8 * ln, true)
+		drawRec(0, 0, screenW(), 8 * ln, true)
 		drawText(font, 8, 8, gvInfoBox)
 
 	}
