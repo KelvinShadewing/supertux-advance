@@ -1650,18 +1650,6 @@
                 {
                  "gid":65,
                  "height":16,
-                 "id":800,
-                 "name":"FireBlock",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":4992,
-                 "y":256
-                }, 
-                {
-                 "gid":65,
-                 "height":16,
                  "id":801,
                  "name":"FireBlock",
                  "rotation":0,
@@ -2006,6 +1994,18 @@
                  "width":16,
                  "x":2304,
                  "y":48
+                }, 
+                {
+                 "gid":15,
+                 "height":16,
+                 "id":845,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":4992,
+                 "y":256
                 }],
          "opacity":0.62,
          "type":"objectgroup",
@@ -2014,7 +2014,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":845,
+ "nextobjectid":846,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2023,7 +2023,7 @@
          "value":"drawBG = dbgSnowPlainF\nsongPlay(musDisko)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -2145,6 +2145,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":400
 }
