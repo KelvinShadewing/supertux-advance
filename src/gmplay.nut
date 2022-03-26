@@ -12,6 +12,7 @@
 	if(!fileExists(level)) return
 
 	//Clear actors and start creating new ones
+	setFPS(60)
 	gvPlayer = false
 	actor.clear()
 	actlast = 0
@@ -594,7 +595,7 @@
 
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
-	if(gvMap.name != "shop") for(local i = 0; i < screenW() / 16; i++) {
+	if(gvMap.name != "shop") for(local i = 0; i < (screenW() / 16) + 1; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
 	runActors()
@@ -617,10 +618,15 @@
 		}
 		//Draw health
 		if(game.health > game.maxHealth) game.health = game.maxHealth
-		for(local i = 0; i < game.maxHealth; i++) {
-			if(i < game.health) drawSprite(sprHealth, 1, 8 + (16 * i), 8)
+
+		local fullhearts = floor(game.health / 4)
+
+		for(local i = 0; i < game.maxHealth / 4; i++) {
+			if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 8)
+			else if(i == fullhearts) drawSprite(sprHealth, game.health % 4, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 		}
+
 		//Draw energy
 		for(local i = 0; i < game.maxEnergy; i++) {
 			if(gvPlayer) {
@@ -735,14 +741,16 @@
 	drawImage(gvScreen, 0, 0)
 
 	//Handle berries
+	if(game.berries > 0 && game.berries % 16 == 0 && game.health < game.maxHealth) {
+		game.health++
+		game.berries = 0
+	}
 	if(gvPlayer) if(game.berries == 64) {
 		game.berries = 0
-		if(game.health < game.maxHealth) {
-			game.health++
-			playSound(sndHeal, 0)
-		}
-		else newActor(Starnyan, gvPlayer.x, gvPlayer.y)
+		newActor(Starnyan, gvPlayer.x, gvPlayer.y)
 	}
+
+	if(game.health < 0) game.health = 0
 }
 
 ::playerTeleport <- function(_x, _y) { //Used to move the player and camera at the same time

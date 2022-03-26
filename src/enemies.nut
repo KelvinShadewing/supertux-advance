@@ -468,6 +468,11 @@
 		}
 	}
 
+	function hurtplayer() {
+		base.hurtplayer()
+		if(gvPlayer) gvPlayer.hurt = 2
+	}
+
 	function gethurt() {
 		if(gvPlayer && !frozen) {
 			hurtplayer()
@@ -717,7 +722,10 @@
 		frame += 0.2
 
 		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 1
+			if(hitTest(shape, gvPlayer.shape)) {
+				if(gvPlayer.blastResist) gvPlayer.hurt = 2
+				else gvPlayer.hurt = 4
+			}
 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
 				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
 				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
@@ -1846,11 +1854,11 @@
 				}
 
 				if(gvPlayer && chasing) {
-					if(x < gvPlayer.x - 8) if(hspeed < 2.5) {
+					if(x < gvPlayer.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
 						hspeed += 0.1
 						if(hspeed < 0) hspeed += 0.1
 					}
-					if(x > gvPlayer.x + 8) if(hspeed > -2.5) {
+					if(x > gvPlayer.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
 						hspeed -= 0.1
 						if(hspeed > 0) hspeed -= 0.1
 					}

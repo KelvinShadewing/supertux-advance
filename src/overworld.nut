@@ -308,6 +308,7 @@
 
 ::startOverworld <- function(world) {
 	//Clear actors and start creating new ones
+	setFPS(60)
 	gvPlayer = false
 	actor.clear()
 	gvIGT = 0

@@ -57,7 +57,7 @@
 
 
 //GUI
-::sprHealth <- newSprite("res/gfx/heart.png",16, 16, 0, 0, 0, 0)
+::sprHealth <- newSprite("res/gfx/health.png",16, 16, 0, 0, 0, 0)
 ::defHealth <- sprHealth
 ::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)
 ::defEnergy <- sprEnergy

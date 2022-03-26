@@ -17,8 +17,8 @@
 	maxredcoins = 0
 	secrets = 0
 	enemies = 0
-	health = 4
-	maxHealth = 4
+	health = 12
+	maxHealth = 12
 	weapon = 0
 	maxEnergy = 0
 	fireBonus = 0
@@ -69,6 +69,7 @@
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- false; //Pointer to player actor
+::gvBoss <- false; //Pointer to boss actor
 /*\
  # When characters are unlocked, they will
  # be added to game.characters. Mods can

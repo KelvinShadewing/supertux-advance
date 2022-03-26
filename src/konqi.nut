@@ -36,6 +36,7 @@
 	groundx = 0.0 //Remember last coordinates over solid ground
 	groundy = 0.0
 	held = null
+	blastResist = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -910,15 +911,14 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 1
+		if(onHazard(x, y)) hurt = 2
 		if(onDeath(x, y)) game.health = 0
 
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
-				blinking = 120
+				blinking = 60
 				playSound(sndHurt, 0)
 				if(game.weapon == 4 && anim == anSlide && energy > 0) {
-					blinking = 60
 					energy--
 					firetime = 120
 					newActor(Spark, x, y)
