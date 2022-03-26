@@ -10,7 +10,7 @@ print("Loading Frostlands")
 ::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
-::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 320, 240, 0, 0, 0, 0)
+::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer-L.png", 720, 240, 0, 0, 0, 0)
 ::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
 
 //NPCS
@@ -21,6 +21,8 @@ print("Loading Frostlands")
 ::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
 ::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 18, 42, 0, 0, 8, 42)
 ::sprterryB <- newSprite("contrib/frostlands/gfx/NPC/terry-behind.png", 37, 51, 0, 0, 16, 51)
+::sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 0, 0, 19, 18)
+::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 18, 16)
 
 //OG style
 ::sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 0, 0, 8, 8)

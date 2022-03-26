@@ -28,9 +28,7 @@
 		"Fw-9" : "Short fuse",
 		"GT" : "The goldtown",
 		"B-1" : "NeverCity",
-		"B-2" : "freezing point",
-		"B-3" : "Noted Bside",
-		"B-4" : "The funny"
+		"B-2" : "freezing point"
 	},
 	"npc" : {
 		"null" : "",
@@ -47,16 +45,20 @@
 		"mark" :
 		"...",
 		"Frost" :
-		"oh, hello Tux. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
+		"Oh, hello Tux. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
 		"mrq2" :
 		"Yes, yes. I am also here.",
 		"mark2" :
-		"The earthshell isn't in any of the previous levels so.. uh.. here you go. ",
+		"The earthshell isn't in any of the previous levels so.. here you go. ",
 		"brg-flame" :
 		"I think these burgers would be better if they were actually.. you know.. cooked. ",
 		"brg-terry" :
 		"Hey hey hey! Welcome to my ice-burger shop! It's a fresh fish in a bun! ....and also a little cheese. Care to try one?",
 		"tuc" :
-		"im     evil                                          tuckles"
+		"Im     evil                                          tuckles",
+		"nin" :
+		"Hey! what are you doing up here??",
+		"slm" :
+		"woof"
 		}
 }

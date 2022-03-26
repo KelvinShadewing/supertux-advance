@@ -67,8 +67,8 @@
 [x] Powerup leveling
 [x] Sub items
 [ ] General store
-[ ] Fix the infamous slope glitch
-[ ] add glow to Blazeborn
+[x] Fix the infamous slope glitch
+[x] add glow to Blazeborn
 [ ] World travel
 [x] In-game timer
 [x] Jump buffering
