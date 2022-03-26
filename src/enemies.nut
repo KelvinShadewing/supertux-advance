@@ -1359,7 +1359,7 @@
 
 		if(timer == 0 || !placeFree(x, y)) deleteActor(id)
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 1
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
 
 		drawSprite(sprIceball, 0, x - camx, y - camy)
 		if(!inWater(x, y)) vspeed += 0.2
@@ -1718,7 +1718,7 @@
 	}
 
 	function gethurt() {
-		gvPlayer.hurt = 1
+		gvPlayer.hurt = 3
 	}
 
 	function hurtblast() {
@@ -1768,7 +1768,7 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
-			gvPlayer.hurt = 1
+			gvPlayer.hurt = 6
 		}
 
 		drawSprite(sprDarkStar, getFrames() / 10, x - camx, y - camy)
@@ -2005,7 +2005,7 @@
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 1
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 3
 	}
 }
 
@@ -2027,7 +2027,7 @@
 		frame += 0.1
 
 		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 1
+			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 6
 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
 				if(x < gvPlayer.x) gvPlayer.hspeed += 0.1
 				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.1
@@ -2319,7 +2319,7 @@
 
 	function hurtplayer() {
 		if(squish) return
-		base.hurtplayer()
+		gvPlayer.hurt = 3
 	}
 
 	function gethurt() {
@@ -2345,7 +2345,7 @@
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
 		}
-		base.hurtplayer()
+		gvPlayer.hurt = 3
 		squish = false
 	}
 
