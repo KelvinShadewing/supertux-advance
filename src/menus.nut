@@ -27,10 +27,12 @@ const fontH = 14
 		if(menu[i].rawin("disabled")) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 30 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 30 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			if(menu[i].rawin("desc"))
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 12, menu[i].desc())
 		}
-		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
+		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 30 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
 	}
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
@@ -38,10 +40,12 @@ const fontH = 14
 		if(menu[i].rawin("disabled")) { currFont = font2G }
 		
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 30 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 30 - (menu.len() * fontH) + (i * fontH))
+			if(menu[i].rawin("desc"))
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 12, menu[i].desc())
 		}
-		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menu.len() * fontH) + (i * fontH), menu[i].name())
+		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 30 - (menu.len() * fontH) + (i * fontH), menu[i].name())
 	}
 
 	//Keyboard input
@@ -153,18 +157,22 @@ const fontH = 14
 ::meOptions <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["keyboard"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["keyboard"] },
 		func = function() { menu = meKeybinds }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
 		func = function() { menu = meJoybinds }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["language"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["language"] },
 		func = function() { selectLanguage() }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["timers"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["timers"] },
 		func = function() { menu = meTimers }
 	},
 	{
@@ -173,11 +181,13 @@ const fontH = 14
 			if(config.light) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
-		}
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["light"] },
 		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["fullscreen"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["fullscreen"] },
 		func = function() { toggleFullscreen() }
 	},
 	{
@@ -186,7 +196,8 @@ const fontH = 14
 			if(config.stickspeed) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
-		}
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["stickspeed"] },
 		func = function() { config.stickspeed = !config.stickspeed; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
@@ -195,7 +206,8 @@ const fontH = 14
 			if(config.autorun) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
-		}
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["autorun"] },
 		func = function() { config.autorun = !config.autorun; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
