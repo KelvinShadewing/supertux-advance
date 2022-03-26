@@ -19,7 +19,7 @@
 	hurt = 0
 	swimming = false
 	endMode = false
-	canstomp = true //If they can use jumping as an attack
+	canStomp = true //If they can use jumping as an attack
 	sprite = sprKonqi
 	invincible = 0
 	shapeStand = 0
@@ -403,7 +403,7 @@
 						frame = anim[0]
 						hspeed = 0
 						vspeed = 0
-						x = (x - (x % 16)) + 7
+						x = (x - (x % 16)) + 8
 					}
 				}
 

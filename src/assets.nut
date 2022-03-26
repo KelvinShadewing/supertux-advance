@@ -16,15 +16,15 @@
 
 
 
-::sprTux <- newSprite("res/gfx/tux.png", 32, 32, 0, 0, 15, 19)
+::sprTux <- newSprite("res/gfx/tux.png", 32, 32, 0, 0, 16, 19)
 ::defTux <- sprTux
-::sprTuxFire <- newSprite("res/gfx/tuxfire.png", 32, 32, 0, 0, 15, 19)
+::sprTuxFire <- newSprite("res/gfx/tuxfire.png", 32, 32, 0, 0, 16, 19)
 ::defTuxFire <- sprTuxFire
-::sprTuxIce <- newSprite("res/gfx/tuxice.png", 32, 32, 0, 0, 15, 19)
+::sprTuxIce <- newSprite("res/gfx/tuxice.png", 32, 32, 0, 0, 16, 19)
 ::defTuxIce <- sprTuxIce
-::sprTuxAir <- newSprite("res/gfx/tuxair.png", 32, 32, 0, 0, 15, 19)
+::sprTuxAir <- newSprite("res/gfx/tuxair.png", 32, 32, 0, 0, 16, 19)
 ::defTuxAir <- sprTuxAir
-::sprTuxEarth <- newSprite("res/gfx/tuxearth.png", 32, 32, 0, 0, 15, 19)
+::sprTuxEarth <- newSprite("res/gfx/tuxearth.png", 32, 32, 0, 0, 16, 19)
 ::defTuxEarth <- sprTuxEarth
 ::sprTuxOverworld <- newSprite("res/gfx/tuxO.png", 14, 17, 0, 0, 7, 14)
 ::defTuxOverworld <- sprTuxOverworld
@@ -32,15 +32,15 @@
 ::defTuxDoll <- sprTuxDoll
 
 
-::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 15, 19)
+::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 16, 19)
 ::defKonqi <- sprKonqi
-::sprKonqiFire <- newSprite("res/gfx/konqifire.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiFire <- newSprite("res/gfx/konqifire.png", 32, 32, 0, 0, 16, 19)
 ::defKonqiFire <- sprKonqiFire
-::sprKonqiIce <- newSprite("res/gfx/konqiice.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiIce <- newSprite("res/gfx/konqiice.png", 32, 32, 0, 0, 16, 19)
 ::defKonqiIce <- sprKonqiIce
-::sprKonqiAir <- newSprite("res/gfx/konqiair.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiAir <- newSprite("res/gfx/konqiair.png", 32, 32, 0, 0, 16, 19)
 ::defKonqiAir <- sprKonqiAir
-::sprKonqiEarth <- newSprite("res/gfx/konqiearth.png", 32, 32, 0, 0, 15, 19)
+::sprKonqiEarth <- newSprite("res/gfx/konqiearth.png", 32, 32, 0, 0, 16, 19)
 ::defKonqiEarth <- sprKonqiEarth
 ::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 17)
 ::defKonqiOverworld <- sprKonqiOverworld
@@ -48,7 +48,7 @@
 ::defKonqiDoll <- sprKonqiDoll
 
 
-::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 15, 19)
+::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 16, 19)
 ::defMidi <- sprMidi
 ::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 17)
 ::defMidiOverworld <- sprMidiOverworld
@@ -184,7 +184,7 @@
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
 ::defNolok <- sprNolok
-::sprYeti <- newSprite("res/gfx/yeti.png", 64, 64, 0, 0, 32, 40)
+::sprYeti <- newSprite("res/gfx/yeti.png", 64, 64, 0, 0, 36, 40)
 ::defYeti <- sprYeti
 
 
@@ -331,6 +331,9 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndWarning <- loadSound("res/snd/warning.ogg")
 ::sndGulp <- loadSound("res/snd/gulp.ogg")
 ::sndFish <- loadSound("res/snd/fish.ogg")
+::sndGrowl <- loadSound("res/snd/growl.ogg")
+::sndMenuMove <- loadSound("res/snd/menu-move.ogg")
+::sndMenuSelect <- loadSound("res/snd/menu-select.ogg")
 
 
 //Music

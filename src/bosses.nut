@@ -10,6 +10,7 @@
 	frame = 0.0
 	anim = null
 	blinking = 0.0
+	canBeStomped = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -19,12 +20,21 @@
 		if(active) {
 			if(routine != null) routine()
 			animics()
+
+			//Collision with player
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && blinking == 0) {
+				if(gvPlayer.y < y - shape.h && gvPlayer.vspeed >= 0 && gvPlayer.canStomp) hurtStomp()
+				else hitPlayer()
+			}
+			if(blinking > 0) blinking -= 0.1
 		}
 	}
 
 	//Physics gets a separate function so that it can be inherited by other bosses
 	function animics() {}
-	function hitPlayer() {}
+	function hitPlayer() {
+		gvPlayer.hurt = 1
+	}
 
 	function hurtStomp() {}
 	function hurtBlast() {}
@@ -89,7 +99,7 @@
 
 		if(!phasing && vspeed < 4) vspeed += gravity
 		if(placeFree(x, y + vspeed) || phasing) y += vspeed
-		else vspeed = 0.0
+		else vspeed /= 4.0
 
 		shape.setPos(x, y)
 
@@ -144,6 +154,7 @@
 		eventTimer--
 		if(eventTimer < 100) anim = anCheer
 		else anim = anIdle
+		if(eventTimer == 100) playSound(sndGrowl, 0)
 		if(eventTimer == 0) {
 			eventTimer = 0
 			routine = ruIdle
@@ -154,6 +165,17 @@
 
 	function ruIdle() {
 		anim = anIdle
+	}
+
+	function ruHurt() {
+		anim = anHurt
+		eventTimer--
+		blinking = 12.0
+		if(eventTimer == 0) {
+			eventTimer = 60
+			routine = ruIdle
+			canBeStomped = false
+		}
 	}
 
 }

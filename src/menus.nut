@@ -46,6 +46,7 @@ const fontH = 14
 		}
 		if(getcon("down", "press")) cursorTimer = 40
 		else cursorTimer = 10
+		playSound(sndMenuMove, 0)
 	}
 
 	if(getcon("up", "press") || (getcon("up", "hold") && cursorTimer <= 0)) {
@@ -57,12 +58,14 @@ const fontH = 14
 		}
 		if(getcon("up", "press")) cursorTimer = 40
 		else cursorTimer = 10
+		playSound(sndMenuMove, 0)
 	}
 
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
 		menu[cursor].func()
+		playSound(sndMenuSelect, 0)
 	}
 
 	if(getcon("pause", "press")) {

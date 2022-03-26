@@ -18,7 +18,7 @@
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtinvinc()
-					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canstomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) gethurt()
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) gethurt()
 					else if(gvPlayer.rawin("anSlide")) {
 						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
 						else hurtplayer()
@@ -636,7 +636,7 @@
 				if(squishTime >= 150) {
 					deleteActor(id)
 					newActor(BadExplode, x, y)
-					if(gvPlayer.held == id) gvPlayer.held = null
+					if(gvPlayer) if(gvPlayer.held == id) gvPlayer.held = null
 				}
 			}
 
