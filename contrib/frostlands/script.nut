@@ -5,6 +5,7 @@ print("Loading Frostlands")
 
 ::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
 ::musball <- "contrib/frostlands/music/city-theme.ogg"
+::mussal <- "contrib/frostlands/music/salcon.ogg"
 
 //visual assets
 ::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
