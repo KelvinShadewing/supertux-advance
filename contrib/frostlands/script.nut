@@ -10,7 +10,7 @@ print("Loading Frostlands")
 ::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
-::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer-L.png", 720, 240, 0, 0, 0, 0)
+::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 720, 240, 0, 0, 0, 0)
 ::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
 
 //NPCS
