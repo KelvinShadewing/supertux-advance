@@ -381,6 +381,7 @@
 	},
 
 	"level" : {
+		"soon" : "Coming soon...",
 		"shop" : "Sam's Trade Post",
 		"overworld-0" : "Aurora Isles",
 		"overworld-1" : "Antarctica",

@@ -226,7 +226,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":272,
+                 "x":240,
                  "y":32
                 }, 
                 {
@@ -348,6 +348,18 @@
                  "width":16,
                  "x":144,
                  "y":288
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":31,
+                 "name":"soon",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":272,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -356,7 +368,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":31,
+ "nextobjectid":32,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -365,7 +377,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -1044,6 +1056,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":40
 }
