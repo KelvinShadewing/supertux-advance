@@ -227,7 +227,7 @@
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(game.health < game.maxHealth) {
-				game.health++
+				game.health += 2
 				for(local i = 0; i < 4; i++) {
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
@@ -292,7 +292,7 @@
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(game.health < game.maxHealth - 3) {
-				game.health += 4
+				game.health += 8
 				for(local i = 0; i < 4; i++) {
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
@@ -649,7 +649,6 @@
 		//Pickup
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			deleteActor(id)
-			game.health += 4
 			switch(color) {
 				case 0:
 					gvKeyCopper = true

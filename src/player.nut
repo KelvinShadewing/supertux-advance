@@ -28,10 +28,11 @@
 	anHurt = null
 
 	//Ability flags
-	canJump = false //Mario-like jump attack
-	canStomp = true //Ground stomp attack
+	canStomp = false //Mario-like jump attack
+	canGroundPound = true //Ground stomp attack
 	canSlide = false //Slide attack
 	canMove = true //Movement unlocked, set to false during cutscenes or when player restrained
+	blastResist = false
 
 	//Physics stats
 	weight = 1.0
