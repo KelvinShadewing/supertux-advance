@@ -395,6 +395,38 @@
 	function _typeof() { return "Coin" }
 }
 
+::Darknyan <- class extends PhysAct {
+	hspeed = 0
+	vspeed = -3
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		if(gvPlayer) if(gvPlayer.x > x) hspeed = -2
+		else hspeed = 2
+
+		shape = Rec(x, y, 6, 6, 0)
+	}
+
+	function run() {
+		if(!placeFree(x, y + 2)) vspeed = -5
+		if(!placeFree(x + 2, y)) hspeed = -2
+		if(!placeFree(x - 2, y)) hspeed = 2
+		vspeed += 0.2
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+		shape.setPos(x, y)
+
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+			gvPlayer.hurt = 6
+		}
+
+		drawSprite(sprDarkStar, getFrames() / 10, x - camx, y - camy)
+	}
+}
+
 ::Starnyan <- class extends PhysAct {
 	hspeed = 0
 	vspeed = -4
@@ -402,16 +434,16 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		if(gvPlayer) if(gvPlayer.x > x) hspeed = -1
-		else hspeed = 1
+		if(gvPlayer) if(gvPlayer.x > x) hspeed = -2
+		else hspeed = 2
 
 		shape = Rec(x, y, 6, 6, 0)
 	}
 
 	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -5
-		if(!placeFree(x + 1, y)) hspeed = -2
-		if(!placeFree(x - 1, y)) hspeed = 2
+		if(!placeFree(x, y + 2)) vspeed = -5
+		if(!placeFree(x + 2, y)) hspeed = -2
+		if(!placeFree(x - 2, y)) hspeed = 2
 		vspeed += 0.25
 
 		if(placeFree(x + hspeed, y)) x += hspeed

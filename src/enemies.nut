@@ -1743,38 +1743,6 @@
 	function hurtice() { frozen = 600 }
 }
 
-::Darknyan <- class extends PhysAct {
-	hspeed = 0
-	vspeed = -3
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-
-		if(gvPlayer) if(gvPlayer.x > x) hspeed = -1
-		else hspeed = 1
-
-		shape = Rec(x, y, 6, 6, 0)
-	}
-
-	function run() {
-		if(!placeFree(x, y + 1)) vspeed = -3
-		if(!placeFree(x + 1, y)) hspeed = -1
-		if(!placeFree(x - 1, y)) hspeed = 1
-		vspeed += 0.1
-
-		if(placeFree(x + hspeed, y)) x += hspeed
-		if(placeFree(x, y + vspeed)) y += vspeed
-		else vspeed /= 2
-		shape.setPos(x, y)
-
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
-			gvPlayer.hurt = 6
-		}
-
-		drawSprite(sprDarkStar, getFrames() / 10, x - camx, y - camy)
-	}
-}
-
 ::Haywire <- class extends Enemy {
 	burnt = false
 	frame = 0.0
