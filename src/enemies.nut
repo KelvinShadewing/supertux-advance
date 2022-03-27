@@ -2027,7 +2027,7 @@
 		frame += 0.1
 
 		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 6
+			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 8
 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
 				if(x < gvPlayer.x) gvPlayer.hspeed += 0.1
 				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.1
@@ -2319,7 +2319,7 @@
 
 	function hurtplayer() {
 		if(squish) return
-		gvPlayer.hurt = 3
+		gvPlayer.hurt = 4
 	}
 
 	function gethurt() {
@@ -2345,7 +2345,7 @@
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
 		}
-		gvPlayer.hurt = 3
+		gvPlayer.hurt = 4
 		squish = false
 	}
 
