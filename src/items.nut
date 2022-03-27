@@ -370,6 +370,31 @@
 	}
 }
 
+::Onedown <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+		frame = randFloat(4)
+	}
+
+	function run()
+	{
+		if(getFrames() % 20 == 0){
+		newActor(FlameTiny, x - 8 + randInt(16), y - 8 + randInt(16))
+		}
+		frame += 0.2
+		drawSprite(spr1down, frame, x - camx, y - camy)
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			gvPlayer.hurt = 16
+		}
+	}
+
+	function _typeof() { return "Coin" }
+}
+
 ::Starnyan <- class extends PhysAct {
 	hspeed = 0
 	vspeed = -4
@@ -689,3 +714,4 @@
 		}
 	}
 }
+

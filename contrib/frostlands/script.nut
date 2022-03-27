@@ -26,7 +26,6 @@ print("Loading Frostlands")
 ::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 18, 16)
 
 //OG style
-::sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
 ::sprFlowerIceOG <- newSprite("contrib/frostlands/gfx/obj/fl-iceflower.png", 16, 16, 0, 0, 8, 8)
 ::sprEarthShellOG <- newSprite("contrib/frostlands/gfx/obj/fl-earthshell.png", 16, 16, 0, 0, 8, 8)
@@ -61,15 +60,15 @@ print("Loading Frostlands")
 	sprBoxEmpty = sprEmptyBoxOG
 	sprBoxRed = sprTriggerBoxOG
 
+	sprHealth = sprHealthFL
+	sprEnergy = sprEnergyFl
+	sprSubItem = sprSubItemFL
+
 	if(never) {
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
 		sprCoin10 = sprCoinN10
 	} else sprCoin = sprCoinOG
-
-	sprHealth = sprHealthFL
-	sprEnergy = sprEnergyFl
-	sprSubItem = sprSubItemFL
 }
 
 //background shiz
