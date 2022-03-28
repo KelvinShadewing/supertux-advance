@@ -137,7 +137,7 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-game"]},
-		func = function() { startMain(); cursor = 0 }
+		func = function() { saveGame(); startMain(); cursor = 0 }
 	}
 ]
 
