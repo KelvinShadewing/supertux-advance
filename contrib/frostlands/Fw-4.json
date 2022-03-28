@@ -1384,30 +1384,6 @@
                  "y":432
                 }, 
                 {
-                 "gid":219,
-                 "height":16,
-                 "id":982,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":5648,
-                 "y":432
-                }, 
-                {
-                 "gid":219,
-                 "height":16,
-                 "id":983,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":5680,
-                 "y":432
-                }, 
-                {
                  "gid":225,
                  "height":16,
                  "id":984,
@@ -1482,30 +1458,6 @@
                 {
                  "gid":212,
                  "height":16,
-                 "id":992,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":6336,
-                 "y":448
-                }, 
-                {
-                 "gid":212,
-                 "height":16,
-                 "id":993,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":6448,
-                 "y":496
-                }, 
-                {
-                 "gid":212,
-                 "height":16,
                  "id":995,
                  "name":"",
                  "rotation":0,
@@ -1561,18 +1513,6 @@
                  "visible":true,
                  "width":16,
                  "x":6816,
-                 "y":480
-                }, 
-                {
-                 "gid":201,
-                 "height":16,
-                 "id":1005,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":6832,
                  "y":480
                 }, 
                 {
@@ -2066,6 +2006,78 @@
                  "width":16,
                  "x":448,
                  "y":448
+                }, 
+                {
+                 "gid":225,
+                 "height":16,
+                 "id":1069,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":6320,
+                 "y":448
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":1070,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":5920,
+                 "y":400
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":1071,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":5936,
+                 "y":384
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":1072,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":6064,
+                 "y":384
+                }, 
+                {
+                 "gid":200,
+                 "height":16,
+                 "id":1073,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":6080,
+                 "y":400
+                }, 
+                {
+                 "gid":263,
+                 "height":16,
+                 "id":1074,
+                 "name":"EvilBlock",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":6832,
+                 "y":480
                 }],
          "opacity":0.62,
          "type":"objectgroup",
@@ -2074,7 +2086,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1069,
+ "nextobjectid":1075,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2083,7 +2095,7 @@
          "value":"drawBG = dbgSnowNight\nsongPlay(musRace)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -2205,6 +2217,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":600
 }
