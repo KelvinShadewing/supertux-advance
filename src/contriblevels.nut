@@ -52,7 +52,7 @@
 		meContribLevels.push(
 				{
 					name = function() { return gvLangObj["contrib-menu"]["empty"] }
-					func = function() { }
+					disabled = true
 				}
 			)
 	}

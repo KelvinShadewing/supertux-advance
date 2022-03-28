@@ -22,18 +22,26 @@ const fontH = 14
 	//Draw options
 	//The number
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
+		//Detect if menu item is disabled (has no function). Display it with gray font if so.
+		local currFont = font2
+		if(menu[i].rawin("disabled")) { currFont = font2G }
+
 		if(cursor == i) {
-			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 		}
-		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
+		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
 	}
 	else for(local i = 0; i < menu.len(); i++) {
+		//Detect if menu item is disabled (has no function). Display it with gray font if so.
+		local currFont = font2
+		if(menu[i].rawin("disabled")) { currFont = font2G }
+		
 		if(cursor == i) {
-			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
-			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
 		}
-		drawText(font2, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menu.len() * fontH) + (i * fontH), menu[i].name())
+		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menu.len() * fontH) + (i * fontH), menu[i].name())
 	}
 
 	//Keyboard input
@@ -64,6 +72,7 @@ const fontH = 14
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
+		if (menu[cursor].rawin("disabled")) return;
 		menu[cursor].func()
 		playSound(sndMenuSelect, 0)
 	}
