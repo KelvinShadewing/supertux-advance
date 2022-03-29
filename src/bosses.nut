@@ -180,6 +180,39 @@
 
 }
 
+::YetiShock <- class extends Actor {
+	shape = null
+	timer = 0
+	speed = 1.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 8, 16, 0, 0, -16)
+		if(_arr != null) speed = _arr.tofloat()
+	}
+
+	function run() {
+		timer++
+		if(timer >= 240) deleteActor(id)
+
+		//Damage hitbox
+		if(gvPlayer) {
+			shape.setPos(x + (timer * speed), y)
+			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
+			shape.setPos(x - (timer * speed), y)
+			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
+		}
+
+		//Create effect
+		if(timer % 10 == 0) {
+			newActor(BigSpark, x + (timer * speed), y, 0)
+			newActor(BigSpark, x - (timer * speed), y, 1)
+		}
+		drawSprite(sprSpark, getFrames(), x + (timer * speed) - camx, y - camy)
+		drawSprite(sprSpark, getFrames(), x - (timer * speed) - camx, y - camy)
+	}
+}
+
 ::Nolok <- class extends Boss {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)

@@ -7,10 +7,12 @@
 //Main sprites
 ::sprFont <- newSprite("res/gfx/font.png", 6, 8, 0, 0, 0, 0)
 ::font <- newFont(sprFont, 0, 0, true, 0)
-::sprFont2 <- newSprite("res/gfx/font2.png", 12, 14, 0, 0, 0, 0)
-::font2 <- newFont(sprFont2, 33, 0, true, -4)
 ::sprFontC <- newSprite("res/gfx/font-cyan.png", 6, 8, 0, 0, 0, 0)
 ::fontC <- newFont(sprFontC, 0, 0, true, 0)
+::sprFont2 <- newSprite("res/gfx/font2.png", 12, 14, 0, 0, 0, 0)
+::font2 <- newFont(sprFont2, 33, 0, true, -4)
+::sprFont2G <- newSprite("res/gfx/font2-gray.png", 12, 14, 0, 0, 0, 0)
+::font2G <- newFont(sprFont2G, 33, 0, true, -4)
 ::sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8, 0, 0, 0, 0)
 ::sprTitle <- newSprite("res/gfx/title.png", 220, 55, 0, 0, 110, 0)
 
@@ -268,6 +270,8 @@
 ::defHeal <- sprHeal
 ::sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 0, 0, 12, 16)
 ::defSplash <- sprSplash
+::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
+::defBigSpark <- sprBigSpark
 
 
 //Backgrounds

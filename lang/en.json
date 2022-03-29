@@ -12,8 +12,12 @@
 		"file-exists" : "[FILE EXISTS]"
 	},
 
+	"load-game-menu" : {
+		"empty" : "No save files available"
+	},
+
 	"contrib-menu" : {
-		"empty" : "[No contrib levels available]"
+		"empty" : "No contrib levels available"
 	},
 
 	"options-menu" : {

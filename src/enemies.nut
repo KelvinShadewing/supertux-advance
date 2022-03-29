@@ -326,7 +326,7 @@
 	function run() {
 		base.run()
 
-		if(up && y > ystart - 24 && !frozen) y -= 2
+		if(up && y > ystart - 32 && !frozen) y -= 2
 		if(!up && y < ystart && !frozen) y += 2
 
 		timer--
@@ -359,7 +359,7 @@
 			}
 
 			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
 		}
 	}
 
