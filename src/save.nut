@@ -25,6 +25,7 @@
 }
 
 ::selectLoadGame <- function() {
+	local hasSaveFiles = false
 	meLoadGame = []
 	local dir = lsdir("save")
 	dir.sort()
@@ -33,10 +34,20 @@
 		local f = ""
 		if(dir[i] != "." && i != ".." && dir[i] != "delete.me" && dir[i].find(".json") == dir[i].len() - 5 && canint(dir[i])) f = dir[i].slice(0, -5)
 		else continue
+		hasSaveFiles = true
 		local o = {}
 		o.name <- function() { return "File " + f }
 		o.func <- function() { loadGame(f) }
 		meLoadGame.push(o)
+	}
+
+	if(!hasSaveFiles) {
+		meLoadGame.push(
+			{
+				name = function() { return gvLangObj["load-game-menu"]["empty"] }
+				disabled = true
+			}
+		)
 	}
 
 	meLoadGame.push({
