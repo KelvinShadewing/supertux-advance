@@ -444,7 +444,6 @@
 
 	drawSprite(sprCoin, 0, 16, screenH() - 16)
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())
-	drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - 16, screenH() - 12)
 
 	drawDebug()
 

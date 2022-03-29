@@ -174,6 +174,8 @@
 ::defJumpy <- sprJumpy
 ::sprDarkStar <- newSprite("res/gfx/darknyan.png", 16, 16, 0, 0, 8, 8)
 ::defDarkStar <- sprDarkStar
+::spr1down <- newSprite("res/gfx/1down.png", 16, 16, 0, 0, 8, 8)
+::def1down <- spr1down
 ::sprHaywire <- newSprite("res/gfx/haywire.png", 16, 16, 0, 0, 8, 8)
 ::defHaywire <- sprHaywire
 ::sprSawblade <- newSprite("res/gfx/sawblade.png", 16, 16, 0, 0, 8, 8)
