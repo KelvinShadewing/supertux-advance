@@ -266,6 +266,8 @@
 ::defHeal <- sprHeal
 ::sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 0, 0, 12, 16)
 ::defSplash <- sprSplash
+::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
+::defBigSpark <- sprBigSpark
 
 
 //Backgrounds

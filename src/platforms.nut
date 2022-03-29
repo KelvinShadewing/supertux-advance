@@ -261,7 +261,7 @@
 
 			if((i - 1) % 2 == 0) {
 				if(gvPlayer) if(hitTest(hb, gvPlayer.shape)) {
-					gvPlayer.hurt = 1
+					gvPlayer.hurt = 2
 				}
 			}
 

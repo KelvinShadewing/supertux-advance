@@ -13,6 +13,21 @@
 	}
 }
 
+::BigSpark <- class extends Actor {
+	frame = 0.0
+	flip = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(_arr != null && _arr != "") flip = _arr.tointeger()
+	}
+	function run() {
+		frame += 0.25
+		if(frame >= 6) deleteActor(id)
+		else drawSpriteExZ(4, sprBigSpark, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+}
+
 ::Glimmer <- class extends Actor {
 	frame = 0.0
 	angle = 0

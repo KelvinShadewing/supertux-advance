@@ -225,7 +225,7 @@
                 {
                  "height":160,
                  "id":164,
-                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true",
+                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; gvPlayer.hspeed = 0.0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
