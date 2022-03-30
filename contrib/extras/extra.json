@@ -138,6 +138,18 @@
                  "width":16,
                  "x":144,
                  "y":64
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":40,
+                 "name":"Test2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -168,7 +180,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":40,
+ "nextobjectid":41,
  "orientation":"orthogonal",
  "properties":[
         {
