@@ -399,6 +399,9 @@
 		camy = 0
 	}
 
+	//Hide mouse cursor
+	cursorShown = false
+
 	//Execute level code
 	print("Running level code...")
 	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {

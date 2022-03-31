@@ -501,6 +501,9 @@
 	//in the log if the map fails, so users can check why a level
 	//refuses to run.
 
+	//Hide mouse cursor
+	cursorShown = false
+
 	//Execute level code
 	print("Running level code...")
 	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {

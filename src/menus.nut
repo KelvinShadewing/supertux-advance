@@ -4,10 +4,12 @@
 
 ::menu <- []
 ::menuLast <- []
+::menuItemsPos <- [] //Positions of all menu items
 ::cursor <- 0
 ::cursorOffset <- 0
 ::cursorTimer <- 30
 const menuMax = 11 //Maximum number of slots that can be shown on screen
+const fontW = 8
 const fontH = 14
 ::textMenu <- function(){
 	//If no menu is loaded
@@ -18,6 +20,8 @@ const fontH = 14
 		cursorOffset = 0
 	}
 	menuLast = menu
+	menuItemsPos = []
+	cursorShown = true //Show mouse cursor when a menu is entered
 
 	//Draw options
 	//The number
@@ -30,7 +34,12 @@ const fontH = 14
 			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 		}
-		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
+
+		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
+		local textY = screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH)
+		
+		drawText(currFont, textX, textY, menu[i].name())
+		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 	}
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
@@ -41,7 +50,12 @@ const fontH = 14
 			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
 			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
 		}
-		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 12 - (menu.len() * fontH) + (i * fontH), menu[i].name())
+
+		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
+		local textY = screenH() - 12 - (menu.len() * fontH) + (i * fontH)
+		
+		drawText(currFont, textX, textY, menu[i].name())
+		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 	}
 
 	//Keyboard input
@@ -72,7 +86,7 @@ const fontH = 14
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
-		if (menu[cursor].rawin("disabled")) return;
+		if(menu[cursor].rawin("disabled")) return;
 		menu[cursor].func()
 		playSound(sndMenuSelect, 0)
 	}
@@ -119,7 +133,7 @@ const fontH = 14
 ::mePausePlay <- [
 	{
 		name = function() { return gvLangObj["pause-menu"]["continue"]},
-		func = function() { gvGameMode = gmPlay }
+		func = function() { gvGameMode = gmPlay; cursorShown = false }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
@@ -134,7 +148,7 @@ const fontH = 14
 ::mePauseOver <- [
 	{
 		name = function() { return gvLangObj["pause-menu"]["continue"]},
-		func = function() { gvGameMode = gmOverworld }
+		func = function() { gvGameMode = gmOverworld; cursorShown = false }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["save"]},
@@ -158,6 +172,15 @@ const fontH = 14
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick"] },
 		func = function() { menu = meJoybinds }
+	},
+	{
+		name = function() {
+			local msg = gvLangObj["options-menu"]["cursor"]
+			if(config.showcursor) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		},
+		func = function() { config.showcursor = !config.showcursor; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["language"] },
