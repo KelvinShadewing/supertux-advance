@@ -125,7 +125,6 @@ startMain()
 menu = meMain
 config.playerChar = "Tux"
 
-update()
 while(!getQuit() && !gvQuit) //Entire game happens here
 {
 	if(keyPress(k_f11)) toggleFullscreen()

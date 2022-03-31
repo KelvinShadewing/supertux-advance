@@ -1,5 +1,5 @@
 ::Boss <- class extends PhysAct {
-	health = 100
+	health = 40
 	phasing = false //Allows the boss to phase through walls in their intro
 	active = false
 	routine = null
@@ -11,6 +11,7 @@
 	anim = null
 	blinking = 0.0
 	canBeStomped = false
+	ready = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -49,6 +50,8 @@
 			else flip = 1
 		}
 	}
+
+	function _typeof() { return "Boss" }
 }
 
 ::BossManager <- class extends Actor {

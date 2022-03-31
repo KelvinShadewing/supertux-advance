@@ -51,24 +51,24 @@
 		sprite = _sprite
 	}
 
-	function draw(x, y, alpha) {
+	function draw(x, y, alpha, color = 0xffffffff) {
 		local currentTime = wrap(getTicks(), 0, frameTime.top())
 		for(local i = 0; i < frameList.len(); i++) {
 			if(currentTime >= frameTime[i]) {
 				if(i < frameTime.len() - 1) {
 					if(currentTime < frameTime[i + 1]) {
-						drawSpriteEx(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha)
+						drawSpriteExMod(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
 						return
 					}
 				}
 				else if(currentTime <= frameTime[i] && i == 0) {
-					drawSpriteEx(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha)
+					drawSpriteExMod(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
 					return
 				}
 			}
 		}
 
-		drawSpriteEx(sprite, frameList.top(), floor(x), floor(y), 0, 0, 1, 1, alpha)
+		drawSpriteExMod(sprite, frameList.top(), floor(x), floor(y), 0, 0, 1, 1, alpha, color)
 	}
 }
 
@@ -294,7 +294,7 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a, c)
 								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a, c)
 							}
 							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a, c)
