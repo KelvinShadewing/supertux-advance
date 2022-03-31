@@ -7,7 +7,7 @@
 ::cursor <- 0
 ::cursorOffset <- 0
 ::cursorTimer <- 30
-const menuMax = 11 //Maximum number of slots that can be shown on screen
+const menuMax = 10 //Maximum number of slots that can be shown on screen
 const fontH = 14
 ::textMenu <- function(){
 	//If no menu is loaded
@@ -27,25 +27,25 @@ const fontH = 14
 		if(menu[i].rawin("disabled")) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 30 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 30 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			if(menu[i].rawin("desc"))
 				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 12, menu[i].desc())
 		}
-		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 30 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
+		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH), menu[i].name())
 	}
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
 		if(menu[i].rawin("disabled")) { currFont = font2G }
-		
+
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 30 - (menu.len() * fontH) + (i * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 30 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menu.len() * fontH) + (i * fontH))
 			if(menu[i].rawin("desc"))
-				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 12, menu[i].desc())
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 		}
-		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 30 - (menu.len() * fontH) + (i * fontH), menu[i].name())
+		drawText(currFont, (screenW() / 2) - (menu[i].name().len() * 4), screenH() - 24 - (menu.len() * fontH) + (i * fontH), menu[i].name())
 	}
 
 	//Keyboard input
