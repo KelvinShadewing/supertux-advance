@@ -32,6 +32,18 @@
 		"stickspeed" : "Stick Controls Speed: "
 	},
 
+	"options-menu-desc": {
+		"difficulty" : "Change game difficulty",
+		"language" : "Change game language",
+		"keyboard" : "Change keyboard controls",
+		"joystick" : "Change gamepad controls",
+		"timers" : "Toggle speedrunning timers",
+		"light" : "Toggle light effects",
+		"fullscreen" : "Toggle fullscreen mode",
+		"autorun" : "Slow down when running button is pressed",
+		"stickspeed" : "Toggle stick controls speed"
+	},
+
 	"timers-menu" : {
 		"speedrun-timer-level" : "Level Speedrun Timer",
 		"speedrun-timer-global" : "Global Speedrun Timer"
