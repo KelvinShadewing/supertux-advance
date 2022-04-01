@@ -28,6 +28,7 @@
 		}
 	}
 	creditsLength += 30 //Padding
+	cursorShown = false //Hide mouse cursor
 	update()
 }
 ::gmCredits <- function(){

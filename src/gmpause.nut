@@ -10,6 +10,7 @@
 
 ::togglePause <- function() {
 	cursor = 0
+	cursorShown = !cursorShown //Switch the state of the mouse cursor
 	if(gvGameMode == gmPlay) {
 		if(actor.rawin("DeadPlayer")) {
 			startPlay(gvMap.file)

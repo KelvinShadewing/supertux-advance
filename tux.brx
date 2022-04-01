@@ -48,6 +48,7 @@ donut("src/pickchar.nut")
 donut("src/weather.nut")
 donut("src/light.nut")
 donut("src/credits.nut")
+donut("src/cursor.nut")
 
 //Load mods
 local modlist = lsdir("mods")
@@ -125,11 +126,15 @@ startMain()
 menu = meMain
 config.playerChar = "Tux"
 
+updateCursor()
+update()
 while(!getQuit() && !gvQuit) //Entire game happens here
 {
 	if(keyPress(k_f11)) toggleFullscreen()
 	if(getcon("pause", "press") && levelEndRunner == 0 && gvGameMode != gmMain) togglePause()
 	gvGameMode()
 	if(keyPress(k_tick)) debugConsole()
+	updateCursor()
+	if(mouseRelease(0)) processCursorInput()
 	update()
 }

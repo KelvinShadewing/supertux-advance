@@ -25,6 +25,7 @@
 		"language" : "Language",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
+		"cursor" : "Show Mouse Cursor: ",
 		"timers" : "Speedrun Timers",
 		"light" : "Lighting: ",
 		"fullscreen" : "Toggle Fullscreen",
@@ -37,10 +38,11 @@
 		"language" : "Change game language",
 		"keyboard" : "Change keyboard controls",
 		"joystick" : "Change gamepad controls",
-		"timers" : "Toggle speedrunning timers",
+		"cursor" : "Toggle the mouse cursor",
+		"timers" : "Toggle speedrun timers",
 		"light" : "Toggle light effects",
 		"fullscreen" : "Toggle fullscreen mode",
-		"autorun" : "Slow down when running button is pressed",
+		"autorun" : "Slow down when run button is pressed",
 		"stickspeed" : "Toggle stick controls speed"
 	},
 

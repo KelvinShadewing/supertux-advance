@@ -117,6 +117,7 @@
 	showleveligt = false
 	showglobaligt = false
 	light = true
+	showcursor = true
 }
 
 ::contribDidRun <- {}
