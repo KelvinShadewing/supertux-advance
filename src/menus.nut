@@ -186,6 +186,7 @@ const fontH = 14
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
 		},
+		desc = function() { return gvLangObj["options-menu-desc"]["cursor"] },
 		func = function() { config.showcursor = !config.showcursor; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
