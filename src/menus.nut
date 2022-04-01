@@ -21,7 +21,6 @@ const fontH = 14
 	}
 	menuLast = menu
 	menuItemsPos = []
-	cursorShown = true //Show mouse cursor when a menu is entered
 
 	//Draw options
 	//The number
@@ -61,6 +60,10 @@ const fontH = 14
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 	}
+
+	//Mouse cursor update + left click input check
+	updateCursor()
+	if(mouseRelease(0)) processCursorInput()
 
 	//Keyboard input
 	if(getcon("down", "press") || (getcon("down", "hold") && cursorTimer <= 0)) {

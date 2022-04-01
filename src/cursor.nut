@@ -1,9 +1,8 @@
-::cursorShown <- true;
 ::lastMouseX <- mouseX();
 ::lastMouseY <- mouseY();
 
 ::updateCursor <- function() {
-    if(!cursorShown || !config.showcursor) return; //If cursor is hidden or disabled.
+    if(!config.showcursor) return; //If the cursor is disabled.
 
     drawText(font2, mouseX(), mouseY(), "+") //Draw the cursor.
 
@@ -21,8 +20,7 @@
 }
 
 ::processCursorInput <- function() {
-    //If no menu or menu items positions are loaded, cursor is hidden or not enabled.
-    if(menu == [] || menuItemsPos == [] || !cursorShown || !config.showcursor) return;
+    if(!config.showcursor) return; //If the cursor is disabled.
 
     local pos = menuItemsPos[cursor] //Get the position of the currently selected menu item only.
     if(mouseX() >= pos.x - 3 && mouseX() <= pos.x + pos.len - 3 && mouseY() >= pos.y - 6 && mouseY() <= pos.y + fontH - 6) {
