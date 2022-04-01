@@ -8,7 +8,7 @@
 ::cursor <- 0
 ::cursorOffset <- 0
 ::cursorTimer <- 30
-const menuMax = 11 //Maximum number of slots that can be shown on screen
+const menuMax = 10 //Maximum number of slots that can be shown on screen
 const fontW = 8
 const fontH = 14
 ::textMenu <- function(){
@@ -31,12 +31,14 @@ const fontH = 14
 		if(menu[i].rawin("disabled")) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			if(menu[i].rawin("desc"))
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 12, menu[i].desc())
 		}
 
 		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
-		local textY = screenH() - 12 - (menuMax * fontH) + ((i - cursorOffset) * fontH)
+		local textY = screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH)
 		
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
@@ -45,14 +47,16 @@ const fontH = 14
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
 		if(menu[i].rawin("disabled")) { currFont = font2G }
-		
+
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 12 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menu.len() * fontH) + (i * fontH))
+			if(menu[i].rawin("desc"))
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 		}
 
 		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
-		local textY = screenH() - 12 - (menu.len() * fontH) + (i * fontH)
+		local textY = screenH() - 24 - (menu.len() * fontH) + (i * fontH)
 		
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
@@ -167,10 +171,12 @@ const fontH = 14
 ::meOptions <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["keyboard"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["keyboard"] },
 		func = function() { menu = meKeybinds }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
 		func = function() { menu = meJoybinds }
 	},
 	{
@@ -184,10 +190,12 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["language"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["language"] },
 		func = function() { selectLanguage() }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["timers"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["timers"] },
 		func = function() { menu = meTimers }
 	},
 	{
@@ -196,11 +204,13 @@ const fontH = 14
 			if(config.light) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
-		}
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["light"] },
 		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["fullscreen"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["fullscreen"] },
 		func = function() { toggleFullscreen() }
 	},
 	{
@@ -209,7 +219,8 @@ const fontH = 14
 			if(config.stickspeed) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
-		}
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["stickspeed"] },
 		func = function() { config.stickspeed = !config.stickspeed; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
@@ -218,7 +229,8 @@ const fontH = 14
 			if(config.autorun) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
-		}
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["autorun"] },
 		func = function() { config.autorun = !config.autorun; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
