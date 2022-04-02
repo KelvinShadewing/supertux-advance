@@ -35,11 +35,13 @@
 	for(local i = 0; i<creditsData["credits"].len(); i+=1){
 		switch(creditsData["credits"][i]["type"]){
 			case "normal":
-				drawText(font, (screenW() / 2) - creditsData["credits"][i]["text"].len()*3, y + screenH() - creditsOffset, creditsData["credits"][i]["text"])
+				local text=creditsData["credits"][i].rawin("trText")?gvLangObj["credits"][creditsData["credits"][i]["trText"]]:creditsData["credits"][i]["text"]
+				drawText(font, (screenW() / 2) - text.len()*3, y + screenH() - creditsOffset, text)
 				y += fontH
 				break
 			case "header":
-				drawText(font2, (screenW() / 2) - creditsData["credits"][i]["text"].len()*4, y + screenH() - creditsOffset, creditsData["credits"][i]["text"])
+				local text=creditsData["credits"][i].rawin("trText")?gvLangObj["credits"][creditsData["credits"][i]["trText"]]:creditsData["credits"][i]["text"]
+				drawText(font2, (screenW() / 2) - text.len()*4, y + screenH() - creditsOffset, text)
 				y += fontH + 4
 				break
 			case "image":
