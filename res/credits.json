@@ -1,27 +1,27 @@
 {
-	"credits":[
+	"credits" : [
 		{"type":"header","text":"SuperTux Advance"},
 
 		{"type":"spacing","height":2},
-		{"type":"normal","text":"Staring..."},
+		{"type":"normal","trText":"staring"},
 
 		{"type":"spacing","height":2},
-		{"type":"header","text":"Our Heroes"},
+		{"type":"header","trText":"heroes"},
 		{"type":"image","image":"res/gfx/tux.png","w":32,"h":32,"f":41,"l":2,"s":0.05},
-		{"type":"normal","text":"Tux the Penguin"},
+		{"type":"normal","trText":"tux"},
 		{"type":"spacing","height":1},
 		{"type":"image","image":"res/gfx/konqi.png","w":32,"h":32,"f":9,"l":2,"s":0.04},
-		{"type":"normal","text":"Konqi the Dragon"},
+		{"type":"normal","trText":"konqi"},
 		{"type":"spacing","height":1},
 		{"type":"image","image":"res/gfx/midi.png","w":32,"h":32,"f":236,"l":2,"s":0.045},
-		{"type":"normal","text":"Midi Waffle the Kholu"},
+		{"type":"normal","trText":"midi"},
 
 		{"type":"spacing","height":3},
-		{"type":"header","text":"Directed by"},
+		{"type":"header","trText":"directed-by"},
 		{"type":"normal","text":"Kelvin Shadewing"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Programmers"},
+		{"type":"header","trText":"programmers"},
 		{"type":"normal","text":"dtsudo"},
 		{"type":"normal","text":"FrostC"},
 		{"type":"normal","text":"mrkubax10"},
@@ -29,7 +29,7 @@
 		{"type":"normal","text":"Vankata453"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Graphic Artists"},
+		{"type":"header","trText":"graphic-artists"},
 		{"type":"normal","text":"Adam Atomic"},
 		{"type":"normal","text":"BenCreating"},
 		{"type":"normal","text":"bluecarrot16"},
@@ -58,23 +58,23 @@
 		{"type":"normal","text":"ZiNGOT Games"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Character Designers"},
+		{"type":"header","trText":"character-designers"},
 		{"type":"normal","text":"FrostC"},
 		{"type":"normal","text":"Kelvin Shadewing"},
 		{"type":"normal","text":"UbuntuJackson"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Level Designers"},
+		{"type":"header","trText":"level-designers"},
 		{"type":"normal","text":"FrostC"},
 		{"type":"normal","text":"Kelvin Shadewing"},
 		{"type":"normal","text":"UbuntuJackson"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Level Q/A"},
+		{"type":"header","trText":"level-q-a"},
 		{"type":"normal","text":"Ally Servalot"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Musicians"},
+		{"type":"header","trText":"musicians"},
 		{"type":"normal","text":"Alex McCulloch"},
 		{"type":"normal","text":"Automusic"},
 		{"type":"normal","text":"Eric Matyas"},
@@ -87,14 +87,14 @@
 		{"type":"normal","text":"wipics"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Sound Engineers"},
+		{"type":"header","trText":"sound-engineers"},
 		{"type":"normal","text":"Little Robot Sound Factory"},
 		{"type":"normal","text":"OG SuperTux Team"},
 		{"type":"normal","text":"Subspace Audio"},
 		{"type":"normal","text":"XSSheep"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Translators"},
+		{"type":"header","trText":"translators"},
 		{"type":"normal","text":"Busybody64"},
 		{"type":"normal","text":"bydariogamer"},
 		{"type":"normal","text":"mrkubax10"},
@@ -102,7 +102,7 @@
 		{"type":"normal","text":"Vankata453"},
 
 		{"type":"spacing","height":1},
-		{"type":"header","text":"Most Excellent Supporters"},
+		{"type":"header","trText":"supporters"},
 		{"type":"normal","text":"Admiral Spraker"},
 		{"type":"normal","text":"Bazzel"},
 		{"type":"normal","text":"Blinkehyo"},
@@ -113,16 +113,16 @@
 		{"type":"normal","text":"Luke the Foxen"},
 		{"type":"normal","text":"Neon Blade"},
 		{"type":"spacing","height":1},
-		{"type":"normal","text":"See CREDITS.md for links"},
-		{"type":"normal","text":"to these awesome people!"},
+		{"type":"normal","trText":"credits-md"},
+		{"type":"normal","trText":"people"},
 
 
 
 		{"type":"spacing","height":4},
-		{"type":"header","text":"Thank you for playing!"},
+		{"type":"header","trText":"thank-you-for-playing"},
 
 		{"type":"spacing","height":8},
 		{"type":"image","image":"res/gfx/tuckles.png","w":18,"h":34,"f":0,"l":0,"s":0.0},
-		{"type":"normal","text":"Tuckles loves you!"}
+		{"type":"normal","trText":"tuckles"}
 	]
 }
