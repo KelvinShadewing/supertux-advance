@@ -30,8 +30,12 @@
 	creditsLength += 30 //Padding
 	update()
 }
+
 ::gmCredits <- function(){
 	local y=0
+	setDrawTarget(gvScreen)
+	setDrawColor(0x000000ff)
+	drawRec(0, 0, screenW(), screenH(), true)
 	for(local i = 0; i<creditsData["credits"].len(); i+=1){
 		switch(creditsData["credits"][i]["type"]){
 			case "normal":
@@ -61,4 +65,6 @@
 		}
 		gvGameMode = gmMain
 	}
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
 }

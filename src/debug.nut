@@ -113,6 +113,7 @@
 		local newchar = keyString()
 		if(newchar != "`") input += newchar
 
+		setDrawTarget(gvScreen)
 		drawImage(bgPause, 0, 0)
 		setDrawColor(0x00000080)
 		drawRec(0, 0, screenW(), 8 * 16, true)
@@ -127,6 +128,8 @@
 		if(floor(getFrames() / 32) % 2 == 0) output += "|"
 		drawText(font, 0, 0, output)
 
+		resetDrawTarget()
+		drawImage(gvScreen, 0, 0)
 		update()
 	}
 }
