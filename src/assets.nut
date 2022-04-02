@@ -58,8 +58,8 @@
 ::defMidiDoll <- sprMidiDoll
 
 
-//G
-::sprCursor <- newSprite("res/gfx/cursor.png", 12, 16, 0, 0, 0, 0)
+//GUI
+::sprCursor <- newSprite("res/gfx/cursor.png", 10, 13, 0, 0, 0, 0)
 ::sprHealth <- newSprite("res/gfx/health.png",16, 16, 0, 0, 0, 0)
 ::defHealth <- sprHealth
 ::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)

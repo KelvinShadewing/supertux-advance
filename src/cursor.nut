@@ -12,7 +12,7 @@
 	lastMouseY = mouseY()
 
 	foreach(pos in menuItemsPos) {
-		if(mouseX() >= pos.x - 3 && mouseX() <= pos.x + pos.len - 3 && mouseY() >= pos.y - 6 && mouseY() <= pos.y + fontH - 6) {
+		if(mouseX() >= pos.x - 3 && mouseX() <= pos.x + pos.len - 3 && mouseY() >= pos.y && mouseY() <= pos.y + fontH) {
 			cursor = pos.index
 			return
 		}

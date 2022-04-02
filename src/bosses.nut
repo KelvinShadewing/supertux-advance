@@ -55,8 +55,14 @@
 }
 
 ::BossManager <- class extends Actor {
-	bossID = 0
+	bossTotal = 0
+	health = 0
+	healthTotal = 0
+	healthDrawn = 0
 
+	function run() {
+		if(!actor.rawin("Boss")) deleteActor(id)
+	}
 }
 
 ::Yeti <- class extends Boss {
@@ -181,6 +187,7 @@
 		}
 	}
 
+	function _typeof() { return "Boss" }
 }
 
 ::YetiShock <- class extends Actor {
