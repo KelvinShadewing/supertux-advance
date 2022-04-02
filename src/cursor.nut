@@ -23,7 +23,7 @@
 	if(!config.showcursor) return; //If the cursor is disabled.
 
 	local pos = menuItemsPos[cursor] //Get the position of the currently selected menu item only.
-	if(mouseX() >= pos.x - 3 && mouseX() <= pos.x + pos.len - 3 && mouseY() >= pos.y - 6 && mouseY() <= pos.y + fontH - 6) {
+	if(mouseX() >= pos.x - 3 && mouseX() <= pos.x + pos.len - 3 && mouseY() >= pos.y&& mouseY() <= pos.y + fontH) {
 		if(menu[pos.index].rawin("disabled")) return;
 		menu[pos.index].func()
 		playSound(sndMenuSelect, 0)
