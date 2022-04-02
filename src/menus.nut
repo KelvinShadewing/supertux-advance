@@ -33,12 +33,12 @@ const fontH = 14
 			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			if(menu[i].rawin("desc"))
-				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 12, menu[i].desc())
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 		}
 
 		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
 		local textY = screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH)
-		
+
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 	}
@@ -56,7 +56,7 @@ const fontH = 14
 
 		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
 		local textY = screenH() - 24 - (menu.len() * fontH) + (i * fontH)
-		
+
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 	}
@@ -106,6 +106,15 @@ const fontH = 14
 				}
 		}
 	}
+
+	if(mouseWheelY() < 0 && cursorOffset < menu.len() - menuMax) {
+		cursorOffset++
+		cursor++
+	}
+	if(mouseWheelY() > 0 && cursorOffset > 0) {
+		cursorOffset--
+		cursor--
+	}
 }
 
 //Names are stored as functions because some need to change each time
@@ -127,10 +136,10 @@ const fontH = 14
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { menu = meOptions }
 	},
-    	{
+		{
 		name = function() { return gvLangObj["main-menu"]["credits"] },
 		func = function() { startCredits("res"); }
-    	}
+		}
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
@@ -140,7 +149,7 @@ const fontH = 14
 ::mePausePlay <- [
 	{
 		name = function() { return gvLangObj["pause-menu"]["continue"]},
-		func = function() { gvGameMode = gmPlay; cursorShown = false }
+		func = function() { gvGameMode = gmPlay }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
@@ -155,7 +164,7 @@ const fontH = 14
 ::mePauseOver <- [
 	{
 		name = function() { return gvLangObj["pause-menu"]["continue"]},
-		func = function() { gvGameMode = gmOverworld; cursorShown = false }
+		func = function() { gvGameMode = gmOverworld }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["save"]},
@@ -236,6 +245,16 @@ const fontH = 14
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["autorun"] },
 		func = function() { config.autorun = !config.autorun; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
+			local msg = gvLangObj["options-menu"]["usefilter"]
+			if(config.usefilter) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["usefilter"] },
+		func = function() { config.usefilter = !config.usefilter; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },

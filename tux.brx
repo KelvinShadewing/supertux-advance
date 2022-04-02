@@ -58,6 +58,8 @@ for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "
 //    MAIN    //
 ////////////////
 
+if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
+
 //Detect resolution
 //Aspects may not perfectly match, so the closest one will be picked
 local disres = displayW().tofloat() / displayH().tofloat()
@@ -93,9 +95,11 @@ switch(reschoice) {
 
 gvTextW = floor(screenW() / 6) - 1
 
+if(config.usefilter) setScalingFilter(1)
 gvScreen = newTexture(screenW(), screenH())
-gvPlayScreen = newTexture(screenW(), screenH())
 bgPause = newTexture(screenW(), screenH())
+setScalingFilter(0)
+gvPlayScreen = newTexture(screenW(), screenH())
 gvLightScreen = newTexture(screenW(), screenH())
 textureSetBlendMode(gvLightScreen, bm_sub)
 
@@ -109,7 +113,7 @@ tileSearchDir.push("res/snd")
 setFPS(60)
 
 //Load game text
-if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
+
 gvLangObj = jsonRead(fileRead("lang/en.json"))
 gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
 

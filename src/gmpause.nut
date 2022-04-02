@@ -2,10 +2,11 @@
 
 ::gmPause <- function() {
 	setDrawTarget(gvScreen)
+	drawImage(bgPause, 0, 0)
 	drawText(font2, (screenW() / 2) - 20, screenH() / 2, "PAUSE")
+	textMenu()
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
-	textMenu()
 }
 
 ::togglePause <- function() {

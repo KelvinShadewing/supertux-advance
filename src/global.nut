@@ -118,6 +118,7 @@
 	showglobaligt = false
 	light = true
 	showcursor = true
+	usefilter = false
 }
 
 ::contribDidRun <- {}

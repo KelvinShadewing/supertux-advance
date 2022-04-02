@@ -2287,7 +2287,7 @@
 
 	function hurtplayer() {
 		if(squish) return
-		gvPlayer.hurt = 4
+		gvPlayer.hurt = 2
 	}
 
 	function gethurt() {

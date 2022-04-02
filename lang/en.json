@@ -30,7 +30,8 @@
 		"light" : "Lighting: ",
 		"fullscreen" : "Toggle Fullscreen",
 		"autorun" : "Invert Run Button: ",
-		"stickspeed" : "Stick Controls Speed: "
+		"stickspeed" : "Stick Controls Speed: ",
+		"usefilter" : "Use Graphics Filter: "
 	},
 
 	"options-menu-desc": {
@@ -43,7 +44,8 @@
 		"light" : "Toggle light effects",
 		"fullscreen" : "Toggle fullscreen mode",
 		"autorun" : "Slow down when run button is pressed",
-		"stickspeed" : "Toggle stick controls speed"
+		"stickspeed" : "Toggle stick controls speed",
+		"usefilter" : "Bilinear filtering (requires restart)"
 	},
 
 	"timers-menu" : {
