@@ -91,6 +91,28 @@
 		"super" : "Super Tux"
 	},
 
+	"credits" : {
+		"staring" : "Staring...",
+		"heroes" : "Our Heroes",
+		"tux" : "Tux the Penguin",
+		"konqi" : "Konqi the Dragon",
+		"midi" : "Midi Waffle the Kholu",
+		"directed-by" : "Directed by",
+		"programmers" : "Programmers",
+		"graphic-artists" : "Graphic Artists",
+		"character-designers" : "Character Designers",
+		"level-designers" : "Level Designers",
+		"level-q-a" : "Level Q/A",
+		"musicians" : "Musicians",
+		"sound-engineers" : "Sound Engineers",
+		"translators" : "Translators",
+		"supporters" : "Most Excellent Supporters",
+		"credits-md" : "See CREDITS.md for links",
+		"people" : "to these awesome people!",
+		"thank-you-for-playing" : "Thank you for playing!",
+		"tuckles" : "Tuckles loves you!"
+	},
+
 	"pause-menu" : {
 		"continue" : "Continue",
 		"character" : "Change Character",
