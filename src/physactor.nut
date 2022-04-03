@@ -274,6 +274,15 @@
 							gvMap.shape.h = 4.0
 							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
 							break
+						case 44: //One Way Top Left
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 8.0
+							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
 					}
 					if(debug) {
 						gvMap.shape.draw()
@@ -432,7 +441,12 @@
 					gvMap.shape.h = 4.0
 					if(hitTest(ns, gvMap.shape)) return true
 					break
-				case 44: //R diag
+				case 44: //L diag
+					gvMap.shape.setPos(x, y + 4)
+					gvMap.shape.kind = 2
+					gvMap.shape.w = 8.0
+					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 45: //L 2/2
 					break
@@ -442,7 +456,7 @@
 					break
 				case 48: //R 2/2
 					break
-				case 49: //L diag
+				case 49: //R diag
 					break
 			}
 		}
