@@ -831,18 +831,6 @@
                  "y":544
                 }, 
                 {
-                 "gid":13,
-                 "height":16,
-                 "id":700,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2208,
-                 "y":544
-                }, 
-                {
                  "gid":16,
                  "height":16,
                  "id":706,
@@ -2453,18 +2441,6 @@
                 {
                  "gid":13,
                  "height":16,
-                 "id":934,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":5680,
-                 "y":752
-                }, 
-                {
-                 "gid":13,
-                 "height":16,
                  "id":935,
                  "name":"",
                  "rotation":0,
@@ -2665,18 +2641,6 @@
                  "width":16,
                  "x":6400,
                  "y":608
-                }, 
-                {
-                 "gid":14,
-                 "height":16,
-                 "id":982,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":7376,
-                 "y":560
                 }, 
                 {
                  "gid":14,
@@ -3337,6 +3301,30 @@
                  "width":16,
                  "x":6272,
                  "y":80
+                }, 
+                {
+                 "gid":65,
+                 "height":16,
+                 "id":1057,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2208,
+                 "y":544
+                }, 
+                {
+                 "gid":65,
+                 "height":16,
+                 "id":1058,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":5680,
+                 "y":752
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3345,7 +3333,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1057,
+ "nextobjectid":1060,
  "orientation":"orthogonal",
  "properties":[
         {
