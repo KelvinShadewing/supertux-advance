@@ -2287,7 +2287,7 @@
 
 	function hurtplayer() {
 		if(squish) return
-		gvPlayer.hurt = 2
+		gvPlayer.hurt = 3
 	}
 
 	function gethurt() {
@@ -2313,7 +2313,7 @@
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
 		}
-		gvPlayer.hurt = 4
+		gvPlayer.hurt = 3
 		squish = false
 	}
 

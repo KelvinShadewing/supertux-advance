@@ -936,7 +936,7 @@
 			playSound(sndFlame, 0)
 		}
 
-		if(actor.rawin("Flame")) foreach(i in actor["Flame"]) if(inDistance2(x, y, i.x, i.y, 20) && i.frame >= 4) {
+		if(actor.rawin("Flame")) foreach(i in actor["Flame"]) if(inDistance2(x, y, i.x, i.y, 20) && i.frame >= 2) {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			newActor(Flame, x, y)
