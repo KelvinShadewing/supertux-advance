@@ -134,7 +134,7 @@
                  "name":"SE-0",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":16,
                  "x":496,
                  "y":160
@@ -174,10 +174,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)\nfreeKonqi()"
+         "value":"songPlay(musOverworld)\ngame.maxHealth = 12\nfreeKonqi()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -843,6 +843,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":40
 }
