@@ -66,6 +66,7 @@
 	berries = 0
 	path = "res/map/"
 	canres = false //If the player can respawn
+	bossHealth = 0
 }
 ::gameDefault <- clone(game)
 ::gvPlayer <- false; //Pointer to player actor

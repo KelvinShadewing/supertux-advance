@@ -97,17 +97,23 @@
 	}
 
 	function rescueKonqi() {
-		sayChar()
+		say()
 		freeKonqi()
+		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
+		tileSetSolid(gvPlayer.x, gvPlayer.y + 8, 1)
+		endGoal()
 	}
 
 	function rescueMidi() {
-		sayChar()
+		say()
 		freeMidi()
+		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
+		tileSetSolid(gvPlayer.x, gvPlayer.y + 8, 1)
+		endGoal()
 	}
 
 	function rescueFriend() {
-		sayChar()
+		say()
 		//Find who to free based on sprite
 		if(sprite == sprXue) if(!game.friends.rawin("Xue")) game.friends.Xue <- true
 		if(sprite == sprGnu) if(!game.friends.rawin("Gnu")) game.friends.Gnu <- true
@@ -115,6 +121,9 @@
 		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) game.friends.RockyRaccoon <- true
 		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) game.friends.Pygame <- true
 		if(sprite == sprGaruda) if(!game.friends.rawin("Garuda")) game.friends.Garuda <- true
+		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
+		tileSetSolid(gvPlayer.x, gvPlayer.y + 8, 1)
+		endGoal()
 	}
 
 	function _typeof() { return "NPC" }

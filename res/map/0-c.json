@@ -225,11 +225,11 @@
                 {
                  "height":160,
                  "id":164,
-                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; gvPlayer.hspeed = 0.0",
+                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 525)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16,
+                 "width":304,
                  "x":2096,
                  "y":80
                 }, 
@@ -3546,30 +3546,6 @@
                  "y":1520
                 }, 
                 {
-                 "gid":32,
-                 "height":16,
-                 "id":581,
-                 "name":"sprKelvinNPC,0.1,say,not-done",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2272,
-                 "y":240
-                }, 
-                {
-                 "gid":65,
-                 "height":16,
-                 "id":582,
-                 "name":"StaticLight,sprLightBasic,1",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2272,
-                 "y":236
-                }, 
-                {
                  "gid":33,
                  "height":16,
                  "id":583,
@@ -3735,7 +3711,7 @@
                  "visible":true,
                  "width":16,
                  "x":2544,
-                 "y":224
+                 "y":220
                 }, 
                 {
                  "gid":80,

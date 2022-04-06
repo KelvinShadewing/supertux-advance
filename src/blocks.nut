@@ -850,6 +850,7 @@
 	dy = 0
 	moving = false
 	delay = 0
+	opening = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -865,9 +866,16 @@
 			tileSetSolid(x, y - 32, 1)
 			tileSetSolid(x, y - 48, 1)
 		}
-		if(moving && dy < 32) {
+		if(moving && dy < 32 && !opening) {
 			if(delay > 0) delay--
 			else dy++
+		}
+		else if(opening && dy > 0) {
+			dy--
+			tileSetSolid(x, y, 0)
+			tileSetSolid(x, y - 16, 0)
+			tileSetSolid(x, y - 32, 0)
+			tileSetSolid(x, y - 48, 0)
 		}
 
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - dy + 16)

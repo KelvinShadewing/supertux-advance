@@ -528,7 +528,6 @@
 		if(path[0][0] == path[path.len() - 1][0] && path[0][1] == path[path.len() - 1][1]) loop = true
 		tx = path[0][0]
 		ty = path[0][1]
-		print(jsonWrite(path))
 	}
 
 	function run() {

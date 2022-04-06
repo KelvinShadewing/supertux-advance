@@ -14,6 +14,7 @@
 	//Clear actors and start creating new ones
 	setFPS(60)
 	gvPlayer = false
+	gvBoss = false
 	actor.clear()
 	actlast = 0
 	game.health = game.maxHealth
@@ -453,8 +454,6 @@
 			local n = arg[0]
 			if(getroottable().rawin(n))
 			{
-				print(i.id)
-
 				//Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j <= i.polygon.len(); j++) {
@@ -473,8 +472,6 @@
 			local n = arg[0]
 			if(getroottable().rawin(n))
 			{
-				print(i.id)
-
 				//Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j < i.polyline.len(); j++) poly.push([i.x + i.polyline[j].x, i.y + i.polyline[j].y])
@@ -636,6 +633,17 @@
 					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
 				}
+			}
+		}
+
+		//Draw boss health
+		if(gvBoss) {
+			local fullhearts = floor(game.bossHealth / 4)
+
+			for(local i = 0; i < 10; i++) {
+				if(i < fullhearts) drawSprite(sprHealth, 4, screenW() - 26, screenH() - 48 - (16 * i))
+				else if(i == fullhearts) drawSprite(sprHealth, game.bossHealth % 4, screenW() - 26, screenH() - 48 - (16 * i))
+				else drawSprite(sprHealth, 0, screenW() - 26, screenH() - 48 - (16 * i))
 			}
 		}
 

@@ -778,8 +778,8 @@
 			}
 
 			if(!placeFree(x, y + 1)) vspeed = -3.0
-			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -1
-			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = 1
+			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -abs(hspeed)
+			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = abs(hspeed)
 			vspeed += 0.1
 
 			if(hspeed > 0) flip = 0
@@ -823,8 +823,8 @@
 			}
 		}
 
-		if(x < 0) hspeed = 0.5
-		if(x > gvMap.w) hspeed = -0.5
+		if(x < 0) hspeed = abs(hspeed)
+		if(x > gvMap.w) hspeed = -abs(hspeed)
 	}
 
 	function gethurt() {
@@ -843,6 +843,8 @@
 	hurtfire = Deathcap.hurtfire
 
 	function hurtice() { frozen = 600 }
+
+	function _typeof() { return "SnowBounce" }
 }
 
 ::BadCannon <- class extends Actor {
