@@ -110,7 +110,7 @@
 
 
 		if(game.weapon == 0) game.maxEnergy = 0
-		if(game.weapon == 3) game.maxEnergy = 4
+		if(game.weapon == 3) game.maxEnergy = 4 + game.airBonus
 		if(energy > game.maxEnergy) energy = game.maxEnergy
 
 		/////////////
@@ -321,7 +321,7 @@
 			//Controls
 			if(!freeDown2 || anim == anClimb) {
 				canJump = 16
-				if(game.weapon == 3 && energy < 4) energy += 0.2
+				if(game.weapon == 3 && energy < game.maxEnergy) energy += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--

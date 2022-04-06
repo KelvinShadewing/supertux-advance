@@ -32,6 +32,7 @@
 ::defTuxOverworld <- sprTuxOverworld
 ::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 14)
 ::defTuxDoll <- sprTuxDoll
+::sprTuxNPC <- newSprite("res/gfx/tux-npc.png", 32, 32, 0, 0, 16, 32)
 
 
 ::sprKonqi <- newSprite("res/gfx/konqi.png", 32, 32, 0, 0, 16, 19)
@@ -48,6 +49,7 @@
 ::defKonqiOverworld <- sprKonqiOverworld
 ::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 14)
 ::defKonqiDoll <- sprKonqiDoll
+::sprKonqiNPC <- newSprite("res/gfx/konqi-npc.png", 32, 32, 0, 0, 16, 32)
 
 
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 16, 19)
@@ -56,6 +58,7 @@
 ::defMidiOverworld <- sprMidiOverworld
 ::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 14)
 ::defMidiDoll <- sprMidiDoll
+::sprMidiNPC <- newSprite("res/gfx/midi-npc.png", 32, 32, 0, 0, 16, 32)
 
 
 //GUI
@@ -91,6 +94,8 @@
 ::defSpringD <- sprSpringD
 ::sprWoodBox <- newSprite("res/gfx/woodbox.png", 16, 16, 0, 0, 0, 0)
 ::defWoodBox <- sprWoodBox
+::sprBoxShop <- newSprite("res/gfx/shopblock.png", 16, 16, 0, 0, 0, 0)
+::defBoxShop <- sprBoxShop
 ::sprIceBlock <- newSprite("res/gfx/iceblock.png", 16, 16, 0, 0, 0, 0)
 ::defIceBlock <- sprIceBlock
 ::sprFishBlock <- newSprite("res/gfx/herringblock.png", 16, 16, 0, 0, 0, 0)

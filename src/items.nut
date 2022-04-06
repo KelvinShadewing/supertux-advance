@@ -129,11 +129,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 1
-				game.maxEnergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty + game.fireBonus
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxEnergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty + game.fireBonus
 				game.weapon = 1
 			}
 			playSoundChannel(sndHeal, 0, 1)
@@ -158,11 +158,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 2
-				game.maxEnergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty + game.iceBonus
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxEnergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty + game.iceBonus
 				game.weapon = 2
 			}
 			playSoundChannel(sndHeal, 0, 1)
@@ -493,10 +493,13 @@
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)){
 			playSoundChannel(sndHeal, 0, 1)
-			if(game.weapon == 0) game.weapon = 3
+			if(game.weapon == 0) {
+				game.weapon = 3
+				game.maxEnergy = 4 - game.difficulty + game.airBonus
+			}
 			else {
 				game.subitem = game.weapon
-				game.maxEnergy = 1
+				game.maxEnergy = 4 - game.difficulty + game.airBonus
 				game.weapon = 3
 			}
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
@@ -624,11 +627,11 @@
 			deleteActor(id)
 			if(game.weapon == 0) {
 				game.weapon = 4
-				game.maxEnergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty + game.earthBonus
 			}
 			else {
 				game.subitem = game.weapon
-				game.maxEnergy = 4 - game.difficulty
+				game.maxEnergy = 4 - game.difficulty + game.earthBonus
 				game.weapon = 4
 			}
 			playSoundChannel(sndHeal, 0, 1)

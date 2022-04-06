@@ -19,7 +19,7 @@
 
 ::loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
-		game = jsonRead(fileRead("save/" + f.tostring() + ".json"))
+		game = mergeTable(gameDefault, jsonRead(fileRead("save/" + f.tostring() + ".json")))
 		startOverworld(game.world)
 	}
 }

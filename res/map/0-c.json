@@ -320,6 +320,17 @@
                  "width":64,
                  "x":2400,
                  "y":80
+                }, 
+                {
+                 "height":64,
+                 "id":604,
+                 "name":"endGoal()",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2688,
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3724,6 +3735,18 @@
                  "width":16,
                  "x":1872,
                  "y":240
+                }, 
+                {
+                 "gid":32,
+                 "height":16,
+                 "id":603,
+                 "name":"sprKonqiNPC,0.1,rescueKonqi",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2560,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3732,13 +3755,13 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":602,
+ "nextobjectid":605,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) actor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"tux-borealis2\"], gvTextW)"
+         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"tux-borealis2\"], gvTextW)\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[164])\n}"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

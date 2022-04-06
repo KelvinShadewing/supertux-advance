@@ -49,6 +49,7 @@ donut("src/weather.nut")
 donut("src/light.nut")
 donut("src/credits.nut")
 donut("src/cursor.nut")
+donut("src/shop.nut")
 
 //Load mods
 local modlist = lsdir("mods")

@@ -11,7 +11,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y - 16, 20, 16, 0)
+		shape = Rec(x, y - 16, 24, 24, 0)
 		flip = randInt(2)
 
 		if(_arr != null) {
@@ -97,33 +97,48 @@
 	}
 
 	function rescueKonqi() {
-		say()
+		text = textLineLen(gvLangObj["npc"]["konqi-c"], gvTextW)
+		gvInfoBox = text
 		freeKonqi()
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
-		tileSetSolid(gvPlayer.x, gvPlayer.y + 8, 1)
-		endGoal()
 	}
 
 	function rescueMidi() {
-		say()
+		text = textLineLen(gvLangObj["npc"]["midi-c"], gvTextW)
+		gvInfoBox = text
 		freeMidi()
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
-		tileSetSolid(gvPlayer.x, gvPlayer.y + 8, 1)
-		endGoal()
 	}
 
 	function rescueFriend() {
-		say()
 		//Find who to free based on sprite
-		if(sprite == sprXue) if(!game.friends.rawin("Xue")) game.friends.Xue <- true
-		if(sprite == sprGnu) if(!game.friends.rawin("Gnu")) game.friends.Gnu <- true
-		if(sprite == sprPlasmaBreeze) if(!game.friends.rawin("PlasmaBreeze")) game.friends.PlasmaBreeze <- true
-		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) game.friends.RockyRaccoon <- true
-		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) game.friends.Pygame <- true
-		if(sprite == sprGaruda) if(!game.friends.rawin("Garuda")) game.friends.Garuda <- true
+		if(sprite == sprXue) {
+			if(!game.friends.rawin("Xue")) game.friends.Xue <- true
+			text = textLineLen(gvLangObj["npc"]["xue-c"], gvTextW)
+		}
+		if(sprite == sprGnu) if(!game.friends.rawin("Gnu")) {
+			game.friends.Gnu <- true
+			text = textLineLen(gvLangObj["npc"]["gnu-c"], gvTextW)
+		}
+		if(sprite == sprPlasmaBreeze) if(!game.friends.rawin("PlasmaBreeze")) {
+			game.friends.PlasmaBreeze <- true
+			text = textLineLen(gvLangObj["npc"]["breeze-c"], gvTextW)
+		}
+		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) {
+			game.friends.RockyRaccoon <- true
+			text = textLineLen(gvLangObj["npc"]["rocky-c"], gvTextW)
+		}
+		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) {
+			game.friends.Pygame <- true
+			text = textLineLen(gvLangObj["npc"]["python-c"], gvTextW)
+		}
+		if(sprite == sprGaruda) if(!game.friends.rawin("Garuda")) {
+			game.friends.Garuda <- true
+			text = textLineLen(gvLangObj["npc"]["garuda-c"], gvTextW)
+		}
+
+		gvInfoBox = text
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
-		tileSetSolid(gvPlayer.x, gvPlayer.y + 8, 1)
-		endGoal()
 	}
 
 	function _typeof() { return "NPC" }
