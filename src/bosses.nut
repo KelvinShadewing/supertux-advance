@@ -459,11 +459,9 @@
 
 		//Create effect
 		if(timer % 10 == 0) {
-			newActor(BigSpark, x + (timer * speed), y, 0)
-			newActor(BigSpark, x - (timer * speed), y, 1)
+			newActor(BigSpark, x + (timer * speed) + speed, y, 0)
+			newActor(BigSpark, x - (timer * speed) - speed, y, 1)
 		}
-		drawSprite(sprSpark, getFrames(), x + (timer * speed) - camx, y - camy)
-		drawSprite(sprSpark, getFrames(), x - (timer * speed) - camx, y - camy)
 	}
 }
 
