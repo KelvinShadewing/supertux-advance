@@ -405,6 +405,7 @@
 		phasing = true
 		anim = anHurt
 		gravity = 0.05
+		blinking = 0
 		if(eventTimer <= 0) {
 			setFPS(60)
 			if(gvPlayer) gvPlayer.canMove = true
