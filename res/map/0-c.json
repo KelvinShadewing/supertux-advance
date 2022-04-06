@@ -4046,11 +4046,11 @@
                 {
                  "animation":[
                         {
-                         "duration":10,
+                         "duration":40,
                          "tileid":2
                         }, 
                         {
-                         "duration":10,
+                         "duration":40,
                          "tileid":105
                         }],
                  "id":2

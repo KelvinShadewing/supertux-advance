@@ -190,6 +190,8 @@
 ::defLivewire <- sprLivewire
 ::sprBlazeborn <- newSprite("res/gfx/Blazeborn.png", 16, 16, 0, 0, 8, 9)
 ::defBlazeborn <- sprBlazeborn
+::sprWildcap <- newSprite("res/gfx/wildcap.png", 16, 16, 0, 0, 8, 9)
+::defWildcap <- sprWildcap
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)

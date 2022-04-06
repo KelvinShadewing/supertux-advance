@@ -490,18 +490,6 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":211,
-                 "height":16,
-                 "id":914,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":208,
-                 "y":384
-                }, 
-                {
                  "gid":263,
                  "height":16,
                  "id":915,
@@ -524,18 +512,6 @@
                  "width":16,
                  "x":432,
                  "y":832
-                }, 
-                {
-                 "gid":211,
-                 "height":16,
-                 "id":920,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":400,
-                 "y":816
                 }, 
                 {
                  "gid":211,
@@ -955,18 +931,6 @@
                  "visible":true,
                  "width":16,
                  "x":2800,
-                 "y":720
-                }, 
-                {
-                 "gid":211,
-                 "height":16,
-                 "id":963,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2880,
                  "y":720
                 }, 
                 {
@@ -2046,8 +2010,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":10592,
-                 "y":384
+                 "x":10560,
+                 "y":368
                 }, 
                 {
                  "gid":211,
@@ -2076,18 +2040,6 @@
                 {
                  "gid":211,
                  "height":16,
-                 "id":1107,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":10752,
-                 "y":432
-                }, 
-                {
-                 "gid":211,
-                 "height":16,
                  "id":1108,
                  "name":"",
                  "rotation":0,
@@ -2096,18 +2048,6 @@
                  "width":16,
                  "x":10784,
                  "y":448
-                }, 
-                {
-                 "gid":211,
-                 "height":16,
-                 "id":1109,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":10816,
-                 "y":464
                 }, 
                 {
                  "gid":211,
@@ -2876,6 +2816,42 @@
                  "width":16,
                  "x":7072,
                  "y":480
+                }, 
+                {
+                 "gid":263,
+                 "height":16,
+                 "id":1236,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":816
+                }, 
+                {
+                 "gid":263,
+                 "height":16,
+                 "id":1237,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":208,
+                 "y":384
+                }, 
+                {
+                 "gid":263,
+                 "height":16,
+                 "id":1239,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2880,
+                 "y":720
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2884,7 +2860,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1236,
+ "nextobjectid":1240,
  "orientation":"orthogonal",
  "properties":[
         {

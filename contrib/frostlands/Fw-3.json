@@ -1300,18 +1300,6 @@
                  "y":368
                 }, 
                 {
-                 "gid":14,
-                 "height":16,
-                 "id":761,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1341,
-                 "y":92
-                }, 
-                {
                  "gid":65,
                  "height":17.5,
                  "id":762,
@@ -1478,18 +1466,6 @@
                  "width":17.5,
                  "x":3872,
                  "y":128
-                }, 
-                {
-                 "gid":14,
-                 "height":16,
-                 "id":784,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3968,
-                 "y":144
                 }, 
                 {
                  "gid":2,
@@ -1816,18 +1792,6 @@
                  "y":288
                 }, 
                 {
-                 "gid":14,
-                 "height":16,
-                 "id":824,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3664,
-                 "y":128
-                }, 
-                {
                  "gid":2,
                  "height":16,
                  "id":825,
@@ -2006,6 +1970,42 @@
                  "width":16,
                  "x":4992,
                  "y":256
+                }, 
+                {
+                 "gid":65,
+                 "height":16,
+                 "id":846,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1360,
+                 "y":96
+                }, 
+                {
+                 "gid":65,
+                 "height":16,
+                 "id":847,
+                 "name":"Wildcap",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3600,
+                 "y":160
+                }, 
+                {
+                 "gid":13,
+                 "height":16,
+                 "id":848,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3840,
+                 "y":128
                 }],
          "opacity":0.62,
          "type":"objectgroup",
@@ -2014,7 +2014,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":846,
+ "nextobjectid":849,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2023,7 +2023,7 @@
          "value":"drawBG = dbgSnowPlainF\nsongPlay(musDisko)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -2145,6 +2145,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":400
 }
