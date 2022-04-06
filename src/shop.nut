@@ -39,7 +39,7 @@
 
 		local pricetag = chint(95).tostring() + price.tostring()
 
-		if(soldout) drawSpriteZ(2, sprboxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 			drawSpriteZ(2, sprHealth, getFrames() / 32, x - 8 - camx, y - 8 - camy + v)
@@ -89,7 +89,7 @@
 
 		local pricetag = chint(95).tostring() + price.tostring()
 
-		if(soldout) drawSpriteZ(2, sprboxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 			drawSpriteZ(2, sprFlowerFire, getFrames() / 32, x - camx, y - camy + v)
@@ -139,7 +139,7 @@
 
 		local pricetag = chint(95).tostring() + price.tostring()
 
-		if(soldout) drawSpriteZ(2, sprboxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 			drawSpriteZ(2, sprFlowerIce, getFrames() / 32, x - camx, y - camy + v)
@@ -189,7 +189,7 @@
 
 		local pricetag = chint(95).tostring() + price.tostring()
 
-		if(soldout) drawSpriteZ(2, sprboxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 			drawSpriteZ(2, sprAirFeather, getFrames() / 32, x - camx, y - camy + v)
@@ -239,7 +239,7 @@
 
 		local pricetag = chint(95).tostring() + price.tostring()
 
-		if(soldout) drawSpriteZ(2, sprboxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 			drawSpriteZ(2, sprEarthShell, getFrames() / 32, x - camx, y - camy + v)

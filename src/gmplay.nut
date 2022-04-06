@@ -639,12 +639,16 @@
 		//Draw boss health
 		if(gvBoss) {
 			local fullhearts = floor(game.bossHealth / 4)
+			if(game.bossHealth == 0) fullhearts = 0
 
+			drawSprite(sprBossHealth, 6, screenW() - 23, screenH() - 48)
+			drawSprite(sprSkull, 0, screenW() - 26, screenH() - 46)
 			for(local i = 0; i < 10; i++) {
-				if(i < fullhearts) drawSprite(sprHealth, 4, screenW() - 26, screenH() - 48 - (16 * i))
-				else if(i == fullhearts) drawSprite(sprHealth, game.bossHealth % 4, screenW() - 26, screenH() - 48 - (16 * i))
-				else drawSprite(sprHealth, 0, screenW() - 26, screenH() - 48 - (16 * i))
+				if(i < fullhearts) drawSprite(sprBossHealth, 4, screenW() - 23, screenH() - 64 - (16 * i))
+				else if(i == fullhearts && game.bossHealth > 0) drawSprite(sprBossHealth, game.bossHealth % 4, screenW() - 23, screenH() - 64 - (16 * i))
+				else drawSprite(sprBossHealth, 0, screenW() - 23, screenH() - 64 - (16 * i))
 			}
+			drawSprite(sprBossHealth, 5, screenW() - 23, screenH() - 64 - (16 * 10))
 		}
 
 		//Draw coins & herrings

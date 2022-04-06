@@ -75,6 +75,9 @@
 ::defWarning <- sprWarning
 ::sprTalk <- newSprite("res/gfx/talk.png", 16, 16, 0, 0, 8, 16)
 ::defTalk <- sprTalk
+::sprBossHealth <- newSprite("res/gfx/boss-health.png", 10, 16, 0, 0, 0, 0)
+::defBossHealth <- sprBossHealth
+::sprSkull <- newSprite("res/gfx/skull.png", 16, 16, 0, 0, 0, 0)
 
 
 //Blocks

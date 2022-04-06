@@ -23,7 +23,7 @@
 			animics()
 
 			//Collision with player
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && blinking <= 0) {
+			if(gvPlayer && health > 0) if(hitTest(shape, gvPlayer.shape) && blinking <= 0) {
 				if(gvPlayer.y < y && gvPlayer.vspeed >= 0 && gvPlayer.canStomp && canBeStomped) hurtStomp()
 				else hitPlayer()
 			}
@@ -32,6 +32,13 @@
 				if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
 					if(hitTest(shape, i.shape)) {
 						hurtFire()
+						deleteActor(i.id)
+					}
+				}
+
+				if(actor.rawin("FireballK")) foreach(i in actor["FireballK"]) {
+					if(hitTest(shape, i.shape)) {
+						newActor(ExplodeF, i.x, i.y)
 						deleteActor(i.id)
 					}
 				}
@@ -98,6 +105,7 @@
 	health = 0
 	healthTotal = 0
 	healthDrawn = 0
+	healthActual = 0.0
 	doorID = 0
 
 	constructor(_x, _y, _arr = null) {
@@ -106,28 +114,33 @@
 			doorID = _arr.tointeger()
 		}
 
-		if(!gvBoss) gvBoss = this
 		foreach(i in actor["Boss"]) {
 			bossTotal++
 			healthTotal += 40
-			health += i.health
+			healthActual += i.health
 		}
 	}
 
 	function run() {
 		if(!actor.rawin("Boss")) deleteActor(id)
+		if(actor["Boss"].len() == 0) deleteActor(id)
+
+		//Recount bosses
+		bossTotal = actor["Boss"].len()
 
 		//Recount health
-		health = 0
+		healthActual = 0
 		if(actor["Boss"].len() > 0) foreach(i in actor["Boss"]) {
-			health += i.health
+			if(i.ready) healthActual += i.health
 		}
-		if(health <= 0) {
-			health = 0
+		if(healthActual <= 0 && bossTotal == 0) {
+			healthActual = 0
 			fadeMusic(1)
 			deleteActor(id)
 			if(mapActor.rawin(doorID)) if(actor[mapActor[doorID]].rawin("opening")) actor[mapActor[doorID]].opening = true
 		}
+		if(getFrames() % 4 == 0) health += healthActual <=> health
+		if(health > 0) if(!gvBoss) gvBoss = this
 
 		game.bossHealth = 40 / healthTotal * health
 	}
@@ -267,6 +280,7 @@
 	}
 
 	function ruIntroCheer() {
+		ready = true
 		eventTimer--
 		if(eventTimer < 100) anim = anCheer
 		else anim = anIdle
@@ -413,10 +427,13 @@
 		}
 	}
 
-	function hurtFire() {
+	function hurtBlast() {
 		blinking = 12.0
 		health--
 	}
+
+	function hurtFire() { hurtBlast() }
+	function hurtShock() { hurtBlast() }
 
 	function hurtStomp() {
 		routine = ruHurt
@@ -429,6 +446,7 @@
 			else hspeed = 1.0
 		}
 		health -= 4
+		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 4
 	}
 
 	function _typeof() { return "Boss" }
