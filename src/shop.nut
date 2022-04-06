@@ -64,7 +64,7 @@
 
 	function run() {
 		if(game.fireBonus >= 16) soldout = true
-		local price = (game.fireBonus + 1) * (400 * (game.difficulty + 1))
+		local price = (game.fireBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -114,7 +114,7 @@
 
 	function run() {
 		if(game.iceBonus >= 16) soldout = true
-		local price = (game.iceBonus + 1) * (400 * (game.difficulty + 1))
+		local price = (game.iceBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -164,7 +164,7 @@
 
 	function run() {
 		if(game.airBonus >= 16) soldout = true
-		local price = (game.airBonus + 1) * (600 * (game.difficulty + 1))
+		local price = (game.airBonus + 1) * (600 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -214,7 +214,7 @@
 
 	function run() {
 		if(game.earthBonus >= 16) soldout = true
-		local price = (game.earthBonus + 1) * (800 * (game.difficulty + 1))
+		local price = (game.earthBonus + 1) * (800 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
