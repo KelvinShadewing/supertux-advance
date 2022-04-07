@@ -107,6 +107,7 @@
 	healthDrawn = 0
 	healthActual = 0.0
 	doorID = 0
+	beaten = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -133,12 +134,17 @@
 		if(actor["Boss"].len() > 0) foreach(i in actor["Boss"]) {
 			if(i.ready) healthActual += i.health
 		}
+
 		if(healthActual <= 0 && bossTotal == 0) {
 			healthActual = 0
-			fadeMusic(1)
 			deleteActor(id)
 			if(mapActor.rawin(doorID)) if(actor[mapActor[doorID]].rawin("opening")) actor[mapActor[doorID]].opening = true
+			if(!beaten) {
+				beaten = true
+				fadeMusic(1)
+			}
 		}
+
 		if(getFrames() % 4 == 0) health += healthActual <=> health
 		if(health > 0) if(!gvBoss) gvBoss = this
 
@@ -383,6 +389,7 @@
 			frame = anim[0]
 			routine = ruDizzy
 			eventTimer = 240
+			playSound(sndGrowl, 0)
 		}
 	}
 
@@ -428,14 +435,17 @@
 	}
 
 	function hurtBlast() {
+		if(health <= 0) return
 		blinking = 12.0
 		health--
+		playSound(sndBossHit, 0)
 	}
 
 	function hurtFire() { hurtBlast() }
 	function hurtShock() { hurtBlast() }
 
 	function hurtStomp() {
+		if(health <= 0) return
 		routine = ruHurt
 		eventTimer = 30
 		canBeStomped = false
@@ -447,6 +457,8 @@
 		}
 		health -= 4
 		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 4
+		if(health > 0) playSound(sndBossHit, 0)
+		else playSound(sndDie, 0)
 	}
 
 	function _typeof() { return "Boss" }
