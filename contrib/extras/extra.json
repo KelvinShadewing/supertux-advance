@@ -198,7 +198,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)\ngame.maxHealth = 12\nfreeKonqi()"
+         "value":"songPlay(musOverworld)\nif(game.maxHealth < 12) game.maxHealth = 12\nfreeKonqi()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

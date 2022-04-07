@@ -351,6 +351,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndGrowl <- loadSound("res/snd/growl.ogg")
 ::sndMenuMove <- loadSound("res/snd/menu-move.ogg")
 ::sndMenuSelect <- loadSound("res/snd/menu-select.ogg")
+::sndBossHit <- loadSound("res/snd/boss-hit.ogg")
 
 
 //Music
@@ -358,21 +359,21 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::gvMusicName <- ""
 ::gvLastSong <- ""
 
-::musTheme <- "res/snd/supertuxtheme.ogg"
-::musDisko <- "res/snd/chipdisko.ogg"
-::musCave <- "res/snd/cave.ogg"
-::musOverworld <- "res/snd/overworld.ogg"
-::musCity <- "res/snd/village-mixed.ogg"
-::musCastle <- "res/snd/castle.ogg"
-::musRace <- "res/snd/blackdiamond.ogg"
-::musDeluge <- "res/snd/deluge.ogg"
-::musSnowTown <- "res/snd/winter_wonderland.ogg"
-::musAirship <- "res/snd/airship.ogg"
-::musPuzzle <- "res/snd/puzzle.ogg"
-::musIceland <- "res/snd/iceland.ogg"
-::musretro2<- "res/snd/retro-2.ogg"
-::musBoss <- "res/snd/boss.ogg"
-::musBossIntro <- "res/snd/boss-intro.ogg"
+::musTheme <- "res/mus/supertuxtheme.ogg"
+::musDisko <- "res/mus/chipdisko.ogg"
+::musCave <- "res/mus/cave.ogg"
+::musOverworld <- "res/mus/overworld.ogg"
+::musCity <- "res/mus/village-mixed.ogg"
+::musCastle <- "res/mus/castle.ogg"
+::musRace <- "res/mus/blackdiamond.ogg"
+::musDeluge <- "res/mus/deluge.ogg"
+::musSnowTown <- "res/mus/winter_wonderland.ogg"
+::musAirship <- "res/mus/airship.ogg"
+::musPuzzle <- "res/mus/puzzle.ogg"
+::musIceland <- "res/mus/iceland.ogg"
+::musretro2<- "res/mus/retro-2.ogg"
+::musBoss <- "res/mus/boss.ogg"
+::musBossIntro <- "res/mus/boss-intro.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")
