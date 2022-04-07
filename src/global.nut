@@ -122,6 +122,8 @@
 	light = true
 	showcursor = true
 	usefilter = false
+	soundenabled = true
+	musicenabled = true
 }
 
 ::contribDidRun <- {}

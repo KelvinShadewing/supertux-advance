@@ -378,13 +378,13 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/snd/invincible.ogg")
 
-::songPlay <- function(song) {
+::songPlay <- function(song, forcePlay = false) {
 	gvMusicName = song
-	if(gvMusicName == gvLastSong) return
+	if(gvMusicName == gvLastSong && !forcePlay) return
 
 	deleteMusic(gvMusic)
 	gvMusic = loadMusic(song)
-	playMusic(gvMusic, -1)
+	musicPlay(gvMusic, -1)
 
 	gvLastSong = song
 }

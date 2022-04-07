@@ -290,7 +290,7 @@
 		eventTimer--
 		if(eventTimer < 100) anim = anCheer
 		else anim = anIdle
-		if(eventTimer == 100) playSound(sndGrowl, 0)
+		if(eventTimer == 100) soundPlay(sndGrowl, 0)
 		if(eventTimer == 0) {
 			eventTimer = 60
 			routine = ruIdle
@@ -389,7 +389,7 @@
 			frame = anim[0]
 			routine = ruDizzy
 			eventTimer = 240
-			playSound(sndGrowl, 0)
+			soundPlay(sndGrowl, 0)
 		}
 	}
 
@@ -438,7 +438,7 @@
 		if(health <= 0) return
 		blinking = 12.0
 		health--
-		playSound(sndBossHit, 0)
+		soundPlay(sndBossHit, 0)
 	}
 
 	function hurtFire() { hurtBlast() }
@@ -457,8 +457,8 @@
 		}
 		health -= 4
 		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 4
-		if(health > 0) playSound(sndBossHit, 0)
-		else playSound(sndDie, 0)
+		if(health > 0) soundPlay(sndBossHit, 0)
+		else soundPlay(sndDie, 0)
 	}
 
 	function _typeof() { return "Boss" }

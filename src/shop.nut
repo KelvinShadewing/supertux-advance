@@ -28,7 +28,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
 				vspeed = -1
-				playSound(sndHeal, 0)
+				soundPlay(sndHeal, 0)
 				game.health += 4
 				game.maxHealth += 4
 				game.coins -= price
@@ -78,7 +78,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
 				vspeed = -1
-				playSound(sndHeal, 0)
+				soundPlay(sndHeal, 0)
 				game.fireBonus += 1
 				game.coins -= price
 				if(game.weapon == 1) game.maxEnergy++
@@ -128,7 +128,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
 				vspeed = -1
-				playSound(sndHeal, 0)
+				soundPlay(sndHeal, 0)
 				game.iceBonus += 1
 				game.coins -= price
 				if(game.weapon == 2) game.maxEnergy++
@@ -178,7 +178,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
 				vspeed = -1
-				playSound(sndHeal, 0)
+				soundPlay(sndHeal, 0)
 				game.airBonus += 1
 				game.coins -= price
 				if(game.weapon == 3) game.maxEnergy++
@@ -228,7 +228,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
 				vspeed = -1
-				playSound(sndHeal, 0)
+				soundPlay(sndHeal, 0)
 				game.earthBonus += 1
 				game.coins -= price
 				if(game.weapon == 4) game.maxEnergy++

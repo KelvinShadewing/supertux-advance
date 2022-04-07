@@ -411,24 +411,24 @@
 						}
 						if(game.weapon != 3) {
 							stopSound(sndJump)
-							playSound(sndJump, 0)
+							soundPlay(sndJump, 0)
 						}
 						else {
 							stopSound(sndFlap)
-							playSound(sndFlap, 0)
+							soundPlay(sndFlap, 0)
 						}
 					}
 					else if(freeDown && anim != anClimb && !placeFree(x - 2, y) && anim != anWall && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {
 						flip = 0
 						anim = anWall
 						frame = anim[0]
-						playSound(sndWallkick, 0)
+						soundPlay(sndWallkick, 0)
 					}
 					else if(freeDown && anim != anClimb && !placeFree(x + 2, y) && anim != anWall && hspeed >= 0 && tileGetSolid(x + 12, y - 12) != 40 && tileGetSolid(x + 12, y + 12) != 40 && tileGetSolid(x + 12, y) != 40) {
 						flip = 1
 						anim = anWall
 						frame = anim[0]
-						playSound(sndWallkick, 0)
+						soundPlay(sndWallkick, 0)
 					}
 					else if(floor(energy) > 0 && game.weapon == 3 && getcon("jump", "press")) {
 						if(vspeed > 0) vspeed = 0.0
@@ -441,11 +441,11 @@
 						}
 						if(game.weapon != 3) {
 							stopSound(sndJump)
-							playSound(sndJump, 0)
+							soundPlay(sndJump, 0)
 						}
 						else {
 							stopSound(sndFlap)
-							playSound(sndFlap, 0)
+							soundPlay(sndFlap, 0)
 						}
 						energy--
 					}
@@ -488,14 +488,14 @@
 						frame = anim[0]
 						flip = 0
 						stopSound(sndSlide)
-						playSound(sndSlide, 0)
+						soundPlay(sndSlide, 0)
 					}
 					else if(placeFree(x - 2, y + 1) || hspeed <= -1.5) {
 						anim = anDive
 						frame = anim[0]
 						flip = 1
 						stopSound(sndSlide)
-						playSound(sndSlide, 0)
+						soundPlay(sndSlide, 0)
 					}
 					else {
 						anim = anDive
@@ -594,7 +594,7 @@
 						local c = actor[newActor(Fireball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						playSound(sndFireball, 0)
+						soundPlay(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -616,7 +616,7 @@
 						local c = actor[newActor(Iceball, x + fx, y - 4)]
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						playSound(sndFireball, 0)
+						soundPlay(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -635,7 +635,7 @@
 					if(getcon("shoot", "press") && (anim == anJumpT || anim == anJumpU || anim == anFall) && anim != anHurt) {
 						anim = anDive
 						frame = anim[0]
-						playSound(sndSlide, 0)
+						soundPlay(sndSlide, 0)
 						if(flip == 0 && hspeed < 2) hspeed = 2
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}
@@ -645,7 +645,7 @@
 					if(getcon("shoot", "press") && (anim != anHurt)) {
 						anim = anDive
 						frame = anim[0]
-						playSound(sndSlide, 0)
+						soundPlay(sndSlide, 0)
 						if(flip == 0 && hspeed < 2) hspeed = 2
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}
@@ -746,7 +746,7 @@
 						local c = actor[newActor(Fireball, x + fx, y)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						playSound(sndFireball, 0)
+						soundPlay(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -3
 							if(hspeed != 0) c.hspeed *= 0.75
@@ -779,7 +779,7 @@
 						local c = actor[newActor(Iceball, x + fx, y)]
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						playSound(sndFireball, 0)
+						soundPlay(sndFireball, 0)
 						if(getcon("up", "hold")) {
 							c.vspeed = -3
 							if(hspeed != 0) c.hspeed *= 0.75
@@ -877,7 +877,7 @@
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
-				playSound(sndHurt, 0)
+				soundPlay(sndHurt, 0)
 				if(game.weapon == 4 && anim == anSlide && energy > 0) {
 					energy--
 					firetime = 120
@@ -1010,7 +1010,7 @@
 				game.maxEnergy++
 				game.subitem = 0
 				tftime = 0
-				playSound(sndHeal, 0)
+				soundPlay(sndHeal, 0)
 			}
 			return
 		}
@@ -1061,7 +1061,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		stopMusic()
-		playSound(sndDie, 0)
+		soundPlay(sndDie, 0)
 	}
 
 	function run() {

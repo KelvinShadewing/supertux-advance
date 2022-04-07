@@ -115,7 +115,7 @@
 	function hurtinvinc() {
 		newActor(Poof, x, y)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 	}
 
 	function hurtblast() { gethurt() }
@@ -258,12 +258,12 @@
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				deleteActor(id)
-				playSound(sndKick, 0)
+				soundPlay(sndKick, 0)
 			}
 			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 			else {
 				gvPlayer.vspeed = -4.0
-				playSound(sndSquish, 0)
+				soundPlay(sndSquish, 0)
 			}
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 				gvPlayer.anim = gvPlayer.anJumpU
@@ -288,7 +288,7 @@
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 
 	}
@@ -296,7 +296,7 @@
 	function hurtfire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]
@@ -369,7 +369,7 @@
 			newActor(Poof, x, ystart - 8)
 			newActor(Poof, x, ystart + 8)
 			deleteActor(id)
-			playSound(sndKick, 0)
+			soundPlay(sndKick, 0)
 
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -385,7 +385,7 @@
 		newActor(Poof, x, ystart - 6)
 		newActor(Poof, x, ystart + 8)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -398,7 +398,7 @@
 		newActor(Flame, x, ystart - 6)
 		newActor(Flame, x, ystart + 8)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -660,7 +660,7 @@
 		if(squish) return
 		if(frozen) frozen = 0
 		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		soundPlay(sndFizz, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -673,7 +673,7 @@
 		if(squish) return
 
 		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		soundPlay(sndFizz, 0)
 		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -692,7 +692,7 @@
 		if(!burnt) {
 			newActor(BadExplode, x, y - 1)
 			deleteActor(id)
-			playSound(sndFlame, 0)
+			soundPlay(sndFlame, 0)
 
 			burnt = true
 		}
@@ -711,7 +711,7 @@
 		base.constructor(_x, _y)
 
 		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		soundPlay(sndExplodeF, 0)
 
 		shape = Cir(x, y, 16)
 	}
@@ -830,7 +830,7 @@
 	function gethurt() {
 		newActor(Poof, x, y)
 		deleteActor(id)
-		playSound(sndSquish, 0)
+		soundPlay(sndSquish, 0)
 		if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
 
@@ -957,11 +957,11 @@
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
 		actor[c].hspeed = (gvPlayer.hspeed / 16)
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		if(getcon("jump", "hold")) gvPlayer.vspeed = -5
 		else {
 			gvPlayer.vspeed = -2
-			playSound(sndSquish, 0)
+			soundPlay(sndSquish, 0)
 		}
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 			gvPlayer.anim = gvPlayer.anJumpU
@@ -979,7 +979,7 @@
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
 		actor[c].hspeed = (gvPlayer.hspeed / 16)
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -1060,7 +1060,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		game.enemies--
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -1167,7 +1167,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		game.enemies--
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -1268,7 +1268,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.01
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		game.enemies--
 		newActor(Poof, x, y)
 	}
@@ -1318,7 +1318,7 @@
 			}
 			newActor(Poof, x, y - 1)
 			deleteActor(id)
-			playSound(sndFlame, 0)
+			soundPlay(sndFlame, 0)
 
 		}
 	}
@@ -1471,7 +1471,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		game.enemies--
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -1498,7 +1498,7 @@
 
 		if(gvPlayer) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
 			counting = true
-			playSound(sndIcicle, 0)
+			soundPlay(sndIcicle, 0)
 		}
 
 		if(counting && timer > 0) timer--
@@ -1605,15 +1605,15 @@
 		actor[c].spin = (gvPlayer.hspeed * 6)
 		actor[c].angle = 180
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 
 		if(getcon("jump", "hold")) {
 			gvPlayer.vspeed = -8
-			playSound(sndSquish, 0)
+			soundPlay(sndSquish, 0)
 		}
 		else {
 			gvPlayer.vspeed = -4
-			playSound(sndSquish, 0)
+			soundPlay(sndSquish, 0)
 		}
 
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -1730,7 +1730,7 @@
 		}
 		newActor(Poof, x, y - 1)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 
 
 	}
@@ -1738,7 +1738,7 @@
 	function hurtfire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 
 	}
 
@@ -1885,7 +1885,7 @@
 					chasing = true
 					squishTime = 0
 					stopSound(sndFizz)
-					playSound(sndFizz, 0)
+					soundPlay(sndFizz, 0)
 				}
 				if(squishTime >= 300 && chasing) {
 					deleteActor(id)
@@ -1939,7 +1939,7 @@
 			gvPlayer.anim = gvPlayer.anJumpU
 			gvPlayer.frame = gvPlayer.anJumpU[0]
 		}
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 
 		squish = true
 	}
@@ -1952,7 +1952,7 @@
 		if(!burnt) {
 			newActor(BadExplode, x, y - 1)
 			deleteActor(id)
-			playSound(sndFlame, 0)
+			soundPlay(sndFlame, 0)
 
 			burnt = true
 		}
@@ -1987,7 +1987,7 @@
 		base.constructor(_x, _y)
 
 		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		soundPlay(sndExplodeF, 0)
 
 		shape = Rec(x, y, 16, 16, 0)
 	}
@@ -2143,7 +2143,7 @@
 		if(squish) return
 		if(frozen) frozen = 0
 		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		soundPlay(sndFizz, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -2156,7 +2156,7 @@
 		if(squish) return
 
 		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		soundPlay(sndFizz, 0)
 		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
 		else gvPlayer.vspeed = -4
 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -2245,7 +2245,7 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						newActor(Flame, x, y - 1)
 						deleteActor(id)
-						playSound(sndFlame, 0)
+						soundPlay(sndFlame, 0)
 					}
 
 					//Draw
@@ -2302,7 +2302,7 @@
 			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 			else {
 				gvPlayer.vspeed = -4.0
-				playSound(sndSquish, 0)
+				soundPlay(sndSquish, 0)
 			}
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 				gvPlayer.anim = gvPlayer.anJumpU
@@ -2322,7 +2322,7 @@
 	function hurtblast() {
 		newActor(Poof, x, y)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 
 	}
@@ -2463,12 +2463,12 @@
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				deleteActor(id)
-				playSound(sndKick, 0)
+				soundPlay(sndKick, 0)
 			}
 			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 			else {
 				gvPlayer.vspeed = -4.0
-				playSound(sndSquish, 0)
+				soundPlay(sndSquish, 0)
 			}
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
 				gvPlayer.anim = gvPlayer.anJumpU
@@ -2493,7 +2493,7 @@
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
 		deleteActor(id)
-		playSound(sndKick, 0)
+		soundPlay(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 
 	}
@@ -2501,7 +2501,7 @@
 	function hurtfire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
-		playSound(sndFlame, 0)
+		soundPlay(sndFlame, 0)
 
 		if(randInt(50) == 0) {
 			local a = actor[newActor(MuffinRed, x, y)]

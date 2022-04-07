@@ -26,7 +26,7 @@
 	if(mouseX() >= pos.x - 3 && mouseX() <= pos.x + pos.len - 3 && mouseY() >= pos.y && mouseY() <= pos.y + fontH) {
 		if(menu[pos.index].rawin("disabled")) return;
 		menu[pos.index].func()
-		playSound(sndMenuSelect, 0)
+		soundPlay(sndMenuSelect, 0)
 		return
 	}
 }

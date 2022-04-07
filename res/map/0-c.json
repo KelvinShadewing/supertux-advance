@@ -291,7 +291,7 @@
                 {
                  "height":16,
                  "id":510,
-                 "name":"if(getcon(\"jump\", \"hold\")) gvPlayer.vspeed = -12; else gvPlayer.vspeed = -8; stopSound(sndSpring); playSound(sndSpring, 0)",
+                 "name":"if(getcon(\"jump\", \"hold\")) gvPlayer.vspeed = -12; else gvPlayer.vspeed = -8; stopSound(sndSpring); soundPlay(sndSpring, 0)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

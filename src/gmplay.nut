@@ -699,7 +699,7 @@
 		if(gvWarning < 180) {
 			if(gvWarning == 0 || gvWarning == 90) {
 				stopChannel(4)
-				playSoundChannel(sndWarning, 0, 4)
+				soundPlayChannel(sndWarning, 0, 4)
 			}
 			drawSpriteEx(sprWarning, 0, screenW() / 2, screenH() / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))
 			gvWarning += 1.5

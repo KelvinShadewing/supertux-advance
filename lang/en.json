@@ -25,6 +25,7 @@
 		"language" : "Language",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
+		"audio" : "Audio",
 		"cursor" : "Show Mouse Cursor: ",
 		"timers" : "Speedrun Timers",
 		"light" : "Lighting: ",
@@ -39,6 +40,7 @@
 		"language" : "Change game language",
 		"keyboard" : "Change keyboard controls",
 		"joystick" : "Change gamepad controls",
+		"audio" : "Toggle sound and music",
 		"cursor" : "Toggle the mouse cursor",
 		"timers" : "Toggle speedrun timers",
 		"light" : "Toggle light effects",
@@ -72,6 +74,11 @@
 		"cam-right-peek" : "Peek Right",
 		"cam-down-peek" : "Peek Down",
 		"cam-up-peek" : "Peek Up"
+	},
+
+	"audio-menu" : {
+		"sound" : "Sound",
+		"music" : "Music"
 	},
 
 	"menu-commons" : {

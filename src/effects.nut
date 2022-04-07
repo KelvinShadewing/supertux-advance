@@ -135,7 +135,7 @@
 		game.levelCoins += value
 		base.constructor(_x, _y)
 		stopSound(sndCoin)
-		playSound(sndCoin, 0)
+		soundPlay(sndCoin, 0)
 	}
 
 	function run() {
@@ -160,7 +160,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		playSound(sndIceBreak, 0)
+		soundPlay(sndIceBreak, 0)
 	}
 
 	function run() {

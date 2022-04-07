@@ -75,7 +75,7 @@ const fontH = 14
 		}
 		if(getcon("down", "press")) cursorTimer = 40
 		else cursorTimer = 10
-		playSound(sndMenuMove, 0)
+		soundPlay(sndMenuMove, 0)
 	}
 
 	if(getcon("up", "press") || (getcon("up", "hold") && cursorTimer <= 0)) {
@@ -87,7 +87,7 @@ const fontH = 14
 		}
 		if(getcon("up", "press")) cursorTimer = 40
 		else cursorTimer = 10
-		playSound(sndMenuMove, 0)
+		soundPlay(sndMenuMove, 0)
 	}
 
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
@@ -95,7 +95,7 @@ const fontH = 14
 	if(getcon("jump", "press") || getcon("accept", "press")) {
 		if(menu[cursor].rawin("disabled")) return;
 		menu[cursor].func()
-		playSound(sndMenuSelect, 0)
+		soundPlay(sndMenuSelect, 0)
 	}
 
 	if(getcon("pause", "press")) {
@@ -168,7 +168,7 @@ const fontH = 14
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["save"]},
-		func = function() { saveGame(); playSound(sndHeal, 0); gvGameMode = gmOverworld }
+		func = function() { saveGame(); soundPlay(sndHeal, 0); gvGameMode = gmOverworld }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
@@ -190,6 +190,11 @@ const fontH = 14
 		name = function() { return gvLangObj["options-menu"]["joystick"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
 		func = function() { menu = meJoybinds }
+	},
+	{
+		name = function() { return gvLangObj["options-menu"]["audio"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["audio"] },
+		func = function() { menu = meAudio }
 	},
 	{
 		name = function() {
@@ -381,6 +386,22 @@ const fontH = 14
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }
+	}
+]
+
+::meAudio <- [
+	{
+		name = function() { return gvLangObj["audio-menu"]["sound"] + ": " + (config.soundenabled ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
+		func = function() { config.soundenabled = !config.soundenabled }
+	},
+	{
+		name = function() { return gvLangObj["audio-menu"]["music"] + ": " + (config.musicenabled ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
+		func = function() { config.musicenabled = !config.musicenabled; config.musicenabled ? songPlay(musTheme, true) : stopMusic() }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { cursor = 3; menu = meOptions }
+		back = function() { cursor = 3; menu = meOptions }
 	}
 ]
 

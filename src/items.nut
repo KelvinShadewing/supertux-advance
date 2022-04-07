@@ -84,7 +84,7 @@
 			deleteActor(id)
 			game.berries++
 			stopSound(sndGulp)
-			playSound(sndGulp, 0)
+			soundPlay(sndGulp, 0)
 		}
 	}
 
@@ -107,7 +107,7 @@
 		drawSprite(sprHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			playSoundChannel(sndFish, 0, 1)
+			soundPlayChannel(sndFish, 0, 1)
 			game.levelredcoins++
 		}
 	}
@@ -136,7 +136,7 @@
 				game.maxEnergy = 4 - game.difficulty + game.fireBonus
 				game.weapon = 1
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			soundPlayChannel(sndHeal, 0, 1)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 	}
@@ -165,7 +165,7 @@
 				game.maxEnergy = 4 - game.difficulty + game.iceBonus
 				game.weapon = 2
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			soundPlayChannel(sndHeal, 0, 1)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 	}
@@ -234,7 +234,7 @@
 			}
 			else if(game.subitem != 6 && (game.subitem == 0 || willwrite)) game.subitem = 5
 			deleteActor(id)
-			playSoundChannel(sndHeal, 0, 1)
+			soundPlayChannel(sndHeal, 0, 1)
 		}
 
 		drawSprite(sprMuffin, 0, x - camx, y - camy)
@@ -305,7 +305,7 @@
 			}
 			else game.subitem = 6
 			deleteActor(id)
-			playSoundChannel(sndHeal, 0, 1)
+			soundPlayChannel(sndHeal, 0, 1)
 		}
 
 		drawSprite(sprMuffin, 1, x - camx, y - camy)
@@ -454,7 +454,7 @@
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			gvPlayer.invincible = 645
 			deleteActor(id)
-			playMusic(musInvincible, -1)
+			musicPlay(musInvincible, -1)
 			gvLastSong = ""
 		}
 
@@ -492,7 +492,7 @@
 		drawSprite(sprAirFeather, frame, x - camx, y - camy)
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)){
-			playSoundChannel(sndHeal, 0, 1)
+			soundPlayChannel(sndHeal, 0, 1)
 			if(game.weapon == 0) {
 				game.weapon = 3
 				game.maxEnergy = 4 - game.difficulty + game.airBonus
@@ -544,7 +544,7 @@
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			game.canres = true
-			playSound(snd1up, 0)
+			soundPlay(snd1up, 0)
 			deleteActor(id)
 		}
 
@@ -634,7 +634,7 @@
 				game.maxEnergy = 4 - game.difficulty + game.earthBonus
 				game.weapon = 4
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			soundPlayChannel(sndHeal, 0, 1)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 	}
@@ -726,7 +726,7 @@
 					gvKeyCopper = true
 					break
 			}
-			playSound(snd1up, 0)
+			soundPlay(snd1up, 0)
 		}
 
 		//Draw

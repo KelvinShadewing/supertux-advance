@@ -41,7 +41,7 @@
 
 		game.coins += game.levelCoins
 
-		playSound(sndWin, 0)
+		soundPlay(sndWin, 0)
 		stopMusic()
 
 		levelEndRunner = newActor(LevelEnder, 0, 0)

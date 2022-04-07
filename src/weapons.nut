@@ -167,7 +167,7 @@
 		base.constructor(_x, _y)
 
 		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		soundPlay(sndExplodeF, 0)
 
 		shape = Cir(x, y, 16)
 	}
@@ -200,7 +200,7 @@
 		base.constructor(_x, _y)
 
 		stopSound(sndBump)
-		playSound(sndBump, 0)
+		soundPlay(sndBump, 0)
 
 		shape = Rec(x, y, 16, 16, 0)
 	}
@@ -224,7 +224,7 @@
 		base.constructor(_x, _y)
 
 		stopSound(sndBump)
-		playSound(sndBump, 0)
+		soundPlay(sndBump, 0)
 
 		shape = Rec(x, y, 8, 8, 0)
 	}
