@@ -33,7 +33,8 @@
 		"stickspeed" : "Stick Controls Speed: ",
 		"usefilter" : "Use Graphics Filter: ",
 		"sound-volume" : "Sound Volume",
-		"music-volume" : "Music Volume"
+		"music-volume" : "Music Volume",
+		"charsel" : "Select Your Character"
 	},
 
 	"options-menu-desc": {

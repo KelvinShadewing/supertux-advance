@@ -1,3 +1,0 @@
-::charSelect <- function() {
-	
-}

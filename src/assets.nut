@@ -306,6 +306,7 @@
 ::bgIceForest1 <- newSprite("res/gfx/iceforest1.png", 640, 256, 0, 0, 0, 0)
 ::bgIceForest2 <- newSprite("res/gfx/iceforest2.png", 480, 192, 0, 0, 0, 0)
 ::bgFortMagma <- newSprite("res/gfx/fortmagmasky.png", 960, 240, 0, 0, 0, 0)
+::bgCharSel <- newSprite("res/gfx/charsel.png", 424, 240, 0, 0, 212, 0)
 
 
 //Weather
