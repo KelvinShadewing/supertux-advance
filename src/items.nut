@@ -227,7 +227,7 @@
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(game.health < game.maxHealth) {
-				game.health += 2
+				game.health += 4
 				for(local i = 0; i < 4; i++) {
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
@@ -292,7 +292,7 @@
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(game.health < game.maxHealth - 3) {
-				game.health += 8
+				game.health += 12
 				for(local i = 0; i < 4; i++) {
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}

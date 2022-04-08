@@ -281,10 +281,12 @@ const menuY = 40
 			if(getcon("left", "press") && getSoundVolume() > 0) {
 				config.soundVolume -= 4
 				setSoundVolume(config.soundVolume)
+				playSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getSoundVolume() < 128) {
 				config.soundVolume += 4
 				setSoundVolume(config.soundVolume)
+				playSound(sndMenuMove, 0)
 			}
 
 			local vol = "VOL: ["
@@ -303,10 +305,12 @@ const menuY = 40
 			if(getcon("left", "press") && getMusicVolume() > 0) {
 				config.musicVolume -= 4
 				setMusicVolume(config.musicVolume)
+				playSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getMusicVolume() < 128) {
 				config.musicVolume += 4
 				setMusicVolume(config.musicVolume)
+				playSound(sndMenuMove, 0)
 			}
 
 			local vol = "VOL: ["
