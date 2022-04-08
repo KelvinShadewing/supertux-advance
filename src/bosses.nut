@@ -107,7 +107,6 @@
 	healthDrawn = 0
 	healthActual = 0.0
 	doorID = 0
-	beaten = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -139,13 +138,15 @@
 			healthActual = 0
 			deleteActor(id)
 			if(mapActor.rawin(doorID)) if(actor[mapActor[doorID]].rawin("opening")) actor[mapActor[doorID]].opening = true
-			if(!beaten) {
-				beaten = true
-				fadeMusic(1)
-			}
 		}
 
-		if(getFrames() % 4 == 0) health += healthActual <=> health
+		if(getFrames() % 4 == 0) {
+			if(health < healthActual) {
+				stopSound(sndMenuMove)
+				playSound(sndMenuMove, 0)
+			}
+			health += healthActual <=> health
+		}
 		if(health > 0) if(!gvBoss) gvBoss = this
 
 		game.bossHealth = 40 / healthTotal * health
@@ -211,7 +212,11 @@
 			else hspeed = 1.0
 			setFPS(30)
 			eventTimer = 120
-			if(gvPlayer) gvPlayer.canMove = false
+			if(gvPlayer) {
+				gvPlayer.canMove = false
+				gvPlayer.invincible = 120
+			}
+			fadeMusic(0.25)
 		}
 
 		shape.setPos(x, y)
@@ -357,6 +362,7 @@
 			else {
 				eventTimer = 60
 				routine = ruIdle
+				playSound(sndCrush, 0)
 			}
 		}
 	}
@@ -473,6 +479,7 @@
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 8, 16, 0, 0, -16)
 		if(_arr != null) speed = _arr.tofloat()
+		playSound(sndCrush, 0)
 	}
 
 	function run() {

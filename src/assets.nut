@@ -63,7 +63,7 @@
 
 //GUI
 ::sprCursor <- newSprite("res/gfx/cursor.png", 10, 13, 0, 0, 0, 0)
-::sprHealth <- newSprite("res/gfx/health.png",16, 16, 0, 0, 0, 0)
+::sprHealth <- newSprite("res/gfx/heart.png",16, 16, 0, 0, 0, 0)
 ::defHealth <- sprHealth
 ::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)
 ::defEnergy <- sprEnergy
@@ -352,6 +352,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndMenuMove <- loadSound("res/snd/menu-move.ogg")
 ::sndMenuSelect <- loadSound("res/snd/menu-select.ogg")
 ::sndBossHit <- loadSound("res/snd/boss-hit.ogg")
+::sndCrush <- loadSound("res/snd/crush.ogg")
 
 
 //Music
@@ -376,7 +377,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musBossIntro <- "res/mus/boss-intro.ogg"
 
 //Saved separately so that it can be reused frequently
-::musInvincible <- loadMusic("res/snd/invincible.ogg")
+::musInvincible <- loadMusic("res/mus/invincible.ogg")
 
 ::songPlay <- function(song) {
 	gvMusicName = song

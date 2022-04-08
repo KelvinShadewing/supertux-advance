@@ -59,7 +59,11 @@ for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "
 //    MAIN    //
 ////////////////
 
-if(fileExists("config.json")) config = jsonRead(fileRead("config.json"))
+if(fileExists("config.json")) config = mergeTable(config, jsonRead(fileRead("config.json")))
+
+//Set volume
+setSoundVolume(config.soundVolume)
+setMusicVolume(config.musicVolume)
 
 //Detect resolution
 //Aspects may not perfectly match, so the closest one will be picked

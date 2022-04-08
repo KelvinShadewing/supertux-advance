@@ -31,7 +31,9 @@
 		"fullscreen" : "Toggle Fullscreen",
 		"autorun" : "Invert Run Button: ",
 		"stickspeed" : "Stick Controls Speed: ",
-		"usefilter" : "Use Graphics Filter: "
+		"usefilter" : "Use Graphics Filter: ",
+		"sound-volume" : "Sound Volume",
+		"music-volume" : "Music Volume"
 	},
 
 	"options-menu-desc": {

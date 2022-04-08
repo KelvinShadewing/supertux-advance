@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.0.18"
+::gvVersion <- "0.0.19"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -122,6 +122,8 @@
 	light = true
 	showcursor = true
 	usefilter = false
+	soundVolume = 128
+	musicVolume = 128
 }
 
 ::contribDidRun <- {}

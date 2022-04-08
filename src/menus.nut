@@ -8,9 +8,10 @@
 ::cursor <- 0
 ::cursorOffset <- 0
 ::cursorTimer <- 30
-const menuMax = 10 //Maximum number of slots that can be shown on screen
+const menuMax = 8 //Maximum number of slots that can be shown on screen
 const fontW = 8
 const fontH = 14
+const menuY = 40
 ::textMenu <- function(){
 	//If no menu is loaded
 	if(menu == []) return
@@ -30,17 +31,24 @@ const fontH = 14
 		if(menu[i].rawin("disabled")) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			if(menu[i].rawin("desc"))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			if(menu[i].rawin("desc")){
+				setDrawColor(0x00000080)
+				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
 				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+			}
 		}
 
 		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
-		local textY = screenH() - 24 - (menuMax * fontH) + ((i - cursorOffset) * fontH)
+		local textY = screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH)
 
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
+
+		//Draw scroll indicators
+		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 103, (screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
+		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 98, (screenW() / 2 - 24) + (i * 12), screenH() - menuY)
 	}
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
@@ -48,14 +56,17 @@ const fontH = 14
 		if(menu[i].rawin("disabled")) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - 24 - (menu.len() * fontH) + (i * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - 24 - (menu.len() * fontH) + (i * fontH))
-			if(menu[i].rawin("desc"))
+			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
+			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
+			if(menu[i].rawin("desc")) {
+				setDrawColor(0x00000080)
+				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
 				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+			}
 		}
 
 		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
-		local textY = screenH() - 24 - (menu.len() * fontH) + (i * fontH)
+		local textY = screenH() - menuY - (menu.len() * fontH) + (i * fontH)
 
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
@@ -131,7 +142,7 @@ const fontH = 14
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
 		func = function() { selectContrib(); }
-	}
+	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { menu = meOptions }
@@ -154,7 +165,11 @@ const fontH = 14
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
 		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file) }
-	}
+	},
+	{
+		name = function() { return gvLangObj["main-menu"]["options"] },
+		func = function() { menu = meOptions }
+	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
 		func = function() { startOverworld(game.world); cursor = 0 }
@@ -173,6 +188,10 @@ const fontH = 14
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
 		func = function() { pickChar() }
+	},
+	{
+		name = function() { return gvLangObj["main-menu"]["options"] },
+		func = function() { menu = meOptions }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-game"]},
@@ -257,9 +276,67 @@ const fontH = 14
 		func = function() { config.usefilter = !config.usefilter; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
+		name = function() { return gvLangObj["options-menu"]["sound-volume"] },
+		desc = function() {
+			if(getcon("left", "press") && getSoundVolume() > 0) {
+				config.soundVolume -= 4
+				setSoundVolume(config.soundVolume)
+			}
+			if(getcon("right", "press") && getSoundVolume() < 128) {
+				config.soundVolume += 4
+				setSoundVolume(config.soundVolume)
+			}
+
+			local vol = "VOL: ["
+			for(local i = 0; i < 16; i++) {
+				if(i < getSoundVolume() / 8) vol += chint(8)
+				else vol += chint(7)
+			}
+			vol += "] (<-/->)"
+			return vol
+		},
+		func = function() { }
+	},
+	{
+		name = function() { return gvLangObj["options-menu"]["music-volume"] },
+		desc = function() {
+			if(getcon("left", "press") && getMusicVolume() > 0) {
+				config.musicVolume -= 4
+				setMusicVolume(config.musicVolume)
+			}
+			if(getcon("right", "press") && getMusicVolume() < 128) {
+				config.musicVolume += 4
+				setMusicVolume(config.musicVolume)
+			}
+
+			local vol = "VOL: ["
+			for(local i = 0; i < 16; i++) {
+				if(i < getMusicVolume() / 8) vol += chint(8)
+				else vol += chint(7)
+			}
+			vol += "] (<-/->)"
+			return vol
+		},
+		func = function() { }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
-		func = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
-		back = function() { cursor = 3; menu = meMain; fileWrite("config.json", jsonWrite(config)) }
+		func = function() {
+			if(gvGameMode == gmPause) {
+				if(gvPauseMode) menu = mePauseOver
+				else menu = mePausePlay
+			}
+			else menu = meMain;
+			fileWrite("config.json", jsonWrite(config))
+		}
+		back = function() {
+			if(gvGameMode == gmPause) {
+				if(gvPauseMode) menu = mePauseOver
+				else menu = mePausePlay
+			}
+			else menu = meMain;
+			fileWrite("config.json", jsonWrite(config))
+		}
 	}
 
 ]
