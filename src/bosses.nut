@@ -396,6 +396,7 @@
 			routine = ruDizzy
 			eventTimer = 240
 			playSound(sndGrowl, 0)
+			blinking = 0.0
 		}
 	}
 
@@ -443,7 +444,7 @@
 	function hurtBlast() {
 		if(health <= 0) return
 		blinking = 12.0
-		health--
+		health -= 2
 		playSound(sndBossHit, 0)
 	}
 
@@ -461,8 +462,8 @@
 			if(flip == 0) hspeed = -1.0
 			else hspeed = 1.0
 		}
-		health -= 4
-		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 4
+		health -= 10
+		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 10
 		if(health > 0) playSound(sndBossHit, 0)
 		else playSound(sndDie, 0)
 	}

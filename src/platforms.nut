@@ -306,6 +306,7 @@
 	s = 0.0 //Speed
 	a = null //Angle
 	l = null //List
+	sa = 0.0 //Start angle
 
 	constructor(_x, _y, _arr = null) {
 		x = _x
@@ -314,6 +315,7 @@
 		r = _arr[0].tofloat()
 		c = _arr[1].tointeger()
 		s = _arr[2].tofloat()
+		sa = _arr[4].tofloat()
 
 		local newarr = []
 		a = []
@@ -325,6 +327,7 @@
 		else for(local i = 0; i < c; i++) {
 			l.push(newActor(getroottable()[_arr[3]], x, y, newarr))
 			a.push((360.0 / c) * i / 180.0 * pi)
+			a[i] += sa
 		}
 	}
 
