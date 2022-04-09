@@ -104,6 +104,8 @@ Lukas Nystrand - Chippdisko
 
 [migfus20](https://opengameart.org/users/migfus20) - Boss Theme
 
+[CleytonKauffman](https://soundcloud.com/cleytonkauffman) - Trailer Theme
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow, The Ocean Bridge, Arctic Wind, Gaurded steps, part of Branching path
@@ -124,7 +126,7 @@ Lukas Nystrand - Chippdisko
 
 [Martin P. Hellwig]() - GNU puns 4-7
 
-[Misc Tux racer devs](http://tuxracer.sourceforge.net/) - herring sounds, some assets used in Frostlands 
+[Misc Tux racer devs](http://tuxracer.sourceforge.net/) - herring sounds, some assets used in Frostlands
 
 [Busybody64](https://github.com/Busybody64) - Help with FAQ
 

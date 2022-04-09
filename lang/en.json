@@ -121,6 +121,7 @@
 	},
 
 	"pause-menu" : {
+		"pause" : "PAUSE",
 		"continue" : "Continue",
 		"character" : "Change Character",
 		"restart" : "Restart Level",

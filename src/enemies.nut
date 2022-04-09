@@ -1975,7 +1975,7 @@
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 3
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
 	}
 }
 
