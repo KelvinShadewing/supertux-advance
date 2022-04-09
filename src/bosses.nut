@@ -467,6 +467,10 @@
 		else playSound(sndDie, 0)
 	}
 
+	function hitPlayer() {
+		if(routine != ruDizzy) gvPlayer.hurt = 1
+	}
+
 	function _typeof() { return "Boss" }
 }
 
