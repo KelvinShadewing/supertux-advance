@@ -243,7 +243,7 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["options-menu"]["fullscreen"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullscreen"] },
-		func = function() { toggleFullscreen() }
+		func = function() { toggleFullscreen(); config.fullscreen = !config.fullscreen }
 	},
 	{
 		name = function() {
