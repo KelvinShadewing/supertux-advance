@@ -124,6 +124,7 @@
 	usefilter = false
 	soundVolume = 128
 	musicVolume = 128
+	fullscreen = false
 }
 
 ::contribDidRun <- {}
