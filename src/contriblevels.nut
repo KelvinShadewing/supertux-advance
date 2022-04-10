@@ -1,6 +1,7 @@
 ::meContribLevels <- [
 
 ]
+::lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null}
 
 ::selectContrib <- function(){
 	meContribLevels = []
@@ -16,6 +17,7 @@
 						contribWorldmap = data["worldmap"]
 						name = function() { return contribName }
 						func = function() {
+							lastLevelsCounted = {"contribFolder":null, "completed":null, "total":null}
 							game=clone(gameDefault)
 							game.completed.clear()
 							game.allCoins.clear()
@@ -43,6 +45,11 @@
 							else startOverworld("contrib/" + contribFolder + "/" + contribWorldmap)
 						}
 						desc = function() {
+							if(lastLevelsCounted["contribFolder"] == contribFolder) {
+								//Check if the same world as last frame is selected and if so, return saved data.
+								return "Progress: " + lastLevelsCounted["completed"] + "/" + lastLevelsCounted["total"]
+							}
+
 							local levels = []
 							local completedLevelsCount = 0
 
@@ -60,10 +67,11 @@
 							if(fileExists("save/" + contribFolder + ".json")) {
 								local contribWorldmapSaveData = jsonRead(fileRead("save/" + contribFolder + ".json"))
 								foreach(level, levelCompleted in contribWorldmapSaveData["completed"]) {
-									if(levelCompleted && levels.find(level)) completedLevelsCount++
+									if(levelCompleted && levels.find(level) != null) completedLevelsCount++
 								}
 							}
 
+							lastLevelsCounted = {"contribFolder":contribFolder, "completed":completedLevelsCount, "total":levels.len()}
 							return "Progress: " + completedLevelsCount + "/" + levels.len()
 						}
 					}
