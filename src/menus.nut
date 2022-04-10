@@ -172,7 +172,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
-		func = function() { startOverworld(game.world); cursor = 0 }
+		func = function() { startOverworld(game.world); }
 	}
 ]
 
@@ -195,7 +195,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-game"]},
-		func = function() { saveGame(); startMain(); cursor = 0 }
+		func = function() { saveGame(); startMain(); }
 	}
 ]
 
@@ -476,8 +476,8 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
-		func = function() { cursor = 3; menu = meOptions }
-		back = function() { cursor = 3; menu = meOptions }
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
 	}
 ]
 
@@ -516,7 +516,6 @@ const menuY = 40
 			game.file = 0
 			if(fileExists("save/0.json")) menu = meOverwrite
 			else newGame(0)
-			cursor = 0
 		}
 	},
 	{
@@ -529,7 +528,6 @@ const menuY = 40
 			game.file = 1
 			if(fileExists("save/1.json")) menu = meOverwrite
 			else newGame(1)
-			cursor = 0
 		}
 	},
 	{
@@ -542,7 +540,6 @@ const menuY = 40
 			game.file = 2
 			if(fileExists("save/2.json")) menu = meOverwrite
 			else newGame(2)
-			cursor = 0
 		}
 	},
 	{
@@ -555,7 +552,6 @@ const menuY = 40
 			game.file = 3
 			if(fileExists("save/3.json")) menu = meOverwrite
 			else newGame(3)
-			cursor = 0
 		}
 	},
 	{
@@ -568,8 +564,8 @@ const menuY = 40
 ::meOverwrite <- [
 	{
 		name = function() { drawText(font2, screenW() / 2 - (15 * 4), screenH() / 2, "Overwrite save?"); return gvLangObj["menu-commons"]["no"] }
-		func = function() { menu = meNewGame; cursor = 0 }
-		back = function() { menu = meNewGame; cursor = 0 }
+		func = function() { menu = meNewGame; }
+		back = function() { menu = meNewGame; }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["yes"] }
