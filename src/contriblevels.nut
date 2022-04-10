@@ -42,6 +42,30 @@
 							if(fileExists("save/" + contribFolder + ".json")) loadGame(contribFolder)
 							else startOverworld("contrib/" + contribFolder + "/" + contribWorldmap)
 						}
+						desc = function() {
+							local levels = []
+							local completedLevelsCount = 0
+
+							//Get all levels
+							local contribWorldmapData = jsonRead(fileRead("contrib/" + contribFolder + "/" + contribWorldmap))
+							foreach(layer in contribWorldmapData["layers"]) {
+								if(!layer.rawin("objects")) continue
+								foreach(obj in layer["objects"]) {
+									if(!obj.rawin("gid")) continue
+									if(obj["gid"] == 842 && obj["visible"]) levels.push(obj["name"])
+								}
+							}
+
+							//Get completed levels count
+							if(fileExists("save/" + contribFolder + ".json")) {
+								local contribWorldmapSaveData = jsonRead(fileRead("save/" + contribFolder + ".json"))
+								foreach(level, levelCompleted in contribWorldmapSaveData["completed"]) {
+									if(levelCompleted && levels.find(level)) completedLevelsCount++
+								}
+							}
+
+							return "Progress: " + completedLevelsCount + "/" + levels.len()
+						}
 					}
 				)
 			}
