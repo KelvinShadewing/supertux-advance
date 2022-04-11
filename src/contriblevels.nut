@@ -1,7 +1,7 @@
 ::meContribLevels <- [
 
 ]
-::lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null}
+::lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 
 ::selectContrib <- function(){
 	meContribLevels = []
@@ -17,7 +17,7 @@
 						contribWorldmap = data["worldmap"]
 						name = function() { return contribName }
 						func = function() {
-							lastLevelsCounted = {"contribFolder":null, "completed":null, "total":null}
+							lastLevelsCounted = {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 							game=clone(gameDefault)
 							game.completed.clear()
 							game.allCoins.clear()
@@ -47,7 +47,7 @@
 						desc = function() {
 							if(lastLevelsCounted["contribFolder"] == contribFolder) {
 								//Check if the same world as last frame is selected and if so, return saved data.
-								return "Progress: " + lastLevelsCounted["completed"] + "/" + lastLevelsCounted["total"]
+								return "Progress: " + lastLevelsCounted["completed"] + "/" + lastLevelsCounted["total"] + " (" + lastLevelsCounted["percentage"] + "%)"
 							}
 
 							local levels = []
@@ -71,8 +71,10 @@
 								}
 							}
 
-							lastLevelsCounted = {"contribFolder":contribFolder, "completed":completedLevelsCount, "total":levels.len()}
-							return "Progress: " + completedLevelsCount + "/" + levels.len()
+							local percentage = completedLevelsCount * 100 / levels.len()
+
+							lastLevelsCounted = {"contribFolder":contribFolder, "completed":completedLevelsCount, "total":levels.len(), "percentage":percentage}
+							return "Progress: " + completedLevelsCount + "/" + levels.len() + " (" + percentage + "%)"
 						}
 					}
 				)
