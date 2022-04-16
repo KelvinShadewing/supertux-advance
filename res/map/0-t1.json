@@ -135,7 +135,7 @@
                  "visible":true,
                  "width":16,
                  "x":224,
-                 "y":288
+                 "y":304
                 }, 
                 {
                  "gid":230,
@@ -160,6 +160,42 @@
                  "width":16,
                  "x":336,
                  "y":336
+                }, 
+                {
+                 "gid":221,
+                 "height":16,
+                 "id":7,
+                 "name":"T-reminder",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":240,
+                 "y":304
+                }, 
+                {
+                 "gid":214,
+                 "height":16,
+                 "id":8,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":208,
+                 "y":304
+                }, 
+                {
+                 "gid":214,
+                 "height":16,
+                 "id":9,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":256,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -168,7 +204,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":7,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "properties":[
         {

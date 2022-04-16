@@ -24,7 +24,7 @@ print("Loading Frostlands")
 ::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 18, 42, 0, 0, 8, 42)
 ::sprterryB <- newSprite("contrib/frostlands/gfx/NPC/terry-behind.png", 37, 51, 0, 0, 16, 51)
 ::sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 0, 0, 19, 18)
-::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 18, 16)
+::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 9, 16)
 
 //OG style
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
