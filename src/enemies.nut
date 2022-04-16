@@ -2487,7 +2487,7 @@
 
 	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprDeathcap
+		actor[c].sprite = sprWildcap
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
@@ -2503,7 +2503,7 @@
 		deleteActor(id)
 		playSound(sndFlame, 0)
 
-		if(randInt(50) == 0) {
+		if(randInt(40) == 0) {
 			local a = actor[newActor(MuffinRed, x, y)]
 			a.vspeed = -2
 		}
