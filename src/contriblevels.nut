@@ -55,11 +55,25 @@
 
 							//Get all levels
 							local contribWorldmapData = jsonRead(fileRead("contrib/" + contribFolder + "/" + contribWorldmap))
+
+							//Get tileset for actors
+							local acttiles = null
+							foreach(tile in contribWorldmapData["tilesets"]) {
+								if(tile["name"] == "actor") {
+									acttiles = tile["firstgid"]
+									break
+								}
+							}
+							if(acttiles == null) {
+								print("ERROR: Could not find actor tileset in worldmap!")
+								return "ERROR: Could not find actor tileset in worldmap!"
+							}
+
 							foreach(layer in contribWorldmapData["layers"]) {
 								if(!layer.rawin("objects")) continue
 								foreach(obj in layer["objects"]) {
 									if(!obj.rawin("gid")) continue
-									if(obj["gid"] == 842 && obj["visible"]) levels.push(obj["name"])
+									if(obj["gid"] == acttiles + 1 && obj["visible"]) levels.push(obj["name"])
 								}
 							}
 
