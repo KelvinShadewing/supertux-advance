@@ -142,9 +142,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1184,
-                 "x":3664,
-                 "y":400
+                 "width":1218.66666666667,
+                 "x":3645.33333333333,
+                 "y":401
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2021,7 +2021,7 @@
          "value":"drawBG = dbgAuroraF\nsongPlay(musIceland)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -2804,6 +2804,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":400
 }

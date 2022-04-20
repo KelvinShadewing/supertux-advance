@@ -45,7 +45,7 @@
 		"mark" :
 		"...",
 		"Frost" :
-		"Oh, hello Tux. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
+		"Oh, hello there. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
 		"mrq2" :
 		"...how on earth did they get on top of that building?!",
 		"mark2" :
@@ -61,6 +61,6 @@
 		"harold" :
 		"why hello fellow debug mode user!!",
 		"slm" :
-		"woof"
+		"meow"
 		}
 }

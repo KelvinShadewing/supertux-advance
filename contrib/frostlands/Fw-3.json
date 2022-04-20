@@ -2023,7 +2023,7 @@
          "value":"drawBG = dbgSnowPlainF\nsongPlay(musDisko)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -2133,18 +2133,18 @@
         {
          "columns":5,
          "firstgid":488,
-         "image":"..\/gfx\/solid.png",
-         "imageheight":160,
+         "image":"..\/..\/res\/gfx\/solid.png",
+         "imageheight":192,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":0,
+         "tilecount":60,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":400
 }
