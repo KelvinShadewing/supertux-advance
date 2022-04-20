@@ -1,6 +1,7 @@
 ::meContribLevels <- [
 
 ]
+::lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 
 ::selectContrib <- function(){
 	meContribLevels = []
@@ -16,6 +17,7 @@
 						contribWorldmap = data["worldmap"]
 						name = function() { return contribName }
 						func = function() {
+							lastLevelsCounted = {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 							game=clone(gameDefault)
 							game.completed.clear()
 							game.allCoins.clear()
@@ -41,6 +43,38 @@
 							}
 							if(fileExists("save/" + contribFolder + ".json")) loadGame(contribFolder)
 							else startOverworld("contrib/" + contribFolder + "/" + contribWorldmap)
+						}
+						desc = function() {
+							if(lastLevelsCounted["contribFolder"] == contribFolder) {
+								//Check if the same world as last frame is selected and if so, return saved data.
+								return "Progress: " + lastLevelsCounted["completed"] + "/" + lastLevelsCounted["total"] + " (" + lastLevelsCounted["percentage"] + "%)"
+							}
+
+							local levels = []
+							local completedLevelsCount = 0
+
+							//Get all levels
+							local contribWorldmapData = jsonRead(fileRead("contrib/" + contribFolder + "/" + contribWorldmap))
+							foreach(layer in contribWorldmapData["layers"]) {
+								if(!layer.rawin("objects")) continue
+								foreach(obj in layer["objects"]) {
+									if(!obj.rawin("gid")) continue
+									if(obj["gid"] == 842 && obj["visible"]) levels.push(obj["name"])
+								}
+							}
+
+							//Get completed levels count
+							if(fileExists("save/" + contribFolder + ".json")) {
+								local contribWorldmapSaveData = jsonRead(fileRead("save/" + contribFolder + ".json"))
+								foreach(level, levelCompleted in contribWorldmapSaveData["completed"]) {
+									if(levelCompleted && levels.find(level) != null) completedLevelsCount++
+								}
+							}
+
+							local percentage = completedLevelsCount * 100 / levels.len()
+
+							lastLevelsCounted = {"contribFolder":contribFolder, "completed":completedLevelsCount, "total":levels.len(), "percentage":percentage}
+							return "Progress: " + completedLevelsCount + "/" + levels.len() + " (" + percentage + "%)"
 						}
 					}
 				)
