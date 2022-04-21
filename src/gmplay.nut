@@ -3,6 +3,8 @@
 \*=========*/
 
 ::gvInfoBox <- ""
+::gvInfoLast <- ""
+::gvInfoStep <- 0
 ::gvLangObj <- ""
 
 ::mapActor <- {} //Stores references to all actors created by the map
@@ -610,6 +612,11 @@
 	setDrawTarget(gvScreen)
 	drawImage(gvPlayScreen, 0, 0)
 
+	if(gvInfoBox != gvInfoLast) {
+		gvInfoLast = gvInfoBox
+		gvInfoStep = 0
+	}
+
 	if(gvInfoBox == "") {
 		//Draw max energy
 		for(local i = 0; i < 4 - game.difficulty; i++) {
@@ -730,15 +737,17 @@
 		//Other items could be put in the row like this as well
 	}
 	else {
+		if(gvInfoStep < gvInfoBox.len()) gvInfoStep++
 		local ln = 3
 		for(local i = 0; i < gvInfoBox.len(); i++) {
 			if(chint(gvInfoBox[i])  == "\n") ln++
 		}
 		setDrawColor(0x000000d0)
-		drawRec(0, 0, screenW(), 8 * ln, true)
-		drawText(font, 8, 8, gvInfoBox)
+		drawRec(0, 0, screenW(), 8 * max(ln, 7), true)
+		drawText(font, 8, 8, gvInfoBox.slice(0, gvInfoStep))
 
 	}
+
 	drawDebug()
 
 	if(levelEndRunner == 0) gvIGT++
@@ -755,13 +764,12 @@
 	drawImage(gvScreen, 0, 0)
 
 	//Handle berries
-	if(game.berries > 0 && game.berries % 16 == 0 && game.health < game.maxHealth) {
-		game.health++
-		game.berries = 0
-	}
-	if(gvPlayer) if(game.berries == 64) {
-		game.berries = 0
-		newActor(Starnyan, gvPlayer.x, gvPlayer.y)
+	if(game.berries > 0 && game.berries % 16 == 0) {
+		if(game.health < game.maxHealth) {
+			game.health++
+			game.berries = 0
+		}
+		else game.berries--
 	}
 
 	if(game.health < 0) game.health = 0
