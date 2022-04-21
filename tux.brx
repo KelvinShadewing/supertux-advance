@@ -95,7 +95,7 @@ switch(reschoice) {
 
 //Uncomment this function if you want to play at actual GBA resolution
 //setResolution(240, 160)
-//Uncomment this function if you want to play at the old resolution
+//comment this function if you want to play at the old resolution
 setResolution(320, 240)
 
 gvTextW = floor(screenW() / 6) - 1
