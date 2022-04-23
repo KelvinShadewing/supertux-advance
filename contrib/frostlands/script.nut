@@ -69,7 +69,7 @@ print("Loading Frostlands")
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
 		sprCoin10 = sprCoinN10
-	} else sprCoin = sprCoinOG
+		} 
 }
 
 //background shiz
