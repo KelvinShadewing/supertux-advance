@@ -7,26 +7,23 @@
 		"poo" :
 		"This level sucks.",
 		"Ftwo" :
-		"are there blocks in the way? that means you didn't collect all fish. try again"
+		"Are there blocks in the way? That means you didn't collect all fish. Try again"
 	},
 	"level" : {
 		"fw-t0" : "Icey outpost",
 		"fw-t1" : "Chill docks",
 		"fw-t2" : "Doll shrine",
 		"fw-t3" : "Ice-burg",
-		"TSR" : "Coming soon...",
 		"Fw-1" : "Noted",
 		"Fw-2" : "Roots",
 		"Fw-3" : "Fire & Ice",
 		"Fw-3b" : "Blast off!",
 		"Fw-4" : "Supernovae",
-		"lost" : "Cycles (unused)",
 		"Fw-5" : "To the left!",
 		"Fw-6" : "NoFoe",
 		"Fw-7" : "Ocean cliffs",
 		"Fw-8" : "Switch it up!",
 		"Fw-9" : "Short fuse",
-		"GT" : "The goldtown",
 		"B-1" : "NeverCity",
 		"B-2" : "freezing point"
 	},
@@ -47,7 +44,7 @@
 		"Frost" :
 		"Oh, hello there. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
 		"mrq2" :
-		"...how on earth did they get on top of that building?!",
+		"...How on earth did they get on top of that building?!",
 		"mark2" :
 		"The earthshell isn't in any of the previous levels so.. here you go. ",
 		"brg-flame" :
@@ -59,8 +56,8 @@
 		"nin" :
 		"Hey! what are you doing up here??",
 		"harold" :
-		"why hello fellow debug mode user!!",
+		"Why hello fellow debug mode user!!",
 		"slm" :
-		"meow"
+		"Meow"
 		}
 }
