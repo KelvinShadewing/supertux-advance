@@ -1025,7 +1025,7 @@
 				newActor(FlowerFire, x + hspeed, y + vspeed)
 				break
 			case 2:
-				newActor(FlowerIce, x + hspeed y + vspeed)
+				newActor(FlowerIce, x + hspeed, y + vspeed)
 				break
 			case 3:
 				newActor(AirFeather, x + hspeed, y + vspeed)

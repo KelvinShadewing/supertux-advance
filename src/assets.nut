@@ -65,7 +65,7 @@
 ::sprCursor <- newSprite("res/gfx/cursor.png", 10, 13, 0, 0, 0, 0)
 ::sprHealth <- newSprite("res/gfx/health.png",16, 16, 0, 0, 0, 0)
 ::defHealth <- sprHealth
-::sprEnergy <- newSprite("res/gfx/energy.png" 16, 16, 0, 0, 0, 0)
+::sprEnergy <- newSprite("res/gfx/energy.png", 16, 16, 0, 0, 0, 0)
 ::defEnergy <- sprEnergy
 ::sprLevels <- newSprite("res/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
 ::defLevels <- sprLevels
@@ -275,7 +275,7 @@
 ::defExplodeN <- sprExplodeN
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::defExplodeT <- sprExplodeT
-::sprWaterSurface <- newSprite("res/gfx/watersurface.png" 16, 4, 0, 0, 0, 0)
+::sprWaterSurface <- newSprite("res/gfx/watersurface.png", 16, 4, 0, 0, 0, 0)
 ::defWaterSurface <- sprWaterSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 ::defHeal <- sprHeal
