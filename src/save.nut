@@ -1,11 +1,6 @@
 ::newGame <- function(f) {
 	local newdif = game.difficulty
-	game = clone(gameDefault)
-	game.completed.clear()
-	game.allCoins.clear()
-	game.allEnemies.clear()
-	game.allSecrets.clear()
-	game.bestTime.clear()
+	game = createNewGameObject()
 	game.file = f
 	gvDoIGT = false
 	game.difficulty = newdif
@@ -19,7 +14,7 @@
 
 ::loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
-		game = mergeTable(gameDefault, jsonRead(fileRead("save/" + f.tostring() + ".json")))
+		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
 		startOverworld(game.world)
 	}
 }
