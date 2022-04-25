@@ -99,7 +99,7 @@
 	},
 
 	"credits" : {
-		"staring" : "Staring...",
+		"staring" : "Starring...",
 		"heroes" : "Our Heroes",
 		"tux" : "Tux the Penguin",
 		"konqi" : "Konqi the Dragon",
@@ -215,13 +215,13 @@
 		"speedrunex":
 		"FROSTC: I had designed this level with the intention of people speedrunning it, so see how fast you can beat it! ",
 		"secretredex":
-		"FROSTC: The current version of this secret is very diffrent compared to how it used to be. One diffrence is that it used to have a bend in it. however I couldn't get that to work properly, that being the reason I scrapped it.",
+		"FROSTC: The current version of this secret is very different compared to how it used to be. One difference is that it used to have a bend in it. However I couldn't get that to work properly, that being the reason I scrapped it.",
 		"fishex":
 		"FROSTC: Just like Tux 'N' Trouble, this level was made before some of the earlier levels were added.",
 		"mezex":
 		"FROSTC: I had to make a few custom tiles to make this maze look good. It was worth it, I think! It's for sure the best part of this level.",
 		"outage":
-		"FROSTC: this level was completly diffrent in earlier versions. you can find the old version in the extras world",
+		"FROSTC: this level was completely different in earlier versions. you can find the old version in the extras world",
 		"speedComp":
 		"FROSTC: Congrats to Pomelux for being the winner of the speedrun competition, with a time of 49:98. Just barely a sub 50. (keep in mind competitions with rewards like this won't be held again)",
 		"oldxtreme":
@@ -444,7 +444,7 @@
 		"0-6a" : "Frozen Paradise",
 		"0-6b" : "Branching Path",
 		"0-7" : "The Ocean Bridge",
-		"0-8" : "Artic Wind",
+		"0-8" : "Arctic Wind",
 		"0-9" : "Guarded Steps",
 		"0-x" : "Xtreme Hills",
 		"0-c" : "Fort Borealis",
