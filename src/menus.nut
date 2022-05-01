@@ -187,7 +187,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
-		func = function() { pickChar() }
+		func = function() { pickCharInitialize(); gvGameMode = pickChar }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
