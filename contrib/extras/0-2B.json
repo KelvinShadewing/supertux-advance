@@ -66,7 +66,29 @@
          "draworder":"topdown",
          "id":20,
          "name":"secret",
-         "objects":[],
+         "objects":[
+                {
+                 "height":160,
+                 "id":687,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":224,
+                 "x":1472,
+                 "y":96
+                }, 
+                {
+                 "height":240,
+                 "id":688,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":336,
+                 "x":2528,
+                 "y":288
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1918,7 +1940,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":687,
+ "nextobjectid":689,
  "orientation":"orthogonal",
  "properties":[
         {
