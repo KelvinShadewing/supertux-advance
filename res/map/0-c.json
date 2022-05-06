@@ -947,7 +947,7 @@
                 {
                  "height":0,
                  "id":81,
-                 "name":"PathCarrier,4,FireChain,5,0,40",
+                 "name":"PathCarrier,3,FireChain,5,0,40",
                  "polygon":[
                         {
                          "x":0,
@@ -975,7 +975,7 @@
                 {
                  "height":0,
                  "id":86,
-                 "name":"PathCarrier,4,FireChain,5,0,40",
+                 "name":"PathCarrier,3,FireChain,5,0,40",
                  "polygon":[
                         {
                          "x":0,
@@ -3518,7 +3518,7 @@
                  "visible":true,
                  "width":16,
                  "x":2112,
-                 "y":2016
+                 "y":2032
                 }, 
                 {
                  "gid":52,
