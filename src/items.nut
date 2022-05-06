@@ -510,7 +510,7 @@
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer) if(inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16)) if(gvPlayer.rawin("energy") && game.weapon == 3) gvPlayer.energy = 4
+		if(gvPlayer) if(inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16)) if(gvPlayer.rawin("energy") && game.weapon == 3) gvPlayer.energy = 8
 
 		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy - 8, 0, 2, 1, 1, 0.25)
 		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy + 8, 0, 0, 1, 1, 0.25)

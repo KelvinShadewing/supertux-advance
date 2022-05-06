@@ -40,6 +40,11 @@
 			gvKeyMythril = true
 		}
 	}
+		if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
+		if(keyPress(k_e)) {
+		endGoal()	
+		}
+	}
 
 	//Teleport
 	if(gvPlayer && mouseDown(0)) {
