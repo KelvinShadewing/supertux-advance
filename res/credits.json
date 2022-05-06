@@ -3,7 +3,7 @@
 		{"type":"header","text":"SuperTux Advance"},
 
 		{"type":"spacing","height":2},
-		{"type":"normal","trText":"staring"},
+		{"type":"normal","trText":"starring"},
 
 		{"type":"spacing","height":2},
 		{"type":"header","trText":"heroes"},
