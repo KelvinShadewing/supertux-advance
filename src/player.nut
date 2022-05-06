@@ -43,13 +43,29 @@
 	accel = 0.2
 	friction = 0.1
 
+	hurt = 0 //How much damage has been taken
+	hurtType = "normal"
+	damageMult = null
+	blinking = 0 //Number of iframes remaining
+
 	//Misc
 	held = null
-
 	routine = null
 
 	constructor(x, y, _arr = null) {
 		base.constructor(x, y, _arr)
+		damageMult = {
+			normal = 1.0
+			fire = 1.0
+			ice = 1.0
+			earth = 1.0
+			air = 1.0
+			toxic = 1.0
+			shock = 1.0
+			water = 1.0
+			light = 1.0
+			dark = 1.0
+		}
 	}
 
 	function run() {
@@ -61,5 +77,14 @@
 		//Animation
 
 		//Physics
+	}
+
+	function checkHurt() {
+		if(!blinking) {
+			if(hurt) {
+
+			}
+		}
+		else blinking--
 	}
 }

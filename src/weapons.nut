@@ -312,3 +312,20 @@
 
 	function _typeof() { return "Iceball" }
 }
+
+/////////////////
+// NEW WEAPONS //
+/////////////////
+
+//All weapons will use the same return type
+//Different weapons will have different stats for enemies to react to
+
+::Weapon <- class extends PhysAct {
+	power = 1
+	element = 0
+	piercing = 0
+	owner = 0
+	alignment = 0 //0 is neutral, 1 is player, 2 is enemy
+
+	function _typeof() { return "PlayerWep" }
+}

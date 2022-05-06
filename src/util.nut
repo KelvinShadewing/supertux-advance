@@ -9,6 +9,8 @@
 	if(typeof a == null && typeof b == null) return null
 	if(typeof a == null) return b
 	if(typeof b == null) return a
+	if(a == null) return b
+	if(b == null) return a
 
 	//Create new table
 	local nt = clone(a)
@@ -61,10 +63,6 @@
 	return dostr("return " + str)
 }
 
-::minNum <- function(a, b) {
-	return (a * (a < b)) + (b * (b <= a))
-}
+::minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
 
-::maxNum <- function(a, b) {
-	return (a * (a > b)) + (b * (b >= a))
-}
+::maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }

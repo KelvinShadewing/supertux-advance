@@ -193,7 +193,7 @@
 		"loops" :
 		"KELVIN: Sorry, did you expect this loop to work? Ha! I'm nowhere near good enough to program that... yet.",
 		"contrib" :
-		"FROSTC: hello! this is the first dev commentary not written by kelvin.",
+		"FROSTC: Hello! This is the first dev commentary not written by Kelvin.",
 		"walldev" :
 		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it",
 		"tnt" :
@@ -201,7 +201,7 @@
 		"trans" :
 		"FROSTC: It took me a good while to get the background transition to work, as this was for the most part the first time I used triggers.",
 		"lifenote" :
-		"FROSTC: For those who played the older versions, I hope you like the all new, much harder 1-up position! Hahahahahaha!!",
+		"FROSTC: For those who played the older versions, I hope you like the all new, much harder red muffin position! Hahahahahaha!!",
 		"signnote" :
 		"FROSTC: If you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. Maybe a good speedrunning strat??",
 		"sense":
@@ -233,7 +233,7 @@
 		"fort-2":
 		"KELVIN: I knew some players would come here with the earth shell, which makes the challenge for the gold key much harder, if not impossible. I added a room with a fire flower to make swimming easier without depowering the player. Placing it behind a silver lock, the same lock leading to the next challenge, means they'll have a chance to reach it when they need it.",
 		"fort-3":
-		"KELVIN: I really wanted a section where players would get chased by something indestructible. Messing around with fire chains, I found I could put four in one place to make them look like a wheel. Attaching them to my new path carriers makes them able to roll around just above the player's top speed makes this scene tense but manageable.",
+		"KELVIN: I really wanted a section where players would get chased by something indestructible. Messing around with fire chains, I found I could put four in one place to make them look like a wheel, later reducing it as a performance precaution. Attaching them to my new path carriers makes them able to roll around just above the player's top speed makes this scene tense but manageable.",
 		"fort-4":
 		"KELVIN: I plan to revisit underwater sections in the future with spike mazes like this, but after using a giant fire chain in a secret treasure room, I thought it was too good not to use in one of the key challenges.",
 		"fort-5":
@@ -241,15 +241,15 @@
 		"fort-6":
 		"KELVIN: Checkpoints used to be just that, checkpoints. They didn't do anything but save your progress in a level. But with a level like this being so long, and health drops being a rare thing given that the game had been designed with short levels in mind up until now, I needed to give players a way to heal after long stretches. Since checkpoints are already a welcome sight to players, I decided to make them even more welcoming.",
 		"fort-7":
-		"KELVIN: This is it, the first boss of the game. Up until now, it's all been single-hit enemies and stage hazards. He hasn't been implemented yet, but I can't wait to see what I come up with for him.",
+		"KELVIN: This is it, the first boss of the game. Up until now, it's all been single-hit enemies and stage hazards. I had originally intended this guy to be a wake-up call boss, but on top of the existing challenge, I made his defense way too high, so fights took a long time. After being reminded that this is more Mario/Sonic like and less Megaman/Metroid like, and that the boss needs to fit that formula, I reduced his health.",
 		"fort-8":
-		"KELVIN: OK, I'll admit, I was just going crazy with this. I wanted to see if multiple ring carriers could be nested, and then I stuck the result onto a path carrier. The result is a storm of coins! One layer of slime later, and here we are. Have fun!",
+		"KELVIN: I used to have something crazy in this room when messing with ring carrier objects (the things that can make arrays of coins and enemies travel in circles), and was testing to see if ring carriers could hold other ring carriers. It worked, and nesting it a few times gave me a massive storm of coins. I might bring it back in a future level. We'll see.",
 		"sunken":
-		"FROSTC: My original idea for this level was to have a gimmick where there's patches of deep snow that tux can talk or maybe even through. sorta like the powered snow from... the game minetest is based off of? Can I say that name here?..",
+		"FROSTC: My original idea for this level was to have a gimmick where there's patches of deep snow that tux can walk or maybe even slide through, like the powered snow from Minecraft.",
 		"continue":
-		"FROSTC: This was where kelvins part ends, and where mine starts. do keep in mind I also touched up some part of kelvin's section. (you can find the old version in the extras world) ",
+		"FROSTC: This was where Kelvin's part ends, and where mine starts. Do keep in mind I also touched up some part of Kelvin's section. You can find the old version in the extras world.",
 		"secret-sunk":
-		"FROSTC: If I were you, I would keep an eye out for little dent in the land like this. they often lead to secrets."
+		"FROSTC: If I were you, I would keep an eye out for little dents in the land like this; they often lead to secrets."
 	},
 
 	"npc" : {

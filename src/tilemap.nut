@@ -159,42 +159,7 @@
 
 			//print("Added " + spriteName(tileset[i]) + ".\n")
 
-			for(local i = 0; i < data.layers.len(); i++) {
-			if(data.layers[i].type == "objectgroup") {
-				local lana = data.layers[i].name //Layer name
-				for(local j = 0; j < data.layers[i].objects.len(); j++) {
-					local obj = data.layers[i].objects[j]
-					switch(lana) {
-						case "trigger":
-							local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-							actor[c].code = obj.name
-							actor[c].w = obj.width / 2
-							actor[c].h = obj.height / 2
-							break
-						case "water":
-							local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
-							actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
-							break
-						case "vmp":
-							local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
-							c.w = (obj.width / 2)
-							c.r = obj.height - 16
-							c.init = 1
-							if(obj.name == "up") {
-								c.mode = 2
-								c.y = c.ystart + c.r
-							}
-							break
-						case "secret":
-							local c = actor[newActor(SecretWall, obj.x, obj.y, obj.name)]
-							c.dw = obj.width / 16
-							c.dh = obj.height / 16
-							break
-						}
-					}
-				}
-			}
+			
 
 
 			shape = (Rec(0, 0, 8, 8, 0))

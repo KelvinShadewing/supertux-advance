@@ -138,7 +138,7 @@
 
 				case anWalk:
 					frame += abs(rspeed) / 8
-					if(abs(rspeed) <= 0.1 || abs(hspeed) <= 0.1) anim = anStand
+					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = anStand
 					if(abs(rspeed) > 2.4) anim = anRun
 
 					if(placeFree(x, y + 2)) {
@@ -231,7 +231,7 @@
 					frame += 0.25
 
 					if(floor(frame) > anim[1]) {
-						if(abs(hspeed) < 0.5 && game.weapon != 4) anim = anCrawl
+						if(fabs(hspeed) < 0.5 && game.weapon != 4) anim = anCrawl
 						else anim = anSlide
 						shape = shapeSlide
 					}
@@ -242,9 +242,9 @@
 					else slideframe += abs(hspeed / 24.0)
 					frame = slideframe
 
-					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - abs(hspeed)) == 0 || abs(hspeed) > 8) {
-						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / abs(hspeed))), y + 10)
-						if(game.weapon == 2) newActor(Glimmer, x - (12 * (hspeed / abs(hspeed))), y + 10)
+					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - fabs(hspeed)) == 0 || fabs(hspeed) > 8) {
+						if(game.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / fabs(hspeed))), y + 10)
+						if(game.weapon == 2) newActor(Glimmer, x - (12 * (hspeed / fabs(hspeed))), y + 10)
 					}
 					break
 
@@ -263,7 +263,7 @@
 
 				case anSwimUF:
 				case anSwimU:
-					if(abs(hspeed) > 1.5) anim = anSlide
+					if(fabs(hspeed) > 1.5) anim = anSlide
 					else anim = anJumpU
 					frame = anim[0]
 					vspeed -= 1
@@ -281,15 +281,15 @@
 
 			//Sliding acceleration
 			if(anim == anDive || anim == anSlide || onIce()) {
-				if(!placeFree(x, y + 4) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && game.weapon == 2))) {
+				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == anSlide) vspeed -= 0.25
 				}
-				else if(!placeFree(x, y + 8) && (abs(hspeed) < 8 || (abs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
+				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold") && !autocon.down || abs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (abs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) if(anim == anSlide || anim == anCrawl) {
+				if(((!getcon("down", "hold") && !autocon.down || fabs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (fabs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) if(anim == anSlide || anim == anCrawl) {
 					if(getcon("down", "hold") || autocon.down|| !placeFree(x, y - 8) || autocon.down) anim = anCrawl
 					else anim = anWalk
 				}
@@ -544,7 +544,7 @@
 				if(hspeed < 0 && !getcon("left", "hold")) hspeed += friction / 3.0
 			}
 
-			if(abs(hspeed) < friction) hspeed = 0.0
+			if(fabs(hspeed) < friction) hspeed = 0.0
 			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (game.weapon != 3 || getcon("down", "hold")) && !nowInWater)) && antigrav <= 0) vspeed += gravity
 			else if(antigrav > 0) antigrav--
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Tux bumped his head
@@ -698,12 +698,12 @@
 
 			//Swich swim directions
 			if(anim != anHurt) {
-				if(abs(hspeed) < 0.3 && abs(vspeed) < 0.2) anim = anFall //To be replaced with regular swim sprites later
-				if(abs(hspeed) > 0.3) anim = anSwimF
+				if(fabs(hspeed) < 0.3 && fabs(vspeed) < 0.2) anim = anFall //To be replaced with regular swim sprites later
+				if(fabs(hspeed) > 0.3) anim = anSwimF
 				if(vspeed > 0.2) anim = anSwimD
 				if(vspeed < -0.2) anim = anSwimU
-				if(abs(hspeed) > 0.3 && vspeed > 0.2) anim = anSwimDF
-				if(abs(hspeed) > 0.3 && vspeed < -0.2) anim = anSwimUF
+				if(fabs(hspeed) > 0.3 && vspeed > 0.2) anim = anSwimDF
+				if(fabs(hspeed) > 0.3 && vspeed < -0.2) anim = anSwimUF
 			}
 
 			//Movement
@@ -725,10 +725,10 @@
 			//Friction
 			if(hspeed > 0) hspeed -= friction / 2
 			if(hspeed < 0) hspeed += friction / 2
-			if(abs(hspeed) < friction / 2) hspeed = 0.0
+			if(fabs(hspeed) < friction / 2) hspeed = 0.0
 			if(vspeed > 0) vspeed -= friction / 2
 			if(vspeed < 0) vspeed += friction / 2
-			if(abs(vspeed) < friction / 2) vspeed = 0.0
+			if(fabs(vspeed) < friction / 2) vspeed = 0.0
 			if(vspeed > 4) vspeed -= 0.2
 
 			//Change facing
@@ -818,8 +818,8 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2
-			if(abs(vspeed) < 0.01) vspeed = 0
-			//if(abs(vspeed) > 1) vspeed -= vspeed / abs(vspeed)
+			if(fabs(vspeed) < 0.01) vspeed = 0
+			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
@@ -845,8 +845,8 @@
 				}
 
 				//If no step was taken, slow down
-				if(didstep == false && abs(hspeed) >= 1) hspeed -= (hspeed / abs(hspeed))
-				else if(didstep == false && abs(hspeed) < 1) hspeed = 0
+				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
+				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
 

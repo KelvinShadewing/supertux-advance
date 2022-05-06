@@ -253,7 +253,7 @@
 			if(gvPlayer.anim == gvPlayer.anSlide) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprDeathcap
-				actor[c].vspeed = -abs(gvPlayer.hspeed)
+				actor[c].vspeed = -fabs(gvPlayer.hspeed)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
@@ -635,7 +635,7 @@
 					y -= 1.0
 				}
 				if(!placeFree(x, y + 1)) hspeed *= 0.9
-				if(abs(hspeed) < 0.1) hspeed = 0.0
+				if(fabs(hspeed) < 0.1) hspeed = 0.0
 
 				//Explode
 				if(squishTime >= 150) {
@@ -778,8 +778,8 @@
 			}
 
 			if(!placeFree(x, y + 1)) vspeed = -3.0
-			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -abs(hspeed)
-			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = abs(hspeed)
+			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -fabs(hspeed)
+			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = fabs(hspeed)
 			vspeed += 0.1
 
 			if(hspeed > 0) flip = 0
@@ -823,8 +823,8 @@
 			}
 		}
 
-		if(x < 0) hspeed = abs(hspeed)
-		if(x > gvMap.w) hspeed = -abs(hspeed)
+		if(x < 0) hspeed = fabs(hspeed)
+		if(x > gvMap.w) hspeed = -fabs(hspeed)
 	}
 
 	function gethurt() {
@@ -1098,7 +1098,7 @@
 				timer = 240
 				vspeed = -0.5 + randFloat(1)
 				if(hspeed == 0) hspeed = 1
-				else hspeed *= 1 / abs(hspeed)
+				else hspeed *= 1 / fabs(hspeed)
 			}
 			if(!inWater(x, y)) vspeed += 0.1
 			vspeed *= 0.99
@@ -1393,7 +1393,7 @@
 				timer = 120
 				if(vspeed > -0.5 && inWater(x, y)) vspeed = -0.5
 				if(hspeed == 0) hspeed = 1
-				else hspeed *= 1 / abs(hspeed)
+				else hspeed *= 1 / fabs(hspeed)
 				canjump = true
 			}
 			if(!inWater(x, y)) vspeed += 0.1
@@ -1770,7 +1770,7 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
 
-				if(chasing) mspeed = abs(hspeed)
+				if(chasing) mspeed = fabs(hspeed)
 				else mspeed = 0.75
 
 				if(chasing) squishTime++

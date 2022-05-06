@@ -192,7 +192,7 @@
 	function animics() {
 		//Movement
 		if(placeFree(x + hspeed, y) || phasing) x += hspeed
-		else for(local i = 0; i < abs(hspeed * 1.5); i++) {
+		else for(local i = 0; i < fabs(hspeed * 1.5); i++) {
 			if(placeFree(x + hspeed, y - i)) {
 				x += hspeed
 				y =- i
