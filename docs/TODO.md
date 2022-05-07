@@ -38,7 +38,7 @@
 
 ## Bosses
 
-[ ] Nolok
+[x] Nolok
 [ ] Yeti
 [ ] Orca
 
@@ -66,7 +66,7 @@
 
 [x] Powerup leveling
 [x] Sub items
-[ ] General store
+[x] General store
 [x] Fix the infamous slope glitch
 [x] add glow to Blazeborn
 [ ] World travel

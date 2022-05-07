@@ -76,7 +76,7 @@ Lines are all arguments following talk mode. There can be any number depending o
 
 ## Other Notes
 
-The player gains an extra life for finding at least 50 coins in a level. Try to have at least this much so they always have an opportunity. Extra lives can also be found in item boxes. To avoid easy farming, it's best to have them after the first checkpoint.
+Tux dolls are items that revive you once you die, without having to go back to a checkpoint. 
 
 You can have multiple checkpoints in a level. Use this to your advantage if you want to create levels with multiple paths. Remember that everything resets when the player dies, so, for instance, enemies that are necessary to progress, like hopping on them to cross a gap, will respawn upon a new life. Be sure not to put enemies too close to a checkpoint.
 
