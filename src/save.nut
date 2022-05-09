@@ -5,7 +5,7 @@
 	gvDoIGT = false
 	game.difficulty = newdif
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
-	startPlay("res/map/0-t0.json")
+	startPlay("res/map/aurora-pennyton.json")
 }
 
 ::saveGame <- function() {
