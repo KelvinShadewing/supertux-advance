@@ -88,7 +88,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":176,
+                 "x":208,
                  "y":112
                 }, 
                 {
@@ -112,7 +112,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":144,
+                 "x":176,
                  "y":112
                 }, 
                 {
@@ -172,7 +172,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":112,
+                 "x":144,
                  "y":112
                 }, 
                 {
@@ -198,6 +198,18 @@
                  "width":16,
                  "x":208,
                  "y":64
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":49,
+                 "name":"aurora-crystalB",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -228,13 +240,13 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":49,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)\nif(game.maxHealth < 12) game.maxHealth = 12\nfreeKonqi()"
+         "value":"songPlay(musOverworld)\nif(game.maxHealth < 12) game.maxHealth = 12\nfreeKonqi()\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
