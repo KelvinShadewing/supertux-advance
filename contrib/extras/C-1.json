@@ -131,8 +131,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1882,
-                 "y":205.333333333333
+                 "x":1872,
+                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1181,7 +1181,7 @@
          "value":"drawBG = dbgSnowNight\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"1.8.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -1316,6 +1316,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":332
 }
