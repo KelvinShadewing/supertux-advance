@@ -4251,6 +4251,30 @@
                  "width":16,
                  "x":1072,
                  "y":832
+                }, 
+                {
+                 "gid":24,
+                 "height":16,
+                 "id":654,
+                 "name":"fort-7",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1984,
+                 "y":224
+                }, 
+                {
+                 "gid":24,
+                 "height":16,
+                 "id":655,
+                 "name":"fort-8",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":896,
+                 "y":1424
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4259,7 +4283,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":654,
+ "nextobjectid":656,
  "orientation":"orthogonal",
  "properties":[
         {
