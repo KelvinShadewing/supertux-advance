@@ -210,6 +210,18 @@
                  "width":16,
                  "x":112,
                  "y":112
+                }, 
+                {
+                 "gid":842,
+                 "height":16,
+                 "id":50,
+                 "name":"aurora-windB",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":240,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -240,7 +252,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":50,
+ "nextobjectid":51,
  "orientation":"orthogonal",
  "properties":[
         {
