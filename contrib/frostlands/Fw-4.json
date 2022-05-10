@@ -2080,10 +2080,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowNight\nsongPlay(musRace)\ngfxOverrideFL()"
+         "value":"drawBG = dbgNightalt\nsongPlay(musRace)\ngfxOverrideFL()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.0",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -2205,6 +2205,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":600
 }
