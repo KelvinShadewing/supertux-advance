@@ -388,6 +388,24 @@
 		}
 	}
 
+	for(local i = 0; i < gvMap.data.layers.len(); i++) {
+		if(gvMap.data.layers[i].type == "objectgroup") {
+			local lana = gvMap.data.layers[i].name //Layer name
+			for(local j = 0; j < gvMap.data.layers[i].objects.len(); j++) {
+				local obj = gvMap.data.layers[i].objects[j]
+				switch(lana) {
+					case "trigger":
+						local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
+						actor[c].code = obj.name
+						actor[c].w = obj.width / 2
+						actor[c].h = obj.height / 2
+						break
+				}
+			}
+		}
+	}
+
 	gvGameMode = gmOverworld
 
 	if(gvPlayer) {

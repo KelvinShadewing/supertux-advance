@@ -21,7 +21,16 @@
 	function run() {
 		xprev = x
 		yprev = y
+		physics()
+		animation()
+		routine()
 	}
+
+	function physics() {}
+
+	function animation() {}
+
+	function routine() {}
 
 	function placeFree(_x, _y) {
 		//Save current location and move
@@ -464,7 +473,7 @@
 		return false
 	}
 
-	function onIce(_x = -1, _y = -1) {
+	function onIce(_x = 0, _y = 1) {
 		//Save current location and move
 		local ns
 		if(typeof shape == "Rec") ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
