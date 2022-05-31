@@ -11,6 +11,11 @@
 	xprev = 0.0
 	yprev = 0.0
 	shape = 0
+	anim = null
+	frame = 0.0
+	sprite = 0
+	z = 0
+	phantom = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -26,11 +31,59 @@
 		routine()
 	}
 
-	function physics() {}
+	function physics() {
+		shape.setPos(x, y)
+		xprev = x
+		yprev = y
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else {
+			vspeed /= 2
+			if(fabs(vspeed) < 0.01) vspeed = 0
+			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			if(placeFree(x, y + vspeed)) y += vspeed
+		}
+
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
+				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
+					y += 1
+				}
+				x += hspeed
+			} else {
+				local didstep = false
+				for(local i = 1; i <= 8; i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - i)) {
+						x += hspeed
+						y -= i
+						if(i > 2) {
+							if(hspeed > 0) hspeed -= 0.2
+							if(hspeed < 0) hspeed += 0.2
+						}
+						didstep = true
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
+				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
+			}
+		}
+	}
+
+	function setAnim(_anim) {
+		anim = _anim
+		frame = 0.0
+	}
 
 	function animation() {}
 
 	function routine() {}
+
+	function draw() {
+		drawSpriteExZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
 
 	function placeFree(_x, _y) {
 		//Save current location and move
@@ -310,7 +363,7 @@
 		return true
 	}
 
-	function inWater(_x, _y) {
+	function inWater(_x = 0, _y = 0) {
 		local ns
 		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
 		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)

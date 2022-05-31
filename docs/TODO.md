@@ -74,3 +74,8 @@
 [x] Jump buffering
 [ ] Boiling Water
 [ ] Mod Tracking (for requirement checks)
+[ ] Bonus coins for Xtreme levels
+
+## Bugs to fix
+
+* Bombs lose solidity if frozen, then ground-pounded, then frozen again

@@ -13,6 +13,7 @@
 	frame = 0.0
 	shapeStand = null
 	shapeCrouch = null
+	shapeSwim = null
 
 	//Animation states defined in child classes
 	anStand = null
@@ -42,6 +43,7 @@
 	runSpeed = 3.0
 	accel = 0.2
 	friction = 0.1
+	swimming = false
 
 	hurt = 0 //How much damage has been taken
 	hurtType = "normal"
@@ -49,8 +51,8 @@
 	blinking = 0 //Number of iframes remaining
 
 	//Misc
-	held = null
-	routine = null
+	heldby = 0
+	holding = 0
 
 	constructor(x, y, _arr = null) {
 		base.constructor(x, y, _arr)
@@ -66,17 +68,10 @@
 			light = 1.0
 			dark = 1.0
 		}
+		if(!gvPlayer) gvPlayer = this
 	}
 
 	function run() {
-		animics()
-		if(routine != null) routine()
-	}
-
-	function animics() {
-		//Animation
-
-		//Physics
 	}
 
 	function checkHurt() {
