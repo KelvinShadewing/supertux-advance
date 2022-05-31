@@ -15,10 +15,16 @@
 			return
 		}
 
-		if(sequence.rawin(step)) sequence[step](this)
+		if(sequence.rawin(step.tostring())) sequence[step.tostring()](this)
 		step++
 	}
+
+	function _typeof() { return "Timeline" }
 }
+
+::runTimeline <- function(sequence) { return newActor(Timeline, 0, 0, sequence) }
+
+::stopTimeline <- function(tln) { if(typeof tln == "Timeline") deleteActor(tln.id) }
 
 ::tlnTest <- {
 	"0" : function(runner) {
@@ -31,6 +37,8 @@
 
 	"40" : function(runner) {
 		print("40")
+		print(jsonWrite(runner.sequence))
+		print(jsonWrite(actor))
 		runner.done = true
 	}
 }

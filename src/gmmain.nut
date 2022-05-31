@@ -18,6 +18,7 @@
 {
 	setDrawTarget(gvScreen)
 	drawBG()
+	runActors()
 	drawSprite(sprTitle, 0, screenW() / 2, 16)
 	drawDebug()
 

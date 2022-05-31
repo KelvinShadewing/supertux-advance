@@ -16,6 +16,9 @@
 	sprite = 0
 	z = 0
 	phantom = false
+	routine = null
+	gravity = 0.0
+	friction = 0.1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -28,7 +31,7 @@
 		yprev = y
 		physics()
 		animation()
-		routine()
+		if(routine != null) routine()
 	}
 
 	function physics() {
@@ -70,6 +73,8 @@
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
+
+		//Friction
 	}
 
 	function setAnim(_anim) {

@@ -138,6 +138,8 @@ startMain()
 menu = meMain
 config.playerChar = "Tux"
 
+runTimeline(tlnTest)
+
 while(!getQuit() && !gvQuit) //Entire game happens here
 {
 	if(keyPress(k_f11)) {

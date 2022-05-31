@@ -33,7 +33,6 @@
 	canGroundPound = true //Ground stomp attack
 	canSlide = false //Slide attack
 	canMove = true //Movement unlocked, set to false during cutscenes or when player restrained
-	blastResist = false
 
 	//Physics stats
 	weight = 1.0
@@ -54,8 +53,8 @@
 	heldby = 0
 	holding = 0
 
-	constructor(x, y, _arr = null) {
-		base.constructor(x, y, _arr)
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
 		damageMult = {
 			normal = 1.0
 			fire = 1.0
@@ -67,11 +66,14 @@
 			water = 1.0
 			light = 1.0
 			dark = 1.0
+			cut = 1.0
+			blast = 1.0
 		}
 		if(!gvPlayer) gvPlayer = this
 	}
 
 	function run() {
+		base.run()
 	}
 
 	function checkHurt() {
@@ -81,5 +83,85 @@
 			}
 		}
 		else blinking--
+	}
+
+	function atLadder() {
+		//Save current location and move
+		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
+		local cx = floor(x / 16)
+		local cy = floor(y / 16)
+
+		//Check that the solid layer exists
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Check against places in solid layer
+		if(wl != null) {
+			local tile = cx + (cy * wl.width)
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50) {
+				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+				gvMap.shape.kind = 0
+				gvMap.shape.w = 1.0
+				gvMap.shape.h = 12.0
+				if(hitTest(ns, gvMap.shape)) return true
+			}
+		}
+
+		return false
+	}
+
+	function swapitem() {
+		if(game.subitem == 0) return
+		local swap = game.subitem
+
+		if(game.weapon == game.subitem) {
+			if(game.maxEnergy < 4 - game.difficulty) {
+				game.maxEnergy++
+				game.subitem = 0
+				tftime = 0
+				playSound(sndHeal, 0)
+			}
+			return
+		}
+
+		if(swap < 5) {
+			game.subitem = game.weapon
+			game.weapon = 0
+		}
+
+		switch(swap) {
+			case 1:
+				newActor(FlowerFire, x + hspeed, y + vspeed)
+				break
+			case 2:
+				newActor(FlowerIce, x + hspeed, y + vspeed)
+				break
+			case 3:
+				newActor(AirFeather, x + hspeed, y + vspeed)
+				break
+			case 4:
+				newActor(EarthShell, x + hspeed, y + vspeed)
+				break
+			case 5:
+				if(game.health < game.maxHealth) {
+					newActor(MuffinBlue, x + hspeed, y + vspeed)
+					game.subitem = 0
+				}
+				break
+			case 6:
+				if(game.health < game.maxHealth) {
+					newActor(MuffinRed, x + hspeed, y + vspeed)
+					game.subitem = 0
+				}
+				break
+			case 7:
+				newActor(Starnyan, x + hspeed, y + vspeed)
+				break
+		}
 	}
 }

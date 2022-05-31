@@ -8,7 +8,6 @@
 	flip = 0
 	gravity = 0.0
 	frame = 0.0
-	anim = null
 	blinking = 0.0
 	canBeStomped = false
 	ready = false
