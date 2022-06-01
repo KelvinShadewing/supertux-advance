@@ -463,18 +463,22 @@
 			switch(game.weapon) {
 				case 0:
 					sprite = sprTux
+					anStand = anStandN
 					break
 
 				case 1:
 					sprite = sprTuxFire
+					anStand = anStandF
 					break
 
 				case 2:
 					sprite = sprTuxIce
+					anStand = anStandI
 					break
 
 				case 3:
 					sprite = sprTuxAir
+					anStand = anStandA
 					break
 
 				case 4:
