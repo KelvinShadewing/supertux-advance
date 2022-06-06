@@ -511,10 +511,7 @@
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
-
 		hidden = false
-
-		if(debug) drawText(font, x - camx - 8, y - 32 - camy, anim[2] + "\n" + frame.tostring())
 	}
 
 	function ruNormal() {
@@ -622,6 +619,15 @@
 		///////////////
 		else {
 			//Jumping
+			if(!placeFree(x, y + 2) || anim == anClimb) {
+				canJump = 16
+				if(game.weapon == 3 && energy < game.maxEnergy) energy += 0.2
+			}
+			else {
+				if(canJump > 0) canJump--
+				if(game.weapon == 3 && energy < 1) energy += 0.02
+			}
+			
 			if(getcon("jump", "press") || jumpBuffer > 0) {
 				if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold")) {
 					y++
@@ -717,12 +723,12 @@
 
 				//Ladder controls
 				if(getcon("up", "hold")) if(placeFree(x, y - 2)) {
-					frame -= climbdir / 8
+					frame -= 1.0 / 8.0
 					y -= 2
 				}
 
 				if(getcon("down", "hold")) if(placeFree(x, y + 2)) {
-					frame += climbdir / 8
+					frame += 1.0 / 8.0
 					y += 2
 				}
 
@@ -743,7 +749,7 @@
 			}
 
 			//Get on ladder
-			if((getcon("down", "hold") || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
+			if(((getcon("down", "hold") && !placeFree(x, y + 1)) || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
 				if(atLadder()) {
 					anim = anClimb
 					frame = 0.0
@@ -757,16 +763,6 @@
 			if(anim != anClimb && anim != anWall && anim != anFallW) {
 				if((getcon("right", "hold") && !getcon("left", "hold") && anim != anSlide && canMove) || (hspeed > 0.1 && anim == anSlide)) flip = 0
 				if((getcon("left", "hold") && !getcon("right", "hold") && anim != anSlide && canMove) || (hspeed < -0.1 && anim == anSlide)) flip = 1
-			}
-
-			//Controls
-			if(!placeFree(x, y + 2) || anim == anClimb) {
-				canJump = 16
-				if(game.weapon == 3 && energy < game.maxEnergy) energy += 0.2
-			}
-			else {
-				if(canJump > 0) canJump--
-				if(game.weapon == 3 && energy < 1) energy += 0.02
 			}
 
 			//Max speed
