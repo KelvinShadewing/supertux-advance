@@ -128,7 +128,7 @@
 
 			//Sliding acceleration
 			if(sliding) {
-				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && game.weapon == 2))) {
+				if(!placeFree(x, y + 2) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(placeFree(x, y + 2))vspeed += 1.0
@@ -517,8 +517,9 @@
 	function ruNormal() {
 		if(!canMove) return
 
+		//Sliding controls
 		if(sliding) {
-			if(((!getcon("down", "hold") && !autocon.down || fabs(hspeed) < 0.05) && !placeFree(x, y + 1) && game.weapon != 4) || (fabs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) if(anim == anSlide || anim == anCrawl) {
+			if(((!getcon("down", "hold") && !autocon.down || fabs(hspeed) < 0.25) && !placeFree(x, y + 1) && game.weapon != 3) || (fabs(hspeed) < 0.25 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) if(anim == anSlide || anim == anCrawl) {
 				if(getcon("down", "hold") || autocon.down|| !placeFree(x, y - 8) || autocon.down) anim = anCrawl
 				else anim = anWalk
 			}
@@ -544,7 +545,7 @@
 			if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
 			if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
 
-						//Attacks
+			//Attacks
 			if(canMove) switch(game.weapon) {
 				case 1:
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
@@ -725,6 +726,7 @@
 				if(getcon("up", "hold")) if(placeFree(x, y - 2)) {
 					frame -= 1.0 / 8.0
 					y -= 2
+					if(frame < 0) frame += anim.len()
 				}
 
 				if(getcon("down", "hold")) if(placeFree(x, y + 2)) {
@@ -749,7 +751,7 @@
 			}
 
 			//Get on ladder
-			if(((getcon("down", "hold") && !placeFree(x, y + 1)) || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
+			if(((getcon("down", "hold") && placeFree(x, y + 1)) || getcon("up", "hold")) && anim != anHurt && anim != anClimb && (vspeed >= 0 || getcon("down", "press") || getcon("up", "press"))) {
 				if(atLadder()) {
 					anim = anClimb
 					frame = 0.0
@@ -759,7 +761,7 @@
 				}
 			}
 
-			//Climbing
+			//Turning
 			if(anim != anClimb && anim != anWall && anim != anFallW) {
 				if((getcon("right", "hold") && !getcon("left", "hold") && anim != anSlide && canMove) || (hspeed > 0.1 && anim == anSlide)) flip = 0
 				if((getcon("left", "hold") && !getcon("right", "hold") && anim != anSlide && canMove) || (hspeed < -0.1 && anim == anSlide)) flip = 1
@@ -831,7 +833,7 @@
 					shape = shapeCrouch
 				}
 
-				if(placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) anim = anSlide
+				if(placeFree(x + 2, y + 1) && hspeed >= 0 || placeFree(x - 2, y + 1) == hspeed <= 0) anim = anSlide
 			}
 
 			//Attacks

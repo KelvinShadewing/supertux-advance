@@ -126,8 +126,8 @@
 	light = true
 	showcursor = true
 	usefilter = false
-	soundVolume = 128
-	musicVolume = 128
+	soundVolume = 64
+	musicVolume = 64
 	fullscreen = false
 }
 
