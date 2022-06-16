@@ -138,7 +138,7 @@ startMain()
 menu = meMain
 config.playerChar = "Tux"
 
-runTimeline(tlnTest)
+gotoTest()
 
 while(!getQuit() && !gvQuit) //Entire game happens here
 {

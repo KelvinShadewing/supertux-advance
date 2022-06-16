@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.1.2 UNSTABLE"
+::gvVersion <- "0.1.3 UNSTABLE"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false

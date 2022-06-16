@@ -38,6 +38,19 @@
 		if(blinking > 0) blinking--
 
 		base.physics()
+
+		//Check for weapon effects
+		if(actor.rawin("WeaponEffect") {
+			foreach(i in actor["WeaponEffect"]) {
+				//Skip weapons that don't hurt this enemy
+				if(i.alignment == 2) continue
+				if(i.owner == id) continue
+
+				if(hitTest(shape, i.shape)) {
+					getHurt(i.damage, i.element, i.cut, i.blast)
+				}
+			}
+		}
 	}
 
 	function getHurt(_mag, _element, _cut, _blast) {

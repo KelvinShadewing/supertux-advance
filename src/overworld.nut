@@ -208,6 +208,8 @@
 		gvLevel = level
 	}
 
+	function physics() {}
+
 	function _typeof() { return "OverPlayer" }
 }
 
