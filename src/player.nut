@@ -46,7 +46,20 @@
 
 	hurt = 0 //How much damage has been taken
 	hurtType = "normal"
-	damageMult = null
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+	}
 	blinking = 0 //Number of iframes remaining
 
 	//Misc
@@ -55,25 +68,29 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		damageMult = {
-			normal = 1.0
-			fire = 1.0
-			ice = 1.0
-			earth = 1.0
-			air = 1.0
-			toxic = 1.0
-			shock = 1.0
-			water = 1.0
-			light = 1.0
-			dark = 1.0
-			cut = 1.0
-			blast = 1.0
-		}
+		
 		if(!gvPlayer) gvPlayer = this
 	}
 
 	function run() {
 		base.run()
+
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+			//Skip weapons that don't hurt the player
+			if(i.alignment == 1) continue
+			if(i.owner == id) continue
+
+			if(hitTest(shape, i.shape)) {
+				local damage = _mag * damageMult[_element]
+				if(_cut) damage *= damageMult["cut"]
+				if(_blast) damage *= damageMult["blast"]
+
+				hurt = damage
+
+				if(i.piercing == 0) deleteActor(i.id)
+				else i.piercing--
+			}
+		}
 	}
 
 	function checkHurt() {

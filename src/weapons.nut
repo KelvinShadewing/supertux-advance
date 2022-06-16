@@ -24,6 +24,11 @@
 	function _typeof() { return "WeaponEffect" }
 }
 
+
+//////////////////
+// FIRE ATTACKS //
+//////////////////
+
 ::Fireball <- class extends WeaponEffect {
 	element = "fire"
 	timer = 90
@@ -51,7 +56,23 @@
 			vspeed *= 0.99
 		}
 
-		base.physics()
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x + hspeed, y - 2)) {
+			x += hspeed
+			y += -2
+			vspeed = -1
+		} else if(inWater(x, y)) hspeed = -hspeed
+		else deleteActor(id)
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		shape.setPos(x, y)
 	}
 
 	function animation() {
@@ -79,6 +100,78 @@
 		timer--
 		if(timer == 0) deleteActor(id)
 	}
+}
 
-	function _typeof() { return "Fireball" }
+/////////////////
+// ICE ATTACKS //
+/////////////////
+
+::Iceball <- class extends WeaponEffect {
+	element = "ice"
+	timer = 90
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 3, 3, 0)
+		newActor(AfterFlame, x, y)
+	}
+
+	function physics() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!placeFree(x, y + 1)) vspeed = -1.2
+		if(!placeFree(x, y - 1)) vspeed = 1
+		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
+			else deleteActor(id)
+		}
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.99
+			vspeed *= 0.99
+		}
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x + hspeed, y - 2)) {
+			x += hspeed
+			y += -2
+			vspeed = -1
+		} else if(inWater(x, y)) hspeed = -hspeed
+		else deleteActor(id)
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		shape.setPos(x, y)
+	}
+
+	function animation() {
+		if(hspeed > 0) drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
+		else drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 1, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+
+		if(getFrames() % 5 == 0) newActor(Glimmer, x - 4 + randInt(8), y - 4 + randInt(8))
+	}
+}
+
+::AfterIce <- class extends WeaponEffect {
+	element = "ice"
+	timer = 4
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
 }

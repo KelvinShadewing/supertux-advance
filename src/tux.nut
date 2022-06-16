@@ -63,6 +63,78 @@
 
 	nowInWater = false
 
+	//Elemental resistances
+	damageMultN = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+	}
+	damageMultF = {
+		normal = 1.0
+		fire = 0.5
+		ice = 2.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+	}
+	damageMultI = {
+		normal = 1.0
+		fire = 2.0
+		ice = 0.5
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+	}
+	damageMultA = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 2.0
+		air = 0.5
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 0.5
+	}
+	damageMultE = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 0.50
+		air = 2.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 0.5
+		blast = 1.0
+	}
+
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		anStand = anStandN
@@ -903,30 +975,35 @@
 					if(anim == anStand && sprite != sprTux) frame = 0.0
 					sprite = sprTux
 					anStand = anStandN
+					damageMult = damageMultN
 					break
 
 				case 1:
 					if(anim == anStand && sprite != sprTuxFire) frame = 0.0
 					sprite = sprTuxFire
 					anStand = anStandF
+					damageMult = damageMultF
 					break
 
 				case 2:
 					sprite = sprTuxIce
 					if(anim == anStand && anStand != anStandI) frame = 0.0
 					anStand = anStandI
+					damageMult = damageMultI
 					break
 
 				case 3:
 					sprite = sprTuxAir
 					if(anim == anStand && anStand != anStandA) frame = 0.0
 					anStand = anStandA
+					damageMult = damageMultA
 					break
 
 				case 4:
 					sprite = sprTuxEarth
 					if(anim == anStand && anStand != anStandE) frame = 0.0
 					anStand = anStandE
+					damageMult = damageMultE
 					break
 			}
 
