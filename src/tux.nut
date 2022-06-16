@@ -972,36 +972,36 @@
 		if(!hidden) {
 			switch(game.weapon) {
 				case 0:
-					if(anim == anStand && sprite != sprTux) frame = 0.0
 					sprite = sprTux
+					if(anim == anStand && anStand != anStandN) anim = anStandN
 					anStand = anStandN
 					damageMult = damageMultN
 					break
 
 				case 1:
-					if(anim == anStand && sprite != sprTuxFire) frame = 0.0
 					sprite = sprTuxFire
+					if(anim == anStand && anStand != anStandF) anim = anStandF
 					anStand = anStandF
 					damageMult = damageMultF
 					break
 
 				case 2:
 					sprite = sprTuxIce
-					if(anim == anStand && anStand != anStandI) frame = 0.0
+					if(anim == anStand && anStand != anStandI) anim = anStandI
 					anStand = anStandI
 					damageMult = damageMultI
 					break
 
 				case 3:
 					sprite = sprTuxAir
-					if(anim == anStand && anStand != anStandA) frame = 0.0
+					if(anim == anStand && anStand != anStandA) anim = anStandA
 					anStand = anStandA
 					damageMult = damageMultA
 					break
 
 				case 4:
 					sprite = sprTuxEarth
-					if(anim == anStand && anStand != anStandE) frame = 0.0
+					if(anim == anStand && anStand != anStandE) anim = anStandE
 					anStand = anStandE
 					damageMult = damageMultE
 					break
