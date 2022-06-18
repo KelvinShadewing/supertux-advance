@@ -24,6 +24,34 @@
 	function _typeof() { return "WeaponEffect" }
 }
 
+////////////////////
+// NORMAL ATTACKS //
+////////////////////
+
+::StompPoof <- class extends Actor{
+	power = 1
+	piercing = -1
+	frame = 0.0
+	shape = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		stopSound(sndBump)
+		playSound(sndBump, 0)
+
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+		drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		frame += 0.2
+
+		if(frame >= 4) deleteActor(id)
+	}
+
+	function _typeof() { return "ExplodeN" }
+}
 
 //////////////////
 // FIRE ATTACKS //

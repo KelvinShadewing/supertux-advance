@@ -17,7 +17,7 @@
 		if(active) {
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
-					if(gvPlayer.invincible > 0) hurtinvinc()
+					if(gvPlayer.invincible > 0) hurtInvinc()
 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) gethurt()
 					else if(gvPlayer.rawin("anSlide")) {
 						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
@@ -112,7 +112,7 @@
 	function hurtfire() {} //If the object is hit by a fireball
 	function hurtice() {}
 
-	function hurtinvinc() {
+	function hurtInvinc() {
 		newActor(Poof, x, y)
 		deleteActor(id)
 		playSound(sndFlame, 0)
@@ -379,9 +379,9 @@
 		}
 	}
 
-	function hurtblast() { hurtinvinc() }
+	function hurtblast() { hurtInvinc() }
 
-	function hurtinvinc() {
+	function hurtInvinc() {
 		newActor(Poof, x, ystart - 6)
 		newActor(Poof, x, ystart + 8)
 		deleteActor(id)

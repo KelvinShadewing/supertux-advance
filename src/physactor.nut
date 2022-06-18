@@ -27,8 +27,6 @@
 	}
 
 	function run() {
-		xprev = x
-		yprev = y
 		physics()
 		animation()
 		if(routine != null) routine()
@@ -531,7 +529,7 @@
 		return false
 	}
 
-	function onIce(_x = 0, _y = 1) {
+	function onIce(_x = -1, _y = -1) {
 		//Save current location and move
 		local ns
 		if(typeof shape == "Rec") ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
@@ -539,7 +537,7 @@
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
 		if(_x != -1) cx = floor(_x / 16)
-		if(_y != -1) cy = floor(_y / 16)
+		if(_y != -1) cy = floor(_y / 16) + 1
 		if(_x != -1 && _y != -1) ns.setPos(_x, _y + 2)
 
 		//Check that the solid layer exists

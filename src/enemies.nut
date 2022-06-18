@@ -54,7 +54,7 @@
 
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
-				if(gvPlayer.invincible > 0) hurtinvinc()
+				if(gvPlayer.invincible > 0) hurtInvinc()
 				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) getHurt(stompDamage, "normal", false, false)
 				else if(gvPlayer.rawin("anSlide")) {
 					if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false)
@@ -62,6 +62,29 @@
 				}
 				else hurtPlayer()
 			}
+		}
+	}
+
+	function hurtInvinc() {
+		newActor(Poof, x, ystart - 6)
+		newActor(Poof, x, ystart + 8)
+		deleteActor(id)
+		playSound(sndFlame, 0)
+
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, ystart - 6)
+			icebox = -1
+		}
+	}
+
+	function die() {
+		deleteActor(id)
+
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, ystart - 6)
+			icebox = -1
 		}
 	}
 
@@ -73,8 +96,12 @@
 		if(_blast) damage *= damageMult["blast"]
 
 		health -= damage
-		blinking = blinkMax
+		if(damage > 0) blinking = blinkMax
 
+		if(health -= 0) {
+			die()
+			return
+		}
 		if(_element == "ice") frozen = 600 * damageMult["ice"]
 	}
 
