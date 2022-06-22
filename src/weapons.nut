@@ -28,11 +28,12 @@
 // NORMAL ATTACKS //
 ////////////////////
 
-::StompPoof <- class extends Actor{
+::StompPoof <- class extends WeaponEffect{
 	power = 1
 	piercing = -1
 	frame = 0.0
 	shape = 0
+	blast = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -49,8 +50,30 @@
 
 		if(frame >= 4) deleteActor(id)
 	}
+}
 
-	function _typeof() { return "ExplodeN" }
+::ExplodeN <- class extends WeaponEffect{
+	power = 1
+	frame = 0.0
+	shape = 0
+	piercing = -1
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		stopSound(sndBump)
+		playSound(sndBump, 0)
+
+		shape = Rec(x, y, 16, 16, 0)
+	}
+
+	function run() {
+		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+	}
 }
 
 //////////////////
@@ -130,6 +153,110 @@
 	}
 }
 
+::FlameBreath <- class extends WeaponEffect {
+	element = "fire"
+	frame = 0.0
+	angle = 0
+	power = 1.0
+	piercing = 0
+
+	constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 4, 4, 0)
+		base.constructor(_x, _y)
+		vspeed = 0.5 - randFloat(1.0)
+		newActor(AfterFlame, x, y)
+	}
+	function run() {
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+		frame += 0.2
+		x += hspeed
+		y += vspeed
+		if(gvPlayer) x += gvPlayer.hspeed
+		shape.setPos(x, y)
+		if(!placeFree(x, y)) deleteActor(id)
+		if(frame >= 6) deleteActor(id)
+		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+}
+
+::FireballK <- class extends WeaponEffect {
+	timer = 90
+	angle = 0
+	element = "fire"
+	power = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Cir(x, y, 4)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+
+		x += hspeed
+		y += vspeed
+		if(!placeFree(x, y)) {
+			newActor(ExplodeF, x, y)
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+
+		if(hspeed > 0) drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+
+		shape.setPos(x, y)
+	}
+
+	function destructor() {
+			newActor(ExplodeF, x, y)
+	}
+}
+
+::ExplodeF <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "fire"
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		stopSound(sndExplodeF)
+		playSound(sndExplodeF, 0)
+
+		shape = Cir(x, y, 16)
+	}
+
+	function run() {
+		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		frame += 0.2
+
+		if(frame >= 1) {
+			if(actor.rawin("TNT")) foreach(i in actor["TNT"]) {
+				if(hitTest(shape, i.shape)) {
+					newActor(BadExplode, i.x, i.y)
+					tileSetSolid(i.x, i.y, 0)
+					deleteActor(i.id)
+				}
+			}
+		}
+		if(frame >= 5) deleteActor(id)
+	}
+}
+
 /////////////////
 // ICE ATTACKS //
 /////////////////
@@ -201,5 +328,31 @@
 	function run() {
 		timer--
 		if(timer == 0) deleteActor(id)
+	}
+}
+
+::IceBreath <- class extends WeaponEffect {
+	element = "ice"
+	frame = 0.0
+	angle = 0
+	power = 1.0
+	piercing = 0
+
+	constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 4, 4, 0)
+		base.constructor(_x, _y)
+		vspeed = 0.5 - randFloat(1.0)
+	}
+	function run() {
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+		frame += 0.2
+		x += hspeed
+		y += vspeed
+		if(gvPlayer) x += gvPlayer.hspeed
+		shape.setPos(x, y)
+		if(!placeFree(x, y)) deleteActor(id)
+		if(frame >= 6) deleteActor(id)
+		else drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }

@@ -66,3 +66,5 @@
 ::minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
 
 ::maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }
+
+::freezeMyGame <- function() { freezeMyGame() } //Blame Azreigh, hiff

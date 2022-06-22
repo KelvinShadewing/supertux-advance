@@ -32,8 +32,6 @@
 		oy = _oy.tofloat()
 	}
 
-	function _typeof() { return "Rec" }
-
 	function setPos(_x, _y) {
 		x = _x.tofloat() + ox
 		y = _y.tofloat() + oy
@@ -97,7 +95,7 @@
 									case 1:
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = b.h / b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
@@ -106,7 +104,7 @@
 									case 2:
 										if (((a.x + a.w) - (b.x - b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = b.h / -b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x + a.w) - (b.x - b.w))
@@ -115,7 +113,7 @@
 									case 3:
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = -b.h / b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x + b.w))
@@ -124,7 +122,7 @@
 									case 4:
 										if (((a.x + a.w) - (b.x - b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = -b.h / -b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x + a.w) - (b.x - b.w))

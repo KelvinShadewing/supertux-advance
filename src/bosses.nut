@@ -1,4 +1,4 @@
-::Boss <- class extends PhysAct {
+::Boss <- class extends Enemy {
 	health = 40
 	phasing = false //Allows the boss to phase through walls in their intro
 	active = false
@@ -18,66 +18,14 @@
 
 	function run() {
 		if(active) {
-			if(routine != null) routine()
-			animics()
-
-			//Collision with player
-			if(gvPlayer && health > 0) if(hitTest(shape, gvPlayer.shape) && blinking <= 0) {
-				if(gvPlayer.y < y && gvPlayer.vspeed >= 0 && gvPlayer.canStomp && canBeStomped) hurtStomp()
-				else hitPlayer()
-			}
-			if(blinking > 0) blinking -= 0.1
-			else {
-				if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtFire()
-						deleteActor(i.id)
-					}
-				}
-
-				if(actor.rawin("FireballK")) foreach(i in actor["FireballK"]) {
-					if(hitTest(shape, i.shape)) {
-						newActor(ExplodeF, i.x, i.y)
-						deleteActor(i.id)
-					}
-				}
-
-				if(actor.rawin("Iceball")) foreach(i in actor["Iceball"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtIce()
-						deleteActor(i.id)
-					}
-				}
-
-				if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtFire()
-					}
-				}
-
-				if(actor.rawin("ExplodeT")) foreach(i in actor["ExplodeT"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtShock()
-					}
-				}
-
-				if(actor.rawin("ExplodeI")) foreach(i in actor["ExplodeI"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtIce()
-					}
-				}
-
-				if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtBlast()
-					}
-				}
-			}
+			physics()
+			animation()
+			routine()
 		}
 	}
 
 	//Physics gets a separate function so that it can be inherited by other bosses
-	function animics() {}
+	function physics() {}
 	function hitPlayer() {
 		gvPlayer.hurt = 1
 	}
@@ -188,7 +136,7 @@
 
 	function _typeof() { return "Yeti" }
 
-	function animics() {
+	function physics() {
 		//Movement
 		if(placeFree(x + hspeed, y) || phasing) x += hspeed
 		else for(local i = 0; i < fabs(hspeed * 1.5); i++) {

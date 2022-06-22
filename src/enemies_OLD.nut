@@ -18,41 +18,41 @@
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) gethurt()
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) getHurt()
 					else if(gvPlayer.rawin("anSlide")) {
-						if(gvPlayer.anim == gvPlayer.anSlide) gethurt()
-						else hurtplayer()
+						if(gvPlayer.anim == gvPlayer.anSlide) getHurt()
+						else hurtPlayer()
 					}
-					else hurtplayer()
+					else hurtPlayer()
 				}
 			}
 
 			//Collision with fireball
 			if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
 				if(hitTest(shape, i.shape)) {
-					hurtfire()
+					hurtFire()
 					deleteActor(i.id)
 				}
 			}
 			if(actor.rawin("BadExplode")) foreach(i in actor["BadExplode"]) {
 				if(hitTest(shape, i.shape)) {
-					hurtfire()
+					hurtFire()
 				}
 			}
 			if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"]) {
 				if(hitTest(shape, i.shape)) {
-					hurtfire()
+					hurtFire()
 					deleteActor(i.id)
 				}
 			}
 			if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
 				if(hitTest(shape, i.shape) && i.frame < 3) {
-					hurtfire()
+					hurtFire()
 				}
 			}
 			if(actor.rawin("Iceball")) foreach(i in actor["Iceball"]) {
 				if(hitTest(shape, i.shape)) {
-					hurtice()
+					hurtIce()
 					deleteActor(i.id)
 				}
 			}
@@ -64,7 +64,7 @@
 			}
 			if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"]) {
 				if(hitTest(shape, i.shape) && i.frame < 3) {
-					hurtblast()
+					hurtBlast()
 				}
 			}
 		}
@@ -85,13 +85,13 @@
 					shape.setPos(x - 2, y)
 					if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed >= 1) {
 						frozen = 0
-						gethurt()
+						getHurt()
 						mapDeleteSolid(icebox)
 					}
 					shape.setPos(x + 2, y)
 					if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed <= -1) {
 						frozen = 0
-						gethurt()
+						getHurt()
 						mapDeleteSolid(icebox)
 					}
 					shape.setPos(x, y)
@@ -100,17 +100,17 @@
 		}
 	}
 
-	function gethurt() {} //Spiked enemies can just call hurtplayer() here
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {} //Spiked enemies can just call hurtPlayer() here
 
-	function hurtplayer() { //Default player damage
+	function hurtPlayer() { //Default player damage
 		if(gvPlayer.blinking > 0) return
 		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 		else gvPlayer.hspeed = 1.0
 		gvPlayer.hurt = 1
 	}
 
-	function hurtfire() {} //If the object is hit by a fireball
-	function hurtice() {}
+	function hurtFire() {} //If the object is hit by a fireball
+	function hurtIce() {}
 
 	function hurtInvinc() {
 		newActor(Poof, x, y)
@@ -118,7 +118,7 @@
 		playSound(sndFlame, 0)
 	}
 
-	function hurtblast() { gethurt() }
+	function hurtBlast() { getHurt() }
 
 	function destructor() {
 		if(!nocount) game.enemies--
@@ -240,12 +240,12 @@
 		}
 	}
 
-	function hurtplayer() {
+	function hurtPlayer() {
 		if(squish) return
-		base.hurtplayer()
+		base.hurtPlayer()
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(squish) return
 
 
@@ -280,7 +280,7 @@
 		squish = true
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeathcap
 		actor[c].vspeed = -4
@@ -293,7 +293,7 @@
 
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
@@ -304,7 +304,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "Deathcap" }
 }
@@ -363,8 +363,8 @@
 		}
 	}
 
-	function gethurt() {
-		if(gvPlayer.anim != gvPlayer.anSlide) hurtplayer()
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.anim != gvPlayer.anSlide) hurtPlayer()
 		else {
 			newActor(Poof, x, ystart - 8)
 			newActor(Poof, x, ystart + 8)
@@ -379,7 +379,7 @@
 		}
 	}
 
-	function hurtblast() { hurtInvinc() }
+	function hurtBlast() { hurtInvinc() }
 
 	function hurtInvinc() {
 		newActor(Poof, x, ystart - 6)
@@ -394,7 +394,7 @@
 			}
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		newActor(Flame, x, ystart - 6)
 		newActor(Flame, x, ystart + 8)
 		deleteActor(id)
@@ -406,7 +406,7 @@
 			}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "Snake" }
 }
@@ -468,20 +468,20 @@
 		}
 	}
 
-	function hurtplayer() {
-		base.hurtplayer()
+	function hurtPlayer() {
+		base.hurtPlayer()
 		if(gvPlayer) gvPlayer.hurt = 2
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(gvPlayer && !frozen) {
-			hurtplayer()
+			hurtPlayer()
 		}
 	}
 
-	function hurtfire() {}
+	function hurtFire() {}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 }
 
 //Dead enemy effect for enemies that get sent flying,
@@ -651,12 +651,12 @@
 		}
 	}
 
-	function hurtplayer() {
+	function hurtPlayer() {
 		if(squish) return
-		base.hurtplayer()
+		base.hurtPlayer()
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
 		stopSound(sndFizz)
@@ -669,7 +669,7 @@
 
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(squish) return
 
 		stopSound(sndFizz)
@@ -684,7 +684,7 @@
 		squish = true
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -698,7 +698,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "CarlBoom" }
 }
@@ -827,7 +827,7 @@
 		if(x > gvMap.w) hspeed = -fabs(hspeed)
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		newActor(Poof, x, y)
 		deleteActor(id)
 		playSound(sndSquish, 0)
@@ -840,9 +840,9 @@
 		}
 	}
 
-	hurtfire = Deathcap.hurtfire
+	hurtFire = Deathcap.hurtFire
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "SnowBounce" }
 }
@@ -951,7 +951,7 @@
 		}
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprite
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
@@ -973,7 +973,7 @@
 		}
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprite
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
@@ -987,7 +987,7 @@
 
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "CannonBob" }
 }
@@ -1046,11 +1046,11 @@
 		}
 	}
 
-	function gethurt() {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
 		actor[c].vspeed = -0.5
@@ -1153,11 +1153,11 @@
 		}
 	}
 
-	function gethurt() {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
 		actor[c].vspeed = -0.5
@@ -1250,11 +1250,11 @@
 		}
 	}
 
-	function gethurt() {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]
 			a.vspeed = -2
@@ -1306,11 +1306,11 @@
 		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
-	function gethurt() {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		if(timer < 30) {
 			if(randInt(20) == 0) {
 				local a = actor[newActor(MuffinBlue, x, y)]
@@ -1323,7 +1323,7 @@
 		}
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		newActor(Poof, x, y - 1)
 		deleteActor(id)
 
@@ -1457,11 +1457,11 @@
 		}
 	}
 
-	function gethurt() {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtfire()
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
 		actor[c].vspeed = -0.5
@@ -1518,7 +1518,7 @@
 		drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy)
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		deleteActor(id)
 		newActor(Poof, x, y)
 	}
@@ -1586,11 +1586,11 @@
 		shape.setPos(x, y)
 	}
 
-	function hurtplayer() {
-		base.hurtplayer()
+	function hurtPlayer() {
+		base.hurtPlayer()
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 
 
 		if(icebox != -1) {
@@ -1629,9 +1629,9 @@
 		}
 	}
 
-	hurtfire = Deathcap.hurtfire
+	hurtFire = Deathcap.hurtFire
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 }
 
 ::Snail <- class extends Enemy {
@@ -1643,9 +1643,9 @@
 		base.constructor(_x, _y)
 	}
 
-	hurtfire = Deathcap.hurtfire
+	hurtFire = Deathcap.hurtFire
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 }
 
 ::Jumpy <- class extends Enemy {
@@ -1719,11 +1719,11 @@
 		if(x > gvMap.w) hspeed = -0.0
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		gvPlayer.hurt = 3
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -1735,14 +1735,14 @@
 
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
 
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 }
 
 ::Haywire <- class extends Enemy {
@@ -1908,12 +1908,12 @@
 		}
 	}
 
-	function hurtplayer() {
+	function hurtPlayer() {
 		if(squish && !chasing) return
-		base.hurtplayer()
+		base.hurtPlayer()
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
 		if(icebox != -1) {
@@ -1925,10 +1925,10 @@
 		squish = true
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(frozen > 0) return
 		if(chasing) {
-			hurtplayer()
+			hurtPlayer()
 			return
 		}
 		if(squish) return
@@ -1944,7 +1944,7 @@
 		squish = true
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -1958,7 +1958,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "Haywire" }
 }
@@ -2134,12 +2134,12 @@
 		}
 	}
 
-	function hurtplayer() {
+	function hurtPlayer() {
 		if(squish) return
-		base.hurtplayer()
+		base.hurtPlayer()
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
 		stopSound(sndFizz)
@@ -2152,7 +2152,7 @@
 
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(squish) return
 
 		stopSound(sndFizz)
@@ -2175,7 +2175,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 120 }
+	function hurtIce() { frozen = 120 }
 }
 
 ::Blazeborn <- class extends Enemy {
@@ -2287,12 +2287,12 @@
 		}
 	}
 
-	function hurtplayer() {
+	function hurtPlayer() {
 		if(squish) return
 		gvPlayer.hurt = 3
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(squish) return
 
 
@@ -2319,7 +2319,7 @@
 		squish = false
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		newActor(Poof, x, y)
 		deleteActor(id)
 		playSound(sndFlame, 0)
@@ -2327,13 +2327,13 @@
 
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		deleteActor(id)
 		newActor(BadExplode, x , y)
 		newActor(Flame, x, y - 1)
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "Blazeborn" }
 }
@@ -2444,12 +2444,12 @@
 		}
 	}
 
-	function hurtplayer() {
+	function hurtPlayer() {
 		if(squish) return
 		gvPlayer.hurt = 4
 	}
 
-	function gethurt() {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
 		if(squish) return
 
 
@@ -2485,7 +2485,7 @@
 		squish = true
 	}
 
-	function hurtblast() {
+	function hurtBlast() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprWildcap
 		actor[c].vspeed = -4
@@ -2498,7 +2498,7 @@
 
 	}
 
-	function hurtfire() {
+	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		deleteActor(id)
 		playSound(sndFlame, 0)
@@ -2509,7 +2509,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "Deathcap" }
 }

@@ -430,12 +430,12 @@
 
 					//Ladder controls
 					if(getcon("up", "hold")) if(placeFree(x, y - 2)) {
-						frame -= 1.0 / 8.0
+						frame -= climbdir / 8
 						y -= 2
 					}
 
 					if(getcon("down", "hold")) if(placeFree(x, y + 2)) {
-						frame += 1.0 / 8.0
+						frame += climbdir / 8
 						y += 2
 					}
 

@@ -136,7 +136,8 @@ strDifficulty = [
 print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
-config.playerChar = "Tux"
+freeKonqi()
+game.playerChar = "Konqi"
 
 gotoTest()
 
