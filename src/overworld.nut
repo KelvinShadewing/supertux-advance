@@ -240,6 +240,7 @@
 				gvDoIGT = true
 				drawWeather = 0
 				startPlay(game.path + level + ".json")
+				gvMap.name = level
 			}
 		}
 	}
@@ -265,6 +266,7 @@
 				gvDoIGT = false
 				drawWeather = 0
 				startPlay(game.path + level + ".json")
+				gvMap.name = level
 			}
 		}
 
