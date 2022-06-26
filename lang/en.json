@@ -1,6 +1,6 @@
 {
 	"logo" : "title.png",
-	
+
 	"main-menu" : {
 		"new" : "New Game",
 		"load" : "Load Game",
@@ -435,22 +435,22 @@
 		"shop" : "Sam's Trade Post",
 		"overworld-0" : "Aurora Isles",
 		"overworld-1" : "Antarctica",
-		"aurora/pennyton" : "Pennyton",
-		"aurora/mines" : "Fish Mines",
-		"aurora/learn" : "Learning the Slopes",
-		"aurora/crystal" : "Crystal Pass",
-		"aurora/slip" : "Slip and Slide",
-		"aurora/subsea" : "Subsea",
-		"aurora/tnt" : "Tux 'N' Trouble",
-		"aurora/sense" : "Frost's Sense of Snow",
-		"aurora/frozen" : "Frozen Paradise",
-		"aurora/branches" : "Branching Path",
-		"aurora/bridge" : "The Ocean Bridge",
-		"aurora/wind" : "Arctic Wind",
-		"aurora/steps" : "Guarded Steps",
-		"aurora/xtreme" : "Xtreme Hills",
-		"aurora/fort" : "Fort Borealis",
-		"aurora/switch" : "Red Switch Trial"
+		"aurora-pennyton" : "Pennyton",
+		"aurora-mines" : "Fish Mines",
+		"aurora-learn" : "Learning the Slopes",
+		"aurora-crystal" : "Crystal Pass",
+		"aurora-slip" : "Slip and Slide",
+		"aurora-subsea" : "Subsea",
+		"aurora-tnt" : "Tux 'N' Trouble",
+		"aurora-sense" : "Frost's Sense of Snow",
+		"aurora-frozen" : "Frozen Paradise",
+		"aurora-branches" : "Branching Path",
+		"aurora-bridge" : "The Ocean Bridge",
+		"aurora-wind" : "Arctic Wind",
+		"aurora-steps" : "Guarded Steps",
+		"aurora-xtreme" : "Xtreme Hills",
+		"aurora-fort" : "Fort Borealis",
+		"aurora-switch" : "Red Switch Trial"
 	},
 
 	"key" : {
