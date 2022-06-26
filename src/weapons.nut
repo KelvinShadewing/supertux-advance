@@ -88,7 +88,6 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 3, 3, 0)
-		newActor(AfterFlame, x, y)
 	}
 
 	function physics() {
@@ -135,6 +134,10 @@
 			local c = actor[newActor(FlameTiny, x, y)]
 			c.frame = 4
 		}
+	}
+
+	function destructor() {
+		fireWeapon(AfterFire, x, y, alignment, owner)
 	}
 }
 
@@ -220,7 +223,7 @@
 	}
 
 	function destructor() {
-			newActor(ExplodeF, x, y)
+			fireWeaopn(ExplodeF, x, y, alignment, owner)
 	}
 }
 
@@ -229,6 +232,7 @@
 	shape = 0
 	piercing = -1
 	element = "fire"
+	power = 2
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -254,6 +258,14 @@
 			}
 		}
 		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+			}
+		}
 	}
 }
 
@@ -269,7 +281,6 @@
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 3, 3, 0)
-		newActor(AfterFlame, x, y)
 	}
 
 	function physics() {
@@ -313,6 +324,10 @@
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 
 		if(getFrames() % 5 == 0) newActor(Glimmer, x - 4 + randInt(8), y - 4 + randInt(8))
+	}
+
+	function destructor() {
+		fireWeapon(AfterIce, x, y, alignment, owner)
 	}
 }
 

@@ -583,6 +583,7 @@
 	squish = false
 	squishTime = 0.0
 	hspeed = 0.0
+	touchDamage = 2.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -705,7 +706,7 @@
 				//Explode
 				if(squishTime >= 150) {
 					deleteActor(id)
-					newActor(BadExplode, x, y)
+					fireWeapon(ExplodeF, x, y, 0, id)
 					if(gvPlayer) if(gvPlayer.held == id) gvPlayer.held = null
 				}
 			}

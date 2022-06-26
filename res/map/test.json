@@ -768,6 +768,90 @@
                  "width":16,
                  "x":720,
                  "y":416
+                }, 
+                {
+                 "gid":212,
+                 "height":16,
+                 "id":301,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":784,
+                 "y":496
+                }, 
+                {
+                 "gid":213,
+                 "height":16,
+                 "id":302,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":640,
+                 "y":464
+                }, 
+                {
+                 "gid":213,
+                 "height":16,
+                 "id":303,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":656,
+                 "y":464
+                }, 
+                {
+                 "gid":213,
+                 "height":16,
+                 "id":304,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":672,
+                 "y":464
+                }, 
+                {
+                 "gid":215,
+                 "height":16,
+                 "id":305,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":880,
+                 "y":544
+                }, 
+                {
+                 "gid":220,
+                 "height":16,
+                 "id":306,
+                 "name":"print(\"This does not make me hiff.\")",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":480
+                }, 
+                {
+                 "gid":225,
+                 "height":16,
+                 "id":307,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -776,7 +860,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":300,
+ "nextobjectid":308,
  "orientation":"orthogonal",
  "properties":[
         {

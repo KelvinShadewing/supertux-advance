@@ -156,6 +156,8 @@
 	function routine() {}
 
 	function run() {
+		base.run()
+
 		//Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)

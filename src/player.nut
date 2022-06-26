@@ -33,6 +33,7 @@
 	canGroundPound = true //Ground stomp attack
 	canSlide = false //Slide attack
 	canMove = true //Movement unlocked, set to false during cutscenes or when player restrained
+	held = null
 
 	//Physics stats
 	weight = 1.0
@@ -68,7 +69,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		
+
 		if(!gvPlayer) gvPlayer = this
 	}
 
@@ -81,16 +82,22 @@
 			if(i.owner == id) continue
 
 			if(hitTest(shape, i.shape)) {
-				local damage = _mag * damageMult[_element]
-				if(_cut) damage *= damageMult["cut"]
-				if(_blast) damage *= damageMult["blast"]
-
-				hurt = damage
-
+				getHurt(i.power, i.element, i.cut, i.blast)
 				if(i.piercing == 0) deleteActor(i.id)
 				else i.piercing--
 			}
 		}
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(blinking > 0) return
+
+		local damage = _mag * damageMult[_element]
+		if(_cut) damage *= damageMult["cut"]
+		if(_blast) damage *= damageMult["blast"]
+
+		game.health -= damage
+		if(damage > 0) blinking = 60
 	}
 
 	function checkHurt() {
