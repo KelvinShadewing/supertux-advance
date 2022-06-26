@@ -137,7 +137,7 @@ print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
 freeKonqi()
-game.playerChar = "Konqi"
+game.playerChar = "Tux"
 
 gotoTest()
 

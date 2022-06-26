@@ -31,7 +31,7 @@
 	function run() {
 		base.run()
 		if(active) {
-
+			if(frozen > 0) frozen--
 		}
 		else {
 			if(inDistance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2), 240)) active = true
@@ -68,14 +68,8 @@
 	function hurtInvinc() {
 		newActor(Poof, x, ystart - 6)
 		newActor(Poof, x, ystart + 8)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
-
-		if(icebox != -1) {
-			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, ystart - 6)
-			icebox = -1
-		}
 	}
 
 	function die() {
@@ -86,6 +80,8 @@
 			newActor(IceChunks, x, ystart - 6)
 			icebox = -1
 		}
+
+		if(!nocount) game.enemies--
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
@@ -172,7 +168,7 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
 
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -238,7 +234,7 @@
 			}
 			else {
 				squishTime += 0.025
-				if(squishTime >= 1) deleteActor(id)
+				if(squishTime >= 1) die()
 				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
@@ -264,7 +260,7 @@
 
 		if(_element == "fire") {
 			newActor(Flame, x, y - 1)
-			deleteActor(id)
+			die()
 			playSound(sndFlame, 0)
 
 			if(randInt(20) == 0) {
@@ -287,7 +283,7 @@
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
-				deleteActor(id)
+				die()
 				playSound(sndKick, 0)
 			}
 			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
@@ -317,14 +313,14 @@
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
-		deleteActor(id)
+		die()
 		stopSound(sndFlame)
 		playSound(sndFlame, 0)
 
@@ -374,6 +370,9 @@
 				icebox = mapNewSolid(shape)
 			}
 
+			if(flip == 1) drawSpriteEx(sprSnake, 0, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSpriteEx(sprSnake, 0, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
+
 			if(flip == 1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 			if(flip == -1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 			if(frozen <= 120) {
@@ -392,6 +391,11 @@
 
 			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
+		}
+
+		if(debug) {
+			setDrawColor(0x008000ff)
+			shape.draw()
 		}
 	}
 
@@ -412,7 +416,7 @@
 		else {
 			newActor(Poof, x, ystart - 8)
 			newActor(Poof, x, ystart + 8)
-			deleteActor(id)
+			die()
 			playSound(sndKick, 0)
 
 			if(icebox != -1) {
@@ -428,7 +432,7 @@
 	function hurtInvinc() {
 		newActor(Poof, x, ystart - 6)
 		newActor(Poof, x, ystart + 8)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 
 		if(icebox != -1) {
@@ -441,7 +445,7 @@
 	function hurtFire() {
 		newActor(Flame, x, ystart - 6)
 		newActor(Flame, x, ystart + 8)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 
 		if(icebox != -1) {
@@ -535,7 +539,7 @@
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			newActor(Poof, x, y)
-			deleteActor(id)
+			die()
 			playSound(sndSquish, 0)
 			if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
 			else gvPlayer.vspeed = -4
@@ -559,7 +563,7 @@
 
 	function hurtInvinc() {
 		newActor(Poof, x, y)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 
 		if(icebox != -1) {
