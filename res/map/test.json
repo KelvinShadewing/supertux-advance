@@ -833,7 +833,7 @@
                  "gid":220,
                  "height":16,
                  "id":306,
-                 "name":"print(\"This does not make me hiff.\")",
+                 "name":"print(\"This does not make me hiff.\"); gvPlayer.y = 0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -850,8 +850,56 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":144,
-                 "y":544
+                 "x":1232,
+                 "y":480
+                }, 
+                {
+                 "gid":209,
+                 "height":16,
+                 "id":311,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":352,
+                 "y":528
+                }, 
+                {
+                 "gid":209,
+                 "height":16,
+                 "id":312,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":368,
+                 "y":528
+                }, 
+                {
+                 "gid":209,
+                 "height":16,
+                 "id":313,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":384,
+                 "y":528
+                }, 
+                {
+                 "gid":209,
+                 "height":16,
+                 "id":314,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":528
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -860,7 +908,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":308,
+ "nextobjectid":315,
  "orientation":"orthogonal",
  "properties":[
         {

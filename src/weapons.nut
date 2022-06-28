@@ -137,7 +137,7 @@
 	}
 
 	function destructor() {
-		fireWeapon(AfterFire, x, y, alignment, owner)
+		fireWeapon(AfterFlame, x, y, alignment, owner)
 	}
 }
 

@@ -351,6 +351,8 @@
 		flip = _arr
 	}
 
+	function physics() {}
+
 	function run() {
 		base.run()
 

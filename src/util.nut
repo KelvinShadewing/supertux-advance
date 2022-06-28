@@ -57,12 +57,6 @@
 	}
 }
 
-::eval <- function(str) {
-	//Does not work properly right now
-	//Needs modification in the runtime
-	return dostr("return " + str)
-}
-
 ::minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
 
 ::maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }

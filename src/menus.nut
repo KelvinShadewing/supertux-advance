@@ -12,6 +12,7 @@ const menuMax = 8 //Maximum number of slots that can be shown on screen
 const fontW = 8
 const fontH = 14
 const menuY = 40
+
 ::textMenu <- function(){
 	//If no menu is loaded
 	if(menu == []) return
