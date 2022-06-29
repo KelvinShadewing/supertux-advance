@@ -444,6 +444,14 @@
 				case 79:
 					c = newActor(BossDoor, i.x, i.y - 16, i.name)
 					break
+
+				case 80:
+					//TODO: Mr. Ice Guy
+					break
+
+				case 81:
+					c = newActor(Owl, i.x + 8, i.y - 8, i.name)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c

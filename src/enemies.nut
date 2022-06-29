@@ -2,6 +2,8 @@
 	health = 1.0
 	active = false
 	frozen = 0
+	freezeTime = 600
+	freezeSprite = sprIceTrapSmall
 	icebox = -1
 	nocount = false
 	damageMult = {
@@ -29,9 +31,13 @@
 	}
 
 	function run() {
-		base.run()
 		if(active) {
-			if(frozen > 0) frozen--
+			base.run()
+			if(frozen > 0) {
+				frozen--
+				if(floor(frozen / 4) % 2 == 0 && frozen < 60) drawSpriteZ(4, freezeSprite, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSpriteZ(4, freezeSprite, 0, x - camx, y - camy - 1)
+			}
 		}
 		else {
 			if(inDistance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2), 240)) active = true
@@ -55,8 +61,12 @@
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 				if(gvPlayer.invincible > 0) hurtInvinc()
-				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) getHurt(stompDamage, "normal", false, false)
-				else if(gvPlayer.rawin("anSlide")) {
+				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0) {
+					getHurt(stompDamage, "normal", false, false)
+					if(getcon("jump", "hold")) gvPlayer.vspeed = -6.0
+					else gvPlayer.vspeed = -3.0
+				}
+				else if(gvPlayer.rawin("anSlide") && blinking == 0) {
 					if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false)
 					else hurtPlayer()
 				}
@@ -94,15 +104,25 @@
 		health -= damage
 		if(damage > 0) blinking = blinkMax
 
-		if(health -= 0) {
+		if(health <= 0) {
 			die()
 			return
 		}
-		if(_element == "ice") frozen = 600 * damageMult["ice"]
+		if(_element == "ice") frozen = freezeTime * damageMult["ice"]
+		if(_element == "fire") {
+			newActor(Flame, x, y)
+			stopSound(sndFlame)
+			playSound(sndFlame, 0)
+		}
+		blinking = blinkMax
 	}
 
 	function hurtPlayer() {
 		gvPlayer.hurt = touchDamage * gvPlayer.damageMult[element]
+	}
+
+	function destructor() {
+		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 }
 
@@ -279,7 +299,7 @@
 			if(gvPlayer.anim == gvPlayer.anSlide) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprDeathcap
-				actor[c].vspeed = -fabs(gvPlayer.hspeed)
+				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
@@ -769,4 +789,129 @@
 	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "CarlBoom" }
+}
+
+::Owl <- class extends Enemy {
+	passenger = null
+	pyOffset = 0
+	pid = 0
+	touchDamage = 2.0
+	health = 2.0
+	flip = 0
+	canMoveH = true
+	canMoveV = true
+	freezeSprite = sprIceTrapLarge
+
+	damageMult = {
+		normal = 1.0
+		fire = 2.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+	}
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
+		hspeed = 0.5
+
+		if(getroottable().rawin(_arr)) {
+			passenger = actor[newActor(getroottable()[_arr], x, y)]
+			pyOffset = passenger.shape.h
+			pid = passenger.id
+		}
+		else {
+			passenger = actor[newActor(MuffinBlue, x, y)]
+			pyOffset = passenger.shape.h
+			pid = passenger.id
+		}
+
+		shape = Rec(x, y, 8, 12, 0)
+		routine = ruCarry
+	}
+
+	function physics() {
+		local tempShape = shape
+		canMoveH = !(frozen > 0)
+		canMoveV = !(frozen > 0)
+
+		//Check if owl can move
+		if(!placeFree(x + hspeed, y)) canMoveH = false
+		if(!placeFree(x, y + vspeed)) canMoveV = false
+
+		if(checkActor(pid)) {
+			shape = passenger.shape
+			if(!placeFree(passenger.x + hspeed, passenger.y)) canMoveH = false
+			if(!placeFree(passenger.x, passenger.y + vspeed)) canMoveV = false
+			shape = tempShape
+		}
+
+		if(canMoveH) x += hspeed
+		else hspeed = -hspeed
+
+		if(canMoveV) y += vspeed / 2.0
+		else vspeed = -vspeed / 2.0
+
+		//Attach passenger to talons
+		if(checkActor(pid)) {
+			passenger.x = x
+			passenger.y = y + pyOffset + 12
+			if(passenger.rawin("flip")) passenger.flip = flip
+			passenger.hspeed = 0.0
+			passenger.vspeed = 0.0
+		}
+
+		shape.setPos(x, y)
+	}
+
+	function animation() {
+		if(frozen == 0) {
+			if(hspeed > 0) flip = 0
+			if(hspeed < 0) flip = 1
+			if(gvPlayer && !placeFree(x, y)) {
+				if(x < gvPlayer.x) flip = 0
+				if(x > gvPlayer.x) flip = 1
+			}
+
+			drawSpriteExZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
+		}
+		else drawSpriteExZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function ruCarry() {
+		if(gvPlayer) {
+			if(x > gvPlayer.x && hspeed > -3) hspeed -= 0.05
+			if(x < gvPlayer.x && hspeed < 3) hspeed += 0.05
+			if(y > gvPlayer.y - 64 && vspeed > -1) vspeed -= 0.05
+			if(y < gvPlayer.y - 64 && vspeed < 1) vspeed += 0.05
+
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 96 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8) pid = -1
+		}
+
+		if(!checkActor(pid)) routine = ruFlee
+	}
+
+	function ruFlee() {
+		if(gvPlayer) {
+			if(x < gvPlayer.x && hspeed > -3) hspeed -= 0.05
+			if(x > gvPlayer.x && hspeed < 3) hspeed += 0.05
+			if(y < gvPlayer.y && vspeed > -1) vspeed -= 0.05
+			if(y > gvPlayer.y && vspeed < 1) vspeed += 0.05
+		}
+	}
+
+	function die() {
+		base.die()
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprOwlBrown
+		actor[c].vspeed = -5.0
+		actor[c].spin = 30
+		playSound(sndKick, 0)
+	}
 }

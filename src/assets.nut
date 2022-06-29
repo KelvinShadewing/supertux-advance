@@ -195,6 +195,8 @@
 ::defBlazeborn <- sprBlazeborn
 ::sprWildcap <- newSprite("res/gfx/wildcap.png", 16, 16, 0, 0, 8, 9)
 ::defWildcap <- sprWildcap
+::sprOwlBrown <- newSprite("res/gfx/owl-brown.png", 32, 32, 0, 0, 16, 16)
+::defOwlBrown <- sprOwlBrown
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)

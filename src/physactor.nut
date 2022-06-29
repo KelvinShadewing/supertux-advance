@@ -10,7 +10,7 @@
 	ystart = 0.0
 	xprev = 0.0
 	yprev = 0.0
-	shape = 0
+	shape = Rec(0, 0, 0, 0, 0)
 	anim = null
 	frame = 0.0
 	sprite = 0
