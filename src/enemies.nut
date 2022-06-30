@@ -3,7 +3,7 @@
 	active = false
 	frozen = 0
 	freezeTime = 600
-	freezeSprite = sprIceTrapSmall
+	freezeSprite = -1
 	icebox = -1
 	nocount = false
 	damageMult = {
@@ -25,6 +25,7 @@
 	touchDamage = 0.0
 	element = "normal"
 	stompDamage = 1.0
+	thorny = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -61,7 +62,7 @@
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 				if(gvPlayer.invincible > 0) hurtInvinc()
-				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0) {
+				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !thorny && !gvPlayer.swimming) {
 					getHurt(stompDamage, "normal", false, false)
 					if(getcon("jump", "hold")) gvPlayer.vspeed = -6.0
 					else gvPlayer.vspeed = -3.0
@@ -558,6 +559,10 @@
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(_element == "ice") {
+			hurtIce()
+			return
+		}
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			newActor(Poof, x, y)
@@ -758,7 +763,11 @@
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
-		if(squish) return
+		if(_element == "ice") {
+			hurtIce()
+			return
+		}
+		else if(squish) return
 
 		stopSound(sndFizz)
 		playSound(sndFizz, 0)
@@ -791,16 +800,604 @@
 	function _typeof() { return "CarlBoom" }
 }
 
+::BlueFish <- class extends Enemy {
+	timer = 0
+	frame = 0.0
+	biting = false
+	flip = 0
+	touchDamage = 2.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 0.5
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
+			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
+			flip = (hspeed < 0).tointeger()
+
+			timer--
+			if(timer <= 0) {
+				timer = 240
+				vspeed = -0.5 + randFloat(1)
+			}
+			if(!inWater(x, y)) vspeed += 0.1
+			vspeed *= 0.99
+
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) biting = true
+			if(frame >= 4) {
+				biting = false
+				frame = 0.0
+			}
+
+			if(biting) {
+				drawSpriteEx(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+				frame += 0.125
+			}
+			else drawSpriteEx(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
+			if(placeFree(x + hspeed, y)) x += hspeed
+			if(placeFree(x, y + vspeed)) y += vspeed
+			shape.setPos(x, y)
+		}
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+		if(_element == "fire") hurtFire()
+	}
+
+	function hurtFire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function _typeof() { return "BlueFish" }
+}
+
+::RedFish <- class extends Enemy {
+	timer = 0
+	frame = 0.0
+	biting = false
+	flip = 0
+	touchDamage = 2.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 0.5
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
+			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
+			flip = (hspeed < 0).tointeger()
+
+			timer--
+			if(timer <= 0) {
+				timer = 240
+				vspeed = -0.5 + randFloat(1)
+				if(hspeed == 0) hspeed = 1
+				else hspeed *= 1 / fabs(hspeed)
+			}
+			if(!inWater(x, y)) vspeed += 0.1
+			vspeed *= 0.99
+
+			if(gvPlayer) {
+				if(hitTest(shape, gvPlayer.shape)) biting = true
+				if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 128) && inWater(x, y)) {
+					biting = true
+					timer = 240
+
+					//Chase player
+					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
+
+					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
+					if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
+
+					//Swim harder if far from the player
+					if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
+						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
+
+						if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
+						if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
+					}
+				}
+			}
+
+
+			if(frame >= 4) {
+				biting = false
+				frame = 0.0
+			}
+
+			if(biting) {
+				drawSpriteEx(sprRedFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+				frame += 0.125
+			}
+			else drawSpriteEx(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
+			if(placeFree(x + hspeed, y)) x += hspeed
+			if(placeFree(x, y + vspeed)) y += vspeed
+			shape.setPos(x, y)
+		}
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+		if(_element == "fire") hurtFire()
+	}
+
+	function hurtFire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function _typeof() { return "RedFish" }
+}
+
+::JellyFish <- class extends Enemy {
+	timer = 0
+	frame = 0.0
+	pump = false
+	fliph = 0
+	flipv = 0
+	touchDamage = 2.0
+	element = "shock"
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+		hspeed = 0.5
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x + hspeed, y)) hspeed = -hspeed
+			if(!placeFree(x, y + vspeed)) vspeed = -vspeed
+
+			if(hspeed > 0) fliph = 0
+			if(hspeed < 0) fliph = 1
+			if(vspeed > 0) flipv = 1
+			if(vspeed < 0) flipv = 0
+			if(hspeed )
+
+			timer--
+			if(timer <= 0) {
+				timer = 30 + randInt(90)
+				pump = true
+			}
+
+			if(pump) {
+				if(frame < 3) frame += 0.1
+				else frame += 0.05
+
+				if(frame >= 4) {
+					frame = 0.0
+					pump = false
+				}
+
+				if(frame > 2 && frame < 3) {
+					if(fliph == 0) hspeed = 1.0
+					else hspeed = -1.0
+					if(flipv == 0) vspeed = -1.0
+					else vspeed = 1.0
+				}
+			}
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
+			if(!inWater(x, y)) vspeed += 0.1
+			vspeed *= 0.99
+			hspeed *= 0.99
+
+			drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
+			drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
+
+			if(placeFree(x + hspeed, y)) x += hspeed
+			if(placeFree(x, y + vspeed)) y += vspeed
+			shape.setPos(x, y)
+		}
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+		if(_element == "fire") hurtFire()
+	}
+
+	function hurtFire() {
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprJellyFish
+		actor[c].vspeed = -0.2
+		actor[c].flip = fliph + (flipv * 2)
+		actor[c].hspeed = hspeed / 2
+		if(fliph == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.01
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+		newActor(Poof, x, y)
+	}
+
+	function _typeof() { return "BlueFish" }
+}
+
+::Clamor <- class extends Enemy {
+	huntdir = 0
+	timer = 0
+	flip = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 6, 6, 0)
+		if(_arr == "1") flip = 1
+
+		if(flip == 0) huntdir = 1
+		else huntdir = -1
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer) {
+			if(inDistance2(x + (huntdir * 48), y - 32, gvPlayer.x, gvPlayer.y, 64) && timer == 0) {
+				timer = 240
+				newActor(ClamorPearl, x, y, null)
+			}
+		}
+
+		if(timer > 0) timer--
+
+		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+	}
+
+	function hurtFire() {
+		if(timer < 30) {
+			if(randInt(20) == 0) {
+				local a = actor[newActor(MuffinBlue, x, y)]
+				a.vspeed = -2
+			}
+			newActor(Poof, x, y - 1)
+			deleteActor(id)
+			playSound(sndFlame, 0)
+
+		}
+	}
+
+	function hurtBlast() {
+		newActor(Poof, x, y - 1)
+		deleteActor(id)
+
+	}
+
+	function _typeof() { return "Clamor" }
+}
+
+::ClamorPearl <- class extends PhysAct {
+	hspeed = 0
+	vspeed = 0
+	timer = 1200
+	shape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		if(!gvPlayer) {
+			deleteActor(id)
+			return
+		}
+
+		local aim = pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+		hspeed = lendirX(1, aim)
+		vspeed = lendirY(1, aim)
+
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		x += hspeed
+		y += vspeed
+		shape.setPos(x, y)
+		timer--
+
+		if(timer == 0 || !placeFree(x, y)) deleteActor(id)
+
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
+
+		drawSprite(sprIceball, 0, x - camx, y - camy)
+		if(!inWater(x, y)) vspeed += 0.2
+	}
+}
+
+::GreenFish <- class extends Enemy {
+	timer = 120
+	frame = 0.0
+	biting = false
+	flip = 0
+	canjump = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 1.0
+		if(gvPlayer) if(x > gvPlayer.x) hspeed = -1.0
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			flip = (hspeed < 0).tointeger()
+
+			timer--
+			if(timer <= 0) {
+				timer = 120
+				if(vspeed > -0.5 && inWater(x, y)) vspeed = -0.5
+				if(hspeed == 0) hspeed = 1
+				else hspeed *= 1 / fabs(hspeed)
+				canjump = true
+			}
+			if(!inWater(x, y)) vspeed += 0.1
+			vspeed *= 0.99
+
+			if(gvPlayer) {
+				if(hitTest(shape, gvPlayer.shape)) biting = true
+				if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 256) && inWater(x, y)) {
+					biting = true
+
+					//Chase player
+					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
+
+					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.1
+					if(y > gvPlayer.y && vspeed > -4) {
+						if(canjump && !gvPlayer.inWater(gvPlayer.x, gvPlayer.y) && ((hspeed > 0 && gvPlayer.x > x) || (hspeed < 0 && gvPlayer.x < x))) {
+							vspeed = -6
+							canjump = false
+						}
+
+						vspeed -= 0.2
+					}
+
+					//Swim harder if far from the player
+					if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
+						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
+						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
+
+						if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
+						if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
+					}
+				}
+			}
+
+
+			if(frame >= 4) {
+				biting = false
+				frame = 0.0
+			}
+
+			if(biting) {
+				drawSpriteEx(sprGreenFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+				frame += 0.125
+			}
+			else drawSpriteEx(sprGreenFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
+
+			x += hspeed
+			y += vspeed
+
+			shape.setPos(x, y)
+		}
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+	}
+
+	function hurtFire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		deleteActor(id)
+		playSound(sndKick, 0)
+		game.enemies--
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function _typeof() { return "GreenFish" }
+}
+
+::Ouchin <- class extends Enemy {
+	sf = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 8, 0)
+		sf = randInt(8)
+	}
+
+	function run() {
+		base.run()
+
+		drawSprite(sprOuchin, sf + (getFrames() / 16), x - camx, y - camy)
+
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+			if(x > gvPlayer.x) {
+				if(gvPlayer.placeFree(gvPlayer.x - 1, gvPlayer.y)) gvPlayer.x--
+				gvPlayer.hspeed -= 0.1
+			}
+
+			if(x < gvPlayer.x) {
+				if(gvPlayer.placeFree(gvPlayer.x + 1, gvPlayer.y)) gvPlayer.x++
+				gvPlayer.hspeed += 0.1
+			}
+
+			if(y > gvPlayer.y) {
+				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y - 1)) gvPlayer.y--
+				gvPlayer.vspeed -= 0.1
+			}
+
+			if(y < gvPlayer.y) {
+				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 1)) gvPlayer.y++
+				gvPlayer.vspeed += 0.1
+			}
+		}
+
+		if(frozen) {
+			//Create ice block
+			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				icebox = mapNewSolid(shape)
+			}
+
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else {
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, y)
+				icebox = -1
+			}
+		}
+	}
+
+	function hurtPlayer() {
+		base.hurtPlayer()
+		if(gvPlayer) gvPlayer.hurt = 2
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(_element == "fire") hurtFire()
+		if(_element == "ice") hurtIce()
+	}
+
+	function hurtFire() {}
+
+	function hurtIce() { frozen = 600 }
+}
+
+////////////////////
+// V0.2.0 ENEMIES //
+////////////////////
+
 ::Owl <- class extends Enemy {
 	passenger = null
 	pyOffset = 0
 	pid = 0
 	touchDamage = 2.0
-	health = 2.0
+	health = 4.0
 	flip = 0
 	canMoveH = true
 	canMoveV = true
 	freezeSprite = sprIceTrapLarge
+	nocount = true
 
 	damageMult = {
 		normal = 1.0
@@ -822,18 +1419,26 @@
 		hspeed = 0.5
 
 		if(getroottable().rawin(_arr)) {
-			passenger = actor[newActor(getroottable()[_arr], x, y)]
-			pyOffset = passenger.shape.h
-			pid = passenger.id
+			if(getroottable()[_arr].rawin("shape")) passenger = actor[newActor(getroottable()[_arr], x, y)]
+			else passenger = actor[newActor(MuffinEvil, x, y)]
 		}
-		else {
-			passenger = actor[newActor(MuffinBlue, x, y)]
-			pyOffset = passenger.shape.h
-			pid = passenger.id
-		}
+		else passenger = actor[newActor(MuffinEvil, x, y)]
+
+		pyOffset = passenger.shape.h
+		pid = passenger.id
 
 		shape = Rec(x, y, 8, 12, 0)
 		routine = ruCarry
+	}
+
+	function run() {
+		base.run()
+		if(!active) if(checkActor(pid)) {
+			passenger.x = x
+			passenger.y = y + pyOffset + 12
+			if(passenger.rawin("flip")) passenger.flip = flip
+			passenger.vspeed = 0.0
+		}
 	}
 
 	function physics() {
@@ -863,7 +1468,6 @@
 			passenger.x = x
 			passenger.y = y + pyOffset + 12
 			if(passenger.rawin("flip")) passenger.flip = flip
-			passenger.hspeed = 0.0
 			passenger.vspeed = 0.0
 		}
 

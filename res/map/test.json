@@ -854,28 +854,100 @@
                  "y":480
                 }, 
                 {
-                 "gid":280,
+                 "gid":227,
                  "height":16,
-                 "id":315,
-                 "name":"Deathcap",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":160,
-                 "y":496
-                }, 
-                {
-                 "gid":280,
-                 "height":16,
-                 "id":316,
+                 "id":317,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":784,
-                 "y":240
+                 "x":1760,
+                 "y":896
+                }, 
+                {
+                 "gid":228,
+                 "height":16,
+                 "id":318,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1808,
+                 "y":896
+                }, 
+                {
+                 "gid":235,
+                 "height":16,
+                 "id":319,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1616,
+                 "y":896
+                }, 
+                {
+                 "gid":235,
+                 "height":16,
+                 "id":320,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1504,
+                 "y":784
+                }, 
+                {
+                 "gid":235,
+                 "height":16,
+                 "id":321,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1456,
+                 "y":784
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":322,
+                 "name":"RedFish",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2448,
+                 "y":336
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":323,
+                 "name":"Coin",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":304,
+                 "y":416
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":324,
+                 "name":"Darknyan",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":547,
+                 "y":293
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -884,7 +956,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":317,
+ "nextobjectid":325,
  "orientation":"orthogonal",
  "properties":[
         {
