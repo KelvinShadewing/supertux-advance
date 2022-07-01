@@ -185,38 +185,23 @@
 			}
 		}
 
-		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if(hitTest(fireshape, i.shape) && (i.element == "fire" || i.blast)) {
 			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			deleteActor(i.id)
-			newActor(Poof, x, y)
-			playSound(sndFlame, 0)
-		}
 
-		if(actor.rawin("FlameBreath")) foreach(i in actor["FlameBreath"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, oldsolid)
-			deleteActor(id)
-			deleteActor(i.id)
-			newActor(Poof, x, y)
-			playSound(sndFlame, 0)
-		}
+			if(i.element == "fire") {
+				newActor(Poof, x, y)
+				stopSound(sndFlame)
+				playSound(sndFlame, 0)
+			}
 
-		if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, oldsolid)
-			deleteActor(id)
-			newActor(IceChunks, x, y)
-			newActor(Poof, x, y)
-			playSound(sndFlame, 0)
+			if(i.blast) {
+				newActor(IceChunks, x, y)
+				stopSound(sndIceBreak)
+				playSound(sndIceBreak, 0)
+			}
 		}
-
-		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
-			tileSetSolid(x, y, oldsolid)
-			deleteActor(id)
-			newActor(IceChunks, x, y)
-			newActor(Poof, x, y)
-			playSound(sndFlame, 0)
-		}
-
 		drawSpriteZ(2, sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
 }

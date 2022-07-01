@@ -91,6 +91,7 @@
 	}
 
 	function physics() {
+		//Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
 
