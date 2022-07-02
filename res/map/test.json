@@ -1044,6 +1044,114 @@
                  "width":16,
                  "x":2176,
                  "y":128
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":338,
+                 "name":"Haywire",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2016,
+                 "y":704
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":339,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1872,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":340,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1856,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":341,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1840,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":342,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1824,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":343,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1808,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":344,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1792,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":345,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1776,
+                 "y":416
+                }, 
+                {
+                 "gid":233,
+                 "height":16,
+                 "id":346,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1760,
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1052,7 +1160,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":337,
+ "nextobjectid":347,
  "orientation":"orthogonal",
  "properties":[
         {

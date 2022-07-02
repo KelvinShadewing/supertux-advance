@@ -1592,7 +1592,7 @@
 		}
 
 		drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy)
-		fireWeapon(AfterIce, x, y + 8, 0, id)
+		if(vspeed > 0) fireWeapon(AfterIce, x, y, 0, id)
 	}
 
 	function hurtFire() {
@@ -1849,6 +1849,264 @@
 		newActor(Poof, x, y)
 	}
 }
+
+::Haywire <- class extends Enemy {
+	burnt = false
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	chasing = false
+	mspeed = 1.0
+	hspeed = 0.0
+	touchDamage = 2.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 6, 6, 0, 0, 1)
+		if(gvPlayer) if(x > gvPlayer.x) flip = true
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(placeFree(x, y + 1)) vspeed += 0.2
+			if(placeFree(x, y + vspeed)) y += vspeed
+			else vspeed /= 2
+			if(!squish || chasing) {
+
+				if(chasing) mspeed = fabs(hspeed)
+				else mspeed = 0.75
+
+				if(chasing) squishTime++
+				if(squishTime >= 200 && chasing) {
+					deleteActor(id)
+					fireWeapon(ExplodeF, x, y - 1, 0, id)
+
+				}
+
+				if(y > gvMap.h + 8) deleteActor(id)
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - mspeed, y)) x -= mspeed
+						else if(placeFree(x - (mspeed * 2), y - (mspeed * 2))) {
+							x -= mspeed
+							y -= 1.0
+						} else if(placeFree(x - mspeed, y - (mspeed * 2))) {
+							x -= mspeed
+							y -= 1.0
+						} else flip = false
+
+						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) {
+							if(!chasing) flip = false
+							else vspeed = -4
+						}
+
+						if(x <= 0) flip = false
+						if(hspeed > 0) flip = false
+					}
+					else {
+						if(placeFree(x + mspeed, y)) x += mspeed
+						else if(placeFree(x + mspeed, y - mspeed)) {
+							x += mspeed
+							y -= 1.0
+						} else if(placeFree(x + (mspeed * 2), y - (mspeed * 2))) {
+							x += mspeed
+							y -= 1.0
+						} else flip = true
+
+						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) {
+							if(!chasing) flip = true
+							else vspeed = -4
+						}
+
+						if(x >= gvMap.w) flip = true
+						if(hspeed < 0) flip = true
+					}
+
+					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64 + (16 * game.difficulty))) squish = true
+				}
+
+				if(gvPlayer && chasing) {
+					if(x < gvPlayer.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
+						hspeed += 0.1
+						if(hspeed < 0) hspeed += 0.1
+					}
+					if(x > gvPlayer.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
+						hspeed -= 0.1
+						if(hspeed > 0) hspeed -= 0.1
+					}
+
+					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0
+				}
+
+				if(frozen) {
+					//Create ice block
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+						icebox = mapNewSolid(shape)
+					}
+
+					//Draw
+					drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+					if(frozen <= 120) {
+					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					}
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					chasing = false
+					squishTime = 0.0
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						mapDeleteSolid(icebox)
+						newActor(IceChunks, x, y)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+
+					//Draw
+					if(chasing) {
+						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+						if(getFrames() % 8 == 0) {
+							local c
+							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
+							else c = actor[newActor(FlameTiny, x + 6, y - 8)]
+							c.vspeed = -0.1
+							c.hspeed = randFloat(0.2) - 0.1
+						}
+					}
+					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+			}
+			else {
+				squishTime += 1.5
+				if(chasing) frame += 0.25
+				else frame += 0.075
+				if(squishTime >= 90 && !chasing) {
+					chasing = true
+					squishTime = 0
+					stopSound(sndFizz)
+					playSound(sndFizz, 0)
+				}
+				if(squishTime >= 300 && chasing) {
+					deleteActor(id)
+					fireWeapon(ExplodeF, x, y, 0, id)
+
+				}
+				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+
+				if(frozen) {
+					squish = false
+					squishTime = 0
+					chasing = false
+				}
+			}
+
+			shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function hurtPlayer() {
+		if(squish && !chasing) return
+		base.hurtPlayer()
+	}
+
+	function hurtBlast() {
+		if(squish) return
+		if(frozen) frozen = 0
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+			frozen = 0
+			icebox = -1
+		}
+		squish = true
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+		if(_element == "fire") {
+			hurtFire()
+			return
+		}
+		else if(_element == "ice") {
+			hurtIce()
+			return
+		}
+		else if(_blast) {
+			hurtBlast()
+			return
+		}
+		if(frozen > 0) return
+		if(chasing) {
+			hurtPlayer()
+			return
+		}
+		if(squish) return
+
+		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
+		else gvPlayer.vspeed = -4
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+		playSound(sndKick, 0)
+
+		squish = true
+	}
+
+	function hurtFire() {
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+		if(!burnt) {
+			fireWeapon(ExplodeF, x, y - 1, 0, id)
+			deleteActor(id)
+			playSound(sndFlame, 0)
+
+			burnt = true
+		}
+	}
+
+	function hurtIce() { frozen = 600 }
+
+	function _typeof() { return "Haywire" }
+}
+
+::Sawblade <- class extends PathCrawler {
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 6, 6, 0)
+	}
+
+	function run() {
+		base.run()
+		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
+		//drawText(font, x - camx + 16, y - camy, dir.tostring())
+		shape.setPos(x, y)
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(2, "normal", true, false)
+	}
+}
+
+
+
+
+
+
+
 
 ////////////////////
 // V0.2.0 ENEMIES //

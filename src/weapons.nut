@@ -224,7 +224,7 @@
 	}
 
 	function destructor() {
-			fireWeaopn(ExplodeF, x, y, alignment, owner)
+		fireWeaopn(ExplodeF, x, y, alignment, owner)
 	}
 }
 
@@ -241,7 +241,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 16)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -249,15 +249,6 @@
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
-		if(frame >= 1) {
-			if(actor.rawin("TNT")) foreach(i in actor["TNT"]) {
-				if(hitTest(shape, i.shape)) {
-					newActor(BadExplode, i.x, i.y)
-					tileSetSolid(i.x, i.y, 0)
-					deleteActor(i.id)
-				}
-			}
-		}
 		if(frame >= 5) deleteActor(id)
 
 		if(gvPlayer) {

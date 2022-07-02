@@ -1633,375 +1633,375 @@
 // 	function hurtIce() { frozen = 600 }
 // }
 
-::Jumpy <- class extends Enemy {
-	frame = 0.0
-	flip = false
-	squish = false
-	squishTime = 0.0
-	smart = false
-	jump = -4.0
+// ::Jumpy <- class extends Enemy {
+// 	frame = 0.0
+// 	flip = false
+// 	squish = false
+// 	squishTime = 0.0
+// 	smart = false
+// 	jump = -4.0
 
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x.tofloat(), _y.tofloat())
-		shape = Rec(x, y, 6, 6, 0, 0, 2)
+// 	constructor(_x, _y, _arr = null) {
+// 		base.constructor(_x.tofloat(), _y.tofloat())
+// 		shape = Rec(x, y, 6, 6, 0, 0, 2)
 
-		if(_arr != null && _arr != "") jump = abs(_arr.tofloat()) * -1.0
-	}
+// 		if(_arr != null && _arr != "") jump = abs(_arr.tofloat()) * -1.0
+// 	}
 
-	function run() {
-		base.run()
+// 	function run() {
+// 		base.run()
 
-		if(active) {
-			if(gvPlayer) {
-				if(x > gvPlayer.x) flip = 1
-				else flip = 0
-			}
+// 		if(active) {
+// 			if(gvPlayer) {
+// 				if(x > gvPlayer.x) flip = 1
+// 				else flip = 0
+// 			}
 
-			if(!placeFree(x, y + 1)) vspeed = jump
-			if(!placeFree(x + 0, y - 2) && !placeFree(x + 2, y)) hspeed = 0
-			if(!placeFree(x - 0, y - 2) && !placeFree(x - 2, y)) hspeed = 0
-			vspeed += 0.15
+// 			if(!placeFree(x, y + 1)) vspeed = jump
+// 			if(!placeFree(x + 0, y - 2) && !placeFree(x + 2, y)) hspeed = 0
+// 			if(!placeFree(x - 0, y - 2) && !placeFree(x - 2, y)) hspeed = 0
+// 			vspeed += 0.15
 
-			if(!frozen) {
-				if(placeFree(x + hspeed, y)) x += hspeed
-				if(placeFree(x, y + vspeed)) y += vspeed
-				else vspeed /= 2
-			}
+// 			if(!frozen) {
+// 				if(placeFree(x + hspeed, y)) x += hspeed
+// 				if(placeFree(x, y + vspeed)) y += vspeed
+// 				else vspeed /= 2
+// 			}
 
-			shape.setPos(x, y)
+// 			shape.setPos(x, y)
 
-			//Draw
-			drawSpriteEx(sprJumpy, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 			//Draw
+// 			drawSpriteEx(sprJumpy, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
-			if(frozen) {
-				//Create ice block
-				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-					icebox = mapNewSolid(shape)
-				}
+// 			if(frozen) {
+// 				//Create ice block
+// 				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+// 					icebox = mapNewSolid(shape)
+// 				}
 
-				//Draw
-				drawSpriteEx(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				//Draw
+// 				drawSpriteEx(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
-				if(frozen <= 120) {
-				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-				}
-				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-			}
-			else {
-				//Delete ice block
-				if(icebox != -1) {
-					mapDeleteSolid(icebox)
-					newActor(IceChunks, x, y)
-					icebox = -1
-					if(gvPlayer) if(x > gvPlayer.x) flip = true
-					else flip = false
-				}
-			}
-		}
+// 				if(frozen <= 120) {
+// 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+// 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+// 				}
+// 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+// 			}
+// 			else {
+// 				//Delete ice block
+// 				if(icebox != -1) {
+// 					mapDeleteSolid(icebox)
+// 					newActor(IceChunks, x, y)
+// 					icebox = -1
+// 					if(gvPlayer) if(x > gvPlayer.x) flip = true
+// 					else flip = false
+// 				}
+// 			}
+// 		}
 
-		if(x < 0) hspeed = 0.0
-		if(x > gvMap.w) hspeed = -0.0
-	}
+// 		if(x < 0) hspeed = 0.0
+// 		if(x > gvMap.w) hspeed = -0.0
+// 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
-		gvPlayer.hurt = 3
-	}
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 		gvPlayer.hurt = 3
+// 	}
 
-	function hurtBlast() {
-		if(icebox != -1) {
-			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, y)
-		}
-		newActor(Poof, x, y - 1)
-		deleteActor(id)
-		playSound(sndFlame, 0)
+// 	function hurtBlast() {
+// 		if(icebox != -1) {
+// 			mapDeleteSolid(icebox)
+// 			newActor(IceChunks, x, y)
+// 		}
+// 		newActor(Poof, x, y - 1)
+// 		deleteActor(id)
+// 		playSound(sndFlame, 0)
 
 
-	}
+// 	}
 
-	function hurtFire() {
-		newActor(Flame, x, y - 1)
-		deleteActor(id)
-		playSound(sndFlame, 0)
+// 	function hurtFire() {
+// 		newActor(Flame, x, y - 1)
+// 		deleteActor(id)
+// 		playSound(sndFlame, 0)
 
-	}
+// 	}
 
-	function hurtIce() { frozen = 600 }
-}
+// 	function hurtIce() { frozen = 600 }
+// }
 
-::Haywire <- class extends Enemy {
-	burnt = false
-	frame = 0.0
-	flip = false
-	squish = false
-	squishTime = 0.0
-	chasing = false
-	mspeed = 1.0
-	hspeed = 0.0
+// ::Haywire <- class extends Enemy {
+// 	burnt = false
+// 	frame = 0.0
+// 	flip = false
+// 	squish = false
+// 	squishTime = 0.0
+// 	chasing = false
+// 	mspeed = 1.0
+// 	hspeed = 0.0
 
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x.tofloat(), _y.tofloat())
-		shape = Rec(x, y, 6, 6, 0, 0, 1)
-		if(gvPlayer) if(x > gvPlayer.x) flip = true
-	}
+// 	constructor(_x, _y, _arr = null) {
+// 		base.constructor(_x.tofloat(), _y.tofloat())
+// 		shape = Rec(x, y, 6, 6, 0, 0, 1)
+// 		if(gvPlayer) if(x > gvPlayer.x) flip = true
+// 	}
 
-	function run() {
-		base.run()
+// 	function run() {
+// 		base.run()
 
-		if(active) {
-			if(!squish || chasing) {
-				if(placeFree(x, y + 1)) vspeed += 0.2
-				if(placeFree(x, y + vspeed)) y += vspeed
-				else vspeed /= 2
+// 		if(active) {
+// 			if(!squish || chasing) {
+// 				if(placeFree(x, y + 1)) vspeed += 0.2
+// 				if(placeFree(x, y + vspeed)) y += vspeed
+// 				else vspeed /= 2
 
-				if(chasing) mspeed = fabs(hspeed)
-				else mspeed = 0.75
+// 				if(chasing) mspeed = fabs(hspeed)
+// 				else mspeed = 0.75
 
-				if(chasing) squishTime++
-				if(squishTime >= 200 && chasing) {
-					deleteActor(id)
-					newActor(BadExplode, x, y)
+// 				if(chasing) squishTime++
+// 				if(squishTime >= 200 && chasing) {
+// 					deleteActor(id)
+// 					newActor(BadExplode, x, y)
 
-				}
+// 				}
 
-				if(y > gvMap.h + 8) deleteActor(id)
+// 				if(y > gvMap.h + 8) deleteActor(id)
 
-				if(!frozen) {
-					if(flip) {
-						if(placeFree(x - mspeed, y)) x -= mspeed
-						else if(placeFree(x - (mspeed * 2), y - (mspeed * 2))) {
-							x -= mspeed
-							y -= 1.0
-						} else if(placeFree(x - mspeed, y - (mspeed * 2))) {
-							x -= mspeed
-							y -= 1.0
-						} else flip = false
+// 				if(!frozen) {
+// 					if(flip) {
+// 						if(placeFree(x - mspeed, y)) x -= mspeed
+// 						else if(placeFree(x - (mspeed * 2), y - (mspeed * 2))) {
+// 							x -= mspeed
+// 							y -= 1.0
+// 						} else if(placeFree(x - mspeed, y - (mspeed * 2))) {
+// 							x -= mspeed
+// 							y -= 1.0
+// 						} else flip = false
 
-						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) {
-							if(!chasing) flip = false
-							else vspeed = -4
-						}
+// 						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) {
+// 							if(!chasing) flip = false
+// 							else vspeed = -4
+// 						}
 
-						if(x <= 0) flip = false
-						if(hspeed > 0) flip = false
-					}
-					else {
-						if(placeFree(x + mspeed, y)) x += mspeed
-						else if(placeFree(x + mspeed, y - mspeed)) {
-							x += mspeed
-							y -= 1.0
-						} else if(placeFree(x + (mspeed * 2), y - (mspeed * 2))) {
-							x += mspeed
-							y -= 1.0
-						} else flip = true
+// 						if(x <= 0) flip = false
+// 						if(hspeed > 0) flip = false
+// 					}
+// 					else {
+// 						if(placeFree(x + mspeed, y)) x += mspeed
+// 						else if(placeFree(x + mspeed, y - mspeed)) {
+// 							x += mspeed
+// 							y -= 1.0
+// 						} else if(placeFree(x + (mspeed * 2), y - (mspeed * 2))) {
+// 							x += mspeed
+// 							y -= 1.0
+// 						} else flip = true
 
-						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) {
-							if(!chasing) flip = true
-							else vspeed = -4
-						}
+// 						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) {
+// 							if(!chasing) flip = true
+// 							else vspeed = -4
+// 						}
 
-						if(x >= gvMap.w) flip = true
-						if(hspeed < 0) flip = true
-					}
+// 						if(x >= gvMap.w) flip = true
+// 						if(hspeed < 0) flip = true
+// 					}
 
-					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64 + (16 * game.difficulty))) squish = true
-				}
+// 					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64 + (16 * game.difficulty))) squish = true
+// 				}
 
-				if(gvPlayer && chasing) {
-					if(x < gvPlayer.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
-						hspeed += 0.1
-						if(hspeed < 0) hspeed += 0.1
-					}
-					if(x > gvPlayer.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
-						hspeed -= 0.1
-						if(hspeed > 0) hspeed -= 0.1
-					}
+// 				if(gvPlayer && chasing) {
+// 					if(x < gvPlayer.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
+// 						hspeed += 0.1
+// 						if(hspeed < 0) hspeed += 0.1
+// 					}
+// 					if(x > gvPlayer.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
+// 						hspeed -= 0.1
+// 						if(hspeed > 0) hspeed -= 0.1
+// 					}
 
-					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0
-				}
+// 					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0
+// 				}
 
-				if(frozen) {
-					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						icebox = mapNewSolid(shape)
-					}
+// 				if(frozen) {
+// 					//Create ice block
+// 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+// 						icebox = mapNewSolid(shape)
+// 					}
 
-					//Draw
-					drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					//Draw
+// 					drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					chasing = false
-					squishTime = 0.0
-				}
-				else {
-					//Delete ice block
-					if(icebox != -1) {
-						mapDeleteSolid(icebox)
-						newActor(IceChunks, x, y)
-						icebox = -1
-						if(gvPlayer) if(x > gvPlayer.x) flip = true
-						else flip = false
-					}
+// 					if(frozen <= 120) {
+// 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+// 						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+// 					}
+// 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+// 					chasing = false
+// 					squishTime = 0.0
+// 				}
+// 				else {
+// 					//Delete ice block
+// 					if(icebox != -1) {
+// 						mapDeleteSolid(icebox)
+// 						newActor(IceChunks, x, y)
+// 						icebox = -1
+// 						if(gvPlayer) if(x > gvPlayer.x) flip = true
+// 						else flip = false
+// 					}
 
-					//Draw
-					if(chasing) {
-						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-						if(getFrames() % 8 == 0) {
-							local c
-							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
-							else c = actor[newActor(FlameTiny, x + 6, y - 8)]
-							c.vspeed = -0.1
-							c.hspeed = randFloat(0.2) - 0.1
-						}
-					}
-					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				}
-			}
-			else {
-				squishTime += 1.5
-				if(chasing) frame += 0.25
-				else frame += 0.075
-				if(squishTime >= 90 && !chasing) {
-					chasing = true
-					squishTime = 0
-					stopSound(sndFizz)
-					playSound(sndFizz, 0)
-				}
-				if(squishTime >= 300 && chasing) {
-					deleteActor(id)
-					newActor(BadExplode, x, y)
+// 					//Draw
+// 					if(chasing) {
+// 						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 						if(getFrames() % 8 == 0) {
+// 							local c
+// 							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
+// 							else c = actor[newActor(FlameTiny, x + 6, y - 8)]
+// 							c.vspeed = -0.1
+// 							c.hspeed = randFloat(0.2) - 0.1
+// 						}
+// 					}
+// 					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				}
+// 			}
+// 			else {
+// 				squishTime += 1.5
+// 				if(chasing) frame += 0.25
+// 				else frame += 0.075
+// 				if(squishTime >= 90 && !chasing) {
+// 					chasing = true
+// 					squishTime = 0
+// 					stopSound(sndFizz)
+// 					playSound(sndFizz, 0)
+// 				}
+// 				if(squishTime >= 300 && chasing) {
+// 					deleteActor(id)
+// 					newActor(BadExplode, x, y)
 
-				}
-				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 				}
+// 				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
-				if(frozen) {
-					squish = false
-					squishTime = 0
-					chasing = false
-				}
-			}
+// 				if(frozen) {
+// 					squish = false
+// 					squishTime = 0
+// 					chasing = false
+// 				}
+// 			}
 
-			shape.setPos(x, y)
-			setDrawColor(0xff0000ff)
-			if(debug) shape.draw()
-		}
-	}
+// 			shape.setPos(x, y)
+// 			setDrawColor(0xff0000ff)
+// 			if(debug) shape.draw()
+// 		}
+// 	}
 
-	function hurtPlayer() {
-		if(squish && !chasing) return
-		base.hurtPlayer()
-	}
+// 	function hurtPlayer() {
+// 		if(squish && !chasing) return
+// 		base.hurtPlayer()
+// 	}
 
-	function hurtBlast() {
-		if(squish) return
-		if(frozen) frozen = 0
-		if(icebox != -1) {
-			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, y)
-			frozen = 0
-			icebox = -1
-		}
-		squish = true
-	}
+// 	function hurtBlast() {
+// 		if(squish) return
+// 		if(frozen) frozen = 0
+// 		if(icebox != -1) {
+// 			mapDeleteSolid(icebox)
+// 			newActor(IceChunks, x, y)
+// 			frozen = 0
+// 			icebox = -1
+// 		}
+// 		squish = true
+// 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
-		if(frozen > 0) return
-		if(chasing) {
-			hurtPlayer()
-			return
-		}
-		if(squish) return
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 		if(frozen > 0) return
+// 		if(chasing) {
+// 			hurtPlayer()
+// 			return
+// 		}
+// 		if(squish) return
 
-		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
-		else gvPlayer.vspeed = -4
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
-		}
-		playSound(sndKick, 0)
+// 		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
+// 		else gvPlayer.vspeed = -4
+// 		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+// 			gvPlayer.anim = gvPlayer.anJumpU
+// 			gvPlayer.frame = gvPlayer.anJumpU[0]
+// 		}
+// 		playSound(sndKick, 0)
 
-		squish = true
-	}
+// 		squish = true
+// 	}
 
-	function hurtFire() {
-		if(icebox != -1) {
-			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, y)
-		}
-		if(!burnt) {
-			newActor(BadExplode, x, y - 1)
-			deleteActor(id)
-			playSound(sndFlame, 0)
+// 	function hurtFire() {
+// 		if(icebox != -1) {
+// 			mapDeleteSolid(icebox)
+// 			newActor(IceChunks, x, y)
+// 		}
+// 		if(!burnt) {
+// 			newActor(BadExplode, x, y - 1)
+// 			deleteActor(id)
+// 			playSound(sndFlame, 0)
 
-			burnt = true
-		}
-	}
+// 			burnt = true
+// 		}
+// 	}
 
-	function hurtIce() { frozen = 600 }
+// 	function hurtIce() { frozen = 600 }
 
-	function _typeof() { return "Haywire" }
-}
+// 	function _typeof() { return "Haywire" }
+// }
 
-::Sawblade <- class extends PathCrawler {
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y, _arr)
-		shape = Rec(x, y, 6, 6, 0)
-	}
+// ::Sawblade <- class extends PathCrawler {
+// 	constructor(_x, _y, _arr = null) {
+// 		base.constructor(_x, _y, _arr)
+// 		shape = Rec(x, y, 6, 6, 0)
+// 	}
 
-	function run() {
-		base.run()
-		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
-		//drawText(font, x - camx + 16, y - camy, dir.tostring())
-		shape.setPos(x, y)
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
-	}
-}
+// 	function run() {
+// 		base.run()
+// 		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
+// 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
+// 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
+// 		shape.setPos(x, y)
+// 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
+// 	}
+// }
 
-::BadExplodeS <- class extends Actor {
-	frame = 0.0
-	shape = 0
+// ::BadExplodeS <- class extends Actor {
+// 	frame = 0.0
+// 	shape = 0
 
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+// 	constructor(_x, _y, _arr = null) {
+// 		base.constructor(_x, _y)
 
-		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+// 		stopSound(sndExplodeF)
+// 		playSound(sndExplodeF, 0)
 
-		shape = Rec(x, y, 16, 16, 0)
-	}
+// 		shape = Rec(x, y, 16, 16, 0)
+// 	}
 
-	function run() {
-		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		frame += 0.1
+// 	function run() {
+// 		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+// 		frame += 0.1
 
-		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 8
-			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.1
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.1
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.1
-			}
-		}
-		if(frame >= 1) {
-				if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
-				if(hitTest(shape, i.shape)) {
-					newActor(WoodChunks, i.x, i.y)
-					tileSetSolid(i.x, i.y, 0)
-					deleteActor(i.id)
-				}
-			}
+// 		if(gvPlayer) {
+// 			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 8
+// 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+// 				if(x < gvPlayer.x) gvPlayer.hspeed += 0.1
+// 				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.1
+// 				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.1
+// 			}
+// 		}
+// 		if(frame >= 1) {
+// 				if(actor.rawin("WoodBlock")) foreach(i in actor["WoodBlock"]) {
+// 				if(hitTest(shape, i.shape)) {
+// 					newActor(WoodChunks, i.x, i.y)
+// 					tileSetSolid(i.x, i.y, 0)
+// 					deleteActor(i.id)
+// 				}
+// 			}
 
-		}
-		if(frame >= 5) deleteActor(id)
-	}
-}
+// 		}
+// 		if(frame >= 5) deleteActor(id)
+// 	}
+// }
 
 ::Livewire <- class extends Enemy {
 	burnt = false
