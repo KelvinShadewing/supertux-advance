@@ -543,7 +543,7 @@
 			if(hittime >= 150) {
 				tileSetSolid(x, y, 0)
 				deleteActor(id)
-				newActor(ExplodeF, x, y)
+				fireWeapon(ExplodeF, x, y, 0, id)
 			}
 		}
 		else {
@@ -560,7 +560,7 @@
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, 0)
 					deleteActor(id)
-					newActor(ExplodeF, x, y)
+					fireWeapon(ExplodeF, x, y, 0, id)
 					i.piercing--
 					beenhit = true
 				}
@@ -568,7 +568,7 @@
 			else {
 				tileSetSolid(x, y, 0)
 				deleteActor(id)
-				newActor(ExplodeF, x, y)
+				fireWeapon(ExplodeF, x, y, 0, id)
 				i.piercing--
 				beenhit = true
 			}

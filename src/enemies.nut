@@ -1327,6 +1327,7 @@
 
 ::Ouchin <- class extends Enemy {
 	sf = 0.0
+	thorny = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
