@@ -2156,6 +2156,7 @@
 		dark = 1.0
 		cut = 1.0
 		blast = 1.0
+		stomp = 1.0
 	}
 
 	constructor(_x, _y, _arr = null){
