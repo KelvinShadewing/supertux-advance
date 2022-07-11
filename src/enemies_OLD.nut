@@ -100,7 +100,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {} //Spiked enemies can just call hurtPlayer() here
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {} //Spiked enemies can just call hurtPlayer() here
 
 // 	function hurtPlayer() { //Default player damage
 // 		if(gvPlayer.blinking > 0) return
@@ -245,7 +245,7 @@
 // 		base.hurtPlayer()
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(squish) return
 
 
@@ -363,7 +363,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer.anim != gvPlayer.anSlide) hurtPlayer()
 // 		else {
 // 			newActor(Poof, x, ystart - 8)
@@ -473,7 +473,7 @@
 // 		if(gvPlayer) gvPlayer.hurt = 2
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer && !frozen) {
 // 			hurtPlayer()
 // 		}
@@ -669,7 +669,7 @@
 
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(squish) return
 
 // 		stopSound(sndFizz)
@@ -826,7 +826,7 @@
 // 		if(x > gvMap.w) hspeed = -fabs(hspeed)
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		newActor(Poof, x, y)
 // 		deleteActor(id)
 // 		playSound(sndSquish, 0)
@@ -950,7 +950,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		local c = newActor(DeadNME, x, y)
 // 		actor[c].sprite = sprite
 // 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
@@ -1045,7 +1045,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 // 	}
 
@@ -1152,7 +1152,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 // 	}
 
@@ -1249,7 +1249,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 // 	}
 
@@ -1305,7 +1305,7 @@
 // 		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 // 	}
 
@@ -1456,7 +1456,7 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 // 	}
 
@@ -1589,7 +1589,7 @@
 // 		base.hurtPlayer()
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 
 
 // 		if(icebox != -1) {
@@ -1704,7 +1704,7 @@
 // 		if(x > gvMap.w) hspeed = -0.0
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		gvPlayer.hurt = 3
 // 	}
 
@@ -1910,7 +1910,7 @@
 // 		squish = true
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 // 		if(frozen > 0) return
 // 		if(chasing) {
 // 			hurtPlayer()
@@ -2137,7 +2137,7 @@
 
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		stopSound(sndFizz)
@@ -2277,7 +2277,7 @@
 		gvPlayer.hurt = 3
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 
@@ -2434,7 +2434,7 @@
 		gvPlayer.hurt = 4
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 

@@ -35,12 +35,16 @@
 [x] Bouncing castle fire
 [x] Fish
 [x] Haywire
+[x] Owls
 
 ## Bosses
 
-[x] Nolok
-[ ] Yeti
+[ ] Nolok
+[x] Yeti
 [ ] Orca
+[ ] Mega Snake
+[ ] Ika Ika
+[ ] Servalot
 
 ## Powerups
 
@@ -75,7 +79,9 @@
 [ ] Boiling Water
 [ ] Mod Tracking (for requirement checks)
 [ ] Bonus coins for Xtreme levels
+[ ] Two-player support
 
 ## Bugs to fix
 
 * Bombs lose solidity if frozen, then ground-pounded, then frozen again
+* Finish porting enemies and yeti to new actor system

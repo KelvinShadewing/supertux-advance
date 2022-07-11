@@ -19,12 +19,12 @@
 		dark = 1.0
 		cut = 1.0
 		blast = 1.0
+		stomp = 1.0
 	}
 	blinking = 0
 	blinkMax = 10
 	touchDamage = 0.0
 	element = "normal"
-	stompDamage = 1.0
 	thorny = false
 
 	constructor(_x, _y, _arr = null) {
@@ -63,12 +63,12 @@
 			if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 				if(gvPlayer.invincible > 0) hurtInvinc()
 				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !thorny && !gvPlayer.swimming) {
-					getHurt(stompDamage, "normal", false, false)
+					getHurt(1, "normal", false, false, true)
 					if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 					else gvPlayer.vspeed = -4.0
 				}
 				else if(gvPlayer.rawin("anSlide") && blinking == 0 && !thorny) {
-					if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false)
+					if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
 					else hurtPlayer()
 				}
 				else hurtPlayer()
@@ -95,12 +95,13 @@
 		if(!nocount) game.enemies--
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(blinking > 0) return
 
 		local damage = _mag * damageMult[_element]
 		if(_cut) damage *= damageMult["cut"]
 		if(_blast) damage *= damageMult["blast"]
+		if(_stomp) damage *= damageMult["stomp"]
 
 		health -= damage
 		if(damage > 0) blinking = blinkMax
@@ -271,7 +272,7 @@
 		base.hurtPlayer()
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_blast) {
@@ -362,7 +363,21 @@
 	up = false
 	flip = 1
 	touchDamage = 2.0
-	stompDamage = 0.0
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 0.0
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -422,9 +437,10 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(!gvPlayer) return
 		if(_mag == 0) return
+		if(_stomp) return
 
 		if(hitTest(shape, gvPlayer.shape)) {
 			local didhurt = false
@@ -558,7 +574,7 @@
 		if(x > gvMap.w) hspeed = -fabs(hspeed)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "ice") {
 			hurtIce()
 			return
@@ -762,7 +778,7 @@
 
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "ice") {
 			hurtIce()
 			return
@@ -863,7 +879,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 		if(_element == "fire") hurtFire()
 	}
@@ -976,7 +992,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 		if(_element == "fire") hurtFire()
 	}
@@ -1080,7 +1096,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 		if(_element == "fire") hurtFire()
 	}
@@ -1141,7 +1157,7 @@
 		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 		if(_element == "fire") hurtFire()
 	}
@@ -1297,7 +1313,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 		if(_element == "fire") hurtFire()
 	}
@@ -1388,7 +1404,7 @@
 		if(gvPlayer) gvPlayer.hurt = 2
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") hurtFire()
 		if(_element == "ice") hurtIce()
 	}
@@ -1507,7 +1523,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_blast || _element == "fire") {
 			hurtBlast()
 			return
@@ -1601,7 +1617,7 @@
 		newActor(Poof, x, y)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -1617,6 +1633,7 @@
 	range = 0
 	dir = 0.5
 	flip = 0
+	touchDamage = 2.0
 
 	constructor(_x, _y, _arr = 0) {
 		base.constructor(_x, _y)
@@ -1683,7 +1700,7 @@
 		base.hurtPlayer()
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -1814,7 +1831,7 @@
 		if(x > gvMap.w) hspeed = -0.0
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -2036,7 +2053,7 @@
 		squish = true
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return

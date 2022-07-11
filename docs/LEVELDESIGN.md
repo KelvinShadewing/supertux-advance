@@ -40,7 +40,9 @@ The object layers include:
 
 * **actor** - Actors are made using tile objects who's image matches the type of actor they create. Infoblocks and comment nodes must have names defined that match a respective entry in the language file. Actors that take other special properties will also use the name.
 
-* **platform** - Currently being reworked. Moving platforms will use a rectangle to define how far they can move, and a number in their name slot to indicate how many tiles wide the platform will be.
+  Objects created on the actor layer are added to the `mapActor` table, using the built-in Tiled object ID. They can then be directly addressed using the format `actor[mapActor[id]]`, with `id` being the object ID defined by Tiled.
+
+  Some actors require shapes to be defined within the map. For these, shape objects are used with the name set to the actor's class name. Arguments to be passed to the object follow the name, and are separated by commas without spaces.
 
 * **secret** - This layer makes a special type of trigger zone that, when touched, will cause the corresponding tiles from the secret tile layer to disappear.
 
@@ -70,13 +72,13 @@ The NPC actor (bald human in the map editor) has several mandatory arguments tha
 
 * `sayRand` - Will pick a random line from the following arguments to say each time the character is spoken to. Can be used with just one line if an NPC should say the same thing every time.
 
-* `sayChar` - Says a different line for each playable character. Requires an entry for Tux, Konqi, Midi, and default, in that order.
+* `sayChar` - Says a different line for each playable character. Requires an entry for Tux, Konqi, Midi, and default, in that order. Default is used for modded characters.
 
 Lines are all arguments following talk mode. There can be any number depending on the function being used. They should be the name of entries in the language file's `npc` field.
 
 ## Other Notes
 
-Tux dolls are items that revive you once you die, without having to go back to a checkpoint. 
+Player dolls are items that revive you once you die, without having to go back to a checkpoint. 
 
 You can have multiple checkpoints in a level. Use this to your advantage if you want to create levels with multiple paths. Remember that everything resets when the player dies, so, for instance, enemies that are necessary to progress, like hopping on them to cross a gap, will respawn upon a new life. Be sure not to put enemies too close to a checkpoint.
 
