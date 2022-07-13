@@ -234,6 +234,7 @@
 	piercing = -1
 	element = "fire"
 	power = 2
+	blast = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)

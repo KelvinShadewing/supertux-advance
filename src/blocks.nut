@@ -556,7 +556,7 @@
 		}
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire") && !beenhit) {
-			if(i.rawin("frame")) {
+			if(i.rawin("frame") && i.blast) {
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, 0)
 					deleteActor(id)

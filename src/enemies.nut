@@ -783,7 +783,7 @@
 			hurtIce()
 			return
 		}
-		else if(_element == "fire") {
+		else if(_element == "fire" || _blast) {
 			hurtFire()
 			return
 		}
@@ -791,11 +791,13 @@
 
 		stopSound(sndFizz)
 		playSound(sndFizz, 0)
-		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
-		else gvPlayer.vspeed = -4
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
+		if(_stomp) {
+			if(getcon("jump", "hold")) gvPlayer.vspeed = -8
+			else gvPlayer.vspeed = -4
+			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+				gvPlayer.anim = gvPlayer.anJumpU
+				gvPlayer.frame = gvPlayer.anJumpU[0]
+			}
 		}
 
 		squish = true
@@ -805,6 +807,7 @@
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
+			icebox = -1
 		}
 		if(!burnt) {
 			fireWeapon(ExplodeF, x, y - 1, 2, id)
@@ -1576,6 +1579,7 @@
 	timer = 30
 	counting = false
 	touchDamage = 2.0
+	element = "ice"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1609,7 +1613,7 @@
 		}
 
 		drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy)
-		if(vspeed > 0) fireWeapon(AfterIce, x, y, 0, id)
+		if(vspeed > 0) fireWeapon(AfterIce, x, y, 1, id)
 	}
 
 	function hurtFire() {
@@ -1865,6 +1869,7 @@
 		stopSound(sndKick)
 		playSound(sndKick, 0)
 		newActor(Poof, x, y)
+		base.die()
 	}
 }
 

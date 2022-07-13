@@ -1,4 +1,5 @@
 ::drawBG <- 0
+::gvHorizon <- 0
 
 ::dbgNone <- function() {
 	setDrawColor(0xff)
