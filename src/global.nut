@@ -150,6 +150,7 @@
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
 ::gvCamTarget <- false
+::gvFadeTime <- 0
 
 //Temporary items
 ::gvKeyCopper <- false

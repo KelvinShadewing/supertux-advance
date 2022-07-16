@@ -808,6 +808,10 @@
 	//Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
+	if(gvFadeTime > 0) {
+		setDrawColor(min(255, gvFadeTime * 8))
+		drawRec(0, 0, screenW(), screenH(), true)
+	}
 
 	//Handle berries
 	if(game.berries > 0 && game.berries % 16 == 0) {

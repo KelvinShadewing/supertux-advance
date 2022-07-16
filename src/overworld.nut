@@ -476,6 +476,10 @@
 	//Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
+	if(gvFadeTime > 0) {
+		setDrawColor(min(255, gvFadeTime * 8))
+		drawRec(0, 0, screenW(), screenH(), true)
+	}
 
 	//Follow player
 	local px = 0

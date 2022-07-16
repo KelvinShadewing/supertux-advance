@@ -13,6 +13,8 @@
 ::font2 <- newFont(sprFont2, 33, 0, true, -4)
 ::sprFont2G <- newSprite("res/gfx/font2-gray.png", 12, 14, 0, 0, 0, 0)
 ::font2G <- newFont(sprFont2G, 33, 0, true, -4)
+::sprFont2I <- newSprite("res/gfx/font2-ice.png", 12, 14, 0, 0, 0, 0)
+::font2I <- newFont(sprFont2I, 33, 0, true, -4)
 ::sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8, 0, 0, 0, 0)
 ::sprTitle <- newSprite("res/gfx/title.png", 220, 55, 0, 0, 110, 0)
 
@@ -294,7 +296,7 @@
 ::bgAurora <- newSprite("res/gfx/aurora.png", 720, 240, 0, 0, 0, 0)
 ::bgAuroraNight <- newSprite("res/gfx/aurora-night.png", 720, 240, 0, 0, 0, 0)
 ::bgRiverCity <- newSprite("res/gfx/rivercity.png", 380, 240, 0, 0, 0, 0)
-::bgOcean <- newSprite("res/gfx/ocean.png", 480, 240, 0, 0, 0, 0)
+::bgOcean <- newSprite("res/gfx/ocean.png", 480, 8, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 180, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 720, 240, 0, 0, 0, 0)

@@ -90,7 +90,15 @@
 
 ::dbgOcean <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgOcean, 0, ((-camx / 8) % 480) + (i * 480), (screenH() / 2) - 120)
+		for(local j = 0; j < 16; j++) {
+			drawSprite(bgOcean, j, ((-camx / 16) % 480) + (i * 480), j * 8)
+		}
+	}
+
+	for(local i = 0; i < 2; i++) {
+		for(local j = 30; j >= 16; j--) {
+			drawSprite(bgOcean, j, ((-camx / abs(31 - j)) % 480) + (i * 480), j * 8)
+		}
 	}
 }
 

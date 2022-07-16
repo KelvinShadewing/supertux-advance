@@ -1154,64 +1154,16 @@
                  "y":416
                 }, 
                 {
-                 "gid":225,
+                 "gid":265,
                  "height":16,
-                 "id":347,
+                 "id":352,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":2032,
+                 "x":1984,
                  "y":544
-                }, 
-                {
-                 "gid":225,
-                 "height":16,
-                 "id":348,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":2000,
-                 "y":544
-                }, 
-                {
-                 "gid":225,
-                 "height":16,
-                 "id":349,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1952,
-                 "y":528
-                }, 
-                {
-                 "gid":225,
-                 "height":16,
-                 "id":350,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1904,
-                 "y":512
-                }, 
-                {
-                 "gid":225,
-                 "height":16,
-                 "id":351,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1872,
-                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1220,13 +1172,13 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":352,
+ "nextobjectid":353,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest"
+         "value":"drawBG = dbgOcean"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
