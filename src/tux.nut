@@ -312,7 +312,7 @@
 					frame += 0.25
 
 					if(floor(frame) > 1) {
-						if(fabs(hspeed) < 0.5 && game.weapon != 4) anim = anCrawl
+						if(fabs(hspeed) <= 0.5 && game.weapon != 4) anim = anCrawl
 						else anim = anSlide
 						shape = shapeSlide
 					}
@@ -370,10 +370,16 @@
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold") && !autocon.down || fabs(hspeed) < 0.05) && !freeDown && game.weapon != 4) || (fabs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold"))) || (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) if(anim == anSlide || anim == anCrawl) {
-					if(getcon("down", "hold") || autocon.down|| !placeFree(x, y - 8) || autocon.down) anim = anCrawl
-					else anim = anWalk
+				if(((!getcon("down", "hold") && !autocon.down
+				|| (fabs(hspeed) < 0.05) && !placeFree(x, y + 2) && game.weapon != 4))
+				|| (fabs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold")))
+				|| (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) {
+					if(anim == anSlide || anim == anCrawl) {
+						if(getcon("down", "hold") || autocon.down || !placeFree(x, y - 8)) anim = anCrawl
+						else anim = anWalk
+					}
 				}
+
 				if(getcon("jump", "press") || getcon("up", "press")) if(!getcon("shoot", "hold")) if(placeFree(x, y + 2) && placeFree(x, y - 2)) anim = anFall
 			}
 
@@ -587,7 +593,7 @@
 						shape = shapeSlide
 					}
 
-					if(placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) anim = anSlide
+					if((placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) && !onPlatform()) anim = anSlide
 				}
 			} else {
 				if(hspeed < 1 && endMode) hspeed += 0.2
@@ -630,16 +636,15 @@
 				newActor(Splash, x, y)
 			}
 
-
-			if(anim == anSlide && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
-				//If Tux hits the ground while sliding
+			//Landing while sliding
+			if(anim == anSlide && !placeFree(x, y + 1) && vspeed >= 1 && placeFree(x + hspeed, y) && !onPlatform()) {
 				if(flip) hspeed -= vspeed / 2.5
 				else hspeed += vspeed / 2.5
 				vspeed = 0
 			}
 
 			//Max ground speed
-			if(!freeDown){
+			if(!placeFree(x, y + 1)){
 				if(game.weapon == 2) {
 					if(hspeed > 8) hspeed = 8
 					if(hspeed < -8) hspeed = -8

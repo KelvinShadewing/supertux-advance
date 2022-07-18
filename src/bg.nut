@@ -97,7 +97,7 @@
 
 	for(local i = 0; i < 2; i++) {
 		for(local j = 30; j >= 16; j--) {
-			drawSprite(bgOcean, j, ((-camx / abs(31 - j)) % 480) + (i * 480), j * 8)
+			drawSprite(bgOcean, j, ((-camx / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
 		}
 	}
 }

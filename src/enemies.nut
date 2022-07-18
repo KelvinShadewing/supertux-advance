@@ -2419,6 +2419,18 @@
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "fire") {
+			hurtFire()
+			return
+		}
+		if(_element == "ice") {
+			hurtIce()
+			return
+		}
+		if(_blast) {
+			hurtBlast()
+			return
+		}
 		if(squish) return
 
 
