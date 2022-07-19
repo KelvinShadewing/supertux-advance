@@ -2130,6 +2130,8 @@
 	flip = false
 	squish = false
 	squishTime = 0.0
+	touchDamage = 2.0
+	element = "shock"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())

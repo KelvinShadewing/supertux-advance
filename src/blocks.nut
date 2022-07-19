@@ -79,12 +79,13 @@
 			}
 		}
 
-		if(actor.rawin("BadExplode")) foreach(i in actor["BadExplode"]) {
-			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0 && i.blast) {
 				if(coins <= 1) {
 					deleteActor(id)
 					newActor(WoodChunks, x, y)
-					playSoundChannel(sndBump, 0, 2)
+					stopSound(sndBump)
+					playSound(sndBump, 0)
 					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
 				}
@@ -92,43 +93,8 @@
 					vspeed = -2
 					coins--
 					newActor(CoinEffect, x, y - 16)
-					playSoundChannel(sndBump, 0, 2)
-				}
-			}
-		}
-
-		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
-			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
-				if(coins <= 1) {
-					deleteActor(id)
-					newActor(WoodChunks, x, y)
-					playSoundChannel(sndBump, 0, 2)
-					tileSetSolid(x, y, oldsolid)
-					if(coins > 0) newActor(CoinEffect, x, y - 16)
-				}
-				else {
-					vspeed = -2
-					coins--
-					newActor(CoinEffect, x, y - 16)
-					playSoundChannel(sndBump, 0, 2)
-				}
-			}
-		}
-
-		if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"]) {
-			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0) {
-				if(coins <= 1) {
-					deleteActor(id)
-					newActor(WoodChunks, x, y)
-					playSoundChannel(sndBump, 0, 2)
-					tileSetSolid(x, y, oldsolid)
-					if(coins > 0) newActor(CoinEffect, x, y - 16)
-				}
-				else {
-					vspeed = -2
-					coins--
-					newActor(CoinEffect, x, y - 16)
-					playSoundChannel(sndBump, 0, 2)
+					stopSound(sndBump)
+					playSound(sndBump, 0)
 				}
 			}
 		}
@@ -526,14 +492,15 @@
 	hittime = 0.0
 	frame = 0.0
 	fireshape = null
-	beenhit = false
+	oldsolid = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)
-		tileSetSolid(x, y, 1)
 		fireshape = Rec(x, y, 14, 12, 0)
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
 	}
 
 	function run() {
@@ -555,22 +522,20 @@
 			}
 		}
 
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire") && !beenhit) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire")) {
 			if(i.rawin("frame") && i.blast) {
 				if(i.frame >= 1) {
-					tileSetSolid(x, y, 0)
+					tileSetSolid(x, y, oldsolid)
 					deleteActor(id)
 					fireWeapon(ExplodeF, x, y, 0, id)
 					i.piercing--
-					beenhit = true
 				}
 			}
 			else {
-				tileSetSolid(x, y, 0)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				fireWeapon(ExplodeF, x, y, 0, id)
 				i.piercing--
-				beenhit = true
 			}
 		}
 
@@ -589,31 +554,33 @@
 	gothit = false
 	hittime = 0.0
 	frame = 0.0
+	fireshape = null
+	oldsolid = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 10, 10, 0)
+		oldsolid = tileGetSolid(x, y)
 		tileSetSolid(x, y, 1)
+		fireshape = Rec(x, y, 16, 16, 0)
 	}
 
 	function run() {
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast && i.element == "fire") && !beenhit) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast && i.element == "fire")) {
 			if(i.rawin("frame")) {
-				if(i.frame >= 2) {
-					tileSetSolid(x, y, 0)
+				if(i.frame >= 1) {
+					tileSetSolid(x, y, oldsolid)
 					deleteActor(id)
 					newActor(ExplodeF, x, y)
 					i.piercing--
-					beenhit = true
 				}
 			}
 			else {
-				tileSetSolid(x, y, 0)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(ExplodeF, x, y)
 				i.piercing--
-				beenhit = true
 			}
 		}
 
