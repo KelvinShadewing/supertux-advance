@@ -2307,6 +2307,7 @@
 	smart = false
 	moving = false
 	element = "fire"
+	touchDamage = 2.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -2411,11 +2412,6 @@
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
-	}
-
-	function hurtPlayer() {
-		if(squish) return
-		gvPlayer.hurt = 3
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2618,4 +2614,12 @@
 		actor[c].spin = 30
 		playSound(sndKick, 0)
 	}
+}
+
+::MrIceguy <- class extends Enemy {
+	element = "ice"
+	touchDamage = 2.0
+	slideTimer = 8
+	sliding = false
+	flip = 0
 }

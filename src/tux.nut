@@ -370,10 +370,10 @@
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold") && !autocon.down
-				|| (fabs(hspeed) < 0.05) && !placeFree(x, y + 2) && game.weapon != 4))
-				|| (fabs(hspeed) < 0.05 && (game.weapon == 4 && !getcon("shoot", "hold")))
-				|| (game.weapon == 4 && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) {
+				if((!getcon("down", "hold") && !autocon.down  && game.weapon != 3 && game.weapon != 4 && !getcon("shoot", "hold"))
+				|| (fabs(hspeed) < 0.05 && !placeFree(x, y + 2) && game.weapon != 4)
+				|| (fabs(hspeed) < 0.05 && (game.weapon != 3 || game.weapon == 4) && !getcon("shoot", "hold"))
+				|| ((game.weapon == 4 || game.weapon == 3) && !getcon("shoot", "hold") && !getcon("down", "hold") && !autocon.down)) {
 					if(anim == anSlide || anim == anCrawl) {
 						if(getcon("down", "hold") || autocon.down || !placeFree(x, y - 8)) anim = anCrawl
 						else anim = anWalk

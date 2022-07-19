@@ -605,7 +605,7 @@
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
-			newActor(BadExplode, x, y)
+			fireWeapon(ExplodeF, x, y, 0, id)
 			deleteActor(id)
 		}
 
