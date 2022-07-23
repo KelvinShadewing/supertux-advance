@@ -28,6 +28,21 @@
 // NORMAL ATTACKS //
 ////////////////////
 
+::MeleeHit <- class extends WeaponEffect {
+	element = "normal"
+	timer = 4
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+}
+
 ::StompPoof <- class extends WeaponEffect{
 	power = 1
 	piercing = -1
@@ -175,7 +190,7 @@
 		frame += 0.2
 		x += hspeed
 		y += vspeed
-		if(gvPlayer) x += gvPlayer.hspeed
+		if(checkActor(owner)) x += actor[owner].hspeed
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
@@ -224,7 +239,7 @@
 	}
 
 	function destructor() {
-		fireWeaopn(ExplodeF, x, y, alignment, owner)
+		fireWeapon(ExplodeF, x, y, alignment, owner)
 	}
 }
 

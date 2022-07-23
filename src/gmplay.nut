@@ -446,7 +446,7 @@
 					break
 
 				case 80:
-					//TODO: Mr. Ice Guy
+					c = newActor(MrIceguy, i.x + 8, i.y - 8, i.name)
 					break
 
 				case 81:

@@ -199,6 +199,8 @@
 ::defWildcap <- sprWildcap
 ::sprOwlBrown <- newSprite("res/gfx/owl-brown.png", 32, 32, 0, 0, 16, 16)
 ::defOwlBrown <- sprOwlBrown
+::sprMrIceguy <- newSprite("res/gfx/mr-iceblock.png", 20, 19, 0, 0, 10, 11)
+::defMrIceguy <- sprMrIceguy
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
@@ -358,6 +360,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndMenuSelect <- loadSound("res/snd/menu-select.ogg")
 ::sndBossHit <- loadSound("res/snd/boss-hit.ogg")
 ::sndCrush <- loadSound("res/snd/crush.ogg")
+::sndIceblock <- loadSound("res/snd/iceblock_bump.ogg")
 
 
 //Music

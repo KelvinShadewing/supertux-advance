@@ -590,7 +590,7 @@
 
 		if(_element == "fire") hurtFire()
 		if(_element == "ice") hurtIce()
-		if(_blast) hurtBlast()
+		if(_blast || _element == "normal") hurtBlast()
 
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
@@ -724,7 +724,7 @@
 
 				//Get carried
 				if(getcon("shoot", "hold") && gvPlayer) {
-					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.held == null || gvPlayer.held == id)) {
+					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.holding == 0 || gvPlayer.holding == id)) {
 						if(gvPlayer.flip == 0) x = gvPlayer.x + 8
 						else x = gvPlayer.x - 8
 						y = gvPlayer.y
@@ -732,9 +732,9 @@
 						squishTime -= 1.0
 						hspeed = gvPlayer.hspeed
 						gvPlayer.held = id
-						if(squishTime >= 150) gvPlayer.held = null
+						if(squishTime >= 150) gvPlayer.holding = 0
 					}
-					else if(gvPlayer.held == id) gvPlayer.held = null
+					else if(gvPlayer.holding == id) gvPlayer.holding = 0
 				}
 
 				//Move
@@ -1163,6 +1163,7 @@
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
 		if(_element == "fire") hurtFire()
+		if(_element == "normal" || _blast) hurtBlast()
 	}
 
 	function hurtFire() {
@@ -2474,6 +2475,202 @@
 	function _typeof() { return "Blazeborn" }
 }
 
+::Wildcap <- class extends Enemy {
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	smart = false
+	moving = false
+	touchDamage = 2.0
+	element = "toxic"
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 6, 6, 0)
+
+		smart = _arr
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
+				flip = true
+				moving = true
+			}
+
+			if(!squish) {
+				if(placeFree(x, y + 1)) vspeed += 0.1
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
+
+				if(y > gvMap.h + 8) deleteActor(id)
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
+
+						if(smart) if(placeFree(x - 6, y + 14)) flip = false
+
+						if(x <= 0) flip = false
+					}
+					else {
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
+						} else flip = true
+
+						if(smart) if(placeFree(x + 6, y + 14)) flip = true
+
+						if(x >= gvMap.w) flip = true
+					}
+				}
+
+				if(frozen) {
+					//Create ice block
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+						icebox = mapNewSolid(shape)
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+					if(frozen <= 70) {
+					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+					}
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						mapDeleteSolid(icebox)
+						newActor(IceChunks, x, y)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+			}
+			else {
+				squishTime += 0.025
+				if(squishTime >= 1) deleteActor(id)
+				if(smart) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			}
+
+			shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function hurtPlayer() {
+		if(squish) return
+		gvPlayer.hurt = 4
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(squish) return
+		if(_blast) {
+			hurtBlast()
+			return
+		}
+		if(element == "fire") {
+			hurtFire()
+			return
+		}
+		if(element == "ice") {
+			hurtIce()
+			return
+		}
+
+
+		if(gvPlayer.rawin("anSlide")) {
+			if(gvPlayer.anim == gvPlayer.anSlide) {
+				local c = newActor(DeadNME, x, y)
+				gvPlayer.hurt = 1
+				actor[c].sprite = sprWildcap
+				actor[c].vspeed = -abs(gvPlayer.hspeed)
+				actor[c].hspeed = (gvPlayer.hspeed / 16)
+				actor[c].spin = (gvPlayer.hspeed * 7)
+				actor[c].angle = 180
+				deleteActor(id)
+				playSound(sndKick, 0)
+			}
+			else if(_stomp) {
+				if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
+				else {
+					gvPlayer.vspeed = -4.0
+					playSound(sndSquish, 0)
+				}
+				if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+					gvPlayer.anim = gvPlayer.anJumpU
+					gvPlayer.frame = gvPlayer.anJumpU[0]
+				}
+			}
+		}
+		else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
+		else gvPlayer.vspeed = -4.0
+		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+			gvPlayer.anim = gvPlayer.anJumpU
+			gvPlayer.frame = gvPlayer.anJumpU[0]
+		}
+
+		squish = true
+	}
+
+	function hurtBlast() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprWildcap
+		actor[c].vspeed = -4
+		actor[c].hspeed = (4 / 16)
+		actor[c].spin = (4 * 7)
+		actor[c].angle = 180
+		deleteActor(id)
+		playSound(sndKick, 0)
+		if(icebox != -1) mapDeleteSolid(icebox)
+
+	}
+
+	function hurtFire() {
+		newActor(Flame, x, y - 1)
+		deleteActor(id)
+		playSound(sndFlame, 0)
+
+		if(randInt(40) == 0) {
+			local a = actor[newActor(MuffinRed, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function hurtIce() { frozen = 600 }
+
+	function _typeof() { return "Deathcap" }
+}
+
 
 
 
@@ -2622,6 +2819,186 @@
 	element = "ice"
 	touchDamage = 2.0
 	slideTimer = 8
-	sliding = false
+	hurtTimer = 600
 	flip = 0
+	damageMult = {
+		normal = 1.0
+		fire = 2.0
+		ice = 0.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 0.0
+	}
+	health = 2.0
+	touchDamage = 2.0
+	friction = 0.0
+	gravity = 0.1
+	held = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 6, 6, 0)
+		routine = ruNormal
+
+		if(gvPlayer) {
+			hspeed = (x <=> gvPlayer.x).tofloat()
+		} else hspeed = 1.0
+	}
+
+	function animation() {
+		if(hspeed > 0) flip = 0
+		if(hspeed < 0) flip = 1
+
+		if(routine == ruNormal) drawSpriteExZ(1, sprMrIceguy, (getFrames() / 8) % 4, x - camx, y - camy, 0, flip, 1, 1, 1.0)
+		if(routine == ruSlide) drawSpriteExZ(1, sprMrIceguy, 4 + (hurtTimer <= 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1.0)
+		if(debug) shape.draw()
+	}
+
+	function ruNormal() {
+		if(flip && hspeed > -1) hspeed -= 0.5
+		else if(flip && hspeed < 1) hspeed += 0.5
+
+		//Turning around
+		if((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
+		|| (!placeFree(x, y + 1) && placeFree(x + (8 * hspeed), y + 8))) {
+			flip = (!flip).tointeger()
+			hspeed = -hspeed
+		}
+
+		touchDamage = 2.0
+
+		//Floating in water
+		if(inWater()) {
+			vspeed -= 0.5
+			y--
+		}
+	}
+
+	function ruSlide() {
+		if(fabs(hspeed) > 0) {
+			if(getFrames() % 4 == 0) {
+				if(hspeed > 0) hspeed -= 0.01
+				if(hspeed < 0) hspeed += 0.01
+			}
+
+			if(slideTimer > 0) slideTimer--
+			else touchDamage = 2.0
+			hurtTimer = 600
+
+			if(!placeFree(x, y + 1)) {
+				if(placeFree(x - 2, y + 1)) hspeed -= 0.01
+				if(placeFree(x + 2, y + 1)) hspeed += 0.01
+			}
+
+			fireWeapon(MeleeHit, x + hspeed, y, 1, id)
+		}
+
+		if(fabs(hspeed) < 0.01) {
+			hspeed = 0.0
+			touchDamage = 0.0
+			slideTimer = 8
+			hurtTimer--
+			health = 2.0
+		}
+
+		if(hurtTimer <= 0) {
+			routine = ruNormal
+			if(gvPlayer) {
+			hspeed = (x <=> gvPlayer.x).tofloat()
+			} else hspeed = 1.0
+		}
+
+		if(!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4) && !held) {
+			flip = (!flip).tointeger()
+			hspeed = -hspeed
+			popSound(sndIceblock)
+		}
+
+		//Getting carried
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && getcon("shoot", "hold")
+		&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
+			y = gvPlayer.y
+			flip = gvPlayer.flip
+			if(flip == 0) x = gvPlayer.x + 8
+			else x = gvPlayer.x - 8
+			x += gvPlayer.hspeed
+			y += gvPlayer.vspeed
+			held = true
+			gvPlayer.holding = id
+		}
+		if(!getcon("shoot", "hold")) {
+			if(getcon("shoot", "release") && getcon("up", "hold")) vspeed = -4.0
+			if(held && gvPlayer) {
+				gvPlayer.holding = 0
+
+				//escape from solid
+				if(!placeFree(x, y)) {
+					local escapedir = gvPlayer.x <=> x
+					while(!placeFree(x, y)) x += escapedir
+				}
+			}
+			held = false
+		}
+
+		if(held) {
+			blinking = 10
+			slideTimer = 10
+			vspeed = 0.0
+			hurtTimer = 600
+		}
+
+		//Floating in water
+		if(inWater()) {
+			vspeed -= 0.5
+			y--
+		}
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking > 0) return
+		base.getHurt(_mag, _element, _cut, _blast, _stomp)
+
+		if(routine == ruSlide) {
+			if(hspeed != 0) hspeed = 0.0
+			else if(gvPlayer) hspeed = 6.0 * (x <=> gvPlayer.x)
+			popSound(sndKick)
+		}
+		else {
+			hspeed = 0.0
+			hurtTimer = 600
+			routine = ruSlide
+			popSound(sndSquish)
+			if(!_stomp) vspeed = -2.0
+		}
+	}
+
+	function hurtPlayer() {
+		if(held) return
+
+		if(routine == ruSlide && gvPlayer.vspeed >= 0) {
+			if(hspeed == 0 || slideTimer > 0) {
+				if(hspeed != 0) hspeed = 0.0
+				else if(gvPlayer) hspeed = 6.0 * (x <=> gvPlayer.x)
+				slideTimer = 10
+				popSound(sndKick)
+				return
+			}
+		}
+
+		if(slideTimer <= 0 || routine == ruNormal) base.hurtPlayer()
+	}
+
+	function die() {
+		base.die()
+		newActor(IceChunks, x, y)
+	}
+
+	function _typeof() { return "MrIceguy" }
 }

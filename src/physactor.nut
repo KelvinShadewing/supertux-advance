@@ -33,10 +33,7 @@
 	}
 
 	function physics() {
-		shape.setPos(x, y)
-		xprev = x
-		yprev = y
-
+		if(placeFree(x, y + (0 <=> gravity))) vspeed += gravity
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2
@@ -73,6 +70,14 @@
 		}
 
 		//Friction
+		if(fabs(hspeed) > friction) {
+			if(hspeed > 0) hspeed -= friction
+			if(hspeed < 0) hspeed += friction
+		} else hspeed = 0
+
+		shape.setPos(x, y)
+		xprev = x
+		yprev = y
 	}
 
 	function setAnim(_anim) {

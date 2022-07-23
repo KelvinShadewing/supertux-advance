@@ -96,8 +96,7 @@
 		if(_cut) damage *= damageMult["cut"]
 		if(_blast) damage *= damageMult["blast"]
 
-		game.health -= damage
-		if(damage > 0) blinking = 60
+		hurt = damage
 	}
 
 	function checkHurt() {
