@@ -1,0 +1,14 @@
+{
+	"info" : {
+		"welcome" :
+		"Hello! uwu.",
+		"garbage" :
+		"This level sucks ass."
+	},
+	"level" : {
+		"sn-0" : "Mid Start"
+	},
+	"npc" : {
+		"null" : ""
+	}
+}

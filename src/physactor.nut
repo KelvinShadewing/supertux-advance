@@ -33,7 +33,7 @@
 	}
 
 	function physics() {
-		if(placeFree(x, y + (0 <=> gravity))) vspeed += gravity
+		if(placeFree(x, y + (0 <=> gravity)) && !phantom) vspeed += gravity
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
 			vspeed /= 2

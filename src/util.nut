@@ -61,9 +61,7 @@
 
 ::maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }
 
-::freezeMyGame <- function() { freezeMyGame() } //Blame Azreigh, hiff
-
-::popSound <- function(sound) {
+::popSound <- function(sound, repeat = 0) {
 	stopSound(sound)
-	playSound(sound, 0)
+	playSound(sound, repeat)
 }

@@ -20,6 +20,7 @@
 		cut = 1.0
 		blast = 1.0
 		stomp = 1.0
+		star = 10.0
 	}
 	blinking = 0
 	blinkMax = 10
@@ -298,31 +299,34 @@
 		}
 
 		if(gvPlayer.rawin("anSlide")) {
-			if(gvPlayer.anim == gvPlayer.anSlide) {
+			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
 				local c = newActor(DeadNME, x, y)
-				actor[c].sprite = sprDeathcap
+				if(smart) actor[c].sprite = sprGradcap
+				else actor[c].sprite = sprDeathcap
 				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				die()
 				playSound(sndKick, 0)
-			}
-			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-			else {
-				gvPlayer.vspeed = -4.0
-				playSound(sndSquish, 0)
-			}
-			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-				gvPlayer.anim = gvPlayer.anJumpU
-				gvPlayer.frame = gvPlayer.anJumpU[0]
+				return
 			}
 		}
-		else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-		else gvPlayer.vspeed = -4.0
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
+
+		if(!_stomp) {
+			local c = newActor(DeadNME, x, y)
+			if(smart) actor[c].sprite = sprGradcap
+			else actor[c].sprite = sprDeathcap
+			actor[c].vspeed = -4.0
+			actor[c].spin = 4
+			actor[c].angle = 180
+			die()
+			playSound(sndKick, 0)
+
+			if(randInt(20) == 0) {
+				local a = actor[newActor(MuffinBlue, x, y)]
+				a.vspeed = -2
+			}
 		}
 
 		squish = true
@@ -725,8 +729,8 @@
 				//Get carried
 				if(getcon("shoot", "hold") && gvPlayer) {
 					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.holding == 0 || gvPlayer.holding == id)) {
-						if(gvPlayer.flip == 0) x = gvPlayer.x + 8
-						else x = gvPlayer.x - 8
+						if(gvPlayer.flip == 0) x = gvPlayer.x + 10
+						else x = gvPlayer.x - 10
 						y = gvPlayer.y
 						vspeed = 0
 						squishTime -= 1.0
@@ -779,6 +783,7 @@
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(!active) return
 		if(_element == "ice") {
 			hurtIce()
 			return
@@ -1538,23 +1543,19 @@
 		}
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprite
-		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
-		actor[c].hspeed = (gvPlayer.hspeed / 16)
-		deleteActor(id)
-		playSound(sndKick, 0)
-		if(getcon("jump", "hold")) gvPlayer.vspeed = -5
-		else {
-			gvPlayer.vspeed = -2
-			playSound(sndSquish, 0)
+		if(gvPlayer) {
+			actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+			actor[c].hspeed = (gvPlayer.hspeed / 16)
 		}
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
-		}
+		else actor[c].vspeed = -4.0
+		popSound(sndKick)
+
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
 		}
+
+		deleteActor(id)
 	}
 
 	function hurtBlast() {
@@ -1720,37 +1721,49 @@
 			newActor(IceChunks, x, y)
 		}
 
+
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprFlyAmanita
-		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
-		actor[c].hspeed = (gvPlayer.hspeed / 16)
-		actor[c].spin = (gvPlayer.hspeed * 6)
-		actor[c].angle = 180
-		deleteActor(id)
-		stopSound(sndKick)
-		playSound(sndKick, 0)
 
-		if(getcon("jump", "hold")) {
-			gvPlayer.vspeed = -8
-			stopSound(sndSquish)
-			playSound(sndSquish, 0)
-		}
-		else {
-			gvPlayer.vspeed = -4
-			stopSound(sndSquish)
-			playSound(sndSquish, 0)
+		if(!_stomp) {
+			actor[c].sprite = sprFlyAmanita
+			actor[c].vspeed = -4.0
+			actor[c].spin = 6
+			actor[c].angle = 180
+			deleteActor(id)
+			popSound(sndKick)
 		}
 
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
-		}
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+			actor[c].sprite = sprFlyAmanita
+			actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+			actor[c].hspeed = (gvPlayer.hspeed / 16)
+			actor[c].spin = (gvPlayer.hspeed * 6)
+			actor[c].angle = 180
+			deleteActor(id)
+			popSound(sndKick)
 
-		else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
-		else gvPlayer.vspeed = -2
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
+			if(getcon("jump", "hold")) {
+				gvPlayer.vspeed = -8
+				stopSound(sndSquish)
+				playSound(sndSquish, 0)
+			}
+			else {
+				gvPlayer.vspeed = -4
+				stopSound(sndSquish)
+				playSound(sndSquish, 0)
+			}
+
+			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+				gvPlayer.anim = gvPlayer.anJumpU
+				gvPlayer.frame = gvPlayer.anJumpU[0]
+			}
+
+			else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
+			else gvPlayer.vspeed = -2
+			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
+				gvPlayer.anim = gvPlayer.anJumpU
+				gvPlayer.frame = gvPlayer.anJumpU[0]
+			}
 		}
 	}
 
@@ -2073,19 +2086,9 @@
 			return
 		}
 		if(frozen > 0) return
-		if(chasing) {
-			hurtPlayer()
-			return
-		}
 		if(squish) return
 
-		if(getcon("jump", "hold")) gvPlayer.vspeed = -8
-		else gvPlayer.vspeed = -4
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
-		}
-		playSound(sndKick, 0)
+		if(!_stomp) vspeed = -2.0
 
 		squish = true
 	}
@@ -2844,11 +2847,11 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		shape = Rec(x, y, 6, 6, 0)
+		shape = Rec(x, y, 8, 6, 0)
 		routine = ruNormal
 
 		if(gvPlayer) {
-			hspeed = (x <=> gvPlayer.x).tofloat()
+			hspeed = (gvPlayer.x <=> x).tofloat()
 		} else hspeed = 1.0
 	}
 
@@ -2866,8 +2869,10 @@
 		else if(flip && hspeed < 1) hspeed += 0.5
 
 		//Turning around
-		if((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
-		|| (!placeFree(x, y + 1) && placeFree(x + (8 * hspeed), y + 8))) {
+		if(((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
+		|| x + hspeed < 0
+		|| x + hspeed > gvMap.w)
+		|| (!placeFree(x, y + 1) && placeFree(x + (8 * hspeed), y + 12))) {
 			flip = (!flip).tointeger()
 			hspeed = -hspeed
 		}
@@ -2915,23 +2920,40 @@
 			} else hspeed = 1.0
 		}
 
-		if(!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4) && !held) {
+		//Turn around
+		if((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4) && !held)
+		|| x + hspeed < 0
+		|| x + hspeed > gvMap.w) {
 			flip = (!flip).tointeger()
+			fireWeapon(StompPoof, x + (10 * (hspeed <=> 0)), y, 0, id)
 			hspeed = -hspeed
-			popSound(sndIceblock)
+			if(!held) popSound(sndIceblock)
 		}
 
 		//Getting carried
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && getcon("shoot", "hold")
-		&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
-			y = gvPlayer.y
-			flip = gvPlayer.flip
-			if(flip == 0) x = gvPlayer.x + 8
-			else x = gvPlayer.x - 8
-			x += gvPlayer.hspeed
-			y += gvPlayer.vspeed
-			held = true
-			gvPlayer.holding = id
+		if(gvPlayer) {
+			if(hitTest(shape, gvPlayer.shape) && getcon("shoot", "hold")
+			&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
+				y = gvPlayer.y
+				flip = gvPlayer.flip
+				if(flip == 0) x = gvPlayer.x + 8
+				else x = gvPlayer.x - 8
+				x += gvPlayer.hspeed
+				y += gvPlayer.vspeed
+				held = true
+				gvPlayer.holding = id
+			}
+
+			if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && held) {
+				gvPlayer.holding = 0
+
+				//escape from solid
+				if(!placeFree(x, y)) {
+					local escapedir = gvPlayer.x <=> x
+					while(!placeFree(x, y)) x += escapedir
+				}
+				held = false
+			}
 		}
 		if(!getcon("shoot", "hold")) {
 			if(getcon("shoot", "release") && getcon("up", "hold")) vspeed = -4.0

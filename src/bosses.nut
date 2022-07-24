@@ -1,6 +1,6 @@
 ::Boss <- class extends Enemy {
 	health = 40
-	phasing = false //Allows the boss to phase through walls in their intro
+	phantom = false //Allows the boss to phase through walls in their intro
 	active = false
 	routine = null
 	hspeed = 0.0
@@ -12,16 +12,28 @@
 	canBeStomped = false
 	ready = false
 
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 2.0
+	}
+
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 	}
 
 	function run() {
-		if(active) {
-			physics()
-			animation()
-			routine()
-		}
+		if(active) base.run()
 	}
 
 	//Physics gets a separate function so that it can be inherited by other bosses
@@ -30,19 +42,14 @@
 		gvPlayer.hurt = 1
 	}
 
-	function hurtStomp() {}
-	function hurtBlast() {}
-	function hurtFire() {}
-	function hurtIce() {}
-	function hurtShock() {}
-	function hurtEarth() {}
-
 	function turnToPlayer() {
 		if(gvPlayer) {
 			if(gvPlayer.x > x) flip = 0
 			else flip = 1
 		}
 	}
+
+	function hurtInvinc() {}
 
 	function _typeof() { return "Boss" }
 }
@@ -120,6 +127,7 @@
 	eventTimer = 0
 	eventStage = 0
 	hasThrown = false
+	touchDamage = 2.0
 
 	constructor(_x, _y, _arr = null) {
 		gravity = 0.1
@@ -138,7 +146,7 @@
 
 	function physics() {
 		//Movement
-		if(placeFree(x + hspeed, y) || phasing) x += hspeed
+		if(placeFree(x + hspeed, y) || phantom) x += hspeed
 		else for(local i = 0; i < fabs(hspeed * 1.5); i++) {
 			if(placeFree(x + hspeed, y - i)) {
 				x += hspeed
@@ -147,12 +155,12 @@
 			}
 		}
 
-		if((!phasing || health <= 0) && vspeed < 4) vspeed += gravity
-		if(placeFree(x, y + vspeed) || phasing) y += vspeed
+		if((routine != ruWalkIntoFrame || health <= 0) && vspeed < 4) vspeed += gravity
+		if(placeFree(x, y + vspeed) || routine == ruDefeated) y += vspeed
 		else vspeed /= 4.0
 
 		if(health <= 0 && routine != ruDefeated) {
-			phasing = true
+			phantom = true
 			vspeed = -2.0
 			routine = ruDefeated
 			if(flip == 0) hspeed = -1.0
@@ -223,7 +231,7 @@
 	}
 
 	function ruWalkIntoFrame() {
-		phasing = true
+		phantom = true
 		if(gvPlayer) gvPlayer.canMove = false
 		anim = anWalk
 		flip = 1
@@ -231,7 +239,7 @@
 		if(x < camx + screenW() - 96) {
 			routine = ruIntroCheer
 			hspeed = 0.0
-			phasing = false
+			phantom = false
 			eventTimer = 160
 		}
 		if(gvWarning == 180) songPlay(musBossIntro)
@@ -377,7 +385,7 @@
 
 	function ruDefeated() {
 		eventTimer--
-		phasing = true
+		phantom = true
 		anim = anHurt
 		gravity = 0.05
 		blinking = 0
@@ -418,6 +426,8 @@
 	function hitPlayer() {
 		if(routine != ruDizzy) gvPlayer.hurt = 1
 	}
+
+	function die() {}
 
 	function _typeof() { return "Boss" }
 }
