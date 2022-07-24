@@ -2862,6 +2862,8 @@
 		if(routine == ruNormal) drawSpriteExZ(1, sprMrIceguy, (getFrames() / 8) % 4, x - camx, y - camy, 0, flip, 1, 1, 1.0)
 		if(routine == ruSlide) drawSpriteExZ(1, sprMrIceguy, 4 + (hurtTimer <= 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1.0)
 		if(debug) shape.draw()
+
+		if(y > gvMap.h + 32) die()
 	}
 
 	function ruNormal() {
@@ -2881,7 +2883,7 @@
 
 		//Floating in water
 		if(inWater()) {
-			vspeed -= 0.5
+			if(vspeed > -2) vspeed -= 1.0
 			y--
 		}
 	}
@@ -2936,8 +2938,8 @@
 			&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
 				y = gvPlayer.y
 				flip = gvPlayer.flip
-				if(flip == 0) x = gvPlayer.x + 8
-				else x = gvPlayer.x - 8
+				if(flip == 0) x = gvPlayer.x + 10
+				else x = gvPlayer.x - 10
 				x += gvPlayer.hspeed
 				y += gvPlayer.vspeed
 				held = true
@@ -2978,7 +2980,7 @@
 
 		//Floating in water
 		if(inWater()) {
-			vspeed -= 0.5
+			if(vspeed > -2) vspeed -= 1.0
 			y--
 		}
 	}
@@ -2989,7 +2991,7 @@
 
 		if(routine == ruSlide) {
 			if(hspeed != 0) hspeed = 0.0
-			else if(gvPlayer) hspeed = 6.0 * (x <=> gvPlayer.x)
+			else if(gvPlayer) hspeed = (max(4.0, fabs(gvPlayer.hspeed * 1.5))) * (x <=> gvPlayer.x)
 			popSound(sndKick)
 		}
 		else {
@@ -3003,11 +3005,12 @@
 
 	function hurtPlayer() {
 		if(held) return
+		if(slideTimer > 0 && hspeed != 0) return
 
 		if(routine == ruSlide && gvPlayer.vspeed >= 0) {
 			if(hspeed == 0 || slideTimer > 0) {
 				if(hspeed != 0) hspeed = 0.0
-				else if(gvPlayer) hspeed = 6.0 * (x <=> gvPlayer.x)
+				else if(gvPlayer) hspeed = (max(4.0, fabs(gvPlayer.hspeed * 1.5))) * (x <=> gvPlayer.x)
 				slideTimer = 10
 				popSound(sndKick)
 				return

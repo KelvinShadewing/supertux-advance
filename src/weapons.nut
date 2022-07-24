@@ -52,10 +52,6 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-
-		stopSound(sndBump)
-		playSound(sndBump, 0)
-
 		shape = Rec(x, y, 8, 8, 0)
 	}
 

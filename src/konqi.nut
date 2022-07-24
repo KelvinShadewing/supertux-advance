@@ -677,6 +677,7 @@
 			if((!freeDown || vspeed < 0) && anim == anStomp) {
 				anim = anJumpU
 				vspeed = -2.0
+				popSound(sndBump)
 				newActor(StompPoof, x + 8, y + 12)
 				newActor(StompPoof, x - 8, y + 12)
 			}
