@@ -25,3 +25,11 @@ Two-player mode will be a local co-op mode allowing a second player to join in a
 Players will have separate health and energy, but will share upgrades. Item boxes will carry two items, releasing one for each player. If a single player manages to get both items anyway, a new key will be added to let them share swapped items.
 
 When together, players will have arrows over their head indicating which character is controlled by which player. When far from each other, the game will switch to split screen. Each player will see the other player still with an arrow, but won't need their own on their respective screen.
+
+## Lore
+
+As there is no "canon" SuperTux universe, this game aims to consolidate the different takes on Tux's worlds and explain how games like SuperTux, SuperTuxKart, and SuperTux Advance share the same world. As classic SuperTux does not feature other mascots, but STK does, the explanation here is that due to Nolok's tampering with dark magics, beings from other worlds began to get pulled into the alternate Earth seen in STK. For now, despite it being in meta context, they are still called mascots.
+
+This leads into the events of STK, wherein Nolok captures the defacto leader of the displaced mascots to try to gain power over them. As per usual, his motive is purely his love of causing trouble, hence his use of a grand prix instead of full-on combat to win Gnu's freedom. In STA, he ramps this up by capturing many of the mascots to make Tux trek all over the world for them, as after being beaten by Tux when he captured Penny, Nolok has found a fond rivalry in Tux that he wishes to challenge in any way he can, though Tux clearly does not feel the same way.
+
+Come the events of STA, Penny has founded a town to house as many displaced beings as she can, but the town was ransacked by Nolok's new minions, denizens of the Shitake Dynasty. Their leader, Empress Plum, has offered her hand in marriage if Nolok can finally defeat Tux. Her motive is simple as well: ruling a kingdom is boring, and she wants some action, and a villain like Nolok seems like the perfect source.

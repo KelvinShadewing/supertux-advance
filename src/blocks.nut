@@ -907,26 +907,19 @@
 
 	function run() {
 
-		if(actor.rawin("Fireball")) foreach(i in actor["Fireball"])  if(hitTest(fireshape, i.shape)) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if(hitTest(fireshape, i.shape) && i.element == "fire") {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			deleteActor(i.id)
 			newActor(Flame, x, y)
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 		}
 
-		if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"])  if(hitTest(fireshape, i.shape)) {
+		if(actor.rawin("Flame")) foreach(i in actor["Flame"]) if(inDistance2(x, y, i.x, i.y, 16) && i.frame >= 6) {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			newActor(Flame, x, y)
-			playSound(sndFlame, 0)
-		}
-
-		if(actor.rawin("Flame")) foreach(i in actor["Flame"]) if(inDistance2(x, y, i.x, i.y, 20) && i.frame >= 2) {
-			tileSetSolid(x, y, 0)
-			deleteActor(id)
-			newActor(Flame, x, y)
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 		}
 
 		drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy)

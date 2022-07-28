@@ -201,6 +201,10 @@
 ::defOwlBrown <- sprOwlBrown
 ::sprMrIceguy <- newSprite("res/gfx/mr-iceblock.png", 20, 19, 0, 0, 10, 11)
 ::defMrIceguy <- sprMrIceguy
+::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 8)
+::defSnailRed <- sprSnailRed
+::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 8)
+::defSnailBlue <- sprSnailBlue
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)

@@ -40,58 +40,56 @@
 				if(floor(frozen / 4) % 2 == 0 && frozen < 60) drawSpriteZ(4, freezeSprite, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
 				else drawSpriteZ(4, freezeSprite, 0, x - camx, y - camy - 1)
 			}
+
+			//Check for weapon effects
+			if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+				//Skip weapons that don't hurt this enemy
+				if(i.alignment == 2) continue
+				if(i.owner == id) continue
+
+				if(hitTest(shape, i.shape)) {
+					getHurt(i.power, i.element, i.cut, i.blast)
+					if(i.piercing == 0) deleteActor(i.id)
+					else i.piercing--
+				}
+			}
+
+			if(gvPlayer) {
+				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
+					if(gvPlayer.invincible > 0) hurtInvinc()
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !thorny && !gvPlayer.swimming) {
+						getHurt(1, "normal", false, false, true)
+						if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
+						else gvPlayer.vspeed = -4.0
+					}
+					else if(gvPlayer.rawin("anSlide") && blinking == 0 && !thorny) {
+						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
+						else hurtPlayer()
+					}
+					else hurtPlayer()
+				}
+			}
+
+			if(blinking > 0) blinking--
 		}
 		else {
 			if(inDistance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2), 240)) active = true
 		}
-
-		if(blinking > 0) blinking--
-
-		//Check for weapon effects
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
-			//Skip weapons that don't hurt this enemy
-			if(i.alignment == 2) continue
-			if(i.owner == id) continue
-
-			if(hitTest(shape, i.shape)) {
-				getHurt(i.power, i.element, i.cut, i.blast)
-				if(i.piercing == 0) deleteActor(i.id)
-				else i.piercing--
-			}
-		}
-
-		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
-				if(gvPlayer.invincible > 0) hurtInvinc()
-				else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !thorny && !gvPlayer.swimming) {
-					getHurt(1, "normal", false, false, true)
-					if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-					else gvPlayer.vspeed = -4.0
-				}
-				else if(gvPlayer.rawin("anSlide") && blinking == 0 && !thorny) {
-					if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
-					else hurtPlayer()
-				}
-				else hurtPlayer()
-			}
-		}
 	}
 
 	function hurtInvinc() {
-		newActor(Poof, x, ystart - 6)
-		newActor(Poof, x, ystart + 8)
+		mapDeleteSolid(icebox)
+		newActor(Poof, x, y)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 	}
 
 	function die() {
-		deleteActor(id)
+		mapDeleteSolid(icebox)
+		if(frozen) newActor(IceChunks, x, ystart - 6)
+		frozen = 0
 
-		if(icebox != -1) {
-			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, ystart - 6)
-			icebox = -1
-		}
+		deleteActor(id)
 
 		if(!nocount) game.enemies--
 	}
@@ -108,14 +106,15 @@
 		if(damage > 0) blinking = blinkMax
 
 		if(health <= 0) {
+			frozen = 0
+			mapDeleteSolid(icebox)
 			die()
 			return
 		}
 		if(_element == "ice") frozen = freezeTime * damageMult["ice"]
 		if(_element == "fire") {
 			newActor(Flame, x, y)
-			stopSound(sndFlame)
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 		}
 		blinking = blinkMax
 	}
@@ -125,7 +124,9 @@
 	}
 
 	function destructor() {
-		if(icebox != -1) mapDeleteSolid(icebox)
+		print(icebox)
+		mapDeleteSolid(icebox)
+		print("Killed " + (typeof this))
 	}
 }
 
@@ -227,7 +228,7 @@
 				if(frozen) {
 					//Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						icebox = mapNewSolid(shape)
+						if(health > 0) icebox = mapNewSolid(shape)
 					}
 
 					//Draw
@@ -244,7 +245,6 @@
 					//Delete ice block
 					if(icebox != -1) {
 						mapDeleteSolid(icebox)
-						newActor(IceChunks, x, y)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
@@ -409,7 +409,7 @@
 		if(frozen) {
 			//Create ice block
 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-				icebox = mapNewSolid(shape)
+				if(health > 0) icebox = mapNewSolid(shape)
 			}
 
 			if(flip == 1) drawSpriteEx(sprSnake, 0, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
@@ -465,7 +465,6 @@
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, ystart - 6)
-				icebox = -1
 			}
 		}
 	}
@@ -481,7 +480,6 @@
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, ystart - 6)
-				icebox = -1
 			}
 	}
 
@@ -550,7 +548,7 @@
 			if(frozen) {
 				//Create ice block
 				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-					icebox = mapNewSolid(shape)
+					if(health > 0) icebox = mapNewSolid(shape)
 				}
 
 				//Draw
@@ -616,7 +614,6 @@
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, ystart - 6)
-				icebox = -1
 			}
 	}
 
@@ -683,7 +680,7 @@
 				if(frozen) {
 					//Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						icebox = mapNewSolid(shape)
+						if(health > 0) icebox = mapNewSolid(shape)
 					}
 
 					//Draw
@@ -752,7 +749,7 @@
 
 				//Explode
 				if(squishTime >= 150) {
-					deleteActor(id)
+					die()
 					fireWeapon(ExplodeF, x, y, 0, id)
 					if(gvPlayer) if(gvPlayer.held == id) gvPlayer.held = null
 				}
@@ -812,7 +809,6 @@
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
-			icebox = -1
 		}
 		if(!burnt) {
 			fireWeapon(ExplodeF, x, y - 1, 2, id)
@@ -1390,7 +1386,7 @@
 		if(frozen) {
 			//Create ice block
 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-				icebox = mapNewSolid(shape)
+				if(health > 0) icebox = mapNewSolid(shape)
 			}
 
 			if(frozen <= 120) {
@@ -1521,7 +1517,7 @@
 
 			//Create ice block
 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-				icebox = mapNewSolid(shape)
+				if(health > 0) icebox = mapNewSolid(shape)
 			}
 
 			if(frozen <= 120) {
@@ -1688,7 +1684,7 @@
 		} else {
 			//Create ice block
 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-				icebox = mapNewSolid(shape)
+				if(health > 0) icebox = mapNewSolid(shape)
 			}
 
 			drawSpriteEx(sprFlyAmanita, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
@@ -1821,7 +1817,7 @@
 			if(frozen) {
 				//Create ice block
 				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-					icebox = mapNewSolid(shape)
+					if(health > 0) icebox = mapNewSolid(shape)
 				}
 
 				//Draw
@@ -1922,7 +1918,7 @@
 
 				if(chasing) squishTime++
 				if(squishTime >= 200 && chasing) {
-					deleteActor(id)
+					die()
 					fireWeapon(ExplodeF, x, y - 1, 0, id)
 
 				}
@@ -1986,7 +1982,7 @@
 				if(frozen) {
 					//Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						icebox = mapNewSolid(shape)
+						if(health > 0) icebox = mapNewSolid(shape)
 					}
 
 					//Draw
@@ -2192,7 +2188,7 @@
 				if(frozen) {
 					//Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						icebox = mapNewSolid(shape)
+						if(health > 0) icebox = mapNewSolid(shape)
 					}
 
 					//Draw
@@ -2549,7 +2545,7 @@
 				if(frozen) {
 					//Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						icebox = mapNewSolid(shape)
+						if(health > 0) icebox = mapNewSolid(shape)
 					}
 
 					//Draw
@@ -2958,7 +2954,7 @@
 			}
 		}
 		if(!getcon("shoot", "hold")) {
-			if(getcon("shoot", "release") && getcon("up", "hold")) vspeed = -4.0
+			if(getcon("shoot", "release") && getcon("up", "hold") && held) vspeed = -4.0
 			if(held && gvPlayer) {
 				gvPlayer.holding = 0
 
@@ -3005,7 +3001,7 @@
 
 	function hurtPlayer() {
 		if(held) return
-		if(slideTimer > 0 && hspeed != 0) return
+		if(slideTimer > 0 && hspeed != 0 && routine == ruSlide) return
 
 		if(routine == ruSlide && gvPlayer.vspeed >= 0) {
 			if(hspeed == 0 || slideTimer > 0) {
