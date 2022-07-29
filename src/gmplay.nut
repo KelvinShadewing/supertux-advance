@@ -452,6 +452,10 @@
 				case 81:
 					c = newActor(Owl, i.x + 8, i.y - 8, i.name)
 					break
+
+				case 85:
+					c = newActor(Spawner, i.x + 8, i.y - 8, i.name)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c

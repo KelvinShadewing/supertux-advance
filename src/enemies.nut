@@ -1578,6 +1578,7 @@
 	counting = false
 	touchDamage = 2.0
 	element = "ice"
+	dy = -16
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1589,6 +1590,7 @@
 	function routine() {}
 
 	function run() {
+		if(dy < 0) dy++
 		base.run()
 
 		if(gvPlayer) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
@@ -1610,7 +1612,7 @@
 			newActor(IceChunks, x, y)
 		}
 
-		drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy)
+		drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy + dy)
 		if(vspeed > 0) fireWeapon(AfterIce, x, y, 1, id)
 	}
 

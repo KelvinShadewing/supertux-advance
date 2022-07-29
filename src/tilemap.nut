@@ -283,14 +283,12 @@
 
 ::mapNewSolid <- function(shape) {
 	gvMap.geo.push(shape)
-	print("Created: " + (gvMap.geo.len() - 1))
 	return gvMap.geo.len() - 1
 }
 
 ::mapDeleteSolid <- function(index) {
 	if(index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) {
 		gvMap.geo[index] = null
-		print("Destroyed: " + index)
 	}
 }
 

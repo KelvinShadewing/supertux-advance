@@ -1018,7 +1018,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1552,
+                 "x":1488,
                  "y":544
                 }, 
                 {
@@ -1070,16 +1070,28 @@
                  "y":352
                 }, 
                 {
-                 "gid":279,
+                 "gid":284,
                  "height":16,
-                 "id":378,
-                 "name":"",
+                 "id":380,
+                 "name":"Icicle,120",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1824,
-                 "y":512
+                 "x":1488,
+                 "y":464
+                }, 
+                {
+                 "gid":284,
+                 "height":16,
+                 "id":381,
+                 "name":"MuffinBlue,120,true",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1888,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1088,7 +1100,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":379,
+ "nextobjectid":382,
  "orientation":"orthogonal",
  "properties":[
         {
