@@ -2994,7 +2994,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowPlain\ndrawWeather = dweBlizzard\nsongPlay(musDisko)"
+         "value":"drawBG = dbgSnowPlain\ndrawWeather = dweBlizzard\nsongPlay(musDisko)\nsprDeathcap = sprMrSnowball\nsprGradcap = sprMsSnowball"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
@@ -3121,12 +3121,12 @@
          "columns":5,
          "firstgid":1390,
          "image":"..\/gfx\/solid.png",
-         "imageheight":192,
+         "imageheight":208,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":60,
+         "tilecount":65,
          "tileheight":16,
          "tilewidth":16
         }],

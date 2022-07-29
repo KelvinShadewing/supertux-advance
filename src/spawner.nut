@@ -13,6 +13,7 @@
 		myClass = arg[0]
 		if(1 in arg) if(canint(arg[1])) {
 			maxTime = arg[1].tointeger()
+			timer = arg[1].tointeger()
 		}
 		if(2 in arg) if(arg[2]) infinite = true
 

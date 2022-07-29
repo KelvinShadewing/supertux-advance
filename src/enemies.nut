@@ -2892,7 +2892,8 @@
 		if(inWater()) {
 			if(vspeed > -2) vspeed -= 1.0
 			y--
-		}
+			gravity = -0.1
+		} else gravity = 0.1
 	}
 
 	function ruSlide() {
@@ -2989,7 +2990,8 @@
 		if(inWater()) {
 			if(vspeed > -2) vspeed -= 1.0
 			y--
-		}
+			gravity = -0.1
+		} else gravity = 0.1
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {

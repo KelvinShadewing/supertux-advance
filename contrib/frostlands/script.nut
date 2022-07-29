@@ -43,8 +43,7 @@ print("Loading Frostlands")
 ::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
 ::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
 
-::sprDeathcapOG <- newSprite("res/gfx/mr-snowball.png", 16, 16, 0, 0, 8, 8)
-::sprGradcapOG <- newSprite("res/gfx/ms-snowball.png", 16, 16, 0, 0, 8, 8)
+
 
 ::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
 ::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
@@ -54,8 +53,8 @@ print("Loading Frostlands")
 	sprWoodBox = sprWoodBoxOG
 	sprWoodChunks = sprWoodChunksOG
 
-	sprDeathcap = sprDeathcapOG
-	sprGradcap = sprGradcapOG
+	sprDeathcap = sprMrSnowball
+	sprGradcap = sprMsSnowball
 
 	sprFlowerFire = sprFlowerFireOG
 	sprFlowerIce = sprFlowerIceOG
