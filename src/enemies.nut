@@ -2714,8 +2714,17 @@
 		base.constructor(_x, _y)
 		hspeed = 0.5
 
-		if(getroottable().rawin(_arr)) {
-			if(getroottable()[_arr].rawin("shape")) passenger = actor[newActor(getroottable()[_arr], x, y)]
+		local arg = []
+		if(typeof _arr == "string") arg = split(_arr, ",")
+		if(typeof _arr == "array") arg = _arr
+		local narg = clone(arg)
+		if(0 in narg) narg.remove(0)
+
+		if(0 in arg) {
+			if(getroottable().rawin(arg[0])) {
+				if(getroottable()[arg[0]].rawin("shape")) passenger = actor[newActor(getroottable()[arg[0]], x, y, narg)]
+				else passenger = actor[newActor(MuffinEvil, x, y)]
+			}
 			else passenger = actor[newActor(MuffinEvil, x, y)]
 		}
 		else passenger = actor[newActor(MuffinEvil, x, y)]
