@@ -447,10 +447,12 @@
 
 				case 80:
 					c = newActor(MrIceguy, i.x + 8, i.y - 8, i.name)
+					game.enemies++
 					break
 
 				case 81:
 					c = newActor(Owl, i.x + 8, i.y - 8, i.name)
+					game.enemies++
 					break
 
 				case 85:

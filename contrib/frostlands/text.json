@@ -1,63 +1,87 @@
 {
 	"info" : {
 		"welcome2" :
-		"Hello! welcome to frostlands, the very first mod/levelpack for supertux advance! Do note that this pack is made for somewhat experienced players of STA.",
+		"Hello! Welcome to the frostlands, a pack of levels made for more experenced players, So you haven't already, I suggest playing the main storymode first. Anyways, good luck!",
 		"Fish" :
-		"Collect all the fish to reach the exit!",
+		"Collect all the fish in this level to be able to reach the exit!",
 		"poo" :
 		"This level sucks.",
 		"Ftwo" :
-		"Are there blocks in the way? That means you didn't collect all fish. Try again"
+		"Blocks in the way aren't vanishing? That means you didn't collect all fish. Try again"
 	},
 	"level" : {
 		"fw-t0" : "Icey outpost",
 		"fw-t1" : "Chill docks",
-		"fw-t2" : "Doll shrine",
+		"fw-t2" : "Doll shrine - late WIP",
 		"fw-t3" : "Ice-burg",
+		"fw-t4" : "Lost tower",
+		"Fw-s" : "Into the void",
 		"Fw-1" : "Noted",
 		"Fw-2" : "Roots",
-		"Fw-3" : "Fire & Ice",
+		"Fw-3" : "Fire & Ice - late WIP",
 		"Fw-3b" : "Blast off!",
-		"Fw-4" : "Supernovae",
-		"Fw-5" : "To the left!",
-		"Fw-6" : "NoFoe",
-		"Fw-7" : "Ocean cliffs",
-		"Fw-8" : "Switch it up!",
+		"Fw-4" : "TBA new name - early WIP ",
+		"Fw-5" : "Lost Ruins",
+		"Fw-6" : "I wanna be the penguin",
+		"Fw-7" : "Ocean cliffs - early WIP",
+		"Fw-8" : "Permafrost",
 		"Fw-9" : "Short fuse",
 		"B-1" : "NeverCity",
-		"B-2" : "freezing point"
+		"B-2" : "freezing point",
+		"Fw-test" : "test"
 	},
 	"npc" : {
 		"null" : "",
 		"rad-A" :
-		"The snow here is like, all purple and stuff... super weird. Also be sure to talk to sam, he wants to tell you something.",
+		"The snow here is like, all purple and stuff... super weird. Also be sure to talk to sam, he wants to show you something.",
 		"Sam-A" :
 		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",
 		"fire-A" :
 		"Hey, im the one managing the port at the moment. I don't have any boats, but I do have a few items for you.",
 		"fire-B" :
-		"I heard if you walk to the Left of the first Forest level, there's some ruins. I might check it out one day.",
+		"I heard if you walk to the Left of the first Forest level, there's some magical ruins. When I have the chance, im gonna go check it out for myself.",
 		"mrq" :
-		"Hai! I'm Marqies. Welcome to the Doll shrine! Something Cool is up ahead",
+		"Hai! I'm Marqies. Welcome to the Doll shrine! Something Cool is in this box.",
 		"mark" :
 		"...",
 		"Frost" :
-		"Oh, hello there. Congrats on beating the Frostlands! You may have completed all (or most) of the main levels, but your adventure isn't over yet. There's a little suprise above roots, go check it out.",
+		"Oh, hello there tux. I need to inform you of something. Above the level roots, there's a few hidden levels. One of them even has a powerup not normal found in the frostlands, the air feather. go check it out",
 		"mrq2" :
-		"...How on earth did they get on top of that building?!",
+		"Looks like something or someone is on the burger place, I wonder how they got up there",
 		"mark2" :
-		"The earthshell isn't in any of the previous levels so.. here you go. ",
+		"After many years, I discovered a new kind of powerup, a kind never seen before on the frostlands up unitil this point. What? You've seen this before?",
 		"brg-flame" :
-		"I think these burgers would be better if they were actually.. you know.. cooked. ",
+		"I think these burgers would be better if they were actually.. You know.. Cooked. ",
 		"brg-terry" :
-		"Hey hey hey! Welcome to my ice-burger shop! It's a fresh fish in a bun! ....and also a little cheese. Care to try one?",
+		"Hey hey hey! Welcome to my Ice-burger shop! It's a fresh fish in a bun! ....and also a little cheese. Care to try one?",
 		"tuc" :
-		"Im     evil                                          tuckles",
+		"Im     eVil                                          TuckLes",
 		"nin" :
 		"Hey! what are you doing up here??",
 		"harold" :
-		"Why hello fellow debug mode user!!",
+		"Why hello fellow cheater!!",
 		"slm" :
-		"Meow"
-		}
+		"May I offer you a cup of tea? No? Well that's too bad.",
+		"kro" :
+		"uhhh idk i gotta finish this text later lmao  .  placeholder"
+		},
+		
+	"devcom" : {
+		"chance" :
+		"FrostC:The first level made for Frostlands. And tbh, it's pretty good, even compared to many of the recent levels.",
+		"roots" :
+		"FrostC: This level is a combo of a bunch levels from the original Supertux. Also, random fact. This level was created after all the other ones on the purple ice island.",
+		"distaste" :
+		"FrostC: When I orignally made this level, I didn't like it that much. Which is actually the reason I made blast off, to give players another option if they found this level too hard. However, after a few adjustments and changes I actually started to like the level a lot more",
+		"move" :
+		"FrostC: What are you doing reading this??? RUN!!!!!",
+		"secret" :
+		"FrostC: Originally. there was going to be a level after this that used all the gimmics from all the previous levels. That level was going to be the final frostlands level, however I just couldn't make it work. Also there's a coin in the pipe next to you",
+		"two" :
+		"FrostC: If it wasn't obvious from this first room, this level takes heavy insperation from levels in Super mario bros the lost levels, mainly 1-1.",
+		"skillissue" :
+		"FrostC: yes, it is possible to beat this level without getting hurt. I've done it a few times ;)",
+		"lazy" :
+		"FrostC: Im gonna let you in on a secret... I don't like making levels with the forest tiles. So I made a ice level for the forest world. So yeah, take that as you will."
+	}
 }

@@ -1,11 +1,12 @@
 //asset stuffs
-print("Loading Frostlands")
+print("Loading Frostlands overhauled")
 
 //music
 
 ::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
 ::musball <- "contrib/frostlands/music/city-theme.ogg"
 ::mussal <- "contrib/frostlands/music/salcon.ogg"
+::musair <- "contrib/frostlands/music/fried-air.ogg"
 
 //visual assets
 ::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
@@ -13,19 +14,22 @@ print("Loading Frostlands")
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
 ::bgNightAlt <- newSprite("contrib/frostlands/gfx/BG/bgSnowNight-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 520, 240, 0, 0, 0, 0)
+::bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240, 0, 0, 0, 0)
 ::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
 
 //NPCS
-::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/tinyfireguinb.png", 13, 23, 0, 0, 6, 23)
-::sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Frost.png", 18, 46, 0, 0, 9, 46)
+::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 0, 0, 6, 23)
+::sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Rico.png", 18, 46, 0, 0, 9, 46)
 ::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 67, 48, 0, 0, 32, 47)
-::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 34, 40, 0, 0, 16, 40)
+::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 53, 40, 0, 0, 26, 40)
 ::sprharo <- newSprite("contrib/frostlands/gfx/NPC/harold.png", 44, 43, 0, 0, 22, 43)
 ::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
-::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 18, 42, 0, 0, 8, 42)
+::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 19, 52, 0, 0, 8, 52)
 ::sprterryB <- newSprite("contrib/frostlands/gfx/NPC/terry-behind.png", 37, 51, 0, 0, 16, 51)
 ::sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 0, 0, 19, 18)
 ::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 9, 16)
+::sprP <- newSprite("contrib/frostlands/gfx/NPC/placeholder.png", 37, 51, 0, 0, 16, 51)
+::sprKreo <- newSprite("contrib/frostlands/gfx/NPC/Kreo.png", 37, 51, 0, 0, 16, 51)
 
 //OG style
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
@@ -43,18 +47,16 @@ print("Loading Frostlands")
 ::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
 ::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
 
-
-
 ::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
 ::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
 ::sprSubItemFL <- newSprite("contrib/frostlands/gfx/fl-itemcard.png", 20, 20, 0, 0, 10, 10)
+::sprColorSwitchFL <- newSprite("contrib/frostlands/gfx/obj/colorswitches.png", 32, 32, 0, 0, 16, 16)
+::sprColorBlockFL <- newSprite("contrib/frostlands/gfx/switchblocks.png", 16, 16, 0, 0, 0, 0)
 
 ::gfxOverrideFL <- function(never = false) {
 	sprWoodBox = sprWoodBoxOG
 	sprWoodChunks = sprWoodChunksOG
 
-	sprDeathcap = sprMrSnowball
-	sprGradcap = sprMsSnowball
 
 	sprFlowerFire = sprFlowerFireOG
 	sprFlowerIce = sprFlowerIceOG
@@ -69,12 +71,14 @@ print("Loading Frostlands")
 	sprHealth = sprHealthFL
 	sprEnergy = sprEnergyFl
 	sprSubItem = sprSubItemFL
+	sprColorSwitch = sprColorSwitchFL
+	sprColorBlock = sprColorBlockFL
 
 	if(never) {
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
 		sprCoin10 = sprCoinN10
-		}
+		} 
 }
 
 //background shiz
@@ -105,6 +109,11 @@ print("Loading Frostlands")
 
 ::dbgRace <- function() {
 	drawSprite(bgRace, 0, 0, (screenH() / 2) - 120)
+}
+
+
+::dbgglitch <- function() {
+	drawSprite(bgError, 0, 0, (screenH() / 2) - 120)
 }
 
 ::TNTALT <- class extends Actor {
@@ -151,6 +160,56 @@ print("Loading Frostlands")
 		y -= 0.5
 		if(frame >= 3) deleteActor(id)
 		else drawSpriteEx(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+	}
+}
+
+::Towershop <- class extends Actor {
+	shape = 0
+	full = true
+	v = 0.0
+	vspeed = 0.0
+	soldout = false
+
+	constructor(_x, _y, _arr = "") {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+		if(game.maxHealth >= 5 * 4) soldout = true
+		local price = (game.maxHealth + 1) * (200)
+
+		if(v > 0) {
+			vspeed = 0
+			v = 0
+		}
+		if(v <= -8) {
+			vspeed = 0.5
+		}
+
+		if(gvPlayer) {
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
+				gvPlayer.vspeed = 0
+				vspeed = -1
+				playSound(sndHeal, 0)
+				game.health += 4
+				game.maxHealth += 4
+				game.coins -= price
+			}
+		}
+
+		v += vspeed
+
+		local pricetag = chint(95).tostring() + price.tostring()
+
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		else {
+			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+			drawSpriteZ(2, sprHealth, getFrames() / 32, x - 8 - camx, y - 8 - camy + v)
+			drawText(font, x - camx - (pricetag.len() * 3), y - 16 - camy, pricetag)
+		}
 	}
 }
 

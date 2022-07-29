@@ -25,7 +25,7 @@
 		dark = 1.0
 		cut = 1.0
 		blast = 1.0
-		stomp = 2.0
+		stomp = 1.0
 	}
 
 	constructor(_x, _y, _arr = null) {
@@ -121,6 +121,22 @@
 	anShake = [36.0, 39.0, "shake"]
 	anThrow = [40.0, 43.0, "throw"]
 	anCheer = [44.0, 47.0, "cheer"]
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 0.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+	}
 
 	//Boss specific variables
 	health = 40
@@ -228,6 +244,10 @@
 			shape.draw()
 			drawText(font2, x - camx, y - camy, vspeed.tostring())
 		}
+
+		//Set damage resistance
+		if(routine == ruDizzy) damageMult.stomp = 2.0
+		else damageMult.stomp = 1.0
 	}
 
 	function ruWalkIntoFrame() {

@@ -12,6 +12,8 @@
 		left = false
 		right = false
 	}
+	gvLight = 0xffffffff
+	gvLightTarget = 0xffffffff
 }
 
 ::gmMain <- function()

@@ -2874,8 +2874,8 @@
 	}
 
 	function ruNormal() {
-		if(flip && hspeed > -1) hspeed -= 0.5
-		else if(flip && hspeed < 1) hspeed += 0.5
+		if(flip && hspeed > -1.5) hspeed -= 0.5
+		else if(flip && hspeed < 1.5) hspeed += 0.5
 
 		//Turning around
 		if(((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))

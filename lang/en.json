@@ -170,7 +170,9 @@
 		"momentum" :
 		"You won't lose speed if you keep running! Be sure to hold the run button or keep the stick pressed all the way over, and you'll keep whatever speed you gain from sliding. Icy hills will speed you up even if you can't slide.",
 		"warned" :
-		"You were warned..."
+		"You were warned...",
+		"iceguy" :
+		"Some enemies like Mr. Iceguy can be carried when stunned. Simply touch them while holding ATTACK to pick them up."
 	},
 
 	"devcom" : {
@@ -450,7 +452,8 @@
 		"aurora-steps" : "Guarded Steps",
 		"aurora-xtreme" : "Xtreme Hills",
 		"aurora-fort" : "Fort Borealis",
-		"aurora-switch" : "Red Switch Trial"
+		"aurora-switch" : "Red Switch Trial",
+		"aurora-iceguy" : "Oh No, More Mr. Iceguy"
 	},
 
 	"key" : {
