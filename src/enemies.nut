@@ -22,8 +22,9 @@
 		stomp = 1.0
 		star = 10.0
 	}
-	blinking = 0
-	blinkMax = 10
+	blinking = 0.0
+	blinkSpeed = 1.0
+	blinkMax = 10.0
 	touchDamage = 0.0
 	element = "normal"
 	thorny = false
@@ -66,11 +67,12 @@
 						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
 						else hurtPlayer()
 					}
-					else hurtPlayer()
+					else if(blinking == 0) hurtPlayer()
 				}
 			}
 
-			if(blinking > 0) blinking--
+			if(blinking > 0) blinking -= blinkSpeed
+			if(blinking < 0) blinking = 0
 		}
 		else {
 			if(inDistance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2), 240)) active = true

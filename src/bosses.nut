@@ -9,6 +9,7 @@
 	gravity = 0.0
 	frame = 0.0
 	blinking = 0.0
+	blinkSpeed = 0.2
 	canBeStomped = false
 	ready = false
 
@@ -39,7 +40,7 @@
 	//Physics gets a separate function so that it can be inherited by other bosses
 	function physics() {}
 	function hitPlayer() {
-		gvPlayer.hurt = 1
+		gvPlayer.getHurt(touchDamage, element)
 	}
 
 	function turnToPlayer() {
@@ -246,7 +247,7 @@
 		}
 
 		//Set damage resistance
-		if(routine == ruDizzy) damageMult.stomp = 2.0
+		if(routine == ruDizzy) damageMult.stomp = 4.0
 		else damageMult.stomp = 1.0
 	}
 
@@ -437,14 +438,32 @@
 			if(flip == 0) hspeed = -1.0
 			else hspeed = 1.0
 		}
-		health -= 10
 		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 10
 		if(health > 0) playSound(sndBossHit, 0)
 		else playSound(sndDie, 0)
 	}
 
 	function hitPlayer() {
-		if(routine != ruDizzy) gvPlayer.hurt = 1
+		if(blinking > 0) return
+		if(routine != ruDizzy) base.hitPlayer()
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking > 0) return
+
+		local damage = _mag * damageMult[_element]
+		if(_cut) damage *= damageMult["cut"]
+		if(_blast) damage *= damageMult["blast"]
+		if(_stomp) damage *= damageMult["stomp"]
+
+		health -= damage
+		if(damage > 0) blinking = blinkMax
+
+		if(routine == ruDizzy && _stomp) {
+			hurtStomp()
+		}
+
+		popSound(sndBossHit)
 	}
 
 	function die() {}
