@@ -68,6 +68,8 @@ UbuntuJackson - UFO
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
 
+[Crystalized Sun]() - Mr. and Ms. Snowball
+
 ## Sounds
 
 [SuperTux](https://github.com/supertux/supertux) - Sounds (shoot, jump, hurt, slide, coin, trampoline)
