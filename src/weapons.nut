@@ -6,7 +6,7 @@
 //Different weapons will have different stats for enemies to react to
 
 ::fireWeapon <- function(weapon, x, y, alignment, owner) {
-	local c = actor[newActor(weapon, x, y)]
+	local c = actor[newActor(weapon, x, y, [alignment, owner])]
 	c.alignment = alignment
 	c.owner = owner
 	return c
@@ -21,6 +21,14 @@
 	owner = 0
 	alignment = 0 //0 is neutral, 1 is player, 2 is enemy
 
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+		if(typeof _arr == "array") {
+			if(canint(_arr[0])) alignment = _arr[0].tointeger()
+			if(canint(_arr[1])) alignment = _arr[1].tointeger()
+		}
+	}
+
 	function _typeof() { return "WeaponEffect" }
 }
 
@@ -33,7 +41,7 @@
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 4, 4, 0)
 	}
 
@@ -51,7 +59,7 @@
 	blast = true
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 8, 8, 0)
 	}
 
@@ -70,7 +78,7 @@
 	piercing = -1
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 
 		stopSound(sndBump)
 		playSound(sndBump, 0)
@@ -96,7 +104,7 @@
 	timer = 90
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 
 		shape = Rec(x, y, 3, 3, 0)
 	}
@@ -158,7 +166,7 @@
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 4, 4, 0)
 	}
 
@@ -177,7 +185,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		shape = Rec(x, y, 4, 4, 0)
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 		vspeed = 0.5 - randFloat(1.0)
 		newActor(AfterFlame, x, y)
 	}
@@ -199,10 +207,11 @@
 	timer = 90
 	angle = 0
 	element = "fire"
-	power = 0
+	power = 1
+	blast = true
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 
 		shape = Cir(x, y, 4)
 	}
@@ -216,7 +225,6 @@
 		x += hspeed
 		y += vspeed
 		if(!placeFree(x, y)) {
-			newActor(ExplodeF, x, y)
 			deleteActor(id)
 		}
 
@@ -248,7 +256,7 @@
 	blast = true
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
@@ -282,7 +290,7 @@
 	timer = 90
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 
 		shape = Rec(x, y, 3, 3, 0)
 	}
@@ -340,7 +348,7 @@
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 4, 4, 0)
 	}
 
@@ -359,7 +367,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		shape = Rec(x, y, 4, 4, 0)
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 		vspeed = 0.5 - randFloat(1.0)
 	}
 	function run() {
@@ -389,7 +397,7 @@
 	blast = true
 
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y, _arr)
 
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)

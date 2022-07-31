@@ -696,7 +696,7 @@
 						local fx = 6
 						local fy = 0
 						if(anim == anCrouch) fy = 6
-						if(anim == anCrawl) fy = 12
+						if(anim == anCrawl) fy = 10
 						if(flip == 1) fx = -5
 						local c = fireWeapon(FireballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
