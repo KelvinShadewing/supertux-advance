@@ -52,6 +52,10 @@
 
 	function hurtInvinc() {}
 
+	function hurtPlayer() {
+		if(blinking == 0) base.hurtPlayer()
+	}
+
 	function _typeof() { return "Boss" }
 }
 

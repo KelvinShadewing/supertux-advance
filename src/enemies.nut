@@ -67,7 +67,7 @@
 						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
 						else hurtPlayer()
 					}
-					else if(blinking == 0) hurtPlayer()
+					else hurtPlayer()
 				}
 			}
 
@@ -2873,6 +2873,7 @@
 		if(debug) shape.draw()
 
 		if(y > gvMap.h + 32) die()
+		if(health < 2) health++
 	}
 
 	function ruNormal() {
@@ -2971,6 +2972,7 @@
 			if(getcon("shoot", "release") && getcon("up", "hold") && held) vspeed = -4.0
 			if(held && gvPlayer) {
 				gvPlayer.holding = 0
+				x += gvPlayer.hspeed * 2
 
 				//escape from solid
 				if(!placeFree(x, y)) {
