@@ -126,9 +126,7 @@
 	}
 
 	function destructor() {
-		print(icebox)
 		mapDeleteSolid(icebox)
-		print("Killed " + (typeof this))
 	}
 }
 
@@ -1655,7 +1653,7 @@
 
 	function run() {
 		base.run()
-		if(gvPlayer) gvPlayer.x < x ? flip = 1 : flip = 0
+		if(gvPlayer && !frozen) gvPlayer.x < x ? flip = 1 : flip = 0
 
 		if(inDistance2(x, y, x, ystart, 16)) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart)) * dir
 		else if(inDistance2(x, y, x, ystart + range, 16)) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart + range)) * dir
@@ -2906,7 +2904,10 @@
 				if(hspeed < 0) hspeed += 0.01
 			}
 
-			if(slideTimer > 0) slideTimer--
+			if(slideTimer > 0) {
+				slideTimer--
+				touchDamage = 0.0
+			}
 			else touchDamage = 2.0
 			hurtTimer = 600
 
@@ -2915,7 +2916,8 @@
 				if(placeFree(x + 2, y + 1)) hspeed += 0.01
 			}
 
-			fireWeapon(MeleeHit, x + hspeed, y, 1, id)
+			local c = fireWeapon(MeleeHit, x + hspeed, y, 1, id)
+			c.power = 2
 		}
 
 		if(fabs(hspeed) < 0.01) {

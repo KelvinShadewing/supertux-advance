@@ -140,7 +140,7 @@ menu = meMain
 freeKonqi()
 game.playerChar = "Tux"
 
-//gotoTest()
+gotoTest()
 
 while(!getQuit() && !gvQuit) //Entire game happens here
 {

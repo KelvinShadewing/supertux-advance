@@ -17,7 +17,10 @@
 		}
 		if(2 in arg) if(arg[2]) infinite = true
 
-		if(myClass in getroottable()) myob = newActor(getroottable()[myClass], x, y)
+		if(myClass in getroottable()) {
+			myob = newActor(getroottable()[myClass], x, y)
+			if("nocount" in actor[myob]) actor[myob].nocount = true
+		}
 		else deleteActor(id)
 	}
 
@@ -33,6 +36,7 @@
 			if(timer == 0) {
 				timer = maxTime
 				if(myClass in getroottable()) myob = newActor(getroottable()[myClass], x, y)
+				if("nocount" in actor[myob]) actor[myob].nocount = true
 			}
 		}
 	}
