@@ -5540,6 +5540,30 @@
                  "width":16,
                  "x":5840,
                  "y":1056
+                }, 
+                {
+                 "gid":268,
+                 "height":16,
+                 "id":1445,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2320,
+                 "y":752
+                }, 
+                {
+                 "gid":268,
+                 "height":16,
+                 "id":1446,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2336,
+                 "y":752
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -5548,13 +5572,13 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1444,
+ "nextobjectid":1447,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgCave\nsongPlay(musCave)\ndrawWeather = 0\nsprDeathcap = sprMrSnowball\nsprGradcap = sprMsSnowball"
+         "value":"drawBG = dbgCave\nsongPlay(musCave)\ndrawWeather = 0\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

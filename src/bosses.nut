@@ -351,7 +351,7 @@
 		eventTimer--
 
 		if(anim == anThrow && frame >= anim[0] + 1 && !hasThrown) {
-			local c = actor[newActor(SnowBounce, x, y - 16)]
+			local c = actor[newActor(OrangeBounce, x, y - 16)]
 			if(flip == 0) c.hspeed = 2.0
 			else c.hspeed = -2.0
 			hasThrown = true

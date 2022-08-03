@@ -229,7 +229,7 @@
 					break
 
 				case 27:
-					c = newActor(SnowBounce, i.x + 8, i.y - 8)
+					c = newActor(OrangeBounce, i.x + 8, i.y - 8)
 					game.enemies++
 					break
 

@@ -153,8 +153,8 @@
 ::defDeathcap <- sprDeathcap
 ::sprGradcap <- newSprite("res/gfx/smartcap.png", 16, 18, 0, 0, 8, 11)
 ::defGradcap <- sprGradcap
-::sprSnowBounce <- newSprite("res/gfx/orange.png", 16, 16, 0, 0, 8, 8)
-::defSnowBounce <- sprSnowBounce
+::sprOrangeBounce <- newSprite("res/gfx/orange.png", 16, 16, 0, 0, 8, 8)
+::defOrangeBounce <- sprOrangeBounce
 ::sprCannon <- newSprite("res/gfx/cannon.png", 16, 16, 0, 0, 8, 8)
 ::defCannon <- sprCannon
 ::sprCannonBob <- newSprite("res/gfx/cannonbob.png", 16, 16, 0, 0, 8, 8)
@@ -209,6 +209,8 @@
 ::defMrSnowball <- sprMrSnowball
 ::sprMsSnowball <- newSprite("res/gfx/ms-snowball.png", 16, 16, 0, 0, 8, 9)
 ::defMsSnowball <- sprMsSnowball
+::sprSnowBounce <- newSprite("res/gfx/bouncysnow.png", 16, 16, 0, 0, 8, 8)
+::defSnowBounce <- sprSnowBounce
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
@@ -458,7 +460,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSnake = defSnake
 	sprDeathcap = defDeathcap
 	sprGradcap = defGradcap
-	sprSnowBounce = defSnowBounce
+	sprOrangeBounce = defOrangeBounce
 	sprCannon = defCannon
 	sprOuchin = defOuchin
 	sprCarlBoom = defCarlBoom
@@ -519,4 +521,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprWaterSurface = defWaterSurface
 	sprHeal = defHeal
 	sprSplash = defSplash
+}
+
+::gfxEnemySnow <- function() {
+	sprDeathcap = sprMrSnowball
+	sprGradcap = sprMsSnowball
+	sprOrangeBounce = sprSnowBounce
 }

@@ -753,7 +753,7 @@
 // 	function _typeof() { return "BadExplode" }
 // }
 
-// ::SnowBounce <- class extends Enemy {
+// ::OrangeBounce <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -793,7 +793,7 @@
 // 			shape.setPos(x, y)
 
 // 			//Draw
-// 			drawSpriteEx(sprSnowBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 			drawSpriteEx(sprOrangeBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 			if(frozen) {
 // 				//Create ice block
@@ -802,7 +802,7 @@
 // 				}
 
 // 				//Draw
-// 				drawSpriteEx(sprSnowBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				drawSpriteEx(sprOrangeBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 				if(frozen <= 120) {
 // 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -843,7 +843,7 @@
 
 // 	function hurtIce() { frozen = 600 }
 
-// 	function _typeof() { return "SnowBounce" }
+// 	function _typeof() { return "OrangeBounce" }
 // }
 
 // ::BadCannon <- class extends Actor {

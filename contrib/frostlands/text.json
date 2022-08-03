@@ -12,18 +12,18 @@
 	"level" : {
 		"fw-t0" : "Icey outpost",
 		"fw-t1" : "Chill docks",
-		"fw-t2" : "Doll shrine - late WIP",
+		"fw-t2" : "Doll shrine",
 		"fw-t3" : "Ice-burg",
 		"fw-t4" : "Lost tower",
 		"Fw-s" : "Into the void",
 		"Fw-1" : "Noted",
 		"Fw-2" : "Roots",
-		"Fw-3" : "Fire & Ice - late WIP",
+		"Fw-3" : "Fire & Ice",
 		"Fw-3b" : "Blast off!",
-		"Fw-4" : "TBA new name - early WIP ",
+		"Fw-4" : "Supernovae",
 		"Fw-5" : "Lost Ruins",
 		"Fw-6" : "I wanna be the penguin",
-		"Fw-7" : "Ocean cliffs - early WIP",
+		"Fw-7" : "Ocean cliffs",
 		"Fw-8" : "Permafrost",
 		"Fw-9" : "Short fuse",
 		"B-1" : "NeverCity",
@@ -62,8 +62,8 @@
 		"Why hello fellow cheater!!",
 		"slm" :
 		"May I offer you a cup of tea? No? Well that's too bad.",
-		"kro" :
-		"uhhh idk i gotta finish this text later lmao  .  placeholder"
+		"placeholder" :
+		"This is placeholder text"
 		},
 		
 	"devcom" : {

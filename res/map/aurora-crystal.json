@@ -2800,7 +2800,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgCave\nsongPlay(musCave)\nsetLight(0x808080ff)\nsprDeathcap = sprMrSnowball\nsprGradcap = sprMsSnowball"
+         "value":"drawBG = dbgCave\nsongPlay(musCave)\nsetLight(0x808080ff)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
