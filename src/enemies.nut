@@ -2882,7 +2882,7 @@
 		if(((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
 		|| x + hspeed > gvMap.w)
-		|| (!placeFree(x, y + 1) && placeFree(x + (8 * hspeed), y + 12))) {
+		|| (!placeFree(x, y + 1) && placeFree(x + (8 * hspeed), y + 16))) {
 			flip = (!flip).tointeger()
 			hspeed = -hspeed
 		}
@@ -2890,9 +2890,8 @@
 		touchDamage = 2.0
 
 		//Floating in water
-		if(inWater()) {
-			if(vspeed > -2) vspeed -= 1.0
-			y--
+		if(inWater(x, y)) {
+			if(vspeed > -2) vspeed /= 2.0
 			gravity = -0.1
 		} else gravity = 0.1
 	}
@@ -2993,9 +2992,9 @@
 		}
 
 		//Floating in water
-		if(inWater()) {
-			if(vspeed > -2) vspeed -= 1.0
-			y--
+		if(inWater(x, y)) {
+			if(vspeed > -2) vspeed /= 2.0
+			hspeed /= 1.01
 			gravity = -0.1
 		} else gravity = 0.1
 	}

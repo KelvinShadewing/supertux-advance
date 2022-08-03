@@ -2774,6 +2774,18 @@
                  "width":16,
                  "x":2160,
                  "y":224
+                }, 
+                {
+                 "gid":221,
+                 "height":16,
+                 "id":268,
+                 "name":"tuxdoll",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":608,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2782,7 +2794,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":268,
+ "nextobjectid":269,
  "orientation":"orthogonal",
  "properties":[
         {

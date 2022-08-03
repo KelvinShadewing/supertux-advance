@@ -33,6 +33,7 @@
 	antigrav = 0
 	groundx = 0.0 //Remember last coordinates over solid ground
 	groundy = 0.0
+	slippery = false
 
 	//Animations
 	anStandN = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 76, 77, 78, 79, 78, 79, 78, 79, 78, 79, 78, 77, 76]
@@ -165,6 +166,7 @@
 			shape = shapeSlide
 			if(anim == anStand || anim == anWalk || anim == anRun) anim = anCrawl
 		}
+
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
 		local freeLeft = placeFree(x - 1, y)
@@ -196,6 +198,7 @@
 		if(!inWater(x, y) || game.weapon == 4) {
 			swimming = false
 			shapeStand.h = 12.0
+			slippery = (anim == anDive || anim == anSlide || onIce())
 
 			//Animation states
 			switch(anim) {
@@ -361,7 +364,7 @@
 			if(anim != null) frame = wrap(frame, 0, anim.len() - 1)
 
 			//Sliding acceleration
-			if(anim == anDive || anim == anSlide || onIce()) {
+			if(slippery) {
 				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
@@ -911,6 +914,7 @@
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
+						if(slippery) vspeed -= 2.0
 						break
 					}
 				}

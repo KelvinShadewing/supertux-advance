@@ -176,7 +176,9 @@
 		"elements-fire-ice" :
 		"Your elemental form doesn't just change your attack; it changes how elemental damage affects you. Elements will take double damage from their opposites, and half damage from themselves. For instance, with a fire flower, ice enemies will damage you twice as much, but with an ice flower, they'll do half as much.",
 		"iceflower" :
-		"With the ice flower, you can freeze enemies in place and reduce damage from ice attacks. You'll also move faster!"
+		"With the ice flower, you can freeze enemies in place and reduce damage from ice attacks. You'll also move faster!",
+		"tuxdoll" :
+		"If you find a doll of your character, grab it! It will protect you from KO when you run out of life."
 	},
 
 	"devcom" : {

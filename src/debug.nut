@@ -3,6 +3,8 @@
 ::debugTickSum <- 0
 ::debugTickList <- array(64, 0)
 ::devcom <- false
+::debugHistory <- []
+::debugCursor <- 0
 
 ::drawDebug <- function() {
 	if(keyPress(k_f12)) {
@@ -42,7 +44,7 @@
 	}
 		if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
 		if(keyPress(k_e)) {
-		endGoal()	
+		endGoal()
 		}
 	}
 
@@ -106,15 +108,17 @@
 	update()
 
 	local output = ""
-	local history = []
 	local input = ""
 
 	while(!keyPress(k_tick) && !keyPress(k_escape)) {
 		if(keyPress(k_backspace) && input.len() > 0) input = input.slice(0, -1)
 		if(keyPress(k_enter)) {
 			dostr(input)
-			history.push(input)
-			if(history.len() > 15) history.remove(0)
+			if(debugHistory.len() > 0) debugHistory.pop()
+			debugHistory.push(input)
+			debugHistory.push("")
+			debugCursor = debugHistory.len() - 1
+			if(debugHistory.len() > screenH() / 8) debugHistory.remove(0)
 			input = ""
 		}
 		local newchar = keyString()
@@ -123,21 +127,31 @@
 		setDrawTarget(gvScreen)
 		drawImage(bgPause, 0, 0)
 		setDrawColor(0x00000080)
-		drawRec(0, 0, screenW(), 8 * 16, true)
+		drawRec(0, 0, screenW(), screenH(), true)
 
 		output = ""
-		for(local i = 0; i < history.len(); i++) {
-			output += history[i]
+		for(local i = 0; i < debugHistory.len() - 1; i++) {
+			output += debugHistory[i]
 			output += "\n"
 		}
-		if(input.len() < 52) output += input
-		else output += input.slice(-52)
+		if(input.len() < floor(screenW() / 6)) output += input
+		else output += input.slice(-floor(screenW() / 6))
 		if(floor(getFrames() / 32) % 2 == 0) output += "|"
 		drawText(font, 0, 0, output)
 
 		resetDrawTarget()
 		drawImage(gvScreen, 0, 0)
 		update()
+
+		if(keyPress(k_up) && debugCursor > 0) {
+			debugCursor--
+			input = debugHistory[debugCursor]
+		}
+
+		if(keyPress(k_down) && debugCursor < debugHistory.len() - 1) {
+			debugCursor++
+			input = debugHistory[debugCursor]
+		}
 	}
 }
 
