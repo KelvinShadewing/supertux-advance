@@ -657,8 +657,8 @@
 				else {
 					speedLimit = 6
 				}
-				if(hspeed > speedLimit) hspeed = speedLimit
-				if(hspeed < -speedLimit) hspeed = -speedLimit
+				if(hspeed > speedLimit) hspeed = max(speedLimit, hspeed * 0.9)
+				if(hspeed < -speedLimit) hspeed = -max(speedLimit, hspeed * 0.9)
 			}
 
 			//Gravity cases
