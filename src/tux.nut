@@ -365,7 +365,7 @@
 
 			//Sliding acceleration
 			if(slippery) {
-				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && game.weapon == 2))) {
+				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (game.weapon == 2 || (game.weapon == 4 && anim == anSlide))))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
@@ -647,15 +647,18 @@
 			}
 
 			//Max ground speed
+			local speedLimit = 6.0
 			if(!placeFree(x, y + 1)){
 				if(game.weapon == 2) {
-					if(hspeed > 8) hspeed = 8
-					if(hspeed < -8) hspeed = -8
+					if(anim == anSlide) speedLimit = 10
+					else speedLimit = 8
 				}
+				else if(game.weapon == 4 && anim == anSlide) speedLimit = 10
 				else {
-					if(hspeed > 6) hspeed = 6
-					if(hspeed < -6) hspeed = -6
+					speedLimit = 6
 				}
+				if(hspeed > speedLimit) hspeed = speedLimit
+				if(hspeed < -speedLimit) hspeed = -speedLimit
 			}
 
 			//Gravity cases
