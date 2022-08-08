@@ -9,6 +9,7 @@
 	v = 0.0
 	vspeed = 0
 	oldsolid = 0
+	glimmerTimer = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -103,6 +104,13 @@
 		v += vspeed
 
 		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy + v)
+		if(coins > 0 && game.difficulty == 0) {
+			if(glimmerTimer > 0) glimmerTimer--
+			else {
+				glimmerTimer = randInt(30)
+				newActor(Glimmer, x - 8 + randInt(16), y  - 8 + randInt(16))
+			}
+		}
 	}
 
 	function _typeof() { return "WoodBlock" }

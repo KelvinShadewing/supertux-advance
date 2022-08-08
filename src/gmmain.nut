@@ -2,7 +2,7 @@
 	stopMusic()
 	songPlay(musTheme)
 	game = createNewGameObject()
-	drawBG = dbgUnderwater
+	drawBG = dbgOceanMoving
 	gvGameMode = gmMain
 	actor = {}
 	menu = meMain

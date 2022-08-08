@@ -650,7 +650,6 @@
 		base.constructor(_x, _y)
 		shape = Cir(x, y, 8)
 		num = _arr
-		if(game.secretOrbs[num]) deleteActor(id)
 	}
 
 	function run() {
@@ -659,8 +658,12 @@
 			deleteActor(id)
 		}
 
+		if(game.secretOrbs[num]) deleteActor(id)
+
 		drawSprite(sprSpecialBall, getFrames() / 4, x - camx, y - camy)
 	}
+
+	function _typeof() { return "SpecialBall" }
 }
 
 ::CoinRing <- class extends Actor {

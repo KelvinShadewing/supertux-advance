@@ -224,7 +224,7 @@
 		message += "..."
 
 		setDrawColor(0x00000080)
-		drawRec(0, 0, 320, 24, true)
+		drawRec(0, 0, screenW(), 24, true)
 		drawText(font, 8, 8, message)
 		update()
 	}
@@ -372,7 +372,7 @@
 		message += "...\n" + gvLangObj["controls-menu"]["clear"]
 
 		setDrawColor(0x00000080)
-		drawRec(0, 0, 320, 24, true)
+		drawRec(0, 0, screenW(), 24, true)
 		drawText(font, 8, 8, message)
 		update()
 	}
