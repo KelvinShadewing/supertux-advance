@@ -528,3 +528,5 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprGradcap = sprMsSnowball
 	sprOrangeBounce = sprSnowBounce
 }
+
+::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

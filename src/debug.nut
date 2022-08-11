@@ -5,6 +5,8 @@
 ::devcom <- false
 ::debugHistory <- []
 ::debugCursor <- 0
+::debugMouseLeft <- 1
+::debugMouseRight <- 0
 
 ::drawDebug <- function() {
 	if(keyPress(k_f12)) {
@@ -13,6 +15,10 @@
 	}
 	if(keyPress(k_f1)) devcom = !devcom
 
+	//If drawing is disabled, exit
+	if(!debug) return
+
+	//Draw frames per second
 	local fps = getFPS()
 	debugTickSum -= debugTickList[debugTickIndex]
 	debugTickSum += fps
@@ -20,9 +26,6 @@
 	debugTickIndex++
 	if(debugTickIndex == 64) debugTickIndex = 0
 	fps = debugTickSum / 64
-
-	//If drawing is disabled, exit
-	if(!debug) return
 
 	//Set weapon
 	if(keyPress(k_1)) game.weapon = 0
@@ -48,17 +51,30 @@
 		}
 	}
 
-	//Teleport
-	if(gvPlayer && mouseDown(0)) {
-		gvPlayer.x = mouseX() + camx
-		gvPlayer.y = mouseY() + camy
-		gvPlayer.hspeed = 0.0
-		gvPlayer.vspeed = 0.0
+	//Mouse debug
+	if(keyDown(k_lshift)) {
+		if(gvPlayer && mouseDown(0)) {
+			gvPlayer.x = mouseX() + camx
+			gvPlayer.y = mouseY() + camy
+			gvPlayer.hspeed = 0.0
+			gvPlayer.vspeed = 0.0
 
-		if(gvGameMode == gmOverworld) {
-			gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
-			gvPlayer.y = (gvPlayer.y - (gvPlayer.y % 16)) + 8
+			if(gvGameMode == gmOverworld) {
+				gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
+				gvPlayer.y = (gvPlayer.y - (gvPlayer.y % 16)) + 8
+			}
 		}
+	}
+	else {
+		if(mouseDown(0)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseLeft)
+		if(mouseDown(2)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseRight)
+		if(mouseDown(1)) debugMouseLeft = tileGetSolid(mouseX() + camx, mouseY() + camy)
+		if(mouseWheelY() < 0) debugMouseLeft--
+		if(mouseWheelY() > 0) debugMouseLeft++
+		debugMouseLeft = wrap(debugMouseLeft, 0, (5 * 13) - 1)
+		if(debugMouseLeft == 0) drawSprite(tsSolid, (5 * 13) - 1, mouseX(), mouseY())
+		else drawSprite(tsSolid, debugMouseLeft - 1, mouseX(), mouseY())
+		game.canres = true
 	}
 
 	local message = ""
