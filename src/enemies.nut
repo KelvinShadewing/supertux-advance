@@ -367,6 +367,7 @@
 	up = false
 	flip = 1
 	touchDamage = 2.0
+	thorny = true
 	damageMult = {
 		normal = 1.0
 		fire = 1.0
@@ -1616,14 +1617,10 @@
 		if(vspeed > 0) fireWeapon(AfterIce, x, y, 1, id)
 	}
 
-	function hurtFire() {
-		deleteActor(id)
-		newActor(Poof, x, y)
-	}
-
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
-			hurtFire()
+			deleteActor(id)
+		newActor(Poof, x, y)
 			return
 		}
 		else if(_element != "ice") {
@@ -2935,9 +2932,9 @@
 		}
 
 		//Turn around
-		if((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4) && !held)
+		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
-		|| x + hspeed > gvMap.w) {
+		|| x + hspeed > gvMap.w)) {
 			flip = (!flip).tointeger()
 			fireWeapon(StompPoof, x + (10 * (hspeed <=> 0)), y, 0, id)
 			hspeed = -hspeed

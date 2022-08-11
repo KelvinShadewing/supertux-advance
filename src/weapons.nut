@@ -102,6 +102,7 @@
 ::Fireball <- class extends WeaponEffect {
 	element = "fire"
 	timer = 90
+	piercing = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -137,10 +138,7 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
-		if(y > gvMap.h) {
-			deleteActor(id)
-			newActor(Poof, x, y)
-		}
+		if(y > gvMap.h || piercing == 0) deleteActor(id)
 
 		shape.setPos(x, y)
 	}

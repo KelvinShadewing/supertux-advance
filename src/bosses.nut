@@ -368,6 +368,10 @@
 		if(flip == 0) hspeed = 3.0
 		else hspeed = -3.0
 
+		local c = fireWeapon(MeleeHit, x, y, 1, id)
+		c.shape = clone(shape)
+		c.shape.setPos(x + hspeed * 2, y)
+
 		if(!placeFree(x + hspeed, y)) {
 			vspeed = -2.0
 			hspeed = -hspeed / 3.0
