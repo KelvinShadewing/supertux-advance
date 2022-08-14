@@ -118,8 +118,10 @@
 }
 
 ::debugConsole <- function() {
-	setDrawTarget(bgPause)
-	drawImage(gvScreen, 0, 0)
+	if(gvGameMode != gmPause) {
+		setDrawTarget(bgPause)
+		drawImage(gvScreen, 0, 0)
+	}
 	resetDrawTarget()
 	update()
 

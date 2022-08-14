@@ -885,7 +885,7 @@
 
 	function run() {
 		if(gvPlayer) {
-			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxredcoins == game.levelredcoins ){
+			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxRedCoins == game.redCoins ){
 				deleteActor(id)
 				newActor(Poof, x, y)
 				tileSetSolid(x, y, 0)

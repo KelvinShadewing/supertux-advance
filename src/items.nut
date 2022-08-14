@@ -98,7 +98,7 @@
 	{
 	base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.maxredcoins++
+		game.maxRedCoins++
 	}
 
 	function run()
@@ -108,7 +108,7 @@
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
-			game.levelredcoins++
+			game.redCoins++
 		}
 	}
 

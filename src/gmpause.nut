@@ -3,6 +3,8 @@
 ::gmPause <- function() {
 	setDrawTarget(gvScreen)
 	drawImage(bgPause, 0, 0)
+	setDrawColor(0x00000080)
+	drawRec(0, 0, screenW(), screenH(), true)
 	drawText(font2, (screenW() / 2) - 20, screenH() / 2 - 64, gvLangObj["pause-menu"]["pause"])
 	textMenu()
 	resetDrawTarget()

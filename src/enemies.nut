@@ -727,8 +727,8 @@
 				//Get carried
 				if(getcon("shoot", "hold") && gvPlayer) {
 					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.holding == 0 || gvPlayer.holding == id)) {
-						if(gvPlayer.flip == 0) x = gvPlayer.x + 10
-						else x = gvPlayer.x - 10
+						if(gvPlayer.flip == 0) x = gvPlayer.x + 8
+						else x = gvPlayer.x - 8
 						y = gvPlayer.y
 						vspeed = 0
 						squishTime -= 1.0
@@ -736,7 +736,7 @@
 						gvPlayer.held = id
 						if(squishTime >= 150) gvPlayer.holding = 0
 					}
-					else if(gvPlayer.holding == id) gvPlayer.holding = 0
+					else if(gvPlayer.holding == id && !inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) gvPlayer.holding = 0
 				}
 
 				//Move
@@ -752,7 +752,7 @@
 				if(squishTime >= 150) {
 					die()
 					fireWeapon(ExplodeF, x, y, 0, id)
-					if(gvPlayer) if(gvPlayer.held == id) gvPlayer.held = null
+					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = null
 				}
 			}
 

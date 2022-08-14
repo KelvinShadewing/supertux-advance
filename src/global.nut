@@ -14,9 +14,8 @@
 		coins = 0
 		levelCoins = 0
 		maxCoins = 0 //Total coins in the level
-		redcoins = 0
-		levelredcoins = 0
-		maxredcoins = 0
+		redCoins = 0
+		maxRedCoins = 0
 		secrets = 0
 		enemies = 0
 		health = 12
