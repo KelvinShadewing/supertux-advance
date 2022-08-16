@@ -177,11 +177,9 @@
 ::defClamor <- sprClamor
 ::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 4)
 ::defIcicle <- sprIcicle
-::sprBounceCap <- newSprite("res/gfx/bouncecap.png", 16, 16, 0, 0, 8, 8)
-::defBounceCap <- sprBounceCap
 ::sprFlyAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
 ::defFlyAmanita <- sprFlyAmanita
-::sprJumpy <- newSprite("res/gfx/bouncecap.png", 16, 16, 0, 0, 8, 8)
+::sprJumpy <- newSprite("res/gfx/bouncecap.png", 16, 20, 0, 0, 8, 8)
 ::defJumpy <- sprJumpy
 ::sprDarkStar <- newSprite("res/gfx/darknyan.png", 16, 16, 0, 0, 8, 8)
 ::defDarkStar <- sprDarkStar
@@ -211,6 +209,8 @@
 ::defMsSnowball <- sprMsSnowball
 ::sprSnowBounce <- newSprite("res/gfx/bouncysnow.png", 16, 16, 0, 0, 8, 8)
 ::defSnowBounce <- sprSnowBounce
+::sprSnowJumpy <- newSprite("res/gfx/og-jumpy.png", 16, 25, 0, 0, 8, 11)
+::defSnowJumpy <- sprSnowJumpy
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
@@ -471,7 +471,6 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprJellyFish = defJellyFish
 	sprClamor = defClamor
 	sprIcicle = defIcicle
-	sprBounceCap = defBounceCap
 	sprFlyAmanita = defFlyAmanita
 	sprJumpy = defJumpy
 	sprDarkStar = defDarkStar
@@ -527,6 +526,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprDeathcap = sprMrSnowball
 	sprGradcap = sprMsSnowball
 	sprOrangeBounce = sprSnowBounce
+	sprJumpy = sprSnowJumpy
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

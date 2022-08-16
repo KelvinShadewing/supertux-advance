@@ -258,11 +258,11 @@
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
-			shape.setPos(x, y)
+			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
@@ -321,15 +321,16 @@
 			actor[c].spin = 4
 			actor[c].angle = 180
 			die()
-			playSound(sndKick, 0)
+			popSound(sndKick, 0)
 
 			if(randInt(20) == 0) {
 				local a = actor[newActor(MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
-		}
+		} else popSound(sndSquish, 0)
 
 		squish = true
+		blinking = 120
 	}
 
 	function hurtblast() {
@@ -1811,7 +1812,7 @@
 			shape.setPos(x, y)
 
 			//Draw
-			drawSpriteEx(sprJumpy, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSpriteEx(sprJumpy, (0 <=> round(vspeed / 2.0)) + 1, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen) {
 				//Create ice block

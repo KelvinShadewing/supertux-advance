@@ -68,7 +68,7 @@ UbuntuJackson - UFO
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
 
-[Crystalized Sun]() - Mr. and Ms. Snowball
+[Crystalized Sun]() - Mr. and Ms. Snowball, Snow Jumpy
 
 ## Sounds
 
