@@ -2939,7 +2939,7 @@
 			flip = (!flip).tointeger()
 			fireWeapon(StompPoof, x + (10 * (hspeed <=> 0)), y, 0, id)
 			hspeed = -hspeed
-			if(!held) popSound(sndIceblock)
+			if(!held && x > camx - 32 && x < camx + 32 + screenW() && y > camy - 32 && y < camy + 32 + screenH()) popSound(sndIceblock)
 		}
 
 		//Getting carried
