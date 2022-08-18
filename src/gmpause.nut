@@ -15,7 +15,7 @@
 	cursor = 0
 	if(gvGameMode == gmPlay) {
 		if(actor.rawin("DeadPlayer")) {
-			startPlay(gvMap.file)
+			startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
 				game.weapon = 0

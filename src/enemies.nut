@@ -335,7 +335,8 @@
 
 	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprDeathcap
+		if(smart) actor[c].sprite = sprGradcap
+		else actor[c].sprite = sprDeathcap
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
