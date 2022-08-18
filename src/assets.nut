@@ -80,6 +80,7 @@
 ::sprBossHealth <- newSprite("res/gfx/boss-health.png", 10, 16, 0, 0, 0, 0)
 ::defBossHealth <- sprBossHealth
 ::sprSkull <- newSprite("res/gfx/skull.png", 16, 16, 0, 0, 0, 0)
+::sprIris <- newSprite("res/gfx/iris.png", 424, 424, 0, 0, 212, 212)
 
 
 //Blocks

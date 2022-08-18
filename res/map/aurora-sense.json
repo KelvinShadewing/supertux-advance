@@ -2992,6 +2992,11 @@
  "orientation":"orthogonal",
  "properties":[
         {
+         "name":"author",
+         "type":"string",
+         "value":"FrostC"
+        }, 
+        {
          "name":"code",
          "type":"string",
          "value":"drawBG = dbgSnowPlain\ndrawWeather = dweBlizzard\nsongPlay(musDisko)\ngfxEnemySnow()"

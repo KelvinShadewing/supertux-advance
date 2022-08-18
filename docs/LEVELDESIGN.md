@@ -10,6 +10,10 @@ If you ever accidentally overwrite your template file, save a copy under a new n
 
 If you want to output minimized files, ones without the extra whitespace to make the file readable in a text editor, go to "Edit > Preferences... > General > Export Options" and click "Minimize output". Then use "File > Export" to save the minimized file.
 
+## Author
+
+You can sign your level by adding an `author` property to the map. Maps made by multiple designers should have their names in an alphabetically sorted, comma separated list.
+
 ## Start Code
 
 You can have the level run a piece of code once it's done loading. This code will be run after all actors have been created as well. You can do this by going to "Map > Map properties". This will set the Properties panel to focus on the map itself. From here, create a custom property called `code`. By clicking the "..." button on the right side of the text entry field, you can open up a multi-line editor for easier coding.
@@ -78,7 +82,7 @@ Lines are all arguments following talk mode. There can be any number depending o
 
 ## Other Notes
 
-Player dolls are items that revive you once you die, without having to go back to a checkpoint. 
+Player dolls are items that revive you once you die, without having to go back to a checkpoint.
 
 You can have multiple checkpoints in a level. Use this to your advantage if you want to create levels with multiple paths. Remember that everything resets when the player dies, so, for instance, enemies that are necessary to progress, like hopping on them to cross a gap, will respawn upon a new life. Be sure not to put enemies too close to a checkpoint.
 

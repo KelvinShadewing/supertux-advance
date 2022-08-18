@@ -34,10 +34,20 @@
 
 		if(!game.completed.rawin(clearedLevel)) game.completed[clearedLevel] <- true
 		if(game.levelCoins >= game.maxCoins && !game.allCoins.rawin(clearedLevel)) game.allCoins[clearedLevel] <- true
-		if(game.secrets <= 0 && !game.allSecrets.rawin(clearedLevel)) game.allSecrets[clearedLevel] <- true
-		if(game.enemies <= 0 && !game.allEnemies.rawin(clearedLevel)) game.allEnemies[clearedLevel] <- true
+		if(game.secrets >= game.maxSecrets && !game.allSecrets.rawin(clearedLevel)) game.allSecrets[clearedLevel] <- true
+		if(game.enemies >= game.maxEnemies && !game.allEnemies.rawin(clearedLevel)) game.allEnemies[clearedLevel] <- true
 		if(!game.bestTime.rawin(clearedLevel)) game.bestTime[clearedLevel] <- gvIGT
 		else if(game.bestTime[clearedLevel] > gvIGT) game.bestTime[clearedLevel] = gvIGT
+
+		//Best stats
+		if(!game.bestTime.rawin(clearedLevel)) game.bestTime[clearedLevel] <- gvIGT
+		else if(game.bestTime[clearedLevel] > gvIGT) game.bestTime[clearedLevel] <- gvIGT
+		if(!game.bestCoins.rawin(clearedLevel)) game.bestCoins[clearedLevel] <- game.levelCoins
+		else if(game.bestCoins[clearedLevel] < game.levelCoins) game.bestCoins[clearedLevel] <- game.levelCoins
+		if(!game.bestSecrets.rawin(clearedLevel)) game.bestSecrets[clearedLevel] <- game.secrets
+		else if(game.bestSecrets[clearedLevel] < game.secrets) game.bestSecrets[clearedLevel] <- game.secrets
+		if(!game.bestEnemies.rawin(clearedLevel)) game.bestEnemies[clearedLevel] <- game.enemies
+		else if(game.bestEnemies[clearedLevel] < game.enemies) game.bestEnemies[clearedLevel] <- game.enemies
 
 		game.coins += game.levelCoins
 

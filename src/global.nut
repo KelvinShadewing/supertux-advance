@@ -17,7 +17,9 @@
 		redCoins = 0
 		maxRedCoins = 0
 		secrets = 0
+		maxSecrets = 0
 		enemies = 0
+		maxEnemies = 0
 		health = 12
 		maxHealth = 12
 		weapon = 0
@@ -32,6 +34,9 @@
 		allEnemies = {} //Levels that the player has beaten all enemies in
 		allSecrets = {} //Levels the player has found all secrets in
 		bestTime = {} //Fastest time for a level
+		bestCoins = {} //Most coins found per level
+		bestEnemies = {} //Most enemies defeated per level
+		bestSecrets = {} //Most secrets found per level
 		igt = 0 //Global IGT, which increments throughout the game's runtime
 		colorswitch = [
 			false,

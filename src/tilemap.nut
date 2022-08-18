@@ -89,6 +89,7 @@
 	h = 0
 	name = ""
 	file = ""
+	author = ""
 	solidfid = 0 //First tile ID for the solid tileset
 	shape = null
 	anim = null //List of animated tiles

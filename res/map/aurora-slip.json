@@ -2438,6 +2438,11 @@
  "orientation":"orthogonal",
  "properties":[
         {
+         "name":"author",
+         "type":"string",
+         "value":"FrostC"
+        }, 
+        {
          "name":"code",
          "type":"string",
          "value":"drawBG = dbgSnowPlain\nsongPlay(musDisko)\ngfxEnemySnow()"

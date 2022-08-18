@@ -6,10 +6,11 @@
 ::gvInfoLast <- ""
 ::gvInfoStep <- 0
 ::gvLangObj <- ""
+::gvFadeInTime <- 255
 
 ::mapActor <- {} //Stores references to all actors created by the map
 
-::startPlay <- function(level)
+::startPlay <- function(level, newLevel = true, skipIntro = false)
 {
 	if(!fileExists(level)) return
 
@@ -19,17 +20,21 @@
 	gvBoss = false
 	actor.clear()
 	actlast = 0
-	game.health = game.maxHealth
-	game.levelCoins = 0
-	game.maxCoins = 0
-	game.redcoins = 0
-	game.redCoins = 0
-	game.maxRedCoins = 0
-	game.secrets = 0
-	game.enemies = 0
-	gvInfoBox = ""
-	gvLastSong = ""
-	gfxReset()
+	if(newLevel) {
+		game.health = game.maxHealth
+		game.levelCoins = 0
+		game.maxCoins = 0
+		game.redCoins = 0
+		game.maxRedCoins = 0
+		game.secrets = 0
+		game.maxSecrets = 0
+		game.enemies = 0
+		game.maxEnemies = 0
+		gvInfoBox = ""
+		gvLastSong = ""
+		gfxReset()
+		gvFadeInTime = 255
+	}
 
 	//Reset auto/locked controls
 	autocon.up = false
@@ -150,22 +155,22 @@
 				case 10:
 					c = newActor(PipeSnake, i.x, i.y, 1)
 					//Enemies are counted at level creation so ones created indefinitely don't count against achievements
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 11:
 					c = newActor(PipeSnake, i.x, i.y - 16, -1)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 12:
 					c = newActor(Deathcap, i.x + 8, i.y - 8, false)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 13:
 					c = newActor(Deathcap, i.x + 8, i.y - 8, true)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 14:
@@ -225,22 +230,22 @@
 
 				case 26:
 					c = newActor(CarlBoom, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 27:
 					c = newActor(OrangeBounce, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 28:
 					c = newActor(BlueFish, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 29:
 					c = newActor(RedFish, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 30:
@@ -269,12 +274,12 @@
 
 				case 36:
 					c = newActor(JellyFish, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 37:
 					c = newActor(Clamor, i.x + 8, i.y - 8, i.name)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 38:
@@ -307,7 +312,7 @@
 
 				case 44:
 					c = newActor(GreenFish, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 45:
@@ -316,7 +321,7 @@
 
 				case 46:
 					c = newActor(FlyAmanita, i.x + 8, i.y - 8, i.name)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 48:
@@ -395,17 +400,17 @@
 
 				case 65:
 					c = newActor(Haywire, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 66:
 					c = newActor(Livewire, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 67:
 					c = newActor(Blazeborn, i.x + 8, i.y - 8)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 68:
@@ -426,7 +431,7 @@
 
 				case 73:
 					c = newActor(Jumpy, i.x + 8, i.y - 8, i.name)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 75:
@@ -447,12 +452,12 @@
 
 				case 80:
 					c = newActor(MrIceguy, i.x + 8, i.y - 8, i.name)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 81:
 					c = newActor(Owl, i.x + 8, i.y - 8, i.name)
-					game.enemies++
+					game.maxEnemies++
 					break
 
 				case 85:
@@ -546,7 +551,11 @@
 	}
 
 	//Switch game mode to play
-	gvGameMode = gmPlay
+	if(skipIntro) {
+		gvGameMode = gmPlay
+		gvFadeInTime = 0
+	}
+	else gvGameMode = gmLevelStart
 	//If the map loading fails at any point, then it will not change
 	//the mode and simply remain where it was. A message is printed
 	//in the log if the map fails, so users can check why a level
@@ -556,10 +565,76 @@
 	print("Running level code...")
 	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
 		if(i.name == "code") dostr(i.value)
+		if(i.name == "author") gvMap.author = i.value
 	}
 	print("End level code")
 
-	update()
+	setDrawTarget(bgPause)
+	drawImage(gvScreen, 0, 0)
+
+	if(newLevel && !skipIntro) { //Iris transition
+		setDrawColor(0x000000ff)
+
+		for(local i = 0.0; i <= 100; i += 4.0) {
+			setDrawTarget(gvScreen)
+			drawImage(bgPause, 0, 0)
+
+			local di = i / 100.0
+
+			//drawSpriteEx(sprIris, 0, screenW() / 2, screenH() / 2, 0, 0, 1.0 - di, 1.0 - di, 1)
+			drawRec(0, 0, screenW() * (di / 2.0), screenH(), true)
+			drawRec(screenW(), 0, -(screenW() * (di / 2.0)), screenH(), true)
+			drawRec(0, 0, screenW(), screenH() * (di / 2.0), true)
+			drawRec(0, screenH(), screenW(), -(screenH() * (di / 2.0)), true)
+
+			resetDrawTarget()
+			drawImage(gvScreen, 0, 0)
+			update()
+
+			if(getcon("pause", "press")) break
+		}
+	}
+
+	//update()
+}
+
+::gmLevelStart <- function() {
+	setDrawTarget(gvScreen)
+	setDrawColor(0x000000ff)
+	drawRec(0, 0, screenW(), screenH(), true)
+
+	drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvLevel].len() * 4), 8, gvLangObj["level"][gvLevel])
+
+	local runAnim = getroottable()[game.playerChar].anRun
+	drawSprite(getroottable()[game.characters[game.playerChar][2]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+
+	local author = gvLangObj["stats"]["author"] + ": " + gvMap.author
+	drawText(font, (screenW() / 2) - author.len() * 3, screenH() - 64, author)
+
+	local bt = gvLangObj["stats"]["time"] + ": "
+	if(game.bestTime.rawin(gvMap.name)) bt += formatTime(game.bestTime[gvMap.name])
+	else bt += "0:00.00"
+	drawText(font, (screenW() / 2) - bt.len() * 3, screenH() - 56, bt)
+
+	local bc = gvLangObj["stats"]["coins"] + ": "
+	if(game.bestCoins.rawin(gvMap.name)) bc += game.bestCoins[gvMap.name] + " / " + game.maxCoins
+	else bc += "0 / " + game.maxCoins
+	drawText(font, (screenW() / 2) - bc.len() * 3, screenH() - 48, bc)
+
+	local be = gvLangObj["stats"]["enemies"] + ": "
+	if(game.bestEnemies.rawin(gvMap.name)) be += game.bestEnemies[gvMap.name] + " / " + game.maxEnemies
+	else be += "0 / " + game.maxEnemies
+	drawText(font, (screenW() / 2) - be.len() * 3, screenH() - 40, be)
+
+	local bs = gvLangObj["stats"]["secrets"] + ": "
+	if(game.bestSecrets.rawin(gvMap.name)) bs += game.bestSecrets[gvMap.name] + " / " + game.maxSecrets
+	else bs += "0 / " + game.maxSecrets
+	drawText(font, (screenW() / 2) - bs.len() * 3, screenH() - 32, bs)
+
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
+
+	if(getcon("jump", "press") || getcon("shoot", "press") || getcon("pause", "press") || getcon("accept", "press")) gvGameMode = gmPlay
 }
 
 ::gmPlay <- function()
@@ -799,6 +874,10 @@
 		drawText(font, 8, 8, gvInfoBox.slice(0, gvInfoStep))
 
 	}
+
+	setDrawColor(gvFadeInTime)
+	drawRec(0, 0, screenW(), screenH(), true)
+	if(gvFadeInTime > 0) gvFadeInTime -= 5
 
 	drawDebug()
 

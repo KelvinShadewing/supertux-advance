@@ -504,3 +504,7 @@
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
 }
+
+::irisOut <- function() {
+
+}

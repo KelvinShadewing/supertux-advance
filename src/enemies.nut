@@ -93,7 +93,7 @@
 
 		deleteActor(id)
 
-		if(!nocount) game.enemies--
+		if(!nocount) game.enemies++
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -901,7 +901,7 @@
 		actor[c].gravity = 0.02
 		deleteActor(id)
 		playSound(sndKick, 0)
-		game.enemies--
+		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
@@ -1014,7 +1014,7 @@
 		actor[c].gravity = 0.02
 		deleteActor(id)
 		playSound(sndKick, 0)
-		game.enemies--
+		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
@@ -1122,7 +1122,7 @@
 		actor[c].gravity = 0.01
 		deleteActor(id)
 		playSound(sndKick, 0)
-		game.enemies--
+		game.enemies++
 		newActor(Poof, x, y)
 	}
 
@@ -1336,7 +1336,7 @@
 		actor[c].gravity = 0.02
 		deleteActor(id)
 		playSound(sndKick, 0)
-		game.enemies--
+		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {

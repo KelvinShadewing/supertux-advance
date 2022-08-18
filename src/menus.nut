@@ -167,7 +167,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
-		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file) }
+		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file, true, true) }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },

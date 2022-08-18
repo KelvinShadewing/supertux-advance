@@ -4958,6 +4958,11 @@
  "orientation":"orthogonal",
  "properties":[
         {
+         "name":"author",
+         "type":"string",
+         "value":"Kelvin Shadewing"
+        }, 
+        {
          "name":"code",
          "type":"string",
          "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"tux-borealis2\"], gvTextW)\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n}\n\ngfxEnemySnow()"
