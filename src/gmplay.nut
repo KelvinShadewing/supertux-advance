@@ -572,7 +572,7 @@
 	setDrawTarget(bgPause)
 	drawImage(gvScreen, 0, 0)
 
-	if(newLevel && !skipIntro) { //Iris transition
+	if(newLevel) { //Iris transition
 		setDrawColor(0x000000ff)
 
 		for(local i = 0.0; i <= 100; i += 4.0) {
@@ -580,12 +580,14 @@
 			drawImage(bgPause, 0, 0)
 
 			local di = i / 100.0
+			local dx = (1.0 / 240.0) * screenW().tofloat()
+			local dy = (1.0 / 240.0) * screenH().tofloat()
 
-			//drawSpriteEx(sprIris, 0, screenW() / 2, screenH() / 2, 0, 0, 1.0 - di, 1.0 - di, 1)
+			drawSpriteEx(sprIris, 0, screenW() / 2, screenH() / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di), 1)
 			drawRec(0, 0, screenW() * (di / 2.0), screenH(), true)
-			drawRec(screenW(), 0, -(screenW() * (di / 2.0)), screenH(), true)
+			drawRec(screenW(), 0, -(screenW() * (di / 2.0)) - 2, screenH(), true)
 			drawRec(0, 0, screenW(), screenH() * (di / 2.0), true)
-			drawRec(0, screenH(), screenW(), -(screenH() * (di / 2.0)), true)
+			drawRec(0, screenH(), screenW(), -(screenH() * (di / 2.0)) - 2, true)
 
 			resetDrawTarget()
 			drawImage(gvScreen, 0, 0)
@@ -593,6 +595,8 @@
 
 			if(getcon("pause", "press")) break
 		}
+
+		gvFadeInTime = 255
 	}
 
 	//update()
@@ -603,7 +607,7 @@
 	setDrawColor(0x000000ff)
 	drawRec(0, 0, screenW(), screenH(), true)
 
-	drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvLevel].len() * 4), 8, gvLangObj["level"][gvLevel])
+	drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
 	local runAnim = getroottable()[game.playerChar].anRun
 	drawSprite(getroottable()[game.characters[game.playerChar][2]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
