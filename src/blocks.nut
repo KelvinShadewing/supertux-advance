@@ -933,3 +933,63 @@
 		drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
 }
+
+::CharSwapper <- class extends Actor {
+	shape = 0
+	full = true
+	character = "Tux"
+	v = 0.0
+	vspeed = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		if(_arr != null) character = _arr
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+		if(v > 0) {
+			vspeed = 0
+			v = 0
+		}
+
+		if(gvPlayer && !hitTest(shape, gvPlayer.shape)) tileSetSolid(x, y, 1)
+
+		if(v <= -8) {
+			vspeed = 1
+
+			local nx = gvPlayer.x
+			local ny = gvPlayer.y
+			local nf = gvPlayer.flip
+			local nh = gvPlayer.hspeed
+			local nv = gvPlayer.vspeed
+			deleteActor(gvPlayer.id)
+			gvPlayer = actor[newActor(getroottable()[character], nx, ny)]
+			gvPlayer.tftime = 0
+			gvPlayer.flip = nf
+			gvPlayer.hspeed = nh
+			gvPlayer.vspeed = nv
+			tileSetSolid(x, y, 0)
+			popSound(sndHeal, 0)
+		}
+
+		full = (game.characters.rawin(character) && gvPlayer && typeof gvPlayer != character)
+
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+			gvPlayer.vspeed = 0
+			vspeed = -2
+			playSound(sndBump, 0)
+		}
+
+		v += vspeed
+
+		if(full || vspeed < 0) {
+			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+			drawSpriteZ(2, getroottable()[game.characters[character][1]], 0, x - camx, y - camy + v + 6)
+		}
+		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
+	}
+}

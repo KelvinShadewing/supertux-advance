@@ -1082,16 +1082,28 @@
                  "y":464
                 }, 
                 {
-                 "gid":284,
+                 "gid":285,
                  "height":16,
-                 "id":381,
-                 "name":"MuffinBlue,120,true",
+                 "id":382,
+                 "name":"Tux",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1888,
-                 "y":400
+                 "x":1872,
+                 "y":416
+                }, 
+                {
+                 "gid":285,
+                 "height":16,
+                 "id":383,
+                 "name":"Konqi",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1904,
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1100,7 +1112,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":382,
+ "nextobjectid":384,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -463,6 +463,10 @@
 				case 85:
 					c = newActor(Spawner, i.x + 8, i.y - 8, i.name)
 					break
+
+				case 86:
+					c = newActor(CharSwapper, i.x + 8, i.y - 8, i.name)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c
