@@ -456,8 +456,8 @@
 
 	if(gvLevel != "") {
 		drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvLevel].len() * 4), 8, gvLangObj["level"][gvLevel])
-		if(game.bestTime.rawin(gvLevel)) {
-			local pb = formatTime(game.bestTime[gvLevel])
+		if(game.bestTime.rawin(gvLevel + "-" + game.playerChar)) {
+			local pb = formatTime(game.bestTime[gvLevel + "-" + game.playerChar])
 			local pbx = (pb.len() / 2) * 8
 			drawText(font2, (screenW() / 2) - pbx, 24, pb)
 		}

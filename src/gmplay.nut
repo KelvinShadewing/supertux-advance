@@ -620,8 +620,9 @@
 	drawText(font, (screenW() / 2) - author.len() * 3, screenH() - 64, author)
 
 	local bt = gvLangObj["stats"]["time"] + ": "
-	if(game.bestTime.rawin(gvMap.name)) bt += formatTime(game.bestTime[gvMap.name])
+	if(game.bestTime.rawin(gvMap.name + "-" + game.playerChar)) bt += formatTime(game.bestTime[gvMap.name + "-" + game.playerChar])
 	else bt += "0:00.00"
+	bt += " (" + game.playerChar + ")"
 	drawText(font, (screenW() / 2) - bt.len() * 3, screenH() - 56, bt)
 
 	local bc = gvLangObj["stats"]["coins"] + ": "

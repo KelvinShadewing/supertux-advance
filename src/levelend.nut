@@ -40,8 +40,8 @@
 		else if(game.bestTime[clearedLevel] > gvIGT) game.bestTime[clearedLevel] = gvIGT
 
 		//Best stats
-		if(!game.bestTime.rawin(clearedLevel)) game.bestTime[clearedLevel] <- gvIGT
-		else if(game.bestTime[clearedLevel] > gvIGT) game.bestTime[clearedLevel] <- gvIGT
+		if(!game.bestTime.rawin(clearedLevel + "-" + game.playerChar)) game.bestTime[clearedLevel + "-" + game.playerChar] <- gvIGT
+		else if(game.bestTime[clearedLevel + "-" + game.playerChar] > gvIGT) game.bestTime[clearedLevel + "-" + game.playerChar] <- gvIGT
 		if(!game.bestCoins.rawin(clearedLevel)) game.bestCoins[clearedLevel] <- game.levelCoins
 		else if(game.bestCoins[clearedLevel] < game.levelCoins) game.bestCoins[clearedLevel] <- game.levelCoins
 		if(!game.bestSecrets.rawin(clearedLevel)) game.bestSecrets[clearedLevel] <- game.secrets
