@@ -466,9 +466,11 @@
 	drawSprite(sprCoin, 0, 16, screenH() - 16)
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())
 
+	//Fade from black
 	setDrawColor(gvFadeInTime)
 	drawRec(0, 0, screenW(), screenH(), true)
-	if(gvFadeInTime > 0) gvFadeInTime -= 5
+	if(gvFadeInTime > 0) gvFadeInTime -= 10
+	if(gvFadeInTime < 0) gvFadeInTime = 0
 
 	drawDebug()
 

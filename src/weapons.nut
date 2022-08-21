@@ -51,6 +51,22 @@
 	}
 }
 
+::BoxHit <- class extends WeaponEffect {
+	element = "normal"
+	timer = 4
+	box = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+}
+
 ::StompPoof <- class extends WeaponEffect{
 	power = 1
 	piercing = -1

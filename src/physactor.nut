@@ -93,6 +93,16 @@
 		drawSpriteExZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
+	function escapeMoPlat() {
+		if(!actor.rawin("MoPlat")) return
+
+		foreach(i in actor["MoPlat"]) {
+			if(hitTest(shape, i.shape)) {
+
+			}
+		}
+	}
+
 	function placeFree(_x, _y) {
 		//Save current location and move
 		local ns

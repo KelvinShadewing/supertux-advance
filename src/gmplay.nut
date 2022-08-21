@@ -884,9 +884,11 @@
 
 	}
 
+	//Fade from black
 	setDrawColor(gvFadeInTime)
 	drawRec(0, 0, screenW(), screenH(), true)
-	if(gvFadeInTime > 0) gvFadeInTime -= 5
+	if(gvFadeInTime > 0) gvFadeInTime -= 10
+	if(gvFadeInTime < 0) gvFadeInTime = 0
 
 	drawDebug()
 

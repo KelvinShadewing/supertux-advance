@@ -347,3 +347,15 @@
 		if(cl == 0) deleteActor(id)
 	}
 }
+
+//Moving platform
+::MoPlat <- class extends PathCrawler {
+	shape = 0
+	w = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+	}
+
+	function _typeof() { return "MoPlay" }
+}

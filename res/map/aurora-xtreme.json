@@ -366,7 +366,7 @@
                 {
                  "height":1200,
                  "id":51,
-                 "name":"if(game.playerChar == \"Tux\") autocon.down = true",
+                 "name":"if(gvPlayer && typeof gvPlayer == \"Tux\") autocon.down = true",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -399,7 +399,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1583,6 +1583,18 @@
                  "width":16,
                  "x":2896,
                  "y":592
+                }, 
+                {
+                 "gid":285,
+                 "height":16,
+                 "id":215,
+                 "name":"Tux",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1591,7 +1603,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":215,
+ "nextobjectid":216,
  "orientation":"orthogonal",
  "properties":[
         {
