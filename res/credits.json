@@ -1,6 +1,6 @@
 {
 	"credits" : [
-		{"type":"header","text":"SuperTux Advance"},
+		{"type":"image","image":"res/gfx/title.png","w":220,"h":55,"f":0,"l":0,"s":0.00},
 
 		{"type":"spacing","height":2},
 		{"type":"normal","trText":"starring"},

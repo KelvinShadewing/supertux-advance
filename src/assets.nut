@@ -212,6 +212,9 @@
 ::defSnowBounce <- sprSnowBounce
 ::sprSnowJumpy <- newSprite("res/gfx/og-jumpy.png", 16, 25, 0, 0, 8, 11)
 ::defSnowJumpy <- sprSnowJumpy
+::sprSpikeCap <- newSprite("res/gfx/spikecap.png", 16, 17, 0, 0, 8, 9)
+::defSpikeCap <- sprSpikeCap
+::sprSnowSpike <- newSprite("res/gfx/snowspike.png", 20, 20, 0, 0, 10, 12)
 
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
@@ -479,6 +482,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSawblade = defSawblade
 	sprLivewire = defLivewire
 	sprBlazeborn = defBlazeborn
+	sprSpikeCap = defSpikeCap
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -528,6 +532,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprGradcap = sprMsSnowball
 	sprOrangeBounce = sprSnowBounce
 	sprJumpy = sprSnowJumpy
+	sprSpikeCap = sprSnowSpike
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

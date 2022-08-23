@@ -27,7 +27,8 @@
 	blinkMax = 10.0
 	touchDamage = 0.0
 	element = "normal"
-	thorny = false
+	sharpTop = false
+	sharpSide = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -58,12 +59,12 @@
 			if(gvPlayer) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !thorny && !gvPlayer.swimming) {
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming) {
 						getHurt(1, "normal", false, false, true)
 						if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 						else gvPlayer.vspeed = -4.0
 					}
-					else if(gvPlayer.rawin("anSlide") && blinking == 0 && !thorny) {
+					else if(gvPlayer.rawin("anSlide") && blinking == 0 && !sharpSide) {
 						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
 						else hurtPlayer()
 					}
@@ -369,7 +370,7 @@
 	up = false
 	flip = 1
 	touchDamage = 2.0
-	thorny = true
+	sharpTop = true
 	damageMult = {
 		normal = 1.0
 		fire = 1.0
@@ -1351,7 +1352,7 @@
 
 ::Ouchin <- class extends Enemy {
 	sf = 0.0
-	thorny = true
+	sharpTop = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1777,7 +1778,7 @@
 	smart = false
 	jump = -4.0
 	touchDamage = 3.0
-	thorny = true
+	sharpTop = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
