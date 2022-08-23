@@ -44,7 +44,7 @@
 			}
 
 			//Check for weapon effects
-			if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+			if(actor.rawin("WeaponEffect") && !blinking) foreach(i in actor["WeaponEffect"]) {
 				//Skip weapons that don't hurt this enemy
 				if(i.alignment == 2) continue
 				if(i.owner == id) continue
@@ -245,6 +245,7 @@
 				else {
 					//Delete ice block
 					if(icebox != -1) {
+						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
@@ -359,7 +360,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "Deathcap" }
 }
@@ -2574,6 +2575,7 @@
 			return
 		}
 		if(element == "fire") {
+			print("He killed me with fire!")
 			hurtFire()
 			return
 		}
@@ -3042,7 +3044,7 @@
 		base.run()
 
 		if(active) {
-			if(!moving) if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 48)) {
+			if(!moving) if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
 				flip = x > gvPlayer.x
 				moving = true
 			}
@@ -3109,6 +3111,7 @@
 				else {
 					//Delete ice block
 					if(icebox != -1) {
+						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
@@ -3139,6 +3142,16 @@
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
+
+		if(_element == "fire") {
+			hurtFire()
+			return
+		}
+
+		if(_element == "ice") {
+			hurtIce()
+			return
+		}
 
 		if(_blast) {
 			hurtblast()
@@ -3226,7 +3239,7 @@
 		}
 	}
 
-	function hurtice() { frozen = 600 }
+	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "SpikeCap" }
 }

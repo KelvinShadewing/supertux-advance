@@ -311,6 +311,19 @@
          "tilecount":65,
          "tileheight":16,
          "tilewidth":16
+        }, 
+        {
+         "columns":2,
+         "firstgid":1398,
+         "image":"..\/gfx\/goal.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "margin":0,
+         "name":"goal",
+         "spacing":0,
+         "tilecount":4,
+         "tileheight":16,
+         "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",

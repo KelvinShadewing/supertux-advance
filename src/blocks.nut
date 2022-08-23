@@ -59,6 +59,7 @@
 				}
 				else {
 					if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
+						gvPlayer.vspeed = 0
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -899,6 +900,7 @@
 				deleteActor(id)
 				newActor(Poof, x, y)
 				tileSetSolid(x, y, 0)
+				popSound(sndBump, 0)
 			}
 
 		}

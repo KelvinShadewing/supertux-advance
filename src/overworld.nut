@@ -308,6 +308,30 @@
 	function _typeof() { return "WorldIcon" }
 }
 
+::LockIcon <- class extends PhysAct {
+	key = ""
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y, 8, 8, 0)
+		key = _arr
+	}
+
+	function run() {
+		if(game.completed.rawin(key)) {
+			tileSetSolid(x, y, 1)
+			deleteActor(id)
+		}
+		else {
+			tileSetSolid(x, y, 0)
+			drawSprite(sprLevels, 5, x - camx, y - camy)
+		}
+	}
+
+	function _typeof() { return "WorldIcon" }
+}
+
 ::startOverworld <- function(world) {
 	//Clear actors and start creating new ones
 	gvFadeInTime = 255
@@ -332,7 +356,7 @@
 	local actset = -1
 	local tilef = 0
 	for(local i = 0; i < gvMap.tileset.len(); i++) {
-		if(spriteName(gvMap.tileset[i]) == "actors.png")
+		if(spriteName(gvMap.tileset[i]) == "overactors.png")
 		{
 			actset = gvMap.tileset[i]
 			tilef = gvMap.tilef[i]
@@ -387,6 +411,10 @@
 			case 3:
 				local c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
+				break
+
+			case 4:
+				newActor(LockIcon, i.x + 8, i.y - 8, i.name)
 				break
 		}
 	}
@@ -448,6 +476,7 @@
 	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
 	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
 	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
+	if(actor.rawin("LockIcon")) foreach(i in actor["LockIcon"]) i.run()
 	if(actor.rawin("Trigger")) foreach(i in actor["Trigger"]) i.run()
 	if(gvPlayer) gvPlayer.run()
 
