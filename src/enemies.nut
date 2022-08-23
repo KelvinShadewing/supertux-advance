@@ -2312,6 +2312,8 @@
 	moving = false
 	element = "fire"
 	touchDamage = 2.0
+	sharpTop = true
+	sharpSide = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -2427,34 +2429,7 @@
 			hurtIce()
 			return
 		}
-		if(_blast) {
-			hurtBlast()
-			return
-		}
-		if(squish) return
-
-
-		if(gvPlayer.rawin("anSlide")) {
-			if(gvPlayer.anim == gvPlayer.anSlide) {
-			}
-			else if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-			else {
-				gvPlayer.vspeed = -4.0
-				playSound(sndSquish, 0)
-			}
-			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-				gvPlayer.anim = gvPlayer.anJumpU
-				gvPlayer.frame = gvPlayer.anJumpU[0]
-			}
-		}
-		else if(getcon("jump", "hold")) gvPlayer.vspeed = -1.0
-		else gvPlayer.vspeed = -4.0
-		if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-			gvPlayer.anim = gvPlayer.anJumpU
-			gvPlayer.frame = gvPlayer.anJumpU[0]
-		}
-		gvPlayer.hurt = 3
-		squish = false
+		hurtBlast()
 	}
 
 	function hurtBlast() {
@@ -2462,7 +2437,6 @@
 		deleteActor(id)
 		playSound(sndFlame, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
-
 	}
 
 	function hurtFire() {
