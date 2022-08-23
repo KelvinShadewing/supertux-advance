@@ -145,6 +145,7 @@
 ::sprTuckles <- newSprite("res/gfx/tuckles.png", 18, 34, 0, 0, 8, 34)
 ::sprGaruda <- newSprite("res/gfx/garuda.png", 35, 36, 0, 0, 17, 36)
 ::sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 0, 0, 16, 32)
+::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 
 
 //Enemies

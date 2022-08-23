@@ -443,7 +443,11 @@
 		"midi-bridge" :
 		"Uh, last time I checked, bridges aren't supposed to look like this. Jeesh, what a pain.",
 		"midi-borealis" :
-		"Dang, this place is creepy. If the penguins didn't need this place, I'd totally blow it up."
+		"Dang, this place is creepy. If the penguins didn't need this place, I'd totally blow it up.",
+		"duke-0a" :
+		"I'm so hungry! If you can bring me some fish, I'll open these blocks for you.",
+		"duke-0b" :
+		"Oh, thank you! I'd have gotten them myself but... I don't want to."
 	},
 
 	"level" : {
@@ -468,7 +472,8 @@
 		"aurora-xtreme" : "Xtreme Hills",
 		"aurora-fort" : "Fort Borealis",
 		"aurora-switch" : "Red Switch Trial",
-		"aurora-iceguy" : "Oh No, More Mr. Iceguy"
+		"aurora-iceguy" : "Oh No, More Mr. Iceguy",
+		"aurora-fishy" : "Wishy for Fishy"
 	},
 
 	"key" : {

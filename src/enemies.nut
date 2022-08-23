@@ -3026,6 +3026,7 @@
 	getupTime = 2.0
 	touchDamage = 2.0
 	sharpTop = true
+	sharpSide = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -3203,8 +3204,7 @@
 
 	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		if(smart) actor[c].sprite = sprGradcap
-		else actor[c].sprite = sprDeathcap
+		actor[c].sprite = sprSpikeCap
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)

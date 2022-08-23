@@ -4,9 +4,9 @@
 	useflip = 0
 	flip = 0
 	sprite = 0
-	sayfunc = null
 	arr = null
 	talki = 0
+	sayfunc = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -35,7 +35,7 @@
 	function run() {
 		if(gvPlayer && sayfunc != null) {
 			if(hitTest(shape, gvPlayer.shape)) {
-				if(getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
+				if(getcon("up", "press") && sayfunc != null) this[sayfunc]()
 				if(sprite == 0) {
 					if(sayfunc == "sayChar") switch(typeof gvPlayer) {
 						case "Tux":
@@ -139,6 +139,12 @@
 
 		gvInfoBox = text
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
+	}
+
+	function wantFish() {
+		if(game.redCoins < game.maxRedCoins) text = arr[0]
+		else text = arr[1]
+		gvInfoBox = text
 	}
 
 	function _typeof() { return "NPC" }
