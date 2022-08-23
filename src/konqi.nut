@@ -1011,18 +1011,22 @@
 			switch(game.weapon) {
 				case 0:
 					sprite = sprKonqi
+					damageMult = damageMultN
 					break
 
 				case 1:
 					sprite = sprKonqiFire
+					damageMult = damageMultF
 					break
 
 				case 2:
 					sprite = sprKonqiIce
+					damageMult = damageMultI
 					break
 
 				case 3:
 					sprite = sprKonqiAir
+					damageMult = damageMultA
 					break
 
 				case 4:

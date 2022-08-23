@@ -1795,7 +1795,7 @@
 		base.run()
 
 		if(active) {
-			if(gvPlayer) {
+			if(gvPlayer && !frozen) {
 				if(x > gvPlayer.x) flip = 1
 				else flip = 0
 			}
@@ -2377,7 +2377,7 @@
 					//Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						newActor(Flame, x, y - 1)
-						deleteActor(id)
+						die()
 						playSound(sndFlame, 0)
 					}
 
@@ -2434,18 +2434,18 @@
 
 	function hurtBlast() {
 		newActor(Poof, x, y)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtFire() {
-		deleteActor(id)
+		die()
 		fireWeapon(ExplodeF, x , y, 2, id)
 		newActor(Flame, x, y - 1)
 	}
 
-	function hurtIce() { frozen = 600 }
+	function hurtIce() { die() }
 
 	function _typeof() { return "Blazeborn" }
 }
