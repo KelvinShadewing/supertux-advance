@@ -221,24 +221,24 @@
          "name":"actor",
          "objects":[
                 {
-                 "class":"",
-                 "gid":842,
+                 "gid":847,
                  "height":16,
                  "id":26,
                  "name":"az-0",
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":192,
                  "y":320
                 }, 
                 {
-                 "class":"",
-                 "gid":841,
+                 "gid":846,
                  "height":16,
                  "id":27,
                  "name":"",
                  "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":144,
@@ -260,7 +260,7 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.0",
+ "tiledversion":"1.8.4",
  "tileheight":16,
  "tilesets":[
         {
@@ -902,30 +902,30 @@
          "columns":5,
          "firstgid":781,
          "image":"..\/..\/res\/gfx\/solid.png",
-         "imageheight":192,
+         "imageheight":208,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":60,
+         "tilecount":65,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
-         "columns":8,
-         "firstgid":841,
-         "image":"..\/..\/res\/gfx\/actors.png",
-         "imageheight":160,
-         "imagewidth":128,
+         "columns":5,
+         "firstgid":846,
+         "image":"..\/..\/res\/gfx\/overactors.png",
+         "imageheight":16,
+         "imagewidth":80,
          "margin":0,
          "name":"actor",
          "spacing":0,
-         "tilecount":80,
+         "tilecount":96,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.8",
  "width":100
 }
