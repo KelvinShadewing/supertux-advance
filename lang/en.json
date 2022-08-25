@@ -455,7 +455,7 @@
 		"soon" : "Coming soon...",
 		"shop" : "Sam's Trade Post",
 		"overworld-0" : "Aurora Isles",
-		"overworld-1" : "Antarctica",
+		"overworld-1" : "Nessland",
 		"aurora-pennyton" : "Pennyton",
 		"aurora-mines" : "Fish Mines",
 		"aurora-learn" : "Learning the Slopes",
@@ -473,7 +473,8 @@
 		"aurora-fort" : "Fort Borealis",
 		"aurora-switch" : "Red Switch Trial",
 		"aurora-iceguy" : "Oh No, More Mr. Iceguy",
-		"aurora-fishy" : "Wishy for Fishy"
+		"aurora-fishy" : "Wishy for Fishy",
+		"aurora-forest" : "Icyfall Forest"
 	},
 
 	"key" : {

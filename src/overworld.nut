@@ -56,6 +56,16 @@
 			}
 		}
 
+		if(actor.rawin("WorldIcon")) {//Find what level was landed on
+			foreach(i in actor["WorldIcon"]) {
+				if(hitTest(shape, i.shape)) {
+					level = i.world
+					onstage = true
+					break
+				}
+			}
+		}
+
 		if(onstage) {
 			if((x - 8) % 16 == 0) hspeed = 0
 			if((y - 8) % 16 == 0) vspeed = 0
@@ -329,7 +339,7 @@
 		}
 	}
 
-	function _typeof() { return "WorldIcon" }
+	function _typeof() { return "LockIcon" }
 }
 
 ::startOverworld <- function(world) {
@@ -468,6 +478,7 @@
 	setDrawTarget(gvScreen)
 
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
+	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
 	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")
 

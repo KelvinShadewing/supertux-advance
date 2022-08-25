@@ -402,6 +402,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musretro2<- "res/mus/retro-2.ogg"
 ::musBoss <- "res/mus/boss.ogg"
 ::musBossIntro <- "res/mus/boss-intro.ogg"
+::musGrassOverworld <- "res/mus/peaceful-village.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
@@ -533,6 +534,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 }
 
 ::gfxEnemySnow <- function() {
+	sprBoxItem = sprBoxIce
 	sprDeathcap = sprMrSnowball
 	sprGradcap = sprMsSnowball
 	sprOrangeBounce = sprSnowBounce
