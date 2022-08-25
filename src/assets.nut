@@ -534,7 +534,6 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 }
 
 ::gfxEnemySnow <- function() {
-	sprBoxItem = sprBoxIce
 	sprDeathcap = sprMrSnowball
 	sprGradcap = sprMsSnowball
 	sprOrangeBounce = sprSnowBounce
