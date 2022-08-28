@@ -5,7 +5,7 @@
 	//Make ordered list of characters
 	pickCharSettings.charlist <- []
 	foreach(key, i in game.characters) {
-		local newitem = [key, i[2], i[3]]
+		local newitem = [key, i["normal"], i["wave"]]
 		pickCharSettings.charlist.push(newitem)
 	}
 
@@ -17,11 +17,11 @@
 		if(a[0] < b[0]) return -1
 		return 0
 	})
-	
+
 	pickCharSettings.didpick <- false
 	pickCharSettings.picktimer <- 30
 	pickCharSettings.charslot <- 0
-	
+
 	//Set cursor to current character
 	for(local i = 0; i < pickCharSettings.charlist.len(); i++) {
 		if(pickCharSettings.charlist[i][0] == game.playerChar) {
@@ -37,7 +37,7 @@
 	local charslot = pickCharSettings.charslot
 	local charlist = pickCharSettings.charlist
 	local picktimer = pickCharSettings.picktimer
-	
+
 	if (getcon("pause", "press") || picktimer <= 0) {
 		gvGameMode = gmOverworld
 		return
@@ -45,7 +45,7 @@
 
 	setDrawTarget(gvScreen)
 	drawSprite(bgCharSel, 0, screenW() / 2, 0)
-	
+
 	if(!didpick) {
 		//Move selection
 		if(getcon("right", "press")) charslot++
@@ -70,19 +70,18 @@
 
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
-	
+
 	pickCharSettings.didpick = didpick
 	pickCharSettings.charslot = charslot
 	pickCharSettings.charlist = charlist
 	pickCharSettings.picktimer = picktimer
 }
 
-::addChar <- function(char, overworld, doll, playable, frames) {
+::addChar <- function(char, newchar) {
 	if(!getroottable().rawin(char)) {
 		print("No class for " + char + " has been defined!")
 		return
 	}
 
-	local newchar = [overworld, doll, playable, frames]
 	if(!game.characters.rawin(char)) game.characters[char] <- newchar
 }
