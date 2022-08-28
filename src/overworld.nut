@@ -257,6 +257,11 @@
 	function _typeof() { return "StageIcon" }
 }
 
+::clearAllLevels <- function() {
+	if(!actor.rawin("StageIcon")) return
+	foreach(i in actor["StageIcon"]) game.completed[i.level] <- true
+}
+
 ::TownIcon <- class extends PhysAct {
 	level = ""
 	visible = true

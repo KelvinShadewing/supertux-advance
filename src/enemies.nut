@@ -2827,7 +2827,7 @@
 	health = 2.0
 	touchDamage = 2.0
 	friction = 0.0
-	gravity = 0.1
+	gravity = 0.15
 	held = false
 
 	constructor(_x, _y, _arr = null) {
@@ -2838,6 +2838,54 @@
 		if(gvPlayer) {
 			hspeed = (gvPlayer.x <=> x).tofloat()
 		} else hspeed = 1.0
+	}
+
+	function physics() {
+		if(placeFree(x, y + (0 <=> gravity)) && !phantom) vspeed += gravity
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else {
+			vspeed /= 2
+			if(fabs(vspeed) < 0.01) vspeed = 0
+			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			if(placeFree(x, y + vspeed)) y += vspeed
+		}
+
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
+				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
+					y += 1
+				}
+				x += hspeed
+			} else {
+				local didstep = false
+				for(local i = 1; i <= max(4, abs(hspeed * 1.5)); i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - i)) {
+						x += hspeed
+						y -= i
+						if(i > 2) {
+							if(hspeed > 0) hspeed -= 0.2
+							if(hspeed < 0) hspeed += 0.2
+						}
+						didstep = true
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
+				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
+			}
+		}
+
+		//Friction
+		if(fabs(hspeed) > friction) {
+			if(hspeed > 0) hspeed -= friction
+			if(hspeed < 0) hspeed += friction
+		} else hspeed = 0
+
+		shape.setPos(x, y)
+		xprev = x
+		yprev = y
 	}
 
 	function animation() {
