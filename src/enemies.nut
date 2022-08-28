@@ -1354,6 +1354,7 @@
 ::Ouchin <- class extends Enemy {
 	sf = 0.0
 	sharpTop = true
+	sharpSide = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
