@@ -95,6 +95,7 @@
 					tileSetSolid(x, y, oldsolid)
 					if(coins > 0) newActor(CoinEffect, x, y - 16)
 					fireWeapon(BoxHit, x, y - 8, 1, id)
+					break
 				}
 				else {
 					vspeed = -2
