@@ -548,7 +548,7 @@
 			deleteActor(id)
 		}
 
-		drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, x - camx, y + 8 - camy)
+		drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, x - camx, y + 8 - camy)
 	}
 }
 

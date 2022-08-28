@@ -668,7 +668,7 @@
 			if(anim == anClimb || anim == anWall) gravity = 0
 
 			//Attacks
-			if((anim == anJumpT || anim == anJumpU || anim == anFall) && getcon("down", "press") && placeFree(x, y + 8)) {
+			if(canMove && (anim == anJumpT || anim == anJumpU || anim == anFall) && getcon("down", "press") && placeFree(x, y + 8)) {
 				hspeed = 0.0
 				vspeed = 4.0
 				anim = anStomp

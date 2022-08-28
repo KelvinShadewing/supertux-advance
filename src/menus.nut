@@ -89,7 +89,7 @@ const menuY = 40
 		}
 		if(getcon("down", "press")) cursorTimer = 40
 		else cursorTimer = 10
-		playSound(sndMenuMove, 0)
+		popSound(sndMenuMove, 0)
 	}
 
 	if(getcon("up", "press") || (getcon("up", "hold") && cursorTimer <= 0)) {
@@ -101,15 +101,15 @@ const menuY = 40
 		}
 		if(getcon("up", "press")) cursorTimer = 40
 		else cursorTimer = 10
-		playSound(sndMenuMove, 0)
+		popSound(sndMenuMove, 0)
 	}
 
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
 		if(menu[cursor].rawin("disabled")) return;
+		popSound(sndMenuSelect, 0)
 		menu[cursor].func()
-		playSound(sndMenuSelect, 0)
 	}
 
 	if(getcon("pause", "press")) {
@@ -186,7 +186,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["save"]},
-		func = function() { saveGame(); playSound(sndHeal, 0); gvGameMode = gmOverworld }
+		func = function() { saveGame(); popSound(sndHeal, 0); gvGameMode = gmOverworld }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
@@ -284,12 +284,12 @@ const menuY = 40
 			if(getcon("left", "press") && getSoundVolume() > 0) {
 				config.soundVolume -= 4
 				setSoundVolume(config.soundVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getSoundVolume() < 128) {
 				config.soundVolume += 4
 				setSoundVolume(config.soundVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 
 			local vol = "VOL: ["
@@ -308,12 +308,12 @@ const menuY = 40
 			if(getcon("left", "press") && getMusicVolume() > 0) {
 				config.musicVolume -= 4
 				setMusicVolume(config.musicVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getMusicVolume() < 128) {
 				config.musicVolume += 4
 				setMusicVolume(config.musicVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 
 			local vol = "VOL: ["

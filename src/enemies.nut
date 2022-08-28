@@ -1780,6 +1780,7 @@
 	jump = -4.0
 	touchDamage = 3.0
 	sharpTop = true
+	sharpSide = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -3223,15 +3224,20 @@
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		die()
-		stopSound(sndFlame)
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
+
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprSpikeCap
+		actor[c].vspeed = -4
+		actor[c].spin = 1
+		actor[c].frame = 7
 
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]

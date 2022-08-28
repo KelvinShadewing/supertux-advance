@@ -49,7 +49,16 @@
 			false
 		] //Color blocks activated by respective switches
 		characters = { //List of unlocked characters
-			Tux = ["sprTuxOverworld", "sprTuxDoll", "sprTux", [40, 41]]
+			Tux = {
+				over = "sprTuxOverworld"
+				doll = "sprTuxDoll"
+				normal = "sprTux"
+				fire = "sprTuxFire"
+				ice = "sprTuxIce"
+				air = "sprTuxAir"
+				earth = "sprTuxEarth"
+				wave = [40, 41]
+			}
 			//Konqi = ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
 		}
 		secretOrbs = [

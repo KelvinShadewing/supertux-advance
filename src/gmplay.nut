@@ -623,7 +623,25 @@
 	drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
 	local runAnim = getroottable()[game.playerChar].anRun
-	drawSprite(getroottable()[game.characters[game.playerChar][2]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+	switch(game.weapon) {
+		case 0:
+			drawSprite(getroottable()[game.characters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			break
+		case 1:
+			drawSprite(getroottable()[game.characters[game.playerChar]["fire"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			break
+		case 2:
+			drawSprite(getroottable()[game.characters[game.playerChar]["ice"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			break
+		case 3:
+			drawSprite(getroottable()[game.characters[game.playerChar]["air"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			break
+		case 4:
+			drawSprite(getroottable()[game.characters[game.playerChar]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			break
+		default:
+			drawSprite(getroottable()[game.characters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+	}
 
 	local author = gvLangObj["stats"]["author"] + ": " + gvMap.author
 	drawText(font, (screenW() / 2) - author.len() * 3, screenH() - 64, author)
@@ -835,7 +853,7 @@
 				drawSprite(sprStar, 0, screenW() - 18, 18)
 				break
 			case 8:
-				drawSprite(getroottable()[game.characters[game.playerChar][1]], 0, screenW() - 18, 24)
+				drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], 0, screenW() - 18, 24)
 				break
 		}
 
@@ -844,7 +862,7 @@
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
-			drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 
 		//Draw warning sign
@@ -860,7 +878,7 @@
 		//Keys
 		local kx = 10
 		if(game.canres) {
-			drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, screenW() - kx, screenH() - 10)
+			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, screenW() - kx, screenH() - 10)
 			kx += 16
 		}
 		if(gvKeyCopper) {

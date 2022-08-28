@@ -212,8 +212,8 @@
 		x += hspeed
 		y += vspeed
 
-		if(hspeed == 0 && vspeed == 0) drawSprite(getroottable()[game.characters[game.playerChar][0]], 0, x - camx, y - camy)
-		else drawSprite(getroottable()[game.characters[game.playerChar][0]], getFrames() / 8, x - camx, y - camy)
+		if(hspeed == 0 && vspeed == 0) drawSprite(getroottable()[game.characters[game.playerChar]["over"]], 0, x - camx, y - camy)
+		else drawSprite(getroottable()[game.characters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
 
 		gvLevel = level
 	}

@@ -381,6 +381,10 @@
 		return true
 	}
 
+	function placeMeeting(_class, _x, _y) {
+		if(!_class.rawin("shape")) return false
+	}
+
 	function inWater(_x = 0, _y = 0) {
 		local ns
 		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
