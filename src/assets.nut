@@ -15,6 +15,8 @@
 ::font2G <- newFont(sprFont2G, 33, 0, true, -4)
 ::sprFont2I <- newSprite("res/gfx/font2-ice.png", 12, 14, 0, 0, 0, 0)
 ::font2I <- newFont(sprFont2I, 33, 0, true, -4)
+::sprFont2A <- newSprite("res/gfx/font-achieve.png", 12, 14, 0, 0, 0, 0)
+::font2A <- newFont(sprFont2A, 33, 0, true, -4)
 ::sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8, 0, 0, 0, 0)
 ::sprTitle <- newSprite("res/gfx/title.png", 220, 55, 0, 0, 110, 0)
 
@@ -86,6 +88,7 @@
 ::defBossHealth <- sprBossHealth
 ::sprSkull <- newSprite("res/gfx/skull.png", 16, 16, 0, 0, 0, 0)
 ::sprIris <- newSprite("res/gfx/iris.png", 240, 240, 0, 0, 120, 120)
+::sprAchiFrame <- newSprite("res/gfx/achievement-frame.png", 12, 24, 0, 0, 0, 0)
 
 
 //Blocks
@@ -385,6 +388,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndBossHit <- loadSound("res/snd/boss-hit.ogg")
 ::sndCrush <- loadSound("res/snd/crush.ogg")
 ::sndIceblock <- loadSound("res/snd/iceblock_bump.ogg")
+::sndAchievement <- loadSound("res/snd/achievement.ogg")
 
 
 //Music

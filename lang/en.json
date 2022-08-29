@@ -477,6 +477,18 @@
 		"aurora-forest" : "Icyfall Forest"
 	},
 
+	"achi-name" : {
+		"saveKonqi" : "Koolest Friends",
+		"saveMidi" : "Let's Get Nuts",
+		"over9000" : "It's Over 9000!"
+	},
+
+	"achi-desc" : {
+		"saveKonqi" : "Save Konqi from the Yeti in Fort Borealis",
+		"saveMidi" : "Save Midi from the Ghost Tree in Nessland",
+		"over9000" : "Save up more than 9000 coins"
+	},
+
 	"key" : {
 		"0" : "_0",
 		"1" : "_1",

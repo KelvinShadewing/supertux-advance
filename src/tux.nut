@@ -650,12 +650,12 @@
 			local speedLimit = 6.0
 			if(!placeFree(x, y + 1)){
 				if(game.weapon == 2) {
-					if(anim == anSlide) speedLimit = 10
-					else speedLimit = 8
+					if(anim == anSlide) speedLimit = 8.0
+					else speedLimit = 8.0
 				}
-				else if(game.weapon == 4 && anim == anSlide) speedLimit = 10
+				else if(game.weapon == 4 && anim == anSlide) speedLimit = 8.0
 				else {
-					speedLimit = 6
+					if(slippery) speedLimit = 7.0
 				}
 				if(hspeed > speedLimit) hspeed = max(speedLimit, hspeed * 0.9)
 				if(hspeed < -speedLimit) hspeed = -max(speedLimit, hspeed * 0.9)

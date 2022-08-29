@@ -928,6 +928,9 @@
 		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
 	}
 
+	checkAchievements()
+	drawAchievements()
+
 	//Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)

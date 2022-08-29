@@ -53,6 +53,7 @@ donut("src/cursor.nut")
 donut("src/shop.nut")
 donut("src/timeline.nut")
 donut("src/spawner.nut")
+donut("src/achievements.nut")
 
 //Load mods
 local modlist = lsdir("mods")
@@ -125,6 +126,8 @@ setFPS(60)
 
 gvLangObj = jsonRead(fileRead("lang/en.json"))
 gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
+
+if(fileExists("save/_achievements.json")) gvUnlockedAchievements = jsonRead(fileRead("save/_achievements.json"))
 
 //Set difficulty strings
 strDifficulty = [
