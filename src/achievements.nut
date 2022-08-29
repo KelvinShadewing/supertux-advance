@@ -2,12 +2,15 @@
 
 ::gvAchievements <- {
 	saveKonqi = function() {
+		if(game.path != "res/map/") return false
 		return game.characters.rawin("Konqi")
 	}
 	saveMidi = function() {
+		if(game.path != "res/map/") return false
 		return game.characters.rawin("Midi")
 	}
 	over9000 = function() {
+		if(game.path != "res/map/") return false
 		return game.coins > 9000
 	}
 }
