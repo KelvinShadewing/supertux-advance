@@ -13,6 +13,24 @@
 		if(game.path != "res/map/") return false
 		return game.coins > 9000
 	}
+	coldGreed = function() {
+		if(game.path != "res/map/") return false
+		return (game.allCoins.rawin("aurora-learn")
+		&& game.allCoins.rawin("aurora-crystal")
+		&& game.allCoins.rawin("aurora-slip")
+		&& game.allCoins.rawin("aurora-subsea")
+		&& game.allCoins.rawin("aurora-tnt")
+		&& game.allCoins.rawin("aurora-sense")
+		&& game.allCoins.rawin("aurora-frozen")
+		&& game.allCoins.rawin("aurora-branches")
+		&& game.allCoins.rawin("aurora-bridge")
+		&& game.allCoins.rawin("aurora-wind")
+		&& game.allCoins.rawin("aurora-steps")
+		&& game.allCoins.rawin("aurora-fort")
+		&& game.allCoins.rawin("aurora-iceguy")
+		&& game.allCoins.rawin("aurora-fishy")
+		&& game.allCoins.rawin("aurora-forest"))
+	}
 }
 
 ::gvUnlockedAchievements <- {}
