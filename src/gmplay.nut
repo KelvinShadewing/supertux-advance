@@ -496,7 +496,11 @@
 				}
 
 				arg[0] = poly
-				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x, i.y, arg)
+				local c
+				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") {
+					c = newActor(getroottable()[n], i.x, i.y, arg)
+					mapActor[i.id] <- c
+				}
 			}
 		}
 
@@ -511,7 +515,11 @@
 				for(local j = 0; j < i.polyline.len(); j++) poly.push([i.x + i.polyline[j].x, i.y + i.polyline[j].y])
 
 				arg[0] = poly
-				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") newActor(getroottable()[n], i.x, i.y, arg)
+				local c
+				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") {
+					c = newActor(getroottable()[n], i.x, i.y, arg)
+					mapActor[i.id] <- c
+				}
 			}
 		}
 	}

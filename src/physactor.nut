@@ -93,14 +93,55 @@
 		drawSpriteExZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
-	function escapeMoPlat() {
-		if(!actor.rawin("MoPlat")) return
+	function escapeMoPlat(useDown = false, useUp = false, useLeft = false, useRight = false) {
+		if(!actor.rawin("MoPlat")) return 0
+		local result = 0
 
 		foreach(i in actor["MoPlat"]) {
 			if(hitTest(shape, i.shape)) {
+				//Get angle between actors
+				local angle = pointAngle(x - hspeed, y - vspeed, i.x, i.y)
+				local slopeA = fabs(lendirY(1.0, angle))
 
+				//Get slope across platform
+				local slopeB = 8.0 / (i.w * 8.0)
+
+				//Get pushed by platform
+				if(placeFree(x + i.hspeed, y + i.vspeed)) {
+					x += i.hspeed
+					y += i.vspeed
+				}
+
+				//Move out of platform box
+				if(slopeA >= slopeB) {
+					if(y < i.y) {
+						if(placeFree(x, i.y - shape.h - shape.oy - 4)) y = i.y - shape.h - shape.oy - 4
+						result = -1
+						if(useDown) y += i.vspeed
+					}
+					else {
+						if(placeFree(x, i.y + shape.h - shape.oy + 4)) y = i.y + shape.h - shape.oy + 4
+						result = 1
+						if(useUp) y += i.vspeed
+					}
+				}
+				else {
+					if(x < i.x) {
+						if(placeFree(i.x - (i.w * 8) - shape.w - shape.ox, y)) x = i.x - (i.w * 8) - shape.w - shape.ox
+						result = -2
+						if(useLeft) x += i.hspeed
+					}
+					else {
+						if(placeFree(i.x + (i.w * 8) + shape.w - shape.ox, y)) x = i.x + (i.w * 8) + shape.w - shape.ox
+						result = 2
+						if(useRight) x += i.hspeed
+					}
+
+				}
 			}
 		}
+
+		return result
 	}
 
 	function placeFree(_x, _y) {
@@ -545,6 +586,11 @@
 			}
 		}
 
+		//Handle moving platforms
+		if(actor.rawin("MoPlat")) foreach(i in actor["MoPlat"]) {
+			if(hitTest(ns, i.shape)) return true
+		}
+
 		return false
 	}
 
@@ -623,10 +669,14 @@
 			}
 			if(!inDistance2(x, y, tx, ty, speed)) {
 				dir = pointAngle(x, y, tx, ty)
-				x += lendirX(speed, dir)
-				y += lendirY(speed, dir)
+				hspeed = lendirX(speed, dir)
+				vspeed = lendirY(speed, dir)
+				x += hspeed
+				y += vspeed
 			}
 			else {
+				hspeed = tx - x
+				vspeed = ty - y
 				x = tx
 				y = ty
 				//Update target

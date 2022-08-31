@@ -351,11 +351,37 @@
 //Moving platform
 ::MoPlat <- class extends PathCrawler {
 	shape = 0
-	w = 0
+	w = 1
+	sprite = sprPlatformWood
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
+		w = max(1, _arr[2].tointeger())
+		if(_arr.len() > 3 && getroottable().rawin(_arr[3])) sprite = getroottable()[_arr[3]]
+		shape = Rec(x, y, w * 8, 4, 0)
+		//mapNewSolid(shape)
 	}
 
-	function _typeof() { return "MoPlay" }
+	function run() {
+		base.run()
+		shape.setPos(x, y)
+
+		if(w == 1) drawSprite(sprite, 0, x - camx, y - camy)
+		else for(local i = 0; i < w; i++) {
+			if(i == 0) drawSpriteZ(6, sprite, 1, x - (w * 8) + (i * 16) - camx + 8, y - camy)
+			else if(i == w - 1) drawSpriteZ(6, sprite, 3, x - (w * 8) + (i * 16) - camx + 8, y - camy)
+			else drawSpriteZ(6, sprite, 2, x - (w * 8) + (i * 16) - camx + 8, y - camy)
+		}
+
+		if(debug) {
+			setDrawColor(0x008080ff)
+			shape.draw()
+		}
+	}
+
+	function destructor() {
+		//mapDeleteSolid(shape)
+	}
+
+	function _typeof() { return "MoPlat" }
 }

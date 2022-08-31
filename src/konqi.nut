@@ -208,7 +208,7 @@
 						frame = 0.0
 					}
 
-					if(placeFree(x, y + 2)) {
+					if(placeFree(x, y + 2) && !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -220,7 +220,7 @@
 					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = anStand
 					if(abs(rspeed) > 2.4) anim = anRun
 
-					if(placeFree(x, y + 2)) {
+					if(placeFree(x, y + 2) && !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -244,7 +244,7 @@
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != anSkid) anim = anWalk
 
-					if(placeFree(x, y + 2)) {
+					if(placeFree(x, y + 2) || !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -261,7 +261,7 @@
 				case anJumpU:
 					if(frame < 0.0 + 1) frame += 0.1
 
-					if(!freeDown) {
+					if(!freeDown || onPlatform()) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -274,7 +274,7 @@
 
 				case anJumpT:
 					frame += 0.2
-					if(!freeDown) {
+					if(!freeDown || onPlatform()) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -287,7 +287,7 @@
 
 				case anFall:
 					frame += 0.1
-					if(!freeDown) {
+					if(!freeDown || onPlatform()) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -394,7 +394,7 @@
 			}
 
 			//Controls
-			if(!freeDown2 || anim == anClimb) {
+			if(!freeDown2 || onPlatform() || anim == anClimb) {
 				canJump = 16
 				if(game.weapon == 3 && energy < game.maxEnergy) energy += 0.2
 			}
@@ -585,7 +585,7 @@
 				}
 
 				//Crawling
-				if(getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && !freeDown2 && anim != anCrouch && anim != anCrawl && anim != anStomp) {
+				if(getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && (!freeDown2 || onPlatform()) && anim != anCrouch && anim != anCrawl && anim != anStomp) {
 					anim = anCrouch
 					frame = 0.0
 					shape = shapeSlide
@@ -608,7 +608,7 @@
 			}
 
 			//Movement
-			if(!freeDown2) {
+			if(!freeDown2 || onPlatform()) {
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3.0
 					if(hspeed < 0) hspeed += friction / 3.0
@@ -971,6 +971,21 @@
 			return
 		}
 		if(y < -100) y = -100.0
+
+		switch(escapeMoPlat(1)) {
+			case 1:
+				if(vspeed < 0) vspeed = 0
+				break
+			case 2:
+				if(hspeed < 0) hspeed = 0
+				break
+			case -1:
+				if(vspeed > 0) vspeed = 0
+				break
+			case -2:
+				if(hspeed > 0) hspeed = 0
+				break
+		}
 
 		//Set ice friction
 		if(onIce()) friction = 0.01

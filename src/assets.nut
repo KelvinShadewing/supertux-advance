@@ -318,6 +318,10 @@
 ::defBigSpark <- sprBigSpark
 
 
+//Platforms
+::sprPlatformWood <- newSprite("res/gfx/moplat-wood.png", 16, 8, 0, 0, 8, 4)
+
+
 //Backgrounds
 ::bgPause <- 0
 ::bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392, 0, 0, 0, 0)

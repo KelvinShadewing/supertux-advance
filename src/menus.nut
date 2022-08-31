@@ -29,7 +29,7 @@ const menuY = 40
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
-		if(menu[i].rawin("disabled")) { currFont = font2G }
+		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
 			if(getFrames() / 24 % 2 == 0) currFont = font2I
@@ -55,7 +55,7 @@ const menuY = 40
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
-		if(menu[i].rawin("disabled")) { currFont = font2G }
+		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
 			if(getFrames() / 24 % 2 == 0) currFont = font2I
@@ -107,7 +107,7 @@ const menuY = 40
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
-		if(menu[cursor].rawin("disabled")) return;
+		if(menu[cursor].rawin("disabled") && menu[cursor].disabled == true) return;
 		popSound(sndMenuSelect, 0)
 		menu[cursor].func()
 	}
@@ -150,13 +150,29 @@ const menuY = 40
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { menu = meOptions }
 	},
-		{
-		name = function() { return gvLangObj["main-menu"]["credits"] },
-		func = function() { startCredits("res"); }
-		}
+	{
+		name = function() { return gvLangObj["main-menu"]["extras"] },
+		func = function() { menu = meExtras }
+	},
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
+	}
+]
+
+::meExtras <- [
+	{
+		name = function() { return gvLangObj["extras-menu"]["achievements"] },
+		func = function() { selectAchievements() }
+	},
+	{
+		name = function() { return gvLangObj["extras-menu"]["credits"] },
+		func = function() { startCredits("res") }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
 	}
 ]
 

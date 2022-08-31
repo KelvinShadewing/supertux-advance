@@ -213,7 +213,7 @@
 						frame = 0.0
 					}
 
-					if(placeFree(x, y + 2)) {
+					if(placeFree(x, y + 2) && !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -225,7 +225,7 @@
 					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = anStand
 					if(abs(rspeed) > 2.4) anim = anRun
 
-					if(placeFree(x, y + 2)) {
+					if(placeFree(x, y + 2) && !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -249,7 +249,7 @@
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != anSkid) anim = anWalk
 
-					if(placeFree(x, y + 2)) {
+					if(placeFree(x, y + 2) && !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -263,7 +263,7 @@
 				case anJumpU:
 					if(frame < 1) frame += 0.1
 
-					if(!freeDown) {
+					if(!placeFree(x, y + 1) || onPlatform()) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -276,7 +276,7 @@
 
 				case anJumpT:
 					frame += 0.2
-					if(!freeDown) {
+					if(!freeDown || onPlatform()) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -289,7 +289,7 @@
 
 				case anFall:
 					frame += 0.1
-					if(!freeDown) {
+					if(!freeDown || onPlatform()) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -392,7 +392,7 @@
 			}
 
 			//Controls
-			if(!freeDown2 || anim == anClimb) {
+			if(!freeDown2 || anim == anClimb || onPlatform()) {
 				canJump = 16
 				if(game.weapon == 3 && energy < game.maxEnergy) energy += 0.2
 			}
@@ -567,20 +567,18 @@
 				}
 
 				//Going into slide
-				if(((!freeDown2 && (getcon("down", "hold") || autocon.down)) || (getcon("shoot", "hold") && game.weapon == 4) || autocon.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && anim != anCrawl) {
-					if(placeFree(x + 2, y + 1) || hspeed >= 1.5) {
+				if((((!freeDown2 || onPlatform()) && (getcon("down", "hold") || autocon.down)) || (getcon("shoot", "hold") && game.weapon == 4) || autocon.down) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && anim != anCrawl) {
+					if(placeFree(x + 2, y + 1) && !onPlatform() || hspeed >= 1.5) {
 						anim = anDive
 						frame = 0.0
 						flip = 0
-						stopSound(sndSlide)
-						playSound(sndSlide, 0)
+						popSound(sndSlide, 0)
 					}
-					else if(placeFree(x - 2, y + 1) || hspeed <= -1.5) {
+					else if(placeFree(x - 2, y + 1) && !onPlatform() || hspeed <= -1.5) {
 						anim = anDive
 						frame = 0.0
 						flip = 1
-						stopSound(sndSlide)
-						playSound(sndSlide, 0)
+						popSound(sndSlide, 0)
 					}
 					else {
 						anim = anDive
@@ -605,7 +603,7 @@
 			}
 
 			//Movement
-			if(!freeDown2) {
+			if(!freeDown2 || onPlatform()) {
 				if(anim == anSlide) {
 					if(hspeed > 0) hspeed -= friction / 3.0
 					if(hspeed < 0) hspeed += friction / 3.0
@@ -943,6 +941,21 @@
 			return
 		}
 		if(y < -100) y = -100.0
+
+		switch(escapeMoPlat(1)) {
+			case 1:
+				if(vspeed < 0) vspeed = 0
+				break
+			case 2:
+				if(hspeed < 0) hspeed = 0
+				break
+			case -1:
+				if(vspeed > 0) vspeed = 0
+				break
+			case -2:
+				if(hspeed > 0) hspeed = 0
+				break
+		}
 
 		//Set ice friction
 		if(onIce()) friction = 0.01
