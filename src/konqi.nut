@@ -244,7 +244,7 @@
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != anSkid) anim = anWalk
 
-					if(placeFree(x, y + 2) || !onPlatform()) {
+					if(placeFree(x, y + 2) && !onPlatform()) {
 						if(vspeed >= 0) anim = anFall
 						else anim = anJumpU
 						frame = 0.0
@@ -674,7 +674,7 @@
 				anim = anStomp
 				frame = 0.0
 			}
-			if((!freeDown || vspeed < 0) && anim == anStomp) {
+			if((!freeDown || vspeed < 0 || onPlatform()) && anim == anStomp) {
 				anim = anJumpU
 				vspeed = -2.0
 				popSound(sndBump)
