@@ -927,8 +927,10 @@
 
 	drawDebug()
 
-	if(levelEndRunner == 0) gvIGT++
-	game.igt++
+	if(levelEndRunner == 0 && gvPlayer) {
+		gvIGT++
+		game.igt++
+	}
 
 	//Draw global IGT
 	if(config.showglobaligt) {

@@ -75,15 +75,18 @@
 }
 
 ::gvUnlockedAchievements <- {}
+::gvAchievementTimer <- 0
 
 ::checkAchievements <- function() {
-	foreach(key, i in gvAchievements) {
+	if(gvAchievementTimer > 0) gvAchievementTimer--
+	else foreach(key, i in gvAchievements) {
 		if(gvUnlockedAchievements.rawin(key)) continue
 		if(i()) {
 			gvUnlockedAchievements[key] <- true
 			newActor(AchiNotice, 16, -16, key)
 			popSound(sndAchievement, 0)
 			fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
+			gvAchievementTimer = 60
 		}
 	}
 }
@@ -94,7 +97,10 @@
 	foreach(key, i in gvAchievements) {
 		local newKey = key
 		meAchievements.push({
-			name = function() { return gvLangObj["achi-name"][newKey] }
+			name = function() {
+				if(gvUnlockedAchievements.rawin(newKey)) return gvLangObj["achi-name"][newKey]
+				else return "????"
+			}
 			func = function() {}
 			desc = function() { return gvLangObj["achi-desc"][newKey] }
 			disabled = !gvUnlockedAchievements.rawin(newKey)
@@ -102,7 +108,7 @@
 	}
 
 	meAchievements.sort(function(a, b) {
-		if(a.name() > b.name()) return 1
+		if(a.name() > b.name() || a.name()[0] == '?') return 1
 		if(a.name() < b.name()) return -1
 		return 0
 	})

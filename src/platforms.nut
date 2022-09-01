@@ -111,7 +111,7 @@
 						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -power
 						break
 				}
-				if(frame == 0.0) playSound(sndSpring, 0)
+				if(frame == 0.0) popSound(sndSpring, 0)
 			}
 		}
 
@@ -185,7 +185,7 @@
 						gvPlayer.vspeed = -power * 0.8
 						break
 				}
-				if(frame == 0.0) playSound(sndSpring, 0)
+				if(frame == 0.0) popSound(sndSpring, 0)
 			}
 		}
 

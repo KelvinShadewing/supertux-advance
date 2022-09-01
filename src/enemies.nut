@@ -649,7 +649,7 @@
 			else vspeed /= 2
 
 			if(!squish) {
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -902,7 +902,7 @@
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x + 8, y)
@@ -1015,7 +1015,7 @@
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x + 8, y)
@@ -1123,7 +1123,7 @@
 		if(fliph == 1) actor[c].spin = -1
 		else actor[c].spin = 1
 		actor[c].gravity = 0.01
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x, y)
@@ -1179,7 +1179,7 @@
 				a.vspeed = -2
 			}
 			newActor(Poof, x, y - 1)
-			deleteActor(id)
+			die()
 			playSound(sndFlame, 0)
 
 		}
@@ -1187,7 +1187,7 @@
 
 	function hurtBlast() {
 		newActor(Poof, x, y - 1)
-		deleteActor(id)
+		die()
 	}
 
 	function _typeof() { return "Clamor" }
@@ -1203,7 +1203,7 @@
 		base.constructor(_x, _y)
 
 		if(!gvPlayer) {
-			deleteActor(id)
+			die()
 			return
 		}
 
@@ -1337,7 +1337,7 @@
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x + 8, y)
@@ -1507,7 +1507,7 @@
 			y += vspeed
 			shape.setPos(x, y)
 
-			if(y > gvMap.h) deleteActor(id)
+			if(y > gvMap.h) die()
 
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -1557,7 +1557,7 @@
 			newActor(IceChunks, x, y)
 		}
 
-		deleteActor(id)
+		die()
 	}
 
 	function hurtBlast() {
@@ -1565,7 +1565,7 @@
 		actor[c].sprite = sprite
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
 		actor[c].hspeed = (gvPlayer.hspeed / 16)
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
@@ -1614,7 +1614,7 @@
 		shape.setPos(x, y)
 
 		if(!placeFree(x, y)) {
-			deleteActor(id)
+			die()
 			newActor(IceChunks, x, y)
 		}
 
@@ -1624,7 +1624,7 @@
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
-			deleteActor(id)
+			die()
 		newActor(Poof, x, y)
 			return
 		}
@@ -1729,7 +1729,7 @@
 			actor[c].vspeed = -4.0
 			actor[c].spin = 6
 			actor[c].angle = 180
-			deleteActor(id)
+			die()
 			popSound(sndKick)
 		}
 
@@ -1739,7 +1739,7 @@
 			actor[c].hspeed = (gvPlayer.hspeed / 16)
 			actor[c].spin = (gvPlayer.hspeed * 6)
 			actor[c].angle = 180
-			deleteActor(id)
+			die()
 			popSound(sndKick)
 
 			if(getcon("jump", "hold")) {
@@ -1868,13 +1868,13 @@
 			newActor(IceChunks, x, y)
 		}
 		newActor(Poof, x, y - 1)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 	}
 
@@ -1928,7 +1928,7 @@
 
 				}
 
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -2036,9 +2036,8 @@
 					playSound(sndFizz, 0)
 				}
 				if(squishTime >= 300 && chasing) {
-					deleteActor(id)
+					die()
 					fireWeapon(ExplodeF, x, y, 0, id)
-
 				}
 				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
@@ -2101,7 +2100,7 @@
 		}
 		if(!burnt) {
 			fireWeapon(ExplodeF, x, y - 1, 0, id)
-			deleteActor(id)
+			die()
 			playSound(sndFlame, 0)
 
 			burnt = true
@@ -2157,7 +2156,7 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
 
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -2223,7 +2222,7 @@
 				squishTime += 3
 				frame += 0.01 * squishTime
 				if(squishTime >= 180) {
-					deleteActor(id)
+					die()
 					fireWeapon(ExplodeT, x, y, 0, id)
 					fireWeapon(ExplodeT, x, y + 24, 0, id)
 					fireWeapon(ExplodeT, x, y - 24, 0, id)
@@ -2343,7 +2342,7 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
 
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -2488,7 +2487,7 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				else vspeed /= 2
 
-				if(y > gvMap.h + 8) deleteActor(id)
+				if(y > gvMap.h + 8) die()
 
 				if(!frozen) {
 					if(flip) {
@@ -2554,7 +2553,7 @@
 			}
 			else {
 				squishTime += 0.025
-				if(squishTime >= 1) deleteActor(id)
+				if(squishTime >= 1) die()
 				if(smart) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
@@ -2596,7 +2595,7 @@
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
-				deleteActor(id)
+				die()
 				playSound(sndKick, 0)
 			}
 			else if(_stomp) {
@@ -2628,7 +2627,7 @@
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
-		deleteActor(id)
+		die()
 		playSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 
@@ -2636,7 +2635,7 @@
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
-		deleteActor(id)
+		die()
 		playSound(sndFlame, 0)
 
 		if(randInt(40) == 0) {

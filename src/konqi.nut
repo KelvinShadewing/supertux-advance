@@ -261,7 +261,7 @@
 				case anJumpU:
 					if(frame < 0.0 + 1) frame += 0.1
 
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -274,7 +274,7 @@
 
 				case anJumpT:
 					frame += 0.2
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -287,7 +287,7 @@
 
 				case anFall:
 					frame += 0.1
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}

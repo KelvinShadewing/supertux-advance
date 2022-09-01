@@ -740,7 +740,7 @@
                  "gid":220,
                  "height":16,
                  "id":92,
-                 "name":"actor[mapActor[93]].speed = 2",
+                 "name":"actor[mapActor[93]].speed = 1",
                  "rotation":0,
                  "visible":true,
                  "width":16,

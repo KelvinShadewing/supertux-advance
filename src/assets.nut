@@ -221,9 +221,9 @@
 ::defSnowBounce <- sprSnowBounce
 ::sprSnowJumpy <- newSprite("res/gfx/og-jumpy.png", 16, 25, 0, 0, 8, 11)
 ::defSnowJumpy <- sprSnowJumpy
-::sprSpikeCap <- newSprite("res/gfx/spikecap.png", 16, 17, 0, 0, 8, 9)
+::sprSpikeCap <- newSprite("res/gfx/spikecap.png", 16, 17, 0, 0, 8, 11)
 ::defSpikeCap <- sprSpikeCap
-::sprSnowSpike <- newSprite("res/gfx/snowspike.png", 20, 20, 0, 0, 10, 12)
+::sprSnowSpike <- newSprite("res/gfx/snowspike.png", 20, 20, 0, 0, 10, 13)
 ::defSnowSpike <- sprSnowSpike
 ::sprSnowFly <- newSprite("res/gfx/snowfly.png", 15, 19, 0, 0, 7, 8)
 ::defSnowFly <- sprSnowFly

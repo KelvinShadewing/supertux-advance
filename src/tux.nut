@@ -263,7 +263,7 @@
 				case anJumpU:
 					if(frame < 1) frame += 0.1
 
-					if(!placeFree(x, y + 1) || onPlatform()) {
+					if(!placeFree(x, y + 1) || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -276,7 +276,7 @@
 
 				case anJumpT:
 					frame += 0.2
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -289,7 +289,7 @@
 
 				case anFall:
 					frame += 0.1
-					if(!freeDown || onPlatform()) {
+					if(!freeDown || (onPlatform() && vspeed >= 0)) {
 						anim = anStand
 						frame = 0.0
 					}
@@ -915,7 +915,7 @@
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
-						if(slippery) vspeed -= 2.0
+						if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break
 					}
 				}
