@@ -86,7 +86,8 @@
 			newActor(AchiNotice, 16, -16, key)
 			popSound(sndAchievement, 0)
 			fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
-			gvAchievementTimer = 60
+			gvAchievementTimer = 120
+			break
 		}
 	}
 }
