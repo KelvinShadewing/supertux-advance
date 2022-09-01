@@ -5,6 +5,5 @@
 	setFPS(60)
 	gvPlayer = false
 	gvBoss = false
-	actor.clear()
-	actlast = 0
+	deleteAllActors()
 }

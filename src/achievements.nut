@@ -124,6 +124,7 @@
 }
 
 ::AchiNotice <- class extends Actor {
+	persistent = true
 	hspeed = 0.0
 	timer = 60
 	name = ""

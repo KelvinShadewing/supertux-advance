@@ -1585,6 +1585,7 @@
 	touchDamage = 2.0
 	element = "ice"
 	dy = -16
+	nocount = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)

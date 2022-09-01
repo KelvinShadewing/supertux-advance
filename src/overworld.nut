@@ -352,7 +352,7 @@
 	gvFadeInTime = 255
 	setFPS(60)
 	gvPlayer = false
-	actor.clear()
+	deleteAllActors()
 	gvIGT = 0
 	autocon = {
 		up = false
