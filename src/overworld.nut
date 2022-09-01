@@ -212,8 +212,8 @@
 		x += hspeed
 		y += vspeed
 
-		if(hspeed == 0 && vspeed == 0) drawSprite(getroottable()[game.characters[game.playerChar]["over"]], 0, x - camx, y - camy)
-		else drawSprite(getroottable()[game.characters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
+		if(hspeed == 0 && vspeed == 0) drawSpriteZ(2, getroottable()[game.characters[game.playerChar]["over"]], 0, x - camx, y - camy)
+		else drawSpriteZ(2, getroottable()[game.characters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
 
 		gvLevel = level
 	}
@@ -402,6 +402,7 @@
 	foreach(i in actlayer.objects)
 	{
 		local n = i.gid - tilef
+		local c
 
 		//Get the tile number and make an actor
 		//according to the image used in actors.png
@@ -409,29 +410,42 @@
 		{
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
-				if(!gvPlayer) newActor(OverPlayer, i.x + 8, i.y - 8)
+				if(!gvPlayer) c = newActor(OverPlayer, i.x + 8, i.y - 8)
 				break
 
 			case 1:
-				local c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
+				c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
 				c.visible = i.visible
 				break
 
 			case 2:
-				local c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
+				c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
 				break
 
 			case 3:
-				local c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
+				c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
 				c.level = i.name
 				break
 
 			case 4:
-				newActor(LockIcon, i.x + 8, i.y - 8, i.name)
+				c = newActor(LockIcon, i.x + 8, i.y - 8, i.name)
 				break
+
+			case 5:
+				if(i.name == "") break
+					local arg = split(i.name, ",")
+					local n = arg[0]
+					arg.remove(0)
+					if(arg.len() == 1) arg = arg[0]
+					else if(arg.len() == 0) arg = null
+					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
+					break
 		}
+
+		if(typeof c == "integer") mapActor[i.id] <- c
+		else mapActor[i.id] <- c.id
 	}
 
 	for(local i = 0; i < gvMap.data.layers.len(); i++) {
@@ -489,12 +503,8 @@
 
 	//Actor types are explicitly called this way to ensure the player is drawn on top
 	//This was made before Z drawing was implemented, so it's not perfect
-	if(actor.rawin("StageIcon")) foreach(i in actor["StageIcon"]) i.run()
-	if(actor.rawin("WorldIcon")) foreach(i in actor["WorldIcon"]) i.run()
-	if(actor.rawin("TownIcon")) foreach(i in actor["TownIcon"]) i.run()
-	if(actor.rawin("LockIcon")) foreach(i in actor["LockIcon"]) i.run()
-	if(actor.rawin("Trigger")) foreach(i in actor["Trigger"]) i.run()
-	if(gvPlayer) gvPlayer.run()
+	runActors()
+	drawZList(8)
 
 	runAmbientLight()
 	drawAmbientLight()
