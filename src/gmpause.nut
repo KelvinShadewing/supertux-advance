@@ -14,7 +14,7 @@
 ::togglePause <- function() {
 	cursor = 0
 	if(gvGameMode == gmPlay) {
-		if(actor.rawin("DeadPlayer")) {
+		if(actor.rawin("DeadPlayer") && actor["DeadPlayer"].len() > 0) {
 			startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
