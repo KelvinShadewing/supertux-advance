@@ -643,6 +643,10 @@
 				else hspeed += vspeed / 2.5
 				vspeed = 0
 			}
+			if(anim == anDive && vspeed >= 1 && !placeFree(x, y + 1) && game.weapon == 4) {
+				hspeed *= 1.5
+				vspeed = 0.0
+			}
 
 			//Max ground speed
 			local speedLimit = 6.0
@@ -962,7 +966,7 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 2
+		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) game.health = 0
 
 		if(hurt > 0 && invincible == 0) {

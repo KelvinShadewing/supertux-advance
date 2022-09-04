@@ -992,7 +992,7 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 2
+		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) game.health = 0
 
 		if(hurt > 0 && invincible == 0) {

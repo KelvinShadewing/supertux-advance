@@ -29,6 +29,8 @@
 	element = "normal"
 	sharpTop = false
 	sharpSide = false
+	held = false
+	squish = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -60,9 +62,11 @@
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if(gvPlayer.invincible > 0) hurtInvinc()
 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming) {
+						if(!squish) {
+							if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
+							else gvPlayer.vspeed = -4.0
+						}
 						getHurt(1, "normal", false, false, true)
-						if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
-						else gvPlayer.vspeed = -4.0
 					}
 					else if(gvPlayer.rawin("anSlide") && blinking == 0 && !sharpSide) {
 						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
@@ -644,7 +648,7 @@
 		base.run()
 
 		if(active) {
-			if(placeFree(x, y + 1)) vspeed += 0.1
+			if(placeFree(x, y + 1) && !held) vspeed += 0.1
 			if(placeFree(x, y + vspeed)) y += vspeed
 			else vspeed /= 2
 
@@ -712,7 +716,8 @@
 				}
 			}
 			else {
-				squishTime += 1.5
+				if(held) squishTime += 0.1
+				else squishTime += 1.5
 				frame += 0.002 * squishTime
 				drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 				if(getFrames() % 20 == 0) {
@@ -729,18 +734,51 @@
 				}
 
 				//Get carried
-				if(getcon("shoot", "hold") && gvPlayer) {
-					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.holding == 0 || gvPlayer.holding == id)) {
-						if(gvPlayer.flip == 0) x = gvPlayer.x + 8
-						else x = gvPlayer.x - 8
-						y = gvPlayer.y
-						vspeed = 0
-						squishTime -= 1.0
-						hspeed = gvPlayer.hspeed
-						gvPlayer.held = id
-						if(squishTime >= 150) gvPlayer.holding = 0
+				if(gvPlayer) {
+					if(hitTest(shape, gvPlayer.shape) && getcon("shoot", "hold")
+					&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
+						held = true
+						gvPlayer.holding = id
 					}
-					else if(gvPlayer.holding == id && !inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) gvPlayer.holding = 0
+					else if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+						held = false
+						gvPlayer.holding = 0
+					}
+
+					if(held) {
+						y = gvPlayer.y
+						flip = gvPlayer.flip
+						if(gvPlayer.flip == 0) x = gvPlayer.x + 10 + gvPlayer.hspeed
+						else if(gvPlayer.flip == 1) x = gvPlayer.x - 10 + gvPlayer.hspeed
+						y = gvPlayer.y + gvPlayer.vspeed
+					}
+
+					if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && held) {
+						gvPlayer.holding = 0
+
+						//escape from solid
+						if(!placeFree(x, y)) {
+							local escapedir = gvPlayer.x <=> x
+							while(!placeFree(x, y)) x += escapedir
+						}
+						held = false
+					}
+				}
+				if(!getcon("shoot", "hold")) {
+					if(getcon("shoot", "release") && getcon("up", "hold") && held) vspeed = -2.0
+					if(held && gvPlayer) {
+						gvPlayer.holding = 0
+						x += gvPlayer.hspeed * 2
+
+						if(!getcon("down", "hold")) hspeed = -2.0 * (gvPlayer.x <=> x)
+
+						//escape from solid
+						if(!placeFree(x, y)) {
+							local escapedir = gvPlayer.x <=> x
+							while(!placeFree(x, y)) x += escapedir
+						}
+					}
+					held = false
 				}
 
 				//Move
@@ -749,14 +787,15 @@
 					x += hspeed
 					y -= 1.0
 				}
-				if(!placeFree(x, y + 1)) hspeed *= 0.9
+				if(placeFree(x, y + 1)) friction = 0.0
+				else friction = 0.1
 				if(fabs(hspeed) < 0.1) hspeed = 0.0
 
 				//Explode
 				if(squishTime >= 150) {
 					die()
 					fireWeapon(ExplodeF, x, y, 0, id)
-					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = null
+					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = 0
 				}
 			}
 
@@ -786,6 +825,7 @@
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(!active) return
+		if(held) return
 		if(_element == "ice") {
 			hurtIce()
 			return
@@ -2125,7 +2165,7 @@
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(2, "normal", true, false)
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(1 + game.difficulty, "normal", true, false)
 	}
 }
 
