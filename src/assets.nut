@@ -231,9 +231,9 @@
 ::defTallCap <- sprTallCap
 ::sprSmartTallCap <- newSprite("res/gfx/smarttallcap.png", 16, 34, 0, 0, 8, 26)
 ::defSmartTallCap <- sprSmartTallCap
-::sprSnowman <- newSprite("res/gfx/snowman.png", 20, 32, 0, 0, 10, 24)
+::sprSnowman <- newSprite("res/gfx/snowman.png", 20, 31, 0, 0, 10, 22)
 ::defSnowman <- sprSnowman
-::sprSnowoman <- newSprite("res/gfx/snowoman.png", 20, 32, 0, 0, 10, 24)
+::sprSnowoman <- newSprite("res/gfx/snowoman.png", 20, 31, 0, 0, 10, 22)
 ::defSnowoman <- sprSnowoman
 
 

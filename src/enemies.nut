@@ -2820,8 +2820,8 @@
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprSmartTallCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprTallCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprSmartTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
