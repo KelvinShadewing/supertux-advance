@@ -475,6 +475,14 @@
 					c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
 					actor[c].moving = true
 					break
+
+				case 89:
+					c = newActor(Tallcap, i.x + 8, i.y - 24, false)
+					break
+
+				case 90:
+					c = newActor(Tallcap, i.x + 8, i.y - 24, true)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c

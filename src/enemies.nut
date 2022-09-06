@@ -210,7 +210,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(smart) if(placeFree(x - 6, y + 14)) flip = false
+						if(smart) if(placeFree(x - 6, y + 14) && !placeFree(x + 2, y + 14)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -224,7 +224,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(smart) if(placeFree(x + 6, y + 14)) flip = true
+						if(smart) if(placeFree(x + 6, y + 14) && !placeFree(x - 2, y + 14)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -275,6 +275,7 @@
 	}
 
 	function hurtPlayer() {
+		if(blinking) return
 		if(squish) return
 		base.hurtPlayer()
 	}
@@ -2725,6 +2726,180 @@
 	function _typeof() { return "Wildcap" }
 }
 
+::Tallcap <- class extends Enemy {
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	smart = false
+	moving = false
+	touchDamage = 2.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 6, 14, 0, 0, -6)
+
+		smart = _arr
+	}
+
+	function routine() {}
+	function animation() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
+				flip = true
+				moving = true
+			}
+
+			if(!squish) {
+				if(placeFree(x, y + 1)) vspeed += 0.1
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
+
+				if(y > gvMap.h + 8) die()
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
+
+						if(smart) if(placeFree(x - 6, y + 14)) flip = false
+
+						if(x <= 0) flip = false
+					}
+					else {
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
+						} else flip = true
+
+						if(smart) if(placeFree(x + 6, y + 14)) flip = true
+
+						if(x >= gvMap.w) flip = true
+					}
+				}
+
+				if(frozen) {
+					//Create ice block
+					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+						if(health > 0) icebox = mapNewSolid(shape)
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprSmartTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+					if(frozen <= 120) {
+					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 7)
+						else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
+					}
+					else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+
+					//Draw
+					if(smart) drawSpriteEx(sprSmartTallCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprTallCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+			}
+			else {
+				squishTime += 0.025
+				if(squishTime >= 1) die()
+				if(smart) drawSpriteEx(sprSmartTallCap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprTallCap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			}
+
+			if(!squish) shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function hurtPlayer() {
+		if(squish) return
+		base.hurtPlayer()
+	}
+
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(squish) return
+
+		if(_element == "ice") {
+			frozen = 600
+			return
+		}
+
+		die()
+
+		squish = true
+		blinking = 120
+	}
+
+	function hurtblast() {
+		local c = newActor(DeadNME, x, y)
+		if(smart) actor[c].sprite = sprSmartTallCap
+		else actor[c].sprite = sprTallCap
+		actor[c].vspeed = -4
+		actor[c].hspeed = (4 / 16)
+		actor[c].spin = (4 * 7)
+		actor[c].angle = 180
+		die()
+		playSound(sndKick, 0)
+		if(icebox != -1) mapDeleteSolid(icebox)
+	}
+
+	function hurtFire() {
+		newActor(Flame, x, y - 1)
+		die()
+		stopSound(sndFlame)
+		playSound(sndFlame, 0)
+
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function hurtIce() { frozen = 600 }
+
+	function die() {
+		mapDeleteSolid(icebox)
+		if(frozen) newActor(IceChunks, x, ystart - 6)
+		frozen = 0
+
+		deleteActor(id)
+		local c = actor[newActor(Deathcap, x, y - 14)]
+		c.smart = smart
+		c.nocount = nocount
+		c.blinking = 60
+		c.vspeed = -1.0
+		newActor(Poof, x, y)
+		popSound(sndSquish, 0)
+	}
+
+	function _typeof() { return "Tallcap" }
+}
+
 
 
 
@@ -3373,3 +3548,4 @@
 
 	function _typeof() { return "SpikeCap" }
 }
+

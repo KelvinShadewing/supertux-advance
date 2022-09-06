@@ -227,6 +227,14 @@
 ::defSnowSpike <- sprSnowSpike
 ::sprSnowFly <- newSprite("res/gfx/snowfly.png", 15, 19, 0, 0, 7, 8)
 ::defSnowFly <- sprSnowFly
+::sprTallCap <- newSprite("res/gfx/tallcap.png", 16, 32, 0, 0, 8, 24)
+::defTallCap <- sprTallCap
+::sprSmartTallCap <- newSprite("res/gfx/smarttallcap.png", 16, 34, 0, 0, 8, 26)
+::defSmartTallCap <- sprSmartTallCap
+::sprSnowman <- newSprite("res/gfx/snowman.png", 20, 32, 0, 0, 10, 24)
+::defSnowman <- sprSnowman
+::sprSnowoman <- newSprite("res/gfx/snowoman.png", 20, 32, 0, 0, 10, 24)
+::defSnowoman <- sprSnowoman
 
 
 //Bosses
@@ -502,6 +510,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprLivewire = defLivewire
 	sprBlazeborn = defBlazeborn
 	sprSpikeCap = defSpikeCap
+	sprTallCap = defTallCap
+	sprSmartTallCap = defSmartTallCap
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -553,6 +563,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprJumpy = sprSnowJumpy
 	sprSpikeCap = sprSnowSpike
 	sprFlyAmanita = sprSnowFly
+	sprTallCap = sprSnowman
+	sprSmartTallCap = sprSnowoman
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)
