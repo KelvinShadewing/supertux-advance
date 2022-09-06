@@ -291,7 +291,7 @@
 		if(_element == "fire") {
 			newActor(Flame, x, y - 1)
 			die()
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 
 			if(randInt(20) == 0) {
 				local a = actor[newActor(MuffinBlue, x, y)]
@@ -315,7 +315,7 @@
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				die()
-				playSound(sndKick, 0)
+				popSound(sndKick, 0)
 				return
 			}
 		}
@@ -349,15 +349,14 @@
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		die()
-		stopSound(sndFlame)
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]
@@ -470,7 +469,7 @@
 			newActor(Poof, x, ystart - 8)
 			newActor(Poof, x, ystart + 8)
 			die()
-			playSound(sndKick, 0)
+			popSound(sndKick, 0)
 
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -485,7 +484,7 @@
 		newActor(Poof, x, ystart - 6)
 		newActor(Poof, x, ystart + 8)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -497,7 +496,7 @@
 		newActor(Flame, x, ystart - 6)
 		newActor(Flame, x, ystart + 8)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
@@ -587,6 +586,17 @@
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_stomp || _element == "normal") {
+			newActor(Poof, x, y)
+			die()
+			popSound(sndSquish, 0)
+
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, ystart - 6)
+			}
+			return
+		}
 		if(_element == "ice") {
 			hurtIce()
 			return
@@ -595,14 +605,14 @@
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			newActor(Poof, x, y)
 			die()
-			playSound(sndSquish, 0)
+			popSound(sndSquish, 0)
 			if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
 			else gvPlayer.vspeed = -4
 		}
 
 		if(_element == "fire") hurtFire()
 		if(_element == "ice") hurtIce()
-		if(_blast || _element == "normal") hurtBlast()
+		if(_blast) hurtBlast()
 
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
@@ -619,12 +629,12 @@
 	function hurtInvinc() {
 		newActor(Poof, x, y)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 
 		if(icebox != -1) {
-				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6)
-			}
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, ystart - 6)
+		}
 	}
 
 	function _typeof() { return "OrangeBounce" }
@@ -819,8 +829,7 @@
 	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
-		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		popSound(sndFizz, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -842,8 +851,7 @@
 		}
 		else if(squish) return
 
-		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		popSound(sndFizz, 0)
 		if(_stomp) {
 			if(getcon("jump", "hold")) gvPlayer.vspeed = -8
 			else gvPlayer.vspeed = -4
@@ -864,7 +872,7 @@
 		if(!burnt) {
 			fireWeapon(ExplodeF, x, y - 1, 2, id)
 			die()
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 
 			burnt = true
 		}
@@ -949,7 +957,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -1062,7 +1070,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -1170,7 +1178,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.01
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x, y)
 	}
@@ -1226,7 +1234,7 @@
 			}
 			newActor(Poof, x, y - 1)
 			die()
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 
 		}
 	}
@@ -1384,7 +1392,7 @@
 		else actor[c].spin = 1
 		actor[c].gravity = 0.02
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -1612,7 +1620,7 @@
 		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
 		actor[c].hspeed = (gvPlayer.hspeed / 16)
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -1648,7 +1656,7 @@
 
 		if(gvPlayer) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
 			counting = true
-			playSound(sndIcicle, 0)
+			popSound(sndIcicle, 0)
 		}
 
 		if(counting && timer > 0) timer--
@@ -1791,13 +1799,11 @@
 
 			if(getcon("jump", "hold")) {
 				gvPlayer.vspeed = -8
-				stopSound(sndSquish)
-				playSound(sndSquish, 0)
+				popSound(sndSquish, 0)
 			}
 			else {
 				gvPlayer.vspeed = -4
-				stopSound(sndSquish)
-				playSound(sndSquish, 0)
+				popSound(sndSquish, 0)
 			}
 
 			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
@@ -1916,20 +1922,19 @@
 		}
 		newActor(Poof, x, y - 1)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 	}
 
 	function hurtIce() { frozen = 600 }
 
 	function die() {
-		stopSound(sndKick)
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		newActor(Poof, x, y)
 		base.die()
 	}
@@ -2079,8 +2084,7 @@
 				if(squishTime >= 90 && !chasing) {
 					chasing = true
 					squishTime = 0
-					stopSound(sndFizz)
-					playSound(sndFizz, 0)
+					popSound(sndFizz, 0)
 				}
 				if(squishTime >= 300 && chasing) {
 					die()
@@ -2148,7 +2152,7 @@
 		if(!burnt) {
 			fireWeapon(ExplodeF, x, y - 1, 0, id)
 			die()
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 
 			burnt = true
 		}
@@ -2322,8 +2326,7 @@
 	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
-		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		popSound(sndFizz, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -2345,8 +2348,7 @@
 		}
 		if(_element == "fire") return
 
-		stopSound(sndFizz)
-		playSound(sndFizz, 0)
+		popSound(sndFizz, 0)
 		if(_stomp) {
 			if(getcon("jump", "hold")) gvPlayer.vspeed = -8
 			else gvPlayer.vspeed = -4
@@ -2445,7 +2447,7 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						newActor(Flame, x, y - 1)
 						die()
-						playSound(sndFlame, 0)
+						popSound(sndFlame, 0)
 					}
 
 					//Draw
@@ -2502,7 +2504,7 @@
 	function hurtBlast() {
 		newActor(Poof, x, y)
 		die()
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
@@ -2646,7 +2648,7 @@
 		if(_element == "fire") {
 			newActor(Flame, x, y - 1)
 			die()
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 
 			if(randInt(30) == 0) {
 				local a = actor[newActor(MuffinRed, x, y)]
@@ -2671,7 +2673,7 @@
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				die()
-				playSound(sndKick, 0)
+				popSound(sndKick, 0)
 				return
 			}
 		}
@@ -2705,15 +2707,14 @@
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		die()
-		stopSound(sndFlame)
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 
 		if(randInt(30) == 0) {
 			local a = actor[newActor(MuffinRed, x, y)]
@@ -2864,15 +2865,14 @@
 		actor[c].spin = (4 * 7)
 		actor[c].angle = 180
 		die()
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 		if(icebox != -1) mapDeleteSolid(icebox)
 	}
 
 	function hurtFire() {
 		newActor(Flame, x, y - 1)
 		die()
-		stopSound(sndFlame)
-		playSound(sndFlame, 0)
+		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]
@@ -3049,7 +3049,7 @@
 		actor[c].sprite = sprOwlBrown
 		actor[c].vspeed = -5.0
 		actor[c].spin = 30
-		playSound(sndKick, 0)
+		popSound(sndKick, 0)
 	}
 }
 
@@ -3461,7 +3461,7 @@
 		if(_element == "fire") {
 			newActor(Flame, x, y - 1)
 			die()
-			playSound(sndFlame, 0)
+			popSound(sndFlame, 0)
 
 			local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprSpikeCap
@@ -3491,7 +3491,7 @@
 				actor[c].spin = (gvPlayer.hspeed * 7)
 				actor[c].angle = 180
 				die()
-				playSound(sndKick, 0)
+				popSound(sndKick, 0)
 				return
 			}
 		}
