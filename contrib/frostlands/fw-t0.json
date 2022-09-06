@@ -245,6 +245,18 @@
                  "width":16,
                  "x":320,
                  "y":288
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":88,
+                 "name":"sprMPlayer,1,say,placeholder,",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":576,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -253,9 +265,14 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":88,
+ "nextobjectid":89,
  "orientation":"orthogonal",
  "properties":[
+        {
+         "name":"author",
+         "type":"string",
+         "value":"FrostC"
+        }, 
         {
          "name":"code",
          "type":"string",
