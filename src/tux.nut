@@ -479,9 +479,10 @@
 
 				//Jumping
 				if(getcon("jump", "press") || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold")) {
+					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
 						y++
 						canJump = 32
+						if(!placeFree(x, y)) y--
 					}
 					else if(canJump > 0 && placeFree(x, y - 2)) {
 						jumpBuffer = 0
