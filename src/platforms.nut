@@ -398,8 +398,8 @@
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y)
 
-		shapeA = Cir(x, y, 8)
-		shapeB = Cir(x, y, 8)
+		shapeA = Cir(x, y, 12)
+		shapeB = Cir(x, y, 12)
 
 		if(_arr[0].len() > 0) {
 			shapeA.setPos(_arr[0][0][0], _arr[0][0][1])
@@ -446,7 +446,7 @@
 				if(hitTest(shapeA, gvPlayer.shape)) {
 					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
 					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
-					theta += (angleA - angleB) + 180
+					theta += (angleB - angleA) + 180
 					gvPlayer.hspeed = lendirX(mag, theta)
 					gvPlayer.vspeed = lendirY(mag, theta)
 					playerTeleport(shapeB.x + lendirX(16, angleB), shapeB.y + lendirY(16, angleB))
