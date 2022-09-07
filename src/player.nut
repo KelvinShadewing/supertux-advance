@@ -34,6 +34,8 @@
 	canSlide = false //Slide attack
 	canMove = true //Movement unlocked, set to false during cutscenes or when player restrained
 	held = null
+	useMouse = false //Draw the cursor when playing as this character
+	mouseSprite = sprCursor
 
 	//Physics stats
 	weight = 1.0

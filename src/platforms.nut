@@ -385,3 +385,86 @@
 
 	function _typeof() { return "MoPlat" }
 }
+
+::Portal <- class extends Actor {
+	shapeA = 0
+	shapeB = 0
+	canWarp = true
+	sprite = sprPortalGray
+	angleA = 0
+	angleB = 0
+	color = 0x808080ff
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
+
+		shapeA = Cir(x, y, 8)
+		shapeB = Cir(x, y, 8)
+
+		if(_arr[0].len() > 0) {
+			shapeA.setPos(_arr[0][0][0], _arr[0][0][1])
+			shapeB.setPos(_arr[0][_arr[0].len() - 1][0], _arr[0][_arr[0].len() - 1][1])
+		}
+
+		switch(_arr[1]) {
+			case "blue":
+				sprite = sprPortalBlue
+				color = 0x0000f8ff
+				break
+			case "red":
+				sprite = sprPortalRed
+				color = 0xf80000ff
+				break
+			case "green":
+				sprite = sprPortalGreen
+				color = 0x008000ff
+				break
+			case "yellow":
+				sprite = sprPortalYellow
+				color = 0xf8f800ff
+				break
+			case "punkle":
+				sprite = sprPortalPunkle
+				color = 0xf800f8ff
+				break
+		}
+
+		angleA = _arr[2].tofloat()
+		angleB = _arr[3].tofloat()
+	}
+
+	function run() {
+		drawSpriteEx(sprite, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)
+		drawSpriteEx(sprite, getFrames() / 4, shapeB.x - camx, shapeB.y - camy, angleB, 0, 1, 1, 1)
+		if(debug) {
+			setDrawColor(color)
+			drawLine(shapeA.x - camx, shapeA.y - camy, shapeB.x - camx, shapeB.y - camy)
+		}
+
+		if(gvPlayer) {
+			if(canWarp) {
+				if(hitTest(shapeA, gvPlayer.shape)) {
+					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					theta += (angleA - angleB) + 180
+					gvPlayer.hspeed = lendirX(mag, theta)
+					gvPlayer.vspeed = lendirY(mag, theta)
+					playerTeleport(shapeB.x + lendirX(16, angleB), shapeB.y + lendirY(16, angleB))
+					canWarp = false
+				}
+
+				if(hitTest(shapeB, gvPlayer.shape)) {
+					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					theta += (angleA - angleB) + 180
+					gvPlayer.hspeed = lendirX(mag, theta)
+					gvPlayer.vspeed = lendirY(mag, theta)
+					playerTeleport(shapeA.x + lendirX(16, angleA), shapeA.y + lendirY(16, angleA))
+					canWarp = false
+				}
+			}
+			//If the player has left the portal, allow reentry
+			else if(!hitTest(shapeA, gvPlayer.shape) && !hitTest(shapeB, gvPlayer.shape)) canWarp = true
+		}
+	}
+}
