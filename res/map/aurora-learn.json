@@ -233,7 +233,7 @@
                  "class":"",
                  "height":208,
                  "id":200,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"aurora-crystal\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,
@@ -1505,46 +1505,6 @@
                  "visible":true,
                  "width":16,
                  "x":1328,
-                 "y":128
-                }, 
-                {
-                 "class":"",
-                 "height":0,
-                 "id":379,
-                 "name":"Portal,punkle,-135,-45",
-                 "polyline":[
-                        {
-                         "x":112,
-                         "y":0
-                        }, 
-                        {
-                         "x":0,
-                         "y":0
-                        }],
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":2864,
-                 "y":224
-                }, 
-                {
-                 "class":"",
-                 "height":0,
-                 "id":380,
-                 "name":"Portal,red,0,180",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":-352,
-                         "y":128
-                        }],
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":2992,
                  "y":128
                 }],
          "opacity":1,

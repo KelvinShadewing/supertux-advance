@@ -344,7 +344,7 @@
                  "class":"",
                  "height":384,
                  "id":366,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"aurora-slip\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,

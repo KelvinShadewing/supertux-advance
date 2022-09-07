@@ -4,6 +4,7 @@
 	"main-menu" : {
 		"new" : "New Game",
 		"load" : "Load Game",
+		"time-attack" : "Time Attack",
 		"contrib-levels" : "Contrib Levels",
 		"options" : "Options",
 		"extras" : "Extras",
@@ -143,7 +144,8 @@
 		"enemies" : "Enemies",
 		"coins" : "Coins",
 		"secrets" : "Secrets",
-		"time" : "Best Time"
+		"time" : "Best Time",
+		"final-time": "Final Time"
 	},
 
 	"info" : {

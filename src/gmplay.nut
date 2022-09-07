@@ -33,6 +33,7 @@
 		gvLastSong = ""
 		gfxReset()
 		gvFadeInTime = 255
+		gvNextLevel = ""
 	}
 
 	//Reset auto/locked controls
@@ -986,4 +987,13 @@
 	if(camx < 0) camx = 0
 	if(camy > uy) camy = uy
 	if(camy < 0) camy = 0
+}
+
+::TimeAttackSign <- class extends Actor {
+	function run() {
+		local str = gvLangObj["stats"]["final-time"]
+		local time = formatTime(game.igt)
+		drawText(font2, (screenW() / 2) - ((str.len() / 2) * 4), 64, str)
+		drawText(font2, (screenW() / 2) - ((time.len() / 2) * 4), 80, time)
+	}
 }

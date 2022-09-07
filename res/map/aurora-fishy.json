@@ -238,7 +238,7 @@
                  "class":"",
                  "height":192,
                  "id":28,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"aurora-sense\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,

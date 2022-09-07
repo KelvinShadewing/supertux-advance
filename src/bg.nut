@@ -136,3 +136,7 @@
 		drawSprite(bgFortMagma, 0, ((-camx / 8) % 960) + (i * 960), (screenH() / 2) - 120)
 	}
 }
+
+::dbgTheatre <- function() {
+	drawSprite(bgCharSel, 0, screenW() / 2, 0)
+}

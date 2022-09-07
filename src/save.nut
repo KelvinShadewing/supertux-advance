@@ -8,8 +8,18 @@
 	startPlay("res/map/aurora-pennyton.json", true, true)
 }
 
+::newTimeAttack <- function() {
+	local newdif = game.difficulty
+	game = createNewGameObject()
+	game.file = -1
+	gvDoIGT = true
+	game.difficulty = newdif
+	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
+	startPlay("res/map/aurora-learn.json", true, true)
+}
+
 ::saveGame <- function() {
-	fileWrite("save/" + game.file.tostring() + ".json", jsonWrite(game))
+	if(game.file != -1) fileWrite("save/" + game.file.tostring() + ".json", jsonWrite(game))
 }
 
 ::loadGame <- function(f) {

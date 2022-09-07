@@ -260,7 +260,7 @@
                  "class":"",
                  "height":250,
                  "id":441,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"aurora-bridge\")",
                  "rotation":0,
                  "visible":true,
                  "width":25,

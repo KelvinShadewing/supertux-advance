@@ -348,7 +348,7 @@
                  "class":"",
                  "height":384,
                  "id":563,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"aurora-frozen\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,

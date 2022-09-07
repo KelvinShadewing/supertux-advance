@@ -995,7 +995,7 @@
                  "class":"",
                  "height":64,
                  "id":604,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"timeattack-win\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,
@@ -1004,7 +1004,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

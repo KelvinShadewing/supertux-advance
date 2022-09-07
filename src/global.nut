@@ -71,6 +71,7 @@
 			false,
 			false
 		]
+		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
 		world = "res/map/overworld-0.json"
@@ -164,6 +165,8 @@
 ::gvWarning <- 360.0
 ::gvCamTarget <- false
 ::gvFadeTime <- 0
+::gvNextLevel <- ""
+::gvTimeAttack <- false
 
 //Temporary items
 ::gvKeyCopper <- false

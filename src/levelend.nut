@@ -11,21 +11,27 @@
 		timer--
 		if(timer == 0 || getcon("pause", "press")) {
 			stopChannel(-1)
-			startOverworld(game.world)
 			levelEndRunner = 0
+			if(gvNextLevel != "" && gvTimeAttack) {
+				game.check = false
+				startPlay(game.path + gvNextLevel + ".json", true, true)
+				gvIGT = 0
+			}
+			else startOverworld(game.world)
 		}
 	}
 
 	function _typeof() { return "LevelEnder" }
 }
 
-::endGoal <- function(level = "") {
+::endGoal <- function(next = "", level = "") {
 	local clearedLevel
 	if(level == "") {
 		clearedLevel = gvMap.name
 	} else {
 		clearedLevel = level
 	}
+	gvNextLevel = next
 	if(levelEndRunner == 0){
 		gvPlayer.canMove = false
 		gvPlayer.endMode = true
