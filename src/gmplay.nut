@@ -993,7 +993,7 @@
 	function run() {
 		local str = gvLangObj["stats"]["final-time"]
 		local time = formatTime(game.igt)
-		drawText(font2, (screenW() / 2) - ((str.len() / 2) * 4), 64, str)
-		drawText(font2, (screenW() / 2) - ((time.len() / 2) * 4), 80, time)
+		drawText(font2, (screenW() / 2) - (str.len() * 4), 64, str)
+		drawText(font2, (screenW() / 2) - (time.len() * 4), 80, time)
 	}
 }
