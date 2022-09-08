@@ -482,7 +482,7 @@
 					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
 						y++
 						canJump = 32
-						if(!placeFree(x, y)) y--
+						if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					}
 					else if(canJump > 0 && placeFree(x, y - 2)) {
 						jumpBuffer = 0
