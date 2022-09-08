@@ -8,8 +8,8 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		game.maxSecrets++
 		if(_arr == "1") rehide = true
+		if(!rehide) game.maxSecrets++
 	}
 
 	function run() {
@@ -18,7 +18,7 @@
 		if(shape != null && gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			if(!found) {
 				found = true
-				game.secrets++
+				if(!rehide) game.secrets++
 			}
 		}
 		else if(rehide) found = false

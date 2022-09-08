@@ -830,6 +830,106 @@
                  "width":0,
                  "x":160,
                  "y":384
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":96,
+                 "name":"Portal,red,0,-45",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-64,
+                         "y":-160
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":1520,
+                 "y":448
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":97,
+                 "name":"FuseLine",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":80,
+                         "y":0
+                        }, 
+                        {
+                         "x":80,
+                         "y":-64
+                        }, 
+                        {
+                         "x":112,
+                         "y":-64
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":184,
+                 "y":472
+                }, 
+                {
+                 "class":"",
+                 "gid":233,
+                 "height":16,
+                 "id":98,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":288,
+                 "y":416
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":99,
+                 "name":"FuseLine",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":192,
+                         "y":-48
+                        }, 
+                        {
+                         "x":368,
+                         "y":16
+                        }, 
+                        {
+                         "x":192,
+                         "y":80
+                        }, 
+                        {
+                         "x":0,
+                         "y":-96
+                        }, 
+                        {
+                         "x":-80,
+                         "y":0
+                        }, 
+                        {
+                         "x":120,
+                         "y":40
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":176,
+                 "y":368
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -838,7 +938,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":96,
+ "nextobjectid":100,
  "orientation":"orthogonal",
  "properties":[
         {

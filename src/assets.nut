@@ -324,6 +324,8 @@
 ::defSplash <- sprSplash
 ::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
 ::defBigSpark <- sprBigSpark
+::sprSteelBall <- newSprite("res/gfx/steelball.png", 8, 8, 0, 0, 4, 4)
+::defSteelBall <- sprSteelBall
 
 
 //Platforms

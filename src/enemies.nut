@@ -861,6 +861,11 @@
 			}
 		}
 
+		if(gvPlayer && "anSlide" in gvPlayer && gvPlayer.anim == gvPlayer.anSlide) {
+			vspeed = -abs(gvPlayer.hspeed) / 2.0
+			hspeed = gvPlayer.hspeed <=> 0
+		}
+
 		squish = true
 	}
 

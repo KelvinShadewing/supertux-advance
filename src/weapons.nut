@@ -296,6 +296,57 @@
 	}
 }
 
+::FuseSpark <- class extends WeaponEffect {
+	element = "fire"
+	power = 0
+	piercing = -1
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+		shape = Cir(x, y, 2)
+	}
+
+	function run() {
+		drawSprite(sprFireball, getFrames(), x - camx, y - camy)
+		shape.setPos(x, y)
+		if(getFrames() % 4 == 0) newActor(FlameTiny, x - 1 + randInt(3), y - 1 + randInt(3))
+	}
+}
+
+::FuseLine <- class extends PathCrawler {
+	speed = 0
+	obj = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Cir(x, y, 8)
+	}
+
+	function run() {
+		base.run()
+
+		if(speed == 0 && "WeaponEffect" in actor && actor["WeaponEffect"].len() > 0) foreach(i in actor["WeaponEffect"]) {
+			if(hitTest(shape, i.shape) && i.element == "fire") {
+				speed = 2
+				obj = fireWeapon(FuseSpark, x, y, 0, id)
+				i.piercing--
+			}
+		}
+
+		if(speed == 0) drawSprite(sprSteelBall, 0, x - camx, y - camy)
+
+		if(obj != 0) {
+			obj.x = x
+			obj.y = y
+		}
+	}
+
+	function pathEnd() {
+		deleteActor(obj.id)
+		deleteActor(id)
+	}
+}
+
 /////////////////
 // ICE ATTACKS //
 /////////////////

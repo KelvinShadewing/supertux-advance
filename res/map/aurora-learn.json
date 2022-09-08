@@ -1525,7 +1525,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\nsongPlay(musDisko)\ngfxEnemySnow()"
+         "value":"drawBG = dbgAurora\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

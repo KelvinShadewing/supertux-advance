@@ -653,7 +653,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		path = _arr[0]
-		speed = _arr[1].tofloat()
+		if(_arr.len() > 1) speed = _arr[1].tofloat()
 		shape = Rec(x, y, 6, 6, 0)
 		if(path[0][0] == path[path.len() - 1][0] && path[0][1] == path[path.len() - 1][1]) loop = true
 		tx = path[0][0]
