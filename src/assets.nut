@@ -138,6 +138,10 @@
 ::defBossDoor <- sprBossDoor
 ::sprFireBlock <- newSprite("res/gfx/fireblock.png", 16, 16, 0, 0, 0, 0)
 ::defFireBlock <- sprFireBlock
+::sprCrumbleRock <- newSprite("res/gfx/crumble-rock.png", 16, 16, 0, 0, 8, 8)
+::defCrumbleRock <- sprCrumbleRock
+::sprCrumbleIce <- newSprite("res/gfx/crumble-ice.png", 16, 16, 0, 0, 8, 8)
+::defCrumbleIce <- sprCrumbleIce
 
 
 //NPCs
@@ -498,6 +502,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprColorSwitch = defColorSwitch
 	sprLockBlock = defLockBlock
 	sprBossDoor = defBossDoor
+	sprCrumbleRock = defCrumbleRock
 
 	sprSnake = defSnake
 	sprDeathcap = defDeathcap
@@ -576,6 +581,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprFlyAmanita = sprSnowFly
 	sprTallCap = sprSnowman
 	sprSmartTallCap = sprSnowoman
+	sprCrumbleRock = sprCrumbleIce
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

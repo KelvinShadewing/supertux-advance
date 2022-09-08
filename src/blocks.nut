@@ -1006,3 +1006,41 @@
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 }
+
+::Crumbler <- class extends Actor {
+	shape = 0
+	timer = 0
+	oldsolid = 0
+	broken = false
+	alpha = 1.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
+		shape = Rec(x, y - 1, 8, 8, 0)
+	}
+
+	function run() {
+		if(!broken) {
+			if(alpha < 1.0) alpha += 0.1
+			if(gvPlayer && hitTest(shape, gvPlayer.shape) && timer < 60) timer++
+			if(timer == 60) {
+				broken = true
+				tileSetSolid(x, y, oldsolid)
+				timer = 0
+				alpha = 0.0
+				if(sprCrumbleRock == sprCrumbleIce) newActor(IceChunks, x, y)
+			}
+			drawSpriteExZ(7, sprCrumbleRock, timer / 15, x - camx, y - camy, 0, 0, 1, 1, alpha)
+		}
+		else {
+			if(timer < 300) timer++
+			if(gvPlayer && !hitTest(shape, gvPlayer.shape) && timer == 300) {
+				broken = false
+				tileSetSolid(x, y, 1)
+				timer = 0
+			}
+		}
+	}
+}
