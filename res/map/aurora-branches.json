@@ -2132,7 +2132,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgIceForest\nsongPlay(musDisko)\ngfxEnemySnow()"
+         "value":"drawBG = dbgIceForest\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

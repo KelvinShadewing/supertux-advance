@@ -843,7 +843,13 @@
 
 		//Draw coins & herrings
 		drawSprite(sprCoin, 0, 16, screenH() - 16)
-		if(game.maxCoins > 0) drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+		if(game.maxCoins > 0) {
+			if(gvTimeAttack) {
+				if(levelEndRunner) drawText(font2, 24, screenH() - 23, game.coins.tostring())
+				else drawText(font2, 24, screenH() - 23, (game.coins + game.levelCoins).tostring())
+			}
+			else drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+		}
 		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
 		//Herrings (redcoins)
 		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, screenH() - 40)
@@ -878,7 +884,7 @@
 		}
 
 		//Draw level IGT
-		if(gvDoIGT && config.showleveligt) drawText(font2, 8, 32, formatTime(gvIGT))
+		if(gvDoIGT && config.showleveligt && levelEndRunner != 1) drawText(font2, 8, 32, formatTime(gvIGT))
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
@@ -945,7 +951,7 @@
 	}
 
 	//Draw global IGT
-	if(config.showglobaligt) {
+	if(config.showglobaligt && levelEndRunner != 1) {
 		local gtd = formatTime(game.igt) //Game time to draw
 		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
 	}

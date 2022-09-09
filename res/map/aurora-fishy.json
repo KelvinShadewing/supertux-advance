@@ -789,7 +789,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowPlain\nsongPlay(musDisko)\ngfxEnemySnow()"
+         "value":"drawBG = dbgSnowPlain\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
