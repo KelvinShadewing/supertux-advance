@@ -1998,7 +1998,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) {
+						if(placeFree(x - 8, y + 14) && !placeFree(x, y + 2)) {
 							if(!chasing) flip = false
 							else vspeed = -4
 						}
@@ -2016,7 +2016,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) {
+						if(placeFree(x + 8, y + 14) && !placeFree(x, y + 2)) {
 							if(!chasing) flip = true
 							else vspeed = -4
 						}
@@ -2040,6 +2040,7 @@
 
 					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0
 				}
+				else hspeed = 0.0
 
 				if(frozen) {
 					//Create ice block

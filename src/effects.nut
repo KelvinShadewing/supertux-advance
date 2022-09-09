@@ -134,8 +134,7 @@
 		else if(_arr == 10) value = 10
 		game.levelCoins += value
 		base.constructor(_x, _y)
-		stopSound(sndCoin)
-		playSound(sndCoin, 0)
+		popSound(sndCoin, 0)
 	}
 
 	function run() {
@@ -160,7 +159,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		playSound(sndIceBreak, 0)
+		popSound(sndIceBreak, 0)
 	}
 
 	function run() {

@@ -455,7 +455,11 @@
 		"duke-0a" :
 		"I'm so hungry! If you can bring me some fish, I'll open these blocks for you.",
 		"duke-0b" :
-		"Oh, thank you! I'd have gotten them myself but... I don't want to."
+		"Oh, thank you! I'd have gotten them myself but... I don't want to.",
+		"duke-1a" :
+		"I know a secret path that leads around the forest. If you bring me some fish, I'll open it for you.",
+		"duke-1b" :
+		"Thanks a bunch! I was starving! I hope the caves are easier for you than the forest. Who even builds a forest out of ice anyway?"
 	},
 
 	"level" : {

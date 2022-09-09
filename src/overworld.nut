@@ -334,7 +334,7 @@
 	}
 
 	function run() {
-		if(game.completed.rawin(key)) {
+		if(game.unblocked.rawin(key)) {
 			tileSetSolid(x, y, 1)
 			deleteActor(id)
 		}

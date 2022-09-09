@@ -1013,6 +1013,7 @@
 	oldsolid = 0
 	broken = false
 	alpha = 1.0
+	wasStepped = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1024,15 +1025,16 @@
 	function run() {
 		if(!broken) {
 			if(alpha < 1.0) alpha += 0.1
-			if(gvPlayer && hitTest(shape, gvPlayer.shape) && timer < 60) timer++
-			if(timer == 60) {
+			if(gvPlayer && hitTest(shape, gvPlayer.shape) && !wasStepped) wasStepped = true
+			if(wasStepped) timer++
+			if(timer == 30) {
 				broken = true
 				tileSetSolid(x, y, oldsolid)
 				timer = 0
 				alpha = 0.0
 				if(sprCrumbleRock == sprCrumbleIce) newActor(IceChunks, x, y)
 			}
-			drawSpriteExZ(7, sprCrumbleRock, timer / 15, x - camx, y - camy, 0, 0, 1, 1, alpha)
+			drawSpriteExZ(7, sprCrumbleRock, timer / 8, x - camx, y - camy, 0, 0, 1, 1, alpha)
 		}
 		else {
 			if(timer < 300) timer++
@@ -1040,6 +1042,7 @@
 				broken = false
 				tileSetSolid(x, y, 1)
 				timer = 0
+				wasStepped = false
 			}
 		}
 	}

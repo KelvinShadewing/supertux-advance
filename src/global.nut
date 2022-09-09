@@ -30,6 +30,7 @@
 		earthBonus = 0
 		subitem = 0
 		completed = {} //List of completed level names
+		unblocked = {} //List of unblocked obstacles on map
 		allCoins = {} //Levels that the player has gotten all enemies in
 		allEnemies = {} //Levels that the player has beaten all enemies in
 		allSecrets = {} //Levels the player has found all secrets in

@@ -335,11 +335,15 @@
 		local cl = c //Coins left
 		for(local i = 0; i < c; i++) {
 			if(checkActor(l[i])) {
-				actor[l[i]].x = x + r * cos((2 * pi / c) + a[i])
-				actor[l[i]].y = y + r * sin((2 * pi / c) + a[i])
+				local ins = actor[l[i]]
+				ins.x = x + r * cos((2 * pi / c) + a[i])
+				ins.y = y + r * sin((2 * pi / c) + a[i])
+
+				if(ins.rawin("vspeed")) ins.vspeed = 0
+				if(ins.rawin("hspeed")) ins.hspeed = 0
 
 				local canrotate = true
-				if(actor[l[i]].rawin("frozen")) if(actor[l[i]].frozen > 0) canrotate = false
+				if(ins.rawin("frozen")) if(actor[l[i]].frozen > 0) canrotate = false
 				if(canrotate) a[i] += s / 60.0
 			}
 			else cl--
