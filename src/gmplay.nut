@@ -640,7 +640,7 @@
 	setDrawColor(0x000000ff)
 	drawRec(0, 0, screenW(), screenH(), true)
 
-	drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
+	if(gvLangObj["level"].rawin(gvMap.name)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
 	local runAnim = getroottable()[game.playerChar].anRun
 	switch(game.weapon) {

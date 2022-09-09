@@ -249,7 +249,7 @@
                  "class":"",
                  "height":160,
                  "id":587,
-                 "name":"endGoal(\"aurora-paradise\", \"aurora-branches-a\")",
+                 "name":"endGoal(\"aurora-frozen\", \"aurora-branches-a\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,
@@ -2132,7 +2132,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgIceForest\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()"
+         "value":"drawBG = dbgIceForest\ndrawWeather = dweSnow\nsongPlay(musDisko)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",
