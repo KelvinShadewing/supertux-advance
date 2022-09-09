@@ -154,7 +154,7 @@ while(!getQuit() && !gvQuit) //Entire game happens here
 		fileWrite("config.json", jsonWrite(config))
 	}
 	*/
-	if(getcon("pause", "press") && levelEndRunner == 0 && gvGameMode != gmMain) togglePause()
+	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain) togglePause()
 	gvGameMode()
 	if(keyPress(k_tick)) debugConsole()
 	update()

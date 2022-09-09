@@ -995,7 +995,7 @@
                  "class":"",
                  "height":64,
                  "id":604,
-                 "name":"endGoal(\"timeattack-win\")",
+                 "name":"endGoal(\"timeattack-win\", \"aurora-fort\")",
                  "rotation":0,
                  "visible":true,
                  "width":16,
