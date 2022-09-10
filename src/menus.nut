@@ -144,11 +144,11 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["time-attack"] },
-		func = function() { gvTimeAttack = true; menu = meDifficulty }
+		func = function() { gvTimeAttack = true; menu = meTimeAttack }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
-		func = function() { selectContrib(); }
+		func = function() { gvTimeAttack = false; selectContrib(); }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
@@ -177,6 +177,17 @@ const menuY = 40
 		name = function() { return gvLangObj["menu-commons"]["back"] }
 		func = function() { menu = meMain }
 		back = function() { menu = meMain }
+	}
+]
+
+::meTimeAttack <- [
+	{
+		name = function() { return gvLangObj["level"]["full-game"] },
+		func = function() { gvTAFullGame = true; gvTAStart = "aurora-learn"; menu = meDifficulty }
+	},
+	{
+		name = function() { return gvLangObj["level"]["overworld-0"] },
+		func = function() { gvTAFullGame = false; gvTAStart = "aurora-learn"; menu = meDifficulty }
 	}
 ]
 

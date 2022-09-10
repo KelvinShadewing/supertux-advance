@@ -15,7 +15,7 @@
 	gvDoIGT = true
 	game.difficulty = newdif
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
-	startPlay("res/map/aurora-learn.json", true, true)
+	startPlay("res/map/" + gvTAStart + ".json", true, true)
 }
 
 ::saveGame <- function() {

@@ -464,6 +464,7 @@
 
 	"level" : {
 		"test" : "TEST",
+		"full-game" : "Full Game",
 		"soon" : "Coming soon...",
 		"shop" : "Sam's Trade Post",
 		"overworld-0" : "Aurora Isles",

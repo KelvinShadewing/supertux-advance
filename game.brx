@@ -140,10 +140,14 @@ strDifficulty = [
 print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
-freeKonqi()
 game.playerChar = "Tux"
 
 //gotoTest()
+
+//Load contrib initializers
+if(fileExists("contrib")) {
+	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
+}
 
 while(!getQuit() && !gvQuit) //Entire game happens here
 {
