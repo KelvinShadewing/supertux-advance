@@ -50,7 +50,7 @@
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 8; i++){ //Try to move up hill
+				for(local i = 1; i <= min(8, abs(hspeed)); i++){ //Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -117,24 +117,24 @@
 					if(y < i.y) {
 						if(placeFree(x, i.y - shape.h - shape.oy - 4)) y = i.y - shape.h - shape.oy - 4
 						result = -1
-						if(useDown) y += i.vspeed
+						if(useDown && placeFree(x + i.hspeed, y + i.vspeed)) y += i.vspeed
 					}
 					else {
 						if(placeFree(x, i.y + shape.h - shape.oy + 4)) y = i.y + shape.h - shape.oy + 4
 						result = 1
-						if(useUp) y += i.vspeed
+						if(useUp && placeFree(x + i.hspeed, y + i.vspeed)) y += i.vspeed
 					}
 				}
 				else {
 					if(x < i.x) {
 						if(placeFree(i.x - (i.w * 8) - shape.w - shape.ox, y)) x = i.x - (i.w * 8) - shape.w - shape.ox
 						result = -2
-						if(useLeft) x += i.hspeed
+						if(useLeft && placeFree(x + i.hspeed, y + i.vspeed)) x += i.hspeed
 					}
 					else {
 						if(placeFree(i.x + (i.w * 8) + shape.w - shape.ox, y)) x = i.x + (i.w * 8) + shape.w - shape.ox
 						result = 2
-						if(useRight) x += i.hspeed
+						if(useRight && placeFree(x + i.hspeed, y + i.vspeed)) x += i.hspeed
 					}
 
 				}

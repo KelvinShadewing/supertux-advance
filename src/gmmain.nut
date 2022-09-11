@@ -14,6 +14,7 @@
 	}
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
+	levelEndRunner = 0
 }
 
 ::gmMain <- function()

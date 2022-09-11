@@ -174,6 +174,7 @@
 			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			i.piercing--
+			if(i.piercing == 0) deleteActor(i.id)
 
 			if(i.element == "fire") {
 				newActor(Poof, x, y)

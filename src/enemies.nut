@@ -1467,6 +1467,8 @@
 				icebox = -1
 			}
 		}
+
+		shape.setPos(x, y)
 	}
 
 	function hurtPlayer() {
@@ -2897,7 +2899,7 @@
 		local c = actor[newActor(Deathcap, x, y - 14)]
 		c.smart = smart
 		c.nocount = nocount
-		c.blinking = 60
+		c.blinking = 10
 		c.vspeed = -1.0
 		newActor(Poof, x, y)
 		popSound(sndSquish, 0)
@@ -3061,7 +3063,6 @@
 
 ::MrIceguy <- class extends Enemy {
 	element = "ice"
-	touchDamage = 2.0
 	slideTimer = 8
 	hurtTimer = 600
 	flip = 0
@@ -3555,3 +3556,26 @@
 	function _typeof() { return "SpikeCap" }
 }
 
+::CaptainMorel <- class extends Enemy {
+	touchDamage = 2.0
+	flip = 0
+	gravity = 0.2
+	freezeSprite = sprIceTrapSmall
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 6, 6, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer && hspeed == 0) hspeed = (gvPlayer.x <=> x) * 2
+
+		if(!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4)) hspeed = -hspeed
+
+		if(!placeFree(x, y + 1) && placeFree(x + hspeed, y + 4)) vspeed = -4
+
+
+	}
+}
