@@ -64,11 +64,11 @@
 
 [Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy) - Splash
 
-[UbuntuJackson]() - UFO
+[UbuntuJackson](https://github.com/UbuntuJackson) - UFO
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
 
-[Crystalized Sun]() - Mr. and Ms. Snowball, Snow Jumpy, Spiked Snowball
+[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler
 
 [Narehop](https://opengameart.org/users/narehop) - Achievement Frame
 

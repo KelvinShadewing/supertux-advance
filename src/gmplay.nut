@@ -10,8 +10,7 @@
 
 ::mapActor <- {} //Stores references to all actors created by the map
 
-::startPlay <- function(level, newLevel = true, skipIntro = false)
-{
+::startPlay <- function(level, newLevel = true, skipIntro = false) {
 	if(!fileExists(level)) return
 
 	//Clear actors and start creating new ones
@@ -54,43 +53,39 @@
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
+	gvHorizon = gvMap.h
+
 	//Get tiles used to mark actors
 	local actset = -1
 	local tilef = 0
-	for(local i = 0; i < gvMap.tileset.len(); i++)
-	{
-		if(spriteName(gvMap.tileset[i]) == "actors.png")
-		{
+	for(local i = 0; i < gvMap.tileset.len(); i++) {
+		if(spriteName(gvMap.tileset[i]) == "actors.png") {
 			actset = gvMap.tileset[i]
 			tilef = gvMap.tilef[i]
 			break
 		}
 	}
-	if(actset == -1)
-	{
+	if(actset == -1) {
 		print("Map does not use actors.png. No actors to load.")
 		return
 	}
 
 	//Get layer for actors
 	local actlayer = -1
-	foreach(i in gvMap.data.layers)
-	{
-		if(i["type"] == "objectgroup" && i["name"] == "actor")
-		{
+	foreach(i in gvMap.data.layers) {
+		if(i["type"] == "objectgroup" && i["name"] == "actor") {
 			actlayer = i
 			break
 		}
 	}
-	if(actlayer == -1)
-	{
+
+	if(actlayer == -1) {
 		print("Map does not have an actor layer. No actors to load.")
 		return
 	}
 
 	//Start making actors
-	foreach(i in actlayer.objects)
-	{
+	foreach(i in actlayer.objects) {
 		//Tile actors
 		if(i.rawin("gid")) {
 			local n = i.gid - tilef
@@ -98,8 +93,7 @@
 
 			//Get the tile number and make an actor
 			//according to the image used in actors.png
-			switch(n)
-			{
+			switch(n) {
 				case 0:
 					//newActor(Tux, i.x, i.y - 16)
 					if(!gvPlayer && getroottable().rawin(game.playerChar)) {
@@ -488,6 +482,10 @@
 				case 90:
 					c = newActor(Tallcap, i.x + 8, i.y - 24, true)
 					break
+
+				case 91:
+					c = newActor(CaptainMorel, i.x + 8, i.y - 8)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c
@@ -498,8 +496,7 @@
 		if(i.rawin("polygon")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
-			if(getroottable().rawin(n))
-			{
+			if(getroottable().rawin(n)) {
 				//Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j <= i.polygon.len(); j++) {
@@ -520,8 +517,7 @@
 		if(i.rawin("polyline")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
-			if(getroottable().rawin(n))
-			{
+			if(getroottable().rawin(n)) {
 				//Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j < i.polyline.len(); j++) poly.push([i.x + i.polyline[j].x, i.y + i.polyline[j].y])
@@ -693,8 +689,7 @@
 	if(getcon("jump", "press") || getcon("shoot", "press") || getcon("pause", "press") || getcon("accept", "press")) gvGameMode = gmPlay
 }
 
-::gmPlay <- function()
-{
+::gmPlay <- function() {
 	if(gvCamTarget == null && gvPlayer) gvCamTarget = gvPlayer
 	local px = 0
 	local py = 0
@@ -716,8 +711,7 @@
 		if(getcon("downPeek", "hold")) ly = (screenH() / 2.5)
 	}
 
-	if(gvCamTarget != null && gvCamTarget != false && gvPlayer)
-	{
+	if(gvCamTarget != null && gvCamTarget != false && gvPlayer) {
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
 				if(debug && mouseDown(0)) {
@@ -786,7 +780,7 @@
 	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	drawAmbientLight()
-	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg", 1, gvLight)
+	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg", 1, 1, 1, gvLight)
 	else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")

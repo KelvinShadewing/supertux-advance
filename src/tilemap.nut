@@ -189,7 +189,7 @@
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l, a = 1) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -218,10 +218,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a)
-								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), data.layers[t].opacity * a)
+								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
 							}
-							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
+							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
 							k = -1
 							break
 						}
@@ -231,7 +231,7 @@
 		}
 	}
 
-	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, c = 0xffffffff) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, c = 0xffffffff) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -260,10 +260,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a, c)
-								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a, c)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), data.layers[t].opacity * a, c)
+								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, 1, 1, data.layers[t].opacity * a, c)
 							}
-							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a, c)
+							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, 1, 1, data.layers[t].opacity * a, c)
 							k = -1
 							break
 						}

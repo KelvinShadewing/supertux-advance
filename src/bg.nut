@@ -1,5 +1,6 @@
 ::drawBG <- 0
 ::gvHorizon <- 0
+::gvParallaxMap <- 0
 
 ::dbgNone <- function() {
 	setDrawColor(0xff)
@@ -30,8 +31,8 @@
 ::dbgForest <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvMap.h - camy - 180)
-		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvMap.h - camy - 180)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvHorizon - camy - 180)
 	}
 	else {
 		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
@@ -59,9 +60,9 @@
 ::dbgIceForest <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < 2; i++) drawSprite(bgIceForest, 0, ((-camx / 16) % 640) + (i * 640), 0)
-		for(local i = 0; i < 2; i++) drawSprite(bgIceForest2, 0, ((-camx / 8) % 480) + (i * 480), gvMap.h - camy - 192)
-		for(local i = 0; i < 2; i++) drawSprite(bgIceForest1, 0, ((-camx / 4) % 640) + (i * 640), gvMap.h - camy - 256)
-		for(local i = 0; i < 2; i++) drawSprite(bgIceForest0, 0, ((-camx / 2) % 800) + (i * 800), gvMap.h - camy - 320)
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest2, 0, ((-camx / 8) % 480) + (i * 480), gvHorizon - camy - 192)
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest1, 0, ((-camx / 4) % 640) + (i * 640), gvHorizon - camy - 256)
+		for(local i = 0; i < 2; i++) drawSprite(bgIceForest0, 0, ((-camx / 2) % 800) + (i * 800), gvHorizon - camy - 320)
 	}
 	else {
 		for(local i = 0; i < 2; i++) drawSprite(bgIceForest, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)

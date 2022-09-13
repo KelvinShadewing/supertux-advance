@@ -113,7 +113,10 @@
 				}
 
 				//Move out of platform box
-				if(slopeA >= slopeB) {
+				if(x - hspeed + shape.w > i.x - (i.w * 8.0) && x - hspeed + shape.w < i.x + (i.w * 8.0)
+				|| x - hspeed - shape.w > i.x - (i.w * 8.0) && x - hspeed - shape.w < i.x + (i.w * 8.0)
+				|| x - hspeed > i.x - (i.w * 8.0) && x - hspeed < i.x + (i.w * 8.0)
+				|| slopeA >= slopeB) {
 					if(y < i.y) {
 						if(placeFree(x, i.y - shape.h - shape.oy - 4)) y = i.y - shape.h - shape.oy - 4
 						result = -1

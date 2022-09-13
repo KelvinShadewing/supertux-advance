@@ -491,8 +491,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":1888,
-                 "y":464
+                 "x":80,
+                 "y":544
                 }, 
                 {
                  "class":"",
@@ -988,18 +988,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":280,
-                 "height":16,
-                 "id":338,
-                 "name":"Owl,Owl,Owl,Owl,Owl,Owl",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":2016,
-                 "y":704
-                }, 
-                {
-                 "class":"",
                  "gid":279,
                  "height":16,
                  "id":377,
@@ -1181,32 +1169,12 @@
                 {
                  "class":"",
                  "height":0,
-                 "id":395,
-                 "name":"MoPlat,1,4",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":32,
-                         "y":-48
-                        }],
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":80,
-                 "y":496
-                }, 
-                {
-                 "class":"",
-                 "height":0,
                  "id":396,
                  "name":"MoPlat,1,1",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":32,
+                         "y":48
                         }, 
                         {
                          "x":-48,
@@ -1229,6 +1197,30 @@
                  "width":16,
                  "x":1712,
                  "y":512
+                }, 
+                {
+                 "class":"",
+                 "gid":290,
+                 "height":16,
+                 "id":398,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":560,
+                 "y":448
+                }, 
+                {
+                 "class":"",
+                 "gid":290,
+                 "height":16,
+                 "id":399,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":2224,
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1237,7 +1229,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":398,
+ "nextobjectid":400,
  "orientation":"orthogonal",
  "properties":[
         {

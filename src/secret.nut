@@ -28,7 +28,7 @@
 	}
 
 	function draw() {
-		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha, gvLight)
+		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha, 1, 1, gvLight)
 		else gvMap.drawTiles(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha)
 		if(debug) {
 			drawText(font, x + 2 - camx, y + 2 - camy, "X: " + x + "\nY: " + y + "\nW: " + dw + "\nH: " + dh + "\nA: " + alpha)
