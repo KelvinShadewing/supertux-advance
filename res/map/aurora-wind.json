@@ -294,6 +294,26 @@
                  "width":64,
                  "x":3264,
                  "y":352
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":766,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":48
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":3296,
+                 "y":384
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2028,7 +2048,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":766,
+ "nextobjectid":767,
  "orientation":"orthogonal",
  "properties":[
         {

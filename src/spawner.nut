@@ -4,6 +4,7 @@
 	maxTime = 60
 	myClass = ""
 	infinite = false
+	shape = null
 
 	constructor(_x, _y, _arr) {
 		base.constructor(_x, _y)

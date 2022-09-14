@@ -41,6 +41,10 @@
 		drawRect(x - w - camx, y - h - camy, (w * 2) + 1, (h * 2) + 1, false)
 	}
 
+	function pointIn(_x, _y) {
+		return (_x > x - w && _x < x + w && _y > y - h && _y < y + h)
+	}
+
 	function _typeof() { return "Rec" }
 }
 
@@ -70,6 +74,10 @@
 
 	function draw() {
 		drawCircle(x - camx, y - camy, r, false)
+	}
+
+	function pointIn(_x, _y) {
+		return inDistance2(x, y, _x, _y, _r)
 	}
 
 	function _typeof() { return "Cir" }

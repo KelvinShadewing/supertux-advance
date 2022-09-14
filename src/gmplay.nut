@@ -540,6 +540,7 @@
 				local obj = gvMap.data.layers[i].objects[j]
 				switch(lana) {
 					case "trigger":
+						if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
 						actor[c].code = obj.name
@@ -547,23 +548,38 @@
 						actor[c].h = obj.height / 2
 						break
 					case "water":
+					if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
 						break
-					case "vmp":
-						local c = actor[newActor(PlatformV, obj.x + (obj.width / 2), obj.y + 8)]
-						c.w = (obj.width / 2)
-						c.r = obj.height - 16
-						c.init = 1
-						if(obj.name == "up") {
-							c.mode = 2
-							c.y = c.ystart + c.r
-						}
-						break
 					case "secret":
+						if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = actor[newActor(SecretWall, obj.x, obj.y, obj.name)]
 						c.dw = obj.width / 16
 						c.dh = obj.height / 16
+						c.shape = Rec(c.x + (c.dw * 8), c.y + (c.dh * 8), -4 + (c.dw * 8), -4 + (c.dh * 8), 5)
+						break
+				}
+			}
+		}
+	}
+
+	//Search for secret wall joiners
+	for(local i = 0; i < gvMap.data.layers.len(); i++) {
+		if(gvMap.data.layers[i].type == "objectgroup") {
+			local lana = gvMap.data.layers[i].name //Layer name
+			for(local j = 0; j < gvMap.data.layers[i].objects.len(); j++) {
+				local obj = gvMap.data.layers[i].objects[j]
+				switch(lana) {
+					case "secret":
+						if(!("polyline" in obj || "polygon" in obj)) break
+						local poly = []
+
+						if("polyline" in obj) for(local j = 0; j < obj.polyline.len(); j++) poly.push([obj.x + obj.polyline[j].x, obj.y + obj.polyline[j].y])
+						else for(local j = 0; j < obj.polygon.len(); j++) poly.push([obj.x + obj.polygon[j].x, obj.y + obj.polygon[j].y])
+
+						local c = newActor(SecretJoiner, obj.x, obj.y, poly)
+						mapActor[obj.id] <- c
 						break
 				}
 			}
@@ -783,6 +799,7 @@
 	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg", 1, 1, 1, gvLight)
 	else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
+	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")
 
 	//HUDs

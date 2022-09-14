@@ -309,17 +309,6 @@
                 }, 
                 {
                  "class":"",
-                 "height":0,
-                 "id":114,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":463,
-                 "y":907
-                }, 
-                {
-                 "class":"",
                  "height":928,
                  "id":115,
                  "name":"",
@@ -463,7 +452,7 @@
          "name":"fg",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":200,
          "x":0,
          "y":0

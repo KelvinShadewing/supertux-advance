@@ -142,7 +142,7 @@ startMain()
 menu = meMain
 game.playerChar = "Tux"
 
-gotoTest()
+//gotoTest()
 
 //Load contrib initializers
 if(fileExists("contrib")) {
