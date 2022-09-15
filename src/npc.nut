@@ -25,6 +25,7 @@
 
 			for(local i = 3; i < argv.len(); i++) {
 				if(i >= argv.len()) arr.push("")
+				else if(canint(argv[i])) arr.push(argv[i].tointeger())
 				else if(argv[i] == 0) arr.push("")
 				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], gvTextW))
 				else arr.push("")
@@ -144,6 +145,12 @@
 	function wantFish() {
 		if(game.redCoins < game.maxRedCoins) text = arr[0]
 		else text = arr[1]
+		gvInfoBox = text
+	}
+
+	function watchActor() {
+		if(checkActor(mapActor[arr[0].tointeger()])) text = arr[1]
+		else text = arr[2]
 		gvInfoBox = text
 	}
 

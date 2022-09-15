@@ -459,7 +459,17 @@
 		"duke-1a" :
 		"I know a secret path that leads around the forest. If you bring me some fish, I'll open it for you.",
 		"duke-1b" :
-		"Thanks a bunch! I was starving! I hope the caves are easier for you than the forest. Who even builds a forest out of ice anyway?"
+		"Thanks a bunch! I was starving! I hope the caves are easier for you than the forest. Who even builds a forest out of ice anyway?",
+		"no-touch-fishy-a" :
+		"That is my fish. You don't actually need it.",
+		"no-touch-fishy-b" :
+		"You took my fish. >:(",
+		"wood-door" :
+		"Who's idea was it to use wood doors? They freeze themselves to the wall and can't be closed!",
+		"see-tuckles" :
+		"Have you seen Tuckles? I've never seen a penguin so buff! He doesn't even use a pick for mining. Everything he dug out, he did with his own beak!",
+		"take-duke" :
+		"Are you collecting fish for Duke? Please take him with you. All he does is eat!"
 	},
 
 	"level" : {
