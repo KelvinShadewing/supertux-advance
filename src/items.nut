@@ -762,9 +762,9 @@
 		drawSprite(sprCoffee, getFrames() / 8, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			gvPlayer.coffeeTime += 60 * 16
-			stopSound(sndGulp)
-			playSound(sndGulp, 0)
+			if(game.subitem != 8) game.subitem = 8
+			else gvPlayer.coffeeTime += 60 * 16
+			popSound(sndGulp, 0)
 		}
 	}
 

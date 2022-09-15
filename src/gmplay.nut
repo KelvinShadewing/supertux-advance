@@ -7,6 +7,7 @@
 ::gvInfoStep <- 0
 ::gvLangObj <- ""
 ::gvFadeInTime <- 255
+::gvVoidFog <- true
 
 ::mapActor <- {} //Stores references to all actors created by the map
 
@@ -33,6 +34,7 @@
 		gfxReset()
 		gvFadeInTime = 255
 		gvNextLevel = ""
+		gvVoidFog = true
 	}
 
 	//Reset auto/locked controls
@@ -793,7 +795,7 @@
 
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
-	if(gvMap.name != "shop") for(local i = 0; i < (screenW() / 16) + 1; i++) {
+	if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (screenW() / 16) + 1; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
 	runActors()
@@ -894,7 +896,7 @@
 				drawSprite(sprStar, 0, screenW() - 18, 18)
 				break
 			case 8:
-				drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], 0, screenW() - 18, 24)
+				drawSprite(sprCoffee, 0, screenW() - 18, 17)
 				break
 		}
 

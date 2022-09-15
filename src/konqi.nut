@@ -64,6 +64,12 @@
 	anPush = [6, 7]
 	anStomp = [38, 39]
 
+	mySprNormal = null
+	mySprFire = null
+	mySprIce = null
+	mySprAir = null
+	mySprEarth = null
+
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		anim = anStand
@@ -77,6 +83,12 @@
 		anFall = anFallN
 		xprev = x
 		yprev = y
+
+		mySprNormal = sprKonqi
+		mySprFire = sprKonqiFire
+		mySprIce = sprKonqiIce
+		mySprAir = sprKonqiAir
+		mySprEarth = sprKonqiEarth
 	}
 
 	function physics() {}
@@ -1026,27 +1038,28 @@
 		if(!hidden) {
 			switch(game.weapon) {
 				case 0:
-					sprite = sprKonqi
+					sprite = mySprNormal
 					damageMult = damageMultN
 					break
 
 				case 1:
-					sprite = sprKonqiFire
+					sprite = mySprFire
 					damageMult = damageMultF
 					break
 
 				case 2:
-					sprite = sprKonqiIce
+					sprite = mySprIce
 					damageMult = damageMultI
 					break
 
 				case 3:
-					sprite = sprKonqiAir
+					sprite = mySprAir
 					damageMult = damageMultA
 					break
 
 				case 4:
-					sprite = sprKonqiEarth
+					sprite = mySprEarth
+					damageMult = damageMultE
 					break
 			}
 
@@ -1174,6 +1187,11 @@
 				break
 			case 7:
 				newActor(Starnyan, x + hspeed, y + vspeed)
+				break
+			case 8:
+				popSound(sndGulp, 0)
+				coffeeTime += 60 * 30
+				game.subitem = 0
 				break
 		}
 	}

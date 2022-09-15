@@ -85,7 +85,7 @@
 
 ::dbgRiverCity <- function() {
 	for(local i = 0; i < 2; i++) {
-		drawSprite(bgSnowNight, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
+		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }
 

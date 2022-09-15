@@ -281,29 +281,47 @@
 
 	"npc" : {
 		"null" : "",
-		"rad-0t" :
+		"rad-0tu" :
 		"Hey, where's your board? Are you gonna slide on your belly like a square? I bet you couldn't get every herring on this hill like that. If you do, I'll give ya something that'll really help you catch some air!",
-		"rad-0k" :
+		"rad-0ko" :
 		"Hey, where's your board? You look way too slow for a course like this!",
-		"rad-0m" :
+		"rad-0mi" :
 		"Are you gonna use that ball of yours for this course? Good luck.",
-		"rad-0d" :
+		"rad-0pe" :
+		"Come on, Penny. Let me teach you how to really shred some powder. Or, just use your belly, I guess.",
+		"rad-0ka" :
+		"I wouldn't try sliding down this hill. You'll definitely ruin your clothes.",
+		"rad-0ki" :
+		"I guess rolling's as good as sliding down a hill like this. Crazy squirrels...",
+		"rad-0de" :
 		"Get all the coins on this hill if you want a totally nautical prize!",
-		"penny-0t" :
+		"penny-0tu" :
 		"Oh, Tux! I'm so happy to see you! Nolok has kidnapped our friends! Last I heard, they were being taken to his forts all around the world. I wish I knew why. Please save them, Tux!",
-		"penny-0k" :
+		"penny-0ko" :
 		"Konqi! It's so good to see you! I'm sure Plasma Breeze is fine. Please help Tux. I know you two can beat Nolok together!",
-		"penny-0m" :
+		"penny-0mi" :
 		"So you're Midi. I've heard you're quite a capable fighter. I'm so glad to hear you're helping Tux. I'll be sure to reward you well.",
-		"penny-0d" :
+		"penny-0pe" :
+		"This... doesn't seem possible.",
+		"penny-0ka" :
+		"Katie! You're helping us fight Nolok, too? Good to have you aboard.",
+		"penny-0ki" :
+		"How are you fighting without your brush? Oh, you're copying and pasting Midi's bombs? I didn't know you can do that.",
+		"penny-0de" :
 		"Pleased to meet you. Are you helping Tux save our friends? I'm so happy to hear that.",
-		"rad-t0t" :
+		"rad-t0tu" :
 		"Yo, Tux! Mayor Penny is looking for ya. By the way, catch me on the slopes sometime. I wanna see if you live up to your rep as a snow racer.",
-		"rad-t0k" :
+		"rad-t0ko" :
 		"Hey, you're Konqi, right? Man, watch the fire around here. Doesn't really mix well with ice, ya feel me?",
-		"rad-t0m" :
+		"rad-t0mi" :
 		"What's a squirrel doing this far south? Ain't it too cold for ya? Get inside before ya freeze your fuzzy little toes off, heheh.",
-		"rad-t0d" :
+		"rad-t0pe" :
+		"Hey Penny. Taking matters into your own flippers? Good for you!",
+		"rad-t0ka" :
+		"You're gonna go adventuring in a dress? Seems like it would get in the way. You're braver than me.",
+		"rad-t0ki" :
+		"Ah, a fellow artist. Yeah, my art is painting the slopes with the lines I leave with my board here.",
+		"rad-t0de" :
 		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
 		"xue-c" :
 		"Thanks for saving me, chu! I'll see you back in Pennyton!",
@@ -498,7 +516,10 @@
 		"aurora-switch" : "Red Switch Trial",
 		"aurora-iceguy" : "Oh No, More Mr. Iceguy",
 		"aurora-fishy" : "Wishy for Fishy",
-		"aurora-forest" : "Icyfall Forest"
+		"aurora-forest" : "Icyfall Forest",
+		"nessland-welcome" : "Wellcome to Nessland",
+		"nessland-left" : "To the Left",
+		"nessland-henge" : "Lonehenge"
 	},
 
 	"achi-name" : {

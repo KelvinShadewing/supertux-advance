@@ -446,6 +446,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musBoss <- "res/mus/boss.ogg"
 ::musBossIntro <- "res/mus/boss-intro.ogg"
 ::musGrassOverworld <- "res/mus/peaceful-village.ogg"
+::musBerrylife <- "res/mus/berrylife.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")

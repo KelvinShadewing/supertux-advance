@@ -90,8 +90,17 @@
 			case "Midi":
 				text = arr[2]
 				break
-			default:
+			case "Penny":
 				text = arr[3]
+				break
+			case "Katie":
+				text = arr[4]
+				break
+			case "Kiki":
+				text = arr[5]
+				break
+			default:
+				text = arr[6]
 				break
 		}
 		gvInfoBox = text

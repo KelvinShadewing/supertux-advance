@@ -62,6 +62,12 @@
 	anWall = [48, 49]
 	anCrawl = [72, 73, 74, 75, 74, 73]
 
+	mySprNormal = null
+	mySprFire = null
+	mySprIce = null
+	mySprAir = null
+	mySprEarth = null
+
 	nowInWater = false
 
 	//Elemental resistances
@@ -150,6 +156,12 @@
 		anFall = anFallN
 		xprev = x
 		yprev = y
+
+		mySprNormal = sprTux
+		mySprFire = sprTuxFire
+		mySprIce = sprTuxIce
+		mySprAir = sprTuxAir
+		mySprEarth = sprTuxEarth
 	}
 
 	function physics() {}
@@ -1002,35 +1014,35 @@
 		if(!hidden) {
 			switch(game.weapon) {
 				case 0:
-					sprite = sprTux
+					sprite = mySprNormal
 					if(anim == anStand && anStand != anStandN) anim = anStandN
 					anStand = anStandN
 					damageMult = damageMultN
 					break
 
 				case 1:
-					sprite = sprTuxFire
+					sprite = mySprFire
 					if(anim == anStand && anStand != anStandF) anim = anStandF
 					anStand = anStandF
 					damageMult = damageMultF
 					break
 
 				case 2:
-					sprite = sprTuxIce
+					sprite = mySprIce
 					if(anim == anStand && anStand != anStandI) anim = anStandI
 					anStand = anStandI
 					damageMult = damageMultI
 					break
 
 				case 3:
-					sprite = sprTuxAir
+					sprite = mySprAir
 					if(anim == anStand && anStand != anStandA) anim = anStandA
 					anStand = anStandA
 					damageMult = damageMultA
 					break
 
 				case 4:
-					sprite = sprTuxEarth
+					sprite = mySprEarth
 					if(anim == anStand && anStand != anStandE) anim = anStandE
 					anStand = anStandE
 					damageMult = damageMultE
@@ -1110,7 +1122,7 @@
 		else {
 			deleteActor(id)
 			gvPlayer = false
-			newActor(TuxDie, x, y)
+			newActor(TuxDie, x, y, sprite)
 			game.health = 0
 		}
 	}
@@ -1162,6 +1174,11 @@
 			case 7:
 				newActor(Starnyan, x + hspeed, y + vspeed)
 				break
+			case 8:
+				popSound(sndGulp, 0)
+				coffeeTime += 60 * 30
+				game.subitem = 0
+				break
 		}
 	}
 
@@ -1171,11 +1188,13 @@
 ::TuxDie <- class extends Actor {
 	vspeed = -4.0
 	timer = 150
+	sprite = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
+		sprite = _arr
 	}
 
 	function run() {
@@ -1189,24 +1208,20 @@
 				game.weapon = 0
 			}
 		}
-		switch(game.weapon) {
-			case 0:
-				drawSprite(sprTux, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 1:
-				drawSprite(sprTuxFire, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 2:
-				drawSprite(sprTuxIce, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 3:
-				drawSprite(sprTuxAir, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-			case 4:
-				drawSprite(sprTuxEarth, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-				break
-		}
+		drawSprite(sprite, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
 	}
 
 	function _typeof() { return "DeadPlayer" }
+}
+
+::Penny <- class extends Tux {
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+	}
+
+	mySprNormal = sprPenny
+	mySprFire = sprPennyFire
+	mySprIce = sprPennyIce
+	mySprAir = sprPennyAir
+	mySprEarth = sprPennyEarth
 }
