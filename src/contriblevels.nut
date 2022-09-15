@@ -22,7 +22,11 @@
 							game.file = contribFolder
 							game.path = "contrib/" + contribFolder + "/"
 							game.world = contribWorldmap
-							tileSearchDir.push("contrib/" + contribFolder + "/gfx")
+							local searchDirExists = false
+							for(local i = 0; i < tileSearchDir.len(); i++) {
+								if(tileSearchDir[i] == "contrib/" + contribFolder + "/gfx") searchDirExists = true
+							}
+							if(!searchDirExists) tileSearchDir.push("contrib/" + contribFolder + "/gfx")
 							gvDoIGT = false
 							if(fileExists("contrib/" + contribFolder + "/" + config.lang + ".json")) {
 								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/" + config.lang + ".json")))

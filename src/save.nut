@@ -9,13 +9,15 @@
 }
 
 ::newTimeAttack <- function() {
+	local path = game.path
 	local newdif = game.difficulty
 	game = createNewGameObject()
 	game.file = -1
 	gvDoIGT = true
 	game.difficulty = newdif
+	game.path = path
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
-	startPlay("res/map/" + gvTAStart + ".json", true, true)
+	startPlay(game.path + gvTAStart + ".json", true, true)
 }
 
 ::saveGame <- function() {

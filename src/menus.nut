@@ -183,11 +183,17 @@ const menuY = 40
 ::meTimeAttack <- [
 	{
 		name = function() { return gvLangObj["level"]["full-game"] },
-		func = function() { gvTAFullGame = true; gvTAStart = "aurora-learn"; menu = meDifficulty }
+		func = function() { gvTAFullGame = true; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty },
+		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
 	},
 	{
 		name = function() { return gvLangObj["level"]["overworld-0"] },
-		func = function() { gvTAFullGame = false; gvTAStart = "aurora-learn"; menu = meDifficulty }
+		func = function() { gvTAFullGame = false; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
 	}
 ]
 

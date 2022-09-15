@@ -65,3 +65,34 @@
 	stopSound(sound)
 	playSound(sound, repeat)
 }
+
+::addTimeAttackWorld <- function(
+	displayName, //Name to show in the menu
+	folder, //The contrib/ folder of your world
+	level //The first level of the world
+	) {
+	local tempBack = meTimeAttack.pop() //To move back to the end
+	local newSlot = {
+		name = function() { return displayName }
+		func = function() {
+			gvTAFullGame = false
+			game.path = "contrib/" + folder + "/"
+			gvTAStart = level
+			menu = meDifficulty
+
+			local searchDirExists = false
+			for(local i = 0; i < tileSearchDir.len(); i++) {
+				if(tileSearchDir[i] == "contrib/" + folder + "/gfx") searchDirExists = true
+			}
+			if(!searchDirExists) tileSearchDir.push("contrib/" + folder + "/gfx")
+
+			if(fileExists("contrib/" + folder + "/script.nut") && !contribDidRun.rawin(folder)) {
+				donut("contrib/" + folder + "/script.nut")
+				contribDidRun[folder] <- true
+			}
+		}
+	}
+
+	meTimeAttack.push(newSlot)
+	meTimeAttack.push(tempBack)
+}

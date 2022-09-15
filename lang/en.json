@@ -57,7 +57,8 @@
 		"fullscreen" : "Toggle fullscreen mode",
 		"autorun" : "Slow down when run button is pressed",
 		"stickspeed" : "Toggle stick controls speed",
-		"usefilter" : "Bilinear filtering (requires restart)"
+		"usefilter" : "Bilinear filtering (requires restart)",
+		"fullgame" : "All standard worlds from SuperTux Advance"
 	},
 
 	"timers-menu" : {
