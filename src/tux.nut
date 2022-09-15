@@ -410,6 +410,7 @@
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
 				if(anim == anCrawl) mspeed = 1.0
+				if(coffeeTime > 0) mspeed *= 2.0
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
@@ -805,6 +806,7 @@
 				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
 				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
 			}
+			if(coffeeTime > 0) mspeed *= 2.0
 
 			//Friction
 			if(hspeed > 0) hspeed -= friction / 2

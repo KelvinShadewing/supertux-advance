@@ -10,8 +10,6 @@ If you ever accidentally overwrite your template file, save a copy under a new n
 
 If you want to output minimized files, ones without the extra whitespace to make the file readable in a text editor, go to "Edit > Preferences... > General > Export Options" and click "Minimize output". Then use "File > Export" to save the minimized file.
 
-## Author
-
 You can sign your level by adding an `author` property to the map. Maps made by multiple designers should have their names in an alphabetically sorted, comma separated list.
 
 ## Start Code
@@ -87,3 +85,43 @@ Player dolls are items that revive you once you die, without having to go back t
 You can have multiple checkpoints in a level. Use this to your advantage if you want to create levels with multiple paths. Remember that everything resets when the player dies, so, for instance, enemies that are necessary to progress, like hopping on them to cross a gap, will respawn upon a new life. Be sure not to put enemies too close to a checkpoint.
 
 External tilesets are not supported; you will have to embed tilesets. I'll work on supporting external tilesets in the future.
+
+# Contributor Worlds
+
+STA has a system that allows custom worlds to be created without having to add them to the main game. With a little creative scripting and some custom graphics, it is even possible to create an entirely new game! Information will be added to this section to help with the creation of contributor worlds.
+
+## The Folder
+
+The first thing you will need is your own folder for your world. It should be given a unique name to prevent conflicts with other worlds. The folder's name does not determine how it will appear in the game, so feel free to include any identifying information you need. Once you have decided on a name, you will need to add the following files and subfolders. Do not worry about the contents of these files/folders just yet; leave them empty for now.
+
+```
+contrib/
+-> your-world-folder/
+  -> gfx/
+  -> info.json
+  -> init.nut
+  -> script.nut
+  -> text.json
+  -> world.json
+```
+
+Now we will go over each of these files.
+
+`gfx` is the folder for your custom graphics. It is essential that your world's tileset images are stored here, as this is where the tilemap engine will search for them. You should try to give your tilesets unique names as well to prevent conflicts
+
+`info.json` tells the game important information about your game so it can be added to the list. It should be structured thus:
+
+```
+{
+  name : "Your World's Name",
+  worldmap : "world.json"
+}
+```
+
+Notice the worldmap needs to be defined. This is so that your world can actually have multiple overworld files to switch between, just like the base game does.
+
+`init.nut` runs custom scripts as soon as STA is launched. There shouldn't be too much here, usually just a print statement to indicate your world was found successfully, and functions to add the world to various lists.
+
+`script.nut` is where your world's important code will go. This includes things like loading the sprites your world needs, defining custom classes, overriding the player character, and anything else it needs to set up a new run. This script will be run the first time the world is loaded since the application was launched, and will not be run again until you close STA and reopen it.
+
+`text.json` is your world's language file. You'll define things like level names, NPC dialog, and any other text that appears onscreen. Additional language files can be created alongside this file for users to create translations. Consult the language files in `lang/` for examples.

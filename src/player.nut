@@ -64,6 +64,7 @@
 		blast = 1.0
 	}
 	blinking = 0 //Number of iframes remaining
+	coffeeTime = 0
 
 	//Misc
 	heldby = 0
@@ -89,6 +90,8 @@
 				else i.piercing--
 			}
 		}
+
+		if(coffeeTime > 0) coffeeTime--
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {

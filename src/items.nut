@@ -753,3 +753,20 @@
 	}
 }
 
+::CoffeeCup <- class extends Actor{
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+
+	function run() {
+		drawSprite(sprCoffee, getFrames() / 8, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			gvPlayer.coffeeTime += 60 * 16
+			stopSound(sndGulp)
+			playSound(sndGulp, 0)
+		}
+	}
+
+	function _typeof() { return "CoffeeCup" }
+}

@@ -17,6 +17,7 @@
 					menu = meOptions
 					gvLangObj = jsonRead(fileRead("lang/en.json"))
 					gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
+					if(fileExists(game.path + config.lang + ".json")) gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(game.path + config.lang + ".json")))
 				}
 			}
 		)

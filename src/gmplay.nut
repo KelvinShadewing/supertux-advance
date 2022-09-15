@@ -486,6 +486,10 @@
 				case 91:
 					c = newActor(CaptainMorel, i.x + 8, i.y - 8)
 					break
+
+				case 92:
+					c = newActor(CoffeeCup, i.x + 8, i.y - 8)
+					break
 			}
 
 			if(typeof c == "integer") mapActor[i.id] <- c
