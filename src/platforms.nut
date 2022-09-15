@@ -451,8 +451,8 @@
 					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
 					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
 					theta += (angleB - angleA) + 180
-					gvPlayer.hspeed = lendirX(mag, theta)
-					gvPlayer.vspeed = lendirY(mag, theta)
+					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
+					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
 					playerTeleport(shapeB.x + lendirX(16, angleB), shapeB.y + lendirY(16, angleB))
 					canWarp = false
 				}
@@ -461,8 +461,8 @@
 					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
 					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
 					theta += (angleA - angleB) + 180
-					gvPlayer.hspeed = lendirX(mag, theta)
-					gvPlayer.vspeed = lendirY(mag, theta)
+					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
+					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
 					playerTeleport(shapeA.x + lendirX(16, angleA), shapeA.y + lendirY(16, angleA))
 					canWarp = false
 				}
