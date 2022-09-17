@@ -207,7 +207,7 @@
 		/////////////
 		// ON LAND //
 		/////////////
-		if(!inWater(x, y) || game.weapon == 4) {
+		if((!inWater(x, y) || game.weapon == 4) && resTime <= 0) {
 			swimming = false
 			shapeStand.h = 12.0
 			slippery = (anim == anDive || anim == anSlide || onIce())
@@ -422,7 +422,7 @@
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
 				if(anim == anCrawl) mspeed = 1.0
-				if(coffeeTime > 0) mspeed *= 2.0
+				if(zoomies > 0) mspeed *= 2.0
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
@@ -812,13 +812,13 @@
 					if(invincible) mspeed += 0.4
 				}
 				else mspeed = 1.0
+				if(zoomies > 0) mspeed *= 2.0
 
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
 				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
 				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
 			}
-			if(coffeeTime > 0) mspeed *= 2.0
 
 			//Friction
 			if(hspeed > 0) hspeed -= friction / 2
@@ -1111,13 +1111,18 @@
 	}
 
 	function die() {
+		if(resTime > 0) return
 		if(game.canres) {
 			game.health = game.maxHealth
 			blinking = 120
-			if(y > gvMap.h) playerTeleport(groundx, groundy)
-			game.canres = false
 			hspeed = 0.0
 			vspeed = 0.0
+			if(y > gvMap.h) {
+				invincible = 300
+				resTime = 300
+				vspeed = -4.0
+			}
+			game.canres = false
 		}
 		else {
 			deleteActor(id)
@@ -1176,7 +1181,7 @@
 				break
 			case 8:
 				popSound(sndGulp, 0)
-				coffeeTime += 60 * 30
+				zoomies = 60 * 30
 				game.subitem = 0
 				break
 		}
@@ -1217,11 +1222,20 @@
 ::Penny <- class extends Tux {
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
+
+		mySprNormal = sprPenny
+		mySprFire = sprPennyFire
+		mySprIce = sprPennyIce
+		mySprAir = sprPennyAir
+		mySprEarth = sprPennyEarth
 	}
 
-	mySprNormal = sprPenny
-	mySprFire = sprPennyFire
-	mySprIce = sprPennyIce
-	mySprAir = sprPennyAir
-	mySprEarth = sprPennyEarth
+	function _typeof() { return "Penny" }
+}
+
+::TuxRacer <- class extends PhysActor {
+
+	constructor(_x, _y, _arr = null){
+
+	}
 }

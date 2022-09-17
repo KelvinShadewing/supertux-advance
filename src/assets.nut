@@ -159,6 +159,7 @@
 ::sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 0, 0, 16, 32)
 ::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 ::sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 0, 0, 7, 23)
+::sprBearistaNPC <- newSprite("res/gfx/bearista.png", 21, 37, 0, 0, 10, 37)
 
 
 //Enemies
@@ -244,6 +245,10 @@
 ::defSnowCaptain <- sprSnowCaptain
 ::sprCaptainMorel <- newSprite("res/gfx/captain-morel.png", 16, 19, 0, 0, 8, 12)
 ::defCaptainMorel <- sprCaptainMorel
+::sprLionStone <- newSprite("res/gfx/lionstone.png", 32, 32, 0, 0, 16, 16)
+::defLionStone <- sprLionStone
+::sprSirCrusher <- newSprite("res/gfx/icecrusher.png", 32, 32, 0, 0, 16, 16)
+::defSirCrusher <- sprSirCrusher
 
 
 //Bosses

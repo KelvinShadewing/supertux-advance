@@ -4136,7 +4136,7 @@
                  "gid":32,
                  "height":16,
                  "id":591,
-                 "name":"0,0,sayChar,tux-borealis,konqi-borealis,midi-borealis",
+                 "name":"0,0,sayChar,borealis",
                  "rotation":0,
                  "visible":true,
                  "width":16,
@@ -4977,7 +4977,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"tux-borealis2\"], gvTextW)\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n}\n\ngfxEnemySnow()"
+         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"borealis2\"], gvTextW)\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n}\n\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

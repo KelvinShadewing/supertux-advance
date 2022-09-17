@@ -5,5 +5,7 @@
 	setFPS(60)
 	gvPlayer = false
 	gvBoss = false
-	deleteAllActors()
+	deleteAllActors(true)
+
+	gvMap = Tilemap(level)
 }

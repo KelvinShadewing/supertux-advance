@@ -148,6 +148,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":6,
+         "name":"trigger",
+         "objects":[
+                {
+                 "class":"",
+                 "height":144,
+                 "id":51,
+                 "name":"gvLightTarget = 0x80c0e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":112,
+                 "x":480,
+                 "y":224
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"actor",
          "objects":[
@@ -445,8 +467,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":51,
+ "nextlayerid":7,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "properties":[
         {

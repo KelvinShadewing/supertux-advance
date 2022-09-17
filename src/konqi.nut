@@ -168,6 +168,8 @@
 	}
 
 	function run() {
+		base.run()
+
 		//Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
@@ -203,7 +205,7 @@
 		/////////////
 		// ON LAND //
 		/////////////
-		if(!inWater(x, y) || game.weapon == 4) {
+		if((!inWater(x, y) || game.weapon == 4) && resTime <= 0) {
 			swimming = false
 			shapeStand.h = 12.0
 
@@ -423,6 +425,7 @@
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
 				if(anim == anStomp) mspeed = 0.5
+				if(zoomies > 0) mspeed *= 2.0
 
 				//Moving left and right
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
@@ -834,6 +837,7 @@
 					else mspeed = 2.0
 				}
 				else mspeed = 1.0
+				if(zoomies > 0) mspeed *= 2.0
 
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
@@ -1125,13 +1129,18 @@
 	}
 
 	function die() {
+		if(resTime > 0) return
 		if(game.canres) {
 			game.health = game.maxHealth
 			blinking = 120
-			if(y > gvMap.h) playerTeleport(groundx, groundy)
-			game.canres = false
 			hspeed = 0.0
 			vspeed = 0.0
+			if(y > gvMap.h) {
+				invincible = 300
+				resTime = 300
+				vspeed = -4.0
+			}
+			game.canres = false
 		}
 		else {
 			deleteActor(id)
@@ -1190,7 +1199,7 @@
 				break
 			case 8:
 				popSound(sndGulp, 0)
-				coffeeTime += 60 * 30
+				zoomies = 60 * 30
 				game.subitem = 0
 				break
 		}
@@ -1240,4 +1249,18 @@
 	}
 
 	function _typeof() { return "DeadPlayer" }
+}
+
+::Katie <- class extends Konqi {
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+
+		mySprNormal = sprKatie
+		mySprFire = sprKatieFire
+		mySprIce = sprKatieIce
+		mySprAir = sprKatieAir
+		mySprEarth = sprKatieEarth
+	}
+
+	function _typeof() { return "Katie" }
 }

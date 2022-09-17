@@ -3756,3 +3756,27 @@
 
 	function _typeof() { return "CaptainMorel" }
 }
+
+::Crusher <- class extends Enemy {
+	damageMult = {
+		normal = 0.0
+		fire = 0.0
+		ice = 0.0
+		earth = 0.0
+		air = 0.0
+		toxic = 0.0
+		shock = 0.0
+		water = 0.0
+		light = 0.0
+		dark = 0.0
+		cut = 0.0
+		blast = 0.0
+		stomp = 0.0
+		star = 0.0
+	}
+	platform = null
+
+	constructor(_x, _y, _arr = null) {
+		
+	}
+}

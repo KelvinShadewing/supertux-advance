@@ -763,7 +763,7 @@
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			if(game.subitem != 8) game.subitem = 8
-			else gvPlayer.coffeeTime += 60 * 16
+			else gvPlayer.zoomies += 60 * 16
 			popSound(sndGulp, 0)
 		}
 	}

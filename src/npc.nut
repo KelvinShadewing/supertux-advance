@@ -7,6 +7,7 @@
 	arr = null
 	talki = 0
 	sayfunc = null
+	argv = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -15,7 +16,7 @@
 		flip = randInt(2)
 
 		if(_arr != null) {
-			local argv = split(_arr, ", ")
+			argv = split(_arr, ", ")
 
 			if(getroottable().rawin(argv[0])) sprite = getroottable()[argv[0]]
 			useflip = argv[1].tofloat()
@@ -38,18 +39,8 @@
 			if(hitTest(shape, gvPlayer.shape)) {
 				if(getcon("up", "press") && sayfunc != null) this[sayfunc]()
 				if(sprite == 0) {
-					if(sayfunc == "sayChar") switch(typeof gvPlayer) {
-						case "Tux":
-							if(arr[0] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-							break
-						case "Konqi":
-							if(arr[1] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-							break
-						case "Midi":
-							if(arr[2] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-							break
-					}
-
+					if(argv[3] + typeof gvPlayer in gvLangObj["npc"]
+					|| argv[3] + "-" + typeof gvPlayer in gvLangObj["npc"]) drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
 				}
 				else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 				else drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
@@ -68,41 +59,25 @@
 	}
 
 	function say() {
-		text = arr[talki]
+		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + talki], gvTextW)
+		else text = arr[0]
 		gvInfoBox = text
 		talki++
-		if(talki >= arr.len()) talki = 0
+		if(!(argv[3] + "-" + talki in gvLangObj["npc"])) talki = 0
 	}
 
 	function sayRand() {
-		text = arr[randInt(arr.len())]
+		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + talki], gvTextW)
+		else text = ""
 		gvInfoBox = text
+		talki = randInt(arr[1])
+		if(!(argv[3] + "-" + talki in gvLangObj["npc"])) talki = 0
 	}
 
 	function sayChar() {
-		switch(typeof gvPlayer) {
-			case "Tux":
-				text = arr[0]
-				break
-			case "Konqi":
-				text = arr[1]
-				break
-			case "Midi":
-				text = arr[2]
-				break
-			case "Penny":
-				text = arr[3]
-				break
-			case "Katie":
-				text = arr[4]
-				break
-			case "Kiki":
-				text = arr[5]
-				break
-			default:
-				text = arr[6]
-				break
-		}
+		text = arr[0]
+		if(argv[3] + typeof gvPlayer in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + typeof gvPlayer], gvTextW)
+		else if(argv[3] + "-" + typeof gvPlayer in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + typeof gvPlayer], gvTextW)
 		gvInfoBox = text
 	}
 
