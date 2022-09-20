@@ -3,10 +3,17 @@
 		"welcome" :
 		"Hello! uwu.",
 		"garbage" :
-		"This level sucks ass."
+		"This level sucks ass.",
+		"smbref-goaway":
+		"There is no Easter Bunny, there is no Tooth Fairy and there is no Warp Zone."
 	},
 	"level" : {
-		"sn-0" : "Speed Slide"
+		"sn-t0": "generictown",
+		"sn-l0" : "Speed Slide",
+		"sn-l1a": "Via Cavernous Nostalgica",
+		"sn-l1b": "Foresty Flight",
+		"sn-l2" : "Blasting Off",
+		"sn-bl" : "Tower Of Nolok"
 	},
 	"npc" : {
 		"null" : ""

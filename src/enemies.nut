@@ -3775,8 +3775,34 @@
 		star = 0.0
 	}
 	platform = null
+	gravity = null
+	scanShape = null
+	waiting = 0
+	sharpSide = true
 
 	constructor(_x, _y, _arr = null) {
-		
+		base.constructor(_x, _y, _arr)
+		platform = actor[newActor(x, y, MoPlat, [[0, 0], 0, 2])]
+
+		local checkShape = Rec(x, y - 8, 15, 8)
+		shape = checkShape
+		for(local i = 0; i < 1000; i++) {
+			checkShape.setPos(x, y - 8 + (i * 16))
+			if(!placeFree(checkShape.x, checkShape.y)) {
+				scanShape = Rec(x, y + (i * 8), 15, 8 + (i * 8))
+				break
+			}
+		}
+		if(scanShape == null) scanShape = Rec(x, y + (8000), 15, (8000))
+		shape = Rec(x, y, 15, 8, 0, 8)
+	}
+
+	function run() {
+		if(y < ystart) y = ystart
+
+		//Detect the player underneath
+		if(gvPlayer && hitTest(gvPlayer.shape, scanShape)) {
+			gravity = 0.1
+		}
 	}
 }

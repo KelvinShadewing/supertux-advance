@@ -2059,7 +2059,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowNight\nsongPlay(musDisko)\ngfxEnemySnow()"
+         "value":"drawBG = dbgSnowNight\ndrawWeather = dweSnow\nsongPlay(musDisko)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

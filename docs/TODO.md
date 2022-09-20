@@ -36,6 +36,8 @@
 [x] Fish
 [x] Haywire
 [x] Owls
+[ ] Crusher
+[ ] Wheeler
 
 ## Bosses
 
@@ -73,13 +75,13 @@
 [x] General store
 [x] Fix the infamous slope glitch
 [x] add glow to Blazeborn
-[ ] World travel
+[x] World travel
 [x] In-game timer
 [x] Jump buffering
 [ ] Boiling Water
 [ ] Mod Tracking (for requirement checks)
-[ ] Bonus coins for Xtreme levels
 [ ] Two-player support
+[ ] Parallax backgrounds
 
 ## Bugs to fix
 

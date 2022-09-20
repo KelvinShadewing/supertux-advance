@@ -35,11 +35,13 @@
 
 		local level = ""
 		local onstage = false
+		local onrace = false
 
 		if(actor.rawin("StageIcon")) {//Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
 					level = i.level
+					onrace = i.raceMode
 					onstage = true
 					break
 				}
@@ -178,7 +180,7 @@
 
 			//Move right
 			if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed <= 0 && vspeed == 0) {
-				if(level == "" || game.owd == 0 || game.completed.rawin(level)) {
+				if(level == "" || game.owd == 0 || game.completed.rawin(level) || onrace) {
 					hspeed = 2
 					game.owd = 2
 				}
@@ -186,7 +188,7 @@
 
 			//Move up
 			if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed >= 0) {
-				if(level == "" || game.owd == 1 || game.completed.rawin(level)) {
+				if(level == "" || game.owd == 1 || game.completed.rawin(level) || onrace) {
 					vspeed = -2
 					game.owd = 3
 				}
@@ -194,7 +196,7 @@
 
 			//Move left
 			if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed >= 0 && vspeed == 0) {
-				if(level == "" || game.owd == 2 || game.completed.rawin(level)) {
+				if(level == "" || game.owd == 2 || game.completed.rawin(level) || onrace) {
 					hspeed = -2
 					game.owd = 0
 				}
@@ -202,7 +204,7 @@
 
 			//Move down
 			if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed <= 0) {
-				if(level == "" || game.owd == 3 || game.completed.rawin(level)) {
+				if(level == "" || game.owd == 3 || game.completed.rawin(level) || onrace) {
 					vspeed = 2
 					game.owd = 1
 				}
@@ -226,6 +228,7 @@
 ::StageIcon <- class extends PhysAct {
 	level = ""
 	visible = true
+	raceMode = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -249,7 +252,8 @@
 				game.check = false
 				gvDoIGT = true
 				drawWeather = 0
-				startPlay(game.path + level + ".json")
+				if(raceMode) startRacer(game.path + level + ".json")
+				else startPlay(game.path + level + ".json")
 			}
 		}
 	}
@@ -435,13 +439,20 @@
 
 			case 5:
 				if(i.name == "") break
-					local arg = split(i.name, ",")
-					local n = arg[0]
-					arg.remove(0)
-					if(arg.len() == 1) arg = arg[0]
-					else if(arg.len() == 0) arg = null
-					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
-					break
+				local arg = split(i.name, ",")
+				local n = arg[0]
+				arg.remove(0)
+				if(arg.len() == 1) arg = arg[0]
+				else if(arg.len() == 0) arg = null
+				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
+				break
+
+			case 6:
+				c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
+				c.level = i.name
+				c.visible = i.visible
+				c.raceMode = true
+				break
 		}
 
 		if(typeof c == "integer") mapActor[i.id] <- c

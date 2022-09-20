@@ -863,7 +863,7 @@
                  "class":"",
                  "height":16,
                  "id":113,
-                 "name":"drawBG = dbgCastle; drawWeather = dweRain",
+                 "name":"drawBG = dbgCastle; drawWeather = dweBlizzard",
                  "rotation":0,
                  "visible":true,
                  "width":144,
@@ -4977,7 +4977,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweRain\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"borealis2\"], gvTextW)\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n}\n\ngfxEnemySnow()"
+         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweBlizzard\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].arr[0] = textLineLen(gvLangObj[\"npc\"][\"borealis2\"], gvTextW)\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n}\n\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

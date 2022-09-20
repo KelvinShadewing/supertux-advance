@@ -543,6 +543,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSmartTallCap = defSmartTallCap
 	sprCaptainMorel = defCaptainMorel
 	sprSnowCaptain = defSnowCaptain
+	sprLionStone = defLionStone
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -598,6 +599,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSmartTallCap = sprSnowoman
 	sprCrumbleRock = sprCrumbleIce
 	sprCaptainMorel = sprSnowCaptain
+	sprLionStone = sprSirCrusher
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)
