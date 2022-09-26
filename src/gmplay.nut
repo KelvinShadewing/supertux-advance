@@ -366,11 +366,11 @@
 				local pty = (gvCamTarget.y) - (screenH() / 2)
 
 				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) {
-					if(debug && mouseDown(0)) ptx = gvPlayer.x - (screenW() / 2) + lx
+					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (screenW() / 2) + lx
 					else ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
-					if(debug && mouseDown(0)) pty = gvPlayer.y - (screenH() / 2) + ly
+					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (screenH() / 2) + ly
 					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
 				}
 
@@ -1046,6 +1046,20 @@
 	switch(n) {
 		case 0:
 			c = newActor(TuxRacer, i.x + 8, i.y - 8)
+			break
+
+		case 2:
+			c = newActor(RedCoin, i.x + 8, i.y - 8)
+			break
+
+		case 3:
+			if(i.name == "") break
+			local arg = split(i.name, ",")
+			local n = arg[0]
+			arg.remove(0)
+			if(arg.len() == 1) arg = arg[0]
+			else if(arg.len() == 0) arg = null
+			if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
 			break
 	}
 

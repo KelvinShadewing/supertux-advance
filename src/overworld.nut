@@ -237,7 +237,7 @@
 	}
 
 	function run() {
-		if(visible) {
+		if(visible && !raceMode) {
 			if(game.completed.rawin(level)) drawSprite(sprLevels, 1, x - camx, y - camy)
 			else drawSprite(sprLevels, 0, x - camx, y - camy)
 		}
@@ -252,8 +252,7 @@
 				game.check = false
 				gvDoIGT = true
 				drawWeather = 0
-				if(raceMode) startRacer(game.path + level + ".json")
-				else startPlay(game.path + level + ".json")
+				startPlay(game.path + level + ".json")
 			}
 		}
 	}

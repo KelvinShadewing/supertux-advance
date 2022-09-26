@@ -10,7 +10,7 @@
 ::createNewGameObject <- function () {
 	return { //Globals stored in this table will be saved
 		difficulty = 0
-		file = 0
+		file = -1
 		coins = 0
 		levelCoins = 0
 		maxCoins = 0 //Total coins in the level
@@ -90,8 +90,9 @@
 }
 
 ::game <- createNewGameObject()
-::gvPlayer <- false; //Pointer to player actor
-::gvBoss <- false; //Pointer to boss actor
+::gvPlayer <- false //Pointer to player actor
+::gvPlayer2 <- false
+::gvBoss <- false //Pointer to boss actor
 /*\
  # When characters are unlocked, they will
  # be added to game.characters. Mods can

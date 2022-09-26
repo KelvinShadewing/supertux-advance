@@ -88,6 +88,7 @@
 		case "Rec":
 			switch(typeof b) {
 				case "Rec":
+					//Make sure that rectangle bounding boxes are touching
 					if(abs(a.x - b.x) > abs(a.w + b.w)) return false
 					if(abs(a.y - b.y) > abs(a.h + b.h)) return false
 

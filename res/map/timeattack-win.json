@@ -214,7 +214,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgTheatre\ngvMap.w = min(424, screenW())\ngvPlayer.x = screenW() \/ 2\nlevelEndRunner = 1\ndrawWeather = 0\ngvDoIGT = false"
+         "value":"drawBG = dbgTheatre\ngvMap.w = min(424, screenW())\ngvPlayer.x = screenW() \/ 2\nlevelEndRunner = 1\ndrawWeather = 0\ngvDoIGT = false\ngvVoidFog = false"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.1",

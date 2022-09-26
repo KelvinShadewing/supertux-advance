@@ -6,11 +6,10 @@
   [x] Main play
   [x] Level end
 [x] Overworld
-[ ] Forward racing
 
 ## Level assets
 
-[ ] Moving platforms
+[x] Moving platforms
 [x] One-way platforms
 [x] Breakable bricks
 [x] Item boxes
@@ -19,6 +18,9 @@
 [x] Animated tiles
 [x] Damage tiles
 [x] Death tiles
+[ ] Boiling Water
+[ ] Boost rings
+[ ] Rad race initializer
 
 ## Enemies
 
@@ -67,6 +69,21 @@
 [ ] Ice flower
 [ ] Air feather
 [ ] Earth shell
+**PENNY ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**KATIE ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**KIKI ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
 
 ## Misc
 
@@ -78,7 +95,6 @@
 [x] World travel
 [x] In-game timer
 [x] Jump buffering
-[ ] Boiling Water
 [ ] Mod Tracking (for requirement checks)
 [ ] Two-player support
 [ ] Parallax backgrounds

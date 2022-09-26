@@ -127,7 +127,8 @@
 		"credits-md" : "See CREDITS.md for links",
 		"people" : "to these awesome people!",
 		"thank-you-for-playing" : "Thank you for playing!",
-		"tuckles" : "Tuckles loves you!"
+		"tuckles" : "Tuckles loves you!",
+		"additional" : "Additional Contributions"
 	},
 
 	"pause-menu" : {
@@ -568,7 +569,8 @@
 		"over9000" : "It's Over 9000!",
 		"coldGreed" : "Cold-Hearted Greed",
 		"arcticExplorer" : "Arctic Explorer",
-		"snowMoreBaddies" : "Snow More Baddies"
+		"snowMoreBaddies" : "Snow More Baddies",
+		"blastOff" : "Blast Off!"
 	},
 
 	"achi-desc" : {
@@ -577,7 +579,8 @@
 		"over9000" : "Save up more than 9000 coins",
 		"coldGreed" : "Collect every coin in Aurora Isles",
 		"arcticExplorer" : "Find all secrets in Aurora Isles",
-		"snowMoreBaddies" : "Defeat every enemy in Aurora Isles"
+		"snowMoreBaddies" : "Defeat every enemy in Aurora Isles",
+		"blastOff" : "I think he just lived your dream..."
 	},
 
 	"key" : {

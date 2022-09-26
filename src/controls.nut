@@ -1,13 +1,59 @@
 ::autocon <- { //Has nothing to do with Transformers
+	a = {
+		up = false
+		down = false
+		left = false
+		right = false
+		jump = false
+		shoot = false
+		run = false
+		sneak = false
+		wasUp = false
+		wasDown = false
+		wasLeft = false
+		wasRight = false
+		wasJump = false
+		wasShoot = false
+		wasRun = false
+		wasSneak = false
+	}
+	b = {
+		up = false
+		down = false
+		left = false
+		right = false
+		jump = false
+		shoot = false
+		run = false
+		sneak = false
+		wasUp = false
+		wasDown = false
+		wasLeft = false
+		wasRight = false
+		wasJump = false
+		wasShoot = false
+		wasRun = false
+		wasSneak = false
+	}
 	up = false
 	down = false
 	left = false
 	right = false
 	jump = false
 	shoot = false
+	run = false
+	sneak = false
+	wasUp = false
+	wasDown = false
+	wasLeft = false
+	wasRight = false
+	wasJump = false
+	wasShoot = false
+	wasRun = false
+	wasSneak = false
 }
 
-::getcon <- function(control, state, useauto = false) {
+::getcon <- function(control, state, useauto = false, player = -1) {
 	local keyfunc = 0
 	local joyfunc = 0
 	local hatfunc = 0

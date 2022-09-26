@@ -7,6 +7,8 @@
 //Child classes will use flags to determine what abilities can be used
 
 ::Player <- class extends PhysAct {
+	playerNum = 0
+
 	//Basic variables
 	anim = null
 	sprite = 0

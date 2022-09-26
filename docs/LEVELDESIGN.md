@@ -98,11 +98,13 @@ The first thing you will need is your own folder for your world. It should be gi
 contrib/
 -> your-world-folder/
   -> gfx/
+    -> (graphic files)
   -> info.json
   -> init.nut
   -> script.nut
   -> text.json
   -> world.json
+  -> (level files)
 ```
 
 Now we will go over each of these files.
@@ -111,7 +113,7 @@ Now we will go over each of these files.
 
 `info.json` tells the game important information about your game so it can be added to the list. It should be structured thus:
 
-```
+```squirrel
 {
   name : "Your World's Name",
   worldmap : "world.json"
@@ -125,3 +127,46 @@ Notice the worldmap needs to be defined. This is so that your world can actually
 `script.nut` is where your world's important code will go. This includes things like loading the sprites your world needs, defining custom classes, overriding the player character, and anything else it needs to set up a new run. This script will be run the first time the world is loaded since the application was launched, and will not be run again until you close STA and reopen it.
 
 `text.json` is your world's language file. You'll define things like level names, NPC dialog, and any other text that appears onscreen. Additional language files can be created alongside this file for users to create translations. Consult the language files in `lang/` for examples.
+
+## Achievements
+
+Your contrib world can have its own custom achievement system. To create achievements, you will need to define a function that checks the game state and add it to a list. In your `init.nut` script, you will define this function and add to to the `gvAchievements` table. For example:
+
+```squirrel
+gvAchievements.myAchievement <- function() {
+  if(game.path != "contrib/myworld") return false
+  return (achievementCondition == "whatever you're checking")
+}
+```
+
+It is important to make sure your achievement checks that the game is currently running your world, otherwise it could be accidentally triggered by other worlds or the main game.
+
+Next, you will need to define text for the achievement. This will go in your `text.json` file under the fields `achi-name` for the name that shows on the popup, and `achi-desc` for the text in the achievement menu.
+
+```json
+{
+  "achi-name" : {
+    "myAchievement" : "My Achievement"
+  },
+
+  "achi-desc" : {
+    "myAchievement" : "Do the thing!"
+  }
+}
+```
+
+## Time Attack
+
+Time Attack mode allows players to play through a world with each level being run consecutively without using the overworld map between levels. For this, you will need to add your world to the Time Attack list, but you will also need to link your levels together in the order they are intended to be played.
+
+In your `init.nut` script, add the following function:
+
+```squirrel
+addTimeAttackWorld("My World", "folder-name", "first-level-without-extension")
+```
+
+The first argument is the name of your world as it appears in the TA menu. This can be different from the actual world's name if you want to, for example, create different TA routes or if your contrib world has separate islands. The second defines which contrib folder the world is in. Lastly, the filename for your TA's first level, without the `.json` extension.
+
+Then, in your levels, you will need to add arguments to the `endGoal()` call in your end of level trigger spaces. The argument you will add is the name of the next level in the sequence, again without `.json`.
+
+The final level of your TA should use the trigger `endGoal("timeattack-win")` to take the player to the time attack results screen.

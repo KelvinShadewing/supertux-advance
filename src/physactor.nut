@@ -227,11 +227,21 @@
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
 							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 7: //1/2 TR B
 						case 55:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
 							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
 							if(hitTest(ns, gvMap.shape)) return false
@@ -265,10 +275,20 @@
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
 							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 12: //1/2 BR B
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
 							gvMap.shape.kind = 3
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
 							if(hitTest(ns, gvMap.shape)) return false
@@ -398,6 +418,7 @@
 							gvMap.shape.h = 4.0
 							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
 							break
+
 						case 44: //One Way Top Left
 							local nps
 							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
@@ -407,6 +428,64 @@
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 8.0
 							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 45: //1W RB
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+							if(hspeed < 0) ns.y += hspeed
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+						case 46: //1W RA
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+							if(hspeed < 0) ns.y += hspeed
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 47: //1W LA
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+							if(hspeed > 0) ns.y -= hspeed
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+						case 48: //1W LB
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+							if(hspeed > 0) ns.y -= hspeed
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 49: //One Way Top Right
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 8.0
+							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
 					}
 					if(debug) {
 						gvMap.shape.draw()
@@ -576,13 +655,33 @@
 					gvMap.shape.h = 4.0
 					if(hitTest(ns, gvMap.shape)) return true
 					break
-				case 45: //L 2/2
+				case 45: //R 2/2
+					gvMap.shape.setPos(x, y + 4)
+					gvMap.shape.kind = 1
+					gvMap.shape.w = 8.0
+					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
 					break
-				case 46: //L 1/2
+				case 46: //R 1/2
+					gvMap.shape.setPos(x, y + 4)
+					gvMap.shape.kind = 1
+					gvMap.shape.w = 8.0
+					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
 					break
-				case 47: //R 1/2
+				case 47: //L 1/2
+					gvMap.shape.setPos(x, y + 4)
+					gvMap.shape.kind = 2
+					gvMap.shape.w = 8.0
+					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
 					break
-				case 48: //R 2/2
+				case 48: //L 2/2
+					gvMap.shape.setPos(x, y + 4)
+					gvMap.shape.kind = 2
+					gvMap.shape.w = 8.0
+					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 49: //R diag
 					break

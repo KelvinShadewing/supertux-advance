@@ -54,6 +54,7 @@ donut("src/shop.nut")
 donut("src/timeline.nut")
 donut("src/spawner.nut")
 donut("src/achievements.nut")
+donut("src/racer.nut")
 
 //Load mods
 local modlist = lsdir("mods")

@@ -72,6 +72,10 @@
 		&& game.allEnemies.rawin("aurora-fishy")
 		&& game.allEnemies.rawin("aurora-forest"))
 	}
+
+	blastOff = function() {
+		return gvPlayer && gvPlayer.y < 0 && gvPlayer.hspeed <= -5
+	}
 }
 
 ::gvUnlockedAchievements <- {}
