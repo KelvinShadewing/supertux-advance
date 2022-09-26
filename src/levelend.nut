@@ -14,7 +14,8 @@
 			levelEndRunner = 0
 			if(gvNextLevel != "" && gvTimeAttack) {
 				game.check = false
-				startPlay(game.path + gvNextLevel + ".json", true, true)
+				if(gvNextLevel == "timeattack-win") startPlay("res/map/" + gvNextLevel + ".json", true, true)
+				else startPlay(game.path + gvNextLevel + ".json", true, true)
 				gvIGT = 0
 			}
 			else startOverworld(game.world)

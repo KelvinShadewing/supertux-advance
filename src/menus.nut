@@ -25,7 +25,7 @@ const menuY = 40
 	menuItemsPos = []
 
 	//Draw options
-	//The number
+	//If there are more items than can be displayed at once
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
@@ -52,6 +52,7 @@ const menuY = 40
 		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 103, (screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
 		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 98, (screenW() / 2 - 24) + (i * 12), screenH() - menuY)
 	}
+	//If all items can fit on screen at once
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
