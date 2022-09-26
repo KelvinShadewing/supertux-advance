@@ -249,6 +249,8 @@
 ::defBearyl <- sprBearyl
 ::sprSirCrusher <- newSprite("res/gfx/icecrusher.png", 32, 32, 0, 0, 16, 16)
 ::defSirCrusher <- sprSirCrusher
+::sprDukeCrusher <- newSprite("res/gfx/duke-crusher.png", 32, 32, 0, 0, 16, 16)
+::defDukeCrusher <- sprDukeCrusher
 
 
 //Bosses

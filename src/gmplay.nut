@@ -1039,7 +1039,7 @@
 			break
 
 		case 94:
-			c = newActor(Crusher, i.x + 8, i.y - 8)
+			c = newActor(Crusher, i.x + 8, i.y - 8, i.name)
 			break
 	}
 

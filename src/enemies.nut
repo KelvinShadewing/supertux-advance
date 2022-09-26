@@ -3782,10 +3782,12 @@
 	sharpSide = true
 	touchDamage = 2
 	nocount = true
+	sprite = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
+		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
 
 		local checkShape = Rec(x, y - 8, 15, 8, 0)
 		shape = checkShape
@@ -3811,7 +3813,8 @@
 
 		//Detect the player underneath
 		if(gvPlayer && hitTest(gvPlayer.shape, scanShape) && gvPlayer.y > y && canFall) {
-			gravity = 0.2
+			gravity = 0.25
+			vspeed = 1.0
 			canFall = false
 		}
 
@@ -3840,7 +3843,8 @@
 		if(vspeed > 16) vspeed = 16.0
 
 		//Draw
-		drawSpriteZ(7, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
+		if(sprite) drawSpriteZ(7, sprite, (vspeed > 0).tointeger(), x - camx, y - camy)
+		else drawSpriteZ(7, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			shape.draw()
