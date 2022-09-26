@@ -245,8 +245,8 @@
 ::defSnowCaptain <- sprSnowCaptain
 ::sprCaptainMorel <- newSprite("res/gfx/captain-morel.png", 16, 19, 0, 0, 8, 12)
 ::defCaptainMorel <- sprCaptainMorel
-::sprLionStone <- newSprite("res/gfx/lionstone.png", 32, 32, 0, 0, 16, 16)
-::defLionStone <- sprLionStone
+::sprBearyl <- newSprite("res/gfx/bearyl.png", 32, 32, 0, 0, 16, 16)
+::defBearyl <- sprBearyl
 ::sprSirCrusher <- newSprite("res/gfx/icecrusher.png", 32, 32, 0, 0, 16, 16)
 ::defSirCrusher <- sprSirCrusher
 
@@ -543,7 +543,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSmartTallCap = defSmartTallCap
 	sprCaptainMorel = defCaptainMorel
 	sprSnowCaptain = defSnowCaptain
-	sprLionStone = defLionStone
+	sprBearyl = defBearyl
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -599,7 +599,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSmartTallCap = sprSnowoman
 	sprCrumbleRock = sprCrumbleIce
 	sprCaptainMorel = sprSnowCaptain
-	sprLionStone = sprSirCrusher
+	sprBearyl = sprSirCrusher
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

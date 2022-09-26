@@ -1037,6 +1037,10 @@
 		case 92:
 			c = newActor(CoffeeCup, i.x + 8, i.y - 8)
 			break
+
+		case 94:
+			c = newActor(Crusher, i.x + 8, i.y - 8)
+			break
 	}
 
 	return c

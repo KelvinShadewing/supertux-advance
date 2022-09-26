@@ -3775,34 +3775,75 @@
 		star = 0.0
 	}
 	platform = null
-	gravity = null
+	gravity = 0
 	scanShape = null
 	waiting = 0
+	canFall = true
 	sharpSide = true
+	touchDamage = 2
+	nocount = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		platform = actor[newActor(x, y, MoPlat, [[0, 0], 0, 2])]
+		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
 
-		local checkShape = Rec(x, y - 8, 15, 8)
+		local checkShape = Rec(x, y - 8, 15, 8, 0)
 		shape = checkShape
 		for(local i = 0; i < 1000; i++) {
 			checkShape.setPos(x, y - 8 + (i * 16))
 			if(!placeFree(checkShape.x, checkShape.y)) {
-				scanShape = Rec(x, y + (i * 8), 15, 8 + (i * 8))
+				scanShape = Rec(x, y + (i * 8), 24, 8 + (i * 8), 0)
 				break
 			}
 		}
-		if(scanShape == null) scanShape = Rec(x, y + (8000), 15, (8000))
-		shape = Rec(x, y, 15, 8, 0, 8)
+		if(scanShape == null) scanShape = Rec(x, y + (8000), 24, (8000), 0)
+		shape = Rec(x, y, 15, 8, 0, 0, 8)
 	}
 
 	function run() {
-		if(y < ystart) y = ystart
+		base.run()
+
+		if(y < ystart) {
+			y = ystart
+			vspeed = 0
+			canFall = true
+		}
 
 		//Detect the player underneath
-		if(gvPlayer && hitTest(gvPlayer.shape, scanShape)) {
-			gravity = 0.1
+		if(gvPlayer && hitTest(gvPlayer.shape, scanShape) && gvPlayer.y > y && canFall) {
+			gravity = 0.2
+			canFall = false
+		}
+
+		//Landing
+		if(!placeFree(x, y + 1) && waiting == 0) {
+			waiting = 60
+			gravity = 0
+			if(vspeed > 0) {
+				//popSound(sndBump, 0)
+				//fireWeapon(StompPoof, x - 8, y + 12, 0, id)
+				//fireWeapon(StompPoof, x + 8, y + 12, 0, id)
+				fireWeapon(ExplodeF, x, y + 12, 0, id)
+			}
+			vspeed = 0
+		}
+
+		if(waiting > 0) {
+			waiting--
+			if(waiting == 0) vspeed = -1.0
+		}
+
+		//Attach platform
+		platform.y = y - 12
+
+		//Speed limit
+		if(vspeed > 16) vspeed = 16.0
+
+		//Draw
+		drawSpriteZ(7, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			shape.draw()
 		}
 	}
 }

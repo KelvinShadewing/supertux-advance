@@ -17,7 +17,7 @@
 	ox = 0.0
 	oy = 0.0
 
-	constructor(_x, _y, _w, _h, _kind, _ox = 0.0, _oy = 0.0) {
+	constructor(_x, _y, _w, _h, _kind = 0, _ox = 0.0, _oy = 0.0) {
 		x = _x.tofloat()
 		y = _y.tofloat()
 		w = _w.tofloat()
