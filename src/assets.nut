@@ -251,6 +251,12 @@
 ::defSirCrusher <- sprSirCrusher
 ::sprDukeCrusher <- newSprite("res/gfx/duke-crusher.png", 32, 32, 0, 0, 16, 16)
 ::defDukeCrusher <- sprDukeCrusher
+::sprWheelerHamster <- newSprite("res/gfx/hamsterwheel.png", 24, 24, 0, 0, 12, 14)
+::defWheelerHamster <- sprWheelerHamster
+::sprWheelerBlade <- newSprite("res/gfx/wheelblade.png", 24, 24, 0, 0, 12, 14)
+::defWheelerBlade <- sprWheelerBlade
+::sprShiveriken <- newSprite("res/gfx/shiveriken.png", 24, 24, 0, 0, 12, 14)
+::defShiveriken <- sprShiveriken
 
 
 //Bosses
@@ -546,6 +552,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprCaptainMorel = defCaptainMorel
 	sprSnowCaptain = defSnowCaptain
 	sprBearyl = defBearyl
+	sprWheelerHamster = defWheelerHamster
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -602,6 +609,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprCrumbleRock = sprCrumbleIce
 	sprCaptainMorel = sprSnowCaptain
 	sprBearyl = sprSirCrusher
+	sprWheelerHamster = sprShiveriken
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

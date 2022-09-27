@@ -46,15 +46,17 @@
 ::Poof <- class extends Actor {
 	frame = 0.0
 	angle = 0
+	depth = 4
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
+		if(typeof _arr == "integer") depth = _arr
 	}
 	function run() {
 		frame += 0.125
 		if(frame >= 4) deleteActor(id)
-		else drawSpriteExZ(4, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+		else drawSpriteExZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 }
 

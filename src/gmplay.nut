@@ -1041,6 +1041,10 @@
 		case 94:
 			c = newActor(Crusher, i.x + 8, i.y - 8, i.name)
 			break
+
+		case 95:
+			c = newActor(Wheeler, i.x + 8, i.y - 8, i.name)
+			break
 	}
 
 	return c

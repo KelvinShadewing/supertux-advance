@@ -38,7 +38,7 @@
 [x] Fish
 [x] Haywire
 [x] Owls
-[ ] Crusher
+[x] Crusher
 [ ] Wheeler
 
 ## Bosses

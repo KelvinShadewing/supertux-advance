@@ -3,6 +3,7 @@
 	active = false
 	frozen = 0
 	freezeTime = 600
+	minFreezeTime = 0
 	freezeSprite = -1
 	icebox = -1
 	nocount = false
@@ -118,7 +119,7 @@
 			die()
 			return
 		}
-		if(_element == "ice") frozen = freezeTime * damageMult["ice"]
+		if(_element == "ice") frozen = minFreezeTime + (freezeTime * damageMult["ice"])
 		if(_element == "fire") {
 			newActor(Flame, x, y)
 			popSound(sndFlame, 0)
@@ -3161,15 +3162,14 @@
 		if(flip && hspeed > -1.5) hspeed -= 0.5
 		else if(flip && hspeed < 1.5) hspeed += 0.5
 
-		//Turning around
-		if(((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
+		//Turn around
+		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
-		|| x + hspeed > gvMap.w)
-		|| (!placeFree(x, y + 1) && placeFree(x + (8 * hspeed), y + 16))) {
+		|| x + hspeed > gvMap.w
+		|| placeFree(x + (8 * hspeed), y + 8))) {
 			flip = (!flip).tointeger()
 			hspeed = -hspeed
 		}
-
 		touchDamage = 2.0
 
 		//Floating in water
@@ -3789,10 +3789,12 @@
 		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
 		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
 
+		if(randInt(200) == 0) sprite = sprDukeCrusher
+
 		local checkShape = Rec(x, y - 8, 15, 8, 0)
 		shape = checkShape
 		for(local i = 0; i < 1000; i++) {
-			checkShape.setPos(x, y - 8 + (i * 16))
+			checkShape.setPos(x, y + 8 + (i * 16))
 			if(!placeFree(checkShape.x, checkShape.y)) {
 				scanShape = Rec(x, y + (i * 8), 24, 8 + (i * 8), 0)
 				break
@@ -3823,10 +3825,9 @@
 			waiting = 60
 			gravity = 0
 			if(vspeed > 0) {
-				//popSound(sndBump, 0)
-				//fireWeapon(StompPoof, x - 8, y + 12, 0, id)
-				//fireWeapon(StompPoof, x + 8, y + 12, 0, id)
-				fireWeapon(ExplodeF, x, y + 12, 0, id)
+				newActor(Poof, x - 12, y + 12, 7)
+				newActor(Poof, x + 12, y + 12, 7)
+				fireWeapon(ExplodeHiddenF, x, y + 12, 0, id)
 			}
 			vspeed = 0
 		}
@@ -3843,11 +3844,180 @@
 		if(vspeed > 16) vspeed = 16.0
 
 		//Draw
-		if(sprite) drawSpriteZ(7, sprite, (vspeed > 0).tointeger(), x - camx, y - camy)
-		else drawSpriteZ(7, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
+		if(sprite) drawSpriteZ(6, sprite, (vspeed > 0).tointeger(), x - camx, y - camy)
+		else drawSpriteZ(6, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			shape.draw()
 		}
 	}
+
+	function _typeof() { return "Crusher" }
+}
+
+::Wheeler <- class extends Enemy {
+	touchDamage = 2
+	sharpSide = true
+	sharpTop = true
+	gravity = 0.2
+	bladesOut = 0
+	flip = 0
+	mspeed = 4
+	turning = 0.0
+	friction = 0.0
+	minFreezeTime = 600
+	freezeSprite = sprIceTrapSmall
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 0.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 7, 7)
+	}
+
+	function run() {
+		bladesOut = (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)).tointeger() * 4
+		if(gvPlayer) flip = (x > gvPlayer.x).tointeger()
+
+		if(gvPlayer) {
+			//Accelerate towards player
+			if(x - 16 > gvPlayer.x && hspeed > -mspeed) {
+				hspeed -= 0.2
+			}
+			if(x + 16 < gvPlayer.x && hspeed < mspeed) {
+				hspeed += 0.2
+			}
+
+			//Turning animation trigger
+			if(turning < 3 && ( flip == 1 && hspeed > 0 || flip == 0 && hspeed < 0)) turning = 4.0
+		}
+
+		if(frozen) {
+			hspeed = 0
+			vspeed = 0
+
+			//Create ice block
+			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				if(health > 0) icebox = mapNewSolid(shape)
+			}
+		}
+		else if(icebox != -1) {
+			newActor(IceChunks, x, y)
+			mapDeleteSolid(icebox)
+			icebox = -1
+		}
+
+
+		//Draw
+		local frame = 0
+		if(!frozen) frame = getFrames() / 2
+		if(turning > 0) {
+			turning -= 0.25
+			drawSpriteEx(sprWheelerHamster, 8.0 + (4.0 - turning), x - camx, y - camy, 0, flip, 1, 1, 1)
+		}
+		else drawSpriteEx(sprWheelerHamster, wrap(frame, 0, 3) + bladesOut, x - camx, y - camy, 0, flip, 1, 1, 1)
+
+
+		base.run()
+		shape.setPos(x, y)
+	}
+
+	function physics() {
+		if(placeFree(x, y + (0 <=> gravity)) && !phantom) vspeed += gravity
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else {
+			vspeed /= 2
+			if(fabs(vspeed) < 0.01) vspeed = 0
+			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			if(placeFree(x, y + vspeed)) y += vspeed
+		}
+
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
+				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
+					y += 1
+				}
+				x += hspeed
+			} else {
+				local didstep = false
+				for(local i = 1; i <= max(4, abs(hspeed * 1.5)); i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - i)) {
+						x += hspeed
+						y -= i
+						if(i > 2) {
+							if(hspeed > 0) hspeed -= 0.1
+							if(hspeed < 0) hspeed += 0.1
+						}
+						didstep = true
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
+				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
+			}
+		}
+
+		//Friction
+		if(fabs(hspeed) > friction) {
+			if(hspeed > 0) hspeed -= friction
+			if(hspeed < 0) hspeed += friction
+		} else hspeed = 0
+
+		shape.setPos(x, y)
+		xprev = x
+		yprev = y
+	}
+
+	function die() {
+		base.die()
+		newActor(Poof, x, y)
+		local c
+		//Top Left
+		c = actor[newActor(DeadNME, x, y)]
+		c.sprite = sprWheelerHamster
+		c.hspeed = -1.0
+		c.vspeed = -3.0
+		c.frame = 12
+		c.gravity = 0.1
+		//Top Right
+		c = actor[newActor(DeadNME, x, y)]
+		c.sprite = sprWheelerHamster
+		c.hspeed = 1.0
+		c.vspeed = -3.0
+		c.frame = 13
+		c.gravity = 0.1
+		//Bottom Left
+		c = actor[newActor(DeadNME, x, y)]
+		c.sprite = sprWheelerHamster
+		c.hspeed = -1.0
+		c.vspeed = -1.0
+		c.frame = 14
+		c.gravity = 0.1
+		//Bottom Right
+		c = actor[newActor(DeadNME, x, y)]
+		c.sprite = sprWheelerHamster
+		c.hspeed = 1.0
+		c.vspeed = -1.0
+		c.frame = 15
+		c.gravity = 0.1
+	}
+
+	function _typeof() { return "Wheeler" }
 }
