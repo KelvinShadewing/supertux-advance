@@ -158,7 +158,7 @@
                  "class":"",
                  "height":190,
                  "id":4,
-                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[18]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 33)",
+                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[18]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 8)",
                  "rotation":0,
                  "visible":true,
                  "width":288,
@@ -432,7 +432,7 @@
          "value":"drawBG = dbgAurora\nsongPlay(0)\ngfxEnemySnow()\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tdeleteActor(mapActor[15])\n\tdeleteActor(mapActor[14])\n}\n\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {

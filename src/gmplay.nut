@@ -248,6 +248,8 @@
 			local dx = (1.0 / 240.0) * screenW().tofloat()
 			local dy = (1.0 / 240.0) * screenH().tofloat()
 
+			if(config.light) drawAmbientLight()
+
 			drawSpriteEx(sprIris, 0, screenW() / 2, screenH() / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di), 1)
 			drawRec(0, 0, screenW() * (di / 2.0), screenH(), true)
 			drawRec(screenW(), 0, -(screenW() * (di / 2.0)) - 2, screenH(), true)

@@ -82,7 +82,7 @@
 		"W-Baller" :
 		"wall baller                                                                                                                                                                     ?"
 		},
-		
+
 	"devcom" : {
 		"chance" :
 		"FrostC:The first level made for Frostlands. And it's pretty good, even compared to many of the recent levels.",
@@ -108,5 +108,13 @@
 		"FrostC: If you are able to, please turn on lighting for this level. It will let you see the very cool and awesome pipe transitions I made. I'm very happy how they look.",
 		"lololol" :
 		"FrostC: Made this level due to someone saying they wanted to see the air feather be used in Frostlands."
+	},
+
+	"achi-name" : {
+		"welcomeFrostlands" : "Welcome to The Frostlands!"
+	},
+
+	"achi-desc" : {
+		"welcomeFrostlands" : "Play the Frostlands for the first time."
 	}
 }
