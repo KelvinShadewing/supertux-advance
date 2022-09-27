@@ -26,7 +26,7 @@
 		base.constructor(_x, _y, _arr)
 		if(typeof _arr == "array") {
 			if(canint(_arr[0])) alignment = _arr[0].tointeger()
-			if(canint(_arr[1])) alignment = _arr[1].tointeger()
+			if(canint(_arr[1])) owner = _arr[1].tointeger()
 		}
 	}
 
@@ -202,8 +202,9 @@
 		shape = Rec(x, y, 4, 4, 0)
 		base.constructor(_x, _y, _arr)
 		vspeed = 0.5 - randFloat(1.0)
-		newActor(AfterFlame, x, y)
+		fireWeapon(AfterFlame, x, y, alignment, owner)
 	}
+
 	function run() {
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
 		frame += 0.2

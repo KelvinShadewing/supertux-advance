@@ -87,7 +87,7 @@
 			if(i.alignment == 1) continue
 			if(i.owner == id) continue
 
-			if(hitTest(shape, i.shape)) {
+			if(i.alignment != 1 && i.owner != id && hitTest(shape, i.shape)) {
 				getHurt(i.power, i.element, i.cut, i.blast)
 				if(i.piercing == 0) deleteActor(i.id)
 				else i.piercing--

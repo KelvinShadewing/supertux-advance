@@ -45,6 +45,8 @@
 		"The snow here is like, all purple and stuff... super weird. Also be sure to talk to sam, he wants to show you something.",
 		"Sam-A" :
 		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",
+		"Player-A" :
+		"Joke here",
 		"fire-A" :
 		"Hey, im the one managing the port at the moment. I don't have any boats, but I do have a few items for you.",
 		"fire-B" :
@@ -63,6 +65,8 @@
 		"I think these burgers would be better if they were actually.. You know.. Cooked. ",
 		"brg-terry" :
 		"Hey hey hey! Welcome to my Ice-burger shop! It's a fresh fish in a bun! ....and also a little cheese. Care to try one?",
+		"brg-terry2" :
+		"I would like to let you know that our Ice-pops are very eco friendly! Not only is our ice 100% recycled plastic, we also reuse the popsicle sticks for future customers!",
 		"tuc" :
 		"Im     eVil                                          TuckLes",
 		"nin" :
@@ -71,8 +75,12 @@
 		"Why hello fellow cheater!!",
 		"slm" :
 		"May I offer you a cup of tea? No? Well that's too bad.",
+		"JuiceQ" :
+		"Got juice?",
 		"placeholder" :
-		"This is placeholder text"
+		"This is placeholder text",
+		"W-Baller" :
+		"wall baller                                                                                                                                                                     ?"
 		},
 		
 	"devcom" : {

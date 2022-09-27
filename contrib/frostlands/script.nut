@@ -2,6 +2,10 @@
 //asset stuffs
 print("Loading Frostlands overhauled PT2")
 
+//Enemy
+::sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 0, 0, 8, 9)
+::sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/dumbblitz.png", 16, 16, 0, 0, 8, 9)
+
 //music
 
 ::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
@@ -12,9 +16,9 @@ print("Loading Frostlands overhauled PT2")
 ::musair <- "contrib/frostlands/music/fried-air.ogg"
 ::musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
 ::musSV <- "contrib/frostlands/music/STK-valley.ogg"
+::musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
 //visual assets
-::bgAuroraALT <- newSprite("contrib/frostlands/gfx/BG/aurora-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowPlainALT <- newSprite("contrib/frostlands/gfx/BG/bgSnowPlain-alt.png", 720, 240, 0, 0, 0, 0)
 ::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
 ::bgGrassNever <- newSprite("contrib/frostlands/gfx/BG/Bnever.png", 1024, 240, 0, 0, 0, 0)
@@ -49,6 +53,7 @@ print("Loading Frostlands overhauled PT2")
 ::sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Rico.png", 18, 46, 0, 0, 9, 46)
 ::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 63, 48, 0, 0, 32, 47)
 ::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 53, 40, 0, 0, 26, 40)
+::sprEmarq <- newSprite("contrib/frostlands/gfx/NPC/evil.png", 60, 52, 0, 0, 30, 52)
 ::sprharo <- newSprite("contrib/frostlands/gfx/NPC/harold.png", 44, 43, 0, 0, 22, 43)
 ::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
 ::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 19, 52, 0, 0, 8, 52)
@@ -56,9 +61,10 @@ print("Loading Frostlands overhauled PT2")
 ::sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 0, 0, 19, 18)
 ::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 9, 16)
 ::sprP <- newSprite("contrib/frostlands/gfx/NPC/placeholder.png", 37, 51, 0, 0, 16, 51)
-::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 16, 51)
+::sprEyet <- newSprite("contrib/frostlands/gfx/NPC/eightman.png", 37, 51, 0, 0, 16, 51)
+::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 10, 47)
 ::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 8, 33)
-::sprPolyman <- newSprite("contrib/frostlands/gfx/NPC/polyman.png", 37, 51, 0, 0, 16, 51)
+::sprWallBaller <- newSprite("contrib/frostlands/gfx/NPC/wall-crawler.png", 32, 32, 0, 0, 16, 32)
 
 //OG style
 ::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
@@ -278,7 +284,7 @@ print("Loading Frostlands overhauled PT2")
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
-				vspeed = -1
+				vspeed = 0
 				playSound(sndHeal, 0)
 				game.health += 4
 				game.maxHealth += 4
@@ -301,12 +307,12 @@ print("Loading Frostlands overhauled PT2")
 
 //TEMP
 
-::Walter <- class extends Enemy {
+::Blitz <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
 	squishTime = 0.0
-	smart = false
+	smart = true
 	moving = false
 	touchDamage = 2.0
 
@@ -319,12 +325,11 @@ print("Loading Frostlands overhauled PT2")
 
 	function routine() {}
 	function animation() {}
-
 	function run() {
 		base.run()
-
-		if(gvPlayer && abs(x - gvPlayer.x) <= 120) {
-			if(getFrames() % 120 == 0){
+		smart = true
+		if(gvPlayer && abs(x - gvPlayer.x) <= 240) {
+			if(getFrames() % 80 == 0){
 				local c = actor[newActor(CannonBob, x - 4, y - 4)]
 							c.hspeed = ((gvPlayer.x - x) / 48)
 							local d = (y - gvPlayer.y) / 64
@@ -382,8 +387,8 @@ print("Loading Frostlands overhauled PT2")
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprBlitz, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprBlitz2, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 					if(frozen <= 120) {
 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -402,15 +407,15 @@ print("Loading Frostlands overhauled PT2")
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSpriteEx(sprBlitz, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprBlitz, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
@@ -445,15 +450,15 @@ print("Loading Frostlands overhauled PT2")
 		}
 
 		if(_element == "ice") {
-			frozen = 600
+			frozen = 0
 			return
 		}
 
 		if(gvPlayer.rawin("anSlide")) {
 			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
 				local c = newActor(DeadNME, x, y)
-				if(smart) actor[c].sprite = sprGradcap
-				else actor[c].sprite = sprDeathcap
+				if(smart) actor[c].sprite = sprBlitz
+				else actor[c].sprite = sprBlitz2
 				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 				actor[c].spin = (gvPlayer.hspeed * 7)
@@ -466,8 +471,8 @@ print("Loading Frostlands overhauled PT2")
 
 		if(!_stomp) {
 			local c = newActor(DeadNME, x, y)
-			if(smart) actor[c].sprite = sprGradcap
-			else actor[c].sprite = sprDeathcap
+			if(smart) actor[c].sprite = sprBlitz
+			else actor[c].sprite = sprBlitz2
 			actor[c].vspeed = -4.0
 			actor[c].spin = 4
 			actor[c].angle = 180
@@ -486,8 +491,8 @@ print("Loading Frostlands overhauled PT2")
 
 	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		if(smart) actor[c].sprite = sprGradcap
-		else actor[c].sprite = sprDeathcap
+		if(smart) actor[c].sprite = sprBlitz
+		else actor[c].sprite = sprBlitz
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
@@ -509,7 +514,7 @@ print("Loading Frostlands overhauled PT2")
 		}
 	}
 
-	function hurtIce() { frozen = 600 }
+	function hurtIce() { frozen = 0 }
 
 	function _typeof() { return "Deathcap" }
 }

@@ -694,8 +694,8 @@
 				anim = anJumpU
 				vspeed = -2.0
 				popSound(sndBump)
-				newActor(StompPoof, x + 8, y + 12)
-				newActor(StompPoof, x - 8, y + 12)
+				fireWeapon(StompPoof, x + 8, y + 12, 1, id)
+				fireWeapon(StompPoof, x - 8, y + 12, 1, id)
 			}
 
 			if(canMove) switch(game.weapon) {
