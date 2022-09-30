@@ -770,7 +770,18 @@
 						y = gvPlayer.y + gvPlayer.vspeed
 					}
 
-					if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && held) {
+					if(gvPlayer.rawin("anSlide") && gvPlayer.anim == gvPlayer.anSlide && held) {
+						gvPlayer.holding = 0
+
+						//escape from solid
+						if(!placeFree(x, y)) {
+							local escapedir = gvPlayer.x <=> x
+							while(!placeFree(x, y)) x += escapedir
+						}
+						held = false
+					}
+
+					if(gvPlayer.rawin("anClimb") && gvPlayer.anim == gvPlayer.anClimb && held) {
 						gvPlayer.holding = 0
 
 						//escape from solid
@@ -3166,7 +3177,7 @@
 		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
 		|| x + hspeed > gvMap.w
-		|| placeFree(x + (8 * hspeed), y + 8))) {
+		|| placeFree(x + (8 * hspeed), y + 14))) {
 			flip = (!flip).tointeger()
 			hspeed = -hspeed
 		}
@@ -3241,7 +3252,18 @@
 				gvPlayer.holding = id
 			}
 
-			if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && held) {
+			if(gvPlayer.rawin("anSlide") && gvPlayer.anim == gvPlayer.anSlide && held) {
+				gvPlayer.holding = 0
+
+				//escape from solid
+				if(!placeFree(x, y)) {
+					local escapedir = gvPlayer.x <=> x
+					while(!placeFree(x, y)) x += escapedir
+				}
+				held = false
+			}
+
+			if(gvPlayer.rawin("anClimb") && gvPlayer.anim == gvPlayer.anClimb && held) {
 				gvPlayer.holding = 0
 
 				//escape from solid

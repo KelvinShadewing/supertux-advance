@@ -215,12 +215,7 @@
 		camy = 0
 	}
 
-	//Switch game mode to play
-	if(skipIntro) {
-		gvGameMode = gmPlay
-		gvFadeInTime = 0
-	}
-	else gvGameMode = gmLevelStart
+
 	//If the map loading fails at any point, then it will not change
 	//the mode and simply remain where it was. A message is printed
 	//in the log if the map fails, so users can check why a level
@@ -248,7 +243,7 @@
 			local dx = (1.0 / 240.0) * screenW().tofloat()
 			local dy = (1.0 / 240.0) * screenH().tofloat()
 
-			if(config.light) drawAmbientLight()
+			if(config.light && gvGameMode == gmOverworld) drawAmbientLight()
 
 			drawSpriteEx(sprIris, 0, screenW() / 2, screenH() / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di), 1)
 			drawRec(0, 0, screenW() * (di / 2.0), screenH(), true)
@@ -265,6 +260,13 @@
 
 		gvFadeInTime = 255
 	}
+
+	//Switch game mode to play
+	if(skipIntro) {
+		gvGameMode = gmPlay
+		gvFadeInTime = 0
+	}
+	else gvGameMode = gmLevelStart
 
 	//update()
 }

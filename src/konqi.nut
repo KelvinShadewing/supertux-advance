@@ -866,7 +866,7 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Fireball, x + fx, y - 4)]
+						local c = fireWeapon(Fireball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
 						playSound(sndFireball, 0)
@@ -899,7 +899,7 @@
 					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = actor[newActor(Iceball, x + fx, y)]
+						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
 						playSound(sndFireball, 0)

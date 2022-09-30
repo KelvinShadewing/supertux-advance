@@ -82,6 +82,7 @@
 		if(getroottable().rawin(_arr[0])) sprite = getroottable()[_arr[0]]
 		else deleteActor(id)
 		scale = _arr[1].tofloat()
+		print(scale)
 	}
 
 	function run() {

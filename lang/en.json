@@ -529,7 +529,9 @@
 		"bearista-1":
 		"Did you know that coffee will not actually give you energy? It just makes you unable to feel tired for a while. That's why you crash when it runs out.",
 		"bearista-2" :
-		"Coffee's flavor doesn't just come from how it's roasted. Where it grows also changes the taste. For instance, if it grows around fruit trees, it'll get a fruity flavor, and nut trees will give a nutty flavor."
+		"Coffee's flavor doesn't just come from how it's roasted. Where it grows also changes the taste. For instance, if it grows around fruit trees, it'll get a fruity flavor, and nut trees will give a nutty flavor.",
+		"bearista-3" :
+		"Have you noticed decafinated beans look different from regular ones? That's because the caffiene is in the wax coating. They decafinate them by washing the wax off."
 	},
 
 	"level" : {
