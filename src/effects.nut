@@ -194,3 +194,31 @@
 		else drawSpriteExZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 }
+
+::AfterImage <- class extends Actor {
+	sprite = 0
+	frame = 0
+	alpha = 1.0
+	depth = 0
+	flip = 0
+	angle = 0
+	xscale = 0
+	yscale = 0
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
+		sprite = _arr[0]
+		frame = _arr[1]
+		depth = _arr[2]
+		flip = _arr[3]
+		angle = _arr[4]
+		xscale = _arr[5]
+		yscale = _arr[6]
+	}
+
+	function run() {
+		drawSpriteExZ(depth, sprite, frame, x - camx, y - camy, angle, flip, xscale, yscale, alpha)
+		alpha -= 0.2
+		if(alpha <= 0) deleteActor(id)
+	}
+}

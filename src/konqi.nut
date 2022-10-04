@@ -387,6 +387,7 @@
 					break
 			}
 
+			if(anim == anStand && zoomies) frame += 0.1
 			if(anim != anClimb) frame = wrap(abs(frame), 0.0, anim.len() - 1)
 
 			//Sliding acceleration
@@ -1082,6 +1083,9 @@
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
+
+			//After image
+			if((zoomies > 0 || anim == anStomp) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
 		}
 
 		//Transformation flash

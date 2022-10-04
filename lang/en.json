@@ -282,6 +282,8 @@
 
 	"npc" : {
 		"null" : "",
+		"construction" :
+		"This area's under construction. Sorry, bub.",
 		"rad-0-Tux" :
 		"Hey, where's your board? Are you gonna slide on your belly like a square? I bet you couldn't get every herring on this hill like that. If you do, I'll give ya something that'll really help you catch some air!",
 		"rad-0-Konqi" :
@@ -477,7 +479,7 @@
 		"not-done" :
 		"Hey, the yeti's not done yet. Have you played the contrib levels? You should check them out! In the meantime, I've got some more coding and drawing to do. I hope you've enjoyed what you've played so far! If you'd like to support development, please consider donating at https://patreon.com/kelvin.",
 		"pennyton-Tux" :
-		"This is Penny's new town. Sure was nice of her to give the displaced mascots a place to stay. I wonder if they'll ever find their way back...",
+		"This is Penny's new town. Sure was nice of her to give so many displaced people a place to stay. I wonder if they'll ever find their way back...",
 		"fish-mines-Tux" :
 		"These mines are where we get most of our fish these days. It's much safer than swimming for live ones.",
 		"ocean-bridge-Tux" :
@@ -531,7 +533,11 @@
 		"bearista-2" :
 		"Coffee's flavor doesn't just come from how it's roasted. Where it grows also changes the taste. For instance, if it grows around fruit trees, it'll get a fruity flavor, and nut trees will give a nutty flavor.",
 		"bearista-3" :
-		"Have you noticed decafinated beans look different from regular ones? That's because the caffiene is in the wax coating. They decafinate them by washing the wax off."
+		"Have you noticed decafinated beans look different from regular ones? That's because the caffiene is in the wax coating. They decafinate them by washing the wax off.",
+		"tix-newpeople" :
+		"So many new people have been spilling into our world. It was cool at first, but I hope it doesn't get too crowded.",
+		"blame-nolok-displaced" :
+		"More and more displaced are ending up in our world. I think Nolok may be to blame for this. Remember when he tapped into the Ghost Tree's power? I have a theory that he may have harmed Ygdrasil in doing that."
 	},
 
 	"level" : {

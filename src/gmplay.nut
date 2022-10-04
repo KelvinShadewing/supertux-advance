@@ -262,10 +262,7 @@
 	}
 
 	//Switch game mode to play
-	if(skipIntro) {
-		gvGameMode = gmPlay
-		gvFadeInTime = 0
-	}
+	if(skipIntro) gvGameMode = gmPlay
 	else gvGameMode = gmLevelStart
 
 	//update()
@@ -1048,6 +1045,10 @@
 
 		case 95:
 			c = newActor(Wheeler, i.x + 8, i.y - 8, i.name)
+			break
+
+		case 96:
+			c = newActor(FireBlock, i.x + 8, i.y - 8, i.name)
 			break
 	}
 

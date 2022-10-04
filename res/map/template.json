@@ -158,6 +158,7 @@
          "y":0
         }, 
         {
+         "color":"#ff0000",
          "draworder":"topdown",
          "id":18,
          "name":"secret",
@@ -218,7 +219,7 @@
          "value":""
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -251,18 +252,18 @@
          "columns":29,
          "firstgid":295,
          "image":"..\/gfx\/tsGrasstop.png",
-         "imageheight":208,
+         "imageheight":240,
          "imagewidth":464,
          "margin":0,
          "name":"grass",
          "spacing":0,
-         "tilecount":377,
+         "tilecount":435,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":9,
-         "firstgid":672,
+         "firstgid":730,
          "image":"..\/gfx\/pipetiles.png",
          "imageheight":192,
          "imagewidth":144,
@@ -275,7 +276,7 @@
         }, 
         {
          "columns":12,
-         "firstgid":780,
+         "firstgid":838,
          "image":"..\/gfx\/igloo.png",
          "imageheight":80,
          "imagewidth":192,
@@ -288,7 +289,7 @@
         }, 
         {
          "columns":29,
-         "firstgid":840,
+         "firstgid":898,
          "image":"..\/gfx\/tsSnow.png",
          "imageheight":272,
          "imagewidth":464,
@@ -301,7 +302,7 @@
         }, 
         {
          "columns":5,
-         "firstgid":1333,
+         "firstgid":1391,
          "image":"..\/gfx\/solid.png",
          "imageheight":208,
          "imagewidth":80,
@@ -314,7 +315,7 @@
         }, 
         {
          "columns":2,
-         "firstgid":1398,
+         "firstgid":1456,
          "image":"..\/gfx\/goal.png",
          "imageheight":32,
          "imagewidth":32,

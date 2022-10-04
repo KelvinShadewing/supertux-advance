@@ -373,6 +373,7 @@
 					break
 			}
 
+			if(anim == anStand && zoomies) frame += 0.1
 			if(anim != null) frame = wrap(frame, 0, anim.len() - 1)
 
 			//Sliding acceleration
@@ -1064,6 +1065,9 @@
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
+
+			//After image
+			if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
 		}
 
 		//Transformation flash
@@ -1232,6 +1236,7 @@
 	function _typeof() { return "Penny" }
 }
 
+/*
 ::TuxRacer <- class extends PhysActor {
 	z = 0
 	mspeed = 2
@@ -1283,3 +1288,4 @@
 
 	function _typeof() { return "TuxRacer" }
 }
+*/

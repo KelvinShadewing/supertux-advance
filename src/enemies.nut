@@ -188,8 +188,8 @@
 		base.run()
 
 		if(active) {
-			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
-				flip = true
+			if(!moving) {
+				if(gvPlayer && x > gvPlayer.x) flip = true
 				moving = true
 			}
 
@@ -3602,8 +3602,8 @@
 		base.run()
 
 		if(active) {
-			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
-				flip = true
+			if(!moving) {
+				if(gvPlayer && x > gvPlayer.x) flip = true
 				moving = true
 			}
 
@@ -3671,7 +3671,7 @@
 					}
 
 					//Draw
-					if(!placeFree(x, y + 2)) drawSpriteEx(sprCaptainMorel, wrap(getFrames() / 8, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+					if(!placeFree(x, y + 2)) drawSpriteEx(sprCaptainMorel, wrap(getFrames() / 4, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 					else drawSpriteEx(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 				}
 			}

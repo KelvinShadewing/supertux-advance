@@ -459,6 +459,7 @@
 		}
 
 		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)
+		drawLight(sprLightBasic, 0, x - camx, y - camy)
 	}
 }
 
