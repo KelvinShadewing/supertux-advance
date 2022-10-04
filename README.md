@@ -16,7 +16,7 @@ After being humiliated by Tux on the tracks, Nolok decides to get his revenge by
 
 ## Installation Destructions
 
-Follow the install instructions for [Brux GDK](https://github.com/kelvinshadewing/brux-gdk), then run `tux.brx` with Brux.
+Follow the install instructions for [Brux GDK](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` with Brux.
 
 ## Controls
 
