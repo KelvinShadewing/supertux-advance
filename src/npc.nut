@@ -34,14 +34,31 @@
 		}
 	}
 
+	function setDia(_arr = null) {
+		if(_arr != null) {
+			local oldargv = argv
+			argv = split(_arr, ",")
+			//
+			argv.insert(0, oldargv[0])
+			argv.insert(1, oldargv[1])
+			argv.insert(2, oldargv[2])
+			arr = []
+
+			for(local i = 0; i < argv.len(); i++) {
+				if(i >= argv.len()) arr.push("")
+				else if(canint(argv[i])) arr.push(argv[i].tointeger())
+				else if(argv[i] == 0) arr.push("")
+				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], gvTextW))
+				else arr.push("")
+			}
+		}
+	}
+
 	function run() {
 		if(gvPlayer && sayfunc != null) {
 			if(hitTest(shape, gvPlayer.shape)) {
 				if(getcon("up", "press") && sayfunc != null) this[sayfunc]()
-				if(sprite == 0) {
-					if(argv[3] + typeof gvPlayer in gvLangObj["npc"]
-					|| argv[3] + "-" + typeof gvPlayer in gvLangObj["npc"]) drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-				}
+				if(sprite == 0 && sayfunc == "sayChar") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
 				else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 				else drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 			}

@@ -60,6 +60,16 @@
 				earth = "sprTuxEarth"
 				wave = [40, 41]
 			}
+			Penny = {
+				over = "sprTuxOverworld"
+				doll = "sprTuxDoll"
+				normal = "sprPenny"
+				fire = "sprTuxFire"
+				ice = "sprTuxIce"
+				air = "sprTuxAir"
+				earth = "sprTuxEarth"
+				wave = [40, 41]
+			}
 			//Konqi = ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
 		}
 		secretOrbs = [
@@ -75,6 +85,7 @@
 		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
+		player2Char = null
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0
@@ -91,7 +102,7 @@
 
 ::game <- createNewGameObject()
 ::gvPlayer <- false //Pointer to player actor
-::gvPlayer2 <- false
+::gvPlayer2 <- false //Pointer to second player
 ::gvBoss <- false //Pointer to boss actor
 /*\
  # When characters are unlocked, they will
