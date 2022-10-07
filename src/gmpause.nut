@@ -26,7 +26,8 @@
 			setDrawTarget(bgPause)
 			drawImage(gvScreen, 0, 0)
 			gvPauseMode = false
-			menu = mePausePlay
+			if(gvTimeAttack) menu = mePauseTimeAttack
+			else menu = mePausePlay
 			autocon = {
 				up = false
 				down = false

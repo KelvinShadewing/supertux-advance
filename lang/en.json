@@ -138,7 +138,9 @@
 		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
 		"quit-level" : "Quit Level",
-		"save" : "Save Game"
+		"save" : "Save Game",
+		"end-run" : "End Run",
+		"restart-run" : "Restart Run"
 	},
 
 	"stats" : {

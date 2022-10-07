@@ -406,6 +406,7 @@
 	}
 
 	function run() {
+		if(!devcom || gvTimeAttack) return
 
 		if(gvPlayer) {
 			if(devcom) if(hitTest(shape, gvPlayer.shape)){
@@ -418,7 +419,7 @@
 			}
 		}
 
-		if(devcom) drawSpriteZ(2, sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy)
+		drawSpriteZ(2, sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy)
 	}
 }
 
