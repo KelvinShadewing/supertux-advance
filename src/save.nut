@@ -18,6 +18,9 @@
 	game.path = path
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
 	startPlay(game.path + gvTAStart + ".json", true, true)
+	gvLight = 0xffffffff
+	gvLightTarget = 0xffffffff
+	drawWeather = 0
 }
 
 ::saveGame <- function() {

@@ -40,7 +40,7 @@
 
 
 
-::sprPenny <- newSprite("res/gfx/penny.png", 32, 32, 0, 0, 16, 16)
+::sprPenny <- newSprite("res/gfx/penny.png", 32, 32, 0, 0, 16, 19)
 
 
 

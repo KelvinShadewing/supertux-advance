@@ -1226,11 +1226,12 @@
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 
+		//Will be changed as sprites are finished
 		mySprNormal = sprPenny
-		mySprFire = sprPennyFire
-		mySprIce = sprPennyIce
-		mySprAir = sprPennyAir
-		mySprEarth = sprPennyEarth
+		mySprFire = sprTuxFire
+		mySprIce = sprTuxIce
+		mySprAir = sprTuxAir
+		mySprEarth = sprTuxEarth
 	}
 
 	function _typeof() { return "Penny" }
