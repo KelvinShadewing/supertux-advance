@@ -167,6 +167,8 @@
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
 ::defSnake <- sprSnake
+::sprSealion <- newSprite("res/gfx/sealion.png", 16, 48, 0, 0, 8, 0)
+::defSealion <- sprSealion
 ::sprDeathcap <- newSprite("res/gfx/deathcap.png", 16, 16, 0, 0, 8, 9)
 ::defDeathcap <- sprDeathcap
 ::sprGradcap <- newSprite("res/gfx/smartcap.png", 16, 18, 0, 0, 8, 11)
@@ -389,6 +391,8 @@
 ::bgIceForest2 <- newSprite("res/gfx/iceforest2.png", 480, 192, 0, 0, 0, 0)
 ::bgFortMagma <- newSprite("res/gfx/fortmagmasky.png", 960, 240, 0, 0, 0, 0)
 ::bgCharSel <- newSprite("res/gfx/charsel.png", 424, 240, 0, 0, 212, 0)
+::bgPennyton0 <- newSprite("res/gfx/pennyton-bg-0.png", 480, 112, 0, 0, 0, 0)
+::bgPennyton1 <- newSprite("res/gfx/pennyton-bg-1.png", 480, 74, 0, 0, 0, 0)
 
 
 //Weather
@@ -612,6 +616,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprCaptainMorel = sprSnowCaptain
 	sprBearyl = sprSirCrusher
 	sprWheelerHamster = sprShiveriken
+	sprSnake = sprSealion
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

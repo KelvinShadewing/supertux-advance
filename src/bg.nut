@@ -46,9 +46,20 @@
 }
 
 ::dbgAurora <- function() {
-	for(local i = 0; i < 2; i++) {
-		drawSprite(bgAurora, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	for(local i = 0; i < 2; i++) drawSprite(bgAurora, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+}
+
+::dbgPennyton <- function() {
+	dbgAurora()
+	for(local i = 0; i < 3; i++) drawSprite(bgPennyton1, 0, ((-camx / 4) % 480) + (i * 480), gvHorizon - camy - 160)
+	setDrawColor(0x60606040)
+	drawRec(0, 0, screenW(), screenH(), true)
+	for(local i = 0; i < (screenW() / 32) + 4; i++) {
+		for(local j = 0; j < (screenH() / 32) + 4; j++) {
+			drawSpriteEx(weSnow, 0, -(sin(getFrames().tofloat() / 32.0) * 16.0) + (i * 32) - (camx % 32) - 32, ((getFrames() / 2) % 32) + (j * 32) - 32 - (camy % 32), 0, 0, 0.5, 0.5, 1)
+		}
 	}
+	for(local i = 0; i < 3; i++) drawSprite(bgPennyton0, 0, ((-camx / 2) % 480) + (i * 480), gvHorizon - camy - 144)
 }
 
 ::dbgAuroraNight <- function() {
