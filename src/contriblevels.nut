@@ -85,7 +85,7 @@
 							}
 
 							local percentage = 0
-							if(levels.len() > 0) completedLevelsCount * 100 / levels.len()
+							if(levels.len() > 0) percentage = completedLevelsCount * 100 / levels.len()
 
 							lastLevelsCounted = {"contribFolder":contribFolder, "completed":completedLevelsCount, "total":levels.len(), "percentage":percentage}
 							return "Progress: " + completedLevelsCount + "/" + levels.len() + " (" + percentage + "%)"
