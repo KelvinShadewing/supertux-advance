@@ -1226,6 +1226,18 @@
                  "width":16,
                  "x":4376,
                  "y":1048
+                }, 
+                {
+                 "class":"",
+                 "gid":285,
+                 "height":16,
+                 "id":220,
+                 "name":"Penny",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1234,7 +1246,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":220,
+ "nextobjectid":221,
  "orientation":"orthogonal",
  "properties":[
         {

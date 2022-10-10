@@ -3174,10 +3174,10 @@
 		else if(flip && hspeed < 1.5) hspeed += 0.5
 
 		//Turn around
-		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
+		if(!held && ((!placeFree(x + hspeed, y + 2) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
 		|| x + hspeed > gvMap.w
-		|| placeFree(x + (8 * hspeed), y + 14))) {
+		|| placeFree(x + (8 * hspeed), y + 14) && !placeFree(x, y + 2))) {
 			flip = (!flip).tointeger()
 			hspeed = -hspeed
 		}

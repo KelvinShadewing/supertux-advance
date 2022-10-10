@@ -74,9 +74,9 @@
 		debugMouseLeft = wrap(debugMouseLeft, 0, (5 * 13) - 1)
 		if(debugMouseLeft == 0) drawSprite(tsSolid, (5 * 13) - 1, mouseX(), mouseY())
 		else drawSprite(tsSolid, debugMouseLeft - 1, mouseX(), mouseY())
-		game.canres = true
 	}
 
+	game.canres = true
 	local message = ""
 
 	if(gvPlayer) {

@@ -30,6 +30,17 @@
 ::loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
 		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
+		//Sanitize removed characters
+		local foundMissing = true
+		while(foundMissing) {
+			foundMissing = false
+			foreach(key, i in game.characters) {
+				if(!(i.normal in getroottable())) {
+					delete game.characters[key]
+					foundMissing = true
+				}
+			}
+		}
 		startOverworld(game.world)
 	}
 }
