@@ -1228,7 +1228,7 @@
 
 		//Will be changed as sprites are finished
 		mySprNormal = sprPenny
-		mySprFire = sprTuxFire
+		mySprFire = sprPennyFire
 		mySprIce = sprTuxIce
 		mySprAir = sprTuxAir
 		mySprEarth = sprTuxEarth

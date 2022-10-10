@@ -105,6 +105,13 @@
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
 	}
 
+	function rescueKatie() {
+		text = textLineLen(gvLangObj["npc"]["katie-c"], gvTextW)
+		gvInfoBox = text
+		freeKonqi()
+		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
+	}
+
 	function rescueMidi() {
 		text = textLineLen(gvLangObj["npc"]["midi-c"], gvTextW)
 		gvInfoBox = text
@@ -163,6 +170,16 @@
 		over = "sprKonqiOverworld"
 		doll =  "sprKonqiDoll"
 		normal = "sprKonqi"
+		fire = "sprKonqiFire"
+		ice = "sprKonqiIce"
+		air = "sprKonqiAir"
+		earth = "sprKonqiEarth"
+		wave = [8, 9]
+	}
+	if(!game.characters.rawin("Katie")) game.characters["Katie"] <- {
+		over = "sprKatieOverworld"
+		doll =  "sprKatieDoll"
+		normal = "sprKatie"
 		fire = "sprKonqiFire"
 		ice = "sprKonqiIce"
 		air = "sprKonqiAir"

@@ -1259,10 +1259,10 @@
 		base.constructor(_x, _y, _arr)
 
 		mySprNormal = sprKatie
-		mySprFire = sprKatieFire
-		mySprIce = sprKatieIce
-		mySprAir = sprKatieAir
-		mySprEarth = sprKatieEarth
+		mySprFire = sprKonqiFire
+		mySprIce = sprKonqiIce
+		mySprAir = sprKonqiAir
+		mySprEarth = sprKonqiEarth
 	}
 
 	function _typeof() { return "Katie" }

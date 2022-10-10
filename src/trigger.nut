@@ -14,7 +14,8 @@
 	}
 
 	function run() {
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; " + code)
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; myTarget <- gvPlayer; " + code)
+		if(gvPlayer2) if(hitTest(shape, gvPlayer2.shape)) dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; myTarget <- gvPlayer2; " + code)
 	}
 
 	function _typeof() { return "Trigger" }

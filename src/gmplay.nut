@@ -112,6 +112,22 @@
 			else mapActor[i.id] <- c.id
 		}
 
+		//Rectangle actors
+		if(i.name != "") {
+			local c = 0
+			local arg = split(i.name, ",")
+			local n = arg[0]
+			arg.remove(0)
+			if(arg.len() == 1) arg = arg[0]
+			else if(arg.len() == 0) arg = null
+			if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") {
+				c = newActor(getroottable()[n], i.x + (i.width / 2.0), i.y - (i.height / 2.0), arg)
+				actor[c].w = i.width / 2.0
+				actor[c].h = i.height / 2.0
+				mapActor[i.id] <- c
+			}
+		}
+
 		//Polygon actors
 		if(i.rawin("polygon")) if(i.name != "") {
 			local arg = split(i.name, ",")

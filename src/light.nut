@@ -1,6 +1,8 @@
 ::gvLightScreen <- 0
 ::gvLight <- 0xffffffff
 ::gvLightTarget <- 0xffffffff
+::gvLight2 <- 0xffffffff
+::gvLightTarget2 <- 0xffffffff
 
 ::drawLight <- function(sprite, frame, x, y) {
 	if(!config.light) return
@@ -72,6 +74,11 @@
 	gvLight = color
 }
 
+::setLight2 <- function(color) {
+	gvLightTarget2 = color
+	gvLight2 = color
+}
+
 ::StaticLight <- class extends Actor {
 	sprite = 0
 	scale = 1.0
@@ -87,5 +94,19 @@
 
 	function run() {
 		if(sprite) drawLightEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, scale, scale)
+	}
+}
+
+::TransZone <- class extends Actor {
+	w = 0.0
+	h = 0.0
+	color = 0xffffffff
+	bg = 0
+	weather = 0
+
+	constructor(_x, _y, _arr = null){
+		bg = _arr[0]
+		weather = _arr[1]
+		color = _arr[2]
 	}
 }

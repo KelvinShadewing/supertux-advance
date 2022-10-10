@@ -41,6 +41,11 @@
 
 
 ::sprPenny <- newSprite("res/gfx/penny.png", 32, 32, 0, 0, 16, 19)
+::defPenny <- sprPenny
+::sprPennyFire <- newSprite("res/gfx/pennyfire.png", 32, 32, 0, 0, 16, 19)
+::defPennyFire <- sprPennyFire
+::sprPennyOverworld <- newSprite("res/gfx/pennyO.png", 14, 17, 0, 0, 7, 14)
+::defPennyOverworld <- sprPennyOverworld
 
 
 
@@ -59,6 +64,15 @@
 ::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 14)
 ::defKonqiDoll <- sprKonqiDoll
 ::sprKonqiNPC <- newSprite("res/gfx/konqi-npc.png", 32, 32, 0, 0, 16, 32)
+
+
+::sprKatie <- newSprite("res/gfx/katie.png", 32, 32, 0, 0, 16, 19)
+::defKatie <- sprKatie
+::sprKatieOverworld <- newSprite("res/gfx/katieO.png", 14, 20, 0, 0, 7, 17)
+::defKatieOverworld <- sprKatieOverworld
+::sprKatieDoll <- newSprite("res/gfx/katiedoll.png", 16, 16, 0, 0, 8, 14)
+::defKatieDoll <- sprKatieDoll
+::sprKatieNPC <- newSprite("res/gfx/katie-npc.png", 32, 32, 0, 0, 16, 32)
 
 
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 16, 19)

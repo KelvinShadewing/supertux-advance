@@ -4248,7 +4248,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2560,
+                 "x":2544,
                  "y":240
                 }, 
                 {
@@ -4260,7 +4260,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2544,
+                 "x":2528,
                  "y":224
                 }, 
                 {
@@ -4272,7 +4272,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2576,
+                 "x":2592,
                  "y":224
                 }, 
                 {
@@ -4994,6 +4994,18 @@
                  "width":16,
                  "x":1752,
                  "y":1900
+                }, 
+                {
+                 "class":"",
+                 "gid":32,
+                 "height":16,
+                 "id":672,
+                 "name":"sprKatieNPC,0.09,rescueKatie",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":2576,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -5002,7 +5014,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":672,
+ "nextobjectid":673,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -5013,7 +5025,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweBlizzard\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].setDia(\"borealis2\")\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n}\n\ngfxEnemySnow()"
+         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweBlizzard\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].setDia(\"borealis2\")\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n\tdeleteActor(mapActor[672])\n}\n\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
