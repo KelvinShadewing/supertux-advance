@@ -113,7 +113,7 @@
 		}
 
 		//Rectangle actors
-		if(i.name != "") {
+		if(!i.rawin("polygon") && !i.rawin("polyline") && !i.rawin("ellipse") && !i.rawin("point") && !i.rawin("gid")) if(i.name != "") {
 			local c = 0
 			local arg = split(i.name, ",")
 			local n = arg[0]

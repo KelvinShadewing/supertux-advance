@@ -103,6 +103,9 @@ switch(reschoice) {
 //Uncomment this function if you want to play at the old resolution
 //setResolution(320, 180)
 
+gvScreenW = screenW()
+gvScreenH = screenH()
+
 gvTextW = floor(screenW() / 6) - 1
 
 if(config.fullscreen) toggleFullscreen()

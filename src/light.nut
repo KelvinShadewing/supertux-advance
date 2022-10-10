@@ -100,7 +100,7 @@
 ::TransZone <- class extends Actor {
 	w = 0.0
 	h = 0.0
-	color = 0xffffffff
+	color = "0xffffffff"
 	bg = 0
 	weather = 0
 
@@ -109,4 +109,29 @@
 		weather = _arr[1]
 		color = _arr[2]
 	}
+
+	function run() {
+		if(gvSplitScreen) { //Single player camera
+			if(camx + (gvScreenW / 2) >= x - w
+			&& camy + (gvScreenH / 2) >= y - h
+			&& camx + (gvScreenW / 2) < x + w
+			&& camy + (gvScreenH / 2) < y + h) {
+				if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather in getroottable()) drawWeather = getroottable()[weather]
+				dostr("gvLightTarget = " + color)
+			}
+		}
+		else { //Multi player camera
+			if(camx1 + (gvScreenW / 4) >= x - w
+			&& camy1 + (gvScreenH / 4) >= y - h
+			&& camx1 + (gvScreenW / 4) < x + w
+			&& camy1 + (gvScreenH / 4) < y + h) {
+				if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather in getroottable()) drawWeather = getroottable()[weather]
+				dostr("gvLightTarget = " + color)
+			}
+		}
+	}
+
+	function _typeof() { return "TransZone" }
 }

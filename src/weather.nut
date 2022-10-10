@@ -1,4 +1,5 @@
 ::drawWeather <- 0
+::drawWeather2 <- 0
 
 ::dweRain <- function() {
 	for(local i = 0; i < (screenW() / 64) + 4; i++) {

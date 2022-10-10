@@ -1,4 +1,5 @@
 ::drawBG <- 0
+::drawBG2 <- 0
 ::gvHorizon <- 0
 ::gvParallaxMap <- 0
 
