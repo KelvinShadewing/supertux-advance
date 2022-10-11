@@ -314,6 +314,7 @@
 		"How are you fighting without your brush? Oh, you're copying and pasting Midi's bombs? I didn't know you can do that.",
 		"penny-0" :
 		"Pleased to meet you. Are you helping Tux save our friends? I'm so happy to hear that.",
+
 		"rad-t0-Tux" :
 		"Yo, Tux! Mayor Penny is looking for ya. By the way, catch me on the slopes sometime. I wanna see if you live up to your rep as a snow racer.",
 		"rad-t0-Konqi" :
@@ -327,7 +328,8 @@
 		"rad-t0-Kiki" :
 		"Ah, a fellow artist. Yeah, my art is painting the slopes with the lines I leave with my board here.",
 		"rad-t0" :
-		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she's in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
+		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she should be in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
+
 		"xue-c" :
 		"Thanks for saving me, chu! I'll see you back in Pennyton!",
 		"xue-pt-Tux" :
@@ -344,6 +346,7 @@
 		"Don't go getting any ideas. Midi's MINE!",
 		"xue-pt" :
 		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!",
+
 		"fireguin-pt-0" :
 		"Not much use for a firefighter here, huh? Ice can melt, sure, but it takes the fire out with it, and then we just put new ice in.",
 		"fireguin-pt-1" :
@@ -356,10 +359,12 @@
 		"Look out for thin ice! It'll break if you stand on it too long.",
 		"fireguin-pt-5" :
 		"If you need to brush up on your skills, head to the obstacle course just outside of town. You'll find it to the right from here.",
+
 		"konqi-c" :
 		"Hey, thanks for getting me out of here. I got caught trying to find Plasma Breeze. I hope she's alright. Nolok's probably got her in another fort. I'll join you to help get her back!",
 		"katie-c" :
 		"Oh, finally! Now we can get out of this dank old fort! Hey, if you need help beating Nolok, let us team up with you!",
+
 		"rocky-c" :
 		"Alright, I'm saved! Man, Nolok is the kind of trash even I wouldn't wanna touch. Good luck against him!",
 		"rocky-pt-Tux" :
@@ -376,6 +381,7 @@
 		"So you're an artist. Ever made a collage? You can find all sorts of cool stuff in the trash.",
 		"rocky-pt" :
 		"Yeah, this place is pretty cold, but it's a lot safer. The worst of Nolok's minions are on the mainland and other areas, so I'm gonna stay in Pennyton for now.",
+
 		"python-c" :
 		"Thankssss for the sssave! I'll ssssee you back in town.",
 		"python-pt-Tux" :
@@ -392,6 +398,7 @@
 		"Being here makesssss me jealoussss of warm bloodsssss. I hope Nolok'ssss army is beaten sssoon.",
 		"python-pt" :
 		"I sssure hope you're better with the cold than I am. No wonder Nolok hatesss thisss place.",
+
 		"garuda-c" :
 		"Alright! Thanks for getting rid of that guy! I can't wait to get out of this place and stretch my wings again.",
 		"garuda-pt-Tux" :
@@ -408,6 +415,7 @@
 		"Hang on, Kelvin needs to write lines for you.",
 		"garuda-pt" :
 		"Thanks for your help. It feels so good being able to fly again.",
+
 		"breeze-c-Konqi" :
 		"Konqi! I knew you'd come for me! I'm so happy to see you! Let's get out of here! I'll be right behind you.",
 		"breeze-c" :
@@ -426,6 +434,7 @@
 		"I can't wait for our next art jam. Good luck against Nolok!",
 		"breeze-pt" :
 		"It'll take all kinds to defeat Nolok. I'm glad to have you on our side.",
+
 		"gnu-c" :
 		"I regret getting captured by Nolok once more. Thank you for releasing me.",
 		"gnu-pt-0" :
@@ -452,8 +461,10 @@
 		"Before you can push on, you must be committed.",
 		"gnu-pt-11" :
 		"Wisdom compiled from many sources makes a plan executable.",
+
 		"midi-c" :
 		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?",
+
 		"sam-0" :
 		"Plenty of adventure gear at fair... wait, you're using gold? Heck, I'm going to have to mark this stuff up to cover the exchange rate.",
 		"sam-1" :
@@ -466,6 +477,7 @@
 		"Can you believe the guy who does the least work gets the most money? What a world we live in. Too bad I can't make him pay for your saving-the-world items!",
 		"sam-5" :
 		"While we're on the subject of money, this game we're in? Totally free, even to edit and sell what you make. So please, consider donating to the people who worked on it!",
+
 		"tuckles-0" :
 		"Even in the ice, it's easy to work up a sweat down here.",
 		"tuckles-1" :
@@ -480,6 +492,7 @@
 		"All those muffins you eat can't compare to the fish we mine. They're bigger, stronger, and more delicious.",
 		"tuckles-6" :
 		"Have you seen Duke? He likes to get fish the lazy way: by pretending his rod's broken and bumming fish off others. I'd ignore him if he wasn't able to block roads just by sitting on them.",
+
 		"not-done" :
 		"Hey, the yeti's not done yet. Have you played the contrib levels? You should check them out! In the meantime, I've got some more coding and drawing to do. I hope you've enjoyed what you've played so far! If you'd like to support development, please consider donating at https://patreon.com/kelvin.",
 
