@@ -1148,7 +1148,7 @@
 		else {
 			deleteActor(id)
 			gvPlayer = false
-			newActor(KonqiDie, x, y)
+			newActor(KonqiDie, x, y, sprite)
 			game.health = 0
 		}
 	}
@@ -1214,11 +1214,13 @@
 ::KonqiDie <- class extends Actor {
 	vspeed = -4.0
 	timer = 150
+	sprite = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		stopMusic()
 		playSound(sndDie, 0)
+		sprite = _arr
 	}
 
 	function run() {
@@ -1232,23 +1234,8 @@
 				game.weapon = 0
 			}
 		}
-		switch(game.weapon) {
-			case 0:
-				drawSprite(sprKonqi, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
-				break
-			case 1:
-				drawSprite(sprKonqiFire, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
-				break
-			case 2:
-				drawSprite(sprKonqiIce, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
-				break
-			case 3:
-				drawSprite(sprKonqiAir, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
-				break
-			case 4:
-				drawSprite(sprKonqiEarth, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
-				break
-		}
+
+		drawSprite(sprite, wrap(getFrames() / 15, 12, 13), floor(x - camx), floor(y - camy))
 	}
 
 	function _typeof() { return "DeadPlayer" }
@@ -1259,7 +1246,7 @@
 		base.constructor(_x, _y, _arr)
 
 		mySprNormal = sprKatie
-		mySprFire = sprKonqiFire
+		mySprFire = sprKatieFire
 		mySprIce = sprKonqiIce
 		mySprAir = sprKonqiAir
 		mySprEarth = sprKonqiEarth

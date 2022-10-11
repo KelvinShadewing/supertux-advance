@@ -92,7 +92,7 @@
 	}
 
 	function sayChar() {
-		text = arr[0]
+		text = arr[3]
 		if((argv[3] + typeof gvPlayer) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + typeof gvPlayer], gvTextW)
 		else if((argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + typeof gvPlayer], gvTextW)
 		gvInfoBox = text

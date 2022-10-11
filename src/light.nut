@@ -89,7 +89,6 @@
 		if(getroottable().rawin(_arr[0])) sprite = getroottable()[_arr[0]]
 		else deleteActor(id)
 		scale = _arr[1].tofloat()
-		print(scale)
 	}
 
 	function run() {
@@ -108,27 +107,43 @@
 		bg = _arr[0]
 		weather = _arr[1]
 		color = _arr[2]
+		print("Created transition zone")
 	}
 
 	function run() {
-		if(gvSplitScreen) { //Single player camera
+		if(!gvSplitScreen) { //Single player camera
 			if(camx + (gvScreenW / 2) >= x - w
 			&& camy + (gvScreenH / 2) >= y - h
-			&& camx + (gvScreenW / 2) < x + w
-			&& camy + (gvScreenH / 2) < y + h) {
-				if(bg in getroottable()) drawBG = getroottable()[bg]
-				if(weather in getroottable()) drawWeather = getroottable()[weather]
+			&& camx + (gvScreenW / 2) <= x + w
+			&& camy + (gvScreenH / 2) <= y + h) {
+				if(bg == "0") drawBG = 0
+				else if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
 				dostr("gvLightTarget = " + color)
 			}
 		}
 		else { //Multi player camera
 			if(camx1 + (gvScreenW / 4) >= x - w
 			&& camy1 + (gvScreenH / 4) >= y - h
-			&& camx1 + (gvScreenW / 4) < x + w
-			&& camy1 + (gvScreenH / 4) < y + h) {
-				if(bg in getroottable()) drawBG = getroottable()[bg]
-				if(weather in getroottable()) drawWeather = getroottable()[weather]
+			&& camx1 + (gvScreenW / 4) <= x + w
+			&& camy1 + (gvScreenH / 4) <= y + h) {
+				if(bg == "0") drawBG = 0
+				else if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
 				dostr("gvLightTarget = " + color)
+			}
+
+			if(camx2 + (gvScreenW / 4) >= x - w
+			&& camy2 + (gvScreenH / 4) >= y - h
+			&& camx2 + (gvScreenW / 4) <= x + w
+			&& camy2 + (gvScreenH / 4) <= y + h) {
+				if(bg == "0") drawBG2 = 0
+				else if(bg in getroottable()) drawBG2 = getroottable()[bg]
+				if(weather == "0") drawWeather2 = 0
+				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
+				dostr("gvLightTarget2 = " + color)
 			}
 		}
 	}

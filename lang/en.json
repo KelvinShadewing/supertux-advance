@@ -482,36 +482,46 @@
 		"Have you seen Duke? He likes to get fish the lazy way: by pretending his rod's broken and bumming fish off others. I'd ignore him if he wasn't able to block roads just by sitting on them.",
 		"not-done" :
 		"Hey, the yeti's not done yet. Have you played the contrib levels? You should check them out! In the meantime, I've got some more coding and drawing to do. I hope you've enjoyed what you've played so far! If you'd like to support development, please consider donating at https://patreon.com/kelvin.",
+
 		"pennyton-Tux" :
 		"This is Penny's new town. Sure was nice of her to give so many displaced people a place to stay. I wonder if they'll ever find their way back...",
-		"fish-mines-Tux" :
-		"These mines are where we get most of our fish these days. It's much safer than swimming for live ones.",
-		"ocean-bridge-Tux" :
-		"Look what Nolok's minions have done to the bridge! This place is like a maze now.",
-		"borealis" :
-		"This old fort has been taken over by the Yeti.",
-		"borealis2" :
-		"We've already cleared this place.",
-		"borealis-Tux" :
-		"This fort used to be to protect us. Now it's a stronghold for the Yeti.",
-		"borealis2-Tux" :
-		"Why did I come back here? I've already freed Konqi.",
 		"pennyton-Konqi" :
 		"I'm glad the ice here can stand up to my flames. I'd hate to sneeze and melt someone's house!",
-		"fish-mines-Konqi" :
-		"Who would have thought so many frozen fish could be found in the ice?",
-		"bridge-Konqi" :
-		"So frustrating that this wood just happens to be fireproof. At least I can still break some of it.",
-		"borealis2-Konqi" :
-		"Brr, it's warm in here, but I still get shivers thinking about the Yeti.",
 		"pennyton-Midi" :
 		"I get she's trying to help, but I just couldn't live in a place like this. I'd rather keep on the move and find a way home.",
+
+		"fish-mines-Tux" :
+		"These mines are where we get most of our fish these days. It's much safer than swimming for live ones.",
+		"fish-mines-Konqi" :
+		"Who would have thought so many frozen fish could be found in the ice?",
 		"fish-mines-Midi" :
 		"Heh, I bet I'd be great at mining. Maybe I'll take it up after we beat Nolok. Not much else for a merc to do around here.",
-		"bridge-Midi" :
+
+		"ocean-bridge-Tux" :
+		"Look what Nolok's minions have done to the bridge! This place is like a maze now.",
+		"ocean-bridge-Konqi" :
+		"So frustrating that this wood just happens to be fireproof. At least I can still break some of it.",
+		"ocean-bridge-Midi" :
 		"Uh, last time I checked, bridges aren't supposed to look like this. Jeesh, what a pain.",
+
+		"borealis" :
+		"This old fort has been taken over by the Yeti.",
+		"borealis-Tux" :
+		"This fort used to be to protect us. Now it's a stronghold for the Yeti.",
+		"borealis-Konqi" :
+		"I feel like something impossible has happened.",
+		"borealis-Midi" :
+		"You cheater. I know what you did. ;3",
+
+		"borealis2" :
+		"We've already cleared this place.",
+		"borealis2-Tux" :
+		"Why did I come back here? I've already freed Konqi and Katie.",
+		"borealis2-Konqi" :
+		"Brr, it's warm in here, but I still get shivers thinking about the Yeti.",
 		"borealis2-Midi" :
 		"Dang, this place is creepy. If the penguins didn't need this place, I'd totally blow it up.",
+
 		"duke-0a" :
 		"I'm so hungry! If you can bring me some fish, I'll open these blocks for you.",
 		"duke-0b" :

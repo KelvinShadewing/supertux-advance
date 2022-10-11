@@ -223,8 +223,8 @@
 	}
 
 	if(gvPlayer) {
-		camx = gvPlayer.x - (screenW() / 2)
-		camy = gvPlayer.y - (screenH() / 2)
+		camx = gvPlayer.x - (gvScreenW / 2)
+		camy = gvPlayer.y - (gvScreenH / 2)
 	}
 	else {
 		camx = 0
@@ -256,16 +256,16 @@
 			drawImage(bgPause, 0, 0)
 
 			local di = i / 100.0
-			local dx = (1.0 / 240.0) * screenW().tofloat()
-			local dy = (1.0 / 240.0) * screenH().tofloat()
+			local dx = (1.0 / 240.0) * gvScreenW.tofloat()
+			local dy = (1.0 / 240.0) * gvScreenH.tofloat()
 
 			if(config.light && gvGameMode == gmOverworld) drawAmbientLight()
 
-			drawSpriteEx(sprIris, 0, screenW() / 2, screenH() / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di), 1)
-			drawRec(0, 0, screenW() * (di / 2.0), screenH(), true)
-			drawRec(screenW(), 0, -(screenW() * (di / 2.0)) - 2, screenH(), true)
-			drawRec(0, 0, screenW(), screenH() * (di / 2.0), true)
-			drawRec(0, screenH(), screenW(), -(screenH() * (di / 2.0)) - 2, true)
+			drawSpriteEx(sprIris, 0, gvScreenW / 2, gvScreenH / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di), 1)
+			drawRec(0, 0, gvScreenW * (di / 2.0), gvScreenH, true)
+			drawRec(gvScreenW, 0, -(gvScreenW * (di / 2.0)) - 2, gvScreenH, true)
+			drawRec(0, 0, gvScreenW, gvScreenH * (di / 2.0), true)
+			drawRec(0, gvScreenH, gvScreenW, -(gvScreenH * (di / 2.0)) - 2, true)
 
 			resetDrawTarget()
 			drawImage(gvScreen, 0, 0)
@@ -287,54 +287,54 @@
 ::gmLevelStart <- function() {
 	setDrawTarget(gvScreen)
 	setDrawColor(0x000000ff)
-	drawRec(0, 0, screenW(), screenH(), true)
+	drawRec(0, 0, gvScreenW, gvScreenH, true)
 
-	if(gvLangObj["level"].rawin(gvMap.name)) drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
+	if(gvLangObj["level"].rawin(gvMap.name)) drawText(font2, (gvScreenW / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
 	local runAnim = getroottable()[game.playerChar].anRun
 	switch(game.weapon) {
 		case 0:
-			drawSprite(getroottable()[game.characters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			drawSprite(getroottable()[game.characters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 			break
 		case 1:
-			drawSprite(getroottable()[game.characters[game.playerChar]["fire"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			drawSprite(getroottable()[game.characters[game.playerChar]["fire"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 			break
 		case 2:
-			drawSprite(getroottable()[game.characters[game.playerChar]["ice"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			drawSprite(getroottable()[game.characters[game.playerChar]["ice"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 			break
 		case 3:
-			drawSprite(getroottable()[game.characters[game.playerChar]["air"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			drawSprite(getroottable()[game.characters[game.playerChar]["air"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 			break
 		case 4:
-			drawSprite(getroottable()[game.characters[game.playerChar]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			drawSprite(getroottable()[game.characters[game.playerChar]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 			break
 		default:
-			drawSprite(getroottable()[game.characters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], screenW() / 2, screenH() / 2)
+			drawSprite(getroottable()[game.characters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 	}
 
 	local author = gvLangObj["stats"]["author"] + ": " + gvMap.author
-	drawText(font, (screenW() / 2) - author.len() * 3, screenH() - 64, author)
+	drawText(font, (gvScreenW / 2) - author.len() * 3, gvScreenH - 64, author)
 
 	local bt = gvLangObj["stats"]["time"] + ": "
 	if(game.bestTime.rawin(gvMap.name + "-" + game.playerChar)) bt += formatTime(game.bestTime[gvMap.name + "-" + game.playerChar])
 	else bt += "0:00.00"
 	bt += " (" + game.playerChar + ")"
-	drawText(font, (screenW() / 2) - bt.len() * 3, screenH() - 56, bt)
+	drawText(font, (gvScreenW / 2) - bt.len() * 3, gvScreenH - 56, bt)
 
 	local bc = gvLangObj["stats"]["coins"] + ": "
 	if(game.bestCoins.rawin(gvMap.name)) bc += game.bestCoins[gvMap.name] + " / " + game.maxCoins
 	else bc += "0 / " + game.maxCoins
-	drawText(font, (screenW() / 2) - bc.len() * 3, screenH() - 48, bc)
+	drawText(font, (gvScreenW / 2) - bc.len() * 3, gvScreenH - 48, bc)
 
 	local be = gvLangObj["stats"]["enemies"] + ": "
 	if(game.bestEnemies.rawin(gvMap.name)) be += game.bestEnemies[gvMap.name] + " / " + game.maxEnemies
 	else be += "0 / " + game.maxEnemies
-	drawText(font, (screenW() / 2) - be.len() * 3, screenH() - 40, be)
+	drawText(font, (gvScreenW / 2) - be.len() * 3, gvScreenH - 40, be)
 
 	local bs = gvLangObj["stats"]["secrets"] + ": "
 	if(game.bestSecrets.rawin(gvMap.name)) bs += game.bestSecrets[gvMap.name] + " / " + game.maxSecrets
 	else bs += "0 / " + game.maxSecrets
-	drawText(font, (screenW() / 2) - bs.len() * 3, screenH() - 32, bs)
+	drawText(font, (gvScreenW / 2) - bs.len() * 3, gvScreenH - 32, bs)
 
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
@@ -346,49 +346,49 @@
 	if(gvCamTarget == null && gvPlayer) gvCamTarget = gvPlayer
 	local px = 0
 	local py = 0
-	local ux = gvMap.w - screenW()
-	local uy = gvMap.h - screenH()
+	local ux = gvMap.w - gvScreenW
+	local uy = gvMap.h - gvScreenH
 
 	//Camera peek
 	local lx = 0
 	local ly = 0
 	if(gvPlayer) {
 		/* Temporarily disabled
-		lx = ((joyH(0) / js_max.tofloat()) * screenW() / 2.5)
-		ly = ((joyV(0) / js_max.tofloat()) * screenH() / 2.5)
+		lx = ((joyH(0) / js_max.tofloat()) * gvScreenW / 2.5)
+		ly = ((joyV(0) / js_max.tofloat()) * gvScreenH / 2.5)
 		*/
 
-		if(getcon("leftPeek", "hold")) lx = -(screenW() / 2.5)
-		if(getcon("rightPeek", "hold")) lx = (screenW() / 2.5)
-		if(getcon("upPeek", "hold")) ly = -(screenH() / 2.5)
-		if(getcon("downPeek", "hold")) ly = (screenH() / 2.5)
+		if(getcon("leftPeek", "hold")) lx = -(gvScreenW / 2.5)
+		if(getcon("rightPeek", "hold")) lx = (gvScreenW / 2.5)
+		if(getcon("upPeek", "hold")) ly = -(gvScreenH / 2.5)
+		if(getcon("downPeek", "hold")) ly = (gvScreenH / 2.5)
 	}
 
 	if(gvCamTarget != null && gvCamTarget != false && gvPlayer) {
 		if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {
 				if(debug && mouseDown(0)) {
-					px = (gvCamTarget.x) - (screenW() / 2) + lx
-					py = (gvCamTarget.y) - (screenH() / 2) + ly
+					px = (gvCamTarget.x) - (gvScreenW / 2) + lx
+					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (screenW() / 2) + lx
-					py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (screenH() / 2) + ly
+					px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 2) + lx
+					py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (gvScreenH / 2) + ly
 				}
 			}
 			else {
-				local pw = max(screenW(), 320)
-				local ph = max(screenH(), 240)
-				local ptx = (gvCamTarget.x) - (screenW() / 2)
-				local pty = (gvCamTarget.y) - (screenH() / 2)
+				local pw = max(gvScreenW, 320)
+				local ph = max(gvScreenH, 240)
+				local ptx = (gvCamTarget.x) - (gvScreenW / 2)
+				local pty = (gvCamTarget.y) - (gvScreenH / 2)
 
 				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) {
-					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (screenW() / 2) + lx
-					else ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (screenW() / 2) + lx
+					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (gvScreenW / 2) + lx
+					else ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (gvScreenW / 2) + lx
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
-					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (screenH() / 2) + ly
-					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (screenH() / 2) + ly
+					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -396,8 +396,8 @@
 			}
 		}
 		else {
-			px = (gvCamTarget.x) - (screenW() / 2)
-			py = (gvCamTarget.y) - (screenH() / 2)
+			px = (gvCamTarget.x) - (gvScreenW / 2)
+			py = (gvCamTarget.y) - (gvScreenH / 2)
 		}
 	} else {
 		px = camx
@@ -424,20 +424,20 @@
 	camxprev = camx
 	camyprev = camy
 
-	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
-	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
-	if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (screenW() / 16) + 1; i++) {
+	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
+	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
+	if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
 	runActors()
 	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	drawAmbientLight()
-	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg", 1, 1, 1, gvLight)
-	else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
+	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", 1, 1, 1, gvLight)
+	else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg")
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
-	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")
+	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
 	//HUDs
 	setDrawTarget(gvScreen)
@@ -479,55 +479,55 @@
 			local fullhearts = floor(game.bossHealth / 4)
 			if(game.bossHealth == 0) fullhearts = 0
 
-			drawSprite(sprBossHealth, 6, screenW() - 23, screenH() - 48)
-			drawSprite(sprSkull, 0, screenW() - 26, screenH() - 46)
+			drawSprite(sprBossHealth, 6, gvScreenW - 23, gvScreenH - 48)
+			drawSprite(sprSkull, 0, gvScreenW - 26, gvScreenH - 46)
 			for(local i = 0; i < 10; i++) {
-				if(i < fullhearts) drawSprite(sprBossHealth, 4, screenW() - 23, screenH() - 64 - (16 * i))
-				else if(i == fullhearts && game.bossHealth > 0) drawSprite(sprBossHealth, game.bossHealth % 4, screenW() - 23, screenH() - 64 - (16 * i))
-				else drawSprite(sprBossHealth, 0, screenW() - 23, screenH() - 64 - (16 * i))
+				if(i < fullhearts) drawSprite(sprBossHealth, 4, gvScreenW - 23, gvScreenH - 64 - (16 * i))
+				else if(i == fullhearts && game.bossHealth > 0) drawSprite(sprBossHealth, game.bossHealth % 4, gvScreenW - 23, gvScreenH - 64 - (16 * i))
+				else drawSprite(sprBossHealth, 0, gvScreenW - 23, gvScreenH - 64 - (16 * i))
 			}
-			drawSprite(sprBossHealth, 5, screenW() - 23, screenH() - 64 - (16 * 10))
+			drawSprite(sprBossHealth, 5, gvScreenW - 23, gvScreenH - 64 - (16 * 10))
 		}
 
 		//Draw coins & herrings
-		drawSprite(sprCoin, 0, 16, screenH() - 16)
+		drawSprite(sprCoin, 0, 16, gvScreenH - 16)
 		if(game.maxCoins > 0) {
 			if(gvTimeAttack) {
-				if(levelEndRunner) drawText(font2, 24, screenH() - 23, game.coins.tostring())
-				else drawText(font2, 24, screenH() - 23, (game.coins + game.levelCoins).tostring())
+				if(levelEndRunner) drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
+				else drawText(font2, 24, gvScreenH - 23, (game.coins + game.levelCoins).tostring())
 			}
-			else drawText(font2, 24, screenH() - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+			else drawText(font2, 24, gvScreenH - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
 		}
-		else drawText(font2, 24, screenH() - 23, game.coins.tostring())
+		else drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
 		//Herrings (redcoins)
-		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, screenH() - 40)
-		if(game.maxRedCoins > 0) drawText(font2, 24, screenH() - 46, game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
+		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - 40)
+		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - 46, game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
 		//Draw subitem
-		drawSprite(sprSubItem, 0, screenW() - 18, 18)
+		drawSprite(sprSubItem, 0, gvScreenW - 18, 18)
 		switch(game.subitem) {
 			case 1:
-				drawSprite(sprFlowerFire, 0, screenW() - 18, 18)
+				drawSprite(sprFlowerFire, 0, gvScreenW - 18, 18)
 				break
 			case 2:
-				drawSprite(sprFlowerIce, 0, screenW() - 18, 18)
+				drawSprite(sprFlowerIce, 0, gvScreenW - 18, 18)
 				break
 			case 3:
-				drawSprite(sprAirFeather, 0, screenW() - 18, 18)
+				drawSprite(sprAirFeather, 0, gvScreenW - 18, 18)
 				break
 			case 4:
-				drawSprite(sprEarthShell, 0, screenW() - 18, 18)
+				drawSprite(sprEarthShell, 0, gvScreenW - 18, 18)
 				break
 			case 5:
-				drawSprite(sprMuffin, 0, screenW() - 18, 18)
+				drawSprite(sprMuffin, 0, gvScreenW - 18, 18)
 				break
 			case 6:
-				drawSprite(sprMuffin, 1, screenW() - 18, 18)
+				drawSprite(sprMuffin, 1, gvScreenW - 18, 18)
 				break
 			case 7:
-				drawSprite(sprStar, 0, screenW() - 18, 18)
+				drawSprite(sprStar, 0, gvScreenW - 18, 18)
 				break
 			case 8:
-				drawSprite(sprCoffee, 0, screenW() - 18, 17)
+				drawSprite(sprCoffee, 0, gvScreenW - 18, 17)
 				break
 		}
 
@@ -545,30 +545,30 @@
 				stopSound(sndWarning)
 				playSound(sndWarning, 0)
 			}
-			drawSpriteEx(sprWarning, 0, screenW() / 2, screenH() / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))
+			drawSpriteEx(sprWarning, 0, gvScreenW / 2, gvScreenH / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))
 			gvWarning += 1.5
 		}
 
 		//Keys
 		local kx = 10
 		if(game.canres) {
-			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, screenW() - kx, screenH() - 10)
+			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, gvScreenW - kx, gvScreenH - 10)
 			kx += 16
 		}
 		if(gvKeyCopper) {
-			drawSprite(sprKeyCopper, 0, screenW() - kx, screenH() - 16)
+			drawSprite(sprKeyCopper, 0, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeySilver) {
-			drawSprite(sprKeySilver, 0, screenW() - kx, screenH() - 16)
+			drawSprite(sprKeySilver, 0, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeyGold) {
-			drawSprite(sprKeyGold, 0, screenW() - kx, screenH() - 16)
+			drawSprite(sprKeyGold, 0, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeyMythril) {
-			drawSprite(sprKeyMythril, 0, screenW() - kx, screenH() - 16)
+			drawSprite(sprKeyMythril, 0, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		//Other items could be put in the row like this as well
@@ -580,14 +580,14 @@
 			if(chint(gvInfoBox[i])  == "\n") ln++
 		}
 		setDrawColor(0x000000d0)
-		drawRec(0, 0, screenW(), 8 * max(ln, 7), true)
+		drawRec(0, 0, gvScreenW, 8 * max(ln, 7), true)
 		drawText(font, 8, 8, gvInfoBox.slice(0, gvInfoStep))
 
 	}
 
 	//Fade from black
 	setDrawColor(gvFadeInTime)
-	drawRec(0, 0, screenW(), screenH(), true)
+	drawRec(0, 0, gvScreenW, gvScreenH, true)
 	if(gvFadeInTime > 0) gvFadeInTime -= 10
 	if(gvFadeInTime < 0) gvFadeInTime = 0
 
@@ -601,7 +601,7 @@
 	//Draw global IGT
 	if(config.showglobaligt && levelEndRunner != 1) {
 		local gtd = formatTime(game.igt) //Game time to draw
-		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
+		drawText(font2, (gvScreenW / 2) - (gtd.len() * 4), gvScreenH - 24, gtd)
 	}
 
 	checkAchievements()
@@ -612,7 +612,7 @@
 	drawImage(gvScreen, 0, 0)
 	if(gvFadeTime > 0) {
 		setDrawColor(min(255, gvFadeTime * 8))
-		drawRec(0, 0, screenW(), screenH(), true)
+		drawRec(0, 0, gvScreenW, gvScreenH, true)
 	}
 
 	//Handle berries
@@ -631,15 +631,15 @@
 	if(!gvPlayer) return
 	if(gvMap == 0) return
 
-	local ux = gvMap.w - screenW()
-	local uy = gvMap.h - screenH()
+	local ux = gvMap.w - gvScreenW
+	local uy = gvMap.h - gvScreenH
 
 	gvPlayer.x = _x.tofloat()
 	gvPlayer.y = _y.tofloat()
 	gvPlayer.xprev = gvPlayer.x
 	gvPlayer.yprev = gvPlayer.y
-	camx = _x.tofloat() - (screenW() / 2)
-	camy = _y.tofloat() - (screenH() / 2)
+	camx = _x.tofloat() - (gvScreenW / 2)
+	camy = _y.tofloat() - (gvScreenH / 2)
 
 	if(camx > ux) camx = ux
 	if(camx < 0) camx = 0
@@ -651,8 +651,8 @@
 	function run() {
 		local str = gvLangObj["stats"]["final-time"]
 		local time = formatTime(game.igt)
-		drawText(font2, (screenW() / 2) - (str.len() * 4), 64, str)
-		drawText(font2, (screenW() / 2) - (time.len() * 4), 80, time)
+		drawText(font2, (gvScreenW / 2) - (str.len() * 4), 64, str)
+		drawText(font2, (gvScreenW / 2) - (time.len() * 4), 80, time)
 	}
 }
 
@@ -668,8 +668,8 @@
 					c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
 				}
 			}
-			camx = c.x - (screenW() / 2)
-			camy = c.y - (screenH() / 2)
+			camx = c.x - (gvScreenW / 2)
+			camy = c.y - (gvScreenH / 2)
 			if(gvPlayer) gvCamTarget = gvPlayer
 			break
 

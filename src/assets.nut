@@ -68,6 +68,8 @@
 
 ::sprKatie <- newSprite("res/gfx/katie.png", 32, 32, 0, 0, 16, 19)
 ::defKatie <- sprKatie
+::sprKatieFire <- newSprite("res/gfx/katiefire.png", 32, 32, 0, 0, 16, 19)
+::defKatieFire <- sprKatieFire
 ::sprKatieOverworld <- newSprite("res/gfx/katieO.png", 14, 20, 0, 0, 7, 17)
 ::defKatieOverworld <- sprKatieOverworld
 ::sprKatieDoll <- newSprite("res/gfx/katiedoll.png", 16, 16, 0, 0, 8, 14)
