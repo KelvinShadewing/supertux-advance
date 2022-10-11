@@ -104,6 +104,7 @@
 	weather = 0
 
 	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
 		bg = _arr[0]
 		weather = _arr[1]
 		color = _arr[2]
@@ -145,6 +146,12 @@
 				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
 				dostr("gvLightTarget2 = " + color)
 			}
+		}
+
+		if(debug) {
+			setDrawColor(0xffffffff)
+			drawRec(x - camx - w, y - camy - h, w * 2, h * 2, false)
+			if(gvPlayer) drawLine(x - camx, y - camy, gvPlayer.x - camx, gvPlayer.y - camy)
 		}
 	}
 

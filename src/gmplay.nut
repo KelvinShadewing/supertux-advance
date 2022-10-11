@@ -121,7 +121,8 @@
 			if(arg.len() == 1) arg = arg[0]
 			else if(arg.len() == 0) arg = null
 			if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") {
-				c = newActor(getroottable()[n], i.x + (i.width / 2.0), i.y - (i.height / 2.0), arg)
+				print(i.x + " - " + i.y)
+				c = newActor(getroottable()[n], i.x + (i.width / 2.0), i.y + (i.height / 2.0), arg)
 				actor[c].w = i.width / 2.0
 				actor[c].h = i.height / 2.0
 				mapActor[i.id] <- c
@@ -552,7 +553,7 @@
 		//Keys
 		local kx = 10
 		if(game.canres) {
-			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, gvScreenW - kx, gvScreenH - 10)
+			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeyCopper) {

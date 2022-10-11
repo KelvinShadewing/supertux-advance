@@ -34,7 +34,7 @@
 ::defTuxEarth <- sprTuxEarth
 ::sprTuxOverworld <- newSprite("res/gfx/tuxO.png", 14, 17, 0, 0, 7, 14)
 ::defTuxOverworld <- sprTuxOverworld
-::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 14)
+::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 8)
 ::defTuxDoll <- sprTuxDoll
 ::sprTuxNPC <- newSprite("res/gfx/tux-npc.png", 32, 32, 0, 0, 16, 32)
 
@@ -46,6 +46,8 @@
 ::defPennyFire <- sprPennyFire
 ::sprPennyOverworld <- newSprite("res/gfx/pennyO.png", 14, 17, 0, 0, 7, 14)
 ::defPennyOverworld <- sprPennyOverworld
+::sprPennyDoll <- newSprite("res/gfx/pennydoll.png", 16, 16, 0, 0, 8, 8)
+::defPennyDoll <- sprPennyDoll
 
 
 
@@ -61,7 +63,7 @@
 ::defKonqiEarth <- sprKonqiEarth
 ::sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 0, 0, 7, 17)
 ::defKonqiOverworld <- sprKonqiOverworld
-::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 14)
+::sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 0, 0, 8, 8)
 ::defKonqiDoll <- sprKonqiDoll
 ::sprKonqiNPC <- newSprite("res/gfx/konqi-npc.png", 32, 32, 0, 0, 16, 32)
 
@@ -72,7 +74,7 @@
 ::defKatieFire <- sprKatieFire
 ::sprKatieOverworld <- newSprite("res/gfx/katieO.png", 14, 20, 0, 0, 7, 17)
 ::defKatieOverworld <- sprKatieOverworld
-::sprKatieDoll <- newSprite("res/gfx/katiedoll.png", 16, 16, 0, 0, 8, 14)
+::sprKatieDoll <- newSprite("res/gfx/katiedoll.png", 16, 16, 0, 0, 8, 8)
 ::defKatieDoll <- sprKatieDoll
 ::sprKatieNPC <- newSprite("res/gfx/katie-npc.png", 32, 32, 0, 0, 16, 32)
 
@@ -81,7 +83,7 @@
 ::defMidi <- sprMidi
 ::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 17)
 ::defMidiOverworld <- sprMidiOverworld
-::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 14)
+::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 8)
 ::defMidiDoll <- sprMidiDoll
 ::sprMidiNPC <- newSprite("res/gfx/midi-npc.png", 32, 32, 0, 0, 16, 32)
 
@@ -105,6 +107,7 @@
 ::sprSkull <- newSprite("res/gfx/skull.png", 16, 16, 0, 0, 0, 0)
 ::sprIris <- newSprite("res/gfx/iris.png", 240, 240, 0, 0, 120, 120)
 ::sprAchiFrame <- newSprite("res/gfx/achievement-frame.png", 12, 24, 0, 0, 0, 0)
+::sprCharCursor <- newSprite("res/gfx/char-cursor.png", 24, 24, 0, 0, 12, 12)
 
 
 //Blocks

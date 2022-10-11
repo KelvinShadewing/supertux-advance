@@ -188,7 +188,7 @@
          "objects":[
                 {
                  "class":"",
-                 "height":96,
+                 "height":80,
                  "id":139,
                  "name":"drawBG = dbgCave",
                  "rotation":0,
@@ -205,14 +205,14 @@
                  "rotation":0,
                  "visible":true,
                  "width":32,
-                 "x":3424,
+                 "x":3456,
                  "y":16
                 }, 
                 {
                  "class":"",
                  "height":25.2121166666667,
                  "id":181,
-                 "name":"playerTeleport(960, 256); gvPlayer.hspeed = 8; drawBG = dbgAurora",
+                 "name":"playerTeleport(960, 256); gvPlayer.hspeed = 8",
                  "rotation":0,
                  "visible":true,
                  "width":10.9090999999999,
@@ -223,7 +223,7 @@
                  "class":"",
                  "height":8.54545,
                  "id":182,
-                 "name":"playerTeleport(4500, 192); gvPlayer.hspeed = 2; drawBG = dbgCave",
+                 "name":"playerTeleport(4500, 192); gvPlayer.hspeed = 2",
                  "rotation":0,
                  "visible":true,
                  "width":18.9091,
@@ -1515,7 +1515,7 @@
                  "name":"TransZone,dbgCave,0,0xffffffff",
                  "rotation":0,
                  "visible":true,
-                 "width":80,
+                 "width":112,
                  "x":3600,
                  "y":176
                 }, 
@@ -1526,9 +1526,31 @@
                  "name":"TransZone,dbgAurora,0,0xffffffff",
                  "rotation":0,
                  "visible":true,
-                 "width":80,
-                 "x":3520,
+                 "width":112,
+                 "x":3488,
                  "y":176
+                }, 
+                {
+                 "class":"",
+                 "height":112,
+                 "id":385,
+                 "name":"TransZone,dbgCave,0,0xffffffff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":112,
+                 "x":4496,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "height":272,
+                 "id":387,
+                 "name":"TransZone,dbgAurora,0,0xffffffff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":112,
+                 "x":944,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1537,7 +1559,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":385,
+ "nextobjectid":388,
  "orientation":"orthogonal",
  "properties":[
         {
