@@ -530,7 +530,7 @@
 			hittime += 2
 			frame += 0.002 * hittime
 			if(hittime >= 150) {
-				tileSetSolid(x, y, 0)
+				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				fireWeapon(ExplodeF, x, y, 0, id)
 			}
