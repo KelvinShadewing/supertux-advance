@@ -56,10 +56,6 @@ donut("src/spawner.nut")
 donut("src/achievements.nut")
 donut("src/racer.nut")
 
-//Load mods
-local modlist = lsdir("mods")
-for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "..") donut("mods/" + modlist[i])
-
 ////////////////
 //    MAIN    //
 ////////////////
@@ -140,6 +136,10 @@ strDifficulty = [
 	gvLangObj["difficulty-levels"]["hard"],
 	gvLangObj["difficulty-levels"]["super"]
 ]
+
+//Load mods
+local modlist = lsdir("mods")
+for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "..") donut("mods/" + modlist[i])
 
 print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()

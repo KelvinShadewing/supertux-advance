@@ -362,25 +362,25 @@
                 }, 
                 {
                  "class":"",
-                 "height":112,
+                 "height":32,
                  "id":875,
                  "name":"myTarget.vspeed *= 1.1",
                  "rotation":0,
                  "visible":true,
                  "width":32,
                  "x":3552,
-                 "y":352
+                 "y":432
                 }, 
                 {
                  "class":"",
-                 "height":112,
+                 "height":32,
                  "id":876,
                  "name":"myTarget.vspeed *= 1.1",
                  "rotation":0,
                  "visible":true,
                  "width":32,
                  "x":3392,
-                 "y":352
+                 "y":432
                 }],
          "opacity":1,
          "type":"objectgroup",
