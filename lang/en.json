@@ -553,6 +553,7 @@
 		"Have you seen Tuckles? I've never seen a penguin so buff! He doesn't even use a pick for mining. Everything he dug out, he did with his own beak!",
 		"take-duke" :
 		"Are you collecting fish for Duke? Please take him with you. All he does is eat!",
+
 		"bearista-0" :
 		"Try some coffee! Perfectly roasted and carefully brewed. Free for heroes.",
 		"bearista-1":
@@ -561,6 +562,9 @@
 		"Coffee's flavor doesn't just come from how it's roasted. Where it grows also changes the taste. For instance, if it grows around fruit trees, it'll get a fruity flavor, and nut trees will give a nutty flavor.",
 		"bearista-3" :
 		"Have you noticed decafinated beans look different from regular ones? That's because the caffiene is in the wax coating. They decafinate them by washing the wax off.",
+		"bearista-4" :
+		"Caffiene can make you more alert, but also increases chemicals that cause stress. If you start feeling anxious or jumpy, you should cut back on coffee.",
+
 		"tix-newpeople" :
 		"So many new people have been spilling into our world. It was cool at first, but I hope it doesn't get too crowded.",
 		"blame-nolok-displaced" :

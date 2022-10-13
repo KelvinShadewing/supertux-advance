@@ -96,6 +96,8 @@
 
 		if(zoomies > 0) zoomies--
 		if(resTime > 0) resTime--
+
+		if(resTime > 0 && y > gvMap.h) y = gvMap.h
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
