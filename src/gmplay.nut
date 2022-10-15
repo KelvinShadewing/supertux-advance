@@ -440,6 +440,11 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
+	//Resume music after invincibility
+	if(gvPlayer && gvPlayer2 && gvPlayer.invincible == 0 && gvPlayer2.invincible == 0
+	|| gvPlayer && !gvPlayer2 && gvPlayer.invincible == 0
+	|| gvPlayer2 && !gvPlayer && gvPlayer2.invincible == 0) songPlay(gvMusicName)
+
 	//HUDs
 	setDrawTarget(gvScreen)
 	drawImage(gvPlayScreen, 0, 0)

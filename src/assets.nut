@@ -490,6 +490,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
 
 ::songPlay <- function(song) {
+	if(song == 0) {
+		songStop()
+		return
+	}
 	gvMusicName = song
 	if(gvMusicName == gvLastSong) return
 
@@ -498,6 +502,12 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	playMusic(gvMusic, -1)
 
 	gvLastSong = song
+}
+
+::songStop <- function() {
+	stopMusic()
+	gvMusicName = 0
+	gvLastSong = 0
 }
 
 ::gfxReset <- function() {

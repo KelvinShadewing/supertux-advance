@@ -429,7 +429,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\nstopMusic()\ngfxEnemySnow()\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tdeleteActor(mapActor[15])\n\tdeleteActor(mapActor[33])\n}"
+         "value":"drawBG = dbgAurora\nsongStop()\ngfxEnemySnow()\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tdeleteActor(mapActor[15])\n\tdeleteActor(mapActor[33])\n}"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
