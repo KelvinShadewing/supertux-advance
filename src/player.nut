@@ -48,6 +48,7 @@
 	runSpeed = 3.0
 	accel = 0.2
 	friction = 0.1
+	baseFriction = 0.1
 	swimming = false
 
 	hurt = 0 //How much damage has been taken
@@ -98,6 +99,8 @@
 		if(resTime > 0) resTime--
 
 		if(resTime > 0 && y > gvMap.h) y = gvMap.h
+		if(y < -100) y = -100.0
+		//escapeSolid()
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
