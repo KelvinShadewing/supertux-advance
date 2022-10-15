@@ -4961,42 +4961,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":95,
-                 "height":16,
-                 "id":669,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":1976,
-                 "y":1900
-                }, 
-                {
-                 "class":"",
-                 "gid":95,
-                 "height":16,
-                 "id":670,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":1864,
-                 "y":1900
-                }, 
-                {
-                 "class":"",
-                 "gid":95,
-                 "height":16,
-                 "id":671,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":1752,
-                 "y":1900
-                }, 
-                {
-                 "class":"",
                  "gid":32,
                  "height":16,
                  "id":672,
