@@ -33,7 +33,7 @@ const menuY = 40
 
 		if(cursor == i) {
 			//Make current selection blink
-			if(getFrames() / 24 % 2 == 0) currFont = font2I
+			currFont = font2I
 			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			//Display option description
@@ -61,7 +61,7 @@ const menuY = 40
 		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
-			if(getFrames() / 24 % 2 == 0) currFont = font2I
+			currFont = font2I
 			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
 			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
 			if(menu[i].rawin("desc")) {
