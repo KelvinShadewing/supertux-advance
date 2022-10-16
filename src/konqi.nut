@@ -36,6 +36,7 @@
 	groundx = 0.0 //Remember last coordinates over solid ground
 	groundy = 0.0
 	held = null
+	accel = 0.2
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -429,13 +430,15 @@
 				if(zoomies > 0) mspeed *= 2.0
 
 				//Moving left and right
+				if(zoomies > 0) accel = 0.4
+				else accel = 0.2
 				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
-					if(onIce()) hspeed += 0.1
-					else hspeed += 0.2
+					if(onIce()) hspeed += accel / 2.0
+					else hspeed += accel
 				}
 				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
-					if(onIce()) hspeed -= 0.1
-					else hspeed -= 0.2
+					if(onIce()) hspeed -= accel / 2.0
+					else hspeed -= accel
 				}
 
 				//Change run animation speed
@@ -840,10 +843,12 @@
 				else mspeed = 1.0
 				if(zoomies > 0) mspeed *= 2.0
 
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += 0.1
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= 0.1
-				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += 0.1
-				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= 0.1
+				if(zoomies > 0) accel = 0.2
+				else accel = 0.1
+				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed += accel
+				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) hspeed -= accel
+				if(getcon("down", "hold") && vspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed += accel
+				if(getcon("up", "hold") && vspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt) vspeed -= accel
 			}
 
 			//Friction

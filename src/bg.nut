@@ -118,9 +118,11 @@
 }
 
 ::dbgOceanNight <- function() {
+	dbgStarSky()
+
 	for(local i = 0; i < 2; i++) {
 		for(local j = 0; j < 16; j++) {
-			drawSprite(bgOceanNight, j, ((-camx / 32) % 480) + (i * 480), j * 8)
+			drawSprite(bgOceanNight, j, ((-camx / 64) % 480), j * 8)
 		}
 	}
 
@@ -132,9 +134,11 @@
 }
 
 ::dbgOceanMoving <- function() {
+	dbgStarSky()
+
 	for(local i = 0; i < 2; i++) {
 		for(local j = 0; j < 16; j++) {
-			drawSprite(bgOceanNight, j, (((-camx - getFrames()) / 16) % 480) + (i * 480), j * 8)
+			drawSprite(bgOceanNight, j, (((-camx - getFrames()) / 64) % 480) + (i * 480), j * 8)
 		}
 	}
 
@@ -147,8 +151,9 @@
 
 ::dbgStarSky <- function() {
 	for(local i = 0; i < 3; i++) {
-		drawSprite(bgStarSky, 0, ((-camx / 16) % 240) + (i * 240), (screenH() / 2) - 120)
+		drawSprite(bgStarSky, 0, (i * 360), (screenH() / 2) - 120)
 	}
+	drawSprite(bgMoon, 0, gvScreenW - 128, 64)
 }
 
 ::dbgUnderwater <- function() {

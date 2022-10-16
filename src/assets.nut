@@ -404,7 +404,7 @@
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 720, 240, 0, 0, 0, 0)
-::bgStarSky <- newSprite("res/gfx/starysky.png", 240, 240, 0, 0, 0, 0)
+::bgStarSky <- newSprite("res/gfx/starrysky.png", 360, 240, 0, 0, 0, 0)
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 ::bgSnowPlain <- newSprite("res/gfx/bgSnowPlain.png", 720, 240, 0, 0, 0, 0)
@@ -417,6 +417,7 @@
 ::bgCharSel <- newSprite("res/gfx/charsel.png", 424, 240, 0, 0, 212, 0)
 ::bgPennyton0 <- newSprite("res/gfx/pennyton-bg-0.png", 480, 112, 0, 0, 0, 0)
 ::bgPennyton1 <- newSprite("res/gfx/pennyton-bg-1.png", 480, 74, 0, 0, 0, 0)
+::bgMoon <- newSprite("res/gfx/bg-moon.png", 32, 32, 0, 0, 16, 16)
 
 
 //Weather
@@ -467,7 +468,6 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndIceblock <- loadSound("res/snd/iceblock_bump.ogg")
 ::sndAchievement <- loadSound("res/snd/achievement.ogg")
 
-
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
 ::gvMusicName <- ""
@@ -490,6 +490,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musBossIntro <- "res/mus/boss-intro.ogg"
 ::musGrassOverworld <- "res/mus/peaceful-village.ogg"
 ::musBerrylife <- "res/mus/berrylife.ogg"
+::musIceChip <- "res/mus/ice_music.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
