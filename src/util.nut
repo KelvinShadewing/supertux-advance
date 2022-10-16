@@ -27,7 +27,7 @@
 
 ::gotoTest <- function() {
 	game.check = false
-	startPlay("res/map/test.json", true, true)
+	startPlay("res/map/verdant-rise.json", true, true)
 }
 
 ::gotoMario <- function() {

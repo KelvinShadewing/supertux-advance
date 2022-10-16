@@ -1227,7 +1227,7 @@
 		mySprNormal = sprPenny
 		mySprFire = sprPennyFire
 		mySprIce = sprPennyIce
-		mySprAir = sprTuxAir
+		mySprAir = sprPennyAir
 		mySprEarth = sprTuxEarth
 	}
 

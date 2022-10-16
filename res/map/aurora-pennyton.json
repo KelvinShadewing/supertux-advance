@@ -789,7 +789,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgPennyton\nsongPlay(musSnowTown)\ndrawWeather = dweSnow\ngvLightTarget = 0xffffffff\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) deleteActor(i.id)\n if(i.sprite == sprPygame && !game.friends.rawin(\"Pygame\")) deleteActor(i.id)\n}\n\nif(gvPlayer && typeof gvPlayer == \"Penny\"\n|| gvPlayer2 && typeof gvPlayer2 == \"Penny\") deleteActor(mapActor[6])"
+         "value":"drawBG = dbgPennyton\nsongPlay(musSnowTown)\ndrawWeather = dweSnow\ngvLightTarget = 0xffffffff\ngvHorizon = gvMap.h - 32\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprXue && !game.friends.rawin(\"Xue\")) deleteActor(i.id)\n if(i.sprite == sprPygame && !game.friends.rawin(\"Pygame\")) deleteActor(i.id)\n}\n\nif(gvPlayer && typeof gvPlayer == \"Penny\"\n|| gvPlayer2 && typeof gvPlayer2 == \"Penny\") deleteActor(mapActor[6])"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.2",

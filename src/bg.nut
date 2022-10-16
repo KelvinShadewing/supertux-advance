@@ -32,7 +32,7 @@
 ::dbgForest <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180)
+		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180 - ((gvHorizon - (camy + gvScreenH)) / 2))
 		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvHorizon - camy - 240)
 	}
 	else {
@@ -47,12 +47,12 @@
 }
 
 ::dbgAurora <- function() {
-	for(local i = 0; i < 2; i++) drawSprite(bgAurora, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
+	for(local i = 0; i < 2; i++) drawSprite(bgAurora, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 }
 
 ::dbgPennyton <- function() {
 	dbgAurora()
-	for(local i = 0; i < 3; i++) drawSprite(bgPennyton1, 0, ((-camx / 4) % 480) + (i * 480), gvHorizon - camy - 160)
+	for(local i = 0; i < 3; i++) drawSprite(bgPennyton1, 0, ((-camx / 4) % 480) + (i * 480), gvHorizon - camy - 96 - ((gvHorizon - (camy + gvScreenH)) / 1.25))
 	if(drawWeather == dweSnow) {
 		setDrawColor(0x60606040)
 		drawRec(0, 0, screenW(), screenH(), true)
@@ -62,7 +62,7 @@
 			}
 		}
 	}
-	for(local i = 0; i < 3; i++) drawSprite(bgPennyton0, 0, ((-camx / 2) % 480) + (i * 480), gvHorizon - camy - 144)
+	for(local i = 0; i < 3; i++) drawSprite(bgPennyton0, 0, ((-camx / 2) % 480) + (i * 480), gvHorizon - camy - 112 - ((gvHorizon - (camy + gvScreenH)) / 1.5))
 }
 
 ::dbgAuroraNight <- function() {

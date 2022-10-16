@@ -66,7 +66,7 @@
 				normal = "sprPenny"
 				fire = "sprPennyFire"
 				ice = "sprPennyIce"
-				air = "sprTuxAir"
+				air = "sprPennyAir"
 				earth = "sprTuxEarth"
 				wave = [40, 41]
 			}
