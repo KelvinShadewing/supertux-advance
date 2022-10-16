@@ -122,7 +122,7 @@
 
 	for(local i = 0; i < 2; i++) {
 		for(local j = 0; j < 16; j++) {
-			drawSprite(bgOceanNight, j, ((-camx / 64) % 480), j * 8)
+			drawSprite(bgOceanNight, j, ((-camx / 64) % 480) + (i * 480), j * 8)
 		}
 	}
 

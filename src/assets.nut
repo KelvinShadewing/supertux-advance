@@ -48,6 +48,8 @@
 ::defPennyIce <- sprPennyIce
 ::sprPennyAir <- newSprite("res/gfx/pennyair.png", 32, 32, 0, 0, 16, 19)
 ::defPennyAir <- sprPennyAir
+::sprPennyEarth <- newSprite("res/gfx/pennyearth.png", 32, 32, 0, 0, 16, 19)
+::defPennyEarth <- sprPennyEarth
 ::sprPennyOverworld <- newSprite("res/gfx/pennyO.png", 14, 17, 0, 0, 7, 14)
 ::defPennyOverworld <- sprPennyOverworld
 ::sprPennyDoll <- newSprite("res/gfx/pennydoll.png", 16, 16, 0, 0, 8, 8)

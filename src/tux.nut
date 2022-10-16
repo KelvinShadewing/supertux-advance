@@ -1233,7 +1233,7 @@
 		mySprFire = sprPennyFire
 		mySprIce = sprPennyIce
 		mySprAir = sprPennyAir
-		mySprEarth = sprTuxEarth
+		mySprEarth = sprPennyEarth
 	}
 
 	function _typeof() { return "Penny" }
