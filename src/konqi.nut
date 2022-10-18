@@ -1,6 +1,6 @@
-/*=========*\
-| Konqi ACTOR |
-\*=========*/
+/*===========*\
+| KONQI ACTOR |
+\*===========*/
 
 ::Konqi <- class extends Player {
 	canJump = 16
@@ -47,7 +47,7 @@
 	anCrouch = [14, 15]
 	anGetUp = [15, 14]
 	anCrawl = [40, 41, 42, 43, 42, 41]
-	anSlide = [52, 53, 54, 55]
+	anSlide = []
 	anHurt = [6, 7]
 	anJumpU = [32, 33]
 	anJumpT = [34, 35]
@@ -64,6 +64,7 @@
 	anSkid = [4, 5]
 	anPush = [6, 7]
 	anStomp = [38, 39]
+	anStatue = [52, 53, 54, 55]
 
 	mySprNormal = null
 	mySprFire = null
@@ -189,7 +190,7 @@
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && game.weapon != 3 && (game.weapon != 4 || anim != anSlide)) {
+		if(firetime > 0 && game.weapon != 3 && (game.weapon != 4 || anim != anStatue)) {
 			firetime--
 		}
 
@@ -321,21 +322,11 @@
 					}
 					break
 
-				case anDive:
-					frame += 0.25
-
-					if(floor(frame) > anim.len() - 1) {
-						anim = anSlide
-						shape = shapeSlide
-					}
-					break
-
 				case anCrouch:
 					frame += 0.25
 
 					if(floor(frame) > anim.len() - 1) {
-						if(game.weapon == 4 && getcon("shoot", "hold")) anim = anSlide
-						else anim = anCrawl
+						anim = anCrawl
 						shape = shapeSlide
 					}
 					break
@@ -386,13 +377,18 @@
 					anim = anFall
 					frame = 0.0
 					break
+
+				case anStatue:
+					if(frame < 3) frame += 0.25
+					if(frame > 3) frame = 3.0
+					break
 			}
 
 			if(anim == anStand && zoomies) frame += 0.1
 			if(anim != anClimb) frame = wrap(abs(frame), 0.0, anim.len() - 1)
 
 			//Sliding acceleration
-			if(anim == anSlide || onIce()) {
+			if(onIce()) {
 				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && game.weapon == 2))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
@@ -426,7 +422,8 @@
 				}
 				else mspeed = 2.0
 				if(nowInWater) mspeed *= 0.8
-				if(anim == anStomp) mspeed = 0.5
+				if(anim == anStomp || anim == anStatue) mspeed = 0.5
+				if(anim == anStatue && !placeFree(x, y + 1)) mspeed = 0.0
 				if(zoomies > 0) mspeed *= 2.0
 
 				//Moving left and right
@@ -587,25 +584,8 @@
 					vspeed /= 2.5
 				}
 
-				//Going into slide
-				if(((getcon("shoot", "hold") && game.weapon == 4)) && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && anim != anCrouch && anim != anCrawl) {
-					if(placeFree(x + 2, y + 1) || hspeed >= 1.5) {
-						anim = anDive
-						frame = 0.0
-						flip = 0
-						playSoundChannel(sndSlide, 0, 0)
-					}
-
-					if(placeFree(x - 2, y + 1) || hspeed <= -1.5) {
-						anim = anDive
-						frame = 0.0
-						flip = 1
-						playSoundChannel(sndSlide, 0, 0)
-					}
-				}
-
 				//Crawling
-				if(getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && (!freeDown2 || onPlatform()) && anim != anCrouch && anim != anCrawl && anim != anStomp) {
+				if(getcon("down", "hold") && anim != anDive && anim != anSlide && anim != anJumpU && anim != anJumpT && anim != anFall && anim != anHurt && anim != anWall && anim != anStatue && (!freeDown2 || onPlatform()) && anim != anCrouch && anim != anCrawl && anim != anStomp) {
 					anim = anCrouch
 					frame = 0.0
 					shape = shapeSlide
@@ -691,12 +671,23 @@
 			if(canMove && (anim == anJumpT || anim == anJumpU || anim == anFall) && getcon("down", "press") && placeFree(x, y + 8)) {
 				hspeed = 0.0
 				vspeed = 4.0
-				anim = anStomp
+				if(game.weapon == 4) {
+					anim = anStatue
+					popSound(sndSlide, 0)
+				}
+				else anim = anStomp
 				frame = 0.0
 			}
 			if((!freeDown || vspeed < 0 || onPlatform()) && anim == anStomp) {
 				anim = anJumpU
 				vspeed = -2.0
+				popSound(sndBump)
+				fireWeapon(StompPoof, x + 8, y + 12, 1, id)
+				fireWeapon(StompPoof, x - 8, y + 12, 1, id)
+			}
+
+			if((!freeDown || onPlatform()) && anim == anStatue && vspeed > 0.5) {
+				vspeed = 0.0
 				popSound(sndBump)
 				fireWeapon(StompPoof, x + 8, y + 12, 1, id)
 				fireWeapon(StompPoof, x - 8, y + 12, 1, id)
@@ -749,12 +740,36 @@
 					break
 
 				case 4:
-					if(getcon("shoot", "press") && (anim != anHurt)) {
-						anim = anDive
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == anCrouch) fy = 6
+						if(anim == anCrawl) fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.vspeed = -0.5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold")) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						energy--
+						firetime = 60
+					}
+					if(getcon("shoot", "press") && (anim != anHurt) && getcon("down", "hold")) {
+						anim = anStatue
 						frame = 0.0
+						hspeed = 0.0
+						vspeed = 4.0
 						playSoundChannel(sndSlide, 0, 0)
-						if(flip == 0 && hspeed < 2) hspeed = 2
-						if(flip == 1 && hspeed > -2) hspeed = -2
+					}
+					if((!getcon("shoot", "hold") && !getcon("down", "hold") || energy == 0) && anim == anStatue) {
+						anim = anStand
+						newActor(Poof, x, y - 8)
+						newActor(Poof, x, y + 8)
 					}
 					break
 			}
@@ -902,7 +917,7 @@
 					break
 
 				case 2:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0 && !(!placeFree(x, y + 1) && getcon("down", "hold"))) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
@@ -1021,9 +1036,10 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(game.weapon == 4 && anim == anSlide && energy > 0) {
+				if(game.weapon == 4 && anim == anStatue && energy > 0 && frame >= 3) {
 					energy--
-					firetime = 120
+					firetime = 180
+					blinking = 120
 					newActor(Spark, x, y)
 				}
 				else {
@@ -1087,7 +1103,7 @@
 			}
 
 			//After image
-			if((zoomies > 0 || anim == anStomp) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
+			if((zoomies > 0 || anim == anStomp || (anim == anStatue && vspeed > 4)) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
 		}
 
 		//Transformation flash
@@ -1249,9 +1265,9 @@
 
 		mySprNormal = sprKatie
 		mySprFire = sprKatieFire
-		mySprIce = sprKonqiIce
-		mySprAir = sprKonqiAir
-		mySprEarth = sprKonqiEarth
+		mySprIce = sprKatieIce
+		mySprAir = sprKatieAir
+		mySprEarth = sprKatieEarth
 	}
 
 	function _typeof() { return "Katie" }

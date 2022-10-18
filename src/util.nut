@@ -27,12 +27,7 @@
 
 ::gotoTest <- function() {
 	game.check = false
-	startPlay("res/map/verdant-rise.json", true, true)
-}
-
-::gotoMario <- function() {
-	game.check = false
-	startPlay("res/map/mario0.json")
+	startPlay("res/map/test.json", true, true)
 }
 
 ::canint <- function(str) {

@@ -86,25 +86,29 @@
 		}
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
-			if(hitTest(shape, i.shape) && i.frame < 1 && vspeed == 0 && i.blast && !i.box) {
-				if(coins <= 1) {
-					deleteActor(id)
-					newActor(WoodChunks, x, y)
-					stopSound(sndBump)
-					popSound(sndBump, 0)
-					tileSetSolid(x, y, oldsolid)
-					if(coins > 0) newActor(CoinEffect, x, y - 16)
-					fireWeapon(BoxHit, x, y - 8, 1, id)
-					break
+			if(hitTest(shape, i.shape) && vspeed == 0) {
+				if(i.blast && i.frame < 1 || !i.box) {
+					if(coins <= 1) {
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						stopSound(sndBump)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+						break
+					}
+					else {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						stopSound(sndBump)
+						popSound(sndBump, 0)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
 				}
-				else {
-					vspeed = -2
-					coins--
-					newActor(CoinEffect, x, y - 16)
-					stopSound(sndBump)
-					popSound(sndBump, 0)
-					fireWeapon(BoxHit, x, y - 8, 1, id)
-				}
+				if(i.piercing == 0) deleteActor(i.id)
+				else i.piercing--
 			}
 		}
 

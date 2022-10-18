@@ -178,7 +178,7 @@
 
 ::AfterFlame <- class extends WeaponEffect {
 	element = "fire"
-	timer = 4
+	timer = 2
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -446,7 +446,7 @@
 
 ::AfterIce <- class extends WeaponEffect {
 	element = "ice"
-	timer = 4
+	timer = 2
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -520,5 +520,72 @@
 				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
 			}
 		}
+	}
+}
+
+///////////////////
+// EARTH ATTACKS //
+///////////////////
+
+::EarthballK <- class extends WeaponEffect {
+	timer = 90
+	angle = 0
+	element = "earth"
+	power = 1
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 4)
+	}
+
+	function physics() {}
+
+	function run() {
+		base.run()
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+
+		x += hspeed
+		y += vspeed
+		if(!placeFree(x, y)) {
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+
+		drawSpriteEx(sprRock, 0, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+
+		shape.setPos(x, y)
+	}
+
+	function destructor() {
+		fireWeapon(AfterEarth, x + hspeed / 2, y + vspeed / 2, alignment, owner)
+		newActor(RockChunks, x, y)
+		popSound(sndBump, 0)
+	}
+}
+
+::AfterEarth <- class extends WeaponEffect {
+	element = "earth"
+	timer = 2
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
 	}
 }

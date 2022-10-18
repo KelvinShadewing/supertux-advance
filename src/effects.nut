@@ -222,3 +222,26 @@
 		if(alpha <= 0) deleteActor(id)
 	}
 }
+
+::RockChunks <- class extends Actor {
+	h = 0.0
+	v = 0.0
+	vspeed = -3.0
+	timer = 30
+	a = 0
+
+	function run() {
+		vspeed += 0.2
+		v += vspeed
+		h += 1
+		a += 4
+
+		drawSpriteExZ(2, sprRock, 1, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprRock, 2, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprRock, 3, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprRock, 4, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+}

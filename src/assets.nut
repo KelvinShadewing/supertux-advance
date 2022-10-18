@@ -78,6 +78,12 @@
 ::defKatie <- sprKatie
 ::sprKatieFire <- newSprite("res/gfx/katiefire.png", 32, 32, 0, 0, 16, 19)
 ::defKatieFire <- sprKatieFire
+::sprKatieIce <- newSprite("res/gfx/katieice.png", 32, 32, 0, 0, 16, 19)
+::defKatieIce <- sprKatieIce
+::sprKatieAir <- newSprite("res/gfx/katieair.png", 32, 32, 0, 0, 16, 19)
+::defKatieAir <- sprKatieAir
+::sprKatieEarth <- sprKonqiEarth
+::defKatieEarth <- sprKatieEarth
 ::sprKatieOverworld <- newSprite("res/gfx/katieO.png", 14, 20, 0, 0, 7, 17)
 ::defKatieOverworld <- sprKatieOverworld
 ::sprKatieDoll <- newSprite("res/gfx/katiedoll.png", 16, 16, 0, 0, 8, 8)
@@ -379,6 +385,8 @@
 ::defBigSpark <- sprBigSpark
 ::sprSteelBall <- newSprite("res/gfx/steelball.png", 8, 8, 0, 0, 4, 4)
 ::defSteelBall <- sprSteelBall
+::sprRock <- newSprite("res/gfx/rock.png", 16, 16, 0, 0, 8, 8)
+::defRock <- sprRock
 
 
 //Platforms
@@ -493,6 +501,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musGrassOverworld <- "res/mus/peaceful-village.ogg"
 ::musBerrylife <- "res/mus/berrylife.ogg"
 ::musIceChip <- "res/mus/ice_music.ogg"
+::musSnabForest <- "res/mus/snab-forest.ogg"
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")

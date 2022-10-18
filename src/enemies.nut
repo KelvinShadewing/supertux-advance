@@ -94,7 +94,7 @@
 
 	function die() {
 		mapDeleteSolid(icebox)
-		if(frozen) newActor(IceChunks, x, ystart - 6)
+		if(frozen) newActor(IceChunks, x, y)
 		frozen = 0
 
 		deleteActor(id)
@@ -437,7 +437,7 @@
 			//Delete ice block
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6)
+				newActor(IceChunks, x, y)
 				icebox = -1
 			}
 
@@ -474,7 +474,7 @@
 
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6)
+				newActor(IceChunks, x, y)
 			}
 		}
 	}
@@ -489,7 +489,7 @@
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6)
+				newActor(IceChunks, x, y)
 			}
 	}
 
@@ -501,7 +501,7 @@
 
 		if(icebox != -1) {
 				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6) // Not resetting icebox here to avoid the ice box solid from remaining in place indefinitely.
+				newActor(IceChunks, x, y) // Not resetting icebox here to avoid the ice box solid from remaining in place indefinitely.
 			}
 	}
 
@@ -594,7 +594,7 @@
 
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
-				newActor(IceChunks, x, ystart - 6)
+				newActor(IceChunks, x, y)
 			}
 			return
 		}
@@ -634,7 +634,7 @@
 
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, ystart - 6)
+			newActor(IceChunks, x, y)
 		}
 	}
 
@@ -2904,7 +2904,7 @@
 
 	function die() {
 		mapDeleteSolid(icebox)
-		if(frozen) newActor(IceChunks, x, ystart - 6)
+		if(frozen) newActor(IceChunks, x, y)
 		frozen = 0
 
 		deleteActor(id)
@@ -3872,6 +3872,7 @@
 			setDrawColor(0xff0000ff)
 			shape.draw()
 		}
+		if(vspeed > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
 	}
 
 	function _typeof() { return "Crusher" }

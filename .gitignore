@@ -8,3 +8,6 @@ game.json
 save/*.json
 mods/*
 mods/*.*
+contrib/secret
+contrib/secret/*
+contrib/secret/*.*
