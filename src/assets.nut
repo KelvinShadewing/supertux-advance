@@ -82,7 +82,7 @@
 ::defKatieIce <- sprKatieIce
 ::sprKatieAir <- newSprite("res/gfx/katieair.png", 32, 32, 0, 0, 16, 19)
 ::defKatieAir <- sprKatieAir
-::sprKatieEarth <- sprKonqiEarth
+::sprKatieEarth <- newSprite("res/gfx/katieearth.png", 32, 32, 0, 0, 16, 19)
 ::defKatieEarth <- sprKatieEarth
 ::sprKatieOverworld <- newSprite("res/gfx/katieO.png", 14, 20, 0, 0, 7, 17)
 ::defKatieOverworld <- sprKatieOverworld
