@@ -17,7 +17,6 @@
 	hurt = 0
 	swimming = false
 	sliding = false
-	endMode = false
 	canStomp = true //If they can use jumping as an attack
 	sprite = sprTux
 	invincible = 0
@@ -1228,7 +1227,6 @@
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 
-		//Will be changed as sprites are finished
 		mySprNormal = sprPenny
 		mySprFire = sprPennyFire
 		mySprIce = sprPennyIce

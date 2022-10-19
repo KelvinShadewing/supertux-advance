@@ -547,7 +547,7 @@
 		timer--
 		if(timer == 0) deleteActor(id)
 
-		if(!inWater(x, y)) vspeed += 0.1
+		vspeed += 0.1
 
 		x += hspeed
 		y += vspeed

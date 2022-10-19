@@ -961,7 +961,7 @@
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
-		if(_element == "fire") hurtFire()
+		if(!_stomp) hurtFire()
 	}
 
 	function hurtFire() {

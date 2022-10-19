@@ -107,7 +107,10 @@
 				else return "????"
 			}
 			func = function() {}
-			desc = function() { return gvLangObj["achi-desc"][newKey] }
+			desc = function() {
+				if(gvLangObj["achi-desc"].rawin(newKey)) return gvLangObj["achi-desc"][newKey]
+				else return "????"
+			}
 			disabled = !gvUnlockedAchievements.rawin(newKey)
 		})
 	}

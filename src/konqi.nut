@@ -18,7 +18,6 @@
 	firetime = 0
 	hurt = 0
 	swimming = false
-	endMode = false
 	canStomp = true //If they can use jumping as an attack
 	sprite = sprKonqi
 	invincible = 0

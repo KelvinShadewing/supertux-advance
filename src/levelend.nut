@@ -8,17 +8,22 @@
 	}
 
 	function run() {
-		timer--
-		if(timer == 0 || getcon("pause", "press")) {
-			stopChannel(-1)
-			levelEndRunner = 0
-			if(gvNextLevel != "" && gvTimeAttack) {
-				game.check = false
-				if(gvNextLevel == "timeattack-win") startPlay("res/map/" + gvNextLevel + ".json", true, true)
-				else startPlay(game.path + gvNextLevel + ".json", true, true)
-				gvIGT = 0
+		if((gvPlayer && gvPlayer.endMode || !gvPlayer)
+		&& (gvPlayer2 && gvPlayer2.endMode || !gvPlayer2)) {
+			{
+				timer--
+				if(timer == 0 || getcon("pause", "press")) {
+					stopChannel(-1)
+					levelEndRunner = 0
+					if(gvNextLevel != "" && gvTimeAttack) {
+						game.check = false
+						if(gvNextLevel == "timeattack-win") startPlay("res/map/" + gvNextLevel + ".json", true, true)
+						else startPlay(game.path + gvNextLevel + ".json", true, true)
+						gvIGT = 0
+					}
+					else startOverworld(game.world)
+				}
 			}
-			else startOverworld(game.world)
 		}
 	}
 

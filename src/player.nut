@@ -17,6 +17,7 @@
 	shapeCrouch = null
 	shapeSwim = null
 	resTime = 0
+	endMode = false
 
 	//Animation states defined in child classes
 	anStand = null
