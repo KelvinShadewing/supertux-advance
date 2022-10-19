@@ -429,13 +429,15 @@
 				//Moving left and right
 				if(zoomies > 0) accel = 0.4
 				else accel = 0.2
-				if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
-					if(onIce()) hspeed += accel / 2.0
-					else hspeed += accel
-				}
-				if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
-					if(onIce()) hspeed -= accel / 2.0
-					else hspeed -= accel
+				if(anim != anStatue) {
+					if(getcon("right", "hold") && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+						if(onIce()) hspeed += accel / 2.0
+						else hspeed += accel
+					}
+					if(getcon("left", "hold") && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+						if(onIce()) hspeed -= accel / 2.0
+						else hspeed -= accel
+					}
 				}
 
 				//Change run animation speed
@@ -496,7 +498,7 @@
 
 				//Jumping
 				if(getcon("jump", "press") || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold")) {
+					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold") && anim != anStatue) {
 						y++
 						canJump = 32
 						if(!placeFree(x, y) && !placeFree(x, y - 1)) y--

@@ -74,6 +74,7 @@
 ::sprKonqiNPC <- newSprite("res/gfx/konqi-npc.png", 32, 32, 0, 0, 16, 32)
 
 
+
 ::sprKatie <- newSprite("res/gfx/katie.png", 32, 32, 0, 0, 16, 19)
 ::defKatie <- sprKatie
 ::sprKatieFire <- newSprite("res/gfx/katiefire.png", 32, 32, 0, 0, 16, 19)
@@ -91,6 +92,7 @@
 ::sprKatieNPC <- newSprite("res/gfx/katie-npc.png", 32, 32, 0, 0, 16, 32)
 
 
+
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 16, 19)
 ::defMidi <- sprMidi
 ::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 17)
@@ -98,6 +100,7 @@
 ::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 8)
 ::defMidiDoll <- sprMidiDoll
 ::sprMidiNPC <- newSprite("res/gfx/midi-npc.png", 32, 32, 0, 0, 16, 32)
+
 
 
 //GUI
@@ -120,6 +123,7 @@
 ::sprIris <- newSprite("res/gfx/iris.png", 240, 240, 0, 0, 120, 120)
 ::sprAchiFrame <- newSprite("res/gfx/achievement-frame.png", 12, 24, 0, 0, 0, 0)
 ::sprCharCursor <- newSprite("res/gfx/char-cursor.png", 24, 24, 0, 0, 12, 12)
+
 
 
 //Blocks
@@ -175,6 +179,7 @@
 ::defCrumbleIce <- sprCrumbleIce
 
 
+
 //NPCs
 ::sprRadGuin <- newSprite("res/gfx/radguin.png", 22, 32, 0, 0, 16, 32)
 ::sprPennyNPC <- newSprite("res/gfx/penny-npc.png", 14, 24, 0, 0, 7, 24)
@@ -193,6 +198,7 @@
 ::sprBearistaNPC <- newSprite("res/gfx/bearista.png", 21, 37, 0, 0, 10, 37)
 ::sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 0, 0, 5, 16)
 ::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
+
 
 
 //Enemies
@@ -294,11 +300,13 @@
 ::defShiveriken <- sprShiveriken
 
 
+
 //Bosses
 ::sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 0, 0, 32, 40)
 ::defNolok <- sprNolok
 ::sprYeti <- newSprite("res/gfx/yeti.png", 64, 64, 0, 0, 36, 40)
 ::defYeti <- sprYeti
+
 
 
 //Items
@@ -338,6 +346,7 @@
 ::defSpecialBall <- sprSpecialBall
 ::sprCoffee <- newSprite("res/gfx/coffee-cup.png", 14, 20, 0, 0, 7, 12)
 ::defCoffee <- sprCoffee
+
 
 
 //Effects
@@ -389,8 +398,10 @@
 ::defRock <- sprRock
 
 
+
 //Platforms
 ::sprPlatformWood <- newSprite("res/gfx/moplat-wood.png", 16, 8, 0, 0, 8, 4)
+
 
 
 //Portals
@@ -400,6 +411,7 @@
 ::sprPortalGreen <- newSprite("res/gfx/portal-green.png", 32, 48, 0, 0, 16, 24)
 ::sprPortalYellow <- newSprite("res/gfx/portal-yellow.png", 32, 48, 0, 0, 16, 24)
 ::sprPortalPunkle <- newSprite("res/gfx/portal-punkle.png", 32, 48, 0, 0, 16, 24)
+
 
 
 //Backgrounds
@@ -430,9 +442,12 @@
 ::bgMoon <- newSprite("res/gfx/bg-moon.png", 32, 32, 0, 0, 16, 16)
 
 
+
 //Weather
 ::weRain <- newSprite("res/gfx/rainfall.png", 64, 64, 0, 0, 0, 0)
 ::weSnow <- newSprite("res/gfx/snowfall.png", 64, 64, 0, 0, 0, 0)
+
+
 
 //Lights
 ::sprLightBasic <- newSprite("res/gfx/light-player-basic.png", 48, 48, 0, 0, 24, 24)
@@ -443,6 +458,7 @@ spriteSetBlendMode(sprLightFire, bm_add)
 spriteSetBlendMode(sprLightIce, bm_add)
 ::sprLightGradient <- newSprite("res/gfx/light-gradient.png", 128, 128, 0, 0, 64, 64)
 spriteSetBlendMode(sprLightGradient, bm_add)
+
 
 
 //Sounds
@@ -478,10 +494,14 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndIceblock <- loadSound("res/snd/iceblock_bump.ogg")
 ::sndAchievement <- loadSound("res/snd/achievement.ogg")
 
+
+
 //Music
 ::gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
 ::gvMusicName <- ""
 ::gvLastSong <- ""
+
+
 
 ::musTheme <- "res/mus/supertuxtheme.ogg"
 ::musDisko <- "res/mus/chipdisko.ogg"
@@ -502,6 +522,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musBerrylife <- "res/mus/berrylife.ogg"
 ::musIceChip <- "res/mus/ice_music.ogg"
 ::musSnabForest <- "res/mus/snab-forest.ogg"
+
+
 
 //Saved separately so that it can be reused frequently
 ::musInvincible <- loadMusic("res/mus/invincible.ogg")
