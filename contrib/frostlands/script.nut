@@ -429,7 +429,7 @@ print("Loading Frostlands overhauled PT2")
 		base.hurtPlayer()
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_blast) {
@@ -454,7 +454,7 @@ print("Loading Frostlands overhauled PT2")
 			return
 		}
 
-		if(gvPlayer.rawin("anSlide")) {
+		if(gvPlayer && gvPlayer.rawin("anSlide")) {
 			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprBlitz

@@ -53,7 +53,7 @@
 				if(i.owner == id) continue
 
 				if(hitTest(shape, i.shape)) {
-					getHurt(i.power, i.element, i.cut, i.blast)
+					getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
 				}
@@ -67,13 +67,31 @@
 							if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
 							else gvPlayer.vspeed = -4.0
 						}
-						getHurt(1, "normal", false, false, true)
+						getHurt(gvPlayer, 1, "normal", false, false, true)
 					}
 					else if(gvPlayer.rawin("anSlide") && blinking == 0 && !sharpSide) {
-						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(1, "normal", false, false, false)
-						else hurtPlayer()
+						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(gvPlayer, 1, "normal", false, false, false)
+						else hurtPlayer(gvPlayer)
 					}
-					else hurtPlayer()
+					else hurtPlayer(gvPlayer2)
+				}
+			}
+
+			if(gvPlayer2) {
+				if(hitTest(shape, gvPlayer2.shape) && !frozen) { //8 for player radius
+					if(gvPlayer2.invincible > 0) hurtInvinc()
+					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming) {
+						if(!squish) {
+							if(getcon("jump", "hold")) gvPlayer2.vspeed = -8.0
+							else gvPlayer2.vspeed = -4.0
+						}
+						getHurt(gvPlayer2, 1, "normal", false, false, true)
+					}
+					else if(gvPlayer2.rawin("anSlide") && blinking == 0 && !sharpSide) {
+						if(gvPlayer2.anim == gvPlayer2.anSlide) getHurt(gvPlayer2, 1, "normal", false, false, false)
+						else hurtPlayer(gvPlayer2)
+					}
+					else hurtPlayer(gvPlayer2)
 				}
 			}
 
@@ -102,7 +120,7 @@
 		if(!nocount) game.enemies++
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(blinking > 0) return
 
 		local damage = _mag * damageMult[_element]
@@ -127,8 +145,8 @@
 		blinking = blinkMax
 	}
 
-	function hurtPlayer() {
-		gvPlayer.hurt = touchDamage * gvPlayer.damageMult[element]
+	function hurtPlayer(target) {
+		target.hurt = touchDamage * target.damageMult[element]
 	}
 
 	function destructor() {
@@ -275,13 +293,13 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(blinking) return
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_blast) {
@@ -451,7 +469,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(!gvPlayer) return
 		if(_mag == 0) return
 		if(_stomp) return
@@ -460,7 +478,14 @@
 			local didhurt = false
 			if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide) didhurt = true
 			if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) didhurt = true
-			if(!didhurt) hurtPlayer()
+			if(!didhurt) hurtPlayer(gvPlayer)
+		}
+
+		if(hitTest(shape, gvPlayer2.shape)) {
+			local didhurt = false
+			if(gvPlayer2.rawin("anSlide")) if(gvPlayer2.anim == gvPlayer2.anSlide) didhurt = true
+			if(gvPlayer2.rawin("anStomp")) if(gvPlayer2.anim == gvPlayer2.anStomp) didhurt = true
+			if(!didhurt) hurtPlayer(gvPlayer2)
 		}
 
 		if(_element == "fire") hurtFire()
@@ -586,7 +611,7 @@
 		if(x > gvMap.w) hspeed = -fabs(hspeed)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_stomp || _element == "normal") {
 			newActor(Poof, x, y)
 			die()
@@ -833,9 +858,9 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
 	function hurtBlast() {
@@ -850,7 +875,7 @@
 
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(!active) return
 		if(held) return
 		if(_element == "ice") {
@@ -959,9 +984,9 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
-		if(!_stomp) hurtFire()
+		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
 	function hurtFire() {
@@ -1072,9 +1097,9 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
-		if(_element == "fire") hurtFire()
+		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
 	function hurtFire() {
@@ -1176,9 +1201,9 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
-		if(_element == "fire") hurtFire()
+		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
 	function hurtFire() {
@@ -1200,7 +1225,7 @@
 		newActor(Poof, x, y)
 	}
 
-	function _typeof() { return "BlueFish" }
+	function _typeof() { return "Jellyfish" }
 }
 
 ::Clamor <- class extends Enemy {
@@ -1237,8 +1262,9 @@
 		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+		if(_stomp && timer > 30) return
 		if(_element == "fire") hurtFire()
 		if(_element == "normal" || _blast) hurtBlast()
 	}
@@ -1394,9 +1420,9 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
-		if(_element == "fire") hurtFire()
+		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
 	function hurtFire() {
@@ -1483,12 +1509,12 @@
 		shape.setPos(x, y)
 	}
 
-	function hurtPlayer() {
-		base.hurtPlayer()
+	function hurtPlayer(target) {
+		base.hurtPlayer(target)
 		if(gvPlayer) gvPlayer.hurt = 2
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") hurtFire()
 		if(_element == "ice") hurtIce()
 	}
@@ -1607,7 +1633,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_blast || _element == "fire") {
 			hurtBlast()
 			return
@@ -1696,7 +1722,7 @@
 		if(vspeed > 0) fireWeapon(AfterIce, x, y, 1, id)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			die()
 		newActor(Poof, x, y)
@@ -1776,11 +1802,11 @@
 		shape.setPos(x, y)
 	}
 
-	function hurtPlayer() {
-		base.hurtPlayer()
+	function hurtPlayer(target) {
+		base.hurtPlayer(target)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -1922,7 +1948,7 @@
 		if(x > gvMap.w) hspeed = -0.0
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -2126,9 +2152,9 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(squish && !chasing) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
 	function hurtBlast() {
@@ -2143,7 +2169,7 @@
 		squish = true
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -2338,9 +2364,9 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
 	function hurtBlast() {
@@ -2355,7 +2381,7 @@
 
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_blast) {
@@ -2509,7 +2535,7 @@
 		}
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -2652,12 +2678,12 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_blast) {
@@ -2857,12 +2883,12 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_element == "ice") {
@@ -3304,7 +3330,7 @@
 		} else gravity = 0.1
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(blinking > 0) return
 		base.getHurt(_mag, _element, _cut, _blast, _stomp)
 
@@ -3322,7 +3348,7 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(held) return
 		if(slideTimer > 0 && hspeed != 0 && routine == ruSlide) return
 
@@ -3336,7 +3362,7 @@
 			}
 		}
 
-		if(slideTimer <= 0 || routine == ruNormal) base.hurtPlayer()
+		if(slideTimer <= 0 || routine == ruNormal) base.hurtPlayer(target)
 	}
 
 	function die() {
@@ -3464,12 +3490,12 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_element == "fire") {
@@ -3687,13 +3713,13 @@
 		}
 	}
 
-	function hurtPlayer() {
+	function hurtPlayer(target) {
 		if(blinking) return
 		if(squish) return
-		base.hurtPlayer()
+		base.hurtPlayer(target)
 	}
 
-	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
 		if(_blast) {
