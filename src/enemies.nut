@@ -53,7 +53,8 @@
 				if(i.owner == id) continue
 
 				if(hitTest(shape, i.shape)) {
-					getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
+					if(checkActor(i.owner)) getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
+					else getHurt(0, i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
 				}
@@ -73,7 +74,7 @@
 						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(gvPlayer, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer)
 					}
-					else hurtPlayer(gvPlayer2)
+					else hurtPlayer(gvPlayer)
 				}
 			}
 
@@ -474,14 +475,14 @@
 		if(_mag == 0) return
 		if(_stomp) return
 
-		if(hitTest(shape, gvPlayer.shape)) {
+		if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
 			local didhurt = false
 			if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide) didhurt = true
 			if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) didhurt = true
 			if(!didhurt) hurtPlayer(gvPlayer)
 		}
 
-		if(hitTest(shape, gvPlayer2.shape)) {
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 			local didhurt = false
 			if(gvPlayer2.rawin("anSlide")) if(gvPlayer2.anim == gvPlayer2.anSlide) didhurt = true
 			if(gvPlayer2.rawin("anStomp")) if(gvPlayer2.anim == gvPlayer2.anStomp) didhurt = true
@@ -1957,7 +1958,7 @@
 			hurtIce()
 			return
 		}
-		else base.getHurt(_mag, _element, _cut, _blast)
+		else base.getHurt(_by, _mag, _element, _cut, _blast)
 	}
 
 	function hurtBlast() {

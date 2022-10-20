@@ -125,6 +125,8 @@
 		}
 	}
 
+	function destructor() { fireWeapon(BoxHit, x, y - 8, 1, id) }
+
 	function _typeof() { return "WoodBlock" }
 }
 
