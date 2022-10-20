@@ -167,7 +167,7 @@
 }
 
 ::freeKonqi <- function() {
-	if(!game.characters.rawin("Konqi")) game.characters["Konqi"] <- {
+	 game.characters["Konqi"] <- {
 		over = "sprKonqiOverworld"
 		doll =  "sprKonqiDoll"
 		normal = "sprKonqi"
@@ -175,9 +175,9 @@
 		ice = "sprKonqiIce"
 		air = "sprKonqiAir"
 		earth = "sprKonqiEarth"
-		wave = [8, 9]
+		wave = [8, 53]
 	}
-	if(!game.characters.rawin("Katie")) game.characters["Katie"] <- {
+	game.characters["Katie"] <- {
 		over = "sprKatieOverworld"
 		doll =  "sprKatieDoll"
 		normal = "sprKatie"
@@ -185,7 +185,7 @@
 		ice = "sprKatieIce"
 		air = "sprKatieAir"
 		earth = "sprKatieEarth"
-		wave = [8, 9]
+		wave = [8, 53]
 	}
 	if(!game.friends.rawin("Konqi")) game.friends["Konqi"] <- true
 }

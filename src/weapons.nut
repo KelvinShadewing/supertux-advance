@@ -56,6 +56,7 @@
 	element = "normal"
 	timer = 4
 	box = true
+	piercing = -1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -65,6 +66,7 @@
 	function run() {
 		timer--
 		if(timer == 0) deleteActor(id)
+		if(debug) drawSprite(sprPoof, 0, x - camx, y - camy - 8)
 	}
 }
 

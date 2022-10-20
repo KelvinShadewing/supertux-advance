@@ -248,7 +248,7 @@
 ::defSawblade <- sprSawblade
 ::sprLivewire <- newSprite("res/gfx/Livewire.png", 16, 16, 0, 0, 8, 8)
 ::defLivewire <- sprLivewire
-::sprBlazeborn <- newSprite("res/gfx/Blazeborn.png", 16, 16, 0, 0, 8, 9)
+::sprBlazeborn <- newSprite("res/gfx/blazeborn.png", 16, 16, 0, 0, 8, 9)
 ::defBlazeborn <- sprBlazeborn
 ::sprWildcap <- newSprite("res/gfx/wildcap.png", 16, 16, 0, 0, 8, 9)
 ::defWildcap <- sprWildcap
