@@ -3333,7 +3333,7 @@
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(blinking > 0) return
-		base.getHurt(_mag, _element, _cut, _blast, _stomp)
+		base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 
 		if(routine == ruSlide) {
 			if(hspeed != 0) hspeed = 0.0

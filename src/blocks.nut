@@ -107,8 +107,10 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 				}
-				if(i.piercing == 0) deleteActor(i.id)
-				else i.piercing--
+				if(i.owner != id) {
+					if(i.piercing == 0) deleteActor(i.id)
+					else i.piercing--
+				}
 			}
 		}
 

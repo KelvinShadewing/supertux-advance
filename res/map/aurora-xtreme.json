@@ -797,18 +797,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":221,
-                 "height":16,
-                 "id":178,
-                 "name":"slidewarn",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":32,
-                 "y":64
-                }, 
-                {
-                 "class":"",
                  "gid":239,
                  "height":16,
                  "id":179,
@@ -1176,7 +1164,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":64,
+                 "x":48,
                  "y":64
                 }, 
                 {
@@ -1188,7 +1176,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":48,
+                 "x":32,
                  "y":64
                 }, 
                 {
