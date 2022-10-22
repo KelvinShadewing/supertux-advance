@@ -1,1 +1,1 @@
-addTimeAttackWorld("azzy of the wazzy", "azzy", "sn-l0")
+addTimeAttackWorld("Misbegotten Island", "azzy", "sn-l0")

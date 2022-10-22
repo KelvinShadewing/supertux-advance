@@ -158,7 +158,7 @@
                  "class":"",
                  "height":190,
                  "id":4,
-                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[18]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 8)",
+                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[18]].active = true; actor[mapActor[18]].health = 20; gvPlayer.hspeed = 0.0; ::bm <- newActor(BossManager, 0, 0, 8); actor[bm].healthTotal = 20; actor[bm].healthActual = 20.0;",
                  "rotation":0,
                  "visible":true,
                  "width":288,
@@ -424,7 +424,7 @@
         {
          "name":"author",
          "type":"string",
-         "value":"Azreigh"
+         "value":"Tulip"
         }, 
         {
          "name":"code",

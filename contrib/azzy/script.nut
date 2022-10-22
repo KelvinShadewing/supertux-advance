@@ -1,124 +1,103 @@
-::Boss <- class extends Enemy {
-	health = 40
+// If this doesn't get finished then uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh damn
+// General
+::reloadAzzy <- function() {
+    donut("contrib/azzy/script.nut")
+}
+
+// Cybergrind
+::cybergrindReward <- 0;
+::cybergrindWave <- 1;
+
+::cybergrindEnemies <- [[Deathcap, 1, true, 0], [Owl, 2, null, 1]]; // class, wave requirement, args, ground type requirement
+::cybergrindAllowedEnemies <- []; // index in cybergrindEnemies
+::cybergrindCurrentEnemies <- [];
+::cybergrindSpawnSpots <- [[216, 2025, 0], [400, 1905, 1], [400, 1920, 0]]; // x, y, location type (0 is ground, 1 is air, 2 is water)
+
+::cybergrindCalculateWaveReward <- function() {
+    cybergrindReward += 30 + (2 * cybergrindWave)
+}
+
+::cybergrindStart <- function() {
+    cybergrindReward = 0;
+    cybergrindWave = 1;
+    game.colorswitch[0] = true;
+    cybergrindSpawn()
+}
+
+::cybergrindSpawn <- function() {
+    cybergrindCurrentEnemies.clear()
+    local enemies = [];
+    foreach (i in cybergrindSpawnSpots) {
+        switch (i[2]) {
+            case 0:
+                cybergrindCurrentEnemies.append(newActor(cybergrindEnemies[0][0], i[0], i[1], cybergrindEnemies[0][2]));
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+}
+
+::cybergrindProgress <- function() {
+    cybergrindCalculateWaveReward()
+    cybergrindWave += 1
+    cybergrindAllowedEnemies.clear()
+    cybergrindSpawn()
+}
+
+::cybergrindEnd <- function() {
+    game.coins += cybergrindReward
+    game.colorswitch[0] = false;
+    cybergrindReward = 0;
+    cybergrindWave = 1;
+}
+
+::cybergrindCheckProgress <- function() {
+    local progress = true;
+    local text = "WAVE: " + cybergrindWave;
+    drawText(font2, (screenW() / 2) - (text.len() * 4), 50, text)
+    foreach (i in cybergrindCurrentEnemies) {
+        if (checkActor(i)) {
+            progress = false;
+        }
+    }
+    if (progress) {
+        cybergrindProgress()
+    }
+}
+
+// Blizzard damage
+::blizzardTime <- 0
+
+::damageByBlizzard <- function(modifier = 1) {
+    if (blizzardTime > 180) {
+        gvPlayer.hurt = 2 * modifier
+        blizzardTime = 0
+    }
+    else {
+        blizzardTime++;
+    }
+}
+
+// Enemies
+::dbgMakeYeti <- function() {
+    newActor(EnemYeti, 100, 100, null)
+}
+::EnemYeti <- class extends Enemy {
 	phantom = false //Allows the boss to phase through walls in their intro
 	active = false
 	routine = null
 	hspeed = 0.0
 	vspeed = 0.0
 	flip = 0
-	gravity = 0.0
+	gravity = 0.1
 	frame = 0.0
 	blinking = 0.0
 	blinkSpeed = 0.2
 	canBeStomped = false
 	ready = false
-
-	damageMult = {
-		normal = 1.0
-		fire = 1.0
-		ice = 1.0
-		earth = 1.0
-		air = 1.0
-		toxic = 1.0
-		shock = 1.0
-		water = 1.0
-		light = 1.0
-		dark = 1.0
-		cut = 1.0
-		blast = 1.0
-		stomp = 1.0
-	}
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y, _arr)
-	}
-
-	function run() {
-		if(active) base.run()
-	}
-
-	//Physics gets a separate function so that it can be inherited by other bosses
-	function physics() {}
-	function hitPlayer(target) {
-		target.getHurt(touchDamage, element)
-	}
-
-	function turnToPlayer() {
-		if(gvPlayer) {
-			if(gvPlayer.x > x) flip = 0
-			else flip = 1
-		}
-		else if(gvPlayer2) {
-			if(gvPlayer2.x > x) flip = 0
-			else flip = 1
-		}
-	}
-
-	function hurtInvinc() {}
-
-	function hurtPlayer(target) {
-		if(blinking == 0) base.hurtPlayer(target)
-	}
-
-	function _typeof() { return "Boss" }
-}
-
-::BossManager <- class extends Actor {
-	bossTotal = 0
-	health = 0
-	healthTotal = 0
-	healthDrawn = 0
-	healthActual = 0.0
-	doorID = 0
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-		if(_arr != null && _arr != "") {
-			doorID = _arr.tointeger()
-		}
-
-		foreach(i in actor["Boss"]) {
-			bossTotal++
-			healthTotal += 40
-			healthActual += i.health
-		}
-	}
-
-	function run() {
-		if(!actor.rawin("Boss")) deleteActor(id)
-		if(actor["Boss"].len() == 0) deleteActor(id)
-
-		//Recount bosses
-		bossTotal = actor["Boss"].len()
-
-		//Recount health
-		healthActual = 0
-		if(actor["Boss"].len() > 0) foreach(i in actor["Boss"]) {
-			if(i.ready) healthActual += i.health
-		}
-
-		if(healthActual <= 0 && bossTotal == 0) {
-			healthActual = 0
-			deleteActor(id)
-			if(mapActor.rawin(doorID)) if(actor[mapActor[doorID]].rawin("opening")) actor[mapActor[doorID]].opening = true
-		}
-
-		if(getFrames() % 4 == 0) {
-			if(health < healthActual) {
-				stopSound(sndMenuMove)
-				playSound(sndMenuMove, 0)
-			}
-			health += healthActual <=> health
-		}
-		if(health > 0) if(!gvBoss) gvBoss = this
-
-		game.bossHealth = 40 / healthTotal * health
-	}
-
-	function destructor() { gvBoss = false }
-}
-
-::Yeti <- class extends Boss {
 	//Animations
 	anIdle = [0.0, 7.0, "idle"]
 	anWalk = [8.0, 15.0, "walk"]
@@ -148,26 +127,27 @@
 	}
 
 	//Boss specific variables
-	health = 40
+	health = 10
 	eventTimer = 0
 	eventStage = 0
 	hasThrown = false
 	touchDamage = 2.0
 
 	constructor(_x, _y, _arr = null) {
-		gravity = 0.1
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 14, 20, 0, 0, 4)
-		routine = ruWalkIntoFrame
-
-		for(local i = 0; i < 32; i++) {
-			if(placeFree(x, y + 1)) y++
-			else break
-		}
-		if(!placeFree(x, y)) y--
+		routine = ruIntroCheer
+		eventTimer = 160
 	}
 
-	function _typeof() { return "Yeti" }
+	function _typeof() { return "EnemYeti" }
+
+	function turnToPlayer() {
+		if(gvPlayer) {
+			if(gvPlayer.x > x) flip = 0
+			else flip = 1
+		}
+	}
 
 	function physics() {
 		//Movement
@@ -180,7 +160,7 @@
 			}
 		}
 
-		if((routine != ruWalkIntoFrame || health <= 0) && vspeed < 4) vspeed += gravity
+		vspeed += gravity
 		if(placeFree(x, y + vspeed) || routine == ruDefeated) y += vspeed
 		else vspeed /= 4.0
 
@@ -190,13 +170,6 @@
 			routine = ruDefeated
 			if(flip == 0) hspeed = -1.0
 			else hspeed = 1.0
-			setFPS(30)
-			eventTimer = 120
-			if(gvPlayer) {
-				gvPlayer.canMove = false
-				gvPlayer.invincible = 120
-			}
-			fadeMusic(0.25)
 		}
 
 		shape.setPos(x, y)
@@ -251,27 +224,12 @@
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()
-			drawText(font2, x - camx, y - camy, vspeed.tostring())
 		}
 
 		//Set damage resistance
 		if(routine == ruDizzy) damageMult.stomp = 4.0
 		else damageMult.stomp = 1.0
-	}
-
-	function ruWalkIntoFrame() {
-		phantom = true
-		if(gvPlayer) gvPlayer.canMove = false
-		anim = anWalk
-		flip = 1
-		hspeed = -0.5
-		if(x < camx + screenW() - 96) {
-			routine = ruIntroCheer
-			hspeed = 0.0
-			phantom = false
-			eventTimer = 160
-		}
-		if(gvWarning == 180) songPlay(musBossIntro)
+		routine()
 	}
 
 	function ruIntroCheer() {
@@ -283,8 +241,6 @@
 		if(eventTimer == 0) {
 			eventTimer = 60
 			routine = ruIdle
-			if(gvPlayer) gvPlayer.canMove = true
-			songPlay(musBoss)
 		}
 	}
 
@@ -377,7 +333,7 @@
 		c.shape.setPos(x + hspeed * 2, y)
 
 		if(!placeFree(x + hspeed, y)) {
-			vspeed = -2.0
+			vspeed = -8.0
 			hspeed = -hspeed / 3.0
 			anim = anHurt
 			frame = anim[0]
@@ -422,11 +378,6 @@
 		anim = anHurt
 		gravity = 0.05
 		blinking = 0
-		if(eventTimer <= 0) {
-			setFPS(60)
-			if(gvPlayer) gvPlayer.canMove = true
-			deleteActor(id)
-		}
 	}
 
 	function hurtBlast() {
@@ -439,29 +390,29 @@
 	function hurtFire() { hurtBlast() }
 	function hurtShock() { hurtBlast() }
 
-	function hurtStomp(target) {
-		if(health <= 0) return
+	function hurtStomp() {
+		if(health <= 0 || phantom) return
 		routine = ruHurt
 		eventTimer = 30
 		canBeStomped = false
 		vspeed = -2.0
-		if(target) {
-			target.vspeed = -2.0
+		if(gvPlayer) {
+			gvPlayer.vspeed = -2.0
 			if(flip == 0) hspeed = -1.0
 			else hspeed = 1.0
 		}
-		if(target) if(target.rawin("anStomp")) if(target.anim == target.anStomp) health -= 10
+		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 10
 		if(health > 0) playSound(sndBossHit, 0)
 		else playSound(sndDie, 0)
 	}
 
 	function hitPlayer() {
-		if(blinking > 0) return
+		if(blinking > 0 || phantom) return
 		if(routine != ruDizzy) base.hitPlayer()
 	}
 
-	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(blinking > 0) return
+	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking > 0 || phantom) return
 
 		local damage = _mag * damageMult[_element]
 		if(_cut) damage *= damageMult["cut"]
@@ -472,58 +423,11 @@
 		if(damage > 0) blinking = blinkMax
 
 		if(routine == ruDizzy && _stomp) {
-			hurtStomp(_by)
+			hurtStomp()
 		}
 
 		popSound(sndBossHit)
 	}
 
 	function die() {}
-
-	function _typeof() { return "Boss" }
-}
-
-::YetiShock <- class extends Actor {
-	shape = null
-	timer = 0
-	speed = 1.0
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y, _arr)
-		shape = Rec(x, y, 8, 16, 0, 0, -16)
-		if(_arr != null) speed = _arr.tofloat()
-		playSound(sndCrush, 0)
-	}
-
-	function run() {
-		timer++
-		if(timer >= 240) deleteActor(id)
-
-		//Damage hitbox
-		if(gvPlayer) {
-			shape.setPos(x + (timer * speed), y)
-			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
-			shape.setPos(x - (timer * speed), y)
-			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
-		}
-
-		//Create effect
-		if(timer % 10 == 0) {
-			newActor(BigSpark, x + (timer * speed) + speed, y, 0)
-			newActor(BigSpark, x - (timer * speed) - speed, y, 1)
-		}
-	}
-}
-
-::Nolok <- class extends Boss {
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-		shape = Rec(x, y, 8, 20, 0)
-	}
-
-	function run() {
-		base.run()
-	}
-
-	function _typeof() { return "Nolok" }
 }

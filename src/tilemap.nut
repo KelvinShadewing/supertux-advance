@@ -43,10 +43,12 @@
 		frameID = animList.id
 		frameList = []
 		frameTime = []
-		for(local i = 0; i < animList.animation.len(); i++) {
-			frameList.push(animList.animation[i].tileid)
-			if(i == 0) frameTime.push(animList.animation[i].duration)
-			else frameTime.push(animList.animation[i].duration + frameTime[i - 1])
+		if("animation" in animList) {
+			for(local i = 0; i < animList.animation.len(); i++) {
+				frameList.push(animList.animation[i].tileid)
+				if(i == 0) frameTime.push(animList.animation[i].duration)
+				else frameTime.push(animList.animation[i].duration + frameTime[i - 1])
+			}
 		}
 		sprite = _sprite
 	}
@@ -154,7 +156,7 @@
 
 				//Add animations
 				if(data.tilesets[i].rawin("tiles")) for(local j = 0; j < data.tilesets[i].tiles.len(); j++) {
-					anim[data.tilesets[i].firstgid + data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
+					if("animation" in data.tilesets[i].tiles[j]) anim[data.tilesets[i].firstgid + data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
 				}
 			}
 
