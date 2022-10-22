@@ -154,7 +154,7 @@
 	update()
 
 	while(!done) {
-		drawBG()
+		dbgOceanMoving()
 
 		local message = gvLangObj["controls-menu"]["press-key-for"] + " "
 		switch(newkey) {
@@ -285,7 +285,7 @@
 	update()
 
 	while(!done) {
-		drawBG()
+		dbgOceanMoving()
 
 		if(keyPress(k_escape)) done = true
 		local message = gvLangObj["controls-menu"]["press-button-for"] + " "
@@ -417,6 +417,38 @@
 		}
 		message += "...\n" + gvLangObj["controls-menu"]["clear"]
 
+		setDrawColor(0x00000080)
+		drawRec(0, 0, screenW(), 24, true)
+		drawText(font, 8, 8, message)
+		update()
+	}
+
+	fileWrite("config.json", jsonWrite(config))
+}
+
+::rebindJoyPeek <- function(axis) {
+	resetDrawTarget()
+
+	local message = gvLangObj["controls-menu"]["peek-axis"]
+	if(axis == 0) message += gvLangObj["controls-menu"]["peek-horizontal"]
+	else message += gvLangObj["controls-menu"]["peek-vertical"]
+	local done = false
+
+	update()
+
+	while(!done) {
+		if(keyPress(k_escape)) done = true
+
+		for(local i = 0; i < 10; i++) {
+			if(abs(joyAxis(0, i)) >= 1000 && abs(joyAxis(0, i)) <= 10000) {
+				if(axis == 0) config.joy.xPeek = i
+				else config.joy.yPeek = i
+				done = true
+				break
+			}
+		}
+
+		dbgOceanMoving()
 		setDrawColor(0x00000080)
 		drawRec(0, 0, screenW(), 24, true)
 		drawText(font, 8, 8, message)

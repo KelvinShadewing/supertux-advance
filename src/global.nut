@@ -142,6 +142,8 @@
 		rightPeek = -1
 		downPeek = -1
 		upPeek = -1
+		xPeek = -1
+		yPeek = -1
 	}
 	autorun = false
 	stickspeed = true

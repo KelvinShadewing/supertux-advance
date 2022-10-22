@@ -531,6 +531,14 @@ const menuY = 40
 		func = function() { rebindGamepad(14) }
 	},
 	{
+		name = function() { return gvLangObj["controls-menu"]["cam-peek-x"] + ": " + config.joy.xPeek.tostring() },
+		func = function() { rebindJoyPeek(0) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-peek-y"] + ": " + config.joy.yPeek.tostring() },
+		func = function() { rebindJoyPeek(1) }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }

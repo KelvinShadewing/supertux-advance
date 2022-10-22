@@ -70,6 +70,9 @@
 		"press-key-for" : "Press key for",
 		"press-button-for" : "Press button for",
 		"clear" : "Press Backspace to clear.",
+		"peek-axis" : "Move axis for ",
+		"peek-horizontal" : "horizontal camera movement.",
+		"peek-vertical" : "vertical camera movement",
 		"up" : "Up",
 		"down" : "Down",
 		"left" : "Left",
@@ -84,7 +87,9 @@
 		"cam-left-peek" : "Peek Left",
 		"cam-right-peek" : "Peek Right",
 		"cam-down-peek" : "Peek Down",
-		"cam-up-peek" : "Peek Up"
+		"cam-up-peek" : "Peek Up",
+		"cam-peek-x" : "Peek X",
+		"cam-peek-y" : "Peek Y"
 	},
 
 	"menu-commons" : {
