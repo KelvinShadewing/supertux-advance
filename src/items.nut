@@ -20,6 +20,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
+
+		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y)
+		}
 	}
 
 	function _typeof() { return "Coin" }
@@ -43,6 +48,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 		}
+
+		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y, 5)
+		}
 	}
 
 	function _typeof() { return "Coin" }
@@ -63,6 +73,11 @@
 		frame += 0.2
 		drawSprite(sprCoin10, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y, 10)
+		}
+
+		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 		}
