@@ -1,0 +1,41 @@
+{
+	"level" : {
+		"space-yggdrasil-guardian" : "The Yggdrasil Guardian Station",
+		"space-moon" : "Into the Moon!",
+		"aurora-tnt-old" : "Tux 'N' Trouble OLD",
+		"aurora-slipB" : "Slip and Slide B-side",
+		"aurora-crystalB" : "Crystal Pass B-side",
+		"aurora-subseaB" : "Subsea B-side",
+		"aurora-learnB" : "Learning the Slopes B-side",
+		"aurora-bridgeB" : "The Ocean Bridge B-side",
+		"aurora-windB" : "Arctic wind B-side",
+		"SE-0" : "PAGOPHOBIA",
+		"Bonus-pipe" : "Pipe dream",
+		"Bonus-jackson" : "Bounce and Blast",
+		"shopB" : "Sam's better shop"
+	},
+
+	"npc" : {
+		"null" : "",
+		"hubot-t0-Tux" :
+		"Hello Tux, So far, our reports are still currently unknown how we got displaced to your universe from our home universes, we still need to create our path so that we can finally go back to our home universes. We'll leave it up to you and your friends to find out what caused all of the entire dimensional-drifting phenomenon.",
+		"hubot-t0-Konqi" :
+		"Hello Konqi, So far, our reports are still currently unknown how we got displaced to Tux's universe from our home universes, we still need to create our path so that we can finally go back to our home universes. We'll leave it up to you and your friends to find out what caused all of the entire dimensional-drifting phenomenon.",
+		"hubot-t0-Midi" :
+		"Hello Midi, So far, our reports are still currently unknown how we got displaced to Tux's universe from our home universes, we still need to create our path so that we can finally go back to our home universes. We'll leave it up to you and your friends to find out what caused all of the entire dimensional-drifting phenomenon.",
+		"hubot-t0-Cyra" :
+		"Welcome back my fellow Cyra, So far, our reports are still currently unknown how we got displaced to Tux's universe from our home universes, we still need to create our path so that we can finally go back to our home universes. We'll leave it up to you and your friends to find out what caused all of the entire dimensional-drifting phenomenon.",
+		"hubot-t0" :
+		"Hello new member, So far, our reports are still currently unknown how we got displaced to Tux's universe from our home universes, we still need to create our path so that we can finally go back to our home universes. We'll leave it up to you and your friends to find out what caused all of the entire dimensional-drifting phenomenon.",
+		"mona-t0-Tux" :
+		"Hey there! I heard so much about you how you and your friends managed to Take Nolok down! That's great. If you're asking that you're trying to find their homes? We all got sucked into a wormhole leading to your world, and during your kart racing stuff, Me and Hubot have created the Space Stations together with Yumi and Keith so we will scan for the wormholes leading to our homes.",
+		"mona-t0-Konqi" :
+		"",
+		"mona-t0-Midi" :
+		".",
+		"mona-t0-Cyra" :
+		"Welcome back Cyra, Glad you recruited more heroes there, and I seen Tux did found an intersting carving, maybe this may find out how to get home.",
+		"mona-t0" :
+		"."
+	}
+}

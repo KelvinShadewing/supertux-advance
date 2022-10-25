@@ -1,11 +1,13 @@
 {
 	"info" : {
 		"welcome2" :
-		"Hello! Welcome to the frostlands, a pack of levels made for more experenced players, So you haven't already, I suggest playing the main storymode first. Anyways, good luck!",
+		"Hello! Welcome to the frostlands, a pack of levels made for more experenced players, So you haven't already, I suggest playing the main storymode first. Anyways, good luck! (Note; if you can, play with lighting on!)",
 		"Fish" :
 		"Collect all the fish in this level to be able to reach the exit!",
 		"poo" :
 		"This level sucks.",
+		"Devcomintro" :
+		"Press f1 to see dev comments and breif run downs on what new enemies do.",
 		"Ftwo" :
 		"Blocks in the way aren't vanishing? That means you didn't collect all fish. Try again"
 	},
@@ -14,16 +16,15 @@
 		"fw-t1" : "Chill docks",
 		"fw-t2" : "Doll shrine",
 		"fw-t3" : "Ice-burg",
-		"fw-t4" : "Lost tower",
-		"fw-t5" : "idk what to call this either :v",
-		"fw-t6" : "awesome placeholder name",
+		"fw-t4" : "The lost tower",
+		"fw-t5" : "Town by the Sea",
 		"fw-s" : "Into the void",
 		"fw-1" : "Noted",
 		"fw-2" : "Roots",
 		"fw-3" : "Fire & Ice",
 		"fw-3b" : "Blast off!",
-		"fw-4" : "Supernovae",
-		"fw-5" : "Lost Ruins",
+		"fw-4" : "Supernova",
+		"fw-5" : "Lost ruins",
 		"fw-6" : "I wanna be the penguin",
 		"fw-7" : "Ocean cliffs",
 		"fw-8" : "Permafrost",
@@ -31,11 +32,11 @@
 		"fw-10" : "Sunshine shore",
 		"fw-11" : "Through the stones",
 		"fw-12" : "Hydropower",
-		"fw-13" : "Tux's meltdown",
-		"fw-14" : "King of fire",
+		"fw-13" : "Meltdown",
+		"fw-14" : "Last spark",
 		"B-1" : "NeverCity",
-		"B-2" : "freezing point",
-		"B-3" : "Down you go!",
+		"B-2" : "Freezing point",
+		"B-3" : "Another's nostalgia",
 		"B-4" : "Valley in the sky",
 		"fw-test" : "test"
 	},
@@ -46,7 +47,7 @@
 		"Sam-A" :
 		"Oh- hello there. For some reason the normally peacefull frostlands have become purple, and much more dangerous. So I would suggest taking the muffin from that block, to help you out.",
 		"Player-A" :
-		"Joke here",
+		"Some NPCs can tell you important information, so talk to as many as you can.",
 		"fire-A" :
 		"Hey, im the one managing the port at the moment. I don't have any boats, but I do have a few items for you.",
 		"fire-B" :
@@ -56,7 +57,7 @@
 		"mark" :
 		"...",
 		"Frost" :
-		"Oh, hello there Tux. I need to inform you of something. Above the level roots, there's a few hidden levels. One of them even has a powerup not normally found in the frostlands, the air feather. go check it out",
+		"Hey, I need to tell you something. Above the level roots, there's a few hidden levels. One of them even has a powerup not normally found in the frostlands, the air feather. go check it out",
 		"mrq2" :
 		"Looks like something or someone is on the Burger place, I wonder how they got up there",
 		"mark2" :
@@ -75,14 +76,26 @@
 		"Why hello fellow cheater!!",
 		"slm" :
 		"May I offer you a cup of tea? No? Well that's too bad.",
+		"feesh" :
+		"I am a fish i swim in the wwaatterrrr the addition of me to this town was necessary",
 		"JuiceQ" :
 		"Got juice?",
-		"placeholder" :
-		"This is placeholder text",
+		"Microplastics" :
+		"After eating one of those popsicles, I don't feel too good....",
+		"Cone" :
+		"In a land without cars, what is a cone like me supposed to do?",
+		"Stolen" :
+		"That darn 3d cat stole all my powerups! what am I supposed to give to give to visitors now!?",
+		"newtowntwo" :
+		"It's time for someone else to have a turn. Check the Character menu.",
+		"OceanPantstext" :
+		"Oh boy, look at me, with my super awesome pants. Then look at you, with NO pants. That's right. none. Isn't that tragic?",
+		"newtown" :
+		"Hey, my brother needs to tell you something important. He's at the far right of the town.",
 		"W-Baller" :
 		"wall baller                                                                                                                                                                     ?"
 		},
-
+		
 	"devcom" : {
 		"chance" :
 		"FrostC:The first level made for Frostlands. And it's pretty good, even compared to many of the recent levels.",
@@ -99,22 +112,40 @@
 		"skillissue" :
 		"FrostC: yes, it is possible to beat this level without getting hurt. I've done it a few times ;)",
 		"lazy" :
-		"FrostC: Im gonna let you in on a secret... I don't like making levels with the forest tiles. So I made a ice level for the forest world. So yeah, take that as you will.",
+		"FrostC: Im gonna let you in on a secret... I don't like making levels with the forest tiles. So I made a ice level for the forest world.",
 		"PipesC" :
 		"FrostC: If you are able to, please turn on lighting for this level. It will let you see the very cool and awesome pipe transitions I made. I'm very happy how they look.",
 		"oceanC" :
 		"FrostC: Don't really have anything to say about this level, besides that I think it looks cool.",
 		"Pipes" :
 		"FrostC: If you are able to, please turn on lighting for this level. It will let you see the very cool and awesome pipe transitions I made. I'm very happy how they look.",
+		"backgrounddevcom" :
+		"FrostC: It took me a long time to get the background of this level right. Earlier versions of the background looked awful.",
+		"blitzdevcom" :
+		"FrostC: Pro gamer tip; try to stay above mr.blitz, his attacks cant reach that far above him.",
+		"wildcaptut" :
+		"wildcaps are like deathcaps, but stronger. they deal more damage and are resistant to sliding.",
+		"blazetut" :
+		"The blazeborn is a fast moving enemy that's resistant to stomps and sliding. In order to kill it you will need a powerup.",
+		"livetut" :
+		"The livewire is a electric bomb with a tough shell and a large explosion. His tough shell makes it immune to fire and ice attacks. He can be ignited by being stomped on. And for those who didn't play the right path, The blazeborn is a fast moving fire enemy that's resistant to stomps and sliding. In order to kill it you will need a powerup.",
+		"blitztut" :
+		"Mr.Blitz is like a deathcap that shoots cannon balls. He can be very dangerous when left not dealt with, so make killing him your top priority!",
+		"bsodtut" :
+		"The bsod will release an electric charge when hit with fire, or ice. Being close to him while he's releasing a charge can be dangerous!",
 		"lololol" :
 		"FrostC: Made this level due to someone saying they wanted to see the air feather be used in Frostlands."
-	},
+		},
 
 	"achi-name" : {
-		"welcomeFrostlands" : "Welcome to The Frostlands!"
+		"welcomeFrostlands" : "A new world",
+		"SecretFrostlands" : "REMOVED ACHIVMENT",
+		"CompleteFrostlands" : "End of an adventure"
 	},
 
 	"achi-desc" : {
-		"welcomeFrostlands" : "Play the Frostlands for the first time."
+		"welcomeFrostlands" : "Play the Frostlands for the first time.",
+		"SecretFrostlands" : "removed achivment",
+		"CompleteFrostlands" : "Complete all frostlands levels, including the secret ones."
 	}
 }

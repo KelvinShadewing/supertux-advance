@@ -112,6 +112,19 @@
 		{"type":"normal","text":"Vankata453"},
 
 		{"type":"spacing","height":1},
+		{"type":"header","trText":"mascots"},
+		{"type":"normal","text":"Tux - Larry Ewing"},
+		{"type":"normal","text":"Konqi - Tyson Tan"},
+		{"type":"normal","text":"Midi Waffle - Kelvin Shadewing"},
+		{"type":"normal","text":"Gnu - Nevrax Design Team"},
+		{"type":"normal","text":"Pygame - TheCorruptor"},
+		{"type":"normal","text":"Rocky Raccoon - Prof. Andrew Tanenbaum"},
+		{"type":"normal","text":"Garuda Gryphon - Kelvin Shadewing"},
+		{"type":"normal","text":"Teal Deer - dbrgn"},
+		
+		
+
+		{"type":"spacing","height":1},
 		{"type":"header","trText":"additional"},
 		{"type":"normal","text":"LaserCat"},
 

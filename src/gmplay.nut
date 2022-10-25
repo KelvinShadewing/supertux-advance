@@ -439,6 +439,11 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
+	//Run level step code
+	if("properties" in gvMap.data) foreach(i in gvMap.data.properties) {
+		if(i.name == "run") dostr(i.value)
+	}
+
 	//Resume music after invincibility
 	if(gvPlayer && gvPlayer2 && "invincible" in gvPlayer && "invincible" in gvPlayer2 && gvPlayer.invincible == 0 && gvPlayer2.invincible == 0
 	|| gvPlayer && !gvPlayer2 && "invincible" in gvPlayer && gvPlayer.invincible == 0

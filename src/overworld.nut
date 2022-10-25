@@ -179,7 +179,7 @@
 			}
 
 			//Move right
-			if(getcon("right", "hold") && (!placeFree(x + 16, y) || debug) && hspeed <= 0 && vspeed == 0) {
+			if(getcon("right", "hold") && !getcon("left", "hold") && (!placeFree(x + 16, y) || debug) && hspeed <= 0 && vspeed == 0) {
 				if(level == "" || game.owd == 0 || game.completed.rawin(level) || onrace) {
 					hspeed = 2
 					game.owd = 2
@@ -187,7 +187,7 @@
 			}
 
 			//Move up
-			if(getcon("up", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed >= 0) {
+			if(getcon("up", "hold") && !getcon("down", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed >= 0) {
 				if(level == "" || game.owd == 1 || game.completed.rawin(level) || onrace) {
 					vspeed = -2
 					game.owd = 3
@@ -195,7 +195,7 @@
 			}
 
 			//Move left
-			if(getcon("left", "hold") && (!placeFree(x - 16, y) || debug) && hspeed >= 0 && vspeed == 0) {
+			if(getcon("left", "hold") && !getcon("right", "hold") && (!placeFree(x - 16, y) || debug) && hspeed >= 0 && vspeed == 0) {
 				if(level == "" || game.owd == 2 || game.completed.rawin(level) || onrace) {
 					hspeed = -2
 					game.owd = 0
@@ -203,7 +203,7 @@
 			}
 
 			//Move down
-			if(getcon("down", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed <= 0) {
+			if(getcon("down", "hold") && !getcon("up", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed <= 0) {
 				if(level == "" || game.owd == 3 || game.completed.rawin(level) || onrace) {
 					vspeed = 2
 					game.owd = 1
