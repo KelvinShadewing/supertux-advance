@@ -64,7 +64,7 @@
 
 [Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy) - Splash
 
-[UbuntuJackson](https://github.com/UbuntuJackson) - UFO
+[UbuntuJackson](https://github.com/UbuntuJackson) - UFO, snow tiles redesign
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
 
