@@ -262,7 +262,7 @@
          "name":"solid",
          "opacity":0.23,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":384,
          "x":0,
          "y":0

@@ -1,5 +1,9 @@
 {
-	"logo" : "title.png",
+	"logo" : {
+		"file" : "title.png",
+		"width" : 220,
+		"height" : 55
+	},
 
 	"main-menu" : {
 		"new" : "New Game",

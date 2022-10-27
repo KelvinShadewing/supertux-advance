@@ -281,7 +281,7 @@
          "name":"solid",
          "opacity":0.3,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":60,
          "x":0,
          "y":0

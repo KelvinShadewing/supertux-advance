@@ -18,6 +18,7 @@
 					gvLangObj = jsonRead(fileRead("lang/en.json"))
 					gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
 					if(fileExists(game.path + config.lang + ".json")) gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(game.path + config.lang + ".json")))
+					sprTitle = newSprite("res/gfx/" + gvLangObj.logo.file, gvLangObj.logo.width, gvLangObj.logo.height, 0, 0, gvLangObj.logo.width / 2, 0)
 				}
 			}
 		)
