@@ -990,7 +990,7 @@
 			break
 
 		case 70:
-			c = newActor(RedCoin, i.x + 8, i.y - 8)
+			c = newActor(Herring, i.x + 8, i.y - 8)
 			break
 
 		case 71:
@@ -1088,7 +1088,7 @@
 			break
 
 		case 2:
-			c = newActor(RedCoin, i.x + 8, i.y - 8)
+			c = newActor(Herring, i.x + 8, i.y - 8)
 			break
 
 		case 3:

@@ -322,6 +322,8 @@
 ::defCoin10 <- sprCoin10
 ::sprHerring <- newSprite("res/gfx/herring.png", 16, 16, 0, 0, 8, 8)
 ::defHerring <- sprHerring
+::sprRedHerring <- newSprite("res/gfx/redherring.png", 16, 16, 0, 0, 8, 8)
+::defRedHerring <- sprRedHerring
 ::sprFlowerFire <- newSprite("res/gfx/fireflower.png", 16, 16, 0, 0, 8, 8)
 ::defFlowerFire <- sprFlowerFire
 ::sprFlowerIce <- newSprite("res/gfx/iceflower.png", 16, 16, 0, 0, 8, 8)

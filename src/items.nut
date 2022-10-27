@@ -106,7 +106,7 @@
 	function _typeof() { return "Coin" }
 }
 
-::RedCoin <- class extends Actor{
+::Herring <- class extends Actor{
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null)
@@ -127,7 +127,31 @@
 		}
 	}
 
-	function _typeof() { return "Coin" }
+	function _typeof() { return "Herring" }
+}
+
+::RedHerring <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+	base.constructor(_x, _y)
+		frame = randFloat(4)
+		game.maxRedCoins++
+	}
+
+	function run()
+	{
+		frame += 0.1
+		drawSprite(sprRedHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			playSoundChannel(sndFish, 0, 1)
+			game.redCoins++
+		}
+	}
+
+	function _typeof() { return "RedHerring" }
 }
 
 ::FlowerFire <- class extends Actor{
