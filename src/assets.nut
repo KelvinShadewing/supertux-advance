@@ -348,6 +348,8 @@
 ::defSpecialBall <- sprSpecialBall
 ::sprCoffee <- newSprite("res/gfx/coffee-cup.png", 14, 20, 0, 0, 7, 12)
 ::defCoffee <- sprCoffee
+::sprMysticDoll <- newSprite("res/gfx/mystic-doll.png", 16, 16, 0, 0, 8, 8)
+::defMysticDoll <- sprMysticDoll
 
 
 

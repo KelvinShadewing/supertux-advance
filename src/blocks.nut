@@ -464,6 +464,7 @@
 				gvPlayer.vspeed = 1
 				vspeed = -1
 				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
 			shape.setPos(x, y - 1)
