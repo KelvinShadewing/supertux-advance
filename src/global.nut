@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.1.3 "
+::gvVersion <- "0.2.0"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -10,15 +10,16 @@
 ::createNewGameObject <- function () {
 	return { //Globals stored in this table will be saved
 		difficulty = 0
-		file = 0
+		file = -1
 		coins = 0
 		levelCoins = 0
 		maxCoins = 0 //Total coins in the level
-		redcoins = 0
-		levelredcoins = 0
-		maxredcoins = 0
+		redCoins = 0
+		maxRedCoins = 0
 		secrets = 0
+		maxSecrets = 0
 		enemies = 0
+		maxEnemies = 0
 		health = 12
 		maxHealth = 12
 		weapon = 0
@@ -29,10 +30,14 @@
 		earthBonus = 0
 		subitem = 0
 		completed = {} //List of completed level names
+		unblocked = {} //List of unblocked obstacles on map
 		allCoins = {} //Levels that the player has gotten all enemies in
 		allEnemies = {} //Levels that the player has beaten all enemies in
 		allSecrets = {} //Levels the player has found all secrets in
 		bestTime = {} //Fastest time for a level
+		bestCoins = {} //Most coins found per level
+		bestEnemies = {} //Most enemies defeated per level
+		bestSecrets = {} //Most secrets found per level
 		igt = 0 //Global IGT, which increments throughout the game's runtime
 		colorswitch = [
 			false,
@@ -45,8 +50,26 @@
 			false
 		] //Color blocks activated by respective switches
 		characters = { //List of unlocked characters
-			Tux = ["sprTuxOverworld", "sprTuxDoll", "sprTux", [40, 41]]
-			//Konqi = ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
+			Tux = {
+				over = "sprTuxOverworld"
+				doll = "sprTuxDoll"
+				normal = "sprTux"
+				fire = "sprTuxFire"
+				ice = "sprTuxIce"
+				air = "sprTuxAir"
+				earth = "sprTuxEarth"
+				wave = [40, 41]
+			}
+			Penny = {
+				over = "sprPennyOverworld"
+				doll = "sprPennyDoll"
+				normal = "sprPenny"
+				fire = "sprPennyFire"
+				ice = "sprPennyIce"
+				air = "sprPennyAir"
+				earth = "sprPennyEarth"
+				wave = [40, 41]
+			}
 		}
 		secretOrbs = [
 			false,
@@ -58,8 +81,10 @@
 			false,
 			false
 		]
+		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
+		player2Char = null
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0
@@ -75,8 +100,9 @@
 }
 
 ::game <- createNewGameObject()
-::gvPlayer <- false; //Pointer to player actor
-::gvBoss <- false; //Pointer to boss actor
+::gvPlayer <- false //Pointer to player actor
+::gvPlayer2 <- false //Pointer to second player
+::gvBoss <- false //Pointer to boss actor
 /*\
  # When characters are unlocked, they will
  # be added to game.characters. Mods can
@@ -116,6 +142,8 @@
 		rightPeek = -1
 		downPeek = -1
 		upPeek = -1
+		xPeek = -1
+		yPeek = -1
 	}
 	autorun = false
 	stickspeed = true
@@ -126,20 +154,29 @@
 	light = true
 	showcursor = true
 	usefilter = false
-	soundVolume = 128
-	musicVolume = 128
+	soundVolume = 64
+	musicVolume = 64
 	fullscreen = false
 }
 
 ::contribDidRun <- {}
 
+//Screen related variables
 ::gvScreen <- 0
 ::gvPlayScreen <- 0
+::gvPlayScreen2 <- 0
+::gvSplitScreen <- false
 ::camx <- 0
 ::camy <- 0
+::camx1 <- 0
+::camy1 <- 0
+::camx2 <- 0
+::camy2 <- 0
 ::camxprev <- 0
 ::camyprev <- 0
 ::gvTextW <- 0
+::gvScreenW <- 0
+::gvScreenH <- 0
 
 //Debug variabls
 ::gvFPS <- 0
@@ -150,6 +187,11 @@
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
 ::gvCamTarget <- false
+::gvFadeTime <- 0
+::gvNextLevel <- ""
+::gvTimeAttack <- false
+::gvTAStart <- "aurora-learn"
+::gvTAFullGame <- false
 
 //Temporary items
 ::gvKeyCopper <- false

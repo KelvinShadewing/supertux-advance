@@ -2,7 +2,7 @@
 	stopMusic()
 	songPlay(musTheme)
 	game = createNewGameObject()
-	drawBG = dbgUnderwater
+	drawBG = dbgOceanMoving
 	gvGameMode = gmMain
 	actor = {}
 	menu = meMain
@@ -12,12 +12,16 @@
 		left = false
 		right = false
 	}
+	gvLight = 0xffffffff
+	gvLightTarget = 0xffffffff
+	levelEndRunner = 0
 }
 
 ::gmMain <- function()
 {
 	setDrawTarget(gvScreen)
 	drawBG()
+	runActors()
 	drawSprite(sprTitle, 0, screenW() / 2, 16)
 	drawDebug()
 

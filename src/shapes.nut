@@ -17,7 +17,7 @@
 	ox = 0.0
 	oy = 0.0
 
-	constructor(_x, _y, _w, _h, _kind, _ox = 0.0, _oy = 0.0) {
+	constructor(_x, _y, _w, _h, _kind = 0, _ox = 0.0, _oy = 0.0) {
 		x = _x.tofloat()
 		y = _y.tofloat()
 		w = _w.tofloat()
@@ -32,8 +32,6 @@
 		oy = _oy.tofloat()
 	}
 
-	function _typeof() { return "Rec" }
-
 	function setPos(_x, _y) {
 		x = _x.tofloat() + ox
 		y = _y.tofloat() + oy
@@ -41,6 +39,10 @@
 
 	function draw() {
 		drawRect(x - w - camx, y - h - camy, (w * 2) + 1, (h * 2) + 1, false)
+	}
+
+	function pointIn(_x, _y) {
+		return (_x > x - w && _x < x + w && _y > y - h && _y < y + h)
 	}
 
 	function _typeof() { return "Rec" }
@@ -74,6 +76,10 @@
 		drawCircle(x - camx, y - camy, r, false)
 	}
 
+	function pointIn(_x, _y) {
+		return inDistance2(x, y, _x, _y, _r)
+	}
+
 	function _typeof() { return "Cir" }
 }
 
@@ -82,6 +88,7 @@
 		case "Rec":
 			switch(typeof b) {
 				case "Rec":
+					//Make sure that rectangle bounding boxes are touching
 					if(abs(a.x - b.x) > abs(a.w + b.w)) return false
 					if(abs(a.y - b.y) > abs(a.h + b.h)) return false
 
@@ -97,7 +104,7 @@
 									case 1:
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = b.h / b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
@@ -106,7 +113,7 @@
 									case 2:
 										if (((a.x + a.w) - (b.x - b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = b.h / -b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x + a.w) - (b.x - b.w))
@@ -115,7 +122,7 @@
 									case 3:
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = -b.h / b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x + b.w))
@@ -124,7 +131,7 @@
 									case 4:
 										if (((a.x + a.w) - (b.x - b.w)) == 0)
 											return false
-									
+
 										//Get slope angle
 										local a0 = -b.h / -b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x + a.w) - (b.x - b.w))

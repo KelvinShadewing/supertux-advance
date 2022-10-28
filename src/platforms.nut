@@ -1,80 +1,3 @@
-::PlatformV <- class extends Actor {
-	shape = 0
-	r = 0 //Travel range
-	w = 0 //Platform width
-	ystart = 0
-	mode = 0
-	timer = 0
-	mapshape = 0
-	mapshapeid = 0
-	init = 0
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-
-		ystart = _y
-	}
-
-	function run() {
-		base.run()
-
-		if(init == 1) { //If ready to initiate
-			init = 0
-			shape = Rec(x, y, w, 8, 0)
-			mapshape = Rec(x, y, w, 8, 0)
-			mapshapeid = mapNewSolid(mapshape)
-		}
-
-		//Draw shape
-		if(w / 8 <= 1) drawSprite(tsWoodPlat, 0, x - 8 - camx, y - 8 - camy)
-		else for(local i = 1; i <= w / 8; i++) {
-			if(i == 1) drawSprite(tsWoodPlat, 1, (x - w) + ((i - 1) * 16) - camx, y - 8 - camy)
-			else if(i == w / 8) drawSprite(tsWoodPlat, 3, (x - w) + ((i - 1) * 16) - camx, y - 8 - camy)
-			else drawSprite(tsWoodPlat, 2, (x - w) + ((i - 1) * 16) - camx, y - 8 - camy)
-		}
-
-		//Movement
-		mapshape.setPos(x, y)
-
-		if(mode == 0) {
-			shape.setPos(x, y - 1)
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
-			mapshape.setPos(x, y)
-
-			if(y > ystart) y--
-			else mode = 1
-		}
-		else if(mode == 1) {
-			if(timer < 60) timer++
-			else {
-				timer = 0
-				mode = 2
-			}
-		}
-		else if(mode == 2) {
-			if(y < ystart + r) y++
-			else mode = 3
-			mapshape.setPos(x, y)
-
-			shape.setPos(x, y - 1)
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y++
-
-			shape.setPos(x, y)
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y--
-
-			shape.setPos(x, y + 2)
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.y += 2
-		}
-		else {
-			if(timer < 60) timer++
-			else {
-				timer = 0
-				mode = 0
-			}
-		}
-	}
-}
-
 ::Spring <- class extends Actor {
 	shape = 0
 	dir = 0
@@ -111,7 +34,7 @@
 						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -power
 						break
 				}
-				if(frame == 0.0) playSound(sndSpring, 0)
+				if(frame == 0.0) popSound(sndSpring, 0)
 			}
 		}
 
@@ -185,7 +108,7 @@
 						gvPlayer.vspeed = -power * 0.8
 						break
 				}
-				if(frame == 0.0) playSound(sndSpring, 0)
+				if(frame == 0.0) popSound(sndSpring, 0)
 			}
 		}
 
@@ -335,15 +258,141 @@
 		local cl = c //Coins left
 		for(local i = 0; i < c; i++) {
 			if(checkActor(l[i])) {
-				actor[l[i]].x = x + r * cos((2 * pi / c) + a[i])
-				actor[l[i]].y = y + r * sin((2 * pi / c) + a[i])
+				local ins = actor[l[i]]
+				ins.x = x + r * cos((2 * pi / c) + a[i])
+				ins.y = y + r * sin((2 * pi / c) + a[i])
+
+				if(ins.rawin("vspeed")) ins.vspeed = 0
+				if(ins.rawin("hspeed")) ins.hspeed = 0
 
 				local canrotate = true
-				if(actor[l[i]].rawin("frozen")) if(actor[l[i]].frozen > 0) canrotate = false
+				if(ins.rawin("frozen")) if(actor[l[i]].frozen > 0) canrotate = false
 				if(canrotate) a[i] += s / 60.0
 			}
 			else cl--
 		}
 		if(cl == 0) deleteActor(id)
+	}
+}
+
+//Moving platform
+::MoPlat <- class extends PathCrawler {
+	shape = 0
+	w = 1
+	sprite = sprPlatformWood
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		w = max(1, _arr[2].tointeger())
+		if(_arr.len() > 3 && getroottable().rawin(_arr[3])) sprite = getroottable()[_arr[3]]
+		if(_arr.len() > 3 && (_arr[3] == 0 || _arr[3] == "0")) sprite = 0
+		shape = Rec(x, y, w * 8, 4, 0)
+		//mapNewSolid(shape)
+	}
+
+	function run() {
+		base.run()
+		shape.setPos(x, y)
+
+		if(w == 1) drawSprite(sprite, 0, x - camx, y - camy)
+		else for(local i = 0; i < w; i++) {
+			if(i == 0) drawSpriteZ(6, sprite, 1, x - (w * 8) + (i * 16) - camx + 8, y - camy)
+			else if(i == w - 1) drawSpriteZ(6, sprite, 3, x - (w * 8) + (i * 16) - camx + 8, y - camy)
+			else drawSpriteZ(6, sprite, 2, x - (w * 8) + (i * 16) - camx + 8, y - camy)
+		}
+
+		if(debug) {
+			setDrawColor(0x008080ff)
+			shape.draw()
+		}
+	}
+
+	function destructor() {
+		//mapDeleteSolid(shape)
+	}
+
+	function _typeof() { return "MoPlat" }
+}
+
+::Portal <- class extends Actor {
+	shapeA = 0
+	shapeB = 0
+	canWarp = true
+	sprite = sprPortalGray
+	angleA = 0
+	angleB = 0
+	color = 0x808080ff
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
+
+		shapeA = Cir(x, y, 12)
+		shapeB = Cir(x, y, 12)
+
+		if(_arr[0].len() > 0) {
+			shapeA.setPos(_arr[0][0][0], _arr[0][0][1])
+			shapeB.setPos(_arr[0][_arr[0].len() - 1][0], _arr[0][_arr[0].len() - 1][1])
+		}
+
+		switch(_arr[1]) {
+			case "blue":
+				sprite = sprPortalBlue
+				color = 0x0000f8ff
+				break
+			case "red":
+				sprite = sprPortalRed
+				color = 0xf80000ff
+				break
+			case "green":
+				sprite = sprPortalGreen
+				color = 0x008000ff
+				break
+			case "yellow":
+				sprite = sprPortalYellow
+				color = 0xf8f800ff
+				break
+			case "punkle":
+				sprite = sprPortalPunkle
+				color = 0xf800f8ff
+				break
+		}
+
+		angleA = _arr[2].tofloat()
+		angleB = _arr[3].tofloat()
+	}
+
+	function run() {
+		drawSpriteEx(sprite, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)
+		drawSpriteEx(sprite, getFrames() / 4, shapeB.x - camx, shapeB.y - camy, angleB, 0, 1, 1, 1)
+		if(debug) {
+			setDrawColor(color)
+			drawLine(shapeA.x - camx, shapeA.y - camy, shapeB.x - camx, shapeB.y - camy)
+		}
+
+		if(gvPlayer) {
+			if(canWarp) {
+				if(hitTest(shapeA, gvPlayer.shape)) {
+					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					theta += (angleB - angleA) + 180
+					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
+					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
+					playerTeleport(shapeB.x + lendirX(gvPlayer.shape.w, angleB), shapeB.y + lendirY(gvPlayer.shape.h, angleB) - gvPlayer.shape.oy)
+					canWarp = false
+				}
+
+				if(hitTest(shapeB, gvPlayer.shape)) {
+					local theta = pointAngle(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					local mag = distance2(0, 0, gvPlayer.hspeed, gvPlayer.vspeed)
+					theta += (angleA - angleB) + 180
+					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
+					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
+					playerTeleport(shapeA.x + lendirX(gvPlayer.shape.w, angleA), shapeA.y + lendirY(gvPlayer.shape.h, angleA) - gvPlayer.shape.oy)
+					canWarp = false
+				}
+			}
+			//If the player has left the portal, allow reentry
+			else if(!hitTest(shapeA, gvPlayer.shape) && !hitTest(shapeB, gvPlayer.shape)) canWarp = true
+		}
 	}
 }

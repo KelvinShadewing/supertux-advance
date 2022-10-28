@@ -43,10 +43,12 @@
 		frameID = animList.id
 		frameList = []
 		frameTime = []
-		for(local i = 0; i < animList.animation.len(); i++) {
-			frameList.push(animList.animation[i].tileid)
-			if(i == 0) frameTime.push(animList.animation[i].duration)
-			else frameTime.push(animList.animation[i].duration + frameTime[i - 1])
+		if("animation" in animList) {
+			for(local i = 0; i < animList.animation.len(); i++) {
+				frameList.push(animList.animation[i].tileid)
+				if(i == 0) frameTime.push(animList.animation[i].duration)
+				else frameTime.push(animList.animation[i].duration + frameTime[i - 1])
+			}
 		}
 		sprite = _sprite
 	}
@@ -89,6 +91,7 @@
 	h = 0
 	name = ""
 	file = ""
+	author = ""
 	solidfid = 0 //First tile ID for the solid tileset
 	shape = null
 	anim = null //List of animated tiles
@@ -153,13 +156,13 @@
 
 				//Add animations
 				if(data.tilesets[i].rawin("tiles")) for(local j = 0; j < data.tilesets[i].tiles.len(); j++) {
-					anim[data.tilesets[i].firstgid + data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
+					if("animation" in data.tilesets[i].tiles[j]) anim[data.tilesets[i].firstgid + data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
 				}
 			}
 
 			//print("Added " + spriteName(tileset[i]) + ".\n")
 
-			
+
 
 
 			shape = (Rec(0, 0, 8, 8, 0))
@@ -188,7 +191,7 @@
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l, a = 1) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -217,10 +220,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a)
-								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), data.layers[t].opacity * a)
+								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
 							}
-							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a)
+							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
 							k = -1
 							break
 						}
@@ -230,7 +233,7 @@
 		}
 	}
 
-	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, c = 0xffffffff) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, c = 0xffffffff) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -259,10 +262,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth), y + (i * data.tileheight), data.layers[t].opacity * a, c)
-								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a, c)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), data.layers[t].opacity * a, c)
+								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, 1, 1, data.layers[t].opacity * a, c)
 							}
-							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth), y + (i * data.tileheight), 0, 0, 1, 1, data.layers[t].opacity * a, c)
+							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, 1, 1, data.layers[t].opacity * a, c)
 							k = -1
 							break
 						}
@@ -287,7 +290,9 @@
 }
 
 ::mapDeleteSolid <- function(index) {
-	if(index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) gvMap.geo[index] = null
+	if(index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) {
+		gvMap.geo[index] = null
+	}
 }
 
 ::tileSetSolid <- function(tx, ty, st) { //Tile X, tile Y, solid type

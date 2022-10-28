@@ -121,7 +121,7 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":841,
+                 "gid":782,
                  "height":16,
                  "id":38,
                  "name":"",
@@ -133,7 +133,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":41,
                  "name":"Fw-1",
@@ -145,7 +145,7 @@
                  "y":272
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":42,
                  "name":"Fw-3b",
@@ -157,7 +157,7 @@
                  "y":336
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":44,
                  "name":"Fw-4",
@@ -169,7 +169,7 @@
                  "y":432
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":46,
                  "name":"Fw-2",
@@ -181,7 +181,7 @@
                  "y":272
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":47,
                  "name":"Fw-3",
@@ -193,7 +193,7 @@
                  "y":368
                 }, 
                 {
-                 "gid":844,
+                 "gid":785,
                  "height":16,
                  "id":66,
                  "name":"fw-t0",
@@ -205,7 +205,7 @@
                  "y":160
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":67,
                  "name":"Fw-5",
@@ -217,7 +217,7 @@
                  "y":544
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":68,
                  "name":"Fw-6",
@@ -229,7 +229,7 @@
                  "y":640
                 }, 
                 {
-                 "gid":844,
+                 "gid":785,
                  "height":16,
                  "id":69,
                  "name":"fw-t1",
@@ -241,7 +241,7 @@
                  "y":400
                 }, 
                 {
-                 "gid":844,
+                 "gid":785,
                  "height":16,
                  "id":72,
                  "name":"fw-t2",
@@ -253,7 +253,7 @@
                  "y":640
                 }, 
                 {
-                 "gid":844,
+                 "gid":785,
                  "height":16,
                  "id":74,
                  "name":"fw-t3",
@@ -265,7 +265,7 @@
                  "y":864
                 }, 
                 {
-                 "gid":844,
+                 "gid":785,
                  "height":16,
                  "id":75,
                  "name":"TSR",
@@ -277,7 +277,7 @@
                  "y":880
                 }, 
                 {
-                 "gid":844,
+                 "gid":785,
                  "height":16,
                  "id":76,
                  "name":"TSR",
@@ -289,7 +289,7 @@
                  "y":912
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":77,
                  "name":"Fw-7",
@@ -301,7 +301,7 @@
                  "y":592
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":78,
                  "name":"Fw-8",
@@ -313,7 +313,7 @@
                  "y":720
                 }, 
                 {
-                 "gid":842,
+                 "gid":783,
                  "height":16,
                  "id":79,
                  "name":"Fw-9",
@@ -346,7 +346,7 @@
         {
          "columns":26,
          "firstgid":1,
-         "image":"gfx\/overworld-fl.png",
+         "image":"..\/gfx\/overworld-fl.png",
          "imageheight":480,
          "imagewidth":416,
          "margin":0,
@@ -987,20 +987,20 @@
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":60,
+         "tilecount":0,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":8,
-         "firstgid":841,
+         "firstgid":782,
          "image":"..\/..\/res\/gfx\/actors.png",
          "imageheight":160,
          "imagewidth":128,
          "margin":0,
          "name":"actor",
          "spacing":0,
-         "tilecount":80,
+         "tilecount":0,
          "tileheight":16,
          "tilewidth":16
         }],

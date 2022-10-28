@@ -3,6 +3,10 @@
 ::debugTickSum <- 0
 ::debugTickList <- array(64, 0)
 ::devcom <- false
+::debugHistory <- []
+::debugCursor <- 0
+::debugMouseLeft <- 1
+::debugMouseRight <- 0
 
 ::drawDebug <- function() {
 	if(keyPress(k_f12)) {
@@ -11,6 +15,10 @@
 	}
 	if(keyPress(k_f1)) devcom = !devcom
 
+	//If drawing is disabled, exit
+	if(!debug) return
+
+	//Draw frames per second
 	local fps = getFPS()
 	debugTickSum -= debugTickList[debugTickIndex]
 	debugTickSum += fps
@@ -18,9 +26,6 @@
 	debugTickIndex++
 	if(debugTickIndex == 64) debugTickIndex = 0
 	fps = debugTickSum / 64
-
-	//If drawing is disabled, exit
-	if(!debug) return
 
 	//Set weapon
 	if(keyPress(k_1)) game.weapon = 0
@@ -42,23 +47,36 @@
 	}
 		if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
 		if(keyPress(k_e)) {
-		endGoal()	
+		endGoal()
 		}
 	}
 
-	//Teleport
-	if(gvPlayer && mouseDown(0)) {
-		gvPlayer.x = mouseX() + camx
-		gvPlayer.y = mouseY() + camy
-		gvPlayer.hspeed = 0.0
-		gvPlayer.vspeed = 0.0
+	//Mouse debug
+	if(keyDown(k_lshift)) {
+		if(gvPlayer && mouseDown(0)) {
+			gvPlayer.x = mouseX() + camx
+			gvPlayer.y = mouseY() + camy
+			gvPlayer.hspeed = 0.0
+			gvPlayer.vspeed = 0.0
 
-		if(gvGameMode == gmOverworld) {
-			gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
-			gvPlayer.y = (gvPlayer.y - (gvPlayer.y % 16)) + 8
+			if(gvGameMode == gmOverworld) {
+				gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
+				gvPlayer.y = (gvPlayer.y - (gvPlayer.y % 16)) + 8
+			}
 		}
 	}
+	else {
+		if(mouseDown(0)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseLeft)
+		if(mouseDown(2)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseRight)
+		if(mouseDown(1)) debugMouseLeft = tileGetSolid(mouseX() + camx, mouseY() + camy)
+		if(mouseWheelY() < 0) debugMouseLeft--
+		if(mouseWheelY() > 0) debugMouseLeft++
+		debugMouseLeft = wrap(debugMouseLeft, 0, (5 * 13) - 1)
+		if(debugMouseLeft == 0) drawSprite(tsSolid, (5 * 13) - 1, mouseX(), mouseY())
+		else drawSprite(tsSolid, debugMouseLeft - 1, mouseX(), mouseY())
+	}
 
+	game.canres = true
 	local message = ""
 
 	if(gvPlayer) {
@@ -100,21 +118,25 @@
 }
 
 ::debugConsole <- function() {
-	setDrawTarget(bgPause)
-	drawImage(gvScreen, 0, 0)
+	if(gvGameMode != gmPause) {
+		setDrawTarget(bgPause)
+		drawImage(gvScreen, 0, 0)
+	}
 	resetDrawTarget()
 	update()
 
 	local output = ""
-	local history = []
 	local input = ""
 
 	while(!keyPress(k_tick) && !keyPress(k_escape)) {
 		if(keyPress(k_backspace) && input.len() > 0) input = input.slice(0, -1)
 		if(keyPress(k_enter)) {
 			dostr(input)
-			history.push(input)
-			if(history.len() > 15) history.remove(0)
+			if(debugHistory.len() > 0) debugHistory.pop()
+			debugHistory.push(input)
+			debugHistory.push("")
+			debugCursor = debugHistory.len() - 1
+			if(debugHistory.len() > screenH() / 8) debugHistory.remove(0)
 			input = ""
 		}
 		local newchar = keyString()
@@ -123,21 +145,31 @@
 		setDrawTarget(gvScreen)
 		drawImage(bgPause, 0, 0)
 		setDrawColor(0x00000080)
-		drawRec(0, 0, screenW(), 8 * 16, true)
+		drawRec(0, 0, screenW(), screenH(), true)
 
 		output = ""
-		for(local i = 0; i < history.len(); i++) {
-			output += history[i]
+		for(local i = 0; i < debugHistory.len() - 1; i++) {
+			output += debugHistory[i]
 			output += "\n"
 		}
-		if(input.len() < 52) output += input
-		else output += input.slice(-52)
+		if(input.len() < floor(screenW() / 6)) output += input
+		else output += input.slice(-floor(screenW() / 6))
 		if(floor(getFrames() / 32) % 2 == 0) output += "|"
 		drawText(font, 0, 0, output)
 
 		resetDrawTarget()
 		drawImage(gvScreen, 0, 0)
 		update()
+
+		if(keyPress(k_up) && debugCursor > 0) {
+			debugCursor--
+			input = debugHistory[debugCursor]
+		}
+
+		if(keyPress(k_down) && debugCursor < debugHistory.len() - 1) {
+			debugCursor++
+			input = debugHistory[debugCursor]
+		}
 	}
 }
 

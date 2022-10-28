@@ -6,11 +6,10 @@
   [x] Main play
   [x] Level end
 [x] Overworld
-[ ] Forward racing
 
 ## Level assets
 
-[ ] Moving platforms
+[x] Moving platforms
 [x] One-way platforms
 [x] Breakable bricks
 [x] Item boxes
@@ -19,6 +18,9 @@
 [x] Animated tiles
 [x] Damage tiles
 [x] Death tiles
+[ ] Boiling Water
+[ ] Boost rings
+[ ] Rad race initializer
 
 ## Enemies
 
@@ -35,12 +37,18 @@
 [x] Bouncing castle fire
 [x] Fish
 [x] Haywire
+[x] Owls
+[x] Crusher
+[ ] Wheeler
 
 ## Bosses
 
-[x] Nolok
-[ ] Yeti
+[ ] Nolok
+[x] Yeti
 [ ] Orca
+[ ] Mega Snake
+[ ] Ika Ika
+[ ] Servalot
 
 ## Powerups
 
@@ -61,6 +69,21 @@
 [ ] Ice flower
 [ ] Air feather
 [ ] Earth shell
+**PENNY ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**KATIE ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
+**KIKI ITEMS**
+[ ] Fire flower
+[ ] Ice flower
+[ ] Air feather
+[ ] Earth shell
 
 ## Misc
 
@@ -69,8 +92,14 @@
 [x] General store
 [x] Fix the infamous slope glitch
 [x] add glow to Blazeborn
-[ ] World travel
+[x] World travel
 [x] In-game timer
 [x] Jump buffering
-[ ] Boiling Water
 [ ] Mod Tracking (for requirement checks)
+[ ] Two-player support
+[ ] Parallax backgrounds
+
+## Bugs to fix
+
+* Bombs lose solidity if frozen, then ground-pounded, then frozen again
+* Finish porting enemies and yeti to new actor system

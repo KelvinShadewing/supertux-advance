@@ -1,13 +1,59 @@
 ::autocon <- { //Has nothing to do with Transformers
+	a = {
+		up = false
+		down = false
+		left = false
+		right = false
+		jump = false
+		shoot = false
+		run = false
+		sneak = false
+		wasUp = false
+		wasDown = false
+		wasLeft = false
+		wasRight = false
+		wasJump = false
+		wasShoot = false
+		wasRun = false
+		wasSneak = false
+	}
+	b = {
+		up = false
+		down = false
+		left = false
+		right = false
+		jump = false
+		shoot = false
+		run = false
+		sneak = false
+		wasUp = false
+		wasDown = false
+		wasLeft = false
+		wasRight = false
+		wasJump = false
+		wasShoot = false
+		wasRun = false
+		wasSneak = false
+	}
 	up = false
 	down = false
 	left = false
 	right = false
 	jump = false
 	shoot = false
+	run = false
+	sneak = false
+	wasUp = false
+	wasDown = false
+	wasLeft = false
+	wasRight = false
+	wasJump = false
+	wasShoot = false
+	wasRun = false
+	wasSneak = false
 }
 
-::getcon <- function(control, state, useauto = false) {
+::getcon <- function(control, state, useauto = false, player = -1) {
 	local keyfunc = 0
 	local joyfunc = 0
 	local hatfunc = 0
@@ -108,7 +154,7 @@
 	update()
 
 	while(!done) {
-		drawBG()
+		dbgOceanMoving()
 
 		local message = gvLangObj["controls-menu"]["press-key-for"] + " "
 		switch(newkey) {
@@ -224,7 +270,7 @@
 		message += "..."
 
 		setDrawColor(0x00000080)
-		drawRec(0, 0, 320, 24, true)
+		drawRec(0, 0, screenW(), 24, true)
 		drawText(font, 8, 8, message)
 		update()
 	}
@@ -239,7 +285,7 @@
 	update()
 
 	while(!done) {
-		drawBG()
+		dbgOceanMoving()
 
 		if(keyPress(k_escape)) done = true
 		local message = gvLangObj["controls-menu"]["press-button-for"] + " "
@@ -372,7 +418,39 @@
 		message += "...\n" + gvLangObj["controls-menu"]["clear"]
 
 		setDrawColor(0x00000080)
-		drawRec(0, 0, 320, 24, true)
+		drawRec(0, 0, screenW(), 24, true)
+		drawText(font, 8, 8, message)
+		update()
+	}
+
+	fileWrite("config.json", jsonWrite(config))
+}
+
+::rebindJoyPeek <- function(axis) {
+	resetDrawTarget()
+
+	local message = gvLangObj["controls-menu"]["peek-axis"]
+	if(axis == 0) message += gvLangObj["controls-menu"]["peek-horizontal"]
+	else message += gvLangObj["controls-menu"]["peek-vertical"]
+	local done = false
+
+	update()
+
+	while(!done) {
+		if(keyPress(k_escape)) done = true
+
+		for(local i = 0; i < 10; i++) {
+			if(abs(joyAxis(0, i)) >= 1000 && abs(joyAxis(0, i)) <= 10000) {
+				if(axis == 0) config.joy.xPeek = i
+				else config.joy.yPeek = i
+				done = true
+				break
+			}
+		}
+
+		dbgOceanMoving()
+		setDrawColor(0x00000080)
+		drawRec(0, 0, screenW(), 24, true)
 		drawText(font, 8, 8, message)
 		update()
 	}

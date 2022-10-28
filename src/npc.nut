@@ -4,9 +4,10 @@
 	useflip = 0
 	flip = 0
 	sprite = 0
-	sayfunc = null
 	arr = null
 	talki = 0
+	sayfunc = null
+	argv = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -15,7 +16,7 @@
 		flip = randInt(2)
 
 		if(_arr != null) {
-			local argv = split(_arr, ", ")
+			argv = split(_arr, ", ")
 
 			if(getroottable().rawin(argv[0])) sprite = getroottable()[argv[0]]
 			useflip = argv[1].tofloat()
@@ -25,6 +26,27 @@
 
 			for(local i = 3; i < argv.len(); i++) {
 				if(i >= argv.len()) arr.push("")
+				else if(canint(argv[i])) arr.push(argv[i].tointeger())
+				else if(argv[i] == 0) arr.push("")
+				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], gvTextW))
+				else arr.push("")
+			}
+		}
+	}
+
+	function setDia(_arr = null) {
+		if(_arr != null) {
+			local oldargv = argv
+			argv = split(_arr, ",")
+			//
+			argv.insert(0, oldargv[0])
+			argv.insert(1, oldargv[1])
+			argv.insert(2, oldargv[2])
+			arr = []
+
+			for(local i = 0; i < argv.len(); i++) {
+				if(i >= argv.len()) arr.push("")
+				else if(canint(argv[i])) arr.push(argv[i].tointeger())
 				else if(argv[i] == 0) arr.push("")
 				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], gvTextW))
 				else arr.push("")
@@ -35,23 +57,10 @@
 	function run() {
 		if(gvPlayer && sayfunc != null) {
 			if(hitTest(shape, gvPlayer.shape)) {
-				if(getcon("up", "press") && this.rawin(sayfunc)) this[sayfunc]()
-				if(sprite == 0) {
-					if(sayfunc == "sayChar") switch(typeof gvPlayer) {
-						case "Tux":
-							if(arr[0] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-							break
-						case "Konqi":
-							if(arr[1] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-							break
-						case "Midi":
-							if(arr[2] != "") drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-							break
-					}
-
-				}
+				if(getcon("up", "press") && sayfunc != null) this[sayfunc]()
+				if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof gvPlayer) in gvLangObj["npc"] || (argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"])) drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
 				else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
-				else drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+				else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 			}
 
 			if(gvInfoBox == text) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) gvInfoBox = ""
@@ -67,37 +76,38 @@
 	}
 
 	function say() {
-		text = arr[talki]
+		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + talki], gvTextW)
+		else text = arr[0]
 		gvInfoBox = text
 		talki++
-		if(talki >= arr.len()) talki = 0
+		if(!(argv[3] + "-" + talki in gvLangObj["npc"])) talki = 0
 	}
 
 	function sayRand() {
-		text = arr[randInt(arr.len())]
+		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + talki], gvTextW)
+		else text = ""
 		gvInfoBox = text
+		talki = randInt(arr[1])
+		if(!(argv[3] + "-" + talki in gvLangObj["npc"])) talki = 0
 	}
 
 	function sayChar() {
-		switch(typeof gvPlayer) {
-			case "Tux":
-				text = arr[0]
-				break
-			case "Konqi":
-				text = arr[1]
-				break
-			case "Midi":
-				text = arr[2]
-				break
-			default:
-				text = arr[3]
-				break
-		}
+		text = ""
+		if((argv[3] + typeof gvPlayer) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + typeof gvPlayer], gvTextW)
+		else if((argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + typeof gvPlayer], gvTextW)
+		else if((argv[3]) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3]], gvTextW)
 		gvInfoBox = text
 	}
 
 	function rescueKonqi() {
 		text = textLineLen(gvLangObj["npc"]["konqi-c"], gvTextW)
+		gvInfoBox = text
+		freeKonqi()
+		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
+	}
+
+	function rescueKatie() {
+		text = textLineLen(gvLangObj["npc"]["katie-c"], gvTextW)
 		gvInfoBox = text
 		freeKonqi()
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
@@ -141,15 +151,55 @@
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
 	}
 
+	function wantFish() {
+		if(game.redCoins < game.maxRedCoins) text = arr[0]
+		else text = arr[1]
+		gvInfoBox = text
+	}
+
+	function watchActor() {
+		if(checkActor(mapActor[arr[0].tointeger()])) text = arr[1]
+		else text = arr[2]
+		gvInfoBox = text
+	}
+
 	function _typeof() { return "NPC" }
 }
 
 ::freeKonqi <- function() {
-	if(!game.characters.rawin("Konqi")) game.characters["Konqi"] <- ["sprKonqiOverworld", "sprKonqiDoll", "sprKonqi", [8, 9]]
+	 game.characters["Konqi"] <- {
+		over = "sprKonqiOverworld"
+		doll =  "sprKonqiDoll"
+		normal = "sprKonqi"
+		fire = "sprKonqiFire"
+		ice = "sprKonqiIce"
+		air = "sprKonqiAir"
+		earth = "sprKonqiEarth"
+		wave = [8, 53]
+	}
+	game.characters["Katie"] <- {
+		over = "sprKatieOverworld"
+		doll =  "sprKatieDoll"
+		normal = "sprKatie"
+		fire = "sprKatieFire"
+		ice = "sprKatieIce"
+		air = "sprKatieAir"
+		earth = "sprKatieEarth"
+		wave = [8, 53]
+	}
 	if(!game.friends.rawin("Konqi")) game.friends["Konqi"] <- true
 }
 
 ::freeMidi <- function() {
-	if(!game.characters.rawin("Midi")) game.characters["Midi"] <- ["sprMidiOverworld", "sprMidiDoll", "sprMidi", [177, 236]]
+	if(!game.characters.rawin("Midi")) game.characters["Midi"] <- {
+		over = "sprMidiOverworld"
+		doll = "sprMidiDoll"
+		normal = "sprMidi"
+		fire = "sprMidi"
+		ice = "sprMidi"
+		air = "sprMidi"
+		earth = "sprMidi"
+		wave = [177, 236]
+	}
 	if(!game.friends.rawin("Midi")) game.friends["Midi"] <- true
 }

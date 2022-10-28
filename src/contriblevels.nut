@@ -22,14 +22,18 @@
 							game.file = contribFolder
 							game.path = "contrib/" + contribFolder + "/"
 							game.world = contribWorldmap
-							tileSearchDir.push("contrib/" + contribFolder + "/gfx")
+							local searchDirExists = false
+							for(local i = 0; i < tileSearchDir.len(); i++) {
+								if(tileSearchDir[i] == "contrib/" + contribFolder + "/gfx") searchDirExists = true
+							}
+							if(!searchDirExists) tileSearchDir.push("contrib/" + contribFolder + "/gfx")
 							gvDoIGT = false
-							if(fileExists("contrib/" + contribFolder + "/" + config.lang + ".json")) {
-								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/" + config.lang + ".json")))
+							if(fileExists("contrib/" + contribFolder + "/text.json")) {
+								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/text.json")))
 								print("Found text.json")
 							}
-							else if(fileExists("contrib/" + contribFolder + "/text.json")) {
-								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/text.json")))
+							if(fileExists("contrib/" + contribFolder + "/" + config.lang + ".json")) {
+								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/" + config.lang + ".json")))
 								print("Found text.json")
 							}
 							if(fileExists("contrib/" + contribFolder + "/script.nut")) if(!contribDidRun.rawin(contribFolder)) {
@@ -80,7 +84,8 @@
 								}
 							}
 
-							local percentage = completedLevelsCount * 100 / levels.len()
+							local percentage = 0
+							if(levels.len() > 0) percentage = completedLevelsCount * 100 / levels.len()
 
 							lastLevelsCounted = {"contribFolder":contribFolder, "completed":completedLevelsCount, "total":levels.len(), "percentage":percentage}
 							return "Progress: " + completedLevelsCount + "/" + levels.len() + " (" + percentage + "%)"

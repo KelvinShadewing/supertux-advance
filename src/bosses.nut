@@ -1,6 +1,6 @@
-::Boss <- class extends PhysAct {
+::Boss <- class extends Enemy {
 	health = 40
-	phasing = false //Allows the boss to phase through walls in their intro
+	phantom = false //Allows the boss to phase through walls in their intro
 	active = false
 	routine = null
 	hspeed = 0.0
@@ -8,93 +8,56 @@
 	flip = 0
 	gravity = 0.0
 	frame = 0.0
-	anim = null
 	blinking = 0.0
+	blinkSpeed = 0.2
 	canBeStomped = false
 	ready = false
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 	}
 
 	function run() {
-		if(active) {
-			if(routine != null) routine()
-			animics()
-
-			//Collision with player
-			if(gvPlayer && health > 0) if(hitTest(shape, gvPlayer.shape) && blinking <= 0) {
-				if(gvPlayer.y < y && gvPlayer.vspeed >= 0 && gvPlayer.canStomp && canBeStomped) hurtStomp()
-				else hitPlayer()
-			}
-			if(blinking > 0) blinking -= 0.1
-			else {
-				if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtFire()
-						deleteActor(i.id)
-					}
-				}
-
-				if(actor.rawin("FireballK")) foreach(i in actor["FireballK"]) {
-					if(hitTest(shape, i.shape)) {
-						newActor(ExplodeF, i.x, i.y)
-						deleteActor(i.id)
-					}
-				}
-
-				if(actor.rawin("Iceball")) foreach(i in actor["Iceball"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtIce()
-						deleteActor(i.id)
-					}
-				}
-
-				if(actor.rawin("ExplodeF")) foreach(i in actor["ExplodeF"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtFire()
-					}
-				}
-
-				if(actor.rawin("ExplodeT")) foreach(i in actor["ExplodeT"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtShock()
-					}
-				}
-
-				if(actor.rawin("ExplodeI")) foreach(i in actor["ExplodeI"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtIce()
-					}
-				}
-
-				if(actor.rawin("ExplodeN")) foreach(i in actor["ExplodeN"]) {
-					if(hitTest(shape, i.shape)) {
-						hurtBlast()
-					}
-				}
-			}
-		}
+		if(active) base.run()
 	}
 
 	//Physics gets a separate function so that it can be inherited by other bosses
-	function animics() {}
-	function hitPlayer() {
-		gvPlayer.hurt = 1
+	function physics() {}
+	function hitPlayer(target) {
+		target.getHurt(touchDamage, element)
 	}
-
-	function hurtStomp() {}
-	function hurtBlast() {}
-	function hurtFire() {}
-	function hurtIce() {}
-	function hurtShock() {}
-	function hurtEarth() {}
 
 	function turnToPlayer() {
 		if(gvPlayer) {
 			if(gvPlayer.x > x) flip = 0
 			else flip = 1
 		}
+		else if(gvPlayer2) {
+			if(gvPlayer2.x > x) flip = 0
+			else flip = 1
+		}
+	}
+
+	function hurtInvinc() {}
+
+	function hurtPlayer(target) {
+		if(blinking == 0) base.hurtPlayer(target)
 	}
 
 	function _typeof() { return "Boss" }
@@ -168,11 +131,28 @@
 	anThrow = [40.0, 43.0, "throw"]
 	anCheer = [44.0, 47.0, "cheer"]
 
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 0.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+	}
+
 	//Boss specific variables
 	health = 40
 	eventTimer = 0
 	eventStage = 0
 	hasThrown = false
+	touchDamage = 2.0
 
 	constructor(_x, _y, _arr = null) {
 		gravity = 0.1
@@ -189,9 +169,9 @@
 
 	function _typeof() { return "Yeti" }
 
-	function animics() {
+	function physics() {
 		//Movement
-		if(placeFree(x + hspeed, y) || phasing) x += hspeed
+		if(placeFree(x + hspeed, y) || phantom) x += hspeed
 		else for(local i = 0; i < fabs(hspeed * 1.5); i++) {
 			if(placeFree(x + hspeed, y - i)) {
 				x += hspeed
@@ -200,12 +180,12 @@
 			}
 		}
 
-		if((!phasing || health <= 0) && vspeed < 4) vspeed += gravity
-		if(placeFree(x, y + vspeed) || phasing) y += vspeed
+		if((routine != ruWalkIntoFrame || health <= 0) && vspeed < 4) vspeed += gravity
+		if(placeFree(x, y + vspeed) || routine == ruDefeated) y += vspeed
 		else vspeed /= 4.0
 
 		if(health <= 0 && routine != ruDefeated) {
-			phasing = true
+			phantom = true
 			vspeed = -2.0
 			routine = ruDefeated
 			if(flip == 0) hspeed = -1.0
@@ -273,10 +253,14 @@
 			shape.draw()
 			drawText(font2, x - camx, y - camy, vspeed.tostring())
 		}
+
+		//Set damage resistance
+		if(routine == ruDizzy) damageMult.stomp = 4.0
+		else damageMult.stomp = 1.0
 	}
 
 	function ruWalkIntoFrame() {
-		phasing = true
+		phantom = true
 		if(gvPlayer) gvPlayer.canMove = false
 		anim = anWalk
 		flip = 1
@@ -284,7 +268,7 @@
 		if(x < camx + screenW() - 96) {
 			routine = ruIntroCheer
 			hspeed = 0.0
-			phasing = false
+			phantom = false
 			eventTimer = 160
 		}
 		if(gvWarning == 180) songPlay(musBossIntro)
@@ -371,7 +355,7 @@
 		eventTimer--
 
 		if(anim == anThrow && frame >= anim[0] + 1 && !hasThrown) {
-			local c = actor[newActor(SnowBounce, x, y - 16)]
+			local c = actor[newActor(OrangeBounce, x, y - 16)]
 			if(flip == 0) c.hspeed = 2.0
 			else c.hspeed = -2.0
 			hasThrown = true
@@ -387,6 +371,10 @@
 		anim = anRun
 		if(flip == 0) hspeed = 3.0
 		else hspeed = -3.0
+
+		local c = fireWeapon(MeleeHit, x, y, 1, id)
+		c.shape = clone(shape)
+		c.shape.setPos(x + hspeed * 2, y)
 
 		if(!placeFree(x + hspeed, y)) {
 			vspeed = -2.0
@@ -430,7 +418,7 @@
 
 	function ruDefeated() {
 		eventTimer--
-		phasing = true
+		phantom = true
 		anim = anHurt
 		gravity = 0.05
 		blinking = 0
@@ -451,26 +439,46 @@
 	function hurtFire() { hurtBlast() }
 	function hurtShock() { hurtBlast() }
 
-	function hurtStomp() {
+	function hurtStomp(target) {
 		if(health <= 0) return
 		routine = ruHurt
 		eventTimer = 30
 		canBeStomped = false
 		vspeed = -2.0
-		if(gvPlayer) {
-			gvPlayer.vspeed = -2.0
+		if(target) {
+			target.vspeed = -2.0
 			if(flip == 0) hspeed = -1.0
 			else hspeed = 1.0
 		}
-		health -= 10
-		if(gvPlayer) if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) health -= 10
+		if(target) if(target.rawin("anStomp")) if(target.anim == target.anStomp) health -= 10
 		if(health > 0) playSound(sndBossHit, 0)
 		else playSound(sndDie, 0)
 	}
 
 	function hitPlayer() {
-		if(routine != ruDizzy) gvPlayer.hurt = 1
+		if(blinking > 0) return
+		if(routine != ruDizzy) base.hitPlayer()
 	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking > 0) return
+
+		local damage = _mag * damageMult[_element]
+		if(_cut) damage *= damageMult["cut"]
+		if(_blast) damage *= damageMult["blast"]
+		if(_stomp) damage *= damageMult["stomp"]
+
+		health -= damage
+		if(damage > 0) blinking = blinkMax
+
+		if(routine == ruDizzy && _stomp) {
+			hurtStomp(_by)
+		}
+
+		popSound(sndBossHit)
+	}
+
+	function die() {}
 
 	function _typeof() { return "Boss" }
 }

@@ -5,16 +5,42 @@
 	gvDoIGT = false
 	game.difficulty = newdif
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
-	startPlay("res/map/aurora-pennyton.json")
+	startPlay("res/map/aurora-pennyton.json", true, true)
+}
+
+::newTimeAttack <- function() {
+	local path = game.path
+	local newdif = game.difficulty
+	game = createNewGameObject()
+	game.file = -1
+	gvDoIGT = true
+	game.difficulty = newdif
+	game.path = path
+	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
+	startPlay(game.path + gvTAStart + ".json", true, true)
+	gvLight = 0xffffffff
+	gvLightTarget = 0xffffffff
+	drawWeather = 0
 }
 
 ::saveGame <- function() {
-	fileWrite("save/" + game.file.tostring() + ".json", jsonWrite(game))
+	if(game.file != -1) fileWrite("save/" + game.file.tostring() + ".json", jsonWrite(game))
 }
 
 ::loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
 		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
+		//Sanitize removed characters
+		local foundMissing = true
+		while(foundMissing) {
+			foundMissing = false
+			foreach(key, i in game.characters) {
+				if(!(i.normal in getroottable())) {
+					delete game.characters[key]
+					foundMissing = true
+				}
+			}
+		}
 		startOverworld(game.world)
 	}
 }

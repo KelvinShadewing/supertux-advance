@@ -20,6 +20,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
+
+		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y)
+		}
 	}
 
 	function _typeof() { return "Coin" }
@@ -43,6 +48,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 		}
+
+		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y, 5)
+		}
 	}
 
 	function _typeof() { return "Coin" }
@@ -63,6 +73,11 @@
 		frame += 0.2
 		drawSprite(sprCoin10, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			newActor(CoinEffect, x, y, 10)
+		}
+
+		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 		}
@@ -91,14 +106,14 @@
 	function _typeof() { return "Coin" }
 }
 
-::RedCoin <- class extends Actor{
+::Herring <- class extends Actor{
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null)
 	{
 	base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.maxredcoins++
+		game.maxRedCoins++
 	}
 
 	function run()
@@ -108,11 +123,35 @@
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
-			game.levelredcoins++
+			game.redCoins++
 		}
 	}
 
-	function _typeof() { return "Coin" }
+	function _typeof() { return "Herring" }
+}
+
+::RedHerring <- class extends Actor{
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null)
+	{
+	base.constructor(_x, _y)
+		frame = randFloat(4)
+		game.maxRedCoins++
+	}
+
+	function run()
+	{
+		frame += 0.1
+		drawSprite(sprRedHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			playSoundChannel(sndFish, 0, 1)
+			game.redCoins++
+		}
+	}
+
+	function _typeof() { return "RedHerring" }
 }
 
 ::FlowerFire <- class extends Actor{
@@ -459,6 +498,7 @@
 		}
 
 		drawSprite(sprStar, getFrames() / 10, x - camx, y - camy)
+		drawLight(sprLightBasic, 0, x - camx, y - camy)
 	}
 }
 
@@ -548,7 +588,7 @@
 			deleteActor(id)
 		}
 
-		drawSprite(getroottable()[game.characters[game.playerChar][1]], game.weapon, x - camx, y + 8 - camy)
+		drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, x - camx, y - camy)
 	}
 }
 
@@ -605,7 +645,7 @@
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
-			newActor(BadExplode, x, y)
+			fireWeapon(ExplodeF, x, y, 0, id)
 			deleteActor(id)
 		}
 
@@ -650,7 +690,6 @@
 		base.constructor(_x, _y)
 		shape = Cir(x, y, 8)
 		num = _arr
-		if(game.secretOrbs[num]) deleteActor(id)
 	}
 
 	function run() {
@@ -659,8 +698,12 @@
 			deleteActor(id)
 		}
 
+		if(game.secretOrbs[num]) deleteActor(id)
+
 		drawSprite(sprSpecialBall, getFrames() / 4, x - camx, y - camy)
 	}
+
+	function _typeof() { return "SpecialBall" }
 }
 
 ::CoinRing <- class extends Actor {
@@ -750,3 +793,20 @@
 	}
 }
 
+::CoffeeCup <- class extends Actor{
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+
+	function run() {
+		drawSprite(sprCoffee, getFrames() / 8, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+			deleteActor(id)
+			if(game.subitem != 8) game.subitem = 8
+			else gvPlayer.zoomies += 60 * 16
+			popSound(sndGulp, 0)
+		}
+	}
+
+	function _typeof() { return "CoffeeCup" }
+}

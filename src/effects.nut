@@ -46,15 +46,17 @@
 ::Poof <- class extends Actor {
 	frame = 0.0
 	angle = 0
+	depth = 4
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
+		if(typeof _arr == "integer") depth = _arr
 	}
 	function run() {
 		frame += 0.125
 		if(frame >= 4) deleteActor(id)
-		else drawSpriteExZ(4, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+		else drawSpriteExZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 }
 
@@ -84,7 +86,7 @@
 	function run() {
 		frame += 0.25
 		if(frame >= 8) deleteActor(id)
-		else drawSpriteEx(sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+		else drawSpriteExZ(7, sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 
@@ -134,8 +136,7 @@
 		else if(_arr == 10) value = 10
 		game.levelCoins += value
 		base.constructor(_x, _y)
-		stopSound(sndCoin)
-		playSound(sndCoin, 0)
+		popSound(sndCoin, 0)
 	}
 
 	function run() {
@@ -160,7 +161,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		playSound(sndIceBreak, 0)
+		popSound(sndIceBreak, 0)
 	}
 
 	function run() {
@@ -191,5 +192,56 @@
 		y -= 0.5
 		if(frame >= 3) deleteActor(id)
 		else drawSpriteExZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+	}
+}
+
+::AfterImage <- class extends Actor {
+	sprite = 0
+	frame = 0
+	alpha = 1.0
+	depth = 0
+	flip = 0
+	angle = 0
+	xscale = 0
+	yscale = 0
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
+		sprite = _arr[0]
+		frame = _arr[1]
+		depth = _arr[2]
+		flip = _arr[3]
+		angle = _arr[4]
+		xscale = _arr[5]
+		yscale = _arr[6]
+	}
+
+	function run() {
+		drawSpriteExZ(depth, sprite, frame, x - camx, y - camy, angle, flip, xscale, yscale, alpha)
+		alpha -= 0.2
+		if(alpha <= 0) deleteActor(id)
+	}
+}
+
+::RockChunks <- class extends Actor {
+	h = 0.0
+	v = 0.0
+	vspeed = -3.0
+	timer = 30
+	a = 0
+
+	function run() {
+		vspeed += 0.2
+		v += vspeed
+		h += 1
+		a += 4
+
+		drawSpriteExZ(2, sprRock, 1, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprRock, 2, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprRock, 3, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteExZ(2, sprRock, 4, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+
+		timer--
+		if(timer == 0) deleteActor(id)
 	}
 }

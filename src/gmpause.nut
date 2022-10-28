@@ -3,6 +3,8 @@
 ::gmPause <- function() {
 	setDrawTarget(gvScreen)
 	drawImage(bgPause, 0, 0)
+	setDrawColor(0x00000080)
+	drawRec(0, 0, screenW(), screenH(), true)
 	drawText(font2, (screenW() / 2) - 20, screenH() / 2 - 64, gvLangObj["pause-menu"]["pause"])
 	textMenu()
 	resetDrawTarget()
@@ -12,8 +14,8 @@
 ::togglePause <- function() {
 	cursor = 0
 	if(gvGameMode == gmPlay) {
-		if(actor.rawin("DeadPlayer")) {
-			startPlay(gvMap.file)
+		if(actor.rawin("DeadPlayer") && actor["DeadPlayer"].len() > 0) {
+			startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
 				game.weapon = 0
@@ -24,7 +26,8 @@
 			setDrawTarget(bgPause)
 			drawImage(gvScreen, 0, 0)
 			gvPauseMode = false
-			menu = mePausePlay
+			if(gvTimeAttack) menu = mePauseTimeAttack
+			else menu = mePausePlay
 			autocon = {
 				up = false
 				down = false

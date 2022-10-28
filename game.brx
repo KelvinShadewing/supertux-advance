@@ -1,0 +1,169 @@
+#!/usr/bin/brux
+/*===============================*\
+|                                 |
+|  SUPER TUX ADVANCE              |
+|                                 |
+|  LICENSE: AGPL                  |
+|  AUTHOR: Kelvin Shadewing       |
+|  DESC: A 16-bit game featuring  |
+|    Tux the penguin.             |
+|                                 |
+\*===============================*/
+
+//Game source
+donut("src/util.nut")
+donut("src/text.nut")
+donut("src/shapes.nut")
+donut("src/tilemap.nut")
+donut("src/assets.nut")
+donut("src/global.nut")
+donut("src/controls.nut")
+donut("src/menus.nut")
+donut("src/gmmain.nut")
+donut("src/gmplay.nut")
+donut("src/gmpause.nut")
+donut("src/physactor.nut")
+donut("src/player.nut")
+donut("src/tux.nut")
+donut("src/konqi.nut")
+donut("src/items.nut")
+donut("src/effects.nut")
+donut("src/enemies.nut")
+donut("src/bosses.nut")
+donut("src/debug.nut")
+donut("src/bg.nut")
+donut("src/trigger.nut")
+donut("src/water.nut")
+donut("src/levelend.nut")
+donut("src/platforms.nut")
+donut("src/blocks.nut")
+donut("src/weapons.nut")
+donut("src/overworld.nut")
+donut("src/secret.nut")
+donut("src/npc.nut")
+donut("src/languagemenu.nut")
+donut("src/contriblevels.nut")
+donut("src/save.nut")
+donut("src/zlist.nut")
+donut("src/pickchar.nut")
+donut("src/weather.nut")
+donut("src/light.nut")
+donut("src/credits.nut")
+donut("src/cursor.nut")
+donut("src/shop.nut")
+donut("src/timeline.nut")
+donut("src/spawner.nut")
+donut("src/achievements.nut")
+donut("src/racer.nut")
+
+////////////////
+//    MAIN    //
+////////////////
+
+if(fileExists("config.json")) config = mergeTable(config, jsonRead(fileRead("config.json")))
+
+//Set volume
+setSoundVolume(config.soundVolume)
+setMusicVolume(config.musicVolume)
+
+//Detect resolution
+//Aspects may not perfectly match, so the closest one will be picked
+local disres = displayW().tofloat() / displayH().tofloat()
+local reschoice = 0
+local aspects = [(16.0 / 9.0), (5.0 / 3.0), (4.0 / 3.0)]
+local resdiff = 100 //Arbitrary high starting number
+for(local i = 0; i < aspects.len(); i++) {
+	if(abs(disres - aspects[i]) < resdiff) {
+		resdiff = abs(disres - aspects[i])
+		reschoice = i
+	}
+}
+switch(reschoice) {
+	case 0:
+		setResolution(424, 240)
+		break
+	case 1:
+		setResolution(400, 240)
+		break
+	case 2:
+		setResolution(320, 240)
+		break
+	//Other resolutions may be supported so default is left separate
+	default:
+		setResolution(320, 240)
+		break
+}
+
+//Uncomment this function if you want to play at actual GBA resolution
+//setResolution(240, 160)
+//Uncomment this function if you want to play at the old resolution
+//setResolution(320, 180)
+
+gvScreenW = screenW()
+gvScreenH = screenH()
+
+gvTextW = floor(screenW() / 6) - 1
+
+if(config.fullscreen) toggleFullscreen()
+if(config.usefilter) setScalingFilter(1)
+gvScreen = newTexture(screenW(), screenH())
+bgPause = newTexture(screenW(), screenH())
+setScalingFilter(0)
+gvPlayScreen = newTexture(screenW(), screenH())
+gvLightScreen = newTexture(screenW(), screenH())
+textureSetBlendMode(gvLightScreen, bm_sub)
+
+//Set up window
+setWindowTitle("SuperTux Advance")
+setWindowIcon("icon.png")
+tileSearchDir.push("res")
+tileSearchDir.push("res/gfx")
+tileSearchDir.push("res/map")
+tileSearchDir.push("res/snd")
+setFPS(60)
+
+//Load game text
+
+gvLangObj = jsonRead(fileRead("lang/en.json"))
+gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
+
+if(fileExists("save/_achievements.json")) gvUnlockedAchievements = jsonRead(fileRead("save/_achievements.json"))
+
+//Set difficulty strings
+strDifficulty = [
+	gvLangObj["difficulty-levels"]["easy"],
+	gvLangObj["difficulty-levels"]["normal"],
+	gvLangObj["difficulty-levels"]["hard"],
+	gvLangObj["difficulty-levels"]["super"]
+]
+
+//Load mods
+local modlist = lsdir("mods")
+for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "..") donut("mods/" + modlist[i])
+
+print("Launching SuperTux Advance v." + gvVersion + "...")
+startMain()
+menu = meMain
+game.playerChar = "Tux"
+
+//gotoTest()
+
+//Load contrib initializers
+if(fileExists("contrib")) {
+	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
+}
+
+while(!getQuit() && !gvQuit) //Entire game happens here
+{
+	/*
+	if(keyPress(k_f11)) {
+		toggleFullscreen()
+		config.fullscreen = !config.fullscreen
+		fileWrite("config.json", jsonWrite(config))
+	}
+	*/
+	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain) togglePause()
+	gvGameMode()
+	if(keyPress(k_tick)) debugConsole()
+	update()
+}

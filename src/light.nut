@@ -1,6 +1,8 @@
 ::gvLightScreen <- 0
 ::gvLight <- 0xffffffff
 ::gvLightTarget <- 0xffffffff
+::gvLight2 <- 0xffffffff
+::gvLightTarget2 <- 0xffffffff
 
 ::drawLight <- function(sprite, frame, x, y) {
 	if(!config.light) return
@@ -72,6 +74,11 @@
 	gvLight = color
 }
 
+::setLight2 <- function(color) {
+	gvLightTarget2 = color
+	gvLight2 = color
+}
+
 ::StaticLight <- class extends Actor {
 	sprite = 0
 	scale = 1.0
@@ -87,4 +94,66 @@
 	function run() {
 		if(sprite) drawLightEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, scale, scale)
 	}
+}
+
+::TransZone <- class extends Actor {
+	w = 0.0
+	h = 0.0
+	color = "0xffffffff"
+	bg = 0
+	weather = 0
+
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y)
+		bg = _arr[0]
+		weather = _arr[1]
+		color = _arr[2]
+		print("Created transition zone")
+	}
+
+	function run() {
+		if(!gvSplitScreen) { //Single player camera
+			if(camx + (gvScreenW / 2) >= x - w
+			&& camy + (gvScreenH / 2) >= y - h
+			&& camx + (gvScreenW / 2) <= x + w
+			&& camy + (gvScreenH / 2) <= y + h) {
+				if(bg == "0") drawBG = 0
+				else if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
+				dostr("gvLightTarget = " + color)
+			}
+		}
+		else { //Multi player camera
+			if(camx1 + (gvScreenW / 4) >= x - w
+			&& camy1 + (gvScreenH / 4) >= y - h
+			&& camx1 + (gvScreenW / 4) <= x + w
+			&& camy1 + (gvScreenH / 4) <= y + h) {
+				if(bg == "0") drawBG = 0
+				else if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
+				dostr("gvLightTarget = " + color)
+			}
+
+			if(camx2 + (gvScreenW / 4) >= x - w
+			&& camy2 + (gvScreenH / 4) >= y - h
+			&& camx2 + (gvScreenW / 4) <= x + w
+			&& camy2 + (gvScreenH / 4) <= y + h) {
+				if(bg == "0") drawBG2 = 0
+				else if(bg in getroottable()) drawBG2 = getroottable()[bg]
+				if(weather == "0") drawWeather2 = 0
+				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
+				dostr("gvLightTarget2 = " + color)
+			}
+		}
+
+		if(debug) {
+			setDrawColor(0xffffffff)
+			drawRec(x - camx - w, y - camy - h, w * 2, h * 2, false)
+			if(gvPlayer) drawLine(x - camx, y - camy, gvPlayer.x - camx, gvPlayer.y - camy)
+		}
+	}
+
+	function _typeof() { return "TransZone" }
 }

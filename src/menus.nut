@@ -12,6 +12,7 @@ const menuMax = 8 //Maximum number of slots that can be shown on screen
 const fontW = 8
 const fontH = 14
 const menuY = 40
+
 ::textMenu <- function(){
 	//If no menu is loaded
 	if(menu == []) return
@@ -24,15 +25,18 @@ const menuY = 40
 	menuItemsPos = []
 
 	//Draw options
-	//The number
+	//If there are more items than can be displayed at once
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
-		if(menu[i].rawin("disabled")) { currFont = font2G }
+		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			//Make current selection blink
+			currFont = font2I
+			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			//Display option description
 			if(menu[i].rawin("desc")){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
@@ -50,14 +54,16 @@ const menuY = 40
 		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 103, (screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
 		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 98, (screenW() / 2 - 24) + (i * 12), screenH() - menuY)
 	}
+	//If all items can fit on screen at once
 	else for(local i = 0; i < menu.len(); i++) {
 		//Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
-		if(menu[i].rawin("disabled")) { currFont = font2G }
+		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
-			drawSprite(currFont, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
-			drawSprite(currFont, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
+			currFont = font2I
+			drawSprite(font2, 97, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
+			drawSprite(font2, 102, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
 			if(menu[i].rawin("desc")) {
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
@@ -86,7 +92,7 @@ const menuY = 40
 		}
 		if(getcon("down", "press")) cursorTimer = 40
 		else cursorTimer = 10
-		playSound(sndMenuMove, 0)
+		popSound(sndMenuMove, 0)
 	}
 
 	if(getcon("up", "press") || (getcon("up", "hold") && cursorTimer <= 0)) {
@@ -98,15 +104,15 @@ const menuY = 40
 		}
 		if(getcon("up", "press")) cursorTimer = 40
 		else cursorTimer = 10
-		playSound(sndMenuMove, 0)
+		popSound(sndMenuMove, 0)
 	}
 
 	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
 
 	if(getcon("jump", "press") || getcon("accept", "press")) {
-		if(menu[cursor].rawin("disabled")) return;
+		if(menu[cursor].rawin("disabled") && menu[cursor].disabled == true) return;
+		popSound(sndMenuSelect, 0)
 		menu[cursor].func()
-		playSound(sndMenuSelect, 0)
 	}
 
 	if(getcon("pause", "press")) {
@@ -133,27 +139,64 @@ const menuY = 40
 ::meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
-		func = function() { menu = meDifficulty }
+		func = function() { gvTimeAttack = false; menu = meDifficulty }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["load"] },
-		func = function() { selectLoadGame() }
+		func = function() { gvTimeAttack = false; selectLoadGame() }
+	},
+	{
+		name = function() { return gvLangObj["main-menu"]["time-attack"] },
+		func = function() { gvTimeAttack = true; menu = meTimeAttack }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
-		func = function() { selectContrib(); }
+		func = function() { gvTimeAttack = false; selectContrib(); }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { menu = meOptions }
 	},
-		{
-		name = function() { return gvLangObj["main-menu"]["credits"] },
-		func = function() { startCredits("res"); }
-		}
+	{
+		name = function() { return gvLangObj["main-menu"]["extras"] },
+		func = function() { menu = meExtras }
+	},
 	{
 		name = function() { return gvLangObj["main-menu"]["quit"] },
 		func = function() { gvQuit = 1 }
+	}
+]
+
+::meExtras <- [
+	{
+		name = function() { return gvLangObj["extras-menu"]["achievements"] },
+		func = function() { selectAchievements() }
+	},
+	{
+		name = function() { return gvLangObj["extras-menu"]["credits"] },
+		func = function() { startCredits("res") }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
+	}
+]
+
+::meTimeAttack <- [
+	{
+		name = function() { return gvLangObj["level"]["full-game"] },
+		func = function() { gvTAFullGame = true; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty },
+		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
+	},
+	{
+		name = function() { return gvLangObj["level"]["overworld-0"] },
+		func = function() { gvTAFullGame = false; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] }
+		func = function() { menu = meMain }
+		back = function() { menu = meMain }
 	}
 ]
 
@@ -164,7 +207,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
-		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file) }
+		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file, true, true) }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
@@ -172,7 +215,36 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
-		func = function() { startOverworld(game.world); }
+		func = function() {
+			if(gvTimeAttack) startMain()
+			else startOverworld(game.world)
+		}
+	}
+]
+
+::mePauseTimeAttack <- [
+	{
+		name = function() { return gvLangObj["pause-menu"]["continue"]},
+		func = function() { gvGameMode = gmPlay }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["restart"]},
+		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file, true, true) }
+	},
+	{
+		name = function() { return gvLangObj["main-menu"]["options"] },
+		func = function() { menu = meOptions }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["restart-run"]},
+		func = function() { newTimeAttack() }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["end-run"]},
+		func = function() {
+			if(gvTimeAttack) startMain()
+			else startOverworld(game.world)
+		}
 	}
 ]
 
@@ -183,7 +255,7 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["save"]},
-		func = function() { saveGame(); playSound(sndHeal, 0); gvGameMode = gmOverworld }
+		func = function() { saveGame(); popSound(sndHeal, 0); gvGameMode = gmOverworld }
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
@@ -281,12 +353,12 @@ const menuY = 40
 			if(getcon("left", "press") && getSoundVolume() > 0) {
 				config.soundVolume -= 4
 				setSoundVolume(config.soundVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getSoundVolume() < 128) {
 				config.soundVolume += 4
 				setSoundVolume(config.soundVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 
 			local vol = "VOL: ["
@@ -305,12 +377,12 @@ const menuY = 40
 			if(getcon("left", "press") && getMusicVolume() > 0) {
 				config.musicVolume -= 4
 				setMusicVolume(config.musicVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getMusicVolume() < 128) {
 				config.musicVolume += 4
 				setMusicVolume(config.musicVolume)
-				playSound(sndMenuMove, 0)
+				popSound(sndMenuMove, 0)
 			}
 
 			local vol = "VOL: ["
@@ -459,6 +531,14 @@ const menuY = 40
 		func = function() { rebindGamepad(14) }
 	},
 	{
+		name = function() { return gvLangObj["controls-menu"]["cam-peek-x"] + ": " + config.joy.xPeek.tostring() },
+		func = function() { rebindJoyPeek(0) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-peek-y"] + ": " + config.joy.yPeek.tostring() },
+		func = function() { rebindJoyPeek(1) }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }
@@ -484,19 +564,35 @@ const menuY = 40
 ::meDifficulty <- [
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["easy"] },
-		func = function() { game.difficulty = 0; menu = meNewGame }
+		func = function() {
+			game.difficulty = 0
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["normal"] },
-		func = function() { game.difficulty = 1; menu = meNewGame }
+		func = function() {
+			game.difficulty = 1
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["hard"] },
-		func = function() { game.difficulty = 2; menu = meNewGame }
+		func = function() {
+			game.difficulty = 2
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["difficulty-levels"]["super"] },
-		func = function() { game.difficulty = 3; menu = meNewGame }
+		func = function() {
+			game.difficulty = 3
+			if(gvTimeAttack) newTimeAttack()
+			else menu = meNewGame
+		}
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["cancel"] },

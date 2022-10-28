@@ -64,9 +64,13 @@
 
 [Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy) - Splash
 
-UbuntuJackson - UFO
+[UbuntuJackson](https://github.com/UbuntuJackson) - UFO, snow tiles redesign
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
+
+[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie, Penny Overworld
+
+[Narehop](https://opengameart.org/users/narehop) - Achievement Frame
 
 ## Sounds
 
@@ -92,6 +96,8 @@ Lukas Nystrand - Chippdisko
 
 [Ted Kerr](https://opengameart.org/users/wolfgang) - 8bit Upbeat Town
 
+[jkfite01](https://opengameart.org/users/jkfite01) - Peaceful Village
+
 [Joth](https://opengameart.org/users/joth) - Black Diamond, Emotional Deluge
 
 [genaralskar](https://opengameart.org/users/genaralskar) - Winter Wonderland
@@ -105,6 +111,12 @@ Lukas Nystrand - Chippdisko
 [migfus20](https://opengameart.org/users/migfus20) - Boss Theme
 
 [CleytonKauffman](https://soundcloud.com/cleytonkauffman) - Trailer Theme
+
+[Cody O'Quinn](https://www.youtube.com/c/CodyO%E2%80%99Quinn) - Berrylife City
+
+[ZhayTee]() - ice_music.ogg
+
+[Snabisch](https://opengameart.org/users/snabisch) - In The Forest
 
 ## Level Contributors
 
@@ -140,4 +152,4 @@ Click each mascot to learn more about them and the projects they're associated w
 
 **Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
 
-[Blinkehyo](https://www.youtube.com/c/Blinkehyo), [Cosmo Space Dragon](https://www.youtube.com/channel/UCUWmz_daYiPH0YJ-SzLssAg), Hazel Roo, [Kevin Pandaheart](https://www.youtube.com/fichinga), Keyla Otter, [Luke the Foxen](https://www.deviantart.com/lukethefoxen), Neon Blade, Bazzel, [Admiral Spraker](https://www.twitch.tv/adm_spraker)
+[Blinkehyo](https://www.youtube.com/c/Blinkehyo), [Cosmo Space Dragon](https://www.youtube.com/channel/UCUWmz_daYiPH0YJ-SzLssAg), Hazel Roo, [Kevin Pandaheart](https://www.youtube.com/fichinga), Keyla Otter, [Luke the Foxen](https://www.deviantart.com/lukethefoxen), Neon Blade, Bazzel, [Admiral Spraker](https://www.twitch.tv/adm_spraker), [Nova the Squirrel](https://novasquirrel.com/), tao_de_king
