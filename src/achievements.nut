@@ -101,7 +101,7 @@
 
 	foreach(key, i in gvAchievements) {
 		local newKey = key
-		meAchievements.push({
+		if(gvLangObj["achi-name"].rawin(newKey)) meAchievements.push({
 			name = function() {
 				if(gvUnlockedAchievements.rawin(newKey)) return gvLangObj["achi-name"][newKey]
 				else return "????"
