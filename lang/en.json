@@ -504,7 +504,7 @@
 		"Have you seen Duke? He likes to get fish the lazy way: by pretending his rod's broken and bumming fish off others. I'd ignore him if he wasn't able to block roads just by sitting on them.",
 
 		"not-done" :
-		"Hey, the yeti's not done yet. Have you played the contrib levels? You should check them out! In the meantime, I've got some more coding and drawing to do. I hope you've enjoyed what you've played so far! If you'd like to support development, please consider donating at https://patreon.com/kelvin.",
+		"We're working hard on Nessland, and will have new levels soon. Have you played the contrib levels? You should check them out! In the meantime, I've got some more coding and drawing to do. I hope you've enjoyed what you've played so far! If you'd like to support development, please consider donating at https://patreon.com/kelvin.",
 
 		"pennyton-Tux" :
 		"This is Penny's new town. Sure was nice of her to give so many displaced people a place to stay. I wonder if they'll ever find their way back...",
@@ -531,6 +531,8 @@
 		"This old fort has been taken over by the Yeti.",
 		"borealis-Tux" :
 		"This fort used to be to protect us. Now it's a stronghold for the Yeti.",
+		"borealis-Penny" :
+		"This fort is supposed to protect my town, not keep us prisoner. Time to take care of this.",
 		"borealis-Konqi" :
 		"I feel like something impossible has happened.",
 		"borealis-Midi" :
@@ -540,6 +542,8 @@
 		"We've already cleared this place.",
 		"borealis2-Tux" :
 		"Why did I come back here? I've already freed Konqi and Katie.",
+		"borealis2-Penny" :
+		"I swear I already cleared this place. Why are the snowballs back?",
 		"borealis2-Konqi" :
 		"Brr, it's warm in here, but I still get shivers thinking about the Yeti.",
 		"borealis2-Midi" :
