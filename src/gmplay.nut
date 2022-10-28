@@ -546,7 +546,7 @@
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
-			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+			drawSprite(getroottable()[game.characters[typeof gvPlayer]["doll"]], game.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 
 		//Draw warning sign
@@ -562,7 +562,7 @@
 		//Keys
 		local kx = 10
 		if(game.canres) {
-			drawSprite(getroottable()[game.characters[game.playerChar]["doll"]], game.weapon, gvScreenW - kx, gvScreenH - 16)
+			drawSprite(getroottable()[game.characters[typeof gvPlayer]["doll"]], game.weapon, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeyCopper) {
