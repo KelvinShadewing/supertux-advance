@@ -741,7 +741,7 @@
 					break
 
 				case 4:
-					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0) {
+					if(getcon("shoot", "press") && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0 && anim != anStatue) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -759,13 +759,6 @@
 						}
 						energy--
 						firetime = 60
-					}
-					if(getcon("shoot", "press") && (anim != anHurt) && getcon("down", "hold")) {
-						anim = anStatue
-						frame = 0.0
-						hspeed = 0.0
-						vspeed = 4.0
-						playSoundChannel(sndSlide, 0, 0)
 					}
 					if((!getcon("shoot", "hold") && !getcon("down", "hold") || energy == 0) && anim == anStatue) {
 						anim = anStand

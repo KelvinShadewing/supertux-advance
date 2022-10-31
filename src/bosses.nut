@@ -451,6 +451,7 @@
 			else hspeed = 1.0
 		}
 		if(target) if(target.rawin("anStomp")) if(target.anim == target.anStomp) health -= 10
+		if(target) if(target.rawin("anStatue")) if(target.anim == target.anStatue) health -= 20
 		if(health > 0) playSound(sndBossHit, 0)
 		else playSound(sndDie, 0)
 	}

@@ -211,18 +211,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":291,
-                 "height":16,
-                 "id":4,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":656,
-                 "y":256
-                }, 
-                {
-                 "class":"",
                  "gid":230,
                  "height":16,
                  "id":5,
@@ -316,6 +304,18 @@
                  "width":16,
                  "x":512,
                  "y":272
+                }, 
+                {
+                 "class":"",
+                 "gid":284,
+                 "height":16,
+                 "id":13,
+                 "name":"CoffeeCup,120",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":656,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -324,7 +324,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":13,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "properties":[
         {
