@@ -182,6 +182,16 @@
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 8.0
 							if(hitTest(ns, gvMap.shape)) return false
+							if(cy <= 0) {
+								gvMap.shape.setPos(((cx + i) * 16) + 8, -100)
+								gvMap.shape.h = 100.0
+								if(hitTest(ns, gvMap.shape)) return false
+							}
+							if(cy >= gvMap.h / 16) {
+								gvMap.shape.setPos(((cx + i) * 16) + 8, gvMap.h + 100)
+								gvMap.shape.h = 100.0
+								if(hitTest(ns, gvMap.shape)) return false
+							}
 							break
 						case 1: //Half Down
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
@@ -486,6 +496,11 @@
 							gvMap.shape.h = 8.0
 							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
 							break
+					}
+					else if(cy <= 0 && wl.data[cx + i] - gvMap.solidfid >= 0) {
+						gvMap.shape.setPos(((cx + i) * 16) + 8, -100)
+						gvMap.shape.h = 100.0
+						if(hitTest(ns, gvMap.shape)) return false
 					}
 					if(debug) {
 						gvMap.shape.draw()

@@ -2066,7 +2066,7 @@
 						if(hspeed < 0) flip = true
 					}
 
-					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64 + (16 * game.difficulty))) squish = true
+					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 8 + (16 * game.difficulty))) squish = true
 				}
 
 				if(gvPlayer && chasing) {
