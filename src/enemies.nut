@@ -2072,11 +2072,11 @@
 				if(gvPlayer && chasing) {
 					if(x < gvPlayer.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
 						hspeed += 0.1
-						if(hspeed < 0) hspeed += 0.1
+						if(hspeed < 0) hspeed += 0.05
 					}
 					if(x > gvPlayer.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
 						hspeed -= 0.1
-						if(hspeed > 0) hspeed -= 0.1
+						if(hspeed > 0) hspeed -= 0.05
 					}
 
 					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0

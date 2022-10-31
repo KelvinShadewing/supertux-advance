@@ -497,7 +497,7 @@
 							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
 							break
 					}
-					else if(cy <= 0 && wl.data[cx + i] - gvMap.solidfid >= 0) {
+					else if(cx + i >= 0 && cy <= 0 && wl.data[cx + i] - gvMap.solidfid >= 0) {
 						gvMap.shape.setPos(((cx + i) * 16) + 8, -100)
 						gvMap.shape.h = 100.0
 						if(hitTest(ns, gvMap.shape)) return false

@@ -4248,7 +4248,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2544,
+                 "x":2528,
                  "y":240
                 }, 
                 {
@@ -4260,8 +4260,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2528,
-                 "y":224
+                 "x":2568,
+                 "y":216
                 }, 
                 {
                  "class":"",
@@ -4272,8 +4272,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2592,
-                 "y":224
+                 "x":2568,
+                 "y":232
                 }, 
                 {
                  "class":"",
@@ -4968,7 +4968,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":16,
-                 "x":2576,
+                 "x":2608,
                  "y":240
                 }],
          "opacity":1,
