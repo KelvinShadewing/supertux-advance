@@ -39,7 +39,7 @@
 [x] Haywire
 [x] Owls
 [x] Crusher
-[ ] Wheeler
+[x] Wheeler
 
 ## Bosses
 
@@ -70,15 +70,15 @@
 [ ] Air feather
 [ ] Earth shell
 **PENNY ITEMS**
-[ ] Fire flower
-[ ] Ice flower
-[ ] Air feather
-[ ] Earth shell
+[x] Fire flower
+[x] Ice flower
+[x] Air feather
+[x] Earth shell
 **KATIE ITEMS**
-[ ] Fire flower
-[ ] Ice flower
-[ ] Air feather
-[ ] Earth shell
+[x] Fire flower
+[x] Ice flower
+[x] Air feather
+[x] Earth shell
 **KIKI ITEMS**
 [ ] Fire flower
 [ ] Ice flower
@@ -102,4 +102,3 @@
 ## Bugs to fix
 
 * Bombs lose solidity if frozen, then ground-pounded, then frozen again
-* Finish porting enemies and yeti to new actor system
