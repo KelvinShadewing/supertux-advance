@@ -178,6 +178,8 @@
 		if(y > gvMap.h + 32) deleteActor(id)
 		drawSpriteEx(sprite, frame, floor(x - camx), floor(y - camy), angle, flip, 1, 1, 1)
 	}
+
+	function _typeof() { return "DeadNME" }
 }
 
 //////////////////////
@@ -1996,6 +1998,7 @@
 	mspeed = 1.0
 	hspeed = 0.0
 	touchDamage = 2.0
+	anAgro = [4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 5, 7, 7, 8, 9, 8, 9, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11]
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -2112,7 +2115,7 @@
 
 					//Draw
 					if(chasing) {
-						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 						if(getFrames() % 8 == 0) {
 							local c
 							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
@@ -2125,10 +2128,9 @@
 				}
 			}
 			else {
-				squishTime += 1.5
-				if(chasing) frame += 0.25
-				else frame += 0.075
-				if(squishTime >= 90 && !chasing) {
+				squishTime += 1.0
+				frame += 0.25
+				if(squishTime >= 180 - (game.difficulty * 30) && !chasing) {
 					chasing = true
 					squishTime = 0
 					popSound(sndFizz, 0)
@@ -2137,8 +2139,8 @@
 					die()
 					fireWeapon(ExplodeF, x, y, 0, id)
 				}
-				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				if(!chasing) drawSpriteEx(sprHaywire, anAgro[wrap(frame, 0, anAgro.len() - 1)], x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprHaywire, wrap(frame, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
 				if(frozen) {
 					squish = false
