@@ -1,12 +1,12 @@
 ::gvZList <- {}
 
 //Add a sprite instruction to Z list
-::drawSpriteZ <- function(z, sprite, frame, x, y) {
+::drawSpriteZ <- function(z, sprite, frame, x, y, angle = 0, flip = 0, xscale = 1.0, yscale = 1.0, alpha = 1.0) {
 	//Make sure the depth slot exists
 	if(!gvZList.rawin(z)) gvZList[z] <- array(0)
 
 	//Insert the instruction
-	gvZList[z].push([sprite, frame, x, y, 0, 0, 1, 1, 1])
+	gvZList[z].push([sprite, frame, x, y, angle, flip, xscale, yscale, alpha])
 }
 
 ::drawSpriteExZ <- function(z, sprite, frame, x, y, angle, flip, xscale, yscale, alpha) {
