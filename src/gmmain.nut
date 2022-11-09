@@ -6,12 +6,7 @@
 	gvGameMode = gmMain
 	actor = {}
 	menu = meMain
-	autocon = {
-		up = false
-		down = false
-		left = false
-		right = false
-	}
+	autocon = clone(defAutocon)
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
 	levelEndRunner = 0

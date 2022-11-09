@@ -148,8 +148,6 @@ Click each mascot to learn more about them and the projects they're associated w
 
 [Konqi](https://community.kde.org/Konqi), [Plasma Breeze](https://www.deviantart.com/sheeppony/art/Plasma-Breeze-814699638), [Rocky Raccoon](https://wiki.minix3.org/doku.php?id=mascot), [Tux](https://en.wikipedia.org/wiki/Tux_(mascot)), [Xue](https://docs.xfce.org/)
 
-## Donors
-
-**Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
+## Additional Supporters
 
 [Blinkehyo](https://www.youtube.com/c/Blinkehyo), [Cosmo Space Dragon](https://www.youtube.com/channel/UCUWmz_daYiPH0YJ-SzLssAg), Hazel Roo, [Kevin Pandaheart](https://www.youtube.com/fichinga), Keyla Otter, [Luke the Foxen](https://www.deviantart.com/lukethefoxen), Neon Blade, Bazzel, [Admiral Spraker](https://www.twitch.tv/adm_spraker), [Nova the Squirrel](https://novasquirrel.com/), tao_de_king

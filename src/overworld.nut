@@ -357,12 +357,7 @@
 	gvPlayer = false
 	deleteAllActors()
 	gvIGT = 0
-	autocon = {
-		up = false
-		down = false
-		left = false
-		right = false
-	}
+	autocon = clone(defAutocon)
 	gfxReset()
 
 	//Load map to play
@@ -495,10 +490,7 @@
 	print("End level code")
 
 	//Reset auto/locked controls
-	autocon.up = false
-	autocon.down = false
-	autocon.left = false
-	autocon.right = false
+	autocon = clone(defAutocon)
 
 	update()
 }

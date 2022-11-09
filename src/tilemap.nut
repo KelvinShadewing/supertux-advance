@@ -122,6 +122,17 @@
 			print("\nLoading map: " + name)
 
 			for(local i = 0; i < data.tilesets.len(); i++) {
+				//Check if tileset is not embedded
+				if("source" in data.tilesets[i]) for(local j = 0; j < tileSearchDir.len(); j++) {
+					if(fileExists(tileSearchDir[j] + "/" + data.tilesets[i].source)) {
+						print("Found external tileset: " + data.tilesets[i].source)
+						local newgid = data.tilesets[i].firstgid
+						data.tilesets[i] = jsonRead(fileRead(tileSearchDir[j] + "/" + data.tilesets[i].source))
+						data.tilesets[i].firstgid <- newgid
+						break
+					}
+				}
+
 				//Extract filename
 				//print("Get filename")
 				local filename = data.tilesets[i].image

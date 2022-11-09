@@ -28,12 +28,7 @@
 			gvPauseMode = false
 			if(gvTimeAttack) menu = mePauseTimeAttack
 			else menu = mePausePlay
-			autocon = {
-				up = false
-				down = false
-				left = false
-				right = false
-			}
+			autocon = clone(defAutocon)
 		}
 	}
 	else if(gvGameMode == gmOverworld){
@@ -43,12 +38,7 @@
 		drawImage(gvScreen, 0, 0)
 		gvPauseMode = true
 		menu = mePauseOver
-		autocon = {
-			up = false
-			down = false
-			left = false
-			right = false
-		}
+		autocon = clone(defAutocon)
 	}
 	else if(gvGameMode == gmPause) {
 		if(gvPauseMode == false) gvGameMode = gmPlay

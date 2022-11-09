@@ -6,6 +6,7 @@
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
+::gvNetPlay <- false
 
 ::createNewGameObject <- function () {
 	return { //Globals stored in this table will be saved
@@ -102,6 +103,7 @@
 ::game <- createNewGameObject()
 ::gvPlayer <- false //Pointer to player actor
 ::gvPlayer2 <- false //Pointer to second player
+::gvNumPlayers <- 0 //Number of players at start of level
 ::gvBoss <- false //Pointer to boss actor
 /*\
  # When characters are unlocked, they will
@@ -131,6 +133,23 @@
 		upPeek = k_pageup
 	}
 	joy = {
+		index = -1
+		jump = 0
+		shoot = 2
+		run = 4
+		sneak = 5
+		pause = 7
+		swap = 3
+		accept = 0
+		leftPeek = -1
+		rightPeek = -1
+		downPeek = -1
+		upPeek = -1
+		xPeek = -1
+		yPeek = -1
+	}
+	joy2 = {
+		index = -1
 		jump = 0
 		shoot = 2
 		run = 4
@@ -165,15 +184,6 @@
 ::gvScreen <- 0
 ::gvPlayScreen <- 0
 ::gvPlayScreen2 <- 0
-::gvSplitScreen <- false
-::camx <- 0
-::camy <- 0
-::camx1 <- 0
-::camy1 <- 0
-::camx2 <- 0
-::camy2 <- 0
-::camxprev <- 0
-::camyprev <- 0
 ::gvTextW <- 0
 ::gvScreenW <- 0
 ::gvScreenH <- 0
@@ -186,7 +196,6 @@
 ::gvIGT <- 0 //In-game time for the current level
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
-::gvCamTarget <- false
 ::gvFadeTime <- 0
 ::gvNextLevel <- ""
 ::gvTimeAttack <- false

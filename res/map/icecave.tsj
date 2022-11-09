@@ -1,0 +1,14 @@
+{ "columns":11,
+ "image":"..\/gfx\/icecavetiles.png",
+ "imageheight":288,
+ "imagewidth":176,
+ "margin":0,
+ "name":"icecave",
+ "spacing":0,
+ "tilecount":198,
+ "tiledversion":"1.9.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.9"
+}

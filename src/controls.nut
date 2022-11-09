@@ -1,3 +1,6 @@
+::gvInputMode1 <- -1
+::gvInputMode2 <- -1
+
 ::autocon <- { //Has nothing to do with Transformers
 	a = {
 		up = false
@@ -8,6 +11,8 @@
 		shoot = false
 		run = false
 		sneak = false
+		swapItem = false
+
 		wasUp = false
 		wasDown = false
 		wasLeft = false
@@ -16,7 +21,9 @@
 		wasShoot = false
 		wasRun = false
 		wasSneak = false
+		wasSwapItem = false
 	}
+
 	b = {
 		up = false
 		down = false
@@ -26,6 +33,8 @@
 		shoot = false
 		run = false
 		sneak = false
+		swapItem = false
+
 		wasUp = false
 		wasDown = false
 		wasLeft = false
@@ -34,29 +43,49 @@
 		wasShoot = false
 		wasRun = false
 		wasSneak = false
+		wasSwapItem = false
 	}
-	up = false
-	down = false
-	left = false
-	right = false
-	jump = false
-	shoot = false
-	run = false
-	sneak = false
-	wasUp = false
-	wasDown = false
-	wasLeft = false
-	wasRight = false
-	wasJump = false
-	wasShoot = false
-	wasRun = false
-	wasSneak = false
 }
 
-::getcon <- function(control, state, useauto = false, player = -1) {
+::defAutocon <- clone(autocon)
+
+::netconState <- {
+		up = false
+		down = false
+		left = false
+		right = false
+		jump = false
+		shoot = false
+		run = false
+		sneak = false
+		swapItem = false
+
+		wasUp = false
+		wasDown = false
+		wasLeft = false
+		wasRight = false
+		wasJump = false
+		wasShoot = false
+		wasRun = false
+		wasSneak = false
+		wasSwapItem = false
+}
+
+::getcon <- function(control, state, useauto = false, player = 0) {
 	local keyfunc = 0
 	local joyfunc = 0
 	local hatfunc = 0
+	local joynum = 0
+	local autonum = null
+
+	if(player == 1 || player == 0) {
+		joynum = gvInputMode1
+		autonum = autocon.a
+	}
+	if(player == 2) {
+		joynum = gvInputMode2
+		autonum = autocon.b
+	}
 
 	switch(state) {
 		case "press":
@@ -81,26 +110,32 @@
 
 	switch(control) {
 		case "up":
-			if(keyfunc(config.key.up) || hatfunc(0, js_up) || (state == "hold" && joyY(0) < -js_max / 10)) return true
-			if(state == "hold" && useauto) return autocon.up
+			if(player == 1 || player == 0) if(keyfunc(config.key.up) || hatfunc(0, js_up) || (state == "hold" && joyY(0) < -js_max / 10)) return true
+			
+			if(state == "hold" && useauto) return autonum.up
 			if(state == "press" && joyAxisPress(0, 1, js_max / 20) == -1) return true
 			if(state == "release" && joyAxisRelease(0, 1, js_max / 20) == -1) return true
+			if(player == 2 && gvNetPlay) {
+				if(state == "hold" && netconState.up) return true
+				if(state == "press" && netconState.up && !netconState.wasUp) return true
+				if(state == "release" && !netconState.up && netconState.wasUp) return true
+			}
 			break
 		case "down":
 			if(keyfunc(config.key.down) || hatfunc(0, js_down) || (state == "hold" && joyY(0) > js_max / 10)) return true
-			if(state == "hold" && useauto) return autocon.down
+			if(state == "hold" && useauto) return autonum.down
 			if(state == "press" && joyAxisPress(0, 1, js_max / 20) == 1) return true
 			if(state == "release" && joyAxisRelease(0, 1, js_max / 20) == 1) return true
 			break
 		case "left":
 			if(keyfunc(config.key.left) || hatfunc(0, js_left) || (state == "hold" && joyX(0) < -js_max / 10)) return true
-			if(state == "hold" && useauto) return autocon.left
+			if(state == "hold" && useauto) return autonum.left
 			if(state == "press" && joyAxisPress(0, 0, js_max / 20) == -1) return true
 			if(state == "release" && joyAxisRelease(0, 0, js_max / 20) == -1) return true
 			break
 		case "right":
 			if(keyfunc(config.key.right) || hatfunc(0, js_right) || (state == "hold" && joyX(0) > js_max / 10)) return true
-			if(state == "hold" && useauto) return autocon.right
+			if(state == "hold" && useauto) return autonum.right
 			if(state == "press" && joyAxisPress(0, 0, js_max / 20) == 1) return true
 			if(state == "release" && joyAxisRelease(0, 0, js_max / 20) == 1) return true
 			break

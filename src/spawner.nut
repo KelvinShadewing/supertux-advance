@@ -16,7 +16,7 @@
 			maxTime = arg[1].tointeger()
 			timer = arg[1].tointeger()
 		}
-		if(2 in arg) if(arg[2]) infinite = true
+		if(2 in arg) if(arg[2] != "0" && arg[2] != "false") infinite = true
 
 		if(myClass in getroottable()) {
 			myob = newActor(getroottable()[myClass], x, y)
