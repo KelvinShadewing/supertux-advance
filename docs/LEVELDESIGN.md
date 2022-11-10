@@ -30,7 +30,7 @@ The object layers include:
 
   `pipeFunnel()` This makes the player move towards the middle of the zone when down is held. This is to make pipes easier to enter. Zones with this code are best placed in blocks directly above pipes.
 
-  `playerTeleport( x, y )` This makes the player teleport to the given coordinates `x` and `y`. While you can also change the player's location using the `x` and `y` variables found in `gvPlayer`, this function will also snap the camera, instead of leaving it to move to the player's new location.
+  `playerTeleport(myTarget,  x, y )` This makes the player teleport to the given coordinates `x` and `y`. While you can also change the player's location using the `x` and `y` variables found in `gvPlayer`, this function will also snap the camera, instead of leaving it to move to the player's new location.
 
   `drawBG = bg` Changes the background. Look in `bg.nut` and use the names of the funcitons found there.
 

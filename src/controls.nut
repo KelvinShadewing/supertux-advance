@@ -1,6 +1,3 @@
-::gvInputMode1 <- -1
-::gvInputMode2 <- -1
-
 ::autocon <- { //Has nothing to do with Transformers
 	a = {
 		up = false
@@ -75,15 +72,15 @@
 	local keyfunc = 0
 	local joyfunc = 0
 	local hatfunc = 0
-	local joynum = 0
+	local joy = null
 	local autonum = null
 
 	if(player == 1 || player == 0) {
-		joynum = gvInputMode1
+		joy = config.joy
 		autonum = autocon.a
 	}
 	if(player == 2) {
-		joynum = gvInputMode2
+		joy = config.joy2
 		autonum = autocon.b
 	}
 
@@ -110,11 +107,25 @@
 
 	switch(control) {
 		case "up":
-			if(player == 1 || player == 0) if(keyfunc(config.key.up) || hatfunc(0, js_up) || (state == "hold" && joyY(0) < -js_max / 10)) return true
-			
+			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.up)) return true
+			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+				if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -js_max / 10)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == -1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == -1) return true
+			}
+			if(player == 0) {
+				if(keyfunc(config.key.up)) return true
+				for(local i = 0; i < joyCount(); i++) {
+					if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -js_max / 10)) return true
+					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == -1) return true
+					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == -1) return true
+				}
+			}
+
 			if(state == "hold" && useauto) return autonum.up
-			if(state == "press" && joyAxisPress(0, 1, js_max / 20) == -1) return true
-			if(state == "release" && joyAxisRelease(0, 1, js_max / 20) == -1) return true
+			if(state == "press" && useauto) return autonum.up && !autonum.wasUp
+			if(state == "release" && useauto) return !autonum.up && autonum.wasUp
+
 			if(player == 2 && gvNetPlay) {
 				if(state == "hold" && netconState.up) return true
 				if(state == "press" && netconState.up && !netconState.wasUp) return true
@@ -122,60 +133,132 @@
 			}
 			break
 		case "down":
-			if(keyfunc(config.key.down) || hatfunc(0, js_down) || (state == "hold" && joyY(0) > js_max / 10)) return true
+			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.down)) return true
+			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+				if(hatfunc(joy.index, js_down) || (state == "hold" && joyY(joy.index) > js_max / 10)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == 1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == 1) return true
+			}
+			if(player == 0) {
+				if(keyfunc(config.key.down)) return true
+				for(local i = 0; i < joyCount(); i++) {
+					if(hatfunc(i, js_down) || (state == "hold" && joyY(i) > js_max / 10)) return true
+					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == 1) return true
+					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == 1) return true
+				}
+			}
+
 			if(state == "hold" && useauto) return autonum.down
-			if(state == "press" && joyAxisPress(0, 1, js_max / 20) == 1) return true
-			if(state == "release" && joyAxisRelease(0, 1, js_max / 20) == 1) return true
+			if(state == "press" && useauto) return autonum.down && !autonum.wasDown
+			if(state == "release" && useauto) return !autonum.down && autonum.wasDown
+
+			if(player == 2 && gvNetPlay) {
+				if(state == "hold" && netconState.down) return true
+				if(state == "press" && netconState.down && !netconState.wasDown) return true
+				if(state == "release" && !netconState.down && netconState.wasDown) return true
+			}
 			break
 		case "left":
-			if(keyfunc(config.key.left) || hatfunc(0, js_left) || (state == "hold" && joyX(0) < -js_max / 10)) return true
+			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.left)) return true
+			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+				if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -js_max / 10)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == -1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == -1) return true
+			}
+			if(player == 0) {
+				if(keyfunc(config.key.left)) return true
+				for(local i = 0; i < joyCount(); i++) {
+					if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -js_max / 10)) return true
+					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == -1) return true
+					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == -1) return true
+				}
+			}
+
 			if(state == "hold" && useauto) return autonum.left
-			if(state == "press" && joyAxisPress(0, 0, js_max / 20) == -1) return true
-			if(state == "release" && joyAxisRelease(0, 0, js_max / 20) == -1) return true
+			if(state == "press" && useauto) return autonum.left && !autonum.wasUp
+			if(state == "release" && useauto) return !autonum.left && autonum.wasUp
+
+			if(player == 2 && gvNetPlay) {
+				if(state == "hold" && netconState.left) return true
+				if(state == "press" && netconState.left && !netconState.wasUp) return true
+				if(state == "release" && !netconState.left && netconState.wasUp) return true
+			}
 			break
 		case "right":
-			if(keyfunc(config.key.right) || hatfunc(0, js_right) || (state == "hold" && joyX(0) > js_max / 10)) return true
+			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.right)) return true
+			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > js_max / 10)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == 1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == 1) return true
+			}
+			if(player == 0) {
+				if(keyfunc(config.key.right)) return true
+				for(local i = 0; i < joyCount(); i++) {
+					if(hatfunc(i, js_right) || (state == "hold" && joyX(i) > js_max / 10)) return true
+					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == 1) return true
+					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == 1) return true
+				}
+			}
+
 			if(state == "hold" && useauto) return autonum.right
-			if(state == "press" && joyAxisPress(0, 0, js_max / 20) == 1) return true
-			if(state == "release" && joyAxisRelease(0, 0, js_max / 20) == 1) return true
+			if(state == "press" && useauto) return autonum.right && !autonum.wasUp
+			if(state == "release" && useauto) return !autonum.right && autonum.wasUp
+
+			if(player == 2 && gvNetPlay) {
+				if(state == "hold" && netconState.right) return true
+				if(state == "press" && netconState.right && !netconState.wasUp) return true
+				if(state == "release" && !netconState.right && netconState.wasUp) return true
+			}
 			break
 		case "jump":
-			if(keyfunc(config.key.jump) || joyfunc(0, config.joy.jump)) return true
+			if(keyfunc(config.key.jump) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.jump)) return true
 			break
 		case "shoot":
-			if(keyfunc(config.key.shoot) || joyfunc(0, config.joy.shoot)) return true
+			if(keyfunc(config.key.shoot) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.shoot)) return true
 			break
 		case "run":
 			if(config.autorun) {
-				if(!keyfunc(config.key.run) && !joyfunc(0, config.joy.run)) return true
+				if(!keyfunc(config.key.run) && (player == 1 || player == 0)) return true
+				if((player == 2 || player == 0) && !joyfunc(joy.index, joy.run)) return true
 			}
 			else {
-				if(keyfunc(config.key.run) || joyfunc(0, config.joy.run)) return true
+				if(keyfunc(config.key.run) && (player == 1 || player == 0)) return true
+				if((player == 2 || player == 0) && joyfunc(joy.index, joy.run)) return true
 			}
 			break
 		case "sneak":
-			if(keyfunc(config.key.sneak) || joyfunc(0, config.joy.sneak)) return true
+			if(keyfunc(config.key.sneak) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.sneak)) return true
 			break
 		case "pause":
-			if(keyfunc(config.key.pause) || joyfunc(0, config.joy.pause)) return true
+			if(keyfunc(config.key.pause) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.pause)) return true
 			break
 		case "swap":
-			if(keyfunc(config.key.swap) || joyfunc(0, config.joy.swap)) return true
+			if(keyfunc(config.key.swap) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.swap)) return true
 			break
 		case "accept":
-			if(keyfunc(config.key.accept) || joyfunc(0, config.joy.accept)) return true
+			if(keyfunc(config.key.accept) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.accept)) return true
 			break
 		case "leftPeek":
-			if(keyfunc(config.key.leftPeek) || joyfunc(0, config.joy.leftPeek)) return true
+			if(keyfunc(config.key.leftPeek) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.leftPeek)) return true
 			break
 		case "rightPeek":
-			if(keyfunc(config.key.rightPeek) || joyfunc(0, config.joy.rightPeek)) return true
+			if(keyfunc(config.key.rightPeek) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.rightPeek)) return true
 			break
 		case "downPeek":
-			if(keyfunc(config.key.downPeek) || joyfunc(0, config.joy.downPeek)) return true
+			if(keyfunc(config.key.downPeek) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.downPeek)) return true
 			break
 		case "upPeek":
-			if(keyfunc(config.key.upPeek) || joyfunc(0, config.joy.upPeek)) return true
+			if(keyfunc(config.key.upPeek) && (player == 1 || player == 0)) return true
+			if((player == 2 || player == 0) && joyfunc(joy.index, joy.upPeek)) return true
 			break
 	}
 

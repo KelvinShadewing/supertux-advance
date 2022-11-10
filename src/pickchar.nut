@@ -1,11 +1,14 @@
 ::pickCharSettings <- {}
 
-::pickCharInitialize <- function() {
+::pickCharInitialize <- function(playerNum = 1, unlockAll = false) {
 	//Make ordered list of characters
 	pickCharSettings.charlist <- []
-	foreach(key, i in game.characters) {
-		local newitem = [key, i["normal"], i["wave"], i["doll"]]
-		pickCharSettings.charlist.push(newitem)
+	foreach(key, i in gvCharacters) {
+		if(key in game.characters || unlockAll) {
+			local newitem = [key, i["normal"], i["wave"], i["doll"]]
+			if(playerNum == 1 && game.playerChar2 != key
+			|| playerNum == 2 && game.playerChar != key) pickCharSettings.charlist.push(newitem)
+		}
 	}
 
 	//Sort characters
@@ -20,6 +23,8 @@
 	pickCharSettings.didpick <- false
 	pickCharSettings.picktimer <- 30
 	pickCharSettings.charslot <- 0
+	pickCharSettings.player <- playerNum
+	pickCharSettings.mode <- gvGameMode
 
 	//Set cursor to current character
 	for(local i = 0; i < pickCharSettings.charlist.len(); i++) {
@@ -43,7 +48,7 @@
 	listx += 4
 
 	if (getcon("pause", "press") || picktimer <= 0) {
-		gvGameMode = gmOverworld
+		gvGameMode = pickCharSettings.mode
 		return
 	}
 
@@ -72,7 +77,8 @@
 		}
 
 		if(getcon("accept", "press") || getcon("jump", "press")) {
-			game.playerChar = charlist[charslot][0]
+			if(pickCharSettings.player == 1) game.playerChar = charlist[charslot][0]
+			if(pickCharSettings.player == 2) game.playerChar2 = charlist[charslot][0]
 			didpick = true
 			popSound(sndMenuSelect, 0)
 		}
@@ -100,13 +106,4 @@
 	pickCharSettings.charslot = charslot
 	pickCharSettings.charlist = charlist
 	pickCharSettings.picktimer = picktimer
-}
-
-::addChar <- function(char, newchar) {
-	if(!getroottable().rawin(char)) {
-		print("No class for " + char + " has been defined!")
-		return
-	}
-
-	if(!game.characters.rawin(char)) game.characters[char] <- newchar
 }

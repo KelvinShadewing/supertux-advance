@@ -67,7 +67,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer.rawin("anSlide")) if((fabs(gvPlayer.hspeed) >= 4.5 || (game.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+					if(gvPlayer.rawin("anSlide")) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -159,7 +159,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer.hspeed) >= 3.5 || (game.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == 4 && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)

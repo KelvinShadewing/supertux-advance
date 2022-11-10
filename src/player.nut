@@ -70,6 +70,7 @@
 	}
 	blinking = 0 //Number of iframes remaining
 	zoomies = 0
+	stats = null
 
 	//Misc
 	heldby = 0
@@ -78,7 +79,21 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		if(!gvPlayer) gvPlayer = this
+		//Figure out which player this is
+		if(!gvPlayer) {
+			gvPlayer = this
+			stats = game.playerStats1
+			playerNum = 1
+		}
+		else if(!gvPlayer2) {
+			gvPlayer2 = this
+			stats = game.playerStats2
+			playerNum = 2
+		}
+
+		stats.health = game.maxHealth
+
+		//Player-specific settings
 	}
 
 	function run() {
@@ -175,31 +190,71 @@
 		switch(swap) {
 			case 1:
 				newActor(FlowerFire, x + hspeed, y + vspeed)
+				subitem = 0
 				break
 			case 2:
 				newActor(FlowerIce, x + hspeed, y + vspeed)
+				subitem = 0
 				break
 			case 3:
 				newActor(AirFeather, x + hspeed, y + vspeed)
+				subitem = 0
 				break
 			case 4:
 				newActor(EarthShell, x + hspeed, y + vspeed)
+				subitem = 0
 				break
 			case 5:
 				if(game.health < game.maxHealth) {
 					newActor(MuffinBlue, x + hspeed, y + vspeed)
-					game.subitem = 0
+					subitem = 0
 				}
 				break
 			case 6:
 				if(game.health < game.maxHealth) {
 					newActor(MuffinRed, x + hspeed, y + vspeed)
-					game.subitem = 0
+					subitem = 0
 				}
 				break
 			case 7:
 				newActor(Starnyan, x + hspeed, y + vspeed)
+				subitem = 0
 				break
 		}
 	}
+}
+
+::PlayerDie <- class extends Actor {
+	vspeed = -4.0
+	timer = 150
+	sprite = null
+	frame = 0.0
+	anim = null
+	playerNum = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		stopMusic()
+		playSound(sndDie, 0)
+		sprite = _arr[0]
+		anim = _arr[1]
+	}
+
+	function run() {
+		vspeed += 0.1
+		y += vspeed
+		timer--
+		if(timer == 0) {
+			if(!gvPlayer && !gvPlayer2) startPlay(gvMap.file, true, true)
+			if(game.check == false) {
+				gvIGT = 0
+				if(playerNum == 1) game.weapon = 0
+				if(playerNum == 2) game.weapon2 = 0
+			}
+		}
+
+		drawSprite(sprite, anim[wrap(getFrames() / 15, 0, anim.len() - 1)], floor(x - camx), floor(y - camy))
+	}
+
+	function _typeof() { return "DeadPlayer" }
 }

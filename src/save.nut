@@ -11,7 +11,11 @@
 ::newTimeAttack <- function() {
 	local path = game.path
 	local newdif = game.difficulty
+	local tempPlayer1 = game.playerChar
+	local tempPlayer2 = game.playerChar2
 	game = createNewGameObject()
+	game.playerChar = tempPlayer1
+	game.playerChar2 = tempPlayer2
 	game.file = -1
 	gvDoIGT = true
 	game.difficulty = newdif

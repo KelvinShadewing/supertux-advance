@@ -377,7 +377,7 @@
 					theta += (angleB - angleA) + 180
 					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
 					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
-					playerTeleport(shapeB.x + lendirX(gvPlayer.shape.w, angleB), shapeB.y + lendirY(gvPlayer.shape.h, angleB) - gvPlayer.shape.oy)
+					playerTeleport(myTarget, shapeB.x + lendirX(gvPlayer.shape.w, angleB), shapeB.y + lendirY(gvPlayer.shape.h, angleB) - gvPlayer.shape.oy)
 					canWarp = false
 				}
 
@@ -387,7 +387,7 @@
 					theta += (angleA - angleB) + 180
 					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
 					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
-					playerTeleport(shapeA.x + lendirX(gvPlayer.shape.w, angleA), shapeA.y + lendirY(gvPlayer.shape.h, angleA) - gvPlayer.shape.oy)
+					playerTeleport(myTarget, shapeA.x + lendirX(gvPlayer.shape.w, angleA), shapeA.y + lendirY(gvPlayer.shape.h, angleA) - gvPlayer.shape.oy)
 					canWarp = false
 				}
 			}

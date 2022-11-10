@@ -167,39 +167,12 @@
 }
 
 ::freeKonqi <- function() {
-	 game.characters["Konqi"] <- {
-		over = "sprKonqiOverworld"
-		doll =  "sprKonqiDoll"
-		normal = "sprKonqi"
-		fire = "sprKonqiFire"
-		ice = "sprKonqiIce"
-		air = "sprKonqiAir"
-		earth = "sprKonqiEarth"
-		wave = [8, 53]
-	}
-	game.characters["Katie"] <- {
-		over = "sprKatieOverworld"
-		doll =  "sprKatieDoll"
-		normal = "sprKatie"
-		fire = "sprKatieFire"
-		ice = "sprKatieIce"
-		air = "sprKatieAir"
-		earth = "sprKatieEarth"
-		wave = [8, 53]
-	}
-	if(!game.friends.rawin("Konqi")) game.friends["Konqi"] <- true
+	game.characters["Konqi"] <- true
+	game.characters["Katie"] <- true
+	game.friends["Konqi"] <- true
 }
 
 ::freeMidi <- function() {
-	if(!game.characters.rawin("Midi")) game.characters["Midi"] <- {
-		over = "sprMidiOverworld"
-		doll = "sprMidiDoll"
-		normal = "sprMidi"
-		fire = "sprMidi"
-		ice = "sprMidi"
-		air = "sprMidi"
-		earth = "sprMidi"
-		wave = [177, 236]
-	}
-	if(!game.friends.rawin("Midi")) game.friends["Midi"] <- true
+	game.characters["Midi"] <- true
+	game.friends["Midi"] <- true
 }

@@ -16,7 +16,7 @@
 
 [Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics, elemental explosions
 
-[Adam Atomic](http://www.adamatomic.com) - Iridia BG
+[Adam Atomic](http://www.adamatomic.com) - Iridia BG\*
 
 [Luke Bunday](http://pixeljoint.com/p/43158.htm) - Anneroy
 
@@ -24,39 +24,39 @@
 
 [Nemysis](https://opengameart.org/users/nemisys) - Sign post
 
-[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles
+[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles\*
 
 [TheNess](https://opengameart.org/users/theness) - Forest parallax
 
-[RodHakGames](https://opengameart.org/users/rodhakgames) - Portals
+[RodHakGames](https://opengameart.org/users/rodhakgames) - Portals\*
 
 [bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
 
-[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG
+[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG\*
 
 [SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
 
-[Soluna Software](https://opengameart.org/users/soluna-software)-  STA Logo Upper Half
+[Soluna Software](https://opengameart.org/users/soluna-software)-  STA Logo Upper Half\*
 
-[ZiNGOT Games](https://opengameart.org/users/zingot) - STA Logo Lower Half
+[ZiNGOT Games](https://opengameart.org/users/zingot) - STA Logo Lower Half\*
 
-[Iaavis](https://opengameart.org/users/laavis) - 2D Pixel City Pack
+[Iaavis](https://opengameart.org/users/laavis) - 2D Pixel City Pack\*
 
-[BenCreating](https://opengameart.org/users/bencreating) - Overworld Tiles
+[BenCreating](https://opengameart.org/users/bencreating) - Overworld Tiles\*
 
 [Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
 
 [Spring](https://opengameart.org/users/spring-spring) - Large flame
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin, strawberry muffin, bomb muffin, Haywire, Tux doll, Orange, Darknyan, Livewire, Blazeborn
+[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin\*, strawberry muffin\*, bomb muffin\*, Haywire\*, Tux doll\*, Orange\*, Darknyan, Livewire, Blazeborn
 
-[TheCheeseWeez]() - Mega muffin
+[TheCheeseWeez]() - Mega muffin\*
 
-[Neorice](https://www.deviantart.com/neoriceisgood) - Rock tiles (edited), sand tiles (edited)
+[Neorice](https://www.deviantart.com/neoriceisgood) - Rock tiles\*, sand tiles\*
 
-[XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection (Minecraft-like tiles, with edits)
+[XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection\*
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel (with edits), end gate (edited from cage)
+[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel\*, end gate\*
 
 [Kutejnikov](https://opengameart.org/users/kutejnikov) - Shipwreck tiles
 
@@ -64,13 +64,15 @@
 
 [Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy) - Splash
 
-[UbuntuJackson](https://github.com/UbuntuJackson) - UFO, snow tiles redesign
+[UbuntuJackson](https://github.com/UbuntuJackson) - UFO\*, snow tiles redesign\*
 
-[Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
+[Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16\*
 
-[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie, Penny Overworld
+[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball\*, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie\*, Penny Overworld\*, Kiki\*
 
-[Narehop](https://opengameart.org/users/narehop) - Achievement Frame
+[Narehop](https://opengameart.org/users/narehop) - Achievement Frame\*
+
+\*: Contains edits from or made in collaboration with Kelvin Shadewing
 
 ## Sounds
 

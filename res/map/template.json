@@ -317,17 +317,8 @@
          "source":"igloo.tsj"
         }, 
         {
-         "columns":29,
          "firstgid":906,
-         "image":"..\/gfx\/tsSnow.png",
-         "imageheight":272,
-         "imagewidth":464,
-         "margin":0,
-         "name":"snow",
-         "spacing":0,
-         "tilecount":493,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"snow.tsj"
         }, 
         {
          "columns":5,
@@ -345,6 +336,10 @@
         {
          "firstgid":1474,
          "source":"goal.tsj"
+        }, 
+        {
+         "firstgid":1478,
+         "source":"cloud.tsj"
         }],
  "tilewidth":16,
  "type":"map",

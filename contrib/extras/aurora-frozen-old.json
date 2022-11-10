@@ -500,7 +500,7 @@
                  "class":"",
                  "height":24,
                  "id":73,
-                 "name":"playerTeleport(1824, 64); gvPlayer.hspeed = 0",
+                 "name":"playerTeleport(myTarget, 1824, 64); myTarget.hspeed = 0",
                  "rotation":0,
                  "visible":true,
                  "width":4,

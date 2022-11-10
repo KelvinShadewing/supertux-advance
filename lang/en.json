@@ -16,6 +16,13 @@
 		"quit" : "Quit Game"
 	},
 
+	"time-attack-menu" : {
+		"world" : "World: ",
+		"player1" : "Player 1: ",
+		"player2" : "Player 2: ",
+		"start-run" : "Begin Run"
+	},
+
 	"extras-menu" : {
 		"achievements" : "Achievements",
 		"credits" : "Credits"
@@ -144,7 +151,8 @@
 	"pause-menu" : {
 		"pause" : "PAUSE",
 		"continue" : "Continue",
-		"character" : "Change Character",
+		"character" : "Change Player 1",
+		"character2" : "Change Player 2",
 		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
 		"quit-level" : "Quit Level",

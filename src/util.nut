@@ -66,7 +66,7 @@
 	folder, //The contrib/ folder of your world
 	level //The first level of the world
 	) {
-	local tempBack = meTimeAttack.pop() //To move back to the end
+	local tempBack = meTimeAttackWorld.pop() //To move back to the end
 	local newSlot = {
 		name = function() { return displayName }
 		func = function() {
@@ -88,6 +88,6 @@
 		}
 	}
 
-	meTimeAttack.push(newSlot)
-	meTimeAttack.push(tempBack)
+	meTimeAttackWorld.push(newSlot)
+	meTimeAttackWorld.push(tempBack)
 }

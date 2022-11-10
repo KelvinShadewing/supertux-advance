@@ -443,7 +443,7 @@
                  "class":"",
                  "height":32,
                  "id":89,
-                 "name":"playerTeleport(3 * 16, 10 * 16)",
+                 "name":"playerTeleport(myTarget, 3 * 16, 10 * 16)",
                  "rotation":0,
                  "visible":true,
                  "width":16,

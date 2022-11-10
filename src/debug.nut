@@ -28,15 +28,15 @@
 	fps = debugTickSum / 64
 
 	//Set weapon
-	if(keyPress(k_1)) game.weapon = 0
-	if(keyPress(k_2)) { game.weapon = 1; game.maxEnergy = 4 - game.difficulty + game.fireBonus}
-	if(keyPress(k_3)) { game.weapon = 2; game.maxEnergy = 4 - game.difficulty + game.iceBonus}
-	if(keyPress(k_4)) { game.weapon = 3; game.maxEnergy = 4 - game.difficulty + game.airBonus}
-	if(keyPress(k_5)) { game.weapon = 4; game.maxEnergy = 4 - game.difficulty + game.earthBonus}
-	if(keyPress(k_6)) { gvPlayer.zoomies += 60 * 16}
-	if(keyPress(k_0)) game.maxHealth = 16
-	if(keyPress(k_9)) game.health += 4
-	if(keyPress(k_minus)) game.maxHealth = game.maxHealth - 4
+	if(keyPress(k_1)) {game.playerStats1.subitem = 1; game.playerStats2.subitem = 1}
+	if(keyPress(k_2)) {game.playerStats1.subitem = 2; game.playerStats2.subitem = 2}
+	if(keyPress(k_3)) {game.playerStats1.subitem = 3; game.playerStats2.subitem = 3}
+	if(keyPress(k_4)) {game.playerStats1.subitem = 4; game.playerStats2.subitem = 4}
+	if(keyPress(k_5)) {game.playerStats1.subitem = 5; game.playerStats2.subitem = 5}
+	if(keyPress(k_6)) {game.playerStats1.subitem = 6; game.playerStats2.subitem = 6}
+	if(keyPress(k_7)) {game.playerStats1.subitem = 7; game.playerStats2.subitem = 7}
+	if(keyPress(k_8)) {game.playerStats1.subitem = 8; game.playerStats2.subitem = 8}
+	if(keyPress(k_minus) && game.maxHealth > 4) game.maxHealth = game.maxHealth - 4
 	if(keyPress(k_equals))  game.maxHealth = game.maxHealth + 4
 	if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
 		if(keyPress(k_k)) {
@@ -46,11 +46,8 @@
 			gvKeyMythril = true
 		}
 	}
-		if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
-		if(keyPress(k_e)) {
-		endGoal()
-		}
-	}
+
+	if((keyDown(k_lctrl) || keyDown(k_rctrl)) && keyPress(k_e)) endGoal()
 
 	//Mouse debug
 	if(keyDown(k_lshift)) {
@@ -77,7 +74,9 @@
 		else drawSprite(tsSolid, debugMouseLeft - 1, mouseX(), mouseY())
 	}
 
-	game.canres = true
+	if(gvPlayer && "stats" in gvPlayer) gvPlayer.stats.canres = true
+	if(gvPlayer2 && "stats" in gvPlayer2) gvPlayer2.stats.canres = true
+
 	local message = ""
 
 	if(gvPlayer) {

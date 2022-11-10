@@ -185,6 +185,26 @@ const menuY = 40
 
 ::meTimeAttack <- [
 	{
+		name = function() { return gvLangObj["time-attack-menu"]["start-run"] },
+		func = function() { cursor = 0; menu = meTimeAttackWorld }
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["player1"] + game.playerChar },
+		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["player2"] + (game.playerChar2 != null ? game.playerChar2 : "????") },
+		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { cursor = 0; menu = meMain },
+		back = function() { menu = meMain }
+	}
+]
+
+::meTimeAttackWorld <- [
+	{
 		name = function() { return gvLangObj["level"]["full-game"] },
 		func = function() { gvTAFullGame = true; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
@@ -260,6 +280,12 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
 		func = function() { pickCharInitialize(); gvGameMode = pickChar }
+		desc = function() { return game.playerChar }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["character2"]},
+		func = function() { pickCharInitialize(2); gvGameMode = pickChar }
+		desc = function() { return game.playerChar2 }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },

@@ -14,11 +14,12 @@
 ::togglePause <- function() {
 	cursor = 0
 	if(gvGameMode == gmPlay) {
-		if(actor.rawin("DeadPlayer") && actor["DeadPlayer"].len() > 0) {
+		if(actor.rawin("DeadPlayer") && actor["DeadPlayer"].len() > 0 && !gvPlayer && !gvPlayer2) {
 			startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
 				game.weapon = 0
+				game.weapon2 = 0
 			}
 		}
 		else {

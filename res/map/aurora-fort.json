@@ -940,7 +940,7 @@
                  "class":"",
                  "height":16,
                  "id":496,
-                 "name":"playerTeleport(256, 1232)",
+                 "name":"playerTeleport(myTarget, 256, 1232)",
                  "rotation":0,
                  "visible":true,
                  "width":32,
@@ -951,7 +951,7 @@
                  "class":"",
                  "height":16,
                  "id":497,
-                 "name":"playerTeleport(1056, 816)",
+                 "name":"playerTeleport(myTarget, 1056, 816)",
                  "rotation":0,
                  "visible":true,
                  "width":32,
@@ -4261,7 +4261,7 @@
                  "visible":true,
                  "width":16,
                  "x":2568,
-                 "y":216
+                 "y":224
                 }, 
                 {
                  "class":"",
@@ -4273,7 +4273,7 @@
                  "visible":true,
                  "width":16,
                  "x":2568,
-                 "y":232
+                 "y":240
                 }, 
                 {
                  "class":"",

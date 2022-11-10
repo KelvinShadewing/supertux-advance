@@ -21,15 +21,16 @@
 		maxSecrets = 0
 		enemies = 0
 		maxEnemies = 0
-		health = 12
 		maxHealth = 12
-		weapon = 0
 		maxEnergy = 0
 		fireBonus = 0
 		iceBonus = 0
 		airBonus = 0
 		earthBonus = 0
-		subitem = 0
+		waterBonus = 0
+		shockBonus = 0
+		lightBonus = 0
+		darkBonus = 0
 		completed = {} //List of completed level names
 		unblocked = {} //List of unblocked obstacles on map
 		allCoins = {} //Levels that the player has gotten all enemies in
@@ -51,26 +52,8 @@
 			false
 		] //Color blocks activated by respective switches
 		characters = { //List of unlocked characters
-			Tux = {
-				over = "sprTuxOverworld"
-				doll = "sprTuxDoll"
-				normal = "sprTux"
-				fire = "sprTuxFire"
-				ice = "sprTuxIce"
-				air = "sprTuxAir"
-				earth = "sprTuxEarth"
-				wave = [40, 41]
-			}
-			Penny = {
-				over = "sprPennyOverworld"
-				doll = "sprPennyDoll"
-				normal = "sprPenny"
-				fire = "sprPennyFire"
-				ice = "sprPennyIce"
-				air = "sprPennyAir"
-				earth = "sprPennyEarth"
-				wave = [40, 41]
-			}
+			Tux = true
+			Penny = true
 		}
 		secretOrbs = [
 			false,
@@ -85,7 +68,7 @@
 		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
-		player2Char = null
+		playerChar2 = null
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0
@@ -93,10 +76,75 @@
 		check = false //If a checkpoint has been activated
 		chx = 0
 		chy = 0
-		berries = 0
 		path = "res/map/"
-		canres = false //If the player can respawn
 		bossHealth = 0
+		playerStats1 = {
+			health = 0
+			weapon = 0
+			subitem = 0
+			canres = false
+			berries = 0
+		}
+		playerStats2 = {
+			health = 0
+			weapon = 0
+			subitem = 0
+			canres = false
+			berries = 0
+		}
+	}
+}
+
+::gvCharacters <- {
+	Tux = {
+		over = "sprTuxOverworld"
+		doll = "sprTuxDoll"
+		normal = "sprTux"
+		fire = "sprTuxFire"
+		ice = "sprTuxIce"
+		air = "sprTuxAir"
+		earth = "sprTuxEarth"
+		wave = [40, 41]
+	}
+	Penny = {
+		over = "sprPennyOverworld"
+		doll = "sprPennyDoll"
+		normal = "sprPenny"
+		fire = "sprPennyFire"
+		ice = "sprPennyIce"
+		air = "sprPennyAir"
+		earth = "sprPennyEarth"
+		wave = [40, 41]
+	}
+	Konqi = {
+		over = "sprKonqiOverworld"
+		doll =  "sprKonqiDoll"
+		normal = "sprKonqi"
+		fire = "sprKonqiFire"
+		ice = "sprKonqiIce"
+		air = "sprKonqiAir"
+		earth = "sprKonqiEarth"
+		wave = [8, 53]
+	}
+	Katie = {
+		over = "sprKatieOverworld"
+		doll =  "sprKatieDoll"
+		normal = "sprKatie"
+		fire = "sprKatieFire"
+		ice = "sprKatieIce"
+		air = "sprKatieAir"
+		earth = "sprKatieEarth"
+		wave = [8, 53]
+	}
+	Midi = {
+		over = "sprMidiOverworld"
+		doll = "sprMidiDoll"
+		normal = "sprMidi"
+		fire = "sprMidi"
+		ice = "sprMidi"
+		air = "sprMidi"
+		earth = "sprMidi"
+		wave = [177, 236]
 	}
 }
 
@@ -133,7 +181,7 @@
 		upPeek = k_pageup
 	}
 	joy = {
-		index = -1
+		index = 1
 		jump = 0
 		shoot = 2
 		run = 4
@@ -149,7 +197,7 @@
 		yPeek = -1
 	}
 	joy2 = {
-		index = -1
+		index = 0
 		jump = 0
 		shoot = 2
 		run = 4

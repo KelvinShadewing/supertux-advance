@@ -214,8 +214,8 @@
 		x += hspeed
 		y += vspeed
 
-		if(hspeed == 0 && vspeed == 0) drawSpriteZ(2, getroottable()[game.characters[game.playerChar]["over"]], 0, x - camx, y - camy)
-		else drawSpriteZ(2, getroottable()[game.characters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
+		if(hspeed == 0 && vspeed == 0) drawSpriteZ(2, getroottable()[gvCharacters[game.playerChar]["over"]], 0, x - camx, y - camy)
+		else drawSpriteZ(2, getroottable()[gvCharacters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
 
 		gvLevel = level
 	}
@@ -355,6 +355,7 @@
 	gvFadeInTime = 255
 	setFPS(60)
 	gvPlayer = false
+	gvPlayer2 = false
 	deleteAllActors()
 	gvIGT = 0
 	autocon = clone(defAutocon)

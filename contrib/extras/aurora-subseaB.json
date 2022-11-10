@@ -689,7 +689,7 @@
                  "class":"",
                  "height":32,
                  "id":50,
-                 "name":"playerTeleport(2912, 416); gvPlayer.hspeed = -2; drawBG = dbgAurora; gvLightTarget = 0xffffffff",
+                 "name":"playerTeleport(myTarget, 2912, 416); gvPlayer.hspeed = -2; drawBG = dbgAurora; gvLightTarget = 0xffffffff",
                  "rotation":0,
                  "visible":true,
                  "width":6.54545454545455,

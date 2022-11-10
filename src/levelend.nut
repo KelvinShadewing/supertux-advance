@@ -35,10 +35,19 @@
 	clearedLevel = gvMap.name
 	gvNextLevel = next
 	if(levelEndRunner == 0){
-		gvPlayer.canMove = false
-		gvPlayer.endMode = true
-		if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
-		gvPlayer.invincible = 999
+		if(gvPlayer) {
+			gvPlayer.canMove = false
+			gvPlayer.endMode = true
+			if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
+			gvPlayer.invincible = 999
+		}
+
+		if(gvPlayer2) {
+			gvPlayer2.canMove = false
+			gvPlayer2.endMode = true
+			if(gvPlayer2.hspeed > 2) gvPlayer.hspeed = 2.0
+			gvPlayer2.invincible = 999
+		}
 
 		if(unblock != "" && !game.unblocked.rawin(unblock)) game.unblocked[unblock] <- true
 		if(!game.completed.rawin(clearedLevel)) game.completed[clearedLevel] <- true
