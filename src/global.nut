@@ -78,19 +78,21 @@
 		chy = 0
 		path = "res/map/"
 		bossHealth = 0
-		playerStats1 = {
+		ps1 = {
 			health = 0
-			weapon = 0
+			weapon = "normal"
 			subitem = 0
 			canres = false
 			berries = 0
+			maxEnergy = 0
 		}
-		playerStats2 = {
+		ps2 = {
 			health = 0
-			weapon = 0
+			weapon = "normal"
 			subitem = 0
 			canres = false
 			berries = 0
+			maxEnergy = 0
 		}
 	}
 }
@@ -255,3 +257,15 @@
 ::gvKeySilver <- false
 ::gvKeyGold <- false
 ::gvKeyMythril <- false
+::enWeapons <- {
+	normal = 0
+	fire = 1
+	ice = 2
+	air = 3
+	earth = 4
+	shock = 5
+	water = 6
+	light = 7
+	dark = 8
+	toxic = 9
+}

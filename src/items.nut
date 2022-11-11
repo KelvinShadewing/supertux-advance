@@ -100,13 +100,13 @@
 		drawSprite(sprBerry, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			game.playerStats1.berries++
+			game.ps1.berries++
 			stopSound(sndGulp)
 			playSound(sndGulp, 0)
 		}
 		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
-			game.playerStats1.berries++
+			game.ps1.berries++
 			stopSound(sndGulp)
 			playSound(sndGulp, 0)
 		}
@@ -175,30 +175,30 @@
 		drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
-			if(game.playerStats1.weapon == 0) {
-				game.playerStats1.weapon = 1
+			if(game.ps1.weapon == "normal") {
+				game.ps1.weapon = "fire"
 				game.maxEnergy = 4 - game.difficulty + game.fireBonus
 			}
 			else {
-				game.subitem = game.playerStats1.weapon
+				game.ps1.subitem = game.ps1.weapon
 				game.maxEnergy = 4 - game.difficulty + game.fireBonus
-				game.playerStats1.weapon = 1
+				game.ps1.weapon = "fire"
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
 			deleteActor(id)
-			if(game.playerStats2.weapon == 0) {
-				game.playerStats2.weapon = 1
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "fire"
 				game.maxEnergy = 4 - game.difficulty + game.fireBonus
 			}
 			else {
-				game.subitem = game.playerStats2.weapon
+				game.ps1.subitem = game.ps2.weapon
 				game.maxEnergy = 4 - game.difficulty + game.fireBonus
-				game.playerStats2.weapon = 1
+				game.ps2.weapon = "fire"
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
 		}
 	}
@@ -218,30 +218,30 @@
 		drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
-			if(game.playerStats1.weapon == 0) {
-				game.playerStats1.weapon = 2
+			if(game.ps1.weapon == "normal") {
+				game.ps1.weapon = "ice"
 				game.maxEnergy = 4 - game.difficulty + game.iceBonus
 			}
 			else {
-				game.subitem = game.playerStats1.weapon
+				game.ps1.subitem = game.ps1.weapon
 				game.maxEnergy = 4 - game.difficulty + game.iceBonus
-				game.playerStats1.weapon = 2
+				game.ps1.weapon = "ice"
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
 			deleteActor(id)
-			if(game.playerStats2.weapon == 0) {
-				game.playerStats2.weapon = 2
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "ice"
 				game.maxEnergy = 4 - game.difficulty + game.iceBonus
 			}
 			else {
-				game.subitem = game.playerStats2.weapon
+				game.ps1.subitem = game.ps2.weapon
 				game.maxEnergy = 4 - game.difficulty + game.iceBonus
-				game.playerStats2.weapon = 2
+				game.ps2.weapon = "ice"
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
 		}
 	}
@@ -308,9 +308,9 @@
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
 			}
-			else if(game.subitem != 6 && (game.subitem == 0 || willwrite)) game.subitem = 5
+			else if(game.subitem != "muffinRed" && (game.subitem == 0 || willwrite)) game.subitem = "muffinBlue"
 			deleteActor(id)
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 		}
 
 		drawSprite(sprMuffin, 0, x - camx, y - camy)
@@ -379,9 +379,9 @@
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
 			}
-			else game.subitem = 6
+			else game.subitem = "muffinRed"
 			deleteActor(id)
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 		}
 
 		drawSprite(sprMuffin, 1, x - camx, y - camy)
@@ -569,29 +569,29 @@
 		drawSprite(sprAirFeather, frame, x - camx, y - camy)
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)){
-			playSoundChannel(sndHeal, 0, 1)
-			if(game.playerStats1.weapon == 0) {
-				game.playerStats1.weapon = 3
+			popSound(sndHeal, 0)
+			if(game.ps1.weapon == "normal") {
+				game.ps1.weapon = "air"
 				game.maxEnergy = 4 - game.difficulty + game.airBonus
 			}
 			else {
-				game.subitem = game.playerStats1.weapon
+				game.subitem = game.ps1.weapon
 				game.maxEnergy = 4 - game.difficulty + game.airBonus
-				game.playerStats1.weapon = 3
+				game.ps1.weapon = "air"
 			}
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 			deleteActor(id)
 		}
 		if(gvPlayer2) if(hitTest(shape, gvPlayer2.shape)){
-			playSoundChannel(sndHeal, 0, 1)
-			if(game.playerStats2.weapon == 0) {
-				game.playerStats2.weapon = 3
+			popSound(sndHeal, 0)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "air"
 				game.maxEnergy = 4 - game.difficulty + game.airBonus
 			}
 			else {
-				game.subitem = game.playerStats2.weapon
+				game.subitem = game.ps2.weapon
 				game.maxEnergy = 4 - game.difficulty + game.airBonus
-				game.playerStats2.weapon = 3
+				game.ps2.weapon = "air"
 			}
 			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
 			deleteActor(id)
@@ -601,7 +601,7 @@
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer) if(inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16)) if(gvPlayer.rawin("energy") && game.playerStats1.weapon == 3) gvPlayer.energy = 8
+		if(gvPlayer) if(inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16)) if(gvPlayer.rawin("energy") && game.ps1.weapon == "air") gvPlayer.energy = 8
 
 		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy - 8, 0, 2, 1, 1, 0.25)
 		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy + 8, 0, 0, 1, 1, 0.25)
@@ -716,30 +716,30 @@
 		drawSprite(sprEarthShell, getFrames() / 16, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
-			if(game.playerStats1.weapon == 0) {
-				game.playerStats1.weapon = 4
+			if(game.ps1.weapon == "normal") {
+				game.ps1.weapon = "earth"
 				game.maxEnergy = 4 - game.difficulty + game.earthBonus
 			}
 			else {
-				game.subitem = game.playerStats1.weapon
+				game.subitem = game.ps1.weapon
 				game.maxEnergy = 4 - game.difficulty + game.earthBonus
-				game.playerStats1.weapon = 4
+				game.ps1.weapon = "earth"
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
 		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
 			deleteActor(id)
-			if(game.playerStats2.weapon == 0) {
-				game.playerStats2.weapon = 4
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "earth"
 				game.maxEnergy = 4 - game.difficulty + game.earthBonus
 			}
 			else {
-				game.subitem = game.playerStats2.weapon
+				game.subitem = game.ps2.weapon
 				game.maxEnergy = 4 - game.difficulty + game.earthBonus
-				game.playerStats2.weapon = 4
+				game.ps2.weapon = "earth"
 			}
-			playSoundChannel(sndHeal, 0, 1)
+			popSound(sndHeal, 0)
 			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
 		}
 	}
@@ -867,8 +867,14 @@
 		drawSprite(sprCoffee, getFrames() / 8, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
-			if(game.subitem != 8) game.subitem = 8
+			if(game.ps1.subitem != "coffee") game.ps1.subitem = "coffee"
 			else gvPlayer.zoomies += 60 * 16
+			popSound(sndGulp, 0)
+		}
+		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+			deleteActor(id)
+			if(game.ps2.subitem != "coffee") game.ps2.subitem = "coffee"
+			else gvPlayer2.zoomies += 60 * 16
 			popSound(sndGulp, 0)
 		}
 	}

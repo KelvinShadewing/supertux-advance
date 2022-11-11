@@ -22,8 +22,8 @@
 	gvBoss = false
 	deleteAllActors()
 	if(newLevel) {
-		game.playerStats1.health = game.maxHealth
-		game.playerStats2.health = game.maxHealth
+		game.ps1.health = game.maxHealth
+		game.ps2.health = game.maxHealth
 		game.levelCoins = 0
 		game.maxCoins = 0
 		game.redCoins = 0
@@ -292,7 +292,7 @@
 	if(gvLangObj["level"].rawin(gvMap.name)) drawText(font2, (gvScreenW / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
 	local runAnim = getroottable()[game.playerChar].anRun
-	switch(game.playerStats1.weapon) {
+	switch(game.ps1.weapon) {
 		case 0:
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
 			break
@@ -395,20 +395,20 @@
 			drawSprite(sprEnergy, 2, 8 + (16 * i), 24)
 		}
 		//Draw health
-		if(game.playerStats1.health > game.maxHealth) game.playerStats1.health = game.maxHealth
+		if(game.ps1.health > game.maxHealth) game.ps1.health = game.maxHealth
 
-		local fullhearts = floor(game.playerStats1.health / 4)
+		local fullhearts = floor(game.ps1.health / 4)
 
 		for(local i = 0; i < game.maxHealth / 4; i++) {
 			if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 8)
-			else if(i == fullhearts) drawSprite(sprHealth, game.playerStats1.health % 4, 8 + (16 * i), 8)
+			else if(i == fullhearts) drawSprite(sprHealth, game.ps1.health % 4, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 		}
 
 		//Draw energy
-		for(local i = 0; i < game.maxEnergy; i++) {
+		for(local i = 0; i < game.ps1.maxEnergy; i++) {
 			if(gvPlayer) {
-				if(gvPlayer.rawin("energy") && game.maxEnergy > 0) {
+				if(gvPlayer.rawin("energy") && game.ps1.maxEnergy > 0) {
 					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
 				}
@@ -422,20 +422,20 @@
 				drawSprite(sprEnergy, 2, 8 + (16 * i), 52)
 			}
 			//Draw health
-			if(game.playerStats2.health > game.maxHealth) game.playerStats2.health = game.maxHealth
+			if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
 
-			local fullhearts = floor(game.playerStats2.health / 4)
+			local fullhearts = floor(game.ps2.health / 4)
 
 			for(local i = 0; i < game.maxHealth / 4; i++) {
 				if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 36)
-				else if(i == fullhearts) drawSprite(sprHealth, game.playerStats2.health % 4, 8 + (16 * i), 36)
+				else if(i == fullhearts) drawSprite(sprHealth, game.ps2.health % 4, 8 + (16 * i), 36)
 				else drawSprite(sprHealth, 0, 8 + (16 * i), 36)
 			}
 
 			//Draw energy
-			for(local i = 0; i < game.maxEnergy; i++) {
+			for(local i = 0; i < game.ps2.maxEnergy; i++) {
 				if(gvPlayer) {
-					if(gvPlayer.rawin("energy") && game.maxEnergy > 0) {
+					if(gvPlayer.rawin("energy") && game.ps2.maxEnergy > 0) {
 						if(i < floor(gvPlayer2.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 52)
 						else drawSprite(sprEnergy, 0, 8 + (16 * i), 52)
 					}
@@ -473,31 +473,60 @@
 		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - 46, game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
 		//Draw subitem
 		drawSprite(sprSubItem, 0, gvScreenW - 18, 18)
-		switch(game.playerStats1.subitem) {
-			case 1:
+		switch(game.ps1.subitem) {
+			case "fire":
 				drawSprite(sprFlowerFire, 0, gvScreenW - 18, 18)
 				break
-			case 2:
+			case "ice":
 				drawSprite(sprFlowerIce, 0, gvScreenW - 18, 18)
 				break
-			case 3:
+			case "air":
 				drawSprite(sprAirFeather, 0, gvScreenW - 18, 18)
 				break
-			case 4:
+			case "earth":
 				drawSprite(sprEarthShell, 0, gvScreenW - 18, 18)
 				break
-			case 5:
+			case "muffinBlue":
 				drawSprite(sprMuffin, 0, gvScreenW - 18, 18)
 				break
-			case 6:
+			case "muffinRed":
 				drawSprite(sprMuffin, 1, gvScreenW - 18, 18)
 				break
-			case 7:
+			case "star":
 				drawSprite(sprStar, 0, gvScreenW - 18, 18)
 				break
-			case 8:
+			case "coffee":
 				drawSprite(sprCoffee, 0, gvScreenW - 18, 17)
 				break
+		}
+		if(gvNumPlayers >= 2) {
+			drawSprite(sprSubItem, 0, gvScreenW - 18, 40)
+			switch(game.ps2.subitem) {
+				case "fire":
+					drawSprite(sprFlowerFire, 0, gvScreenW - 18, 40)
+					break
+				case "ice":
+					drawSprite(sprFlowerIce, 0, gvScreenW - 18, 40)
+					break
+				case "air":
+					drawSprite(sprAirFeather, 0, gvScreenW - 18, 40)
+					break
+				case "earth":
+					drawSprite(sprEarthShell, 0, gvScreenW - 18, 40)
+					break
+				case "muffinBlue":
+					drawSprite(sprMuffin, 0, gvScreenW - 18, 40)
+					break
+				case "muffinRed":
+					drawSprite(sprMuffin, 1, gvScreenW - 18, 40)
+					break
+				case "star":
+					drawSprite(sprStar, 0, gvScreenW - 18, 40)
+					break
+				case "coffee":
+					drawSprite(sprCoffee, 0, gvScreenW - 18, 39)
+					break
+			}
 		}
 
 		//Draw level IGT
@@ -505,10 +534,10 @@
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
-			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], game.playerStats1.weapon, gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps1.weapon], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 		if(gvPlayer2) if(gvPlayer2.y < -8) {
-			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], game.playerStats2.weapon, gvPlayer2.x - camx, 8 - (gvPlayer2.y / 4))
+			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx, 8 - (gvPlayer2.y / 4))
 		}
 
 		//Draw warning sign
@@ -524,11 +553,11 @@
 		//Keys
 		local kx = 10
 		if(gvPlayer && "stats" in gvPlayer && gvPlayer.stats.canres) {
-			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], gvPlayer.stats.weapon, gvScreenW - kx, gvScreenH - 16)
+			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[gvPlayer.stats.weapon], gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvPlayer2 && "stats" in gvPlayer2 && gvPlayer2.stats.canres) {
-			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], gvPlayer2.stats.weapon, gvScreenW - kx, gvScreenH - 16)
+			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[gvPlayer2.stats.weapon], gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeyCopper) {
@@ -592,23 +621,23 @@
 	}
 
 	//Handle berries
-	if(game.playerStats1.berries > 0 && game.playerStats1.berries % 16 == 0) {
+	if(game.ps1.berries > 0 && game.ps1.berries % 16 == 0) {
 		if(game.health < game.maxHealth) {
-			game.playerStats1.health++
-			game.playerStats1.berries = 0
+			game.ps1.health++
+			game.ps1.berries = 0
 		}
-		else game.playerStats1.berries--
+		else game.ps1.berries--
 	}
-	if(game.playerStats2.berries > 0 && game.playerStats2.berries % 16 == 0) {
+	if(game.ps2.berries > 0 && game.ps2.berries % 16 == 0) {
 		if(game.health < game.maxHealth) {
-			game.playerStats2.health++
-			game.playerStats2.berries = 0
+			game.ps2.health++
+			game.ps2.berries = 0
 		}
-		else game.playerStats2.berries--
+		else game.ps2.berries--
 	}
 
-	if(game.playerStats1.health < 0) game.playerStats1.health = 0
-	if(game.playerStats2.health < 0) game.playerStats2.health = 0
+	if(game.ps1.health < 0) game.ps1.health = 0
+	if(game.ps2.health < 0) game.ps2.health = 0
 }
 
 ::playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the player and camera at the same time

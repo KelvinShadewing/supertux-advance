@@ -111,6 +111,22 @@
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+			}
+		}
 	}
 }
 
@@ -296,6 +312,14 @@
 				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
 			}
 		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+			}
+		}
 	}
 }
 
@@ -328,6 +352,14 @@
 				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
 				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
 				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
@@ -461,6 +493,48 @@
 	}
 }
 
+::ExplodeI <- class extends WeaponEffect{
+	power = 2
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "ice"
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		stopSound(sndBump)
+		playSound(sndBump, 0)
+
+		shape = Rec(x, y, 16, 16, 0)
+	}
+
+	function run() {
+		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+}
+
 ::IceBreath <- class extends WeaponEffect {
 	element = "ice"
 	frame = 0.0
@@ -517,9 +591,17 @@
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+				if(x < gvPlayer.x) gvPlayer.hspeed += 0.25
+				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.25
+				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.4
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.25
+				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.25
+				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.4
 			}
 		}
 	}

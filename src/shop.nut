@@ -81,7 +81,7 @@
 				playSound(sndHeal, 0)
 				game.fireBonus += 1
 				game.coins -= price
-				if(game.weapon == 1) game.maxEnergy++
+				if(game.weapon == "fire") game.maxEnergy++
 			}
 		}
 
@@ -131,7 +131,7 @@
 				playSound(sndHeal, 0)
 				game.iceBonus += 1
 				game.coins -= price
-				if(game.weapon == 2) game.maxEnergy++
+				if(game.weapon == "ice") game.maxEnergy++
 			}
 		}
 
@@ -181,7 +181,7 @@
 				playSound(sndHeal, 0)
 				game.airBonus += 1
 				game.coins -= price
-				if(game.weapon == 3) game.maxEnergy++
+				if(game.weapon == "air") game.maxEnergy++
 			}
 		}
 
@@ -231,7 +231,7 @@
 				playSound(sndHeal, 0)
 				game.earthBonus += 1
 				game.coins -= price
-				if(game.weapon == 4) game.maxEnergy++
+				if(game.weapon == "earth") game.maxEnergy++
 			}
 		}
 

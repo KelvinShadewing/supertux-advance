@@ -81,7 +81,7 @@
 		if(!gvPlayer) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
-		energy = game.maxEnergy
+		energy = stats.maxEnergy
 		anFall = anFallN
 		xprev = x
 		yprev = y
@@ -190,33 +190,33 @@
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && stats.weapon != 3 && (stats.weapon != 4 || anim != anStatue)) {
+		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != anStatue)) {
 			firetime--
 		}
 
-		if(firetime == 0 && energy < game.maxEnergy) {
+		if(firetime == 0 && energy < stats.maxEnergy) {
 			energy++
 			firetime = 60
 		}
 
 
-		if(stats.weapon == 0) game.maxEnergy = 0
-		if(stats.weapon == 3) game.maxEnergy = 4 + game.airBonus
-		if(energy > game.maxEnergy) energy = game.maxEnergy
+		if(stats.weapon == "normal") stats.maxEnergy = 0
+		if(stats.weapon == "air") stats.maxEnergy = 4 + game.airBonus
+		if(energy > stats.maxEnergy) energy = stats.maxEnergy
 
 		/////////////
 		// ON LAND //
 		/////////////
-		if((!inWater(x, y) || stats.weapon == 4) && resTime <= 0) {
+		if((!inWater(x, y) || stats.weapon == "earth") && resTime <= 0) {
 			swimming = false
 			shapeStand.h = 12.0
 
 			//Animation states
 			switch(anim) {
 				case anStand:
-					if(stats.weapon == 2 && floor(frame) == 0) frame += 0.01
-					else if(stats.weapon == 2 || stats.weapon == 1) frame += 0.1
-					else if(stats.weapon == 3) frame += 0.05
+					if(stats.weapon == "ice" && floor(frame) == 0) frame += 0.01
+					else if(stats.weapon == "ice" || stats.weapon == "fire") frame += 0.1
+					else if(stats.weapon == "air") frame += 0.05
 					else frame += 0.05
 
 					if(abs(rspeed) > 0.1) {
@@ -256,7 +256,7 @@
 					else anim = anRun
 
 					if(anim == anSkid) frame += 0.2
-					else if(stats.weapon == 2) frame += abs(rspeed) / 16
+					else if(stats.weapon == "ice") frame += abs(rspeed) / 16
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != anSkid) anim = anWalk
 
@@ -341,13 +341,13 @@
 					break
 
 				case anSlide:
-					if(stats.weapon == 4) slideframe += abs(hspeed / 8.0)
+					if(stats.weapon == "earth") slideframe += abs(hspeed / 8.0)
 					else slideframe += abs(hspeed / 16.0)
 					frame = slideframe
 
 					if(!freeDown && hspeed != 0) if(floor(getFrames() % 8 - fabs(hspeed)) == 0 || fabs(hspeed) > 8) {
-						if(stats.weapon == 1) newActor(FlameTiny, x - (8 * (hspeed / fabs(hspeed))), y + 10)
-						if(stats.weapon == 2) newActor(Glimmer, x - (12 * (hspeed / fabs(hspeed))), y + 10)
+						if(stats.weapon == "fire") newActor(FlameTiny, x - (8 * (hspeed / fabs(hspeed))), y + 10)
+						if(stats.weapon == "ice") newActor(Glimmer, x - (12 * (hspeed / fabs(hspeed))), y + 10)
 					}
 					break
 
@@ -389,7 +389,7 @@
 
 			//Sliding acceleration
 			if(onIce()) {
-				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && stats.weapon == 2))) {
+				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && stats.weapon == "ice"))) {
 					if(placeFree(x + 4, y + 2)) hspeed += 0.25
 					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
@@ -397,7 +397,7 @@
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != 4) || (fabs(hspeed) < 0.05 && (stats.weapon == 4 && !getcon("shoot", "hold", true, playerNum))) || (stats.weapon == 4 && !getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == anSlide || anim == anDive) anim = anWalk
+				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("shoot", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == anSlide || anim == anDive) anim = anWalk
 			}
 
 			if(anim != anClimb && anim != anWall) {
@@ -408,16 +408,16 @@
 			//Controls
 			if(!freeDown2 || onPlatform() || anim == anClimb) {
 				canJump = 16
-				if(stats.weapon == 3 && energy < game.maxEnergy) energy += 0.2
+				if(stats.weapon == "air" && energy < stats.maxEnergy) energy += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(stats.weapon == 3 && energy < 1) energy += 0.02
+				if(stats.weapon == "air" && energy < 1) energy += 0.02
 			}
 			if(canMove) {
 				if(getcon("sneak", "hold", true, playerNum) || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1) && config.stickspeed || anim == anCrawl) mspeed = 1.0
 				else if((getcon("run", "hold", true, playerNum) || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9) && config.stickspeed) && anim != anCrawl) {
-					if(stats.weapon == 2) mspeed = 3.5
+					if(stats.weapon == "ice") mspeed = 3.5
 					else mspeed = 3.0
 				}
 				else mspeed = 2.0
@@ -506,15 +506,15 @@
 					else if(canJump > 0) {
 						jumpBuffer = 0
 						if(anim == anClimb) vspeed = -3
-						else if(stats.weapon == 3 || nowInWater) vspeed = -5.0
+						else if(stats.weapon == "air" || nowInWater) vspeed = -5.0
 						else vspeed = -5.8
 						didJump = true
-						if(stats.weapon != 3) canJump = 0
-						if(anim != anHurt && anim != anDive && (stats.weapon != 4 || anim != anSlide)) {
+						if(stats.weapon != "air") canJump = 0
+						if(anim != anHurt && anim != anDive && (stats.weapon != "earth" || anim != anSlide)) {
 							anim = anJumpU
 							frame = 0.0
 						}
-						if(stats.weapon != 3) {
+						if(stats.weapon != "air") {
 							stopSound(sndJump)
 							playSound(sndJump, 0)
 						}
@@ -535,16 +535,16 @@
 						frame = 0.0
 						playSound(sndWallkick, 0)
 					}
-					else if(floor(energy) > 0 && stats.weapon == 3 && getcon("jump", "press", true, playerNum)) {
+					else if(floor(energy) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
-						if(stats.weapon != 3) canJump = 0
+						if(stats.weapon != "air") canJump = 0
 						if(anim != anHurt && anim != anDive) {
 							anim = anJumpU
 							frame = 0.0
 						}
-						if(stats.weapon != 3) {
+						if(stats.weapon != "air") {
 							stopSound(sndJump)
 							playSound(sndJump, 0)
 						}
@@ -603,10 +603,6 @@
 				}
 
 
-			} else {
-				if(hspeed < 1 && endMode) hspeed += 0.2
-				if(endMode && placeFree(x + 2, y)) rspeed = hspeed
-				else rspeed = 0
 			}
 
 			//Movement
@@ -629,7 +625,7 @@
 			}
 
 			if(fabs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (stats.weapon != 3 || getcon("down", "hold", true, playerNum)) && !nowInWater) || (anim == anStomp && vspeed < 8)) && antigrav <= 0) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater) || (anim == anStomp && vspeed < 8)) && antigrav <= 0) vspeed += gravity
 			else if(antigrav > 0) antigrav--
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Konqi bumped his head
 
@@ -654,7 +650,7 @@
 
 			//Max ground speed
 			if(!freeDown){
-				if(stats.weapon == 2) {
+				if(stats.weapon == "ice") {
 					if(hspeed > 8) hspeed = 8
 					if(hspeed < -8) hspeed = -8
 				}
@@ -665,7 +661,7 @@
 			}
 
 			//Gravity cases
-			if(stats.weapon == 3 || nowInWater) gravity = 0.12
+			if(stats.weapon == "air" || nowInWater) gravity = 0.12
 			else gravity = 0.25
 			if(anim == anClimb || anim == anWall) gravity = 0
 
@@ -673,7 +669,7 @@
 			if(canMove && (anim == anJumpT || anim == anJumpU || anim == anFall) && getcon("down", "press", true, playerNum) && placeFree(x, y + 8)) {
 				hspeed = 0.0
 				vspeed = 4.0
-				if(stats.weapon == 4) {
+				if(stats.weapon == "earth") {
 					anim = anStatue
 					popSound(sndSlide, 0)
 				}
@@ -703,8 +699,8 @@
 						playSoundChannel(sndFlame, 0, 0)
 					}
 					break
-				case 1:
-					if(getcon("shoot", "press", true, playerNum) && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0) {
+				case "fire":
+					if(getcon("shoot", "press", true, playerNum) && anim != anStomp && anim != anHurt && energy > 0 && cooldown == 0) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -725,7 +721,7 @@
 					}
 					break
 
-				case 2:
+				case "ice":
 					if(cooldown > 0) break
 					if(getcon("shoot", "press", true, playerNum)) {
 						cooldown = 60
@@ -733,7 +729,7 @@
 					}
 					break
 
-				case 3:
+				case "air":
 					if(cooldown > 0) break
 					if(getcon("shoot", "press", true, playerNum)) {
 						cooldown = 60
@@ -741,7 +737,7 @@
 					}
 					break
 
-				case 4:
+				case "earth":
 					if(getcon("shoot", "press", true, playerNum) && anim != anSlide && anim != anHurt && energy > 0 && cooldown == 0 && anim != anStatue) {
 						cooldown = 8
 						local fx = 6
@@ -773,17 +769,17 @@
 
 			if(cooldown >= 50 && cooldown % 2 == 0) {
 				local c = 0
-				if(stats.weapon != 2) c = fireWeapon(FlameBreath, x, y - 6, 1, id)
+				if(stats.weapon != "ice") c = fireWeapon(FlameBreath, x, y - 6, 1, id)
 				else c = fireWeapon(IceBreath, x, y - 6, 1, id)
 				if(flip == 0) {
 					c.hspeed = 1.0 + randFloat(0.5)
 					c.x += 8
-					if(stats.weapon == 2) c.hspeed += 1.8
+					if(stats.weapon == "ice") c.hspeed += 1.8
 				}
 				else {
 					c.hspeed = -1.5 - randFloat(0.5)
 					c.x -= 8
-					if(stats.weapon == 2) c.hspeed -= 1.8
+					if(stats.weapon == "ice") c.hspeed -= 1.8
 				}
 				if(vspeed > 0) c.vspeed = (-cooldown.tofloat() + 53.0) / 8.0
 				else c.vspeed = (cooldown.tofloat() - 53.0) / 8.0
@@ -801,7 +797,7 @@
 		//////////////
 		else {
 			swimming = true
-			if(stats.weapon == 3 && energy < 4) energy += 0.1
+			if(stats.weapon == "air" && energy < 4) energy += 0.1
 			if(!wasInWater) {
 				wasInWater = true
 				vspeed /= 2.0
@@ -847,7 +843,7 @@
 			if(canMove) {
 				if(getcon("sneak", "hold", true, playerNum) || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1) && config.stickspeed) mspeed = 0.5
 				else if(getcon("run", "hold", true, playerNum) || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9) && config.stickspeed) {
-					if(stats.weapon == 2) mspeed = 2.2
+					if(stats.weapon == "ice") mspeed = 2.2
 					else mspeed = 2.0
 				}
 				else mspeed = 1.0
@@ -878,11 +874,11 @@
 
 			//Attacks
 			if(canMove) switch(stats.weapon) {
-				case 1:
+				case "fire":
 					if(getcon("shoot", "press", true, playerNum) && anim != anSlide && anim != anHurt && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = fireWeapon(Fireball, x + fx, y - 4, 1, id)
+						local c = fireWeapon(FireballK, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
 						playSound(sndFireball, 0)
@@ -911,7 +907,7 @@
 					}
 					break
 
-				case 2:
+				case "ice":
 					if(getcon("shoot", "press", true, playerNum) && anim != anSlide && anim != anHurt && energy > 0 && !(!placeFree(x, y + 1) && getcon("down", "hold", true, playerNum))) {
 						local fx = 6
 						if(flip == 1) fx = -5
@@ -1031,7 +1027,7 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == 4 && anim == anStatue && energy > 0 && frame >= 3) {
+				if(stats.weapon == "earth" && anim == anStatue && energy > 0 && frame >= 3) {
 					energy--
 					firetime = 180
 					blinking = 120
@@ -1062,22 +1058,22 @@
 					damageMult = damageMultN
 					break
 
-				case 1:
+				case "fire":
 					sprite = mySprFire
 					damageMult = damageMultF
 					break
 
-				case 2:
+				case "ice":
 					sprite = mySprIce
 					damageMult = damageMultI
 					break
 
-				case 3:
+				case "air":
 					sprite = mySprAir
 					damageMult = damageMultA
 					break
 
-				case 4:
+				case "earth":
 					sprite = mySprEarth
 					damageMult = damageMultE
 					break
@@ -1167,61 +1163,6 @@
 		}
 	}
 
-	function swapitem() {
-		if(game.subitem == 0) return
-		local swap = game.subitem
-
-		if(stats.weapon == game.subitem) {
-			if(game.maxEnergy < 4 - game.difficulty) {
-				game.maxEnergy++
-				game.subitem = 0
-				tftime = 0
-				playSound(sndHeal, 0)
-			}
-			return
-		}
-
-		if(swap < 5) {
-			game.subitem = stats.weapon
-			stats.weapon = 0
-		}
-
-		switch(swap) {
-			case 1:
-				newActor(FlowerFire, x + hspeed, y + vspeed)
-				break
-			case 2:
-				newActor(FlowerIce, x + hspeed, y + vspeed)
-				break
-			case 3:
-				newActor(AirFeather, x + hspeed, y + vspeed)
-				break
-			case 4:
-				newActor(EarthShell, x + hspeed, y + vspeed)
-				break
-			case 5:
-				if(stats.health < game.maxHealth) {
-					newActor(MuffinBlue, x + hspeed, y + vspeed)
-					game.subitem = 0
-				}
-				break
-			case 6:
-				if(stats.health < game.maxHealth) {
-					newActor(MuffinRed, x + hspeed, y + vspeed)
-					game.subitem = 0
-				}
-				break
-			case 7:
-				newActor(Starnyan, x + hspeed, y + vspeed)
-				break
-			case 8:
-				popSound(sndGulp, 0)
-				zoomies = 60 * 30
-				game.subitem = 0
-				break
-		}
-	}
-
 	function _typeof(){ return "Konqi" }
 }
 
@@ -1246,7 +1187,7 @@
 			startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
-				stats.weapon = 0
+				stats.weapon = "normal"
 			}
 		}
 

@@ -39,7 +39,7 @@
 		while(foundMissing) {
 			foundMissing = false
 			foreach(key, i in game.characters) {
-				if(!(i.normal in getroottable())) {
+				if(!(key in gvCharacters)) {
 					delete game.characters[key]
 					foundMissing = true
 				}

@@ -82,12 +82,12 @@
 		//Figure out which player this is
 		if(!gvPlayer) {
 			gvPlayer = this
-			stats = game.playerStats1
+			stats = game.ps1
 			playerNum = 1
 		}
 		else if(!gvPlayer2) {
 			gvPlayer2 = this
-			stats = game.playerStats2
+			stats = game.ps2
 			playerNum = 2
 		}
 
@@ -169,56 +169,59 @@
 	}
 
 	function swapitem() {
-		if(game.subitem == 0) return
-		local swap = game.subitem
+		if(stats.subitem == 0) return
+		local swap = stats.subitem
 
-		if(game.weapon == game.subitem) {
+		if(stats.weapon == stats.subitem) {
 			if(game.maxEnergy < 4 - game.difficulty) {
 				game.maxEnergy++
-				game.subitem = 0
+				stats.subitem = 0
 				tftime = 0
 				playSound(sndHeal, 0)
 			}
 			return
 		}
 
-		if(swap < 5) {
-			game.subitem = game.weapon
-			game.weapon = 0
-		}
-
 		switch(swap) {
-			case 1:
-				newActor(FlowerFire, x + hspeed, y + vspeed)
-				subitem = 0
+			case "fire":
+				stats.subitem = stats.weapon
+				stats.weapon = "fire"
+				stats.maxEnergy = 4 - game.difficulty + game.fireBonus
+				popSound(sndHeal, 0)
+				tftime = 0
 				break
-			case 2:
+			case "ice":
 				newActor(FlowerIce, x + hspeed, y + vspeed)
-				subitem = 0
+				stats.subitem = 0
 				break
-			case 3:
+			case "air":
 				newActor(AirFeather, x + hspeed, y + vspeed)
-				subitem = 0
+				stats.subitem = 0
 				break
-			case 4:
+			case "earth":
 				newActor(EarthShell, x + hspeed, y + vspeed)
-				subitem = 0
+				stats.subitem = 0
 				break
-			case 5:
+			case "muffinBlue":
 				if(game.health < game.maxHealth) {
 					newActor(MuffinBlue, x + hspeed, y + vspeed)
-					subitem = 0
+					stats.subitem = 0
 				}
 				break
-			case 6:
+			case "muffinRed":
 				if(game.health < game.maxHealth) {
 					newActor(MuffinRed, x + hspeed, y + vspeed)
-					subitem = 0
+					stats.subitem = 0
 				}
 				break
-			case 7:
+			case "star":
 				newActor(Starnyan, x + hspeed, y + vspeed)
-				subitem = 0
+				stats.subitem = 0
+				break
+			case "coffee":
+				popSound(sndGulp, 0)
+				zoomies += 60 * 16
+				stats.subitem = 0
 				break
 		}
 	}
@@ -248,8 +251,8 @@
 			if(!gvPlayer && !gvPlayer2) startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
-				if(playerNum == 1) game.weapon = 0
-				if(playerNum == 2) game.weapon2 = 0
+				if(playerNum == 1) game.ps1.weapon = "normal"
+				if(playerNum == 2) game.ps2.weapon = "normal"
 			}
 		}
 

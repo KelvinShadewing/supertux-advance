@@ -343,7 +343,7 @@
                 {
                  "height":100,
                  "id":571,
-                 "name":"game.weapon = 0",
+                 "name":"game.weapon = "normal"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -354,7 +354,7 @@
                 {
                  "height":100,
                  "id":588,
-                 "name":"game.weapon = 0",
+                 "name":"game.weapon = "normal"",
                  "rotation":0,
                  "type":"",
                  "visible":true,

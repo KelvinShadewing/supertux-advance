@@ -38,14 +38,12 @@
 		if(gvPlayer) {
 			gvPlayer.canMove = false
 			gvPlayer.endMode = true
-			if(gvPlayer.hspeed > 2) gvPlayer.hspeed = 2.0
 			gvPlayer.invincible = 999
 		}
 
 		if(gvPlayer2) {
 			gvPlayer2.canMove = false
 			gvPlayer2.endMode = true
-			if(gvPlayer2.hspeed > 2) gvPlayer.hspeed = 2.0
 			gvPlayer2.invincible = 999
 		}
 

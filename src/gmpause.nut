@@ -18,7 +18,7 @@
 			startPlay(gvMap.file, true, true)
 			if(game.check == false) {
 				gvIGT = 0
-				game.weapon = 0
+				game.weapon = "normal"
 				game.weapon2 = 0
 			}
 		}

@@ -28,14 +28,14 @@
 	fps = debugTickSum / 64
 
 	//Set weapon
-	if(keyPress(k_1)) {game.playerStats1.subitem = 1; game.playerStats2.subitem = 1}
-	if(keyPress(k_2)) {game.playerStats1.subitem = 2; game.playerStats2.subitem = 2}
-	if(keyPress(k_3)) {game.playerStats1.subitem = 3; game.playerStats2.subitem = 3}
-	if(keyPress(k_4)) {game.playerStats1.subitem = 4; game.playerStats2.subitem = 4}
-	if(keyPress(k_5)) {game.playerStats1.subitem = 5; game.playerStats2.subitem = 5}
-	if(keyPress(k_6)) {game.playerStats1.subitem = 6; game.playerStats2.subitem = 6}
-	if(keyPress(k_7)) {game.playerStats1.subitem = 7; game.playerStats2.subitem = 7}
-	if(keyPress(k_8)) {game.playerStats1.subitem = 8; game.playerStats2.subitem = 8}
+	if(keyPress(k_1)) {game.ps1.subitem = "fire"; game.ps2.subitem = "fire"}
+	if(keyPress(k_2)) {game.ps1.subitem = "ice"; game.ps2.subitem = "ice"}
+	if(keyPress(k_3)) {game.ps1.subitem = "air"; game.ps2.subitem = "air"}
+	if(keyPress(k_4)) {game.ps1.subitem = "earth"; game.ps2.subitem = "earth"}
+	if(keyPress(k_5)) {game.ps1.subitem = "muffinBlue"; game.ps2.subitem = "muffinBlue"}
+	if(keyPress(k_6)) {game.ps1.subitem = "muffinRed"; game.ps2.subitem = "muffinRed"}
+	if(keyPress(k_7)) {game.ps1.subitem = "star"; game.ps2.subitem = "star"}
+	if(keyPress(k_8)) {game.ps1.subitem = "coffee"; game.ps2.subitem = "coffee"}
 	if(keyPress(k_minus) && game.maxHealth > 4) game.maxHealth = game.maxHealth - 4
 	if(keyPress(k_equals))  game.maxHealth = game.maxHealth + 4
 	if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
