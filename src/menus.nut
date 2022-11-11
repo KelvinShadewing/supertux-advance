@@ -67,7 +67,7 @@ const menuY = 40
 			if(menu[i].rawin("desc")) {
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				if("desc" in menu[i] && "len" in menu[i].desc) drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
 		}
 
