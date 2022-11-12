@@ -359,7 +359,7 @@
                  "class":"",
                  "height":48,
                  "id":582,
-                 "name":"pipeFunnel()",
+                 "name":"pipeFunnel(myTarget)",
                  "rotation":0,
                  "visible":true,
                  "width":32,

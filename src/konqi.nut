@@ -604,6 +604,7 @@
 
 
 			}
+			else rspeed = min(rspeed, abs(hspeed))
 
 			//Movement
 			if(!freeDown2 || onPlatform()) {

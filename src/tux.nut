@@ -615,6 +615,7 @@
 					if((placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) && !onPlatform()) anim = anSlide
 				}
 			}
+			else rspeed = min(rspeed, abs(hspeed))
 
 			//Movement
 			if(!freeDown2 || onPlatform()) {

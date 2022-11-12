@@ -1455,6 +1455,7 @@
 	sf = 0.0
 	sharpTop = true
 	sharpSide = true
+	touchDamage = 2
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1489,6 +1490,28 @@
 			}
 		}
 
+		if(gvPlayer2) if(hitTest(shape, gvPlayer2.shape)) {
+			if(x > gvPlayer2.x) {
+				if(gvPlayer2.placeFree(gvPlayer2.x - 1, gvPlayer2.y)) gvPlayer2.x--
+				gvPlayer2.hspeed -= 0.1
+			}
+
+			if(x < gvPlayer2.x) {
+				if(gvPlayer2.placeFree(gvPlayer2.x + 1, gvPlayer2.y)) gvPlayer2.x++
+				gvPlayer2.hspeed += 0.1
+			}
+
+			if(y > gvPlayer2.y) {
+				if(gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y - 1)) gvPlayer2.y--
+				gvPlayer2.vspeed -= 0.1
+			}
+
+			if(y < gvPlayer2.y) {
+				if(gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 1)) gvPlayer2.y++
+				gvPlayer2.vspeed += 0.1
+			}
+		}
+
 		if(frozen) {
 			//Create ice block
 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
@@ -1514,7 +1537,6 @@
 
 	function hurtPlayer(target) {
 		base.hurtPlayer(target)
-		if(gvPlayer) gvPlayer.hurt = 2
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
