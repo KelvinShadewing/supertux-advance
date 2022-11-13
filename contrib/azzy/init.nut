@@ -1,1 +1,0 @@
-addTimeAttackWorld("Misbegotten Island", "azzy", "sn-l0")
