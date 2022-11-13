@@ -41,6 +41,9 @@
 	},
 
 	"options-menu" : {
+		"graphics" : "Graphics",
+		"input" : "Input",
+		"audio" : "Audio",
 		"difficulty" : "Difficulty",
 		"language" : "Language",
 		"keyboard" : "Keyboard Controls",

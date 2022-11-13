@@ -40,7 +40,7 @@ const menuY = 40
 			if(menu[i].rawin("desc")){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				if(typeof menu[i].desc() == "string") drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
 		}
 
@@ -67,7 +67,7 @@ const menuY = 40
 			if(menu[i].rawin("desc")) {
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				if("desc" in menu[i] && "len" in menu[i].desc) drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				if(typeof menu[i].desc() == "string") drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
 		}
 
@@ -299,30 +299,45 @@ const menuY = 40
 
 ::meOptions <- [
 	{
-		name = function() { return gvLangObj["options-menu"]["keyboard"] },
-		desc = function() { return gvLangObj["options-menu-desc"]["keyboard"] },
-		func = function() { menu = meKeybinds }
+		name = function() { return gvLangObj["options-menu"]["graphics"] },
+		func = function() { cursor = 0; menu = meGraphics }
 	},
 	{
-		name = function() { return gvLangObj["options-menu"]["joystick"] },
-		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
-		func = function() { menu = meJoybinds }
+		name = function() { return gvLangObj["options-menu"]["input"] },
+		func = function() { cursor = 0; menu = meInput }
 	},
 	{
-		name = function() {
-			local msg = gvLangObj["options-menu"]["cursor"]
-			if(config.showcursor) msg += gvLangObj["menu-commons"]["on"]
-			else msg += gvLangObj["menu-commons"]["off"]
-			return msg
-		},
-		desc = function() { return gvLangObj["options-menu-desc"]["cursor"] },
-		func = function() { config.showcursor = !config.showcursor; fileWrite("config.json", jsonWrite(config)) }
+		name = function() { return gvLangObj["options-menu"]["audio"] },
+		func = function() { cursor = 0; menu = meAudio }
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["language"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["language"] },
 		func = function() { selectLanguage() }
 	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() {
+			if(gvGameMode == gmPause) {
+				if(gvPauseMode) menu = mePauseOver
+				else menu = mePausePlay
+			}
+			else menu = meMain;
+			fileWrite("config.json", jsonWrite(config))
+		}
+		back = function() {
+			if(gvGameMode == gmPause) {
+				if(gvPauseMode) menu = mePauseOver
+				else menu = mePausePlay
+			}
+			else menu = meMain;
+			fileWrite("config.json", jsonWrite(config))
+		}
+	}
+
+]
+
+::meGraphics <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["timers"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["timers"] },
@@ -345,13 +360,41 @@ const menuY = 40
 	},
 	{
 		name = function() {
-			local msg = gvLangObj["options-menu"]["stickspeed"]
-			if(config.stickspeed) msg += gvLangObj["menu-commons"]["on"]
+			local msg = gvLangObj["options-menu"]["usefilter"]
+			if(config.usefilter) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
 		},
-		desc = function() { return gvLangObj["options-menu-desc"]["stickspeed"] },
-		func = function() { config.stickspeed = !config.stickspeed; fileWrite("config.json", jsonWrite(config)) }
+		desc = function() { return gvLangObj["options-menu-desc"]["usefilter"] },
+		func = function() { config.usefilter = !config.usefilter; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
+	}
+]
+
+::meInput <- [
+	{
+		name = function() { return gvLangObj["options-menu"]["keyboard"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["keyboard"] },
+		func = function() { menu = meKeybinds }
+	},
+	{
+		name = function() { return gvLangObj["options-menu"]["joystick"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
+		func = function() { menu = meJoybinds }
+	},
+	{
+		name = function() {
+			local msg = gvLangObj["options-menu"]["cursor"]
+			if(config.showcursor) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["cursor"] },
+		func = function() { config.showcursor = !config.showcursor; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() {
@@ -365,14 +408,22 @@ const menuY = 40
 	},
 	{
 		name = function() {
-			local msg = gvLangObj["options-menu"]["usefilter"]
-			if(config.usefilter) msg += gvLangObj["menu-commons"]["on"]
+			local msg = gvLangObj["options-menu"]["stickspeed"]
+			if(config.stickspeed) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]
 			return msg
 		},
-		desc = function() { return gvLangObj["options-menu-desc"]["usefilter"] },
-		func = function() { config.usefilter = !config.usefilter; fileWrite("config.json", jsonWrite(config)) }
+		desc = function() { return gvLangObj["options-menu-desc"]["stickspeed"] },
+		func = function() { config.stickspeed = !config.stickspeed; fileWrite("config.json", jsonWrite(config)) }
 	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
+	}
+]
+
+::meAudio <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["sound-volume"] },
 		desc = function() {
@@ -395,7 +446,7 @@ const menuY = 40
 			vol += "] (<-/->)"
 			return vol
 		},
-		func = function() { }
+		func = function() {}
 	},
 	{
 		name = function() { return gvLangObj["options-menu"]["music-volume"] },
@@ -419,28 +470,13 @@ const menuY = 40
 			vol += "] (<-/->)"
 			return vol
 		},
-		func = function() { }
+		func = function() {}
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
-		func = function() {
-			if(gvGameMode == gmPause) {
-				if(gvPauseMode) menu = mePauseOver
-				else menu = mePausePlay
-			}
-			else menu = meMain;
-			fileWrite("config.json", jsonWrite(config))
-		}
-		back = function() {
-			if(gvGameMode == gmPause) {
-				if(gvPauseMode) menu = mePauseOver
-				else menu = mePausePlay
-			}
-			else menu = meMain;
-			fileWrite("config.json", jsonWrite(config))
-		}
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
 	}
-
 ]
 
 ::meKeybinds <- [
