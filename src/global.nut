@@ -84,7 +84,6 @@
 		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
-		player2Char = null
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0
