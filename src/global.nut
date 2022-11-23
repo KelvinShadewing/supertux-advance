@@ -68,7 +68,7 @@
 		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
-		playerChar2 = null
+		playerChar2 = 0
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0
@@ -216,7 +216,6 @@
 	}
 	autorun = false
 	stickspeed = true
-	playerChar = 0
 	lang = "en"
 	showleveligt = false
 	showglobaligt = false
@@ -226,6 +225,7 @@
 	soundVolume = 64
 	musicVolume = 64
 	fullscreen = false
+	lookAhead = false
 }
 
 ::contribDidRun <- {}
@@ -237,6 +237,8 @@
 ::gvTextW <- 0
 ::gvScreenW <- 0
 ::gvScreenH <- 0
+::gvScreen2W <- 0
+::gvScreen2H <- 0
 
 //Debug variabls
 ::gvFPS <- 0
@@ -269,3 +271,5 @@
 	dark = 8
 	toxic = 9
 }
+
+::myTarget <- null

@@ -480,6 +480,18 @@
                  "width":16,
                  "x":240,
                  "y":208
+                }, 
+                {
+                 "class":"",
+                 "gid":887,
+                 "height":16,
+                 "id":48,
+                 "name":"Deathcap,1",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":432,
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -488,16 +500,16 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":48,
+ "nextobjectid":49,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)"
+         "value":"songPlay(musOverworld)\nsprGradcap = sprHaywire"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {

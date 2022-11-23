@@ -505,8 +505,10 @@
 			game.chy = y
 			popSound(sndBell, 0)
 			if(game.difficulty < 3) {
-				if(game.health < game.maxHealth) game.health += 4
-				else if(game.subitem == 0) game.subitem = "muffinBlue"
+				if(game.ps1.health < game.maxHealth) game.ps1.health += 4
+				else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
+				if(game.ps2.health < game.maxHealth) game.ps2.health += 4
+				else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
 			}
 		}
 

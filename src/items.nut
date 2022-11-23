@@ -177,11 +177,11 @@
 			deleteActor(id)
 			if(game.ps1.weapon == "normal") {
 				game.ps1.weapon = "fire"
-				game.maxEnergy = 4 - game.difficulty + game.fireBonus
+				game.ps1.maxEnergy = 4 - game.difficulty + game.fireBonus
 			}
 			else {
 				game.ps1.subitem = game.ps1.weapon
-				game.maxEnergy = 4 - game.difficulty + game.fireBonus
+				game.ps1.maxEnergy = 4 - game.difficulty + game.fireBonus
 				game.ps1.weapon = "fire"
 			}
 			popSound(sndHeal, 0)
@@ -191,11 +191,11 @@
 			deleteActor(id)
 			if(game.ps2.weapon == "normal") {
 				game.ps2.weapon = "fire"
-				game.maxEnergy = 4 - game.difficulty + game.fireBonus
+				game.ps2.maxEnergy = 4 - game.difficulty + game.fireBonus
 			}
 			else {
-				game.ps1.subitem = game.ps2.weapon
-				game.maxEnergy = 4 - game.difficulty + game.fireBonus
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.maxEnergy = 4 - game.difficulty + game.fireBonus
 				game.ps2.weapon = "fire"
 			}
 			popSound(sndHeal, 0)
@@ -220,11 +220,11 @@
 			deleteActor(id)
 			if(game.ps1.weapon == "normal") {
 				game.ps1.weapon = "ice"
-				game.maxEnergy = 4 - game.difficulty + game.iceBonus
+				game.ps1.maxEnergy = 4 - game.difficulty + game.iceBonus
 			}
 			else {
 				game.ps1.subitem = game.ps1.weapon
-				game.maxEnergy = 4 - game.difficulty + game.iceBonus
+				game.ps1.maxEnergy = 4 - game.difficulty + game.iceBonus
 				game.ps1.weapon = "ice"
 			}
 			popSound(sndHeal, 0)
@@ -234,11 +234,11 @@
 			deleteActor(id)
 			if(game.ps2.weapon == "normal") {
 				game.ps2.weapon = "ice"
-				game.maxEnergy = 4 - game.difficulty + game.iceBonus
+				game.ps2.maxEnergy = 4 - game.difficulty + game.iceBonus
 			}
 			else {
-				game.ps1.subitem = game.ps2.weapon
-				game.maxEnergy = 4 - game.difficulty + game.iceBonus
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.maxEnergy = 4 - game.difficulty + game.iceBonus
 				game.ps2.weapon = "ice"
 			}
 			popSound(sndHeal, 0)
@@ -301,14 +301,26 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
-			if(game.health < game.maxHealth) {
-				game.health += 4
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+			if(game.ps1.health < game.maxHealth) {
+				game.ps1.health += 4
 				for(local i = 0; i < 4; i++) {
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
 			}
-			else if(game.subitem != "muffinRed" && (game.subitem == 0 || willwrite)) game.subitem = "muffinBlue"
+			else if(game.ps1.subitem != "muffinRed" && (game.ps1.subitem == 0 || willwrite)) game.ps1.subitem = "muffinBlue"
+			deleteActor(id)
+			popSound(sndHeal, 0)
+		}
+
+		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+			if(game.ps2.health < game.maxHealth) {
+				game.ps2.health += 4
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+				}
+			}
+			else if(game.ps2.subitem != "muffinRed" && (game.ps2.subitem == 0 || willwrite)) game.ps2.subitem = "muffinBlue"
 			deleteActor(id)
 			popSound(sndHeal, 0)
 		}
@@ -366,20 +378,26 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
-			if(game.health < game.maxHealth - 3) {
-				game.health += 12
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+			if(game.ps1.health < game.maxHealth) {
+				game.ps1.health += 16
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+				}
+			}
+			else game.ps1.subitem = "muffinRed"
+			deleteActor(id)
+			popSound(sndHeal, 0)
+		}
+
+		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+			if(game.ps2.health < game.maxHealth) {
+				game.ps2.health += 16
 				for(local i = 0; i < 4; i++) {
 					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
 			}
-			else if(game.health < game.maxHealth) {
-				game.health = game.maxHealth
-				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
-				}
-			}
-			else game.subitem = "muffinRed"
+			else game.ps2.subitem = "muffinRed"
 			deleteActor(id)
 			popSound(sndHeal, 0)
 		}

@@ -57,7 +57,8 @@
 		"usefilter" : "Use Graphics Filter: ",
 		"sound-volume" : "Sound Volume",
 		"music-volume" : "Music Volume",
-		"charsel" : "Select Your Character"
+		"charsel" : "Select Your Character",
+		"lookahead" : "Dynamic Camera"
 	},
 
 	"options-menu-desc": {
@@ -72,7 +73,8 @@
 		"autorun" : "Slow down when run button is pressed",
 		"stickspeed" : "Toggle stick controls speed",
 		"usefilter" : "Bilinear filtering (requires restart)",
-		"fullgame" : "All standard worlds from SuperTux Advance"
+		"fullgame" : "All standard worlds from SuperTux Advance",
+		"lookahead" : "Camera stays ahead of player and moves smoothly"
 	},
 
 	"timers-menu" : {
@@ -112,7 +114,8 @@
 		"back" : "Back",
 		"cancel" : "Cancel",
 		"on" : "On",
-		"off" : "Off"
+		"off" : "Off",
+		"noone" : "No One"
 	},
 
 	"bool" : {

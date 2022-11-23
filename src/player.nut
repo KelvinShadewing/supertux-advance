@@ -18,6 +18,7 @@
 	shapeSwim = null
 	resTime = 0
 	endMode = false
+	endSpeed = 0
 
 	//Animation states defined in child classes
 	anStand = null
@@ -117,6 +118,17 @@
 		if(resTime > 0 && y > gvMap.h) y = gvMap.h
 		if(y < -100) y = -100.0
 		//escapeSolid()
+
+		if(endMode) {
+			if(hspeed < endSpeed && endSpeed > 0) {
+				hspeed += accel
+				rspeed += accel
+			}
+			if(hspeed > endSpeed && endSpeed < 0) {
+				hspeed -= accel
+				rspeed -= accel
+			}
+		}
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
@@ -203,13 +215,13 @@
 				stats.subitem = 0
 				break
 			case "muffinBlue":
-				if(game.health < game.maxHealth) {
+				if(stats.health < game.maxHealth) {
 					newActor(MuffinBlue, x + hspeed, y + vspeed)
 					stats.subitem = 0
 				}
 				break
 			case "muffinRed":
-				if(game.health < game.maxHealth) {
+				if(stats.health < game.maxHealth) {
 					newActor(MuffinRed, x + hspeed, y + vspeed)
 					stats.subitem = 0
 				}

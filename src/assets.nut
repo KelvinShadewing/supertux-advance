@@ -316,6 +316,8 @@
 ::defStar <- sprStar
 ::sprCoin <- newSprite("res/gfx/coin.png", 16, 16, 0, 0, 8, 8)
 ::defCoin <- sprCoin
+::sprGoldRing <- newSprite("res/gfx/gold-ring.png", 16, 16, 0, 0, 8, 8)
+::defGoldRing <- sprGoldRing
 ::sprCoin5 <- newSprite("res/gfx/5coin.png", 16, 16, 0, 0, 8, 8)
 ::defCoin5 <- sprCoin5
 ::sprCoin10 <- newSprite("res/gfx/10coin.png", 16, 16, 0, 0, 8, 8)

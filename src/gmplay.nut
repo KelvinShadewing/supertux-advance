@@ -223,12 +223,12 @@
 	}
 
 	if(gvPlayer) {
-		camx = gvPlayer.x - (gvScreenW / 2)
-		camy = gvPlayer.y - (gvScreenH / 2)
+		camx0 = gvPlayer.x - (gvScreenW / 2)
+		camy0 = gvPlayer.y - (gvScreenH / 2)
 	}
 	else {
-		camx = 0
-		camy = 0
+		camx0 = 0
+		camy0 = 0
 	}
 
 
@@ -291,25 +291,51 @@
 
 	if(gvLangObj["level"].rawin(gvMap.name)) drawText(font2, (gvScreenW / 2) - (gvLangObj["level"][gvMap.name].len() * 4), 8, gvLangObj["level"][gvMap.name])
 
+	local charx = 0
+	if(game.playerChar2 != 0 && game.playerChar2 != "") {
+		charx = 32
+
+		local runAnim = getroottable()[game.playerChar2].anRun
+		switch(game.ps2.weapon) {
+			case "normal":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
+			case "fire":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["fire"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
+			case "ice":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["ice"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
+			case "air":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["air"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
+			case "earth":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
+			default:
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+		}
+	}
+
 	local runAnim = getroottable()[game.playerChar].anRun
 	switch(game.ps1.weapon) {
-		case 0:
-			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
+		case "normal":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
-		case 1:
-			drawSprite(getroottable()[gvCharacters[game.playerChar]["fire"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
+		case "fire":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["fire"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
-		case 2:
-			drawSprite(getroottable()[gvCharacters[game.playerChar]["ice"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
+		case "ice":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["ice"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
-		case 3:
-			drawSprite(getroottable()[gvCharacters[game.playerChar]["air"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
+		case "air":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["air"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
-		case 4:
-			drawSprite(getroottable()[gvCharacters[game.playerChar]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
+		case "earth":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
 		default:
-			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], gvScreenW / 2, gvScreenH / 2)
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 	}
 
 	local author = gvLangObj["stats"]["author"] + ": " + gvMap.author
@@ -344,6 +370,9 @@
 
 ::gmPlay <- function() {
 	updateCamera()
+
+	camx = camx0
+	camy = camy0
 
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
@@ -530,7 +559,9 @@
 		}
 
 		//Draw level IGT
-		if(gvDoIGT && config.showleveligt && levelEndRunner != 1) drawText(font2, 8, 32, formatTime(gvIGT))
+		local timey = 0
+		if(gvNumPlayers >= 2 && !gvNetPlay) timey = 32
+		if(gvDoIGT && config.showleveligt && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
 
 		//Draw offscreen player
 		if(gvPlayer) if(gvPlayer.y < -8) {
@@ -622,7 +653,7 @@
 
 	//Handle berries
 	if(game.ps1.berries > 0 && game.ps1.berries % 16 == 0) {
-		if(game.health < game.maxHealth) {
+		if(game.ps1.health < game.maxHealth) {
 			game.ps1.health++
 			game.ps1.berries = 0
 		}
@@ -653,16 +684,26 @@
 	target.yprev = target.y
 	
 	if(gvNumPlayers == 1) {
-		camx = _x.tofloat() - (gvScreenW / 2)
-		camy = _y.tofloat() - (gvScreenH / 2)
+		camx0 = _x.tofloat() - (gvScreenW / 2)
+		camy0 = _y.tofloat() - (gvScreenH / 2)
 
-		if(camx > ux) camx = ux
-		if(camx < 0) camx = 0
-		if(camy > uy) camy = uy
-		if(camy < 0) camy = 0
+		if(camx0 > ux) camx = ux
+		if(camx0 < 0) camx = 0
+		if(camy0 > uy) camy = uy
+		if(camy0 < 0) camy = 0
 	}
 
 	if(gvNumPlayers == 2) {
+		if(!gvSplitScreen) {
+			camx0 = _x.tofloat() - (gvScreenW / 2)
+			camy0 = _y.tofloat() - (gvScreenH / 2)
+
+			if(camx0 > ux) camx = ux
+			if(camx0 < 0) camx = 0
+			if(camy0 > uy) camy = uy
+			if(camy0 < 0) camy = 0
+		}
+
 		camx1 = _x.tofloat() - (gvScreenW / 2)
 		camy1 = _y.tofloat() - (gvScreenH / 2)
 

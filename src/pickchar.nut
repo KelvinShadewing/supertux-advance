@@ -11,6 +11,8 @@
 		}
 	}
 
+	if(playerNum == 2) pickCharSettings.charlist.push(["", 0, [0,0], 0])
+
 	//Sort characters
 	//Squirrel tables are sorted by hash, so the list will appear
 	//randomized if this is not done
@@ -89,13 +91,16 @@
 
 	//Draw
 	drawText(font2, (screenW() / 2) - (gvLangObj["options-menu"]["charsel"].len() * 4), 16, gvLangObj["options-menu"]["charsel"])
-	drawText(font2, (screenW() / 2) - (charlist[charslot][0].len() * 4), 200, charlist[charslot][0])
-	if(didpick) drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][1], screenW() / 2, screenH() - 64)
-	else drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][0], screenW() / 2, screenH() - 64)
+	if(charlist[charslot][0] != "") drawText(font2, (screenW() / 2) - (charlist[charslot][0].len() * 4), 200, charlist[charslot][0])
+	else drawText(font2, (screenW() / 2) - (gvLangObj["menu-commons"]["noone"].len() * 4), 200, gvLangObj["menu-commons"]["noone"])
+	if(charlist[charslot][0] != "") {
+		if(didpick) drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][1], screenW() / 2, screenH() - 64)
+		else drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][0], screenW() / 2, screenH() - 64)
+	}
 
 	//Show icon list
 	for(local i = 0; i < charlist.len(); i++) {
-		drawSprite(getroottable()[charlist[i][3]], 0, listx + wrap(i, 0, 16) * 16, 48 + (floor(i / 16) * 16))
+		if(charlist[i][0] != "") drawSprite(getroottable()[charlist[i][3]], 0, listx + wrap(i, 0, 16) * 16, 48 + (floor(i / 16) * 16))
 	}
 	drawSprite(sprCharCursor, getFrames() / 16, listx + wrap(charslot, 0, 16) * 16, 48 + (floor(charslot / 16) * 16))
 

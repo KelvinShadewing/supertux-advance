@@ -345,6 +345,16 @@ const menuY = 40
 	},
 	{
 		name = function() {
+			local msg = gvLangObj["options-menu"]["lookahead"] + ": "
+			if(config.lookAhead) msg += gvLangObj["menu-commons"]["on"]
+			else msg += gvLangObj["menu-commons"]["off"]
+			return msg
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["lookahead"] },
+		func = function() { config.lookAhead = !config.lookAhead }
+	},
+	{
+		name = function() {
 			local msg = gvLangObj["options-menu"]["light"]
 			if(config.light) msg += gvLangObj["menu-commons"]["on"]
 			else msg += gvLangObj["menu-commons"]["off"]

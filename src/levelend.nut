@@ -30,7 +30,7 @@
 	function _typeof() { return "LevelEnder" }
 }
 
-::endGoal <- function(next = "", unblock = "") {
+::endGoal <- function(next = "", unblock = "", speed = 0) {
 	local clearedLevel
 	clearedLevel = gvMap.name
 	gvNextLevel = next
@@ -46,6 +46,8 @@
 			gvPlayer2.endMode = true
 			gvPlayer2.invincible = 999
 		}
+
+		if("endSpeed" in myTarget) myTarget.endSpeed = speed
 
 		if(unblock != "" && !game.unblocked.rawin(unblock)) game.unblocked[unblock] <- true
 		if(!game.completed.rawin(clearedLevel)) game.completed[clearedLevel] <- true
@@ -71,8 +73,6 @@
 		stopMusic()
 
 		levelEndRunner = newActor(LevelEnder, 0, 0)
-
-
 
 		saveGame()
 	}

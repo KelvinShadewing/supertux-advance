@@ -234,7 +234,7 @@
                  "class":"",
                  "height":208,
                  "id":200,
-                 "name":"endGoal(\"aurora-crystal\")",
+                 "name":"endGoal(\"aurora-crystal\", \"\", 1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,

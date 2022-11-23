@@ -795,72 +795,6 @@
          "objects":[
                 {
                  "class":"",
-                 "height":192,
-                 "id":56,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":864,
-                 "x":880,
-                 "y":112
-                }, 
-                {
-                 "class":"",
-                 "height":64,
-                 "id":57,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":336,
-                 "x":1744,
-                 "y":176
-                }, 
-                {
-                 "class":"",
-                 "height":496,
-                 "id":58,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":80,
-                 "x":1760,
-                 "y":256
-                }, 
-                {
-                 "class":"",
-                 "height":80,
-                 "id":73,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":496,
-                 "x":1584,
-                 "y":784
-                }, 
-                {
-                 "class":"",
-                 "height":912,
-                 "id":74,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":240,
-                 "x":2080,
-                 "y":784
-                }, 
-                {
-                 "class":"",
-                 "height":112,
-                 "id":75,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":816,
-                 "x":1264,
-                 "y":976
-                }, 
-                {
-                 "class":"",
                  "height":16,
                  "id":113,
                  "name":"drawBG = dbgCastle; drawWeather = dweBlizzard",
@@ -884,17 +818,6 @@
                 {
                  "class":"",
                  "height":160,
-                 "id":163,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":208,
-                 "x":2464,
-                 "y":80
-                }, 
-                {
-                 "class":"",
-                 "height":160,
                  "id":164,
                  "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 525)",
                  "rotation":0,
@@ -902,39 +825,6 @@
                  "width":288,
                  "x":2096,
                  "y":80
-                }, 
-                {
-                 "class":"",
-                 "height":192,
-                 "id":241,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":496,
-                 "x":1568,
-                 "y":1296
-                }, 
-                {
-                 "class":"",
-                 "height":128,
-                 "id":247,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":448,
-                 "x":1120,
-                 "y":1360
-                }, 
-                {
-                 "class":"",
-                 "height":640,
-                 "id":249,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":128,
-                 "x":1136,
-                 "y":720
                 }, 
                 {
                  "class":"",

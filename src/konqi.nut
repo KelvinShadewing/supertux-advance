@@ -693,7 +693,7 @@
 			}
 
 			if(canMove) switch(stats.weapon) {
-				case 0:
+				case "normal":
 					if(cooldown > 0) break
 					if(getcon("shoot", "press", true, playerNum)) {
 						cooldown = 60

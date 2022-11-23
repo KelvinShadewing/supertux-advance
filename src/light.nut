@@ -112,11 +112,11 @@
 	}
 
 	function run() {
-		if(!gvSplitScreen) { //Single player camera
-			if(camx + (gvScreenW / 2) >= x - w
-			&& camy + (gvScreenH / 2) >= y - h
-			&& camx + (gvScreenW / 2) <= x + w
-			&& camy + (gvScreenH / 2) <= y + h) {
+		if(!false) { //Single player camera
+			if(camx0 + (gvScreenW / 2) >= x - w
+			&& camy0 + (gvScreenH / 2) >= y - h
+			&& camx0 + (gvScreenW / 2) <= x + w
+			&& camy0 + (gvScreenH / 2) <= y + h) {
 				if(bg == "0") drawBG = 0
 				else if(bg in getroottable()) drawBG = getroottable()[bg]
 				if(weather == "0") drawWeather = 0
