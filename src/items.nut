@@ -382,7 +382,7 @@
 			if(game.ps1.health < game.maxHealth) {
 				game.ps1.health += 16
 				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
 				}
 			}
 			else game.ps1.subitem = "muffinRed"
@@ -394,7 +394,7 @@
 			if(game.ps2.health < game.maxHealth) {
 				game.ps2.health += 16
 				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
+					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
 				}
 			}
 			else game.ps2.subitem = "muffinRed"

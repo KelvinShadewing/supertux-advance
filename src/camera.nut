@@ -78,7 +78,7 @@
 						py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (gvScreenH / 2) + ly
 					}
 					else {
-						px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 2) - (gvScreenW / 2) + lx
+						px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 3) - (gvScreenW / 2) + lx
 						py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 					}
 				}
