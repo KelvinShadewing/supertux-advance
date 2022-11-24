@@ -590,11 +590,11 @@
 			popSound(sndHeal, 0)
 			if(game.ps1.weapon == "normal") {
 				game.ps1.weapon = "air"
-				game.maxEnergy = 4 - game.difficulty + game.airBonus
+				game.ps1.maxEnergy = 4 - game.difficulty + game.airBonus
 			}
 			else {
-				game.subitem = game.ps1.weapon
-				game.maxEnergy = 4 - game.difficulty + game.airBonus
+				game.ps1.subitem = game.ps1.weapon
+				game.ps1.maxEnergy = 4 - game.difficulty + game.airBonus
 				game.ps1.weapon = "air"
 			}
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
@@ -604,11 +604,11 @@
 			popSound(sndHeal, 0)
 			if(game.ps2.weapon == "normal") {
 				game.ps2.weapon = "air"
-				game.maxEnergy = 4 - game.difficulty + game.airBonus
+				game.ps2.maxEnergy = 4 - game.difficulty + game.airBonus
 			}
 			else {
-				game.subitem = game.ps2.weapon
-				game.maxEnergy = 4 - game.difficulty + game.airBonus
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.maxEnergy = 4 - game.difficulty + game.airBonus
 				game.ps2.weapon = "air"
 			}
 			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
@@ -736,11 +736,11 @@
 			deleteActor(id)
 			if(game.ps1.weapon == "normal") {
 				game.ps1.weapon = "earth"
-				game.maxEnergy = 4 - game.difficulty + game.earthBonus
+				game.ps1.maxEnergy = 4 - game.difficulty + game.earthBonus
 			}
 			else {
-				game.subitem = game.ps1.weapon
-				game.maxEnergy = 4 - game.difficulty + game.earthBonus
+				game.ps1.subitem = game.ps1.weapon
+				game.ps1.maxEnergy = 4 - game.difficulty + game.earthBonus
 				game.ps1.weapon = "earth"
 			}
 			popSound(sndHeal, 0)
@@ -750,11 +750,11 @@
 			deleteActor(id)
 			if(game.ps2.weapon == "normal") {
 				game.ps2.weapon = "earth"
-				game.maxEnergy = 4 - game.difficulty + game.earthBonus
+				game.ps2.maxEnergy = 4 - game.difficulty + game.earthBonus
 			}
 			else {
-				game.subitem = game.ps2.weapon
-				game.maxEnergy = 4 - game.difficulty + game.earthBonus
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.maxEnergy = 4 - game.difficulty + game.earthBonus
 				game.ps2.weapon = "earth"
 			}
 			popSound(sndHeal, 0)
