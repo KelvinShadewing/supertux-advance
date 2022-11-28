@@ -422,7 +422,7 @@
          "y":0
         }, 
         {
-         "color":"#006060",
+         "color":"#ffff00",
          "draworder":"topdown",
          "id":4,
          "name":"trigger",
@@ -451,28 +451,6 @@
                 }, 
                 {
                  "class":"",
-                 "height":96,
-                 "id":141,
-                 "name":"drawBG = dbgCave; gvLightTarget = 0x808080ff",
-                 "rotation":0,
-                 "visible":true,
-                 "width":32,
-                 "x":1888,
-                 "y":128
-                }, 
-                {
-                 "class":"",
-                 "height":96,
-                 "id":142,
-                 "name":"drawBG = dbgAurora; gvLightTarget = 0xffffffff",
-                 "rotation":0,
-                 "visible":true,
-                 "width":32,
-                 "x":1920,
-                 "y":128
-                }, 
-                {
-                 "class":"",
                  "height":48,
                  "id":208,
                  "name":"drawBG = dbgCave",
@@ -481,17 +459,6 @@
                  "width":48,
                  "x":80,
                  "y":192
-                }, 
-                {
-                 "class":"",
-                 "height":272,
-                 "id":290,
-                 "name":"drawBG = dbgCave; gvLightTarget = 0x808080ff",
-                 "rotation":0,
-                 "visible":true,
-                 "width":288,
-                 "x":32,
-                 "y":720
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3025,6 +2992,39 @@
                  "width":16,
                  "x":64,
                  "y":240
+                }, 
+                {
+                 "class":"",
+                 "height":112,
+                 "id":291,
+                 "name":"TransZone,dbgCave,0,0x808080ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":112,
+                 "x":1808,
+                 "y":112
+                }, 
+                {
+                 "class":"",
+                 "height":112,
+                 "id":294,
+                 "name":"TransZone,dbgCave,0,0x808080ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":112,
+                 "x":64,
+                 "y":880
+                }, 
+                {
+                 "class":"",
+                 "height":112,
+                 "id":295,
+                 "name":"TransZone,dbgAurora,0,0xffffffff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":112,
+                 "x":1920,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3033,7 +3033,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":291,
+ "nextobjectid":296,
  "orientation":"orthogonal",
  "properties":[
         {

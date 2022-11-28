@@ -247,6 +247,9 @@
 
 	drawBG2 = drawBG
 	drawWeather2 = drawWeather
+	gvLightTarget2 = gvLightTarget
+	gvLight = gvLightTarget
+	gvLight2 = gvLightTarget2
 
 	setDrawTarget(bgPause)
 	drawImage(gvScreen, 0, 0)
@@ -752,21 +755,25 @@
 			if(camy0 < 0) camy = 0
 		}
 
-		camx1 = _x.tofloat() - (gvScreenW / 2)
-		camy1 = _y.tofloat() - (gvScreenH / 2)
+		if(gvPlayer && target == gvPlayer) {
+			camx1 = _x.tofloat() - (gvScreenW / 2)
+			camy1 = _y.tofloat() - (gvScreenH / 2)
 
-		if(camx1 > ux) camx1 = ux
-		if(camx1 < 0) camx1 = 0
-		if(camy1 > uy) camy1 = uy
-		if(camy1 < 0) camy1 = 0
+			if(camx1 > ux) camx1 = ux
+			if(camx1 < 0) camx1 = 0
+			if(camy1 > uy) camy1 = uy
+			if(camy1 < 0) camy1 = 0
+		}
 
-		camx2 = _x.tofloat() - (gvScreenW / 2)
-		camy2 = _y.tofloat() - (gvScreenH / 2)
+		if(gvPlayer2 && target == gvPlayer2) {
+			camx2 = _x.tofloat() - (gvScreenW / 2)
+			camy2 = _y.tofloat() - (gvScreenH / 2)
 
-		if(camx2 > ux) camx2 = ux
-		if(camx2 < 0) camx2 = 0
-		if(camy2 > uy) camy2 = uy
-		if(camy2 < 0) camy2 = 0
+			if(camx2 > ux) camx2 = ux
+			if(camx2 < 0) camx2 = 0
+			if(camy2 > uy) camy2 = uy
+			if(camy2 < 0) camy2 = 0
+		}
 	}
 }
 

@@ -9,7 +9,8 @@
 ::drawLight <- function(sprite, frame, x, y) {
 	if(!config.light) return
 	if(gvLightScreen == 0) return
-	if(gvLight == 0xffffffff) return
+	if(gvLightScreen == gvLightScreen1 && gvLight == 0xffffffff
+	|| gvLightScreen == gvLightScreen2 && gvLight2 == 0xffffffff) return
 
 	local prevTarget = getDrawTarget()
 
