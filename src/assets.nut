@@ -370,11 +370,11 @@
 ::defFlame <- sprFlame
 ::sprFlameTiny <- newSprite("res/gfx/tinyflame.png", 8, 8, 0, 0, 4, 4)
 ::defFlameTiny <- sprFlameTiny
-::sprIceTrapSmall <- newSprite("res/gfx/icetrapsmall.png", 16, 16, 0, 0, 8, 8)
+::sprIceTrapSmall <- newSprite("res/gfx/icetrapsmall.png", 24, 24, 0, 0, 12, 12)
 ::defIceTrapSmall <- sprIceTrapSmall
-::sprIceTrapLarge <- newSprite("res/gfx/icetraplarge.png", 32, 32, 0, 0, 16, 16)
+::sprIceTrapLarge <- newSprite("res/gfx/icetraplarge.png", 48, 48, 0, 0, 24, 24)
 ::defIceTrapLarge <- sprIceTrapLarge
-::sprIceTrapTall <- newSprite("res/gfx/icetraptall.png", 16, 32, 0, 0, 8, 16)
+::sprIceTrapTall <- newSprite("res/gfx/icetraptall.png", 24, 48, 0, 0, 12, 24)
 ::defIceTrapTall <- sprIceTrapTall
 ::sprIceChunks <- newSprite("res/gfx/icechunk.png", 8, 8, 0, 0, 4, 4)
 ::defIceChunks <- sprIceChunks

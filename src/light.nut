@@ -1,4 +1,6 @@
 ::gvLightScreen <- 0
+::gvLightScreen1 <- 0
+::gvLightScreen2 <- 0
 ::gvLight <- 0xffffffff
 ::gvLightTarget <- 0xffffffff
 ::gvLight2 <- 0xffffffff
@@ -9,9 +11,11 @@
 	if(gvLightScreen == 0) return
 	if(gvLight == 0xffffffff) return
 
+	local prevTarget = getDrawTarget()
+
 	setDrawTarget(gvLightScreen)
 	drawSprite(sprite, frame, x, y)
-	setDrawTarget(gvPlayScreen)
+	setDrawTarget(prevTarget)
 }
 
 ::drawLightEx <- function(sprite, frame, x, y, a, f, w, h) {
@@ -24,45 +28,88 @@
 	setDrawTarget(gvPlayScreen)
 }
 
-::runAmbientLight <- function() {
+::runAmbientLight <- function(light2 = false) {
+	local prevTarget = getDrawTarget()
+
 	if(config.light) {
-		if((gvLightTarget & 0xFF) < 255) {
-			local newlight = gvLightTarget >> 8
-			gvLightTarget = (newlight << 8) + 255
+		if(!light2) {
+			if((gvLightTarget & 0xFF) < 255) {
+				local newlight = gvLightTarget >> 8
+				gvLightTarget = (newlight << 8) + 255
+			}
+			if((gvLight & 0xFF) < 255) {
+				local newlight = gvLight >> 8
+				gvLight = (newlight << 8) + 255
+			}
+			if(gvLight != gvLightTarget) {
+				//Prevent floats
+				gvLight = gvLight.tointeger()
+				gvLightTarget = gvLightTarget.tointeger()
+
+				local lr = (gvLight >> 24) & 0xFF
+				local lg = (gvLight >> 16) & 0xFF
+				local lb = (gvLight >> 8) & 0xFF
+
+				local tr = (gvLightTarget >> 24) & 0xFF
+				local tg = (gvLightTarget >> 16) & 0xFF
+				local tb = (gvLightTarget >> 8) & 0xFF
+
+				//Fade to color
+				if(lr != tr) lr += (tr <=> lr) * 2
+				if(abs(lr - tr) < 2) lr = tr
+				if(lg != tg) lg += (tg <=> lg) * 2
+				if(abs(lg - tg) < 2) lg = tg
+				if(lb != tb) lb += (tb <=> lb) * 2
+				if(abs(lb - tb) < 2) lb = tb
+
+				gvLight = (ceil(lr) << 24) | (ceil(lg) << 16) | (ceil(lb) << 8) | 0xFF // Last 0xFF is alpha
+			}
 		}
-		if((gvLight & 0xFF) < 255) {
-			local newlight = gvLight >> 8
-			gvLight = (newlight << 8) + 255
+
+		if(light2) {
+			if((gvLightTarget2 & 0xFF) < 255) {
+				local newlight = gvLightTarget2 >> 8
+				gvLightTarget2 = (newlight << 8) + 255
+			}
+			if((gvLight2 & 0xFF) < 255) {
+				local newlight = gvLight2 >> 8
+				gvLight2 = (newlight << 8) + 255
+			}
+			if(gvLight2 != gvLightTarget2) {
+				//Prevent floats
+				gvLight2 = gvLight2.tointeger()
+				gvLightTarget2 = gvLightTarget2.tointeger()
+
+				local lr = (gvLight2 >> 24) & 0xFF
+				local lg = (gvLight2 >> 16) & 0xFF
+				local lb = (gvLight2 >> 8) & 0xFF
+
+				local tr = (gvLightTarget2 >> 24) & 0xFF
+				local tg = (gvLightTarget2 >> 16) & 0xFF
+				local tb = (gvLightTarget2 >> 8) & 0xFF
+
+				//Fade to color
+				if(lr != tr) lr += (tr <=> lr) * 2
+				if(abs(lr - tr) < 2) lr = tr
+				if(lg != tg) lg += (tg <=> lg) * 2
+				if(abs(lg - tg) < 2) lg = tg
+				if(lb != tb) lb += (tb <=> lb) * 2
+				if(abs(lb - tb) < 2) lb = tb
+
+				gvLight2 = (ceil(lr) << 24) | (ceil(lg) << 16) | (ceil(lb) << 8) | 0xFF // Last 0xFF is alpha
+			}
 		}
-		if(gvLight != gvLightTarget) {
-			//Prevent floats
-			gvLight = gvLight.tointeger()
-			gvLightTarget = gvLightTarget.tointeger()
-
-			local lr = (gvLight >> 24) & 0xFF
-			local lg = (gvLight >> 16) & 0xFF
-			local lb = (gvLight >> 8) & 0xFF
-
-			local tr = (gvLightTarget >> 24) & 0xFF
-			local tg = (gvLightTarget >> 16) & 0xFF
-			local tb = (gvLightTarget >> 8) & 0xFF
-
-			//Fade to color
-			if(lr != tr) lr += (tr <=> lr) * 2
-			if(abs(lr - tr) < 2) lr = tr
-			if(lg != tg) lg += (tg <=> lg) * 2
-			if(abs(lg - tg) < 2) lg = tg
-			if(lb != tb) lb += (tb <=> lb) * 2
-			if(abs(lb - tb) < 2) lb = tb
-
-			gvLight = (ceil(lr) << 24) | (ceil(lg) << 16) | (ceil(lb) << 8) | 0xFF // Last 0xFF is alpha
-		}
-
-		setDrawTarget(gvLightScreen)
-		setDrawColor(gvLight)
-		drawRec(0, 0, screenW(), screenH(), true)
 	}
-	setDrawTarget(gvScreen)
+
+	setDrawTarget(gvLightScreen1)
+	setDrawColor(gvLight)
+	drawRec(0, 0, 424, 240, true)
+
+	setDrawTarget(gvLightScreen2)
+	setDrawColor(gvLight2)
+	drawRec(0, 0, 424, 240, true)
+
+	setDrawTarget(prevTarget)
 }
 
 ::drawAmbientLight <- function() {
@@ -112,7 +159,7 @@
 	}
 
 	function run() {
-		if(!false) { //Single player camera
+		if(!gvSplitScreen) { //Single player camera
 			if(camx0 + (gvScreenW / 2) >= x - w
 			&& camy0 + (gvScreenH / 2) >= y - h
 			&& camx0 + (gvScreenW / 2) <= x + w
@@ -125,21 +172,31 @@
 			}
 		}
 		else { //Multi player camera
-			if(camx1 + (gvScreenW / 4) >= x - w
+			if((camx1 + (gvScreenW / 4) >= x - w
 			&& camy1 + (gvScreenH / 4) >= y - h
 			&& camx1 + (gvScreenW / 4) <= x + w
-			&& camy1 + (gvScreenH / 4) <= y + h) {
+			&& camy1 + (gvScreenH / 4) <= y + h)
+			|| (gvPlayer
+			&& gvPlayer.x >= x - w
+			&& gvPlayer.y >= y - h
+			&& gvPlayer.x <= x + w
+			&& gvPlayer.y <= y + h)) {
 				if(bg == "0") drawBG = 0
 				else if(bg in getroottable()) drawBG = getroottable()[bg]
-				if(weather == "0") drawWeather = 0
-				else if(weather in getroottable()) drawWeather = getroottable()[weather]
+				if(weather == "0") drawWeather2 = 0
+				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
 				dostr("gvLightTarget = " + color)
 			}
 
-			if(camx2 + (gvScreenW / 4) >= x - w
+			if((camx2 + (gvScreenW / 4) >= x - w
 			&& camy2 + (gvScreenH / 4) >= y - h
 			&& camx2 + (gvScreenW / 4) <= x + w
-			&& camy2 + (gvScreenH / 4) <= y + h) {
+			&& camy2 + (gvScreenH / 4) <= y + h)
+			|| (gvPlayer2
+			&& gvPlayer2.x >= x - w
+			&& gvPlayer2.y >= y - h
+			&& gvPlayer2.x <= x + w
+			&& gvPlayer2.y <= y + h)) {
 				if(bg == "0") drawBG2 = 0
 				else if(bg in getroottable()) drawBG2 = getroottable()[bg]
 				if(weather == "0") drawWeather2 = 0

@@ -481,6 +481,17 @@
                  "width":48,
                  "x":80,
                  "y":192
+                }, 
+                {
+                 "class":"",
+                 "height":272,
+                 "id":290,
+                 "name":"drawBG = dbgCave; gvLightTarget = 0x808080ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":288,
+                 "x":32,
+                 "y":720
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3022,7 +3033,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":290,
+ "nextobjectid":291,
  "orientation":"orthogonal",
  "properties":[
         {

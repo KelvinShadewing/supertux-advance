@@ -966,6 +966,7 @@
 	character = "Tux"
 	v = 0.0
 	vspeed = 0.0
+	hitby = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -987,27 +988,54 @@
 		if(v <= -8) {
 			vspeed = 1
 
-			local nx = gvPlayer.x
-			local ny = gvPlayer.y
-			local nf = gvPlayer.flip
-			local nh = gvPlayer.hspeed
-			local nv = gvPlayer.vspeed
-			deleteActor(gvPlayer.id)
-			gvPlayer = actor[newActor(getroottable()[character], nx, ny)]
-			gvPlayer.tftime = 0
-			gvPlayer.flip = nf
-			gvPlayer.hspeed = nh
-			gvPlayer.vspeed = nv
+			if(hitby == 1) {
+				local nx = gvPlayer.x
+				local ny = gvPlayer.y
+				local nf = gvPlayer.flip
+				local nh = gvPlayer.hspeed
+				local nv = gvPlayer.vspeed
+				deleteActor(gvPlayer.id)
+				gvPlayer = actor[newActor(getroottable()[character], nx, ny)]
+				gvPlayer.tftime = 0
+				gvPlayer.flip = nf
+				gvPlayer.hspeed = nh
+				gvPlayer.vspeed = nv
+			}
+
+			if(hitby == 2) {
+				local nx = gvPlayer2.x
+				local ny = gvPlayer2.y
+				local nf = gvPlayer2.flip
+				local nh = gvPlayer2.hspeed
+				local nv = gvPlayer2.vspeed
+				deleteActor(gvPlayer2.id)
+				gvPlayer2 = actor[newActor(getroottable()[character], nx, ny)]
+				gvPlayer2.tftime = 0
+				gvPlayer2.flip = nf
+				gvPlayer2.hspeed = nh
+				gvPlayer2.vspeed = nv
+			}
+
 			tileSetSolid(x, y, 0)
 			popSound(sndHeal, 0)
 		}
 
-		full = (game.characters.rawin(character) && gvPlayer && typeof gvPlayer != character)
+		full = (game.characters.rawin(character) && !(gvPlayer && typeof gvPlayer == character || gvPlayer2 && typeof gvPlayer2 == character))
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 			gvPlayer.vspeed = 0
 			vspeed = -2
+			v -= 2
 			popSound(sndBump, 0)
+			hitby = 1
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
+			gvPlayer2.vspeed = 0
+			vspeed = -2
+			v -= 2
+			popSound(sndBump, 0)
+			hitby = 1
 		}
 
 		v += vspeed

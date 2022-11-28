@@ -474,17 +474,6 @@
                 }, 
                 {
                  "class":"",
-                 "height":624,
-                 "id":205,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":127,
-                 "x":3185,
-                 "y":256
-                }, 
-                {
-                 "class":"",
                  "height":17.3333,
                  "id":218,
                  "name":"if(gvMusicName != musIceland) {songPlay(musIceland); drawBG = dbgCave; drawWeather = 0}",

@@ -112,8 +112,11 @@ gvScreen = newTexture(screenW(), screenH())
 bgPause = newTexture(screenW(), screenH())
 setScalingFilter(0)
 gvPlayScreen = newTexture(screenW(), screenH())
-gvLightScreen = newTexture(screenW(), screenH())
-textureSetBlendMode(gvLightScreen, bm_sub)
+gvPlayScreen2 = newTexture(screenW() / 2, screenH())
+gvLightScreen1 = newTexture(screenW(), screenH())
+gvLightScreen2 = newTexture(screenW(), screenH())
+textureSetBlendMode(gvLightScreen1, bm_sub)
+textureSetBlendMode(gvLightScreen2, bm_sub)
 
 //Set up window
 setWindowTitle("SuperTux Advance")

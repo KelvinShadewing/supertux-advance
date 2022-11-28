@@ -14,8 +14,6 @@
 
 	function run()
 	{
-		frame += 0.2
-		drawSprite(sprCoin, frame, x - camx, y - camy)
 		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, max(gvPlayer.shape.w, gvPlayer.shape.h) + 8)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
@@ -28,6 +26,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
+		frame += 0.2
+	}
+
+	function draw() {
+		drawSprite(sprCoin, frame, x - camx, y - camy)
 	}
 
 	function _typeof() { return "Coin" }
@@ -45,8 +48,6 @@
 
 	function run()
 	{
-		frame += 0.2
-		drawSprite(sprCoin5, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
@@ -56,6 +57,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 		}
+		frame += 0.2
+	}
+
+	function draw() {
+		drawSprite(sprCoin5, frame, x - camx, y - camy)
 	}
 
 	function _typeof() { return "Coin" }
@@ -73,8 +79,6 @@
 
 	function run()
 	{
-		frame += 0.2
-		drawSprite(sprCoin10, frame, x - camx, y - camy)
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
@@ -84,6 +88,11 @@
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 		}
+		frame += 0.2
+	}
+
+	function draw() {
+		drawSprite(sprCoin10, frame, x - camx, y - camy)
 	}
 
 	function _typeof() { return "Coin" }

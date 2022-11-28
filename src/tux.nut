@@ -1011,7 +1011,9 @@
 			die()
 			return
 		}
+	}
 
+	function draw() {
 		//Draw
 		if(!hidden) {
 			switch(stats.weapon) {

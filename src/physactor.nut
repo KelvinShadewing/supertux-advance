@@ -19,6 +19,7 @@
 	routine = null
 	gravity = 0.0
 	friction = 0.1
+	anim = [0]
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -90,7 +91,22 @@
 	function routine() {}
 
 	function draw() {
-		drawSpriteExZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
+		//drawSpriteExZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function isOnScreen() {
+		local ns = null
+		local ns2 = null
+
+		if(gvNetPlay) {
+			ns = Rec(camx1 + gvScreenW / 2, camy1 + gvScreenH / 2, gvScreenW / 2, gvScreenH / 2, 0)
+			ns2 = Rec(camx2 + net.scw / 2, camy2 + net.sch / 2, net.scw / 2, net.sch / 2, 0)
+			return hitTest(shape, ns) || hitTest(shape, ns2)
+		}
+
+		ns = Rec(camx0 + gvScreenW / 2, camy0 + gvScreenH / 2, gvScreenW / 2, gvScreenH / 2, 0)
+		return hitTest(shape, ns)
+
 	}
 
 	function escapeMoPlat(useDown = false, useUp = false, useLeft = false, useRight = false) {

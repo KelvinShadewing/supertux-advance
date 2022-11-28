@@ -245,6 +245,9 @@
 	}
 	print("End level code")
 
+	drawBG2 = drawBG
+	drawWeather2 = drawWeather
+
 	setDrawTarget(bgPause)
 	drawImage(gvScreen, 0, 0)
 
@@ -371,13 +374,29 @@
 ::gmPlay <- function() {
 	updateCamera()
 
-	camx = camx0
-	camy = camy0
-
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
-	runAmbientLight()
+	runActors()
+	//Run level step code
+	if("properties" in gvMap.data) foreach(i in gvMap.data.properties) {
+		if(i.name == "run") dostr(i.value)
+	}
+
+	////////////////
+	// CAMERA 0/1 //
+	////////////////
+	if(gvSplitScreen) {
+		camx = camx1
+		camy = camy1
+	}
+	else {
+		camx = camx0
+		camy = camy0
+	}
+
+	gvLightScreen = gvLightScreen1
 	setDrawTarget(gvPlayScreen)
+	runAmbientLight()
 
 	if(drawBG != 0) drawBG()
 	if(drawWeather != 0) drawWeather()
@@ -389,7 +408,7 @@
 	if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
-	runActors()
+	foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
 	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	drawAmbientLight()
@@ -399,10 +418,38 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
-	//Run level step code
-	if("properties" in gvMap.data) foreach(i in gvMap.data.properties) {
-		if(i.name == "run") dostr(i.value)
+	//////////////
+	// CAMERA 2 //
+	//////////////
+	if(gvSplitScreen) {
+		camx = camx2
+		camy = camy2
+
+		gvLightScreen = gvLightScreen2
+		setDrawTarget(gvPlayScreen2)
+		runAmbientLight(true)
+
+		if(drawBG2 != 0) drawBG2()
+		if(drawWeather2 != 0) drawWeather2()
+		camxprev = camx
+		camyprev = camy
+
+		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
+		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
+		if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
+			drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
+		}
+		foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
+		drawZList(8)
+		if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
+		drawAmbientLight()
+		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", 1, 1, 1, gvLight2)
+		else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg")
+		if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
+		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
+		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 	}
+
 
 	//Resume music after invincibility
 	if(gvPlayer && gvPlayer2 && "invincible" in gvPlayer && "invincible" in gvPlayer2 && gvPlayer.invincible == 0 && gvPlayer2.invincible == 0
@@ -412,6 +459,7 @@
 	//HUDs
 	setDrawTarget(gvScreen)
 	drawImage(gvPlayScreen, 0, 0)
+	if(gvSplitScreen) drawImage(gvPlayScreen2, gvScreenW / 2, 0)
 
 	if(gvInfoBox != gvInfoLast) {
 		gvInfoLast = gvInfoBox
@@ -744,7 +792,7 @@
 				}
 				gvNumPlayers++
 			}
-			if(!gvPlayer2 && game.playerChar2 != null && getroottable().rawin(game.playerChar2)) {
+			if(!gvPlayer2 && game.playerChar2 != "" && getroottable().rawin(game.playerChar2)) {
 				if(game.check == false) {
 					c = actor[newActor(getroottable()[game.playerChar2], i.x + 8, i.y - 16)]
 				}

@@ -1052,6 +1052,11 @@
 		}
 
 		//Draw
+
+		hidden = false
+	}
+
+	function draw() {
 		if(!hidden) {
 			switch(stats.weapon) {
 				case 0:
@@ -1107,8 +1112,6 @@
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
-
-		hidden = false
 	}
 
 	function atLadder() {
