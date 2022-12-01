@@ -85,6 +85,67 @@
 			}
 		}
 
+		if(gvPlayer2) {
+			if(v == 0) {
+				vspeed = 0
+				if(coins <= 1) {
+					if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
+						gvPlayer2.vspeed = 0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+
+					if(gvPlayer2.rawin("anSlide")) if(fabs(gvPlayer2.hspeed) >= 4.5 && gvPlayer2.anim == gvPlayer2.anSlide) if(hitTest(slideshape, gvPlayer2.shape)) {
+						gvPlayer2.vspeed = 0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+
+					if(gvPlayer2.rawin("anStomp")) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == gvPlayer2.anStomp) {
+						gvPlayer2.vspeed = -2.0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+					}
+				}
+				else {
+					if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape)) {
+						gvPlayer2.vspeed = 0
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						popSound(sndBump, 0)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+
+					if(gvPlayer2.rawin("anSlide")) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == gvPlayer2.anSlide) if(hitTest(slideshape, gvPlayer2.shape)) {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						popSound(sndBump, 0)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+
+					if(gvPlayer2.rawin("anStomp")) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == gvPlayer2.anStomp) {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						popSound(sndBump, 0)
+					}
+				}
+			}
+		}
+
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
 			if(hitTest(shape, i.shape) && vspeed == 0) {
 				if(i.blast && i.frame < 1 && !i.box) {
@@ -117,7 +178,6 @@
 		if(v == -8) vspeed = 1
 		v += vspeed
 
-		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy + v)
 		if(coins > 0 && game.difficulty == 0) {
 			if(glimmerTimer > 0) glimmerTimer--
 			else {
@@ -126,6 +186,8 @@
 			}
 		}
 	}
+
+	function draw() { drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy + v) }
 
 	function destructor() { fireWeapon(BoxHit, x, y - 8, 1, id) }
 
@@ -178,6 +240,35 @@
 			}
 		}
 
+		if(gvPlayer2) {
+			if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
+				gvPlayer2.vspeed = 0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+
+			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == gvPlayer2.anSlide) if(hitTest(slideshape, gvPlayer2.shape)) {
+				gvPlayer2.vspeed = 0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+
+			if(gvPlayer2.rawin("anStomp")) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == gvPlayer2.anStomp) {
+				gvPlayer2.vspeed = -2.0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+		}
+
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if(hitTest(fireshape, i.shape) && (i.element == "fire" || i.blast) && !i.box) {
 			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
@@ -196,8 +287,11 @@
 				popSound(sndIceBreak, 0)
 			}
 		}
-		drawSpriteZ(2, sprIceBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
+
+	function draw() { drawSpriteZ(2, sprIceBlock, 0, x - 8 - camx, y - 8 - camy) }
+
+	function _typeof() { return "IceBlock" }
 }
 
 ::WoodChunks <- class extends Actor {
@@ -213,13 +307,15 @@
 		h += 1
 		a += 4
 
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+
+	function draw() {
 		drawSpriteExZ(2, sprWoodChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprWoodChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprWoodChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprWoodChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
-
-		timer--
-		if(timer == 0) deleteActor(id)
 	}
 }
 
@@ -305,8 +401,15 @@
 			}
 		}
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 			gvPlayer.vspeed = 0
+			full = false
+			vspeed = -2
+			popSound(sndBump, 0)
+			fireWeapon(BoxHit, x, y - 8, 1, id)
+		}
+		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
+			gvPlayer2.vspeed = 0
 			full = false
 			vspeed = -2
 			popSound(sndBump, 0)
@@ -314,10 +417,14 @@
 		}
 
 		v += vspeed
+	}
 
+	function draw() {
 		if(full || vspeed < 0) drawSpriteZ(2, sprBoxItem, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
+
+	function _typeof() { return "ItemBlock" }
 }
 
 ::TriggerBlock <- class extends Actor {
@@ -346,15 +453,23 @@
 			dostr(code)
 		}
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 			gvPlayer.vspeed = 0
+			full = false
+			vspeed = -1
+			popSound(sndBump, 0)
+		}
+		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
+			gvPlayer2.vspeed = 0
 			full = false
 			vspeed = -1
 			popSound(sndBump, 0)
 		}
 
 		v += vspeed
+	}
 
+	function draw() {
 		if(full || vspeed < 0) drawSpriteZ(2, sprBoxRed, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}

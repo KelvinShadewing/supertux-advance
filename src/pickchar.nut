@@ -34,6 +34,10 @@
 			pickCharSettings.charslot = i
 			break
 		}
+		if(pickCharSettings.charlist[i][0] == game.playerChar2) {
+			pickCharSettings.charslot = i
+			break
+		}
 	}
 }
 
@@ -101,6 +105,7 @@
 	//Show icon list
 	for(local i = 0; i < charlist.len(); i++) {
 		if(charlist[i][0] != "") drawSprite(getroottable()[charlist[i][3]], 0, listx + wrap(i, 0, 16) * 16, 48 + (floor(i / 16) * 16))
+		else drawSprite(sprNoOne, 0, listx + wrap(i, 0, 16) * 16, 48 + (floor(i / 16) * 16))
 	}
 	drawSprite(sprCharCursor, getFrames() / 16, listx + wrap(charslot, 0, 16) * 16, 48 + (floor(charslot / 16) * 16))
 

@@ -123,6 +123,7 @@
 ::sprIris <- newSprite("res/gfx/iris.png", 240, 240, 0, 0, 120, 120)
 ::sprAchiFrame <- newSprite("res/gfx/achievement-frame.png", 12, 24, 0, 0, 0, 0)
 ::sprCharCursor <- newSprite("res/gfx/char-cursor.png", 24, 24, 0, 0, 12, 12)
+::sprNoOne <- newSprite("res/gfx/noone.png", 16, 16, 0, 0, 8, 8)
 
 
 

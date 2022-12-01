@@ -99,9 +99,7 @@
 			if(blinking > 0) blinking -= blinkSpeed
 			if(blinking < 0) blinking = 0
 		}
-		else {
-			if(inDistance2(x, y, camx + (screenW() / 2), camy + (screenH() / 2), 240)) active = true
-		}
+		else if(isOnScreen()) active = true
 	}
 
 	function hurtInvinc() {

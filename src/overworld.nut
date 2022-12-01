@@ -360,6 +360,7 @@
 	gvIGT = 0
 	autocon = clone(defAutocon)
 	gfxReset()
+	gvLightScreen = gvLightScreen1
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
@@ -410,6 +411,8 @@
 			case 0:
 				//newActor(Tux, i.x, i.y - 16)
 				if(!gvPlayer) c = newActor(OverPlayer, i.x + 8, i.y - 8)
+				camx = gvPlayer.x - gvScreenW / 2
+				camy = gvPlayer.y - gvScreenH / 2
 				break
 
 			case 1:
