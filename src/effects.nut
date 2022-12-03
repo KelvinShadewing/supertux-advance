@@ -76,11 +76,13 @@
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
 	}
+
 	function run() {
 		frame += 0.25
 		if(frame >= 4) deleteActor(id)
-		else drawSpriteExZ(4, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 0.5, 0.5, 1)
 	}
+
+	function draw() { drawSpriteExZ(4, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 0.5, 0.5, 1) }
 }
 
 ::Flame <- class extends Actor {
@@ -94,7 +96,10 @@
 	function run() {
 		frame += 0.25
 		if(frame >= 8) deleteActor(id)
-		else drawSpriteExZ(7, sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
+	}
+
+	function draw() {
+		drawSpriteExZ(7, sprFlame, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 
@@ -109,11 +114,13 @@
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
 	}
+
 	function run() {
 		frame += 0.25
 		if(frame >= 4) deleteActor(id)
-		else drawSpriteExZ(7, sprSplash, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 0.8)
 	}
+
+	function draw() { drawSpriteExZ(7, sprSplash, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 0.8) }
 }
 
 ::FlameTiny <- class extends Actor {
@@ -125,12 +132,16 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
+
 	function run() {
 		x += hspeed
 		y += vspeed
 		frame += 0.25
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+	}
+
+	function draw() {
+		drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, (1.0 / 8.0) - frame, (1.0 / 8.0) - frame)
 	}
 }
@@ -150,13 +161,17 @@
 	function run() {
 		vspeed += 0.5
 		y += vspeed
-		if(value == 10) drawSpriteZ(4, sprCoin10, getFrames() / 2, x - camx, y - camy)
-		else if(value == 5) drawSpriteZ(4, sprCoin5, getFrames() / 2, x - camx, y - camy)
-		else drawSpriteZ(4, sprCoin, getFrames() / 2, x - camx, y - camy)
+
 		if(vspeed >= 3) {
 			deleteActor(id)
 			newActor(Spark, x, y)
 		}
+	}
+
+	function draw() {
+		if(value == 10) drawSpriteZ(4, sprCoin10, getFrames() / 2, x - camx, y - camy)
+		else if(value == 5) drawSpriteZ(4, sprCoin5, getFrames() / 2, x - camx, y - camy)
+		else drawSpriteZ(4, sprCoin, getFrames() / 2, x - camx, y - camy)
 	}
 }
 
@@ -178,13 +193,15 @@
 		h += 1
 		a += 4
 
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+
+	function draw() {
 		drawSpriteEx(sprIceChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
 		drawSpriteEx(sprIceChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
 		drawSpriteEx(sprIceChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
 		drawSpriteEx(sprIceChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
-
-		timer--
-		if(timer == 0) deleteActor(id)
 	}
 }
 
@@ -199,8 +216,9 @@
 		frame += 0.05
 		y -= 0.5
 		if(frame >= 3) deleteActor(id)
-		else drawSpriteExZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
+
+	function draw() { drawSpriteExZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
 ::AfterImage <- class extends Actor {
@@ -225,10 +243,11 @@
 	}
 
 	function run() {
-		drawSpriteExZ(depth, sprite, frame, x - camx, y - camy, angle, flip, xscale, yscale, alpha)
 		alpha -= 0.2
 		if(alpha <= 0) deleteActor(id)
 	}
+
+	function draw() { drawSpriteExZ(depth, sprite, frame, x - camx, y - camy, angle, flip, xscale, yscale, alpha) }
 }
 
 ::RockChunks <- class extends Actor {
@@ -244,12 +263,14 @@
 		h += 1
 		a += 4
 
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+
+	function draw() {
 		drawSpriteExZ(2, sprRock, 1, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprRock, 2, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprRock, 3, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
 		drawSpriteExZ(2, sprRock, 4, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
-
-		timer--
-		if(timer == 0) deleteActor(id)
 	}
 }

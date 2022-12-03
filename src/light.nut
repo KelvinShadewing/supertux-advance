@@ -24,9 +24,11 @@
 	if(gvLightScreen == 0) return
 	if(gvLight == 0xffffffff) return
 
+	local prevTarget = getDrawTarget()
+
 	setDrawTarget(gvLightScreen)
 	drawSpriteEx(sprite, frame, x, y, a, f, w, h, 1)
-	setDrawTarget(gvPlayScreen)
+	setDrawTarget(prevTarget)
 }
 
 ::runAmbientLight <- function(light2 = false) {
