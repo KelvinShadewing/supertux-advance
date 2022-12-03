@@ -370,7 +370,7 @@
                  "class":"",
                  "height":48,
                  "id":61,
-                 "name":"gvCamTarget = actor[id]",
+                 "name":"grabCamera(myTarget)",
                  "rotation":0,
                  "visible":true,
                  "width":208,

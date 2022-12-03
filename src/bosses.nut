@@ -238,14 +238,19 @@
 				else frame -= 0.5
 				break
 		}
-		if(anim != null) frame = wrap(frame, anim[0], anim[1])
+		if(anim != null && 1 in anim) frame = wrap(frame, anim[0], anim[1])
 
 		if(anim != anHurt) {
 			if(hspeed > 0) flip = 0
 			if(hspeed < 0) flip = 1
 		}
 
-		//Draw
+		//Set damage resistance
+		if(routine == ruDizzy) damageMult.stomp = 4.0
+		else damageMult.stomp = 1.0
+	}
+
+	function draw() {
 		if(blinking == 0) drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 		else drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, max(wrap(blinking, 0, 1), (anim == anHurt).tointeger()))
 		if(debug) {
@@ -253,10 +258,6 @@
 			shape.draw()
 			drawText(font2, x - camx, y - camy, vspeed.tostring())
 		}
-
-		//Set damage resistance
-		if(routine == ruDizzy) damageMult.stomp = 4.0
-		else damageMult.stomp = 1.0
 	}
 
 	function ruWalkIntoFrame() {
@@ -265,7 +266,7 @@
 		anim = anWalk
 		flip = 1
 		hspeed = -0.5
-		if(x < camx + screenW() - 96) {
+		if(x < xstart - 320) {
 			routine = ruIntroCheer
 			hspeed = 0.0
 			phantom = false

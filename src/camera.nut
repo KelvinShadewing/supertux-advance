@@ -179,15 +179,15 @@
 
 	if(gvCamTarget != null && gvCamTarget != false) {
 		if(gvPlayer) {
-			if(gvPlayer && gvCamTarget == gvPlayer || gvPlayer2 && gvCamTarget == gvPlayer2) {
+			if( gvCamTarget == gvPlayer) {
 				if(debug && mouseDown(0)) {
-					px = (gvPlayer.x) - (gvScreenW / 4) + lx
-					py = (gvPlayer.y) - (gvScreenH / 4) + ly
+					px = (gvCamTarget.x) - (gvScreenW / 4) + lx
+					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
 					if(config.lookAhead){
-						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 16) - (gvScreenW / 4) + lx
-						py = (gvPlayer.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (gvScreenH / 4) + ly
+						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 4) + lx
+						py = (gvPlayer.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (gvScreenH / 2) + ly
 					}
 					else {
 						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 3) - (gvScreenW / 4) + lx
@@ -201,7 +201,7 @@
 				local ptx = (gvCamTarget.x) - (gvScreenW / 2)
 				local pty = (gvCamTarget.y) - (gvScreenH / 2)
 
-				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) {
+				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 4) {
 					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (gvScreenW / 2) + lx
 					else ptx = (gvPlayer.x + gvPlayer.hspeed * 32) - (gvScreenW / 2) + lx
 				}
@@ -223,7 +223,7 @@
 		py = camy1
 	}
 
-	if(config.lookAhead && inDistance2(px, py, camx1, camy1, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
+	if((gvPlayer && gvCamTarget != gvPlayer) || config.lookAhead && inDistance2(px, py, camx1, camy1, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
 		if(gvPlayer && gvPlayer2 && !gvSplitScreen && !gvNetPlay) {
 			camx1 += (px - camx1) / 8
 			camy1 += (py - camy1) / 8
@@ -257,17 +257,17 @@
 		if(getcon("downPeek", "hold", false, 1)) ly = (gvScreenH / 2.5)
 	}
 
-	if(gvCamTarget != null && gvCamTarget != false) {
+	if(gvCamTarget2 != null && gvCamTarget2 != false) {
 		if(gvPlayer2) {
-			if(gvPlayer && gvCamTarget == gvPlayer || gvPlayer2 && gvCamTarget == gvPlayer2) {
+			if(gvCamTarget2 == gvPlayer2) {
 				if(debug && mouseDown(0)) {
 					px = (gvPlayer2.x) - (gvScreenW / 4) + lx
-					py = (gvPlayer2.y) - (gvScreenH / 4) + ly
+					py = (gvPlayer2.y) - (gvScreenH / 2) + ly
 				}
 				else {
 					if(config.lookAhead){
-						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 16) - (gvScreenW / 4) + lx
-						py = (gvPlayer2.y + (gvPlayer2.y - gvPlayer2.yprev) * 16) - (gvScreenH / 4) + ly
+						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 4) + lx
+						py = (gvPlayer2.y + (gvPlayer2.y - gvPlayer2.yprev) * 16) - (gvScreenH / 2) + ly
 					}
 					else {
 						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 3) - (gvScreenW / 4) + lx
@@ -278,16 +278,16 @@
 			else {
 				local pw = max(gvScreenW, 320)
 				local ph = max(gvScreenH, 240)
-				local ptx = (gvCamTarget.x) - (gvScreenW / 2)
-				local pty = (gvCamTarget.y) - (gvScreenH / 2)
+				local ptx = (gvCamTarget2.x) - (gvScreenW / 4)
+				local pty = (gvCamTarget2.y) - (gvScreenH / 4)
 
-				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) {
-					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer2.x - (gvScreenW / 2) + lx
-					else ptx = (gvPlayer2.x + gvPlayer2.hspeed * 32) - (gvScreenW / 2) + lx
+				if(gvCamTarget2.rawin("w")) if(abs(gvCamTarget2.w) > pw / 4) {
+					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvCamTarget2.x - (gvScreenW / 4) + lx
+					else ptx = (gvCamTarget2.x + gvCamTarget2.hspeed * 32) - (gvScreenW / 4) + lx
 				}
-				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
+				if(gvCamTarget2.rawin("h")) if(abs(gvCamTarget2.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer2.y + gvPlayer2.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvCamTarget2.y + gvCamTarget2.vspeed * 16) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -295,8 +295,8 @@
 			}
 		}
 		else {
-			px = (gvCamTarget.x) - (gvScreenW / 2)
-			py = (gvCamTarget.y) - (gvScreenH / 2)
+			px = (gvCamTarget2.x) - (gvScreenW / 2)
+			py = (gvCamTarget2.y) - (gvScreenH / 2)
 		}
 	} else {
 		px = camx2
@@ -327,6 +327,7 @@
 	//Reset camera target
 	if(gvPlayer) gvCamTarget = gvPlayer
 	else if(gvPlayer2) gvCamTarget = gvPlayer2
+	if(gvPlayer2) gvCamTarget2 = gvPlayer2
 	
 	
 }
