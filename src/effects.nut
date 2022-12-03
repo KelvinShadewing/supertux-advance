@@ -6,11 +6,13 @@
 		base.constructor(_x, _y)
 		angle = 45* randInt(8)
 	}
+
 	function run() {
 		frame += 0.25
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteExZ(4, sprSpark, floor(frame), x - camx, y - camy, 45 * randInt(8), 0, 1, 1, 1)
 	}
+
+	function draw() { drawSpriteExZ(4, sprSpark, floor(frame), x - camx, y - camy, 45 * randInt(8), 0, 1, 1, 1) }
 }
 
 ::BigSpark <- class extends Actor {
@@ -21,11 +23,13 @@
 		base.constructor(_x, _y)
 		if(_arr != null && _arr != "") flip = _arr.tointeger()
 	}
+
 	function run() {
 		frame += 0.25
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteExZ(4, sprBigSpark, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
+
+	function draw() { drawSpriteExZ(4, sprBigSpark, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1) }
 }
 
 ::Glimmer <- class extends Actor {
@@ -36,11 +40,13 @@
 		base.constructor(_x, _y)
 		angle = 45 * randInt(8)
 	}
+
 	function run() {
 		frame += 0.25
 		if(frame >= 3) deleteActor(id)
-		else drawSpriteExZ(4, sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 	}
+
+	function draw() { drawSpriteExZ(4, sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1) }
 }
 
 ::Poof <- class extends Actor {
@@ -53,11 +59,13 @@
 		angle = (360 / 8) * randInt(8)
 		if(typeof _arr == "integer") depth = _arr
 	}
+
 	function run() {
 		frame += 0.125
 		if(frame >= 4) deleteActor(id)
-		else drawSpriteExZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
+
+	function draw() { drawSpriteExZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
 ::PoofTiny <- class extends Actor {

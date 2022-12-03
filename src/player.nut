@@ -269,9 +269,9 @@
 				}
 			}
 		}
-
-		drawSprite(sprite, anim[wrap(getFrames() / 15, 0, anim.len() - 1)], floor(x - camx), floor(y - camy))
 	}
+
+	function draw() { drawSprite(sprite, anim[wrap(getFrames() / 15, 0, anim.len() - 1)], floor(x - camx), floor(y - camy)) }
 
 	function _typeof() { return "DeadPlayer" }
 }

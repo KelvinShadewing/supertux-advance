@@ -337,7 +337,7 @@
 			return
 		}
 
-		if(_by.rawin("anSlide")) {
+		if("anSlide" in _by) {
 			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprGradcap
@@ -1238,11 +1238,11 @@
 			if(placeFree(x, y + vspeed)) y += vspeed
 			shape.setPos(x, y)
 		}
+	}
 
-		function draw() {
-			drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
-			drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
-		}
+	function draw() {
+		drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2019,23 +2019,11 @@
 
 			shape.setPos(x, y)
 
-			//Draw
-			drawSpriteEx(sprJumpy, (0 <=> round(vspeed / 2.0)) + 1, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
 			if(frozen) {
 				//Create ice block
 				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 					if(health > 0) icebox = mapNewSolid(shape)
 				}
-
-				//Draw
-				drawSpriteEx(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-				if(frozen <= 120) {
-				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-				}
-				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 			}
 			else {
 				//Delete ice block
@@ -2051,6 +2039,19 @@
 
 		if(x < 0) hspeed = 0.0
 		if(x > gvMap.w) hspeed = -0.0
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else drawSpriteEx(sprJumpy, (0 <=> round(vspeed / 2.0)) + 1, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2128,7 +2129,6 @@
 				if(squishTime >= 200 && chasing) {
 					die()
 					fireWeapon(ExplodeF, x, y - 1, 0, id)
-
 				}
 
 				if(y > gvMap.h + 8) die()
@@ -2194,14 +2194,6 @@
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
 
-					//Draw
-					drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 					chasing = false
 					squishTime = 0.0
 				}
@@ -2217,7 +2209,6 @@
 
 					//Draw
 					if(chasing) {
-						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 						if(getFrames() % 8 == 0) {
 							local c
 							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
@@ -2226,7 +2217,6 @@
 							c.hspeed = randFloat(0.2) - 0.1
 						}
 					}
-					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
@@ -2241,8 +2231,6 @@
 					die()
 					fireWeapon(ExplodeF, x, y, 0, id)
 				}
-				if(!chasing) drawSpriteEx(sprHaywire, anAgro[wrap(frame, 0, anAgro.len() - 1)], x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprHaywire, wrap(frame, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
 				if(frozen) {
 					squish = false
@@ -2255,6 +2243,22 @@
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(chasing) drawSpriteEx(sprHaywire, wrap(getFrames() / 4, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(squish && !chasing) drawSpriteEx(sprHaywire, anAgro[wrap(frame, 0, anAgro.len() - 1)], x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(squish) drawSpriteEx(sprHaywire, wrap(frame, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(sprHaywire, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -2322,11 +2326,14 @@
 
 	function run() {
 		base.run()
-		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(1 + game.difficulty, "normal", true, false)
+	}
+
+	function draw() {
+		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 	}
 }
 
@@ -2413,15 +2420,6 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					drawSpriteEx(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -2432,9 +2430,6 @@
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					drawSpriteEx(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
@@ -2467,6 +2462,20 @@
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(squish) drawSpriteEx(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(frozen) {
+			drawSpriteEx(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else drawSpriteEx(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -2600,16 +2609,6 @@
 						die()
 						popSound(sndFlame, 0)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprBlazeborn , 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -2620,10 +2619,6 @@
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
@@ -2632,12 +2627,27 @@
 				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
-			drawLightEx(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
+			
 
 			shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		elsedrawSpriteEx(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2744,16 +2754,6 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -2764,23 +2764,31 @@
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(squish) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -2949,16 +2957,6 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprSmartTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 7)
-						else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
-					}
-					else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
 				}
 				else {
 					//Delete ice block
@@ -2969,23 +2967,28 @@
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprSmartTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
-			else {
-				squishTime += 0.025
-				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprSmartTallCap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprTallCap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-			}
+		}
+	}
 
-			if(!squish) shape.setPos(x, y)
+	function draw() {
+		if(frozen) {
+			if(smart) drawSpriteEx(sprSmartTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSpriteEx(sprTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 7)
+				else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
+			}
+			else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
+		}
+		else if(smart) drawSpriteEx(sprSmartTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(sprTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+		if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
-		}
 	}
 
 	function hurtPlayer(target) {
@@ -3166,10 +3169,15 @@
 				if(x < gvPlayer.x) flip = 0
 				if(x > gvPlayer.x) flip = 1
 			}
-
-			drawSpriteExZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
 		}
-		else drawSpriteExZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteExZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
+			drawSpriteExZ(1, sprIceTrapLarge, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
+		}
+		else drawSpriteExZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function ruCarry() {
@@ -3292,12 +3300,14 @@
 		if(hspeed > 0) flip = 0
 		if(hspeed < 0) flip = 1
 
+		if(y > gvMap.h + 32) die()
+		if(health < 2) health++
+	}
+
+	function draw() {
 		if(routine == ruNormal) drawSpriteExZ(1, sprMrIceguy, (getFrames() / 8) % 4, x - camx, y - camy, 0, flip, 1, 1, 1.0)
 		if(routine == ruSlide) drawSpriteExZ(1, sprMrIceguy, 4 + (hurtTimer <= 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1.0)
 		if(debug) shape.draw()
-
-		if(y > gvMap.h + 32) die()
-		if(health < 2) health++
 	}
 
 	function ruNormal() {
@@ -3558,15 +3568,6 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					drawSpriteEx(sprSpikeCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -3577,22 +3578,32 @@
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(getupTime == 0) drawSpriteEx(sprSpikeCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprSpikeCap, 6.0 - getupTime, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				drawSpriteEx(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
-			setDrawColor(0xff0000ff)
-			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprSpikeCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		elsedrawSpriteEx(sprSpikeCap, 6.0 - getupTime, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+
+		setDrawColor(0xff0000ff)
+		if(debug) shape.draw()
 	}
 
 	function hurtPlayer(target) {
@@ -3781,15 +3792,6 @@
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					drawSpriteEx(sprCaptainMorel, 0 + (flip.tointeger() * 8), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -3800,22 +3802,33 @@
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(!placeFree(x, y + 2)) drawSpriteEx(sprCaptainMorel, wrap(getFrames() / 6, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-					else drawSpriteEx(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				drawSpriteEx(sprCaptainMorel, floor(7.8 + squishTime) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+				
 			}
 
 			if(!squish) shape.setPos(x, y)
-			setDrawColor(0xff0000ff)
-			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprCaptainMorel, 0 + (flip.tointeger() * 8), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(squish) drawSpriteEx(sprCaptainMorel, floor(7.8 + squishTime) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else drawSpriteEx(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+
+		setDrawColor(0xff0000ff)
+		if(debug) shape.draw()
 	}
 
 	function hurtPlayer(target) {
@@ -3995,15 +4008,16 @@
 
 		//Speed limit
 		if(vspeed > 16) vspeed = 16.0
+		if(vspeed > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
+	}
 
-		//Draw
+	function draw() {
 		if(sprite) drawSpriteZ(6, sprite, (vspeed > 0).tointeger(), x - camx, y - camy)
 		else drawSpriteZ(6, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			shape.draw()
 		}
-		if(vspeed > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
 	}
 
 	function hurtInvinc() {}
@@ -4023,6 +4037,7 @@
 	friction = 0.0
 	minFreezeTime = 600
 	freezeSprite = sprIceTrapSmall
+	frame = 0
 
 	damageMult = {
 		normal = 1.0
@@ -4080,17 +4095,18 @@
 
 
 		//Draw
-		local frame = 0
+		frame = 0
 		if(!frozen) frame = getFrames() / 2
-		if(turning > 0) {
-			turning -= 0.25
-			drawSpriteEx(sprWheelerHamster, 8.0 + (4.0 - turning), x - camx, y - camy, 0, flip, 1, 1, 1)
-		}
-		else drawSpriteEx(sprWheelerHamster, wrap(frame, 0, 3) + bladesOut, x - camx, y - camy, 0, flip, 1, 1, 1)
+		if(turning > 0) turning -= 0.25
 
 
 		base.run()
 		shape.setPos(x, y)
+	}
+
+	function draw() {
+		if(turning > 0) drawSpriteEx(sprWheelerHamster, 8.0 + (4.0 - turning), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSpriteEx(sprWheelerHamster, wrap(frame, 0, 3) + bladesOut, x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function physics() {
