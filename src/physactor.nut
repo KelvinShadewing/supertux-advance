@@ -104,9 +104,15 @@
 			return hitTest(shape, ns) || hitTest(shape, ns2)
 		}
 
-		ns = Rec(camx0 + gvScreenW / 2, camy0 + gvScreenH / 2, gvScreenW / 2, gvScreenH / 2, 0)
-		return hitTest(shape, ns)
+		if(gvSplitScreen) {
+			ns = Rec(camx1 + gvScreenW / 4, camy1 + gvScreenH / 2, gvScreenW / 4, gvScreenH / 2, 0)
+			ns2 = Rec(camx2 + gvScreenW / 4, camy2 + gvScreenH / 2, gvScreenW / 4, gvScreenH / 2, 0)
+			return hitTest(shape, ns) || hitTest(shape, ns2)
+		}
 
+		if(gvGameMode == gmOverworld) ns = Rec(camx + gvScreenW / 2, camy + gvScreenH / 2, gvScreenW / 2, gvScreenH / 2, 0)
+		else ns = Rec(camx0 + gvScreenW / 2, camy0 + gvScreenH / 2, gvScreenW / 2, gvScreenH / 2, 0)
+		return hitTest(shape, ns)
 	}
 
 	function escapeMoPlat(useDown = false, useUp = false, useLeft = false, useRight = false) {

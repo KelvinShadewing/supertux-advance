@@ -19,7 +19,7 @@
 
 ::drawZList <- function(layers) {
 	//The argument defines how many layers from 0 to draw
-	for(local i = 0; i < layers; i++) {
+	for(local i = 0; i <= layers; i++) {
 		if(!gvZList.rawin(i)) continue //If nothing was drawn to that layer, skip it
 
 		local n = gvZList[i].len() //Number of sprites per layer

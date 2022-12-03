@@ -510,6 +510,7 @@
 	//Actor types are explicitly called this way to ensure the player is drawn on top
 	//This was made before Z drawing was implemented, so it's not perfect
 	runActors()
+	foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
 	drawZList(8)
 
 	runAmbientLight()

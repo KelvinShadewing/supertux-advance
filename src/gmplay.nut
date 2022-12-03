@@ -411,7 +411,7 @@
 	if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
 		drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 	}
-	foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
+	foreach(i in actor) if("draw" in i && typeof i.draw == "function" && typeof i != "Water") i.draw()
 	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	drawAmbientLight()
@@ -514,8 +514,8 @@
 
 			//Draw energy
 			for(local i = 0; i < game.ps2.maxEnergy; i++) {
-				if(gvPlayer) {
-					if(gvPlayer.rawin("energy") && game.ps2.maxEnergy > 0) {
+				if(gvPlayer2) {
+					if(gvPlayer2.rawin("energy") && game.ps2.maxEnergy > 0) {
 						if(i < floor(gvPlayer2.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 52)
 						else drawSprite(sprEnergy, 0, 8 + (16 * i), 52)
 					}
@@ -1125,7 +1125,7 @@
 			break
 
 		case 71:
-			c = newActor(Fishy, i.x + 8, i.y - 8)
+			c = newActor(FishBlock, i.x + 8, i.y - 8)
 			break
 
 		case 73:

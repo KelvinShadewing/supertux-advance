@@ -1132,42 +1132,12 @@
 			deleteActor(id)
 			if(playerNum == 1) gvPlayer = false
 			if(playerNum == 2) gvPlayer2 = false
-			newActor(PlayerDie, x, y, [sprite, anDie, playerNum])
+			newActor(DeadPlayer, x, y, [sprite, anDie, playerNum])
 			stats.health = 0
 		}
 	}
 
 	function _typeof(){ return "Tux" }
-}
-
-::TuxDie <- class extends Actor {
-	vspeed = -4.0
-	timer = 150
-	sprite = null
-	playerNum = 0
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
-		stopMusic()
-		playSound(sndDie, 0)
-		sprite = _arr
-	}
-
-	function run() {
-		vspeed += 0.1
-		y += vspeed
-		timer--
-		if(timer == 0) {
-			startPlay(gvMap.file, true, true)
-			if(game.check == false) {
-				gvIGT = 0
-				stats.weapon = "normal"
-			}
-		}
-		drawSprite(sprite, wrap(getFrames() / 15, 50, 51), floor(x - camx), floor(y - camy))
-	}
-
-	function _typeof() { return "DeadPlayer" }
 }
 
 ::Penny <- class extends Tux {

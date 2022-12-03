@@ -473,6 +473,8 @@
 		if(full || vspeed < 0) drawSpriteZ(2, sprBoxRed, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
+
+	function _typeof() { return "TriggerBlock" }
 }
 
 ::InfoBlock <- class extends Actor {
@@ -500,21 +502,29 @@
 			vspeed = 0.5
 		}
 
-		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
-				gvPlayer.vspeed = 0
-				vspeed = -1
-				popSound(sndBump, 0)
-				gvInfoBox = text
-			}
-
-			if(gvInfoBox == text) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
+			gvPlayer.vspeed = 0
+			vspeed = -1
+			popSound(sndBump, 0)
+			gvInfoBox = text
+		}
+		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
+			gvPlayer2.vspeed = 0
+			vspeed = -1
+			popSound(sndBump, 0)
+			gvInfoBox = text
 		}
 
-		v += vspeed
+		if(gvInfoBox == text && (gvPlayer && !gvPlayer2 && !inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)
+			|| gvPlayer2 && !gvPlayer && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)
+			|| gvPlayer && gvPlayer2 &&!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64) && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64))) gvInfoBox = ""
 
-		drawSpriteZ(2, sprBoxInfo, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		v += vspeed
 	}
+
+	function draw() { drawSpriteZ(2, sprBoxInfo, getFrames() / 8, x - 8 - camx, y - 8 - camy + v) }
+
+	function _typeof() { return "InfoBlock" }
 }
 
 ::KelvinScarf <- class extends Actor {
@@ -531,19 +541,25 @@
 	function run() {
 		if(!devcom || gvTimeAttack) return
 
-		if(gvPlayer) {
-			if(devcom) if(hitTest(shape, gvPlayer.shape)){
+		if(devcom) {
+			if(gvPlayer && hitTest(shape, gvPlayer.shape)){
 				gvInfoBox = text
+				if(gvPlayer.invincible <= 1) gvPlayer.invincible = 10
+			}
+			else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)){
+				gvInfoBox = text
+				if(gvPlayer2.invincible <= 1) gvPlayer2.invincible = 10
 			}
 
-			if(gvInfoBox == text) {
-				if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
-				else if(gvPlayer.invincible <= 1) gvPlayer.invincible = 10
-			}
+			if(gvInfoBox == text && (gvPlayer && !gvPlayer2 && !inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)
+			|| gvPlayer2 && !gvPlayer && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)
+			|| gvPlayer && gvPlayer2 &&!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64) && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64))) gvInfoBox = ""
 		}
-
-		drawSpriteZ(2, sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy)
 	}
+
+	function draw() { if(devcom) drawSpriteZ(2, sprKelvinScarf, getFrames() / 16, x - 8 - camx, y - 8 - camy) }
+
+	function _typeof() { return "KelvinScarf" }
 }
 
 ::BounceBlock <- class extends Actor {
@@ -589,14 +605,34 @@
 				vspeed = 1
 				popSound(sndBump, 0)
 			}
+		}
 
-			if(gvInfoBox == text) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) gvInfoBox = ""
+		if(gvPlayer2) {
+			shape.setPos(x, y + 2)
+			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed < 0 && v == 0) if(full){
+				gvPlayer2.vspeed = 1
+				vspeed = -1
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+
+			shape.setPos(x, y - 1)
+			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed >= 0 && v == 0) if(full){
+				gvPlayer2.vspeed = -4
+				if(getcon("jump", "hold")) gvPlayer2.vspeed = -7.5
+				vspeed = 1
+				popSound(sndBump, 0)
+			}
 		}
 
 		v += vspeed
 
-		drawSpriteZ(2, sprBoxBounce, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		
 	}
+
+	function draw() { drawSpriteZ(2, sprBoxBounce, getFrames() / 8, x - 8 - camx, y - 8 - camy + v) }
+
+	function _typeof() { return "BounceBlock" }
 }
 
 ::Checkpoint <- class extends Actor {
@@ -627,6 +663,25 @@
 			}
 		}
 
+		if(gvPlayer2 && found == false) if(hitTest(shape, gvPlayer2.shape)) {
+			foreach(i in actor["Checkpoint"]) {
+				i.found = false
+			}
+			found = true
+			game.check = true
+			game.chx = x
+			game.chy = y
+			popSound(sndBell, 0)
+			if(game.difficulty < 3) {
+				if(game.ps1.health < game.maxHealth) game.ps1.health += 4
+				else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
+				if(game.ps2.health < game.maxHealth) game.ps2.health += 4
+				else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
+			}
+		}
+	}
+
+	function draw() {
 		if(found) drawSprite(sprCheckBell, getFrames() / 8, x - camx, y - camy)
 		else drawSprite(sprCheckBell, 0, x - camx, y - camy)
 	}
@@ -663,7 +718,7 @@
 		}
 		else {
 			//Hit by player
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+			if(gvPlayer && hitTest(shape, gvPlayer.shape) || gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 				gothit = true
 				stopSound(sndFizz)
 				popSound(sndFizz, 0)
@@ -686,7 +741,9 @@
 				i.piercing--
 			}
 		}
+	}
 
+	function draw() {
 		if(gothit) {
 			if(hittime > 120) drawSpriteExZ(2, sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), y - 8 - camy + ((randInt(8) - 4) / 4) - ((2.0 / 150.0) * hittime), 0, 0, 1.0 + ((0.25 / 150.0) * hittime), 1.0 + ((0.25 / 150.0) * hittime), 1)
 			else drawSpriteZ(2, sprTNT, frame, x - 8 - camx + ((randInt(8) - 4) / 4), y - 8 - camy + ((randInt(8) - 4) / 4))
@@ -731,9 +788,9 @@
 				i.piercing--
 			}
 		}
-
-		drawSpriteZ(2, sprC4, frame, x - 8 - camx, y - 8 - camy)
 	}
+
+	function draw() { drawSpriteZ(2, sprC4, frame, x - 8 - camx, y - 8 - camy) }
 
 	function _typeof() { return "TNT" }
 }
@@ -772,9 +829,10 @@
 	}
 
 	function run() {
-		drawSpriteZ(2, sprColorBlock, (color * 2) + filled, x - camx, y - camy)
 		if(color != null) if(game.colorswitch[color]) filltile()
 	}
+
+	function draw() { drawSpriteZ(2, sprColorBlock, (color * 2) + filled, x - camx, y - camy) }
 
 	function _typeof() { return "ColorBlock" }
 }
@@ -793,19 +851,22 @@
 	}
 
 	function run() {
-		if(game.colorswitch[color]) drawSprite(sprColorSwitch, (color * 2) + 1, x - camx, y - camy)
-		else {
-			drawSprite(sprColorSwitch, color * 2, x - camx, y - camy)
-			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
-				gvPlayer.vspeed = -1.5
-				game.colorswitch[this.color] = true
-				dostr("saveGame()")
-				if(actor.rawin("ColorBlock")) foreach(i in actor["ColorBlock"]) {
-					i.filltile()
-				}
+		if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
+			gvPlayer.vspeed = -1.5
+			game.colorswitch[this.color] = true
+			dostr("saveGame()")
+			if(actor.rawin("ColorBlock")) foreach(i in actor["ColorBlock"]) {
+				i.filltile()
 			}
 		}
 	}
+
+	function draw() {
+		if(game.colorswitch[color]) drawSprite(sprColorSwitch, (color * 2) + 1, x - camx, y - camy)
+		else drawSprite(sprColorSwitch, color * 2, x - camx, y - camy)
+	}
+
+	function _typeof() { return "ColorSwitch" }
 }
 
 ::EvilBlock <- class extends Actor {
@@ -823,20 +884,25 @@
 	}
 
 	function run() {
-		if(gvPlayer) {
-			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
-				gvPlayer.vspeed = 0
-				tileSetSolid(x, y, oldsolid)
-				deleteActor(id)
-				newActor(Poof, x, y)
-				popSound(sndBump, 0)
-				newActor(Darknyan, x, y - 16)
-			}
-
+		if(gvPlayer && gvPlayer.vspeed < 0 && hitTest(shape, gvPlayer.shape)) {
+			gvPlayer.vspeed = 0
+			tileSetSolid(x, y, oldsolid)
+			deleteActor(id)
+			newActor(Poof, x, y)
+			popSound(sndBump, 0)
+			newActor(Darknyan, x, y - 16)
 		}
-
-		drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
+		else if(gvPlayer2 && gvPlayer2.vspeed < 0 && hitTest(shape, gvPlayer2.shape)) {
+			gvPlayer2.vspeed = 0
+			tileSetSolid(x, y, oldsolid)
+			deleteActor(id)
+			newActor(Poof, x, y)
+			popSound(sndBump, 0)
+			newActor(Darknyan, x, y - 16)
+		}
 	}
+
+	function draw() { drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy) }
 
 	function _typeof() { return "EvilBlock" }
 }
@@ -856,20 +922,25 @@
 	}
 
 	function run() {
-		if(gvPlayer) {
-			if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape)) {
-				gvPlayer.vspeed = 0
-				tileSetSolid(x, y, oldsolid)
-				deleteActor(id)
-				newActor(Poof, x, y)
-				popSound(sndBump, 0)
-				newActor(MuffinBomb, x, y - 16)
-			}
-
+		if(gvPlayer && gvPlayer.vspeed < 0 && hitTest(shape, gvPlayer.shape)) {
+			gvPlayer.vspeed = 0
+			tileSetSolid(x, y, oldsolid)
+			deleteActor(id)
+			newActor(Poof, x, y)
+			popSound(sndBump, 0)
+			newActor(MuffinBomb, x, y - 16)
 		}
-
-		drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy)
+		else if(gvPlayer2 && gvPlayer2.vspeed < 0 && hitTest(shape, gvPlayer2.shape)) {
+			gvPlayer2.vspeed = 0
+			tileSetSolid(x, y, oldsolid)
+			deleteActor(id)
+			newActor(Poof, x, y)
+			popSound(sndBump, 0)
+			newActor(MuffinBomb, x, y - 16)
+		}
 	}
+
+	function draw() { drawSpriteZ(2, sprBoxItem, getFrames() / 16, x - 8 - camx, y - 8 - camy) }
 
 	function _typeof() { return "EvilBlockB" }
 }
@@ -902,7 +973,7 @@
 		local cy = floor(y / 16)
 		tile = cx + (cy * layer.width)
 
-		//Get graphic layer
+		//Get solid layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				solidlayer = gvMap.data.layers[i]
@@ -910,6 +981,8 @@
 			}
 		}
 	}
+
+	function _typeof() { return "BreakBlock" }
 }
 
 ::LockBlock <- class extends Actor {
@@ -927,8 +1000,6 @@
 	}
 
 	function run() {
-		drawSpriteZ(2, sprLockBlock, color, x - camx, y - camy)
-
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
 			switch(color) {
 				case 0:
@@ -970,6 +1041,10 @@
 			}
 		}
 	}
+
+	function draw() { drawSpriteZ(2, sprLockBlock, color, x - camx, y - camy) }
+
+	function _typeof() { return "LockBlock" }
 }
 
 ::BossDoor <- class extends Actor {
@@ -1003,7 +1078,9 @@
 			tileSetSolid(x, y - 32, 0)
 			tileSetSolid(x, y - 48, 0)
 		}
+	}
 
+	function draw() {
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - dy + 16)
 		drawSpriteZ(4, sprBossDoor, 0, x - camx, y - camy - 80 + dy)
 	}
@@ -1011,7 +1088,7 @@
 	function _typeof() { return "BossDoor" }
 }
 
-::Fishy <- class extends Actor {
+::FishBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 
@@ -1033,11 +1110,11 @@
 			}
 
 		}
-
-		drawSprite(sprFishBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
 
-	function _typeof() { return "Fishy" }
+	function draw() { drawSprite(sprFishBlock, 0, x - 8 - camx, y - 8 - camy) }
+
+	function _typeof() { return "FishBlock" }
 }
 
 ::FireBlock <- class extends Actor {
@@ -1070,9 +1147,11 @@
 			newActor(Flame, x, y)
 			popSound(sndFlame, 0)
 		}
-
-		drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy)
 	}
+
+	function draw() { drawSprite(sprFireBlock, 0, x - 8 - camx, y - 8 - camy) }
+
+	function _typeof() { return "FireBlock" }
 }
 
 ::CharSwapper <- class extends Actor {
@@ -1110,7 +1189,8 @@
 				local nh = gvPlayer.hspeed
 				local nv = gvPlayer.vspeed
 				deleteActor(gvPlayer.id)
-				gvPlayer = actor[newActor(getroottable()[character], nx, ny)]
+				gvPlayer = false
+				newActor(getroottable()[character], nx, ny)
 				gvPlayer.tftime = 0
 				gvPlayer.flip = nf
 				gvPlayer.hspeed = nh
@@ -1124,7 +1204,8 @@
 				local nh = gvPlayer2.hspeed
 				local nv = gvPlayer2.vspeed
 				deleteActor(gvPlayer2.id)
-				gvPlayer2 = actor[newActor(getroottable()[character], nx, ny)]
+				gvPlayer2 = false
+				newActor(getroottable()[character], nx, ny)
 				gvPlayer2.tftime = 0
 				gvPlayer2.flip = nf
 				gvPlayer2.hspeed = nh
@@ -1150,17 +1231,21 @@
 			vspeed = -2
 			v -= 2
 			popSound(sndBump, 0)
-			hitby = 1
+			hitby = 2
 		}
 
 		v += vspeed
+	}
 
+	function draw() {
 		if(full || vspeed < 0) {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 			drawSpriteZ(2, getroottable()[game.characters[character]["doll"]], 0, x - camx, y - camy + v)
 		}
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
+
+	function _typeof() { return "CharSwapper" }
 }
 
 ::Crumbler <- class extends Actor {
@@ -1202,4 +1287,8 @@
 			}
 		}
 	}
+
+	function draw() { if(!broken) drawSpriteExZ(7, sprCrumbleRock, timer / 8, x - camx, y - camy, 0, 0, 1, 1, alpha) }
+
+	function _typeof() { return "Crumbler" }
 }

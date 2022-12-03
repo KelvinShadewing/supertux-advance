@@ -239,7 +239,7 @@
 	}
 }
 
-::PlayerDie <- class extends Actor {
+::DeadPlayer <- class extends Actor {
 	vspeed = -4.0
 	timer = 150
 	sprite = null
@@ -260,11 +260,13 @@
 		y += vspeed
 		timer--
 		if(timer == 0) {
-			if(!gvPlayer && !gvPlayer2) startPlay(gvMap.file, true, true)
-			if(game.check == false) {
-				gvIGT = 0
-				if(playerNum == 1) game.ps1.weapon = "normal"
-				if(playerNum == 2) game.ps2.weapon = "normal"
+			if(!gvPlayer && !gvPlayer2) {
+				startPlay(gvMap.file, true, true)
+				if(game.check == false) {
+					gvIGT = 0
+					if(playerNum == 1) game.ps1.weapon = "normal"
+					if(playerNum == 2) game.ps2.weapon = "normal"
+				}
 			}
 		}
 
