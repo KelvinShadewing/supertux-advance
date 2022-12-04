@@ -117,7 +117,7 @@
 ::defWarning <- sprWarning
 ::sprTalk <- newSprite("res/gfx/talk.png", 16, 16, 0, 0, 8, 16)
 ::defTalk <- sprTalk
-::sprBossHealth <- newSprite("res/gfx/boss-health.png", 10, 16, 0, 0, 0, 0)
+::sprBossHealth <- newSprite("res/gfx/boss-health.png", 10, 8, 0, 0, 0, 0)
 ::defBossHealth <- sprBossHealth
 ::sprSkull <- newSprite("res/gfx/skull.png", 16, 16, 0, 0, 0, 0)
 ::sprIris <- newSprite("res/gfx/iris.png", 240, 240, 0, 0, 120, 120)

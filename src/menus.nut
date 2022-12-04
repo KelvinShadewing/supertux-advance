@@ -392,9 +392,14 @@ const menuY = 40
 		func = function() { menu = meKeybinds }
 	},
 	{
-		name = function() { return gvLangObj["options-menu"]["joystick"] },
+		name = function() { return gvLangObj["options-menu"]["joystick1"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
-		func = function() { menu = meJoybinds }
+		func = function() { menu = meJoybinds1 }
+	},
+	{
+		name = function() { return gvLangObj["options-menu"]["joystick2"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
+		func = function() { menu = meJoybinds2 }
 	},
 	{
 		name = function() {
@@ -557,7 +562,7 @@ const menuY = 40
 	}
 ]
 
-::meJoybinds <- [
+::meJoybinds1 <- [
 	{
 		name = function() { return gvLangObj["controls-menu"]["jump"] + ": " + (config.joy.jump != -1 ? config.joy.jump.tostring() : "") },
 		func = function() { rebindGamepad(4) }
@@ -609,6 +614,66 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["controls-menu"]["cam-peek-y"] + ": " + config.joy.yPeek.tostring() },
 		func = function() { rebindJoyPeek(1) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
+	}
+]
+
+::meJoybinds2 <- [
+	{
+		name = function() { return gvLangObj["controls-menu"]["jump"] + ": " + (config.joy2.jump != -1 ? config.joy2.jump.tostring() : "") },
+		func = function() { rebindGamepad(4, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["shoot"] + ": " + (config.joy2.shoot != -1 ? config.joy2.shoot.tostring() : "") },
+		func = function() { rebindGamepad(5, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["run"] + ": " + config.joy2.run.tostring() },
+		func = function() { rebindGamepad(6, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["sneak"] + ": " + config.joy2.sneak.tostring() },
+		func = function() { rebindGamepad(7, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["pause"] + ": " + config.joy2.pause.tostring() },
+		func = function() { rebindGamepad(8, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["item-swap"] + ": " + config.joy2.swap.tostring() },
+		func = function() { rebindGamepad(9, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["menu-accept"] + ": " + config.joy2.accept.tostring() },
+		func = function() { rebindGamepad(10, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-left-peek"] + ": " + config.joy2.leftPeek.tostring() },
+		func = function() { rebindGamepad(11, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-right-peek"] + ": " + config.joy2.rightPeek.tostring() },
+		func = function() { rebindGamepad(12, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-down-peek"] + ": " + config.joy2.downPeek.tostring() },
+		func = function() { rebindGamepad(13, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-up-peek"] + ": " + config.joy2.upPeek.tostring() },
+		func = function() { rebindGamepad(14, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-peek-x"] + ": " + config.joy2.xPeek.tostring() },
+		func = function() { rebindJoyPeek(0, 1) }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["cam-peek-y"] + ": " + config.joy2.yPeek.tostring() },
+		func = function() { rebindJoyPeek(1, 1) }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },

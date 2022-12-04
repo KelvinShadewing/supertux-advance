@@ -1011,6 +1011,15 @@
 			die()
 			return
 		}
+
+		//Invincibility
+		if(invincible > 0) invincible--
+		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
+
+		hidden = false
+
+		//After image
+		if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
 	}
 
 	function draw() {
@@ -1053,10 +1062,6 @@
 					break
 			}
 
-			//Invincibility
-			if(invincible > 0) invincible--
-			if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
-
 			if(anim != null) {
 				frame = wrap(frame, 0, anim.len() - 1)
 				if(blinking == 0 || anim == anHurt) drawSpriteExZ(0, sprite, anim[floor(frame)], x - camx, y - camy, 0, flip, 1, 1, 1)
@@ -1066,9 +1071,6 @@
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
-
-			//After image
-			if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[frame], 0, flip, 0, 1, 1])
 		}
 
 		//Transformation flash
@@ -1081,7 +1083,7 @@
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
 
-		hidden = false
+		
 	}
 
 	function atLadder() {

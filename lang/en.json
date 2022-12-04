@@ -48,6 +48,8 @@
 		"language" : "Language",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
+		"joystick1" : "Gamepad 1 Controls",
+		"joystick2" : "Gamepad 2 Controls",
 		"cursor" : "Show Mouse Cursor: ",
 		"timers" : "Speedrun Timers",
 		"light" : "Lighting: ",

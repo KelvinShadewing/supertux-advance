@@ -212,53 +212,53 @@
 			break
 		case "jump":
 			if(keyfunc(config.key.jump) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.jump)) return true
+			if(joyfunc(joy.index, joy.jump)) return true
 			break
 		case "shoot":
 			if(keyfunc(config.key.shoot) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.shoot)) return true
+			if(joyfunc(joy.index, joy.shoot)) return true
 			break
 		case "run":
 			if(config.autorun) {
 				if(!keyfunc(config.key.run) && (player == 1 || player == 0)) return true
-				if((player == 2 || player == 0) && !joyfunc(joy.index, joy.run)) return true
+				if(!joyfunc(joy.index, joy.run)) return true
 			}
 			else {
 				if(keyfunc(config.key.run) && (player == 1 || player == 0)) return true
-				if((player == 2 || player == 0) && joyfunc(joy.index, joy.run)) return true
+				if(joyfunc(joy.index, joy.run)) return true
 			}
 			break
 		case "sneak":
 			if(keyfunc(config.key.sneak) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.sneak)) return true
+			if(joyfunc(joy.index, joy.sneak)) return true
 			break
 		case "pause":
 			if(keyfunc(config.key.pause) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.pause)) return true
+			if( joyfunc(joy.index, joy.pause)) return true
 			break
 		case "swap":
 			if(keyfunc(config.key.swap) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.swap)) return true
+			if(joyfunc(joy.index, joy.swap)) return true
 			break
 		case "accept":
 			if(keyfunc(config.key.accept) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.accept)) return true
+			if(joyfunc(joy.index, joy.accept)) return true
 			break
 		case "leftPeek":
 			if(keyfunc(config.key.leftPeek) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.leftPeek)) return true
+			if(joyfunc(joy.index, joy.leftPeek)) return true
 			break
 		case "rightPeek":
 			if(keyfunc(config.key.rightPeek) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.rightPeek)) return true
+			if(joyfunc(joy.index, joy.rightPeek)) return true
 			break
 		case "downPeek":
 			if(keyfunc(config.key.downPeek) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.downPeek)) return true
+			if(joyfunc(joy.index, joy.downPeek)) return true
 			break
 		case "upPeek":
 			if(keyfunc(config.key.upPeek) && (player == 1 || player == 0)) return true
-			if((player == 2 || player == 0) && joyfunc(joy.index, joy.upPeek)) return true
+			if(joyfunc(joy.index, joy.upPeek)) return true
 			break
 	}
 
@@ -396,11 +396,16 @@
 	fileWrite("config.json", jsonWrite(config))
 }
 
-::rebindGamepad <- function(joystep) {
+::rebindGamepad <- function(joystep, joypad = 0) {
 	resetDrawTarget()
 	local done = false
 
 	update()
+
+	local joy = null
+	if(joypad == 0) joy = config.joy
+	if(joypad == 1) joy = config.joy2
+	if(joy == null) return
 
 	while(!done) {
 		dbgOceanMoving()
@@ -411,121 +416,121 @@
 			case 4:
 				message += gvLangObj["controls-menu"]["jump"]
 				if(keyPress(k_backspace)) {
-					config.joy.jump = -1
+					joy.jump = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.jump = anyJoyPress(0)
+					joy.jump = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 5:
 				message += gvLangObj["controls-menu"]["shoot"]
 				if(keyPress(k_backspace)) {
-					config.joy.shoot = -1
+					joy.shoot = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.shoot = anyJoyPress(0)
+					joy.shoot = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 6:
 				message += gvLangObj["controls-menu"]["run"]
 				if(keyPress(k_backspace)) {
-					config.joy.run = -1
+					joy.run = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.run = anyJoyPress(0)
+					joy.run = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 7:
 				message += gvLangObj["controls-menu"]["sneak"]
 				if(keyPress(k_backspace)) {
-					config.joy.sneak = -1
+					joy.sneak = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.sneak = anyJoyPress(0)
+					joy.sneak = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 8:
 				message += gvLangObj["controls-menu"]["pause"]
 				if(keyPress(k_backspace)) {
-					config.joy.pause = -1
+					joy.pause = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.pause = anyJoyPress(0)
+					joy.pause = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 9:
 				message += gvLangObj["controls-menu"]["item-swap"]
 				if(keyPress(k_backspace)) {
-					config.joy.swap = -1
+					joy.swap = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.swap = anyJoyPress(0)
+					joy.swap = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 10:
 				message += gvLangObj["controls-menu"]["menu-accept"]
 				if(keyPress(k_backspace)) {
-					config.joy.accept = -1
+					joy.accept = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.accept = anyJoyPress(0)
+					joy.accept = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 11:
 				message += gvLangObj["controls-menu"]["cam-left-peek"]
 				if(keyPress(k_backspace)) {
-					config.joy.leftPeek = -1
+					joy.leftPeek = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.leftPeek = anyJoyPress(0)
+					joy.leftPeek = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 12:
 				message += gvLangObj["controls-menu"]["cam-right-peek"]
 				if(keyPress(k_backspace)) {
-					config.joy.rightPeek = -1
+					joy.rightPeek = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.rightPeek = anyJoyPress(0)
+					joy.rightPeek = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 13:
 				message += gvLangObj["controls-menu"]["cam-down-peek"]
 				if(keyPress(k_backspace)) {
-					config.joy.downPeek = -1
+					joy.downPeek = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.downPeek = anyJoyPress(0)
+					joy.downPeek = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 14:
 				message += gvLangObj["controls-menu"]["cam-up-peek"]
 				if(keyPress(k_backspace)) {
-					config.joy.upPeek = -1
+					joy.upPeek = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					config.joy.upPeek = anyJoyPress(0)
+					joy.upPeek = anyJoyPress(0)
 					done = true
 				}
 				break

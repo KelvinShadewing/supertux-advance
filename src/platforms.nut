@@ -27,11 +27,35 @@
 						break
 
 					case 2: //Right
-						gvPlayer.hspeed = (gvPlayer.hspeed > 4) ? gvPlayer.hspeed : power
+						gvPlayer.hspeed = (gvPlayer.hspeed > power) ? gvPlayer.hspeed : power
 						break
 
 					case 3: //Left
-						gvPlayer.hspeed = (gvPlayer.hspeed < -4) ? gvPlayer.hspeed : -power
+						gvPlayer.hspeed = (gvPlayer.hspeed < -power) ? gvPlayer.hspeed : -power
+						break
+				}
+				if(frame == 0.0) popSound(sndSpring, 0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(hitTest(shape, gvPlayer2.shape)) {
+				fspeed = 0.2
+				switch(dir) {
+					case 0: //Up
+						gvPlayer2.vspeed = -power
+						break
+
+					case 1: //Down
+						gvPlayer2.vspeed = power
+						break
+
+					case 2: //Right
+						gvPlayer2.hspeed = (gvPlayer2.hspeed > power) ? gvPlayer2.hspeed : power
+						break
+
+					case 3: //Left
+						gvPlayer2.hspeed = (gvPlayer2.hspeed < -power) ? gvPlayer2.hspeed : -power
 						break
 				}
 				if(frame == 0.0) popSound(sndSpring, 0)
@@ -108,6 +132,34 @@
 					case 3: //Up Left
 						gvPlayer.hspeed = -power * 0.6
 						gvPlayer.vspeed = -power * 0.8
+						break
+				}
+				if(frame == 0.0) popSound(sndSpring, 0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(hitTest(shape, gvPlayer2.shape)) {
+				fspeed = 0.2
+				switch(dir) {
+					case 0: //Up Right
+						gvPlayer2.vspeed = -power * 0.8
+						gvPlayer2.hspeed = power * 0.6
+						break
+
+					case 1: //Down Right
+						gvPlayer2.vspeed = power * 0.7
+						gvPlayer2.hspeed = power * 0.7
+						break
+
+					case 2: //Down Left
+						gvPlayer2.hspeed = -power * 0.7
+						gvPlayer2.vspeed = power * 0.7
+						break
+
+					case 3: //Up Left
+						gvPlayer2.hspeed = -power * 0.6
+						gvPlayer2.vspeed = -power * 0.8
 						break
 				}
 				if(frame == 0.0) popSound(sndSpring, 0)

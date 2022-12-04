@@ -190,7 +190,7 @@
 				}
 				else {
 					if(config.lookAhead){
-						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 4) + lx
+						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 24) - (gvScreenW / 4) + lx
 						py = (gvPlayer.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (gvScreenH / 2) + ly
 					}
 					else {
@@ -270,7 +270,7 @@
 				}
 				else {
 					if(config.lookAhead){
-						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 4) + lx
+						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 24) - (gvScreenW / 4) + lx
 						py = (gvPlayer2.y + (gvPlayer2.y - gvPlayer2.yprev) * 16) - (gvScreenH / 2) + ly
 					}
 					else {
@@ -322,7 +322,7 @@
 		camy2 += (py - camy2) / 2
 	}
 
-	if(camx2 > ux - gvScreenW / 2) camx2 = ux - gvScreenW / 2
+	if(camx2 > ux) camx2 = ux
 	if(camx2 < 0) camx2 = 0
 	if(camy2 > uy) camy2 = uy
 	if(camy2 < 0) camy2 = 0
