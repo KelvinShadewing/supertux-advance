@@ -285,10 +285,11 @@ print("Loading Frostlands overhauled PT2")
 	{
 		base.constructor(_x, _y)
 	}
-		function run() {
-	if(getFrames() % 3 == 0){
-	newActor(c1, x - 16 + randInt(32), y - 16 + randInt(100))
-	}
+
+	function run() {
+		if(getFrames() % 3 == 0){
+			newActor(c1, x - 16 + randInt(32), y - 16 + randInt(100))
+		}
 	}
 }
 
@@ -298,13 +299,15 @@ print("Loading Frostlands overhauled PT2")
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
+
 	function run() {
 		if(frame < 1) frame += 0.02
 		frame += 0.05
 		y -= 0.5
 		if(frame >= 3) deleteActor(id)
-		else drawSpriteEx(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
+
+	function draw() { drawSpriteEx(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
 ::Towershop <- class extends Actor {
@@ -347,7 +350,9 @@ print("Loading Frostlands overhauled PT2")
 		v += vspeed
 
 		local pricetag = chint(95).tostring() + price.tostring()
+	}
 
+	function draw() {
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -437,16 +442,6 @@ print("Loading Frostlands overhauled PT2")
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprBlitz, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlitz2, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -457,23 +452,31 @@ print("Loading Frostlands overhauled PT2")
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprBlitz, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprBlitz, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			drawSpriteEx(sprBlitz2, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(squish) drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -643,16 +646,6 @@ print("Loading Frostlands overhauled PT2")
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -663,23 +656,32 @@ print("Loading Frostlands overhauled PT2")
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			if(smart) drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(squish) drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -774,5 +776,6 @@ print("Loading Frostlands overhauled PT2")
 
 
 //hi kelvin lol
+//Hi, Frost. ;P
 
 print("Loaded Frostlands")

@@ -38,7 +38,9 @@
 		v += vspeed
 
 		local pricetag = chint(95).tostring() + price.tostring()
+	}
 
+	function draw() {
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -88,7 +90,9 @@
 		v += vspeed
 
 		local pricetag = chint(95).tostring() + price.tostring()
+	}
 
+	function draw() {
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -138,7 +142,9 @@
 		v += vspeed
 
 		local pricetag = chint(95).tostring() + price.tostring()
+	}
 
+	function draw() {
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -188,7 +194,9 @@
 		v += vspeed
 
 		local pricetag = chint(95).tostring() + price.tostring()
+	}
 
+	function draw() {
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -238,7 +246,9 @@
 		v += vspeed
 
 		local pricetag = chint(95).tostring() + price.tostring()
+	}
 
+	function draw() {
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
