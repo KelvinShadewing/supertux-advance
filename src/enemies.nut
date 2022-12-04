@@ -1938,34 +1938,34 @@
 			popSound(sndKick)
 		}
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+		if(_by != 0) if(hitTest(shape, _by.shape)) {
 			actor[c].sprite = sprFlyAmanita
-			actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
-			actor[c].hspeed = (gvPlayer.hspeed / 16)
-			actor[c].spin = (gvPlayer.hspeed * 6)
+			actor[c].vspeed = -abs(_by.hspeed * 1.1)
+			actor[c].hspeed = (_by.hspeed / 16)
+			actor[c].spin = (_by.hspeed * 6)
 			actor[c].angle = 180
 			die()
 			popSound(sndKick)
 
 			if(getcon("jump", "hold")) {
-				gvPlayer.vspeed = -8
+				_by.vspeed = -8
 				popSound(sndSquish, 0)
 			}
 			else {
-				gvPlayer.vspeed = -4
+				_by.vspeed = -4
 				popSound(sndSquish, 0)
 			}
 
-			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-				gvPlayer.anim = gvPlayer.anJumpU
-				gvPlayer.frame = gvPlayer.anJumpU[0]
+			if(_by.anim == _by.anJumpT || _by.anim == _by.anFall) {
+				_by.anim = _by.anJumpU
+				_by.frame = _by.anJumpU[0]
 			}
 
-			else if(keyDown(config.key.jump)) gvPlayer.vspeed = -5
-			else gvPlayer.vspeed = -2
-			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-				gvPlayer.anim = gvPlayer.anJumpU
-				gvPlayer.frame = gvPlayer.anJumpU[0]
+			else if(keyDown(config.key.jump)) _by.vspeed = -5
+			else _by.vspeed = -2
+			if(_by.anim == _by.anJumpT || _by.anim == _by.anFall) {
+				_by.anim = _by.anJumpU
+				_by.frame = _by.anJumpU[0]
 			}
 		}
 	}
@@ -2171,20 +2171,22 @@
 						if(hspeed < 0) flip = true
 					}
 
-					if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 8 + (16 * game.difficulty))) squish = true
+					local target = findPlayer()
+					if(target != null) if(inDistance2(x, y, target.x, target.y, 8 + (16 * game.difficulty))) squish = true
 				}
 
-				if(gvPlayer && chasing) {
-					if(x < gvPlayer.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
+				local target = findPlayer()
+				if(target != null && chasing) {
+					if(x < target.x - 8) if(hspeed < (2.5 + ((2.0 / 200.0) * squishTime))) {
 						hspeed += 0.1
 						if(hspeed < 0) hspeed += 0.05
 					}
-					if(x > gvPlayer.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
+					if(x > target.x + 8) if(hspeed > -(2.5 + ((2.0 / 200.0) * squishTime))) {
 						hspeed -= 0.1
 						if(hspeed > 0) hspeed -= 0.05
 					}
 
-					if(!placeFree(x, y + 1) && y > gvPlayer.y + 16) vspeed = -5.0
+					if(!placeFree(x, y + 1) && y > target.y + 16) vspeed = -5.0
 				}
 				else hspeed = 0.0
 
@@ -3514,9 +3516,13 @@
 		base.run()
 
 		if(active) {
-			if(!moving) if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
-				flip = x > gvPlayer.x
-				moving = true
+			if(!moving) {
+				local target = findPlayer()
+
+				if(target != null) if(inDistance2(x, y, target.x, target.y, 64)) {
+					flip = x > target.x
+					moving = true
+				}
 			}
 
 			if(!squish) {
@@ -3560,7 +3566,8 @@
 				else if(moving && getupTime > 0) {
 					getupTime -= 0.2
 					if(getupTime < 0) getupTime = 0
-					if(gvPlayer) flip = x > gvPlayer.x
+					local target = findPlayer()
+					if(target != null) flip = x > target.x
 				}
 
 				if(frozen) {
@@ -3599,6 +3606,7 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
+		else if(moving && getupTime <= 0) drawSpriteEx(sprSpikeCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		else drawSpriteEx(sprSpikeCap, 6.0 - getupTime, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 
@@ -3825,7 +3833,8 @@
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
 		else if(squish) drawSpriteEx(sprCaptainMorel, floor(7.8 + squishTime) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		else drawSpriteEx(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else if(placeFree(x, y + 1)) drawSpriteEx(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else drawSpriteEx(sprCaptainMorel, wrap(getFrames() / 8, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 
 		setDrawColor(0xff0000ff)
 		if(debug) shape.draw()

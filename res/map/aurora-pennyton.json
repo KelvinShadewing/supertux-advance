@@ -365,17 +365,6 @@
                  "width":16,
                  "x":2264,
                  "y":376
-                }, 
-                {
-                 "class":"",
-                 "height":48,
-                 "id":61,
-                 "name":"grabCamera(myTarget)",
-                 "rotation":0,
-                 "visible":true,
-                 "width":208,
-                 "x":896,
-                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -770,6 +759,17 @@
                  "width":16,
                  "x":1632,
                  "y":480
+                }, 
+                {
+                 "class":"",
+                 "height":48,
+                 "id":104,
+                 "name":"CameraGrabber",
+                 "rotation":0,
+                 "visible":true,
+                 "width":208,
+                 "x":896,
+                 "y":400
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -778,7 +778,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":104,
+ "nextobjectid":105,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -203,31 +203,44 @@
 				tftime = 0
 				break
 			case "ice":
-				newActor(FlowerIce, x + hspeed, y + vspeed)
-				stats.subitem = 0
+				stats.subitem = stats.weapon
+				stats.weapon = "ice"
+				stats.maxEnergy = 4 - game.difficulty + game.iceBonus
+				popSound(sndHeal, 0)
+				tftime = 0
 				break
 			case "air":
-				newActor(AirFeather, x + hspeed, y + vspeed)
-				stats.subitem = 0
+				stats.subitem = stats.weapon
+				stats.weapon = "air"
+				stats.maxEnergy = 4 - game.difficulty + game.airBonus
+				popSound(sndHeal, 0)
+				tftime = 0
 				break
 			case "earth":
-				newActor(EarthShell, x + hspeed, y + vspeed)
-				stats.subitem = 0
+				stats.subitem = stats.weapon
+				stats.weapon = "earth"
+				stats.maxEnergy = 4 - game.difficulty + game.earthBonus
+				popSound(sndHeal, 0)
+				tftime = 0
 				break
 			case "muffinBlue":
 				if(stats.health < game.maxHealth) {
-					newActor(MuffinBlue, x + hspeed, y + vspeed)
+					stats.health += 4
+					newActor(Heal, x - 16 + randInt(32), y - 16 + randInt(32))
 					stats.subitem = 0
 				}
 				break
 			case "muffinRed":
 				if(stats.health < game.maxHealth) {
-					newActor(MuffinRed, x + hspeed, y + vspeed)
+					stats.health += 16
+					newActor(Heal, x - 16 + randInt(32), y - 16 + randInt(32))
 					stats.subitem = 0
 				}
 				break
 			case "star":
-				newActor(Starnyan, x + hspeed, y + vspeed)
+				invincible = 645
+				playMusic(musInvincible, -1)
+				gvLastSong = ""
 				stats.subitem = 0
 				break
 			case "coffee":

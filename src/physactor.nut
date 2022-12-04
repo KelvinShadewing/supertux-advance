@@ -115,6 +115,15 @@
 		return hitTest(shape, ns)
 	}
 
+	function findPlayer() {
+		if(gvPlayer && gvPlayer2) {
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y)) return gvPlayer
+			else return gvPlayer2
+		}
+		else if(gvPlayer) return gvPlayer
+		else if(gvPlayer2) return gvPlayer2
+	}
+
 	function escapeMoPlat(useDown = false, useUp = false, useLeft = false, useRight = false) {
 		if(!actor.rawin("MoPlat")) return 0
 		local result = 0
@@ -193,6 +202,7 @@
 			for(local i = -cw; i <= cw; i++) {
 				for(local j = -ch; j <= ch; j++) {
 					local tile = (cx + i) + ((cy + j) * wl.width)
+					if(cx + i < 0 || cx + i > gvMap.w / 16) continue
 					if(tile >= 0 && tile < wl.data.len()) switch(wl.data[tile] - gvMap.solidfid) {
 						case 0: //Full solid
 						case 39:

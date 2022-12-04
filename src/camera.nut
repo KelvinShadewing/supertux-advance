@@ -41,7 +41,7 @@
 
 	if(gvPlayer && gvPlayer2 && !inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 240)) gvSplitScreen = true
 	if(gvPlayer && gvPlayer2 && inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 160)) gvSplitScreen = false
-	if(!gvPlayer || !gvPlayer2 || gvNetPlay) gvSplitScreen = false
+	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss) gvSplitScreen = false
 
 	if(gvPlayer) {
 		lx = ((joyAxis(0, config.joy.xPeek) / js_max.tofloat()) * gvScreenW / 2.5)
@@ -64,6 +64,10 @@
 					px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
 					py = (((gvPlayer.y + gvPlayer2.y) / 2.0)) - (gvScreenH / 2) + ly
 				}
+			}
+			else {
+				px = (gvCamTarget.x) - (gvScreenW / 2)
+				py = (gvCamTarget.y) - (gvScreenH / 2)
 			}
 		}
 		else if(gvPlayer) {
@@ -198,7 +202,7 @@
 			else {
 				local pw = max(gvScreenW, 320)
 				local ph = max(gvScreenH, 240)
-				local ptx = (gvCamTarget.x) - (gvScreenW / 2)
+				local ptx = (gvCamTarget.x) - (gvScreenW / 4)
 				local pty = (gvCamTarget.y) - (gvScreenH / 2)
 
 				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 4) {
@@ -215,7 +219,7 @@
 			}
 		}
 		else {
-			px = (gvCamTarget.x) - (gvScreenW / 2)
+			px = (gvCamTarget.x) - (gvScreenW / 4)
 			py = (gvCamTarget.y) - (gvScreenH / 2)
 		}
 	} else {
@@ -279,7 +283,7 @@
 				local pw = max(gvScreenW, 320)
 				local ph = max(gvScreenH, 240)
 				local ptx = (gvCamTarget2.x) - (gvScreenW / 4)
-				local pty = (gvCamTarget2.y) - (gvScreenH / 4)
+				local pty = (gvCamTarget2.y) - (gvScreenH / 2)
 
 				if(gvCamTarget2.rawin("w")) if(abs(gvCamTarget2.w) > pw / 4) {
 					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvCamTarget2.x - (gvScreenW / 4) + lx
@@ -295,7 +299,7 @@
 			}
 		}
 		else {
-			px = (gvCamTarget2.x) - (gvScreenW / 2)
+			px = (gvCamTarget2.x) - (gvScreenW / 4)
 			py = (gvCamTarget2.y) - (gvScreenH / 2)
 		}
 	} else {
@@ -332,7 +336,41 @@
 	
 }
 
-::grabCamera <- function(target) {
-	if(target == gvPlayer && gvPlayer != false) gvCamTarget = this
-	if(target == gvPlayer2 && gvPlayer2 != false) gvCamTarget2 = this
+::CameraGrabber <- class extends Actor {
+	w = 0
+	h = 0
+
+	function run() {
+		if(!gvSplitScreen) { //Single player camera
+			if((gvPlayer
+			&& gvPlayer.x >= x - w
+			&& gvPlayer.y >= y - h
+			&& gvPlayer.x <= x + w
+			&& gvPlayer.y <= y + h)
+			||  (gvPlayer2
+			&& gvPlayer2.x >= x - w
+			&& gvPlayer2.y >= y - h
+			&& gvPlayer2.x <= x + w
+			&& gvPlayer2.y <= y + h)) gvCamTarget = this
+		}
+		else { //Multi player camera
+			if(gvPlayer
+			&& gvPlayer.x >= x - w
+			&& gvPlayer.y >= y - h
+			&& gvPlayer.x <= x + w
+			&& gvPlayer.y <= y + h) gvCamTarget = this
+
+			if((camx2 + (gvScreenW / 4) >= x - w
+			&& camy2 + (gvScreenH / 4) >= y - h
+			&& camx2 + (gvScreenW / 4) <= x + w
+			&& camy2 + (gvScreenH / 4) <= y + h)
+			|| (gvPlayer2
+			&& gvPlayer2.x >= x - w
+			&& gvPlayer2.y >= y - h
+			&& gvPlayer2.x <= x + w
+			&& gvPlayer2.y <= y + h)) gvCamTarget2 = this
+		}
+	}
+
+	function _typeof() { return "CameraGrabber" }
 }

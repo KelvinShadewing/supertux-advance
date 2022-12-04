@@ -20,3 +20,15 @@
 
 	function _typeof() { return "Trigger" }
 }
+
+::joinPlayers <- function(target) {
+	if(target == gvPlayer && gvPlayer2) {
+		gvPlayer2.x = gvPlayer.x
+		gvPlayer2.y = gvPlayer.y
+	}
+
+	if(target == gvPlayer2 && gvPlayer) {
+		gvPlayer.x = gvPlayer2.x
+		gvPlayer.y = gvPlayer2.y
+	}
+}

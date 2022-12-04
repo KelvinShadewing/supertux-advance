@@ -66,8 +66,9 @@
 	function run() {
 		timer--
 		if(timer == 0) deleteActor(id)
-		if(debug) drawSprite(sprPoof, 0, x - camx, y - camy - 8)
 	}
+
+	function draw() { if(debug) drawSprite(sprPoof, 0, x - camx, y - camy - 8) }
 }
 
 ::StompPoof <- class extends WeaponEffect{
@@ -83,11 +84,12 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		frame += 0.2
 		if(frame >= 2) power = 0
 		if(frame >= 4) deleteActor(id)
 	}
+
+	function draw() { drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1) }
 }
 
 ::ExplodeN <- class extends WeaponEffect{
@@ -106,8 +108,6 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
@@ -127,6 +127,11 @@
 				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
 			}
 		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }
 
@@ -178,11 +183,12 @@
 		shape.setPos(x, y)
 	}
 
-	function animation() {
-		if(hspeed > 0) drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
-		else drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, 1, 1, 1, 1)
+	function draw()  {
+		drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
 
+	function animation() {
 		if(getFrames() % 3 == 0) {
 			local c = actor[newActor(FlameTiny, x, y)]
 			c.frame = 4
@@ -232,7 +238,10 @@
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+	}
+
+	function draw() {
+		drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
@@ -269,11 +278,12 @@
 
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
 
-		if(hspeed > 0) drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
-		else drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
-
 		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 
 	function destructor() {
@@ -299,8 +309,6 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
@@ -320,6 +328,11 @@
 				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
 			}
 		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }
 
@@ -341,8 +354,6 @@
 	}
 
 	function run() {
-		//drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		//drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
@@ -376,10 +387,11 @@
 	}
 
 	function run() {
-		drawSprite(sprFireball, getFrames(), x - camx, y - camy)
 		shape.setPos(x, y)
 		if(getFrames() % 4 == 0) newActor(FlameTiny, x - 1 + randInt(3), y - 1 + randInt(3))
 	}
+
+	function draw() { drawSprite(sprFireball, getFrames(), x - camx, y - camy) }
 }
 
 ::FuseLine <- class extends PathCrawler {
@@ -402,13 +414,13 @@
 			}
 		}
 
-		if(speed == 0) drawSprite(sprSteelBall, 0, x - camx, y - camy)
-
 		if(obj != 0) {
 			obj.x = x
 			obj.y = y
 		}
 	}
+
+	function draw() { if(speed == 0) drawSprite(sprSteelBall, 0, x - camx, y - camy) }
 
 	function pathEnd() {
 		deleteActor(obj.id)
@@ -466,11 +478,12 @@
 	}
 
 	function animation() {
-		if(hspeed > 0) drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
-		else drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 1, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
-
 		if(getFrames() % 5 == 0) newActor(Glimmer, x - 4 + randInt(8), y - 4 + randInt(8))
+	}
+
+	function draw() {
+		drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
@@ -504,15 +517,12 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndBump)
-		playSound(sndBump, 0)
+		popSound(sndBump, 0)
 
 		shape = Rec(x, y, 16, 16, 0)
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
@@ -532,6 +542,11 @@
 				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
 			}
 		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeI, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }
 
@@ -556,7 +571,10 @@
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+	}
+
+	function draw() {
+		drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
@@ -583,8 +601,6 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
@@ -604,6 +620,11 @@
 				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.4
 			}
 		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }
 
@@ -646,10 +667,12 @@
 
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
 
+		shape.setPos(x, y)
+	}
+
+	function draw() {
 		drawSpriteEx(sprRock, 0, x - camx, y - camy, angle, 1, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
-
-		shape.setPos(x, y)
 	}
 
 	function destructor() {

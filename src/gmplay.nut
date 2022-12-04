@@ -462,7 +462,10 @@
 	//HUDs
 	setDrawTarget(gvScreen)
 	drawImage(gvPlayScreen, 0, 0)
-	if(gvSplitScreen) drawImage(gvPlayScreen2, gvScreenW / 2, 0)
+	if(gvSplitScreen) {
+		drawImage(gvPlayScreen2, gvScreenW / 2, 0)
+		drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
+	}
 
 	if(gvInfoBox != gvInfoLast) {
 		gvInfoLast = gvInfoBox
@@ -489,7 +492,38 @@
 		for(local i = 0; i < game.ps1.maxEnergy; i++) {
 			if(gvPlayer) {
 				if(gvPlayer.rawin("energy") && game.ps1.maxEnergy > 0) {
-					if(i < floor(gvPlayer.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
+					if(i < floor(gvPlayer.energy)) switch(game.ps1.weapon) {
+						case "normal":
+							drawSprite(sprEnergy, 11, 8 + (16 * i), 24)
+							break
+						case "fire":
+							drawSprite(sprEnergy, 3, 8 + (16 * i), 24)
+							break
+						case "ice":
+							drawSprite(sprEnergy, 4, 8 + (16 * i), 24)
+							break
+						case "air":
+							drawSprite(sprEnergy, 5, 8 + (16 * i), 24)
+							break
+						case "earth":
+							drawSprite(sprEnergy, 6, 8 + (16 * i), 24)
+							break
+						case "water":
+							drawSprite(sprEnergy, 7, 8 + (16 * i), 24)
+							break
+						case "shock":
+							drawSprite(sprEnergy, 8, 8 + (16 * i), 24)
+							break
+						case "dark":
+							drawSprite(sprEnergy, 9, 8 + (16 * i), 24)
+							break
+						case "light":
+							drawSprite(sprEnergy, 10, 8 + (16 * i), 24)
+							break
+						default:
+							drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
+							break
+					}
 					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
 				}
 			}
@@ -516,7 +550,38 @@
 			for(local i = 0; i < game.ps2.maxEnergy; i++) {
 				if(gvPlayer2) {
 					if(gvPlayer2.rawin("energy") && game.ps2.maxEnergy > 0) {
-						if(i < floor(gvPlayer2.energy)) drawSprite(sprEnergy, 1, 8 + (16 * i), 52)
+						if(i < floor(gvPlayer2.energy)) switch(game.ps2.weapon) {
+							case "normal":
+								drawSprite(sprEnergy, 11, 8 + (16 * i), 52)
+								break
+							case "fire":
+								drawSprite(sprEnergy, 3, 8 + (16 * i), 52)
+								break
+							case "ice":
+								drawSprite(sprEnergy, 4, 8 + (16 * i), 52)
+								break
+							case "air":
+								drawSprite(sprEnergy, 5, 8 + (16 * i), 52)
+								break
+							case "earth":
+								drawSprite(sprEnergy, 6, 8 + (16 * i), 52)
+								break
+							case "water":
+								drawSprite(sprEnergy, 7, 8 + (16 * i), 52)
+								break
+							case "shock":
+								drawSprite(sprEnergy, 8, 8 + (16 * i), 52)
+								break
+							case "dark":
+								drawSprite(sprEnergy, 9, 8 + (16 * i), 52)
+								break
+							case "light":
+								drawSprite(sprEnergy, 10, 8 + (16 * i), 52)
+								break
+							default:
+								drawSprite(sprEnergy, 1, 8 + (16 * i), 52)
+								break
+						}
 						else drawSprite(sprEnergy, 0, 8 + (16 * i), 52)
 					}
 				}

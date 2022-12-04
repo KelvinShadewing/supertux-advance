@@ -8,6 +8,7 @@
 	talki = 0
 	sayfunc = null
 	argv = null
+	target = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -55,20 +56,40 @@
 	}
 
 	function run() {
-		if(gvPlayer && sayfunc != null) {
-			if(hitTest(shape, gvPlayer.shape)) {
-				if(getcon("up", "press") && sayfunc != null) this[sayfunc]()
-				if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof gvPlayer) in gvLangObj["npc"] || (argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"])) drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-				else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
-				else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
-			}
+		if(gvPlayer && gvPlayer2) {
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y)) target = gvPlayer
+			else target = gvPlayer2
+		}
+		else if(gvPlayer) target = gvPlayer
+		else if(gvPlayer2) target = gvPlayer2
 
-			if(gvInfoBox == text) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) gvInfoBox = ""
+		if(target != null && sayfunc != null) {
+			if(gvPlayer && gvPlayer2 && hitTest(shape, gvPlayer.shape) && hitTest(shape, gvPlayer2.shape) && getcon("up", "press", false, 0)) this[sayfunc]()
+			else if(hitTest(shape, target.shape) && getcon("up", "press", false, target.playerNum) && sayfunc != null) this[sayfunc]()
 
-			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
-				if(x > gvPlayer.x + 2) flip = 1
-				if(x < gvPlayer.x - 2) flip = 0
+			if(gvInfoBox == text) if(!inDistance2(x, y, target.x, target.y, 32)) gvInfoBox = ""
+
+			if(inDistance2(x, y, target.x, target.y, 32)) {
+				if(x > target.x + 2) flip = 1
+				if(x < target.x - 2) flip = 0
 			}
+		}
+	}
+
+	function draw() {
+		if(gvPlayer && gvPlayer2 && hitTest(shape, gvPlayer.shape) && hitTest(shape, gvPlayer2.shape)) {
+			if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof gvPlayer) in gvLangObj["npc"] || (argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"])) drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
+			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+
+			if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof gvPlayer2) in gvLangObj["npc"] || (argv[3] + "-" + typeof gvPlayer2) in gvLangObj["npc"])) drawSprite(sprTalk, 1, gvPlayer2.x - camx, gvPlayer2.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
+			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+		}
+		else if(target != null && hitTest(shape, target.shape)) {
+			if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof target) in gvLangObj["npc"] || (argv[3] + "-" + typeof target) in gvLangObj["npc"])) drawSprite(sprTalk, 1, target.x - camx, target.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
+			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 		}
 
 		if(useflip) drawSpriteEx(sprite, getFrames() * useflip, x - camx, y - camy, 0, flip, 1, 1, 1)
@@ -93,8 +114,8 @@
 
 	function sayChar() {
 		text = ""
-		if((argv[3] + typeof gvPlayer) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + typeof gvPlayer], gvTextW)
-		else if((argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + typeof gvPlayer], gvTextW)
+		if((argv[3] + typeof target) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + typeof target], gvTextW)
+		else if((argv[3] + "-" + typeof target) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + typeof target], gvTextW)
 		else if((argv[3]) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3]], gvTextW)
 		gvInfoBox = text
 	}

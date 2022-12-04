@@ -124,6 +124,8 @@
 ::sprAchiFrame <- newSprite("res/gfx/achievement-frame.png", 12, 24, 0, 0, 0, 0)
 ::sprCharCursor <- newSprite("res/gfx/char-cursor.png", 24, 24, 0, 0, 12, 12)
 ::sprNoOne <- newSprite("res/gfx/noone.png", 16, 16, 0, 0, 8, 8)
+::sprDivBar <- newSprite("res/gfx/divbar.png", 4, 240, 0, 0, 2, 0)
+::defDivBar <- sprDivBar
 
 
 

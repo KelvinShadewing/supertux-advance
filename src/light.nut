@@ -141,7 +141,7 @@
 		scale = _arr[1].tofloat()
 	}
 
-	function run() {
+	function draw() {
 		if(sprite) drawLightEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, scale, scale)
 	}
 }
@@ -158,7 +158,6 @@
 		bg = _arr[0]
 		weather = _arr[1]
 		color = _arr[2]
-		print("Created transition zone")
 	}
 
 	function run() {
@@ -186,8 +185,8 @@
 			&& gvPlayer.y <= y + h)) {
 				if(bg == "0") drawBG = 0
 				else if(bg in getroottable()) drawBG = getroottable()[bg]
-				if(weather == "0") drawWeather2 = 0
-				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
 				dostr("gvLightTarget = " + color)
 			}
 

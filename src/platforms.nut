@@ -43,7 +43,9 @@
 			frame = 0.0
 			fspeed = 0.0
 		}
+	}
 
+	function draw() {
 		switch(dir) { //Draw sprite based on direction
 			case 0: //Up
 				drawSprite(sprSpring, round(frame), x - camx, y - camy)
@@ -117,7 +119,9 @@
 			frame = 0.0
 			fspeed = 0.0
 		}
+	}
 
+	function draw() {
 		switch(dir) { //Draw sprite based on direction
 			case 0: //Up
 				drawSprite(sprSpringD, round(frame), x - camx, y - camy)
@@ -157,11 +161,12 @@
 
 ::sinkLevel <- function(rate) { newActor(LevelSinker,0, 0, rate) }
 
-::FireChain <- class extends Actor {
+::FireChain <- class extends PhysAct {
 	r = 0
 	a = 0.0
 	s = 0.0
 	hb = null
+	chainpos = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -169,22 +174,28 @@
 		a = _arr[1].tofloat()
 		s = _arr[2].tofloat()
 		hb = (Cir(x, y, 6))
+		chainpos = []
+		shape = Rec(x, y, r * 4, r * 4, 0)
 	}
 
 	function run() {
 		//Rotate chain
 		//s = sin(getFrames() / 5.0) * 4.0 //Save for flamethrower animation
-		if(gvPlayer) if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, screenW() * 0.8)) return
+		chainpos.clear()
+		shape.setPos(x, y)
+		if(!isOnScreen()) return
 		a += s
 
 		if(r > 0) for(local i = 0; i < r; i++) {
 			hb.setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 45.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 45.0)))
-			drawSprite(sprFireball, getFrames() / 4, hb.x - camx, hb.y - camy)
-			drawLightEx(sprLightFire, 0, hb.x - camx, hb.y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+			chainpos.push([hb.x, hb.y])
 
 			if((i - 1) % 2 == 0) {
 				if(gvPlayer) if(hitTest(hb, gvPlayer.shape)) {
-					gvPlayer.hurt = 2
+					gvPlayer.hurt = 2 * gvPlayer.damageMult.fire
+				}
+				if(gvPlayer2) if(hitTest(hb, gvPlayer2.shape)) {
+					gvPlayer2.hurt = 2  * gvPlayer2.damageMult.fire
 				}
 			}
 
@@ -193,6 +204,13 @@
 				c.vspeed = -0.25
 				c.hspeed = randFloat(0.5) - 0.25
 			}
+		}
+	}
+
+	function draw() {
+		if(chainpos.len() > 0) for(local i = 0; i < r; i++) {
+			drawSprite(sprFireball, getFrames() / 4, chainpos[i][0] - camx, chainpos[i][1] - camy)
+			drawLightEx(sprLightFire, 0, chainpos[i][0] - camx, chainpos[i][1] - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 		}
 
 		if(debug) drawText(font, x - camx, y - camy, wrap(a, 0, 360).tostring())
@@ -293,7 +311,9 @@
 	function run() {
 		base.run()
 		shape.setPos(x, y)
+	}
 
+	function draw() {
 		if(w == 1) drawSprite(sprite, 0, x - camx, y - camy)
 		else for(local i = 0; i < w; i++) {
 			if(i == 0) drawSpriteZ(6, sprite, 1, x - (w * 8) + (i * 16) - camx + 8, y - camy)
@@ -362,13 +382,6 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprite, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)
-		drawSpriteEx(sprite, getFrames() / 4, shapeB.x - camx, shapeB.y - camy, angleB, 0, 1, 1, 1)
-		if(debug) {
-			setDrawColor(color)
-			drawLine(shapeA.x - camx, shapeA.y - camy, shapeB.x - camx, shapeB.y - camy)
-		}
-
 		if(gvPlayer) {
 			if(canWarp) {
 				if(hitTest(shapeA, gvPlayer.shape)) {
@@ -393,6 +406,15 @@
 			}
 			//If the player has left the portal, allow reentry
 			else if(!hitTest(shapeA, gvPlayer.shape) && !hitTest(shapeB, gvPlayer.shape)) canWarp = true
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprite, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)
+		drawSpriteEx(sprite, getFrames() / 4, shapeB.x - camx, shapeB.y - camy, angleB, 0, 1, 1, 1)
+		if(debug) {
+			setDrawColor(color)
+			drawLine(shapeA.x - camx, shapeA.y - camy, shapeB.x - camx, shapeB.y - camy)
 		}
 	}
 }

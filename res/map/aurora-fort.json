@@ -795,17 +795,6 @@
          "objects":[
                 {
                  "class":"",
-                 "height":16,
-                 "id":113,
-                 "name":"drawBG = dbgCastle; drawWeather = dweBlizzard",
-                 "rotation":0,
-                 "visible":true,
-                 "width":144,
-                 "x":1728,
-                 "y":368
-                }, 
-                {
-                 "class":"",
                  "height":1728.66666666667,
                  "id":114,
                  "name":"drawBG = dbgCave; drawWeather = 0",
@@ -891,6 +880,17 @@
                  "width":16,
                  "x":2688,
                  "y":176
+                }, 
+                {
+                 "class":"",
+                 "height":17,
+                 "id":673,
+                 "name":"joinPlayers(myTarget); deleteActor(id)",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":2096,
+                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4860,6 +4860,28 @@
                  "width":16,
                  "x":2608,
                  "y":240
+                }, 
+                {
+                 "class":"",
+                 "height":48,
+                 "id":674,
+                 "name":"TransZone,dbgCave,0,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":80,
+                 "x":1760,
+                 "y":368
+                }, 
+                {
+                 "class":"",
+                 "height":48,
+                 "id":675,
+                 "name":"TransZone,dbgCastle,dweBlizzard,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":80,
+                 "x":1760,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4868,7 +4890,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":673,
+ "nextobjectid":676,
  "orientation":"orthogonal",
  "properties":[
         {

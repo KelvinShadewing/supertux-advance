@@ -44,12 +44,16 @@
 	}
 
 	function turnToPlayer() {
-		if(gvPlayer) {
-			if(gvPlayer.x > x) flip = 0
-			else flip = 1
+		local target = null
+		if(gvPlayer && gvPlayer2) {
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y)) target = gvPlayer
+			else target = gvPlayer2
 		}
-		else if(gvPlayer2) {
-			if(gvPlayer2.x > x) flip = 0
+		else if(gvPlayer) target = gvPlayer
+		else if(gvPlayer2) target = gvPlayer2
+
+		if(target != null) {
+			if(target.x > x) flip = 0
 			else flip = 1
 		}
 	}
@@ -196,6 +200,10 @@
 				gvPlayer.canMove = false
 				gvPlayer.invincible = 120
 			}
+			if(gvPlayer2) {
+				gvPlayer2.canMove = false
+				gvPlayer2.invincible = 120
+			}
 			fadeMusic(0.25)
 		}
 
@@ -263,10 +271,11 @@
 	function ruWalkIntoFrame() {
 		phantom = true
 		if(gvPlayer) gvPlayer.canMove = false
+		if(gvPlayer2) gvPlayer2.canMove = false
 		anim = anWalk
 		flip = 1
 		hspeed = -0.5
-		if(x < xstart - 320) {
+		if(x < xstart - 200) {
 			routine = ruIntroCheer
 			hspeed = 0.0
 			phantom = false
@@ -285,6 +294,7 @@
 			eventTimer = 60
 			routine = ruIdle
 			if(gvPlayer) gvPlayer.canMove = true
+			if(gvPlayer2) gvPlayer2.canMove = true
 			songPlay(musBoss)
 		}
 	}
@@ -331,8 +341,17 @@
 
 		if(floor(frame) == anim[0] + 1 && anim == anJump) {
 			vspeed = -4.0
-			if(gvPlayer) {
-				hspeed = (gvPlayer.x - x) / 64.0
+
+			local target = null
+			if(gvPlayer && gvPlayer2) {
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y)) target = gvPlayer
+				else target = gvPlayer2
+			}
+			else if(gvPlayer) target = gvPlayer
+			else if(gvPlayer2) target = gvPlayer2
+
+			if(target != null) {
+				hspeed = (target.x - x) / 64.0
 			}
 		}
 
@@ -426,6 +445,7 @@
 		if(eventTimer <= 0) {
 			setFPS(60)
 			if(gvPlayer) gvPlayer.canMove = true
+			if(gvPlayer2) gvPlayer2.canMove = false
 			deleteActor(id)
 		}
 	}
@@ -507,6 +527,12 @@
 			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
 			shape.setPos(x - (timer * speed), y)
 			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
+		}
+		if(gvPlayer2) {
+			shape.setPos(x + (timer * speed), y)
+			if(hitTest(shape, gvPlayer2.shape)) gvPlayer2.hurt = 2
+			shape.setPos(x - (timer * speed), y)
+			if(hitTest(shape, gvPlayer2.shape)) gvPlayer2.hurt = 2
 		}
 
 		//Create effect

@@ -638,6 +638,7 @@
 ::Checkpoint <- class extends Actor {
 	shape = null
 	found = false
+	timer = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -646,39 +647,31 @@
 	}
 
 	function run() {
-		if(gvPlayer && found == false) if(hitTest(shape, gvPlayer.shape)) {
+		if(found == false
+		&& (gvPlayer && hitTest(shape, gvPlayer.shape)
+		   || gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+		&& timer <= 0) {
 			foreach(i in actor["Checkpoint"]) {
 				i.found = false
 			}
+
 			found = true
 			game.check = true
 			game.chx = x
 			game.chy = y
 			popSound(sndBell, 0)
+			
 			if(game.difficulty < 3) {
 				if(game.ps1.health < game.maxHealth) game.ps1.health += 4
 				else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
 				if(game.ps2.health < game.maxHealth) game.ps2.health += 4
 				else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
 			}
+
+			timer = 120
 		}
 
-		if(gvPlayer2 && found == false) if(hitTest(shape, gvPlayer2.shape)) {
-			foreach(i in actor["Checkpoint"]) {
-				i.found = false
-			}
-			found = true
-			game.check = true
-			game.chx = x
-			game.chy = y
-			popSound(sndBell, 0)
-			if(game.difficulty < 3) {
-				if(game.ps1.health < game.maxHealth) game.ps1.health += 4
-				else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
-				if(game.ps2.health < game.maxHealth) game.ps2.health += 4
-				else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
-			}
-		}
+		timer--
 	}
 
 	function draw() {
@@ -1000,7 +993,8 @@
 	}
 
 	function run() {
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 32)) {
 			switch(color) {
 				case 0:
 					if(gvKeyCopper) {
