@@ -1131,11 +1131,11 @@
 			stats.canres = false
 		}
 		else {
+			stats.health = 0
 			deleteActor(id)
 			if(playerNum == 1) gvPlayer = false
 			if(playerNum == 2) gvPlayer2 = false
 			newActor(DeadPlayer, x, y, [sprite, anDie, playerNum])
-			stats.health = 0
 		}
 	}
 

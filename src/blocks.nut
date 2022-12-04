@@ -662,10 +662,15 @@
 			popSound(sndBell, 0)
 			
 			if(game.difficulty < 3) {
-				if(game.ps1.health < game.maxHealth) game.ps1.health += 4
-				else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
-				if(game.ps2.health < game.maxHealth) game.ps2.health += 4
-				else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
+				if(gvPlayer) {
+					if(game.ps1.health < game.maxHealth) game.ps1.health += 4
+					else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
+				}
+				
+				if(gvPlayer2) {
+					if(game.ps2.health < game.maxHealth) game.ps2.health += 4
+					else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
+				}
 			}
 
 			timer = 120

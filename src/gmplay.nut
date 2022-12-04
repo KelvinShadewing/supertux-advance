@@ -461,10 +461,17 @@
 
 	//HUDs
 	setDrawTarget(gvScreen)
-	drawImage(gvPlayScreen, 0, 0)
-	if(gvSplitScreen) {
-		drawImage(gvPlayScreen2, gvScreenW / 2, 0)
+	if(gvSwapScreen && gvSplitScreen) {
+		drawImage(gvPlayScreen2, 0, 0)
+		drawImage(gvPlayScreen, gvScreenW / 2, 0)
 		drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
+	}
+	else {
+		drawImage(gvPlayScreen, 0, 0)
+		if(gvSplitScreen) {
+			drawImage(gvPlayScreen2, gvScreenW / 2, 0)
+			drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
+		}
 	}
 
 	if(gvInfoBox != gvInfoLast) {

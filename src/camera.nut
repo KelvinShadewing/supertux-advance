@@ -21,6 +21,7 @@
 ::gvCamTarget <- false
 ::gvCamTarget2 <- false
 ::gvSplitScreen <- false
+::gvSwapScreen <- false
 
 ::updateCamera <- function() {
 	//////////////
@@ -30,6 +31,7 @@
 	if(gvCamTarget == null && gvPlayer) gvCamTarget = gvPlayer
 	else if(gvCamTarget == null && gvPlayer2) gvCamTarget = gvPlayer2
 	if(gvCamTarget2 == null && gvPlayer2) gvCamTarget2 = gvPlayer2
+
 	local px = 0
 	local py = 0
 	local ux = gvMap.w - gvScreenW
@@ -39,7 +41,13 @@
 	local lx = 0
 	local ly = 0
 
-	if(gvPlayer && gvPlayer2 && !inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 240)) gvSplitScreen = true
+	if(gvPlayer && gvPlayer2 && !inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 240)) {
+		if(gvSplitScreen == false) {
+			if(gvPlayer.x > gvPlayer2.x) gvSwapScreen = true
+			else gvSwapScreen = false
+		}
+		gvSplitScreen = true
+	}
 	if(gvPlayer && gvPlayer2 && inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 160)) gvSplitScreen = false
 	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss) gvSplitScreen = false
 

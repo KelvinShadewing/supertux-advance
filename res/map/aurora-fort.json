@@ -861,17 +861,6 @@
                 }, 
                 {
                  "class":"",
-                 "height":160,
-                 "id":598,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "visible":true,
-                 "width":80,
-                 "x":2384,
-                 "y":80
-                }, 
-                {
-                 "class":"",
                  "height":64,
                  "id":604,
                  "name":"endGoal(\"timeattack-win\", \"aurora-fort\")",
@@ -4863,7 +4852,7 @@
                 }, 
                 {
                  "class":"",
-                 "height":48,
+                 "height":128,
                  "id":674,
                  "name":"TransZone,dbgCave,0,0x6080e0ff",
                  "rotation":0,
@@ -4874,23 +4863,34 @@
                 }, 
                 {
                  "class":"",
-                 "height":48,
+                 "height":128,
                  "id":675,
                  "name":"TransZone,dbgCastle,dweBlizzard,0x6080e0ff",
                  "rotation":0,
                  "visible":true,
                  "width":80,
                  "x":1760,
-                 "y":320
+                 "y":240
+                }, 
+                {
+                 "class":"",
+                 "height":128,
+                 "id":676,
+                 "name":"TransZone,dbgCastle,dweBlizzard,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":80,
+                 "x":880,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":676,
+ "nextobjectid":677,
  "orientation":"orthogonal",
  "properties":[
         {

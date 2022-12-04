@@ -235,8 +235,9 @@
 		//s = sin(getFrames() / 5.0) * 4.0 //Save for flamethrower animation
 		chainpos.clear()
 		shape.setPos(x, y)
-		if(!isOnScreen()) return
 		a += s
+		
+		if(!isOnScreen()) return
 
 		if(r > 0) for(local i = 0; i < r; i++) {
 			hb.setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 45.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 45.0)))
