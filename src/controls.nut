@@ -76,13 +76,15 @@
 	local autonum = null
 
 	if(player == 1 || player == 0) {
-		joy = config.joy
+		joy = clone(config.joy)
+		if(gvNumPlayers == 1) joy.index = config.joy2.index
 		autonum = autocon.a
 	}
 	if(player == 2) {
-		joy = config.joy2
+		joy = clone(config.joy2)
 		autonum = autocon.b
 	}
+
 
 	switch(state) {
 		case "press":
@@ -187,9 +189,15 @@
 		case "right":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.right)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+				try{
 				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > js_max / 10)) return true
 				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == 1) return true
 				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == 1) return true
+				}
+				catch(exception) {
+					print(exception)
+					print(typeof joy)
+				}
 			}
 			if(player == 0) {
 				if(keyfunc(config.key.right)) return true

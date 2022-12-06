@@ -183,7 +183,7 @@
 		upPeek = k_pageup
 	}
 	joy = {
-		index = 1
+		index = 0
 		jump = 0
 		shoot = 2
 		run = 4

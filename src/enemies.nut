@@ -912,17 +912,15 @@
 
 		popSound(sndFizz, 0)
 		if(_stomp) {
-			if(getcon("jump", "hold")) gvPlayer.vspeed = -8
-			else gvPlayer.vspeed = -4
-			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-				gvPlayer.anim = gvPlayer.anJumpU
-				gvPlayer.frame = gvPlayer.anJumpU[0]
+			if(_by.anim == _by.anJumpT || gvPlayer.anim == _by.anFall) {
+				_by.anim = _by.anJumpU
+				_by.frame = _by.anJumpU[0]
 			}
 		}
 
-		if(gvPlayer && "anSlide" in gvPlayer && gvPlayer.anim == gvPlayer.anSlide) {
-			vspeed = -abs(gvPlayer.hspeed) / 2.0
-			hspeed = gvPlayer.hspeed <=> 0
+		if(_by != 0 && "anSlide" in _by && _by.anim == _by.anSlide) {
+			vspeed = -abs(_by.hspeed) / 2.0
+			hspeed = _by.hspeed <=> 0
 		}
 
 		squish = true
@@ -3077,6 +3075,7 @@
 	freezeSprite = sprIceTrapLarge
 	nocount = true
 	blinkMax = 2
+	target = null
 
 	damageMult = {
 		normal = 1.0
@@ -3121,6 +3120,7 @@
 	}
 
 	function run() {
+		target = findPlayer()
 		base.run()
 		if(!active) if(checkActor(pid)) {
 			passenger.x = x
@@ -3167,9 +3167,9 @@
 		if(frozen == 0) {
 			if(hspeed > 0) flip = 0
 			if(hspeed < 0) flip = 1
-			if(gvPlayer && !placeFree(x, y)) {
-				if(x < gvPlayer.x) flip = 0
-				if(x > gvPlayer.x) flip = 1
+			if(target && !placeFree(x, y)) {
+				if(x < target.x) flip = 0
+				if(x > target.x) flip = 1
 			}
 		}
 	}
@@ -3183,24 +3183,24 @@
 	}
 
 	function ruCarry() {
-		if(gvPlayer) {
-			if(x > gvPlayer.x && hspeed > -3) hspeed -= 0.05
-			if(x < gvPlayer.x && hspeed < 3) hspeed += 0.05
-			if(y > gvPlayer.y - 64 && vspeed > -1) vspeed -= 0.05
-			if(y < gvPlayer.y - 64 && vspeed < 1) vspeed += 0.05
+		if(target != null) {
+			if(x > target.x && hspeed > -3) hspeed -= 0.05
+			if(x < target.x && hspeed < 3) hspeed += 0.05
+			if(y > target.y - 64 && vspeed > -1) vspeed -= 0.05
+			if(y < target.y - 64 && vspeed < 1) vspeed += 0.05
 
-			if(distance2(x, y, gvPlayer.x, gvPlayer.y) <= 96 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8) pid = -1
+			if(distance2(x, y, target.x, target.y) <= 96 && y < target.y && abs(x - target.x) < 8) pid = -1
 		}
 
 		if(!checkActor(pid)) routine = ruFlee
 	}
 
 	function ruFlee() {
-		if(gvPlayer) {
-			if(x < gvPlayer.x && hspeed > -3) hspeed -= 0.05
-			if(x > gvPlayer.x && hspeed < 3) hspeed += 0.05
-			if(y < gvPlayer.y && vspeed > -1) vspeed -= 0.05
-			if(y > gvPlayer.y && vspeed < 1) vspeed += 0.05
+		if(target) {
+			if(x < target.x && hspeed > -3) hspeed -= 0.05
+			if(x > target.x && hspeed < 3) hspeed += 0.05
+			if(y < target.y && vspeed > -1) vspeed -= 0.05
+			if(y > target.y && vspeed < 1) vspeed += 0.05
 		}
 	}
 
@@ -3239,6 +3239,7 @@
 	friction = 0.0
 	gravity = 0.15
 	held = false
+	target = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -3248,6 +3249,11 @@
 		if(gvPlayer) {
 			hspeed = (gvPlayer.x <=> x).tofloat()
 		} else hspeed = 1.0
+	}
+
+	function run() {
+		target = findPlayer()
+		base.run()
 	}
 
 	function physics() {
@@ -3378,54 +3384,54 @@
 			flip = (!flip).tointeger()
 			fireWeapon(StompPoof, x + (10 * (hspeed <=> 0)), y, 0, id)
 			hspeed = -hspeed
-			if(!held && x > camx - 32 && x < camx + 32 + screenW() && y > camy - 32 && y < camy + 32 + screenH()) popSound(sndIceblock)
+			if(!held && isOnScreen()) popSound(sndIceblock)
 		}
 
 		//Getting carried
-		if(gvPlayer) {
-			if(hitTest(shape, gvPlayer.shape) && getcon("shoot", "hold")
-			&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
-				y = gvPlayer.y
-				flip = gvPlayer.flip
-				if(flip == 0) x = gvPlayer.x + 10
-				else x = gvPlayer.x - 10
-				x += gvPlayer.hspeed
-				y += gvPlayer.vspeed
+		if(target != null) {
+			if(hitTest(shape, target.shape) && getcon("shoot", "hold", false target.playerNum)
+			&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
+				y = target.y
+				flip = target.flip
+				if(flip == 0) x = target.x + 10
+				else x = target.x - 10
+				x += target.hspeed
+				y += target.vspeed
 				held = true
-				gvPlayer.holding = id
+				target.holding = id
 			}
 
-			if(gvPlayer.rawin("anSlide") && gvPlayer.anim == gvPlayer.anSlide && held) {
-				gvPlayer.holding = 0
+			if(target.rawin("anSlide") && target.anim == target.anSlide && held) {
+				target.holding = 0
 
 				//escape from solid
 				if(!placeFree(x, y)) {
-					local escapedir = gvPlayer.x <=> x
+					local escapedir = target.x <=> x
 					while(!placeFree(x, y)) x += escapedir
 				}
 				held = false
 			}
 
-			if(gvPlayer.rawin("anClimb") && gvPlayer.anim == gvPlayer.anClimb && held) {
-				gvPlayer.holding = 0
+			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
+				target.holding = 0
 
 				//escape from solid
 				if(!placeFree(x, y)) {
-					local escapedir = gvPlayer.x <=> x
+					local escapedir = target.x <=> x
 					while(!placeFree(x, y)) x += escapedir
 				}
 				held = false
 			}
 		}
 		if(!getcon("shoot", "hold")) {
-			if(getcon("shoot", "release") && getcon("up", "hold") && held) vspeed = -4.0
-			if(held && gvPlayer) {
-				gvPlayer.holding = 0
-				x += gvPlayer.hspeed * 2
+			if(getcon("shoot", "release", false, target.playerNum) && getcon("up", "hold", false, target.playerNum) && held) vspeed = -4.0
+			if(held && target) {
+				target.holding = 0
+				x += target.hspeed * 2
 
 				//escape from solid
 				if(!placeFree(x, y)) {
-					local escapedir = gvPlayer.x <=> x
+					local escapedir = target.x <=> x
 					while(!placeFree(x, y)) x += escapedir
 				}
 			}
@@ -3465,14 +3471,14 @@
 		}
 	}
 
-	function hurtPlayer(target) {
+	function hurtPlayer(pt) {
 		if(held) return
 		if(slideTimer > 0 && hspeed != 0 && routine == ruSlide) return
 
-		if(routine == ruSlide && gvPlayer.vspeed >= 0) {
+		if(routine == ruSlide && pt.vspeed >= 0) {
 			if(hspeed == 0 || slideTimer > 0) {
 				if(hspeed != 0) hspeed = 0.0
-				else if(gvPlayer) hspeed = (max(4.0, fabs(gvPlayer.hspeed * 1.5))) * (x <=> gvPlayer.x)
+				else if(pt) hspeed = (max(4.0, fabs(pt.hspeed * 1.5))) * (x <=> pt.x)
 				slideTimer = 10
 				popSound(sndKick)
 				return

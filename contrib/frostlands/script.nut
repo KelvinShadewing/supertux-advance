@@ -466,8 +466,11 @@ print("Loading Frostlands overhauled PT2")
 	}
 
 	function draw() {
+		local myspr = sprBlitz2
+		if(smart) myspr = sprBlitz
 		if(frozen) {
-			drawSpriteEx(sprBlitz2, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			drawSpriteEx(myspr, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -475,8 +478,8 @@ print("Loading Frostlands overhauled PT2")
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(squish) drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else if(squish) drawSpriteEx(myspr, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(myspr, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {

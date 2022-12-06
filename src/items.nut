@@ -14,11 +14,8 @@
 
 	function run()
 	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, max(gvPlayer.shape.w, gvPlayer.shape.h) + 8)) {
-			deleteActor(id)
-			newActor(CoinEffect, x, y)
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, max(gvPlayer2.shape.w, gvPlayer2.shape.h) + 8)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 		}
@@ -46,12 +43,12 @@
 
 	function run()
 	{
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 		}
-
-		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
+		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 		}
@@ -75,12 +72,12 @@
 
 	function run()
 	{
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 		}
-
-		if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
+		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 		}
@@ -695,13 +692,13 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) && !game.ps1.canres) {
 			game.ps1.canres = true
 			playSound(snd1up, 0)
 			deleteActor(id)
 		}
 
-		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) && !game.ps2.canres) {
 			game.ps2.canres = true
 			playSound(snd1up, 0)
 			deleteActor(id)
