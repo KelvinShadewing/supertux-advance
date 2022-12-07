@@ -4,6 +4,7 @@
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -14,7 +15,7 @@
 
 	function run() {
 		if(game.maxHealth >= 16 * 4) soldout = true
-		local price = (game.maxHealth + 1) * (50 * (game.difficulty + 1))
+		price = (game.maxHealth + 1) * (50 * (game.difficulty + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -36,11 +37,10 @@
 		}
 
 		v += vspeed
-
-		local pricetag = chint(95).tostring() + price.tostring()
 	}
 
 	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -56,6 +56,7 @@
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -66,7 +67,7 @@
 
 	function run() {
 		if(game.fireBonus >= 16) soldout = true
-		local price = (game.fireBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
+		price = (game.fireBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -88,11 +89,10 @@
 		}
 
 		v += vspeed
-
-		local pricetag = chint(95).tostring() + price.tostring()
 	}
 
 	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -108,6 +108,7 @@
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -118,7 +119,7 @@
 
 	function run() {
 		if(game.iceBonus >= 16) soldout = true
-		local price = (game.iceBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
+		price = (game.iceBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -140,11 +141,10 @@
 		}
 
 		v += vspeed
-
-		local pricetag = chint(95).tostring() + price.tostring()
 	}
 
 	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -160,6 +160,7 @@
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -170,7 +171,7 @@
 
 	function run() {
 		if(game.airBonus >= 4) soldout = true
-		local price = (game.airBonus + 1) * (800 * ((game.difficulty.tofloat() / 2) + 1))
+		price = (game.airBonus + 1) * (800 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -192,11 +193,10 @@
 		}
 
 		v += vspeed
-
-		local pricetag = chint(95).tostring() + price.tostring()
 	}
 
 	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -212,6 +212,7 @@
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -222,7 +223,7 @@
 
 	function run() {
 		if(game.earthBonus >= 4) soldout = true
-		local price = (game.earthBonus + 1) * (800 * ((game.difficulty.tofloat() / 2) + 1))
+		price = (game.earthBonus + 1) * (800 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -244,11 +245,10 @@
 		}
 
 		v += vspeed
-
-		local pricetag = chint(95).tostring() + price.tostring()
 	}
 
 	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)

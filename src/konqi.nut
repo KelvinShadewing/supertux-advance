@@ -1172,6 +1172,8 @@
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 
+		sprite = sprKatie
+
 		mySprNormal = sprKatie
 		mySprFire = sprKatieFire
 		mySprIce = sprKatieIce

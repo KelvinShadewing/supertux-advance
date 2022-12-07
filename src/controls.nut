@@ -77,7 +77,7 @@
 
 	if(player == 1 || player == 0) {
 		joy = clone(config.joy)
-		if(gvNumPlayers == 1) joy.index = config.joy2.index
+		if(gvNumPlayers == 1 || gvGameMode != gmPlay) joy.index = config.joy2.index
 		autonum = autocon.a
 	}
 	if(player == 2) {
@@ -242,7 +242,11 @@
 			break
 		case "pause":
 			if(keyfunc(config.key.pause) && (player == 1 || player == 0)) return true
-			if( joyfunc(joy.index, joy.pause)) return true
+			if(joyfunc(joy.index, joy.pause)) return true
+			if(player == 0) {
+				if(joyfunc(config.joy.index, config.joy.pause)) return true
+				if(joyfunc(config.joy2.index, config.joy2.pause)) return true
+			}
 			break
 		case "swap":
 			if(keyfunc(config.key.swap) && (player == 1 || player == 0)) return true
