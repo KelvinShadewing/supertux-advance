@@ -23,7 +23,7 @@
 		}
 
 		shape = Rec(x, y, 1, 1, 0)
-		if(!gvPlayer) gvPlayer = this
+		gvPlayer = this
 	}
 
 	function run() {
@@ -361,6 +361,7 @@
 	autocon = clone(defAutocon)
 	gfxReset()
 	gvLightScreen = gvLightScreen1
+	gvSplitScreen = false
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
@@ -401,56 +402,74 @@
 	//Start making actors
 	foreach(i in actlayer.objects)
 	{
-		local n = i.gid - tilef
 		local c
 
-		//Get the tile number and make an actor
-		//according to the image used in actors.png
-		switch(n)
-		{
-			case 0:
-				//newActor(Tux, i.x, i.y - 16)
-				if(!gvPlayer) c = newActor(OverPlayer, i.x + 8, i.y - 8)
-				camx = gvPlayer.x - gvScreenW / 2
-				camy = gvPlayer.y - gvScreenH / 2
-				break
+		if("gid" in i) {
+			local n = i.gid - tilef
 
-			case 1:
-				c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
-				c.level = i.name
-				c.visible = i.visible
-				break
+			//Get the tile number and make an actor
+			//according to the image used in actors.png
+			switch(n)
+			{
+				case 0:
+					//newActor(Tux, i.x, i.y - 16)
+					if(!gvPlayer) c = newActor(OverPlayer, i.x + 8, i.y - 8)
+					camx = gvPlayer.x - gvScreenW / 2
+					camy = gvPlayer.y - gvScreenH / 2
+					break
 
-			case 2:
-				c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
-				c.level = i.name
-				break
+				case 1:
+					c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
+					c.level = i.name
+					c.visible = i.visible
+					break
 
-			case 3:
-				c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
-				c.level = i.name
-				break
+				case 2:
+					c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
+					c.level = i.name
+					break
 
-			case 4:
-				c = newActor(LockIcon, i.x + 8, i.y - 8, i.name)
-				break
+				case 3:
+					c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
+					c.level = i.name
+					break
 
-			case 5:
-				if(i.name == "") break
-				local arg = split(i.name, ",")
-				local n = arg[0]
-				arg.remove(0)
-				if(arg.len() == 1) arg = arg[0]
-				else if(arg.len() == 0) arg = null
-				if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
-				break
+				case 4:
+					c = newActor(LockIcon, i.x + 8, i.y - 8, i.name)
+					break
 
-			case 6:
-				c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
-				c.level = i.name
-				c.visible = i.visible
-				c.raceMode = true
-				break
+				case 5:
+					if(i.name == "") break
+					local arg = split(i.name, ",")
+					local n = arg[0]
+					arg.remove(0)
+					if(arg.len() == 1) arg = arg[0]
+					else if(arg.len() == 0) arg = null
+					if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") c = newActor(getroottable()[n], i.x + 8, i.y - 8, arg)
+					break
+
+				case 6:
+					c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
+					c.level = i.name
+					c.visible = i.visible
+					c.raceMode = true
+					break
+			}
+		}
+
+		//Rectangle actors
+		if(!i.rawin("polygon") && !i.rawin("polyline") && !i.rawin("ellipse") && !i.rawin("point") && !i.rawin("gid")) if(i.name != "") {
+			local arg = split(i.name, ",")
+			local n = arg[0]
+			arg.remove(0)
+			if(arg.len() == 1) arg = arg[0]
+			else if(arg.len() == 0) arg = null
+			if(getroottable().rawin(n)) if(typeof getroottable()[n] == "class") {
+				print(i.x + " - " + i.y)
+				c = newActor(getroottable()[n], i.x + (i.width / 2.0), i.y + (i.height / 2.0), arg)
+				actor[c].w = i.width / 2.0
+				actor[c].h = i.height / 2.0
+			}
 		}
 
 		if(typeof c == "integer") mapActor[i.id] <- c

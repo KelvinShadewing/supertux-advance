@@ -666,7 +666,7 @@
 					if(game.ps1.health < game.maxHealth) game.ps1.health += 4
 					else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
 				}
-				
+
 				if(gvPlayer2) {
 					if(game.ps2.health < game.maxHealth) game.ps2.health += 4
 					else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
@@ -1265,7 +1265,8 @@
 	function run() {
 		if(!broken) {
 			if(alpha < 1.0) alpha += 0.1
-			if(gvPlayer && hitTest(shape, gvPlayer.shape) && !wasStepped) wasStepped = true
+			if((gvPlayer && hitTest(shape, gvPlayer.shape)
+			|| gvPlayer2 && hitTest(shape, gvPlayer2.shape)) && !wasStepped) wasStepped = true
 			if(wasStepped) timer++
 			if(timer == 30) {
 				broken = true
@@ -1274,11 +1275,13 @@
 				alpha = 0.0
 				if(sprCrumbleRock == sprCrumbleIce) newActor(IceChunks, x, y)
 			}
-			drawSpriteExZ(7, sprCrumbleRock, timer / 8, x - camx, y - camy, 0, 0, 1, 1, alpha)
 		}
 		else {
 			if(timer < 300) timer++
-			if(gvPlayer && !hitTest(shape, gvPlayer.shape) && timer == 300) {
+			if((gvPlayer && !gvPlayer2 && !hitTest(shape, gvPlayer.shape)
+				|| gvPlayer2 && !gvPlayer && !hitTest(shape, gvPlayer2.shape)
+				|| gvPlayer && gvPlayer2 && !hitTest(shape, gvPlayer.shape) && !hitTest(shape, gvPlayer2.shape))
+			&& timer == 300) {
 				broken = false
 				tileSetSolid(x, y, 1)
 				timer = 0

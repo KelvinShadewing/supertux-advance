@@ -400,6 +400,7 @@
 	gvLightScreen = gvLightScreen1
 	setDrawTarget(gvPlayScreen)
 	runAmbientLight()
+	runAmbientLight(true)
 
 	if(drawBG != 0) drawBG()
 	if(drawWeather != 0) drawWeather()
@@ -430,7 +431,6 @@
 
 		gvLightScreen = gvLightScreen2
 		setDrawTarget(gvPlayScreen2)
-		runAmbientLight(true)
 
 		if(drawBG2 != 0) drawBG2()
 		if(drawWeather2 != 0) drawWeather2()
@@ -687,11 +687,31 @@
 		if(gvDoIGT && config.showleveligt && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
 
 		//Draw offscreen player
-		if(gvPlayer) if(gvPlayer.y < -8) {
-			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps1.weapon], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+		if(!gvSplitScreen) {
+			if(gvPlayer && gvPlayer.y < -8) {
+				if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps1.weapon], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+			}
+			if(gvPlayer2 && gvPlayer2.y < -8) {
+				if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx, 8 - (gvPlayer2.y / 4))
+			}
 		}
-		if(gvPlayer2) if(gvPlayer2.y < -8) {
-			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx, 8 - (gvPlayer2.y / 4))
+		else {
+			if(gvSwapScreen) {
+				if(gvPlayer && gvPlayer.y < -8) {
+					if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps1.weapon], gvPlayer.x - camx1 + (gvScreenW / 2), 8 - (gvPlayer.y / 4))
+				}
+				if(gvPlayer2 && gvPlayer2.y < -8) {
+					if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx2, 8 - (gvPlayer2.y / 4))
+				}
+			}
+			else {
+				if(gvPlayer && gvPlayer.y < -8) {
+					if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps1.weapon], gvPlayer.x - camx1, 8 - (gvPlayer.y / 4))
+				}
+				if(gvPlayer2 && gvPlayer2.y < -8) {
+					if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx2 + (gvScreenW / 2), 8 - (gvPlayer2.y / 4))
+				}
+			}
 		}
 
 		//Draw warning sign
@@ -752,7 +772,7 @@
 
 	drawDebug()
 
-	if(levelEndRunner == 0 && gvPlayer) {
+	if(levelEndRunner == 0 && (gvPlayer || gvPlayer2)) {
 		gvIGT++
 		game.igt++
 	}
@@ -828,7 +848,7 @@
 		}
 
 		if(gvPlayer && target == gvPlayer) {
-			camx1 = _x.tofloat() - (gvScreenW / 2)
+			camx1 = _x.tofloat() - (gvScreenW / 4)
 			camy1 = _y.tofloat() - (gvScreenH / 2)
 
 			if(camx1 > ux) camx1 = ux
@@ -838,7 +858,7 @@
 		}
 
 		if(gvPlayer2 && target == gvPlayer2) {
-			camx2 = _x.tofloat() - (gvScreenW / 2)
+			camx2 = _x.tofloat() - (gvScreenW / 4)
 			camy2 = _y.tofloat() - (gvScreenH / 2)
 
 			if(camx2 > ux) camx2 = ux

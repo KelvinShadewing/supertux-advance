@@ -3830,7 +3830,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprCaptainMorel, 0 + (flip.tointeger() * 8), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSpriteEx(sprCaptainMorel, 0 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)

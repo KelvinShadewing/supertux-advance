@@ -498,28 +498,6 @@
          "objects":[
                 {
                  "class":"",
-                 "height":192.897,
-                 "id":944,
-                 "name":"drawBG = dbgCave; drawWeather = 0",
-                 "rotation":0,
-                 "visible":true,
-                 "width":160,
-                 "x":4000,
-                 "y":256
-                }, 
-                {
-                 "class":"",
-                 "height":222.027,
-                 "id":945,
-                 "name":"drawBG = dbgAurora; drawWeather = dweSnow",
-                 "rotation":0,
-                 "visible":true,
-                 "width":48,
-                 "x":4160,
-                 "y":208
-                }, 
-                {
-                 "class":"",
                  "height":384,
                  "id":1177,
                  "name":"endGoal(\"aurora-fishy\")",
@@ -544,7 +522,7 @@
                  "class":"",
                  "height":24.04545,
                  "id":1382,
-                 "name":"drawBG = dbgCave; gvPlayer.hspeed = 0; playerTeleport(myTarget, 5640, 928); drawWeather = 0",
+                 "name":"myTarget.hspeed = 0; playerTeleport(myTarget, 5640, 928)",
                  "rotation":0,
                  "visible":true,
                  "width":25.4091,
@@ -555,7 +533,7 @@
                  "class":"",
                  "height":13.2121,
                  "id":1427,
-                 "name":"playerTeleport(myTarget, 5664, 16); drawBG = dbgAurora; drawWeather = dweSnow",
+                 "name":"playerTeleport(myTarget, 5664, 16)",
                  "rotation":0,
                  "visible":true,
                  "width":19.9090999999999,
@@ -5564,6 +5542,61 @@
                  "width":16,
                  "x":2336,
                  "y":752
+                }, 
+                {
+                 "class":"",
+                 "height":176,
+                 "id":1448,
+                 "name":"TransZone,dbgCave,0,0x808080ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":128,
+                 "x":3984,
+                 "y":256
+                }, 
+                {
+                 "class":"",
+                 "height":176,
+                 "id":1451,
+                 "name":"TransZone,dbgCave,0,0x808080ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":128,
+                 "x":48,
+                 "y":1024
+                }, 
+                {
+                 "class":"",
+                 "height":176,
+                 "id":1453,
+                 "name":"TransZone,dbgAurora,dweSnow,0xffffffff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":128,
+                 "x":4112,
+                 "y":256
+                }, 
+                {
+                 "class":"",
+                 "height":176,
+                 "id":1454,
+                 "name":"TransZone,dbgAurora,dweSnow,0xffffffff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":128,
+                 "x":5600,
+                 "y":0
+                }, 
+                {
+                 "class":"",
+                 "height":176,
+                 "id":1455,
+                 "name":"TransZone,dbgCave,0,0x808080ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":128,
+                 "x":5584,
+                 "y":912
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -5572,7 +5605,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":1447,
+ "nextobjectid":1456,
  "orientation":"orthogonal",
  "properties":[
         {
