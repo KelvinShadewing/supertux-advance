@@ -561,8 +561,11 @@
 	fileWrite("config.json", jsonWrite(config))
 }
 
-::rebindJoyPeek <- function(axis) {
+::rebindJoyPeek <- function(axis, player = 0) {
 	resetDrawTarget()
+
+	local joy = config.joy
+	if(player != 0) joy = config.joy2
 
 	local message = gvLangObj["controls-menu"]["peek-axis"]
 	if(axis == 0) message += gvLangObj["controls-menu"]["peek-horizontal"]
@@ -575,9 +578,9 @@
 		if(keyPress(k_escape)) done = true
 
 		for(local i = 0; i < 10; i++) {
-			if(abs(joyAxis(0, i)) >= 1000 && abs(joyAxis(0, i)) <= 10000) {
-				if(axis == 0) config.joy.xPeek = i
-				else config.joy.yPeek = i
+			if(abs(joyAxis(joy.index, i)) >= 1000 && abs(joyAxis(joy.index, i)) <= 10000) {
+				if(axis == 0) joy.xPeek = i
+				else joy.yPeek = i
 				done = true
 				break
 			}

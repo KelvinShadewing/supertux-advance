@@ -342,7 +342,7 @@
                  "class":"",
                  "height":384,
                  "id":939,
-                 "name":"endGoal(\"aurora-steps\")",
+                 "name":"endGoal(\"aurora-steps\", \"\", 1)",
                  "rotation":0,
                  "visible":true,
                  "width":17,

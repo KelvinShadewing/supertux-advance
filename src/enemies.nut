@@ -65,7 +65,7 @@
 					if("invincible" in gvPlayer && gvPlayer.invincible > 0) hurtInvinc()
 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming) {
 						if(!squish) {
-							if(getcon("jump", "hold")) gvPlayer.vspeed = -8.0
+							if(getcon("jump", "hold", false, 1)) gvPlayer.vspeed = -8.0
 							else gvPlayer.vspeed = -4.0
 						}
 						getHurt(gvPlayer, 1, "normal", false, false, true)
@@ -83,7 +83,7 @@
 					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) hurtInvinc()
 					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming) {
 						if(!squish) {
-							if(getcon("jump", "hold")) gvPlayer2.vspeed = -8.0
+							if(getcon("jump", "hold", false, 2)) gvPlayer2.vspeed = -8.0
 							else gvPlayer2.vspeed = -4.0
 						}
 						getHurt(gvPlayer2, 1, "normal", false, false, true)
@@ -1945,7 +1945,7 @@
 			die()
 			popSound(sndKick)
 
-			if(getcon("jump", "hold")) {
+			if(getcon("jump", "hold", false, _by.playerNum)) {
 				_by.vspeed = -8
 				popSound(sndSquish, 0)
 			}
@@ -3389,7 +3389,7 @@
 
 		//Getting carried
 		if(target != null) {
-			if(hitTest(shape, target.shape) && getcon("shoot", "hold", false target.playerNum)
+			if(hitTest(shape, target.shape) && getcon("shoot", "hold", false, target.playerNum)
 			&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
 				y = target.y
 				flip = target.flip
@@ -3423,7 +3423,7 @@
 				held = false
 			}
 		}
-		if(!getcon("shoot", "hold")) {
+		if(!getcon("shoot", "hold", false, target.playerNum)) {
 			if(getcon("shoot", "release", false, target.playerNum) && getcon("up", "hold", false, target.playerNum) && held) vspeed = -4.0
 			if(held && target) {
 				target.holding = 0

@@ -105,6 +105,11 @@
 				if(hitTest(shape[i], gvPlayer.shape)) scanFound = true
 			}
 		}
+		if(gvPlayer2) {
+			for(local i = 0; i < shape.len(); i++) {
+				if(hitTest(shape[i], gvPlayer2.shape)) scanFound = true
+			}
+		}
 
 		if(scanFound) {
 			if(!rehide && !found) game.secrets++

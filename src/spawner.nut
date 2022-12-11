@@ -1,4 +1,4 @@
-::Spawner <- class extends Actor {
+::Spawner <- class extends PhysAct {
 	myob = -1
 	timer = 60
 	maxTime = 60
@@ -23,14 +23,12 @@
 			if("nocount" in actor[myob]) actor[myob].nocount = true
 		}
 		else deleteActor(id)
+		shape = Rec(x, y, 8, 8, 0)
 	}
 
 	function run() {
 		//Only be active on screen
-		if(x < camx) return
-		if(y < camy) return
-		if(x > camx + screenW()) return
-		if(y > camy + screenH()) return
+		if(!isOnScreen()) return
 
 		if(infinite || !(myob in actor)) {
 			timer--
