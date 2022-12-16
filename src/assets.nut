@@ -146,6 +146,8 @@
 ::defSpringD <- sprSpringD
 ::sprWoodBox <- newSprite("res/gfx/woodbox.png", 16, 16, 0, 0, 0, 0)
 ::defWoodBox <- sprWoodBox
+::sprWoodBoxSnow <- newSprite("res/gfx/woodbox-snow.png", 16, 16, 0, 0, 0, 0)
+::defWoodBoxSnow <- sprWoodBoxSnow
 ::sprBoxShop <- newSprite("res/gfx/shopblock.png", 16, 16, 0, 0, 0, 0)
 ::defBoxShop <- sprBoxShop
 ::sprIceBlock <- newSprite("res/gfx/iceblock.png", 16, 16, 0, 0, 0, 0)
@@ -379,7 +381,7 @@
 ::defIceTrapLarge <- sprIceTrapLarge
 ::sprIceTrapTall <- newSprite("res/gfx/icetraptall.png", 24, 48, 0, 0, 12, 24)
 ::defIceTrapTall <- sprIceTrapTall
-::sprIceChunks <- newSprite("res/gfx/icechunk.png", 8, 8, 0, 0, 4, 4)
+::sprIceChunks <- newSprite("res/gfx/icechunk.png", 12, 12, 0, 0, 6, 6)
 ::defIceChunks <- sprIceChunks
 ::sprTinyWind <- newSprite("res/gfx/tinywind.png", 16, 16, 0, 0, 8, 8)
 ::defTinyWind <- sprTinyWind
@@ -694,6 +696,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprBearyl = sprSirCrusher
 	sprWheelerHamster = sprShiveriken
 	sprSnake = sprSealion
+	sprWoodBox = sprWoodBoxSnow
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

@@ -230,6 +230,7 @@
 	angle = 0
 	xscale = 0
 	yscale = 0
+	mod = 0
 
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y)
@@ -240,6 +241,7 @@
 		angle = _arr[4]
 		xscale = _arr[5]
 		yscale = _arr[6]
+		mod = getFrames() % 2
 	}
 
 	function run() {
