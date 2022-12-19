@@ -226,6 +226,7 @@
 	musicVolume = 64
 	fullscreen = false
 	lookAhead = false
+	fgperspective = true
 }
 
 ::contribDidRun <- {}
@@ -239,6 +240,7 @@
 ::gvScreenH <- 0
 ::gvScreen2W <- 0
 ::gvScreen2H <- 0
+::gvPerspective <- 0
 
 //Debug variabls
 ::gvFPS <- 0

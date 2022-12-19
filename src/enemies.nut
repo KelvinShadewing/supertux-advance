@@ -574,8 +574,9 @@
 		base.run()
 
 		if(active) {
-			if(gvPlayer && hspeed == 0) {
-				if(x > gvPlayer.x) hspeed = -0.5
+			local target = findPlayer()
+			if(target && hspeed == 0) {
+				if(x > target.x) hspeed = -0.5
 				else hspeed = 0.5
 			}
 
@@ -598,7 +599,7 @@
 			//Draw
 			if(frozen) {
 				//Create ice block
-				if(gvPlayer && icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				if(target && icebox == -1 && !hitTest(shape, target.shape)) {
 					if(health > 0) icebox = mapNewSolid(shape)
 				}
 			}
@@ -608,7 +609,7 @@
 					mapDeleteSolid(icebox)
 					newActor(IceChunks, x, y)
 					icebox = -1
-					if(gvPlayer) if(x > gvPlayer.x) flip = true
+					if(target) if(x > target.x) flip = true
 					else flip = false
 				}
 			}
@@ -912,7 +913,7 @@
 
 		popSound(sndFizz, 0)
 		if(_stomp) {
-			if(_by.anim == _by.anJumpT || gvPlayer.anim == _by.anFall) {
+			if(_by.anim == _by.anJumpT || _by.anim == _by.anFall) {
 				_by.anim = _by.anJumpU
 				_by.frame = _by.anJumpU[0]
 			}

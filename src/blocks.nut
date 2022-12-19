@@ -665,11 +665,19 @@
 				if(gvPlayer) {
 					if(game.ps1.health < game.maxHealth) game.ps1.health += 4
 					else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
+					if(!gvPlayer2 && gvNumPlayers == 2) {
+						gvPlayer2 = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
+						gvPlayer2.tftime = 0
+					}
 				}
 
 				if(gvPlayer2) {
 					if(game.ps2.health < game.maxHealth) game.ps2.health += 4
 					else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
+					if(!gvPlayer && gvNumPlayers == 2) {
+						gvPlayer = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
+						gvPlayer.tftime = 0
+					}
 				}
 			}
 

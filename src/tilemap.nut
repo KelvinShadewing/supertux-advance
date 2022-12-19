@@ -226,10 +226,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), data.layers[t].opacity * a)
-								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + round(j * data.tilewidth * sx), y +round (i * data.tileheight * sy), data.layers[t].opacity * a)
+								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
 							}
-							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
+							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
 							k = -1
 							break
 						}
@@ -268,10 +268,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), data.layers[t].opacity * a, c)
-								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, 1, 1, data.layers[t].opacity * a, c)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), data.layers[t].opacity * a, c)
+								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a, c)
 							}
-							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + (j * data.tilewidth * sx), y + (i * data.tileheight * sy), 0, 0, 1, 1, data.layers[t].opacity * a, c)
+							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a, c)
 							k = -1
 							break
 						}

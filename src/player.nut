@@ -262,10 +262,11 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		stopMusic()
+		if(!gvPlayer && !gvPlayer2) stopMusic()
 		playSound(sndDie, 0)
 		sprite = _arr[0]
 		anim = _arr[1]
+		playerNum = _arr[2]
 	}
 
 	function run() {
@@ -277,10 +278,13 @@
 				startPlay(gvMap.file, true, true)
 				if(game.check == false) {
 					gvIGT = 0
-					if(playerNum == 1) game.ps1.weapon = "normal"
-					if(playerNum == 2) game.ps2.weapon = "normal"
 				}
 			}
+			if(game.check == false) {
+				if(playerNum == 1) game.ps1.weapon = "normal"
+				if(playerNum == 2) game.ps2.weapon = "normal"
+			}
+			
 		}
 	}
 

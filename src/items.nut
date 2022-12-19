@@ -105,7 +105,7 @@
 		}
 		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
-			game.ps1.berries++
+			game.ps2.berries++
 			stopSound(sndGulp)
 			playSound(sndGulp, 0)
 		}

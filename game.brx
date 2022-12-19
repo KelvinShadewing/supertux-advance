@@ -123,6 +123,7 @@ gvPlayScreen = newTexture(screenW(), screenH())
 gvPlayScreen2 = newTexture(screenW() / 2, screenH())
 gvLightScreen1 = newTexture(screenW(), screenH())
 gvLightScreen2 = newTexture(screenW(), screenH())
+gvLightScreen2 = newTexture(screenW() + 16, screenH() + 16)
 textureSetBlendMode(gvLightScreen1, bm_sub)
 textureSetBlendMode(gvLightScreen2, bm_sub)
 
