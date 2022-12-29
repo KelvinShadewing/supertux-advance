@@ -286,108 +286,108 @@
 	while(!done) {
 		dbgOceanMoving()
 
-		local message = gvLangObj["controls-menu"]["press-key-for"] + " "
+		local keyname = ""
 		switch(newkey) {
 			case 0:
-				message += gvLangObj["controls-menu"]["up"]
+				keyname = gvLangObj["controls-menu"]["up-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.up = anyKeyPress()
 					done = true
 				}
 				break
 			case 1:
-				message += gvLangObj["controls-menu"]["down"]
+				keyname = gvLangObj["controls-menu"]["down-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.down = anyKeyPress()
 					done = true
 				}
 				break
 			case 2:
-				message += gvLangObj["controls-menu"]["left"]
+				keyname = gvLangObj["controls-menu"]["left-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.left = anyKeyPress()
 					done = true
 				}
 				break
 			case 3:
-				message += gvLangObj["controls-menu"]["right"]
+				keyname = gvLangObj["controls-menu"]["right-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.right = anyKeyPress()
 					done = true
 				}
 				break
 			case 4:
-				message += gvLangObj["controls-menu"]["jump"]
+				keyname = gvLangObj["controls-menu"]["jump-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.jump = anyKeyPress()
 					done = true
 				}
 				break
 			case 5:
-				message += gvLangObj["controls-menu"]["shoot"]
+				keyname = gvLangObj["controls-menu"]["shoot-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.shoot = anyKeyPress()
 					done = true
 				}
 				break
 			case 6:
-				message += gvLangObj["controls-menu"]["run"]
+				keyname = gvLangObj["controls-menu"]["run-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.run = anyKeyPress()
 					done = true
 				}
 				break
 			case 7:
-				message += gvLangObj["controls-menu"]["sneak"]
+				keyname = gvLangObj["controls-menu"]["sneak-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.sneak = anyKeyPress()
 					done = true
 				}
 				break
 			case 8:
-				message += gvLangObj["controls-menu"]["pause"]
+				keyname = gvLangObj["controls-menu"]["pause-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.pause = anyKeyPress()
 					done = true
 				}
 				break
 			case 9:
-				message += gvLangObj["controls-menu"]["item-swap"]
+				keyname = gvLangObj["controls-menu"]["item-swap-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.swap = anyKeyPress()
 					done = true
 				}
 				break
 			case 10:
-				message += gvLangObj["controls-menu"]["menu-accept"]
+				keyname = gvLangObj["controls-menu"]["menu-accept-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.accept = anyKeyPress()
 					done = true
 				}
 				break
 			case 11:
-				message += gvLangObj["controls-menu"]["cam-left-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-left-peek-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.leftPeek = anyKeyPress()
 					done = true
 				}
 				break
 			case 12:
-				message += gvLangObj["controls-menu"]["cam-right-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-right-peek-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.rightPeek = anyKeyPress()
 					done = true
 				}
 				break
 			case 13:
-				message += gvLangObj["controls-menu"]["cam-down-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-down-peek-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.downPeek = anyKeyPress()
 					done = true
 				}
 				break
 			case 14:
-				message += gvLangObj["controls-menu"]["cam-up-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-up-peek-selection"]
 				if(anyKeyPress() != -1) {
 					config.key.upPeek = anyKeyPress()
 					done = true
@@ -397,7 +397,7 @@
 				done = true
 				break
 		}
-		message += "..."
+		local message = format(gvLangObj["controls-menu"]["press-key-for"], keyname)
 
 		setDrawColor(0x00000080)
 		drawRec(0, 0, screenW(), 24, true)
@@ -423,10 +423,10 @@
 		dbgOceanMoving()
 
 		if(keyPress(k_escape)) done = true
-		local message = gvLangObj["controls-menu"]["press-button-for"] + " "
+		local keyname = ""
 		switch(joystep) {
 			case 4:
-				message += gvLangObj["controls-menu"]["jump"]
+				keyname = gvLangObj["controls-menu"]["jump-selection"]
 				if(keyPress(k_backspace)) {
 					joy.jump = -1
 					done = true
@@ -437,7 +437,7 @@
 				}
 				break
 			case 5:
-				message += gvLangObj["controls-menu"]["shoot"]
+				keyname = gvLangObj["controls-menu"]["shoot-selection"]
 				if(keyPress(k_backspace)) {
 					joy.shoot = -1
 					done = true
@@ -448,7 +448,7 @@
 				}
 				break
 			case 6:
-				message += gvLangObj["controls-menu"]["run"]
+				keyname = gvLangObj["controls-menu"]["run-selection"]
 				if(keyPress(k_backspace)) {
 					joy.run = -1
 					done = true
@@ -459,7 +459,7 @@
 				}
 				break
 			case 7:
-				message += gvLangObj["controls-menu"]["sneak"]
+				keyname = gvLangObj["controls-menu"]["sneak-selection"]
 				if(keyPress(k_backspace)) {
 					joy.sneak = -1
 					done = true
@@ -470,7 +470,7 @@
 				}
 				break
 			case 8:
-				message += gvLangObj["controls-menu"]["pause"]
+				keyname = gvLangObj["controls-menu"]["pause-selection"]
 				if(keyPress(k_backspace)) {
 					joy.pause = -1
 					done = true
@@ -481,7 +481,7 @@
 				}
 				break
 			case 9:
-				message += gvLangObj["controls-menu"]["item-swap"]
+				keyname = gvLangObj["controls-menu"]["item-swap-selection"]
 				if(keyPress(k_backspace)) {
 					joy.swap = -1
 					done = true
@@ -492,7 +492,7 @@
 				}
 				break
 			case 10:
-				message += gvLangObj["controls-menu"]["menu-accept"]
+				keyname = gvLangObj["controls-menu"]["menu-accept-selection"]
 				if(keyPress(k_backspace)) {
 					joy.accept = -1
 					done = true
@@ -503,7 +503,7 @@
 				}
 				break
 			case 11:
-				message += gvLangObj["controls-menu"]["cam-left-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-left-peek-selection"]
 				if(keyPress(k_backspace)) {
 					joy.leftPeek = -1
 					done = true
@@ -514,7 +514,7 @@
 				}
 				break
 			case 12:
-				message += gvLangObj["controls-menu"]["cam-right-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-right-peek-selection"]
 				if(keyPress(k_backspace)) {
 					joy.rightPeek = -1
 					done = true
@@ -525,7 +525,7 @@
 				}
 				break
 			case 13:
-				message += gvLangObj["controls-menu"]["cam-down-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-down-peek-selection"]
 				if(keyPress(k_backspace)) {
 					joy.downPeek = -1
 					done = true
@@ -536,7 +536,7 @@
 				}
 				break
 			case 14:
-				message += gvLangObj["controls-menu"]["cam-up-peek"]
+				keyname = gvLangObj["controls-menu"]["cam-up-peek-selection"]
 				if(keyPress(k_backspace)) {
 					joy.upPeek = -1
 					done = true
@@ -550,7 +550,8 @@
 				done = true
 				break
 		}
-		message += "...\n" + gvLangObj["controls-menu"]["clear"]
+		local message = format(gvLangObj["controls-menu"]["press-button-for"], keyname)
+		message += "\n" + gvLangObj["controls-menu"]["clear"]
 
 		setDrawColor(0x00000080)
 		drawRec(0, 0, screenW(), 24, true)
@@ -567,9 +568,7 @@
 	local joy = config.joy
 	if(player != 0) joy = config.joy2
 
-	local message = gvLangObj["controls-menu"]["peek-axis"]
-	if(axis == 0) message += gvLangObj["controls-menu"]["peek-horizontal"]
-	else message += gvLangObj["controls-menu"]["peek-vertical"]
+	local message = format(gvLangObj["controls-menu"]["peek-axis"], gvLangObj["controls-menu"][axis == 0 ? "peek-horizontal" : "peek-vertical"])
 	local done = false
 
 	update()
