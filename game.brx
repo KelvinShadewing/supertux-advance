@@ -90,7 +90,7 @@ for(local i = 0; i < aspects.len(); i++) {
 }
 switch(reschoice) {
 	case 0:
-		setResolution(424, 240)
+		setResolution(426, 240)
 		break
 	case 1:
 		setResolution(400, 240)

@@ -476,7 +476,7 @@
                  "class":"",
                  "height":17.3333,
                  "id":218,
-                 "name":"if(gvMusicName != musIceland) {songPlay(musIceland); drawBG = dbgCave; drawWeather = 0}",
+                 "name":"if(gvMusicName != musIceland) songPlay(musIceland)",
                  "rotation":0,
                  "visible":true,
                  "width":176,
@@ -487,10 +487,10 @@
                  "class":"",
                  "height":79.6667,
                  "id":306,
-                 "name":"if(gvMusicName != musIceland) {songPlay(musIceland); drawBG = dbgCave; drawWeather = 0}",
+                 "name":"if(gvMusicName != musIceland) songPlay(musIceland)",
                  "rotation":0,
                  "visible":true,
-                 "width":46.3333,
+                 "width":48,
                  "x":3728,
                  "y":880
                 }, 
@@ -540,25 +540,14 @@
                 }, 
                 {
                  "class":"",
-                 "height":572,
-                 "id":413,
-                 "name":"drawBG = dbgAuroraNight",
+                 "height":79.6667,
+                 "id":474,
+                 "name":"if(gvMusicName != musIceland) songPlay(musIceland)",
                  "rotation":0,
                  "visible":true,
-                 "width":16,
-                 "x":7312,
-                 "y":-32
-                }, 
-                {
-                 "class":"",
-                 "height":601.333333333333,
-                 "id":414,
-                 "name":"drawBG = dbgCave",
-                 "rotation":0,
-                 "visible":true,
-                 "width":16,
-                 "x":7296,
-                 "y":-32
+                 "width":64,
+                 "x":5056,
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3065,6 +3054,61 @@
                  "width":16,
                  "x":6720,
                  "y":256
+                }, 
+                {
+                 "class":"",
+                 "height":80,
+                 "id":472,
+                 "name":"TransZone,dbgCave,0,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":64,
+                 "x":3216,
+                 "y":880
+                }, 
+                {
+                 "class":"",
+                 "height":80,
+                 "id":473,
+                 "name":"TransZone,dbgCave,0,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":48,
+                 "x":3728,
+                 "y":880
+                }, 
+                {
+                 "class":"",
+                 "height":80,
+                 "id":475,
+                 "name":"TransZone,dbgCave,0,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":64,
+                 "x":5056,
+                 "y":176
+                }, 
+                {
+                 "class":"",
+                 "height":368,
+                 "id":476,
+                 "name":"TransZone,dbgCave,0,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":7296,
+                 "y":96
+                }, 
+                {
+                 "class":"",
+                 "height":368,
+                 "id":477,
+                 "name":"TransZone,dbgSnowNight,dweSnow,0x6080e0ff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":7312,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3073,7 +3117,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":472,
+ "nextobjectid":479,
  "orientation":"orthogonal",
  "properties":[
         {

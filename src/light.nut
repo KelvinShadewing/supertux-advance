@@ -107,11 +107,11 @@
 
 	setDrawTarget(gvLightScreen1)
 	setDrawColor(gvLight)
-	drawRec(0, 0, 424, 240, true)
+	drawRec(0, 0, 426, 240, true)
 
 	setDrawTarget(gvLightScreen2)
 	setDrawColor(gvLight2)
-	drawRec(0, 0, 424, 240, true)
+	drawRec(0, 0, 426, 240, true)
 
 	setDrawTarget(prevTarget)
 }
