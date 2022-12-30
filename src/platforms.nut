@@ -227,7 +227,7 @@
 		s = _arr[2].tofloat()
 		hb = (Cir(x, y, 6))
 		chainpos = []
-		shape = Rec(x, y, r * 4, r * 4, 0)
+		shape = Rec(x, y, r * 8, r * 8, 0)
 	}
 
 	function run() {

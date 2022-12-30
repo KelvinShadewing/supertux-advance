@@ -3388,55 +3388,57 @@
 			if(!held && isOnScreen()) popSound(sndIceblock)
 		}
 
-		//Getting carried
 		if(target != null) {
-			if(hitTest(shape, target.shape) && getcon("shoot", "hold", false, target.playerNum)
-			&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
-				y = target.y
-				flip = target.flip
-				if(flip == 0) x = target.x + 10
-				else x = target.x - 10
-				x += target.hspeed
-				y += target.vspeed
-				held = true
-				target.holding = id
+			//Getting carried
+			if(target != null) {
+				if(hitTest(shape, target.shape) && getcon("shoot", "hold", false, target.playerNum)
+				&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
+					y = target.y
+					flip = target.flip
+					if(flip == 0) x = target.x + 10
+					else x = target.x - 10
+					x += target.hspeed
+					y += target.vspeed
+					held = true
+					target.holding = id
+				}
+
+				if(target.rawin("anSlide") && target.anim == target.anSlide && held) {
+					target.holding = 0
+
+					//escape from solid
+					if(!placeFree(x, y)) {
+						local escapedir = target.x <=> x
+						while(!placeFree(x, y)) x += escapedir
+					}
+					held = false
+				}
+
+				if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
+					target.holding = 0
+
+					//escape from solid
+					if(!placeFree(x, y)) {
+						local escapedir = target.x <=> x
+						while(!placeFree(x, y)) x += escapedir
+					}
+					held = false
+				}
 			}
+			if(!getcon("shoot", "hold", false, target.playerNum)) {
+				if(getcon("shoot", "release", false, target.playerNum) && getcon("up", "hold", false, target.playerNum) && held) vspeed = -4.0
+				if(held && target) {
+					target.holding = 0
+					x += target.hspeed * 2
 
-			if(target.rawin("anSlide") && target.anim == target.anSlide && held) {
-				target.holding = 0
-
-				//escape from solid
-				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
+					//escape from solid
+					if(!placeFree(x, y)) {
+						local escapedir = target.x <=> x
+						while(!placeFree(x, y)) x += escapedir
+					}
 				}
 				held = false
 			}
-
-			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
-				target.holding = 0
-
-				//escape from solid
-				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
-				}
-				held = false
-			}
-		}
-		if(!getcon("shoot", "hold", false, target.playerNum)) {
-			if(getcon("shoot", "release", false, target.playerNum) && getcon("up", "hold", false, target.playerNum) && held) vspeed = -4.0
-			if(held && target) {
-				target.holding = 0
-				x += target.hspeed * 2
-
-				//escape from solid
-				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
-				}
-			}
-			held = false
 		}
 
 		if(held) {
