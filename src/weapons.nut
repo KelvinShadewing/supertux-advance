@@ -638,6 +638,7 @@
 	element = "earth"
 	power = 1
 	blast = true
+	piercing = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)

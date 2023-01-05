@@ -147,7 +147,7 @@
 		}
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
-			if(hitTest(shape, i.shape) && vspeed == 0) {
+			if((hitTest(shape, i.shape) || hitTest(slideshape, i.shape)) && vspeed == 0) {
 				if(i.blast && i.frame < 1 && !i.box) {
 					if(coins <= 1) {
 						deleteActor(id)
@@ -167,8 +167,6 @@
 						popSound(sndBump, 0)
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
-				}
-				if(i.owner != id) {
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
 				}

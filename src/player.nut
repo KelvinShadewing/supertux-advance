@@ -189,7 +189,7 @@
 				game.maxEnergy++
 				stats.subitem = 0
 				tftime = 0
-				playSound(sndHeal, 0)
+				popSound(sndHeal, 0)
 			}
 			return
 		}
@@ -226,14 +226,16 @@
 			case "muffinBlue":
 				if(stats.health < game.maxHealth) {
 					stats.health += 4
-					newActor(Heal, x - 16 + randInt(32), y - 16 + randInt(32))
+					for(local i = 0; i < 4; i++) newActor(Heal, x - 16 + randInt(32), y - 16 + randInt(32))
+					popSound(sndHeal, 0)
 					stats.subitem = 0
 				}
 				break
 			case "muffinRed":
 				if(stats.health < game.maxHealth) {
 					stats.health += 16
-					newActor(Heal, x - 16 + randInt(32), y - 16 + randInt(32))
+					for(local i = 0; i < 4; i++) newActor(Heal, x - 16 + randInt(32), y - 16 + randInt(32))
+					popSound(sndHeal, 0)
 					stats.subitem = 0
 				}
 				break
