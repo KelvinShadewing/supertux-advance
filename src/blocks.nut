@@ -1245,7 +1245,7 @@
 	function draw() {
 		if(full || vspeed < 0) {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
-			drawSpriteZ(2, getroottable()[game.characters[character]["doll"]], 0, x - camx, y - camy + v)
+			drawSpriteZ(2, getroottable()[gvCharacters[character]["doll"]], 0, x - camx, y - camy + v)
 		}
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}

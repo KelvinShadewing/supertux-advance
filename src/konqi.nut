@@ -415,38 +415,51 @@
 				if(stats.weapon == "air" && energy < 1) energy += 0.02
 			}
 			if(canMove) {
-				if(getcon("sneak", "hold", true, playerNum) || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1) && config.stickspeed || anim == anCrawl) mspeed = 1.0
-				else if((getcon("run", "hold", true, playerNum) || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9) && config.stickspeed) && anim != anCrawl) {
-					if(stats.weapon == "ice") mspeed = 3.5
-					else mspeed = 3.0
+				mspeed = 3.0
+				if(config.stickspeed) {
+					local j = null
+					if(playerNum == 1) j = config.joy
+					if(playerNum == 2) j = config.joy2
+					if(abs(joyX(j.index)) >  js_max * 0.1) mspeed = (3.0 * abs(joyX(j.index))) / float(js_max)
 				}
-				else mspeed = 2.0
+
+				if(stats.weapon == "ice") mspeed += 0.5
+				if(invincible) mspeed += 0.4
 				if(nowInWater) mspeed *= 0.8
-				if(anim == anStomp || anim == anStatue) mspeed = 0.5
-				if(anim == anStatue && !placeFree(x, y + 1)) mspeed = 0.0
+				if(anim == anCrawl) mspeed = 1.0
 				if(zoomies > 0) mspeed *= 2.0
 
 				//Moving left and right
 				if(zoomies > 0) accel = 0.4
 				else accel = 0.2
-				if(anim != anStatue) {
-					if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
-						if(onIce()) hspeed += accel / 2.0
-						else hspeed += accel
+
+				if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+					if(hspeed >= 2) {
+						if(onIce()) hspeed += accel * 0.05
+						else hspeed += accel * 0.1
 					}
-					if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
-						if(onIce()) hspeed -= accel / 2.0
-						else hspeed -= accel
+					else if(onIce()) hspeed += accel / 2.0
+					else hspeed += accel
+				}
+
+				if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
+					if(hspeed <= -2) {
+						if(onIce()) hspeed -= accel * 0.05
+						else hspeed -= accel * 0.1
 					}
+					else if(onIce()) hspeed -= accel / 2.0
+					else hspeed -= accel
 				}
 
 				//Change run animation speed
 				if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) if(freeRight || placeFree(x + 1, y - 2)) {
-					rspeed += 0.2
+					if(hspeed >= 2) rspeed += accel / 2.0
+					else rspeed += accel
 					if(rspeed < hspeed) rspeed = hspeed
 				}
 				if(getcon("left", "hold", true, playerNum) && rspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) if(freeLeft || placeFree(x - 1, y - 2)) {
-					rspeed -= 0.2
+					if(hspeed <= -2) rspeed += accel / 2.0
+					else rspeed -= accel
 					if(rspeed > hspeed) rspeed = hspeed
 				}
 				if(rspeed > 0) rspeed -= 0.1
@@ -842,12 +855,18 @@
 
 			//Movement
 			if(canMove) {
-				if(getcon("sneak", "hold", true, playerNum) || (abs(joyX(0)) <= js_max * 0.4 && abs(joyX(0)) > js_max * 0.1) || (abs(joyY(0)) <= js_max * 0.4 && abs(joyY(0)) > js_max * 0.1) && config.stickspeed) mspeed = 0.5
-				else if(getcon("run", "hold", true, playerNum) || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9) && config.stickspeed) {
-					if(stats.weapon == "ice") mspeed = 2.2
-					else mspeed = 2.0
+				mspeed = 2.0
+				if(config.stickspeed) {
+					local j = null
+					if(playerNum == 1) j = config.joy
+					if(playerNum == 2) j = config.joy2
+					if(abs(joyX(j.index)) >  js_max * 0.1) mspeed = (3.0 * abs(joyX(j.index))) / float(js_max)
+					if(abs(joyY(j.index)) > abs(joyX(j.index)) && abs(joyY(j.index)) >  js_max * 0.1) mspeed = 3.0 / float(js_max) * abs(joyY(j.index))
 				}
-				else mspeed = 1.0
+
+				if(invincible) mspeed += 0.4
+				if(nowInWater) mspeed *= 0.8
+				if(anim == anCrawl) mspeed = 1.0
 				if(zoomies > 0) mspeed *= 2.0
 
 				if(zoomies > 0) accel = 0.2
