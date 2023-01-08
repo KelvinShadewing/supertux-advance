@@ -435,8 +435,8 @@
 
 				if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
 					if(hspeed >= 2) {
-						if(onIce()) hspeed += accel * 0.05
-						else hspeed += accel * 0.1
+						if(onIce()) hspeed += accel * 0.2
+						else hspeed += accel * 0.4
 					}
 					else if(onIce()) hspeed += accel / 2.0
 					else hspeed += accel
@@ -444,8 +444,8 @@
 
 				if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != anWall && anim != anSlide && anim != anHurt && anim != anClimb && anim != anSkid) {
 					if(hspeed <= -2) {
-						if(onIce()) hspeed -= accel * 0.05
-						else hspeed -= accel * 0.1
+						if(onIce()) hspeed -= accel * 0.2
+						else hspeed -= accel * 0.4
 					}
 					else if(onIce()) hspeed -= accel / 2.0
 					else hspeed -= accel
