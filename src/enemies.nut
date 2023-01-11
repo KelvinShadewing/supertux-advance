@@ -488,22 +488,14 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(!gvPlayer) return
 		if(_mag == 0) return
 		if(_stomp) return
 
-		if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
+		if(_by != 0 && hitTest(shape, _by.shape)) {
 			local didhurt = false
-			if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide) didhurt = true
-			if(gvPlayer.rawin("anStomp")) if(gvPlayer.anim == gvPlayer.anStomp) didhurt = true
-			if(!didhurt) hurtPlayer(gvPlayer)
-		}
-
-		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
-			local didhurt = false
-			if(gvPlayer2.rawin("anSlide")) if(gvPlayer2.anim == gvPlayer2.anSlide) didhurt = true
-			if(gvPlayer2.rawin("anStomp")) if(gvPlayer2.anim == gvPlayer2.anStomp) didhurt = true
-			if(!didhurt) hurtPlayer(gvPlayer2)
+			if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide) didhurt = true
+			if(_by.rawin("anStomp")) if(_by.anim == _by.anStomp) didhurt = true
+			if(!didhurt) hurtPlayer(_by)
 		}
 
 		if(_element == "fire") hurtFire()
@@ -1016,7 +1008,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
+		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1139,7 +1131,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
+		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1245,7 +1237,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
+		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1483,7 +1475,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
+		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -2822,15 +2814,15 @@
 			return
 		}
 
-		if(gvPlayer.rawin("anSlide")) {
-			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
-				gvPlayer.hurt = 1
+		if(_by.rawin("anSlide")) {
+			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
+				_by.hurt = 1
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprWildcap
 				else actor[c].sprite = sprWildcap
-				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
-				actor[c].hspeed = (gvPlayer.hspeed / 16)
-				actor[c].spin = (gvPlayer.hspeed * 7)
+				actor[c].vspeed = min(-fabs(_by.hspeed), -4)
+				actor[c].hspeed = (_by.hspeed / 16)
+				actor[c].spin = (_by.hspeed * 7)
 				actor[c].angle = 180
 				die()
 				popSound(sndKick, 0)
@@ -3670,13 +3662,13 @@
 			return
 		}
 
-		if(gvPlayer.rawin("anSlide")) {
-			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
+		if(_by.rawin("anSlide")) {
+			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprSpikeCap
-				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
-				actor[c].hspeed = (gvPlayer.hspeed / 16)
-				actor[c].spin = (gvPlayer.hspeed * 7)
+				actor[c].vspeed = min(-fabs(_by.hspeed), -4)
+				actor[c].hspeed = (_by.hspeed / 16)
+				actor[c].spin = (_by.hspeed * 7)
 				actor[c].angle = 180
 				die()
 				popSound(sndKick, 0)
@@ -3880,13 +3872,13 @@
 			return
 		}
 
-		if(gvPlayer.rawin("anSlide")) {
-			if(gvPlayer.anim == gvPlayer.anSlide && hitTest(shape, gvPlayer.shape)) {
+		if(_by.rawin("anSlide")) {
+			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprCaptainMorel
-				actor[c].vspeed = min(-fabs(gvPlayer.hspeed), -4)
-				actor[c].hspeed = (gvPlayer.hspeed / 16)
-				actor[c].spin = (gvPlayer.hspeed * 7)
+				actor[c].vspeed = min(-fabs(_by.hspeed), -4)
+				actor[c].hspeed = (_by.hspeed / 16)
+				actor[c].spin = (_by.hspeed * 7)
 				actor[c].angle = 180
 				die()
 				popSound(sndKick, 0)

@@ -175,7 +175,7 @@
          "objects":[
                 {
                  "class":"",
-                 "gid":874,
+                 "gid":884,
                  "height":16,
                  "id":26,
                  "name":"overworld-0,280,40",
@@ -187,7 +187,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":872,
+                 "gid":882,
                  "height":16,
                  "id":27,
                  "name":"",
@@ -199,7 +199,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":28,
                  "name":"nessland-welcome",
@@ -211,7 +211,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":30,
                  "name":"nessland-left",
@@ -223,10 +223,10 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":31,
-                 "name":"",
+                 "name":"soon",
                  "rotation":0,
                  "visible":false,
                  "width":16,
@@ -235,7 +235,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":32,
                  "name":"",
@@ -247,7 +247,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":33,
                  "name":"",
@@ -259,7 +259,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":34,
                  "name":"",
@@ -271,7 +271,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":35,
                  "name":"",
@@ -283,7 +283,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":36,
                  "name":"",
@@ -295,7 +295,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":37,
                  "name":"",
@@ -307,7 +307,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":38,
                  "name":"nessland-henge",
@@ -319,7 +319,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":39,
                  "name":"",
@@ -331,7 +331,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":40,
                  "name":"",
@@ -343,7 +343,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":41,
                  "name":"",
@@ -355,7 +355,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":42,
                  "name":"",
@@ -367,7 +367,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":43,
                  "name":"",
@@ -379,7 +379,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":44,
                  "name":"",
@@ -391,7 +391,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":45,
                  "name":"",
@@ -403,7 +403,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":46,
                  "name":"",
@@ -415,7 +415,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":47,
                  "name":"",
@@ -427,7 +427,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":48,
                  "name":"",
@@ -439,19 +439,19 @@
                 }, 
                 {
                  "class":"",
-                 "gid":873,
+                 "gid":883,
                  "height":16,
                  "id":49,
-                 "name":"soon",
+                 "name":"nessland-owl",
                  "rotation":0,
-                 "visible":false,
+                 "visible":true,
                  "width":16,
                  "x":480,
                  "y":256
                 }, 
                 {
                  "class":"",
-                 "gid":875,
+                 "gid":885,
                  "height":16,
                  "id":50,
                  "name":"",
@@ -1120,18 +1120,18 @@
          "columns":5,
          "firstgid":807,
          "image":"..\/gfx\/solid.png",
-         "imageheight":208,
+         "imageheight":240,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":65,
+         "tilecount":75,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":7,
-         "firstgid":872,
+         "firstgid":882,
          "image":"..\/gfx\/overactors.png",
          "imageheight":16,
          "imagewidth":112,

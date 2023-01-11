@@ -445,7 +445,7 @@
 		if(eventTimer <= 0) {
 			setFPS(60)
 			if(gvPlayer) gvPlayer.canMove = true
-			if(gvPlayer2) gvPlayer2.canMove = false
+			if(gvPlayer2) gvPlayer2.canMove = true
 			deleteActor(id)
 		}
 	}

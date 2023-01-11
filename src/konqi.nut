@@ -861,7 +861,7 @@
 					if(playerNum == 1) j = config.joy
 					if(playerNum == 2) j = config.joy2
 					if(abs(joyX(j.index)) >  js_max * 0.1) mspeed = (3.0 * abs(joyX(j.index))) / float(js_max)
-					if(abs(joyY(j.index)) > abs(joyX(j.index)) && abs(joyY(j.index)) >  js_max * 0.1) mspeed = 3.0 / float(js_max) * abs(joyY(j.index))
+					if(abs(joyY(j.index)) > abs(joyX(j.index)) && abs(joyY(j.index)) >  js_max * 0.1) mspeed = 2.0 / float(js_max) * abs(joyY(j.index))
 				}
 
 				if(invincible) mspeed += 0.4

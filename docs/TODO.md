@@ -21,6 +21,9 @@
 [ ] Boiling Water
 [ ] Boost rings
 [ ] Rad race initializer
+[ ] Building blocks
+[ ] Monkey bars
+[ ] Side ladders
 
 ## Enemies
 
@@ -40,6 +43,7 @@
 [x] Owls
 [x] Crusher
 [x] Wheeler
+[ ] Skydives
 
 ## Bosses
 
@@ -96,8 +100,9 @@
 [x] In-game timer
 [x] Jump buffering
 [ ] Mod Tracking (for requirement checks)
-[ ] Two-player support
-[ ] Parallax backgrounds
+[?] Two-player support (STILL BUGGY)
+[x] Parallax backgrounds
+[ ] Better solid escape and unisolid platform support
 
 ## Bugs to fix
 
