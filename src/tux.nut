@@ -1039,7 +1039,7 @@
 		hidden = false
 
 		//After image
-		if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[wrap(frame, 0, anim.len())], 0, flip, 0, 1, 1])
+		if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, anim[wrap(floor(frame), 0, anim.len())], 0, flip, 0, 1, 1])
 	}
 
 	function draw() {

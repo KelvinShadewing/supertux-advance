@@ -197,3 +197,22 @@
 	game.characters["Midi"] <- true
 	game.friends["Midi"] <- true
 }
+
+////////////
+// NPC v2 //
+////////////
+
+::npcDef <- {
+	testcap = {
+		sprite = "sprDeathcap"
+		w = 8
+		h = 8
+		anStand = [0]
+		anTalk = [0]
+		anWalk = [0, 1, 2, 3]
+	}
+}
+
+::NPCv2 <- class extends PhysAct {
+
+}
