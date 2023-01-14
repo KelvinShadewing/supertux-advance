@@ -753,7 +753,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
@@ -1580,7 +1580,7 @@
 			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
-			}					
+			}
 		}
 		else {
 			//Delete ice block
@@ -2035,7 +2035,7 @@
 				if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 				if(icebox == -1 && canice) {
 					if(health > 0) icebox = mapNewSolid(shape)
-				}					
+				}
 			}
 			else {
 				//Delete ice block
@@ -2209,7 +2209,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
@@ -2436,7 +2436,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
@@ -2770,7 +2770,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
@@ -2976,7 +2976,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
@@ -3156,7 +3156,7 @@
 			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
-			}					
+			}
 		}
 		else {
 			//Delete ice block
@@ -3626,7 +3626,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
@@ -3854,7 +3854,7 @@
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}					
+					}
 				}
 				else {
 					//Delete ice block
