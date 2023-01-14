@@ -309,7 +309,7 @@
                  "class":"",
                  "height":384,
                  "id":469,
-                 "name":"endGoal(\"aurora-subsea\")",
+                 "name":"endGoal(\"aurora-subsea\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,

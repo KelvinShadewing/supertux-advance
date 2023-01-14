@@ -360,7 +360,7 @@
                  "class":"",
                  "height":479,
                  "id":1105,
-                 "name":"endGoal(\"aurora-fort\")",
+                 "name":"endGoal(\"aurora-fort\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,
@@ -3339,7 +3339,7 @@
          "value":"drawBG = dbgSnowNight\nsongPlay(musretro2)\ndrawWeather = dweBlizzard\ngfxEnemySnow()\ngvLightTarget = 0x6080e0ff"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {

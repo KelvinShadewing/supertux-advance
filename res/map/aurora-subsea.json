@@ -711,7 +711,7 @@
                  "class":"",
                  "height":224,
                  "id":52,
-                 "name":"endGoal(\"aurora-tnt\")",
+                 "name":"endGoal(\"aurora-tnt\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,

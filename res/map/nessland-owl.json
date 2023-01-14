@@ -322,7 +322,7 @@
                  "class":"",
                  "height":48.5,
                  "id":1151,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,
@@ -3178,10 +3178,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)"
+         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {

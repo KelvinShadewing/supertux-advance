@@ -158,9 +158,20 @@
                  "name":"gvLightTarget = 0x80c0e0ff",
                  "rotation":0,
                  "visible":true,
-                 "width":112,
-                 "x":480,
+                 "width":80,
+                 "x":512,
                  "y":224
+                }, 
+                {
+                 "class":"",
+                 "height":144,
+                 "id":52,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "visible":true,
+                 "width":80,
+                 "x":432,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -468,7 +479,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":52,
+ "nextobjectid":53,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -40,11 +40,7 @@
 	function run() {
 		if(active) {
 			base.run()
-			if(frozen > 0) {
-				frozen--
-				if(floor(frozen / 4) % 2 == 0 && frozen < 60) drawSpriteZ(4, freezeSprite, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-				else drawSpriteZ(4, freezeSprite, 0, x - camx, y - camy - 1)
-			}
+			if(frozen > 0) frozen--
 
 			//Check for weapon effects
 			if(actor.rawin("WeaponEffect") && !blinking) foreach(i in actor["WeaponEffect"]) {
@@ -253,11 +249,12 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					
 				}
 				else {
 					//Delete ice block
@@ -449,16 +446,23 @@
 		shape.setPos(x, y + 16)
 		if(frozen) {
 			//Create ice block
-			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			local canice = true
+			if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
 			}
+
+			
 		}
 		else {
 			//Delete ice block
 			if(icebox != -1) {
-				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, y)
+				mapDeleteSolid(icebox)
 				icebox = -1
+				if(gvPlayer) if(x > gvPlayer.x) flip = true
+				else flip = false
 			}
 		}
 	}
@@ -591,17 +595,22 @@
 			//Draw
 			if(frozen) {
 				//Create ice block
-				if(target && icebox == -1 && !hitTest(shape, target.shape)) {
+				local canice = true
+				if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+				if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+				if(icebox == -1 && canice) {
 					if(health > 0) icebox = mapNewSolid(shape)
 				}
+
+				
 			}
 			else {
 				//Delete ice block
 				if(icebox != -1) {
-					mapDeleteSolid(icebox)
 					newActor(IceChunks, x, y)
+					mapDeleteSolid(icebox)
 					icebox = -1
-					if(target) if(x > target.x) flip = true
+					if(gvPlayer) if(x > gvPlayer.x) flip = true
 					else flip = false
 				}
 			}
@@ -739,15 +748,18 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
+					}					
 				}
 				else {
 					//Delete ice block
 					if(icebox != -1) {
-						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
@@ -1563,15 +1575,21 @@
 
 		if(frozen) {
 			//Create ice block
-			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			local canice = true
+			if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
-			}
+			}					
 		}
 		else {
+			//Delete ice block
 			if(icebox != -1) {
-				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, y)
+				mapDeleteSolid(icebox)
 				icebox = -1
+				if(gvPlayer) if(x > gvPlayer.x) flip = true
+				else flip = false
 			}
 		}
 
@@ -2012,15 +2030,18 @@
 
 			if(frozen) {
 				//Create ice block
-				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+				local canice = true
+				if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+				if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+				if(icebox == -1 && canice) {
 					if(health > 0) icebox = mapNewSolid(shape)
-				}
+				}					
 			}
 			else {
 				//Delete ice block
 				if(icebox != -1) {
-					mapDeleteSolid(icebox)
 					newActor(IceChunks, x, y)
+					mapDeleteSolid(icebox)
 					icebox = -1
 					if(gvPlayer) if(x > gvPlayer.x) flip = true
 					else flip = false
@@ -2183,18 +2204,18 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
-
-					chasing = false
-					squishTime = 0.0
+					}					
 				}
 				else {
 					//Delete ice block
 					if(icebox != -1) {
-						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
@@ -2410,15 +2431,18 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
+					}					
 				}
 				else {
 					//Delete ice block
 					if(icebox != -1) {
-						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
@@ -2596,18 +2620,15 @@
 				}
 
 				if(frozen) {
-					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
-						newActor(Flame, x, y - 1)
-						die()
-						popSound(sndFlame, 0)
-					}
+					newActor(Flame, x, y - 1)
+					die()
+					popSound(sndFlame, 0)
 				}
 				else {
 					//Delete ice block
 					if(icebox != -1) {
-						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
 						icebox = -1
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
@@ -2744,9 +2765,12 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
+					}					
 				}
 				else {
 					//Delete ice block
@@ -2947,9 +2971,12 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
+					}					
 				}
 				else {
 					//Delete ice block
@@ -3121,6 +3148,26 @@
 			if(passenger.rawin("flip")) passenger.flip = flip
 			passenger.vspeed = 0.0
 		}
+
+		if(frozen) {
+			//Create ice block
+			local canice = true
+			if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+			if(icebox == -1 && canice) {
+				if(health > 0) icebox = mapNewSolid(shape)
+			}					
+		}
+		else {
+			//Delete ice block
+			if(icebox != -1) {
+				newActor(IceChunks, x, y)
+				mapDeleteSolid(icebox)
+				icebox = -1
+				if(gvPlayer) if(x > gvPlayer.x) flip = true
+				else flip = false
+			}
+		}
 	}
 
 	function physics() {
@@ -3170,7 +3217,7 @@
 	function draw() {
 		if(frozen) {
 			drawSpriteExZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
-			drawSpriteExZ(1, sprIceTrapLarge, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
+			drawSpriteExZ(1, sprIceTrapSmall, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
 		}
 		else drawSpriteExZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
@@ -3204,6 +3251,7 @@
 		actor[c].vspeed = -5.0
 		actor[c].spin = 30
 		popSound(sndKick, 0)
+		mapDeleteSolid(icebox)
 	}
 }
 
@@ -3573,9 +3621,12 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
+					}					
 				}
 				else {
 					//Delete ice block
@@ -3798,9 +3849,12 @@
 
 				if(frozen) {
 					//Create ice block
-					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
-					}
+					}					
 				}
 				else {
 					//Delete ice block

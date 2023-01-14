@@ -265,7 +265,7 @@
                  "class":"",
                  "height":94,
                  "id":819,
-                 "name":"endGoal()",
+                 "name":"endGoal(\"nessland-owl\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":17,
@@ -2214,7 +2214,7 @@
          "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.1",
+ "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
         {

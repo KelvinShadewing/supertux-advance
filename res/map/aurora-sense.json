@@ -348,7 +348,7 @@
                  "class":"",
                  "height":384,
                  "id":563,
-                 "name":"endGoal(\"aurora-branches\")",
+                 "name":"endGoal(\"aurora-branches\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,
