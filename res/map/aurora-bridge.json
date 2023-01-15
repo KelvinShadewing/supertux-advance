@@ -387,7 +387,7 @@
                  "class":"",
                  "height":386,
                  "id":1109,
-                 "name":"endGoal(\"aurora-wind\")",
+                 "name":"endGoal(\"aurora-wind\",\"\",1)",
                  "rotation":0,
                  "visible":true,
                  "width":16,

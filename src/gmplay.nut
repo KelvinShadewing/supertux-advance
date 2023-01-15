@@ -761,7 +761,6 @@
 		setDrawColor(0x000000d0)
 		drawRec(0, 0, gvScreenW, 8 * max(ln, 7), true)
 		drawText(font, 8, 8, gvInfoBox.slice(0, gvInfoStep))
-
 	}
 
 	//Fade from black
@@ -870,7 +869,7 @@
 }
 
 ::TimeAttackSign <- class extends Actor {
-	function run() {
+	function draw() {
 		local str = gvLangObj["stats"]["final-time"]
 		local time = formatTime(game.igt)
 		drawText(font2, (gvScreenW / 2) - (str.len() * 4), 64, str)

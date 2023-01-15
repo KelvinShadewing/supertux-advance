@@ -4901,7 +4901,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweBlizzard\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].setDia(\"borealis2\")\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n\tdeleteActor(mapActor[672])\n}\n\ngfxEnemySnow()\n\nif(gvTAFullGame) actor[mapActor[604]].code = \"endGoal(\\\"nessland-left\\\",\\\"aurora-fort\\\",1)"
+         "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweBlizzard\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].setDia(\"borealis2\")\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n\tdeleteActor(mapActor[672])\n}\n\ngfxEnemySnow()\n\nif(gvTAFullGame) actor[mapActor[604]].code = \"endGoal(\\\"nessland-left\\\",\\\"aurora-fort\\\",1)\""
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
