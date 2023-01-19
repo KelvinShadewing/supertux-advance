@@ -2,7 +2,7 @@
 
 ## Intro
 
-SuperTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speedrunning in mind, it is not an essential skill; the game can be played and beaten casually.
+SuperTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speed running in mind, it is not an essential skill; the game can be played and beaten casually.
 
 Some assets from SuperTux will be used, with graphics being remixed to match the game's visual style.
 
@@ -16,7 +16,7 @@ After being humiliated by Tux on the tracks, Nolok decides to get his revenge by
 
 ## Installation Destructions
 
-Follow the install instructions for [Brux GDK](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` with Brux.
+Follow the installation instructions for [Brux GDK](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` with Brux.
 
 ## Controls
 
@@ -32,10 +32,10 @@ You can rebind the controls from the Options menu found on the title screen.
 ## Tips
 
 * You gain more speed from sliding off a drop than down a hill. Falling speed is translated into horizontal momentum upon landing. Use this to maximize your speed.
-* Practice wall jumping. Press jump against the wall in the air. This isn't just helpful at navigating levels, it can save you if you fall into a pit.
+* Practice wall jumping. Press jump against the wall in the air. This isn't just helpful for navigating levels, it can save you if you fall into a pit.
 * Fireballs have long range, but a slow rate of fire. Use them tactically; don't rely on them for up-close combat. That's best left to jumping and sliding.
 * Muffins found in [?] boxes will restore health. Blueberry restores 1 health points, and strawberry restores 4 health. Moldy green muffins will take health from you.
-* On easy mode, you'll recieve an extra life point after each boss. You don't get such boons on normal mode; you'll have to make do with the starting amount. Hard and Super prevent healing, so be careful!
+* On easy mode, you'll receive an extra life point after each boss. You don't get such boons on normal mode; you'll have to make do with the starting amount. Hard and Super prevent healing, so be careful!
 * Tux's fireballs won't be lost if you get hurt. You can also aim them up and down.
 * You can swim in all directions, but fireballs will work differently in water. Head for the surface if you get into trouble.
 * If you're going for a speed run, slide just before leaving an edge for a small boost, then jump to preserve the momentum. There's no friction in the air, so keep off the ground as much as you can!
@@ -46,7 +46,7 @@ You can rebind the controls from the Options menu found on the title screen.
 
 *Q:* The game crashed. The log says a function or identifier wasn't defined.
 
-**A:** The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation destructions.
+**A:** The game may need a newer version of Brux GDK. Download the nightly build from the link in the installation instructions.
 
 *Q:* Does this game have Mac support?
 
@@ -62,7 +62,7 @@ You can rebind the controls from the Options menu found on the title screen.
 
 *Q:* How do I know how long I can use the flying powerup before I stop flying?
 
-**A:** There's a bar on the top left corner of the screen that shows how long you can fly.
+**A:** There's a bar in the top left corner of the screen that shows how long you can fly.
 
 *Q:* Why are there mods? Isn't this game open source?
 
