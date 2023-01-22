@@ -405,19 +405,19 @@ const menuY = 40
 	},
 	{
 		name = function() {
-			local val = gvLangObj["menu-commons"][config.autorun ? "on" : "off"]
-			return format(gvLangObj["options-menu"]["autorun"], val)
-		},
-		desc = function() { return gvLangObj["options-menu-desc"]["autorun"] },
-		func = function() { config.autorun = !config.autorun; fileWrite("config.json", jsonWrite(config)) }
-	},
-	{
-		name = function() {
 			local val = gvLangObj["menu-commons"][config.stickspeed ? "on" : "off"]
 			return format(gvLangObj["options-menu"]["stickspeed"], val)
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["stickspeed"] },
 		func = function() { config.stickspeed = !config.stickspeed; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.stickcam ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["stickcam"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["stickcam"] },
+		func = function() { config.stickcam = !config.stickcam; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
@@ -508,11 +508,11 @@ const menuY = 40
 		func = function() { rebindKeys(5) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["run"], gvLangObj["key"][config.key.run.tostring()]) },
+		name = function() { return format(gvLangObj["controls-menu"]["spec1"], gvLangObj["key"][config.key.spec1.tostring()]) },
 		func = function() { rebindKeys(6) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["sneak"], gvLangObj["key"][config.key.sneak.tostring()]) },
+		name = function() { return format(gvLangObj["controls-menu"]["spec2"], gvLangObj["key"][config.key.spec2.tostring()]) },
 		func = function() { rebindKeys(7) }
 	},
 	{

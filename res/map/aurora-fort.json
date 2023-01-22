@@ -795,17 +795,6 @@
          "objects":[
                 {
                  "class":"",
-                 "height":1728.66666666667,
-                 "id":114,
-                 "name":"drawBG = dbgCave; drawWeather = 0",
-                 "rotation":0,
-                 "visible":false,
-                 "width":3200,
-                 "x":0,
-                 "y":431.333333333333
-                }, 
-                {
-                 "class":"",
                  "height":144,
                  "id":164,
                  "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 525)",
@@ -841,7 +830,7 @@
                  "class":"",
                  "height":16,
                  "id":510,
-                 "name":"if(getcon(\"jump\", \"hold\")) gvPlayer.vspeed = -12; else gvPlayer.vspeed = -8; stopSound(sndSpring); playSound(sndSpring, 0)",
+                 "name":"if(getcon(\"jump\", \"hold\")) myTarget.vspeed = -12; else myTarget.vspeed = -8; stopSound(sndSpring); playSound(sndSpring, 0)",
                  "rotation":0,
                  "visible":true,
                  "width":688,
@@ -883,7 +872,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4852,34 +4841,23 @@
                 }, 
                 {
                  "class":"",
-                 "height":128,
+                 "height":1792,
                  "id":674,
                  "name":"TransZone,dbgCave,0,0x6080e0ff",
                  "rotation":0,
                  "visible":true,
-                 "width":80,
-                 "x":1760,
+                 "width":3200,
+                 "x":0,
                  "y":368
                 }, 
                 {
                  "class":"",
-                 "height":128,
-                 "id":675,
-                 "name":"TransZone,dbgCastle,dweBlizzard,0x6080e0ff",
-                 "rotation":0,
-                 "visible":true,
-                 "width":80,
-                 "x":1760,
-                 "y":240
-                }, 
-                {
-                 "class":"",
-                 "height":128,
+                 "height":256,
                  "id":676,
                  "name":"TransZone,dbgCastle,dweBlizzard,0x6080e0ff",
                  "rotation":0,
                  "visible":true,
-                 "width":80,
+                 "width":2320,
                  "x":880,
                  "y":112
                 }],

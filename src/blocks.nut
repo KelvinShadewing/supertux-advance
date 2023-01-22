@@ -1300,3 +1300,19 @@
 
 	function _typeof() { return "Crumbler" }
 }
+
+::BuildCube <- class extends PhysAct {
+	held = 0
+
+	constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 8, 8, 0)
+	}
+
+	function run() {
+		
+	}
+
+	function draw() {
+		drawSprite(sprCube, 0, x - camx, y - camy)
+	}
+}

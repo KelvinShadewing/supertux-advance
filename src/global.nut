@@ -172,8 +172,8 @@
 		right = k_right
 		jump = k_z
 		shoot = k_x
-		run = k_lshift
-		sneak = k_lctrl
+		spec1 = k_lshift
+		spec2 = k_lctrl
 		pause = k_escape
 		swap = k_a
 		accept = k_enter
@@ -186,8 +186,8 @@
 		index = 0
 		jump = 0
 		shoot = 2
-		run = 4
-		sneak = 5
+		spec1 = 4
+		spec2 = 5
 		pause = 7
 		swap = 3
 		accept = 0
@@ -202,8 +202,8 @@
 		index = 0
 		jump = 0
 		shoot = 2
-		run = 4
-		sneak = 5
+		spec1 = 4
+		spec2 = 5
 		pause = 7
 		swap = 3
 		accept = 0
@@ -216,6 +216,7 @@
 	}
 	autorun = false
 	stickspeed = true
+	stickcam = true
 	lang = "en"
 	showleveligt = false
 	showglobaligt = false

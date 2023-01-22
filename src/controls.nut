@@ -75,6 +75,10 @@
 	local joy = null
 	local autonum = null
 
+	local deadzone = 0
+	if(config.stickspeed) deadzone = js_max / 9
+	else deadzone = int(js_max * 0.9)
+
 	if(player == 1 || player == 0) {
 		joy = clone(config.joy)
 		if(gvNumPlayers == 1 || gvGameMode != gmPlay) joy.index = config.joy2.index
@@ -111,16 +115,16 @@
 		case "up":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.up)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -js_max / 10)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == -1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == -1) return true
+				if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -deadzone)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1) return true
 			}
 			if(player == 0) {
 				if(keyfunc(config.key.up)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -js_max / 10)) return true
-					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == -1) return true
-					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == -1) return true
+					if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -deadzone)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1) return true
 				}
 			}
 
@@ -137,16 +141,16 @@
 		case "down":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.down)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_down) || (state == "hold" && joyY(joy.index) > js_max / 10)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == 1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == 1) return true
+				if(hatfunc(joy.index, js_down) || (state == "hold" && joyY(joy.index) > deadzone)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1) return true
 			}
 			if(player == 0) {
 				if(keyfunc(config.key.down)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_down) || (state == "hold" && joyY(i) > js_max / 10)) return true
-					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == 1) return true
-					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == 1) return true
+					if(hatfunc(i, js_down) || (state == "hold" && joyY(i) > deadzone)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == 1) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == 1) return true
 				}
 			}
 
@@ -163,16 +167,16 @@
 		case "left":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.left)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -js_max / 10)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == -1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == -1) return true
+				if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -deadzone)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1) return true
 			}
 			if(player == 0) {
 				if(keyfunc(config.key.left)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -js_max / 10)) return true
-					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == -1) return true
-					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == -1) return true
+					if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -deadzone)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1) return true
 				}
 			}
 
@@ -190,9 +194,9 @@
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.right)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
 				try{
-				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > js_max / 10)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, js_max / 20) == 1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, js_max / 20) == 1) return true
+				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > deadzone)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1) return true
 				}
 				catch(exception) {
 					print(exception)
@@ -202,9 +206,9 @@
 			if(player == 0) {
 				if(keyfunc(config.key.right)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_right) || (state == "hold" && joyX(i) > js_max / 10)) return true
-					if(state == "press" && joyAxisPress(i, 1, js_max / 20) == 1) return true
-					if(state == "release" && joyAxisRelease(i, 1, js_max / 20) == 1) return true
+					if(hatfunc(i, js_right) || (state == "hold" && joyX(i) > deadzone)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == 1) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == 1) return true
 				}
 			}
 
@@ -419,6 +423,10 @@
 	if(joypad == 1) joy = config.joy2
 	if(joy == null) return
 
+	local deadzone = 0
+	if(config.stickspeed) deadzone = js_max / 9
+	else deadzone = int(js_max * 0.9)
+
 	while(!done) {
 		dbgOceanMoving()
 
@@ -567,6 +575,10 @@
 
 	local joy = config.joy
 	if(player != 0) joy = config.joy2
+
+	local deadzone = 0
+	if(config.stickspeed) deadzone = js_max / 9
+	else deadzone = int(js_max * 0.9)
 
 	local message = format(gvLangObj["controls-menu"]["peek-axis"], gvLangObj["controls-menu"][axis == 0 ? "peek-horizontal" : "peek-vertical"])
 	local done = false

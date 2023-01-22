@@ -169,53 +169,57 @@
 	}
 
 	function run() {
-		if(camx0 + (gvScreenW / 2) >= x - w
-		&& camy0 + (gvScreenH / 2) >= y - h
-		&& camx0 + (gvScreenW / 2) <= x + w
-		&& camy0 + (gvScreenH / 2) <= y + h) {
-			if(bg == "0") drawBG = 0
-			else if(bg in getroottable()) drawBG = getroottable()[bg]
-			if(weather == "0") drawWeather = 0
-			else if(weather in getroottable()) drawWeather = getroottable()[weather]
-			dostr("gvLightTarget = " + color)
+		if(!gvSplitScreen) {
+			if(camx0 + (gvScreenW / 2) >= x - w
+			&& camy0 + (gvScreenH / 2) >= y - h
+			&& camx0 + (gvScreenW / 2) <= x + w
+			&& camy0 + (gvScreenH / 2) <= y + h) {
+				if(bg == "0") drawBG = 0
+				else if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
+				dostr("gvLightTarget = " + color)
+			}
 		}
+		else {
+			if((camx1 + (gvScreenW / 4) >= x - w
+			&& camy1 + (gvScreenH / 2) >= y - h
+			&& camx1 + (gvScreenW / 4) <= x + w
+			&& camy1 + (gvScreenH / 2) <= y + h)
+			|| (gvPlayer
+			&& gvPlayer.x >= x - w
+			&& gvPlayer.y >= y - h
+			&& gvPlayer.x <= x + w
+			&& gvPlayer.y <= y + h)) {
+				if(bg == "0") drawBG = 0
+				else if(bg in getroottable()) drawBG = getroottable()[bg]
+				if(weather == "0") drawWeather = 0
+				else if(weather in getroottable()) drawWeather = getroottable()[weather]
+				dostr("gvLightTarget = " + color)
+			}
 
-		if((camx1 + (gvScreenW / 4) >= x - w
-		&& camy1 + (gvScreenH / 4) >= y - h
-		&& camx1 + (gvScreenW / 4) <= x + w
-		&& camy1 + (gvScreenH / 4) <= y + h)
-		|| (gvPlayer
-		&& gvPlayer.x >= x - w
-		&& gvPlayer.y >= y - h
-		&& gvPlayer.x <= x + w
-		&& gvPlayer.y <= y + h)) {
-			if(bg == "0") drawBG = 0
-			else if(bg in getroottable()) drawBG = getroottable()[bg]
-			if(weather == "0") drawWeather = 0
-			else if(weather in getroottable()) drawWeather = getroottable()[weather]
-			dostr("gvLightTarget = " + color)
+			if((camx2 + (gvScreenW / 4) >= x - w
+			&& camy2 + (gvScreenH / 2) >= y - h
+			&& camx2 + (gvScreenW / 4) <= x + w
+			&& camy2 + (gvScreenH / 2) <= y + h)
+			|| (gvPlayer2
+			&& gvPlayer2.x >= x - w
+			&& gvPlayer2.y >= y - h
+			&& gvPlayer2.x <= x + w
+			&& gvPlayer2.y <= y + h)) {
+				if(bg == "0") drawBG2 = 0
+				else if(bg in getroottable()) drawBG2 = getroottable()[bg]
+				if(weather == "0") drawWeather2 = 0
+				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
+				dostr("gvLightTarget2 = " + color)
+			}
 		}
+	}
 
-		if((camx2 + (gvScreenW / 4) >= x - w
-		&& camy2 + (gvScreenH / 4) >= y - h
-		&& camx2 + (gvScreenW / 4) <= x + w
-		&& camy2 + (gvScreenH / 4) <= y + h)
-		|| (gvPlayer2
-		&& gvPlayer2.x >= x - w
-		&& gvPlayer2.y >= y - h
-		&& gvPlayer2.x <= x + w
-		&& gvPlayer2.y <= y + h)) {
-			if(bg == "0") drawBG2 = 0
-			else if(bg in getroottable()) drawBG2 = getroottable()[bg]
-			if(weather == "0") drawWeather2 = 0
-			else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
-			dostr("gvLightTarget2 = " + color)
-		}
-
+	function draw() {
 		if(debug) {
 			setDrawColor(0xffffffff)
 			drawRec(x - camx - w, y - camy - h, w * 2, h * 2, false)
-			if(gvPlayer) drawLine(x - camx, y - camy, gvPlayer.x - camx, gvPlayer.y - camy)
 		}
 	}
 

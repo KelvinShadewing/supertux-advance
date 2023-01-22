@@ -182,6 +182,8 @@
 ::defCrumbleRock <- sprCrumbleRock
 ::sprCrumbleIce <- newSprite("res/gfx/crumble-ice.png", 16, 16, 0, 0, 8, 8)
 ::defCrumbleIce <- sprCrumbleIce
+::sprCube <- newSprite("res/gfx/cube.png", 16, 16, 0, 0, 8, 8)
+::defCube <- sprCube
 
 
 

@@ -668,14 +668,14 @@
 			}
 
 			//Landing while sliding
-			if(anim == anSlide && !placeFree(x, y + 1) && vspeed >= 1 && placeFree(x + hspeed, y) && !onPlatform()) {
+			if(anim == anSlide && !placeFree(x, y + 1) && vspeed >= 2 && placeFree(x + hspeed, y) && !onPlatform()) {
 				if(flip) hspeed -= vspeed / 2.5
 				else hspeed += vspeed / 2.5
-				vspeed = 0
+				vspeed /= 2
 			}
-			if(anim == anDive && vspeed >= 1 && !placeFree(x, y + 1) && stats.weapon == "earth") {
+			if(anim == anDive && vspeed >= 2 && !placeFree(x, y + 1) && stats.weapon == "earth") {
 				hspeed *= 1.5
-				vspeed = 0.0
+				vspeed /= 2
 			}
 
 			//Max ground speed
@@ -1177,57 +1177,3 @@
 
 	function _typeof() { return "Penny" }
 }
-
-/*
-::TuxRacer <- class extends PhysActor {
-	z = 0
-	mspeed = 2
-
-	anWalk = [8, 9, 10, 11, 12, 13, 14, 15]
-	anSlide = [80, 81, 82]
-	anHurt = [83]
-	anim = null
-	gravity = 0.0
-
-	constructor(_x, _y, _arr = null){
-		anim = anWalk
-	}
-
-	function run() {
-		//Acceleration
-		if(onIce(x, y)) mspeed = 4.0
-		else if(!placeFree(x, y)) mspeed = 1.0
-		else mspeed = 2.0
-
-		if(vspeed > -mspeed) vspeed -= 0.05
-		if(vspeed < -mspeed) vspeed += 0.1
-		if(vspeed < 1 && getcon("down", "hold", true, playerNum)) vspeed += 0.05
-		if(hspeed > -1 && getcon("left", "hold", true, playerNum)) hspeed -= 0.05
-		if(hspeed < 1 && getcon("right", "hold", true, playerNum)) hspeed += 0.05
-
-		//Animation
-		local angle = 0
-		local frame = 0
-
-		switch(anim) {
-			case anWalk:
-				angle = 0
-				frame = wrap(getFrames() / 16, 0, 8)
-				break
-			case anSlide:
-				angle = pointAngle(0, 0, hspeed, vspeed)
-				frame = 1 - getcon("left", "hold", true, playerNum).tointeger() + getcon("right", "hold", true, playerNum)
-				break
-			case anHurt:
-				angle = pointAngle(0, 0, hspeed, vspeed) + 180
-				frame = 0
-				break
-		}
-
-		//Draw
-		drawSpriteEx(sprTux, anim[frame])
-	}
-
-	function _typeof() { return "TuxRacer" }
-}
-*/
