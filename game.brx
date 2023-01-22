@@ -10,7 +10,7 @@
 |                                 |
 \*===============================*/
 
-setWriteDir(getPrefDir("SuperTuxAdvance", "supertux-advance"))
+setWriteDir(getPrefDir("sta", "supertux-advance"))
 
 //Game source
 donut("src/util.nut")
