@@ -560,11 +560,11 @@ const menuY = 40
 		func = function() { rebindGamepad(5) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["run"], config.joy.run.tostring()) },
+		name = function() { return format(gvLangObj["controls-menu"]["spec1"], config.joy.spec1.tostring()) },
 		func = function() { rebindGamepad(6) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["sneak"], config.joy.sneak.tostring()) },
+		name = function() { return format(gvLangObj["controls-menu"]["spec2"], config.joy.spec2.tostring()) },
 		func = function() { rebindGamepad(7) }
 	},
 	{
@@ -620,11 +620,11 @@ const menuY = 40
 		func = function() { rebindGamepad(5, 1) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["run"], config.joy2.run.tostring()) },
+		name = function() { return format(gvLangObj["controls-menu"]["spec1"], config.joy2.spec1.tostring()) },
 		func = function() { rebindGamepad(6, 1) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["sneak"], config.joy2.sneak.tostring()) },
+		name = function() { return format(gvLangObj["controls-menu"]["spec2"], config.joy2.spec2.tostring()) },
 		func = function() { rebindGamepad(7, 1) }
 	},
 	{

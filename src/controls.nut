@@ -6,8 +6,8 @@
 		right = false
 		jump = false
 		shoot = false
-		run = false
-		sneak = false
+		spec1 = false
+		spec2 = false
 		swapItem = false
 
 		wasUp = false
@@ -16,8 +16,8 @@
 		wasRight = false
 		wasJump = false
 		wasShoot = false
-		wasRun = false
-		wasSneak = false
+		wasSpec1 = false
+		wasSpec2 = false
 		wasSwapItem = false
 	}
 
@@ -28,8 +28,8 @@
 		right = false
 		jump = false
 		shoot = false
-		run = false
-		sneak = false
+		spec1 = false
+		spec2 = false
 		swapItem = false
 
 		wasUp = false
@@ -38,8 +38,8 @@
 		wasRight = false
 		wasJump = false
 		wasShoot = false
-		wasRun = false
-		wasSneak = false
+		wasSpec1 = false
+		wasSpec2 = false
 		wasSwapItem = false
 	}
 }
@@ -53,8 +53,8 @@
 		right = false
 		jump = false
 		shoot = false
-		run = false
-		sneak = false
+		spec1 = false
+		spec2 = false
 		swapItem = false
 
 		wasUp = false
@@ -63,8 +63,8 @@
 		wasRight = false
 		wasJump = false
 		wasShoot = false
-		wasRun = false
-		wasSneak = false
+		wasSpec1 = false
+		wasSpec2 = false
 		wasSwapItem = false
 }
 
@@ -230,19 +230,19 @@
 			if(keyfunc(config.key.shoot) && (player == 1 || player == 0)) return true
 			if(joyfunc(joy.index, joy.shoot)) return true
 			break
-		case "run":
+		case "spec1":
 			if(config.autorun) {
-				if(!keyfunc(config.key.run) && (player == 1 || player == 0)) return true
-				if(!joyfunc(joy.index, joy.run)) return true
+				if(!keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
+				if(!joyfunc(joy.index, joy.spec1)) return true
 			}
 			else {
-				if(keyfunc(config.key.run) && (player == 1 || player == 0)) return true
-				if(joyfunc(joy.index, joy.run)) return true
+				if(keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.spec1)) return true
 			}
 			break
-		case "sneak":
-			if(keyfunc(config.key.sneak) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.sneak)) return true
+		case "spec2":
+			if(keyfunc(config.key.spec2) && (player == 1 || player == 0)) return true
+			if(joyfunc(joy.index, joy.spec2)) return true
 			break
 		case "pause":
 			if(keyfunc(config.key.pause) && (player == 1 || player == 0)) return true
@@ -335,16 +335,16 @@
 				}
 				break
 			case 6:
-				keyname = gvLangObj["controls-menu"]["run-selection"]
+				keyname = gvLangObj["controls-menu"]["spec1-selection"]
 				if(anyKeyPress() != -1) {
-					config.key.run = anyKeyPress()
+					config.key.spec1 = anyKeyPress()
 					done = true
 				}
 				break
 			case 7:
-				keyname = gvLangObj["controls-menu"]["sneak-selection"]
+				keyname = gvLangObj["controls-menu"]["spec2-selection"]
 				if(anyKeyPress() != -1) {
-					config.key.sneak = anyKeyPress()
+					config.key.spec2 = anyKeyPress()
 					done = true
 				}
 				break
@@ -456,24 +456,24 @@
 				}
 				break
 			case 6:
-				keyname = gvLangObj["controls-menu"]["run-selection"]
+				keyname = gvLangObj["controls-menu"]["spec1-selection"]
 				if(keyPress(k_backspace)) {
-					joy.run = -1
+					joy.spec1 = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					joy.run = anyJoyPress(0)
+					joy.spec1 = anyJoyPress(0)
 					done = true
 				}
 				break
 			case 7:
-				keyname = gvLangObj["controls-menu"]["sneak-selection"]
+				keyname = gvLangObj["controls-menu"]["spec2-selection"]
 				if(keyPress(k_backspace)) {
-					joy.sneak = -1
+					joy.spec2 = -1
 					done = true
 				}
 				if(anyJoyPress(0) != -1) {
-					joy.sneak = anyJoyPress(0)
+					joy.spec2 = anyJoyPress(0)
 					done = true
 				}
 				break
