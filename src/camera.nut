@@ -123,8 +123,14 @@
 					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					px = (gvCamTarget.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 2) + lx
-					py = (gvCamTarget.y + (gvPlayer2.y - gvPlayer2.yprev) * 16) - (gvScreenH / 2) + ly
+					if(config.lookAhead){
+						px = (gvCamTarget.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 2) + lx
+						py = (gvCamTarget.y + (gvPlayer2.y - gvPlayer2.yprev) * 16) - (gvScreenH / 2) + ly
+					}
+					else {
+						px = (gvCamTarget.x + (gvPlayer2.x - gvPlayer2.xprev) * 3) - (gvScreenW / 2) + lx
+						py = (gvCamTarget.y) - (gvScreenH / 2) + ly
+					}
 				}
 			}
 			else {
@@ -239,7 +245,10 @@
 		py = camy1
 	}
 
-	if((gvPlayer && gvCamTarget != gvPlayer) || config.lookAhead && inDistance2(px, py, camx1, camy1, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
+	if((gvPlayer && gvPlayer2 && gvCamTarget != gvPlayer && gvCamTarget != gvPlayer2)
+	|| (gvPlayer && !gvPlayer2 && gvCamTarget != gvPlayer)
+	|| (gvPlayer2 && !gvPlayer && gvCamTarget != gvPlayer2)
+	|| config.lookAhead && inDistance2(px, py, camx1, camy1, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
 		if(gvPlayer && gvPlayer2 && !gvSplitScreen && !gvNetPlay) {
 			camx1 += (px - camx1) / 8
 			camy1 += (py - camy1) / 8
