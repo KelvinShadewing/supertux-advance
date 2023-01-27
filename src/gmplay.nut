@@ -777,7 +777,7 @@
 	}
 
 	//Draw global IGT
-	if(config.showglobaligt && levelEndRunner != 1) {
+	if((config.showglobaligt || gvTimeAttack) && levelEndRunner != 1) {
 		local gtd = formatTime(game.igt) //Game time to draw
 		drawText(font2, (gvScreenW / 2) - (gtd.len() * 4), gvScreenH - 24, gtd)
 	}
