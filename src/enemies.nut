@@ -453,7 +453,7 @@
 				if(health > 0) icebox = mapNewSolid(shape)
 			}
 
-			
+
 		}
 		else {
 			//Delete ice block
@@ -602,7 +602,7 @@
 					if(health > 0) icebox = mapNewSolid(shape)
 				}
 
-				
+
 			}
 			else {
 				//Delete ice block
@@ -1588,8 +1588,6 @@
 				newActor(IceChunks, x, y)
 				mapDeleteSolid(icebox)
 				icebox = -1
-				if(gvPlayer) if(x > gvPlayer.x) flip = true
-				else flip = false
 			}
 		}
 
@@ -1725,7 +1723,7 @@
 				if(health > 0) icebox = mapNewSolid(shape)
 			}
 
-			
+
 		}
 	}
 
@@ -1956,7 +1954,7 @@
 			die()
 			popSound(sndKick)
 
-			if(getcon("jump", "hold", false, _by.playerNum)) {
+			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum)) {
 				_by.vspeed = -8
 				popSound(sndSquish, 0)
 			}
@@ -2342,7 +2340,8 @@
 		base.run()
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(1 + game.difficulty, "normal", true, false)
+		if(gvPlayer && hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(1 + game.difficulty, "normal", true, false)
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) gvPlayer2.getHurt(1 + game.difficulty, "normal", true, false)
 	}
 
 	function draw() {
@@ -2641,7 +2640,7 @@
 				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
-			
+
 
 			shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
@@ -2838,7 +2837,7 @@
 			return
 		}
 
-		if(_by.rawin("anSlide")) {
+		if("anSlide" in _by) {
 			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
 				_by.hurt = 1
 				local c = newActor(DeadNME, x, y)
@@ -3870,7 +3869,7 @@
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				
+
 			}
 
 			if(!squish) shape.setPos(x, y)

@@ -30,7 +30,6 @@
 				gvPlayer.vspeed = 0
 				vspeed = -1
 				playSound(sndHeal, 0)
-				game.health += 4
 				game.maxHealth += 4
 				game.coins -= price
 			}
@@ -84,7 +83,8 @@
 				playSound(sndHeal, 0)
 				game.fireBonus += 1
 				game.coins -= price
-				if(game.weapon == "fire") game.maxEnergy++
+				if(game.ps1.weapon == "fire") game.ps1.maxEnergy++
+				if(game.ps2.weapon == "fire") game.ps2.maxEnergy++
 			}
 		}
 
@@ -136,7 +136,8 @@
 				playSound(sndHeal, 0)
 				game.iceBonus += 1
 				game.coins -= price
-				if(game.weapon == "ice") game.maxEnergy++
+				if(game.ps1.weapon == "ice") game.ps1.maxEnergy++
+				if(game.ps2.weapon == "ice") game.ps2.maxEnergy++
 			}
 		}
 
@@ -188,7 +189,8 @@
 				playSound(sndHeal, 0)
 				game.airBonus += 1
 				game.coins -= price
-				if(game.weapon == "air") game.maxEnergy++
+				if(game.ps1.weapon == "air") game.ps1.maxEnergy++
+				if(game.ps2.weapon == "air") game.ps2.maxEnergy++
 			}
 		}
 
@@ -240,7 +242,8 @@
 				playSound(sndHeal, 0)
 				game.earthBonus += 1
 				game.coins -= price
-				if(game.weapon == "earth") game.maxEnergy++
+				if(game.ps1.weapon == "earth") game.ps1.maxEnergy++
+				if(game.ps2.weapon == "earth") game.ps2.maxEnergy++
 			}
 		}
 
