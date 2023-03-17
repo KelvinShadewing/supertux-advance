@@ -4,14 +4,19 @@
 ::creditsLength <- 0
 ::creditsSprites <- []
 ::startCredits <- function(folder = "res"){
-	if(creditsData==null)
-		creditsData = jsonRead(fileRead(folder + "/credits.json"))
+	creditsData = jsonRead(fileRead(folder + "/credits.json"))
+	if(creditsData == null) {
+		print("Failed to load credits data.")
+		gvGameMode = gmMain
+		return
+	}
+
 	gvGameMode = gmCredits
 	creditsOffset = 0
 	creditsTimer = 0
 	creditsLength = 0
 	creditsSprites = []
-	for(local i = 0; i < creditsData["credits"].len(); i+=1){
+	for(local i = 0; i < creditsData["credits"].len(); i++){
 		if(creditsData["credits"][i]["type"]=="image"){
 			creditsSprites.push(newSprite(creditsData["credits"][i]["image"],creditsData["credits"][i]["w"],creditsData["credits"][i]["h"],0,0,0,0))
 			creditsLength += creditsData["credits"][i]["h"]
