@@ -86,17 +86,18 @@
 	tileh = 0
 	mapw = 0
 	maph = 0
-	geo = null
+	geo = null //List of solid shapes added after loading
 	w = 0
 	h = 0
 	name = ""
 	file = ""
 	author = ""
 	solidfid = 0 //First tile ID for the solid tileset
-	shape = null
+	shape = null //Movable shape used for collision checking
 	anim = null //List of animated tiles
-	solidLayer = null
+	solidLayer = null //Tile layer used for collision checking
 	plat = null //List of platforms
+	infinite = false
 
 	constructor(filename) {
 		tileset = []
@@ -290,6 +291,10 @@
 	}
 }
 
+///////////////
+// FUNCTIONS //
+///////////////
+
 ::mapNewSolid <- function(shape) {
 	gvMap.geo.push(shape)
 	return gvMap.geo.len() - 1
@@ -319,5 +324,18 @@
 	if(tile >= 0 && tile < gvMap.solidLayer.data.len()) {
 		if(gvMap.solidLayer.data[tile] == 0) return 0
 		else return (gvMap.solidLayer.data[tile] - gvMap.solidfid + 1)
+	}
+}
+
+::loadTileMapWorld <- function(filename) {
+	if(!fileExists(filename)) return {}
+
+	local file = jsonRead(fileRead(filename))
+	local nw = {}
+
+	if(!"maps" in file) return {}
+	for(local i = 0; i < file.maps.len(); i++) {
+		local name = findFileName(file.maps[i]["fileName"])
+		nw[name] <- [file.maps[i]["x"], file.maps[i]["y"]]
 	}
 }

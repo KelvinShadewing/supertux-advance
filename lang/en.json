@@ -370,6 +370,8 @@
 		"You're gonna go adventuring in a dress? Seems like it would get in the way. You're braver than me.",
 		"rad-t0-Kiki" :
 		"Ah, a fellow artist. Yeah, my art is painting the slopes with the lines I leave with my board here.",
+		"rad-t0-Cyra" :
+		"You're from another universe? Tubular.",
 		"rad-t0" :
 		"Whoa, new face. I dunno about you. If you're looking for Mayor Penny, she should be in the big igloo in the middle of town. I like to call it the bigloo. Ha ha!",
 
@@ -547,6 +549,8 @@
 		"I'm glad the ice here can stand up to my flames. I'd hate to sneeze and melt someone's house!",
 		"pennyton-Midi" :
 		"I get she's trying to help, but I just couldn't live in a place like this. I'd rather keep on the move and find a way home.",
+		"pennyton-Cyra" :
+		"This place is sure cold out here, but it's a nice place for them to stay, even if they made more igloos for people from different worlds. Just we have to find our way homes.",
 
 		"fish-mines-Tux" :
 		"These mines are where we get most of our fish these days. It's much safer than swimming for live ones.",
@@ -554,6 +558,8 @@
 		"Who would have thought so many frozen fish could be found in the ice?",
 		"fish-mines-Midi" :
 		"Heh, I bet I'd be great at mining. Maybe I'll take it up after we beat Nolok. Not much else for a merc to do around here.",
+		"fish-mines-Cyra" :
+		"So many frozen fish to pick out of the ice for those who like seafood, but mainly I eat fruits, especially strawberries.",
 
 		"ocean-bridge-Tux" :
 		"Look what Nolok's minions have done to the bridge! This place is like a maze now.",
@@ -583,6 +589,8 @@
 		"Brr, it's warm in here, but I still get shivers thinking about the Yeti.",
 		"borealis2-Midi" :
 		"Dang, this place is creepy. If the penguins didn't need this place, I'd totally blow it up.",
+		"borealis2-Cyra" :
+		"It's kinda warm in here, but not safe inside here when there's a Yeti inside this fort.",
 
 		"duke-0a" :
 		"I'm so hungry! If you can bring me some fish, I'll open these blocks for you.",

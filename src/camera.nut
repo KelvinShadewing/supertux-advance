@@ -87,7 +87,7 @@
 					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					if(config.lookAhead){
+					if(config.lookAhead) {
 						px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 2) + lx
 						py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 16) - (gvScreenH / 2) + ly
 					}
@@ -161,7 +161,7 @@
 		py = camy0
 	}
 
-	if(config.lookAhead && inDistance2(px, py, camx0, camy0, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
+	if((config.lookAhead || (gvCamTarget != gvPlayer && gvCamTarget != gvPlayer2)) && inDistance2(px, py, camx0, camy0, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
 		if(gvPlayer && gvPlayer2 && !gvSplitScreen && !gvNetPlay) {
 			camx0 += (px - camx0) / 8
 			camy0 += (py - camy0) / 8
