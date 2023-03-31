@@ -52,10 +52,40 @@
 	//Mouse debug
 	if(keyDown(k_lshift)) {
 		if(gvPlayer && mouseDown(0)) {
-			gvPlayer.x = mouseX() + camx
-			gvPlayer.y = mouseY() + camy
-			gvPlayer.hspeed = 0.0
-			gvPlayer.vspeed = 0.0
+			if(!gvSplitScreen) {
+				gvPlayer.x = mouseX() + camx0
+				gvPlayer.y = mouseY() + camy0
+				gvPlayer.hspeed = 0.0
+				gvPlayer.vspeed = 0.0
+			}
+			else if(gvSwapScreen) {
+				if(mouseX() > screenW() / 2) {
+					gvPlayer.x = (mouseX() - screenW() / 2) + camx1
+					gvPlayer.y = mouseY() + camy1
+					gvPlayer.hspeed = 0.0
+					gvPlayer.vspeed = 0.0
+				}
+				else {
+					gvPlayer2.x = mouseX() + camx2
+					gvPlayer2.y = mouseY() + camy2
+					gvPlayer2.hspeed = 0.0
+					gvPlayer2.vspeed = 0.0
+				}
+			}
+			else {
+				if(mouseX() < screenW() / 2) {
+					gvPlayer.x = mouseX() + camx1
+					gvPlayer.y = mouseY() + camy1
+					gvPlayer.hspeed = 0.0
+					gvPlayer.vspeed = 0.0
+				}
+				else {
+					gvPlayer2.x = (mouseX() - screenW() / 2) + camx2
+					gvPlayer2.y = mouseY() + camy2
+					gvPlayer2.hspeed = 0.0
+					gvPlayer2.vspeed = 0.0
+				}
+			}
 
 			if(gvGameMode == gmOverworld) {
 				gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
@@ -64,9 +94,37 @@
 		}
 	}
 	else {
-		if(mouseDown(0)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseLeft)
-		if(mouseDown(2)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseRight)
-		if(mouseDown(1)) debugMouseLeft = tileGetSolid(mouseX() + camx, mouseY() + camy)
+		local dox = 0
+		local doy = 0
+
+		if(!gvSplitScreen) {
+			dox = mouseX() + camx0
+			doy = mouseY() + camy0
+		}
+		else if(gvSwapScreen) {
+			if(mouseX() > screenW() / 2) {
+				dox = (mouseX() - screenW() / 2) + camx1
+				doy = mouseY() + camy1
+			}
+			else {
+				dox = mouseX() + camx2
+				doy = mouseY() + camy2
+			}
+		}
+		else {
+			if(mouseX() < screenW() / 2) {
+				dox = mouseX() + camx1
+				doy = mouseY() + camy1
+			}
+			else {
+				dox = (mouseX() - screenW() / 2) + camx2
+				doy = mouseY() + camy2
+			}
+		}
+
+		if(mouseDown(0)) tileSetSolid(dox, doy, debugMouseLeft)
+		if(mouseDown(2)) tileSetSolid(dox, doy, debugMouseRight)
+		if(mouseDown(1)) debugMouseLeft = tileGetSolid(dox, doy)
 		if(mouseWheelY() < 0) debugMouseLeft--
 		if(mouseWheelY() > 0) debugMouseLeft++
 		debugMouseLeft = wrap(debugMouseLeft, 0, (5 * 13) - 1)

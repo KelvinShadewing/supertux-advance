@@ -513,6 +513,7 @@
 	piercing = -1
 	element = "ice"
 	blast = true
+	angle = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -520,6 +521,7 @@
 		popSound(sndBump, 0)
 
 		shape = Rec(x, y, 16, 16, 0)
+		angle = randInt(360)
 	}
 
 	function run() {
@@ -545,7 +547,7 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeI, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSpriteEx(sprExplodeI, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }

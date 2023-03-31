@@ -1822,7 +1822,8 @@
 
 		if(!placeFree(x, y)) {
 			die()
-			newActor(IceChunks, x, y)
+			if(game.difficulty < 2) newActor(IceChunks, x, y)
+			else fireWeapon(ExplodeI, x, y, 0, 0)
 		}
 
 		if(vspeed > 0) fireWeapon(AfterIce, x, y, 1, id)
