@@ -1298,6 +1298,10 @@
 		case 96:
 			c = newActor(FireBlock, i.x + 8, i.y - 8, i.name)
 			break
+
+		case 102:
+			c = newActor(Ivy, i.x + 8, i.y - 8)
+			break
 	}
 
 	return c

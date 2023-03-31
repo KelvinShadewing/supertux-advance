@@ -305,6 +305,10 @@
 ::defWheelerBlade <- sprWheelerBlade
 ::sprShiveriken <- newSprite("res/gfx/shiveriken.png", 24, 24, 0, 0, 12, 14)
 ::defShiveriken <- sprShiveriken
+::sprIvyGreen <- newSprite("res/gfx/ivy.png", 28, 20, 0, 0, 14, 14)
+::defIvyGreen <- sprIvyGreen
+::sprMrSnowflake <- newSprite("res/gfx/mr-snowflake.png", 18, 19, 0, 0, 9, 13)
+::defMrSnowflake <- sprMrSnowflake
 
 
 
@@ -640,6 +644,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSnowCaptain = defSnowCaptain
 	sprBearyl = defBearyl
 	sprWheelerHamster = defWheelerHamster
+	sprIvyGreen = defIvyGreen
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -699,6 +704,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprWheelerHamster = sprShiveriken
 	sprSnake = sprSealion
 	sprWoodBox = sprWoodBoxSnow
+	sprIvyGreen = sprMrSnowflake
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)
