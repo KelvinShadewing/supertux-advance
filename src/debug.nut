@@ -7,6 +7,7 @@
 ::debugCursor <- 0
 ::debugMouseLeft <- 1
 ::debugMouseRight <- 0
+::debugExt <- {}
 
 ::drawDebug <- function() {
 	if(keyPress(k_f12)) {
@@ -173,6 +174,8 @@
 	setDrawColor(0xff0000ff)
 	drawLine(mouseX() - 8, mouseY(), mouseX() + 8, mouseY())
 	drawLine(mouseX(), mouseY() - 8, mouseX(), mouseY() + 8)
+
+	foreach (i in debugExt) if(typeof i == "function") i()
 }
 
 ::debugConsole <- function() {
