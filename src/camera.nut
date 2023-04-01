@@ -330,7 +330,7 @@
 		py = camy2
 	}
 
-	if(config.lookAhead && inDistance2(px, py, camx2, camy2, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
+	if((config.lookAhead || (gvCamTarget2 != gvPlayer && gvCamTarget2 != gvPlayer2)) && inDistance2(px, py, camx2, camy2, sqrt((gvScreenW * gvScreenW) + (gvScreenH * gvScreenH)))) {
 		if(gvPlayer && gvPlayer2 && !gvSplitScreen && !gvNetPlay) {
 			camx2 += (px - camx2) / 8
 			camy2 += (py - camy2) / 8
