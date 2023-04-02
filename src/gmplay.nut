@@ -1300,7 +1300,11 @@
 			break
 
 		case 102:
-			c = newActor(Ivy, i.x + 8, i.y - 8)
+			c = newActor(Ivy, i.x + 8, i.y - 8, false)
+			break
+
+		case 103:
+			c = newActor(Ivy, i.x + 8, i.y - 8, true)
 			break
 	}
 

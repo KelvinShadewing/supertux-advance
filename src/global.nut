@@ -22,7 +22,6 @@
 		enemies = 0
 		maxEnemies = 0
 		maxHealth = 12
-		maxEnergy = 0
 		fireBonus = 0
 		iceBonus = 0
 		airBonus = 0
@@ -227,6 +226,8 @@
 	musicVolume = 64
 	fullscreen = false
 	lookAhead = false
+	//Accessibility options
+	nearbars = false //Health/energy bars that follow the player
 }
 
 ::contribDidRun <- {}

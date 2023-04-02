@@ -309,7 +309,10 @@
 ::defIvyGreen <- sprIvyGreen
 ::sprMrSnowflake <- newSprite("res/gfx/mr-snowflake.png", 18, 19, 0, 0, 9, 13)
 ::defMrSnowflake <- sprMrSnowflake
-
+::sprIvyRed <- newSprite("res/gfx/walkingleaf.png", 28, 20, 0, 0, 14, 14)
+::defIvyRed <- sprIvyRed
+::sprMrsSnowflake <- newSprite("res/gfx/mrs-snowflake.png", 18, 19, 0, 0, 9, 13)
+::defMrsSnowflake <- sprMrsSnowflake
 
 
 //Bosses
@@ -645,6 +648,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprBearyl = defBearyl
 	sprWheelerHamster = defWheelerHamster
 	sprIvyGreen = defIvyGreen
+	sprIvyRed = defIvyRed
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -705,6 +709,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprSnake = sprSealion
 	sprWoodBox = sprWoodBoxSnow
 	sprIvyGreen = sprMrSnowflake
+	sprIvyRed = sprMrsSnowflake
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

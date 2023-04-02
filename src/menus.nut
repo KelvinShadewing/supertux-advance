@@ -316,6 +316,10 @@ const menuY = 40
 		func = function() { selectLanguage() }
 	},
 	{
+		name = function() { return gvLangObj["options-menu"]["accessibility"] },
+		func = function() { cursor = 0; menu = meAccessibility }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() {
 			if(gvGameMode == gmPause) {
@@ -352,14 +356,6 @@ const menuY = 40
 		func = function() { config.lookAhead = !config.lookAhead }
 	},
 	{
-		name = function() {
-			local val = gvLangObj["menu-commons"][config.light ? "on" : "off"]
-			return format(gvLangObj["options-menu"]["light"], val)
-		},
-		desc = function() { return gvLangObj["options-menu-desc"]["light"] },
-		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
-	},
-	{
 		name = function() { return gvLangObj["options-menu"]["fullscreen"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullscreen"] },
 		func = function() { toggleFullscreen(); config.fullscreen = !config.fullscreen }
@@ -376,6 +372,25 @@ const menuY = 40
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }
+	}
+]
+
+::meAccessibility <- [
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.light ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["light"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["light"] },
+		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.nearbars ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["nearbars"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["nearbars"] },
+		func = function() { config.nearbars = !config.nearbars; fileWrite("config.json", jsonWrite(config)) }
 	}
 ]
 

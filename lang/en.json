@@ -46,6 +46,7 @@
 		"audio" : "Audio",
 		"difficulty" : "Difficulty",
 		"language" : "Language",
+		"accessibility" : "Accessibility",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
 		"joystick1" : "Gamepad 1 Controls",
@@ -60,7 +61,8 @@
 		"sound-volume" : "Sound Volume",
 		"music-volume" : "Music Volume",
 		"charsel" : "Select Your Character",
-		"lookahead" : "Dynamic Camera: %s"
+		"lookahead" : "Dynamic Camera: %s",
+		"nearbars" : "Near-Sighted Healthbars: %s"
 	},
 
 	"options-menu-desc": {
@@ -76,7 +78,8 @@
 		"stickcam" : "Toggle allowing gamepad stick to move camera",
 		"usefilter" : "Bilinear filtering (requires restart)",
 		"fullgame" : "All standard worlds from SuperTux Advance",
-		"lookahead" : "Camera stays ahead of player and moves smoothly"
+		"lookahead" : "Camera stays ahead of player and moves smoothly",
+		"nearbars" : "Health and energy bars appear near the player"
 	},
 
 	"timers-menu" : {

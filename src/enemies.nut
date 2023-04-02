@@ -2638,8 +2638,8 @@
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1)
-				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprIvyRed, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprIvyGreen, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 
@@ -3086,6 +3086,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
+		smart = _arr
 	}
 
 	function routine() {}
@@ -3175,7 +3176,8 @@
 
 		if(!squish) {
 			if(frozen) {
-				drawSpriteEx(sprIvyGreen, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSpriteEx(sprIvyRed, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprIvyGreen, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 				if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -3184,12 +3186,20 @@
 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 			}
 			else {
+				if(smart) {
+				if(placeFree(x, y + 2)) drawSpriteEx(sprIvyRed, wrap(getFrames() / 8, 4, 7), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSpriteEx(sprIvyRed, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+				else{
 				if(placeFree(x, y + 2)) drawSpriteEx(sprIvyGreen, wrap(getFrames() / 8, 4, 7), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				else drawSpriteEx(sprIvyGreen, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				}
+
 			}
 		}
 		else {
-			drawSpriteEx(sprIvyGreen, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		if(smart) drawSpriteEx(sprIvyRed, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSpriteEx(sprIvyGreen, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
 	}
 
@@ -3227,7 +3237,8 @@
 		if("anSlide" in _by) {
 			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
-				actor[c].sprite = sprIvyGreen
+				if(smart) actor[c].sprite = sprIvyRed
+				else actor[c].sprite = sprIvyGreen
 				actor[c].vspeed = min(-fabs(_by.hspeed), -4)
 				actor[c].hspeed = (_by.hspeed / 16)
 				actor[c].spin = (_by.hspeed * 7)
@@ -3241,7 +3252,8 @@
 
 		if(!_stomp) {
 			local c = newActor(DeadNME, x, y)
-			actor[c].sprite = sprIvyGreen
+			if(smart) actor[c].sprite = sprIvyRed
+			else actor[c].sprite = sprIvyGreen
 			actor[c].vspeed = -4.0
 			actor[c].spin = 4
 			actor[c].angle = 180
@@ -3261,7 +3273,8 @@
 
 	function hurtblast() {
 		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprIvyGreen
+		if(smart) actor[c].sprite = sprIvyRed
+		else actor[c].sprite = sprIvyGreen
 		actor[c].vspeed = -4
 		actor[c].hspeed = (4 / 16)
 		actor[c].spin = (4 * 7)
@@ -3287,11 +3300,6 @@
 
 	function _typeof() { return "Ivy" }
 }
-
-
-
-
-
 
 ////////////////////
 // V0.2.0 ENEMIES //

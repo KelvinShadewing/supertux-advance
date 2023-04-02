@@ -98,7 +98,11 @@
 		local dox = 0
 		local doy = 0
 
-		if(!gvSplitScreen) {
+		if(gvGameMode == gmOverworld) {
+			dox = mouseX() + camx
+			doy = mouseY() + camy
+		}
+		else if(!gvSplitScreen) {
 			dox = mouseX() + camx0
 			doy = mouseY() + camy0
 		}
