@@ -480,6 +480,25 @@
 	}
 
 	if(gvInfoBox == "") {
+		//Draw near-sighted stat bars
+		if(config.nearbars) {
+			if(!gvSplitScreen) {
+				if(gvPlayer && "energy" in gvPlayer) drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps1.health, 1, (1.0 / game.ps1.maxEnergy) * gvPlayer.energy)
+
+				if(gvPlayer2 && "energy" in gvPlayer2) drawFloatingStats(gvPlayer2.x - camx0, gvPlayer2.y - camy0, (1.0 / game.maxHealth) * game.ps2.health, 1, (1.0 / game.ps2.maxEnergy) * gvPlayer2.energy)
+			}
+			else if(!gvSwapScreen) {
+				if(gvPlayer && "energy" in gvPlayer) drawFloatingStats(gvPlayer.x - camx1, gvPlayer.y - camy1, (1.0 / game.maxHealth) * game.ps1.health, 1, (1.0 / game.ps1.maxEnergy) * gvPlayer.energy)
+
+				if(gvPlayer2 && "energy" in gvPlayer2) drawFloatingStats(gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, 1, (1.0 / game.ps2.maxEnergy) * gvPlayer2.energy)
+			}
+			else {
+				if(gvPlayer && "energy" in gvPlayer) drawFloatingStats(gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, (1.0 / game.maxHealth) * game.ps1.health, 1, (1.0 / game.ps1.maxEnergy) * gvPlayer.energy)
+
+				if(gvPlayer2 && "energy" in gvPlayer2) drawFloatingStats(gvPlayer2.x - camx2, gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, 1, (1.0 / game.ps2.maxEnergy) * gvPlayer2.energy)
+			}
+		}
+
 		//Draw max energy
 		for(local i = 0; i < 4 - game.difficulty; i++) {
 			drawSprite(sprEnergy, 2, 8 + (16 * i), 24)

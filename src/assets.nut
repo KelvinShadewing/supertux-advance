@@ -127,6 +127,13 @@
 ::sprDivBar <- newSprite("res/gfx/divbar.png", 4, 240, 0, 0, 2, 0)
 ::defDivBar <- sprDivBar
 
+::sprNearRedBack <- newSprite("res/gfx/near-health-back.png", 8, 32, 0, 0, 0, 0)
+::sprNearGreenBack <- newSprite("res/gfx/near-stamina-back.png", 32, 8, 0, 0, 0, 0)
+::sprNearBlueBack <- newSprite("res/gfx/near-mana-back.png", 8, 32, 0, 0, 0, 0)
+
+::imgNearRedFill <- loadImage("res/gfx/near-health-fill.png")
+::imgNearGreenFill <- loadImage("res/gfx/near-stamina-fill.png")
+::imgNearBlueFill <- loadImage("res/gfx/near-mana-fill.png")
 
 
 //Blocks
