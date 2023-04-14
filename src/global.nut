@@ -215,6 +215,7 @@
 	}
 	autorun = false
 	stickspeed = true
+	stickactive = true
 	stickcam = true
 	lang = "en"
 	showleveligt = false

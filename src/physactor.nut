@@ -91,7 +91,7 @@
 	function routine() {}
 
 	function draw() {
-		//drawSpriteExZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
+		//drawSpriteZ(z, sprite, anim[frame % anim.len()], x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function isOnScreen() {

@@ -3438,10 +3438,14 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteExZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
-			drawSpriteExZ(1, sprIceTrapSmall, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
+			drawSpriteZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSpriteZ(1, sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteExZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSpriteZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function ruCarry() {
@@ -3576,8 +3580,8 @@
 	}
 
 	function draw() {
-		if(routine == ruNormal) drawSpriteExZ(1, sprMrIceguy, (getFrames() / 8) % 4, x - camx, y - camy, 0, flip, 1, 1, 1.0)
-		if(routine == ruSlide) drawSpriteExZ(1, sprMrIceguy, 4 + (hurtTimer <= 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1.0)
+		if(routine == ruNormal) drawSpriteZ(1, sprMrIceguy, (getFrames() / 8) % 4, x - camx, y - camy, 0, flip, 1, 1, 1.0)
+		if(routine == ruSlide) drawSpriteZ(1, sprMrIceguy, 4 + (hurtTimer <= 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1.0)
 		if(debug) shape.draw()
 	}
 

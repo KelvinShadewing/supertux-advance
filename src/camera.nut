@@ -52,7 +52,7 @@
 	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss) gvSplitScreen = false
 
 	if(gvPlayer) {
-		if(config.stickcam) {
+		if(config.stickcam && config.stickactive) {
 			lx = ((joyAxis(config.joy.index, config.joy.xPeek) / js_max.tofloat()) * gvScreenW / 2.5)
 			ly = ((joyAxis(config.joy.index, config.joy.yPeek) / js_max.tofloat()) * gvScreenH / 2.5)
 		}
@@ -188,7 +188,7 @@
 	if(!gvNetPlay) ux = gvMap.w - gvScreenW / 2
 
 	if(gvPlayer) {
-		if(config.stickcam) {
+		if(config.stickcam && config.stickactive) {
 			lx = ((joyAxis(config.joy.index, config.joy.xPeek) / js_max.tofloat()) * gvScreenW / 2.5)
 			ly = ((joyAxis(config.joy.index, config.joy.yPeek) / js_max.tofloat()) * gvScreenH / 2.5)
 		}
@@ -273,7 +273,7 @@
 	//////////////
 
 	if(gvPlayer2) {
-		if(config.stickcam) {
+		if(config.stickcam && config.stickactive) {
 			lx = ((joyAxis(config.joy2.index, config.joy2.xPeek) / js_max.tofloat()) * gvScreenW / 2.5)
 			ly = ((joyAxis(config.joy2.index, config.joy2.yPeek) / js_max.tofloat()) * gvScreenH / 2.5)
 		}

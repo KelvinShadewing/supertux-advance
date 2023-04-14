@@ -115,16 +115,16 @@
 		case "up":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.up)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -deadzone)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1) return true
+				if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -deadzone && config.stickactive)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1 && config.stickactive) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1 && config.stickactive) return true
 			}
 			if(player == 0) {
 				if(keyfunc(config.key.up)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -deadzone)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1) return true
+					if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -deadzone && config.stickactive)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1 && config.stickactive) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1 && config.stickactive) return true
 				}
 			}
 
@@ -167,16 +167,16 @@
 		case "left":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.left)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -deadzone)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1) return true
+				if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -deadzone) && config.stickactive) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1 && config.stickactive) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1 && config.stickactive) return true
 			}
 			if(player == 0) {
 				if(keyfunc(config.key.left)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -deadzone)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1) return true
+					if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -deadzone && config.stickactive)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1 && config.stickactive) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1 && config.stickactive) return true
 				}
 			}
 
@@ -194,9 +194,9 @@
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.right)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
 				try{
-				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > deadzone)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1) return true
+				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > deadzone && config.stickactive)) return true
+				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1 && config.stickactive) return true
+				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1 && config.stickactive) return true
 				}
 				catch(exception) {
 					print(exception)
@@ -206,9 +206,9 @@
 			if(player == 0) {
 				if(keyfunc(config.key.right)) return true
 				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_right) || (state == "hold" && joyX(i) > deadzone)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == 1) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == 1) return true
+					if(hatfunc(i, js_right) || (state == "hold" && joyX(i) > deadzone && config.stickactive)) return true
+					if(state == "press" && joyAxisPress(i, 1, deadzone) == 1 && config.stickactive) return true
+					if(state == "release" && joyAxisRelease(i, 1, deadzone) == 1 && config.stickactive) return true
 				}
 			}
 

@@ -428,6 +428,14 @@ const menuY = 40
 	},
 	{
 		name = function() {
+			local val = gvLangObj["menu-commons"][config.stickactive ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["stickactive"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["stickactive"] },
+		func = function() { config.stickactive = !config.stickactive; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
 			local val = gvLangObj["menu-commons"][config.stickcam ? "on" : "off"]
 			return format(gvLangObj["options-menu"]["stickcam"], val)
 		},

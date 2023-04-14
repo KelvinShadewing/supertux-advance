@@ -1238,8 +1238,8 @@ gvCharacters.Cyra <- {
 
 			if(anim != null) {
 				frame = wrap(frame, 0, anim.len() - 1)
-				if(blinking == 0 || anim == anHurt) drawSpriteExZ(0, sprite, anim[floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, 1)
-				else drawSpriteExZ(0, sprite, anim[floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				if(blinking == 0 || anim == anHurt) drawSpriteZ(0, sprite, anim[floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, 1)
+				else drawSpriteZ(0, sprite, anim[floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
 			if(debug) {
 				setDrawColor(0x008000ff)
