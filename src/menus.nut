@@ -343,6 +343,22 @@ const menuY = 40
 
 ::meGraphics <- [
 	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.light ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["light"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["light"] },
+		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.weather ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["weather"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["weather"] },
+		func = function() { config.weather = !config.weather; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
 		name = function() { return gvLangObj["options-menu"]["timers"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["timers"] },
 		func = function() { menu = meTimers }
@@ -383,6 +399,14 @@ const menuY = 40
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["light"] },
 		func = function() { config.light = !config.light; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.weather ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["weather"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["weather"] },
+		func = function() { config.weather = !config.weather; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
 		name = function() {

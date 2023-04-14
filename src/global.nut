@@ -227,6 +227,7 @@
 	musicVolume = 64
 	fullscreen = false
 	lookAhead = false
+	weather = true
 	//Accessibility options
 	nearbars = false //Health/energy bars that follow the player
 }

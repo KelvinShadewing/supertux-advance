@@ -267,7 +267,7 @@
 
 			if(config.light && gvGameMode == gmOverworld) drawAmbientLight()
 
-			drawSpriteEx(sprIris, 0, gvScreenW / 2, gvScreenH / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di), 1)
+			drawSprite(sprIris, 0, gvScreenW / 2, gvScreenH / 2, 0, 0, dx * (1.0 - di), dy * (1.0 - di))
 			drawRec(0, 0, gvScreenW * (di / 2.0), gvScreenH, true)
 			drawRec(gvScreenW, 0, -(gvScreenW * (di / 2.0)) - 2, gvScreenH, true)
 			drawRec(0, 0, gvScreenW, gvScreenH * (di / 2.0), true)
@@ -403,7 +403,7 @@
 	runAmbientLight(true)
 
 	if(drawBG != 0) drawBG()
-	if(drawWeather != 0) drawWeather()
+	if(drawWeather != 0 && config.weather) drawWeather()
 	camxprev = camx
 	camyprev = camy
 
@@ -433,7 +433,7 @@
 		setDrawTarget(gvPlayScreen2)
 
 		if(drawBG2 != 0) drawBG2()
-		if(drawWeather2 != 0) drawWeather2()
+		if(drawWeather2 != 0 && config.weather) drawWeather2()
 		camxprev = camx
 		camyprev = camy
 
