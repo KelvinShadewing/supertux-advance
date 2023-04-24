@@ -598,7 +598,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprMidi = defMidi
 	sprMidiOverworld = defMidiOverworld
 	sprMidiDoll = defMidiDoll
-	sprMidiAura <- defMidiAura
+	sprMidiAura = defMidiAura
 
 	sprHealth = defHealth
 	sprEnergy = defEnergy

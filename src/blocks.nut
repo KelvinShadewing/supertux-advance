@@ -16,7 +16,7 @@
 		oldsolid = tileGetSolid(x, y)
 		tileSetSolid(x, y, 1)
 
-		shape = Rec(x, y, 7, 9, 0)
+		shape = Rec(x, y + 2, 7, 8, 0)
 		slideshape = Rec(x, y - 1, 16, 8, 0)
 
 		if(_arr != null && _arr != "") coins = _arr.tointeger()

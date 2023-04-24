@@ -30,7 +30,7 @@ donut("src/weapons.nut")
 donut("src/player.nut")
 donut("src/tux.nut")
 donut("src/konqi.nut")
-//donut("src/midi.nut")
+donut("src/midi.nut")
 donut("src/cyra.nut")
 donut("src/items.nut")
 donut("src/effects.nut")
@@ -164,7 +164,9 @@ startMain()
 menu = meMain
 game.playerChar = "Tux"
 
-//gotoTest()
+//Testing Midi
+game.playerChar = "Midi"
+gotoTest()
 
 //Load contrib initializers
 if(fileExists("contrib")) {
