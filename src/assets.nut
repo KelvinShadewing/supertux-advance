@@ -100,6 +100,8 @@
 ::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 8)
 ::defMidiDoll <- sprMidiDoll
 ::sprMidiNPC <- newSprite("res/gfx/midi-npc.png", 32, 32, 0, 0, 16, 32)
+::sprMidiAura <- newSprite("res/gfx/midi-aura.png", 32, 32, 0, 0, 16, 32)
+::defMidiAura <- sprMidiAura
 
 
 
@@ -596,6 +598,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprMidi = defMidi
 	sprMidiOverworld = defMidiOverworld
 	sprMidiDoll = defMidiDoll
+	sprMidiAura <- defMidiAura
 
 	sprHealth = defHealth
 	sprEnergy = defEnergy

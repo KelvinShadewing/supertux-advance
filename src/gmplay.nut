@@ -323,7 +323,7 @@
 		}
 	}
 
-	local runAnim = getroottable()[game.playerChar].anRun
+	local runAnim = getroottable()[game.playerChar].an["run"]
 	switch(game.ps1.weapon) {
 		case "normal":
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)

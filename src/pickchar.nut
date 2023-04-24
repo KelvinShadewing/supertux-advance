@@ -5,7 +5,7 @@
 	pickCharSettings.charlist <- []
 	foreach(key, i in gvCharacters) {
 		if(key in game.characters || unlockAll) {
-			local newitem = [key, i["normal"], i["wave"], i["doll"]]
+			local newitem = [key, i["normal"], i["pick"], i["doll"]]
 			if(playerNum == 1 && game.playerChar2 != key
 			|| playerNum == 2 && game.playerChar != key) pickCharSettings.charlist.push(newitem)
 		}

@@ -66,8 +66,8 @@
 						}
 						getHurt(gvPlayer, 1, "normal", false, false, true)
 					}
-					else if(gvPlayer.rawin("anSlide") && blinking == 0 && !sharpSide) {
-						if(gvPlayer.anim == gvPlayer.anSlide) getHurt(gvPlayer, 1, "normal", false, false, false)
+					else if(("anim" in gvPlayer) && blinking == 0 && !sharpSide) {
+						if(gvPlayer.anim == "slide") getHurt(gvPlayer, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer)
 					}
 					else hurtPlayer(gvPlayer)
@@ -84,7 +84,7 @@
 						}
 						getHurt(gvPlayer2, 1, "normal", false, false, true)
 					}
-					else if(gvPlayer2.rawin("anSlide") && blinking == 0 && !sharpSide) {
+					else if(("anim" in gvPlayer2) && blinking == 0 && !sharpSide) {
 						if(gvPlayer2.anim == gvPlayer2.anSlide) getHurt(gvPlayer2, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer2)
 					}
@@ -172,7 +172,7 @@
 		if(y > gvMap.h + 32) deleteActor(id)
 	}
 
-	function draw() { drawSpriteEx(sprite, frame, floor(x - camx), floor(y - camy), angle, flip, 1, 1, 1) }
+	function draw() { drawSprite(sprite, frame, floor(x - camx), floor(y - camy), angle, flip, 1, 1, 1) }
 
 	function _typeof() { return "DeadNME" }
 }
@@ -283,8 +283,8 @@
 
 		if(!squish) {
 			if(frozen) {
-				if(smart) drawSpriteEx(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSprite(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 				if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -293,13 +293,13 @@
 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 			}
 			else {
-				if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSprite(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 		}
 		else {
-			if(smart) drawSpriteEx(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-			else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			if(smart) drawSprite(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSprite(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
 	}
 
@@ -334,8 +334,8 @@
 			return
 		}
 
-		if("anSlide" in _by) {
-			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
+		if("anim" in _by) {
+			if(_by.anim == "slide" && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprGradcap
 				else actor[c].sprite = sprDeathcap
@@ -469,11 +469,11 @@
 
 	function draw() {
 		if(frozen) {
-			if(flip == 1) drawSpriteEx(sprSnake, 0, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSpriteEx(sprSnake, 0, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
+			if(flip == 1) drawSprite(sprSnake, 0, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSprite(sprSnake, 0, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
 
-			if(flip == 1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+			if(flip == 1) drawSprite(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSprite(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 			if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy + 16)
 				else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
@@ -481,8 +481,8 @@
 			else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
 		}
 		else {
-			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
+			if(flip == 1) drawSprite(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+			if(flip == -1) drawSprite(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
 		}
 
 		if(debug) {
@@ -497,8 +497,10 @@
 
 		if(_by != 0 && hitTest(shape, _by.shape)) {
 			local didhurt = false
-			if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide) didhurt = true
-			if(_by.rawin("anStomp")) if(_by.anim == _by.anStomp) didhurt = true
+			if("anim" in _by) {
+				if(_by.anim == "slide") didhurt = true
+				if(_by.anim == "stomp") didhurt = true
+			}
 			if(!didhurt) hurtPlayer(_by)
 		}
 
@@ -621,10 +623,10 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprOrangeBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		drawSprite(sprOrangeBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 		if(frozen) {
-			drawSpriteEx(sprOrangeBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprOrangeBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -795,7 +797,7 @@
 						gvPlayer.holding = 0
 					}
 
-					if(gvPlayer.rawin("anSlide") && gvPlayer.anim == gvPlayer.anSlide) {
+					if(("anim" in gvPlayer) && gvPlayer.anim == "slide") {
 						held = false
 						gvPlayer.holding = 0
 					}
@@ -808,7 +810,7 @@
 						y = gvPlayer.y + gvPlayer.vspeed
 					}
 
-					if(gvPlayer.rawin("anSlide") && gvPlayer.anim == gvPlayer.anSlide && held) {
+					if(("anim" in gvPlayer) && gvPlayer.anim == "slide" && held) {
 						gvPlayer.holding = 0
 
 						//escape from solid
@@ -872,9 +874,9 @@
 	}
 
 	function draw() {
-		if(squish) drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		if(squish) drawSprite(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 		else if(frozen) {
-			drawSpriteEx(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -882,7 +884,7 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteEx(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -917,13 +919,13 @@
 
 		popSound(sndFizz, 0)
 		if(_stomp) {
-			if(_by.anim == _by.anJumpT || _by.anim == _by.anFall) {
-				_by.anim = _by.anJumpU
-				_by.frame = _by.anJumpU[0]
+			if(_by.anim == "jumpT" || _by.anim == "fall") {
+				_by.anim = "jumpU"
+				_by.frame = _by.an["jumpU"][0]
 			}
 		}
 
-		if(_by != 0 && "anSlide" in _by && _by.anim == _by.anSlide) {
+		if(_by != 0 && ("anim" in _by) && _by.anim == "slide") {
 			vspeed = -abs(_by.hspeed) / 2.0
 			hspeed = _by.hspeed <=> 0
 		}
@@ -1013,14 +1015,14 @@
 
 	function draw() {
 		if(biting) {
-			drawSpriteEx(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+			drawSprite(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 			frame += 0.125
 		}
-		else drawSpriteEx(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSprite(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
+		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1136,14 +1138,14 @@
 
 	function draw() {
 		if(biting) {
-			drawSpriteEx(sprRedFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+			drawSprite(sprRedFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 			frame += 0.125
 		}
-		else drawSpriteEx(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSprite(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
+		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1244,12 +1246,12 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
+		drawSprite(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
+		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1315,10 +1317,10 @@
 		if(timer > 0) timer--
 	}
 
-	function draw() { drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1) }
+	function draw() { drawSprite(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1) }
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
+		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
 		if(_stomp && timer > 30) return
 		if(_element == "fire") hurtFire()
 		if(_element == "normal" || _blast) hurtBlast()
@@ -1480,14 +1482,14 @@
 
 	function draw() {
 		if(biting) {
-			drawSpriteEx(sprGreenFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+			drawSprite(sprGreenFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 			frame += 0.125
 		}
-		else drawSpriteEx(sprGreenFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSprite(sprGreenFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_by.rawin("anSlide")) if(_by.anim == _by.anSlide && _by.stats.weapon == "earth") hurtFire()
+		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
 		if(!_stomp || !_by.swimming) hurtFire()
 	}
 
@@ -1729,7 +1731,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprite, 4, x - camx, y - camy, 0, int(hspeed < 0), 1, 1, 1)
+			drawSprite(sprite, 4, x - camx, y - camy, 0, int(hspeed < 0), 1, 1, 1)
 
 			if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -1737,7 +1739,7 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, int(hspeed < 0), 1, 1, 1)
+		else drawSprite(sprite, getFrames() / 4, x - camx, y - camy, 0, int(hspeed < 0), 1, 1, 1)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -1905,14 +1907,14 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprFlyAmanita, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
+			drawSprite(sprFlyAmanita, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
 			if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteEx(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSprite(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -1964,16 +1966,11 @@
 				popSound(sndSquish, 0)
 			}
 
-			if(_by.anim == _by.anJumpT || _by.anim == _by.anFall) {
-				_by.anim = _by.anJumpU
-				_by.frame = _by.anJumpU[0]
-			}
-
-			else if(keyDown(config.key.jump)) _by.vspeed = -5
+			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum)) _by.vspeed = -5
 			else _by.vspeed = -2
-			if(_by.anim == _by.anJumpT || _by.anim == _by.anFall) {
-				_by.anim = _by.anJumpU
-				_by.frame = _by.anJumpU[0]
+			if(_by.anim == "jumpT" || _by.anim == "fall") {
+				_by.anim = "jumpU"
+				_by.frame = _by.an["jumpU"][0]
 			}
 		}
 	}
@@ -2054,7 +2051,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2062,7 +2059,7 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteEx(sprJumpy, (0 <=> round(vspeed / 2.0)) + 1, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprJumpy, (0 <=> round(vspeed / 2.0)) + 1, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2260,7 +2257,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2268,10 +2265,10 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(chasing) drawSpriteEx(sprHaywire, wrap(getFrames() / 4, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-		else if(squish && !chasing) drawSpriteEx(sprHaywire, anAgro[wrap(frame, 0, anAgro.len() - 1)], x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-		else if(squish) drawSpriteEx(sprHaywire, wrap(frame, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprHaywire, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(chasing) drawSprite(sprHaywire, wrap(getFrames() / 4, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(squish && !chasing) drawSprite(sprHaywire, anAgro[wrap(frame, 0, anAgro.len() - 1)], x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(squish) drawSprite(sprHaywire, wrap(frame, 12, 15), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprHaywire, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -2466,7 +2463,7 @@
 					fireWeapon(ExplodeT, x + 20, y - 20, 0, id)
 
 				}
-				drawSpriteEx(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+				drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
 
 				if(frozen) {
@@ -2482,9 +2479,9 @@
 	}
 
 	function draw() {
-		if(squish) drawSpriteEx(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		if(squish) drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 		else if(frozen) {
-			drawSpriteEx(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2492,7 +2489,7 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteEx(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -2638,8 +2635,8 @@
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1)
-				if(smart) drawSpriteEx(sprIvyRed, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprIvyGreen, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSprite(sprIvyRed, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprIvyGreen, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 
@@ -2651,7 +2648,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2659,7 +2656,7 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else drawSpriteEx(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
 	}
@@ -2796,7 +2793,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2804,8 +2801,8 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(squish) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else if(squish) drawSprite(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -2838,8 +2835,8 @@
 			return
 		}
 
-		if("anSlide" in _by) {
-			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
+		if("anim" in _by) {
+			if(_by.anim == "slide" && hitTest(shape, _by.shape)) {
 				_by.hurt = 1
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprWildcap
@@ -2994,8 +2991,8 @@
 
 	function draw() {
 		if(frozen) {
-			if(smart) drawSpriteEx(sprSmartTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-			else drawSpriteEx(sprTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			if(smart) drawSprite(sprSmartTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSprite(sprTallCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 7)
@@ -3003,8 +3000,8 @@
 			}
 			else drawSprite(sprIceTrapTall, 0, x - camx, y - camy - 7)
 		}
-		else if(smart) drawSpriteEx(sprSmartTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else if(smart) drawSprite(sprSmartTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprTallCap, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 		if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
@@ -3176,8 +3173,8 @@
 
 		if(!squish) {
 			if(frozen) {
-				if(smart) drawSpriteEx(sprIvyRed, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprIvyGreen, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSprite(sprIvyRed, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprIvyGreen, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 				if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -3187,19 +3184,19 @@
 			}
 			else {
 				if(smart) {
-				if(placeFree(x, y + 2)) drawSpriteEx(sprIvyRed, wrap(getFrames() / 8, 4, 7), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprIvyRed, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(placeFree(x, y + 2)) drawSprite(sprIvyRed, wrap(getFrames() / 8, 4, 7), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprIvyRed, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 				else{
-				if(placeFree(x, y + 2)) drawSpriteEx(sprIvyGreen, wrap(getFrames() / 8, 4, 7), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprIvyGreen, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(placeFree(x, y + 2)) drawSprite(sprIvyGreen, wrap(getFrames() / 8, 4, 7), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprIvyGreen, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 
 			}
 		}
 		else {
-		if(smart) drawSpriteEx(sprIvyRed, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprIvyGreen, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		if(smart) drawSprite(sprIvyRed, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprIvyGreen, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
 	}
 
@@ -3234,8 +3231,8 @@
 			return
 		}
 
-		if("anSlide" in _by) {
-			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
+		if("anim" in _by) {
+			if(_by.anim == "slide" && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprIvyRed
 				else actor[c].sprite = sprIvyGreen
@@ -3439,11 +3436,7 @@
 	function draw() {
 		if(frozen) {
 			drawSpriteZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
-			if(frozen <= 120) {
-			if(floor(frozen / 4) % 2 == 0) drawSpriteZ(1, sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-				else drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy - 1)
-			}
-			else drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
 		}
 		else drawSpriteZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
@@ -3876,7 +3869,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprSpikeCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprSpikeCap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -3884,8 +3877,8 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(moving && getupTime <= 0) drawSpriteEx(sprSpikeCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprSpikeCap, 6.0 - getupTime, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else if(moving && getupTime <= 0) drawSprite(sprSpikeCap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprSpikeCap, 6.0 - getupTime, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 
 		setDrawColor(0xff0000ff)
@@ -3939,8 +3932,8 @@
 			return
 		}
 
-		if(_by.rawin("anSlide")) {
-			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
+		if("anim" in _by) {
+			if(_by.anim == "slide" && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprSpikeCap
 				actor[c].vspeed = min(-fabs(_by.hspeed), -4)
@@ -4105,7 +4098,7 @@
 
 	function draw() {
 		if(frozen) {
-			drawSpriteEx(sprCaptainMorel, 0 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(sprCaptainMorel, 0 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -4113,9 +4106,9 @@
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(squish) drawSpriteEx(sprCaptainMorel, floor(7.8 + squishTime) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		else if(placeFree(x, y + 1)) drawSpriteEx(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		else drawSpriteEx(sprCaptainMorel, wrap(getFrames() / 8, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else if(squish) drawSprite(sprCaptainMorel, floor(7.8 + squishTime) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else if(placeFree(x, y + 1)) drawSprite(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else drawSprite(sprCaptainMorel, wrap(getFrames() / 8, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 
 		setDrawColor(0xff0000ff)
 		if(debug) shape.draw()
@@ -4152,8 +4145,8 @@
 			return
 		}
 
-		if(_by.rawin("anSlide")) {
-			if(_by.anim == _by.anSlide && hitTest(shape, _by.shape)) {
+		if("anim" in _by) {
+			if(_by.anim == "slide" && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				actor[c].sprite = sprCaptainMorel
 				actor[c].vspeed = min(-fabs(_by.hspeed), -4)
@@ -4395,8 +4388,8 @@
 	}
 
 	function draw() {
-		if(turning > 0) drawSpriteEx(sprWheelerHamster, 8.0 + (4.0 - turning), x - camx, y - camy, 0, flip, 1, 1, 1)
-		else drawSpriteEx(sprWheelerHamster, wrap(frame, 0, 3) + bladesOut, x - camx, y - camy, 0, flip, 1, 1, 1)
+		if(turning > 0) drawSprite(sprWheelerHamster, 8.0 + (4.0 - turning), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSprite(sprWheelerHamster, wrap(frame, 0, 3) + bladesOut, x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function physics() {

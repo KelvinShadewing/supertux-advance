@@ -38,7 +38,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer.rawin("anSlide")) if(fabs(gvPlayer.hspeed) >= 4.5 && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 4.5 && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -48,7 +48,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
+					if("anim" in gvPlayer) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == "stomp") {
 						gvPlayer.vspeed = -2.0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -67,7 +67,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer.rawin("anSlide")) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -75,7 +75,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
+					if("anim" in gvPlayer) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == "stomp") {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -99,7 +99,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer2.rawin("anSlide")) if(fabs(gvPlayer2.hspeed) >= 4.5 && gvPlayer2.anim == gvPlayer2.anSlide) if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer) if(fabs(gvPlayer2.hspeed) >= 4.5 && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
 						gvPlayer2.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -109,7 +109,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer2.rawin("anStomp")) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == gvPlayer2.anStomp) {
+					if("anim" in gvPlayer) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
 						gvPlayer2.vspeed = -2.0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -128,7 +128,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer2.rawin("anSlide")) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == gvPlayer2.anSlide) if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -136,7 +136,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if(gvPlayer2.rawin("anStomp")) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == gvPlayer2.anStomp) {
+					if("anim" in gvPlayer) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -219,7 +219,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == gvPlayer.anSlide) if(hitTest(slideshape, gvPlayer.shape)) {
+			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -228,7 +228,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if(gvPlayer.rawin("anStomp")) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == gvPlayer.anStomp) {
+			if("anim" in gvPlayer) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == "stomp") {
 				gvPlayer.vspeed = -2.0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -248,7 +248,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == gvPlayer2.anSlide) if(hitTest(slideshape, gvPlayer2.shape)) {
+			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
 				gvPlayer2.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -257,7 +257,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if(gvPlayer2.rawin("anStomp")) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == gvPlayer2.anStomp) {
+			if("anim" in gvPlayer) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
 				gvPlayer2.vspeed = -2.0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)

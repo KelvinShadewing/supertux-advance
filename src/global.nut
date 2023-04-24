@@ -105,7 +105,7 @@
 		ice = "sprTuxIce"
 		air = "sprTuxAir"
 		earth = "sprTuxEarth"
-		wave = [40, 41]
+		pick = [40, 41]
 	}
 	Penny = {
 		over = "sprPennyOverworld"
@@ -115,7 +115,7 @@
 		ice = "sprPennyIce"
 		air = "sprPennyAir"
 		earth = "sprPennyEarth"
-		wave = [40, 41]
+		pick = [40, 41]
 	}
 	Konqi = {
 		over = "sprKonqiOverworld"
@@ -125,7 +125,7 @@
 		ice = "sprKonqiIce"
 		air = "sprKonqiAir"
 		earth = "sprKonqiEarth"
-		wave = [8, 53]
+		pick = [8, 53]
 	}
 	Katie = {
 		over = "sprKatieOverworld"
@@ -135,18 +135,18 @@
 		ice = "sprKatieIce"
 		air = "sprKatieAir"
 		earth = "sprKatieEarth"
-		wave = [8, 53]
+		pick = [8, 53]
 	}
-	Midi = {
-		over = "sprMidiOverworld"
-		doll = "sprMidiDoll"
-		normal = "sprMidi"
-		fire = "sprMidi"
-		ice = "sprMidi"
-		air = "sprMidi"
-		earth = "sprMidi"
-		wave = [177, 239]
-	}
+	// Midi = {
+	// 	over = "sprMidiOverworld"
+	// 	doll = "sprMidiDoll"
+	// 	normal = "sprMidi"
+	// 	fire = "sprMidi"
+	// 	ice = "sprMidi"
+	// 	air = "sprMidi"
+	// 	earth = "sprMidi"
+	// 	pick = [177, 239]
+	// }
 }
 
 ::game <- createNewGameObject()
