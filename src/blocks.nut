@@ -38,7 +38,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 4.5 && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -99,7 +99,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer) if(fabs(gvPlayer2.hspeed) >= 4.5 && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer) if(fabs(gvPlayer2.hspeed) >= 4.5 && gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball") if(hitTest(slideshape, gvPlayer2.shape)) {
 						gvPlayer2.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -219,7 +219,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
+			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -248,7 +248,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
+			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
 				gvPlayer2.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -1245,7 +1245,7 @@
 	function draw() {
 		if(full || vspeed < 0) {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
-			drawSpriteZ(2, getroottable()[gvCharacters[character]["doll"]], 0, x - camx, y - camy + v)
+			if(character in gvCharacters) drawSpriteZ(2, getroottable()[gvCharacters[character]["doll"]], 0, x - camx, y - camy + v)
 		}
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}

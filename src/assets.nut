@@ -100,7 +100,7 @@
 ::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 8)
 ::defMidiDoll <- sprMidiDoll
 ::sprMidiNPC <- newSprite("res/gfx/midi-npc.png", 32, 32, 0, 0, 16, 32)
-::sprMidiAura <- newSprite("res/gfx/midi-aura.png", 32, 32, 0, 0, 16, 32)
+::sprMidiAura <- newSprite("res/gfx/midi-aura.png", 32, 32, 0, 0, 16, 19)
 ::defMidiAura <- sprMidiAura
 
 
@@ -425,6 +425,16 @@
 ::defSteelBall <- sprSteelBall
 ::sprRock <- newSprite("res/gfx/rock.png", 16, 16, 0, 0, 8, 8)
 ::defRock <- sprRock
+::sprBallSpin <- newSprite("res/gfx/ball-spin.png", 20, 20, 0, 0, 10, 10)
+::defBallSpin <- sprBallSpin
+::sprHealthOrb <- newSprite("res/gfx/health-orb-big.png", 16, 16, 0, 0, 8, 8)
+::defHealthOrb <- sprHealthOrb
+::sprNutBomb <- newSprite("res/gfx/nutbomb.png", 8, 8, 0, 0, 4, 4)
+::defNutBomb <- sprNutBomb
+::sprWingNut <- newSprite("res/gfx/wingnutbomb.png", 16, 16, 0, 0, 8, 8)
+::defWingnut <- sprWingNut
+::sprNutMine <- newSprite("res/gfx/nutmine.png", 16, 16, 0, 0, 8, 12)
+::defNutMine <- sprNutMine
 
 
 

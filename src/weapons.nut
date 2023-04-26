@@ -699,3 +699,65 @@
 		if(timer == 0) deleteActor(id)
 	}
 }
+
+::NutBomb <- class extends WeaponEffect {
+	timer = 90
+	element = "normal"
+	power = 0
+	blast = false
+	piercing = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 4)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.9
+			vspeed *= 0.9
+		}
+
+		x += hspeed
+		y += vspeed
+		if(!placeFree(x, y)) {
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+
+		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSprite(sprNutBomb, (getFrames() / 8) % 4, x - camx, y - camy)
+		drawLight(sprLightFire, 0, x - camx - 4, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function destructor() {
+		switch(element) {
+			case "normal":
+				fireWeapon(ExplodeN, x, y, alignment, owner)
+				break
+			case "fire":
+				fireWeapon(ExplodeF, x, y, alignment, owner)
+				break
+			case "ice":
+				fireWeapon(ExplodeI, x, y, alignment, owner)
+				break
+			case "shock":
+				fireWeapon(ExplodeT, x, y, alignment, owner)
+				break
+		}
+	}
+}

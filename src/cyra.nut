@@ -1,13 +1,13 @@
 
-::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 74, 54, 0, 0, 32, 32)
+::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 74, 54, 0, 0, 32, 34)
 ::defCyra <- sprCyra
-::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 66, 42, 0, 0, 32, 29)
+::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 0, 0, 32, 34)
 ::defCyraFire <- sprCyraFire
-::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 66, 42, 0, 0, 32, 29)
+::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 0, 0, 32, 34)
 ::defCyraIce <- sprCyraIce
-::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 66, 42, 0, 0, 32, 29)
+::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 0, 0, 32, 34)
 ::defCyraAir <- sprCyraAir
-::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 66, 42, 0, 0, 32, 29)
+::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 0, 0, 32, 34)
 ::defCyraEarth <- sprCyraEarth
 ::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 0, 0, 7, 17)
 ::defCyraOverworld <- sprCyraOverworld
@@ -112,6 +112,7 @@ gvCharacters.Cyra <- {
 		getUp = [15, 14]
 		walk = [16, 17, 18, 19, 20, 21, 22, 23]
 		run = [24, 25, 26, 27, 28, 29, 30, 31]
+		jump = [32, 33]
 		jumpU = [32, 33]
 		jumpT = [34, 35]
 		fall = null
@@ -672,7 +673,7 @@ gvCharacters.Cyra <- {
 						didJump = true
 						if(stats.weapon != "air") canJump = 0
 						if(anim != "hurt" && anim != "dive") {
-							anim = "jump"
+							anim = "jumpU"
 							frame = 0.0
 						}
 						if(stats.weapon != "air") {
@@ -1196,31 +1197,31 @@ gvCharacters.Cyra <- {
 	function draw() {
 		if(!hidden) {
 			switch(stats.weapon) {
-				case 0:
+				case "normal":
 					sprite = mySprNormal
 					damageMult = damageMultN
 					canStomp = false
 					break
 
-				case 1:
+				case "fire":
 					sprite = mySprFire
 					damageMult = damageMultF
 					canStomp = false
 					break
 
-				case 2:
+				case "ice":
 					sprite = mySprIce
 					damageMult = damageMultI
 					canStomp = false
 					break
 
-				case 3:
+				case "air":
 					sprite = mySprAir
 					damageMult = damageMultA
 					canStomp = false
 					break
 
-				case 4:
+				case "earth":
 					sprite = mySprEarth
 					damageMult = damageMultE
 					canStomp = true

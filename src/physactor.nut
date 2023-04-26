@@ -1057,11 +1057,11 @@
 		return false
 	}
 
-	function onPlatform() {
+	function onPlatform(_x = 0, _y = 0) {
 		//Save current location and move
 		local ns
-		if(typeof shape == "Rec") ns = Rec(x + shape.ox, y + shape.oy + 2, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(x + shape.ox, y + shape.oy + 2, shape.r)
+		if(typeof shape == "Rec") ns = Rec(x + shape.ox + _x, y + shape.oy + 2 + _y, shape.w, shape.h, shape.kind)
+		if(typeof shape == "Cir") ns = Cir(x + shape.ox + _x, y + shape.oy + 2 + _y, shape.r)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16) + 1
 
@@ -1080,12 +1080,16 @@
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
 					if(hitTest(ns, gvMap.shape)) return true
+					ns.x -= hspeed
+					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 44: //L diag
 					gvMap.shape.setPos(x, y + 4)
 					gvMap.shape.kind = 2
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
+					ns.x -= hspeed
 					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 45: //R 2/2
@@ -1094,12 +1098,16 @@
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
 					if(hitTest(ns, gvMap.shape)) return true
+					ns.x -= hspeed
+					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 46: //R 1/2
 					gvMap.shape.setPos(x, y + 4)
 					gvMap.shape.kind = 1
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
+					ns.x -= hspeed
 					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 47: //L 1/2
@@ -1108,12 +1116,16 @@
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
 					if(hitTest(ns, gvMap.shape)) return true
+					ns.x -= hspeed
+					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 48: //L 2/2
 					gvMap.shape.setPos(x, y + 4)
 					gvMap.shape.kind = 2
 					gvMap.shape.w = 8.0
 					gvMap.shape.h = 4.0
+					if(hitTest(ns, gvMap.shape)) return true
+					ns.x -= hspeed
 					if(hitTest(ns, gvMap.shape)) return true
 					break
 				case 49: //R diag

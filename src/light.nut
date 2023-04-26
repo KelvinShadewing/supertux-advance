@@ -6,7 +6,7 @@
 ::gvLight2 <- 0xffffffff
 ::gvLightTarget2 <- 0xffffffff
 
-::drawLight <- function(sprite, frame, x, y) {
+::drawLight <- function(sprite, frame, x, y, a = 0, f = 0, w = 1.0, h = 1.0) {
 	if(!config.light) return
 	if(gvLightScreen == 0) return
 	if(gvLightScreen == gvLightScreen1 && gvLight == 0xffffffff
@@ -15,7 +15,7 @@
 	local prevTarget = getDrawTarget()
 
 	setDrawTarget(gvLightScreen)
-	drawSprite(sprite, frame, x, y)
+	drawSprite(sprite, frame, x, y, a, f, w, h)
 	setDrawTarget(prevTarget)
 }
 

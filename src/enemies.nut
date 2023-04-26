@@ -64,10 +64,10 @@
 							if(getcon("jump", "hold", false, 1)) gvPlayer.vspeed = -8.0
 							else gvPlayer.vspeed = -4.0
 						}
-						getHurt(gvPlayer, 1, "normal", false, false, true)
+						getHurt(gvPlayer, gvPlayer.stompDamage, "normal", false, false, true)
 					}
 					else if(("anim" in gvPlayer) && blinking == 0 && !sharpSide) {
-						if(gvPlayer.anim == "slide") getHurt(gvPlayer, 1, "normal", false, false, false)
+						if(gvPlayer.anim == "slide" || (gvPlayer.anim == "ball" && fabs(gvPlayer.hspeed) > 4.2)) getHurt(gvPlayer, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer)
 					}
 					else hurtPlayer(gvPlayer)
@@ -82,10 +82,10 @@
 							if(getcon("jump", "hold", false, 2)) gvPlayer2.vspeed = -8.0
 							else gvPlayer2.vspeed = -4.0
 						}
-						getHurt(gvPlayer2, 1, "normal", false, false, true)
+						getHurt(gvPlayer2, gvPlayer2.stompDamage, "normal", false, false, true)
 					}
 					else if(("anim" in gvPlayer2) && blinking == 0 && !sharpSide) {
-						if(gvPlayer2.anim == gvPlayer2.anSlide) getHurt(gvPlayer2, 1, "normal", false, false, false)
+						if(gvPlayer2.anim == "slide" || (gvPlayer2.anim == "ball" && fabs(gvPlayer2.hspeed) > 4.2)) getHurt(gvPlayer2, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer2)
 					}
 					else hurtPlayer(gvPlayer2)
@@ -365,8 +365,8 @@
 			}
 		} else popSound(sndSquish, 0)
 
-		squish = true
-		blinking = 120
+		if(_mag > 0) squish = true
+		if(_mag > 0) blinking = 120
 	}
 
 	function hurtblast() {
@@ -2285,7 +2285,7 @@
 			frozen = 0
 			icebox = -1
 		}
-		squish = true
+		if(_mag > 0) squish = true
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2506,7 +2506,6 @@
 			newActor(IceChunks, x, y)
 		}
 		squish = true
-
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2867,8 +2866,8 @@
 			}
 		} else popSound(sndSquish, 0)
 
-		squish = true
-		blinking = 120
+		if(_mag > 0) squish = true
+		if(_mag > 0) blinking = 120
 	}
 
 	function hurtblast() {
@@ -3023,8 +3022,8 @@
 
 		die()
 
-		squish = true
-		blinking = 120
+		if(_mag > 0) squish = true
+		if(_mag > 0) blinking = 120
 	}
 
 	function hurtblast() {
@@ -3264,8 +3263,8 @@
 			}
 		} else popSound(sndSquish, 0)
 
-		squish = true
-		blinking = 120
+		if(_mag > 0) squish = true
+		if(_mag > 0) blinking = 120
 	}
 
 	function hurtblast() {
@@ -3961,8 +3960,8 @@
 			}
 		} else popSound(sndSquish, 0)
 
-		squish = true
-		blinking = 120
+		if(_mag > 0) squish = true
+		if(_mag > 0) blinking = 120
 	}
 
 	function hurtblast() {
@@ -4174,8 +4173,8 @@
 			}
 		} else popSound(sndSquish, 0)
 
-		squish = true
-		blinking = 120
+		if(_mag > 0) squish = true
+		if(_mag > 0) blinking = 120
 	}
 
 	function hurtblast() {

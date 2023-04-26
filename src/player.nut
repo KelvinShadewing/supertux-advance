@@ -35,6 +35,7 @@
 
 	//Ability flags
 	canStomp = false //Mario-like jump attack
+	stompDamage = 1
 	canGroundPound = true //Ground stomp attack
 	canSlide = false //Slide attack
 	canMove = true //Movement unlocked, set to false during cutscenes or when player restrained
@@ -290,7 +291,10 @@
 		}
 	}
 
-	function draw() { drawSprite(sprite, anim[wrap(getFrames() / 15, 0, anim.len() - 1)], floor(x - camx), floor(y - camy)) }
+	function draw() {
+		drawSprite(sprite, anim[wrap(getFrames() / 15, 0, anim.len() - 1)], floor(x - camx), floor(y - camy))
+		drawLight(sprLightBasic, 0, x - camx, y - camy)
+	}
 
 	function _typeof() { return "DeadPlayer" }
 }
