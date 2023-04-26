@@ -237,6 +237,7 @@
 				gravity = 0.0
 				if(!getcon("down", "hold", true, playerNum)) vspeed = 0.0
 				y = (floor(y / 16.0) * 16.0) + 14.0
+				if(freeRight && freeLeft) anim = "jumpT"
 				break
 		}
 
@@ -617,7 +618,7 @@
 		}
 
 		if(canMove) {
-			mspeed = 3.5
+			mspeed = 4.0
 			if(config.stickspeed) {
 				local j = null
 				if(playerNum == 1) j = config.joy
@@ -636,6 +637,7 @@
 			if(anim == "ledge") {
 				mspeed = 0
 				accel = 0
+				hspeed = 0
 			}
 
 			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
@@ -748,14 +750,21 @@
 			//Wall slide
 			if((anim == "fall" || anim == "ledge") && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
-					if(vspeed > 0.5) vspeed = 0.5
-					if(getFrames() / 4 % 4 == 0) newActor(PoofTiny, x - 4, y + 12)
-					an["fall"] = an["fallW"]
-					anim = "fall"
-					flip = 0
+					if(tileGetSolid(x - 8, y - 16) == 0 && tileGetSolid(x - 8, y) == 1) {
+						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
+						anim = "ledge"
+						flip = 1
+					}
+					else {
+						if(vspeed > 0.5) vspeed = 0.5
+						if(getFrames() / 4 % 4 == 0) newActor(PoofTiny, x - 4, y + 12)
+						an["fall"] = an["fallW"]
+						anim = "fall"
+						flip = 0
+					}
 				}
 				if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
-					if(tileGetSolid(x + 8, y - 16) == 0 && tileGetSolid(x + 8, y) != 0) {
+					if(tileGetSolid(x + 8, y - 16) == 0 && tileGetSolid(x + 8, y) == 1) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 0
@@ -773,7 +782,7 @@
 			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown) jumpBuffer = 8
 			if(jumpBuffer > 0) jumpBuffer--
 
-			if(getcon("jump", "release", true, playerNum) && vspeed < 0 && didJump)
+			if(getcon("jump", "release", true, playerNum) && (vspeed < 0 && didJump || anim == "fall"))
 			{
 				didJump = false
 				vspeed /= 2.5
@@ -804,7 +813,7 @@
 				else hspeed = 2.0
 				if(hurt >= hurtThreshold) an.hurt = an.hurtHeavy
 				else an.hurt = an.hurtLight
-				anim = "hurt"
+				if(anim != "morphIn") anim = "hurt"
 				frame = 0.0
 			}
 			hurt = 0
@@ -855,7 +864,7 @@
 				else hspeed = 2.0
 				if(hurt >= hurtThreshold) an.hurt = an.hurtHeavy
 				else an.hurt = an.hurtLight
-				anim = "hurt"
+				if(anim != "morphIn") anim = "hurt"
 				frame = 0.0
 			}
 			hurt = 0
@@ -907,6 +916,7 @@
 				}
 				else if(onIce(x, y + 1)) hspeed += accel / 2.0
 				else hspeed += accel
+				flip = 0
 			}
 
 			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
@@ -916,6 +926,7 @@
 				}
 				else if(onIce(x, y + 1)) hspeed -= accel / 2.0
 				else hspeed -= accel
+				flip = 1
 			}
 
 			//Jumping
@@ -987,6 +998,7 @@
 			}
 			if(anim == "ball" && fabs(hspeed) > 4.2 && spinAlpha < 1.0) spinAlpha += 0.2
 			if(spinAlpha > 0) spinAlpha -= 0.1
+			if(spinAlpha < 0) spinAlpha = 0
 			drawSpriteZ(0, sprBallSpin, floor((hspeed < 0 ? -frame : frame)), x - camx, y + 5 - camy, 0, int(hspeed < 0), 1, 1, spinAlpha)
 			if(debug) {
 				setDrawColor(0x008000ff)
@@ -1026,6 +1038,10 @@
 			if(playerNum == 2) gvPlayer2 = false
 			newActor(DeadMidi, x, y, [sprite, an["hurtHeavy"], playerNum, flip])
 		}
+	}
+
+	function shootNut(hand) {
+		
 	}
 
 	function _typeof(){ return "Midi" }

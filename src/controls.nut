@@ -294,106 +294,106 @@
 		switch(newkey) {
 			case 0:
 				keyname = gvLangObj["controls-menu"]["up-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.up = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.up = keyPressAny()
 					done = true
 				}
 				break
 			case 1:
 				keyname = gvLangObj["controls-menu"]["down-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.down = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.down = keyPressAny()
 					done = true
 				}
 				break
 			case 2:
 				keyname = gvLangObj["controls-menu"]["left-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.left = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.left = keyPressAny()
 					done = true
 				}
 				break
 			case 3:
 				keyname = gvLangObj["controls-menu"]["right-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.right = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.right = keyPressAny()
 					done = true
 				}
 				break
 			case 4:
 				keyname = gvLangObj["controls-menu"]["jump-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.jump = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.jump = keyPressAny()
 					done = true
 				}
 				break
 			case 5:
 				keyname = gvLangObj["controls-menu"]["shoot-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.shoot = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.shoot = keyPressAny()
 					done = true
 				}
 				break
 			case 6:
 				keyname = gvLangObj["controls-menu"]["spec1-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.spec1 = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.spec1 = keyPressAny()
 					done = true
 				}
 				break
 			case 7:
 				keyname = gvLangObj["controls-menu"]["spec2-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.spec2 = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.spec2 = keyPressAny()
 					done = true
 				}
 				break
 			case 8:
 				keyname = gvLangObj["controls-menu"]["pause-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.pause = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.pause = keyPressAny()
 					done = true
 				}
 				break
 			case 9:
 				keyname = gvLangObj["controls-menu"]["item-swap-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.swap = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.swap = keyPressAny()
 					done = true
 				}
 				break
 			case 10:
 				keyname = gvLangObj["controls-menu"]["menu-accept-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.accept = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.accept = keyPressAny()
 					done = true
 				}
 				break
 			case 11:
 				keyname = gvLangObj["controls-menu"]["cam-left-peek-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.leftPeek = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.leftPeek = keyPressAny()
 					done = true
 				}
 				break
 			case 12:
 				keyname = gvLangObj["controls-menu"]["cam-right-peek-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.rightPeek = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.rightPeek = keyPressAny()
 					done = true
 				}
 				break
 			case 13:
 				keyname = gvLangObj["controls-menu"]["cam-down-peek-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.downPeek = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.downPeek = keyPressAny()
 					done = true
 				}
 				break
 			case 14:
 				keyname = gvLangObj["controls-menu"]["cam-up-peek-selection"]
-				if(anyKeyPress() != -1) {
-					config.key.upPeek = anyKeyPress()
+				if(keyPressAny() != -1) {
+					config.key.upPeek = keyPressAny()
 					done = true
 				}
 				break
@@ -439,8 +439,8 @@
 					joy.jump = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.jump = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.jump = joyPressAny(0)
 					done = true
 				}
 				break
@@ -450,8 +450,8 @@
 					joy.shoot = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.shoot = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.shoot = joyPressAny(0)
 					done = true
 				}
 				break
@@ -461,8 +461,8 @@
 					joy.spec1 = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.spec1 = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.spec1 = joyPressAny(0)
 					done = true
 				}
 				break
@@ -472,8 +472,8 @@
 					joy.spec2 = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.spec2 = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.spec2 = joyPressAny(0)
 					done = true
 				}
 				break
@@ -483,8 +483,8 @@
 					joy.pause = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.pause = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.pause = joyPressAny(0)
 					done = true
 				}
 				break
@@ -494,8 +494,8 @@
 					joy.swap = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.swap = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.swap = joyPressAny(0)
 					done = true
 				}
 				break
@@ -505,8 +505,8 @@
 					joy.accept = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.accept = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.accept = joyPressAny(0)
 					done = true
 				}
 				break
@@ -516,8 +516,8 @@
 					joy.leftPeek = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.leftPeek = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.leftPeek = joyPressAny(0)
 					done = true
 				}
 				break
@@ -527,8 +527,8 @@
 					joy.rightPeek = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.rightPeek = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.rightPeek = joyPressAny(0)
 					done = true
 				}
 				break
@@ -538,8 +538,8 @@
 					joy.downPeek = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.downPeek = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.downPeek = joyPressAny(0)
 					done = true
 				}
 				break
@@ -549,8 +549,8 @@
 					joy.upPeek = -1
 					done = true
 				}
-				if(anyJoyPress(0) != -1) {
-					joy.upPeek = anyJoyPress(0)
+				if(joyPressAny(0) != -1) {
+					joy.upPeek = joyPressAny(0)
 					done = true
 				}
 				break
