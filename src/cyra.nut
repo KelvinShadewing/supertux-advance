@@ -1183,13 +1183,7 @@ gvCharacters.Cyra <- {
 			return
 		}
 
-		//Transformation flash
-		if(tftime != -1) {
-			if(tftime < 4) {
-				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
-				tftime += 0.25
-			} else tftime = -1
-		}
+		
 
 		hidden = false
 	}
@@ -1247,6 +1241,14 @@ gvCharacters.Cyra <- {
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
+
+		//Transformation flash
+		if(tftime != -1) {
+			if(tftime < 4) {
+				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+				tftime += 0.25
+			} else tftime = -1
+		}
 	}
 
 	function atLadder() {

@@ -2285,7 +2285,7 @@
 			frozen = 0
 			icebox = -1
 		}
-		if(_mag > 0) squish = true
+		squish = true
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {

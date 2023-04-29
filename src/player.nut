@@ -186,8 +186,8 @@
 		local swap = stats.subitem
 
 		if(stats.weapon == stats.subitem) {
-			if(game.maxEnergy < 4 - game.difficulty) {
-				game.maxEnergy++
+			if(stats.maxEnergy < 4 - game.difficulty) {
+				stats.maxEnergy++
 				stats.subitem = 0
 				tftime = 0
 				popSound(sndHeal, 0)

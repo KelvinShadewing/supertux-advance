@@ -599,7 +599,7 @@
 			shape.setPos(x, y - 1)
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed >= 0 && v == 0) if(full){
 				gvPlayer.vspeed = -4
-				if(getcon("jump", "hold")) gvPlayer.vspeed = -7.5
+				if(getcon("jump", "hold"), true, 1) gvPlayer.vspeed = -7.5
 				vspeed = 1
 				popSound(sndBump, 0)
 			}
@@ -617,7 +617,7 @@
 			shape.setPos(x, y - 1)
 			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed >= 0 && v == 0) if(full){
 				gvPlayer2.vspeed = -4
-				if(getcon("jump", "hold")) gvPlayer2.vspeed = -7.5
+				if(getcon("jump", "hold"), true, 2) gvPlayer2.vspeed = -7.5
 				vspeed = 1
 				popSound(sndBump, 0)
 			}
@@ -1113,7 +1113,15 @@
 				tileSetSolid(x, y, 0)
 				popSound(sndBump, 0)
 			}
+		}
 
+		if(gvPlayer2) {
+			if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) if(game.maxRedCoins == game.redCoins ){
+				deleteActor(id)
+				newActor(Poof, x, y)
+				tileSetSolid(x, y, 0)
+				popSound(sndBump, 0)
+			}
 		}
 	}
 
