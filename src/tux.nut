@@ -1045,35 +1045,30 @@
 			switch(stats.weapon) {
 				case "normal":
 					sprite = mySprNormal
-					if(anim == "stand" && an["stand"] != an["standN"]) anim = "standN"
 					an["stand"] = an["standN"]
 					damageMult = damageMultN
 					break
 
 				case "fire":
 					sprite = mySprFire
-					if(anim == "stand" && an["stand"] != an["standF"]) anim = "standF"
 					an["stand"] = an["standF"]
 					damageMult = damageMultF
 					break
 
 				case "ice":
 					sprite = mySprIce
-					if(anim == "stand" && an["stand"] != an["standI"]) anim = "standI"
 					an["stand"] = an["standI"]
 					damageMult = damageMultI
 					break
 
 				case "air":
 					sprite = mySprAir
-					if(anim == "stand" && an["stand"] != an["standA"]) anim = "standA"
 					an["stand"] = an["standA"]
 					damageMult = damageMultA
 					break
 
 				case "earth":
 					sprite = mySprEarth
-					if(anim == "stand" && an["stand"] != an["standE"]) anim = "standE"
 					an["stand"] = an["standE"]
 					damageMult = damageMultE
 					break

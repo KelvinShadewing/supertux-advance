@@ -355,8 +355,6 @@
 	if(gvPlayer) gvCamTarget = gvPlayer
 	else if(gvPlayer2) gvCamTarget = gvPlayer2
 	if(gvPlayer2) gvCamTarget2 = gvPlayer2
-	
-	
 }
 
 ::CameraGrabber <- class extends Actor {

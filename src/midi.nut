@@ -53,7 +53,7 @@
 
 	an = {
 		stand = null
-		standB = [0]
+		standB = [0, 0, 0, 0, 0, 0, 0, 0, 238, 238, 238, 238, 238, 238, 238, 238, 0, 0, 0, 0, 180, 181, 180, 181, 180, 181, 180, 181, 0, 0, 0, 0, 0, 0, 0, 6, 87, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 87, 6]
 		standN = [1, 2, 3, 4]
 		standW = [204, 204, 204, 205, 206, 206, 206, 207]
 		standHold = [5]
@@ -253,13 +253,14 @@
 				if(placeFree(x + 4, y + 2) && !onPlatform(hspeed)) {
 					if(getcon("left", "hold", true, playerNum)) hspeed += 0.2
 					else hspeed += 0.3
+					vspeed += 0.2
 				}
 				if(placeFree(x - 4, y + 2) && !onPlatform(hspeed)) {
 					if(getcon("right", "hold", true, playerNum)) hspeed -= 0.2
 					else hspeed -= 0.3
+					vspeed += 0.2
 				}
 			}
-			else if(!placeFree(x, y + 8) && !onPlatform() && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 		}
 
 		shape.setPos(x, y)
@@ -414,6 +415,8 @@
 						case 3:
 							animOffset = an.shootDF1[0] + (4 * (shooting - 1)) + shootTimer
 							break
+						case 4:
+							anim = "plantMine"
 					}
 					animOffset -= 1 //Account for starting frame in sheet
 				}
@@ -484,7 +487,7 @@
 
 			case "fall":
 				fallTimer++
-				frame += 0.1
+				frame += 0.25
 				if(!placeFree(x, y + 2) || (onPlatform() && vspeed >= 0)) {
 					anim = "stand"
 					frame = 0.0
@@ -598,6 +601,21 @@
 
 		base.run()
 
+		//Global actions
+		if(canMove && getcon("swap", "press", true, playerNum)) swapitem()
+		local nrgBonus = (game.fireBonus + game.iceBonus + game.airBonus + game.earthBonus) / 4.0
+		stats.maxEnergy = 4 - game.difficulty + ceil(game.fireBonus)
+
+		//Recharge
+		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "slide")) {
+			firetime--
+		}
+
+		if(firetime == 0 && energy < stats.maxEnergy) {
+			energy++
+			firetime = 60
+		}
+
 		//After image
 		if(zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, 0, flip, 0, 1, 1])
 
@@ -640,7 +658,7 @@
 				hspeed = 0
 			}
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
+			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine") {
 				if(hspeed >= 2) {
 					if(slippery) hspeed += accel * 0.2
 					else hspeed += accel * 0.4
@@ -649,7 +667,7 @@
 				else hspeed += accel
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
+			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine") {
 				if(hspeed <= -2) {
 					if(slippery) hspeed -= accel * 0.2
 					else hspeed -= accel * 0.4
@@ -1041,14 +1059,25 @@
 	}
 
 	function shootNut(hand) {
-		
+		if(shooting) return
+		shooting = hand + 1
+
+		local nutType = "normal"
+		if(hand == 0) nutType = stats.weapon
+		if(hand == 1) nutType = stats.subitem
+
+		if(getcon("up", "hold", true, playerNum) && (getcon("left", "hold", true, playerNum) || getcon("right", "hold", true, playerNum))) shootDir = 2
+		else if(getcon("down", "hold", true, playerNum) && (getcon("left", "hold", true, playerNum) || getcon("right", "hold", true, playerNum))) shootDir = 3
+		else if(getcon("down", "hold", true, playerNum)) shootDir = 4
+		else if(getcon("up", "hold", true, playerNum)) shootDir = 1
+		else shootDir = 0
 	}
 
 	function _typeof(){ return "Midi" }
 }
 
 ::DeadMidi <- class extends Actor {
-	vspeed = -3.0
+	vspeed = -4.0
 	hspeed = 0.0
 	timer = 150
 	sprite = null
@@ -1065,12 +1094,12 @@
 		anim = _arr[1]
 		playerNum = _arr[2]
 		flip = _arr[3]
-		if(flip) hspeed = 0.5
-		else hspeed = -0.5
+		if(flip) hspeed = 0.75
+		else hspeed = -0.75
 	}
 
 	function run() {
-		vspeed += 0.05
+		vspeed += 0.1
 		if(timer > 120) {
 			y += vspeed
 			x += hspeed
@@ -1096,7 +1125,7 @@
 			drawSprite(sprite, anim[min((150 - timer) / 15, 1)], x - camx, y - camy, 0, flip)
 			drawLight(sprLightBasic, 0, x - camx, y - camy)
 		}
-		else for(local i = 0; i < 8; i++) {
+		else if(timer > 30) for(local i = 0; i < 8; i++) {
 			drawSprite(sprExplodeF, wrap((getFrames() / 4) + i, 1, 4), x + lendirX((120 - timer), (i * 45) + 22.5) - camx, y + lendirY((120 - timer), (i * 45) + 22.5) - camy, 0, randInt(4))
 			drawLight(sprLightFire, 0, x + lendirX((120 - timer), (i * 45) + 22.5) - camx, y + lendirY((120 - timer), (i * 45) + 22.5) - camy, 0, 0, 0.3 + abs(sin((getFrames() + (i * 45)) / 8.0)) * 0.2, 0.3 + abs(sin((getFrames() + (i * 45)) / 8.0)) * 0.2)
 			drawSprite(sprExplodeF, wrap((getFrames() / 4) + i + 2, 1, 4), x + lendirX((120 - timer) * 0.75, (i * 45)) - camx, y + lendirY((120 - timer) * 0.75, (i * 45)) - camy, 0, randInt(4))

@@ -1295,7 +1295,8 @@ gvCharacters.Cyra <- {
 		}
 		else {
 			deleteActor(id)
-			gvPlayer = false
+			if(playerNum == 1) gvPlayer = false
+			if(playerNum == 2) gvPlayer2 = false
 			newActor(DeadPlayer, x, y, [sprite, an["die"], playerNum])
 			stats.health = 0
 		}

@@ -301,7 +301,7 @@
 	if(game.playerChar2 != 0 && game.playerChar2 != "") {
 		charx = 32
 
-		local runAnim = getroottable()[game.playerChar2].anRun
+		local runAnim = getroottable()[game.playerChar2].an["run"]
 		switch(game.ps2.weapon) {
 			case "normal":
 				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
