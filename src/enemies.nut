@@ -141,6 +141,7 @@
 	}
 
 	function hurtPlayer(target) {
+		if(blinking || squish) return
 		target.hurt = touchDamage * target.damageMult[element]
 	}
 
@@ -301,12 +302,6 @@
 			if(smart) drawSprite(sprGradcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			else drawSprite(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
-	}
-
-	function hurtPlayer(target) {
-		if(blinking) return
-		if(squish) return
-		base.hurtPlayer(target)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -885,11 +880,6 @@
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
 		else drawSprite(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-	}
-
-	function hurtPlayer(target) {
-		if(squish) return
-		base.hurtPlayer(target)
 	}
 
 	function hurtBlast() {
@@ -1608,10 +1598,6 @@
 		}
 	}
 
-	function hurtPlayer(target) {
-		base.hurtPlayer(target)
-	}
-
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") hurtFire()
 		if(_element == "ice") hurtIce()
@@ -1915,10 +1901,6 @@
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
 		else drawSprite(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
-	}
-
-	function hurtPlayer(target) {
-		base.hurtPlayer(target)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2272,7 +2254,7 @@
 	}
 
 	function hurtPlayer(target) {
-		if(squish && !chasing) return
+		if(!chasing) return
 		base.hurtPlayer(target)
 	}
 
@@ -2490,11 +2472,6 @@
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
 		else drawSprite(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-	}
-
-	function hurtPlayer(target) {
-		if(squish) return
-		base.hurtPlayer(target)
 	}
 
 	function hurtBlast() {
@@ -2804,11 +2781,6 @@
 		else drawSprite(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
-	function hurtPlayer(target) {
-		if(squish) return
-		base.hurtPlayer(target)
-	}
-
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
@@ -3007,11 +2979,6 @@
 			if(debug) shape.draw()
 	}
 
-	function hurtPlayer(target) {
-		if(squish) return
-		base.hurtPlayer(target)
-	}
-
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
@@ -3197,12 +3164,6 @@
 		if(smart) drawSprite(sprIvyRed, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		else drawSprite(sprIvyGreen, floor(9.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 		}
-	}
-
-	function hurtPlayer(target) {
-		if(blinking) return
-		if(squish) return
-		base.hurtPlayer(target)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -3884,11 +3845,6 @@
 		if(debug) shape.draw()
 	}
 
-	function hurtPlayer(target) {
-		if(squish) return
-		base.hurtPlayer(target)
-	}
-
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
@@ -4111,12 +4067,6 @@
 
 		setDrawColor(0xff0000ff)
 		if(debug) shape.draw()
-	}
-
-	function hurtPlayer(target) {
-		if(blinking) return
-		if(squish) return
-		base.hurtPlayer(target)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {

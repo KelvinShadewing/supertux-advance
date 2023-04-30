@@ -101,74 +101,74 @@
 
 	//Elemental resistances
 	damageMultN = {
-		normal = 1.0
+		normal = 0.5
 		fire = 0.5
-		ice = 1.0
-		earth = 1.0
-		air = 1.0
-		toxic = 1.0
-		shock = 1.0
-		water = 1.0
-		light = 1.0
-		dark = 1.0
+		ice = 0.5
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 0.5
+		dark = 0.5
 		cut = 0.5
 		blast = 1.0
 	}
 	damageMultF = {
-		normal = 1.0
+		normal = 0.5
 		fire = 0.0
-		ice = 2.0
-		earth = 1.0
-		air = 1.0
-		toxic = 1.0
-		shock = 1.0
-		water = 1.0
-		light = 1.0
-		dark = 1.0
+		ice = 1.0
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 0.5
+		dark = 0.5
 		cut = 0.5
 		blast = 1.0
 	}
 	damageMultI = {
-		normal = 1.0
-		fire = 2.0
-		ice = 0.5
-		earth = 1.0
-		air = 1.0
-		toxic = 1.0
-		shock = 1.0
-		water = 1.0
-		light = 1.0
-		dark = 1.0
+		normal = 0.5
+		fire = 1.0
+		ice = 0.0
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 0.5
+		dark = 0.5
 		cut = 0.5
 		blast = 1.0
 	}
 	damageMultA = {
-		normal = 1.0
-		fire = 1.0
-		ice = 1.0
-		earth = 2.0
-		air = 0.5
-		toxic = 1.0
-		shock = 1.0
-		water = 1.0
-		light = 1.0
-		dark = 1.0
+		normal = 0.5
+		fire = 0.5
+		ice = 0.5
+		earth = 1.0
+		air = 0.0
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 0.5
+		dark = 0.5
 		cut = 0.5
 		blast = 0.5
 	}
 	damageMultE = {
-		normal = 1.0
-		fire = 1.0
-		ice = 1.0
-		earth = 0.50
-		air = 2.0
-		toxic = 1.0
-		shock = 1.0
-		water = 1.0
-		light = 1.0
-		dark = 1.0
+		normal = 0.5
+		fire = 0.5
+		ice = 0.5
+		earth = 0.0
+		air = 1.0
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 0.5
+		dark = 0.5
 		cut = 0.25
-		blast = 1.0
+		blast = 0.5
 	}
 
 	function run() {
@@ -1062,7 +1062,7 @@
 	function draw() {
 		if(!hidden) {
 			switch(stats.weapon) {
-				case 0:
+				case "normal":
 					sprite = mySprNormal
 					damageMult = damageMultN
 					break

@@ -234,7 +234,10 @@
 		frame += 0.2
 		x += hspeed
 		y += vspeed
-		if(checkActor(owner)) x += actor[owner].hspeed
+		if(checkActor(owner)) {
+			x += actor[owner].hspeed
+			y += actor[owner].vspeed / 2
+		}
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
