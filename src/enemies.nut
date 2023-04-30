@@ -4106,7 +4106,7 @@
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
 		else if(squish) drawSprite(sprCaptainMorel, floor(7.8 + squishTime) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-		else if(placeFree(x, y + 1)) drawSprite(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		else if(placeFree(x, y + 2)) drawSprite(sprCaptainMorel, (0 <=> round(vspeed / 2.0)) + 5 + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 		else drawSprite(sprCaptainMorel, wrap(getFrames() / 8, 0, 3) + (flip.tointeger() * 9), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 
 		setDrawColor(0xff0000ff)

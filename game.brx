@@ -165,7 +165,7 @@ menu = meMain
 game.playerChar = "Tux"
 
 //Testing Midi
-game.playerChar = "Midi"
+game.playerChar = "Konqi"
 gotoTest()
 
 //Load contrib initializers
