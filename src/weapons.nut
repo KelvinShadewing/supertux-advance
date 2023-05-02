@@ -708,14 +708,20 @@
 	power = 0
 	blast = false
 	piercing = 0
+	exPower = 1
+	sprite = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
 		shape = Cir(x, y, 3)
+		sprite = sprNutBomb
 	}
 
 	function run() {
+		if(exPower == 2) sprite = sprNutBomb2
+		if(exPower == 3) sprite = sprNutBomb3
+		
 		timer--
 		if(timer == 0) deleteActor(id)
 
@@ -740,27 +746,48 @@
 	}
 
 	function draw() {
-		drawSprite(sprNutBomb, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSprite(sprite, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
+		local c
+		local t
 		switch(element) {
 			case "normal":
-				fireWeapon(ExplodeN, x, y, alignment, owner)
+				t = ExplodeN
 				break
 			case "fire":
-				fireWeapon(ExplodeF, x, y, alignment, owner)
+				t = ExplodeF
 				break
 			case "ice":
-				fireWeapon(ExplodeI, x, y, alignment, owner)
+				t = ExplodeI
 				break
 			case "shock":
-				fireWeapon(ExplodeT, x, y, alignment, owner)
+				t = ExplodeT
 				break
 			case "air":
-				fireWeapon(ExplodeA, x, y, alignment, owner)
+				t = ExplodeA
 				break
+		}
+		if(exPower >= 2) {
+			c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
+			c.power = (exPower == 2 ? 2 : 4)
+			c = fireWeapon(t, x + (6 * exPower), y, alignment, owner)
+			c.power = (exPower == 2 ? 2 : 4)
+			c = fireWeapon(t, x, y - (6 * exPower), alignment, owner)
+			c.power = (exPower == 2 ? 2 : 4)
+			c = fireWeapon(t, x, y + (6 * exPower), alignment, owner)
+			c.power = (exPower == 2 ? 2 : 4)
+		}
+		// else if(exPower == 3){
+		// 	switch(element) {
+				// Will add special effects later
+		// 	}
+		// }
+		else {
+			c = fireWeapon(t, x, y, alignment, owner)
+			c.power = exPower
 		}
 	}
 }
@@ -771,6 +798,7 @@
 	power = 0
 	blast = false
 	piercing = 0
+	exPower = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -813,26 +841,32 @@
 	}
 
 	function draw() {
-		drawSprite(sprNutBomb, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSprite(sprTopNut, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
+		local c
 		switch(element) {
 			case "normal":
-				fireWeapon(ExplodeN, x, y, alignment, owner)
+				c = fireWeapon(ExplodeN, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "fire":
-				fireWeapon(ExplodeF, x, y, alignment, owner)
+				c = fireWeapon(ExplodeF, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "ice":
-				fireWeapon(ExplodeI, x, y, alignment, owner)
+				c = fireWeapon(ExplodeI, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "shock":
-				fireWeapon(ExplodeT, x, y, alignment, owner)
+				c = fireWeapon(ExplodeT, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "air":
-				fireWeapon(ExplodeA, x, y, alignment, owner)
+				c = fireWeapon(ExplodeA, x, y, alignment, owner)
+				c.power = exPower
 				break
 		}
 	}
@@ -845,6 +879,7 @@
 	blast = false
 	piercing = 0
 	bounceShape = null
+	exPower = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -875,21 +910,27 @@
 	}
 
 	function destructor() {
+		local c
 		switch(element) {
 			case "normal":
-				fireWeapon(ExplodeN, x, y, alignment, owner)
+				c = fireWeapon(ExplodeN, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "fire":
-				fireWeapon(ExplodeF, x, y, alignment, owner)
+				c = fireWeapon(ExplodeF, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "ice":
-				fireWeapon(ExplodeI, x, y, alignment, owner)
+				c = fireWeapon(ExplodeI, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "shock":
-				fireWeapon(ExplodeT, x, y, alignment, owner)
+				c = fireWeapon(ExplodeT, x, y, alignment, owner)
+				c.power = exPower
 				break
 			case "air":
-				fireWeapon(ExplodeA, x, y, alignment, owner)
+				c = fireWeapon(ExplodeA, x, y, alignment, owner)
+				c.power = exPower
 				break
 		}
 
@@ -903,6 +944,7 @@
 	blast = false
 	piercing = 0
 	bounceShape = null
+	exPower = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)

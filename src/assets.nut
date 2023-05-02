@@ -431,10 +431,20 @@
 ::defBallSpin <- sprBallSpin
 ::sprNutBomb <- newSprite("res/gfx/nutbomb.png", 8, 8, 0, 0, 4, 4)
 ::defNutBomb <- sprNutBomb
+::sprNutBomb2 <- newSprite("res/gfx/nutbomb2.png", 16, 16, 0, 0, 8, 8)
+::defNutBomb2 <- sprNutBomb2
+::sprNutBomb3 <- newSprite("res/gfx/nutbomb3.png", 16, 16, 0, 0, 8, 8)
+::defNutBomb3 <- sprNutBomb3
+::sprTopNut <- newSprite("res/gfx/topnut.png", 16, 16, 0, 0, 8, 10)
+::defTopNut <- sprTopNut
 ::sprWingNut <- newSprite("res/gfx/wingnutbomb.png", 16, 16, 0, 0, 8, 8)
 ::defWingnut <- sprWingNut
 ::sprNutMine <- newSprite("res/gfx/nutmine.png", 16, 16, 0, 0, 8, 12)
 ::defNutMine <- sprNutMine
+::sprCharge <- newSprite("res/gfx/charge.png", 32, 32, 0, 0, 16, 16)
+::defCharge <- sprCharge
+::sprGoldCharge <- newSprite("res/gfx/goldcharge.png", 8, 8, 0, 0, 4, 4)
+::defGoldCharge <- sprGoldCharge
 
 
 

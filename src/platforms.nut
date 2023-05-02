@@ -301,15 +301,17 @@
 	a = null //Angle
 	l = null //List
 	sa = 0.0 //Start angle
+	g = 0.0 //Growth
 
 	constructor(_x, _y, _arr = null) {
 		x = _x
 		y = _y
 		base.constructor(_x, _y)
-		r = _arr[0].tofloat()
-		c = _arr[1].tointeger()
-		s = _arr[2].tofloat()
-		sa = _arr[4].tofloat()
+		if(0 in _arr) r = _arr[0].tofloat()
+		if(1 in _arr) c = _arr[1].tointeger()
+		if(2 in _arr) s = _arr[2].tofloat()
+		if(4 in _arr) sa = _arr[4].tofloat()
+		if(5 in _arr) g = _arr[5].tofloat()
 
 		local newarr = []
 		a = []

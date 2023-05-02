@@ -230,7 +230,6 @@
 			case "wall":
 			case "climb":
 			case "climbWall":
-			case "monkey":
 			case "shootClimb":
 				gravity = 0.0
 				vspeed = 0.0
@@ -243,6 +242,26 @@
 				break
 			case "hurt":
 				if(nowInWater) vspeed /= 9.0
+				break
+			case "monkey":
+				gravity = 0.0
+				vspeed = 0.0
+				if(shooting) hspeed = 0.0
+				if(hspeed > 1) hspeed = 1.0
+				if(hspeed < -1) hspeed = -1.0
+
+				//Line alignment
+				local lineType = 0
+				if(atZipline()) lineType = tileGetSolid(x, y - shape.h)
+				else if(atZipline(0, -1)) lineType = tileGetSolid(x, y - shape.h - 1)
+				else if(atZipline(0, 1)) lineType = tileGetSolid(x, y - shape.h + 1)
+
+				switch(lineType) {
+					case 1: //Flat
+						y = (y - y % 16) + 8
+						break
+				}
+				break
 		}
 
 		if(fabs(hspeed) < friction) hspeed = 0.0
@@ -594,6 +613,7 @@
 					break
 				}
 				if(frame >= an[anim].len()) anim = "stand"
+				rspeed = 0
 				break
 
 			case "plantMine":
@@ -620,6 +640,24 @@
 						firetime = 90
 					}
 				}
+				rspeed = 0
+				break
+
+			case "monkey":
+				if(hspeed == 0) {
+					frame = 0.0
+					animOffset = an["hang"][0] - an[anim][0]
+				}
+
+				if(shooting) {
+					frame = 0.0
+					animOffset = an["shootHang"][0] - an[anim][0] + shootTimer
+				}
+
+				if(hspeed != 0) frame += 0.1
+
+				if(!atZipline() && !atZipline(0, 1) && !atZipline(0, -1)) anim = "jump"
+
 				break
 		}
 
@@ -672,6 +710,20 @@
 			if(getcon("swap", "press", true, playerNum)) swapitem()
 			if(getcon("shoot", "press", true, playerNum)) shootNut(0)
 			if(getcon("spec1", "press", true, playerNum)) shootNut(1)
+
+			if((getcon("shoot", "hold", true, playerNum) || getcon("spec1", "hold", true, playerNum)) && energy > 1) {
+				chargeTimer++
+				if(chargeTimer > 121 && energy < 3) chargeTimer--
+				if(chargeTimer == 90 || chargeTimer == 180) tftime = 0
+			}
+
+			if(getcon("shoot", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(0, floor(chargeTimer / 90) + 1)
+
+			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum) || routine == ruBall) chargeTimer = 0
+
+			if(chargeTimer > 180 && (getFrames()) % 4 == 0) {
+				newActor(GoldCharge, x - 12 + randInt(24) y - 12 + randInt(24))
+			}
 		}
 
 		local nrgBonus = float(game.fireBonus + game.iceBonus + game.airBonus + game.earthBonus) / 4.0
@@ -794,6 +846,17 @@
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 				if(atLadder()) {
 					anim = "climb"
+					frame = 0.0
+					hspeed = 0
+					vspeed = 0
+					x = (x - (x % 16)) + 8
+				}
+			}
+
+			//Get on monkeybar
+			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
+				if(atZipline() || atZipline(0, -vspeed)) {
+					anim = "monkey"
 					frame = 0.0
 					hspeed = 0
 					vspeed = 0
@@ -1077,6 +1140,10 @@
 		}
 	}
 
+	function ruMonkey() {
+
+	}
+
 	function draw() {
 		if(!hidden) {
 			if(anim in an && an[anim] != null) {
@@ -1109,6 +1176,8 @@
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
+
+			if(chargeTimer >= 30 && chargeTimer < 180) drawSpriteZ(1, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy)
 
 			//Transformation flash
 			if(tftime != -1) {
@@ -1145,12 +1214,14 @@
 		}
 	}
 
-	function shootNut(_hand) {
+	function shootNut(_hand, _power = 1) {
 		if(shooting || energy < 1) return
 		popSound(sndThrow, 0)
 		hand = _hand
 		if(flip) shooting = 2 - hand
 		else shooting = hand + 1
+
+		_power = (min(_power, 3))
 
 		local nutType = "normal"
 		if(hand == 0) nutType = stats.weapon
@@ -1167,11 +1238,12 @@
 
 		local c = null
 		if(routine == ruBall) c = fireWeapon(WingNut, x, y + 4, 1, id)
-		else if(!(shootDir == 4 && !freeDown && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
+		else if(!(shootDir == 4 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
 			if(!freeDown && shootDir == 3 && routine != ruSwim) {
 				c = fireWeapon(TopNut, x, y, 1, id)
 				hspeed = 0
 				anim = "shootTop"
+				_power = 1
 			}
 			else c = fireWeapon(NutBomb, x, y, 1, id)
 			local d = (flip ? -1 : 1)
@@ -1201,13 +1273,17 @@
 		else {
 			frame = 0.0
 			anim = "plantMine"
+			_power = 1
 		}
 
 		if(c != null) {
 			c.element = nutType
-			energy--
+			c.exPower = _power
+			energy -= _power
 			firetime = 90
 		}
+
+		chargeTimer = 0
 	}
 
 	function _typeof(){ return "Midi" }

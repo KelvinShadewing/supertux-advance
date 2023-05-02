@@ -254,6 +254,8 @@
 				break
 		}
 	}
+
+	function atZipline(_x = 0, _y = 0) { return ([30, 31, 32, 33, 34].find(tileGetSolid(x + _x, y - shape.h + _y))) }
 }
 
 ::DeadPlayer <- class extends Actor {

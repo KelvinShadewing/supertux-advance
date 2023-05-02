@@ -221,6 +221,21 @@
 	function draw() { drawSpriteZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
+::GoldCharge <- class extends Actor {
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+	function run() {
+		frame += 0.25
+		y -= 1
+		if(frame >= 4) deleteActor(id)
+	}
+
+	function draw() { drawSpriteZ(4, sprGoldCharge, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
+}
+
 ::AfterImage <- class extends Actor {
 	sprite = 0
 	frame = 0
