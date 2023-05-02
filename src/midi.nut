@@ -417,6 +417,9 @@
 							animOffset = an.shootUF1[0] + (4 * (shooting - 1)) + shootTimer
 							break
 						case 3:
+							animOffset = an.shootTop[0] + (4 * (shooting - 1)) + shootTimer
+							hspeed = 0
+							break
 						case 4:
 							animOffset = an.shootDF1[0] + (4 * (shooting - 1)) + shootTimer
 							break
@@ -462,7 +465,7 @@
 				frame += 0.25
 				if(an.jump == an.jumpR) frame += 0.25
 
-				if(!placeFree(x, y + 2) || (onPlatform() && vspeed >= 0)) {
+				if(!placeFree(x, y + 2) || (onPlatform() && fabs(vspeed) < 0.1)) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -475,7 +478,7 @@
 
 			case "jumpT":
 				frame += 0.2
-				if(!placeFree(x, y + 2) || (onPlatform() && vspeed >= 0)) {
+				if(!placeFree(x, y + 2) || (onPlatform() && fabs(vspeed) < 0.1)) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -491,7 +494,7 @@
 			case "fall":
 				fallTimer++
 				frame += 0.25
-				if(!placeFree(x, y + 2) || (onPlatform() && vspeed >= 0)) {
+				if(!placeFree(x, y + 2) || (onPlatform() && fabs(vspeed) < 0.1)) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -581,6 +584,16 @@
 					frame = 0.0
 					animOffset = an.shootClimb[0] - an[anim][0] + shootTimer
 				}
+				break
+
+			case "shootTop":
+				frame += 0.25
+				if(hspeed != 0 || vspeed != 0) {
+					anim == "stand"
+					frame = 0
+					break
+				}
+				if(frame >= an[anim].len()) anim = "stand"
 				break
 
 			case "plantMine":
@@ -714,7 +727,7 @@
 				hspeed = 0
 			}
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine") {
+			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
 				if(hspeed >= 2) {
 					if(slippery) hspeed += accel * 0.2
 					else hspeed += accel * 0.4
@@ -723,7 +736,7 @@
 				else hspeed += accel
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine") {
+			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
 				if(hspeed <= -2) {
 					if(slippery) hspeed -= accel * 0.2
 					else hspeed -= accel * 0.4
@@ -794,6 +807,7 @@
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
+					if(anim == "stand" || anim == "walk") anim = "jumpT"
 				}
 				else if(canJump > 0 && placeFree(x, y - 2) || anim == "ledge") {
 					jumpBuffer = 0
@@ -824,7 +838,7 @@
 			//Wall slide
 			if((anim == "fall" || anim == "ledge") && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
-					if(tileGetSolid(x - 8, y - 16) == 0 && tileGetSolid(x - 8, y) == 1) {
+					if(tileGetSolid(x - 8, y - 16) == 0 && tileGetSolid(x - 8, y) == 1 && placeFree(x, y + 8)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 1
@@ -838,7 +852,7 @@
 					}
 				}
 				if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
-					if(tileGetSolid(x + 8, y - 16) == 0 && tileGetSolid(x + 8, y) == 1) {
+					if(tileGetSolid(x + 8, y - 16) == 0 && tileGetSolid(x + 8, y) == 1 && placeFree(x, y + 8)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 0
@@ -863,6 +877,7 @@
 			}
 
 			if(getcon("spec2", "press", true, playerNum) && anim != "hurt") {
+				if(anim == "ledge") vspeed = -4.0
 				anim = "morphIn"
 				frame = 0.0
 			}
@@ -1153,7 +1168,12 @@
 		local c = null
 		if(routine == ruBall) c = fireWeapon(WingNut, x, y + 4, 1, id)
 		else if(!(shootDir == 4 && !freeDown && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
-			c = fireWeapon(NutBomb, x, y, 1, id)
+			if(!freeDown && shootDir == 3 && routine != ruSwim) {
+				c = fireWeapon(TopNut, x, y, 1, id)
+				hspeed = 0
+				anim = "shootTop"
+			}
+			else c = fireWeapon(NutBomb, x, y, 1, id)
 			local d = (flip ? -1 : 1)
 			if(anim == "ledge") d = -d
 
@@ -1171,7 +1191,7 @@
 					break
 				case 3:
 					c.hspeed = (3 * d) + (hspeed / 2)
-					c.vspeed = 3 + (vspeed / 2)
+					c.vspeed = 2 + (vspeed / 2)
 					break
 				case 4:
 					c.vspeed = 4 + (vspeed / 2)

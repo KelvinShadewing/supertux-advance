@@ -137,7 +137,6 @@
 			newActor(Flame, x, y)
 			popSound(sndFlame, 0)
 		}
-		blinking = blinkMax
 	}
 
 	function hurtPlayer(target) {

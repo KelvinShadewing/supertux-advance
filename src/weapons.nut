@@ -104,7 +104,7 @@
 
 		popSound(sndExplodeN, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 10.0)
 	}
 
 	function run() {
@@ -308,7 +308,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 10.0)
 	}
 
 	function run() {
@@ -353,7 +353,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 10.0)
 	}
 
 	function run() {
@@ -523,7 +523,7 @@
 
 		popSound(sndExplodeI, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 10.0)
 		angle = randInt(360)
 	}
 
@@ -601,7 +601,7 @@
 
 		popSound(sndExplodeT, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 10.0)
 	}
 
 	function run() {
@@ -729,6 +729,79 @@
 		y += vspeed
 		if(!placeFree(x, y)) {
 			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSprite(sprNutBomb, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function destructor() {
+		switch(element) {
+			case "normal":
+				fireWeapon(ExplodeN, x, y, alignment, owner)
+				break
+			case "fire":
+				fireWeapon(ExplodeF, x, y, alignment, owner)
+				break
+			case "ice":
+				fireWeapon(ExplodeI, x, y, alignment, owner)
+				break
+			case "shock":
+				fireWeapon(ExplodeT, x, y, alignment, owner)
+				break
+			case "air":
+				fireWeapon(ExplodeA, x, y, alignment, owner)
+				break
+		}
+	}
+}
+
+::TopNut <- class extends WeaponEffect {
+	timer = 90
+	element = "normal"
+	power = 0
+	blast = false
+	piercing = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+		else vspeed *= 0.99
+		hspeed *= 0.99
+
+		x += hspeed
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 4.0
+
+		if(!placeFree(x, y)) {
+			local mustboom = true
+
+			for(local i = 0; i < 8; i++) {
+				if(placeFree(x, y - i)) {
+					y -= i
+					mustboom = false
+					break
+				}
+			}
+
+			if(mustboom) deleteActor(id)
 		}
 
 		if(y > gvMap.h) {
@@ -894,7 +967,7 @@
 
 		popSound(sndExplodeA, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 10.0)
 	}
 
 	function run() {
