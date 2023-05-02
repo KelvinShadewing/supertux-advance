@@ -1182,10 +1182,6 @@ gvCharacters.Cyra <- {
 			die()
 			return
 		}
-
-		
-
-		hidden = false
 	}
 
 	function draw() {

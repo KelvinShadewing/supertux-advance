@@ -812,6 +812,10 @@
 		drawRec(0, 0, gvScreenW, gvScreenH, true)
 	}
 
+	//Unhide players
+	if(gvPlayer && "hidden" in gvPlayer) gvPlayer.hidden = false
+	if(gvPlayer2 && "hidden" in gvPlayer2) gvPlayer2.hidden = false
+
 	//Handle berries
 	if(game.ps1.berries > 0 && game.ps1.berries % 16 == 0) {
 		if(game.ps1.health < game.maxHealth) {

@@ -413,6 +413,8 @@
 ::defExplodeN <- sprExplodeN
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::defExplodeT <- sprExplodeT
+::sprExplodeA <- newSprite("res/gfx/explodeA.png", 32, 32, 0, 0, 16, 30)
+::defExplodeA <- sprExplodeA
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png", 16, 4, 0, 0, 0, 0)
 ::defWaterSurface <- sprWaterSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
@@ -427,8 +429,6 @@
 ::defRock <- sprRock
 ::sprBallSpin <- newSprite("res/gfx/ball-spin.png", 20, 20, 0, 0, 10, 10)
 ::defBallSpin <- sprBallSpin
-::sprHealthOrb <- newSprite("res/gfx/health-orb-big.png", 16, 16, 0, 0, 8, 8)
-::defHealthOrb <- sprHealthOrb
 ::sprNutBomb <- newSprite("res/gfx/nutbomb.png", 8, 8, 0, 0, 4, 4)
 ::defNutBomb <- sprNutBomb
 ::sprWingNut <- newSprite("res/gfx/wingnutbomb.png", 16, 16, 0, 0, 8, 8)
@@ -503,6 +503,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")
 ::sndJump <- loadSound("res/snd/jump.ogg")
+::sndMidiJump <- loadSound("res/snd/midi-jump.ogg")
 ::sndHurt <- loadSound("res/snd/hurt.ogg")
 ::sndKick <- loadSound("res/snd/kick.ogg")
 ::sndSquish <- loadSound("res/snd/squish.ogg")
@@ -516,6 +517,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndHeal <- loadSound("res/snd/heal.ogg")
 ::sndFlap <- loadSound("res/snd/flap.ogg")
 ::sndExplodeF <- loadSound("res/snd/explodeF.ogg")
+::sndExplodeN <- loadSound("res/snd/explodeN.ogg")
+::sndExplodeI <- loadSound("res/snd/explodeI.ogg")
+::sndExplodeT <- loadSound("res/snd/explodeT.ogg")
+::sndExplodeA <- loadSound("res/snd/explodeA.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
 ::sndBell <- loadSound("res/snd/bell.ogg")
 ::sndIcicle <- loadSound("res/snd/icicle.ogg")
@@ -532,6 +537,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndCrush <- loadSound("res/snd/crush.ogg")
 ::sndIceblock <- loadSound("res/snd/iceblock_bump.ogg")
 ::sndAchievement <- loadSound("res/snd/achievement.ogg")
+::sndThrow <- loadSound("res/snd/throw.ogg")
 
 
 
@@ -708,6 +714,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprExplodeI = defExplodeI
 	sprExplodeN = defExplodeN
 	sprExplodeT = defExplodeT
+	sprExplodeA = defExplodeA
 	sprWaterSurface = defWaterSurface
 	sprHeal = defHeal
 	sprSplash = defSplash

@@ -73,6 +73,7 @@
 	blinking = 0 //Number of iframes remaining
 	zoomies = 0
 	stats = null
+	hidden = false
 
 	//Misc
 	heldby = 0

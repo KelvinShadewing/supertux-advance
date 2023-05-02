@@ -97,14 +97,14 @@
 	frame = 0.0
 	shape = 0
 	piercing = -1
+	blast = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndBump)
-		playSound(sndBump, 0)
+		popSound(sndExplodeN, 0)
 
-		shape = Rec(x, y, 16, 16, 0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -308,7 +308,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 12.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -353,7 +353,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 12.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -521,9 +521,9 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		popSound(sndBump, 0)
+		popSound(sndExplodeI, 0)
 
-		shape = Rec(x, y, 16, 16, 0)
+		shape = Cir(x, y, 8.0)
 		angle = randInt(360)
 	}
 
@@ -599,10 +599,9 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		popSound(sndExplodeT, 0)
 
-		shape = Cir(x, y, 12.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -713,7 +712,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Cir(x, y, 4)
+		shape = Cir(x, y, 3)
 	}
 
 	function run() {
@@ -722,8 +721,8 @@
 
 		if(!inWater(x, y)) vspeed += 0.1
 		else {
-			hspeed *= 0.9
-			vspeed *= 0.9
+			hspeed *= 0.95
+			vspeed *= 0.95
 		}
 
 		x += hspeed
@@ -737,14 +736,12 @@
 			newActor(Poof, x, y)
 		}
 
-		angle = pointAngle(0, 0, hspeed, vspeed) - 90
-
 		shape.setPos(x, y)
 	}
 
 	function draw() {
-		drawSprite(sprNutBomb, (getFrames() / 8) % 4, x - camx, y - camy)
-		drawLight(sprLightFire, 0, x - camx - 4, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawSprite(sprNutBomb, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
@@ -761,6 +758,165 @@
 			case "shock":
 				fireWeapon(ExplodeT, x, y, alignment, owner)
 				break
+			case "air":
+				fireWeapon(ExplodeA, x, y, alignment, owner)
+				break
 		}
+	}
+}
+
+::WingNut <- class extends WeaponEffect {
+	timer = 16
+	element = "normal"
+	power = 0
+	blast = false
+	piercing = 0
+	bounceShape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 3)
+		bounceShape = Cir(x, y, 8)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!placeFree(x, y)) {
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSpriteZ(1, sprWingNut, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function destructor() {
+		switch(element) {
+			case "normal":
+				fireWeapon(ExplodeN, x, y, alignment, owner)
+				break
+			case "fire":
+				fireWeapon(ExplodeF, x, y, alignment, owner)
+				break
+			case "ice":
+				fireWeapon(ExplodeI, x, y, alignment, owner)
+				break
+			case "shock":
+				fireWeapon(ExplodeT, x, y, alignment, owner)
+				break
+			case "air":
+				fireWeapon(ExplodeA, x, y, alignment, owner)
+				break
+		}
+
+		if(checkActor(owner) && hitTest(bounceShape, actor[owner].shape)) actor[owner].vspeed = -5
+	}
+}
+
+::NutMine <- class extends WeaponEffect {
+	element = "normal"
+	power = 0
+	blast = false
+	piercing = 0
+	bounceShape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y + 4, 3)
+		bounceShape = Cir(x, y, 8)
+	}
+
+	function run() {
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		shape.setPos(x, y)
+
+		if(checkActor(owner) && getcon("jump", "press", false, actor[owner].playerNum) && hitTest(bounceShape, actor[owner].shape)) deleteActor(id)
+	}
+
+	function draw() {
+		drawSpriteZ(1, sprNutMine, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function destructor() {
+		switch(element) {
+			case "normal":
+				fireWeapon(ExplodeN, x, y, alignment, owner)
+				break
+			case "fire":
+				fireWeapon(ExplodeF, x, y, alignment, owner)
+				break
+			case "ice":
+				fireWeapon(ExplodeI, x, y, alignment, owner)
+				break
+			case "shock":
+				fireWeapon(ExplodeT, x, y, alignment, owner)
+				break
+			case "air":
+				fireWeapon(ExplodeA, x, y, alignment, owner)
+				break
+		}
+
+		if(checkActor(owner) && hitTest(bounceShape, actor[owner].shape)) actor[owner].vspeed = -10
+	}
+}
+
+/////////////////
+// AIR ATTACKS //
+/////////////////
+
+::ExplodeA <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "air"
+	power = 2
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeA, 0)
+
+		shape = Cir(x, y, 8.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 8) deleteActor(id)
+
+		if(gvPlayer) {
+			if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 32) {
+				gvPlayer.vspeed = max(min(0, gvPlayer.vspeed - 2), -8)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 32) {
+				gvPlayer2.vspeed = max(min(0, gvPlayer2.vspeed - 2), -8)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 	}
 }

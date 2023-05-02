@@ -171,8 +171,8 @@
 		right = k_right
 		jump = k_z
 		shoot = k_x
-		spec1 = k_lshift
-		spec2 = k_lctrl
+		spec1 = k_c
+		spec2 = k_lshift
 		pause = k_escape
 		swap = k_a
 		accept = k_enter

@@ -24,7 +24,7 @@
 
 [Nemysis](https://opengameart.org/users/nemisys) - Sign post
 
-[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles\*
+[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles\*, Tornado\*
 
 [TheNess](https://opengameart.org/users/theness) - Forest parallax
 

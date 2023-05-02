@@ -43,6 +43,7 @@
 	fallTimer = 0
 	hurtThreshold = 4
 	spinAlpha = 0.0
+	hand = 0
 
 	freeDown = false
 	freeDown2 = false
@@ -240,10 +241,12 @@
 				y = (floor(y / 16.0) * 16.0) + 14.0
 				if(freeRight && freeLeft) anim = "jumpT"
 				break
+			case "hurt":
+				if(nowInWater) vspeed /= 9.0
 		}
 
 		if(fabs(hspeed) < friction) hspeed = 0.0
-		if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater)) && antigrav <= 0) vspeed += gravity
+		if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && !nowInWater)) && antigrav <= 0) vspeed += gravity
 		else if(antigrav > 0) antigrav--
 		if(!placeFree(x, y - 1) && vspeed < 0) vspeed = 0.0
 
@@ -414,10 +417,9 @@
 							animOffset = an.shootUF1[0] + (4 * (shooting - 1)) + shootTimer
 							break
 						case 3:
+						case 4:
 							animOffset = an.shootDF1[0] + (4 * (shooting - 1)) + shootTimer
 							break
-						case 4:
-							anim = "plantMine"
 					}
 					animOffset -= 1 //Account for starting frame in sheet
 				}
@@ -502,6 +504,7 @@
 
 				if(floor(frame) > 1) {
 					vspeed = -6.0
+					if(getcon("down", "hold", true, playerNum)) vspeed = -4.0
 					if(flip == 0) hspeed = 4.0
 					else hspeed = -4.0
 					anim = "jump"
@@ -573,22 +576,69 @@
 
 			case "climb":
 			case "climbWall":
+			case "ledge":
 				if(shooting) {
 					frame = 0.0
-					animOffset = an.shootClimb[0] - an.climb[0] + shootTimer
+					animOffset = an.shootClimb[0] - an[anim][0] + shootTimer
+				}
+				break
+
+			case "plantMine":
+				frame += 0.25
+				if(hspeed != 0 || vspeed != 0) {
+					anim == "stand"
+					frame = 0
+					break
+				}
+				if(frame >= an[anim].len()) {
+					anim = "stand"
+
+					if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(i instanceof NutMine) deleteActor(i.id)
+
+					local nutType = "normal"
+					if(hand == 0) nutType = stats.weapon
+					if(hand == 1) nutType = stats.subitem
+					if(nutType != "fire" && nutType != "ice" && nutType != "air" && nutType != "earth") nutType = "normal"
+					local c = fireWeapon(NutMine, x, y + 9, 1, id)
+
+					if(c != null) {
+						c.element = nutType
+						energy--
+						firetime = 90
+					}
 				}
 				break
 		}
 
 		if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
 
-		if(shooting) shootTimer += 0.5
+		if(shooting) shootTimer += 0.25
 		if(shootTimer > 4) {
 			shootTimer = 0.0
 			shooting = 0
 		}
-		if(anim != "stand") boredom = 0
+		if(anim != "stand" || shooting) boredom = 0
 		if(anim != "fall" && anim != "stand") fallTimer = 0
+
+		if(anim == "fall" || anim == "jumpT" || anim == "jump"  || anim == "jumpU" || anim == "float" || anim == "swim") {
+			if(shooting) {
+				frame = 0.0
+				switch(shootDir) {
+					case 0:
+					case 2:
+					case 3:
+						animOffset = an.shootAir[0] + shootTimer
+						break
+					case 1:
+						animOffset = an.shootAU1[0] + (4 * (shooting - 1)) + shootTimer
+						break
+					case 4:
+						animOffset = an.shootAD1[0] + (4 * (shooting - 1)) + shootTimer
+						break
+				}
+				if(an[anim] != null) animOffset -= an[anim][0] //Account for starting frame in sheet
+			}
+		}
 	}
 
 	function run() {
@@ -605,18 +655,23 @@
 		base.run()
 
 		//Global actions
-		if(canMove && getcon("swap", "press", true, playerNum)) swapitem()
-		local nrgBonus = (game.fireBonus + game.iceBonus + game.airBonus + game.earthBonus) / 4.0
-		stats.maxEnergy = 4 - game.difficulty + ceil(game.fireBonus)
+		if(canMove) {
+			if(getcon("swap", "press", true, playerNum)) swapitem()
+			if(getcon("shoot", "press", true, playerNum)) shootNut(0)
+			if(getcon("spec1", "press", true, playerNum)) shootNut(1)
+		}
+
+		local nrgBonus = float(game.fireBonus + game.iceBonus + game.airBonus + game.earthBonus) / 4.0
+		stats.maxEnergy = 4 - game.difficulty + ceil(nrgBonus)
 
 		//Recharge
-		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "slide")) {
+		if(firetime > 0) {
 			firetime--
 		}
 
-		if(firetime == 0 && energy < stats.maxEnergy) {
+		if(firetime == 0 && energy < stats.maxEnergy && !shooting) {
 			energy++
-			firetime = 60
+			firetime = 30
 		}
 
 		//After image
@@ -625,8 +680,6 @@
 		//Invincibility
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
-
-		hidden = false
 	}
 
 	function ruNormal() {
@@ -752,7 +805,7 @@
 						if(anim != "morphIn") anim = "jump"
 						frame = 0.0
 					}
-					popSound(sndJump, 0)
+					popSound(sndMidiJump, 0)
 				}
 				else if(freeDown && anim != "climb" && anim != "ledge" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40 && !didJump) {
 					flip = 0
@@ -965,7 +1018,7 @@
 					else vspeed = -6.4
 					didJump = true
 					if(stats.weapon != "air") canJump = 0
-					popSound(sndJump, 0)
+					popSound(sndMidiJump, 0)
 				}
 			}
 
@@ -1013,11 +1066,26 @@
 		if(!hidden) {
 			if(anim in an && an[anim] != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
+
+				//Aura
+				if(stats.weapon != "normal") {
+					switch(stats.weapon) {
+						case "fire":
+							auraColor = 0xf88000ff
+							break
+						case "ice":
+							auraColor = 0x80d0f8ff
+							break
+					}
+				}
+
 				if(blinking == 0 || anim == "hurt") {
-					drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, 1)
+					if(anim == "climb" && shooting) drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y - camy, 0, (flip ? 0 : 1), 1, 1, 1)
+					else drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, 1)
 				}
 				drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
+			if(shooting && anim == "walk") drawSpriteZ(0, sprite, an["armShoot"][min(3, shootTimer)], x - camx, y - camy, 0, flip)
 			if(anim == "ball" && fabs(hspeed) > 4.2 && spinAlpha < 1.0) spinAlpha += 0.2
 			if(spinAlpha > 0) spinAlpha -= 0.1
 			if(spinAlpha < 0) spinAlpha = 0
@@ -1026,14 +1094,14 @@
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
-		}
 
-		//Transformation flash
-		if(tftime != -1) {
-			if(tftime < 4) {
-				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
-				tftime += 0.25
-			} else tftime = -1
+			//Transformation flash
+			if(tftime != -1) {
+				if(tftime < 4) {
+					if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+					tftime += 0.25
+				} else tftime = -1
+			}
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
@@ -1062,19 +1130,64 @@
 		}
 	}
 
-	function shootNut(hand) {
-		if(shooting) return
-		shooting = hand + 1
+	function shootNut(_hand) {
+		if(shooting || energy < 1) return
+		popSound(sndThrow, 0)
+		hand = _hand
+		if(flip) shooting = 2 - hand
+		else shooting = hand + 1
 
 		local nutType = "normal"
 		if(hand == 0) nutType = stats.weapon
 		if(hand == 1) nutType = stats.subitem
+		if(!["normal", "fire", "ice", "air", "earth", "shock"].find(nutType)) nutType = "normal"
 
 		if(getcon("up", "hold", true, playerNum) && (getcon("left", "hold", true, playerNum) || getcon("right", "hold", true, playerNum))) shootDir = 2
 		else if(getcon("down", "hold", true, playerNum) && (getcon("left", "hold", true, playerNum) || getcon("right", "hold", true, playerNum))) shootDir = 3
 		else if(getcon("down", "hold", true, playerNum)) shootDir = 4
 		else if(getcon("up", "hold", true, playerNum)) shootDir = 1
 		else shootDir = 0
+
+		if(shootDir == 4 && anim == "walk") hspeed = 0
+
+		local c = null
+		if(routine == ruBall) c = fireWeapon(WingNut, x, y + 4, 1, id)
+		else if(!(shootDir == 4 && !freeDown && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
+			c = fireWeapon(NutBomb, x, y, 1, id)
+			local d = (flip ? -1 : 1)
+			if(anim == "ledge") d = -d
+
+			switch(shootDir) {
+				case 0:
+					c.hspeed = (4 * d) + (hspeed / 2)
+					if(!nowInWater) c.vspeed = -1
+					break
+				case 1:
+					c.vspeed = -4 + (vspeed / 2)
+					break
+				case 2:
+					c.hspeed = (3 * d) + (hspeed / 2)
+					c.vspeed = -3 + (vspeed / 2)
+					break
+				case 3:
+					c.hspeed = (3 * d) + (hspeed / 2)
+					c.vspeed = 3 + (vspeed / 2)
+					break
+				case 4:
+					c.vspeed = 4 + (vspeed / 2)
+					break
+			}
+		}
+		else {
+			frame = 0.0
+			anim = "plantMine"
+		}
+
+		if(c != null) {
+			c.element = nutType
+			energy--
+			firetime = 90
+		}
 	}
 
 	function _typeof(){ return "Midi" }
