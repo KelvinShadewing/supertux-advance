@@ -350,8 +350,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		popSound(sndExplodeN, 0)
 
 		shape = Cir(x, y, 10.0)
 	}
@@ -710,6 +709,7 @@
 	piercing = 0
 	exPower = 1
 	sprite = null
+	exElement = "normal"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -752,8 +752,8 @@
 
 	function destructor() {
 		local c
-		local t
-		switch(element) {
+		local t = ExplodeN
+		switch(exElement) {
 			case "normal":
 				t = ExplodeN
 				break
@@ -799,6 +799,7 @@
 	blast = false
 	piercing = 0
 	exPower = 1
+	exElement = "normal"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -847,7 +848,7 @@
 
 	function destructor() {
 		local c
-		switch(element) {
+		switch(exElement) {
 			case "normal":
 				c = fireWeapon(ExplodeN, x, y, alignment, owner)
 				c.power = exPower
@@ -880,6 +881,7 @@
 	piercing = 0
 	bounceShape = null
 	exPower = 1
+	exElement = "normal"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -911,7 +913,7 @@
 
 	function destructor() {
 		local c
-		switch(element) {
+		switch(exElement) {
 			case "normal":
 				c = fireWeapon(ExplodeN, x, y, alignment, owner)
 				c.power = exPower
@@ -958,6 +960,8 @@
 			deleteActor(id)
 			newActor(Poof, x, y)
 		}
+
+		if(placeFree(x, y + 2)) deleteActor(id)
 
 		shape.setPos(x, y)
 

@@ -125,17 +125,20 @@
 			for(local i = 0; i < data.tilesets.len(); i++) {
 				//Check if tileset is not embedded
 				if("source" in data.tilesets[i]) for(local j = 0; j < tileSearchDir.len(); j++) {
-					if(fileExists(tileSearchDir[j] + "/" + data.tilesets[i].source)) {
-						print("Found external tileset: " + data.tilesets[i].source)
+					local sourcefile = findFileName(data.tilesets[i].source)
+					if(fileExists(tileSearchDir[j] + "/" + sourcefile)) {
+						print("Found external tileset: " + sourcefile)
 						local newgid = data.tilesets[i].firstgid
-						data.tilesets[i] = jsonRead(fileRead(tileSearchDir[j] + "/" + data.tilesets[i].source))
+						data.tilesets[i] = jsonRead(fileRead(tileSearchDir[j] + "/" + sourcefile))
 						data.tilesets[i].firstgid <- newgid
 						break
 					}
+					else print("Unable to find external tile: " + sourcefile + " in " + tileSearchDir[j])
 				}
 
 				//Extract filename
 				//print("Get filename")
+				if(!("image" in data.tilesets[i])) print(jsonWrite(data.tilesets[i]))
 				local filename = data.tilesets[i].image
 				local shortname = findFileName(filename)
 				//print("Full map name: " + filename + ".")

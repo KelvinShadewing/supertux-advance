@@ -1,0 +1,14 @@
+{ "columns":11,
+ "image":"..\/gfx\/dirtcavetiles.png",
+ "imageheight":176,
+ "imagewidth":176,
+ "margin":0,
+ "name":"dirtcave",
+ "spacing":0,
+ "tilecount":121,
+ "tiledversion":"1.10.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

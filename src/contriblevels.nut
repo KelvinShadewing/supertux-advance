@@ -27,6 +27,11 @@
 								if(tileSearchDir[i] == "contrib/" + contribFolder + "/gfx") searchDirExists = true
 							}
 							if(!searchDirExists) tileSearchDir.push("contrib/" + contribFolder + "/gfx")
+							searchDirExists = false
+							for(local i = 0; i < tileSearchDir.len(); i++) {
+								if(tileSearchDir[i] == "contrib/" + contribFolder) searchDirExists = true
+							}
+							if(!searchDirExists) tileSearchDir.push("contrib/" + contribFolder)
 							gvDoIGT = false
 							if(fileExists("contrib/" + contribFolder + "/text.json")) {
 								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/text.json")))

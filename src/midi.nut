@@ -256,6 +256,8 @@
 				else if(atZipline(0, -1)) lineType = tileGetSolid(x, y - shape.h - 1)
 				else if(atZipline(0, 1)) lineType = tileGetSolid(x, y - shape.h + 1)
 
+				y = (y - y % 16) + 4
+
 				switch(lineType) {
 					case 1: //Flat
 						y = (y - y % 16) + 8
@@ -394,7 +396,8 @@
 			case "stand":
 				frame += 0.1
 				if(zoomies) frame += 0.1
-				if(stats.health <= game.maxHealth / 4) {
+				if(getcon("down", "hold", true, playerNum)) an.stand = an.crouch
+				else if(stats.health <= game.maxHealth / 4) {
 					an.stand = an.standW
 					boredom = 0
 				}
@@ -527,8 +530,10 @@
 				if(floor(frame) > 1) {
 					vspeed = -6.0
 					if(getcon("down", "hold", true, playerNum)) vspeed = -4.0
-					if(flip == 0) hspeed = 4.0
-					else hspeed = -4.0
+					local w = 4.0
+					if(getcon("up", "hold", true, playerNum)) w = 2.0
+					if(flip == 0) hspeed = w
+					else hspeed = -w
 					anim = "jump"
 					frame = 0.0
 				}
@@ -719,6 +724,8 @@
 
 			if(getcon("shoot", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(0, floor(chargeTimer / 90) + 1)
 
+			if(getcon("spec1", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(1, floor(chargeTimer / 90) + 1)
+
 			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum) || routine == ruBall) chargeTimer = 0
 
 			if(chargeTimer > 180 && (getFrames()) % 4 == 0) {
@@ -872,7 +879,7 @@
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					if(anim == "stand" || anim == "walk") anim = "jumpT"
 				}
-				else if(canJump > 0 && placeFree(x, y - 2) || anim == "ledge") {
+				else if(canJump > 0 && placeFree(x, y - 2) || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0
 					if(anim == "climb") vspeed = -3
 					vspeed = -6.4
@@ -930,7 +937,7 @@
 				}
 			} else an["fall"] = an["fallN"]
 
-			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown) jumpBuffer = 8
+			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge") jumpBuffer = 8
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(!getcon("jump", "hold", true, playerNum) && (vspeed < 0 || anim == "fall") && didJump)
@@ -1240,33 +1247,33 @@
 		if(routine == ruBall) c = fireWeapon(WingNut, x, y + 4, 1, id)
 		else if(!(shootDir == 4 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
 			if(!freeDown && shootDir == 3 && routine != ruSwim) {
-				c = fireWeapon(TopNut, x, y, 1, id)
+				c = fireWeapon(TopNut, x, y - 2, 1, id)
 				hspeed = 0
 				anim = "shootTop"
 				_power = 1
 			}
-			else c = fireWeapon(NutBomb, x, y, 1, id)
+			else c = fireWeapon(NutBomb, x, y - 2, 1, id)
 			local d = (flip ? -1 : 1)
 			if(anim == "ledge") d = -d
 
 			switch(shootDir) {
 				case 0:
-					c.hspeed = (4 * d) + (hspeed / 2)
+					c.hspeed = (5 * d) + (hspeed / 2)
 					if(!nowInWater) c.vspeed = -1
 					break
 				case 1:
-					c.vspeed = -4 + (vspeed / 2)
+					c.vspeed = -5 + (vspeed / 2)
 					break
 				case 2:
-					c.hspeed = (3 * d) + (hspeed / 2)
-					c.vspeed = -3 + (vspeed / 2)
+					c.hspeed = (4 * d) + (hspeed / 2)
+					c.vspeed = -4.5
 					break
 				case 3:
-					c.hspeed = (3 * d) + (hspeed / 2)
-					c.vspeed = 2 + (vspeed / 2)
+					c.hspeed = (4 * d) + (hspeed / 2)
+					c.vspeed = 3 + (vspeed / 2)
 					break
 				case 4:
-					c.vspeed = 4 + (vspeed / 2)
+					c.vspeed = 5 + (vspeed / 2)
 					break
 			}
 		}
@@ -1277,7 +1284,7 @@
 		}
 
 		if(c != null) {
-			c.element = nutType
+			c.exElement = nutType
 			c.exPower = _power
 			energy -= _power
 			firetime = 90
