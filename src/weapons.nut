@@ -104,7 +104,7 @@
 
 		popSound(sndExplodeN, 0)
 
-		shape = Cir(x, y, 10.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -308,7 +308,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 10.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -352,7 +352,7 @@
 
 		popSound(sndExplodeN, 0)
 
-		shape = Cir(x, y, 10.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -522,7 +522,7 @@
 
 		popSound(sndExplodeI, 0)
 
-		shape = Cir(x, y, 10.0)
+		shape = Cir(x, y, 8.0)
 		angle = randInt(360)
 	}
 
@@ -600,7 +600,7 @@
 
 		popSound(sndExplodeT, 0)
 
-		shape = Cir(x, y, 10.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {
@@ -1013,7 +1013,7 @@
 
 		popSound(sndExplodeA, 0)
 
-		shape = Cir(x, y, 10.0)
+		shape = Cir(x, y, 8.0)
 	}
 
 	function run() {

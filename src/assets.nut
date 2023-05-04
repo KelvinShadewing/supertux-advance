@@ -435,7 +435,7 @@
 ::defNutBomb2 <- sprNutBomb2
 ::sprNutBomb3 <- newSprite("res/gfx/nutbomb3.png", 16, 16, 0, 0, 8, 8)
 ::defNutBomb3 <- sprNutBomb3
-::sprTopNut <- newSprite("res/gfx/topnut.png", 16, 16, 0, 0, 8, 10)
+::sprTopNut <- newSprite("res/gfx/topnut.png", 16, 16, 0, 0, 8, 9)
 ::defTopNut <- sprTopNut
 ::sprWingNut <- newSprite("res/gfx/wingnutbomb.png", 16, 16, 0, 0, 8, 8)
 ::defWingnut <- sprWingNut

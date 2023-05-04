@@ -613,8 +613,7 @@
 			case "shootTop":
 				frame += 0.25
 				if(hspeed != 0 || vspeed != 0) {
-					anim == "stand"
-					frame = 0
+					anim = "stand"
 					break
 				}
 				if(frame >= an[anim].len()) anim = "stand"
@@ -624,8 +623,7 @@
 			case "plantMine":
 				frame += 0.25
 				if(hspeed != 0 || vspeed != 0) {
-					anim == "stand"
-					frame = 0
+					anim = "stand"
 					break
 				}
 				if(frame >= an[anim].len()) {
