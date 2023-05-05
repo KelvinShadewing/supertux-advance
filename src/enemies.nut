@@ -905,12 +905,12 @@
 		}
 		else if(squish) return
 
+		if(_element != "fire" && _blast == false) popSound(sndFizz, 0)
 		if(_stomp) {
 			if(_by.anim == "jumpT" || _by.anim == "fall") {
 				_by.anim = "jumpU"
 				_by.frame = _by.an["jumpU"][0]
 			}
-			popSound(sndFizz, 0)
 		}
 
 		if(_by != 0 && ("anim" in _by) && _by.anim == "slide") {
