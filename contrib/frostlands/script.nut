@@ -142,7 +142,7 @@ print("Loading Frostlands overhauled PT2")
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
 		sprCoin10 = sprCoinN10
-		}
+	}
 }
 
 //background shiz

@@ -21,6 +21,10 @@
 	game.difficulty = newdif
 	game.path = path
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
+	if(fileExists(path + "/text.json")) {
+		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
+		print("Found text.json")
+	}
 	startPlay(game.path + gvTAStart + ".json", true, true)
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff

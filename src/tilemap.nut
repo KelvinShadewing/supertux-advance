@@ -177,9 +177,6 @@
 
 			//print("Added " + spriteName(tileset[i]) + ".\n")
 
-
-
-
 			shape = (Rec(0, 0, 8, 8, 0))
 
 			//Add sky protection

@@ -884,7 +884,6 @@
 	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
-		popSound(sndFizz, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
@@ -906,12 +905,12 @@
 		}
 		else if(squish) return
 
-		popSound(sndFizz, 0)
 		if(_stomp) {
 			if(_by.anim == "jumpT" || _by.anim == "fall") {
 				_by.anim = "jumpU"
 				_by.frame = _by.an["jumpU"][0]
 			}
+			popSound(sndFizz, 0)
 		}
 
 		if(_by != 0 && ("anim" in _by) && _by.anim == "slide") {
@@ -2476,7 +2475,6 @@
 	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
-		popSound(sndFizz, 0)
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
