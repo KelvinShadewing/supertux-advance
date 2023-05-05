@@ -122,11 +122,11 @@
 		//escapeSolid()
 
 		if(endMode) {
-			if(hspeed < endSpeed && endSpeed > 0) {
+			if(hspeed < endSpeed && endSpeed > 0 && (placeFree(x + 1, y) || placeFree(x + 1, y - 2))) {
 				hspeed += accel
 				rspeed += accel
 			}
-			if(hspeed > endSpeed && endSpeed < 0) {
+			if(hspeed > endSpeed && endSpeed < 0 && (placeFree(x - 1, y) || placeFree(x - 1, y - 2))) {
 				hspeed -= accel
 				rspeed -= accel
 			}

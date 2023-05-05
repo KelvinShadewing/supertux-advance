@@ -274,7 +274,7 @@
 		//Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
 		if(slippery) {
-			if(!placeFree(x, y + 4) && (fabs(hspeed) < 10)) {
+			if(!placeFree(x, y + 4) && (fabs(hspeed) < 8)) {
 				if(placeFree(x + 4, y + 2) && !onPlatform(hspeed)) {
 					if(getcon("left", "hold", true, playerNum)) hspeed += 0.2
 					else hspeed += 0.3

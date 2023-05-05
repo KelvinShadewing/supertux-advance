@@ -95,7 +95,7 @@
 
 ::sprMidi <- newSprite("res/gfx/midi.png", 32, 32, 0, 0, 16, 19)
 ::defMidi <- sprMidi
-::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 20, 0, 0, 7, 17)
+::sprMidiOverworld <- newSprite("res/gfx/midiO.png", 14, 21, 0, 0, 7, 17)
 ::defMidiOverworld <- sprMidiOverworld
 ::sprMidiDoll <- newSprite("res/gfx/mididoll.png", 16, 16, 0, 0, 8, 8)
 ::defMidiDoll <- sprMidiDoll
