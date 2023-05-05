@@ -370,11 +370,11 @@
 			} else {
 				if(hspeed > 0) {
 					if((!(mspeed > 2 && getcon("right", "hold", true, playerNum)) || anim == "hurt" || !canMove) && !nowInWater) hspeed -= friction
-					else if(nowInWater) hspeed -= friction / 3.0
+					else if(nowInWater || resTime > 0) hspeed -= friction / 3.0
 				}
 				if(hspeed < 0) {
 					if((!(mspeed > 2 && getcon("left", "hold", true, playerNum)) || anim == "hurt" || !canMove) && !nowInWater) hspeed += friction
-					else if(nowInWater) hspeed += friction / 3.0
+					else if(nowInWater || resTime > 0) hspeed += friction / 3.0
 				}
 			}
 		}
@@ -383,7 +383,7 @@
 			if(hspeed < 0 && !getcon("left", "hold", true, playerNum)) hspeed += friction / 3.0
 		}
 
-		if(nowInWater) {
+		if(nowInWater || resTime > 0) {
 			if(vspeed > 0 && !getcon("down", "hold", true, playerNum)) vspeed -= friction / 4.0
 			if(vspeed < 0 && !getcon("up", "hold", true, playerNum)) vspeed += friction / 4.0
 		}
@@ -693,6 +693,8 @@
 				if(an[anim] != null) animOffset -= an[anim][0] //Account for starting frame in sheet
 			}
 		}
+
+		if(wasInWater && !nowInWater || nowInWater && !wasInWater) newActor(Splash, x, y)
 	}
 
 	function run() {
@@ -701,6 +703,7 @@
 		freeLeft = placeFree(x - 1, y)
 		freeRight = placeFree(x + 1, y)
 		freeUp = placeFree(x, y - 1)
+		wasInWater = nowInWater
 		nowInWater = inWater(x, y)
 
 		if(routine == ruSwim) canStomp = false
@@ -982,29 +985,36 @@
 			return
 		}
 
-		if(nowInWater || resTime > 0) {
+		if(nowInWater) {
 			routine = ruSwim
 			if(anim != "morphIn" && anim != "ball") anim = "float"
 			vspeed /= 4.0
 			hspeed /= 4.0
+		}
+
+		if(resTime > 0) {
+			routine = ruSwim
+			anim = "float"
 		}
 	}
 
 	function ruSwim() {
 			//Controls
 			if(canMove) {
+				mspeed = 1.2
+				if(resTime > 0) mspeed = 2
 				if(getcon("left", "hold", true, playerNum)) {
-					if(hspeed > -1.2) hspeed -= accel / 2.0
+					if(hspeed > -mspeed) hspeed -= accel / 2.0
 					flip = 1
 				}
 				if(getcon("right", "hold", true, playerNum)) {
-					if(hspeed < 1.2) hspeed += accel / 2.0
+					if(hspeed < mspeed) hspeed += accel / 2.0
 					flip = 0
 				}
-				if(getcon("up", "hold", true, playerNum) && vspeed > -1.2) vspeed -= accel / 2.0
-				if(getcon("down", "hold", true, playerNum) && vspeed < 1.2) vspeed += accel / 2.0
+				if(getcon("up", "hold", true, playerNum) && vspeed > -mspeed) vspeed -= accel / 2.0
+				if(getcon("down", "hold", true, playerNum) && vspeed < mspeed) vspeed += accel / 2.0
 				
-				if(getcon("spec2", "press", true, playerNum) && anim != "hurt") {
+				if(getcon("spec2", "press", true, playerNum) && anim != "hurt" && resTime <= 0) {
 					anim = "morphIn"
 					frame = 0.0
 				}
@@ -1034,7 +1044,7 @@
 			return
 		}
 
-		if(!nowInWater) {
+		if(!nowInWater && resTime <= 0) {
 			routine = ruNormal
 			if(anim != "morphIn" && anim != "ball") anim = "stand"
 			if(getcon("jump", "hold", true, playerNum)) vspeed -= 4.0
@@ -1143,6 +1153,11 @@
 			die()
 			return
 		}
+
+		if(resTime > 0) {
+			routine = ruSwim
+			anim = "float"
+		}
 	}
 
 	function ruMonkey() {
@@ -1206,7 +1221,7 @@
 			if(y > gvMap.h) {
 				invincible = 300
 				resTime = 300
-				vspeed = -4.0
+				vspeed = -2.0
 			}
 			stats.canres = false
 		}
