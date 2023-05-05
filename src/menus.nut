@@ -415,6 +415,11 @@ const menuY = 40
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["nearbars"] },
 		func = function() { config.nearbars = !config.nearbars; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
 	}
 ]
 
