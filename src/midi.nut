@@ -455,11 +455,11 @@
 				frame += abs(rspeed) / 12
 
 				if(flip == 0 && hspeed < 0) {
-					hspeed += 0.05
+					hspeed += 0.1
 					anim = "skid"
 				}
 				else if(flip == 1 && hspeed > 0) {
-					hspeed -= 0.05
+					hspeed -= 0.1
 					anim = "skid"
 				}
 				else anim = "walk"
