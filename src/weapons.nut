@@ -709,6 +709,8 @@
 	piercing = 0
 	exPower = 1
 	sprite = null
+	sprite2 = null
+	sprite3 = null
 	exElement = "normal"
 
 	constructor(_x, _y, _arr = null) {
@@ -716,11 +718,13 @@
 
 		shape = Cir(x, y, 3)
 		sprite = sprNutBomb
+		sprite2 = sprNutBomb2
+		sprite3 = sprNutBomb3
 	}
 
 	function run() {
-		if(exPower == 2) sprite = sprNutBomb2
-		if(exPower == 3) sprite = sprNutBomb3
+		if(exPower == 2) sprite = sprite2
+		if(exPower == 3) sprite = sprite3
 		
 		timer--
 		if(timer == 0) deleteActor(id)
@@ -800,11 +804,13 @@
 	piercing = 0
 	exPower = 1
 	exElement = "normal"
+	sprite = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
 		shape = Rec(x, y, 3, 3, 0)
+		sprite = sprTopNut
 	}
 
 	function run() {
@@ -842,7 +848,7 @@
 	}
 
 	function draw() {
-		drawSprite(sprTopNut, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSprite(sprite, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -882,12 +888,14 @@
 	bounceShape = null
 	exPower = 1
 	exElement = "normal"
+	sprite = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
 		shape = Cir(x, y, 3)
 		bounceShape = Cir(x, y, 8)
+		sprite = sprWingNut
 	}
 
 	function run() {
@@ -961,7 +969,7 @@
 			newActor(Poof, x, y)
 		}
 
-		if(placeFree(x, y + 2)) deleteActor(id)
+		if(placeFree(x, y + 2) && !onPlatform()) deleteActor(id)
 
 		shape.setPos(x, y)
 

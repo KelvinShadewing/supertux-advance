@@ -111,6 +111,8 @@ switch(reschoice) {
 
 //Uncomment this function if you want to play at actual GBA resolution
 //setResolution(240, 160)
+//Uncomment this function if you want to play at actual NDS resolution
+//setResolution(256, 192)
 //Uncomment this function if you want to play at the old resolution
 //setResolution(320, 180)
 

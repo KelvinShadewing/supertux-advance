@@ -2251,11 +2251,6 @@
 		else drawSprite(sprHaywire, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 	}
 
-	function hurtPlayer(target) {
-		if(!chasing) return
-		base.hurtPlayer(target)
-	}
-
 	function hurtBlast() {
 		if(squish) return
 		if(frozen) frozen = 0
@@ -2268,12 +2263,20 @@
 		squish = true
 	}
 
+	function hurtPlayer(target) {
+		if(blinking || squish && !chasing) return
+		target.hurt = touchDamage * target.damageMult[element]
+	}
+
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_element == "fire") {
 			hurtFire()
 			return
 		}
 		else if(_element == "ice") {
+			chasing = false
+			squish = false
+			squishTime = 0.0
 			hurtIce()
 			return
 		}

@@ -129,6 +129,12 @@
 	sprite = sprMidi
 	aura = sprMidiAura
 	auraColor = 0xffffffff
+	nutSprite = sprNutBomb
+	nutSprite2 = sprNutBomb2
+	nutSprite3 = sprNutBomb3
+	wingNutSprite = sprWingNut
+	mineSprite = sprNutMine
+	topSprite = sprTopNut
 
 	damageMultN = {
 		normal = 1.0
@@ -397,7 +403,7 @@
 				frame += 0.1
 				if(zoomies) frame += 0.1
 				if(getcon("down", "hold", true, playerNum)) an.stand = an.crouch
-				else if(stats.health <= game.maxHealth / 4) {
+				else if(stats.health <= min(8, game.maxHealth / 4)) {
 					an.stand = an.standW
 					boredom = 0
 				}
@@ -1367,4 +1373,17 @@
 	}
 
 	function _typeof() { return "DeadPlayer" }
+}
+
+::Kiki <- class extends Midi {
+	//Replace sprites with Kiki versions as they're made
+	sprite = sprMidi
+	aura = sprMidiAura
+	auraColor = 0xffffffff
+	nutSprite = sprNutBomb
+	nutSprite2 = sprNutBomb2
+	nutSprite3 = sprNutBomb3
+	wingNutSprite = sprWingNut
+	mineSprite = sprNutMine
+	topSprite = sprTopNut
 }
