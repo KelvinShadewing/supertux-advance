@@ -286,7 +286,7 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawSpriteEx(sprFlame, (getFrames() / 4) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 

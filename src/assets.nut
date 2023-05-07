@@ -322,6 +322,8 @@
 ::defIvyRed <- sprIvyRed
 ::sprMrsSnowflake <- newSprite("res/gfx/mrs-snowflake.png", 18, 19, 0, 0, 9, 13)
 ::defMrsSnowflake <- sprMrsSnowflake
+::sprSkyDive <- newSprite("res/gfx/skydive.png", 17, 23, 0, 0, 8, 12)
+::defSkyDive <- sprSkyDive
 
 
 //Bosses
@@ -474,7 +476,7 @@
 ::bgOceanNight <- newSprite("res/gfx/ocean-night.png", 480, 8, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
-::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 720, 240, 0, 0, 0, 0)
+::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 640, 240, 0, 0, 0, 0)
 ::bgStarSky <- newSprite("res/gfx/starrysky.png", 360, 240, 0, 0, 0, 0)
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)

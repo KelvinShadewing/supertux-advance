@@ -3305,11 +3305,11 @@
 		if(0 in arg) {
 			if(getroottable().rawin(arg[0])) {
 				if(getroottable()[arg[0]].rawin("shape")) passenger = actor[newActor(getroottable()[arg[0]], x, y, narg)]
-				else passenger = actor[newActor(MuffinEvil, x, y)]
+				else passenger = actor[newActor(SkyDive, x, y)]
 			}
-			else passenger = actor[newActor(MuffinEvil, x, y)]
+			else passenger = actor[newActor(SkyDive, x, y)]
 		}
-		else passenger = actor[newActor(MuffinEvil, x, y)]
+		else passenger = actor[newActor(SkyDive, x, y)]
 
 		pyOffset = passenger.shape.h
 		pid = passenger.id
@@ -4424,4 +4424,45 @@
 	}
 
 	function _typeof() { return "Wheeler" }
+}
+
+::SkyDive <- class extends Enemy {
+	flip = 0
+
+	function constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 6, 10)
+	}
+
+	function run() {
+		base.run()
+		
+		vspeed += 0.2
+		shape.setPos(x, y)
+		if(!placeFree(x, y + vspeed / 2) && vspeed > 2 || health <= 0) {
+			deleteActor(id)
+			fireWeapon(ExplodeF, x, y, 0, 0)
+			local c = fireWeapon(FireballK, x, y - 4, 0, 0)
+			c.hspeed = -2.0 - game.difficulty
+			c.vspeed = -1.5
+			c = fireWeapon(FireballK, x, y - 4, 0, 0)
+			c.hspeed = 2.0 + game.difficulty
+			c.vspeed = -1.5
+		}
+		flip = int(hspeed < 0)
+
+		local target = findPlayer()
+		if(target) {
+			if(target.x > x) hspeed += 0.2
+			if(target.x < x) hspeed -= 0.2
+		}
+		if(hspeed > 1) hspeed = 1.0
+		if(hspeed < -1) hspeed = -1.0
+		x += hspeed
+
+		if(y > gvMap.h) deleteActor(id)
+	}
+
+	function draw() {
+		drawSprite(sprSkyDive, min(abs(vspeed), 2), x - camx, y - camy, 0, flip)
+	}
 }
