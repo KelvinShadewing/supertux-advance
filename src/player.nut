@@ -117,7 +117,23 @@
 		if(zoomies > 0) zoomies--
 		if(resTime > 0) resTime--
 
-		if(resTime > 0 && y > gvMap.h) y = gvMap.h
+		if(resTime > 0 && y > gvMap.h) {
+			y = gvMap.h
+			if(!placeFree(x, y)) {
+				local xrange = 0
+				while(true) {
+					xrange++
+					if(placeFree(x + xrange, y)) {
+						x += xrange
+						break
+					}
+					if(placeFree(x - xrange, y)) {
+						x -= xrange
+						break
+					}
+				}
+			}
+		}
 		if(y < -100) y = -100.0
 		//escapeSolid()
 

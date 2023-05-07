@@ -510,7 +510,7 @@
 
 		for(local i = 0; i < game.maxHealth / 4; i++) {
 			if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 8)
-			else if(i == fullhearts) drawSprite(sprHealth, game.ps1.health % 4, 8 + (16 * i), 8)
+			else if(i == fullhearts) drawSprite(sprHealth, ceil(game.ps1.health) % 4, 8 + (16 * i), 8)
 			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
 		}
 
@@ -568,7 +568,7 @@
 
 			for(local i = 0; i < game.maxHealth / 4; i++) {
 				if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 36)
-				else if(i == fullhearts) drawSprite(sprHealth, game.ps2.health % 4, 8 + (16 * i), 36)
+				else if(i == fullhearts) drawSprite(sprHealth, ceil(game.ps2.health) % 4, 8 + (16 * i), 36)
 				else drawSprite(sprHealth, 0, 8 + (16 * i), 36)
 			}
 

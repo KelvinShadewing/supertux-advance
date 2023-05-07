@@ -255,6 +255,7 @@
 	element = "fire"
 	power = 1
 	blast = true
+	pierce = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
