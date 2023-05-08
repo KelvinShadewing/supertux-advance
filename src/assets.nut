@@ -322,7 +322,7 @@
 ::defIvyRed <- sprIvyRed
 ::sprMrsSnowflake <- newSprite("res/gfx/mrs-snowflake.png", 18, 19, 0, 0, 9, 13)
 ::defMrsSnowflake <- sprMrsSnowflake
-::sprSkyDive <- newSprite("res/gfx/skydive.png", 17, 23, 0, 0, 8, 12)
+::sprSkyDive <- newSprite("res/gfx/skydive.png", 24, 24, 0, 0, 12, 13)
 ::defSkyDive <- sprSkyDive
 
 

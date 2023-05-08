@@ -4428,6 +4428,9 @@
 
 ::SkyDive <- class extends Enemy {
 	flip = 0
+	onGround = false
+	accel = 0.0
+	mspeed = 2
 
 	function constructor(_x, _y, _arr = null) {
 		shape = Rec(x, y, 6, 10)
@@ -4435,10 +4438,10 @@
 
 	function run() {
 		base.run()
-		
-		vspeed += 0.2
+
+		onGround = !placeFree(x, y + 1)
 		shape.setPos(x, y)
-		if(!placeFree(x, y + vspeed / 2) && vspeed > 2 || health <= 0) {
+		if(onGround && vspeed > 2 || health <= 0) {
 			deleteActor(id)
 			fireWeapon(ExplodeF, x, y, 0, 0)
 			local c = fireWeapon(FireballK, x, y - 4, 0, 0)
@@ -4448,21 +4451,40 @@
 			c.hspeed = 2.0 + game.difficulty
 			c.vspeed = -1.5
 		}
-		flip = int(hspeed < 0)
+		if(!onGround) vspeed += 0.2
+		else vspeed = 0.0
 
 		local target = findPlayer()
 		if(target) {
-			if(target.x > x) hspeed += 0.2
-			if(target.x < x) hspeed -= 0.2
+			if(target.x - 16 > x) {
+				accel = 0.12
+				flip = 0
+			}
+			if(target.x + 16 < x) {
+				accel = -0.12
+				flip = 1
+			}
 		}
-		if(hspeed > 1) hspeed = 1.0
-		if(hspeed < -1) hspeed = -1.0
-		x += hspeed
+		hspeed += accel
+		if(hspeed > mspeed) hspeed = mspeed
+		if(hspeed < -mspeed) hspeed = -mspeed
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x + hspeed, y - 1)) {
+			x += hspeed
+			y--
+		}
 
 		if(y > gvMap.h) deleteActor(id)
 	}
 
 	function draw() {
-		drawSprite(sprSkyDive, min(abs(vspeed), 2), x - camx, y - camy, 0, flip)
+		if(!placeFree(x, y + 4)) drawSprite(sprSkyDive, wrap(getFrames() / 4, 3, 6), x - camx, y - camy, 0, flip)
+		else drawSprite(sprSkyDive, min(abs(vspeed), 2), x - camx, y - camy, 0, flip)
+
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawLine(x - 8 - camx, y - camy, x + 8 - camx, y - camy)
+			drawLine(x - camx, y - 8 - camy, x - camx, y + 8 - camy)
+		}
 	}
 }
