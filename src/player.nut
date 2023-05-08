@@ -135,6 +135,20 @@
 			}
 		}
 		if(y < -100) y = -100.0
+		if(y < 0 && !placeFree(x, y)) {
+			local xrange = 0
+			while(true) {
+				xrange++
+				if(placeFree(x + xrange, y)) {
+					x += xrange
+					break
+				}
+				if(placeFree(x - xrange, y)) {
+					x -= xrange
+					break
+				}
+			}
+		}
 		//escapeSolid()
 
 		if(endMode) {

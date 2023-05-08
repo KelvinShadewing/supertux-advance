@@ -718,7 +718,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(placeFree(x - 6, y + 14)) flip = false
+						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -732,7 +732,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(placeFree(x + 6, y + 14)) flip = true
+						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -4483,4 +4483,6 @@
 			drawLine(x - camx, y - 8 - camy, x - camx, y + 8 - camy)
 		}
 	}
+
+	function _typeof() { return "SkyDive" }
 }

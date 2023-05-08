@@ -316,6 +316,7 @@ print("Loading Frostlands overhauled PT2")
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -325,8 +326,8 @@ print("Loading Frostlands overhauled PT2")
 	}
 
 	function run() {
-		if(game.maxHealth >= 5 * 4) soldout = true
-		local price = (game.maxHealth + 1) * (200)
+		if(game.maxHealth >= 4 * 4) soldout = true
+		price = (game.maxHealth + 1) * (200 * (game.difficulty + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -339,20 +340,18 @@ print("Loading Frostlands overhauled PT2")
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
-				vspeed = 0
+				vspeed = -1
 				playSound(sndHeal, 0)
-				game.health += 4
 				game.maxHealth += 4
 				game.coins -= price
 			}
 		}
 
 		v += vspeed
-
-		local pricetag = chint(95).tostring() + price.tostring()
 	}
 
 	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)

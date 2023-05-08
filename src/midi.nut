@@ -412,7 +412,20 @@
 
 				boredom++
 
-				if(abs(rspeed) > 0.1) {
+				if((abs(rspeed) > 0.1 || abs(hspeed) > 1) && !slippery) {
+					if(flip == 0 && hspeed < 0 && !endMode) {
+						hspeed += 0.1
+						anim = "skid"
+						rspeed = fabs(hspeed / 1.5)
+					}
+					else if(flip == 1 && hspeed > 0 && !endMode) {
+						hspeed -= 0.1
+						anim = "skid"
+						rspeed = fabs(hspeed / 1.5)
+					}
+					else anim = "walk"
+				}
+				else if(abs(rspeed) > 0.1) {
 					anim = "walk"
 					frame = 0.0
 				}
@@ -475,7 +488,8 @@
 					if(fabs(rspeed) > 2.0) animOffset = 16
 					if(fabs(rspeed) > 3.6) animOffset = 32
 					if(shooting) animOffset += 8
-					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = "stand"
+					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery)) anim = "stand"
+					else if(fabs(rspeed) < fabs(hspeed) && !slippery) rspeed = fabs(hspeed)
 				}
 
 				if(placeFree(x, y + 2) && !onPlatform()) {
