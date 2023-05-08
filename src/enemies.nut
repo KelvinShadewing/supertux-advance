@@ -431,7 +431,7 @@
 		if(up && y > ystart - 32 && !frozen) y -= 2
 		if(!up && y < ystart && !frozen) y += 2
 
-		timer--
+		if(!frozen) timer--
 		if(timer <= 0) {
 			up = !up
 			timer = 60
@@ -455,33 +455,29 @@
 				newActor(IceChunks, x, y)
 				mapDeleteSolid(icebox)
 				icebox = -1
-				if(gvPlayer) if(x > gvPlayer.x) flip = true
-				else flip = false
 			}
 		}
 	}
 
 	function draw() {
-		if(frozen) {
+		if(flip == 1) drawSprite(sprSnake, (frozen ? 1 : getFrames() / 8), floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+		if(flip == -1) drawSprite(sprSnake, (frozen ? 1 : getFrames() / 8), floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
+
+		if(frozen > 0) {
 			if(flip == 1) drawSprite(sprSnake, 0, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
 			if(flip == -1) drawSprite(sprSnake, 0, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
 
-			if(flip == 1) drawSprite(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSprite(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 			if(frozen <= 120) {
 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy + 16)
 				else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
 			}
 			else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
 		}
-		else {
-			if(flip == 1) drawSprite(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-			if(flip == -1) drawSprite(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
-		}
 
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()
+			drawText(font, x - camx, y - camy, frozen.tostring())
 		}
 	}
 

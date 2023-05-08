@@ -460,11 +460,11 @@
 			case "walk":
 				frame += abs(rspeed) / 12
 
-				if(flip == 0 && hspeed < 0) {
+				if(flip == 0 && hspeed < 0 && !endMode) {
 					hspeed += 0.1
 					anim = "skid"
 				}
-				else if(flip == 1 && hspeed > 0) {
+				else if(flip == 1 && hspeed > 0 && !endMode) {
 					hspeed -= 0.1
 					anim = "skid"
 				}
@@ -787,6 +787,8 @@
 			//Moving left and right
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
+
+			//if(abs(hspeed) > 3) accel /= fabs(hspeed)
 
 			if(anim == "ledge") {
 				mspeed = 0
