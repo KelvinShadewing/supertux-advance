@@ -718,7 +718,7 @@
 		base.run()
 
 		//Global actions
-		if(canMove) {
+		if(canMove && !holding) {
 			if(getcon("swap", "press", true, playerNum)) swapitem()
 			if(getcon("shoot", "press", true, playerNum)) shootNut(0)
 			if(getcon("spec1", "press", true, playerNum)) shootNut(1)
@@ -739,6 +739,7 @@
 				newActor(GoldCharge, x - 12 + randInt(24) y - 12 + randInt(24))
 			}
 		}
+		else if(holding) chargeTimer = 0
 
 		local nrgBonus = float(game.fireBonus + game.iceBonus + game.airBonus + game.earthBonus) / 4.0
 		stats.maxEnergy = 4 - game.difficulty + ceil(nrgBonus)
@@ -884,6 +885,7 @@
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
+					if(anim == "plantMine") shooting = 0
 					if(anim == "stand" || anim == "walk") anim = "jumpT"
 				}
 				else if(canJump > 0 && placeFree(x, y - 2) || anim == "ledge" || anim == "monkey") {
@@ -892,6 +894,7 @@
 					vspeed = -6.4
 					didJump = true
 					canJump = 0
+					if(anim == "plantMine") shooting = 0
 					if(anim != "hurt") {
 						if(anim != "morphIn") anim = "jump"
 						frame = 0.0

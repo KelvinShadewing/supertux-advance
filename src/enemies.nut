@@ -4430,7 +4430,7 @@
 	flip = 0
 	onGround = false
 	accel = 0.0
-	mspeed = 2
+	mspeed = 1.5
 
 	function constructor(_x, _y, _arr = null) {
 		shape = Rec(x, y, 6, 10)
@@ -4457,11 +4457,11 @@
 		local target = findPlayer()
 		if(target) {
 			if(target.x - 16 > x) {
-				accel = 0.12
+				accel = 0.11
 				flip = 0
 			}
 			if(target.x + 16 < x) {
-				accel = -0.12
+				accel = -0.11
 				flip = 1
 			}
 		}

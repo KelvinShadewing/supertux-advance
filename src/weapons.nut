@@ -114,17 +114,17 @@
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
 			}
 		}
 
 		if(gvPlayer2) {
 			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
-				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
-				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
@@ -317,17 +317,17 @@
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
 			}
 		}
 
 		if(gvPlayer2) {
 			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
-				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
-				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
@@ -361,17 +361,17 @@
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
 			}
 		}
 
 		if(gvPlayer2) {
 			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
-				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
-				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
@@ -532,17 +532,17 @@
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.5
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.5
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.8
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
 			}
 		}
 
 		if(gvPlayer2) {
 			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.5
-				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.5
-				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.8
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
@@ -609,17 +609,17 @@
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x) gvPlayer.hspeed += 0.25
-				if(x > gvPlayer.x) gvPlayer.hspeed -= 0.25
-				if(y >= gvPlayer.y) gvPlayer.vspeed -= 0.4
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
 			}
 		}
 
 		if(gvPlayer2) {
 			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x) gvPlayer2.hspeed += 0.25
-				if(x > gvPlayer2.x) gvPlayer2.hspeed -= 0.25
-				if(y >= gvPlayer2.y) gvPlayer2.vspeed -= 0.4
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
@@ -1029,14 +1029,18 @@
 		if(frame >= 8) deleteActor(id)
 
 		if(gvPlayer) {
-			if(distance2(x, y, gvPlayer.x, gvPlayer.y) < 32) {
-				gvPlayer.vspeed = max(min(0, gvPlayer.vspeed - 2), -8)
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
 			}
 		}
 
 		if(gvPlayer2) {
-			if(distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 32) {
-				gvPlayer2.vspeed = max(min(0, gvPlayer2.vspeed - 2), -8)
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
