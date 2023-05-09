@@ -142,7 +142,7 @@
 
 	function draw() {
 		drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, (1.0 / 4.0) - frame, (1.0 / 4.0) - frame)
+		drawLight(sprLightFire, 0, x - camx, y - camy + 2, 0, 0, (1.0 / 6.0) - (frame / 32.0), (1.0 / 6.0) - (frame / 32.0))
 	}
 }
 

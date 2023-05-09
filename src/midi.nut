@@ -449,20 +449,20 @@
 					frame = 0.0
 					switch(shootDir) {
 						case 0:
-							animOffset = an.shootF1[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+							animOffset = an.shootF1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 							break
 						case 1:
-							animOffset = an.shootU1[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+							animOffset = an.shootU1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 							break
 						case 2:
-							animOffset = an.shootUF1[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+							animOffset = an.shootUF1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 							break
 						case 3:
-							animOffset = an.shootTop[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+							animOffset = an.shootTop[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 							hspeed = 0
 							break
 						case 4:
-							animOffset = an.shootDF1[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+							animOffset = an.shootDF1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 							break
 					}
 					animOffset -= 1 //Account for starting frame in sheet
@@ -626,7 +626,7 @@
 			case "ledge":
 				if(shooting) {
 					frame = 0.0
-					animOffset = an.shootClimb[0] - an[anim][0] + min(4, shootTimer)
+					animOffset = an.shootClimb[0] - an[anim][0] + min(3, shootTimer)
 				}
 				break
 
@@ -674,7 +674,7 @@
 
 				if(shooting) {
 					frame = 0.0
-					animOffset = an["shootHang"][0] - an[anim][0] + min(4, shootTimer)
+					animOffset = an["shootHang"][0] - an[anim][0] + min(3, shootTimer)
 				}
 
 				if(hspeed != 0) frame += 0.1
@@ -701,13 +701,13 @@
 					case 0:
 					case 2:
 					case 3:
-						animOffset = an.shootAir[0] + min(4, shootTimer)
+						animOffset = an.shootAir[0] + min(3, shootTimer)
 						break
 					case 1:
-						animOffset = an.shootAU1[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+						animOffset = an.shootAU1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 						break
 					case 4:
-						animOffset = an.shootAD1[0] + (4 * (shooting - 1)) + min(4, shootTimer)
+						animOffset = an.shootAD1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 						break
 				}
 				if(an[anim] != null) animOffset -= an[anim][0] //Account for starting frame in sheet

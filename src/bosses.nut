@@ -137,7 +137,7 @@
 
 	damageMult = {
 		normal = 1.0
-		fire = 1.0
+		fire = 2.0
 		ice = 0.0
 		earth = 1.0
 		air = 1.0
@@ -483,7 +483,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(blinking > 0) return
+		if(blinking > 0 || _mag == 0 || game.bossHealth <= 0) return
 
 		local damage = _mag * damageMult[_element]
 		if(_cut) damage *= damageMult["cut"]

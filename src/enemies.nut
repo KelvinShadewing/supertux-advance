@@ -4429,6 +4429,7 @@
 	mspeed = 1.5
 
 	function constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 6, 10)
 	}
 
