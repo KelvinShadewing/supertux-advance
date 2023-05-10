@@ -102,7 +102,9 @@ gvCharacters.Cyra <- {
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
 	an = {
-		stand = [0, 1, 2, 3]
+		stand = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 95, 94, 94, 94, 95, 94, 94, 94, 95, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 96, 97, 98, 99, 98, 99, 98, 99, 98, 99, 98, 97, 96]
+		standN = [0, 1, 2, 3]
+		standW = [90, 90, 91, 91, 92, 92, 93, 93]
 		skid = [4, 5]
 		push = [6, 7]
 		hurt = [6, 7]
@@ -110,6 +112,8 @@ gvCharacters.Cyra <- {
 		dive = [14, 15]
 		crouch = [14, 15]
 		getUp = [15, 14]
+		stomp = [86, 87, 88]
+		stompL = [89, 89]
 		walk = [16, 17, 18, 19, 20, 21, 22, 23]
 		run = [24, 25, 26, 27, 28, 29, 30, 31]
 		jump = [32, 33]
@@ -119,6 +123,7 @@ gvCharacters.Cyra <- {
 		fallN = [36, 37]
 		crawl = [40, 41, 42, 43, 42, 41]
 		climb = [44, 45, 46, 47, 46, 45]
+		float = [38, 39]
 		swimF = [48, 49, 50, 51]
 		swimUF = [48, 49, 50, 51]
 		swimDF = [48, 49, 50, 51]
@@ -126,7 +131,7 @@ gvCharacters.Cyra <- {
 		swimD = [48, 49, 50, 51]
 		wall = [52, 53]
 		fallW = [53]
-		slide = [60, 61, 62, 63]
+		slide = [54, 55, 56, 57]
 	}
 	animOffset = 0.0
 
@@ -282,6 +287,9 @@ gvCharacters.Cyra <- {
 					if(stats.weapon == "ice" && floor(frame) == 0) frame += 0.01
 					else if(stats.weapon == "ice" || stats.weapon == "fire") frame += 0.1
 					else if(stats.weapon == "air") frame += 0.05
+					else if(stats.health <= min(8, game.maxHealth / 4)) {
+					an.stand = an.standW
+				}
 					else frame += 0.05
 
 					if(abs(rspeed) > 0.1) {
@@ -449,7 +457,7 @@ gvCharacters.Cyra <- {
 					frame += 0.25
 
 					if(floor(frame) > an[anim].len() - 1) {
-						if(stats.weapon == "earth" && getcon("shoot", "hold", true, playerNum)) anim = "slide"
+						if(stats.weapon == "earth" && getcon("spec1", "hold", true, playerNum)) anim = "slide"
 						else anim = "crawl"
 						shape = shapeSlide
 					}
@@ -521,7 +529,7 @@ gvCharacters.Cyra <- {
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("shoot", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
+				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("spec1", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("spec1", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
 			}
 
 			if(anim != "climb" && anim != "wall" && !slashing) {
@@ -716,7 +724,7 @@ gvCharacters.Cyra <- {
 				}
 
 				//Going into slide
-				if(((getcon("shoot", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crouch" && anim != "crawl") {
+				if(((getcon("spec1", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crouch" && anim != "crawl") {
 					if(placeFree(x + 2, y + 1) || hspeed >= 1.5) {
 						anim = "dive"
 						frame = 0.0
@@ -912,12 +920,33 @@ gvCharacters.Cyra <- {
 					break
 
 				case "earth":
-					if(getcon("shoot", "press", true, playerNum) && (anim != "hurt")) {
+					if(getcon("spec1", "press", true, playerNum) && (anim != "hurt")) {
 						anim = "dive"
 						frame = 0.0
 						playSoundChannel(sndSlide, 0, 0)
 						if(flip == 0 && hspeed < 2) hspeed = 2
 						if(flip == 1 && hspeed > -2) hspeed = -2
+					}
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && cooldown == 0) {
+						cooldown = 16
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(SwordWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraSwordSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
 					}
 					break
 			}
@@ -944,7 +973,7 @@ gvCharacters.Cyra <- {
 				vspeed /= 2.0
 				newActor(Splash, x, y)
 			}
-			an["fall"] = an["fallN"]
+			an["fall"] = an["float"]
 
 			//Animation states
 			switch(anim) {
