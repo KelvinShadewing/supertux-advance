@@ -231,14 +231,8 @@
 			if(joyfunc(joy.index, joy.shoot)) return true
 			break
 		case "spec1":
-			if(config.autorun) {
-				if(!keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
-				if(!joyfunc(joy.index, joy.spec1)) return true
-			}
-			else {
-				if(keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
-				if(joyfunc(joy.index, joy.spec1)) return true
-			}
+			if(keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
+			if(joyfunc(joy.index, joy.spec1)) return true
 			break
 		case "spec2":
 			if(keyfunc(config.key.spec2) && (player == 1 || player == 0)) return true
