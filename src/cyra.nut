@@ -1147,11 +1147,6 @@ gvCharacters.Cyra <- {
 			}
 		}
 
-		if(!gvCanWrap) {
-			if(x < 4) x = 4
-			if(x > gvMap.w - 4) x = gvMap.w - 4
-		} else x = wrap(x, 0, gvMap.w)
-
 		if(anim == "slide" || anim == "crawl") shape = shapeSlide
 		else shape = shapeStand
 		shapeStand.setPos(x, y)

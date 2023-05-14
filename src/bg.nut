@@ -174,3 +174,10 @@
 ::dbgTheatre <- function() {
 	drawSprite(bgCharSel, 0, screenW() / 2, 0)
 }
+
+::dbgSwitchPalace <- function() {
+	setDrawColor(0xff)
+	drawRec(0, 0, screenW(), screenH(), true)
+	for(local i = 0; i < 6; i++) drawSprite(bgSwitch1, 0, (-camx / 4 % 84) + (i * 84), 0)
+	for(local i = 0; i < 4; i++) drawSprite(bgSwitch0, 0, (-camx / 2 % 168) + (i * 168), gvMap.h - 400 - camy / 2)
+}

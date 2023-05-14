@@ -128,6 +128,8 @@
 ::sprNoOne <- newSprite("res/gfx/noone.png", 16, 16, 0, 0, 8, 8)
 ::sprDivBar <- newSprite("res/gfx/divbar.png", 4, 240, 0, 0, 2, 0)
 ::defDivBar <- sprDivBar
+::sprExit <- newSprite("res/gfx/exit.png", 16, 16, 0, 0, 8, 8)
+::defExit <- sprExit
 
 ::sprNearRedBack <- newSprite("res/gfx/near-health-back.png", 8, 32, 0, 0, 0, 0)
 ::sprNearGreenBack <- newSprite("res/gfx/near-stamina-back.png", 32, 8, 0, 0, 0, 0)
@@ -491,6 +493,8 @@
 ::bgPennyton0 <- newSprite("res/gfx/pennyton-bg-0.png", 480, 112, 0, 0, 0, 0)
 ::bgPennyton1 <- newSprite("res/gfx/pennyton-bg-1.png", 480, 74, 0, 0, 0, 0)
 ::bgMoon <- newSprite("res/gfx/bg-moon.png", 32, 32, 0, 0, 16, 16)
+::bgSwitch0 <- newSprite("res/gfx/bg-switch-palace-0.png", 168, 480, 0, 0, 0, 0)
+::bgSwitch1 <- newSprite("res/gfx/bg-switch-palace-1.png", 84, 240, 0, 0, 0, 0)
 
 
 

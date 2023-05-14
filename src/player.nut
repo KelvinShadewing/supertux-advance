@@ -161,6 +161,17 @@
 				rspeed -= accel
 			}
 		}
+
+
+		//Leave level
+		if(x < 4) {
+			x = 4
+			if(getcon("left", "hold", false, playerNum)) gvExitTimer += 1.0
+		}
+		if(x > gvMap.w - 4) {
+			x = gvMap.w - 4
+			if(getcon("right", "hold", false, playerNum)) gvExitTimer += 1.0
+		}
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
