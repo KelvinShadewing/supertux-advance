@@ -210,7 +210,7 @@
 		"tutSlide" :
 		"Press DOWN while running or on a hill to slide.",
 		"waterjump" :
-		"Hold JUMP when leaving the water to gain height. Mix it with the RUN button to go even higher.",
+		"Hold JUMP when leaving the water to gain height.",
 		"noend" :
 		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this.",
 		"hills" :
@@ -238,7 +238,7 @@
 		"konqi" :
 		"Konqi can breath fire and stomp the ground, but he isn't as fast as Tux.",
 		"momentum" :
-		"You won't lose speed if you keep running! Be sure to hold the run button or keep the stick pressed all the way over, and you'll keep whatever speed you gain from sliding. Icy hills will speed you up even if you can't slide.",
+		"You won't lose speed if you keep running! Icy hills will speed you up even if you can't slide.",
 		"warned" :
 		"You were warned...",
 		"iceguy" :
