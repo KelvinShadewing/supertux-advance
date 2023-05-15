@@ -816,7 +816,7 @@
 	//Draw exit timer
 	local exside = (gvExitSide ? gvScreenW * 0.9 : gvScreenW * 0.1)
 	if(gvExitTimer > 0) {
-		drawSprite(sprExit, getFrames() / 16, exside, gvScreenH / 2)
+		drawSprite(sprExit, getFrames() / 16, exside, gvScreenH / 2, 0, gvExitSide)
 		setDrawColor(0x101010ff)
 		drawRec((exside) - 16, (gvScreenH / 2) + 12, 32, 4, true)
 		setDrawColor(0xf8f8f8ff)
