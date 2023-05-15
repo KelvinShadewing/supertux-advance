@@ -258,6 +258,7 @@
 ::gvTAStart <- "aurora-learn"
 ::gvTAFullGame <- false
 ::gvExitTimer <- 0.0
+::gvExitSide <- 0
 
 //Temporary items
 ::gvKeyCopper <- false

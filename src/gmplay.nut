@@ -814,12 +814,13 @@
 	drawAchievements()
 
 	//Draw exit timer
+	local exside = (gvExitSide ? gvScreenW * 0.9 : gvScreenW * 0.1)
 	if(gvExitTimer > 0) {
-		drawSprite(sprExit, getFrames() / 16, gvScreenW / 2, gvScreenH / 2)
+		drawSprite(sprExit, getFrames() / 16, exside, gvScreenH / 2)
 		setDrawColor(0x101010ff)
-		drawRec((gvScreenW / 2) - 16, (gvScreenH / 2) + 12, 32, 4, true)
+		drawRec((exside) - 16, (gvScreenH / 2) + 12, 32, 4, true)
 		setDrawColor(0xf8f8f8ff)
-		drawRec((gvScreenW / 2) - ((15.0 / 30.0) * gvExitTimer), (gvScreenH / 2) + 13,  ((31.0 / 30.0) * gvExitTimer), 2, true)
+		drawRec((exside) - ((15.0 / 30.0) * gvExitTimer), (gvScreenH / 2) + 13,  ((31.0 / 30.0) * gvExitTimer), 2, true)
 	}
 
 	//Draw surface to screen

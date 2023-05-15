@@ -640,7 +640,20 @@
 		"tix-newpeople" :
 		"So many new people have been spilling into our world. It was cool at first, but I hope it doesn't get too crowded.",
 		"blame-nolok-displaced" :
-		"More and more displaced are ending up in our world. I think Nolok may be to blame for this. Remember when he tapped into the Ghost Tree's power? I have a theory that he may have harmed Ygdrasil in doing that."
+		"More and more displaced are ending up in our world. I think Nolok may be to blame for this. Remember when he tapped into the Ghost Tree's power? I have a theory that he may have harmed Ygdrasil in doing that.",
+
+		"xtreme-orbs-Tux" :
+		"I've never seen orbs like those before. Why did they draw me there?",
+		"xtreme-orbs-Penny" :
+		"That looks like Tux in this mural. Just how old is this?",
+		"xtreme-orbs-Konqi" :
+		"I thought magic orbs were mostly popular with dragons. Do penguins use them too?",
+		"xtreme-orbs-Katie" :
+		"Tux looks so powerful in this piece. Does it mean something about the orbs?",
+		"xtreme-orbs-Midi" :
+		"Hmm, I wonder if Rad knows why these orbs are so special.",
+		"xtreme-orbs-Kiki" :
+		"I wonder what tools they used to make an ice mural like this last so long."
 	},
 
 	"level" : {

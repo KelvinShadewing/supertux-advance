@@ -262,6 +262,28 @@
                  "width":32,
                  "x":512,
                  "y":224
+                }, 
+                {
+                 "height":32,
+                 "id":389,
+                 "name":"trigCurrent(4)",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":112,
+                 "x":944,
+                 "y":240
+                }, 
+                {
+                 "height":32,
+                 "id":390,
+                 "name":"trigCurrent(4)",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":4496,
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1548,7 +1570,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":389,
+ "nextobjectid":391,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1562,7 +1584,7 @@
          "value":"drawBG = dbgAurora\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.0",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {

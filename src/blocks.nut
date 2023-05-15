@@ -855,9 +855,21 @@
 	}
 
 	function run() {
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
-			gvPlayer.vspeed = -1.5
-			game.colorswitch[this.color] = true
+		if(game.colorswitch[color] == true)
+			return
+
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.y < y - 16 && gvPlayer.vspeed > 0) {
+			gvPlayer.vspeed = -2
+			game.colorswitch[color] = true
+			dostr("saveGame()")
+			if(actor.rawin("ColorBlock")) foreach(i in actor["ColorBlock"]) {
+				i.filltile()
+			}
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.y < y - 16 && gvPlayer2.vspeed > 0) {
+			gvPlayer2.vspeed = -2
+			game.colorswitch[color] = true
 			dostr("saveGame()")
 			if(actor.rawin("ColorBlock")) foreach(i in actor["ColorBlock"]) {
 				i.filltile()
