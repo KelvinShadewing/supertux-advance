@@ -275,9 +275,9 @@
 	a = 0
 
 	function run() {
-		vspeed += 0.2
+		vspeed += 0.25
 		v += vspeed
-		h += 1
+		h += 0.5
 		a += 4
 
 		timer--

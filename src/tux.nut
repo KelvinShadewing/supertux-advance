@@ -316,8 +316,11 @@
 
 					if(floor(frame) > 1) {
 						vspeed = -5.0
-						if(flip == 0) hspeed = 3.0
-						else hspeed = -3.0
+						if(getcon("down", "hold", true, playerNum)) vspeed = -3.0
+						local w = 3.0
+						if(getcon("up", "hold", true, playerNum)) w = 1.5
+						if(flip == 0) hspeed = w
+						else hspeed = -w
 						anim = "jumpU"
 						frame = 0.0
 					}

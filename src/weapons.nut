@@ -675,7 +675,7 @@
 
 	function draw() {
 		drawSpriteEx(sprRock, 0, x - camx, y - camy, angle, 1, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {

@@ -554,6 +554,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndIceblock <- loadSound("res/snd/iceblock_bump.ogg")
 ::sndAchievement <- loadSound("res/snd/achievement.ogg")
 ::sndThrow <- loadSound("res/snd/throw.ogg")
+::sndCrumble <- loadSound("res/snd/crumble.ogg")
 
 
 

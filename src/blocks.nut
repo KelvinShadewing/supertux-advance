@@ -1158,15 +1158,18 @@
 
 	function run() {
 
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if(hitTest(fireshape, i.shape) && i.element == "fire") {
+		if(actor.rawin("WeaponEffect"))foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && i.element == "fire") {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
-			deleteActor(i.id)
+			if(i.piercing == 0)
+				deleteActor(i.id)
+			else
+				i.piercing--
 			newActor(Flame, x, y)
 			popSound(sndFlame, 0)
 		}
 
-		if(actor.rawin("Flame")) foreach(i in actor["Flame"]) if(inDistance2(x, y, i.x, i.y, 16) && i.frame >= 6) {
+		if(actor.rawin("Flame"))foreach(i in actor["Flame"])if(inDistance2(x, y, i.x, i.y, 16) && i.frame >= 6) {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			newActor(Flame, x, y)
@@ -1299,7 +1302,13 @@
 				tileSetSolid(x, y, oldsolid)
 				timer = 0
 				alpha = 0.0
-				if(sprCrumbleRock == sprCrumbleIce) newActor(IceChunks, x, y)
+				if(sprCrumbleRock == sprCrumbleIce) {
+					newActor(IceChunks, x, y)
+					popSound(sndIceBreak)
+				} else {
+					newActor(RockChunks, x, y)
+					popSound(sndCrumble)
+				}
 			}
 		}
 		else {

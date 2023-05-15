@@ -1022,6 +1022,7 @@
 			//Controls
 			if(canMove) {
 				mspeed = 1.2
+				if(zoomies) mspeed = 2.4
 				if(resTime > 0) mspeed = 2
 				if(getcon("left", "hold", true, playerNum)) {
 					if(hspeed > -mspeed) hspeed -= accel / 2.0

@@ -404,10 +404,10 @@
                  "gid":883,
                  "height":16,
                  "id":45,
-                 "name":"",
+                 "name":"nessland-mint",
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":16,
                  "x":432,
                  "y":176
