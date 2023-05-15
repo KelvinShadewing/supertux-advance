@@ -72,6 +72,8 @@
 
 [Narehop](https://opengameart.org/users/narehop) - Achievement Frame\*
 
+[Serano01](https://github.com/serano01) - Switch Palace BG\*
+
 \*: Contains edits from or made in collaboration with Kelvin Shadewing
 
 ## Sounds

@@ -3,6 +3,23 @@
 	if(target.x > x && target.hspeed > -1 && getcon("down", "hold", false, target.playerNum)) target.hspeed -= 0.25
 }
 
+::trigCurrent <- function(h = 0, v = 0, f = 0.5) {
+	if(myTarget == null)
+		return
+
+	if(h > 0 && myTarget.hspeed < h)
+		myTarget.hspeed += f
+
+	if(h < 0 && myTarget.hspeed > h)
+		myTarget.hspeed -= f
+
+	if(v > 0 && myTarget.vspeed < v)
+		myTarget.vspeed += f
+
+	if(v < 0 && myTarget.vspeed > v)
+		myTarget.vspeed -= f
+}
+
 ::Trigger <- class extends Actor {
 	code = ""
 	shape = 0
@@ -14,8 +31,10 @@
 	}
 
 	function run() {
-		if(gvPlayer && hitTest(shape, gvPlayer.shape)) dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; myTarget <- gvPlayer; " + code)
-		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; myTarget <- gvPlayer2; " + code)
+		if(gvPlayer && hitTest(shape, gvPlayer.shape))
+			dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; myTarget <- gvPlayer; " + code)
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+			dostr("x <- " + x + "; y <- " + y + "; id <- " + id + "; myTarget <- gvPlayer2; " + code)
 	}
 
 	function _typeof() { return "Trigger" }

@@ -20,6 +20,7 @@
 	gvPlayer = false
 	gvPlayer2 = false
 	gvBoss = false
+	gvExitTimer = 0.0
 	deleteAllActors()
 	if(newLevel) {
 		game.ps1.health = game.maxHealth
@@ -375,6 +376,14 @@
 }
 
 ::gmPlay <- function() {
+	//Exit timer
+	if(gvExitTimer > 0)
+		gvExitTimer -= 0.5
+	if(gvExitTimer < 0)
+		gvExitTimer = 0
+	if(gvExitTimer > 30 && !gvTimeAttack)
+		startOverworld(game.world)
+
 	updateCamera()
 
 	//Draw
@@ -803,6 +812,16 @@
 
 	checkAchievements()
 	drawAchievements()
+
+	//Draw exit timer
+	local exside = (gvExitSide ? gvScreenW * 0.9 : gvScreenW * 0.1)
+	if(gvExitTimer > 0) {
+		drawSprite(sprExit, getFrames() / 16, exside, gvScreenH / 2, 0, gvExitSide)
+		setDrawColor(0x101010ff)
+		drawRec((exside) - 16, (gvScreenH / 2) + 12, 32, 4, true)
+		setDrawColor(0xf8f8f8ff)
+		drawRec((exside) - ((15.0 / 30.0) * gvExitTimer), (gvScreenH / 2) + 13,  ((31.0 / 30.0) * gvExitTimer), 2, true)
+	}
 
 	//Draw surface to screen
 	resetDrawTarget()

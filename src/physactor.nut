@@ -202,7 +202,7 @@
 			for(local i = -cw; i <= cw; i++) {
 				for(local j = -ch; j <= ch; j++) {
 					local tile = (cx + i) + ((cy + j) * wl.width)
-					if(cx + i < 0 || cx + i > gvMap.w / 16) continue
+					if(cx + i < 0 || cx + i >= gvMap.w / 16) continue
 					if(tile >= 0 && tile < wl.data.len()) switch(wl.data[tile] - gvMap.solidfid) {
 						case 0: //Full solid
 						case 39:
