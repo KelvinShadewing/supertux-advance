@@ -920,6 +920,30 @@
                  "width":16,
                  "x":656,
                  "y":624
+                }, 
+                {
+                 "class":"",
+                 "gid":87,
+                 "height":16,
+                 "id":524,
+                 "name":"Penny",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":720
+                }, 
+                {
+                 "class":"",
+                 "gid":87,
+                 "height":16,
+                 "id":525,
+                 "name":"Tux",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":720
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -928,7 +952,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":522,
+ "nextobjectid":526,
  "orientation":"orthogonal",
  "properties":[
         {

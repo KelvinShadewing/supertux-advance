@@ -4829,6 +4829,18 @@
                  "width":16,
                  "x":5536,
                  "y":592
+                }, 
+                {
+                 "class":"",
+                 "gid":222,
+                 "height":16,
+                 "id":1465,
+                 "name":"Forest-coinblock",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":1568,
+                 "y":160
                 }],
          "opacity":0.51,
          "type":"objectgroup",
@@ -4837,7 +4849,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1465,
+ "nextobjectid":1466,
  "orientation":"orthogonal",
  "properties":[
         {

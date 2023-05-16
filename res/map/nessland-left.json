@@ -1937,6 +1937,18 @@
                  "width":16,
                  "x":1088,
                  "y":48
+                }, 
+                {
+                 "class":"",
+                 "gid":222,
+                 "height":16,
+                 "id":1101,
+                 "name":"Forest-lefttext",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":6096,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1945,7 +1957,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1101,
+ "nextobjectid":1102,
  "orientation":"orthogonal",
  "properties":[
         {
