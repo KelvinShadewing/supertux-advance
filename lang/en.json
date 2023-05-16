@@ -277,7 +277,7 @@
 		"walldev" :
 		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it",
 		"tnt" :
-		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off. Also, fun fact, V1 of this map was finished before subsea. You can find V1 in the extras world.",
+		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off.",
 		"trans" :
 		"FROSTC: It took me a good while to get the background transition to work, as this was for the most part the first time I used triggers.",
 		"lifenote" :
@@ -285,7 +285,7 @@
 		"signnote" :
 		"FROSTC: If you are feeling a little lazy, you can just blast the pipe with a fireball to open it instead of sliding. Maybe a good speedrunning strat??",
 		"sense":
-		"FROSTC: My 3rd level, just wanted to make a level losely inspired off of Grumbel's Sense of Snow from the classic SuperTux. The funny part is, that level isn't even in modern versions of OG SuperTux!",
+		"FROSTC: My 3rd level, just wanted to make a level losely inspired off of Grumbel's Sense of Snow from the classic SuperTux. Being that Grumbel's sense of snow was removed from supertux, you could say the level lives on through this level.",
 		"subsea" :
 		"KELVIN: I wasn't sure how I wanted to handle underwater levels at first. I thought of the levels from SMB 1 and 3, but they seemed like something Tux could just shoot right through. Then I remembered DKC's underwater levels, how they were more like mazes where you had to dodge dangerous enemies. I figured that would work well for this game, since Tux is fast under water, and Konqi and Midi retain offensive capabilities in their neutral forms.",
 		"subsea-name" :
@@ -301,7 +301,7 @@
 		"mezex":
 		"FROSTC: I had to make a few custom tiles to make this maze look good. It was worth it, I think! It's for sure the best part of this level.",
 		"outage":
-		"FROSTC: this level was completely different in earlier versions. you can find the old version in the extras world",
+		"FROSTC: The oldest version of this level was awful. Because of that I remade it from the ground up. I would say the remake is pretty good. For sure better then the old one.",
 		"speedComp":
 		"FROSTC: Congrats to Pomelux for being the winner of the speedrun competition, with a time of 49:98. Just barely a sub 50. (keep in mind competitions with rewards like this won't be held again)",
 		"oldxtreme":
@@ -327,9 +327,11 @@
 		"sunken":
 		"FROSTC: My original idea for this level was to have a gimmick where there's patches of deep snow that tux can walk or maybe even slide through, like the powered snow from Minecraft.",
 		"continue":
-		"FROSTC: This was where Kelvin's part ends, and where mine starts. Do keep in mind I also touched up some part of Kelvin's section. You can find the old version in the extras world.",
-		"secret-sunk":
-		"FROSTC: If I were you, I would keep an eye out for little dents in the land like this; they often lead to secrets."
+		"FROSTC: This was another level that had to be remade because of it's quality, with the first one being the ocean bridge, which is the level after this. Honestly kinda sad the old one had to go, because it was one of the few levels kelvin had a large part in making.",
+		"Forest-lefttext":
+		"FROSTC: If you played the old version of frostlands, you might be familiar with the name of this level. When making the updated version of frostlands, I had decided to that i would remake the level to the left, and replace it with a better one. which ended up being lost ruins. For some reason, kelvin decided to put the old to the left into the forest world. why? idk! the level sucked. To avoid the forest world having such an awful first level, I remade it from scratch. The remake is what you should be playing now.",
+		"Forest-coinblock":
+		"FROSTC: It was hard to resist the urge to place like a million coins in this block"
 	},
 
 	"npc" : {
