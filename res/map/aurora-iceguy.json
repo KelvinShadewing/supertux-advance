@@ -352,7 +352,7 @@
                 {
                  "height":16,
                  "id":168,
-                 "name":"newActor(ExplodeN, 2281, 455); deleteActor(id)",
+                 "name":"newActor(ExplodeF, 2281, 455); deleteActor(id)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -2131,7 +2131,7 @@
          "value":"drawBG = dbgSnowPlain\nsongPlay(musIceChip)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.0",
  "tileheight":16,
  "tilesets":[
         {
