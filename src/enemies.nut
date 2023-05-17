@@ -3404,10 +3404,18 @@
 			if(y > target.y - 64 && vspeed > -1) vspeed -= 0.05
 			if(y < target.y - 64 && vspeed < 1) vspeed += 0.05
 
-			if(distance2(x, y, target.x, target.y) <= 96 && y < target.y && abs(x - target.x) < 8) pid = -1
+			if(distance2(x, y, target.x, target.y) <= 96 && y < target.y && abs(x - target.x) < 8 && checkActor(pid)) {
+				actor[pid].held = false
+				pid = -1
+				popSound(sndDrop)
+			}
 		}
 
-		if(!checkActor(pid)) routine = ruFlee
+		if(checkActor(pid) && "held" in actor[pid])
+			actor[pid].held = true
+
+		if(!checkActor(pid))
+			routine = ruFlee
 	}
 
 	function ruFlee() {
@@ -4427,6 +4435,7 @@
 	onGround = false
 	accel = 0.0
 	mspeed = 1.5
+	held = false
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -4475,7 +4484,7 @@
 	}
 
 	function draw() {
-		if(!placeFree(x, y + 4)) drawSprite(sprSkyDive, wrap(getFrames() / 4, 3, 6), x - camx, y - camy, 0, flip)
+		if(!placeFree(x, y + 4) && !held) drawSprite(sprSkyDive, wrap(getFrames() / 4, 3, 6), x - camx, y - camy, 0, flip)
 		else drawSprite(sprSkyDive, min(abs(vspeed), 2), x - camx, y - camy, 0, flip)
 
 		if(debug) {

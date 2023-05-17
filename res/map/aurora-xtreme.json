@@ -367,7 +367,7 @@
                 {
                  "height":272,
                  "id":253,
-                 "name":"trigCurrent(0,-4)",
+                 "name":"trigCurrent(0,-8)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -378,7 +378,7 @@
                 {
                  "height":304,
                  "id":254,
-                 "name":"trigCurrent(0,-4)",
+                 "name":"trigCurrent(0,-8)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -389,7 +389,7 @@
                 {
                  "height":32,
                  "id":255,
-                 "name":"trigCurrent(-4)",
+                 "name":"trigCurrent(-8)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -400,7 +400,7 @@
                 {
                  "height":32,
                  "id":256,
-                 "name":"trigCurrent(4)",
+                 "name":"trigCurrent(8)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -411,7 +411,7 @@
                 {
                  "height":32,
                  "id":257,
-                 "name":"trigCurrent(4)",
+                 "name":"trigCurrent(8)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -422,7 +422,7 @@
                 {
                  "height":128,
                  "id":258,
-                 "name":"trigCurrent(0,4)",
+                 "name":"trigCurrent(0,8)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1590,7 +1590,7 @@
          "value":"songPlay(musRace)\ndrawBG = dbgAurora\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.0",
  "tileheight":16,
  "tilesets":[
         {

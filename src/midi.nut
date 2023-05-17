@@ -466,7 +466,7 @@
 
 			case "skid":
 			case "walk":
-				frame += abs(rspeed) / 12
+				frame += abs(rspeed) / (8 + abs(rspeed))
 
 				if(flip == 0 && hspeed < 0 && !endMode) {
 					hspeed += 0.1
@@ -1203,27 +1203,27 @@
 				}
 
 				if(blinking == 0 || anim == "hurt") {
-					if(anim == "climb" && shooting) drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y - camy, 0, (flip ? 0 : 1), 1, 1, 1)
-					else drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, 1)
+					if(anim == "climb" && shooting) drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y - camy, 0, (flip ? 0 : 1), 1, 1, 1)
+					else drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, 1)
 				}
-				drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
-			if(shooting && anim == "walk") drawSpriteZ(0, sprite, an["armShoot"][min(3, shootTimer)], x - camx, y - camy, 0, flip)
+			if(shooting && anim == "walk") drawSpriteZ(2, sprite, an["armShoot"][min(3, shootTimer)], x - camx, y - camy, 0, flip)
 			if(anim == "ball" && fabs(hspeed) > 4.2 && spinAlpha < 1.0) spinAlpha += 0.2
 			if(spinAlpha > 0) spinAlpha -= 0.1
 			if(spinAlpha < 0) spinAlpha = 0
-			drawSpriteZ(0, sprBallSpin, floor((hspeed < 0 ? -frame : frame)), x - camx, y + 5 - camy, 0, int(hspeed < 0), 1, 1, spinAlpha)
+			drawSpriteZ(2, sprBallSpin, floor((hspeed < 0 ? -frame : frame)), x - camx, y + 5 - camy, 0, int(hspeed < 0), 1, 1, spinAlpha)
 			if(debug) {
 				setDrawColor(0x008000ff)
 				shape.draw()
 			}
 
-			if(chargeTimer >= 30 && chargeTimer < 180) drawSpriteZ(1, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy)
+			if(chargeTimer >= 30 && chargeTimer < 180) drawSpriteZ(3, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy)
 
 			//Transformation flash
 			if(tftime != -1) {
 				if(tftime < 4) {
-					if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+					if(!hidden) drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
 					tftime += 0.25
 				} else tftime = -1
 			}

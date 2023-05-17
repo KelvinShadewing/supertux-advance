@@ -1086,8 +1086,8 @@
 
 			if(anim != null && an[anim] != null) {
 				//frame = wrap(frame, 0, an[anim].len() - 1)
-				if(blinking == 0 || anim == "hurt") drawSpriteZ(0, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, 1)
-				else drawSpriteZ(0, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				if(blinking == 0 || anim == "hurt") drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, 1)
+				else drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
 			if(debug) {
 				setDrawColor(0x008000ff)
@@ -1101,7 +1101,7 @@
 		//Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
-				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+				if(!hidden) drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
 				tftime += 0.25
 			} else tftime = -1
 		}

@@ -1073,9 +1073,9 @@
 			if(anim in an && an[anim] != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
 				if(blinking == 0 || anim == "hurt") {
-					drawSpriteZ(0, sprite, an[anim][floor(frame)], x - camx, y - camy, 0, flip, 1, 1, 1)
+					drawSpriteZ(2, sprite, an[anim][floor(frame)], x - camx, y - camy, 0, flip, 1, 1, 1)
 				}
-				drawSpriteZ(0, sprite, an[anim][floor(frame)], x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				drawSpriteZ(2, sprite, an[anim][floor(frame)], x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
 			if(debug) {
 				setDrawColor(0x008000ff)
@@ -1086,7 +1086,7 @@
 		//Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
-				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+				if(!hidden) drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
 				tftime += 0.25
 			} else tftime = -1
 		}
@@ -1162,4 +1162,18 @@
 	}
 
 	function _typeof() { return "Penny" }
+}
+
+::Lutris <- class extends Tux {
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+
+		mySprNormal = sprLutris
+		mySprFire = sprLutris
+		mySprIce = sprLutris
+		mySprAir = sprLutris
+		mySprEarth = sprLutris
+	}
+
+	function _typeof() { return "Lutris" }
 }

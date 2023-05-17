@@ -473,3 +473,63 @@
 		}
 	}
 }
+
+::BoostRing <- class extends Actor {
+	shape = null
+	angle = 0
+	hboost = 0
+	vboost = 0
+	touchTimer1 = 0
+	touchTimer2 = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		if(typeof _arr == "string")
+			_arr = split(_arr, ",")
+		if(typeof _arr == "array") {
+			angle = int(_arr[0])
+			hboost = lendirX(float(_arr[1]), float(_arr[0]))
+			vboost = lendirY(float(_arr[1]), float(_arr[0]))
+		}
+
+		shape = Cir(x, y, 4)
+	}
+
+	function run() {
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && touchTimer1 == 0) {
+			gvPlayer.x = x
+			gvPlayer.y = y
+			gvPlayer.hspeed = hboost
+			gvPlayer.vspeed = vboost
+			touchTimer1 = 30
+			popSound(sndWoosh)
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && touchTimer2 == 0) {
+			gvPlayer2.x = x
+			gvPlayer2.y = y
+			gvPlayer2.hspeed = hboost
+			gvPlayer2.vspeed = vboost
+			touchTimer2 = 30
+			popSound(sndWoosh)
+		}
+
+		if(touchTimer1 > 0)
+			touchTimer1--
+		if(touchTimer2 > 0)
+			touchTimer2--
+	}
+
+	function draw() {
+		drawSpriteZ(6, sprBoostRing, 1, x - camx + round(lendirX(6, angle)), y - camy + round(lendirY(6, angle)), angle)
+		drawSpriteZ(0, sprBoostRing, 0, x - camx - round(lendirX(6, angle)), y - camy - round(lendirY(6, angle)), angle)
+
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, 4, false)
+		}
+	}
+
+	function _typeof() { return "BoostRing" }
+}

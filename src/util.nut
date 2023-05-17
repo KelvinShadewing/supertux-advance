@@ -91,3 +91,7 @@
 	meTimeAttackWorld.push(newSlot)
 	meTimeAttackWorld.push(tempBack)
 }
+
+::even <- function(x) {
+	return x - (x % 2)
+}

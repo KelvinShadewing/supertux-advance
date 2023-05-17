@@ -40,6 +40,15 @@
 
 
 
+::sprLutris <- newSprite("res/gfx/lutris.png", 32, 32, 0, 0, 16, 19)
+::defLutris <- sprLutris
+::sprLutrisOverworld <- newSprite("res/gfx/lutrisO.png", 14, 17, 0, 0, 7, 14)
+::defLutrisOverworld <- sprLutrisOverworld
+::sprLutrisDoll <- newSprite("res/gfx/lutrisdoll.png", 16, 20, 0, 0, 8, 8)
+::defLutrisDoll <- sprLutrisDoll
+
+
+
 ::sprPenny <- newSprite("res/gfx/penny.png", 32, 32, 0, 0, 16, 19)
 ::defPenny <- sprPenny
 ::sprPennyFire <- newSprite("res/gfx/pennyfire.png", 32, 32, 0, 0, 16, 19)
@@ -455,6 +464,9 @@
 
 //Platforms
 ::sprPlatformWood <- newSprite("res/gfx/moplat-wood.png", 16, 8, 0, 0, 8, 4)
+::defPlatformWood <- sprPlatformWood
+::sprBoostRing <- newSprite("res/gfx/boost-ring.png", 12, 32, 0, 0, 6, 16)
+::defBoostRing <- sprBoostRing
 
 
 
@@ -556,6 +568,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndAchievement <- loadSound("res/snd/achievement.ogg")
 ::sndThrow <- loadSound("res/snd/throw.ogg")
 ::sndCrumble <- loadSound("res/snd/crumble.ogg")
+::sndWoosh <- loadSound("res/snd/shortwind.ogg")
+::sndDrop <- loadSound("res/snd/drop.ogg")
 
 
 

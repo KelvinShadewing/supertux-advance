@@ -117,6 +117,16 @@
 		earth = "sprPennyEarth"
 		pick = [40, 41]
 	}
+	Lutris = {
+		over = "sprLutrisOverworld"
+		doll = "sprLutrisDoll"
+		normal = "sprLutris"
+		fire = "sprLutris"
+		ice = "sprLutris"
+		air = "sprLutris"
+		earth = "sprLutris"
+		pick = [40, 41]
+	}
 	Konqi = {
 		over = "sprKonqiOverworld"
 		doll =  "sprKonqiDoll"
