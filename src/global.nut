@@ -240,6 +240,7 @@
 	weather = true
 	//Accessibility options
 	nearbars = false //Health/energy bars that follow the player
+	showkeys = false
 }
 
 ::contribDidRun <- {}

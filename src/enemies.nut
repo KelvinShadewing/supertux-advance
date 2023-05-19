@@ -306,6 +306,11 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
+		if(_element == "ice") {
+			frozen = 600
+			return
+		}
+
 		if(_blast) {
 			hurtblast()
 			return
@@ -320,11 +325,6 @@
 				local a = actor[newActor(MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
-			return
-		}
-
-		if(_element == "ice") {
-			frozen = 600
 			return
 		}
 
@@ -1912,7 +1912,6 @@
 			newActor(IceChunks, x, y)
 		}
 
-
 		local c = newActor(DeadNME, x, y)
 
 		if(!_stomp) {
@@ -1924,7 +1923,7 @@
 			popSound(sndKick)
 		}
 
-		if(_by != 0) if(hitTest(shape, _by.shape)) {
+		if(_by != 0 && hitTest(shape, _by.shape)) {
 			actor[c].sprite = sprFlyAmanita
 			actor[c].vspeed = -abs(_by.hspeed * 1.1)
 			actor[c].hspeed = (_by.hspeed / 16)
@@ -2484,15 +2483,18 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
-		if(_blast) {
-			hurtBlast()
-			return
-		}
 		if(_element == "ice") {
 			hurtIce()
 			return
 		}
-		if(_element == "fire") return
+
+		if(_blast) {
+			hurtBlast()
+			return
+		}
+
+		if(_element == "fire")
+			return
 
 		popSound(sndFizz, 0)
 		if(_stomp) {
@@ -2634,14 +2636,16 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_element == "fire") {
-			hurtFire()
-			return
-		}
 		if(_element == "ice") {
 			hurtIce()
 			return
 		}
+		
+		if(_element == "fire") {
+			hurtFire()
+			return
+		}
+		
 		hurtBlast()
 	}
 
@@ -3165,6 +3169,11 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
+		if(_element == "ice") {
+			frozen = 600
+			return
+		}
+
 		if(_blast) {
 			hurtblast()
 			return
@@ -3179,11 +3188,6 @@
 				local a = actor[newActor(MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
-			return
-		}
-
-		if(_element == "ice") {
-			frozen = 600
 			return
 		}
 
@@ -4076,6 +4080,11 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(squish) return
 
+		if(_element == "ice") {
+			frozen = 600
+			return
+		}
+
 		if(_blast) {
 			hurtblast()
 			return
@@ -4090,11 +4099,6 @@
 				local a = actor[newActor(MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
-			return
-		}
-
-		if(_element == "ice") {
-			frozen = 600
 			return
 		}
 
@@ -4343,6 +4347,15 @@
 	function draw() {
 		if(turning > 0) drawSprite(sprWheelerHamster, 8.0 + (4.0 - turning), x - camx, y - camy, 0, flip, 1, 1, 1)
 		else drawSprite(sprWheelerHamster, wrap(frame, 0, 3) + bladesOut, x - camx, y - camy, 0, flip, 1, 1, 1)
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "ice") {
+			frozen = 600
+			return
+		}
+		
+		base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 	}
 
 	function physics() {

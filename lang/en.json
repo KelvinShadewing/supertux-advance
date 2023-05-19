@@ -64,7 +64,8 @@
 		"charsel" : "Select Your Character",
 		"lookahead" : "Dynamic Camera: %s",
 		"nearbars" : "Near-Sighted Healthbars: %s",
-		"weather" : "Weather effects: %s"
+		"weather" : "Weather effects: %s",
+		"showkeys" : "Show Keys"
 	},
 
 	"options-menu-desc": {
@@ -83,7 +84,8 @@
 		"fullgame" : "All standard worlds from SuperTux Advance",
 		"lookahead" : "Camera stays ahead of player and moves smoothly",
 		"nearbars" : "Health and energy bars appear near the player",
-		"weather" : "Turning off weather can help with near-sightedness and recording"
+		"weather" : "Turning off weather can help with near-sightedness and recording",
+		"showkeys" : "On-screen controls for speedrun recording"
 	},
 
 	"timers-menu" : {

@@ -425,10 +425,16 @@
 ::defExplodeI <- sprExplodeI
 ::sprExplodeN <- newSprite("res/gfx/explodeN.png", 30, 30, 0, 0, 15, 15)
 ::defExplodeN <- sprExplodeN
+::sprExplodeN2 <- newSprite("res/gfx/explodeN2.png", 55, 55, 0, 0, 27, 27)
+::defExplodeN2 <- sprExplodeN2
+::sprExplodeN3 <- newSprite("res/gfx/explodeN3.png", 87, 87, 0, 0, 43, 43)
+::defExplodeN3 <- sprExplodeN3
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::defExplodeT <- sprExplodeT
 ::sprExplodeA <- newSprite("res/gfx/explodeA.png", 32, 32, 0, 0, 16, 30)
 ::defExplodeA <- sprExplodeA
+::sprExplodeE <- newSprite("res/gfx/explodeE.png", 32, 32, 0, 0, 16, 20)
+::defExplodeE <- sprExplodeE
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png", 16, 4, 0, 0, 0, 0)
 ::defWaterSurface <- sprWaterSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)

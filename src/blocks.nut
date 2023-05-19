@@ -148,7 +148,7 @@
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
 			if((hitTest(shape, i.shape) || hitTest(slideshape, i.shape)) && vspeed == 0) {
-				if(i.blast && i.frame < 1 && !i.box) {
+				if(i.blast && !i.box) {
 					if(coins <= 1) {
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -729,7 +729,7 @@
 			}
 		}
 
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire")) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire") && i.element != "ice") {
 			if(i.rawin("frame") && i.blast) {
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)

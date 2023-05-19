@@ -132,6 +132,104 @@
 	function draw() {
 		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::ExplodeN2 <- class extends WeaponEffect{
+	power = 1
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeN, 0)
+
+		shape = Cir(x, y, 24.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 96) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 96) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeN2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::ExplodeN3 <- class extends WeaponEffect{
+	power = 1
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeN, 0)
+
+		shape = Cir(x, y, 36.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 96) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 96) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeN3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
 	}
 }
 
@@ -289,7 +387,8 @@
 	}
 
 	function destructor() {
-		fireWeapon(ExplodeF, x, y, alignment, owner)
+		local c = fireWeapon(ExplodeF, x, y, alignment, owner)
+		c.power = power
 	}
 }
 
@@ -335,6 +434,10 @@
 	function draw() {
 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
 	}
 }
 
@@ -373,6 +476,13 @@
 				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
 				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
+		}
+	}
+
+	function draw() {
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
 		}
 	}
 }
@@ -550,6 +660,69 @@
 	function draw() {
 		drawSpriteEx(sprExplodeI, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::ExplodeI2 <- class extends WeaponEffect{
+	power = 2
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "ice"
+	blast = true
+	angle = 0
+	r = 8
+	timeLimit = 15
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeI, 0)
+
+		shape = Cir(x, y, 8.0)
+		angle = randInt(360)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= timeLimit) deleteActor(id)
+		angle += frame
+		r++
+		shape.r = r
+
+		newActor(Glimmer, x + lendirX(r, randInt(360)), y + lendirY(r, randInt(360)))
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		for(local i = 0; i < 8; i++) {
+			drawSprite(sprExplodeI, wrap((getFrames() / 4) + i, 1, 4), x + lendirX(r, angle + (i * 45) + 22.5) - camx, y + lendirY(r, angle + (i * 45) + 22.5) - camy, angle + (i * 45) + 22.5, 0, min(1, float(timeLimit - frame) / 10.0), min(1, float(timeLimit - frame) / 10.0))
+			drawLight(sprLightIce, 0, x + lendirX(r, angle + (i * 45) + 22.5) - camx, y + lendirY(r, angle + (i * 45) + 22.5) - camy, 0, 0, min(1, float(timeLimit - frame) / 10.0), min(1, float(timeLimit - frame) / 10.0))
+		}
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
 	}
 }
 
@@ -627,6 +800,10 @@
 	function draw() {
 		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
 	}
 }
 
@@ -700,6 +877,59 @@
 	}
 }
 
+::ExplodeE <- class extends WeaponEffect{
+	power = 1
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	blast = true
+	element = "earth"
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndCrumble)
+		newActor(RockChunks, x, y)
+
+		shape = Cir(x, y, 8.0)
+	}
+
+	function run() {
+		frame += 0.1
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+////////////////////
+// MIDI'S WEAPONS //
+////////////////////
+
 ::NutBomb <- class extends WeaponEffect {
 	timer = 90
 	element = "normal"
@@ -772,22 +1002,76 @@
 			case "air":
 				t = ExplodeA
 				break
+			case "earth":
+				t = ExplodeE
+				break
 		}
-		if(exPower >= 2) {
-			c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
-			c.power = (exPower == 2 ? 2 : 4)
-			c = fireWeapon(t, x + (6 * exPower), y, alignment, owner)
-			c.power = (exPower == 2 ? 2 : 4)
-			c = fireWeapon(t, x, y - (6 * exPower), alignment, owner)
-			c.power = (exPower == 2 ? 2 : 4)
-			c = fireWeapon(t, x, y + (6 * exPower), alignment, owner)
-			c.power = (exPower == 2 ? 2 : 4)
+		if(exPower == 2) {
+			switch(exElement) {
+				case "normal":
+					c = fireWeapon(ExplodeN2, x, y, alignment, owner)
+					c.power = 2
+					break
+				default:
+					c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
+					c.power = 2
+					c = fireWeapon(t, x + (6 * exPower), y, alignment, owner)
+					c.power = 2
+					c = fireWeapon(t, x, y - (6 * exPower), alignment, owner)
+					c.power = 2
+					c = fireWeapon(t, x, y + (6 * exPower), alignment, owner)
+					c.power = 2
+					break
+			}
 		}
-		// else if(exPower == 3){
-		// 	switch(element) {
-				// Will add special effects later
-		// 	}
-		// }
+		else if(exPower >= 3){
+			switch(exElement) {
+				case "normal":
+					c = fireWeapon(ExplodeN3, x, y, alignment, owner)
+					c.power = 4
+					break
+				case "fire":
+					c = fireWeapon(ExplodeF, x, y, alignment, owner)
+					c.power = 4
+					c = fireWeapon(FireballK, x - 4, y - 4, alignment, owner)
+					c.power = 4
+					c.hspeed = -2.0
+					c.vspeed = -2.0
+					c = fireWeapon(FireballK, x + 4, y - 4, alignment, owner)
+					c.power = 4
+					c.hspeed = 2.0
+					c.vspeed = -2.0
+					c = fireWeapon(FireballK, x - 4, y + 4, alignment, owner)
+					c.power = 4
+					c.hspeed = -2.0
+					c.vspeed = 0.5
+					c = fireWeapon(FireballK, x + 4, y + 4, alignment, owner)
+					c.power = 4
+					c.hspeed = 2.0
+					c.vspeed = 0.5
+					for(local i = 0; i < 16; i++) {
+						local d = actor[newActor(FlameTiny, x + lendirX(randInt(8) + 16, i * 22.5), y + lendirY(randInt(8) + 16, i * 22.5))]
+						d.hspeed = 1.0 - randFloat(2.0)
+						d.vspeed = 1.0 - randFloat(2.0)
+						d.frame = -2.0 - randFloat(4.0)
+					}
+					break
+				case "ice":
+					c = fireWeapon(ExplodeI2, x, y, alignment, owner)
+					c.power = 4
+					break
+				default:
+					c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
+					c.power = 4
+					c = fireWeapon(t, x + (6 * exPower), y, alignment, owner)
+					c.power = 4
+					c = fireWeapon(t, x, y - (6 * exPower), alignment, owner)
+					c.power = 4
+					c = fireWeapon(t, x, y + (6 * exPower), alignment, owner)
+					c.power = 4
+					break
+			}
+		}
 		else {
 			c = fireWeapon(t, x, y, alignment, owner)
 			c.power = exPower
@@ -874,6 +1158,10 @@
 				c = fireWeapon(ExplodeA, x, y, alignment, owner)
 				c.power = exPower
 				break
+			case "earth":
+				c = fireWeapon(ExplodeE, x, y, alignment, owner)
+				c.power = exPower
+				break
 		}
 	}
 }
@@ -914,7 +1202,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(1, sprWingNut, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSpriteZ(3, sprWingNut, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -939,6 +1227,10 @@
 				break
 			case "air":
 				c = fireWeapon(ExplodeA, x, y, alignment, owner)
+				c.power = exPower
+				break
+			case "earth":
+				c = fireWeapon(ExplodeE, x, y, alignment, owner)
 				c.power = exPower
 				break
 		}
@@ -976,7 +1268,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(1, sprNutMine, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSpriteZ(2, sprNutMine, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -996,6 +1288,9 @@
 				break
 			case "air":
 				fireWeapon(ExplodeA, x, y, alignment, owner)
+				break
+			case "earth":
+				fireWeapon(ExplodeE, x, y, alignment, owner)
 				break
 		}
 
@@ -1048,5 +1343,9 @@
 	function draw() {
 		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
 	}
 }

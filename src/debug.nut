@@ -152,16 +152,6 @@
 
 	message += "FPS: " + round(fps) + " (" + getFPS() + ")\n\n\n\n"
 
-	//Debug keys
-	drawSprite(sprDebug, getcon("left", "hold").tointeger(), 4, 60)
-	drawSprite(sprDebug, getcon("up", "hold").tointeger() + 4, 12, 56)
-	drawSprite(sprDebug, getcon("down", "hold").tointeger() + 6, 12, 64)
-	drawSprite(sprDebug, getcon("right", "hold").tointeger() + 2, 20, 60)
-
-	drawSprite(sprDebug, getcon("jump", "hold").tointeger() + 8, 4, 72)
-	drawSprite(sprDebug, getcon("shoot", "hold").tointeger() + 10, 12, 72)
-	drawSprite(sprDebug, getcon("run", "hold").tointeger() + 12, 20, 72)
-
 	message += "HSPD: "
 	if(gvPlayer) message += gvPlayer.hspeed.tostring()
 	message += "\nVSPD: "
@@ -250,4 +240,18 @@
 		setDrawColor(0xff0000ff)
 		for(local i = 0; i < path.len() - 1; i++) drawLine(path[i][0] - camx, path[i][1] - camy, path[i + 1][0] - camx, path[i + 1][1] - camy)
 	}
+}
+
+::displayKeys <- function() {
+	drawSprite(sprDebug, int(getcon("left", "hold")), 4, 60)
+	drawSprite(sprDebug, int(getcon("up", "hold")) + 4, 12, 56)
+	drawSprite(sprDebug, int(getcon("down", "hold")) + 6, 12, 64)
+	drawSprite(sprDebug, int(getcon("right", "hold")) + 2, 20, 60)
+
+	drawSprite(sprDebug, int(getcon("jump", "hold")) + 8, 4, 72)
+	drawSprite(sprDebug, int(getcon("shoot", "hold")) + 10, 12, 72)
+	drawSprite(sprDebug, int(getcon("swap", "hold")) + 12, 20, 72)
+
+	drawSprite(sprDebug, int(getcon("spec1", "hold")) + 14, 28, 60)
+	drawSprite(sprDebug, int(getcon("spec2", "hold")) + 16, 28, 68)
 }
