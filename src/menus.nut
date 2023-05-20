@@ -303,6 +303,11 @@ const menuY = 40
 		func = function() { cursor = 0; menu = meGraphics }
 	},
 	{
+		name = function() { return gvLangObj["options-menu"]["speedrun"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["speedrun"] },
+		func = function() { menu = meSpeedrun }
+	},
+	{
 		name = function() { return gvLangObj["options-menu"]["input"] },
 		func = function() { cursor = 0; menu = meInput }
 	},
@@ -357,11 +362,6 @@ const menuY = 40
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["weather"] },
 		func = function() { config.weather = !config.weather; fileWrite("config.json", jsonWrite(config)) }
-	},
-	{
-		name = function() { return gvLangObj["options-menu"]["timers"] },
-		desc = function() { return gvLangObj["options-menu-desc"]["timers"] },
-		func = function() { menu = meTimers }
 	},
 	{
 		name = function() {
@@ -722,14 +722,18 @@ const menuY = 40
 	}
 ]
 
-::meTimers <- [
+::meSpeedrun <- [
 	{
-		name = function() { return format(gvLangObj["timers-menu"]["speedrun-timer-level"], config.showleveligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
+		name = function() { return format(gvLangObj["speedrun-menu"]["speedrun-timer-level"], config.showleveligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
 		func = function() { config.showleveligt = !config.showleveligt }
 	},
 	{
-		name = function() { return format(gvLangObj["timers-menu"]["speedrun-timer-global"], config.showglobaligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
+		name = function() { return format(gvLangObj["speedrun-menu"]["speedrun-timer-global"], config.showglobaligt ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
 		func = function() { config.showglobaligt = !config.showglobaligt }
+	},
+	{
+		name = function() { return format(gvLangObj["options-menu"]["showkeys"], config.showkeys ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) },
+		func = function() { config.showkeys = !config.showkeys }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },

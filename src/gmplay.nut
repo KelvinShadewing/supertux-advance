@@ -779,6 +779,9 @@
 			kx += 16
 		}
 		//Other items could be put in the row like this as well
+
+		if(debug || config.showkeys)
+			displayKeys()
 	}
 	else {
 		if(gvInfoStep < gvInfoBox.len()) gvInfoStep++

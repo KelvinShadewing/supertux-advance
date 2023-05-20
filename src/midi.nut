@@ -1315,6 +1315,7 @@
 			frame = 0.0
 			anim = "plantMine"
 			_power = 1
+			vspeed = 0.0
 		}
 
 		if(c != null) {

@@ -1,13 +1,13 @@
 
-::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 74, 54, 0, 0, 32, 34)
+::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 74, 54, 0, 0, 32, 33)
 ::defCyra <- sprCyra
-::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 0, 0, 32, 34)
+::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 0, 0, 32, 33)
 ::defCyraFire <- sprCyraFire
-::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 0, 0, 32, 34)
+::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 0, 0, 32, 33)
 ::defCyraIce <- sprCyraIce
-::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 0, 0, 32, 34)
+::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 0, 0, 32, 33)
 ::defCyraAir <- sprCyraAir
-::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 0, 0, 32, 34)
+::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 0, 0, 32, 33)
 ::defCyraEarth <- sprCyraEarth
 ::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 0, 0, 7, 17)
 ::defCyraOverworld <- sprCyraOverworld
@@ -373,6 +373,12 @@ gvCharacters.Cyra <- {
 						frame = 0
 						animOffset = (112 - 4) + slashTimer
 					}
+					break
+
+				case "stomp":
+					if(frame <= an[anim].len() - 1) frame += 0.2
+
+				case "push":
 					break
 
 				case "jumpU":
@@ -744,7 +750,7 @@ gvCharacters.Cyra <- {
 				}
 
 				//Crawling
-				if(getcon("down", "hold", true, playerNum) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && (!freeDown2 || onPlatform()) && anim != "crouch" && anim != "crawl") {
+				if(getcon("down", "hold", true, playerNum) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && (!freeDown2 || onPlatform()) && anim != "crouch" && anim != "crawl" && anim != "stomp") {
 					anim = "crouch"
 					frame = 0.0
 					shape = shapeSlide
@@ -781,7 +787,7 @@ gvCharacters.Cyra <- {
 			}
 
 			if(fabs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater)) && antigrav <= 0) vspeed += gravity
+			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater) || (anim == "stomp" && vspeed < 8)) && antigrav <= 0) vspeed += gravity
 			else if(antigrav > 0) antigrav--
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Cyra bumped his head
 
@@ -820,7 +826,21 @@ gvCharacters.Cyra <- {
 			if(stats.weapon == "air" || nowInWater) gravity = 0.12
 			else gravity = 0.25
 			if(anim == "climb" || anim == "wall") gravity = 0
-
+			
+			
+			//Attacks
+			if(canMove && (anim == "jumpT" || anim == "jumpU" || anim == "fall") && getcon("down", "press", true, playerNum) && placeFree(x, y + 8)) {
+				hspeed = 0.0
+				vspeed = 4.0
+				anim = "stomp"
+				frame = 0.0
+			}
+			if((!freeDown || vspeed < 0 || onPlatform()) && anim == "stomp") {
+				anim = "jumpU"
+				popSound(sndBump)
+				fireWeapon(StompPoof, x + 8, y + 12, 1, id)
+				fireWeapon(StompPoof, x - 8, y + 12, 1, id)
+			}
 
 			if(canMove) switch(stats.weapon) {
 				case "normal":
@@ -1037,10 +1057,10 @@ gvCharacters.Cyra <- {
 				if(hspeed < -0.1) flip = 1
 			}
 
-			//Attacks
+			//Attacks			
 			if(canMove) switch(stats.weapon) {
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "slide" && anim != "hurt" && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Fireball, x + fx, y - 4, 1, id)
@@ -1073,7 +1093,7 @@ gvCharacters.Cyra <- {
 					break
 
 				case "ice":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" &&  anim != "slide" && anim != "hurt" && energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
@@ -1260,7 +1280,7 @@ gvCharacters.Cyra <- {
 			}
 
 			//After image
-			if((zoomies > 0) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][frame] + animOffset, 0, flip, 0, 1, 1])
+			if((zoomies > 0 || anim == "stomp" ) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][frame] + animOffset, 0, flip, 0, 1, 1])
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)

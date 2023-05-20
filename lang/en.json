@@ -52,7 +52,7 @@
 		"joystick1" : "Gamepad 1 Controls",
 		"joystick2" : "Gamepad 2 Controls",
 		"cursor" : "Show Mouse Cursor: %s",
-		"timers" : "Speedrun Timers",
+		"speedrun" : "Speedruning",
 		"light" : "Lighting: %s",
 		"fullscreen" : "Toggle Fullscreen",
 		"stickspeed" : "Stick Controls Speed: %s",
@@ -65,7 +65,7 @@
 		"lookahead" : "Dynamic Camera: %s",
 		"nearbars" : "Near-Sighted Healthbars: %s",
 		"weather" : "Weather effects: %s",
-		"showkeys" : "Show Keys"
+		"showkeys" : "Show Keys: %s"
 	},
 
 	"options-menu-desc": {
@@ -74,7 +74,7 @@
 		"keyboard" : "Change keyboard controls",
 		"joystick" : "Change gamepad controls",
 		"cursor" : "Toggle the mouse cursor",
-		"timers" : "Toggle speedrun timers",
+		"speedrun" : "Options for on-screen timers and controls",
 		"light" : "Toggle light effects",
 		"fullscreen" : "Toggle fullscreen mode",
 		"stickspeed" : "Toggle stick controls speed",
@@ -88,7 +88,7 @@
 		"showkeys" : "On-screen controls for speedrun recording"
 	},
 
-	"timers-menu" : {
+	"speedrun-menu" : {
 		"speedrun-timer-level" : "Level Speedrun Timer: %s",
 		"speedrun-timer-global" : "Global Speedrun Timer: %s"
 	},

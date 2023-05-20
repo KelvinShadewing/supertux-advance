@@ -243,15 +243,17 @@
 }
 
 ::displayKeys <- function() {
-	drawSprite(sprDebug, int(getcon("left", "hold")), 4, 60)
-	drawSprite(sprDebug, int(getcon("up", "hold")) + 4, 12, 56)
-	drawSprite(sprDebug, int(getcon("down", "hold")) + 6, 12, 64)
-	drawSprite(sprDebug, int(getcon("right", "hold")) + 2, 20, 60)
+	local offset = (gvNumPlayers == 2 ? 32 : 0)
+	if(!config.showleveligt) offset -= 16
+	drawSprite(sprDebug, int(getcon("left", "hold")), 4, 60 + offset)
+	drawSprite(sprDebug, int(getcon("up", "hold")) + 4, 12, 56 + offset)
+	drawSprite(sprDebug, int(getcon("down", "hold")) + 6, 12, 64 + offset)
+	drawSprite(sprDebug, int(getcon("right", "hold")) + 2, 20, 60 + offset)
 
-	drawSprite(sprDebug, int(getcon("jump", "hold")) + 8, 4, 72)
-	drawSprite(sprDebug, int(getcon("shoot", "hold")) + 10, 12, 72)
-	drawSprite(sprDebug, int(getcon("swap", "hold")) + 12, 20, 72)
+	drawSprite(sprDebug, int(getcon("jump", "hold")) + 8, 4, 72 + offset)
+	drawSprite(sprDebug, int(getcon("shoot", "hold")) + 10, 12, 72 + offset)
+	drawSprite(sprDebug, int(getcon("swap", "hold")) + 12, 20, 72 + offset)
 
-	drawSprite(sprDebug, int(getcon("spec1", "hold")) + 14, 28, 60)
-	drawSprite(sprDebug, int(getcon("spec2", "hold")) + 16, 28, 68)
+	drawSprite(sprDebug, int(getcon("spec1", "hold")) + 14, 28, 60 + offset)
+	drawSprite(sprDebug, int(getcon("spec2", "hold")) + 16, 28, 68 + offset)
 }

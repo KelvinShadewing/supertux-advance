@@ -131,7 +131,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLightEx(sprLightGradient, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -178,7 +178,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeN2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
+		drawLightEx(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -225,7 +225,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeN3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
+		drawLightEx(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
