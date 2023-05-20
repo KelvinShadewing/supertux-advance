@@ -649,11 +649,10 @@
 					local nutType = "normal"
 					if(hand == 0) nutType = stats.weapon
 					if(hand == 1) nutType = stats.subitem
-					if(nutType != "fire" && nutType != "ice" && nutType != "air" && nutType != "earth") nutType = "normal"
 					local c = fireWeapon(NutMine, x, y + 9, 1, id)
 
 					if(c != null) {
-						c.element = nutType
+						c.exElement = nutType
 						energy--
 						firetime = 90
 					}
@@ -1284,7 +1283,6 @@
 				c = fireWeapon(TopNut, x, y - 2, 1, id)
 				hspeed = 0
 				anim = "shootTop"
-				_power = 1
 			}
 			else c = fireWeapon(NutBomb, x, y - 2, 1, id)
 			local d = (flip ? -1 : 1)

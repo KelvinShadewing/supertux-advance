@@ -2125,7 +2125,7 @@
 				if(chasing) squishTime++
 				if(squishTime >= 200 && chasing) {
 					die()
-					fireWeapon(ExplodeF, x, y - 1, 0, id)
+					fireWeapon(ExplodeF2, x, y - 1, 0, id)
 				}
 
 				if(y > gvMap.h + 8) die()
@@ -2443,17 +2443,7 @@
 				frame += 0.01 * squishTime
 				if(squishTime >= 180) {
 					die()
-					fireWeapon(ExplodeT, x, y, 0, id)
-					fireWeapon(ExplodeT, x, y + 24, 0, id)
-					fireWeapon(ExplodeT, x, y - 24, 0, id)
-					fireWeapon(ExplodeT, x + 24, y, 0, id)
-					fireWeapon(ExplodeT, x - 24, y, 0, id)
-					fireWeapon(ExplodeT, x + 20, y + 20, 0, id)
-					fireWeapon(ExplodeT, x + 20, y - 20, 0, id)
-					fireWeapon(ExplodeT, x - 20, y + 20, 0, id)
-					fireWeapon(ExplodeT, x - 20, y - 20, 0, id)
-					fireWeapon(ExplodeT, x + 20, y - 20, 0, id)
-
+					fireWeapon(ExplodeT2, x, y, 0, id)
 				}
 				drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
@@ -2673,7 +2663,7 @@
 
 	function hurtFire() {
 		die()
-		fireWeapon(ExplodeF, x , y, 2, id)
+		fireWeapon(ExplodeF2, x , y, 2, id)
 		newActor(Flame, x, y - 1)
 	}
 

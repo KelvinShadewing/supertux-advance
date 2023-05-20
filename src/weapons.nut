@@ -856,6 +856,54 @@
 	}
 }
 
+::ExplodeT2 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "shock"
+	power = 2
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeT, 0)
+
+		shape = Cir(x, y, 24.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ///////////////////
 // EARTH ATTACKS //
 ///////////////////
@@ -1083,6 +1131,10 @@
 					c = fireWeapon(ExplodeN3, x, y, alignment, owner)
 					c.power = 4
 					break
+				case "shock":
+					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
+					c.power = 4
+					break
 				case "fire":
 					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
 					c.power = 4
@@ -1132,7 +1184,7 @@
 	}
 }
 
-::TopNut <- class extends WeaponEffect {
+::TopNut <- class extends NutBomb {
 	timer = 90
 	element = "normal"
 	power = 0
@@ -1187,39 +1239,9 @@
 		drawSprite(sprite, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
-
-	function destructor() {
-		local c
-		switch(exElement) {
-			case "normal":
-				c = fireWeapon(ExplodeN, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "fire":
-				c = fireWeapon(ExplodeF, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "ice":
-				c = fireWeapon(ExplodeI, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "shock":
-				c = fireWeapon(ExplodeT, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "air":
-				c = fireWeapon(ExplodeA, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "earth":
-				c = fireWeapon(ExplodeE, x, y, alignment, owner)
-				c.power = exPower
-				break
-		}
-	}
 }
 
-::WingNut <- class extends WeaponEffect {
+::WingNut <- class extends NutBomb {
 	timer = 16
 	element = "normal"
 	power = 0
@@ -1260,45 +1282,19 @@
 	}
 
 	function destructor() {
-		local c
-		switch(exElement) {
-			case "normal":
-				c = fireWeapon(ExplodeN, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "fire":
-				c = fireWeapon(ExplodeF, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "ice":
-				c = fireWeapon(ExplodeI, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "shock":
-				c = fireWeapon(ExplodeT, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "air":
-				c = fireWeapon(ExplodeA, x, y, alignment, owner)
-				c.power = exPower
-				break
-			case "earth":
-				c = fireWeapon(ExplodeE, x, y, alignment, owner)
-				c.power = exPower
-				break
-		}
-
+		base.destructor()
 		if(checkActor(owner) && hitTest(bounceShape, actor[owner].shape)) actor[owner].vspeed = -5
 	}
 }
 
-::NutMine <- class extends WeaponEffect {
+::NutMine <- class extends NutBomb {
 	element = "normal"
 	power = 0
 	blast = false
 	piercing = 0
 	bounceShape = null
 	exPower = 1
+	exElement = "normal"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -1326,27 +1322,7 @@
 	}
 
 	function destructor() {
-		switch(element) {
-			case "normal":
-				fireWeapon(ExplodeN, x, y, alignment, owner)
-				break
-			case "fire":
-				fireWeapon(ExplodeF, x, y, alignment, owner)
-				break
-			case "ice":
-				fireWeapon(ExplodeI, x, y, alignment, owner)
-				break
-			case "shock":
-				fireWeapon(ExplodeT, x, y, alignment, owner)
-				break
-			case "air":
-				fireWeapon(ExplodeA, x, y, alignment, owner)
-				break
-			case "earth":
-				fireWeapon(ExplodeE, x, y, alignment, owner)
-				break
-		}
-
+		base.destructor()
 		if(checkActor(owner) && hitTest(bounceShape, actor[owner].shape)) actor[owner].vspeed = -10
 	}
 }

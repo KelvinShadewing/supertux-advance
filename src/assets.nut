@@ -433,6 +433,8 @@
 ::defExplodeN3 <- sprExplodeN3
 ::sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 0, 0, 16, 16)
 ::defExplodeT <- sprExplodeT
+::sprExplodeT2 <- newSprite("res/gfx/explodeT2.png", 64, 64, 0, 0, 32, 32)
+::defExplodeT2 <- sprExplodeT2
 ::sprExplodeA <- newSprite("res/gfx/explodeA.png", 32, 32, 0, 0, 16, 30)
 ::defExplodeA <- sprExplodeA
 ::sprExplodeE <- newSprite("res/gfx/explodeE.png", 32, 32, 0, 0, 16, 20)
