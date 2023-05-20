@@ -1571,6 +1571,18 @@
                  "width":16,
                  "x":2512,
                  "y":512
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":449,
+                 "name":"Ivy,1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2032,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1579,7 +1591,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":449,
+ "nextobjectid":450,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -676,7 +676,7 @@
 	blast = true
 	angle = 0
 	r = 8
-	timeLimit = 15
+	timeLimit = 16
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)

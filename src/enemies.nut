@@ -194,7 +194,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function routine() {}
@@ -310,6 +310,9 @@
 			frozen = 600
 			return
 		}
+
+		if(_mag <= 0)
+			return
 
 		if(_blast) {
 			hurtblast()
@@ -645,7 +648,7 @@
 
 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
 			newActor(Poof, x, y)
-			die()
+			if(_mag > 0) die()
 			popSound(sndSquish, 0)
 			if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
 			else gvPlayer.vspeed = -4
@@ -1731,21 +1734,24 @@
 			hurtIce()
 			return
 		}
-		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprite
-		if(gvPlayer) {
-			actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
-			actor[c].hspeed = (gvPlayer.hspeed / 16)
-		}
-		else actor[c].vspeed = -4.0
-		popSound(sndKick)
 
-		if(icebox != -1) {
-			mapDeleteSolid(icebox)
-			newActor(IceChunks, x, y)
-		}
+		if(_stomp) {
+			local c = newActor(DeadNME, x, y)
+			actor[c].sprite = sprite
+			if(gvPlayer) {
+				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
+				actor[c].hspeed = (gvPlayer.hspeed / 16)
+			}
+			else actor[c].vspeed = -4.0
+			popSound(sndKick)
 
-		die()
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, y)
+			}
+
+			die()
+		}
 	}
 
 	function hurtBlast() {
@@ -2536,7 +2542,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function physics() {}
@@ -2683,7 +2689,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function routine() {}
@@ -2884,7 +2890,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 14, 0, 0, -6)
 
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function routine() {}
@@ -3049,7 +3055,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function routine() {}
@@ -3207,7 +3213,7 @@
 			}
 		}
 
-		if(!_stomp) {
+		if(!_stomp && _mag > 0) {
 			local c = newActor(DeadNME, x, y)
 			if(smart) actor[c].sprite = sprIvyRed
 			else actor[c].sprite = sprIvyGreen
@@ -3742,7 +3748,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function routine() {}
@@ -3909,7 +3915,7 @@
 			}
 		}
 
-		if(!_stomp) {
+		if(!_stomp && _mag > 0) {
 			local c = newActor(DeadNME, x, y)
 			actor[c].sprite = sprSpikeCap
 			actor[c].vspeed = -4.0
@@ -3976,7 +3982,7 @@
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
 
-		smart = _arr
+		smart = bool(_arr)
 	}
 
 	function routine() {}
@@ -4116,7 +4122,7 @@
 			}
 		}
 
-		if(!_stomp) {
+		if(!_stomp && _mag > 0) {
 			local c = newActor(DeadNME, x, y)
 			actor[c].sprite = sprCaptainMorel
 			actor[c].vspeed = -4.0
