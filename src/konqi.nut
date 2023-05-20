@@ -405,7 +405,7 @@
 				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("shoot", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
 			}
 
-			if(anim != "climb" && anim != "wall") {
+			if(anim != "climb" && anim != "wall" && anim != "statue") {
 				if((getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed > 0.1 && anim == "slide")) flip = 0
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
@@ -438,7 +438,7 @@
 				if(zoomies > 0) accel = 0.4
 				else accel = 0.2
 
-				if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
+				if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "statue") {
 					if(hspeed >= 2) {
 						if(onIce()) hspeed += accel * 0.2
 						else hspeed += accel * 0.4
@@ -447,7 +447,7 @@
 					else hspeed += accel
 				}
 
-				if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
+				if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "statue") {
 					if(hspeed <= -2) {
 						if(onIce()) hspeed -= accel * 0.2
 						else hspeed -= accel * 0.4
@@ -612,7 +612,7 @@
 					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y - 6)) anim = "stand"
 					else {
 						//Ping pong animation
-						frame += (hspeed / 8.0)
+						frame += fabs(hspeed / 8.0)
 						shape = shapeSlide
 					}
 				}
@@ -685,12 +685,12 @@
 			if(canMove && (anim == "jumpT" || anim == "jumpU" || anim == "fall") && getcon("down", "press", true, playerNum) && placeFree(x, y + 8)) {
 				hspeed = 0.0
 				vspeed = 4.0
-				if(stats.weapon == "earth") {
+				if(stats.weapon == "earth")
 					anim = "statue"
-					popSound(sndSlide, 0)
-				}
-				else anim = "stomp"
+				else
+					anim = "stomp"
 				frame = 0.0
+				popSound(sndSlide, 0)
 			}
 			if((!freeDown || vspeed < 0 || onPlatform()) && anim == "stomp") {
 				anim = "jumpU"
@@ -735,6 +735,8 @@
 						}
 						energy--
 						firetime = 60
+
+						c.hspeed += hspeed / 1.5
 					}
 					break
 
@@ -775,8 +777,10 @@
 						}
 						energy--
 						firetime = 60
+
+						c.hspeed += hspeed / 1.5
 					}
-					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue" && (!freeDown || onPlatform())) {
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)
@@ -904,8 +908,8 @@
 							}
 						}
 
-						c.hspeed += hspeed / 3
-						c.vspeed += vspeed / 3
+						c.hspeed += hspeed / 2
+						c.vspeed += vspeed / 2
 
 						energy--
 						firetime = 60
@@ -1053,6 +1057,11 @@
 		//Invincibility
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
+
+		//Stomp damage
+		stompDamage = 2
+		if(anim == "statue") stompDamage = 8
+		if(anim == "stomp") stompDamage = 4
 	}
 
 	function draw() {

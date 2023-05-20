@@ -744,6 +744,7 @@
 				fireWeapon(ExplodeF2, x, y, 0, id)
 				i.piercing--
 			}
+			break
 		}
 	}
 
@@ -791,6 +792,7 @@
 				newActor(ExplodeF2, x, y)
 				i.piercing--
 			}
+			break
 		}
 	}
 

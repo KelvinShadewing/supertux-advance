@@ -741,7 +741,7 @@
 
 			if(getcon("spec1", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(1, floor(chargeTimer / 90) + 1)
 
-			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum) || routine == ruBall) chargeTimer = 0
+			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum)) chargeTimer = 0
 
 			if(chargeTimer > 180 && (getFrames()) % 4 == 0) {
 				newActor(GoldCharge, x - 12 + randInt(24) y - 12 + randInt(24))

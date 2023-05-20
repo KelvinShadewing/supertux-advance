@@ -351,12 +351,12 @@
 	timer = 90
 	angle = 0
 	element = "fire"
-	power = 0
+	power = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Cir(x, y, 4)
+		shape = Cir(x, y, 2)
 	}
 
 	function run() {
@@ -730,7 +730,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		popSound(sndExplodeI, 0)
+		popSound(sndExplodeI)
+		popSound(sndBlizzardBomb)
 
 		shape = Cir(x, y, 8.0)
 		angle = randInt(360)
@@ -955,7 +956,7 @@
 	function destructor() {
 		fireWeapon(AfterEarth, x + hspeed / 2, y + vspeed / 2, alignment, owner)
 		newActor(RockChunks, x, y)
-		popSound(sndBump, 0)
+		popSound(sndCrumble)
 	}
 }
 
@@ -1138,19 +1139,19 @@
 				case "fire":
 					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
 					c.power = 4
-					c = fireWeapon(FireballK, x - 4, y - 4, alignment, owner)
+					c = fireWeapon(FireballK, x - 6, y - 6, alignment, owner)
 					c.power = 4
 					c.hspeed = -2.0
 					c.vspeed = -2.0
-					c = fireWeapon(FireballK, x + 4, y - 4, alignment, owner)
+					c = fireWeapon(FireballK, x + 6, y - 6, alignment, owner)
 					c.power = 4
 					c.hspeed = 2.0
 					c.vspeed = -2.0
-					c = fireWeapon(FireballK, x - 4, y + 4, alignment, owner)
+					c = fireWeapon(FireballK, x - 6, y + 6, alignment, owner)
 					c.power = 4
 					c.hspeed = -2.0
 					c.vspeed = 0.5
-					c = fireWeapon(FireballK, x + 4, y + 4, alignment, owner)
+					c = fireWeapon(FireballK, x + 6, y + 6, alignment, owner)
 					c.power = 4
 					c.hspeed = 2.0
 					c.vspeed = 0.5

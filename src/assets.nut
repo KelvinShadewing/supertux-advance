@@ -580,6 +580,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndCrumble <- loadSound("res/snd/crumble.ogg")
 ::sndWoosh <- loadSound("res/snd/shortwind.ogg")
 ::sndDrop <- loadSound("res/snd/drop.ogg")
+::sndBlizzardBomb <- loadSound("res/snd/blizzard-bomb.ogg")
 
 
 
