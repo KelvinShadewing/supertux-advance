@@ -717,7 +717,7 @@
 			if(hittime >= 150) {
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
-				fireWeapon(ExplodeF, x, y, 0, id)
+				fireWeapon(ExplodeF2, x, y, 0, id)
 			}
 		}
 		else {
@@ -734,14 +734,14 @@
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)
 					deleteActor(id)
-					fireWeapon(ExplodeF, x, y, 0, id)
+					fireWeapon(ExplodeF2, x, y, 0, id)
 					i.piercing--
 				}
 			}
 			else {
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
-				fireWeapon(ExplodeF, x, y, 0, id)
+				fireWeapon(ExplodeF2, x, y, 0, id)
 				i.piercing--
 			}
 		}
@@ -781,14 +781,14 @@
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)
 					deleteActor(id)
-					newActor(ExplodeF, x, y)
+					newActor(ExplodeF2, x, y)
 					i.piercing--
 				}
 			}
 			else {
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
-				newActor(ExplodeF, x, y)
+				newActor(ExplodeF2, x, y)
 				i.piercing--
 			}
 		}

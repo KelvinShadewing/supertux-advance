@@ -441,6 +441,55 @@
 	}
 }
 
+::ExplodeF2 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "fire"
+	power = 2
+	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		stopSound(sndExplodeF)
+		playSound(sndExplodeF, 0)
+
+		shape = Cir(x, y, 16.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ::ExplodeHiddenF <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
@@ -1012,6 +1061,10 @@
 					c = fireWeapon(ExplodeN2, x, y, alignment, owner)
 					c.power = 2
 					break
+				case "fire":
+					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
+					c.power = 2
+					break
 				default:
 					c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
 					c.power = 2
@@ -1031,7 +1084,7 @@
 					c.power = 4
 					break
 				case "fire":
-					c = fireWeapon(ExplodeF, x, y, alignment, owner)
+					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
 					c.power = 4
 					c = fireWeapon(FireballK, x - 4, y - 4, alignment, owner)
 					c.power = 4

@@ -630,7 +630,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_stomp || _element == "normal") {
+		if((_stomp || _element == "normal") && _mag > 0) {
 			newActor(Poof, x, y)
 			die()
 			popSound(sndSquish, 0)
@@ -646,12 +646,20 @@
 			return
 		}
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && _stomp) {
 			newActor(Poof, x, y)
 			if(_mag > 0) die()
 			popSound(sndSquish, 0)
-			if(keyDown(config.key.jump)) gvPlayer.vspeed = -8
+			if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
 			else gvPlayer.vspeed = -4
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && _stomp) {
+			newActor(Poof, x, y)
+			if(_mag > 0) die()
+			popSound(sndSquish, 0)
+			if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
+			else gvPlayer2.vspeed = -4
 		}
 
 		if(_element == "fire") hurtFire()
@@ -855,7 +863,7 @@
 				//Explode
 				if(squishTime >= 150) {
 					die()
-					fireWeapon(ExplodeF, x, y, 0, id)
+					fireWeapon(ExplodeF2, x, y, 0, id)
 					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = 0
 				}
 			}
@@ -926,7 +934,7 @@
 			newActor(IceChunks, x, y)
 		}
 		if(!burnt) {
-			fireWeapon(ExplodeF, x, y - 1, 2, id)
+			fireWeapon(ExplodeF2, x, y - 1, 2, id)
 			die()
 			popSound(sndFlame, 0)
 
@@ -2220,7 +2228,7 @@
 				}
 				if(squishTime >= 300 && chasing) {
 					die()
-					fireWeapon(ExplodeF, x, y, 0, id)
+					fireWeapon(ExplodeF2, x, y, 0, id)
 				}
 
 				if(frozen) {
@@ -2299,7 +2307,7 @@
 			newActor(IceChunks, x, y)
 		}
 		if(!burnt) {
-			fireWeapon(ExplodeF, x, y - 1, 0, id)
+			fireWeapon(ExplodeF2, x, y - 1, 0, id)
 			die()
 			popSound(sndFlame, 0)
 
@@ -2652,7 +2660,8 @@
 			return
 		}
 		
-		hurtBlast()
+		if(_mag > 0)
+			hurtBlast()
 	}
 
 	function hurtBlast() {
@@ -3281,11 +3290,12 @@
 	nocount = true
 	blinkMax = 2
 	target = null
+	minFreezeTime = 300
 
 	damageMult = {
 		normal = 1.0
 		fire = 2.0
-		ice = 1.0
+		ice = 0.0
 		earth = 1.0
 		air = 1.0
 		toxic = 1.0

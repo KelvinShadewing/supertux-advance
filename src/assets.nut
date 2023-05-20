@@ -421,6 +421,8 @@
 ::defTFflash <- sprTFflash
 ::sprExplodeF <- newSprite("res/gfx/explodeF.png", 24, 24, 0, 0, 12, 12)
 ::defExplodeF <- sprExplodeF
+::sprExplodeF2 <- newSprite("res/gfx/explodeF2.png", 48, 48, 0, 0, 24, 24)
+::defExplodeF2 <- sprExplodeF2
 ::sprExplodeI <- newSprite("res/gfx/explodeI.png", 30, 30, 0, 0, 15, 15)
 ::defExplodeI <- sprExplodeI
 ::sprExplodeN <- newSprite("res/gfx/explodeN.png", 30, 30, 0, 0, 15, 15)
