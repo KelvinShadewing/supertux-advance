@@ -147,7 +147,9 @@
 	function holdMe(throwH = 2.0, throwV = 2.0) {
 		local target = findPlayer()
 		if(target != null) {
-			if(hitTest(shape, target.shape)
+			if((target.anim == "slide" || target.anim == "ball"))
+				held = false
+			else if(hitTest(shape, target.shape)
 			&& (getcon("shoot", "hold", false, target.playerNum) || getcon("spec1", "hold", false, target.playerNum))
 			&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
 				y = target.y
@@ -201,9 +203,6 @@
 			}
 			held = false
 		}
-
-		if((target.anim == "slide" || target.anim == "ball"))
-			held = false
 	}
 
 	function destructor() {
