@@ -196,11 +196,14 @@
 
 				if(getcon("up", "hold", false, target.playerNum) && held)
 					vspeed = -throwV
-					
+
 				if(!getcon("down", "hold", false, target.playerNum)) hspeed = -throwH * (gvPlayer.x <=> x)
 			}
 			held = false
 		}
+
+		if((target.anim == "slide" || target.anim == "ball"))
+			held = false
 	}
 
 	function destructor() {
