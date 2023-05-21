@@ -780,7 +780,7 @@
 
 						c.hspeed += hspeed / 1.5
 					}
-					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue" && (!freeDown || onPlatform())) {
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)

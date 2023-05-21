@@ -280,15 +280,13 @@
 		//Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
 		if(slippery) {
-			if(!placeFree(x, y + 4) && (fabs(hspeed) < 8)) {
+			if(!placeFree(x, y + 4) && (fabs(hspeed) < 6)) {
 				if(placeFree(x + 4, y + 2) && !onPlatform(hspeed)) {
-					if(getcon("left", "hold", true, playerNum)) hspeed += 0.2
-					else hspeed += 0.3
+					hspeed += 0.2
 					vspeed += 0.2
 				}
 				if(placeFree(x - 4, y + 2) && !onPlatform(hspeed)) {
-					if(getcon("right", "hold", true, playerNum)) hspeed -= 0.2
-					else hspeed -= 0.3
+					hspeed -= 0.2
 					vspeed += 0.2
 				}
 			}
@@ -1185,6 +1183,14 @@
 	}
 
 	function draw() {
+		local choffset = 0
+		if(anim == "ball")
+			choffset = 6
+		if(anim == "morphIn")
+			choffset = min(frame * 6, 6)
+		if(anim == "morphOut")
+			choffset = 6 - min(frame * 6, 6)
+
 		if(!hidden) {
 			if(anim in an && an[anim] != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
@@ -1217,7 +1223,7 @@
 				shape.draw()
 			}
 
-			if(chargeTimer >= 30 && chargeTimer < 180) drawSpriteZ(3, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy)
+			if(chargeTimer >= 30 && chargeTimer < 180) drawSpriteZ(3, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy + choffset)
 
 			//Transformation flash
 			if(tftime != -1) {
@@ -1228,7 +1234,7 @@
 			}
 		}
 
-		drawLight(sprLightBasic, 0, x - camx, y - camy)
+		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset)
 	}
 
 	function die() {

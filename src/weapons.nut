@@ -363,13 +363,17 @@
 		timer--
 		if(timer == 0) deleteActor(id)
 
-		if(!inWater(x, y)) vspeed += 0.1
+		if(inWater(x, y)) {
+			vspeed *= 0.99
+			hspeed *= 0.99
+		}
+		else
+			vspeed += 0.1
 
 		x += hspeed
 		y += vspeed
-		if(!placeFree(x, y)) {
+		if(!placeFree(x, y))
 			deleteActor(id)
-		}
 
 		if(y > gvMap.h) {
 			deleteActor(id)
@@ -1150,11 +1154,11 @@
 					c = fireWeapon(FireballK, x - 6, y + 6, alignment, owner)
 					c.power = 4
 					c.hspeed = -2.0
-					c.vspeed = 0.5
+					c.vspeed = 2.0
 					c = fireWeapon(FireballK, x + 6, y + 6, alignment, owner)
 					c.power = 4
 					c.hspeed = 2.0
-					c.vspeed = 0.5
+					c.vspeed = 2.0
 					for(local i = 0; i < 16; i++) {
 						local d = actor[newActor(FlameTiny, x + lendirX(randInt(8) + 16, i * 22.5), y + lendirY(randInt(8) + 16, i * 22.5))]
 						d.hspeed = 1.0 - randFloat(2.0)

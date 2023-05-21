@@ -144,6 +144,65 @@
 		target.hurt = touchDamage * target.damageMult[element]
 	}
 
+	function holdMe(throwH = 2.0, throwV = 2.0) {
+		local target = findPlayer()
+		if(target != null) {
+			if(hitTest(shape, target.shape)
+			&& (getcon("shoot", "hold", false, target.playerNum) || getcon("spec1", "hold", false, target.playerNum))
+			&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
+				y = target.y
+				flip = target.flip
+				if(flip == 0) x = target.x + 10
+				else x = target.x - 10
+				x += target.hspeed
+				y += target.vspeed
+				held = true
+				target.holding = id
+			}
+
+			if((target.anim == "slide" || target.anim == "ball") && held) {
+				target.holding = 0
+
+				//escape from solid
+				if(!placeFree(x, y)) {
+					local escapedir = target.x <=> x
+					while(!placeFree(x, y)) x += escapedir
+				}
+				held = false
+			}
+
+			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
+				target.holding = 0
+
+				//escape from solid
+				if(!placeFree(x, y)) {
+					local escapedir = target.x <=> x
+					while(!placeFree(x, y)) x += escapedir
+				}
+				held = false
+			}
+		}
+		
+		if(!getcon("shoot", "hold", false, target.playerNum) && !getcon("spec1", "hold", false, target.playerNum)) {
+			if(held && target) {
+				target.holding = 0
+				x += target.hspeed * 2
+
+				//escape from solid
+				if(!placeFree(x, y)) {
+					local escapedir = target.x <=> x
+					while(!placeFree(x, y)) x += escapedir
+				}
+
+				if(getcon("up", "hold", false, target.playerNum) && held)
+					vspeed = -throwV
+					
+				if(!getcon("down", "hold", false, target.playerNum)) hspeed = -throwH * (gvPlayer.x <=> x)
+			}
+			held = false
+		}
+	}
+
 	function destructor() {
 		mapDeleteSolid(icebox)
 	}
@@ -786,69 +845,8 @@
 					squishTime = 0
 				}
 
-				//Get carried
-				if(gvPlayer) {
-					if(hitTest(shape, gvPlayer.shape) && getcon("shoot", "hold")
-					&& (gvPlayer.holding == 0|| gvPlayer.holding == id) && hspeed == 0) {
-						held = true
-						gvPlayer.holding = id
-					}
-					else if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
-						held = false
-						gvPlayer.holding = 0
-					}
-
-					if(("anim" in gvPlayer) && gvPlayer.anim == "slide") {
-						held = false
-						gvPlayer.holding = 0
-					}
-
-					if(held) {
-						y = gvPlayer.y
-						flip = gvPlayer.flip
-						if(gvPlayer.flip == 0) x = gvPlayer.x + 10 + gvPlayer.hspeed
-						else if(gvPlayer.flip == 1) x = gvPlayer.x - 10 + gvPlayer.hspeed
-						y = gvPlayer.y + gvPlayer.vspeed
-					}
-
-					if(("anim" in gvPlayer) && gvPlayer.anim == "slide" && held) {
-						gvPlayer.holding = 0
-
-						//escape from solid
-						if(!placeFree(x, y)) {
-							local escapedir = gvPlayer.x <=> x
-							while(!placeFree(x, y)) x += escapedir
-						}
-						held = false
-					}
-
-					if(gvPlayer.rawin("anClimb") && gvPlayer.anim == gvPlayer.anClimb && held) {
-						gvPlayer.holding = 0
-
-						//escape from solid
-						if(!placeFree(x, y)) {
-							local escapedir = gvPlayer.x <=> x
-							while(!placeFree(x, y)) x += escapedir
-						}
-						held = false
-					}
-				}
-				if(!getcon("shoot", "hold")) {
-					if(getcon("shoot", "release") && getcon("up", "hold") && held) vspeed = -2.0
-					if(held && gvPlayer) {
-						gvPlayer.holding = 0
-						x += gvPlayer.hspeed * 2
-
-						if(!getcon("down", "hold")) hspeed = -2.0 * (gvPlayer.x <=> x)
-
-						//escape from solid
-						if(!placeFree(x, y)) {
-							local escapedir = gvPlayer.x <=> x
-							while(!placeFree(x, y)) x += escapedir
-						}
-					}
-					held = false
-				}
+				//Getting carried
+				holdMe()
 
 				//Move
 				if(placeFree(x + hspeed, y)) x += hspeed
@@ -3054,7 +3052,12 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
-		smart = bool(_arr)
+		if(typeof _arr == "array" && _arr.len() > 0)
+			smart = bool(_arr[0])
+		else if(_arr == null || ("len" in _arr && _arr.len() == 0))
+			smart = bool(_arr)
+		else
+			smart = false
 	}
 
 	function routine() {}
@@ -3621,58 +3624,8 @@
 			if(!held && isOnScreen()) popSound(sndIceblock)
 		}
 
-		if(target != null) {
-			//Getting carried
-			if(target != null) {
-				if(hitTest(shape, target.shape) && getcon("shoot", "hold", false, target.playerNum)
-				&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
-					y = target.y
-					flip = target.flip
-					if(flip == 0) x = target.x + 10
-					else x = target.x - 10
-					x += target.hspeed
-					y += target.vspeed
-					held = true
-					target.holding = id
-				}
-
-				if(target.rawin("anSlide") && target.anim == target.anSlide && held) {
-					target.holding = 0
-
-					//escape from solid
-					if(!placeFree(x, y)) {
-						local escapedir = target.x <=> x
-						while(!placeFree(x, y)) x += escapedir
-					}
-					held = false
-				}
-
-				if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
-					target.holding = 0
-
-					//escape from solid
-					if(!placeFree(x, y)) {
-						local escapedir = target.x <=> x
-						while(!placeFree(x, y)) x += escapedir
-					}
-					held = false
-				}
-			}
-			if(!getcon("shoot", "hold", false, target.playerNum)) {
-				if(getcon("shoot", "release", false, target.playerNum) && getcon("up", "hold", false, target.playerNum) && held) vspeed = -4.0
-				if(held && target) {
-					target.holding = 0
-					x += target.hspeed * 2
-
-					//escape from solid
-					if(!placeFree(x, y)) {
-						local escapedir = target.x <=> x
-						while(!placeFree(x, y)) x += escapedir
-					}
-				}
-				held = false
-			}
-		}
+		//Getting carried
+		holdMe()
 
 		if(held) {
 			blinking = 10
