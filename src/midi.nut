@@ -16,7 +16,7 @@
 	firetime = 0
 	hurt = 0
 	swimming = false
-	sliding = false
+	inMelee = false
 	canStomp = true //If they can use jumping as an attack
 	stompDamage = 0
 	sprite = sprTux
@@ -766,6 +766,8 @@
 		//Invincibility
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
+
+		inMelee = (anim == "ball" && fabs(hspeed) > 4.2)
 	}
 
 	function ruNormal() {

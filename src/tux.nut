@@ -16,7 +16,7 @@
 	firetime = 0
 	hurt = 0
 	swimming = false
-	sliding = false
+	inMelee = false
 	canStomp = true //If they can use jumping as an attack
 	sprite = sprTux
 	invincible = 0
@@ -1033,6 +1033,8 @@
 
 		//After image
 		if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
+
+		inMelee = ["slilde", "drill"].find(anim)
 	}
 
 	function draw() {

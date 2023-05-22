@@ -42,6 +42,7 @@
 	held = null
 	useMouse = false //Draw the cursor when playing as this character
 	mouseSprite = sprCursor
+	inMelee = false //In a state where the player damages enemies by touch
 
 	//Physics stats
 	weight = 1.0

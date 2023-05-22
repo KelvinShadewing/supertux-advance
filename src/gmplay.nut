@@ -712,7 +712,7 @@
 		//Draw level IGT
 		local timey = 0
 		if(gvNumPlayers >= 2 && !gvNetPlay) timey = 32
-		if(gvDoIGT && config.showleveligt && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
+		if(gvDoIGT && (config.showleveligt || gvTimeAttack) && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
 
 		//Draw offscreen player
 		if(!gvSplitScreen) {
@@ -780,7 +780,7 @@
 		}
 		//Other items could be put in the row like this as well
 
-		if(debug || config.showkeys)
+		if(debug || config.showkeys || gvTimeAttack)
 			displayKeys()
 	}
 	else {

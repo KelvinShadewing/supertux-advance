@@ -1062,6 +1062,8 @@
 		stompDamage = 2
 		if(anim == "statue") stompDamage = 8
 		if(anim == "stomp") stompDamage = 4
+
+		inMelee = anim == "stomp"
 	}
 
 	function draw() {

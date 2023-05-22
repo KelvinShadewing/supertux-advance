@@ -244,7 +244,7 @@
 
 ::displayKeys <- function() {
 	local offset = (gvNumPlayers == 2 ? 32 : 0)
-	if(!config.showleveligt) offset -= 16
+	if(!config.showleveligt && !gvTimeAttack) offset -= 16
 	drawSprite(sprDebug, int(getcon("left", "hold")), 4, 60 + offset)
 	drawSprite(sprDebug, int(getcon("up", "hold")) + 4, 12, 56 + offset)
 	drawSprite(sprDebug, int(getcon("down", "hold")) + 6, 12, 64 + offset)
