@@ -4,6 +4,10 @@
 	game.file = f
 	gvDoIGT = false
 	game.difficulty = newdif
+	game.state = {
+		pennyton = 0
+		fishmines = 0
+	}
 	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
 	startPlay("res/map/aurora-pennyton.json", true, true)
 }

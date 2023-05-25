@@ -146,6 +146,12 @@
 
 	function holdMe(throwH = 2.0, throwV = 2.0) {
 		local target = findPlayer()
+		if(target.anim == "slide" || target.anim == "ball" || target.inMelee) {
+			target.holding = 0
+			held = false
+			return
+		}
+
 		if(target != null) {
 			if((target.inMelee))
 				held = false
@@ -162,7 +168,7 @@
 				target.holding = id
 			}
 
-			if((target.anim == "slide" || target.anim == "ball") && held) {
+			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
 				target.holding = 0
 
 				//escape from solid
@@ -173,15 +179,10 @@
 				held = false
 			}
 
-			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
-				target.holding = 0
-
-				//escape from solid
-				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
-				}
-				held = false
+			//escape from solid
+			if(!placeFree(x, y)) {
+				local escapedir = target.x <=> x
+				while(!placeFree(x, y)) x += escapedir
 			}
 		}
 		

@@ -260,3 +260,62 @@
 		}
 	}
 }
+
+::ShopBlockWorld <- class extends Actor {
+	shape = 0
+	full = true
+	v = 0.0
+	vspeed = 0.0
+	soldout = false
+	price = 0
+	basePrice = 0
+	state = ""
+	limit = 0
+	name = ""
+
+	constructor(_x, _y, _arr = "") {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		tileSetSolid(x, y, 1)
+		state = _arr[0]
+		basePrice = int(_arr[1])
+		limit = int(_arr[2])
+		name = _arr[3]
+	}
+
+	function run() {
+		if(game.state[state] >= limit) soldout = true
+		price = (game.state[state] + 1) * basePrice
+
+		if(v > 0) {
+			vspeed = 0
+			v = 0
+		}
+		if(v <= -8) {
+			vspeed = 0.5
+		}
+
+		if(gvPlayer) {
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
+				gvPlayer.vspeed = 0
+				vspeed = -1
+				playSound(sndHeal, 0)
+				game.state[state]++
+				game.coins -= price
+			}
+		}
+
+		v += vspeed
+	}
+
+	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		else {
+			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+			drawText(font, x - camx - (pricetag.len() * 3), y - 16 - camy, pricetag)
+			drawText(font, x - camx - (name.len() * 3), y - 24 - camy, name)
+		}
+	}
+}

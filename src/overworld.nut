@@ -47,7 +47,7 @@
 		if(actor.rawin("StageIcon")) {//Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
-					level = i.level
+					level = i.levelName
 					onrace = i.raceMode
 					onstage = true
 					break
@@ -58,7 +58,7 @@
 		if(actor.rawin("TownIcon")) {//Find what level was landed on
 			foreach(i in actor["TownIcon"]) {
 				if(hitTest(shape, i.shape)) {
-					level = i.level
+					level = i.levelName
 					onstage = true
 					break
 				}
@@ -236,11 +236,14 @@
 	level = ""
 	visible = true
 	raceMode = false
+	levelName = ""
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
+		level = _arr
+		levelName = level
 	}
 
 	function run() {
@@ -275,11 +278,14 @@
 ::TownIcon <- class extends PhysAct {
 	level = ""
 	visible = true
+	levelName = ""
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
+		level = _arr
+		levelName = level
 	}
 
 	function run() {
@@ -305,11 +311,14 @@
 	visible = true
 	px = 0
 	py = 0
+	levelName = ""
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 8, 0)
+		level = _arr
+		levelName = level
 	}
 
 	function run() {
@@ -419,26 +428,22 @@
 			switch(n)
 			{
 				case 0:
-					//newActor(Tux, i.x, i.y - 16)
 					if(!gvPlayer) c = newActor(OverPlayer, i.x + 8, i.y - 8)
 					camx = gvPlayer.x - gvScreenW / 2
 					camy = gvPlayer.y - gvScreenH / 2
 					break
 
 				case 1:
-					c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
-					c.level = i.name
+					c = actor[newActor(StageIcon, i.x + 8, i.y - 8, i.name)]
 					c.visible = i.visible
 					break
 
 				case 2:
-					c = actor[newActor(WorldIcon, i.x + 8, i.y - 8)]
-					c.level = i.name
+					c = actor[newActor(WorldIcon, i.x + 8, i.y - 8, i.name)]
 					break
 
 				case 3:
-					c = actor[newActor(TownIcon, i.x + 8, i.y - 8)]
-					c.level = i.name
+					c = actor[newActor(TownIcon, i.x + 8, i.y - 8, i.name)]
 					break
 
 				case 4:
@@ -456,8 +461,7 @@
 					break
 
 				case 6:
-					c = actor[newActor(StageIcon, i.x + 8, i.y - 8)]
-					c.level = i.name
+					c = actor[newActor(StageIcon, i.x + 8, i.y - 8, i.name)]
 					c.visible = i.visible
 					c.raceMode = true
 					break
