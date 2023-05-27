@@ -85,7 +85,7 @@ setMusicVolume(config.musicVolume)
 //Aspects may not perfectly match, so the closest one will be picked
 local disres = displayW().tofloat() / displayH().tofloat()
 local reschoice = 0
-local aspects = [(16.0 / 9.0), (5.0 / 3.0), (4.0 / 3.0)]
+local aspects = [(1.0 / 2.0), (16.0 / 9.0), (5.0 / 3.0), (4.0 / 3.0), 1.0]
 local resdiff = 100 //Arbitrary high starting number
 for(local i = 0; i < aspects.len(); i++) {
 	if(abs(disres - aspects[i]) < resdiff) {
@@ -95,14 +95,21 @@ for(local i = 0; i < aspects.len(); i++) {
 }
 switch(reschoice) {
 	case 0:
-		setResolution(426, 240)
+		setResolution(480, 240)
 		break
 	case 1:
-		setResolution(400, 240)
+		setResolution(426, 240)
 		break
 	case 2:
+		setResolution(400, 240)
+		break
+	case 3:
 		setResolution(320, 240)
 		break
+	case 4:
+		setResolution(240, 240)
+		break
+	
 	//Other resolutions may be supported so default is left separate
 	default:
 		setResolution(320, 240)

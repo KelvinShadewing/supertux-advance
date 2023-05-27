@@ -65,7 +65,8 @@
 		"lookahead" : "Dynamic Camera: %s",
 		"nearbars" : "Near-Sighted Healthbars: %s",
 		"weather" : "Weather effects: %s",
-		"showkeys" : "Show Keys: %s"
+		"showkeys" : "Show Keys: %s",
+		"completion" : "Completion Stats: %s"
 	},
 
 	"options-menu-desc": {
@@ -85,7 +86,8 @@
 		"lookahead" : "Camera stays ahead of player and moves smoothly",
 		"nearbars" : "Health and energy bars appear near the player",
 		"weather" : "Turning off weather can help with near-sightedness and recording",
-		"showkeys" : "On-screen controls for speedrun recording"
+		"showkeys" : "On-screen controls for speedrun recording",
+		"completion" : "Show remaining coins, enemies, and secrets in level"
 	},
 
 	"speedrun-menu" : {
@@ -657,7 +659,12 @@
 		"xtreme-orbs-Midi" :
 		"Hmm, I wonder if Rad knows why these orbs are so special.",
 		"xtreme-orbs-Kiki" :
-		"I wonder what tools they used to make an ice mural like this last so long."
+		"I wonder what tools they used to make an ice mural like this last so long.",
+
+		"mines-0" :
+		"Hey there! Do you have a moment? If you haven't heard, Nolok robbed the treasury and stole the funds to keep the mines open. If you're able to, could you donate any coins you find? If we can't keep the mine open, we'll have to find fish in the sea and contend with the orcas!",
+		"mines-1" :
+		"Thanks to you, we've been able to keep the mine open a bit longer. Tuckles thinks something big is down under the ice and wants to keep digging. Any chance you could donate more and help us keep going?"
 	},
 
 	"level" : {

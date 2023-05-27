@@ -736,6 +736,11 @@ const menuY = 40
 		func = function() { config.showkeys = !config.showkeys }
 	},
 	{
+		name = function() { return format(gvLangObj["options-menu"]["completion"], config.completion ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) }
+		func = function() { config.completion = !config.completion }
+		desc = function() { return gvLangObj["options-menu-desc"]["completion"] }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }

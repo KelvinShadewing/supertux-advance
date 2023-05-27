@@ -515,6 +515,18 @@
                  "width":16,
                  "x":352,
                  "y":288
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":13,
+                 "name":"sprPenguinNPC,1,say,mines-0",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":448,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -523,7 +535,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":13,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "properties":[
         {

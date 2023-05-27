@@ -332,8 +332,10 @@
 			}
 		}
 
-		if(anim == "morphIn" || anim == "ball" || !placeFree(x, y)) shape = shapeSlide
-		else shape = shapeStand
+		shape = shapeStand
+		if(anim == "morphIn" || anim == "ball" || !placeFree(x, y))
+			shape = shapeSlide
+		
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
 		if(y > gvMap.h + 16) {
@@ -795,8 +797,6 @@
 			//Moving left and right
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
-
-			//if(abs(hspeed) > 3) accel /= fabs(hspeed)
 
 			if(anim == "ledge") {
 				mspeed = 0

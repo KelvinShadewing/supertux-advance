@@ -639,15 +639,29 @@
 		}
 
 		//Draw coins & herrings
-		drawSprite(sprCoin, 0, 16, gvScreenH - 16)
+		if(!config.completion || game.maxCoins == 0)
+			drawSprite(sprCoin, 0, 16, gvScreenH - 16)
 		if(game.maxCoins > 0) {
 			if(gvTimeAttack) {
-				if(levelEndRunner) drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
-				else drawText(font2, 24, gvScreenH - 23, (game.coins + game.levelCoins).tostring())
+				if(levelEndRunner)
+					drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
+				else
+					drawText(font2, 24, gvScreenH - 23, (game.coins + game.levelCoins).tostring())
 			}
-			else drawText(font2, 24, gvScreenH - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+			else
+				if(config.completion) {
+					drawSprite(sprIcoEnemy, 0, 18, gvScreenH - 34)
+					drawText(font, 24, gvScreenH - 38, game.enemies.tostring() + "/" + game.maxEnemies.tostring())
+					drawSprite(sprIcoSecret, 0, 18, gvScreenH - 26)
+					drawText(font, 24, gvScreenH - 30, game.secrets.tostring() + "/" + game.maxSecrets.tostring())
+					drawSprite(sprCoinSmall, 0, 18, gvScreenH - 18)
+					drawText(font, 24, gvScreenH - 22, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+				}
+			else
+				drawText(font2, 24, gvScreenH - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
 		}
-		else drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
+		else
+			drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
 		//Herrings (redcoins)
 		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - 40)
 		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - 46, game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())

@@ -176,6 +176,7 @@
 					local escapedir = target.x <=> x
 					while(!placeFree(x, y)) x += escapedir
 				}
+				shape.setPos(x, y)
 				held = false
 			}
 

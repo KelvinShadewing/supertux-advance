@@ -139,6 +139,10 @@
 ::defDivBar <- sprDivBar
 ::sprExit <- newSprite("res/gfx/exit.png", 16, 16, 0, 0, 8, 8)
 ::defExit <- sprExit
+::sprIcoEnemy <- newSprite("res/gfx/ico-enemy.png", 8, 8, 0, 0, 4, 4)
+::defIcoEnemy <- sprIcoEnemy
+::sprIcoSecret <- newSprite("res/gfx/ico-secret.png", 8, 8, 0, 0, 4, 4)
+::defIcoSecret <- sprIcoSecret
 
 ::sprNearRedBack <- newSprite("res/gfx/near-health-back.png", 8, 32, 0, 0, 0, 0)
 ::sprNearGreenBack <- newSprite("res/gfx/near-stamina-back.png", 32, 8, 0, 0, 0, 0)
@@ -389,6 +393,8 @@
 ::defCoffee <- sprCoffee
 ::sprMysticDoll <- newSprite("res/gfx/mystic-doll.png", 16, 16, 0, 0, 8, 8)
 ::defMysticDoll <- sprMysticDoll
+::sprCoinSmall <- newSprite("res/gfx/coin-small.png", 8, 8, 0, 0, 4, 4)
+::defCoinSmall <- sprCoinSmall
 
 
 
