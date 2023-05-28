@@ -198,148 +198,160 @@
          "name":"actor",
          "objects":[
                 {
+                 "class":"",
                  "gid":199,
                  "height":16,
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":32,
                  "y":288
                 }, 
                 {
+                 "class":"",
                  "gid":230,
                  "height":16,
                  "id":5,
                  "name":"sprBearistaNPC,1,say,bearista",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":592,
                  "y":272
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":6,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":752,
                  "y":200
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":7,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":432,
                  "y":200
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":8,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":1040,
                  "y":200
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":9,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":592,
                  "y":152
                 }, 
                 {
+                 "class":"",
                  "gid":230,
                  "height":16,
                  "id":10,
                  "name":"sprPenguinBuilderNPC,1,say,construction",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":1120,
                  "y":272
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":11,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":1392,
                  "y":200
                 }, 
                 {
+                 "class":"",
                  "gid":230,
                  "height":16,
                  "id":12,
                  "name":"sprKelvinNPC,0.1,say,not-done",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":512,
                  "y":272
                 }, 
                 {
+                 "class":"",
                  "gid":284,
                  "height":16,
                  "id":13,
                  "name":"CoffeeCup,120",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":656,
                  "y":256
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":14,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":624,
                  "y":240
                 }, 
                 {
+                 "class":"",
                  "gid":263,
                  "height":16,
                  "id":15,
                  "name":"StaticLight,sprLightGradient,1",
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":16,
                  "x":560,
                  "y":240
+                }, 
+                {
+                 "class":"",
+                 "gid":230,
+                 "height":16,
+                 "id":16,
+                 "name":"sprTwangNPC,1,say,twang-1",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":1216,
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -348,7 +360,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":16,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -362,7 +374,7 @@
          "value":"drawBG = dbgRiverCity\ndrawWeather = 0\ngvVoidFog = false\nsongPlay(musBerrylife)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.0",
+ "tiledversion":"1.9.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -523,6 +535,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.10",
+ "version":"1.9",
  "width":100
 }

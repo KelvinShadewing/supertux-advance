@@ -4310,7 +4310,7 @@
          "height":40,
          "id":14,
          "name":"secret",
-         "opacity":0.56,
+         "opacity":1,
          "type":"tilelayer",
          "visible":true,
          "width":439,
