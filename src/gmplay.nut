@@ -639,32 +639,28 @@
 		}
 
 		//Draw coins & herrings
-		if(!config.completion || game.maxCoins == 0)
-			drawSprite(sprCoin, 0, 16, gvScreenH - 16)
+		drawSprite(sprCoin, 0, 16, gvScreenH - 16)
 		if(game.maxCoins > 0) {
-			if(gvTimeAttack) {
+			if(gvTimeAttack || config.completion) {
 				if(levelEndRunner)
 					drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
 				else
 					drawText(font2, 24, gvScreenH - 23, (game.coins + game.levelCoins).tostring())
 			}
 			else
-				if(config.completion) {
-					drawSprite(sprIcoEnemy, 0, 18, gvScreenH - 34)
-					drawText(font, 24, gvScreenH - 38, game.enemies.tostring() + "/" + game.maxEnemies.tostring())
-					drawSprite(sprIcoSecret, 0, 18, gvScreenH - 26)
-					drawText(font, 24, gvScreenH - 30, game.secrets.tostring() + "/" + game.maxSecrets.tostring())
-					drawSprite(sprCoinSmall, 0, 18, gvScreenH - 18)
-					drawText(font, 24, gvScreenH - 22, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
-				}
-			else
 				drawText(font2, 24, gvScreenH - 23, game.levelCoins.tostring() + "/" + game.maxCoins.tostring())
+			if(config.completion) {
+				drawSprite(sprDeathcap, 0, 16, gvScreenH - 48)
+				drawText(font2, 24, gvScreenH - 56, game.enemies.tostring() + "/" + game.maxEnemies.tostring())
+				drawSprite(sprIcoSecret, 0, 16, gvScreenH - 32)
+				drawText(font2, 24, gvScreenH - 40, game.secrets.tostring() + "/" + game.maxSecrets.tostring())
+			}
 		}
 		else
 			drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
 		//Herrings (redcoins)
-		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - 40)
-		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - 46, game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
+		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - (config.completion ? 64 : 32))
+		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - (config.completion ? 72 : 38), game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
 		//Draw subitem
 		drawSprite(sprSubItem, 0, gvScreenW - 18, 18)
 		switch(game.ps1.subitem) {
