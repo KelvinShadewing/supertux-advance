@@ -139,9 +139,7 @@
 ::defDivBar <- sprDivBar
 ::sprExit <- newSprite("res/gfx/exit.png", 16, 16, 0, 0, 8, 8)
 ::defExit <- sprExit
-::sprIcoEnemy <- newSprite("res/gfx/ico-enemy.png", 8, 8, 0, 0, 4, 4)
-::defIcoEnemy <- sprIcoEnemy
-::sprIcoSecret <- newSprite("res/gfx/ico-secret.png", 8, 8, 0, 0, 4, 4)
+::sprIcoSecret <- newSprite("res/gfx/ico-secret.png", 16, 16, 0, 0, 8, 8)
 ::defIcoSecret <- sprIcoSecret
 
 ::sprNearRedBack <- newSprite("res/gfx/near-health-back.png", 8, 32, 0, 0, 0, 0)
