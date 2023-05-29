@@ -243,6 +243,8 @@ gvCharacters.Cyra <- {
 	function run() {
 		base.run()
 
+		inMelee = slashing
+
 		//Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
