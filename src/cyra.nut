@@ -76,7 +76,7 @@ gvCharacters.Cyra <- {
 	blast = true
 	swimming = false
 	endMode = false
-	canStomp = false //If they can use jumping as an attack
+	canStomp = true //If they can use jumping as an attack
 	sprite = sprCyra
 	invincible = 0
 	shapeStand = 0
@@ -280,6 +280,11 @@ gvCharacters.Cyra <- {
 			swimming = false
 			shapeStand.h = 12.0
 
+			if(anim == "stomp")
+				stompDamage = 2.0
+			else
+				stompDamage = 0.0
+
 			//Animation states
 			animOffset = 0.0
 			switch(anim) {
@@ -339,13 +344,13 @@ gvCharacters.Cyra <- {
 					}
 
 					if(slashing) {
-						animOffset = (6.0 * 8.0) + (floor(slashTimer) * 8.0)
+						animOffset = (16.0 * 3.0)
 					}
 					break
 
 				case "run":
 					if(slashing) {
-						animOffset = (8.0 * 8.0) + (floor(slashTimer) * 8.0)
+						animOffset = (16.0 * 3.0)
 					}
 				case "skid":
 					if(flip == 0 && hspeed < 0) {
@@ -1237,31 +1242,26 @@ gvCharacters.Cyra <- {
 				case "normal":
 					sprite = mySprNormal
 					damageMult = damageMultN
-					canStomp = false
 					break
 
 				case "fire":
 					sprite = mySprFire
 					damageMult = damageMultF
-					canStomp = false
 					break
 
 				case "ice":
 					sprite = mySprIce
 					damageMult = damageMultI
-					canStomp = false
 					break
 
 				case "air":
 					sprite = mySprAir
 					damageMult = damageMultA
-					canStomp = false
 					break
 
 				case "earth":
 					sprite = mySprEarth
 					damageMult = damageMultE
-					canStomp = true
 					break
 			}
 
@@ -1271,8 +1271,17 @@ gvCharacters.Cyra <- {
 
 			if(anim != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
-				if(blinking == 0 || anim == "hurt") drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, 1)
-				else drawSpriteZ(0, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				if(blinking == 0 || anim == "hurt") {
+					drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, 1)
+					if((slashing || animOffset > 0) && (anim == "walk" || anim == "run"))
+						drawSpriteZ(2, sprite, 80 + min(slashTimer, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+				}
+				else {
+					drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+					if((slashing || animOffset > 0) && (anim == "walk" || anim == "run"))
+						drawSpriteZ(2, sprite, 80 + min(slashTimer, 3), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				}
+				
 			}
 			if(debug) {
 				setDrawColor(0x008000ff)
@@ -1280,7 +1289,8 @@ gvCharacters.Cyra <- {
 			}
 
 			//After image
-			if((zoomies > 0 || anim == "stomp" ) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][frame] + animOffset, 0, flip, 0, 1, 1])
+			if((zoomies > 0 || anim == "stomp" ) && getFrames() % 2 == 0)
+				newActor(AfterImage, x, y, [sprite, an[anim][frame] + animOffset, 0, flip, 0, 1, 1])
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
@@ -1288,7 +1298,8 @@ gvCharacters.Cyra <- {
 		//Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
-				if(!hidden) drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+				if(!hidden)
+					drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
 				tftime += 0.25
 			} else tftime = -1
 		}

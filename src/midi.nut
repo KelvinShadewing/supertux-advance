@@ -480,7 +480,7 @@
 
 				if(anim == "walk") {
 					//Offset frame based on movement speed and if shooting
-					if(fabs(rspeed) > 2.0) animOffset = 16
+					if(fabs(rspeed) > 1.8) animOffset = 16
 					if(fabs(rspeed) > 3.6) animOffset = 32
 					if(shooting) animOffset += 8
 					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery)) anim = "stand"
