@@ -67,7 +67,7 @@
 						getHurt(gvPlayer, gvPlayer.stompDamage, "normal", false, false, true)
 					}
 					else if(("anim" in gvPlayer) && blinking == 0 && !sharpSide) {
-						if(gvPlayer.inMelee) getHurt(gvPlayer, 1, "normal", false, false, false)
+						if(gvPlayer.anim == "slide" || (gvPlayer.anim == "ball" && fabs(gvPlayer.hspeed) > 4.2)) getHurt(gvPlayer, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer)
 					}
 					else hurtPlayer(gvPlayer)
@@ -85,7 +85,7 @@
 						getHurt(gvPlayer2, gvPlayer2.stompDamage, "normal", false, false, true)
 					}
 					else if(("anim" in gvPlayer2) && blinking == 0 && !sharpSide) {
-						if(gvPlayer2.inMelee) getHurt(gvPlayer2, 1, "normal", false, false, false)
+						if(gvPlayer2.anim == "slide" || (gvPlayer2.anim == "ball" && fabs(gvPlayer2.hspeed) > 4.2)) getHurt(gvPlayer2, 1, "normal", false, false, false)
 						else hurtPlayer(gvPlayer2)
 					}
 					else hurtPlayer(gvPlayer2)
@@ -150,7 +150,7 @@
 			held = false
 			return
 		}
-
+		
 		if(target.anim == "slide" || target.anim == "ball" || target.inMelee) {
 			target.holding = 0
 			held = false
