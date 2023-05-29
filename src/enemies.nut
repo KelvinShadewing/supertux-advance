@@ -146,6 +146,11 @@
 
 	function holdMe(throwH = 2.0, throwV = 2.0) {
 		local target = findPlayer()
+		if(target == null) {
+			held = false
+			return
+		}
+		
 		if(target.anim == "slide" || target.anim == "ball" || target.inMelee) {
 			target.holding = 0
 			held = false
@@ -1019,8 +1024,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
-		if(!_stomp || !_by.swimming) hurtFire()
+		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
+			hurtFire()
 	}
 
 	function hurtFire() {
@@ -1034,7 +1039,6 @@
 		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
-		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
@@ -1142,8 +1146,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
-		if(!_stomp || !_by.swimming) hurtFire()
+		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
+			hurtFire()
 	}
 
 	function hurtFire() {
@@ -1157,7 +1161,6 @@
 		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
-		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
@@ -1248,8 +1251,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
-		if(!_stomp || !_by.swimming) hurtFire()
+		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
+			hurtFire()
 	}
 
 	function hurtFire() {
@@ -1267,7 +1270,6 @@
 		actor[c].gravity = 0.01
 		die()
 		popSound(sndKick, 0)
-		game.enemies++
 		newActor(Poof, x, y)
 	}
 
@@ -1486,8 +1488,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
-		if(!_stomp || !_by.swimming) hurtFire()
+		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
+			hurtFire()
 	}
 
 	function hurtFire() {
@@ -1501,7 +1503,6 @@
 		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
-		game.enemies++
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
