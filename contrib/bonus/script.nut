@@ -1,0 +1,2 @@
+freeKonqi()
+freeMidi()
