@@ -233,6 +233,55 @@
 	}
 }
 
+::RollingSlash <- class extends WeaponEffect{
+	power = 2
+	frame = 0.0
+	shape = 0
+	piercing = -1
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndCyraSwordSwing, 0)
+
+		shape = Cir(x, y, 30.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+		if(checkActor(owner)) {
+			x = actor[owner].x
+			y = actor[owner].y
+			shape.setPos(x, y)
+		}
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 96) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 96) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 //////////////////
 // FIRE ATTACKS //
 //////////////////

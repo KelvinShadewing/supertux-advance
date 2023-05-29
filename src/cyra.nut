@@ -132,6 +132,7 @@ gvCharacters.Cyra <- {
 		wall = [52, 53]
 		fallW = [53]
 		slide = [54, 55, 56, 57]
+		rollingSlash = [132, 133, 134, 135, 136, 137, 138, 139]
 	}
 	animOffset = 0.0
 
@@ -242,6 +243,8 @@ gvCharacters.Cyra <- {
 	function run() {
 		base.run()
 
+		inMelee = slashing
+
 		//Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
@@ -267,6 +270,12 @@ gvCharacters.Cyra <- {
 		if(firetime == 0 && energy < stats.maxEnergy) {
 			energy++
 			firetime = 40
+		}
+
+		if(slashing) slashTimer += 0.2
+		if(slashTimer >= 3) {
+			slashTimer = 0.0
+			slashing = false
 		}
 
 		if(stats.weapon == "normal") stats.maxEnergy = 0
@@ -523,12 +532,14 @@ gvCharacters.Cyra <- {
 					anim = "fall"
 					frame = 0.0
 					break
-			}
 
-			if(slashing) slashTimer += 0.2
-			if(slashTimer >= 3) {
-				slashTimer = 0.0
-				slashing = false
+				case "rollingSlash":
+					frame = (slashTimer / 3.0) * 8.0
+					if(!slashing) {
+						anim = "fall"
+						slashing = false
+					}
+					break
 			}
 
 			if(anim != "climb") frame = wrap(abs(frame), 0.0, an[anim].len() - 1)
@@ -561,6 +572,7 @@ gvCharacters.Cyra <- {
 				if(stats.weapon == "air" && energy < 1) energy += 0.02
 			}
 			if(canMove) {
+				accel = 0.2
 				if(stats.weapon == "ice") mspeed = 3.5
 				else mspeed = 3.0
 				if((getcon("run", "hold", true, playerNum) || (abs(joyX(0)) >= js_max * 0.9 || abs(joyY(0)) >= js_max * 0.9) && config.stickspeed) && anim != "crawl") {
@@ -847,7 +859,15 @@ gvCharacters.Cyra <- {
 				fireWeapon(StompPoof, x - 8, y + 12, 1, id)
 			}
 
-			if(canMove) switch(stats.weapon) {
+			if(canMove && anim != "hurt" && getcon("shoot", "press", true, playerNum) && !slashing && freeDown2 && getcon("up", "hold", true, playerNum)) {
+				slashing = true
+				anim = "rollingSlash"
+				local c = fireWeapon(RollingSlash, x, y, 1, id)
+				c.element = stats.weapon
+				slashTimer = 0.0
+				firetime = 60
+			}
+			else if(canMove && !slashing) switch(stats.weapon) {
 				case "normal":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && cooldown == 0) {
 						cooldown = 16
@@ -1004,6 +1024,7 @@ gvCharacters.Cyra <- {
 			an["fall"] = an["float"]
 
 			//Animation states
+			animOffset = 0.0
 			switch(anim) {
 				case "swimF":
 				case "swimU":
@@ -1022,12 +1043,19 @@ gvCharacters.Cyra <- {
 				case "fall":
 					frame += 0.01
 					break
+				case "rollingSlash":
+					frame = (slashTimer / 3.0) * 8.0
+					if(!slashing) {
+						anim = "fall"
+						slashing = false
+					}
+					break
 			}
 
 			frame = wrap(abs(frame), 0.0, an[anim].len() - 1)
 
 			//Swich swim directions
-			if(anim != "hurt") {
+			if(anim != "hurt" && anim != "rollingSlash") {
 				if(fabs(hspeed) < 0.3 && fabs(vspeed) < 0.2) anim = "fall" //To be replaced with regular swim sprites later
 				if(fabs(hspeed) > 0.3) anim = "swimF"
 				if(vspeed > 0.2) anim = "swimD"
@@ -1037,7 +1065,8 @@ gvCharacters.Cyra <- {
 			}
 
 			//Movement
-			if(canMove) {
+			if(canMove && anim != "rollingSlash" && anim != "hurt") {
+				accel = 0.15
 				mspeed = 2.0
 				if(zoomies > 0) mspeed *= 2.0
 
@@ -1062,73 +1091,16 @@ gvCharacters.Cyra <- {
 				if(hspeed < -0.1) flip = 1
 			}
 
-			//Attacks			
-			if(canMove) switch(stats.weapon) {
-				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "slide" && anim != "hurt" && energy > 0) {
-						local fx = 6
-						if(flip == 1) fx = -5
-						local c = fireWeapon(Fireball, x + fx, y - 4, 1, id)
-						if(!flip) c.hspeed = 3
-						else c.hspeed = -3
-						playSound(sndFireball, 0)
-						if(getcon("up", "hold", true, playerNum)) {
-							c.vspeed = -3
-							if(hspeed != 0) c.hspeed *= 0.75
-							else {
-								c.hspeed = 0
-								c.vspeed = -3
-							}
-						}
-						if(getcon("down", "hold", true, playerNum)) {
-							c.vspeed = 3
-							if(hspeed != 0) c.hspeed *= 0.75
-							else {
-								c.hspeed = 0
-								c.vspeed = 3
-							}
-						}
-
-						c.hspeed += hspeed / 3
-						c.vspeed += vspeed / 3
-
-						energy--
-						firetime = 60
-					}
-					break
-
-				case "ice":
-					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" &&  anim != "slide" && anim != "hurt" && energy > 0) {
-						local fx = 6
-						if(flip == 1) fx = -5
-						local c = fireWeapon(Iceball, x + fx, y, 1, id)
-						if(!flip) c.hspeed = 3
-						else c.hspeed = -3
-						playSound(sndFireball, 0)
-						if(getcon("up", "hold", true, playerNum)) {
-							c.vspeed = -3
-							if(hspeed != 0) c.hspeed *= 0.75
-							else {
-								c.hspeed = 0
-								c.vspeed = -3
-							}
-						}
-						if(getcon("down", "hold", true, playerNum)) {
-							c.vspeed = 3
-							if(hspeed != 0) c.hspeed *= 0.75
-							else {
-								c.hspeed = 0
-								c.vspeed = 3
-							}
-						}
-
-						c.hspeed += hspeed / 2
-						c.vspeed += vspeed / 2
-
-						energy--
-						firetime = 60
-					}
-					break
+			//Attacks
+			if(canMove && anim != "hurt" && getcon("shoot", "press", true, playerNum) && !slashing) {
+				slashing = true
+				hspeed /= 2.0
+				vspeed /= 2.0
+				anim = "rollingSlash"
+				local c = fireWeapon(RollingSlash, x, y, 1, id)
+				c.element = stats.weapon
+				slashTimer = 0.0
+				firetime = 60
 			}
 		}
 
@@ -1271,16 +1243,9 @@ gvCharacters.Cyra <- {
 
 			if(anim != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
-				if(blinking == 0 || anim == "hurt") {
-					drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, 1)
-					if((slashing || animOffset > 0) && (anim == "walk" || anim == "run"))
-						drawSpriteZ(2, sprite, 80 + min(slashTimer, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
-				}
-				else {
-					drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
-					if((slashing || animOffset > 0) && (anim == "walk" || anim == "run"))
-						drawSpriteZ(2, sprite, 80 + min(slashTimer, 3), x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
-				}
+				drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, (blinking ? wrap(blinking, 0, 10).tofloat() / 10.0 : 1))
+				if((slashing || animOffset > 0) && (anim == "walk" || anim == "run"))
+					drawSpriteZ(2, sprite, 80 + min(slashTimer, 3), x - camx, y - camy, 0, flip, 1, 1, (blinking ? wrap(blinking, 0, 10).tofloat() / 10.0 : 1))
 				
 			}
 			if(debug) {
