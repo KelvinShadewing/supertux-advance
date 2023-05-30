@@ -136,6 +136,8 @@
 	mineSprite = sprNutMine
 	topSprite = sprTopNut
 
+	shapeGrip = null
+
 	damageMultN = {
 		normal = 1.0
 		fire = 1.0
@@ -213,6 +215,7 @@
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
+		shapeGrip = Rec(x, y, 1, 1)
 		shape = shapeStand
 		startx = _x.tofloat()
 		starty = _y.tofloat()
@@ -928,7 +931,9 @@
 			//Wall slide
 			if((anim == "fall" || anim == "ledge") && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
-					if(tileGetSolid(x - 8, y - 16) == 0 && tileGetSolid(x - 8, y) == 1 && placeFree(x, y + 8)) {
+					local oldShape = shape
+					shape = shapeGrip
+					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 12) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 1
@@ -940,9 +945,12 @@
 						anim = "fall"
 						flip = 0
 					}
+					shape = oldShape
 				}
 				if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
-					if(tileGetSolid(x + 8, y - 16) == 0 && tileGetSolid(x + 8, y) == 1 && placeFree(x, y + 8)) {
+					local oldShape = shape
+					shape = shapeGrip
+					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 12) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 0
@@ -954,6 +962,7 @@
 						anim = "fall"
 						flip = 1
 					}
+					shape = oldShape
 				}
 			} else an["fall"] = an["fallN"]
 

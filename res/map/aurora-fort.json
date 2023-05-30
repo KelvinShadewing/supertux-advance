@@ -838,17 +838,6 @@
                  "y":1452
                 }, 
                 {
-                 "height":160,
-                 "id":527,
-                 "name":"gvCamTarget = actor[id]",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":304,
-                 "x":2080,
-                 "y":80
-                }, 
-                {
                  "height":64,
                  "id":604,
                  "name":"endGoal(\"timeattack-win\", \"aurora-fort\",1)",
@@ -4845,7 +4834,7 @@
                  "name":"TransZone,dbgCave,0,0x6080e0ff",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":3200,
                  "x":0,
                  "y":368
@@ -4856,7 +4845,7 @@
                  "name":"TransZone,dbgCastle,dweBlizzard,0x6080e0ff",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":2320,
                  "x":880,
                  "y":112
@@ -4872,6 +4861,28 @@
                  "width":16,
                  "x":1104,
                  "y":816
+                }, 
+                {
+                 "height":160,
+                 "id":678,
+                 "name":"CameraGrabber",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":304,
+                 "x":2080,
+                 "y":80
+                }, 
+                {
+                 "height":80,
+                 "id":682,
+                 "name":"CameraGrabber",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":464,
+                 "x":2320,
+                 "y":1616
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4880,7 +4891,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":678,
+ "nextobjectid":686,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -4894,7 +4905,7 @@
          "value":"songPlay(musCastle)\ndrawBG = dbgCastle\ndrawWeather = dweBlizzard\ngame.colorswitch[7] = false\n\nif(game.characters.rawin(\"Konqi\")) {\n\tactor[mapActor[591]].setDia(\"borealis2\")\n\tdeleteActor(mapActor[603])\n\tdeleteActor(mapActor[526])\n\tdeleteActor(mapActor[672])\n}\n\ngfxEnemySnow()\n\nif(gvTAFullGame) actor[mapActor[604]].code = \"endGoal(\\\"nessland-left\\\",\\\"aurora-fort\\\",1)\""
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.0",
  "tileheight":16,
  "tilesets":[
         {

@@ -109,7 +109,7 @@
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -145,7 +145,7 @@
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer2.y + gvPlayer2.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer2.y + gvPlayer2.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -219,7 +219,7 @@
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -291,7 +291,7 @@
 				}
 				if(gvCamTarget2.rawin("h")) if(abs(gvCamTarget2.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
-					else pty = (gvCamTarget2.y + gvCamTarget2.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvCamTarget2.y + gvCamTarget2.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
