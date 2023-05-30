@@ -81,6 +81,7 @@
 ::Tilemap <- class {
 	data = null
 	tileset = null
+	image = null
 	tilef = null
 	tilew = 0
 	tileh = 0
@@ -101,6 +102,7 @@
 
 	constructor(filename) {
 		tileset = []
+		image = {}
 		tilef = []
 		geo = []
 		data = {}
@@ -124,7 +126,8 @@
 
 			for(local i = 0; i < data.tilesets.len(); i++) {
 				//Check if tileset is not embedded
-				if("source" in data.tilesets[i]) for(local j = 0; j < tileSearchDir.len(); j++) {
+				if("source" in data.tilesets[i])
+				for(local j = 0; j < tileSearchDir.len(); j++) {
 					local sourcefile = findFileName(data.tilesets[i].source)
 					if(fileExists(tileSearchDir[j] + "/" + sourcefile)) {
 						print("Found external tileset: " + sourcefile)
@@ -179,21 +182,32 @@
 
 			shape = (Rec(0, 0, 8, 8, 0))
 
-			//Add sky protection
-			local l = -1
+			//Assign solid layer
 			for(local i = 0; i < data.layers.len(); i++) {
-				if(data.layers[i].name == "solid") {
-					l = data.layers[i]
+				if(data.layers[i].type == "tilelayer" && data.layers[i].name == "solid") {
+					solidLayer = data.layers[i]
 					break
 				}
 			}
 
+			//Load image layers
 			for(local i = 0; i < data.layers.len(); i++) {
-			if(data.layers[i].type == "tilelayer" && data.layers[i].name == "solid") {
-				solidLayer = data.layers[i]
-				break
+				if(data.layers[i].type == "imagelayer") {
+					local imageSource = findTexture(findFileName(data.layers[i].image))
+					if(imageSource <= 0) {
+						for(local j = 0; j < tileSearchDir.len(); j++) {
+							local sourcefile = findFileName(data.layers[i].image)
+							if(fileExists(tileSearchDir[j] + "/" + sourcefile)) {
+								print("Found external image: " + sourcefile)
+								imageSource = loadImage(tileSearchDir[j] + "/" + sourcefile)
+								break
+							}
+							else print("Unable to find external image: " + sourcefile + " in " + tileSearchDir[j])
+						}
+					}
+					image[data.layers[i].name] <- imageSource
+				}
 			}
-		}
 		}
 		else print("Map file " + filename + " does not exist!")
 	}
@@ -280,6 +294,11 @@
 				}
 			}
 		}
+	}
+
+	function drawImageLayer(l, x, y) {
+		if(l in image)
+			drawImage(image[l], x, y)
 	}
 
 	function del() {
