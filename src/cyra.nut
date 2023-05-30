@@ -1024,6 +1024,7 @@ gvCharacters.Cyra <- {
 			an["fall"] = an["float"]
 
 			//Animation states
+			animOffset = 0.0
 			switch(anim) {
 				case "swimF":
 				case "swimU":
