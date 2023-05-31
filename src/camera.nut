@@ -426,3 +426,9 @@
 
 	function _typeof() { return "CameraGrabber" }
 }
+
+::CameraBlock <- class extends PhysAct {
+	w = 0
+	h = 0
+	shape = null
+}

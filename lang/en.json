@@ -18,7 +18,7 @@
 
 	"time-attack-menu" : {
 		"world" : "World: %s",
-		"player1" : "Player 1: %s",
+		"player1" : "Player: %s",
 		"player2" : "Player 2: %s",
 		"start-run" : "Begin Run"
 	},
@@ -49,7 +49,7 @@
 		"accessibility" : "Accessibility",
 		"keyboard" : "Keyboard Controls",
 		"joystick" : "Gamepad Controls",
-		"joystick1" : "Gamepad 1 Controls",
+		"joystick1" : "Gamepad Controls",
 		"joystick2" : "Gamepad 2 Controls",
 		"cursor" : "Show Mouse Cursor: %s",
 		"speedrun" : "Speedruning",
@@ -187,7 +187,7 @@
 	"pause-menu" : {
 		"pause" : "PAUSE",
 		"continue" : "Continue",
-		"character" : "Change Player 1",
+		"character" : "Change Player",
 		"character2" : "Change Player 2",
 		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
