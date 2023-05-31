@@ -192,10 +192,10 @@ const menuY = 40
 		name = function() { return format(gvLangObj["time-attack-menu"]["player1"], game.playerChar) },
 		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
 	},
-	{
-		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], game.playerChar2 != 0 ? game.playerChar2 : "????") },
-		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar }
-	},
+	// {
+	// 	name = function() { return format(gvLangObj["time-attack-menu"]["player2"], game.playerChar2 != 0 ? game.playerChar2 : "????") },
+	// 	func = function() { pickCharInitialize(2, true); gvGameMode = pickChar }
+	// },
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 0; menu = meMain },
@@ -282,11 +282,11 @@ const menuY = 40
 		func = function() { pickCharInitialize(); gvGameMode = pickChar }
 		desc = function() { return game.playerChar }
 	},
-	{
-		name = function() { return gvLangObj["pause-menu"]["character2"]},
-		func = function() { pickCharInitialize(2); gvGameMode = pickChar }
-		desc = function() { return game.playerChar2 }
-	},
+	// {
+	// 	name = function() { return gvLangObj["pause-menu"]["character2"]},
+	// 	func = function() { pickCharInitialize(2); gvGameMode = pickChar }
+	// 	desc = function() { return game.playerChar2 }
+	// },
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { menu = meOptions }
@@ -434,11 +434,11 @@ const menuY = 40
 		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
 		func = function() { menu = meJoybinds1 }
 	},
-	{
-		name = function() { return gvLangObj["options-menu"]["joystick2"] },
-		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
-		func = function() { menu = meJoybinds2 }
-	},
+	// {
+	// 	name = function() { return gvLangObj["options-menu"]["joystick2"] },
+	// 	desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
+	// 	func = function() { menu = meJoybinds2 }
+	// },
 	{
 		name = function() {
 			local val = gvLangObj["menu-commons"][config.showcursor ? "on" : "off"]

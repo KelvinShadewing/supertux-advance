@@ -11,3 +11,5 @@ mods/*.*
 contrib/secret
 contrib/secret/*
 contrib/secret/*.*
+.vscode
+.vscode/*

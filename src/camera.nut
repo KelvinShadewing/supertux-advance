@@ -109,7 +109,7 @@
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -145,7 +145,7 @@
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer2.y + gvPlayer2.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer2.y + gvPlayer2.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -219,7 +219,7 @@
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
-					else pty = (gvPlayer.y + gvPlayer.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -287,11 +287,11 @@
 
 				if(gvCamTarget2.rawin("w")) if(abs(gvCamTarget2.w) > pw / 4) {
 					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvCamTarget2.x - (gvScreenW / 4) + lx
-					else ptx = (gvCamTarget2.x + gvCamTarget2.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
+					else ptx = (gvCamTarget2.x * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
 				}
 				if(gvCamTarget2.rawin("h")) if(abs(gvCamTarget2.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
-					else pty = (gvCamTarget2.y + gvCamTarget2.vspeed * 16) - (gvScreenH / 2) + ly
+					else pty = (gvCamTarget2.y * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx
@@ -327,6 +327,12 @@
 ::CameraGrabber <- class extends Actor {
 	w = 0
 	h = 0
+	lock = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		lock = (_arr != null)
+	}
 
 	function run() {
 		if(!gvSplitScreen) { //Single player camera
@@ -339,7 +345,10 @@
 			&& gvPlayer2.x >= x - w
 			&& gvPlayer2.y >= y - h
 			&& gvPlayer2.x <= x + w
-			&& gvPlayer2.y <= y + h)) gvCamTarget = this
+			&& gvPlayer2.y <= y + h)) {
+				gvCamTarget = this
+				gvCamTarget2 = this
+			}
 		}
 		else { //Multi player camera
 			if(gvPlayer
@@ -348,17 +357,78 @@
 			&& gvPlayer.x <= x + w
 			&& gvPlayer.y <= y + h) gvCamTarget = this
 
-			if((camx2 + (gvScreenW / 4) >= x - w
-			&& camy2 + (gvScreenH / 4) >= y - h
-			&& camx2 + (gvScreenW / 4) <= x + w
-			&& camy2 + (gvScreenH / 4) <= y + h)
-			|| (gvPlayer2
+			if(gvPlayer2
 			&& gvPlayer2.x >= x - w
 			&& gvPlayer2.y >= y - h
 			&& gvPlayer2.x <= x + w
-			&& gvPlayer2.y <= y + h)) gvCamTarget2 = this
+			&& gvPlayer2.y <= y + h) gvCamTarget2 = this
+		}
+
+		if(lock) {
+			if(gvCamTarget == this) {
+				if(!gvSplitScreen) {
+					if(w >= gvScreenW / 2) {
+						if(camx0 < x - w) camx0 = x - w
+						if(camx0 + gvScreenW > x + w ) camx0 = x + w - gvScreenW
+						if(camx1 < x - w) camx1 = x - w
+						if(camx1 + gvScreenW > x + w ) camx1 = x + w - gvScreenW
+					}
+					else {
+						camx0 = x - gvScreenW / 2
+						camx1 = x - gvScreenW / 2
+					}
+
+					if(h >= gvScreenH / 2) {
+						if(camy0 < y - h) camy0 = y - h
+						if(camy0 + gvScreenH > y + h) camy0 = y + h - gvScreenH
+						if(camy1 < y - h) camy1 = y - h
+						if(camy1 + gvScreenH > y + h) camy1 = y + h - gvScreenH
+					}
+					else{
+						camy0 = y - gvScreenH / 2
+						camy1 = y - gvScreenH / 2
+					}
+				}
+				else {
+					if(w >= gvScreenW / 4) {
+						if(camx1 < x - w) camx1 = x - w
+						if(camx1 + gvScreenW / 2 > x + w ) camx1 = x + w - gvScreenW / 2
+					}
+					else
+						camx1 = x - gvScreenW / 4
+
+					if(h >= gvScreenH / 2) {
+						if(camy1 < y - h) camy1 = y - h
+						if(camy1 + gvScreenH > y + h) camy1 = y + h - gvScreenH
+					}
+					else
+						camy1 = y - gvScreenH / 2
+				}
+			}
+
+			if(gvCamTarget2 == this && !gvSplitScreen) {
+				if(w >= gvScreenW / 4) {
+					if(camx2 < x - w) camx2 = x - w
+					if(camx2 + gvScreenW / 2 > x + w ) camx2 = x + w - gvScreenW / 2
+				}
+				else
+					camx2 = x - gvScreenW / 4
+
+				if(h >= gvScreenH / 2) {
+					if(camy2 < y - h) camy2 = y - h
+					if(camy2 + gvScreenH > y + h) camy2 = y + h - gvScreenH
+				}
+				else
+					camy2 = y - gvScreenH / 2
+			}
 		}
 	}
 
 	function _typeof() { return "CameraGrabber" }
+}
+
+::CameraBlock <- class extends PhysAct {
+	w = 0
+	h = 0
+	shape = null
 }
