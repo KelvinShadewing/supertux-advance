@@ -123,6 +123,7 @@
 		landing = [232, 233, 234, 235]
 		wave = [236, 237]
 		pick = [238, 239]
+		moonwalk = [240, 241, 242, 243, 244, 245, 246, 247]
 	}
 	animOffset = 0.0
 
@@ -487,15 +488,29 @@
 					hspeed -= 0.1
 					anim = "skid"
 				}
-				else anim = "walk"
+				else
+					anim = "walk"
+
+				
+				
 
 				if(anim == "walk") {
 					//Offset frame based on movement speed and if shooting
-					if(fabs(rspeed) > 1.8) animOffset = 16
-					if(fabs(rspeed) > 3.6) animOffset = 32
-					if(shooting) animOffset += 8
-					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery)) anim = "stand"
-					else if(fabs(rspeed) < fabs(hspeed) && !slippery) rspeed = fabs(hspeed)
+					if((getcon("right", "hold", true, playerNum) && getcon("left", "hold", true, playerNum) || endMode) && ((flip == 0 && hspeed < 0) || (flip == 1 && hspeed > 0)) && fabs(rspeed) <= 1.8 && !shooting)
+						animOffset = an["moonwalk"][0] - an["walk"][0]
+					else {
+						if(fabs(rspeed) > 1.8)
+							animOffset = 16
+						if(fabs(rspeed) > 3.6)
+							animOffset = 32
+						if(shooting)
+							animOffset += 8
+					}
+					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery)) 
+						anim = "stand"
+					else if(fabs(rspeed) < fabs(hspeed) && !slippery)
+						rspeed = fabs(hspeed)
+					
 				}
 
 				if(placeFree(x, y + 2) && !onPlatform()) {
