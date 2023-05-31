@@ -232,6 +232,14 @@
 		else gravity = 0.25
 		
 		switch(anim) {
+			case "walk":
+				if(canMove && getcon("left", "hold", true, playerNum) && getcon("right", "hold", true, playerNum)) {
+					if(fabs(hspeed) >= 1.5)
+						hspeed *= 0.9
+					if(fabs(hspeed) <= 1.4)
+						hspeed *= 1.1
+				}
+				break
 			case "float":
 			case "swim":
 				gravity = 0.0
@@ -411,12 +419,12 @@
 				boredom++
 
 				if((abs(rspeed) > 0.1 || abs(hspeed) > 1) && !slippery) {
-					if(flip == 0 && hspeed < 0 && !endMode) {
+					if(flip == 0 && hspeed < 0 && !endMode && !getcon("right", "hold", true, playerNum)) {
 						hspeed += 0.1
 						anim = "skid"
 						rspeed = fabs(hspeed / 1.5)
 					}
-					else if(flip == 1 && hspeed > 0 && !endMode) {
+					else if(flip == 1 && hspeed > 0 && !endMode && !getcon("left", "hold", true, playerNum)) {
 						hspeed -= 0.1
 						anim = "skid"
 						rspeed = fabs(hspeed / 1.5)
@@ -471,11 +479,11 @@
 			case "walk":
 				frame += abs(rspeed) / (8 + abs(rspeed))
 
-				if(flip == 0 && hspeed < 0 && !endMode) {
+				if(flip == 0 && hspeed < 0 && !endMode && !getcon("left", "hold", true, playerNum)) {
 					hspeed += 0.1
 					anim = "skid"
 				}
-				else if(flip == 1 && hspeed > 0 && !endMode) {
+				else if(flip == 1 && hspeed > 0 && !endMode && !getcon("right", "hold", true, playerNum)) {
 					hspeed -= 0.1
 					anim = "skid"
 				}
@@ -645,20 +653,21 @@
 					break
 				}
 				if(frame >= an[anim].len()) {
-					anim = "stand"
-
 					if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(i instanceof NutMine) deleteActor(i.id)
 
 					local nutType = "normal"
 					if(hand == 0) nutType = stats.weapon
 					if(hand == 1) nutType = stats.subitem
 					local c = fireWeapon(NutMine, x, y + 9, 1, id)
+					c.exPower = min(floor(chargeTimer / 90) + 1, 3)
 
 					if(c != null) {
 						c.exElement = nutType
 						energy--
 						firetime = 90
 					}
+
+					anim = "stand"
 				}
 				rspeed = 0
 				break
@@ -744,7 +753,7 @@
 
 			if(getcon("spec1", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(1, floor(chargeTimer / 90) + 1)
 
-			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum)) chargeTimer = 0
+			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum) && anim != "plantMine") chargeTimer = 0
 
 			if(chargeTimer > 180 && (getFrames()) % 4 == 0) {
 				newActor(GoldCharge, x - 12 + randInt(24) y - 12 + randInt(24))
@@ -1329,7 +1338,6 @@
 		else {
 			frame = 0.0
 			anim = "plantMine"
-			_power = 1
 			vspeed = 0.0
 		}
 

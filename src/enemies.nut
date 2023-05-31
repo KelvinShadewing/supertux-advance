@@ -145,6 +145,9 @@
 	}
 
 	function holdMe(throwH = 2.0, throwV = 2.0) {
+		if(frozen)
+			return
+			
 		local target = findPlayer()
 		if(target == null) {
 			held = false
