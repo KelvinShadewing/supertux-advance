@@ -5,7 +5,7 @@
 	pickCharSettings.charlist <- []
 	foreach(key, i in gvCharacters) {
 		if(key in game.characters || unlockAll) {
-			local newitem = [key, i["normal"], i["pick"], i["doll"]]
+			local newitem = [key, i["normal"], i["pick"], i["doll"], i["name"]]
 			if(playerNum == 1 && game.playerChar2 != key
 			|| playerNum == 2 && game.playerChar != key) pickCharSettings.charlist.push(newitem)
 		}
@@ -95,7 +95,7 @@
 
 	//Draw
 	drawText(font2, (screenW() / 2) - (gvLangObj["options-menu"]["charsel"].len() * 4), 16, gvLangObj["options-menu"]["charsel"])
-	if(charlist[charslot][0] != "") drawText(font2, (screenW() / 2) - (charlist[charslot][0].len() * 4), 200, charlist[charslot][0])
+	if(charlist[charslot][0] != "") drawText(font2, (screenW() / 2) - (charlist[charslot][4].len() * 4), 200, charlist[charslot][4])
 	else drawText(font2, (screenW() / 2) - (gvLangObj["menu-commons"]["noone"].len() * 4), 200, gvLangObj["menu-commons"]["noone"])
 	if(charlist[charslot][0] != "") {
 		if(didpick) drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][1], screenW() / 2, screenH() - 64)

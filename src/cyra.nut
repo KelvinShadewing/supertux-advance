@@ -43,6 +43,7 @@
 }
 
 gvCharacters.Cyra <- {
+	name = "Guardian Cyra"
 	over = "sprCyraOverworld"
 	doll =  "sprCyraDoll"
 	normal = "sprCyra"
