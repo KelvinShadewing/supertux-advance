@@ -191,11 +191,14 @@
 	game.characters["Konqi"] <- true
 	game.characters["Katie"] <- true
 	game.friends["Konqi"] <- true
+	game.friends["Katie"] <- true
 }
 
 ::freeMidi <- function() {
 	game.characters["Midi"] <- true
 	game.friends["Midi"] <- true
+	game.characters["Kiki"] <- true
+	game.friends["Kiki"] <- true
 }
 
 ////////////

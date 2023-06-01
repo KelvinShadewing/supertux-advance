@@ -158,6 +158,16 @@
 		earth = "sprMidi"
 		pick = [177, 239]
 	}
+	Kiki = {
+		over = "sprKikiOverworld"
+		doll = "sprKikiDoll"
+		normal = "sprKiki"
+		fire = "sprKiki"
+		ice = "sprKiki"
+		air = "sprKiki"
+		earth = "sprKiki"
+		pick = [177, 239]
+	}
 }
 
 ::game <- createNewGameObject()

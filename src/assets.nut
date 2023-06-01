@@ -112,6 +112,16 @@
 ::sprMidiAura <- newSprite("res/gfx/midi-aura.png", 32, 32, 0, 0, 16, 19)
 ::defMidiAura <- sprMidiAura
 
+::sprKiki <- newSprite("res/gfx/kiki.png", 32, 32, 0, 0, 16, 19)
+::defKiki <- sprKiki
+::sprKikiOverworld <- newSprite("res/gfx/kikiO.png", 16, 21, 0, 0, 8, 17)
+::defKikiOverworld <- sprKikiOverworld
+::sprKikiDoll <- newSprite("res/gfx/kiki-doll.png", 16, 16, 0, 0, 8, 8)
+::defKikiDoll <- sprKikiDoll
+::sprKikiNPC <- newSprite("res/gfx/kiki-npc.png", 32, 32, 0, 0, 16, 32)
+::sprKikiAura <- newSprite("res/gfx/kiki-aura.png", 32, 32, 0, 0, 16, 19)
+::defKikiAura <- sprKikiAura
+
 
 
 //GUI
@@ -662,6 +672,11 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprMidiOverworld = defMidiOverworld
 	sprMidiDoll = defMidiDoll
 	sprMidiAura = defMidiAura
+
+	sprKiki = defKiki
+	sprKikiOverworld = defKikiOverworld
+	sprKikiDoll = defKikiDoll
+	sprKikiAura = defKikiAura
 
 	sprHealth = defHealth
 	sprEnergy = defEnergy

@@ -225,6 +225,7 @@
 		xprev = x
 		yprev = y
 		routine = ruNormal
+		damageMult = damageMultN
 	}
 
 	function physics() {
@@ -235,7 +236,7 @@
 		switch(anim) {
 			case "walk":
 				if(canMove && getcon("left", "hold", true, playerNum) && getcon("right", "hold", true, playerNum)) {
-					if(fabs(hspeed) >= 1.5)
+					if(fabs(hspeed) >= 1.5 && fabs(hspeed) < 2.0 && (!endMode || placeFree(x + hspeed, y)))
 						hspeed *= 0.9
 					if(fabs(hspeed) <= 1.4)
 						hspeed *= 1.1
@@ -421,12 +422,10 @@
 
 				if((abs(rspeed) > 0.1 || abs(hspeed) > 1) && !slippery) {
 					if(flip == 0 && hspeed < 0 && !endMode && !getcon("right", "hold", true, playerNum)) {
-						hspeed += 0.1
 						anim = "skid"
 						rspeed = fabs(hspeed / 1.5)
 					}
 					else if(flip == 1 && hspeed > 0 && !endMode && !getcon("left", "hold", true, playerNum)) {
-						hspeed -= 0.1
 						anim = "skid"
 						rspeed = fabs(hspeed / 1.5)
 					}
@@ -480,12 +479,12 @@
 			case "walk":
 				frame += abs(rspeed) / (8 + abs(rspeed))
 
-				if(flip == 0 && hspeed < 0 && !endMode && !getcon("left", "hold", true, playerNum)) {
-					hspeed += 0.1
+				if(flip == 0 && hspeed < 0 && !endMode && !(getcon("left", "hold", true, playerNum) && fabs(hspeed) < 2.0)) {
+					hspeed += 0.2
 					anim = "skid"
 				}
-				else if(flip == 1 && hspeed > 0 && !endMode && !getcon("right", "hold", true, playerNum)) {
-					hspeed -= 0.1
+				else if(flip == 1 && hspeed > 0 && !endMode && !(getcon("right", "hold", true, playerNum) && fabs(hspeed) < 2.0)) {
+					hspeed -= 0.2
 					anim = "skid"
 				}
 				else
@@ -496,8 +495,10 @@
 
 				if(anim == "walk") {
 					//Offset frame based on movement speed and if shooting
-					if((getcon("right", "hold", true, playerNum) && getcon("left", "hold", true, playerNum) || endMode) && ((flip == 0 && hspeed < 0) || (flip == 1 && hspeed > 0)) && fabs(rspeed) <= 1.8 && !shooting)
+					if((getcon("right", "hold", true, playerNum) && getcon("left", "hold", true, playerNum) || endMode) && ((flip == 0 && hspeed < 0) || (flip == 1 && hspeed > 0)) && fabs(rspeed) <= 1.8 && !shooting && fabs(hspeed) < 2.0) {
 						animOffset = an["moonwalk"][0] - an["walk"][0]
+						rspeed = fabs(hspeed)
+					}
 					else {
 						if(fabs(rspeed) > 1.8)
 							animOffset = 16
@@ -1431,8 +1432,8 @@
 
 ::Kiki <- class extends Midi {
 	//Replace sprites with Kiki versions as they're made
-	sprite = sprMidi
-	aura = sprMidiAura
+	sprite = sprKiki
+	aura = sprKikiAura
 	auraColor = 0xffffffff
 	nutSprite = sprNutBomb
 	nutSprite2 = sprNutBomb2
