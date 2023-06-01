@@ -676,6 +676,7 @@
 					if(hand == 1) nutType = stats.subitem
 					local c = fireWeapon(NutMine, x, y + 9, 1, id)
 					c.exPower = min(floor(chargeTimer / 90) + 1, 3)
+					c.sprite = mineSprite
 
 					if(c != null) {
 						c.exElement = nutType
@@ -1319,14 +1320,23 @@
 		if(shootDir == 4 && anim == "walk") hspeed = 0
 
 		local c = null
-		if(routine == ruBall) c = fireWeapon(WingNut, x, y + 4, 1, id)
+		if(routine == ruBall) {
+			c = fireWeapon(WingNut, x, y + 4, 1, id)
+			c.sprite = wingNutSprite
+		}
 		else if(!(shootDir == 4 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
 			if(!freeDown && shootDir == 3 && routine != ruSwim) {
 				c = fireWeapon(TopNut, x, y - 2, 1, id)
+				c.sprite = topSprite
 				hspeed = 0
 				anim = "shootTop"
 			}
-			else c = fireWeapon(NutBomb, x, y - 2, 1, id)
+			else {
+				c = fireWeapon(NutBomb, x, y - 2, 1, id)
+				c.sprite = nutSprite
+				c.sprite2 = nutSprite2
+				c.sprite3 = nutSprite3
+			}
 			local d = (flip ? -1 : 1)
 			if(anim == "ledge") d = -d
 
@@ -1435,10 +1445,12 @@
 	sprite = sprKiki
 	aura = sprKikiAura
 	auraColor = 0xffffffff
-	nutSprite = sprNutBomb
-	nutSprite2 = sprNutBomb2
-	nutSprite3 = sprNutBomb3
-	wingNutSprite = sprWingNut
-	mineSprite = sprNutMine
-	topSprite = sprTopNut
+	nutSprite = sprCakeBomb
+	nutSprite2 = sprCakeBomb2
+	nutSprite3 = sprCakeBomb3
+	wingNutSprite = sprWingCake
+	mineSprite = sprCakeMine
+	topSprite = sprTopCake
+
+	function _typeof() { return "Kiki" }
 }

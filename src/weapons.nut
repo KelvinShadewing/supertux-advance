@@ -1332,7 +1332,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(3, sprWingNut, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSpriteZ(3, sprite, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -1372,7 +1372,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(2, sprNutMine, (getFrames() / 4) % 4, x - camx, y - camy)
+		drawSpriteZ(2, sprite, (getFrames() / 4) % 4, x - camx, y - camy)
 		drawLight(sprLightFire, 0, x - camx, y - camy - 4, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 

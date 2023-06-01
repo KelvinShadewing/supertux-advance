@@ -479,6 +479,18 @@
 ::defWingnut <- sprWingNut
 ::sprNutMine <- newSprite("res/gfx/nutmine.png", 16, 16, 0, 0, 8, 12)
 ::defNutMine <- sprNutMine
+::sprCakeBomb <- newSprite("res/gfx/cupcake-small.png", 16, 16, 0, 0, 8, 8)
+::defCakeBomb <- sprCakeBomb
+::sprCakeBomb2 <- newSprite("res/gfx/cupcake-med.png", 16, 16, 0, 0, 8, 8)
+::defCakeBomb2 <- sprCakeBomb2
+::sprCakeBomb3 <- newSprite("res/gfx/cupcake-large.png", 16, 16, 0, 0, 8, 8)
+::defCakeBomb3 <- sprCakeBomb3
+::sprTopCake <- newSprite("res/gfx/topcake.png", 16, 16, 0, 0, 8, 12)
+::defTopCake <- sprTopCake
+::sprWingCake <- newSprite("res/gfx/wingcupcake.png", 16, 16, 0, 0, 8, 8)
+::defWingCake <- sprWingCake
+::sprCakeMine <- newSprite("res/gfx/cakemine.png", 16, 16, 0, 0, 8, 12)
+::defCakeMine <- sprCakeMine
 ::sprCharge <- newSprite("res/gfx/charge.png", 32, 32, 0, 0, 16, 16)
 ::defCharge <- sprCharge
 ::sprGoldCharge <- newSprite("res/gfx/goldcharge.png", 8, 8, 0, 0, 4, 4)
