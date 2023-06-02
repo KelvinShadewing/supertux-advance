@@ -100,6 +100,7 @@
 ::gvCharacters <- {
 	Tux = {
 		name = "Tux the Penguin"
+		shortname = "Tux"
 		over = "sprTuxOverworld"
 		doll = "sprTuxDoll"
 		normal = "sprTux"
@@ -111,6 +112,7 @@
 	}
 	Penny = {
 		name = "Penny the Penguin"
+		shortname = "Penny"
 		over = "sprPennyOverworld"
 		doll = "sprPennyDoll"
 		normal = "sprPenny"
@@ -122,6 +124,7 @@
 	}
 	Lutris = {
 		name = "Lutris the Otter"
+		shortname = "Lutris"
 		over = "sprLutrisOverworld"
 		doll = "sprLutrisDoll"
 		normal = "sprLutris"
@@ -133,6 +136,7 @@
 	}
 	Konqi = {
 		name = "Konqi the Dragon"
+		shortname = "Konqi"
 		over = "sprKonqiOverworld"
 		doll =  "sprKonqiDoll"
 		normal = "sprKonqi"
@@ -144,6 +148,7 @@
 	}
 	Katie = {
 		name = "Katie the Dragon"
+		shortname = "Katie"
 		over = "sprKatieOverworld"
 		doll =  "sprKatieDoll"
 		normal = "sprKatie"
@@ -155,6 +160,7 @@
 	}
 	Midi = {
 		name = "Midi Waffle"
+		shortname = "Midi"
 		over = "sprMidiOverworld"
 		doll = "sprMidiDoll"
 		normal = "sprMidi"
@@ -166,6 +172,7 @@
 	}
 	Kiki = {
 		name = "Kiki the Cyber Squirrel"
+		shortname = "Kiki"
 		over = "sprKikiOverworld"
 		doll = "sprKikiDoll"
 		normal = "sprKiki"

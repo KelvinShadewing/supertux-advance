@@ -35,22 +35,22 @@
 	sprCyraDoll = defCyraDoll
 }
 
-//Load game text
 
 ::freeCyra <- function() {
-	if(!game.characters.rawin("Cyra")) game.characters["Cyra"] <- true
-	if(!game.friends.rawin("Cyra")) game.friends["Cyra"] <- true
+	game.characters["Cyra"] <- true
+	game.friends["Cyra"] <- true
 }
 
 gvCharacters.Cyra <- {
 	name = "Guardian Cyra"
+	shortname = "Cyra"
 	over = "sprCyraOverworld"
 	doll =  "sprCyraDoll"
 	normal = "sprCyra"
 	fire = "sprCyraFire"
 	ice = "sprCyraIce"
-	air = "sprCyra"
-	earth = "sprCyra"
+	air = "sprCyraAir"
+	earth = "sprCyraEarth"
 	pick = [8, 9]
 }
 
@@ -109,7 +109,7 @@ gvCharacters.Cyra <- {
 		skid = [4, 5]
 		push = [6, 7]
 		hurt = [6, 7]
-		die = [12, 13]
+		die = [7, 140, 141, 142, 143]
 		dive = [14, 15]
 		crouch = [14, 15]
 		getUp = [15, 14]
@@ -302,9 +302,6 @@ gvCharacters.Cyra <- {
 					if(stats.weapon == "ice" && floor(frame) == 0) frame += 0.01
 					else if(stats.weapon == "ice" || stats.weapon == "fire") frame += 0.1
 					else if(stats.weapon == "air") frame += 0.05
-					else if(stats.health <= min(8, game.maxHealth / 4)) {
-					an.stand = an.standW
-				}
 					else frame += 0.05
 
 					if(abs(rspeed) > 0.1) {
@@ -648,6 +645,12 @@ gvCharacters.Cyra <- {
 					//Change direction
 					if(getcon("right", "press", true, playerNum) && canMove) flip = 0
 					if(getcon("left", "press", true, playerNum) && canMove) flip = 1
+					
+					
+					if(slashing) {
+						frame = 0
+						animOffset = (112 - 52) + slashTimer
+					}
 
 					//Ping-pong animation
 				}
@@ -1311,7 +1314,7 @@ gvCharacters.Cyra <- {
 			if(y > gvMap.h) {
 				invincible = 300
 				resTime = 300
-				vspeed = -4.0
+				vspeed = -2.0
 			}
 			stats.canres = false
 		}
@@ -1319,12 +1322,59 @@ gvCharacters.Cyra <- {
 			deleteActor(id)
 			if(playerNum == 1) gvPlayer = false
 			if(playerNum == 2) gvPlayer2 = false
-			newActor(DeadPlayer, x, y, [sprite, an["die"], playerNum])
+			newActor(DeadCyra, x, y, [sprite, an["hurt"], playerNum])
 			stats.health = 0
 		}
 	}
 
 	function _typeof(){ return "Cyra" }
+}
+
+// Note: his death basically ends with him lying down dead.
+::DeadCyra <- class extends Actor {
+	hspeed = -2.0
+	vspeed = -2.0
+	timer = 150
+	sprite = null
+	frame = 0.0
+	anim = null
+	playerNum = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		if(!gvPlayer && !gvPlayer2) stopMusic()
+		playSound(sndDie, 0)
+		sprite = _arr[0]
+		anim = _arr[1]
+		playerNum = _arr[2]
+	}
+
+	function run() {
+		vspeed += 0.1
+		x += hspeed
+		y += vspeed
+		timer--
+		if(timer == 0) {
+			if(!gvPlayer && !gvPlayer2) {
+				startPlay(gvMap.file, true, true)
+				if(game.check == false) {
+					gvIGT = 0
+				}
+			}
+			if(game.check == false) {
+				if(playerNum == 1) game.ps1.weapon = "normal"
+				if(playerNum == 2) game.ps2.weapon = "normal"
+			}
+			
+		}
+	}
+
+	function draw() {
+		drawSprite(sprite, anim[wrap(getFrames() / 15, 0, anim.len() - 1)], floor(x - camx), floor(y - camy))
+		drawLight(sprLightBasic, 0, x - camx, y - camy)
+	}
+
+	function _typeof() { return "DeadPlayer" }
 }
 
 ////////////////////

@@ -1050,6 +1050,25 @@
 			routine = ruSwim
 			anim = "float"
 		}
+
+		//Defensive element
+		switch(stats.weapon) {
+			case "fire":
+				damageMult = damageMultF
+				break
+			case "ice":
+				damageMult = damageMultI
+				break
+			case "earth":
+				damageMult = damageMultE
+				break
+			case "air":
+				damageMult = damageMultA
+				break
+			default:
+				damageMult = damageMultN
+				break
+		}
 	}
 
 	function ruSwim() {
@@ -1236,12 +1255,38 @@
 				if(stats.weapon != "normal") {
 					switch(stats.weapon) {
 						case "fire":
-							auraColor = 0xf88000ff
+							auraColor = 0xf84000ff
 							break
 						case "ice":
 							auraColor = 0x80d0f8ff
 							break
+						case "air":
+							auraColor = 0x00a060ff
+							break
+						case "earth":
+							auraColor = 0x705020ff
+							break
+						case "shock":
+							auraColor = 0xf8f800ff
+							break
+						case "water":
+							auraColor = 0x5050c0ff
+							break
+						case "light":
+							auraColor = 0xf8f8b0ff
+							break
+						case "dark":
+							auraColor = 0x201020ff
+							break
+						default:
+							auraColor = 0xffffffff
+							break
 					}
+
+					drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx + 1, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
+					drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx, y - camy + 1, 0, (anim == "ball" ? 0 : flip), 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
+					drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx - 1, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
+					drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx, y - camy - 1, 0, (anim == "ball" ? 0 : flip), 1, 1, sin(torad(270) + float(getFrames()) / 16.0) * 0.75, auraColor)
 				}
 
 				if(blinking == 0 || anim == "hurt") {

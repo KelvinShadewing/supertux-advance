@@ -1078,6 +1078,55 @@
 	}
 }
 
+::ExplodeE2 <- class extends WeaponEffect{
+	power = 1
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	blast = true
+	element = "earth"
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndCrumble)
+		newActor(RockChunks, x, y)
+
+		shape = Cir(x, y, 16.0)
+	}
+
+	function run() {
+		frame += 0.1
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ////////////////////
 // MIDI'S WEAPONS //
 ////////////////////
@@ -1189,6 +1238,26 @@
 				case "shock":
 					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
 					c.power = 4
+					break
+				case "earth":
+					c = fireWeapon(ExplodeE2, x, y, alignment, owner)
+					c.power = 4
+					c = fireWeapon(EarthballK, x - 6, y - 6, alignment, owner)
+					c.power = 4
+					c.hspeed = -2.0
+					c.vspeed = -2.0
+					c = fireWeapon(EarthballK, x + 6, y - 6, alignment, owner)
+					c.power = 4
+					c.hspeed = 2.0
+					c.vspeed = -2.0
+					c = fireWeapon(EarthballK, x - 6, y + 6, alignment, owner)
+					c.power = 4
+					c.hspeed = -2.0
+					c.vspeed = 2.0
+					c = fireWeapon(EarthballK, x + 6, y + 6, alignment, owner)
+					c.power = 4
+					c.hspeed = 2.0
+					c.vspeed = 2.0
 					break
 				case "fire":
 					c = fireWeapon(ExplodeF2, x, y, alignment, owner)

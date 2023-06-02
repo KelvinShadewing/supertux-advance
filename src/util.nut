@@ -95,3 +95,7 @@
 ::even <- function(x) {
 	return x - (x % 2)
 }
+
+::torad <- function(x) {
+	return (float(x) * pi) / 180.0
+}
