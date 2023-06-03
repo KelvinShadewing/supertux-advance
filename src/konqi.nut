@@ -787,6 +787,87 @@
 					break
 			}
 
+			if(canMove) switch(stats.subitem) {
+				case "normal":
+					if(cooldown > 0) break
+					if(getcon("spec1", "press", true, playerNum)) {
+						cooldown = 60
+						breatheFire(1)
+						playSoundChannel(sndFlame, 0, 0)
+					}
+					break
+				case "fire":
+					if(getcon("spec1", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(FireballK, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.vspeed = -0.5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						energy--
+						firetime = 60
+
+						c.hspeed += hspeed / 1.5
+					}
+					break
+
+				case "ice":
+					if(cooldown > 0) break
+					if(getcon("spec1", "press", true, playerNum)) {
+						cooldown = 60
+						breatheFire(1)
+						playSoundChannel(sndFlame, 0, 0)
+					}
+					break
+
+				case "air":
+					if(cooldown > 0) break
+					if(getcon("spec1", "press", true, playerNum)) {
+						cooldown = 60
+						breatheFire()
+						playSoundChannel(sndFlame, 0, 0)
+					}
+					break
+
+				case "earth":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0 && anim != "statue") {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.vspeed = -0.5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						energy--
+						firetime = 60
+
+						c.hspeed += hspeed / 1.5
+					}
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
+						anim = "stand"
+						newActor(Poof, x, y - 8)
+						newActor(Poof, x, y + 8)
+					}
+					break
+			}
+
 			if(cooldown > 0) cooldown--
 
 			//Check solid ground position
@@ -945,6 +1026,35 @@
 
 						energy--
 						firetime = 60
+					}
+					break
+
+				case "earth":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0 && anim != "statue") {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.vspeed = -0.5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						energy--
+						firetime = 60
+
+						c.hspeed += hspeed / 1.5
+					}
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
+						anim = "stand"
+						newActor(Poof, x, y - 8)
+						newActor(Poof, x, y + 8)
 					}
 					break
 			}
@@ -1118,20 +1228,26 @@
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
 	}
 
-	function breatheFire() {
+	function breatheFire(usealt = false) {
 		for(local i = 0; i < 10; i++) {
 				local c = 0
-				if(stats.weapon != "ice") c = fireWeapon(FlameBreath, x, y - 6, 1, id)
+				local t = "fire"
+				if(usealt)
+					t = stats.subitem
+				else
+					t = stats.weapon
+
+				if(t != "ice") c = fireWeapon(FlameBreath, x, y - 6, 1, id)
 				else c = fireWeapon(IceBreath, x, y - 6, 1, id)
 				if(flip == 0) {
 					c.hspeed = 1.0 + randFloat(0.5)
 					c.x += 8
-					if(stats.weapon == "ice") c.hspeed += 1.8
+					if(t == "ice") c.hspeed += 1.8
 				}
 				else {
 					c.hspeed = -1.5 - randFloat(0.5)
 					c.x -= 8
-					if(stats.weapon == "ice") c.hspeed -= 1.8
+					if(t == "ice") c.hspeed -= 1.8
 				}
 				if(vspeed > 0) c.vspeed = (-i.tofloat() + 5.0) / 8.0
 				else c.vspeed = (i.tofloat() - 5.0) / 8.0

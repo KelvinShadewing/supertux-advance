@@ -40,6 +40,7 @@
 	shootDir = 0
 	boredom = 0
 	chargeTimer = 0
+	chargeTimer2 = 0
 	fallTimer = 0
 	hurtThreshold = 4
 	spinAlpha = 0.0
@@ -765,19 +766,29 @@
 			if(getcon("shoot", "press", true, playerNum)) shootNut(0)
 			if(getcon("spec1", "press", true, playerNum)) shootNut(1)
 
-			if((getcon("shoot", "hold", true, playerNum) || getcon("spec1", "hold", true, playerNum)) && energy > 1) {
+			if(getcon("shoot", "hold", true, playerNum) && energy > 1) {
 				chargeTimer++
-				if(chargeTimer > 121 && energy < 3) chargeTimer--
-				if(chargeTimer == 90 || chargeTimer == 180) tftime = 0
+				if(chargeTimer > 121 && energy < 3)
+				 	chargeTimer--
+				if(chargeTimer == 180)
+					tftime = 0
 			}
 
-			if(getcon("shoot", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(0, floor(chargeTimer / 90) + 1)
+			if(getcon("spec1", "hold", true, playerNum) && energy > 1) {
+				chargeTimer2++
+				if(chargeTimer2 > 121 && energy < 3)
+				 	chargeTimer2--
+				if(chargeTimer2 == 180)
+					tftime = 0
+			}
 
-			if(getcon("spec1", "release", true, playerNum) && energy > 1 && chargeTimer >= 90) shootNut(1, floor(chargeTimer / 90) + 1)
+			if(getcon("shoot", "release", true, playerNum) && energy > 0 && chargeTimer >= 90) shootNut(0, min(floor(chargeTimer / 90) + 1, energy))
+			if(getcon("spec1", "release", true, playerNum) && energy > 0 && chargeTimer2 >= 90) shootNut(1, min(floor(chargeTimer2 / 90) + 1, energy))
 
-			if(!getcon("shoot", "hold", true, playerNum) && !getcon("spec1", "hold", true, playerNum) && anim != "plantMine") chargeTimer = 0
+			if(!getcon("shoot", "hold", true, playerNum) && anim != "plantMine") chargeTimer = 0
+			if(!getcon("spec1", "hold", true, playerNum) && anim != "plantMine") chargeTimer2 = 0
 
-			if(chargeTimer > 180 && (getFrames()) % 4 == 0) {
+			if((chargeTimer > 180 || chargeTimer2 > 180) && (getFrames()) % 4 == 0) {
 				newActor(GoldCharge, x - 12 + randInt(24) y - 12 + randInt(24))
 			}
 		}
@@ -1309,7 +1320,11 @@
 				shape.draw()
 			}
 
-			if(chargeTimer >= 30 && chargeTimer < 180) drawSpriteZ(3, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy + choffset)
+			if(chargeTimer >= 30 && chargeTimer < 180)
+				drawSpriteZ(3, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy + choffset)
+
+			if(chargeTimer2 >= 30 && chargeTimer2 < 180)
+				drawSpriteZ(3, sprCharge2, float(getFrames()) / (chargeTimer2 > 90 ? 2 : 4), x - camx, y - camy + choffset)
 
 			//Transformation flash
 			if(tftime != -1) {
@@ -1423,7 +1438,11 @@
 			firetime = 90
 		}
 
-		chargeTimer = 0
+		if(_hand == 0)
+			chargeTimer = 0
+
+		if(_hand == 1)
+			chargeTimer2 = 0
 	}
 
 	function _typeof(){ return "Midi" }

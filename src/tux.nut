@@ -764,6 +764,52 @@
 					break
 			}
 
+			if(canMove) switch(stats.subitem) {
+				case "fire":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Fireball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						energy--
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
+
+				case "ice":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Iceball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						energy--
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
+			}
+
 			//Check solid ground position
 			if(!placeFree(x, y + 1) && !onPlatform()) {
 				groundx = x
@@ -892,6 +938,71 @@
 
 				case "ice":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+						local c = fireWeapon(Iceball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 2
+						c.vspeed += vspeed / 2
+
+						energy--
+						firetime = 60
+					}
+					break
+			}
+		}
+
+		if(canMove) switch(stats.subitem) {
+				case "fire":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+						local c = fireWeapon(Fireball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						energy--
+						firetime = 60
+					}
+					break
+
+				case "ice":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
 						local c = fireWeapon(Iceball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3

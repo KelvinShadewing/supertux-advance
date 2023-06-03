@@ -493,6 +493,8 @@
 ::defCakeMine <- sprCakeMine
 ::sprCharge <- newSprite("res/gfx/charge.png", 32, 32, 0, 0, 16, 16)
 ::defCharge <- sprCharge
+::sprCharge2 <- newSprite("res/gfx/charge2.png", 32, 32, 0, 0, 16, 16)
+::defCharge2 <- sprCharge2
 ::sprGoldCharge <- newSprite("res/gfx/goldcharge.png", 8, 8, 0, 0, 4, 4)
 ::defGoldCharge <- sprGoldCharge
 
