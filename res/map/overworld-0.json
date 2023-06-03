@@ -542,10 +542,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)\nsprGradcap = sprHaywire\nactor[mapActor[19]].level = \"aurora-mines-\" + game.state.fishmines"
+         "value":"songPlay(musOverworld)\nsprGradcap = sprHaywire\n\nif(game.state == null) game.state = {}\n\nif(!(\"pennyton\" in game.state))\n\tgame.state[\"pennyton\"] <- 0\n\nif(!(\"fishmines\" in game.state))\n\tgame.state[\"fishmines\"] <- 0\n\nactor[mapActor[19]].level = \"aurora-mines-\" + game.state.fishmines"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.0",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {

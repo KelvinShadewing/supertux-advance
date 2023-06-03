@@ -93,7 +93,7 @@
 			berries = 0
 			maxEnergy = 0
 		}
-		state = null
+		state = {}
 	}
 }
 
