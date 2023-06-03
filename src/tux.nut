@@ -192,9 +192,8 @@
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "slide")) {
+		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "slide"))
 			firetime--
-		}
 
 		if(firetime == 0 && energy < stats.maxEnergy) {
 			energy++
@@ -202,9 +201,12 @@
 		}
 
 
-		if(stats.weapon == "normal") stats.maxEnergy = 0
-		if(stats.weapon == "air") stats.maxEnergy = 4 + game.airBonus
-		if(energy > stats.maxEnergy) energy = stats.maxEnergy
+		if(stats.weapon == "normal")
+			stats.maxEnergy = 0
+		if(stats.weapon == "air")
+			stats.maxEnergy = 4 + game.airBonus
+		if(energy > stats.maxEnergy)
+			energy = stats.maxEnergy
 
 		/////////////
 		// ON LAND //
@@ -1108,9 +1110,6 @@
 		if(onIce()) friction = 0.01
 		else friction = 0.1
 
-		//Hurt
-		if(onDeath(x, y)) stats.health = 0
-
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
@@ -1236,9 +1235,9 @@
 		return false
 	}
 
-	function die() {
+	function die(skipres = false) {
 		if(resTime > 0) return
-		if(stats.canres) {
+		if(stats.canres && !skipres) {
 			stats.health = game.maxHealth
 			blinking = 120
 			hspeed = 0.0

@@ -1180,10 +1180,6 @@ gvCharacters.Cyra <- {
 		if(onIce()) friction = 0.01
 		else friction = 0.1
 
-
-		//Hurt
-		if(onDeath(x, y)) stats.health = 0
-
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
@@ -1303,9 +1299,9 @@ gvCharacters.Cyra <- {
 		return false
 	}
 
-	function die() {
+	function die(skipres = false) {
 		if(resTime > 0) return
-		if(stats.canres) {
+		if(stats.canres && !skipres) {
 			stats.health = game.maxHealth
 			blinking = 120
 			hspeed = 0.0

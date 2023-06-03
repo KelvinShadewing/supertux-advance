@@ -165,6 +165,7 @@
 
 
 		if(onHazard(x, y)) hurt = ceil(game.maxHealth / 10.0) + game.difficulty
+		if(onDeath(x, y)) die(true)
 
 
 		//Leave level
