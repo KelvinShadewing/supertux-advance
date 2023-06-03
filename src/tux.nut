@@ -967,9 +967,8 @@
 					}
 					break
 			}
-		}
 
-		if(canMove) switch(stats.subitem) {
+			if(canMove) switch(stats.subitem) {
 				case "fire":
 					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
 						local c = fireWeapon(Fireball, x, y, 1, id)
@@ -1033,6 +1032,8 @@
 					break
 			}
 		}
+
+		
 
 		//Swap item
 		if(canMove && getcon("swap", "press", true, playerNum)) swapitem()
