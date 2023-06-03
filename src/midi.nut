@@ -220,7 +220,6 @@
 		shape = shapeStand
 		startx = _x.tofloat()
 		starty = _y.tofloat()
-		energy = stats.maxEnergy
 		an.fall = an.fallN
 		xprev = x
 		yprev = y
@@ -480,11 +479,17 @@
 				frame += abs(rspeed) / (8 + abs(rspeed))
 
 				if(flip == 0 && hspeed < 0 && !endMode && !(getcon("left", "hold", true, playerNum) && fabs(hspeed) < 2.0)) {
-					hspeed += 0.2
+					if(!slippery)
+						hspeed += 0.2
+					else
+						hspeed += 0.1
 					anim = "skid"
 				}
 				else if(flip == 1 && hspeed > 0 && !endMode && !(getcon("right", "hold", true, playerNum) && fabs(hspeed) < 2.0)) {
-					hspeed -= 0.2
+					if(!slippery)
+						hspeed -= 0.2
+					else
+						hspeed -= 0.1
 					anim = "skid"
 				}
 				else
@@ -909,12 +914,12 @@
 
 			//Get on monkeybar
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-				if(atZipline() || atZipline(0, -vspeed)) {
+				if((atZipline() || atZipline(0, -vspeed)) && y % 16 < 4) {
 					anim = "monkey"
 					frame = 0.0
 					hspeed = 0
 					vspeed = 0
-					x = (x - (x % 16)) + 8
+					y = (y - (y % 16)) + 12
 				}
 			}
 
@@ -1015,7 +1020,6 @@
 		}
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) stats.health = 0
 
 		if(hurt > 0 && invincible == 0) {

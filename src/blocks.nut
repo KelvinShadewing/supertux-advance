@@ -1218,6 +1218,8 @@
 				local nf = gvPlayer.flip
 				local nh = gvPlayer.hspeed
 				local nv = gvPlayer.vspeed
+				local ns = gvPlayer.stats
+				local ne = gvPlayer.energy
 				deleteActor(gvPlayer.id)
 				gvPlayer = false
 				newActor(getroottable()[character], nx, ny)
@@ -1225,6 +1227,8 @@
 				gvPlayer.flip = nf
 				gvPlayer.hspeed = nh
 				gvPlayer.vspeed = nv
+				gvPlayer.stats = ns
+				gvPlayer.energy = ne
 			}
 
 			if(hitby == 2) {
@@ -1233,6 +1237,8 @@
 				local nf = gvPlayer2.flip
 				local nh = gvPlayer2.hspeed
 				local nv = gvPlayer2.vspeed
+				local ns = gvPlayer2.stats
+				local ne = gvPlayer2.energy
 				deleteActor(gvPlayer2.id)
 				gvPlayer2 = false
 				newActor(getroottable()[character], nx, ny)
@@ -1240,6 +1246,8 @@
 				gvPlayer2.flip = nf
 				gvPlayer2.hspeed = nh
 				gvPlayer2.vspeed = nv
+				gvPlayer2.stats = ns
+				gvPlayer2.energy = ne
 			}
 
 			tileSetSolid(x, y, 0)

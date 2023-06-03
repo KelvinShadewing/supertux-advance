@@ -1182,7 +1182,6 @@ gvCharacters.Cyra <- {
 
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) stats.health = 0
 
 		if(hurt > 0 && invincible == 0) {

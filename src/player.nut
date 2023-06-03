@@ -164,6 +164,9 @@
 		}
 
 
+		if(onHazard(x, y)) hurt = ceil(game.maxHealth / 10.0) + game.difficulty
+
+
 		//Leave level
 		if(x < 4) {
 			x = 4
@@ -184,7 +187,7 @@
 		if(_cut) damage *= damageMult["cut"]
 		if(_blast) damage *= damageMult["blast"]
 
-		hurt = damage
+		hurt = floor(damage)
 	}
 
 	function checkHurt() {

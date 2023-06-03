@@ -83,7 +83,6 @@
 		if(!gvPlayer) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
-		energy = stats.maxEnergy
 		an["fall"] = an["fallN"]
 		xprev = x
 		yprev = y
@@ -1024,7 +1023,6 @@
 		else friction = 0.1
 
 		//Hurt
-		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) stats.health = 0
 
 		if(hurt > 0 && invincible == 0) {
