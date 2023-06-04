@@ -1317,11 +1317,56 @@
 				shape.draw()
 			}
 
+			local charge1 = sprCharge
+			local charge2 = sprCharge
+
+			switch(stats.weapon) {
+				case "fire":
+					charge1 = sprChargeFire
+					break
+				case "ice":
+					charge1 = sprChargeIce
+					break
+				case "shock":
+					charge1 = sprChargeShock
+					break
+				case "earth":
+					charge1 = sprChargeEarth
+					break
+				case "air":
+					charge1 = sprChargeAir
+					break
+				case "water":
+					charge1 = sprChargeWater
+					break
+			}
+
+			switch(stats.subitem) {
+				case "fire":
+					charge2 = sprChargeFire
+					break
+				case "ice":
+					charge2 = sprChargeIce
+					break
+				case "shock":
+					charge2 = sprChargeShock
+					break
+				case "earth":
+					charge2 = sprChargeEarth
+					break
+				case "air":
+					charge2 = sprChargeAir
+					break
+				case "water":
+					charge2 = sprChargeWater
+					break
+			}
+
 			if(chargeTimer >= 30 && chargeTimer < 180)
-				drawSpriteZ(3, sprCharge, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy + choffset)
+				drawSpriteZ(3, charge1, float(getFrames()) / (chargeTimer > 90 ? 2 : 4), x - camx, y - camy + choffset, 0, flip)
 
 			if(chargeTimer2 >= 30 && chargeTimer2 < 180)
-				drawSpriteZ(3, sprCharge2, float(getFrames()) / (chargeTimer2 > 90 ? 2 : 4), x - camx, y - camy + choffset)
+				drawSpriteZ(3, charge2, float(getFrames()) / (chargeTimer2 > 90 ? 2 : 4), x - camx, y - camy + choffset, 0, int(!flip))
 
 			//Transformation flash
 			if(tftime != -1) {

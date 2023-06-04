@@ -348,7 +348,7 @@
 ::defMrsSnowflake <- sprMrsSnowflake
 ::sprSkyDive <- newSprite("res/gfx/skydive.png", 24, 24, 0, 0, 12, 13)
 ::defSkyDive <- sprSkyDive
-::sprPuffranah <- newSprite("res/gfx/puffranah.png", 54, 51, 0, 0, 27, 25)
+::sprPuffranah <- newSprite("res/gfx/puffranah.png", 54, 51, 0, 0, 30, 30)
 ::defPuffranah <- sprPuffranah
 
 
@@ -495,8 +495,18 @@
 ::defCakeMine <- sprCakeMine
 ::sprCharge <- newSprite("res/gfx/charge.png", 32, 32, 0, 0, 16, 16)
 ::defCharge <- sprCharge
-::sprCharge2 <- newSprite("res/gfx/charge2.png", 32, 32, 0, 0, 16, 16)
-::defCharge2 <- sprCharge2
+::sprChargeFire <- newSprite("res/gfx/charge-fire.png", 32, 32, 0, 0, 16, 16)
+::defChargeFire <- sprChargeFire
+::sprChargeIce <- newSprite("res/gfx/charge-ice.png", 32, 32, 0, 0, 16, 16)
+::defChargeIce <- sprChargeIce
+::sprChargeShock <- newSprite("res/gfx/charge-shock.png", 32, 32, 0, 0, 16, 16)
+::defChargeShock <- sprChargeShock
+::sprChargeAir <- newSprite("res/gfx/charge-air.png", 32, 32, 0, 0, 16, 16)
+::defChargeAir <- sprChargeAir
+::sprChargeEarth <- newSprite("res/gfx/charge-earth.png", 32, 32, 0, 0, 16, 16)
+::defChargeEarth <- sprChargeEarth
+::sprChargeWater <- newSprite("res/gfx/charge-water.png", 32, 32, 0, 0, 16, 16)
+::defChargeWater <- sprChargeWater
 ::sprGoldCharge <- newSprite("res/gfx/goldcharge.png", 8, 8, 0, 0, 4, 4)
 ::defGoldCharge <- sprGoldCharge
 ::sprBubble <- newSprite("res/gfx/bubble.png", 8, 8, 0, 0, 4, 4)
