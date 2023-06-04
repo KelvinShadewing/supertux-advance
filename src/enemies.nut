@@ -49,7 +49,7 @@
 				if(i.owner == id) continue
 
 				if(hitTest(shape, i.shape)) {
-					if(checkActor(i.owner)) getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
+					if(gvPlayer) getHurt(gvPlayer, i.power, i.element, i.cut, i.blast)
 					else getHurt(0, i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
@@ -147,7 +147,7 @@
 	function holdMe(throwH = 2.0, throwV = 2.0) {
 		if(frozen)
 			return
-			
+
 		local target = findPlayer()
 		if(target == null) {
 			held = false
@@ -4478,6 +4478,7 @@
 }
 
 ::Puffranah <- class extends Enemy {
+	anim = "normal"
 	an = {
 		normal = [0, 1, 2, 3]
 		inhale = [4, 5, 6, 7]
@@ -4486,15 +4487,254 @@
 		burp = [11, 10, 9, 8, 7, 6, 5, 4]
 	}
 	eatShape = null
+	swimTimer = 0
+	caught = false
+	struggle = 0
+	target = null
+	frame = 0.0
+	flip = 0
+	touchDamage = 1.0
+	health = 4
+	blinkMax = 30.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Cir(x, y, 24)
+		shape = Rec(x, y, 16, 16)
 		eatShape = Cir(x, y, 8)
+
+		hspeed = 0.5
+		vspeed = randFloat(1.0) - 0.5
+
+		swimTimer = randInt(480) + 120
 	}
 
 	function run() {
 		base.run()
+
+		target = findPlayer()
+		if(target == null)
+			caught = false
+
+		if(target != null && target.hidden)
+			target = null
+
+		touchDamage = (anim == "full" ? 1.0 : 0.0)
+
+		switch(anim) {
+			case "normal":
+				frame += 0.1
+
+				swimTimer--
+
+				if(swimTimer == 0) {
+					vspeed = -0.5 + randFloat(1)
+					if(hspeed == 0)
+						hspeed = 1
+					else
+						hspeed *= 1 / fabs(hspeed)
+					
+					swimTimer = randInt(480) + 120
+				}
+
+				if(target != null && inDistance2(x, y, target.x, target.y, 96)) {
+					if(target.x > x)
+						hspeed += 0.1
+					if(target.x < x)
+						hspeed -= 0.1
+					
+					if(target.y > y)
+						vspeed += 0.1
+					if(target.y < y)
+						vspeed -= 0.1
+
+					swimTimer = 60
+				}
+
+				if(target != null && inDistance2(x, y, target.x, target.y, 56) && fabs(y - target.y) <= 8.0) {
+					frame = 0.0
+					anim = "inhale"
+				}
+
+				break
+
+			case "inhale":
+				vspeed /= 2.0
+
+				if(frame < 3)
+					frame += 0.25
+				else if(target != null && inDistance2(x, y, target.x, target.y, 64)
+				&& ((flip == 0 && target.x > x) || (flip == 1 && target.x < x))) {
+					if(getFrames() % 4 == 0) fireWeapon(DragBubble, x + randInt(16) - 8 + randInt(32) * (flip == 0 ? 2 : -2), y + randInt(16) - 8, 2, id)
+				}
+				else {
+					frame = 4.0
+					anim = "burp"
+				}
+
+				if(target != null && hitTest(eatShape, target.shape)) {
+					caught = true
+					struggle = 8 + (8 * game.difficulty)
+					frame = 0.0
+					anim = "gulp"
+					target.canMove = false
+				}
+
+				break
+
+			case "gulp":
+				if(target != null && "hidden" in target)
+					target.hidden = true
+
+				if(frame < 3.0)
+					frame += 0.25
+				else {
+					frame = 0.0
+					anim = "full"
+				}
+
+				if(target == null || !inDistance2(x, y, target.x, target.y, 64)) {
+					frame = 4.0
+					anim = "burp"
+				}
+
+				break
+
+			case "full":
+				swimTimer--
+				frame += 0.1
+
+				if(swimTimer == 0) {
+					vspeed = -0.5 + randFloat(1)
+					if(hspeed == 0)
+						hspeed = 1
+					else
+						hspeed *= 1 / fabs(hspeed)
+
+					swimTimer = randInt(480) + 120
+				}
+
+				if(getcon("left", "press", true)
+				|| getcon("right", "press", true)
+				|| getcon("up", "press", true)
+				|| getcon("down", "press"))
+					struggle--
+
+				if(target == null || struggle <= 0) {
+					caught = false
+					frame = 0.0
+					anim = "burp"
+					if(target != null) {
+						target.hspeed = (flip == 0 ? 4.0 : -4.0)
+						target.canMove = true
+					}
+				}
+
+				break
+
+			case "burp":
+				if(frame < 7)
+					frame += 0.25
+				else {
+					frame = 0.0
+					anim = "normal"
+				}
+				hspeed /= 1.1
+				
+				break
+		}
+
+		frame = wrap(frame, 0, an[anim].len() - 1)
+
+		if(!inWater(x, y))
+			vspeed += 0.5
+
+		if(placeFree(x + hspeed, y))
+			x += hspeed
+		else
+			hspeed = -hspeed
+
+		local mspeed = 2.0
+
+		if(hspeed > mspeed)
+			hspeed = mspeed
+		if(hspeed < -mspeed)
+			hspeed = -mspeed
+
+		if(vspeed > mspeed)
+			vspeed = mspeed
+		if(vspeed < -mspeed)
+			vspeed = -mspeed
+
+		if(x < 0)
+			hspeed = 0.5
+		if(x > gvMap.w)
+			hspeed = -0.5
+
+		if(placeFree(x, y + vspeed))
+			y += vspeed
+		else
+			vspeed = -vspeed
+
+		if(y < 0)
+			vspeed = 0.5
+		if(y > gvMap.h)
+			vspeed = -0.5
+
+		if(hspeed > 0) flip = 0
+		if(hspeed < 0) flip = 1
+
+		shape.setPos(x, y)
+		eatShape.setPos(x, y)
+
+		if(target != null && caught && health > 0) {
+			target.x = x
+			target.y = y
+			target.hspeed = 0.0
+			target.vspeed = 0.0
+			target.hidden = true
+		}
+
+		if(health <= 0)
+			hurtFire()
 	}
+
+	function draw() {
+		drawSpriteZ(4, sprPuffranah, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip, 1, 1, (blinking > 0 ? blinking / 10.0 : 1))
+
+		if(debug) {
+			drawText(font, x - camx, y + 24 - camy, anim + "\n" + frame.tostring() + "\n" + health.tostring())
+
+			setDrawColor(0xf80000ff)
+			drawCircle(x - camx, y - camy, 96, false)
+			drawCircle(x - camx, y - camy, 56, false)
+		}
+	}
+
+	function hurtFire() {
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		die()
+		popSound(sndKick, 0)
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function die() {
+		base.die()
+		if(target != null)
+			target.canMove = true
+	}
+
+	function physics() {}
 }

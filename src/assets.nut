@@ -348,6 +348,8 @@
 ::defMrsSnowflake <- sprMrsSnowflake
 ::sprSkyDive <- newSprite("res/gfx/skydive.png", 24, 24, 0, 0, 12, 13)
 ::defSkyDive <- sprSkyDive
+::sprPuffranah <- newSprite("res/gfx/puffranah.png", 54, 51, 0, 0, 27, 25)
+::defPuffranah <- sprPuffranah
 
 
 //Bosses
@@ -497,6 +499,8 @@
 ::defCharge2 <- sprCharge2
 ::sprGoldCharge <- newSprite("res/gfx/goldcharge.png", 8, 8, 0, 0, 4, 4)
 ::defGoldCharge <- sprGoldCharge
+::sprBubble <- newSprite("res/gfx/bubble.png", 8, 8, 0, 0, 4, 4)
+::defBubble <- sprBubble
 
 
 

@@ -1365,6 +1365,10 @@
 		case 103:
 			c = newActor(Ivy, i.x + 8, i.y - 8, true)
 			break
+
+		case 104:
+			c = newActor(Puffranah, i.x + 8, i.y - 8)
+			break
 	}
 
 	return c

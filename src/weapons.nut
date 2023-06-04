@@ -1502,3 +1502,41 @@
 		}
 	}
 }
+
+::DragBubble <- class extends WeaponEffect {
+	frame = 0
+	power = 0
+	piercing = -1
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 4)
+		frame = randInt(4)
+	}
+
+	function run() {
+		if(checkActor(owner)) {
+			hspeed += lendirX(0.1, pointAngle(x, y, actor[owner].x, actor[owner].y))
+			vspeed += lendirY(0.1, pointAngle(x, y, actor[owner].x, actor[owner].y))
+
+			if(inDistance2(x, y, actor[owner].x, actor[owner].y, 16))
+				deleteActor(id)
+
+			if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
+				gvPlayer.hspeed += lendirX(0.1, pointAngle(x, y, actor[owner].x, actor[owner].y))
+				gvPlayer.vspeed += lendirY(0.1, pointAngle(x, y, actor[owner].x, actor[owner].y))
+			}
+		}
+		else
+			deleteActor(id)
+
+		x += hspeed
+		y += vspeed
+		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSprite(sprBubble, frame, x - camx, y - camy)
+	}
+}
