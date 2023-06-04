@@ -4476,3 +4476,25 @@
 
 	function _typeof() { return "SkyDive" }
 }
+
+::Puffranah <- class extends Enemy {
+	an = {
+		normal = [0, 1, 2, 3]
+		inhale = [4, 5, 6, 7]
+		gulp = [8, 9, 10, 11]
+		full = [12, 13, 14, 15]
+		burp = [11, 10, 9, 8, 7, 6, 5, 4]
+	}
+	eatShape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 24)
+		eatShape = Cir(x, y, 8)
+	}
+
+	function run() {
+		base.run()
+	}
+}
