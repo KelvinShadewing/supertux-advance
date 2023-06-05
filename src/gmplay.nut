@@ -1369,6 +1369,10 @@
 		case 104:
 			c = newActor(Puffranah, i.x + 8, i.y - 8)
 			break
+
+		case 105:
+			c = newActor(BrickBlock, i.x + 8, i.y - 8, i.name)
+			break
 	}
 
 	return c

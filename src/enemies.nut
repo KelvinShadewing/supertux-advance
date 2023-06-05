@@ -4156,6 +4156,7 @@
 	touchDamage = 2
 	nocount = true
 	sprite = 0
+	blinkMax = 60
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -4228,6 +4229,8 @@
 	}
 
 	function hurtInvinc() {}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {}
 
 	function _typeof() { return "Crusher" }
 }

@@ -216,6 +216,12 @@
 ::defCrumbleIce <- sprCrumbleIce
 ::sprCube <- newSprite("res/gfx/cube.png", 16, 16, 0, 0, 8, 8)
 ::defCube <- sprCube
+::sprBrickBlock <- newSprite("res/gfx/brickblock.png", 16, 16, 0, 0, 0, 0)
+::defBrickBlock <- sprBrickBlock
+::sprBrickBlockSnow <- newSprite("res/gfx/brickblock-snow.png", 16, 16, 0, 0, 0, 0)
+::defBrickBlockSnow <- sprBrickBlockSnow
+::sprBrickChunks <- newSprite("res/gfx/brickblock-chunks.png", 8, 8, 0, 0, 4, 4)
+::defBrickChunks <- sprBrickChunks
 
 
 

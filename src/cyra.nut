@@ -13,6 +13,8 @@
 ::defCyraOverworld <- sprCyraOverworld
 ::sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 0, 0, 8, 8)
 ::defCyraDoll <- sprCyraDoll
+::sprKiki2 <- newSprite("res/gfx/kiki2.png", 74, 54, 0, 0, 32, 33)
+::defKiki2 <- sprKiki2
 
 
 ::sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 0, 0, 14, 12)
@@ -39,6 +41,8 @@
 ::freeCyra <- function() {
 	game.characters["Cyra"] <- true
 	game.friends["Cyra"] <- true
+	game.characters["Kiki2"] <- true
+	game.friends["Kiki2"] <- true
 }
 
 gvCharacters.Cyra <- {
@@ -51,12 +55,25 @@ gvCharacters.Cyra <- {
 	ice = "sprCyraIce"
 	air = "sprCyraAir"
 	earth = "sprCyraEarth"
-	pick = [8, 9]
+	pick = [8, 107]
 }
 
-/*=========*\
-| cyra ACTOR |
-\*=========*/
+gvCharacters.Kiki2 <- {
+	name = "Kiki the Cyber Squirrel (Type B)"
+	shortname = "Kiki"
+	over = "sprKikiOverworld"
+	doll =  "sprKikiDoll"
+	normal = "sprKiki2"
+	fire = "sprKiki2"
+	ice = "sprKiki2"
+	air = "sprKiki2"
+	earth = "sprKiki2"
+	pick = [8, 107]
+}
+
+/*==========*\
+| CYRA ACTOR |
+\*==========*/
 
 ::Cyra <- class extends Player {
 	canJump = 16
@@ -131,7 +148,7 @@ gvCharacters.Cyra <- {
 		swimU = [48, 49, 50, 51]
 		swimD = [48, 49, 50, 51]
 		wall = [52, 53]
-		fallW = [53]
+		fallW = [52]
 		slide = [54, 55, 56, 57]
 		rollingSlash = [132, 133, 134, 135, 136, 137, 138, 139]
 	}
@@ -439,7 +456,7 @@ gvCharacters.Cyra <- {
 
 					if(slashing) {
 						frame = 0
-						if(an["fall"] == an["fallW"]) animOffset = (115 - 53) + floor(slashTimer)
+						if(an["fall"] == an["fallW"]) animOffset = (116 - 53) + floor(slashTimer)
 						else animOffset = (61 - 36) + slashTimer
 					}
 					break
@@ -1521,3 +1538,17 @@ gvCharacters.Cyra <- {
 	}
 }
 
+
+::Kiki2 <- class extends Cyra {
+	constructor(_x, _y, _arr = null){
+		base.constructor(_x, _y, _arr)
+
+		mySprNormal = sprKiki2
+		mySprFire = sprKiki2
+		mySprIce = sprKiki2
+		mySprAir = sprKiki2
+		mySprEarth = sprKiki2
+	}
+
+	function _typeof() { return "Kiki2" }
+}

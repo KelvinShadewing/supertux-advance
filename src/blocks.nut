@@ -192,6 +192,76 @@
 	function _typeof() { return "WoodBlock" }
 }
 
+::BrickBlock <- class extends Actor {
+	shape = 0
+	slideshape = 0
+	coins = 0
+	v = 0.0
+	vspeed = 0
+	oldsolid = 0
+	glimmerTimer = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
+
+		shape = Rec(x, y + 2, 7, 8, 0)
+		slideshape = Rec(x, y - 1, 16, 8, 0)
+
+		if(_arr != null && _arr != "") coins = _arr.tointeger()
+		game.maxCoins += coins
+	}
+
+	function run() {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+			if(hitTest(shape, i.shape) && vspeed == 0) {
+				if(i.blast && !i.box) {
+					if(coins <= 1) {
+						deleteActor(id)
+						newActor(BrickChunks, x, y)
+						popSound(sndCrumble)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+						break
+					}
+					else {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						stopSound(sndBump)
+						popSound(sndBump, 0)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+					if(i.piercing > 0)
+						i.piercing--
+					if(i.piercing == 0)
+						deleteActor(i.id)
+				}
+			}
+		}
+
+		if(v == -8) vspeed = 1
+		v += vspeed
+		if(v == 0) vspeed = 0
+
+		if(coins > 0 && game.difficulty == 0) {
+			if(glimmerTimer > 0) glimmerTimer--
+			else {
+				glimmerTimer = randInt(30)
+				newActor(Glimmer, x - 8 + randInt(16), y  - 8 + randInt(16))
+			}
+		}
+	}
+
+	function draw() { drawSpriteZ(2, sprBrickBlock, 0, x - 8 - camx, y - 8 - camy + v) }
+
+	function destructor() { fireWeapon(BoxHit, x, y - 8, 1, id) }
+
+	function _typeof() { return "BrickBlock" }
+}
+
 ::IceBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
@@ -314,6 +384,31 @@
 		drawSpriteZ(2, sprWoodChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
 		drawSpriteZ(2, sprWoodChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
 		drawSpriteZ(2, sprWoodChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+	}
+}
+
+::BrickChunks <- class extends Actor {
+	h = 0.0
+	v = 0.0
+	vspeed = -3.0
+	timer = 30
+	a = 0
+
+	function run() {
+		vspeed += 0.2
+		v += vspeed
+		h += 1
+		a += 4
+
+		timer--
+		if(timer == 0) deleteActor(id)
+	}
+
+	function draw() {
+		drawSpriteZ(2, sprBrickChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSpriteZ(2, sprBrickChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSpriteZ(2, sprBrickChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSpriteZ(2, sprBrickChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
 	}
 }
 
