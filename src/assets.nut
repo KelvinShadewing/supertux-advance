@@ -357,7 +357,7 @@
 ::defSkyDive <- sprSkyDive
 ::sprPuffranah <- newSprite("res/gfx/puffranah.png", 54, 51, 0, 0, 30, 30)
 ::defPuffranah <- sprPuffranah
-::sprStruffle <- newSprite("res/gfx/struffle.png", 32, 32, 0, 0, 16, 18)
+::sprStruffle <- newSprite("res/gfx/struffle.png", 32, 32, 0, 0, 16, 16)
 ::defStruffle <- sprStruffle
 
 

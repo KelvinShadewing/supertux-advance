@@ -1365,7 +1365,7 @@
 			break
 
 		case 100:
-			c = newActor(Struffle, i.x + 8, i.y - 16)
+			c = newActor(Struffle, i.x + 8, i.y - 16, i.name)
 			break
 
 		case 102:

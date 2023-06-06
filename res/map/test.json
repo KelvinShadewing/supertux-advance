@@ -482,8 +482,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1920,
-                 "y":816
+                 "x":2016,
+                 "y":464
                 }, 
                 {
                  "gid":211,
@@ -1490,18 +1490,6 @@
                  "y":288
                 }, 
                 {
-                 "gid":263,
-                 "height":16,
-                 "id":453,
-                 "name":"SkyDive",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":1952,
-                 "y":460.25
-                }, 
-                {
                  "gid":285,
                  "height":16,
                  "id":454,
@@ -1788,6 +1776,30 @@
                  "width":16,
                  "x":544,
                  "y":368
+                }, 
+                {
+                 "gid":299,
+                 "height":16,
+                 "id":484,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1888,
+                 "y":464
+                }, 
+                {
+                 "gid":299,
+                 "height":16,
+                 "id":485,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1392,
+                 "y":496
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1796,7 +1808,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":484,
+ "nextobjectid":486,
  "orientation":"orthogonal",
  "properties":[
         {

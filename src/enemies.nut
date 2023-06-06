@@ -403,7 +403,7 @@
 		}
 
 		if("anim" in _by) {
-			if(_by.anim == "slide" && hitTest(shape, _by.shape)) {
+			if(_by.inMelee && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprGradcap
 				else actor[c].sprite = sprDeathcap
@@ -4747,7 +4747,7 @@
 	an = {
 		stand = [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 2, 0, 2]
 		bounce = [4, 5, 6, 7]
-		hurt = [3]
+		hurt = [3, 3, 3, 3]
 		walk = [8, 9, 10, 11, 12, 13, 14, 15]
 	}
 	flip = 0
@@ -4772,12 +4772,14 @@
 
 	health = 4
 	blinkMax = 30
-	walkTimer = 30
+	walkTimer = 10
+	touchDamage = 2
+	friction = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Rec(x, y, 7, 14, 0)
+		shape = Rec(x, y, 7, 12, 0, 0, 4)
 	}
 
 	function run() {
@@ -4786,20 +4788,76 @@
 		if(active) {
 			switch(anim) {
 				case "stand":
-					frame += 0.2
+					frame += 0.1
 					walkTimer--
 					if(walkTimer <= 0) {
 						anim = "walk"
+						walkTimer = 600
+
 						if(gvPlayer)
 							hspeed = 1.5 * (gvPlayer.x > x ? 1 : -1)
 						else
 							hspeed = choose(1.5, -1.5)
 					}
+
+					break
+
+				case "walk":
+					frame += 0.2
+					walkTimer--
+
+					if(walkTimer <= 0) {
+						walkTimer = 300
+						anim = "stand"
+						hspeed = 0
+					}
+					
+					break
+
+				case "bounce":
+				case "hurt":
+					hspeed = 0
+					frame += 0.2
+					if(frame >= 4) {
+						frame = 0.0
+						anim = "stand"
+						walkTimer = 60
+					}
+
+					if(anim == "hurt") {
+						if(flip == 0 && placeFree(x - 0.5, y))
+							x -= 0.5
+						if(flip == 1 && placeFree(x + 0.5, y))
+							x += 0.5
+					}
+
+					break
 			}
+
+			frame = wrap(frame, 0, an[anim].len() - 1)
+
+			if(hspeed > 0)
+				flip = 0
+			if(hspeed < 0)
+				flip = 1
+
+			if(!placeFree(x, y + 16)) {
+				if(placeFree(x + 12, y + 16))
+					hspeed = -hspeed
+				if(placeFree(x - 12, y + 16))
+					hspeed = -hspeed
+			}
+			if(!placeFree(x + hspeed, y - 10))
+				hspeed = -hspeed
+			shape.setPos(x, y)
 		}
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_by != 0 && _by.inMelee)
+			flip = int(x > _by.x)
+		anim = "hurt"
+		frame = 0.0
 		if(!_stomp) {
 			base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 			frame = 0.0
@@ -4812,10 +4870,34 @@
 				anim = "hurt"
 			}
 			else {
-				gvPlayer.hspeed = -8.0
+				gvPlayer.vspeed = -8.0
 				frame = 0.0
 				anim = "bounce"
 			}
+		}
+	}
+
+	function draw() {
+		drawSprite(sprStruffle, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+		
+		if(debug)
+			shape.draw()
+	}
+
+	function die() {
+		base.die()
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprStruffle
+		actor[c].vspeed = -4.0
+		actor[c].flip = flip
+		actor[c].frame = 3
+		if(flip == 1) actor[c].spin = 0.5
+		else actor[c].spin = -0.5
+		actor[c].gravity = 0.2
+		popSound(sndKick, 0)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
 		}
 	}
 }
