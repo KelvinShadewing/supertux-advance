@@ -741,6 +741,11 @@ const menuY = 40
 		desc = function() { return gvLangObj["options-menu-desc"]["completion"] }
 	},
 	{
+		name = function() { return format(gvLangObj["options-menu"]["usebeam"], config.useBeam ? gvLangObj["bool"]["on"] : gvLangObj["bool"]["off"]) }
+		func = function() { config.useBeam = !config.useBeam }
+		desc = function() { return gvLangObj["options-menu-desc"]["usebeam"] }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }

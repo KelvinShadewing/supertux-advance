@@ -74,6 +74,13 @@
 
 		levelEndRunner = newActor(LevelEnder, 0, 0)
 
+		if(ghostRecordNew.len() < ghostRecordOld.len() || ghostRecordOld.len() <= 1) {
+			local timeString = ""
+			for(local i = 0; i < ghostRecordNew.len(); i++)
+				timeString += ghostRecordNew[i][0] + "," + ghostRecordNew[i][1] + "\n"
+			fileWrite("ghosts/" + ghostRecordName, timeString)
+		}
+
 		saveGame()
 	}
 }

@@ -43,7 +43,7 @@
 [x] Owls
 [x] Crusher
 [x] Wheeler
-[ ] Skydives
+[x] Skydives
 
 ## Bosses
 
@@ -63,16 +63,17 @@
 [x] Ice flower
 [x] Air feather
 [x] Earth shell
+[ ] Shock Bulb
 **KONQI ITEMS**
 [x] Fire flower
 [x] Ice flower
 [x] Air feather
 [x] Earth shell
 **MIDI ITEMS**
-[ ] Fire flower
-[ ] Ice flower
-[ ] Air feather
-[ ] Earth shell
+[x] Fire flower
+[x] Ice flower
+[x] Air feather
+[x] Earth shell
 **PENNY ITEMS**
 [x] Fire flower
 [x] Ice flower
@@ -84,25 +85,26 @@
 [x] Air feather
 [x] Earth shell
 **KIKI ITEMS**
-[ ] Fire flower
-[ ] Ice flower
-[ ] Air feather
-[ ] Earth shell
+[x] Fire flower
+[x] Ice flower
+[x] Air feather
+[x] Earth shell
 
 ## Misc
 
-[x] Powerup leveling
+[ ] Switch from elmental ammo to energy/stamina system
 [x] Sub items
 [x] General store
-[x] Fix the infamous slope glitch
+[?] Fix the infamous slope glitch
 [x] add glow to Blazeborn
 [x] World travel
 [x] In-game timer
 [x] Jump buffering
 [ ] Mod Tracking (for requirement checks)
-[?] Two-player support (STILL BUGGY)
+[ ] Player swapping
 [x] Parallax backgrounds
 [ ] Better solid escape and unisolid platform support
+[ ] Apache Beam level best time path recording
 
 ## Bugs to fix
 

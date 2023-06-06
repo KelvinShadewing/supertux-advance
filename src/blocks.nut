@@ -824,7 +824,7 @@
 			}
 		}
 
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire") && i.element != "ice") {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire") && i.element != "ice" && i.element != "water") {
 			if(i.rawin("frame") && i.blast) {
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)
@@ -872,7 +872,7 @@
 	}
 
 	function run() {
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast && i.element == "fire")) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast && i.power > 1 && (i.element == "fire" || i.element == "shock"))) {
 			if(i.rawin("frame")) {
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)
@@ -893,7 +893,7 @@
 
 	function draw() { drawSpriteZ(2, sprC4, frame, x - 8 - camx, y - 8 - camy) }
 
-	function _typeof() { return "TNT" }
+	function _typeof() { return "C4" }
 }
 
 ::ColorBlock <- class extends Actor {
@@ -1401,7 +1401,7 @@
 			if(alpha < 1.0) alpha += 0.1
 			if((gvPlayer && hitTest(shape, gvPlayer.shape)
 			|| gvPlayer2 && hitTest(shape, gvPlayer2.shape)) && !wasStepped) wasStepped = true
-			if(wasStepped) timer++
+			if(wasStepped) timer += 2
 			if(timer == 30) {
 				broken = true
 				tileSetSolid(x, y, oldsolid)

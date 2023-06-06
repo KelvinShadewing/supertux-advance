@@ -4741,3 +4741,61 @@
 
 	function physics() {}
 }
+
+::Struffle <- class extends Enemy {
+	anim = "stand"
+	an = {
+		stand = [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 2, 0, 2]
+		bounce = [4, 5, 6, 7]
+		hurt = [3]
+		walk = [8, 9, 10, 11, 12, 13, 14, 15]
+	}
+	flip = 0
+	frame = 0.0
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
+
+	health = 4
+	blinkMax = 30
+	walkTimer = 30
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 7, 14, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			switch(anim) {
+				case "stand":
+					frame += 0.2
+					walkTimer--
+					if(walkTimer <= 0) {
+						anim = "walk"
+						if(gvPlayer)
+							hspeed = 1.5 * (gvPlayer.x > x ? 1 : -1)
+						else
+							hspeed = choose(1.5, -1.5)
+					}
+			}
+		}
+	}
+}

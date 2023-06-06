@@ -66,7 +66,8 @@
 		"nearbars" : "Near-Sighted Healthbars: %s",
 		"weather" : "Weather effects: %s",
 		"showkeys" : "Show Keys: %s",
-		"completion" : "Completion Stats: %s"
+		"completion" : "Completion Stats: %s",
+		"usebeam" : "Race Beam: %s"
 	},
 
 	"options-menu-desc": {
@@ -87,7 +88,8 @@
 		"nearbars" : "Health and energy bars appear near the player",
 		"weather" : "Turning off weather can help with near-sightedness and recording",
 		"showkeys" : "On-screen controls for speedrun recording",
-		"completion" : "Show remaining coins, enemies, and secrets in level"
+		"completion" : "Show remaining coins, enemies, and secrets in level",
+		"usebeam" : "Beam will appear in completed levels to race you"
 	},
 
 	"speedrun-menu" : {

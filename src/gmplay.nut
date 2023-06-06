@@ -57,6 +57,12 @@
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
+	if(!game.check) {
+		ghostRecordName = gvMap.name + "." + game.playerChar + ".gst"
+		ghostRecordOld = loadGhostFile("ghosts/" + ghostRecordName)
+		ghostRecordNew = []
+	}
+
 	gvHorizon = gvMap.h
 
 	//Get tiles used to mark actors
@@ -393,6 +399,9 @@
 	if("properties" in gvMap.data) foreach(i in gvMap.data.properties) {
 		if(i.name == "run") dostr(i.value)
 	}
+
+	if(gvPlayer && levelEndRunner == 0)
+		ghostRecordNew.push([gvPlayer.x, gvPlayer.y])
 
 	////////////////
 	// CAMERA 0/1 //
@@ -945,19 +954,13 @@
 				}
 				gvNumPlayers++
 			}
-			if(!gvPlayer2 && game.playerChar2 != "" && getroottable().rawin(game.playerChar2)) {
-				if(game.check == false) {
-					c = actor[newActor(getroottable()[game.playerChar2], i.x + 8, i.y - 16)]
-				}
-				else {
-					c = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
-				}
-				gvNumPlayers++
-			}
 
 			camx = c.x - (gvScreenW / 2)
 			camy = c.y - (gvScreenH / 2)
 			if(gvPlayer) gvCamTarget = gvPlayer
+
+			if(config.useBeam)
+				newActor(BeamBug, i.x + 8, i.y - 16)
 			break
 
 		case 1:

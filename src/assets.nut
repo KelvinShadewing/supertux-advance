@@ -244,6 +244,7 @@
 ::sprBearistaNPC <- newSprite("res/gfx/bearista.png", 21, 37, 0, 0, 10, 37)
 ::sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 0, 0, 5, 16)
 ::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
+::sprBeam <- newSprite("res/gfx/beam.png", 20, 22, 0, 0, 10, 16)
 
 
 
@@ -356,6 +357,8 @@
 ::defSkyDive <- sprSkyDive
 ::sprPuffranah <- newSprite("res/gfx/puffranah.png", 54, 51, 0, 0, 30, 30)
 ::defPuffranah <- sprPuffranah
+::sprStruffle <- newSprite("res/gfx/struffle.png", 32, 32, 0, 0, 16, 18)
+::defStruffle <- sprStruffle
 
 
 //Bosses
