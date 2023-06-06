@@ -4775,11 +4775,12 @@
 	walkTimer = 10
 	touchDamage = 2
 	friction = 0
+	gravity = 0.1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Rec(x, y, 7, 12, 0, 0, 4)
+		shape = Rec(x, y, 7, 12, 0, 0, 3)
 	}
 
 	function run() {
