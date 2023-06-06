@@ -4850,6 +4850,9 @@
 			if(!placeFree(x + hspeed, y - 10))
 				hspeed = -hspeed
 			shape.setPos(x, y)
+
+			if(isOnScreen() && randInt(100) == 1)
+				popSound(sndPigSnort)
 		}
 	}
 
@@ -4862,17 +4865,21 @@
 			base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 			frame = 0.0
 			anim = "hurt"
+			popSound(sndPigSqueal)
 		}
 		else if(_stomp && gvPlayer) {
 			if(gvPlayer.anim == "stomp" || gvPlayer.anim == "statue"){
 				base.getHurt(_by, 2, _element, _cut, _blast, _stomp)
 				frame = 0.0
 				anim = "hurt"
+				popSound(sndPigSqueal)
 			}
 			else {
 				gvPlayer.vspeed = -8.0
 				frame = 0.0
 				anim = "bounce"
+				popSound(sndPigSnort)
+				popSound(sndSpring)
 			}
 		}
 	}
