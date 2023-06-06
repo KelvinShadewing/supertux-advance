@@ -86,7 +86,7 @@
 		//Figure out which player this is
 		if(!gvPlayer) {
 			gvPlayer = this
-			stats = game.ps1
+			stats = game.ps
 			playerNum = 1
 		}
 		else if(!gvPlayer2) {
@@ -335,7 +335,7 @@
 				}
 			}
 			if(game.check == false) {
-				if(playerNum == 1) game.ps1.weapon = "normal"
+				if(playerNum == 1) game.ps.weapon = "normal"
 				if(playerNum == 2) game.ps2.weapon = "normal"
 			}
 			

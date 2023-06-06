@@ -78,7 +78,11 @@
 			local timeString = ""
 			for(local i = 0; i < ghostRecordNew.len(); i++)
 				timeString += ghostRecordNew[i][0] + "," + ghostRecordNew[i][1] + "\n"
-			fileWrite("ghosts/" + ghostRecordName, timeString)
+			
+			if(game.path == "res/map/")
+				fileWrite("ghosts/" + ghostRecordName, timeString)
+			else
+				fileWrite("ghosts/" + game.path + ghostRecordName, timeString)
 		}
 
 		saveGame()

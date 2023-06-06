@@ -77,7 +77,7 @@
 		chy = 0
 		path = "res/map/"
 		bossHealth = 0
-		ps1 = {
+		ps = {
 			health = 0
 			weapon = "normal"
 			subitem = 0

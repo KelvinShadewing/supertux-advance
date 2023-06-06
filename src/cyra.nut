@@ -1374,7 +1374,7 @@ gvCharacters.Kiki2 <- {
 				}
 			}
 			if(game.check == false) {
-				if(playerNum == 1) game.ps1.weapon = "normal"
+				if(playerNum == 1) game.ps.weapon = "normal"
 				if(playerNum == 2) game.ps2.weapon = "normal"
 			}
 			

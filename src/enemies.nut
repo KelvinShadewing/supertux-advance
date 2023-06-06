@@ -4798,4 +4798,24 @@
 			}
 		}
 	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(!_stomp) {
+			base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
+			frame = 0.0
+			anim = "hurt"
+		}
+		else if(_stomp && gvPlayer) {
+			if(gvPlayer.anim == "stomp" || gvPlayer.anim == "statue"){
+				base.getHurt(_by, 2, _element, _cut, _blast, _stomp)
+				frame = 0.0
+				anim = "hurt"
+			}
+			else {
+				gvPlayer.hspeed = -8.0
+				frame = 0.0
+				anim = "bounce"
+			}
+		}
+	}
 }

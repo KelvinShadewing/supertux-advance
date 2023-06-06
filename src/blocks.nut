@@ -756,8 +756,8 @@
 			
 			if(game.difficulty < 3) {
 				if(gvPlayer) {
-					if(game.ps1.health < game.maxHealth) game.ps1.health += 4
-					else if(game.ps1.subitem == 0) game.ps1.subitem = "muffinBlue"
+					if(game.ps.health < game.maxHealth) game.ps.health += 4
+					else if(game.ps.subitem == 0) game.ps.subitem = "muffinBlue"
 					if(!gvPlayer2 && gvNumPlayers == 2) {
 						gvPlayer2 = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
 						gvPlayer2.tftime = 0
