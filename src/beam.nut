@@ -46,7 +46,7 @@
 			flip = 0
 		if(x < xprev)
 			flip = 1
-		turn = floor(min(fabs(x - xprev) / 2.0, 2)) * 2
+		turn = floor(min(fabs(x - xprev) / 1.5, 3)) * 2
 	}
 
 	function draw() {
@@ -59,10 +59,10 @@
 			local g = max(0, min(255, 128 + (255 - i * 15)))
 			local b = max(0, 255 - i * 15)
 			setDrawColor((r << 24) | (g << 16) | (b << 8) | max(0, min(255, 255 + (255 - i * 15))))
-			drawLineWide(lightTrail[i][0] - camx, lightTrail[i][1] - camy, lightTrail[i - 1][0] - camx, lightTrail[i - 1][1] - camy, 4 - (i / 8))
+			if(inRange(distance2(lightTrail[i][0] - camx, lightTrail[i][1] - camy, lightTrail[i - 1][0] - camx, lightTrail[i - 1][1] - camy), 2, 128)) drawLineWide(lightTrail[i][0] - camx, lightTrail[i][1] - camy, lightTrail[i - 1][0] - camx, lightTrail[i - 1][1] - camy, 4 - (i / 8))
 		}
 
-		drawSprite(sprBeam, turn + ((getFrames() / 2) % 2), x - camx, y - camy, 0, flip)
+		drawSprite(sprBeam, turn + ((getFrames() / 2) % 2), x - camx, y - camy + ((getFrames() / 4) % 2), 0, flip)
 	}
 
 	function _typeof() { return "BeamBug" }

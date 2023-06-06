@@ -99,3 +99,7 @@
 ::torad <- function(x) {
 	return (float(x) * pi) / 180.0
 }
+
+::inRange <- function(a, b, c) {
+	return (a >= b && a <= c)
+}
