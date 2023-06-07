@@ -24,7 +24,6 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	energy = 0.0
 	hidden = false
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
@@ -195,15 +194,10 @@
 			firetime--
 		}
 
-		if(firetime == 0 && energy < stats.maxEnergy) {
-			energy++
+		if(firetime == 0 && stats.energy < stats.maxEnergy) {
+			stats.energy++
 			firetime = 60
 		}
-
-
-		if(stats.weapon == "normal") stats.maxEnergy = 0
-		if(stats.weapon == "air") stats.maxEnergy = 4 + game.airBonus
-		if(energy > stats.maxEnergy) energy = stats.maxEnergy
 
 		/////////////
 		// ON LAND //
@@ -412,11 +406,11 @@
 			//Controls
 			if(!freeDown2 || onPlatform() || anim == "climb") {
 				canJump = 16
-				if(stats.weapon == "air" && energy < stats.maxEnergy) energy += 0.2
+				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(stats.weapon == "air" && energy < 1) energy += 0.02
+				if(stats.weapon == "air" && stats.stamina < 1) stats.stamina += 0.02
 			}
 			if(canMove) {
 				mspeed = 3.0
@@ -552,7 +546,7 @@
 						frame = 0.0
 						playSound(sndWallkick, 0)
 					}
-					else if(floor(energy) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
+					else if(floor(stats.stamina) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
@@ -569,7 +563,7 @@
 							stopSound(sndFlap)
 							playSound(sndFlap, 0)
 						}
-						energy--
+						stats.stamina--
 					}
 				}
 
@@ -716,7 +710,7 @@
 					}
 					break
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && energy > 0 && cooldown == 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.stamina > 0 && cooldown == 0) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -732,7 +726,7 @@
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.stamina--
 						firetime = 60
 
 						c.hspeed += hspeed / 1.5
@@ -758,7 +752,7 @@
 					break
 
 				case "earth":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0 && anim != "statue") {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0 && anim != "statue") {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -774,12 +768,12 @@
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 
 						c.hspeed += hspeed / 1.5
 					}
-					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || stats.energy == 0) && anim == "statue") {
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)
@@ -797,7 +791,7 @@
 					}
 					break
 				case "fire":
-					if(getcon("spec1", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && energy > 0 && cooldown == 0) {
+					if(getcon("spec1", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -813,7 +807,7 @@
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 
 						c.hspeed += hspeed / 1.5
@@ -839,7 +833,7 @@
 					break
 
 				case "earth":
-					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0 && anim != "statue") {
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0 && anim != "statue") {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -855,12 +849,12 @@
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 
 						c.hspeed += hspeed / 1.5
 					}
-					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || stats.energy == 0) && anim == "statue") {
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)
@@ -881,7 +875,7 @@
 		//////////////
 		else {
 			swimming = true
-			if(stats.weapon == "air" && energy < 4) energy += 0.1
+			if(stats.weapon == "air" && stats.stamina < 4) stats.stamina += 0.1
 			if(!wasInWater) {
 				wasInWater = true
 				vspeed /= 2.0
@@ -964,7 +958,7 @@
 			//Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(FireballK, x + fx, y - 4, 1, id)
@@ -991,13 +985,13 @@
 						c.hspeed += hspeed / 2
 						c.vspeed += vspeed / 2
 
-						energy--
+						stats.energy--
 						firetime = 60
 					}
 					break
 
 				case "ice":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && !(!placeFree(x, y + 1) && getcon("down", "hold", true, playerNum))) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && !(!placeFree(x, y + 1) && getcon("down", "hold", true, playerNum))) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
@@ -1024,13 +1018,13 @@
 						c.hspeed += hspeed / 2
 						c.vspeed += vspeed / 2
 
-						energy--
+						stats.energy--
 						firetime = 60
 					}
 					break
 
 				case "earth":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0 && anim != "statue") {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0 && anim != "statue") {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -1046,12 +1040,12 @@
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 
 						c.hspeed += hspeed / 1.5
 					}
-					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || energy == 0) && anim == "statue") {
+					if((!getcon("shoot", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum) || stats.energy == 0) && anim == "statue") {
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)
@@ -1136,8 +1130,8 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "statue" && energy > 0 && frame >= 3) {
-					energy--
+				if(stats.weapon == "earth" && anim == "statue" && stats.energy > 0 && frame >= 3) {
+					stats.energy--
 					firetime = 180
 					blinking = 120
 					newActor(Spark, x, y)

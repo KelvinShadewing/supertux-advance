@@ -838,16 +838,11 @@
 		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			game.secretOrbs[num] = true
 			deleteActor(id)
+			endGoal()
 		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
-			game.secretOrbs[num] = true
-			deleteActor(id)
-		}
-
-		if(game.secretOrbs[num]) deleteActor(id)
 	}
 
-	function draw() { drawSprite(sprSpecialBall, getFrames() / 4, x - camx, y - camy) }
+	function draw() { drawSprite(sprSpecialBall, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, (game.secretOrbs[num] ? 0.5 : 1)) }
 
 	function _typeof() { return "Item" }
 }

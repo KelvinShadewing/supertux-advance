@@ -2336,8 +2336,8 @@
 		base.run()
 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
-		if(gvPlayer && hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(1 + game.difficulty, "normal", true, false)
-		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) gvPlayer2.getHurt(1 + game.difficulty, "normal", true, false)
+		if(gvPlayer && hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(2 + game.difficulty, "normal", true, false)
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) gvPlayer2.getHurt(2 + game.difficulty, "normal", true, false)
 	}
 
 	function draw() {
@@ -4852,14 +4852,13 @@
 				hspeed = -hspeed
 			shape.setPos(x, y)
 
-			if(isOnScreen() && randInt(100) == 1)
+			if(isOnScreen() && randInt(1000) == 1)
 				popSound(sndPigSnort)
 		}
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_by != 0 && _by.inMelee)
-			flip = int(x > _by.x)
+		flip = int(x > _by.x)
 		anim = "hurt"
 		frame = 0.0
 		if(!_stomp) {

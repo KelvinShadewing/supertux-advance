@@ -179,6 +179,16 @@
 			if(getcon("right", "hold", false, playerNum) && !endMode) gvExitTimer += 1.0
 			gvExitSide = 1
 		}
+
+		//Stats
+		stats.maxEnergy = 4 + game.energyBonus - game.difficulty
+		stats.maxStamina = 4 + game.staminaBonus - game.difficulty
+
+		if(stats.energy > stats.maxEnergy)
+			stats.energy = stats.maxEnergy
+
+		if(stats.stamina > stats.maxStamina)
+			stats.stamina = stats.maxStamina
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
@@ -248,31 +258,40 @@
 			case "fire":
 				stats.subitem = stats.weapon
 				stats.weapon = "fire"
-				stats.maxEnergy = 4 - game.difficulty + game.fireBonus
 				popSound(sndHeal, 0)
 				tftime = 0
 				break
 			case "ice":
 				stats.subitem = stats.weapon
 				stats.weapon = "ice"
-				stats.maxEnergy = 4 - game.difficulty + game.iceBonus
 				popSound(sndHeal, 0)
 				tftime = 0
 				break
 			case "air":
 				stats.subitem = stats.weapon
 				stats.weapon = "air"
-				stats.maxEnergy = 4 - game.difficulty + game.airBonus
 				popSound(sndHeal, 0)
 				tftime = 0
 				break
 			case "earth":
 				stats.subitem = stats.weapon
 				stats.weapon = "earth"
-				stats.maxEnergy = 4 - game.difficulty + game.earthBonus
 				popSound(sndHeal, 0)
 				tftime = 0
 				break
+			case "water":
+				stats.subitem = stats.weapon
+				stats.weapon = "water"
+				popSound(sndHeal, 0)
+				tftime = 0
+				break
+			case "shock":
+				stats.subitem = stats.weapon
+				stats.weapon = "shock"
+				popSound(sndHeal, 0)
+				tftime = 0
+				break
+			
 			case "muffinBlue":
 				if(stats.health < game.maxHealth) {
 					stats.health += 4

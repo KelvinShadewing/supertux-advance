@@ -922,7 +922,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		popSound(sndExplodeT, 0)
+		popSound(sndCyraElectricSwing, 0)
 
 		shape = Cir(x, y, 24.0)
 	}

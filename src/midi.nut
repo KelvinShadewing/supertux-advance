@@ -24,7 +24,6 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	energy = 0.0
 	hidden = false
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
@@ -506,9 +505,9 @@
 						rspeed = fabs(hspeed)
 					}
 					else {
-						if(fabs(rspeed) > 1.8)
+						if(fabs(rspeed) > 1.4)
 							animOffset = 16
-						if(fabs(rspeed) > 3.6)
+						if(fabs(rspeed) > 3.4)
 							animOffset = 32
 						if(shooting)
 							animOffset += 8
@@ -686,7 +685,7 @@
 
 					if(c != null) {
 						c.exElement = nutType
-						energy--
+						stats.energy--
 						firetime = 90
 					}
 
@@ -766,24 +765,24 @@
 			if(getcon("shoot", "press", true, playerNum)) shootNut(0)
 			if(getcon("spec1", "press", true, playerNum)) shootNut(1)
 
-			if(getcon("shoot", "hold", true, playerNum) && energy > 1) {
+			if(getcon("shoot", "hold", true, playerNum) && stats.energy > 1) {
 				chargeTimer++
-				if(chargeTimer > 121 && energy < 3)
+				if(chargeTimer > 121 && stats.energy < 3)
 				 	chargeTimer--
 				if(chargeTimer == 180)
 					tftime = 0
 			}
 
-			if(getcon("spec1", "hold", true, playerNum) && energy > 1) {
+			if(getcon("spec1", "hold", true, playerNum) && stats.energy > 1) {
 				chargeTimer2++
-				if(chargeTimer2 > 121 && energy < 3)
+				if(chargeTimer2 > 121 && stats.energy < 3)
 				 	chargeTimer2--
 				if(chargeTimer2 == 180)
 					tftime = 0
 			}
 
-			if(getcon("shoot", "release", true, playerNum) && energy > 0 && chargeTimer >= 90) shootNut(0, min(floor(chargeTimer / 90) + 1, energy))
-			if(getcon("spec1", "release", true, playerNum) && energy > 0 && chargeTimer2 >= 90) shootNut(1, min(floor(chargeTimer2 / 90) + 1, energy))
+			if(getcon("shoot", "release", true, playerNum) && stats.energy > 0 && chargeTimer >= 90) shootNut(0, min(floor(chargeTimer / 90) + 1, stats.energy))
+			if(getcon("spec1", "release", true, playerNum) && stats.energy > 0 && chargeTimer2 >= 90) shootNut(1, min(floor(chargeTimer2 / 90) + 1, stats.energy))
 
 			if(!getcon("shoot", "hold", true, playerNum) && anim != "plantMine") chargeTimer = 0
 			if(!getcon("spec1", "hold", true, playerNum) && anim != "plantMine") chargeTimer2 = 0
@@ -794,18 +793,18 @@
 		}
 		else if(holding) chargeTimer = 0
 
-		local nrgBonus = float(game.fireBonus + game.iceBonus + game.airBonus + game.earthBonus) / 4.0
-		stats.maxEnergy = 4 - game.difficulty + ceil(nrgBonus)
-
 		//Recharge
 		if(firetime > 0) {
 			firetime--
 		}
 
-		if(firetime == 0 && energy < stats.maxEnergy && !shooting) {
-			energy++
+		if(firetime == 0 && stats.energy < stats.maxEnergy && !shooting) {
+			stats.energy++
 			firetime = 30
 		}
+
+		if(!freeDown2 && stats.stamina < stats.maxStamina)
+			stats.stamina++
 
 		//After image
 		if(zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, 0, flip, 0, 1, 1])
@@ -827,7 +826,7 @@
 		}
 
 		if(canMove) {
-			mspeed = 4.0
+			mspeed = 3.5
 			if(config.stickspeed) {
 				local j = null
 				if(playerNum == 1) j = config.joy
@@ -1404,7 +1403,7 @@
 	}
 
 	function shootNut(_hand, _power = 1) {
-		if(shooting || energy < 1) return
+		if(shooting || stats.energy < 1) return
 		popSound(sndThrow, 0)
 		hand = _hand
 		if(flip) shooting = 2 - hand
@@ -1476,7 +1475,7 @@
 		if(c != null) {
 			c.exElement = nutType
 			c.exPower = _power
-			energy -= _power
+			stats.energy -= _power
 			firetime = 90
 		}
 

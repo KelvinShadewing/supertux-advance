@@ -126,10 +126,14 @@
 
 //GUI
 ::sprCursor <- newSprite("res/gfx/cursor.png", 10, 13, 0, 0, 0, 0)
-::sprHealth <- newSprite("res/gfx/health.png",16, 16, 0, 0, 0, 0)
+::sprHealth <- newSprite("res/gfx/health-icon.png",16, 16, 0, 0, 0, 0)
 ::defHealth <- sprHealth
-::sprEnergy <- newSprite("res/gfx/energy.png", 16, 16, 0, 0, 0, 0)
+::sprEnergy <- newSprite("res/gfx/energy-icon.png", 16, 16, 0, 0, 0, 0)
 ::defEnergy <- sprEnergy
+::sprStamina <- newSprite("res/gfx/stamina-icon.png", 16, 16, 0, 0, 0, 0)
+::defStamina <- sprStamina
+::sprElement <- newSprite("res/gfx/element-icon.png", 16, 16, 0, 0, 0, 0)
+::defElement <- sprElement
 ::sprLevels <- newSprite("res/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
 ::defLevels <- sprLevels
 ::sprSubItem <- newSprite("res/gfx/itemcard.png", 20, 20, 0, 0, 10, 10)
@@ -159,6 +163,8 @@
 ::imgNearRedFill <- loadImage("res/gfx/near-health-fill.png")
 ::imgNearGreenFill <- loadImage("res/gfx/near-stamina-fill.png")
 ::imgNearBlueFill <- loadImage("res/gfx/near-mana-fill.png")
+
+::sprMeterBack <- newSprite("res/gfx/meter-back.png", 2, 8, 0, 0, 0, 0)
 
 
 //Blocks
@@ -414,6 +420,10 @@
 ::defMysticDoll <- sprMysticDoll
 ::sprCoinSmall <- newSprite("res/gfx/coin-small.png", 8, 8, 0, 0, 4, 4)
 ::defCoinSmall <- sprCoinSmall
+::sprShockBulb <- newSprite("res/gfx/shockbulb.png", 14, 15, 0, 0, 7, 8)
+::defShockBulb <- sprShockBulb
+::sprWaterLily <- newSprite("res/gfx/water-lily.png", 16, 16, 0, 0, 8, 8)
+::defWaterLily <- sprWaterLily
 
 
 
@@ -717,8 +727,6 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprKikiDoll = defKikiDoll
 	sprKikiAura = defKikiAura
 
-	sprHealth = defHealth
-	sprEnergy = defEnergy
 	sprLevels = defLevels
 	sprSubItem = defSubItem
 	sprWarning = defWarning

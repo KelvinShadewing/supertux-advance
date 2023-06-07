@@ -22,14 +22,8 @@
 		enemies = 0
 		maxEnemies = 0
 		maxHealth = 12
-		fireBonus = 0
-		iceBonus = 0
-		airBonus = 0
-		earthBonus = 0
-		waterBonus = 0
-		shockBonus = 0
-		lightBonus = 0
-		darkBonus = 0
+		energyBonus = 0
+		staminaBonus = 0
 		completed = {} //List of completed level names
 		unblocked = {} //List of unblocked obstacles on map
 		allCoins = {} //Levels that the player has gotten all enemies in
@@ -84,14 +78,9 @@
 			canres = false
 			berries = 0
 			maxEnergy = 0
-		}
-		ps2 = {
-			health = 0
-			weapon = "normal"
-			subitem = 0
-			canres = false
-			berries = 0
-			maxEnergy = 0
+			maxStamina = 0
+			energy = 0
+			stamina = 0
 		}
 		state = {}
 	}

@@ -23,7 +23,6 @@
 	shapeStand = 0
 	shapeSlide = 0
 	tftime = -1 //Timer for transformation
-	energy = 0.0
 	hidden = false
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
@@ -192,21 +191,13 @@
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "slide"))
+		if(firetime > 0)
 			firetime--
 
-		if(firetime == 0 && energy < stats.maxEnergy) {
-			energy++
+		if(firetime == 0 && stats.energy < stats.maxEnergy) {
+			stats.energy++
 			firetime = 60
 		}
-
-
-		if(stats.weapon == "normal")
-			stats.maxEnergy = 0
-		if(stats.weapon == "air")
-			stats.maxEnergy = 4 + game.airBonus
-		if(energy > stats.maxEnergy)
-			energy = stats.maxEnergy
 
 		/////////////
 		// ON LAND //
@@ -414,11 +405,11 @@
 			//Controls
 			if(!freeDown2 || anim == "climb" || onPlatform()) {
 				canJump = 16
-				if(stats.weapon == "air" && energy < stats.maxEnergy) energy += 0.2
+				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(stats.weapon == "air" && energy < 1) energy += 0.02
+				if(stats.weapon == "air" && stats.stamina < 1) stats.stamina += 0.02
 			}
 			if(canMove) {
 				mspeed = 3.0
@@ -552,7 +543,7 @@
 						frame = 0.0
 						playSound(sndWallkick, 0)
 					}
-					else if(floor(energy) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
+					else if(floor(stats.stamina) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
@@ -569,7 +560,7 @@
 							stopSound(sndFlap)
 							playSound(sndFlap, 0)
 						}
-						energy--
+						stats.stamina--
 					}
 				}
 
@@ -702,7 +693,7 @@
 			//Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
@@ -717,14 +708,14 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
 					break
 
 				case "ice":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
@@ -739,7 +730,7 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -768,7 +759,7 @@
 
 			if(canMove) switch(stats.subitem) {
 				case "fire":
-					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.stamina > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
@@ -783,14 +774,14 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.stamina--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
 					break
 
 				case "ice":
-					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
@@ -805,7 +796,7 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -823,7 +814,6 @@
 		//////////////
 		else {
 			swimming = true
-			if(stats.weapon == "air" && energy < 4) energy += 0.1
 			shapeStand.h = 6.0
 			if(!wasInWater) {
 				wasInWater = true
@@ -908,7 +898,7 @@
 			//Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local c = fireWeapon(Fireball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
@@ -933,13 +923,13 @@
 						c.hspeed += hspeed / 3
 						c.vspeed += vspeed / 3
 
-						energy--
+						stats.energy--
 						firetime = 60
 					}
 					break
 
 				case "ice":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local c = fireWeapon(Iceball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
@@ -964,7 +954,7 @@
 						c.hspeed += hspeed / 2
 						c.vspeed += vspeed / 2
 
-						energy--
+						stats.energy--
 						firetime = 60
 					}
 					break
@@ -972,7 +962,7 @@
 
 			if(canMove) switch(stats.subitem) {
 				case "fire":
-					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local c = fireWeapon(Fireball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
@@ -997,13 +987,13 @@
 						c.hspeed += hspeed / 3
 						c.vspeed += vspeed / 3
 
-						energy--
+						stats.energy--
 						firetime = 60
 					}
 					break
 
 				case "ice":
-					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0) {
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local c = fireWeapon(Iceball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
@@ -1028,7 +1018,7 @@
 						c.hspeed += hspeed / 2
 						c.vspeed += vspeed / 2
 
-						energy--
+						stats.energy--
 						firetime = 60
 					}
 					break
@@ -1114,8 +1104,8 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "slide" && energy > 0) {
-					energy--
+				if(stats.weapon == "earth" && anim == "slide" && stats.energy > 0) {
+					stats.energy--
 					firetime = 120
 					newActor(Spark, x, y)
 				}

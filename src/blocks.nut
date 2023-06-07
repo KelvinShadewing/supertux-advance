@@ -1285,7 +1285,6 @@
 	character = "Tux"
 	v = 0.0
 	vspeed = 0.0
-	hitby = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1307,43 +1306,20 @@
 		if(v <= -8) {
 			vspeed = 1
 
-			if(hitby == 1) {
-				local nx = gvPlayer.x
-				local ny = gvPlayer.y
-				local nf = gvPlayer.flip
-				local nh = gvPlayer.hspeed
-				local nv = gvPlayer.vspeed
-				local ns = gvPlayer.stats
-				local ne = gvPlayer.energy
-				deleteActor(gvPlayer.id)
-				gvPlayer = false
-				newActor(getroottable()[character], nx, ny)
-				gvPlayer.tftime = 0
-				gvPlayer.flip = nf
-				gvPlayer.hspeed = nh
-				gvPlayer.vspeed = nv
-				gvPlayer.stats = ns
-				gvPlayer.energy = ne
-			}
-
-			if(hitby == 2) {
-				local nx = gvPlayer2.x
-				local ny = gvPlayer2.y
-				local nf = gvPlayer2.flip
-				local nh = gvPlayer2.hspeed
-				local nv = gvPlayer2.vspeed
-				local ns = gvPlayer2.stats
-				local ne = gvPlayer2.energy
-				deleteActor(gvPlayer2.id)
-				gvPlayer2 = false
-				newActor(getroottable()[character], nx, ny)
-				gvPlayer2.tftime = 0
-				gvPlayer2.flip = nf
-				gvPlayer2.hspeed = nh
-				gvPlayer2.vspeed = nv
-				gvPlayer2.stats = ns
-				gvPlayer2.energy = ne
-			}
+			local nx = gvPlayer.x
+			local ny = gvPlayer.y
+			local nf = gvPlayer.flip
+			local nh = gvPlayer.hspeed
+			local nv = gvPlayer.vspeed
+			local ns = gvPlayer.stats
+			deleteActor(gvPlayer.id)
+			gvPlayer = false
+			newActor(getroottable()[character], nx, ny)
+			gvPlayer.tftime = 0
+			gvPlayer.flip = nf
+			gvPlayer.hspeed = nh
+			gvPlayer.vspeed = nv
+			gvPlayer.stats = ns
 
 			tileSetSolid(x, y, 0)
 			popSound(sndHeal, 0)
@@ -1356,15 +1332,6 @@
 			vspeed = -2
 			v -= 2
 			popSound(sndBump, 0)
-			hitby = 1
-		}
-
-		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
-			gvPlayer2.vspeed = 0
-			vspeed = -2
-			v -= 2
-			popSound(sndBump, 0)
-			hitby = 2
 		}
 
 		v += vspeed

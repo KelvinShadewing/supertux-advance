@@ -86,6 +86,8 @@
 
 [Subspace Audio](https://opengameart.org/content/512-sound-effects-8-bit-style) - Misc sounds
 
+[Erich Izdepsk](https://opengameart.org/users/digitl) - Electric wave
+
 ## Music
 
 [Automusic](https://www.youtube.com/watch?v=xPxCaCN_dCQ) - Main Theme

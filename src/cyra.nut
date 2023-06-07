@@ -9,6 +9,8 @@
 ::defCyraAir <- sprCyraAir
 ::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 0, 0, 32, 33)
 ::defCyraEarth <- sprCyraEarth
+::sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 0, 0, 32, 33)
+::defCyraShock <- sprCyraShock
 ::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 0, 0, 7, 17)
 ::defCyraOverworld <- sprCyraOverworld
 ::sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 0, 0, 8, 8)
@@ -26,10 +28,14 @@
 ::sprCyraFreezeWave <- newSprite("res/gfx/cyra_gfx/freezewave.png", 28, 24, 0, 0, 14, 12)
 ::defCyraFreezeWave <- sprCyraFreezeWave
 
+::sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 0, 0, 14, 12)
+::defCyraElectricWave <- sprCyraElectricWave
+
 //Sounds
 ::sndCyraSwordSwing <- loadSound("res/snd/cyra_snd/swordswing.ogg")
 ::sndCyraFireSwing <- loadSound("res/snd/cyra_snd/firewave.ogg")
 ::sndCyraTornado <- loadSound("res/snd/cyra_snd/windswing.ogg")
+::sndCyraElectricSwing <- loadSound("res/snd/electricwave.ogg")
 
 ::gfxCyraReset <- function() {
 	sprCyra = defCyra
@@ -55,6 +61,7 @@ gvCharacters.Cyra <- {
 	ice = "sprCyraIce"
 	air = "sprCyraAir"
 	earth = "sprCyraEarth"
+	shock = "sprCyraShock"
 	pick = [8, 107]
 }
 
@@ -68,6 +75,7 @@ gvCharacters.Kiki2 <- {
 	ice = "sprKiki2"
 	air = "sprKiki2"
 	earth = "sprKiki2"
+	shock = "sprKiki2"
 	pick = [8, 107]
 }
 
@@ -101,7 +109,6 @@ gvCharacters.Kiki2 <- {
 	shapeSlide = 0
 	shapeClimb = 0
 	tftime = -1 //Timer for transformation
-	energy = 0.0
 	hidden = false
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
@@ -159,6 +166,7 @@ gvCharacters.Kiki2 <- {
 	mySprIce = null
 	mySprAir = null
 	mySprEarth = null
+	mySprShock = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -170,7 +178,7 @@ gvCharacters.Kiki2 <- {
 		if(!gvPlayer) gvPlayer = this
 		startx = _x.tofloat()
 		starty = _y.tofloat()
-		energy = stats.maxEnergy
+		stats.energy = stats.maxEnergy
 		an["fall"] = an["fallN"]
 		xprev = x
 		yprev = y
@@ -180,6 +188,7 @@ gvCharacters.Kiki2 <- {
 		mySprIce = sprCyraIce
 		mySprAir = sprCyraAir
 		mySprEarth = sprCyraEarth
+		mySprShock = sprCyraShock
 	}
 
 	function physics() {}
@@ -257,6 +266,20 @@ gvCharacters.Kiki2 <- {
 		cut = 0.25
 		blast = 1.0
 	}
+	damageMultS = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.5
+		air = 1.0
+		toxic = 1.0
+		shock = 0.5
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 0.5
+		blast = 1.0
+	}
 
 	function run() {
 		base.run()
@@ -285,8 +308,8 @@ gvCharacters.Kiki2 <- {
 			firetime--
 		}
 
-		if(firetime == 0 && energy < stats.maxEnergy) {
-			energy++
+		if(firetime == 0 && stats.energy < stats.maxEnergy) {
+			stats.energy++
 			firetime = 40
 		}
 
@@ -295,10 +318,6 @@ gvCharacters.Kiki2 <- {
 			slashTimer = 0.0
 			slashing = false
 		}
-
-		if(stats.weapon == "normal") stats.maxEnergy = 0
-		if(stats.weapon == "air") stats.maxEnergy = 4 + game.airBonus
-		if(energy > stats.maxEnergy) energy = stats.maxEnergy
 
 		/////////////
 		// ON LAND //
@@ -580,11 +599,11 @@ gvCharacters.Kiki2 <- {
 			//Controls
 			if(!freeDown2 || onPlatform() || anim == "climb") {
 				canJump = 16
-				if(stats.weapon == "air" && energy < stats.maxEnergy) energy += 0.2
+				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(stats.weapon == "air" && energy < 1) energy += 0.02
+				if(stats.weapon == "air" && stats.stamina < 1) stats.stamina += 0.02
 			}
 			if(canMove) {
 				accel = 0.2
@@ -722,7 +741,7 @@ gvCharacters.Kiki2 <- {
 						frame = 0.0
 						playSound(sndWallkick, 0)
 					}
-					else if(floor(energy) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
+					else if(floor(stats.energy) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
@@ -739,7 +758,7 @@ gvCharacters.Kiki2 <- {
 							stopSound(sndFlap)
 							playSound(sndFlap, 0)
 						}
-						energy--
+						stats.energy--
 					}
 				}
 
@@ -913,7 +932,7 @@ gvCharacters.Kiki2 <- {
 					}
 					break
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -929,7 +948,7 @@ gvCharacters.Kiki2 <- {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 						slashing = true
 						comboTimer = 30
@@ -939,7 +958,7 @@ gvCharacters.Kiki2 <- {
 					break
 
 				case "ice":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && energy > 0 && cooldown == 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -955,7 +974,7 @@ gvCharacters.Kiki2 <- {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						energy--
+						stats.energy--
 						firetime = 60
 						slashing = true
 						comboTimer = 30
@@ -1018,6 +1037,32 @@ gvCharacters.Kiki2 <- {
 						else comboStep = 0
 					}
 					break
+
+				case "shock":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(ElectricWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraElectricSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
 			}
 
 			if(cooldown > 0) cooldown--
@@ -1036,7 +1081,7 @@ gvCharacters.Kiki2 <- {
 		else {
 			swimming = true
 			shapeStand.h = 6.0
-			if(stats.weapon == "air" && energy < 4) energy += 0.1
+			if(stats.weapon == "air" && stats.stamina < 4) stats.stamina += 0.1
 			if(!wasInWater) {
 				wasInWater = true
 				vspeed /= 2.0
@@ -1201,8 +1246,8 @@ gvCharacters.Kiki2 <- {
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "slide" && energy > 0) {
-					energy--
+				if(stats.weapon == "earth" && anim == "slide" && stats.energy > 0) {
+					stats.energy--
 					firetime = 120
 					newActor(Spark, x, y)
 				}
@@ -1250,6 +1295,11 @@ gvCharacters.Kiki2 <- {
 				case "earth":
 					sprite = mySprEarth
 					damageMult = damageMultE
+					break
+
+				case "shock":
+					sprite = mySprShock
+					damageMult = damageMultS
 					break
 			}
 
@@ -1431,7 +1481,7 @@ gvCharacters.Kiki2 <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraSwordWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprCyraSwordWave, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1439,7 +1489,6 @@ gvCharacters.Kiki2 <- {
 		newActor(Poof, x, y)
 	}
 }
-
 
 ::FireballCS <- class extends WeaponEffect {
 	timer = 15
@@ -1482,7 +1531,7 @@ gvCharacters.Kiki2 <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraFireWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprCyraFireWave, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1530,11 +1579,58 @@ gvCharacters.Kiki2 <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraFreezeWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprCyraFreezeWave, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
 		fireWeapon(ExplodeI, x, y, alignment, owner)
+	}
+}
+
+
+::ElectricWaveCS <- class extends WeaponEffect {
+	timer = 15
+	angle = 0
+	element = "shock"
+	power = 1
+	blast = true
+	piercing = 10
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 6)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+
+		x += hspeed
+		//y += vspeed
+		if(!placeFree(x, y)) {
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, 0)
+
+		shape.setPos(x, y)
+
+	}
+	function draw() {
+		drawSpriteEx(sprCyraElectricWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
+	}
+
+	function destructor() {
+		fireWeapon(ExplodeT, x, y, alignment, owner)
 	}
 }
 
@@ -1548,6 +1644,7 @@ gvCharacters.Kiki2 <- {
 		mySprIce = sprKiki2
 		mySprAir = sprKiki2
 		mySprEarth = sprKiki2
+		mySprShock = sprKiki2
 	}
 
 	function _typeof() { return "Kiki2" }

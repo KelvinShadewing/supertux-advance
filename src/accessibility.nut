@@ -10,4 +10,9 @@
 		drawSprite(sprNearBlueBack, (blue <= 0.25 ? getFrames() / 16 : 0), x + 17, y - 16)
 		drawImagePart(imgNearBlueFill, x + 18, y - 15 + (30 - (30 * blue)), 0, 30 - (30 * blue), 6, 30 * blue)
 	}
+
+	if(green < 1.0) {
+		drawSprite(sprNearGreenBack, (blue <= 0.25 ? getFrames() / 16 : 0), x, y - 16)
+		drawImagePart(imgNearGreenFill, x, y - 15 + (30 - (30 * blue)), 0, 30 - (30 * blue), 6, 30 * green)
+	}
 }

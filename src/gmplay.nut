@@ -443,37 +443,6 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
-	//////////////
-	// CAMERA 2 //
-	//////////////
-	if(gvSplitScreen) {
-		camx = camx2
-		camy = camy2
-
-		gvLightScreen = gvLightScreen2
-		setDrawTarget(gvPlayScreen2)
-
-		if(drawBG2 != 0) drawBG2()
-		if(drawWeather2 != 0 && config.weather) drawWeather2()
-		camxprev = camx
-		camyprev = camy
-
-		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
-		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
-		if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
-			drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
-		}
-		foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
-		drawZList(8)
-		if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
-		drawAmbientLight()
-		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", 1, 1, 1, gvLight2)
-		else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg")
-		if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
-		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
-		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
-	}
-
 
 	//Resume music after invincibility
 	if(gvPlayer && gvPlayer2 && "invincible" in gvPlayer && "invincible" in gvPlayer2 && gvPlayer.invincible == 0 && gvPlayer2.invincible == 0
@@ -482,18 +451,7 @@
 
 	//HUDs
 	setDrawTarget(gvScreen)
-	if(gvSwapScreen && gvSplitScreen) {
-		drawImage(gvPlayScreen2, 0, 0)
-		drawImage(gvPlayScreen, gvScreenW / 2, 0)
-		drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
-	}
-	else {
-		drawImage(gvPlayScreen, 0, 0)
-		if(gvSplitScreen) {
-			drawImage(gvPlayScreen2, gvScreenW / 2, 0)
-			drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
-		}
-	}
+	drawImage(gvPlayScreen, 0, 0)
 
 	if(gvInfoBox != gvInfoLast) {
 		gvInfoLast = gvInfoBox
@@ -502,138 +460,68 @@
 
 	if(gvInfoBox == "") {
 		//Draw near-sighted stat bars
-		if(config.nearbars) {
-			if(!gvSplitScreen) {
-				if(gvPlayer && "energy" in gvPlayer) drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, 1, (1.0 / game.ps.maxEnergy) * gvPlayer.energy)
+		if(config.nearbars && gvPlayer)
+				drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, 1, (1.0 / game.ps.maxEnergy) * game.ps.energy)
 
-				if(gvPlayer2 && "energy" in gvPlayer2) drawFloatingStats(gvPlayer2.x - camx0, gvPlayer2.y - camy0, (1.0 / game.maxHealth) * game.ps2.health, 1, (1.0 / game.ps2.maxEnergy) * gvPlayer2.energy)
-			}
-			else if(!gvSwapScreen) {
-				if(gvPlayer && "energy" in gvPlayer) drawFloatingStats(gvPlayer.x - camx1, gvPlayer.y - camy1, (1.0 / game.maxHealth) * game.ps.health, 1, (1.0 / game.ps.maxEnergy) * gvPlayer.energy)
-
-				if(gvPlayer2 && "energy" in gvPlayer2) drawFloatingStats(gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, 1, (1.0 / game.ps2.maxEnergy) * gvPlayer2.energy)
-			}
-			else {
-				if(gvPlayer && "energy" in gvPlayer) drawFloatingStats(gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, (1.0 / game.maxHealth) * game.ps.health, 1, (1.0 / game.ps.maxEnergy) * gvPlayer.energy)
-
-				if(gvPlayer2 && "energy" in gvPlayer2) drawFloatingStats(gvPlayer2.x - camx2, gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, 1, (1.0 / game.ps2.maxEnergy) * gvPlayer2.energy)
-			}
-		}
-
-		//Draw max energy
-		for(local i = 0; i < 4 - game.difficulty; i++) {
-			drawSprite(sprEnergy, 2, 8 + (16 * i), 24)
-		}
-		//Draw health
+		//Draw stats
 		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
+		drawSprite(sprMeterBack, 0, 8, 8)
+		for(local i = 0; i < game.maxHealth; i++)
+			drawSprite(sprMeterBack, 1, 10 + (i * 2), 8)
+		drawSprite(sprMeterBack, 2, 10 + (2 * game.maxHealth), 8)
+		setDrawColor(0xf83810ff)
+		if(game.ps.health > 0)
+			drawRec(10, 10, (game.ps.health * 2) - 1, 3, true)
 
-		local fullhearts = floor(game.ps.health / 4)
+		if(game.ps.energy > game.ps.maxEnergy) game.ps.energy = game.ps.maxEnergy
+		drawSprite(sprMeterBack, 0, 24, 16)
+		for(local i = 0; i < game.ps.maxEnergy; i++)
+			drawSprite(sprMeterBack, 1, 26 + (i * 2), 16)
+		drawSprite(sprMeterBack, 2, 26 + (2 * game.ps.maxEnergy), 16)
+		setDrawColor(0x1080b0ff)
+		if(game.ps.energy > 0)
+			drawRec(26, 18, (game.ps.energy * 2) - 1, 3, true)
 
-		for(local i = 0; i < game.maxHealth / 4; i++) {
-			if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 8)
-			else if(i == fullhearts) drawSprite(sprHealth, ceil(game.ps.health) % 4, 8 + (16 * i), 8)
-			else drawSprite(sprHealth, 0, 8 + (16 * i), 8)
+		local elementFrame = 0
+		switch(game.ps.weapon) {
+			case "normal":
+				elementFrame = 0
+				break
+			case "fire":
+				elementFrame = 1
+				break
+			case "ice":
+				elementFrame = 2
+				break
+			case "air":
+				elementFrame = 3
+				break
+			case "earth":
+				elementFrame = 4
+				break
+			case "water":
+				elementFrame = 5
+				break
+			case "shock":
+				elementFrame = 6
+				break
+			case "dark":
+				elementFrame = 7
+				break
+			case "light":
+				elementFrame = 8
+				break
 		}
+		drawSprite(sprElement, elementFrame, 8, 16)
 
-		//Draw energy
-		for(local i = 0; i < game.ps.maxEnergy; i++) {
-			if(gvPlayer) {
-				if(gvPlayer.rawin("energy") && game.ps.maxEnergy > 0) {
-					if(i < floor(gvPlayer.energy)) switch(game.ps.weapon) {
-						case "normal":
-							drawSprite(sprEnergy, 11, 8 + (16 * i), 24)
-							break
-						case "fire":
-							drawSprite(sprEnergy, 3, 8 + (16 * i), 24)
-							break
-						case "ice":
-							drawSprite(sprEnergy, 4, 8 + (16 * i), 24)
-							break
-						case "air":
-							drawSprite(sprEnergy, 5, 8 + (16 * i), 24)
-							break
-						case "earth":
-							drawSprite(sprEnergy, 6, 8 + (16 * i), 24)
-							break
-						case "water":
-							drawSprite(sprEnergy, 7, 8 + (16 * i), 24)
-							break
-						case "shock":
-							drawSprite(sprEnergy, 8, 8 + (16 * i), 24)
-							break
-						case "dark":
-							drawSprite(sprEnergy, 9, 8 + (16 * i), 24)
-							break
-						case "light":
-							drawSprite(sprEnergy, 10, 8 + (16 * i), 24)
-							break
-						default:
-							drawSprite(sprEnergy, 1, 8 + (16 * i), 24)
-							break
-					}
-					else drawSprite(sprEnergy, 0, 8 + (16 * i), 24)
-				}
-			}
-		}
-
-		//Draw second player stats
-		if(gvNumPlayers >= 2) {
-			//Draw max energy
-			for(local i = 0; i < 4 - game.difficulty; i++) {
-				drawSprite(sprEnergy, 2, 8 + (16 * i), 52)
-			}
-			//Draw health
-			if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
-
-			local fullhearts = floor(game.ps2.health / 4)
-
-			for(local i = 0; i < game.maxHealth / 4; i++) {
-				if(i < fullhearts) drawSprite(sprHealth, 4, 8 + (16 * i), 36)
-				else if(i == fullhearts) drawSprite(sprHealth, ceil(game.ps2.health) % 4, 8 + (16 * i), 36)
-				else drawSprite(sprHealth, 0, 8 + (16 * i), 36)
-			}
-
-			//Draw energy
-			for(local i = 0; i < game.ps2.maxEnergy; i++) {
-				if(gvPlayer2) {
-					if(gvPlayer2.rawin("energy") && game.ps2.maxEnergy > 0) {
-						if(i < floor(gvPlayer2.energy)) switch(game.ps2.weapon) {
-							case "normal":
-								drawSprite(sprEnergy, 11, 8 + (16 * i), 52)
-								break
-							case "fire":
-								drawSprite(sprEnergy, 3, 8 + (16 * i), 52)
-								break
-							case "ice":
-								drawSprite(sprEnergy, 4, 8 + (16 * i), 52)
-								break
-							case "air":
-								drawSprite(sprEnergy, 5, 8 + (16 * i), 52)
-								break
-							case "earth":
-								drawSprite(sprEnergy, 6, 8 + (16 * i), 52)
-								break
-							case "water":
-								drawSprite(sprEnergy, 7, 8 + (16 * i), 52)
-								break
-							case "shock":
-								drawSprite(sprEnergy, 8, 8 + (16 * i), 52)
-								break
-							case "dark":
-								drawSprite(sprEnergy, 9, 8 + (16 * i), 52)
-								break
-							case "light":
-								drawSprite(sprEnergy, 10, 8 + (16 * i), 52)
-								break
-							default:
-								drawSprite(sprEnergy, 1, 8 + (16 * i), 52)
-								break
-						}
-						else drawSprite(sprEnergy, 0, 8 + (16 * i), 52)
-					}
-				}
-			}
-		}
+		if(game.ps.stamina > game.ps.maxStamina) game.ps.stamina = game.ps.maxStamina
+		drawSprite(sprMeterBack, 0, 24, 24)
+		for(local i = 0; i < game.ps.maxStamina; i++)
+			drawSprite(sprMeterBack, 1, 26 + (i * 2), 24)
+		drawSprite(sprMeterBack, 2, 26 + (2 * game.ps.maxStamina), 24)
+		setDrawColor(0x70a048ff)
+		if(game.ps.stamina > 0)
+			drawRec(26, 26, (game.ps.stamina * 2) - 1, 3, true)
 
 		//Draw boss health
 		if(gvBoss) {
@@ -687,6 +575,12 @@
 				break
 			case "earth":
 				drawSprite(sprEarthShell, 0, gvScreenW - 18, 18)
+				break
+			case "shock":
+				drawSprite(sprShockBulb, 0, gvScreenW - 18, 18)
+				break
+			case "water":
+				drawSprite(sprWaterLily, 0, gvScreenW - 18, 18)
 				break
 			case "muffinBlue":
 				drawSprite(sprMuffin, 0, gvScreenW - 18, 18)

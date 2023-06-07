@@ -506,18 +506,6 @@
                  "y":48
                 }, 
                 {
-                 "gid":888,
-                 "height":16,
-                 "id":47,
-                 "name":"aurora-xtreme",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":240,
-                 "y":208
-                }, 
-                {
                  "gid":887,
                  "height":16,
                  "id":48,
@@ -528,6 +516,18 @@
                  "width":16,
                  "x":432,
                  "y":176
+                }, 
+                {
+                 "gid":885,
+                 "height":16,
+                 "id":50,
+                 "name":"aurora-xtreme",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":240,
+                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -536,7 +536,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":50,
+ "nextobjectid":51,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -545,7 +545,7 @@
          "value":"songPlay(musOverworld)\nsprGradcap = sprHaywire\n\nif(game.state == null) game.state = {}\n\nif(!(\"pennyton\" in game.state))\n\tgame.state[\"pennyton\"] <- 0\n\nif(!(\"fishmines\" in game.state))\n\tgame.state[\"fishmines\"] <- 0\n\nactor[mapActor[19]].level = \"aurora-mines-\" + game.state.fishmines"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.0",
  "tileheight":16,
  "tilesets":[
         {
