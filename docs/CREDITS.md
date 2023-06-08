@@ -132,6 +132,8 @@ Lukas Nystrand - Chippdisko
 
 [AntumDeluge](https://content.minetest.net/packages/AntumDeluge/sounds/) - Pig Sounds
 
+[Luis Zuno](https://opengameart.org/users/ansimuz) - Cavern Tile Set\*
+
 ## Translators
 
 [TheCheeseWeez](https://github.com/TheTort) - French

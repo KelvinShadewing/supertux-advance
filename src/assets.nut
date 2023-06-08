@@ -581,6 +581,8 @@
 ::bgMoon <- newSprite("res/gfx/bg-moon.png", 32, 32, 0, 0, 16, 16)
 ::bgSwitch0 <- newSprite("res/gfx/bg-switch-palace-0.png", 168, 480, 0, 0, 0, 0)
 ::bgSwitch1 <- newSprite("res/gfx/bg-switch-palace-1.png", 84, 240, 0, 0, 0, 0)
+::bgCaveEarth0 <- newSprite("res/gfx/dirt-cave-bg-0.png", 100, 56, 0, 0, 0, 0)
+::bgCaveEarth1 <- newSprite("res/gfx/dirt-cave-bg-1.png", 512, 288, 0, 0, 0, 0)
 
 
 
