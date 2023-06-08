@@ -89,11 +89,6 @@
 			stats = game.ps
 			playerNum = 1
 		}
-		else if(!gvPlayer2) {
-			gvPlayer2 = this
-			stats = game.ps2
-			playerNum = 2
-		}
 
 		stats.health = game.maxHealth
 
@@ -355,7 +350,6 @@
 			}
 			if(game.check == false) {
 				if(playerNum == 1) game.ps.weapon = "normal"
-				if(playerNum == 2) game.ps2.weapon = "normal"
 			}
 			
 		}

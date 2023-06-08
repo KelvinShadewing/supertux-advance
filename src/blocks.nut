@@ -758,19 +758,6 @@
 				if(gvPlayer) {
 					if(game.ps.health < game.maxHealth) game.ps.health += 4
 					else if(game.ps.subitem == 0) game.ps.subitem = "muffinBlue"
-					if(!gvPlayer2 && gvNumPlayers == 2) {
-						gvPlayer2 = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
-						gvPlayer2.tftime = 0
-					}
-				}
-
-				if(gvPlayer2) {
-					if(game.ps2.health < game.maxHealth) game.ps2.health += 4
-					else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
-					if(!gvPlayer && gvNumPlayers == 2) {
-						gvPlayer = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
-						gvPlayer.tftime = 0
-					}
 				}
 			}
 
@@ -1285,11 +1272,20 @@
 	character = "Tux"
 	v = 0.0
 	vspeed = 0.0
+	swapmode = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		if(_arr != null) character = _arr
+		if(_arr != null && _arr != "")
+			character = _arr
+		else if(game.playerChar2 != "") {
+			character = game.playerChar2
+			swapmode = true
+		}
+		else
+			character = game.playerChar
+
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		tileSetSolid(x, y, 1)
@@ -1323,6 +1319,13 @@
 
 			tileSetSolid(x, y, 0)
 			popSound(sndHeal, 0)
+
+			if(swapmode) {
+				if(character == game.playerChar)
+					character = game.playerChar2
+				else
+					character = game.playerChar
+			}
 		}
 
 		full = (game.characters.rawin(character) && !(gvPlayer && typeof gvPlayer == character || gvPlayer2 && typeof gvPlayer2 == character))

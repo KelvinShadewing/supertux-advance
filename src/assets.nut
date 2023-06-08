@@ -365,6 +365,8 @@
 ::defPuffranah <- sprPuffranah
 ::sprStruffle <- newSprite("res/gfx/struffle.png", 32, 32, 0, 0, 16, 16)
 ::defStruffle <- sprStruffle
+::sprCrystallo <- newSprite("res/gfx/crystallo.png", 22, 21, 0, 0, 12, 15)
+::defCrystallo <- sprCrystallo
 
 
 //Bosses

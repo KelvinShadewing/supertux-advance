@@ -52,9 +52,9 @@
 			} else {
 				local didstep = false
 				for(local i = 1; i <= min(8, abs(hspeed)); i++){ //Try to move up hill
-					if(placeFree(x + hspeed, y - i)) {
+					if(placeFree(x + hspeed, y - ((gravity <=> 0) * i))) {
 						x += hspeed
-						y -= i
+						y -= ((gravity <=> 0) * i)
 						if(i > 2) {
 							if(hspeed > 0) hspeed -= 0.2
 							if(hspeed < 0) hspeed += 0.2

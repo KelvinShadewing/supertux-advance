@@ -81,6 +81,7 @@
 			maxStamina = 0
 			energy = 0
 			stamina = 0
+			abilities = {}
 		}
 		state = {}
 	}

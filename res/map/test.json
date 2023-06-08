@@ -482,8 +482,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":2016,
-                 "y":464
+                 "x":448,
+                 "y":528
                 }, 
                 {
                  "gid":211,
@@ -640,18 +640,6 @@
                  "width":16,
                  "x":1264,
                  "y":464
-                }, 
-                {
-                 "gid":210,
-                 "height":16,
-                 "id":299,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":720,
-                 "y":416
                 }, 
                 {
                  "gid":212,
@@ -1800,6 +1788,114 @@
                  "width":16,
                  "x":1392,
                  "y":496
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":486,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":720,
+                 "y":416
+                }, 
+                {
+                 "gid":296,
+                 "height":16,
+                 "id":487,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":480,
+                 "y":448
+                }, 
+                {
+                 "gid":298,
+                 "height":16,
+                 "id":488,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":784,
+                 "y":464
+                }, 
+                {
+                 "gid":304,
+                 "height":16,
+                 "id":489,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":480
+                }, 
+                {
+                 "gid":304,
+                 "height":16,
+                 "id":490,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":480
+                }, 
+                {
+                 "gid":304,
+                 "height":16,
+                 "id":491,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":480
+                }, 
+                {
+                 "gid":304,
+                 "height":16,
+                 "id":492,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":480
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":493,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":496
+                }, 
+                {
+                 "gid":285,
+                 "height":16,
+                 "id":494,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2176,
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1808,7 +1904,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":486,
+ "nextobjectid":495,
  "orientation":"orthogonal",
  "properties":[
         {

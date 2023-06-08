@@ -282,11 +282,11 @@ const menuY = 40
 		func = function() { pickCharInitialize(); gvGameMode = pickChar }
 		desc = function() { return game.playerChar }
 	},
-	// {
-	// 	name = function() { return gvLangObj["pause-menu"]["character2"]},
-	// 	func = function() { pickCharInitialize(2); gvGameMode = pickChar }
-	// 	desc = function() { return game.playerChar2 }
-	// },
+	{
+		name = function() { return gvLangObj["pause-menu"]["character2"]},
+		func = function() { pickCharInitialize(2); gvGameMode = pickChar }
+		desc = function() { return game.playerChar2 }
+	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
 		func = function() { menu = meOptions }

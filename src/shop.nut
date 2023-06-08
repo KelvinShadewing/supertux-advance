@@ -66,7 +66,7 @@
 
 	function run() {
 		if(game.energyBonus >= 16) soldout = true
-		price = (game.energyBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
+		price = (game.energyBonus + 1) * (640 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -118,7 +118,7 @@
 
 	function run() {
 		if(game.staminaBonus >= 16) soldout = true
-		price = (game.staminaBonus + 1) * (400 * ((game.difficulty.tofloat() / 2) + 1))
+		price = (game.staminaBonus + 1) * (640 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
 			vspeed = 0

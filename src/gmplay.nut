@@ -24,7 +24,6 @@
 	deleteAllActors()
 	if(newLevel) {
 		game.ps.health = game.maxHealth
-		game.ps2.health = game.maxHealth
 		game.levelCoins = 0
 		game.maxCoins = 0
 		game.redCoins = 0
@@ -312,7 +311,7 @@
 		charx = 32
 
 		local runAnim = getroottable()[game.playerChar2].an["run"]
-		switch(game.ps2.weapon) {
+		switch(game.ps.weapon) {
 			case "normal":
 				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
 				break
@@ -595,35 +594,6 @@
 				drawSprite(sprCoffee, 0, gvScreenW - 18, 17)
 				break
 		}
-		if(gvNumPlayers >= 2) {
-			drawSprite(sprSubItem, 1, gvScreenW - 18, 40)
-			switch(game.ps2.subitem) {
-				case "fire":
-					drawSprite(sprFlowerFire, 0, gvScreenW - 18, 40)
-					break
-				case "ice":
-					drawSprite(sprFlowerIce, 0, gvScreenW - 18, 40)
-					break
-				case "air":
-					drawSprite(sprAirFeather, 0, gvScreenW - 18, 40)
-					break
-				case "earth":
-					drawSprite(sprEarthShell, 0, gvScreenW - 18, 40)
-					break
-				case "muffinBlue":
-					drawSprite(sprMuffin, 0, gvScreenW - 18, 40)
-					break
-				case "muffinRed":
-					drawSprite(sprMuffin, 1, gvScreenW - 18, 40)
-					break
-				case "star":
-					drawSprite(sprStar, 0, gvScreenW - 18, 40)
-					break
-				case "coffee":
-					drawSprite(sprCoffee, 0, gvScreenW - 18, 39)
-					break
-			}
-		}
 
 		//Draw level IGT
 		local timey = 0
@@ -631,31 +601,8 @@
 		if(gvDoIGT && (config.showleveligt || gvTimeAttack) && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
 
 		//Draw offscreen player
-		if(!gvSplitScreen) {
-			if(gvPlayer && gvPlayer.y < -8) {
-				if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps.weapon], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
-			}
-			if(gvPlayer2 && gvPlayer2.y < -8) {
-				if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx, 8 - (gvPlayer2.y / 4))
-			}
-		}
-		else {
-			if(gvSwapScreen) {
-				if(gvPlayer && gvPlayer.y < -8) {
-					if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps.weapon], gvPlayer.x - camx1 + (gvScreenW / 2), 8 - (gvPlayer.y / 4))
-				}
-				if(gvPlayer2 && gvPlayer2.y < -8) {
-					if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx2, 8 - (gvPlayer2.y / 4))
-				}
-			}
-			else {
-				if(gvPlayer && gvPlayer.y < -8) {
-					if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps.weapon], gvPlayer.x - camx1, 8 - (gvPlayer.y / 4))
-				}
-				if(gvPlayer2 && gvPlayer2.y < -8) {
-					if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[game.ps2.weapon], gvPlayer2.x - camx2 + (gvScreenW / 2), 8 - (gvPlayer2.y / 4))
-				}
-			}
+		if(gvPlayer && gvPlayer.y < -8) {
+			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps.weapon], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 
 		//Draw warning sign
@@ -752,7 +699,6 @@
 
 	//Unhide players
 	if(gvPlayer && "hidden" in gvPlayer) gvPlayer.hidden = false
-	if(gvPlayer2 && "hidden" in gvPlayer2) gvPlayer2.hidden = false
 
 	//Handle berries
 	if(game.ps.berries > 0 && game.ps.berries % 16 == 0) {
@@ -762,16 +708,8 @@
 		}
 		else game.ps.berries--
 	}
-	if(game.ps2.berries > 0 && game.ps2.berries % 16 == 0) {
-		if(game.ps2.health < game.maxHealth) {
-			game.ps2.health++
-			game.ps2.berries = 0
-		}
-		else game.ps2.berries--
-	}
 
 	if(game.ps.health < 0) game.ps.health = 0
-	if(game.ps2.health < 0) game.ps2.health = 0
 }
 
 ::playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the player and camera at the same time
@@ -1256,6 +1194,18 @@
 
 		case 96:
 			c = newActor(FireBlock, i.x + 8, i.y - 8, i.name)
+			break
+
+		case 97:
+			c = newActor(Crystallo, i.x + 8, i.y - 8, 0)
+			break
+
+		case 98:
+			c = newActor(Crystallo, i.x + 8, i.y - 8, 1)
+			break
+
+		case 99:
+			c = newActor(Crystallo, i.x + 8, i.y - 8, 2)
 			break
 
 		case 100:

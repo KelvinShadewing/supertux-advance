@@ -29,14 +29,14 @@
 	fps = debugTickSum / 64
 
 	//Set weapon
-	if(keyPress(k_1)) {game.ps.subitem = "fire"; game.ps2.subitem = "fire"}
-	if(keyPress(k_2)) {game.ps.subitem = "ice"; game.ps2.subitem = "ice"}
-	if(keyPress(k_3)) {game.ps.subitem = "air"; game.ps2.subitem = "air"}
-	if(keyPress(k_4)) {game.ps.subitem = "earth"; game.ps2.subitem = "earth"}
-	if(keyPress(k_5)) {game.ps.subitem = "muffinBlue"; game.ps2.subitem = "muffinBlue"}
-	if(keyPress(k_6)) {game.ps.subitem = "muffinRed"; game.ps2.subitem = "muffinRed"}
-	if(keyPress(k_7)) {game.ps.subitem = "star"; game.ps2.subitem = "star"}
-	if(keyPress(k_8)) {game.ps.subitem = "coffee"; game.ps2.subitem = "coffee"}
+	if(keyPress(k_1)) {game.ps.weapon = "fire"}
+	if(keyPress(k_2)) {game.ps.weapon = "ice"}
+	if(keyPress(k_3)) {game.ps.weapon = "air"}
+	if(keyPress(k_4)) {game.ps.weapon = "earth"}
+	if(keyPress(k_5)) {game.ps.weapon = "shock"}
+	if(keyPress(k_6)) {game.ps.weapon = "water"}
+	if(keyPress(k_7)) {game.ps.weapon = "dark"}
+	if(keyPress(k_8)) {game.ps.weapon = "light"}
 	if(keyPress(k_minus) && game.maxHealth > 4) game.maxHealth = game.maxHealth - 4
 	if(keyPress(k_equals))  game.maxHealth = game.maxHealth + 4
 	if(keyDown(k_lctrl) || keyDown(k_rctrl)) {

@@ -19,7 +19,6 @@
 			if(game.check == false) {
 				gvIGT = 0
 				game.ps.weapon = "normal"
-				game.ps2.weapon = "normal"
 			}
 		}
 		else {

@@ -32,6 +32,8 @@
 	sharpSide = false
 	held = false
 	squish = false
+	blast = false
+	cut = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -141,7 +143,7 @@
 
 	function hurtPlayer(target) {
 		if(blinking || squish) return
-		target.hurt = touchDamage * target.damageMult[element]
+		target.hurt = touchDamage * target.damageMult[element] * (cut ? target.damageMult["cut"] : 1) * (blast ? target.damageMult["blast"] : 1)
 	}
 
 	function holdMe(throwH = 2.0, throwV = 2.0) {
@@ -3099,7 +3101,7 @@
 							y -= 1.0
 						} else flip = false
 
-						if(smart) if(placeFree(x - 6, y + 14) && !placeFree(x + 2, y + 14)) flip = false
+						if(smart) if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) flip = false
 
 						if(x <= 0) flip = false
 					}
@@ -3113,7 +3115,7 @@
 							y -= 1.0
 						} else flip = true
 
-						if(smart) if(placeFree(x + 6, y + 14) && !placeFree(x - 2, y + 14)) flip = true
+						if(smart) if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) flip = true
 
 						if(x >= gvMap.w) flip = true
 					}
@@ -4907,4 +4909,200 @@
 			a.vspeed = -2
 		}
 	}
+}
+
+::Crystallo <- class extends Enemy {
+	mode = 0
+	flip = 0
+	sharpSide = true
+	touchDamage = 2
+	cut = true
+	accel = 0.0
+	walkTimer = 30
+	frame = 0.0
+	gravity = 0.2
+	waking = false
+	health = 4
+	blinkMax = 30
+	friction = 0.0
+
+	anim = "stand"
+	an = {
+		stand = [0]
+		walk = [0, 1, 2, 3]
+		squish = [4, 5, 5, 5, 5]
+		sleep = [6, 7, 8, 7, 8, 7, 7, 7]
+		jump = [9, 10, 11]
+		drop = [12, 13, 14, 15, 16, 17, 18, 17, 18, 19]
+		fall = [19]
+	}
+
+	constructor(_x, _y, _arr = 0) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 10, 6, 0)
+		mode = _arr
+		if(mode == 2)
+			anim = "sleep"
+	}
+
+	function run() {
+		base.run()
+
+		if(!active)
+			return
+
+		if(hspeed > 0)
+			flip = 0
+		if(hspeed < 0)
+			flip = 1
+
+		if(mode == 1 && anim != "fall") gravity = -0.1
+		if(mode == 0) gravity = 0.1
+
+		switch(anim) {
+			case "stand":
+			case "walk":
+				if(hspeed != 0)
+					anim = "walk"
+
+				frame += 0.1
+				walkTimer--
+
+				if(gvPlayer && mode == 1 && fabs(x - gvPlayer.x) < 16 && y < gvPlayer.y && fabs(y - gvPlayer.y) < 128) {
+					frame = 0.0
+					anim = "drop"
+				}
+				break
+
+			case "sleep":
+				gravity = 0.0
+				if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 64))
+					waking = true
+				if(waking)
+					frame += 0.2
+				if(frame > an[anim].len() - 2) {
+					vspeed = -3.0
+					if(gvPlayer)
+						accel = 0.1 * (gvPlayer.x <=> x)
+					frame = 0.0
+					anim = "jump"
+					mode = 0
+				}
+				break
+
+			case "jump":
+				if(frame < an[anim].len() - 1)
+					frame += 0.1
+				if(!placeFree(x, y + 1)) {
+					hspeed = 0.0
+					accel = 0.0
+					anim = "stand"
+					walkTimer = 10
+				}
+				break
+
+			case "drop":
+				if(frame <= an[anim].len() - 1)
+					frame += 0.3
+				else
+					anim = "fall"
+				hspeed = 0.0
+				accel = 0.0
+				break
+
+			case "fall":
+				gravity = 0.1
+				vspeed += gravity
+				hspeed = 0.0
+				frame = 0.0
+				if(!placeFree(x, y + 1)) {
+					hspeed = 0.0
+					accel = 0.0
+					anim = "squish"
+					frame = 0.0
+					popSound(sndCrumble)
+					mode = 0
+				}
+				break
+
+			case "squish":
+				touchDamage = 0.0
+				frame += 0.1
+				hspeed = 0.0
+				accel = 0.0
+				if(frame >= an[anim].len() - 1)
+					die()
+				break
+		}
+
+		frame = wrap(frame, 0, an[anim].len() - 1)
+		if(frame < 0) frame = 0
+
+		if(fabs(hspeed) < 1.25)
+			hspeed += accel
+		if(fabs(hspeed) > 1.25)
+			hspeed -= accel
+		if(walkTimer <= 0) {
+			walkTimer = 120
+			if(accel < 0)
+				accel = 0.05
+			else
+				accel = -0.05
+		}
+
+		if(!placeFree(x, y + (1 * (gravity <=> 0))) && placeFree(x + (hspeed * 4), y + (8 * (gravity <=> 0)))
+		|| !placeFree(x + (hspeed * 2), y) && !placeFree(x + (hspeed * 2), y - (8 * (gravity <=> 0)))) {
+			hspeed = -hspeed
+			accel = -accel
+			walkTimer = 240
+		}
+
+		if(placeFree(x, y - 2) && mode == 1)
+			mode = 0
+
+		if(health <= 0 && anim != "squish") {
+			frame = 0.0
+			anim = "squish"
+			popSound(sndCrumble)
+		}
+	}
+
+	function draw() {
+		drawSprite(sprCrystallo, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip + (mode == 1 && anim != "squish" ? 2 : 0), 1, 1, (blinking ? blinking / 10.0 : 1))
+
+		if(debug) {
+			drawText(font, x - camx, y - camy + (mode == 1 ? 8 : -24), anim + ":" + frame + "\n" + gravity + ":" + vspeed)
+		}
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking > 0)
+			return
+		if(anim == "squish")
+			return
+
+		local damage = _mag * damageMult[_element]
+		if(_cut) damage *= damageMult["cut"]
+		if(_blast) damage *= damageMult["blast"]
+		if(_stomp) damage *= damageMult["stomp"]
+
+		health -= damage
+		if(damage > 0) blinking = blinkMax
+
+		if(health <= 0) {
+			frozen = 0
+			mapDeleteSolid(icebox)
+			frame = 0.0
+			anim = "squish"
+			return
+			popSound(sndCrumble)
+		}
+		if(_element == "ice") frozen = minFreezeTime + (freezeTime * damageMult["ice"])
+		if(_element == "fire") {
+			newActor(Flame, x, y)
+			popSound(sndFlame, 0)
+		}
+	}
+
+	function _typeof() { return "Crystallo" }
 }
