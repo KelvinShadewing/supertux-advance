@@ -811,7 +811,8 @@
 			}
 		}
 
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast || i.element == "fire") && i.element != "ice" && i.element != "water") {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])
+		if((("altShape" in i && hitTest(fireshape, i.altShape)) || (!("altShape" in i) && hitTest(fireshape, i.shape))) && (i.blast || i.element == "fire") && i.element != "ice" && i.element != "water") {
 			if(i.rawin("frame") && i.blast) {
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)
@@ -859,7 +860,8 @@
 	}
 
 	function run() {
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && (i.blast && i.power > 1 && (i.element == "fire" || i.element == "shock"))) {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])
+		if((("altShape" in i && hitTest(fireshape, i.altShape)) || (!("altShape" in i) && hitTest(fireshape, i.shape))) && (i.blast && i.power > 1 && (i.element == "fire" || i.element == "shock"))) {
 			if(i.rawin("frame")) {
 				if(i.frame >= 1) {
 					tileSetSolid(x, y, oldsolid)

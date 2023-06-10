@@ -98,6 +98,7 @@ gvCharacters.Kiki2 <- {
 	startx = 0.0
 	starty = 0.0
 	firetime = 0
+	guardtime = 0
 	hurt = 0
 	blast = true
 	swimming = false
@@ -304,14 +305,15 @@ gvCharacters.Kiki2 <- {
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "slide")) {
+		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "statue")) {
 			firetime--
 		}
 
-		if(firetime == 0 && stats.energy < stats.maxEnergy) {
-			stats.energy++
-			firetime = 40
-		}
+		if(guardtime > 0 && anim != "statue")
+			guardtime--
+
+		if(firetime <= 0 && stats.energy < stats.maxEnergy)
+			stats.energy += 1.0 / 60.0
 
 		if(slashing) slashTimer += 0.2
 		if(slashTimer >= 3) {
@@ -596,6 +598,9 @@ gvCharacters.Kiki2 <- {
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
 
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
+				stats.stamina += 0.05
+
 			//Controls
 			if(!freeDown2 || onPlatform() || anim == "climb") {
 				canJump = 16
@@ -741,7 +746,7 @@ gvCharacters.Kiki2 <- {
 						frame = 0.0
 						playSound(sndWallkick, 0)
 					}
-					else if(floor(stats.energy) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
+					else if(floor(stats.stamina) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
 						if(vspeed > 0) vspeed = 0.0
 						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
@@ -758,7 +763,7 @@ gvCharacters.Kiki2 <- {
 							stopSound(sndFlap)
 							playSound(sndFlap, 0)
 						}
-						stats.energy--
+						stats.stamina--
 					}
 				}
 
@@ -1246,9 +1251,10 @@ gvCharacters.Kiki2 <- {
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "slide" && stats.energy > 0) {
-					stats.energy--
-					firetime = 120
+				if(stats.weapon == "earth" && anim == "slide" && stats.stamina >= 1) {
+					stats.stamina -= hurt
+					guardtime = 180
+					blinking = 120
 					newActor(Spark, x, y)
 				}
 				else {

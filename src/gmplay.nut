@@ -474,12 +474,14 @@
 
 		if(game.ps.energy > game.ps.maxEnergy) game.ps.energy = game.ps.maxEnergy
 		drawSprite(sprMeterBack, 0, 24, 16)
-		for(local i = 0; i < game.ps.maxEnergy; i++)
-			drawSprite(sprMeterBack, 1, 26 + (i * 2), 16)
-		drawSprite(sprMeterBack, 2, 26 + (2 * game.ps.maxEnergy), 16)
+		for(local i = 0; i < game.ps.maxEnergy; i++) {
+			drawSprite(sprMeterBack, 1, 26 + (i * 4), 16)
+			drawSprite(sprMeterBack, 1, 28 + (i * 4), 16)
+		}
+		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxEnergy), 16)
 		setDrawColor(0x1080b0ff)
 		if(game.ps.energy > 0)
-			drawRec(26, 18, (game.ps.energy * 2) - 1, 3, true)
+			drawRec(26, 18, (game.ps.energy * 4.0) - 1, 3, true)
 
 		local elementFrame = 0
 		switch(game.ps.weapon) {
@@ -515,12 +517,14 @@
 
 		if(game.ps.stamina > game.ps.maxStamina) game.ps.stamina = game.ps.maxStamina
 		drawSprite(sprMeterBack, 0, 24, 24)
-		for(local i = 0; i < game.ps.maxStamina; i++)
-			drawSprite(sprMeterBack, 1, 26 + (i * 2), 24)
-		drawSprite(sprMeterBack, 2, 26 + (2 * game.ps.maxStamina), 24)
+		for(local i = 0; i < game.ps.maxStamina; i++){
+			drawSprite(sprMeterBack, 1, 26 + (i * 4), 24)
+			drawSprite(sprMeterBack, 1, 28 + (i * 4), 24)
+		}
+		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxStamina), 24)
 		setDrawColor(0x70a048ff)
 		if(game.ps.stamina > 0)
-			drawRec(26, 26, (game.ps.stamina * 2) - 1, 3, true)
+			drawRec(26, 26, (game.ps.stamina * 4.0) - 1, 3, true)
 
 		//Draw boss health
 		if(gvBoss) {

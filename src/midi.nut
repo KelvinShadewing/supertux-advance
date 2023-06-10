@@ -798,10 +798,8 @@
 			firetime--
 		}
 
-		if(firetime == 0 && stats.energy < stats.maxEnergy && !shooting) {
-			stats.energy++
-			firetime = 30
-		}
+		if(firetime <= 0 && stats.energy < stats.maxEnergy)
+			stats.energy += 1.0 / 30.0
 
 		if(!freeDown2 && stats.stamina < stats.maxStamina)
 			stats.stamina++

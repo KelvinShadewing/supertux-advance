@@ -14,6 +14,7 @@
 	startx = 0.0
 	starty = 0.0
 	firetime = 0
+	guardtime = 0
 	hurt = 0
 	swimming = false
 	inMelee = false
@@ -194,10 +195,11 @@
 		if(firetime > 0)
 			firetime--
 
-		if(firetime == 0 && stats.energy < stats.maxEnergy) {
-			stats.energy++
-			firetime = 60
-		}
+		if(guardtime > 0 && anim != "slide")
+			guardtime--
+
+		if(firetime <= 0 && stats.energy < stats.maxEnergy)
+			stats.energy += 1.0 / 60.0
 
 		/////////////
 		// ON LAND //
@@ -401,6 +403,9 @@
 				if((getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed > 0.1 && anim == "slide")) flip = 0
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
+
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
+				stats.stamina += 0.05
 
 			//Controls
 			if(!freeDown2 || anim == "climb" || onPlatform()) {
@@ -693,7 +698,7 @@
 			//Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
@@ -759,7 +764,7 @@
 
 			if(canMove) switch(stats.subitem) {
 				case "fire":
-					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.stamina > 0) {
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
 						local fx = 6
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
@@ -774,7 +779,7 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						stats.stamina--
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -1104,9 +1109,9 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "slide" && stats.energy > 0) {
-					stats.energy--
-					firetime = 120
+				if(stats.weapon == "earth" && anim == "slide" && stats.stamina >= 1) {
+					stats.stamina -= hurt
+					guardtime = 180
 					newActor(Spark, x, y)
 				}
 				else {

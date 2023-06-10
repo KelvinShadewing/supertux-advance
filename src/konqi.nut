@@ -16,6 +16,7 @@
 	startx = 0.0
 	starty = 0.0
 	firetime = 0
+	guardtime = 0
 	hurt = 0
 	swimming = false
 	canStomp = true //If they can use jumping as an attack
@@ -194,10 +195,11 @@
 			firetime--
 		}
 
-		if(firetime == 0 && stats.energy < stats.maxEnergy) {
-			stats.energy++
-			firetime = 60
-		}
+		if(guardtime > 0 && anim != "statue")
+			guardtime--
+
+		if(firetime <= 0 && stats.energy < stats.maxEnergy)
+			stats.energy += 1.0 / 60.0
 
 		/////////////
 		// ON LAND //
@@ -402,6 +404,9 @@
 				if((getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed > 0.1 && anim == "slide")) flip = 0
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
+
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
+				stats.stamina += 0.05
 
 			//Controls
 			if(!freeDown2 || onPlatform() || anim == "climb") {
@@ -710,7 +715,7 @@
 					}
 					break
 				case "fire":
-					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.stamina > 0 && cooldown == 0) {
+					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
 						cooldown = 8
 						local fx = 6
 						local fy = 0
@@ -726,7 +731,7 @@
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						stats.stamina--
+						stats.energy--
 						firetime = 60
 
 						c.hspeed += hspeed / 1.5
@@ -1130,9 +1135,9 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "statue" && stats.energy > 0 && frame >= 3) {
-					stats.energy--
-					firetime = 180
+				if(stats.weapon == "earth" && anim == "statue" && stats.stamina >= 0 && frame >= 2) {
+					stats.stamina -= hurt
+					guardtime = 180
 					blinking = 120
 					newActor(Spark, x, y)
 				}

@@ -77,10 +77,12 @@
 	frame = 0.0
 	shape = 0
 	blast = true
+	altShape = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 5, 5, 0)
+		altShape = Rec(x, y, 1, 1, 0)
 	}
 
 	function run() {
@@ -501,6 +503,7 @@
 	element = "fire"
 	power = 2
 	blast = true
+	altShape = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -508,14 +511,15 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 24.0)
+		altShape = Cir(x, y, 2.0)
 	}
 
 	function run() {
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
-		if(shape.r < 16) shape.r++
+		if(altShape.r < 16) altShape.r++
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
