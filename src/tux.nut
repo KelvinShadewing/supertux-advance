@@ -470,7 +470,7 @@
 				if(anim == "slide" && stats.weapon == "fire") {
 					rspeed = hspeed
 					if(fabs(hspeed) > 4 && getFrames() % 4 == 0)
-						fireWeapon(DashFlame, x + hspeed * 2, y + 4, 1, id)
+						fireWeapon(DashFlame, x + hspeed * 2, y + 4 + vspeed, 1, id)
 				}
 
 				//On a ladder

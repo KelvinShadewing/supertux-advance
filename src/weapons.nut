@@ -82,7 +82,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 5, 5, 0)
-		altShape = Rec(x, y, 1, 1, 0)
+		altShape = Rec(x, y, 1, 4, 0)
 	}
 
 	function run() {
@@ -660,7 +660,7 @@
 	function run() {
 		if(checkActor(owner)) {
 			x = actor[owner].x + (actor[owner].hspeed * 2)
-			y = actor[owner].y + 4
+			y = actor[owner].y + 4 + (actor[owner].vspeed)
 			flip = actor[owner].flip
 		}
 
