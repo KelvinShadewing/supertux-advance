@@ -654,7 +654,7 @@
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
-		shape = Rec(x, y, 4, 4, 0)
+		shape = Rec(x, y, 8, 4, 0)
 	}
 
 	function run() {
