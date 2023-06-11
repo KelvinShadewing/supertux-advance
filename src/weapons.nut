@@ -646,6 +646,35 @@
 	}
 }
 
+::DashFlame <- class extends WeaponEffect {
+	flip = 0
+	element = "fire"
+	power = 1
+	piercing = 0
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 4, 4, 0)
+	}
+
+	function run() {
+		if(checkActor(owner)) {
+			x = actor[owner].x + (actor[owner].hspeed * 2)
+			y = actor[owner].y + 4
+			flip = actor[owner].flip
+		}
+
+		shape.setPos(x, y)
+		frame += 0.5
+		if(frame > 1)
+			deleteActor(id)
+	}
+
+	function draw() {
+		drawSpriteZ(3, sprCyraFireWave, frame, x - camx, y - camy, 0, flip, 0.8, 0.8)
+	}
+}
+
 /////////////////
 // ICE ATTACKS //
 /////////////////
