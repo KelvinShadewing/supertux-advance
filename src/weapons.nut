@@ -654,18 +654,18 @@
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
-		shape = Rec(x, y, 8, 4, 0)
+		shape = Rec(x, y, 12, 4, 0)
 	}
 
 	function run() {
 		if(checkActor(owner)) {
-			x = actor[owner].x + (actor[owner].hspeed * 2)
+			x = actor[owner].x + (actor[owner].hspeed * (3.5 - frame * 2.0))
 			y = actor[owner].y + 4 + (actor[owner].vspeed)
 			flip = actor[owner].flip
 		}
 
 		shape.setPos(x, y)
-		frame += 0.5
+		frame += 0.25
 		if(frame > 1)
 			deleteActor(id)
 	}

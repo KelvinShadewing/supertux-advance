@@ -469,9 +469,14 @@
 				if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
 				if(anim == "slide" && stats.weapon == "fire") {
 					rspeed = hspeed
-					if(fabs(hspeed) > 4 && getFrames() % 4 == 0)
-						fireWeapon(DashFlame, x + hspeed * 2, y + 4 + vspeed, 1, id)
+					if(fabs(hspeed) > 4) {
+						if(getFrames() % 4 == 0)
+							fireWeapon(DashFlame, x + hspeed * 2, y + 4 + vspeed, 1, id)
+						damageMultF.fire = 0.0
+					}
 				}
+				else
+					damageMultF.fire = 0.5
 
 				//On a ladder
 				if(anim == "climb") {
