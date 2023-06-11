@@ -897,12 +897,12 @@
 			break
 
 		case 22:
-			if(gvLangObj["info"].rawin(i.name)) c = newActor(InfoBlock, i.x + 8, i.y - 8, textLineLen(gvLangObj["info"][i.name], gvTextW))
+			if(gvLangObj["info"].rawin(i.name)) c = newActor(InfoBlock, i.x + 8, i.y - 8, gvLangObj["info"][i.name])
 			else c = newActor(InfoBlock, i.x + 8, i.y - 8, "")
 			break
 
 		case 23:
-			if(gvLangObj["devcom"].rawin(i.name)) c = newActor(KelvinScarf, i.x + 8, i.y - 8, textLineLen(gvLangObj["devcom"][i.name], gvTextW))
+			if(gvLangObj["devcom"].rawin(i.name)) c = newActor(KelvinScarf, i.x + 8, i.y - 8, gvLangObj["devcom"][i.name])
 			else c = newActor(KelvinScarf, i.x + 8, i.y - 8, "")
 			break
 

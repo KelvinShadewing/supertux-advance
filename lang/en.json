@@ -67,10 +67,17 @@
 		"weather" : "Weather effects: %s",
 		"showkeys" : "Show Keys: %s",
 		"completion" : "Completion Stats: %s",
-		"usebeam" : "Race Beam: %s"
+		"usebeam" : "Race Beam: %s",
+		"joymode" : "Joystick Display Mode: %s"
 	},
 
-	"options-menu-desc": {
+	"options-joymodes" : {
+		"xbox" : "XBox",
+		"dinput" : "Generic",
+		"psx" : "Playstation"
+	},
+
+	"options-menu-desc" : {
 		"difficulty" : "Change game difficulty",
 		"language" : "Change game language",
 		"keyboard" : "Change keyboard controls",
@@ -110,8 +117,8 @@
 		"right" : "Right: %s",
 		"jump" : "Jump: %s",
 		"shoot" : "Shoot: %s",
-		"spec1" : "Special 1: %s",
-		"spec2" : "Special 2: %s",
+		"spec1" : "Alt Fire: %s",
+		"spec2" : "Special: %s",
 		"pause" : "Pause: %s",
 		"item-swap" : "Item Swap: %s",
 		"menu-accept" : "Menu Accept: %s",
@@ -212,23 +219,23 @@
 		"welcome" :
 		"Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary. Press UP near NPCs to talk to them. Some have more than one thing to say. If you see a ? over your head, it means your character themself has something to say. Press up to read it.",
 		"tutWall" :
-		"Press JUMP against the wall to do a wall jump.",
+		["Press %s against the wall to do a wall jump.", "getConName(\"jump\")"],
 		"tutSlide" :
-		"Press DOWN while running or on a hill to slide.",
+		["Press %s while running or on a hill to slide.", "getConName(\"down\")"],
 		"waterjump" :
-		"Hold JUMP when leaving the water to gain height.",
+		["Hold %s when leaving the water to gain height.", "getConName(\"jump\")"],
 		"noend" :
-		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this.",
+		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this, or walk against the edge of the map.",
 		"hills" :
 		"Hills are very important! Practice sliding every chance you get.",
 		"pipes" :
-		"Pipes can be entered just by falling in. You can also hold DOWN to funnel yourself into them.",
+		["Pipes can be entered just by falling in. You can also hold %s to funnel yourself into them.", "getConName(\"down\")"],
 		"controls" :
 		"Don't forget to set your controls in the options menu on the main screen! If you really mess up setting them up, delete your config.json file.",
 		"secrets" :
 		"Secret passages are everywhere! Feel against the wall to reveal them, or watch for enemy movements.",
 		"T-reminder" :
-		"here's a reminder that you don't have to beat towns (such as this) in order to progress!",
+		"Here's a reminder that you don't have to beat towns (such as this) in order to progress!",
 		"coyotetime" :
 		"You have a brief moment after leaving the ground when you can still jump. Practice running off the edges and jumping just after your feet leave the ground.",
 		"tntex" :
@@ -238,9 +245,9 @@
 		"fireex" :
 		"Fireballs can set off TNT blocks, get a fire flower and try it out!",
 		"owplats" :
-		"One-way platforms can be dropped down from by pressing DOWN and JUMP at once. If you drop on accident, you have twice as long as when going over an edge to jump back up.",
+		["One-way platforms can be dropped down from by pressing %s and %s at once. If you drop on accident, you have twice as long as when going over an edge to jump back up.", "getConName(\"down\")", "getConName(\"jump\")"],
 		"slidewarn" :
-		"Levels like this will force you to slide! (It's going to be replaced with something else in the future.)",
+		"These levels are built with speed in mind! Keep your speed up, or you may not survive!",
 		"konqi" :
 		"Konqi can breath fire and stomp the ground, but he isn't as fast as Tux.",
 		"momentum" :
@@ -248,13 +255,15 @@
 		"warned" :
 		"You were warned...",
 		"iceguy" :
-		"Some enemies like Mr. Iceguy can be carried when stunned. Simply touch them while holding ATTACK to pick them up.",
+		["Some enemies like Mr. Iceguy can be carried when stunned. Simply touch them while holding SHOOT or ALT FIRE to pick them up.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
 		"elements-fire-ice" :
 		"Your elemental form doesn't just change your attack; it changes how elemental damage affects you. Elements will take double damage from their opposites, and half damage from themselves. For instance, with a fire flower, ice enemies will damage you twice as much, but with an ice flower, they'll do half as much.",
 		"iceflower" :
 		"With the ice flower, you can freeze enemies in place and reduce damage from ice attacks. Frozen enemies are solid and can be stood on safely, or used to wall jump from. You'll also move faster!",
 		"tuxdoll" :
-		"If you find a doll of your character, grab it! It will protect you from KO when you run out of life."
+		"If you find a doll of your character, grab it! It will protect you from KO when you run out of life.",
+		"altfire" :
+		["You can use an alternate attack if you have an elemental item in your pocket by pressing %s.", "getConName(\"spec1\")"]
 	},
 
 	"devcom" : {
@@ -371,7 +380,7 @@
 		"penny-0-Kiki" :
 		"How are you fighting without your brush? Oh, you're copying and pasting Midi's bombs? I didn't know you can do that.",
 		"penny-0" :
-		"Pleased to meet you. Are you helping Tux save our friends? I'm so happy to hear that.",
+		["Pleased to meet you, %s. Are you helping Tux save our friends? I'm so happy to hear that.", "gvCharacters[game.playerChar].shortname"],
 
 		"rad-t0-Tux" :
 		"Yo, Tux! Mayor Penny is looking for ya. By the way, catch me on the slopes sometime. I wanna see if you live up to your rep as a snow racer.",
@@ -474,7 +483,7 @@
 		"garuda-pt-Kiki" :
 		"Hang on, Kelvin needs to write lines for you.",
 		"garuda-pt" :
-		"Thanks for your help. It feels so good being able to fly again.",
+		["Thanks for your help, %s. It feels so good being able to fly again.", "gvCharacters[game.playerChar].shortname"],
 
 		"breeze-c-Konqi" :
 		"Konqi! I knew you'd come for me! I'm so happy to see you! Let's get out of here! I'll be right behind you.",
@@ -616,7 +625,7 @@
 		"duke-1b" :
 		"Thanks a bunch! I was starving! I hope the caves are easier for you than the forest. Who even builds a forest out of ice anyway?",
 		"duke-2a" :
-		"Hey, I left one of my fish in the mines. Could you please get it back for me?",
+		["Hey, %s, I left one of my fish in the mines. Could you please get it back for me?", "gvCharacters[game.playerChar].shortname"],
 		"duke-2b" :
 		"Thanks for that!",
 		"no-touch-fishy-a" :
@@ -671,7 +680,7 @@
 		"I wonder what tools they used to make an ice mural like this last so long.",
 
 		"mines-0" :
-		"Hey there! Do you have a moment? If you haven't heard, Nolok robbed the treasury and stole the funds to keep the mines open. If you're able to, could you donate any coins you find? If we can't keep the mine open, we'll have to find fish in the sea and contend with the orcas!",
+		["Hey there, %s! Do you have a moment? If you haven't heard, Nolok robbed the treasury and stole the funds to keep the mines open. If you're able to, could you donate any coins you find? If we can't keep the mine open, we'll have to find fish in the sea and contend with the orcas!", "gvCharacters[game.playerChar].shortname"],
 		"mines-1" :
 		"Thanks to you, we've been able to keep the mine open a bit longer. Tuckles thinks something big is down under the ice and wants to keep digging. Any chance you could donate more and help us keep going?"
 	},
@@ -1005,5 +1014,37 @@
 		"282" : "Sleep",
 		"283" : "Wake Up",
 		"284" : "???"
+	},
+
+	"joymode" : "xbox",
+	"joy" : {
+		"xbox" : {
+			"0" : "(X)",
+			"1" : "(A)",
+			"2" : "(B)",
+			"3" : "(Y)",
+			"4" : "(LB)",
+			"5" : "(RB)",
+			"6" : "(LT)",
+			"7" : "(RT)",
+			"8" : "(<)",
+			"9" : "(>)",
+			"10" : "(LS)",
+			"11" : "(RS)"
+		},
+		"dinput" : {
+			"0" : "(0)",
+			"1" : "(1)",
+			"2" : "(2)",
+			"3" : "(3)",
+			"4" : "(4)",
+			"5" : "(5)",
+			"6" : "(6)",
+			"7" : "(7)",
+			"8" : "(8)",
+			"9" : "(9)",
+			"10" : "(10)",
+			"11" : "(11)"
+		}
 	}
 }

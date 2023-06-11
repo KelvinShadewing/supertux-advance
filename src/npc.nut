@@ -29,7 +29,7 @@
 				if(i >= argv.len()) arr.push("")
 				else if(canint(argv[i])) arr.push(argv[i].tointeger())
 				else if(argv[i] == 0) arr.push("")
-				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], gvTextW))
+				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(formatInfo(gvLangObj["npc"][argv[i]]), gvTextW))
 				else arr.push("")
 			}
 		}
@@ -49,7 +49,7 @@
 				if(i >= argv.len()) arr.push("")
 				else if(canint(argv[i])) arr.push(argv[i].tointeger())
 				else if(argv[i] == 0) arr.push("")
-				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(gvLangObj["npc"][argv[i]], gvTextW))
+				else if(gvLangObj["npc"].rawin(argv[i])) arr.push(textLineLen(formatInfo(gvLangObj["npc"][argv[i]]), gvTextW))
 				else arr.push("")
 			}
 		}
@@ -97,7 +97,7 @@
 	}
 
 	function say() {
-		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + talki], gvTextW)
+		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + "-" + talki]), gvTextW)
 		else text = arr[0]
 		gvInfoBox = text
 		talki++
@@ -105,7 +105,7 @@
 	}
 
 	function sayRand() {
-		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + talki], gvTextW)
+		if(argv[3] + "-" + talki in gvLangObj["npc"]) text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + "-" + talki]), gvTextW)
 		else text = ""
 		gvInfoBox = text
 		talki = randInt(arr[1])
@@ -114,28 +114,28 @@
 
 	function sayChar() {
 		text = ""
-		if((argv[3] + typeof target) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + typeof target], gvTextW)
-		else if((argv[3] + "-" + typeof target) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3] + "-" + typeof target], gvTextW)
-		else if((argv[3]) in gvLangObj["npc"]) text = textLineLen(gvLangObj["npc"][argv[3]], gvTextW)
+		if((argv[3] + typeof target) in gvLangObj["npc"]) text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + typeof target]), gvTextW)
+		else if((argv[3] + "-" + typeof target) in gvLangObj["npc"]) text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + "-" + typeof target]), gvTextW)
+		else if((argv[3]) in gvLangObj["npc"]) text = textLineLen(formatInfo(gvLangObj["npc"][argv[3]]), gvTextW)
 		gvInfoBox = text
 	}
 
 	function rescueKonqi() {
-		text = textLineLen(gvLangObj["npc"]["konqi-c"], gvTextW)
+		text = textLineLen(formatInfo(gvLangObj["npc"]["konqi-c"]), gvTextW)
 		gvInfoBox = text
 		freeKonqi()
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
 	}
 
 	function rescueKatie() {
-		text = textLineLen(gvLangObj["npc"]["katie-c"], gvTextW)
+		text = textLineLen(formatInfo(gvLangObj["npc"]["katie-c"]), gvTextW)
 		gvInfoBox = text
 		freeKonqi()
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
 	}
 
 	function rescueMidi() {
-		text = textLineLen(gvLangObj["npc"]["midi-c"], gvTextW)
+		text = textLineLen(formatInfo(gvLangObj["npc"]["midi-c"]), gvTextW)
 		gvInfoBox = text
 		freeMidi()
 		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
@@ -145,27 +145,27 @@
 		//Find who to free based on sprite
 		if(sprite == sprXue) {
 			if(!game.friends.rawin("Xue")) game.friends.Xue <- true
-			text = textLineLen(gvLangObj["npc"]["xue-c"], gvTextW)
+			text = textLineLen(formatInfo(gvLangObj["npc"]["xue-c"]), gvTextW)
 		}
 		if(sprite == sprGnu) if(!game.friends.rawin("Gnu")) {
 			game.friends.Gnu <- true
-			text = textLineLen(gvLangObj["npc"]["gnu-c"], gvTextW)
+			text = textLineLen(formatInfo(gvLangObj["npc"]["gnu-c"]), gvTextW)
 		}
 		if(sprite == sprPlasmaBreeze) if(!game.friends.rawin("PlasmaBreeze")) {
 			game.friends.PlasmaBreeze <- true
-			text = textLineLen(gvLangObj["npc"]["breeze-c"], gvTextW)
+			text = textLineLen(formatInfo(gvLangObj["npc"]["breeze-c"]), gvTextW)
 		}
 		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) {
 			game.friends.RockyRaccoon <- true
-			text = textLineLen(gvLangObj["npc"]["rocky-c"], gvTextW)
+			text = textLineLen(formatInfo(gvLangObj["npc"]["rocky-c"]), gvTextW)
 		}
 		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) {
 			game.friends.Pygame <- true
-			text = textLineLen(gvLangObj["npc"]["python-c"], gvTextW)
+			text = textLineLen(formatInfo(gvLangObj["npc"]["python-c"]), gvTextW)
 		}
 		if(sprite == sprGaruda) if(!game.friends.rawin("Garuda")) {
 			game.friends.Garuda <- true
-			text = textLineLen(gvLangObj["npc"]["garuda-c"], gvTextW)
+			text = textLineLen(formatInfo(gvLangObj["npc"]["garuda-c"]), gvTextW)
 		}
 
 		gvInfoBox = text
@@ -173,14 +173,14 @@
 	}
 
 	function wantFish() {
-		if(game.redCoins < game.maxRedCoins) text = arr[0]
-		else text = arr[1]
+		if(game.redCoins < game.maxRedCoins) text = formatInfo(arr[0])
+		else text = formatInfo(arr[1])
 		gvInfoBox = text
 	}
 
 	function watchActor() {
-		if(checkActor(mapActor[arr[0].tointeger()])) text = arr[1]
-		else text = arr[2]
+		if(checkActor(mapActor[arr[0].tointeger()])) text = formatInfo(arr[1])
+		else text = formatInfo(arr[2])
 		gvInfoBox = text
 	}
 

@@ -487,10 +487,12 @@
 	vspeed = 0.0
 	item = 0
 	text = ""
+	arr = null
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
-		text = _arr
+		text = textLineLen(formatInfo(_arr), gvTextW)
+		arr = _arr
 
 		shape = Rec(x, y + 2, 8, 8, 0)
 		tileSetSolid(x, y, 1)
@@ -509,12 +511,7 @@
 			gvPlayer.vspeed = 0
 			vspeed = -1
 			popSound(sndBump, 0)
-			gvInfoBox = text
-		}
-		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
-			gvPlayer2.vspeed = 0
-			vspeed = -1
-			popSound(sndBump, 0)
+			text = textLineLen(formatInfo(arr), gvTextW)
 			gvInfoBox = text
 		}
 
@@ -533,10 +530,12 @@
 ::KelvinScarf <- class extends Actor {
 	shape = 0
 	text = ""
+	arr = null
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
-		text = _arr
+		text = textLineLen(formatInfo(_arr), gvTextW)
+		arr = _arr
 
 		shape = Rec(x, y, 8, 8, 0)
 	}
@@ -546,12 +545,9 @@
 
 		if(devcom) {
 			if(gvPlayer && hitTest(shape, gvPlayer.shape)){
+				text = textLineLen(formatInfo(arr), gvTextW)
 				gvInfoBox = text
 				if(gvPlayer.invincible <= 1) gvPlayer.invincible = 10
-			}
-			else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)){
-				gvInfoBox = text
-				if(gvPlayer2.invincible <= 1) gvPlayer2.invincible = 10
 			}
 
 			if(gvInfoBox == text && (gvPlayer && !gvPlayer2 && !inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)

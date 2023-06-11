@@ -238,6 +238,7 @@
 		xPeek = -1
 		yPeek = -1
 	}
+	joymode = "xbox"
 	autorun = false
 	stickspeed = true
 	stickactive = true
