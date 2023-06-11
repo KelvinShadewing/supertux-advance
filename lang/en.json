@@ -263,7 +263,9 @@
 		"tuxdoll" :
 		"If you find a doll of your character, grab it! It will protect you from KO when you run out of life.",
 		"altfire" :
-		["You can use an alternate attack if you have an elemental item in your pocket by pressing %s.", "getConName(\"spec1\")"]
+		["You can use an alternate attack if you have an elemental item in your pocket by pressing %s.", "getConName(\"spec1\")"],
+		"earthshell" :
+		["The earth shell grants special defensive boosts. With Tux, you can roll into a ball and even drop dash if you press %s while landing. As Konqi, you can stomp by pressing %s to become a statue, and can still spit rocks. These earth guarding techniques will cost stamina so you can still shoot with another element in your pocket.", "getConName(\"shoot\")", "getConName(\"down\")"]
 	},
 
 	"devcom" : {

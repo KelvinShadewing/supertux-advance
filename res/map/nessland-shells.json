@@ -4619,6 +4619,18 @@
                  "width":16,
                  "x":576,
                  "y":144
+                }, 
+                {
+                 "gid":23,
+                 "height":16,
+                 "id":1839,
+                 "name":"earthshell",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":304,
+                 "y":144
                 }],
          "opacity":0.64,
          "type":"objectgroup",
@@ -4678,7 +4690,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1839,
+ "nextobjectid":1840,
  "orientation":"orthogonal",
  "properties":[
         {

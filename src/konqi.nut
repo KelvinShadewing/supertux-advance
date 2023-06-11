@@ -706,14 +706,6 @@
 			}
 
 			if(canMove) switch(stats.weapon) {
-				case "normal":
-					if(cooldown > 0) break
-					if(getcon("shoot", "press", true, playerNum)) {
-						cooldown = 60
-						breatheFire()
-						playSoundChannel(sndFlame, 0, 0)
-					}
-					break
 				case "fire":
 					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
 						cooldown = 8
@@ -745,14 +737,24 @@
 						breatheFire()
 						playSoundChannel(sndFlame, 0, 0)
 					}
-					break
-
-				case "air":
-					if(cooldown > 0) break
-					if(getcon("shoot", "press", true, playerNum)) {
-						cooldown = 60
-						breatheFire()
-						playSoundChannel(sndFlame, 0, 0)
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Iceball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						if(anim == "crawl") c.y += 8
 					}
 					break
 
@@ -784,17 +786,38 @@
 						newActor(Poof, x, y + 8)
 					}
 					break
+
+				default:
+					if(cooldown > 0) break
+					if(getcon("shoot", "press", true, playerNum)) {
+						cooldown = 45
+						breatheFire()
+						playSoundChannel(sndFlame, 0, 0)
+
+						if(stats.energy >= 1) {
+							local fx = 6
+							if(flip == 1) fx = -5
+							local c = fireWeapon(Fireball, x + fx, y, 1, id)
+							if(!flip) c.hspeed = 5
+							else c.hspeed = -5
+							playSound(sndFireball, 0)
+							if(getcon("up", "hold", true, playerNum)) {
+								c.vspeed = -2.5
+								c.hspeed /= 1.5
+							}
+							if(getcon("down", "hold", true, playerNum)) {
+								c.vspeed = 2
+								c.hspeed /= 1.5
+							}
+							stats.energy--
+							firetime = 60
+							if(anim == "crawl") c.y += 8
+						}
+					}
+					break
 			}
 
 			if(canMove) switch(stats.subitem) {
-				case "normal":
-					if(cooldown > 0) break
-					if(getcon("spec1", "press", true, playerNum)) {
-						cooldown = 60
-						breatheFire(1)
-						playSoundChannel(sndFlame, 0, 0)
-					}
-					break
 				case "fire":
 					if(getcon("spec1", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
 						cooldown = 8
@@ -826,14 +849,24 @@
 						breatheFire(1)
 						playSoundChannel(sndFlame, 0, 0)
 					}
-					break
-
-				case "air":
-					if(cooldown > 0) break
-					if(getcon("spec1", "press", true, playerNum)) {
-						cooldown = 60
-						breatheFire()
-						playSoundChannel(sndFlame, 0, 0)
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Iceball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						if(anim == "crawl") c.y += 8
 					}
 					break
 
@@ -863,6 +896,35 @@
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)
+					}
+					break
+
+				default:
+					if(cooldown > 0) break
+					if(getcon("spec1", "press", true, playerNum)) {
+						cooldown = 45
+						breatheFire(1)
+						playSoundChannel(sndFlame, 0, 0)
+
+						if(stats.energy >= 1) {
+							local fx = 6
+							if(flip == 1) fx = -5
+							local c = fireWeapon(Fireball, x + fx, y, 1, id)
+							if(!flip) c.hspeed = 5
+							else c.hspeed = -5
+							playSound(sndFireball, 0)
+							if(getcon("up", "hold", true, playerNum)) {
+								c.vspeed = -2.5
+								c.hspeed /= 1.5
+							}
+							if(getcon("down", "hold", true, playerNum)) {
+								c.vspeed = 2
+								c.hspeed /= 1.5
+							}
+							stats.energy--
+							firetime = 60
+							if(anim == "crawl") c.y += 8
+						}
 					}
 					break
 			}

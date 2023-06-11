@@ -81,8 +81,8 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		shape = Rec(x, y, 5, 5, 0)
-		altShape = Rec(x, y, 1, 4, 0)
+		shape = Rec(x, y, 8, 8, 0)
+		altShape = Rec(x, y, 4, 4, 0)
 	}
 
 	function run() {
