@@ -1263,6 +1263,10 @@
 					c.hspeed = 2.0
 					c.vspeed = 2.0
 					break
+				case "air":
+					c = fireWeapon(ExplodeA2, x, y, alignment, owner)
+					c.power = 2
+					break
 				case "fire":
 					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
 					c.power = 4
@@ -1478,27 +1482,67 @@
 	function run() {
 		frame += 0.2
 
-		if(frame >= 8) deleteActor(id)
+		if(frame >= 6) deleteActor(id)
 
 		if(gvPlayer) {
 			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64 + (32 * (power / 2.0))) {
-				if(x > gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5
-				if(x < gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5
+				if(x > gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.2
+				if(x < gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.2
 				if(gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
-			}
-		}
-
-		if(gvPlayer2) {
-			if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64 + (32 * (power / 2.0))) {
-				if(x > gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
-				if(x < gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
-				if(gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::ExplodeA2 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "air"
+	power = 2
+	blast = true
+	altShape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeA, 0)
+
+		shape = Cir(x, y, 32.0)
+		altShape = Cir(x, y, 8.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 6) deleteActor(id)
+
+		if(gvPlayer) {
+			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64 + (32 * (power / 2.0))) {
+				if(x > gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 1.0
+				if(x < gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 1.0
+				if(gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)

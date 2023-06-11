@@ -1135,7 +1135,7 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "statue" && stats.stamina >= 0 && frame >= 2) {
+				if(stats.weapon == "earth" && anim == "statue" && stats.stamina > 0 && frame >= 2) {
 					stats.stamina -= hurt
 					guardtime = 180
 					blinking = 120

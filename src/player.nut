@@ -193,7 +193,7 @@
 		if(_cut) damage *= damageMult["cut"]
 		if(_blast) damage *= damageMult["blast"]
 
-		hurt = floor(damage)
+		hurt = damage
 	}
 
 	function checkHurt() {

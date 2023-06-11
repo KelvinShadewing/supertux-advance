@@ -1251,7 +1251,7 @@ gvCharacters.Kiki2 <- {
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.weapon == "earth" && anim == "slide" && stats.stamina >= 1) {
+				if(stats.weapon == "earth" && anim == "slide" && stats.stamina > 0) {
 					stats.stamina -= hurt
 					guardtime = 180
 					blinking = 120

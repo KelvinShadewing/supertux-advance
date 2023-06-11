@@ -577,7 +577,7 @@
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16) && gvPlayer.rawin("energy") && game.ps.weapon == "air") gvPlayer.energy++
+		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16) && game.ps.weapon == "air") gvPlayer.stats.stamina++
 	}
 
 	function draw() {

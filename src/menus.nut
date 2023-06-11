@@ -192,10 +192,6 @@ const menuY = 40
 		name = function() { return format(gvLangObj["time-attack-menu"]["player1"], game.playerChar) },
 		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
 	},
-	// {
-	// 	name = function() { return format(gvLangObj["time-attack-menu"]["player2"], game.playerChar2 != 0 ? game.playerChar2 : "????") },
-	// 	func = function() { pickCharInitialize(2, true); gvGameMode = pickChar }
-	// },
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 0; menu = meMain },
@@ -281,11 +277,6 @@ const menuY = 40
 		name = function() { return gvLangObj["pause-menu"]["character"]},
 		func = function() { pickCharInitialize(); gvGameMode = pickChar }
 		desc = function() { return game.playerChar }
-	},
-	{
-		name = function() { return gvLangObj["pause-menu"]["character2"]},
-		func = function() { pickCharInitialize(2); gvGameMode = pickChar }
-		desc = function() { return game.playerChar2 }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },

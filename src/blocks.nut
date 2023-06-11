@@ -85,69 +85,8 @@
 			}
 		}
 
-		if(gvPlayer2) {
-			if(v == 0) {
-				vspeed = 0
-				if(coins <= 1) {
-					if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
-						gvPlayer2.vspeed = 0
-						deleteActor(id)
-						newActor(WoodChunks, x, y)
-						popSound(sndBump, 0)
-						tileSetSolid(x, y, oldsolid)
-						if(coins > 0) newActor(CoinEffect, x, y - 16)
-						fireWeapon(BoxHit, x, y - 8, 1, id)
-					}
-
-					if("anim" in gvPlayer) if(fabs(gvPlayer2.hspeed) >= 4.5 && gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball") if(hitTest(slideshape, gvPlayer2.shape)) {
-						gvPlayer2.vspeed = 0
-						deleteActor(id)
-						newActor(WoodChunks, x, y)
-						popSound(sndBump, 0)
-						tileSetSolid(x, y, oldsolid)
-						if(coins > 0) newActor(CoinEffect, x, y - 16)
-						fireWeapon(BoxHit, x, y - 8, 1, id)
-					}
-
-					if("anim" in gvPlayer) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
-						gvPlayer2.vspeed = -2.0
-						deleteActor(id)
-						newActor(WoodChunks, x, y)
-						popSound(sndBump, 0)
-						tileSetSolid(x, y, oldsolid)
-						if(coins > 0) newActor(CoinEffect, x, y - 16)
-					}
-				}
-				else {
-					if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape)) {
-						gvPlayer2.vspeed = 0
-						vspeed = -2
-						coins--
-						newActor(CoinEffect, x, y - 16)
-						popSound(sndBump, 0)
-						fireWeapon(BoxHit, x, y - 8, 1, id)
-					}
-
-					if("anim" in gvPlayer) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
-						vspeed = -2
-						coins--
-						newActor(CoinEffect, x, y - 16)
-						popSound(sndBump, 0)
-						fireWeapon(BoxHit, x, y - 8, 1, id)
-					}
-
-					if("anim" in gvPlayer) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
-						vspeed = -2
-						coins--
-						newActor(CoinEffect, x, y - 16)
-						popSound(sndBump, 0)
-					}
-				}
-			}
-		}
-
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
-			if((hitTest(shape, i.shape) || hitTest(slideshape, i.shape)) && vspeed == 0) {
+			if(((("altShape" in i && hitTest(shape, i.altShape)) || (!("altShape" in i) && hitTest(shape, i.shape)))) && vspeed == 0) {
 				if(i.blast && !i.box) {
 					if(coins <= 1) {
 						deleteActor(id)
@@ -215,7 +154,7 @@
 
 	function run() {
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
-			if(hitTest(shape, i.shape) && vspeed == 0) {
+			if((("altShape" in i && hitTest(shape, i.altShape)) || (!("altShape" in i) && hitTest(shape, i.shape))) && vspeed == 0) {
 				if(i.blast && !i.box) {
 					if(coins <= 1) {
 						deleteActor(id)
@@ -308,36 +247,7 @@
 			}
 		}
 
-		if(gvPlayer2) {
-			if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
-				gvPlayer2.vspeed = 0
-				tileSetSolid(x, y, oldsolid)
-				deleteActor(id)
-				newActor(IceChunks, x, y)
-				popSound(sndBump, 0)
-				fireWeapon(BoxHit, x, y - 8, 1, id)
-			}
-
-			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
-				gvPlayer2.vspeed = 0
-				tileSetSolid(x, y, oldsolid)
-				deleteActor(id)
-				newActor(IceChunks, x, y)
-				popSound(sndBump, 0)
-				fireWeapon(BoxHit, x, y - 8, 1, id)
-			}
-
-			if("anim" in gvPlayer) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
-				gvPlayer2.vspeed = -2.0
-				tileSetSolid(x, y, oldsolid)
-				deleteActor(id)
-				newActor(IceChunks, x, y)
-				popSound(sndBump, 0)
-				fireWeapon(BoxHit, x, y - 8, 1, id)
-			}
-		}
-
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if(hitTest(fireshape, i.shape) && (i.element == "fire" || i.blast) && !i.box && i.element != "ice") {
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])  if((("altShape" in i && hitTest(shape, i.altShape)) || (!("altShape" in i) && hitTest(shape, i.shape))) && (i.element == "fire" || i.blast) && !i.box && i.element != "ice") {
 			tileSetSolid(x, y, oldsolid)
 			deleteActor(id)
 			i.piercing--
@@ -1244,7 +1154,7 @@
 
 	function run() {
 
-		if(actor.rawin("WeaponEffect"))foreach(i in actor["WeaponEffect"]) if(hitTest(fireshape, i.shape) && i.element == "fire") {
+		if(actor.rawin("WeaponEffect"))foreach(i in actor["WeaponEffect"]) if((("altShape" in i && hitTest(fireshape, i.altShape)) || (!("altShape" in i) && hitTest(fireshape, i.shape))) && i.element == "fire") {
 			tileSetSolid(x, y, 0)
 			deleteActor(id)
 			if(i.piercing == 0)
