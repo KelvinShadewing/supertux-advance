@@ -550,6 +550,28 @@
                  "width":32,
                  "x":2112,
                  "y":576
+                }, 
+                {
+                 "height":1488,
+                 "id":1447,
+                 "name":"songPlay(musSAMines)",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2096,
+                 "x":1104,
+                 "y":64
+                }, 
+                {
+                 "height":1488,
+                 "id":1448,
+                 "name":"songPlay(musSAGrass)",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1056,
+                 "x":48,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2414,7 +2436,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1446,
+ "nextobjectid":1449,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2425,7 +2447,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)"
+         "value":"drawBG = dbgForest\nsongPlay(musSAGrass)\ngvHorizon = gvMap.h - (16 * 5)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.0",
