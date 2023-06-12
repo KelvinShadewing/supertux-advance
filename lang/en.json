@@ -217,7 +217,7 @@
 
 	"info" : {
 		"welcome" :
-		"Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary. Press UP near NPCs to talk to them. Some have more than one thing to say. If you see a ? over your head, it means your character themself has something to say. Press up to read it.",
+		["Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary. Press %s near NPCs to talk to them. Some have more than one thing to say. If you see a ? over your head, it means your character themself has something to say. Press %s to read it.", "getConName(\"up\")", "getConName(\"up\")"],
 		"tutWall" :
 		["Press %s against the wall to do a wall jump.", "getConName(\"jump\")"],
 		"tutSlide" :

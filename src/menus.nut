@@ -611,7 +611,7 @@ const menuY = 40
 		func = function() { rebindGamepad(7) }
 	},
 	{
-		name = function() { return format(gvLangObj["controls-menu"]["pause"], config.joy.shoot != -1 ? getConName("shoot", false) : "") },
+		name = function() { return format(gvLangObj["controls-menu"]["pause"], config.joy.shoot != -1 ? getConName("pause", false) : "") },
 		func = function() { rebindGamepad(8) }
 	},
 	{
