@@ -34,6 +34,7 @@
 	squish = false
 	blast = false
 	cut = false
+	dead = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -108,6 +109,10 @@
 	}
 
 	function die() {
+		if(dead)
+			return
+
+		dead = true
 		mapDeleteSolid(icebox)
 		if(frozen) newActor(IceChunks, x, y)
 		frozen = 0
@@ -4853,6 +4858,9 @@
 			if(!placeFree(x + hspeed, y - 10))
 				hspeed = -hspeed
 			shape.setPos(x, y)
+
+			if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - fabs(hspeed * 2)))
+				y--
 
 			if(isOnScreen() && randInt(1000) == 1)
 				popSound(sndPigSnort)

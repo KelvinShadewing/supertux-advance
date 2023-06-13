@@ -1148,7 +1148,6 @@
 
 		case 81:
 			c = newActor(Owl, i.x + 8, i.y - 8, i.name)
-			game.maxEnemies++
 			break
 
 		case 85:
@@ -1161,23 +1160,28 @@
 
 		case 87:
 			c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
+			game.maxEnemies++
 			break
 
 		case 88:
 			c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
 			actor[c].moving = true
+			game.maxEnemies++
 			break
 
 		case 89:
 			c = newActor(Tallcap, i.x + 8, i.y - 24, false)
+			game.maxEnemies++
 			break
 
 		case 90:
 			c = newActor(Tallcap, i.x + 8, i.y - 24, true)
+			game.maxEnemies++
 			break
 
 		case 91:
 			c = newActor(CaptainMorel, i.x + 8, i.y - 8)
+			game.maxEnemies++
 			break
 
 		case 92:
@@ -1194,6 +1198,7 @@
 
 		case 95:
 			c = newActor(Wheeler, i.x + 8, i.y - 8, i.name)
+			game.maxEnemies++
 			break
 
 		case 96:
@@ -1202,30 +1207,37 @@
 
 		case 97:
 			c = newActor(Crystallo, i.x + 8, i.y - 8, 0)
+			game.maxEnemies++
 			break
 
 		case 98:
 			c = newActor(Crystallo, i.x + 8, i.y - 8, 1)
+			game.maxEnemies++
 			break
 
 		case 99:
 			c = newActor(Crystallo, i.x + 8, i.y - 8, 2)
+			game.maxEnemies++
 			break
 
 		case 100:
 			c = newActor(Struffle, i.x + 8, i.y - 16, i.name)
+			game.maxEnemies++
 			break
 
 		case 102:
 			c = newActor(Ivy, i.x + 8, i.y - 8, false)
+			game.maxEnemies++
 			break
 
 		case 103:
 			c = newActor(Ivy, i.x + 8, i.y - 8, true)
+			game.maxEnemies++
 			break
 
 		case 104:
 			c = newActor(Puffranah, i.x + 8, i.y - 8)
+			game.maxEnemies++
 			break
 
 		case 105:

@@ -673,7 +673,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musAirship <- "res/mus/airship.ogg"
 ::musPuzzle <- "res/mus/puzzle.ogg"
 ::musIceland <- "res/mus/iceland.ogg"
-::musretro2<- "res/mus/retro-23.ogg"
+::musRetro23<- "res/mus/retro-23.ogg"
 ::musBoss <- "res/mus/boss.ogg"
 ::musBossIntro <- "res/mus/boss-intro.ogg"
 ::musGrassOverworld <- "res/mus/peaceful-village.ogg"

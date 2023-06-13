@@ -71,7 +71,11 @@
 		drawImage(bgDeepForest1, ((-camx / 8) % 176) + (i * 176), 0)
 	for(local i = 0; i < 4; i++)
 		drawImage(bgDeepForest2, ((-camx / 4) % 384) + (i * 384), 0)
+}
 
+::dbgWoodedMountain <- function() {
+	for(local i = 0; i < 3; i++)
+		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
 }
 
 ::dbgAurora <- function() {
