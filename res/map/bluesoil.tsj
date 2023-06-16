@@ -1,58 +1,14 @@
 { "columns":29,
- "image":"..\/gfx\/tsGrasstop.png",
- "imageheight":272,
+ "image":"..\/gfx\/bluesoil.png",
+ "imageheight":368,
  "imagewidth":464,
  "margin":0,
- "name":"grass",
+ "name":"bluesoil",
  "spacing":0,
- "tilecount":493,
+ "tilecount":725,
  "tiledversion":"1.10.1",
  "tileheight":16,
  "tiles":[
-        {
-         "id":279,
-         "probability":0.5
-        }, 
-        {
-         "id":308,
-         "probability":0.5
-        }, 
-        {
-         "id":335,
-         "probability":0.5
-        }, 
-        {
-         "id":336,
-         "probability":0.5
-        }, 
-        {
-         "id":338,
-         "probability":0.5
-        }, 
-        {
-         "id":339,
-         "probability":0.5
-        }, 
-        {
-         "id":340,
-         "probability":0.5
-        }, 
-        {
-         "id":360,
-         "probability":0.5
-        }, 
-        {
-         "id":361,
-         "probability":0.5
-        }, 
-        {
-         "id":362,
-         "probability":0.5
-        }, 
-        {
-         "id":363,
-         "probability":0.5
-        }, 
         {
          "id":448,
          "probability":0.00999999977648258
@@ -92,6 +48,10 @@
         {
          "id":481,
          "probability":0.00999999977648258
+        }, 
+        {
+         "id":582,
+         "probability":0.100000001490116
         }],
  "tilewidth":16,
  "type":"tileset",
@@ -101,17 +61,17 @@
          "colors":[
                 {
                  "color":"#ff0000",
-                 "name":"grass",
+                 "name":"blue-front",
                  "probability":1,
                  "tile":-1
                 }, 
                 {
                  "color":"#00ff00",
-                 "name":"dirt",
+                 "name":"blue-back",
                  "probability":1,
                  "tile":-1
                 }],
-         "name":"grasstop",
+         "name":"bluesoil",
          "tile":-1,
          "type":"mixed",
          "wangtiles":[
@@ -157,7 +117,7 @@
                 }, 
                 {
                  "tileid":11,
-                 "wangid":[1, 0, 1, 0, 1, 0, 1, 1]
+                 "wangid":[1, 1, 1, 0, 1, 0, 1, 1]
                 }, 
                 {
                  "tileid":29,

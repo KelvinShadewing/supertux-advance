@@ -66,6 +66,7 @@
 		stomp = [38, 39]
 		statue = [52, 53, 54, 55]
 		die = [12, 13]
+		win = [52]
 	}
 
 	mySprNormal = null
@@ -386,6 +387,9 @@
 
 			if(anim == "stand" && zoomies) frame += 0.1
 			if(anim != "climb") frame = wrap(abs(frame), 0.0, an[anim].len() - 1)
+
+			if(endMode && hspeed == 0)
+				anim = "win"
 
 			//Sliding acceleration
 			if(onIce()) {

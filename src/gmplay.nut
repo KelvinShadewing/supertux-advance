@@ -24,6 +24,7 @@
 	deleteAllActors()
 	if(newLevel) {
 		game.ps.health = game.maxHealth
+		game.ps.berries = 0
 		game.levelCoins = 0
 		game.maxCoins = 0
 		game.redCoins = 0
@@ -460,17 +461,25 @@
 	if(gvInfoBox == "") {
 		//Draw near-sighted stat bars
 		if(config.nearbars && gvPlayer)
-				drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, 1, (1.0 / game.ps.maxEnergy) * game.ps.energy)
+				drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, (1.0 / game.ps.maxStamina) * game.ps.stamina, (1.0 / game.ps.maxEnergy) * game.ps.energy)
 
 		//Draw stats
 		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
-		drawSprite(sprMeterBack, 0, 8, 8)
+		drawSprite(sprMeterBack, 0, 24, 8)
 		for(local i = 0; i < game.maxHealth; i++)
-			drawSprite(sprMeterBack, 1, 10 + (i * 2), 8)
-		drawSprite(sprMeterBack, 2, 10 + (2 * game.maxHealth), 8)
+			drawSprite(sprMeterBack, 1, 26 + (i * 2), 8)
+		drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 8)
 		setDrawColor(0xf83810ff)
 		if(game.ps.health > 0)
-			drawRec(10, 10, (game.ps.health * 2.0) - 1.0, 3, true)
+			drawRec(26, 10, (game.ps.health * 2.0) - 1.0, 3, true)
+
+		drawSprite(sprMeterBack, 0, 8, 8)
+		for(local i = 0; i < 6; i++)
+			drawSprite(sprMeterBack, 1, 10 + (i * 2), 8)
+		drawSprite(sprMeterBack, 2, 22, 8)
+		setDrawColor(0xf81038ff)
+		if(game.ps.berries > 0)
+			drawRec(10, 10, (game.ps.berries) - 1.0, 3, true)
 
 		if(game.ps.energy > game.ps.maxEnergy) game.ps.energy = game.ps.maxEnergy
 		drawSprite(sprMeterBack, 0, 24, 16)
@@ -705,12 +714,13 @@
 	if(gvPlayer && "hidden" in gvPlayer) gvPlayer.hidden = false
 
 	//Handle berries
-	if(game.ps.berries > 0 && game.ps.berries % 16 == 0) {
+	if(game.ps.berries > 0 && game.ps.berries >= 12 && game.ps.health > 0) {
 		if(game.ps.health < game.maxHealth) {
 			game.ps.health++
 			game.ps.berries = 0
 		}
-		else game.ps.berries--
+		else if(game.ps.berries > 12)
+			game.ps.berries--
 	}
 
 	if(game.ps.health < 0) game.ps.health = 0
@@ -1148,7 +1158,6 @@
 
 		case 81:
 			c = newActor(Owl, i.x + 8, i.y - 8, i.name)
-			game.maxEnemies++
 			break
 
 		case 85:
@@ -1161,23 +1170,28 @@
 
 		case 87:
 			c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
+			game.maxEnemies++
 			break
 
 		case 88:
 			c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
 			actor[c].moving = true
+			game.maxEnemies++
 			break
 
 		case 89:
 			c = newActor(Tallcap, i.x + 8, i.y - 24, false)
+			game.maxEnemies++
 			break
 
 		case 90:
 			c = newActor(Tallcap, i.x + 8, i.y - 24, true)
+			game.maxEnemies++
 			break
 
 		case 91:
 			c = newActor(CaptainMorel, i.x + 8, i.y - 8)
+			game.maxEnemies++
 			break
 
 		case 92:
@@ -1194,6 +1208,7 @@
 
 		case 95:
 			c = newActor(Wheeler, i.x + 8, i.y - 8, i.name)
+			game.maxEnemies++
 			break
 
 		case 96:
@@ -1202,34 +1217,46 @@
 
 		case 97:
 			c = newActor(Crystallo, i.x + 8, i.y - 8, 0)
+			game.maxEnemies++
 			break
 
 		case 98:
 			c = newActor(Crystallo, i.x + 8, i.y - 8, 1)
+			game.maxEnemies++
 			break
 
 		case 99:
 			c = newActor(Crystallo, i.x + 8, i.y - 8, 2)
+			game.maxEnemies++
 			break
 
 		case 100:
 			c = newActor(Struffle, i.x + 8, i.y - 16, i.name)
+			game.maxEnemies++
 			break
 
 		case 102:
 			c = newActor(Ivy, i.x + 8, i.y - 8, false)
+			game.maxEnemies++
 			break
 
 		case 103:
 			c = newActor(Ivy, i.x + 8, i.y - 8, true)
+			game.maxEnemies++
 			break
 
 		case 104:
 			c = newActor(Puffranah, i.x + 8, i.y - 8)
+			game.maxEnemies++
 			break
 
 		case 105:
 			c = newActor(BrickBlock, i.x + 8, i.y - 8, i.name)
+			break
+
+		case 106:
+			c = newActor(WaspyBoi, i.x + 8, i.y - 8)
+			game.maxEnemies++
 			break
 	}
 

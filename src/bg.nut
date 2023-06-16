@@ -45,19 +45,37 @@
 
 ::dbgForest <- function() {
 	if(gvMap != 0) {
-		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180 - ((gvHorizon - (camy + gvScreenH)) / 2))
-		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvHorizon - camy - 240)
+		for(local i = 0; i < 3; i++)
+			drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+		for(local i = 0; i < 5; i++)
+			drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180 - ((gvHorizon - (camy + gvScreenH)) / 2))
+		for(local i = 0; i < 5; i++)
+			drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvHorizon - camy - 240)
 	}
 	else {
-		for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < 5; i++) drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
-		for(local i = 0; i < 5; i++) drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 240)
+		for(local i = 0; i < 3; i++)
+			drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+		for(local i = 0; i < 5; i++)
+			drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
+		for(local i = 0; i < 5; i++)
+			drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 240)
 	}
 }
 
-::dbgMountain <- function() {
-	for(local i = 0; i < 3; i++) drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+::dbgDeepForest <- function() {
+	for(local i = 0; i < 3; i++)
+		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
+	for(local i = 0; i < 4; i++)
+		drawImage(bgDeepForest0, ((-camx / 12) % 160) + (i * 160), 0)
+	for(local i = 0; i < 4; i++)
+		drawImage(bgDeepForest1, ((-camx / 8) % 176) + (i * 176), 0)
+	for(local i = 0; i < 4; i++)
+		drawImage(bgDeepForest2, ((-camx / 4) % 384) + (i * 384), 0)
+}
+
+::dbgWoodedMountain <- function() {
+	for(local i = 0; i < 3; i++)
+		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
 }
 
 ::dbgAurora <- function() {

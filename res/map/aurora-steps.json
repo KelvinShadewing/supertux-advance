@@ -3336,7 +3336,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowNight\nsongPlay(musretro2)\ndrawWeather = dweBlizzard\ngfxEnemySnow()\ngvLightTarget = 0x6080e0ff"
+         "value":"drawBG = dbgSnowNight\nsongPlay(musRetro23)\ndrawWeather = dweBlizzard\ngfxEnemySnow()\ngvLightTarget = 0x6080e0ff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.9.2",

@@ -134,7 +134,7 @@
 		ice = "sprKonqiIce"
 		air = "sprKonqiAir"
 		earth = "sprKonqiEarth"
-		pick = [8, 53]
+		pick = [8, 52]
 	}
 	Katie = {
 		name = "Katie the Dragon"

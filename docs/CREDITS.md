@@ -46,7 +46,7 @@
 
 [Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
 
-[Spring](https://opengameart.org/users/spring-spring) - Large flame
+[Spring](https://opengameart.org/users/spring-spring) - Large flame, waspy boi\*
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin\*, strawberry muffin\*, bomb muffin\*, Haywire\*, Tux doll\*, Orange\*, Darknyan, Livewire, Blazeborn
 
@@ -125,6 +125,8 @@ Lukas Nystrand - Chippdisko
 [Snabisch](https://opengameart.org/users/snabisch) - In The Forest
 
 [bart](https://opengameart.org/users/bart) - Airship Song
+
+[Spring](https://opengameart.org/users/spring-spring) - Forest Top
 
 ## Level Contributors
 

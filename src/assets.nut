@@ -367,6 +367,8 @@
 ::defStruffle <- sprStruffle
 ::sprCrystallo <- newSprite("res/gfx/crystallo.png", 22, 21, 0, 0, 12, 15)
 ::defCrystallo <- sprCrystallo
+::sprWaspyBoi <- newSprite("res/gfx/waspy-boi.png", 30, 24, 0, 0, 15, 12)
+::defWaspyBoi <- sprWaspyBoi
 
 
 //Bosses
@@ -583,6 +585,9 @@
 ::bgSwitch1 <- newSprite("res/gfx/bg-switch-palace-1.png", 84, 240, 0, 0, 0, 0)
 ::bgCaveEarth0 <- newSprite("res/gfx/dirt-cave-bg-0.png", 100, 56, 0, 0, 0, 0)
 ::bgCaveEarth1 <- newSprite("res/gfx/dirt-cave-bg-1.png", 512, 288, 0, 0, 0, 0)
+::bgDeepForest0 <- loadImage("res/gfx/deep-forest-0.png")
+::bgDeepForest1 <- loadImage("res/gfx/deep-forest-1.png")
+::bgDeepForest2 <- loadImage("res/gfx/deep-forest-2.png")
 
 
 
@@ -670,13 +675,20 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musAirship <- "res/mus/airship.ogg"
 ::musPuzzle <- "res/mus/puzzle.ogg"
 ::musIceland <- "res/mus/iceland.ogg"
-::musretro2<- "res/mus/retro-23.ogg"
+::musRetro23<- "res/mus/retro-23.ogg"
 ::musBoss <- "res/mus/boss.ogg"
 ::musBossIntro <- "res/mus/boss-intro.ogg"
 ::musGrassOverworld <- "res/mus/peaceful-village.ogg"
 ::musBerrylife <- "res/mus/berrylife.ogg"
 ::musIceChip <- "res/mus/ice_music.ogg"
 ::musSnabForest <- "res/mus/snab-forest.ogg"
+::musSAGrass <- "res/mus/sa-grasslands.ogg"
+::musSAIsland <- "res/mus/sa-island.ogg"
+::musSAMines <- "res/mus/sa-mines.ogg"
+::musSAPrairie <- "res/mus/sa-prairie.ogg"
+::musSASneak <- "res/mus/sa-sneak.ogg"
+::musForestTop <- "res/mus/forest-top.ogg"
+::musSAAdventure <- "res/mus/sa-sdventure.ogg"
 
 
 

@@ -303,12 +303,13 @@
 		//Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
 
 		if(!placeFree(x, y + 1)) vspeed = -1.2
 		if(!placeFree(x, y - 1)) vspeed = 1
 		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
 			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
-			else deleteActor(id)
 		}
 		if(!inWater(x, y)) vspeed += 0.1
 		else {
@@ -345,7 +346,7 @@
 	}
 
 	function destructor() {
-		fireWeapon(AfterFlame, x, y, alignment, owner)
+		fireWeapon(AfterFlame, x + hspeed, y + vspeed, alignment, owner)
 	}
 }
 

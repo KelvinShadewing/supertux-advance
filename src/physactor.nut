@@ -51,7 +51,7 @@
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= min(8, abs(hspeed)); i++){ //Try to move up hill
+				for(local i = 1; i <= max(8, abs(hspeed)); i++){ //Try to move up hill
 					if(placeFree(x + hspeed, y - ((gravity <=> 0) * i))) {
 						x += hspeed
 						y -= ((gravity <=> 0) * i)
@@ -209,6 +209,10 @@
 						case 40:
 						case 42:
 						case 43:
+						case 60:
+						case 61:
+						case 62:
+						case 63:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
@@ -527,6 +531,116 @@
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 8.0
 							if(nps.y > shape.y + shape.oy || vspeed >= 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 64: //Thin Middle
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 1.0
+							gvMap.shape.h = 8.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 65: //1/4 TL A
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 14)
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 66: //1/4 TL B
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 10)
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 14)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 67: //1/4 TL C
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 6)
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 68: //1/4 TL D
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 2)
+							gvMap.shape.kind = 2
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 10)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 6.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 69: //Noice
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 4.0
+							gvMap.shape.h = 8.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 70: //1/4 TR D
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 2)
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 10)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 6.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 71: //1/4 TR C
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 6)
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 72: //1/4 TR B
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 10)
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 14)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 73: //1/4 TR A
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 14)
+							gvMap.shape.kind = 1
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 2.0
+							if(hitTest(ns, gvMap.shape)) return false
 							break
 					}
 					else if(cx + i >= 0 && cy <= 0 && wl.data[cx + i] - gvMap.solidfid >= 0) {
@@ -1008,6 +1122,34 @@
 						gvMap.shape.kind = 0
 						gvMap.shape.w = 6.0
 						gvMap.shape.h = 9.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 60) {
+						gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 6.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 61) {
+						gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 6.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 62) {
+						gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 8)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 6.0
+						if(hitTest(ns, gvMap.shape)) return true
+					}
+					if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 63) {
+						gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 8)
+						gvMap.shape.kind = 0
+						gvMap.shape.w = 6.0
+						gvMap.shape.h = 6.0
 						if(hitTest(ns, gvMap.shape)) return true
 					}
 					if(debug) gvMap.shape.draw()

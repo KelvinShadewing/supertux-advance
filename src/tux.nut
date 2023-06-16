@@ -39,7 +39,7 @@
 	an = {
 		stand = [0]
 		standN = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 76, 77, 78, 79, 78, 79, 78, 79, 78, 79, 78, 77, 76]
-		standF = [0, 1, 2, 3]
+		standF = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 76, 77, 78, 79]
 		standI = [0, 1, 2, 3]
 		standA = [0, 1, 2, 3]
 		standE = [0, 1, 2, 3]
@@ -64,6 +64,7 @@
 		wall = [48, 49]
 		crawl = [72, 73, 74, 75, 74, 73]
 		die = [50, 51]
+		win = [38]
 	}
 
 	mySprNormal = null
@@ -375,6 +376,9 @@
 
 			if(anim == "stand" && zoomies) frame += 0.1
 			if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(frame, 0, an[anim].len() - 1)
+
+			if(endMode && hspeed == 0)
+				anim = "win"
 
 			//Sliding acceleration
 			if(slippery) {
