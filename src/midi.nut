@@ -124,6 +124,7 @@
 		wave = [236, 237]
 		pick = [238, 239]
 		moonwalk = [240, 241, 242, 243, 244, 245, 246, 247]
+		win = [239]
 	}
 	animOffset = 0.0
 
@@ -711,6 +712,9 @@
 
 				break
 		}
+
+		if(endMode && hspeed == 0)
+			anim = "win"
 
 		if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
 

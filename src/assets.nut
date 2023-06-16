@@ -367,6 +367,8 @@
 ::defStruffle <- sprStruffle
 ::sprCrystallo <- newSprite("res/gfx/crystallo.png", 22, 21, 0, 0, 12, 15)
 ::defCrystallo <- sprCrystallo
+::sprWaspyBoi <- newSprite("res/gfx/waspy-boi.png", 30, 24, 0, 0, 15, 12)
+::defWaspyBoi <- sprWaspyBoi
 
 
 //Bosses
@@ -686,6 +688,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::musSAPrairie <- "res/mus/sa-prairie.ogg"
 ::musSASneak <- "res/mus/sa-sneak.ogg"
 ::musForestTop <- "res/mus/forest-top.ogg"
+::musSAAdventure <- "res/mus/sa-sdventure.ogg"
 
 
 

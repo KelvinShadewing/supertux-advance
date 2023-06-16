@@ -90,22 +90,32 @@
 }
 
 ::Berry <- class extends Actor{
+	timer = 300
+	doesFade = false
+
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
+		doesFade = (_arr != null)
 	}
 
 	function run()
 	{
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16) && game.ps.berries < 12) {
 			deleteActor(id)
 			game.ps.berries++
 			stopSound(sndGulp)
 			playSound(sndGulp, 0)
 		}
+
+		if(doesFade) {
+			timer--
+			if(timer <= 0)
+				deleteActor(id)
+		}
 	}
 
-	function draw() { drawSprite(sprBerry, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger()) }
+	function draw() { drawSprite(sprBerry, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger(), 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
 
 	function _typeof() { return "Item" }
 }

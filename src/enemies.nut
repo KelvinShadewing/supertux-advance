@@ -25,7 +25,7 @@
 	}
 	blinking = 0.0
 	blinkSpeed = 1.0
-	blinkMax = 10.0
+	blinkMax = 30.0
 	touchDamage = 0.0
 	element = "normal"
 	sharpTop = false
@@ -77,24 +77,6 @@
 				}
 			}
 
-			if(gvPlayer2) {
-				if(hitTest(shape, gvPlayer2.shape) && !frozen) { //8 for player radius
-					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming) {
-						if(!squish) {
-							if(getcon("jump", "hold", false, 2)) gvPlayer2.vspeed = -8.0
-							else gvPlayer2.vspeed = -4.0
-						}
-						getHurt(gvPlayer2, gvPlayer2.stompDamage, "normal", false, false, true)
-					}
-					else if(("anim" in gvPlayer2) && blinking == 0 && !sharpSide) {
-						if(gvPlayer2.inMelee) getHurt(gvPlayer2, 1, "normal", false, false, false)
-						else hurtPlayer(gvPlayer2)
-					}
-					else hurtPlayer(gvPlayer2)
-				}
-			}
-
 			if(blinking > 0) blinking -= blinkSpeed
 			if(blinking < 0) blinking = 0
 		}
@@ -120,6 +102,9 @@
 		deleteActor(id)
 
 		if(!nocount) game.enemies++
+
+		if(randInt(4 + game.difficulty) == 0)
+			newActor(Berry, x, y, true)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -4859,16 +4844,13 @@
 				hspeed = -hspeed
 			shape.setPos(x, y)
 
-			if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - fabs(hspeed * 2)))
-				y--
-
 			if(isOnScreen() && randInt(1000) == 1)
 				popSound(sndPigSnort)
 		}
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		flip = int(x > _by.x)
+		if(gvPlayer) flip = int(x > gvPlayer.x)
 		anim = "hurt"
 		frame = 0.0
 		if(!_stomp) {
@@ -5113,4 +5095,115 @@
 	}
 
 	function _typeof() { return "Crystallo" }
+}
+
+::WaspyBoi <- class extends Enemy {
+	timer = 0
+	frame = 0.0
+	biting = false
+	flip = 0
+	touchDamage = 2.0
+	health = 2
+	pursuitRange = 128
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Rec(x, y, 8, 6, 0)
+		hspeed = 0.5
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
+			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
+			flip = (hspeed < 0).tointeger()
+
+			timer--
+			if(timer <= 0) {
+				timer = 240
+				vspeed = -0.5 + randFloat(1)
+				if(hspeed == 0) hspeed = 1
+				else hspeed *= 1 / fabs(hspeed)
+			}
+			if(inWater(x, y)) vspeed -= 0.1
+			vspeed *= 0.99
+
+			if(y < 0)
+				vspeed += 0.5
+
+			local target = null
+			if(gvPlayer)
+				target = gvPlayer
+
+			if(target != null &&inDistance2(x, y, target.x, target.y, pursuitRange) && !inWater(x, y)) {
+				timer = 240
+
+				//Chase player
+				if(x < target.x && hspeed < 2) hspeed += 0.05
+				if(x > target.x && hspeed > -2) hspeed -= 0.05
+
+				if(y < target.y && vspeed < 2) vspeed += 0.05
+				if(y > target.y && vspeed > -2) vspeed -= 0.05
+
+				if(!inDistance2(x, y, target.x, target.y, 64)) {
+					if(x < target.x && hspeed < 2) hspeed += 0.05
+					if(x > target.x && hspeed > -2) hspeed -= 0.05
+
+					if(y < target.y && vspeed < 2) vspeed += 0.05
+					if(y > target.y && vspeed > -2) vspeed -= 0.05
+				}
+
+				pursuitRange = 256
+			}
+			else
+				pursuitRange = 128
+
+			
+
+
+			if(frame >= 4) {
+				biting = false
+				frame = 0.0
+			}
+
+			if(y > gvMap.h) {
+				if(vspeed > 0) vspeed = 0
+				vspeed -= 0.1
+			}
+
+			if(x > gvMap.w) hspeed = -1.0
+			if(x < 0) hspeed = 1.0
+
+			if(placeFree(x + hspeed, y)) x += hspeed
+			if(placeFree(x, y + vspeed)) y += vspeed
+			shape.setPos(x, y)
+		}
+	}
+
+	function draw() {
+		drawSprite(sprWaspyBoi, getFrames() / 2, x - camx, y - camy + ((getFrames() / 8) % 2), 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
+	}
+
+	function die() {
+		base.die()
+		popSound(sndKick, 0)
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
+	}
+
+	function _typeof() { return "WaspyBoi" }
 }
