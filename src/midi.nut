@@ -1405,11 +1405,13 @@
 	}
 
 	function shootNut(_hand, _power = 1) {
-		if(shooting || stats.energy < 1) return
+		if(stats.energy < 1 || shooting && (shootTimer < 2 || _hand == hand)) return
 		popSound(sndThrow, 0)
 		hand = _hand
 		if(flip) shooting = 2 - hand
 		else shooting = hand + 1
+
+		shootTimer = 0.0
 
 		_power = (min(_power, 3))
 

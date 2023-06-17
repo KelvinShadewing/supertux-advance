@@ -567,7 +567,7 @@
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 640, 240, 0, 0, 0, 0)
-::bgStarSky <- newSprite("res/gfx/starrysky.png", 360, 240, 0, 0, 0, 0)
+::bgStarSky <- loadImage("res/gfx/starrysky.png")
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 ::bgSnowPlain <- newSprite("res/gfx/bgSnowPlain.png", 720, 240, 0, 0, 0, 0)

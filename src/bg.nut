@@ -183,7 +183,7 @@
 
 ::dbgStarSky <- function() {
 	for(local i = 0; i < 3; i++) {
-		drawSprite(bgStarSky, 0, (i * 360), (screenH() / 2) - 120)
+		drawImage(bgStarSky, (i * 360), (screenH() / 2) - 120)
 	}
 	drawSprite(bgMoon, 0, gvScreenW - 128, 64)
 }
