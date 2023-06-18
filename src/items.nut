@@ -31,6 +31,49 @@
 	function _typeof() { return "Item" }
 }
 
+::CoinSmall <- class extends PhysAct{
+	frame = 0.0
+	timer = 300
+	gravity = 0.2
+	friction = 0.01
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+		frame = randFloat(4)
+		hspeed = randFloat(6.0) - 3.0
+		vspeed = -4.0
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
+		&& timer < 290) {
+			deleteActor(id)
+			newActor(Spark, x, y)
+			game.coins++
+			popSound(sndCoinSmall)
+		}
+		frame += 0.2
+
+		timer--
+		if(timer == 0)
+			deleteActor(id)
+
+		if(!placeFree(x, y + 1))
+			vspeed = -vspeed / 1.5
+		
+		if(!placeFree(x, y - 1))
+			vspeed = fabs(vspeed)
+	}
+
+	function draw() { drawSprite(sprCoinSmall, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
+
+	function _typeof() { return "Item" }
+}
+
 ::Coin5 <- class extends Actor{
 	frame = 0.0
 

@@ -9,7 +9,7 @@
 	gravity = 0.0
 	frame = 0.0
 	blinking = 0.0
-	blinkSpeed = 0.2
+	blinkSpeed = 0.8
 	canBeStomped = false
 	ready = false
 
@@ -260,7 +260,7 @@
 
 	function draw() {
 		if(blinking == 0) drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, max(wrap(blinking, 0, 1), (anim == anHurt).tointeger()))
+		else drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, max(wrap(blinking / 5.0, 0, 1), (anim == anHurt).tointeger()))
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()

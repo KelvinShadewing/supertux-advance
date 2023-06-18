@@ -7,6 +7,7 @@
 	freezeSprite = -1
 	icebox = -1
 	nocount = false
+	nodrop = false
 	damageMult = {
 		normal = 1.0
 		fire = 1.0
@@ -103,8 +104,13 @@
 
 		if(!nocount) game.enemies++
 
-		if(randInt(4 + game.difficulty) == 0)
-			newActor(Berry, x, y, true)
+		if(!nodrop) {
+			if(randInt(4 + game.difficulty) == 0)
+				newActor(Berry, x, y, true)
+
+			if(randInt(4 + game.difficulty) == 0)
+				newActor(CoinSmall, x, y, true)
+		}
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -1786,6 +1792,7 @@
 	element = "ice"
 	dy = -16
 	nocount = true
+	nodrop = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
