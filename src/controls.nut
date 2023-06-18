@@ -1,3 +1,5 @@
+::gvPadTypes <- ["XBox", "DInput", "Generic"]
+
 ::autocon <- { //Has nothing to do with Transformers
 	a = {
 		up = false
@@ -633,67 +635,67 @@
 			if(getkey)
 				output += gvLangObj["key"][config.key.jump.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.jump.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.jump.tostring()]
 			break
 		case "shoot":
 			if(getkey)
 				output += gvLangObj["key"][config.key.shoot.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.shoot.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.shoot.tostring()]
 			break
 		case "spec1":
 			if(getkey)
 				output += gvLangObj["key"][config.key.spec1.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.spec1.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.spec1.tostring()]
 			break
 		case "spec2":
 			if(getkey)
 				output += gvLangObj["key"][config.key.spec2.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.spec2.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.spec2.tostring()]
 			break
 		case "swap":
 			if(getkey)
 				output += gvLangObj["key"][config.key.swap.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.swap.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.swap.tostring()]
 			break
 		case "pause":
 			if(getkey)
 				output += gvLangObj["key"][config.key.pause.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.pause.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.pause.tostring()]
 			break
 		case "accept":
 			if(getkey)
 				output += gvLangObj["key"][config.key.accept.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.accept.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.accept.tostring()]
 			break
 		case "leftPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.leftPeek.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.leftPeek.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.leftPeek.tostring()]
 			break
 		case "rightPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.rightPeek.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.rightPeek.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.rightPeek.tostring()]
 			break
 		case "downPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.downPeek.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.downPeek.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.downPeek.tostring()]
 			break
 		case "upPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.upPeek.tostring()]
 			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"]][config.joy.upPeek.tostring()]
+				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.upPeek.tostring()]
 			break
 	}
 

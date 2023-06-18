@@ -423,7 +423,7 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick1"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
-		func = function() { menu = meJoybinds1 }
+		func = function() { menu = meJoyBinds }
 	},
 	// {
 	// 	name = function() { return gvLangObj["options-menu"]["joystick2"] },
@@ -593,7 +593,18 @@ const menuY = 40
 	}
 ]
 
-::meJoybinds1 <- [
+::meJoyBinds <- [
+	{
+		name = function() { return format(gvLangObj["options-menu"]["joymode"], config.joymode) },
+		func = function() { 
+			local newMode = gvPadTypes.find(config.joymode)
+			if(newMode == null)
+				newMode = 0
+			else newMode++
+			newMode = wrap(newMode, 0, gvPadTypes.len() - 1)
+			config.joymode = gvPadTypes[newMode]
+		}
+	},
 	{
 		name = function() { return format(gvLangObj["controls-menu"]["jump"], config.joy.jump != -1 ? getConName("jump", false) : "") },
 		func = function() { rebindGamepad(4) }
