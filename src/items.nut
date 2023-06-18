@@ -35,7 +35,7 @@
 	frame = 0.0
 	timer = 300
 	gravity = 0.2
-	friction = 0.01
+	friction = 0.05
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -62,11 +62,21 @@
 		if(timer == 0)
 			deleteActor(id)
 
-		if(!placeFree(x, y + 1))
+		if(!placeFree(x, y + 1)) {
 			vspeed = -vspeed / 1.5
+			friction = 0.05
+		}
+		else
+			friction = 0.0
 		
 		if(!placeFree(x, y - 1))
 			vspeed = fabs(vspeed)
+
+		if(!placeFree(x + 1, y))
+			hspeed = -fabs(hspeed)
+
+		if(!placeFree(x - 1, y))
+			hspeed = fabs(hspeed)
 	}
 
 	function draw() { drawSprite(sprCoinSmall, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }

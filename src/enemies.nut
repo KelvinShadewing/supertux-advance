@@ -4418,6 +4418,7 @@
 	accel = 0.0
 	mspeed = 1.5
 	held = false
+	nodrop = true
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -4769,7 +4770,7 @@
 		star = 10.0
 	}
 
-	health = 4
+	health = 3
 	blinkMax = 30
 	walkTimer = 10
 	touchDamage = 2
@@ -4922,6 +4923,24 @@
 	health = 4
 	blinkMax = 30
 	friction = 0.0
+	element = "earth"
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 0.5
+		air = 2.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
 
 	anim = "stand"
 	an = {
@@ -5112,6 +5131,24 @@
 	touchDamage = 2.0
 	health = 2
 	pursuitRange = 128
+	element = "air"
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 2.0
+		air = 0.5
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
