@@ -309,6 +309,8 @@
 ::defOwlBrown <- sprOwlBrown
 ::sprMrIceguy <- newSprite("res/gfx/mr-iceblock.png", 20, 19, 0, 0, 10, 11)
 ::defMrIceguy <- sprMrIceguy
+::sprMrTurtle <- newSprite("res/gfx/mr-turtle.png", 24, 16, 0, 0, 8, 9)
+::defMrTurtle <- sprMrTurtle
 ::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 8)
 ::defSnailRed <- sprSnailRed
 ::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 8)
@@ -369,6 +371,8 @@
 ::defCrystallo <- sprCrystallo
 ::sprWaspyBoi <- newSprite("res/gfx/waspy-boi.png", 30, 24, 0, 0, 15, 12)
 ::defWaspyBoi <- sprWaspyBoi
+::sprDevine <- newSprite("res/gfx/devine.png", 16, 16, 0, 0, 8, 8)
+::defDevine <- sprDevine
 
 
 //Bosses
@@ -865,6 +869,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprWoodBox = sprWoodBoxSnow
 	sprIvyGreen = sprMrSnowflake
 	sprIvyRed = sprMrsSnowflake
+}
+
+::gfxEnemyForest <- function() {
+	sprMrIceguy = sprMrTurtle
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

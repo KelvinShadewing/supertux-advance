@@ -1530,47 +1530,29 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+		if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
 			if(x > gvPlayer.x) {
-				if(gvPlayer.placeFree(gvPlayer.x - 1, gvPlayer.y)) gvPlayer.x--
+				if(gvPlayer.placeFree(gvPlayer.x - 1, gvPlayer.y))
+					gvPlayer.x--
 				gvPlayer.hspeed -= 0.1
 			}
 
 			if(x < gvPlayer.x) {
-				if(gvPlayer.placeFree(gvPlayer.x + 1, gvPlayer.y)) gvPlayer.x++
+				if(gvPlayer.placeFree(gvPlayer.x + 1, gvPlayer.y))
+					gvPlayer.x++
 				gvPlayer.hspeed += 0.1
 			}
 
 			if(y > gvPlayer.y) {
-				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y - 1)) gvPlayer.y--
+				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y - 1))
+					gvPlayer.y--
 				gvPlayer.vspeed -= 0.1
 			}
 
 			if(y < gvPlayer.y) {
-				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 1)) gvPlayer.y++
+				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 1))
+					gvPlayer.y++
 				gvPlayer.vspeed += 0.1
-			}
-		}
-
-		if(gvPlayer2) if(hitTest(shape, gvPlayer2.shape)) {
-			if(x > gvPlayer2.x) {
-				if(gvPlayer2.placeFree(gvPlayer2.x - 1, gvPlayer2.y)) gvPlayer2.x--
-				gvPlayer2.hspeed -= 0.1
-			}
-
-			if(x < gvPlayer2.x) {
-				if(gvPlayer2.placeFree(gvPlayer2.x + 1, gvPlayer2.y)) gvPlayer2.x++
-				gvPlayer2.hspeed += 0.1
-			}
-
-			if(y > gvPlayer2.y) {
-				if(gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y - 1)) gvPlayer2.y--
-				gvPlayer2.vspeed -= 0.1
-			}
-
-			if(y < gvPlayer2.y) {
-				if(gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 1)) gvPlayer2.y++
-				gvPlayer2.vspeed += 0.1
 			}
 		}
 
@@ -3498,6 +3480,9 @@
 	function run() {
 		target = findPlayer()
 		base.run()
+
+		if(sprMrIceguy != defMrIceguy)
+			element = "normal"
 	}
 
 	function physics() {
@@ -3686,7 +3671,10 @@
 
 	function die() {
 		base.die()
-		newActor(IceChunks, x, y)
+		if(element == "ice")
+			newActor(IceChunks, x, y)
+		else
+			newActor(Poof, x, y)
 	}
 
 	function _typeof() { return "MrIceguy" }
@@ -5250,4 +5238,91 @@
 	}
 
 	function _typeof() { return "WaspyBoi" }
+}
+
+::Devine <- class extends Enemy {
+	touchDamage = 2
+	sharpSide = true
+	sharpTop = true
+	height = 0
+	maxHeight = 16
+	health = 4
+	blinkMax = 30
+
+	damageMult = {
+		normal = 1.0
+		fire = 2.0
+		ice = 2.0
+		earth = 0.5
+		air = 0.5
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		if(canint(_arr))
+			maxHeight = int(_arr)
+
+		shape = Rec(x, y, 7, 7, 0)
+		for(local i = 0; i < 16; i++) {
+			if(!placeFree(x, y - (16 * i)))
+				break
+
+			height++
+		}
+		shape.h = height * 8
+		shape.oy = (-height * 8) + 8
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
+		if(_element == "fire") for(local i = 0; i < height; i++)
+			newActor(Flame, x, y - (16 * i))
+		else if(health <= 0) for(local i = 0; i < height; i++)
+			newActor(Poof, x, y - (16 * i))
+	}
+
+	function run() {
+		base.run()
+
+		if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
+			if(x > gvPlayer.x) {
+				if(gvPlayer.placeFree(gvPlayer.x - 2, gvPlayer.y))
+					gvPlayer.x -= 2
+				gvPlayer.hspeed -= 0.2
+			}
+
+			if(x < gvPlayer.x) {
+				if(gvPlayer.placeFree(gvPlayer.x + 2, gvPlayer.y))
+					gvPlayer.x += 2
+				gvPlayer.hspeed += 0.2
+			}
+		}
+	}
+
+	function draw() {
+		for(local i = 0; i < height; i++) {
+			local frame = 0
+			if(i == height - 1)
+				frame = 0
+			else if(i == 0)
+				frame = 2
+			else frame = 1
+
+			drawSprite(sprDevine, frame, x - camx + (frame == 2 ? 0 : sin((getFrames() / 10.0) + i)) + 0.5, y - camy - (i * 16), 0, 0, 1, 1, (blinking ? blinking / 10.0 : 1))
+		}
+
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			shape.draw()
+		}
+	}
 }

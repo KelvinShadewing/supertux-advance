@@ -1258,6 +1258,11 @@
 			c = newActor(WaspyBoi, i.x + 8, i.y - 8)
 			game.maxEnemies++
 			break
+
+		case 107:
+			c = newActor(Devine, i.x + 8, i.y - 8, i.name)
+			game.maxEnemies++
+			break
 	}
 
 	return c
