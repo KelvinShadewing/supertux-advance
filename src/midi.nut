@@ -713,6 +713,8 @@
 
 		if(endMode && hspeed == 0)
 			anim = "win"
+		else if(anim == "win")
+				anim = "stand"
 
 		if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
 

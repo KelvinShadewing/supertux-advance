@@ -299,7 +299,7 @@
 
 				case "fall":
 					frame += 0.1
-					if(!freeDown || (onPlatform() && vspeed >= 0)) {
+					if(!placeFree(x, y + 4) || (onPlatform() && vspeed >= 0)) {
 						anim = "stand"
 						frame = 0.0
 					}
@@ -379,6 +379,8 @@
 
 			if(endMode && hspeed == 0)
 				anim = "win"
+			else if(anim == "win")
+				anim = "stand"
 
 			//Sliding acceleration
 			if(slippery) {
@@ -1149,7 +1151,7 @@
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
 		//After image
-		if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
+		if((zoomies > 0) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
 
 		inMelee = (["slide", "drill"].find(anim) != null)
 	}

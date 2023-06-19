@@ -251,23 +251,9 @@
 	drawSprite(sprDebug, int(getcon("right", "hold", true, 1)) + 2, 20, 60 + offset)
 
 	drawSprite(sprDebug, int(getcon("jump", "hold", true, 1)) + 8, 4, 72 + offset)
-	drawSprite(sprDebug, int(getcon("shoot", "hold", true, 1)) + 10, 12, 72 + offset)
+	drawSprite(sprDebug, int(getcon("spec2", "hold", true, 1)) + 10, 12, 72 + offset)
 	drawSprite(sprDebug, int(getcon("swap", "hold", true, 1)) + 12, 20, 72 + offset)
 
-	drawSprite(sprDebug, int(getcon("spec1", "hold", true, 1)) + 14, 28, 60 + offset)
-	drawSprite(sprDebug, int(getcon("spec2", "hold", true, 1)) + 16, 28, 68 + offset)
-
-	if(gvNumPlayers == 2) {
-		drawSprite(sprDebug, int(getcon("left", "hold", true, 2)), 4 + 40, 60 + offset)
-		drawSprite(sprDebug, int(getcon("up", "hold", true, 2)) + 4, 12 + 40, 56 + offset)
-		drawSprite(sprDebug, int(getcon("down", "hold", true, 2)) + 6, 12 + 40, 64 + offset)
-		drawSprite(sprDebug, int(getcon("right", "hold", true, 2)) + 2, 20 + 40, 60 + offset)
-
-		drawSprite(sprDebug, int(getcon("jump", "hold", true, 2)) + 8, 4 + 40, 72 + offset)
-		drawSprite(sprDebug, int(getcon("shoot", "hold", true, 2)) + 10, 12 + 40, 72 + offset)
-		drawSprite(sprDebug, int(getcon("swap", "hold", true, 2)) + 12, 20 + 40, 72 + offset)
-
-		drawSprite(sprDebug, int(getcon("spec1", "hold", true, 2)) + 14, 28 + 40, 60 + offset)
-		drawSprite(sprDebug, int(getcon("spec2", "hold", true, 2)) + 16, 28 + 40, 68 + offset)
-	}
+	drawSprite(sprDebug, int(getcon("shoot", "hold", true, 1)) + 14, 28, 60 + offset)
+	drawSprite(sprDebug, int(getcon("spec1", "hold", true, 1)) + 16, 28, 68 + offset)
 }

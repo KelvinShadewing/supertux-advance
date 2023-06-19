@@ -67,6 +67,7 @@
 		statue = [52, 53, 54, 55]
 		die = [12, 13]
 		win = [52]
+		ram = [56, 57, 58, 59, 60, 61, 62, 63]
 	}
 
 	mySprNormal = null
@@ -192,7 +193,7 @@
 		//times per frame.
 
 		//Recharge
-		if(firetime > 0 && stats.weapon != "air" && (stats.weapon != "earth" || anim != "statue")) {
+		if(firetime > 0) {
 			firetime--
 		}
 
@@ -239,6 +240,10 @@
 						else anim = "jumpU"
 						frame = 0.0
 					}
+
+					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum))
+						anim = "ram"
+
 					break
 
 				case "run":
@@ -264,7 +269,33 @@
 						frame = 0.0
 					}
 
+					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum))
+						anim = "ram"
+
 					break
+
+				case "ram":
+					frame += abs(rspeed) / 8
+					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1)
+						anim = "stand"
+					if(stats.stamina <= 0 || !getcon("spec2", "hold", true, playerNum))
+						anim = "run"
+					if(fabs(hspeed) < (!placeFree(x, y + 8) && placeFree(x + hspeed, y + 1) ? 7 : 5) && stats.stamina > 0)
+						hspeed *= 1.05
+
+					stats.stamina -= 0.1
+					guardtime = 30
+
+					if(!placeFree(x + (hspeed <=> 0), y) && !placeFree(x + (hspeed <=> 0), y - 8)) {
+						fireWeapon(StompPoof, x + (hspeed <=> 0) * 8, y, 1, id)
+						hspeed = -(hspeed <=> 0) * 3.0
+						vspeed = -2.0
+						anim = "jumpU"
+						popSound(sndBump)
+					}
+
+					break
+
 
 				case "stomp":
 					if(frame <= an[anim].len() - 1) frame += 0.2
@@ -301,7 +332,7 @@
 
 				case "fall":
 					frame += 0.1
-					if(!freeDown || (onPlatform() && vspeed >= 0)) {
+					if(!placeFree(x, y + 4) || (onPlatform() && vspeed >= 0)) {
 						anim = "stand"
 						frame = 0.0
 					}
@@ -390,6 +421,8 @@
 
 			if(endMode && hspeed == 0)
 				anim = "win"
+			else if(anim == "win")
+				anim = "stand"
 
 			//Sliding acceleration
 			if(onIce()) {
@@ -409,17 +442,17 @@
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
 
-			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0 && !getcon("spec2", "hold", true, playerNum))
 				stats.stamina += 0.05
 
 			//Controls
 			if(!freeDown2 || onPlatform() || anim == "climb") {
 				canJump = 16
-				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
+				if(stats.weapon == "air" && stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.2
 			}
 			else {
 				if(canJump > 0) canJump--
-				if(stats.weapon == "air" && stats.stamina < 1) stats.stamina += 0.02
+				if(stats.weapon == "air" && stats.stamina < 1 && guardtime <= 0) stats.stamina += 0.02
 			}
 			if(canMove) {
 				mspeed = 3.0
@@ -946,7 +979,7 @@
 		//////////////
 		else {
 			swimming = true
-			if(stats.weapon == "air" && stats.stamina < 4) stats.stamina += 0.1
+			if(stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.05
 			if(!wasInWater) {
 				wasInWater = true
 				vspeed /= 2.0
@@ -976,6 +1009,9 @@
 			}
 
 			if(anim != "climb") frame = wrap(abs(frame), 0.0, an[anim].len() - 1)
+
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
+				stats.stamina += 0.05
 
 			//Swich swim directions
 			if(anim != "hurt") {
@@ -1233,7 +1269,7 @@
 		if(anim == "statue") stompDamage = 8
 		if(anim == "stomp") stompDamage = 4
 
-		inMelee = anim == "stomp"
+		inMelee = (anim == "stomp" || anim == "ram")
 	}
 
 	function draw() {
@@ -1276,7 +1312,7 @@
 			}
 
 			//After image
-			if((zoomies > 0 || anim == "stomp" || (anim == "statue" && vspeed > 4)) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
+			if((zoomies > 0 || anim == "stomp" || (anim == "statue" && vspeed > 4) || anim == "ram") && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
 		}
 
 		//Transformation flash
