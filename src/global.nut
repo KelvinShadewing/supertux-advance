@@ -259,6 +259,7 @@
 	showkeys = false
 	completion = false
 	useBeam = false
+	bigItems = false
 }
 
 ::contribDidRun <- {}

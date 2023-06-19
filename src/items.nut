@@ -79,7 +79,7 @@
 			hspeed = fabs(hspeed)
 	}
 
-	function draw() { drawSprite(sprCoinSmall, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
+	function draw() { drawSprite((config.bigItems ? sprCoin : sprCoinSmall), getFrames() / 4, x - camx, y - camy - (config.bigItems ? 4 : 0), 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
 
 	function _typeof() { return "Item" }
 }
@@ -168,7 +168,7 @@
 		}
 	}
 
-	function draw() { drawSprite(sprBerry, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger(), 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
+	function draw() { drawSprite((config.bigItems ? sprBerryLarge : sprBerry), 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger(), 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
 
 	function _typeof() { return "Item" }
 }

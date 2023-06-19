@@ -223,7 +223,7 @@
 						frame = 0.0
 					}
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -235,7 +235,7 @@
 					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = "stand"
 					if(abs(rspeed) > 2.4) anim = "run"
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -259,7 +259,7 @@
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != "skid") anim = "walk"
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -382,9 +382,9 @@
 
 			//Sliding acceleration
 			if(slippery) {
-				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
-					if(placeFree(x + 4, y + 2)) hspeed += 0.25
-					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
+				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
+					if(placeFree(x + 4, y + 1)) hspeed += 0.3
+					if(placeFree(x - 4, y + 1)) hspeed -= 0.3
 					if(freeDown2)vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}

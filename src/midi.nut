@@ -293,14 +293,12 @@
 		//Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
 		if(slippery) {
-			if(!placeFree(x, y + 4) && (fabs(hspeed) < 6)) {
-				if(placeFree(x + 4, y + 2) && !onPlatform(hspeed)) {
+			if(!placeFree(x, y + 8) && (fabs(hspeed) < 6)) {
+				if(placeFree(x + 4, y + 1) && !onPlatform(hspeed)) {
 					hspeed += 0.2
-					vspeed += 0.2
 				}
-				if(placeFree(x - 4, y + 2) && !onPlatform(hspeed)) {
+				if(placeFree(x - 4, y + 1) && !onPlatform(hspeed)) {
 					hspeed -= 0.2
-					vspeed += 0.2
 				}
 			}
 		}

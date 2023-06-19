@@ -408,6 +408,14 @@ const menuY = 40
 		func = function() { config.nearbars = !config.nearbars; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.bigItems ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["big-items"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["big-items"] },
+		func = function() { config.bigItems = !config.bigItems; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }
