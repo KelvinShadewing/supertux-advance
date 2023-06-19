@@ -320,7 +320,7 @@
 }
 
 ::mapDeleteSolid <- function(index) {
-	if(index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) {
+	if(index in gvMap.geo && index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) {
 		gvMap.geo[index] = null
 	}
 }

@@ -1063,7 +1063,7 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 8; i++) if(!placeFree(x, y + max(4, abs(hspeed))) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0 && !placeFree(x + hspeed, y + max(4, abs(hspeed)))) {
+				for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(6, abs(hspeed))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 				x += hspeed
