@@ -146,7 +146,7 @@
 		ice = "sprKatieIce"
 		air = "sprKatieAir"
 		earth = "sprKatieEarth"
-		pick = [8, 53]
+		pick = [8, 52]
 	}
 	Midi = {
 		name = "Midi Waffle"
