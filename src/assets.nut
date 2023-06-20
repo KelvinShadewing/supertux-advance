@@ -309,6 +309,8 @@
 ::defOwlBrown <- sprOwlBrown
 ::sprMrIceguy <- newSprite("res/gfx/mr-iceblock.png", 20, 19, 0, 0, 10, 11)
 ::defMrIceguy <- sprMrIceguy
+::sprMrTurtle <- newSprite("res/gfx/mr-turtle.png", 24, 16, 0, 0, 8, 9)
+::defMrTurtle <- sprMrTurtle
 ::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 8)
 ::defSnailRed <- sprSnailRed
 ::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 8)
@@ -369,6 +371,8 @@
 ::defCrystallo <- sprCrystallo
 ::sprWaspyBoi <- newSprite("res/gfx/waspy-boi.png", 30, 24, 0, 0, 15, 12)
 ::defWaspyBoi <- sprWaspyBoi
+::sprDevine <- newSprite("res/gfx/devine.png", 16, 16, 0, 0, 8, 8)
+::defDevine <- sprDevine
 
 
 //Bosses
@@ -567,7 +571,7 @@
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 640, 240, 0, 0, 0, 0)
-::bgStarSky <- newSprite("res/gfx/starrysky.png", 360, 240, 0, 0, 0, 0)
+::bgStarSky <- loadImage("res/gfx/starrysky.png")
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 320, 240, 0, 0, 0, 0)
 ::bgSnowPlain <- newSprite("res/gfx/bgSnowPlain.png", 720, 240, 0, 0, 0, 0)
@@ -585,6 +589,8 @@
 ::bgSwitch1 <- newSprite("res/gfx/bg-switch-palace-1.png", 84, 240, 0, 0, 0, 0)
 ::bgCaveEarth0 <- newSprite("res/gfx/dirt-cave-bg-0.png", 100, 56, 0, 0, 0, 0)
 ::bgCaveEarth1 <- newSprite("res/gfx/dirt-cave-bg-1.png", 512, 288, 0, 0, 0, 0)
+::bgCaveBlue0 <- newSprite("res/gfx/blue-cave-bg-0.png", 100, 56, 0, 0, 0, 0)
+::bgCaveBlue1 <- newSprite("res/gfx/blue-cave-bg-1.png", 512, 288, 0, 0, 0, 0)
 ::bgDeepForest0 <- loadImage("res/gfx/deep-forest-0.png")
 ::bgDeepForest1 <- loadImage("res/gfx/deep-forest-1.png")
 ::bgDeepForest2 <- loadImage("res/gfx/deep-forest-2.png")
@@ -617,6 +623,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndKick <- loadSound("res/snd/kick.ogg")
 ::sndSquish <- loadSound("res/snd/squish.ogg")
 ::sndCoin <- loadSound("res/snd/coin.ogg")
+::sndCoinSmall <- loadSound("res/snd/coin-small.ogg")
 ::sndSlide <- loadSound("res/snd/slide.ogg")
 ::sndFlame <- loadSound("res/snd/flame.ogg")
 ::sndSpring <- loadSound("res/snd/trampoline.ogg")
@@ -862,6 +869,10 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprWoodBox = sprWoodBoxSnow
 	sprIvyGreen = sprMrSnowflake
 	sprIvyRed = sprMrsSnowflake
+}
+
+::gfxEnemyForest <- function() {
+	sprMrIceguy = sprMrTurtle
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

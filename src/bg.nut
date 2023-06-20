@@ -43,6 +43,20 @@
 	}
 }
 
+::dbgCaveBlue <- function() {
+	for(local i = 0; i < 6; i++) {
+		for(local j = 0; j < 6; j++) {
+			drawSprite(bgCaveBlue0, 0, ((-camx / 8) % 100) + (i * 100), j * 56)
+		}
+	}
+
+	for(local i = 0; i < 4; i++) {
+		for(local j = 0; j < 4; j++) {
+			drawSprite(bgCaveBlue1, 0, ((-camx / 4) % 512) + (i * 512), 0)
+		}
+	}
+}
+
 ::dbgForest <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < 3; i++)
@@ -183,7 +197,7 @@
 
 ::dbgStarSky <- function() {
 	for(local i = 0; i < 3; i++) {
-		drawSprite(bgStarSky, 0, (i * 360), (screenH() / 2) - 120)
+		drawImage(bgStarSky, (i * 360), (screenH() / 2) - 120)
 	}
 	drawSprite(bgMoon, 0, gvScreenW - 128, 64)
 }
