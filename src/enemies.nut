@@ -585,10 +585,8 @@
 
 		if(_by != 0 && hitTest(shape, _by.shape)) {
 			local didhurt = false
-			if("anim" in _by) {
-				if(_by.anim == "slide") didhurt = true
-				if(_by.anim == "stomp") didhurt = true
-			}
+			if("inMelee" in _by && _by.inMelee)
+				didhurt = true
 			if(!didhurt) hurtPlayer(_by)
 		}
 

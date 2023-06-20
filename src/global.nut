@@ -77,10 +77,10 @@
 			subitem = 0
 			canres = false
 			berries = 0
-			maxEnergy = 0
-			maxStamina = 0
-			energy = 0
-			stamina = 0
+			maxEnergy = 4
+			maxStamina = 4
+			energy = 4
+			stamina = 4
 			abilities = {}
 		}
 		state = {}
