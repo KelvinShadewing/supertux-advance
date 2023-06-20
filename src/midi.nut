@@ -293,14 +293,12 @@
 		//Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
 		if(slippery) {
-			if(!placeFree(x, y + 4) && (fabs(hspeed) < 6)) {
-				if(placeFree(x + 4, y + 2) && !onPlatform(hspeed)) {
+			if(!placeFree(x, y + 8) && (fabs(hspeed) < 6)) {
+				if(placeFree(x + 4, y + 1) && !onPlatform(hspeed)) {
 					hspeed += 0.2
-					vspeed += 0.2
 				}
-				if(placeFree(x - 4, y + 2) && !onPlatform(hspeed)) {
+				if(placeFree(x - 4, y + 1) && !onPlatform(hspeed)) {
 					hspeed -= 0.2
-					vspeed += 0.2
 				}
 			}
 		}
@@ -319,7 +317,7 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 8; i++) if(!placeFree(x, y + max(4, abs(hspeed))) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0 && !placeFree(x + hspeed, y + max(4, abs(hspeed)))) {
+				for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(6, abs(hspeed))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 				x += hspeed
@@ -715,6 +713,8 @@
 
 		if(endMode && hspeed == 0)
 			anim = "win"
+		else if(anim == "win")
+				anim = "stand"
 
 		if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
 

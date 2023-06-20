@@ -347,7 +347,7 @@ gvCharacters.Kiki2 <- {
 						frame = 0.0
 					}
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -382,7 +382,7 @@ gvCharacters.Kiki2 <- {
 					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = "stand"
 					if(abs(rspeed) > 2.4) anim = "run"
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -413,7 +413,7 @@ gvCharacters.Kiki2 <- {
 					else frame += abs(rspeed) / 10
 					if(abs(rspeed) < 2 && anim != "skid") anim = "walk"
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -582,9 +582,9 @@ gvCharacters.Kiki2 <- {
 
 			//Sliding acceleration
 			if(anim == "slide" || onIce()) {
-				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && stats.weapon == "ice"))) {
-					if(placeFree(x + 4, y + 2)) hspeed += accel * 1.1
-					if(placeFree(x - 4, y + 2)) hspeed -= accel * 1.1
+				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && stats.weapon == "ice"))) {
+					if(placeFree(x + 4, y + 1)) hspeed += accel * 1.1
+					if(placeFree(x - 4, y + 1)) hspeed -= accel * 1.1
 					if(freeDown2)vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}
@@ -1193,7 +1193,7 @@ gvCharacters.Kiki2 <- {
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
+				for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(6, abs(hspeed))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 				x += hspeed

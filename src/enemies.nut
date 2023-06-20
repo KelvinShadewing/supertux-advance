@@ -4,7 +4,7 @@
 	frozen = 0
 	freezeTime = 600
 	minFreezeTime = 0
-	freezeSprite = -1
+	freezeSprite = 0
 	icebox = -1
 	nocount = false
 	nodrop = false
@@ -44,7 +44,13 @@
 	function run() {
 		if(active) {
 			base.run()
-			if(frozen > 0) frozen--
+			if(frozen > 0) {
+				frozen--
+				if(frozen == 0) {
+					mapDeleteSolid(icebox)
+					newActor(IceChunks, x, y)
+				}
+			}
 
 			//Check for weapon effects
 			if(actor.rawin("WeaponEffect") && !blinking) foreach(i in actor["WeaponEffect"]) {
@@ -121,6 +127,9 @@
 		if(_blast) damage *= damageMult["blast"]
 		if(_stomp) damage *= damageMult["stomp"]
 
+		if(frozen && _element == "ice")
+			damage = 0.0
+
 		health -= damage
 		if(damage > 0) blinking = blinkMax
 
@@ -130,10 +139,17 @@
 			die()
 			return
 		}
-		if(_element == "ice") frozen = minFreezeTime + (freezeTime * damageMult["ice"])
+		if(_element == "ice" && icebox == -1 && freezeTime > 0) {
+			frozen = minFreezeTime + (freezeTime * damageMult["ice"])
+			icebox = mapNewSolid(shape)
+		}
+
 		if(_element == "fire") {
 			newActor(Flame, x, y)
 			popSound(sndFlame, 0)
+
+			frozen = 0
+			mapDeleteSolid(icebox)
 		}
 	}
 
@@ -210,6 +226,16 @@
 				if(!getcon("down", "hold", false, target.playerNum)) hspeed = -throwH * (gvPlayer.x <=> x)
 			}
 			held = false
+		}
+	}
+
+	function draw() {
+		if(frozen){
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSpriteZ(6, freezeSprite, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSpriteZ(6, freezeSprite, 0, x - camx, y - camy - 1)
+			}
+			else drawSpriteZ(6, freezeSprite, 0, x - camx, y - camy - 1)
 		}
 	}
 
@@ -559,10 +585,8 @@
 
 		if(_by != 0 && hitTest(shape, _by.shape)) {
 			local didhurt = false
-			if("anim" in _by) {
-				if(_by.anim == "slide") didhurt = true
-				if(_by.anim == "stomp") didhurt = true
-			}
+			if("inMelee" in _by && _by.inMelee)
+				didhurt = true
 			if(!didhurt) hurtPlayer(_by)
 		}
 
@@ -3278,8 +3302,8 @@
 		normal = 1.0
 		fire = 2.0
 		ice = 0.0
-		earth = 1.0
-		air = 1.0
+		earth = 2.0
+		air = 0.5
 		toxic = 1.0
 		shock = 1.0
 		water = 1.0
@@ -3396,7 +3420,7 @@
 			drawSpriteZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
 			drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
 		}
-		else drawSpriteZ(1, sprOwlBrown, wrap(getFrames() / 6, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSpriteZ(1, sprOwlBrown, wrap(getFrames() / 4, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
 	}
 
 	function ruCarry() {
@@ -3445,6 +3469,7 @@
 	slideTimer = 8
 	hurtTimer = 600
 	flip = 0
+	freezeTime = 0
 	damageMult = {
 		normal = 1.0
 		fire = 2.0
@@ -3641,6 +3666,7 @@
 		if(routine == ruSlide) {
 			if(hspeed != 0) hspeed = 0.0
 			else if(gvPlayer) hspeed = (max(4.0, fabs(gvPlayer.hspeed * 1.5))) * (x <=> gvPlayer.x)
+			blinking = blinkMax
 			popSound(sndKick)
 		}
 		else {
@@ -4487,6 +4513,7 @@
 	touchDamage = 1.0
 	health = 4
 	blinkMax = 30.0
+	freezeSprite = sprIceTrapLarge
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -4672,8 +4699,10 @@
 		if(y > gvMap.h)
 			vspeed = -0.5
 
-		if(hspeed > 0) flip = 0
-		if(hspeed < 0) flip = 1
+		if(!frozen) {
+			if(hspeed > 0) flip = 0
+			if(hspeed < 0) flip = 1
+		}
 
 		shape.setPos(x, y)
 		eatShape.setPos(x, y)
@@ -4691,7 +4720,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(4, sprPuffranah, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip, 1, 1, (blinking > 0 ? blinking / 10.0 : 1))
+		drawSpriteZ(4, sprPuffranah, an[anim][wrap((frozen ? 0 : frame), 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip, 1, 1, (blinking > 0 ? blinking / 10.0 : 1))
 
 		if(debug) {
 			drawText(font, x - camx, y + 24 - camy, anim + "\n" + frame.tostring() + "\n" + health.tostring())
@@ -4700,6 +4729,8 @@
 			drawCircle(x - camx, y - camy, 96, false)
 			drawCircle(x - camx, y - camy, 56, false)
 		}
+
+		base.draw()
 	}
 
 	function hurtFire() {
@@ -4740,6 +4771,7 @@
 	}
 	flip = 0
 	frame = 0.0
+	freezeSprite = sprIceTrapTall
 
 	damageMult = {
 		normal = 1.0
@@ -4873,7 +4905,8 @@
 	}
 
 	function draw() {
-		drawSprite(sprStruffle, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+		drawSprite(sprStruffle, (frozen ? 0 : an[anim][wrap(frame, 0, an[anim].len() - 1)]), x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+		base.draw()
 		
 		if(debug)
 			shape.draw()
@@ -5154,7 +5187,6 @@
 		if(active) {
 			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
 			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
-			flip = (hspeed < 0).tointeger()
 
 			timer--
 			if(timer <= 0) {
@@ -5196,14 +5228,6 @@
 			else
 				pursuitRange = 128
 
-			
-
-
-			if(frame >= 4) {
-				biting = false
-				frame = 0.0
-			}
-
 			if(y > gvMap.h) {
 				if(vspeed > 0) vspeed = 0
 				vspeed -= 0.1
@@ -5212,14 +5236,27 @@
 			if(x > gvMap.w) hspeed = -1.0
 			if(x < 0) hspeed = 1.0
 
-			if(placeFree(x + hspeed, y)) x += hspeed
-			if(placeFree(x, y + vspeed)) y += vspeed
+			if(!frozen) {
+				if(placeFree(x + hspeed, y)) x += hspeed
+				if(placeFree(x, y + vspeed)) y += vspeed
+				flip = (hspeed < 0).tointeger()
+			}
 			shape.setPos(x, y)
 		}
 	}
 
 	function draw() {
-		drawSprite(sprWaspyBoi, getFrames() / 2, x - camx, y - camy + ((getFrames() / 8) % 2), 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+		if(frozen){
+			drawSprite(sprWaspyBoi, 0, x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSpriteZ(2, sprIceTrapSmall, 0, x - camx - (flip == 0 ? 4 : -4) - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSpriteZ(2, sprIceTrapSmall, 0, x - camx - (flip == 0 ? 4 : -4), y - camy - 1)
+			}
+			else drawSpriteZ(2, sprIceTrapSmall, 0, x - camx - (flip == 0 ? 4 : -4), y - camy - 1)
+		}
+		else
+			drawSprite(sprWaspyBoi, getFrames() / 2, x - camx, y - camy + ((getFrames() / 8) % 2), 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -5317,7 +5354,9 @@
 				frame = 2
 			else frame = 1
 
-			drawSprite(sprDevine, frame, x - camx + (frame == 2 ? 0 : sin((getFrames() / 10.0) + i)) + 0.5, y - camy - (i * 16), 0, 0, 1, 1, (blinking ? blinking / 10.0 : 1))
+			drawSprite(sprDevine, frame, x - camx + (frozen ? 0 : (frame == 2 ? 0 : sin((getFrames() / 10.0) + i)) + 0.5), y - camy - (i * 16), 0, 0, 1, 1, (blinking ? blinking / 10.0 : 1))
+			if(frozen)
+				drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - (i * 16))
 		}
 
 		if(debug) {

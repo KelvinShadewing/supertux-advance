@@ -223,7 +223,7 @@
 						frame = 0.0
 					}
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -235,7 +235,7 @@
 					if(abs(rspeed) <= 0.1 || fabs(hspeed) <= 0.1) anim = "stand"
 					if(abs(rspeed) > 2.4) anim = "run"
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -259,7 +259,7 @@
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != "skid") anim = "walk"
 
-					if(placeFree(x, y + 2) && !onPlatform()) {
+					if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) >= 1) {
 						if(vspeed >= 0) anim = "fall"
 						else anim = "jumpU"
 						frame = 0.0
@@ -299,7 +299,7 @@
 
 				case "fall":
 					frame += 0.1
-					if(!freeDown || (onPlatform() && vspeed >= 0)) {
+					if(!placeFree(x, y + 4) || (onPlatform() && vspeed >= 0)) {
 						anim = "stand"
 						frame = 0.0
 					}
@@ -379,12 +379,14 @@
 
 			if(endMode && hspeed == 0)
 				anim = "win"
+			else if(anim == "win")
+				anim = "stand"
 
 			//Sliding acceleration
 			if(slippery) {
-				if(!placeFree(x, y + 4) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
-					if(placeFree(x + 4, y + 2)) hspeed += 0.25
-					if(placeFree(x - 4, y + 2)) hspeed -= 0.25
+				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
+					if(placeFree(x + 4, y + 1)) hspeed += 0.3
+					if(placeFree(x - 4, y + 1)) hspeed -= 0.3
 					if(freeDown2)vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}
@@ -1063,7 +1065,7 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < 8; i++) if(!placeFree(x, y + max(4, abs(hspeed))) && placeFree(x + hspeed, y + 1) && !swimming && vspeed >= 0 && !placeFree(x + hspeed, y + max(4, abs(hspeed)))) {
+				for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(6, abs(hspeed))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 				x += hspeed
@@ -1149,7 +1151,7 @@
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
 		//After image
-		if(zoomies > 0 && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
+		if((zoomies > 0) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
 
 		inMelee = (["slide", "drill"].find(anim) != null)
 	}

@@ -77,10 +77,10 @@
 			subitem = 0
 			canres = false
 			berries = 0
-			maxEnergy = 0
-			maxStamina = 0
-			energy = 0
-			stamina = 0
+			maxEnergy = 4
+			maxStamina = 4
+			energy = 4
+			stamina = 4
 			abilities = {}
 		}
 		state = {}
@@ -112,18 +112,18 @@
 		earth = "sprPennyEarth"
 		pick = [40, 41]
 	}
-	Lutris = {
-		name = "Lutris the Otter"
-		shortname = "Lutris"
-		over = "sprLutrisOverworld"
-		doll = "sprLutrisDoll"
-		normal = "sprLutris"
-		fire = "sprLutris"
-		ice = "sprLutris"
-		air = "sprLutris"
-		earth = "sprLutris"
-		pick = [40, 41]
-	}
+	// Lutris = {
+	// 	name = "Lutris the Otter"
+	// 	shortname = "Lutris"
+	// 	over = "sprLutrisOverworld"
+	// 	doll = "sprLutrisDoll"
+	// 	normal = "sprLutris"
+	// 	fire = "sprLutris"
+	// 	ice = "sprLutris"
+	// 	air = "sprLutris"
+	// 	earth = "sprLutris"
+	// 	pick = [40, 41]
+	// }
 	Konqi = {
 		name = "Konqi the Dragon"
 		shortname = "Konqi"
@@ -146,7 +146,7 @@
 		ice = "sprKatieIce"
 		air = "sprKatieAir"
 		earth = "sprKatieEarth"
-		pick = [8, 53]
+		pick = [8, 52]
 	}
 	Midi = {
 		name = "Midi Waffle"
@@ -259,6 +259,7 @@
 	showkeys = false
 	completion = false
 	useBeam = false
+	bigItems = false
 }
 
 ::contribDidRun <- {}

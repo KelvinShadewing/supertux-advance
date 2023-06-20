@@ -24,6 +24,8 @@
 	deleteAllActors()
 	if(newLevel) {
 		game.ps.health = game.maxHealth
+		game.ps.energy = game.ps.maxEnergy
+		game.ps.stamina = game.ps.maxStamina
 		game.ps.berries = 0
 		game.levelCoins = 0
 		game.maxCoins = 0

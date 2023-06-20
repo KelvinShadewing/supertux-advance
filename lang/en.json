@@ -68,7 +68,8 @@
 		"showkeys" : "Show Keys: %s",
 		"completion" : "Completion Stats: %s",
 		"usebeam" : "Race Beam: %s",
-		"joymode" : "Joystick Display Mode: %s"
+		"joymode" : "Joystick Display Mode: %s",
+		"big-items" : "Big Items: %s"
 	},
 
 	"options-joymodes" : {
@@ -97,7 +98,8 @@
 		"weather" : "Turning off weather can help with near-sightedness and recording",
 		"showkeys" : "On-screen controls for speedrun recording",
 		"completion" : "Show remaining coins, enemies, and secrets in level",
-		"usebeam" : "Beam will appear in completed levels to race you"
+		"usebeam" : "Beam will appear in completed levels to race you",
+		"big-items" : "Increase the size of smaller items"
 	},
 
 	"speedrun-menu" : {

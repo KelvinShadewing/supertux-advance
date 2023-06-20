@@ -412,6 +412,8 @@
 ::defEarthShell <- sprEarthShell
 ::sprBerry <- newSprite("res/gfx/strawberry.png", 10, 12, 0, 0, 5, 6)
 ::defBerry <- sprBerry
+::sprBerryLarge <- newSprite("res/gfx/strawberry-large.png", 15, 18, 0, 0, 8, 9)
+::defBerryLarge <- sprBerryLarge
 ::sprKeyCopper <- newSprite("res/gfx/key-copper.png", 16, 16, 0, 0, 8, 8)
 ::defKeyCopper <- sprKeyCopper
 ::sprKeySilver <- newSprite("res/gfx/key-silver.png", 16, 16, 0, 0, 8, 8)
