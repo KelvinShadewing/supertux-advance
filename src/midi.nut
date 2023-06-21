@@ -19,7 +19,7 @@
 	inMelee = false
 	canStomp = true //If they can use jumping as an attack
 	stompDamage = 0
-	sprite = sprTux
+	sprite = sprMidi
 	invincible = 0
 	shapeStand = 0
 	shapeSlide = 0
@@ -303,6 +303,7 @@
 			}
 		}
 
+		//Base movement
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
@@ -518,7 +519,7 @@
 					
 				}
 
-				if(placeFree(x, y + 2) && !onPlatform()) {
+				if(placeFree(x, y + 8) && !onPlatform()) {
 					if(vspeed >= 0) anim = "fall"
 					else anim = "jump"
 					frame = 0.0
@@ -533,7 +534,7 @@
 				frame += 0.25
 				if(an.jump == an.jumpR) frame += 0.25
 
-				if(!placeFree(x, y + 2) || (onPlatform() && fabs(vspeed) < 0.1)) {
+				if(!placeFree(x, y + 1) || (onPlatform() && fabs(vspeed) < 0.1)) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -546,7 +547,7 @@
 
 			case "jumpT":
 				frame += 0.2
-				if(!placeFree(x, y + 2) || (onPlatform() && fabs(vspeed) < 0.1)) {
+				if(!freeDown || (onPlatform() && fabs(vspeed) < 0.1)) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -562,7 +563,7 @@
 			case "fall":
 				fallTimer++
 				frame += 0.25
-				if(!placeFree(x, y + 2) || (onPlatform() && fabs(vspeed) < 0.1)) {
+				if(!placeFree(x, y + 4) || (onPlatform() && fabs(vspeed) < 0.1)) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -820,7 +821,7 @@
 
 	function ruNormal() {
 		//Controls
-		if(!placeFree(x, y + 1) || anim == "climb" || onPlatform()) {
+		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
 			canJump = 16
 		}
 		else {
@@ -1140,7 +1141,7 @@
 
 	function ruBall() {
 		//Controls
-		if(!placeFree(x, y + 1) || anim == "climb" || onPlatform()) {
+		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
 			canJump = 16
 		}
 		else {

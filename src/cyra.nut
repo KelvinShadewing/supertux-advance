@@ -602,7 +602,7 @@ gvCharacters.Kiki2 <- {
 				stats.stamina += 0.05
 
 			//Controls
-			if(!freeDown2 || onPlatform() || anim == "climb") {
+			if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || onPlatform() || anim == "climb") {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
