@@ -52,4 +52,58 @@
 		jump = [60, 61]
 		fall = [62, 63]
 	}
+
+	function run() {
+		wasInWater = nowInWater
+		nowInWater = inWater(x, y)
+		if(wasInWater && !nowInWater || nowInWater && !wasInWater) newActor(Splash, x, y)
+
+		base.run()
+
+		
+	}
+
+	function physics() {
+
+		//Base movement
+		shape.setPos(x, y)
+		xprev = x
+		yprev = y
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else {
+			vspeed /= 2
+			if(fabs(vspeed) < 0.01) vspeed = 0
+			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			if(placeFree(x, y + vspeed)) y += vspeed
+		}
+
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
+				for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(6, abs(hspeed))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
+					y += 1
+				}
+				x += hspeed
+			} else {
+				local didstep = false
+				for(local i = 1; i <= 8; i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - i)) {
+						x += hspeed
+						y -= i
+						if(i > 2) {
+							if(hspeed > 0) hspeed -= 0.2
+							if(hspeed < 0) hspeed += 0.2
+						}
+						didstep = true
+						if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed)) / 2.0
+				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
+			}
+		}
+	}
 }

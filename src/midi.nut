@@ -1086,6 +1086,9 @@
 	}
 
 	function ruSwim() {
+			if(zoomies > 0) accel = 0.4
+			else accel = 0.2
+
 			//Controls
 			if(canMove) {
 				mspeed = 1.2

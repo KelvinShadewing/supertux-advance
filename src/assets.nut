@@ -228,6 +228,8 @@
 ::defBrickBlockSnow <- sprBrickBlockSnow
 ::sprBrickChunks <- newSprite("res/gfx/brickblock-chunks.png", 8, 8, 0, 0, 4, 4)
 ::defBrickChunks <- sprBrickChunks
+::sprBirdCage <- newSprite("res/gfx/birdcage.png", 32, 48, 0, 0, 16, 40)
+::defBirdCage <- sprBirdCage
 
 
 

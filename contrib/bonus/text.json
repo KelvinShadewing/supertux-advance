@@ -9,6 +9,14 @@
 		"bonus-nostalgia": "Via Cavernous Nostalgica",
 		"bonus-coffee": "I am Mr.Zoomies",
 		"bonus-king": "King of the Bridge",
-		"bonus-diamond" : "Diamond DOS"
+		"bonus-diamond" : "Diamond DOS",
+		"bonus-diamond2" : "Jazzy Jewels"
+	},
+
+	"npc" : {
+		"kelvin-fish-a" :
+		"I'm hungry. Bring me feesh!",
+		"kelvin-fish-b" :
+		"Mmmmm, num num num!"
 	}
 }

@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"..\/..\/res\/gfx\/spikes.png",
+ "imageheight":32,
+ "imagewidth":128,
+ "margin":0,
+ "name":"spikes",
+ "spacing":0,
+ "tilecount":16,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

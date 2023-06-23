@@ -36,6 +36,8 @@
 						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 						fireWeapon(BoxHit, x, y - 8, 1, id)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
 					}
 
 					if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
@@ -46,6 +48,8 @@
 						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 						fireWeapon(BoxHit, x, y - 8, 1, id)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
 					}
 
 					if("anim" in gvPlayer) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == "stomp") {
@@ -55,6 +59,8 @@
 						popSound(sndBump, 0)
 						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
 					}
 				}
 				else {
@@ -96,6 +102,8 @@
 						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 						fireWeapon(BoxHit, x, y - 8, 1, id)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
 						break
 					}
 					else {
@@ -163,6 +171,8 @@
 						tileSetSolid(x, y, oldsolid)
 						if(coins > 0) newActor(CoinEffect, x, y - 16)
 						fireWeapon(BoxHit, x, y - 8, 1, id)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
 						break
 					}
 					else {
@@ -350,6 +360,8 @@
 			switch(item){
 				case 0:
 					newActor(CoinEffect, x, y - 16)
+					foreach(k, i in gvYetFoundItems) if(i == id)
+						gvFoundItems[k] <- typeof this
 					break
 
 				case 1:

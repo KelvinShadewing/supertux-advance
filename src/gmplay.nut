@@ -9,6 +9,8 @@
 ::gvFadeInTime <- 255
 ::gvVoidFog <- true
 ::gvCanWrap <- false
+::gvFoundItems <- {}
+::gvYetFoundItems <- {}
 
 ::mapActor <- {} //Stores references to all actors created by the map
 
@@ -121,6 +123,22 @@
 
 			if(typeof c == "integer") mapActor[i.id] <- c
 			else mapActor[i.id] <- c.id
+
+			//Add saved collectables
+			if(mapActor[i.id] in actor) switch(typeof actor[mapActor[i.id]]) {
+				case "WoodBlock":
+				case "BrickBlock":
+				case "Coin":
+				case "Coin5":
+				case "Coin10":
+				case "Herring":
+					gvYetFoundItems[i.id] <- actor[mapActor[i.id]].id
+					break
+				case "ItemBlock":
+					if(actor[mapActor[i.id]].item == 0)
+						gvYetFoundItems[i.id] <- actor[mapActor[i.id]].id
+					break
+			}
 		}
 
 		//Rectangle actors
@@ -177,6 +195,40 @@
 					mapActor[i.id] <- c
 				}
 			}
+		}
+	}
+
+	//Go through collected items
+	if(game.check) foreach(k, i in gvFoundItems) {
+		print(typeof actor[mapActor[k]])
+		if(k in mapActor && mapActor[k] in actor) switch(i) {
+			case "ItemBlock":
+				if(actor[mapActor[k]].item != 0)
+					break
+				actor[mapActor[k]].full = false
+				game.levelCoins++
+				break
+			case "Coin":
+				deleteActor(mapActor[k])
+				game.levelCoins++
+				break
+			case "Coin5":
+				deleteActor(mapActor[k])
+				game.levelCoins += 5
+				break
+			case "Coin10":
+				deleteActor(mapActor[k])
+				game.levelCoins += 10
+				break
+			case "WoodBlock":
+			case "BrickBlock":
+				game.levelCoins += actor[mapActor[k]].coins
+				actor[mapActor[k]].coins = 0
+				break
+			case "Herring":
+				game.redCoins++
+				deleteActor(mapActor[k])
+				break
 		}
 	}
 

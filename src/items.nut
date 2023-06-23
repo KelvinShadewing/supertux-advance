@@ -18,17 +18,21 @@
 		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 		frame += 0.2
 	}
 
 	function draw() { drawSprite(sprCoin, frame, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Coin" }
 }
 
 ::CoinSmall <- class extends PhysAct{
@@ -81,7 +85,7 @@
 
 	function draw() { drawSprite((config.bigItems ? sprCoin : sprCoinSmall), getFrames() / 4, x - camx, y - camy - (config.bigItems ? 4 : 0), 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "CoinSmall" }
 }
 
 ::Coin5 <- class extends Actor{
@@ -100,17 +104,21 @@
 		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 		frame += 0.2
 	}
 
 	function draw() { drawSprite(sprCoin5, frame, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Coin5" }
 }
 
 ::Coin10 <- class extends Actor{
@@ -129,17 +137,21 @@
 		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 		frame += 0.2
 	}
 
 	function draw() { drawSprite(sprCoin10, frame, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Coin10" }
 }
 
 ::Berry <- class extends Actor{
@@ -170,7 +182,7 @@
 
 	function draw() { drawSprite((config.bigItems ? sprBerryLarge : sprBerry), 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger(), 0, 0, 1, 1, (timer > 60 ? 1 : float(timer) / 10)) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Berry" }
 }
 
 ::Herring <- class extends Actor{
@@ -191,12 +203,14 @@
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
 			game.redCoins++
+			foreach(k, i in gvYetFoundItems) if(i == id)
+				gvFoundItems[k] <- typeof this
 		}
 	}
 
 	function draw() { drawSprite(sprHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger()) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Herring" }
 }
 
 ::RedHerring <- class extends Actor{

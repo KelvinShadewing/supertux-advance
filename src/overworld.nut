@@ -378,6 +378,8 @@
 	gfxReset()
 	gvLightScreen = gvLightScreen1
 	gvSplitScreen = false
+	gvYetFoundItems = {}
+	gvFoundItems = {}
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
