@@ -579,6 +579,7 @@ gvCharacters.Kiki2 <- {
 			}
 
 			if(anim != "climb") frame = wrap(abs(frame), 0.0, an[anim].len() - 1)
+			onWall = (anim == "wall" || an[anim] == an["fallW"])
 
 			//Sliding acceleration
 			if(anim == "slide" || onIce()) {
@@ -602,7 +603,7 @@ gvCharacters.Kiki2 <- {
 				stats.stamina += 0.05
 
 			//Controls
-			if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || onPlatform() || anim == "climb") {
+			if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
@@ -725,13 +726,11 @@ gvCharacters.Kiki2 <- {
 							anim = "jumpU"
 							frame = 0.0
 						}
-						if(stats.weapon != "air") {
-							stopSound(sndJump)
-							playSound(sndJump, 0)
-						}
-						else {
-							stopSound(sndFlap)
-							playSound(sndFlap, 0)
+						if(!freeDown2 || freeRight && freeLeft) {
+							if(stats.weapon != "air")
+								popSound(sndJump)
+							else
+								popSound(sndFlap)
 						}
 					}
 					else if(freeDown && anim != "climb" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {

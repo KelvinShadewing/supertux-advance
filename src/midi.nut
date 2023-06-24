@@ -828,6 +828,8 @@
 			if(canJump > 0) canJump--
 		}
 
+		onWall = (anim == "wall" || an[anim] == an["fallW"])
+
 		if(canMove) {
 			mspeed = 3.5
 			if(config.stickspeed) {
@@ -945,7 +947,7 @@
 					if(anim == "plantMine") shooting = 0
 					if(anim == "stand" || anim == "walk") anim = "jumpT"
 				}
-				else if(canJump > 0 && placeFree(x, y - 2) || anim == "ledge" || anim == "monkey") {
+				else if(canJump > 0 || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0
 					if(anim == "climb") vspeed = -3
 					vspeed = -6.4
@@ -956,19 +958,21 @@
 						if(anim != "morphIn") anim = "jump"
 						frame = 0.0
 					}
-					popSound(sndMidiJump, 0)
+					if(!freeDown2 || freeRight && freeLeft) popSound(sndMidiJump, 0)
 				}
 				else if(freeDown && anim != "climb" && anim != "ledge" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40 && !didJump) {
 					flip = 0
 					anim = "wall"
 					frame = 0.0
 					playSound(sndWallkick, 0)
+					canJump = 0
 				}
 				else if(freeDown && anim != "climb" && anim != "ledge"  && !placeFree(x + 2, y) && anim != "wall" && hspeed >= 0 && tileGetSolid(x + 12, y - 12) != 40 && tileGetSolid(x + 12, y + 12) != 40 && tileGetSolid(x + 12, y) != 40 && !didJump) {
 					flip = 1
 					anim = "wall"
 					frame = 0.0
 					playSound(sndWallkick, 0)
+					canJump = 0
 				}
 			}
 
@@ -1144,7 +1148,7 @@
 
 	function ruBall() {
 		//Controls
-		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
+		if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 			canJump = 16
 		}
 		else {

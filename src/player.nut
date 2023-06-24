@@ -20,19 +20,6 @@
 	endMode = false
 	endSpeed = 0
 
-	//Animation states defined in child classes
-	anStand = null
-	anWalk = null
-	anJog = null
-	anRun = null
-	anJumpU = null
-	anJumpT = null
-	anFall = null
-	anDive = null
-	anSlide = null
-	anCrawl = null
-	anHurt = null
-
 	//Ability flags
 	canStomp = false //Mario-like jump attack
 	stompDamage = 1
@@ -54,6 +41,7 @@
 	friction = 0.1
 	baseFriction = 0.1
 	swimming = false
+	onWall = false
 
 	hurt = 0 //How much damage has been taken
 	hurtType = "normal"

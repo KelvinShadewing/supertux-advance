@@ -424,6 +424,8 @@
 			else if(anim == "win")
 				anim = "stand"
 
+			onWall = (anim == "wall" || an[anim] == an["fallW"])
+
 			//Sliding acceleration
 			if(onIce()) {
 				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && stats.weapon == "ice"))) {
@@ -446,7 +448,7 @@
 				stats.stamina += 0.05
 
 			//Controls
-			if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || onPlatform() || anim == "climb") {
+			if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.2
 			}
@@ -567,13 +569,11 @@
 							anim = "jumpU"
 							frame = 0.0
 						}
-						if(stats.weapon != "air") {
-							stopSound(sndJump)
-							playSound(sndJump, 0)
-						}
-						else {
-							stopSound(sndFlap)
-							playSound(sndFlap, 0)
+						if(!freeDown2 || freeRight && freeLeft) {
+							if(stats.weapon != "air")
+								popSound(sndJump)
+							else
+								popSound(sndFlap)
 						}
 					}
 					else if(freeDown && anim != "climb" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {
