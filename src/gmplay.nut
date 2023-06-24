@@ -55,13 +55,10 @@
 		gvKeySilver = false
 		gvKeyGold = false
 		gvKeyMythril = false
-	}
 
-	//Load map to play
-	if(gvMap != 0) gvMap.del()
-	gvMap = Tilemap(level)
+		gvYetFoundItems.clear()
+		gvFoundItems.clear()
 
-	if(!game.check) {
 		ghostRecordName = gvMap.name + "." + game.playerChar + ".gst"
 		if(game.path == "res/map/")
 			ghostRecordOld = loadGhostFile("ghosts/" + ghostRecordName)
@@ -69,6 +66,10 @@
 			ghostRecordOld = loadGhostFile("ghosts/" + game.path + ghostRecordName)
 		ghostRecordNew = []
 	}
+
+	//Load map to play
+	if(gvMap != 0) gvMap.del()
+	gvMap = Tilemap(level)
 
 	gvHorizon = gvMap.h
 

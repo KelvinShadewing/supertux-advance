@@ -223,7 +223,11 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
-		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file, true, true) }
+		func = function() {
+			gvIGT = 0;
+			game.check = false;
+			startPlay(gvMap.file, true, true)
+		}
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
@@ -245,7 +249,10 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart"]},
-		func = function() { gvIGT = 0; game.check = false; startPlay(gvMap.file, true, true) }
+		func = function() {
+			gvIGT = 0; game.check = false;
+			startPlay(gvMap.file, true, true)
+		}
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },
@@ -253,7 +260,9 @@ const menuY = 40
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["restart-run"]},
-		func = function() { newTimeAttack() }
+		func = function() {
+			newTimeAttack()
+		}
 	},
 	{
 		name = function() { return gvLangObj["pause-menu"]["end-run"]},
