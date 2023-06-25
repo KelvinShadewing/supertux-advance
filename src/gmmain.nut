@@ -22,7 +22,4 @@
 
 	drawText(fontC, 0, screenH() - 8, "Brux GDK " + bruxVersion() + " - STA v" + gvVersion + " - " + getOS())
 	textMenu()
-
-	resetDrawTarget()
-	drawImage(gvScreen, 0, 0)
 }

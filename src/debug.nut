@@ -9,6 +9,10 @@
 ::debugMouseRight <- 0
 ::debugExt <- {}
 
+::gvDebugConsole <- false
+::gvConIn <- ""
+::gvConOut <- ""
+
 ::drawDebug <- function() {
 	if(keyPress(k_f12)) {
 		debug = !debug
@@ -173,59 +177,61 @@
 }
 
 ::debugConsole <- function() {
-	if(gvGameMode != gmPause) {
-		setDrawTarget(bgPause)
-		drawImage(gvScreen, 0, 0)
-	}
-	resetDrawTarget()
-	update()
-
-	local output = ""
-	local input = ""
-
-	while(!keyPress(k_tick) && !keyPress(k_escape)) {
-		if(keyPress(k_backspace) && input.len() > 0) input = input.slice(0, -1)
-		if(keyPress(k_enter)) {
-			dostr(input)
-			if(debugHistory.len() > 0) debugHistory.pop()
-			debugHistory.push(input)
-			debugHistory.push("")
-			debugCursor = debugHistory.len() - 1
-			if(debugHistory.len() > screenH() / 8) debugHistory.remove(0)
-			input = ""
+	if(!gvDebugConsole) {
+		if(gvGameMode != gmPause) {
+			setDrawTarget(bgPause)
+			drawImage(gvScreen, 0, 0)
 		}
-		local newchar = keyString()
-		if(newchar != "`") input += newchar
-
-		setDrawTarget(gvScreen)
-		drawImage(bgPause, 0, 0)
-		setDrawColor(0x00000080)
-		drawRec(0, 0, screenW(), screenH(), true)
-
-		output = ""
-		for(local i = 0; i < debugHistory.len() - 1; i++) {
-			output += debugHistory[i]
-			output += "\n"
-		}
-		if(input.len() < floor(screenW() / 6)) output += input
-		else output += input.slice(-floor(screenW() / 6))
-		if(floor(getFrames() / 32) % 2 == 0) output += "|"
-		drawText(font, 0, 0, output)
-
 		resetDrawTarget()
-		drawImage(gvScreen, 0, 0)
-		update()
 
-		if(keyPress(k_up) && debugCursor > 0) {
-			debugCursor--
-			input = debugHistory[debugCursor]
-		}
+		gvConOut = ""
+		gvConIn = ""
 
-		if(keyPress(k_down) && debugCursor < debugHistory.len() - 1) {
-			debugCursor++
-			input = debugHistory[debugCursor]
-		}
+		gvDebugConsole = true
 	}
+
+	if(keyPress(k_backspace) && gvConIn.len() > 0) gvConIn = gvConIn.slice(0, -1)
+	if(keyPress(k_enter)) {
+		dostr(gvConIn)
+		if(debugHistory.len() > 0) debugHistory.pop()
+		debugHistory.push(gvConIn)
+		debugHistory.push("")
+		debugCursor = debugHistory.len() - 1
+		if(debugHistory.len() > screenH() / 8) debugHistory.remove(0)
+		gvConIn = ""
+	}
+	local newchar = keyString()
+	if(newchar != "`") gvConIn += newchar
+
+	setDrawTarget(gvScreen)
+	drawImage(bgPause, 0, 0)
+	setDrawColor(0x00000080)
+	drawRec(0, 0, screenW(), screenH(), true)
+
+	gvConOut = ""
+	for(local i = 0; i < debugHistory.len() - 1; i++) {
+		gvConOut += debugHistory[i]
+		gvConOut += "\n"
+	}
+	if(gvConIn.len() < floor(screenW() / 6)) gvConOut += gvConIn
+	else gvConOut += gvConIn.slice(-floor(screenW() / 6))
+	if(floor(getFrames() / 32) % 2 == 0) gvConOut += "|"
+	drawText(font, 0, 0, gvConOut)
+
+	resetDrawTarget()
+
+	if(keyPress(k_up) && debugCursor > 0) {
+		debugCursor--
+		gvConIn = debugHistory[debugCursor]
+	}
+
+	if(keyPress(k_down) && debugCursor < debugHistory.len() - 1) {
+		debugCursor++
+		gvConIn = debugHistory[debugCursor]
+	}
+
+	if(keyPress(k_tick))
+		gvDebugConsole = false
 }
 
 ::PolyTest <- class extends Actor {

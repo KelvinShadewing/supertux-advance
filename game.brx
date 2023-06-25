@@ -183,8 +183,7 @@ if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
 }
 
-while(!getQuit() && !gvQuit) //Entire game happens here
-{
+::gameUpdate <- function() {
 	/*
 	if(keyPress(k_f11)) {
 		toggleFullscreen()
@@ -192,8 +191,16 @@ while(!getQuit() && !gvQuit) //Entire game happens here
 		fileWrite("config.json", jsonWrite(config))
 	}
 	*/
-	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain) togglePause()
-	gvGameMode()
-	if(keyPress(k_tick)) debugConsole()
-	update()
+
+	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain)
+		togglePause()
+	if(!gvDebugConsole)
+		gvGameMode()
+	if(keyPress(k_tick) || gvDebugConsole)
+		debugConsole()
+}
+
+::gameRender <- function() {
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
 }

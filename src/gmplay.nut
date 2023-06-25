@@ -758,8 +758,7 @@
 	}
 
 	//Draw surface to screen
-	resetDrawTarget()
-	drawImage(gvScreen, 0, 0)
+	setDrawTarget(gvScreen)
 	if(gvFadeTime > 0) {
 		setDrawColor(min(255, gvFadeTime * 8))
 		drawRec(0, 0, gvScreenW, gvScreenH, true)
