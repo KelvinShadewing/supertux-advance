@@ -55,7 +55,7 @@
 			}
 		}
 		else {
-			gvGameMode = gmPause
+			gvGameMode = gmConsole
 			setDrawTarget(bgPause)
 			drawImage(gvScreen, 0, 0)
 			gvPauseMode = false
@@ -66,14 +66,18 @@
 	}
 	else if(gvGameMode == gmOverworld){
 		if(gvPlayer) if(gvPlayer.hspeed != 0 || gvPlayer.vspeed != 0) return
-		gvGameMode = gmPause
+		gvGameMode = gmConsole
 		setDrawTarget(bgPause)
 		drawImage(gvScreen, 0, 0)
 		gvPauseMode = true
 		menu = mePauseOver
 		autocon = clone(defAutocon)
 	}
-	else if(gvGameMode == gmPause) {
+	else if(gvGameMode == gmMain) {
+		if(gvPauseMode == false) gvGameMode = gmPlay
+		else if(gvPauseMode == true) gvGameMode = gmMain
+	}
+	else if(gvGameMode == gmConsole) {
 		if(gvPauseMode == false) gvGameMode = gmPlay
 		else if(gvPauseMode == true) gvGameMode = gmOverworld
 	}

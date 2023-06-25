@@ -9,7 +9,6 @@
 ::debugMouseRight <- 0
 ::debugExt <- {}
 
-::gvDebugConsole <- false
 ::gvConIn <- ""
 ::gvConOut <- ""
 
@@ -176,7 +175,7 @@
 	foreach (i in debugExt) if(typeof i == "function") i()
 }
 
-::debugConsole <- function() {
+::gmConsole <- function() {
 	if(!gvDebugConsole) {
 		if(gvGameMode != gmPause) {
 			setDrawTarget(bgPause)
@@ -186,8 +185,6 @@
 
 		gvConOut = ""
 		gvConIn = ""
-
-		gvDebugConsole = true
 	}
 
 	if(keyPress(k_backspace) && gvConIn.len() > 0) gvConIn = gvConIn.slice(0, -1)
@@ -229,9 +226,6 @@
 		debugCursor++
 		gvConIn = debugHistory[debugCursor]
 	}
-
-	if(keyPress(k_tick))
-		gvDebugConsole = false
 }
 
 ::PolyTest <- class extends Actor {
