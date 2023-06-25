@@ -80,5 +80,6 @@
 	else if(gvGameMode == gmConsole) {
 		if(gvPauseMode == false) gvGameMode = gmPlay
 		else if(gvPauseMode == true) gvGameMode = gmOverworld
+		gvDebugConsole = false
 	}
 }

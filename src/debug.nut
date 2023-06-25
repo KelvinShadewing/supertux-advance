@@ -9,6 +9,7 @@
 ::debugMouseRight <- 0
 ::debugExt <- {}
 
+::gvDebugConsole <- false
 ::gvConIn <- ""
 ::gvConOut <- ""
 
@@ -185,6 +186,7 @@
 
 		gvConOut = ""
 		gvConIn = ""
+		gvDebugConsole = true
 	}
 
 	if(keyPress(k_backspace) && gvConIn.len() > 0) gvConIn = gvConIn.slice(0, -1)
