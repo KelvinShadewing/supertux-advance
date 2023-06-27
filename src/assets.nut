@@ -542,7 +542,7 @@
 ::defGoldCharge <- sprGoldCharge
 ::sprBubble <- newSprite("res/gfx/bubble.png", 8, 8, 0, 0, 4, 4)
 ::defBubble <- sprBubble
-::sprCrystalBullet <- newSprite("res/gfx/crystal-bullet.png", 10, 5, 0, 0, 5, 3)
+::sprCrystalBullet <- newSprite("res/gfx/crystal-bullet.png", 16, 7, 0, 0, 8, 5)
 
 
 

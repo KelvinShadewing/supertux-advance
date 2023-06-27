@@ -1637,7 +1637,7 @@
 		timer--
 		if(timer == 0) {
 			deleteActor(id)
-			newActor(PoofTiny, x, y)
+			newActor(Poof, x, y)
 		}
 
 		if(!placeFree(x, y + 1)) vspeed = -1.2
