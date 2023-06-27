@@ -527,8 +527,6 @@
 
 	//Reset auto/locked controls
 	autocon = clone(defAutocon)
-
-	update()
 }
 
 ::gmOverworld <- function() {

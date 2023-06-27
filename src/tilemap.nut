@@ -308,6 +308,8 @@
 			deleteSprite(tileset[i])
 		}
 	}
+
+	function _typeof() { return "Tilemap" }
 }
 
 ///////////////

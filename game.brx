@@ -183,7 +183,7 @@ if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
 }
 
-::gameUpdate <- function() {
+::gameCycle <- function() {
 	/*
 	if(keyPress(k_f11)) {
 		toggleFullscreen()
@@ -205,3 +205,9 @@ if(fileExists("contrib")) {
 }
 
 ::gameExit <- function() {}
+
+while(!getQuit() && !gvQuit) {
+	gameCycle()
+	gameRender()
+	update()
+}

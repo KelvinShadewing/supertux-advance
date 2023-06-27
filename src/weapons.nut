@@ -291,7 +291,7 @@
 ::Fireball <- class extends WeaponEffect {
 	element = "fire"
 	timer = 90
-	piercing = 1
+	piercing = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -1616,5 +1616,59 @@
 
 	function draw() {
 		drawSprite(sprBubble, frame, x - camx, y - camy)
+	}
+}
+
+::CrystalBullet <- class extends WeaponEffect {
+	element = "earth"
+	timer = 90
+	piercing = -1
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		if(!placeFree(x, y + 1)) vspeed = -1.2
+		if(!placeFree(x, y - 1)) vspeed = 1
+		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
+		}
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.99
+			vspeed *= 0.99
+		}
+
+		xprev = x
+		yprev = y
+		if(placeFree(x, y)) {
+			x += hspeed
+			y += vspeed
+		}
+		if(x != xprev && y != yprev)
+			angle = pointAngle(x, y, xprev, yprev)
+
+		if(y > gvMap.h || piercing == 0) deleteActor(id)
+
+		shape.setPos(x, y)
+	}
+
+	function draw()  {
+		drawSpriteEx(sprCrystalBullet, 0, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function destructor() {
+		fireWeapon(AfterFlame, x + hspeed, y + vspeed, alignment, owner)
 	}
 }

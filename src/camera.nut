@@ -24,6 +24,9 @@
 ::gvSwapScreen <- false
 
 ::updateCamera <- function() {
+	if(typeof gvMap != "Tilemap")
+		return
+
 	//////////////
 	// Camera 0 //
 	//////////////

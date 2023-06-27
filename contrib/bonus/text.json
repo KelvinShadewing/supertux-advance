@@ -11,7 +11,8 @@
 		"bonus-king": "King of the Bridge",
 		"bonus-diamond" : "Diamond DOS",
 		"bonus-diamond2" : "Jazzy Jewels",
-		"bonus-diamond-insane" : "Spazzy Spelunking"
+		"bonus-diamond-insane" : "Spazzy Spelunking",
+		"world" : "Bonus Island"
 	},
 
 	"npc" : {
