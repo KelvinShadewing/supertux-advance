@@ -42,13 +42,12 @@
 
 		local level = ""
 		local onstage = false
-		local onrace = false
+		local noclear = false
 
 		if(actor.rawin("StageIcon")) {//Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
 					level = i.levelName
-					onrace = i.raceMode
 					onstage = true
 					break
 				}
@@ -60,6 +59,7 @@
 				if(hitTest(shape, i.shape)) {
 					level = i.levelName
 					onstage = true
+					noclear = true
 					break
 				}
 			}
@@ -70,6 +70,7 @@
 				if(hitTest(shape, i.shape)) {
 					level = i.world
 					onstage = true
+					noclear = true
 					break
 				}
 			}
@@ -187,7 +188,7 @@
 
 			//Move right
 			if(canmove && getcon("right", "hold") && !getcon("left", "hold") && (!placeFree(x + 16, y) || debug) && hspeed <= 0 && vspeed == 0) {
-				if(level == "" || game.owd == 0 || game.completed.rawin(level) || onrace) {
+				if(level == "" || game.owd == 0 || game.completed.rawin(level) || noclear) {
 					hspeed = 2
 					game.owd = 2
 				}
@@ -195,7 +196,7 @@
 
 			//Move up
 			if(canmove && getcon("up", "hold") && !getcon("down", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed >= 0) {
-				if(level == "" || game.owd == 1 || game.completed.rawin(level) || onrace) {
+				if(level == "" || game.owd == 1 || game.completed.rawin(level) || noclear) {
 					vspeed = -2
 					game.owd = 3
 				}
@@ -203,7 +204,7 @@
 
 			//Move left
 			if(canmove && getcon("left", "hold") && !getcon("right", "hold") && (!placeFree(x - 16, y) || debug) && hspeed >= 0 && vspeed == 0) {
-				if(level == "" || game.owd == 2 || game.completed.rawin(level) || onrace) {
+				if(level == "" || game.owd == 2 || game.completed.rawin(level) || noclear) {
 					hspeed = -2
 					game.owd = 0
 				}
@@ -211,7 +212,7 @@
 
 			//Move down
 			if(canmove && getcon("down", "hold") && !getcon("up", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed <= 0) {
-				if(level == "" || game.owd == 3 || game.completed.rawin(level) || onrace) {
+				if(level == "" || game.owd == 3 || game.completed.rawin(level) || noclear) {
 					vspeed = 2
 					game.owd = 1
 				}
@@ -220,6 +221,14 @@
 
 		x += hspeed
 		y += vspeed
+
+		if(hspeed == 0 && vspeed == 0) {
+			x -= x % 16
+			x += 8
+
+			y -= y % 16
+			y += 8
+		}
 
 		if(hspeed == 0 && vspeed == 0) drawSpriteZ(2, getroottable()[gvCharacters[game.playerChar]["over"]], 0, x - camx, y - camy)
 		else drawSpriteZ(2, getroottable()[gvCharacters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
@@ -298,8 +307,6 @@
 				startPlay(game.path + level + ".json", true, true)
 			}
 		}
-
-		if(level != "" && !game.completed.rawin(level)) game.completed[level] <- true
 	}
 
 	function _typeof() { return "TownIcon" }
@@ -334,7 +341,7 @@
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
 				game.owx = px
 				game.owy = py
-				startOverworld("res/map/" + world + ".json")
+				startOverworld(game.path + world + ".json")
 			}
 		}
 	}
@@ -527,6 +534,8 @@
 
 	//Reset auto/locked controls
 	autocon = clone(defAutocon)
+
+	update()
 }
 
 ::gmOverworld <- function() {
