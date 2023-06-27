@@ -1621,7 +1621,7 @@
 
 ::CrystalBullet <- class extends WeaponEffect {
 	element = "earth"
-	timer = 90
+	timer = 240
 	piercing = -1
 	angle = 0
 
@@ -1629,14 +1629,16 @@
 		base.constructor(_x, _y, _arr)
 
 		shape = Rec(x, y, 3, 3, 0)
+		timer += randInt(60)
 	}
 
 	function physics() {
 		//Shrink hitbox
 		timer--
-		if(timer == 0) deleteActor(id)
-		if(!placeFree(x, y))
+		if(timer == 0) {
 			deleteActor(id)
+			newActor(PoofTiny, x, y)
+		}
 
 		if(!placeFree(x, y + 1)) vspeed = -1.2
 		if(!placeFree(x, y - 1)) vspeed = 1

@@ -5059,6 +5059,8 @@
 					frame = 0.0
 					popSound(sndCrumble)
 					mode = 0
+
+					shootBullets()
 				}
 				break
 
@@ -5104,6 +5106,45 @@
 		}
 	}
 
+	function shootBullets() {
+		//Create crystal bullets
+		local c
+		
+		if(placeFree(x, y - 1)) {
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = 4.0
+			c.vspeed = -2.0
+
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = -4.0
+			c.vspeed = -2.0
+
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = 2.0
+			c.vspeed = -4.0
+
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = -2.0
+			c.vspeed = -4.0
+		}
+
+		if(placeFree(x, y + 1)) {
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = 4.0
+
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = -4.0
+
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = 2.0
+			c.vspeed = 2.0
+
+			c = fireWeapon(CrystalBullet, x, y, 2, 0)
+			c.hspeed = -2.0
+			c.vspeed = 2.0
+		}
+	}
+
 	function draw() {
 		drawSprite(sprCrystallo, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip + (mode == 1 && anim != "squish" ? 2 : 0), 1, 1, (blinking ? blinking / 10.0 : 1))
 
@@ -5131,8 +5172,10 @@
 			mapDeleteSolid(icebox)
 			frame = 0.0
 			anim = "squish"
-			return
 			popSound(sndCrumble)
+			if(!_stomp)
+				shootBullets()
+			return
 		}
 		if(_element == "ice") frozen = minFreezeTime + (freezeTime * damageMult["ice"])
 		if(_element == "fire") {

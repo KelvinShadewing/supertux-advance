@@ -47,9 +47,6 @@
 		if(x < xprev)
 			flip = 1
 		turn = floor(min(fabs(x - xprev) / 1.5, 3)) * 2
-
-		if(ghostRecordOld.len() <= 1)
-			deleteActor(id)
 	}
 
 	function draw() {
