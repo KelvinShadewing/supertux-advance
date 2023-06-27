@@ -719,7 +719,11 @@
 
 		if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
 
-		if(shooting) shootTimer += 0.25
+		if(shooting) {
+			shootTimer += 0.25
+			if(zoomies > 0)
+				shootTimer += 0.25
+		}
 		if(shootTimer > 4) {
 			shootTimer = 0.0
 			shooting = 0
