@@ -328,7 +328,7 @@
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
 
-		if(y > gvMap.h || piercing == 0) deleteActor(id)
+		if(y > gvMap.h || piercing < 0) deleteActor(id)
 
 		shape.setPos(x, y)
 	}
