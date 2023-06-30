@@ -306,7 +306,7 @@
 				case "jumpU":
 					if(frame < 0.0 + 1) frame += 0.1
 
-					if(!freeDown || (onPlatform() && vspeed >= 0)) {
+					iif((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
 						anim = "stand"
 						frame = 0.0
 					}
@@ -319,7 +319,7 @@
 
 				case "jumpT":
 					frame += 0.2
-					if(!freeDown || (onPlatform() && vspeed >= 0)) {
+					if((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
 						anim = "stand"
 						frame = 0.0
 					}
@@ -332,7 +332,7 @@
 
 				case "fall":
 					frame += 0.1
-					if(!placeFree(x, y + 4) || (onPlatform() && vspeed >= 0)) {
+					if((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
 						anim = "stand"
 						frame = 0.0
 					}
