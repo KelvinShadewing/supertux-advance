@@ -435,7 +435,7 @@
 	}
 
 	function draw() {
-		if(full || vspeed < 0) drawSpriteZ(2, sprBoxItem, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(full || vspeed < 0) drawSpriteZ(2, sprBoxItem, (getFrames() / 12) + (x / 16) + (y / 4), x - 8 - camx, y - 8 - camy + v)
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 

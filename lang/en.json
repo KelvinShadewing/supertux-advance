@@ -268,7 +268,11 @@
 		"altfire" :
 		["You can use an alternate attack if you have an elemental item in your pocket by pressing %s.", "getConName(\"spec1\")"],
 		"earthshell" :
-		["The earth shell grants special defensive boosts. With Tux, you can roll into a ball and even drop dash if you press %s while landing. As Konqi, you can stomp by pressing %s to become a statue, and can still spit rocks. These earth guarding techniques will cost stamina so you can still shoot with another element in your pocket.", "getConName(\"shoot\")", "getConName(\"down\")"]
+		["The earth shell grants special defensive boosts. With Tux, you can roll into a ball and even drop dash if you press %s while landing. As Konqi, you can stomp by pressing %s to become a statue, and can still spit rocks. These earth guarding techniques will cost stamina so you can still shoot with another element in your pocket.", "getConName(\"shoot\")", "getConName(\"down\")"],
+		"subitem" :
+		["If you have an item in your pocket, you can use it by pressing %s. Muffins will heal you, coffee will let you run faster, and element charms will change your form.", "getConName(\"swap\")"],
+		"carry-enemies" : 
+		["Remember, you can carry some stunned enemies by holding %s or %s. Hold %s while letting them go to throw them in the air, and hold %s to drop them straight down.", "getConName(\"shoot\")", "getConName(\"spec1\")", "getConName(\"up\")", "getConName(\"down\")"]
 	},
 
 	"devcom" : {
@@ -669,7 +673,7 @@
 		"tix-newpeople" :
 		"So many new people have been spilling into our world. It was cool at first, but I hope it doesn't get too crowded.",
 		"blame-nolok-displaced" :
-		"More and more displaced are ending up in our world. I think Nolok may be to blame for this. Remember when he tapped into the Ghost Tree's power? I have a theory that he may have harmed Ygdrasil in doing that.",
+		"More and more displaced are ending up in our world. I think Nolok may be to blame for this. Remember when he tapped into the Ghost Tree's power? I have a theory that he may have harmed Yggdrasil in doing that.",
 
 		"xtreme-orbs-Tux" :
 		"I've never seen orbs like those before. Why did they draw me there?",

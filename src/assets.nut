@@ -249,7 +249,7 @@
 ::sprTwangNPC <- newSprite("res/gfx/twang-npc.png", 15, 18, 0, 0, 8, 18)
 ::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 ::sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 0, 0, 7, 23)
-::sprBearistaNPC <- newSprite("res/gfx/bearista.png", 21, 37, 0, 0, 10, 37)
+::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 21, 37, 0, 0, 10, 37)
 ::sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 0, 0, 5, 16)
 ::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
 ::sprBeam <- newSprite("res/gfx/beam.png", 20, 22, 0, 0, 10, 16)
