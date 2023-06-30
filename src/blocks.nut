@@ -731,20 +731,8 @@
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])
 		if((("altShape" in i && hitTest(fireshape, i.altShape)) || (!("altShape" in i) && hitTest(fireshape, i.shape))) && (i.blast || i.element == "fire") && i.element != "ice" && i.element != "water") {
-			if(i.rawin("frame") && i.blast) {
-				if(i.frame >= 1) {
-					tileSetSolid(x, y, oldsolid)
-					deleteActor(id)
-					fireWeapon(ExplodeF2, x, y, 0, id)
-					i.piercing--
-				}
-			}
-			else {
-				tileSetSolid(x, y, oldsolid)
-				deleteActor(id)
-				fireWeapon(ExplodeF2, x, y, 0, id)
-				i.piercing--
-			}
+			hittime = max(hittime, 135 + game.difficulty)
+			gothit = true
 			break
 		}
 	}
@@ -778,22 +766,20 @@
 	}
 
 	function run() {
-		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])
-		if((("altShape" in i && hitTest(fireshape, i.altShape)) || (!("altShape" in i) && hitTest(fireshape, i.shape))) && (i.blast && i.power > 1 && (i.element == "fire" || i.element == "shock"))) {
-			if(i.rawin("frame")) {
-				if(i.frame >= 1) {
-					tileSetSolid(x, y, oldsolid)
-					deleteActor(id)
-					newActor(ExplodeF2, x, y)
-					i.piercing--
-				}
-			}
-			else {
+		if(gothit) {
+			hittime += 2
+			frame += 0.002 * hittime
+			if(hittime >= 150) {
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
-				newActor(ExplodeF2, x, y)
-				i.piercing--
+				fireWeapon(ExplodeF2, x, y, 0, id)
 			}
+		}
+
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"])
+		if((("altShape" in i && hitTest(fireshape, i.altShape)) || (!("altShape" in i) && hitTest(fireshape, i.shape))) && (i.blast && i.power > 1 && (i.element == "fire" || i.element == "shock"))) {
+			hittime = max(hittime, 135 + game.difficulty)
+			gothit = true
 			break
 		}
 	}

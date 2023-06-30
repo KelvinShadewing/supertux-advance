@@ -306,7 +306,7 @@
 				case "jumpU":
 					if(frame < 0.0 + 1) frame += 0.1
 
-					iif((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
+					if((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
 						anim = "stand"
 						frame = 0.0
 					}
@@ -675,10 +675,14 @@
 				if(hspeed < 0 && !getcon("left", "hold", true, playerNum)) hspeed += friction / 3.0
 			}
 
-			if(fabs(hspeed) < friction) hspeed = 0.0
-			if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater) || (anim == "stomp" && vspeed < 8)) && antigrav <= 0) vspeed += gravity
-			else if(antigrav > 0) antigrav--
-			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Konqi bumped his head
+			if(fabs(hspeed) < friction)
+				hspeed = 0.0
+			if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 8 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater)) && antigrav <= 0)
+				vspeed += gravity
+			else if(antigrav > 0)
+				antigrav--
+			if(!freeUp && vspeed < 0)
+				vspeed = 0.0 //If Konqi bumped his head
 
 			//Entering water
 			if(nowInWater && !wasInWater) {

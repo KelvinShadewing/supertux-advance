@@ -285,10 +285,14 @@
 				break
 		}
 
-		if(fabs(hspeed) < friction) hspeed = 0.0
-		if(placeFree(x, y + 2) && (vspeed < 2 || (vspeed < 5 && !nowInWater)) && antigrav <= 0) vspeed += gravity
-		else if(antigrav > 0) antigrav--
-		if(!placeFree(x, y - 1) && vspeed < 0) vspeed = 0.0
+		if(fabs(hspeed) < friction)
+			hspeed = 0.0
+		if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 5 && !nowInWater)) && antigrav <= 0)
+			vspeed += gravity
+		else if(antigrav > 0)
+			antigrav--
+		if(!placeFree(x, y - 1) && vspeed < 0)
+			vspeed = 0.0
 
 		//Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
