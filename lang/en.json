@@ -272,7 +272,9 @@
 		"subitem" :
 		["If you have an item in your pocket, you can use it by pressing %s. Muffins will heal you, coffee will let you run faster, and element charms will change your form.", "getConName(\"swap\")"],
 		"carry-enemies" : 
-		["Remember, you can carry some stunned enemies by holding %s or %s. Hold %s while letting them go to throw them in the air, and hold %s to drop them straight down.", "getConName(\"shoot\")", "getConName(\"spec1\")", "getConName(\"up\")", "getConName(\"down\")"]
+		["Remember, you can carry some stunned enemies by holding %s or %s. Hold %s while letting them go to throw them in the air, and hold %s to drop them straight down.", "getConName(\"shoot\")", "getConName(\"spec1\")", "getConName(\"up\")", "getConName(\"down\")"],
+		"switch-player" :
+		"You can change your character from the overworld in the pause menu."
 	},
 
 	"devcom" : {

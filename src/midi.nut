@@ -439,7 +439,7 @@
 					frame = 0.0
 				}
 
-				if(freeDown2 && !onPlatform()) {
+				if(freeDown2 && !onPlatform() && placeFree(x - hspeed, y + 2) && fabs(vspeed) > 1) {
 					anim = "jumpT"
 					frame = 0.0
 					break
@@ -523,7 +523,7 @@
 					
 				}
 
-				if(placeFree(x, y + 8) && !onPlatform()) {
+				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1) {
 					if(vspeed >= 0) anim = "fall"
 					else anim = "jump"
 					frame = 0.0
@@ -538,7 +538,7 @@
 				frame += 0.25
 				if(an.jump == an.jumpR) frame += 0.25
 
-				if((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
+				if((!placeFree(x, y + 4) || !placeFree(x - hspeed, y + 4) || onPlatform()) && vspeed >= 0) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -551,7 +551,7 @@
 
 			case "jumpT":
 				frame += 0.2
-				if((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
+				if((!placeFree(x, y + 4) || !placeFree(x - hspeed, y + 4) || onPlatform()) && vspeed >= 0) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -567,7 +567,7 @@
 			case "fall":
 				fallTimer++
 				frame += 0.25
-				if((!placeFree(x, y + 4) || onPlatform()) && vspeed >= 0) {
+				if((!placeFree(x, y + 4) || !placeFree(x - hspeed, y + 4) || onPlatform()) && vspeed >= 0) {
 					anim = "stand"
 					frame = 0.0
 				}

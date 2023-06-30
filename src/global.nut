@@ -112,18 +112,18 @@
 		earth = "sprPennyEarth"
 		pick = [40, 41]
 	}
-	Lutris = {
-		name = "Lutris the Otter"
-		shortname = "Lutris"
-		over = "sprLutrisOverworld"
-		doll = "sprLutrisDoll"
-		normal = "sprLutris"
-		fire = "sprLutris"
-		ice = "sprLutris"
-		air = "sprLutris"
-		earth = "sprLutris"
-		pick = [40, 41]
-	}
+	// Lutris = {
+	// 	name = "Lutris the Otter"
+	// 	shortname = "Lutris"
+	// 	over = "sprLutrisOverworld"
+	// 	doll = "sprLutrisDoll"
+	// 	normal = "sprLutris"
+	// 	fire = "sprLutris"
+	// 	ice = "sprLutris"
+	// 	air = "sprLutris"
+	// 	earth = "sprLutris"
+	// 	pick = [40, 41]
+	// }
 	Konqi = {
 		name = "Konqi the Dragon"
 		shortname = "Konqi"
