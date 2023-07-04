@@ -46,10 +46,40 @@
 				playSound(sndMenuSelect, 0)
 			}
 
-			if(game.turnOffBlocks)
-				drawSprite(sprColorBlock, 0, gvScreenW-21, gvScreenH-21)
-			else
-				drawSprite(sprColorBlock, 1, gvScreenW-21, gvScreenH-21)
+			local blockx = gvScreenW - 21
+			if(game.colorswitch[7]) {
+				drawSprite(sprColorBlock, 14 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[6]) {
+				drawSprite(sprColorBlock, 12 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[5]) {
+				drawSprite(sprColorBlock, 10 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[4]) {
+				drawSprite(sprColorBlock, 8 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[3]) {
+				drawSprite(sprColorBlock, 6 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[2]) {
+				drawSprite(sprColorBlock, 4 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[1]) {
+				drawSprite(sprColorBlock, 2 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			if(game.colorswitch[0]) {
+				drawSprite(sprColorBlock, 0 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+				blockx -= 16
+			}
+			
 		}
 
 		local level = ""
