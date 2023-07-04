@@ -205,6 +205,9 @@
 			//escape from solid
 			if(!placeFree(x, y)) {
 				local escapedir = target.x <=> x
+				y = target.y
+				if(!placeFree(x, y + 1) && placeFree(x, y - 1)) y--
+				if(!placeFree(x, y - 1) && placeFree(x, y + 1)) y++
 				while(!placeFree(x, y)) x += escapedir
 			}
 		}

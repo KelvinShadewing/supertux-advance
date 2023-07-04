@@ -678,7 +678,7 @@
 			if(fabs(hspeed) < friction)
 				hspeed = 0.0
 			if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater)) && antigrav <= 0)
-				vspeed += (vspeed > 5 ? gravity / (vspeed / 2.0) : gravity)
+				vspeed += (vspeed > 5 ? gravity / vspeed : gravity)
 			else if(antigrav > 0)
 				antigrav--
 			if(!freeUp && vspeed < 0)
