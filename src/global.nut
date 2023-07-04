@@ -44,6 +44,7 @@
 			false,
 			false
 		] //Color blocks activated by respective switches
+		turnOffBlocks = false,
 		characters = { //List of unlocked characters
 			Tux = true
 			Penny = true

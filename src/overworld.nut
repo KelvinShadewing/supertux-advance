@@ -40,6 +40,18 @@
 		&& !getcon("down", "hold", true, 0))
 			canmove = true
 
+		if (game.colorswitch.find(true) != null) {
+			if(getcon("spec1", "press")) {
+				game.turnOffBlocks = !game.turnOffBlocks
+				playSound(sndMenuSelect, 0)
+			}
+
+			if(game.turnOffBlocks)
+				drawSprite(sprColorBlock, 0, gvScreenW-21, gvScreenH-21)
+			else
+				drawSprite(sprColorBlock, 1, gvScreenW-21, gvScreenH-21)
+		}
+
 		local level = ""
 		local onstage = false
 		local noclear = false
