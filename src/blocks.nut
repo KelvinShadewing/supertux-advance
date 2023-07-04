@@ -638,7 +638,7 @@
 
 		v += vspeed
 
-		
+
 	}
 
 	function draw() { drawSpriteZ(2, sprBoxBounce, getFrames() / 8, x - 8 - camx, y - 8 - camy + v) }
@@ -671,7 +671,7 @@
 			game.chx = x
 			game.chy = y
 			popSound(sndBell, 0)
-			
+
 			if(game.difficulty < 3) {
 				if(gvPlayer) {
 					if(game.ps.health < game.maxHealth) game.ps.health += 4
@@ -802,6 +802,7 @@
 	}
 
 	function filltile() {
+		if(game.turnOffBlocks) return
 		//Get solid layer
 		local wl = null //Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
@@ -1319,7 +1320,7 @@
 	}
 
 	function run() {
-		
+
 	}
 
 	function draw() {
