@@ -367,7 +367,7 @@
 		charx = 32
 
 		local runAnim = getroottable()[game.playerChar2].an["run"]
-		switch(game.ps.weapon) {
+		switch(game.ps2.weapon) {
 			case "normal":
 				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
 				break
@@ -476,7 +476,6 @@
 	gvLightScreen = gvLightScreen1
 	setDrawTarget(gvPlayScreen)
 	runAmbientLight()
-	runAmbientLight(true)
 
 	if(drawBG != 0) drawBG()
 	if(drawWeather != 0 && config.weather) drawWeather()
@@ -499,6 +498,41 @@
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
 
+
+	//////////////
+	// CAMERA 2 //
+	//////////////
+	if(gvSplitScreen) {
+		camx = camx2
+		camy = camy2
+
+		gvLightScreen = gvLightScreen2
+		setDrawTarget(gvPlayScreen2)
+		runAmbientLight(true)
+
+		if(drawBG2 != 0) drawBG2()
+		if(drawWeather2 != 0 && config.weather) drawWeather2()
+		camxprev = camx
+		camyprev = camy
+
+		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
+		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
+		if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
+			drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
+		}
+		foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
+		drawZList(8)
+		if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
+		drawAmbientLight(true)
+		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", 1, 1, 1, gvLight2)
+		else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg")
+		if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
+		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
+		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
+	}
+
+
+
 	//Resume music after invincibility
 	if(gvPlayer && gvPlayer2 && "invincible" in gvPlayer && "invincible" in gvPlayer2 && gvPlayer.invincible == 0 && gvPlayer2.invincible == 0
 	|| gvPlayer && !gvPlayer2 && "invincible" in gvPlayer && gvPlayer.invincible == 0
@@ -506,7 +540,18 @@
 
 	//HUDs
 	setDrawTarget(gvScreen)
-	drawImage(gvPlayScreen, 0, 0)
+	if(gvSwapScreen && gvSplitScreen) {
+		drawImage(gvPlayScreen2, 0, 0)
+		drawImage(gvPlayScreen, gvScreenW / 2, 0)
+		drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
+	}
+	else {
+		drawImage(gvPlayScreen, 0, 0)
+		if(gvSplitScreen) {
+			drawImage(gvPlayScreen2, gvScreenW / 2, 0)
+			drawSprite(sprDivBar, 0, gvScreenW / 2, 0)
+		}
+	}
 
 	if(gvInfoBox != gvInfoLast) {
 		gvInfoLast = gvInfoBox
@@ -590,6 +635,78 @@
 		if(game.ps.stamina > 0)
 			drawRec(26, 26, (game.ps.stamina * 4.0) - 1.0, 3, true)
 
+		//Player 2 stats
+		if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
+		drawSprite(sprMeterBack, 0, 24, 36)
+		for(local i = 0; i < game.maxHealth; i++)
+			drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
+		drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
+		setDrawColor(0xf83810ff)
+		if(game.ps2.health > 0)
+			drawRec(26, 38, (game.ps2.health * 2.0) - 1.0, 3, true)
+
+		drawSprite(sprMeterBack, 0, 8, 36)
+		for(local i = 0; i < 6; i++)
+			drawSprite(sprMeterBack, 1, 10 + (i * 2), 36)
+		drawSprite(sprMeterBack, 2, 22, 36)
+		setDrawColor(0xf81038ff)
+		if(game.ps2.berries > 0)
+			drawRec(10, 38, (game.ps2.berries) - 1.0, 3, true)
+
+		if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
+		drawSprite(sprMeterBack, 0, 24, 44)
+		for(local i = 0; i < game.ps2.maxEnergy; i++) {
+			drawSprite(sprMeterBack, 1, 26 + (i * 4), 44)
+			drawSprite(sprMeterBack, 1, 28 + (i * 4), 44)
+		}
+		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
+		setDrawColor(0x1080b0ff)
+		if(game.ps2.energy > 0)
+			drawRec(26, 46, (game.ps2.energy * 4.0) - 1.0, 3, true)
+
+		local elementFrame = 0
+		switch(game.ps2.weapon) {
+			case "normal":
+				elementFrame = 0
+				break
+			case "fire":
+				elementFrame = 1
+				break
+			case "ice":
+				elementFrame = 2
+				break
+			case "air":
+				elementFrame = 3
+				break
+			case "earth":
+				elementFrame = 4
+				break
+			case "water":
+				elementFrame = 5
+				break
+			case "shock":
+				elementFrame = 6
+				break
+			case "dark":
+				elementFrame = 7
+				break
+			case "light":
+				elementFrame = 8
+				break
+		}
+		drawSprite(sprElement, elementFrame, 8, 44)
+
+		if(game.ps2.stamina > game.ps2.maxStamina) game.ps2.stamina = game.ps2.maxStamina
+		drawSprite(sprMeterBack, 0, 24, 52)
+		for(local i = 0; i < game.ps2.maxStamina; i++){
+			drawSprite(sprMeterBack, 1, 26 + (i * 4), 52)
+			drawSprite(sprMeterBack, 1, 28 + (i * 4), 52)
+		}
+		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
+		setDrawColor(0x70a048ff)
+		if(game.ps2.stamina > 0)
+			drawRec(26, 54, (game.ps2.stamina * 4.0) - 1.0, 3, true)
+
 		//Draw boss health
 		if(gvBoss) {
 			local fullhearts = floor(game.bossHealth / 4)
@@ -661,6 +778,42 @@
 			case "coffee":
 				drawSprite(sprCoffee, 0, gvScreenW - 18, 17)
 				break
+		}
+
+		if(gvNumPlayers > 1) {
+			drawSprite(sprSubItem, 2, gvScreenW - 18, 42)
+			switch(game.ps2.subitem) {
+				case "fire":
+					drawSprite(sprFlowerFire, 0, gvScreenW - 18, 42)
+					break
+				case "ice":
+					drawSprite(sprFlowerIce, 0, gvScreenW - 18, 42)
+					break
+				case "air":
+					drawSprite(sprAirFeather, 0, gvScreenW - 18, 42)
+					break
+				case "earth":
+					drawSprite(sprEarthShell, 0, gvScreenW - 18, 42)
+					break
+				case "shock":
+					drawSprite(sprShockBulb, 0, gvScreenW - 18, 42)
+					break
+				case "water":
+					drawSprite(sprWaterLily, 0, gvScreenW - 18, 42)
+					break
+				case "muffinBlue":
+					drawSprite(sprMuffin, 0, gvScreenW - 18, 42)
+					break
+				case "muffinRed":
+					drawSprite(sprMuffin, 1, gvScreenW - 18, 42)
+					break
+				case "star":
+					drawSprite(sprStar, 0, gvScreenW - 18, 42)
+					break
+				case "coffee":
+					drawSprite(sprCoffee, 0, gvScreenW - 18, 41)
+					break
+			}
 		}
 
 		//Draw level IGT
@@ -854,6 +1007,16 @@
 				}
 				else {
 					c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
+				}
+				gvNumPlayers++
+			}
+
+			if(game.playerChar2 != "" && !gvPlayer2 && getroottable().rawin(game.playerChar2)) {
+				if(game.check == false) {
+					c = actor[newActor(getroottable()[game.playerChar2], i.x + 8, i.y - 16)]
+				}
+				else {
+					c = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
 				}
 				gvNumPlayers++
 			}

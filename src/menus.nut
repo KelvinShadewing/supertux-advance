@@ -193,6 +193,10 @@ const menuY = 40
 		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
 	},
 	{
+		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], game.playerChar) },
+		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 0; menu = meMain },
 		back = function() { menu = meMain }
@@ -285,6 +289,11 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["pause-menu"]["character"]},
 		func = function() { pickCharInitialize(); gvGameMode = pickChar }
+		desc = function() { return game.playerChar }
+	},
+	{
+		name = function() { return gvLangObj["pause-menu"]["character2"]},
+		func = function() { pickCharInitialize(2); gvGameMode = pickChar }
 		desc = function() { return game.playerChar }
 	},
 	{
@@ -442,11 +451,11 @@ const menuY = 40
 		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
 		func = function() { menu = meJoyBinds }
 	},
-	// {
-	// 	name = function() { return gvLangObj["options-menu"]["joystick2"] },
-	// 	desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
-	// 	func = function() { menu = meJoybinds2 }
-	// },
+	{
+		name = function() { return gvLangObj["options-menu"]["joystick2"] },
+		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
+		func = function() { menu = meJoybinds2 }
+	},
 	{
 		name = function() {
 			local val = gvLangObj["menu-commons"][config.showcursor ? "on" : "off"]
@@ -673,6 +682,77 @@ const menuY = 40
 	{
 		name = function() { return format(gvLangObj["controls-menu"]["cam-peek-y"], config.joy.yPeek.tostring()) },
 		func = function() { rebindJoyPeek(1) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meInput }
+		back = function() { menu = meInput }
+	}
+]
+
+::meJoyBinds2 <- [
+	{
+		name = function() { return format(gvLangObj["options-menu"]["joymode"], config.joymode) },
+		func = function() { 
+			local newMode = gvPadTypes.find(config.joymode)
+			if(newMode == null)
+				newMode = 0
+			else newMode++
+			newMode = wrap(newMode, 0, gvPadTypes.len() - 1)
+			config.joymode = gvPadTypes[newMode]
+		}
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["jump"], config.joy2.jump != -1 ? getConName("jump", false) : "") },
+		func = function() { rebindGamepad(4, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["shoot"], config.joy2.shoot != -1 ? getConName("shoot", false) : "") },
+		func = function() { rebindGamepad(5, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["spec1"], config.joy2.spec1 != -1 ? getConName("spec1", false) : "") },
+		func = function() { rebindGamepad(6, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["spec2"], config.joy2.spec2 != -1 ? getConName("spec2", false) : "") },
+		func = function() { rebindGamepad(7, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["pause"], config.joy2.shoot != -1 ? getConName("pause", false) : "") },
+		func = function() { rebindGamepad(8, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["item-swap"], config.joy2.swap != -1 ? getConName("swap", false) : "") },
+		func = function() { rebindGamepad(9, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["menu-accept"], config.joy2.accept != -1 ? getConName("accept", false) : "") },
+		func = function() { rebindGamepad(10, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["cam-left-peek"], config.joy2.leftPeek != -1 ? getConName("leftPeek", false) : "") },
+		func = function() { rebindGamepad(11, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["cam-right-peek"], config.joy2.rightPeek != -1 ? getConName("rightPeek", false) : "") },
+		func = function() { rebindGamepad(12, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["cam-down-peek"], config.joy2.downPeek != -1 ? getConName("downPeek", false) : "") },
+		func = function() { rebindGamepad(13, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["cam-up-peek"], config.joy2.upPeek != -1 ? getConName("upPeek", false) : "") },
+		func = function() { rebindGamepad(14, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["cam-peek-x"], config.joy2.xPeek.tostring()) },
+		func = function() { rebindJoyPeek(0, 1) }
+	},
+	{
+		name = function() { return format(gvLangObj["controls-menu"]["cam-peek-y"], config.joy2.yPeek.tostring()) },
+		func = function() { rebindJoyPeek(1, 1) }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },

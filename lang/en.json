@@ -18,8 +18,8 @@
 
 	"time-attack-menu" : {
 		"world" : "World: %s",
-		"player1" : "Player: %s",
-		"player2" : "Partner: %s",
+		"player1" : "Player 1: %s",
+		"player2" : "Player 2: %s",
 		"start-run" : "Begin Run"
 	},
 
@@ -199,8 +199,8 @@
 	"pause-menu" : {
 		"pause" : "PAUSE",
 		"continue" : "Continue",
-		"character" : "Change Player",
-		"character2" : "Change Partner",
+		"character" : "Change Player 1",
+		"character2" : "Change Player 2",
 		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
 		"quit-level" : "Quit Level",

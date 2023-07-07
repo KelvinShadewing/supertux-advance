@@ -44,15 +44,19 @@
 	local lx = 0
 	local ly = 0
 
-	if(gvPlayer && gvPlayer2 && !inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 240)) {
+	if(gvPlayer && gvPlayer2 && (!inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 240) || gvCamTarget != gvPlayer && gvCamTarget2 != gvPlayer2 && gvCamTarget != gvCamTarget2)) {
 		if(gvSplitScreen == false) {
-			if(gvPlayer.x > gvPlayer2.x) gvSwapScreen = true
-			else gvSwapScreen = false
+			if(gvPlayer.x > gvPlayer2.x)
+				gvSwapScreen = true
+			else
+				gvSwapScreen = false
 		}
 		gvSplitScreen = true
 	}
-	if(gvPlayer && gvPlayer2 && inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 160)) gvSplitScreen = false
-	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss) gvSplitScreen = false
+	if(gvPlayer && gvPlayer2 && inDistance2(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y, 160) && (gvCamTarget == gvPlayer && gvCamTarget2 == gvPlayer2 || gvCamTarget == gvCamTarget2))
+		gvSplitScreen = false
+	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss)
+		gvSplitScreen = false
 
 	if(gvPlayer) {
 		if(config.stickcam && config.stickactive) {
@@ -60,27 +64,25 @@
 			ly = ((joyAxis(config.joy.index, config.joy.yPeek) / js_max.tofloat()) * gvScreenH / 2.5)
 		}
 
-		if(getcon("leftPeek", "hold", false, 1)) lx = -(gvScreenW / 2.5)
-		if(getcon("rightPeek", "hold", false, 1)) lx = (gvScreenW / 2.5)
-		if(getcon("upPeek", "hold", false, 1)) ly = -(gvScreenH / 2.5)
-		if(getcon("downPeek", "hold", false, 1)) ly = (gvScreenH / 2.5)
+		if(getcon("leftPeek", "hold", false, 1))
+			lx = -(gvScreenW / 2.5)
+		if(getcon("rightPeek", "hold", false, 1))
+			lx = (gvScreenW / 2.5)
+		if(getcon("upPeek", "hold", false, 1))
+			ly = -(gvScreenH / 2.5)
+		if(getcon("downPeek", "hold", false, 1))
+			ly = (gvScreenH / 2.5)
 	}
 
 	if(gvCamTarget != null && gvCamTarget != false && (gvPlayer || gvPlayer2)) {
 		if(gvPlayer && gvPlayer2 && !gvSplitScreen) {
-			if(gvCamTarget == gvPlayer || gvCamTarget == gvPlayer2) {
-				if(debug && mouseDown(0)) {
-					px = (gvCamTarget.x) - (gvScreenW / 2) + lx
-					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
-				}
-				else {
-					px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
-					py = (((gvPlayer.y + gvPlayer2.y) / 2.0)) - (gvScreenH / 2) + ly
-				}
+			if(debug && mouseDown(0)) {
+				px = (gvCamTarget.x) - (gvScreenW / 2) + lx
+				py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 			}
 			else {
-				px = (gvCamTarget.x) - (gvScreenW / 2)
-				py = (gvCamTarget.y) - (gvScreenH / 2)
+				px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
+				py = (((gvPlayer.y + gvPlayer2.y) / 2.0)) - (gvScreenH / 2) + ly
 			}
 		}
 		else if(gvPlayer) {
@@ -217,8 +219,8 @@
 				local pty = (gvCamTarget.y) - (gvScreenH / 2)
 
 				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 4) {
-					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (gvScreenW / 2) + lx
-					else ptx = (gvPlayer.x + gvPlayer.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 2) + lx
+					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (gvScreenW / 4) + lx
+					else ptx = (gvPlayer.x + gvPlayer.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
@@ -289,12 +291,12 @@
 				local pty = (gvCamTarget2.y) - (gvScreenH / 2)
 
 				if(gvCamTarget2.rawin("w")) if(abs(gvCamTarget2.w) > pw / 4) {
-					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvCamTarget2.x - (gvScreenW / 4) + lx
-					else ptx = (gvCamTarget2.x * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
+					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer2.x - (gvScreenW / 4) + lx
+					else ptx = (gvPlayer2.x + gvPlayer2.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
 				}
 				if(gvCamTarget2.rawin("h")) if(abs(gvCamTarget2.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
-					else pty = (gvCamTarget2.y * 8) - (gvScreenH / 2) + ly
+					else pty = (gvPlayer2.y + gvPlayer2.vspeed * 8) - (gvScreenH / 2) + ly
 				}
 
 				px = ptx

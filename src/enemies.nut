@@ -84,6 +84,24 @@
 				}
 			}
 
+			if(gvPlayer2 && health > 0) {
+				if(hitTest(shape, gvPlayer2.shape) && !frozen) { //8 for player radius
+					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) hurtInvinc()
+					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming) {
+						if(!squish) {
+							if(getcon("jump", "hold", false, 1)) gvPlayer2.vspeed = -8.0
+							else gvPlayer2.vspeed = -4.0
+						}
+						getHurt(gvPlayer2, gvPlayer2.stompDamage, "normal", false, false, true)
+					}
+					else if(("anim" in gvPlayer2) && blinking == 0 && !sharpSide) {
+						if(gvPlayer2.inMelee) getHurt(gvPlayer2, 1, "normal", false, false, false)
+						else hurtPlayer(gvPlayer2)
+					}
+					else hurtPlayer(gvPlayer2)
+				}
+			}
+
 			if(blinking > 0) blinking -= blinkSpeed
 			if(blinking < 0) blinking = 0
 		}

@@ -111,13 +111,18 @@
 
 	setDrawTarget(gvLightScreen2)
 	setDrawColor(gvLight2)
-	drawRec(0, 0, gvScreen2W, gvScreen2H, true)
+	drawRec(0, 0, gvScreenW, gvScreenH, true)
 
 	setDrawTarget(prevTarget)
 }
 
-::drawAmbientLight <- function() {
-	if(config.light) drawImage(gvLightScreen, 0, 0)
+::drawAmbientLight <- function(light2 = false) {
+	if(!config.light)
+		return
+	if(light2)
+		drawImage(gvLightScreen2, 0, 0)
+	else
+		drawImage(gvLightScreen, 0, 0)
 }
 
 ::setLight <- function(color) {

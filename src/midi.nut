@@ -226,6 +226,7 @@
 		yprev = y
 		routine = ruNormal
 		damageMult = damageMultN
+		an = clone an
 	}
 
 	function physics() {

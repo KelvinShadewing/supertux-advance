@@ -84,6 +84,18 @@
 			stamina = 4
 			abilities = {}
 		}
+		ps2 = {
+			health = 0
+			weapon = "normal"
+			subitem = 0
+			canres = false
+			berries = 0
+			maxEnergy = 4
+			maxStamina = 4
+			energy = 4
+			stamina = 4
+			abilities = {}
+		}
 		state = {}
 	}
 }

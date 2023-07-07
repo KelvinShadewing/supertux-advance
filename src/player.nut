@@ -77,6 +77,11 @@
 			stats = game.ps
 			playerNum = 1
 		}
+		else if(gvPlayer && !gvPlayer2) {
+			gvPlayer2 = this
+			stats = game.ps2
+			playerNum = 2
+		}
 
 		stats.health = game.maxHealth
 
