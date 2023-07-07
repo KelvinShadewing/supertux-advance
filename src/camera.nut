@@ -196,14 +196,14 @@
 
 	if(gvCamTarget != null && gvCamTarget != false) {
 		if(gvPlayer) {
-			if( gvCamTarget == gvPlayer) {
+			if(gvCamTarget == gvPlayer) {
 				if(debug && mouseDown(0)) {
 					px = (gvCamTarget.x) - (gvScreenW / 4) + lx
 					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
 					if(config.lookAhead){
-						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 24) - (gvScreenW / 4) + lx
+						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 4) + lx
 						py = (gvPlayer.y + (gvPlayer.y - gvPlayer.yprev) * 8) - (gvScreenH / 2) + ly
 					}
 					else {
@@ -275,7 +275,7 @@
 				}
 				else {
 					if(config.lookAhead){
-						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 24) - (gvScreenW / 4) + lx
+						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 4) + lx
 						py = (gvPlayer2.y + (gvPlayer2.y - gvPlayer2.yprev) * 8) - (gvScreenH / 2) + ly
 					}
 					else {

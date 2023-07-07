@@ -244,7 +244,7 @@
 				if(getcon("up", "hold", false, target.playerNum) && held)
 					vspeed = -throwV
 
-				if(!getcon("down", "hold", false, target.playerNum)) hspeed = -throwH * (gvPlayer.x <=> x)
+				if(!getcon("down", "hold", false, target.playerNum)) hspeed = -throwH * (target.x <=> x)
 			}
 			held = false
 		}
@@ -320,8 +320,9 @@
 		base.run()
 
 		if(active) {
+			local target = findPlayer()
 			if(!moving) {
-				if(gvPlayer && x > gvPlayer.x) flip = true
+				if(target != null && target && x > target.x) flip = true
 				moving = true
 			}
 
@@ -366,8 +367,10 @@
 				if(frozen) {
 					//Create ice block
 					local canice = true
-					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
-					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(gvPlayer && hitTest(shape, gvPlayer.shape))
+						canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+						canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
@@ -1400,7 +1403,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		if(!gvPlayer) {
+		if(!gvPlayer && !gvPlayer2) {
 			die()
 			return
 		}
@@ -1441,7 +1444,7 @@
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 6, 0)
 		hspeed = 1.0
-		if(gvPlayer) if(x > gvPlayer.x) hspeed = -1.0
+		if(gvPlayer && x > gvPlayer.x) hspeed = -1.0
 	}
 
 	function physics() {}
@@ -1493,12 +1496,12 @@
 					}
 
 					//Swim harder if far from the player
-					if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
-						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
-						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
+					if(!inDistance2(x, y, target.x, target.y, 64)) {
+						if(x < target.x && hspeed < 2) hspeed += 0.02
+						if(x > target.x && hspeed > -2) hspeed -= 0.02
 
-						if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
-						if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
+						if(y < target.y && vspeed < 2) vspeed += 0.02
+						if(y > target.y && vspeed > -2) vspeed -= 0.02
 					}
 				}
 			}
@@ -1598,6 +1601,32 @@
 				if(gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 1))
 					gvPlayer.y++
 				gvPlayer.vspeed += 0.1
+			}
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
+			if(x > gvPlayer2.x) {
+				if(gvPlayer2.placeFree(gvPlayer2.x - 1, gvPlayer2.y))
+					gvPlayer2.x--
+				gvPlayer2.hspeed -= 0.1
+			}
+
+			if(x < gvPlayer2.x) {
+				if(gvPlayer2.placeFree(gvPlayer2.x + 1, gvPlayer2.y))
+					gvPlayer2.x++
+				gvPlayer2.hspeed += 0.1
+			}
+
+			if(y > gvPlayer2.y) {
+				if(gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y - 1))
+					gvPlayer2.y--
+				gvPlayer2.vspeed -= 0.1
+			}
+
+			if(y < gvPlayer2.y) {
+				if(gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 1))
+					gvPlayer2.y++
+				gvPlayer2.vspeed += 0.1
 			}
 		}
 
@@ -1743,9 +1772,15 @@
 		}
 		else {
 			//Create ice block
-			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			local canice = true
+
+			if(gvPlayer && icebox == -1 && hitTest(shape, gvPlayer.shape))
+				canice = false
+			if(gvPlayer2 && icebox == -1 && hitTest(shape, gvPlayer2.shape))
+				canice = false
+
+			if(canice)
 				if(health > 0) icebox = mapNewSolid(shape)
-			}
 
 
 		}
@@ -1781,6 +1816,10 @@
 				actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
 				actor[c].hspeed = (gvPlayer.hspeed / 16)
 			}
+			else if(gvPlayer2) {
+				actor[c].vspeed = -abs(gvPlayer2.hspeed * 1.1)
+				actor[c].hspeed = (gvPlayer2.hspeed / 16)
+			}
 			else actor[c].vspeed = -4.0
 			popSound(sndKick)
 
@@ -1796,8 +1835,8 @@
 	function hurtBlast() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprite
-		actor[c].vspeed = -abs(gvPlayer.hspeed * 1.1)
-		actor[c].hspeed = (gvPlayer.hspeed / 16)
+		actor[c].vspeed = -2
+		actor[c].hspeed = -hspeed
 		die()
 		popSound(sndKick, 0)
 		if(icebox != -1) {
@@ -1834,7 +1873,8 @@
 		if(dy < 0) dy++
 		base.run()
 
-		if(gvPlayer) if(abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting) {
+		if(gvPlayer && abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting
+		|| gvPlayer2 && abs(y - gvPlayer2.y) < 128 && y < gvPlayer2.y && abs(x - gvPlayer2.x) < 8 && !counting) {
 			counting = true
 			popSound(sndIcicle, 0)
 		}
@@ -1923,7 +1963,12 @@
 			y += vspeed
 		} else {
 			//Create ice block
-			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			local canice = true
+			if(gvPlayer && hitTest(shape, gvPlayer.shape))
+				canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+				canice = false
+			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
 			}
 		}
@@ -2048,8 +2093,10 @@
 			if(frozen) {
 				//Create ice block
 				local canice = true
-				if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
-				if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+				if(gvPlayer && hitTest(shape, gvPlayer.shape))
+					canice = false
+				if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+					canice = false
 				if(icebox == -1 && canice) {
 					if(health > 0) icebox = mapNewSolid(shape)
 				}
@@ -2222,8 +2269,10 @@
 				if(frozen) {
 					//Create ice block
 					local canice = true
-					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
-					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(gvPlayer && hitTest(shape, gvPlayer.shape))
+						canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+						canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
@@ -2534,11 +2583,11 @@
 
 		popSound(sndFizz, 0)
 		if(_stomp) {
-			if(getcon("jump", "hold")) gvPlayer.vspeed = -8
-			else gvPlayer.vspeed = -4
-			if(gvPlayer.anim == gvPlayer.anJumpT || gvPlayer.anim == gvPlayer.anFall) {
-				gvPlayer.anim = gvPlayer.anJumpU
-				gvPlayer.frame = gvPlayer.anJumpU[0]
+			if(getcon("jump", "hold")) _by.vspeed = -8
+			else _by.vspeed = -4
+			if(_by.anim == "jumpT" || _by.anim == "fall") {
+				_by.anim = "jumpU"
+				_by.frame = 0
 			}
 		}
 
@@ -3148,8 +3197,10 @@
 				if(frozen) {
 					//Create ice block
 					local canice = true
-					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
-					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(gvPlayer && hitTest(shape, gvPlayer.shape))
+						canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+						canice = false
 					if(icebox == -1 && canice) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
@@ -3374,8 +3425,10 @@
 		if(frozen) {
 			//Create ice block
 			local canice = true
-			if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
-			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+			if(gvPlayer && hitTest(shape, gvPlayer.shape))
+				canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+				canice = false
 			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
 			}
@@ -3648,7 +3701,9 @@
 		if(hurtTimer <= 0) {
 			routine = ruNormal
 			if(gvPlayer) {
-			hspeed = (x <=> gvPlayer.x).tofloat()
+				hspeed = (x <=> gvPlayer.x).tofloat()
+			} else if(gvPlayer2) {
+				hspeed = (x <=> gvPlayer2.x).tofloat()
 			} else hspeed = 1.0
 		}
 
@@ -4222,7 +4277,8 @@
 		}
 
 		//Detect the player underneath
-		if(gvPlayer && hitTest(gvPlayer.shape, scanShape) && gvPlayer.y > y && canFall) {
+		if(gvPlayer && hitTest(gvPlayer.shape, scanShape) && gvPlayer.y > y && canFall
+		|| gvPlayer2 && hitTest(gvPlayer2.shape, scanShape) && gvPlayer2.y > y && canFall) {
 			gravity = 0.25
 			vspeed = 1.0
 			canFall = false
@@ -4306,15 +4362,20 @@
 	}
 
 	function run() {
-		bladesOut = (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)).tointeger() * 4
-		if(gvPlayer) flip = (x > gvPlayer.x).tointeger()
+		local target = findPlayer()
+		if(target != null)
+			bladesOut = (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)).tointeger() * 4
+		else
+			bladesOut = 0
 
-		if(gvPlayer) {
+		if(target != null) {
+			flip = (x > target.x).tointeger()
+
 			//Accelerate towards player
-			if(x - 16 > gvPlayer.x && hspeed > -mspeed) {
+			if(x - 16 > target.x && hspeed > -mspeed) {
 				hspeed -= 0.2
 			}
-			if(x + 16 < gvPlayer.x && hspeed < mspeed) {
+			if(x + 16 < target.x && hspeed < mspeed) {
 				hspeed += 0.2
 			}
 
@@ -4327,7 +4388,12 @@
 			vspeed = 0
 
 			//Create ice block
-			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
+			local canice = true
+			if(gvPlayer && hitTest(shape, gvPlayer.shape))
+				canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+				canice = false
+			if(icebox == -1 && canice) {
 				if(health > 0) icebox = mapNewSolid(shape)
 			}
 		}
@@ -4838,6 +4904,8 @@
 
 						if(gvPlayer)
 							hspeed = 1.5 * (gvPlayer.x > x ? 1 : -1)
+						else if(gvPlayer2)
+							hspeed = 1.5 * (gvPlayer2.x > x ? 1 : -1)
 						else
 							hspeed = choose(1.5, -1.5)
 					}
@@ -4908,7 +4976,7 @@
 			anim = "hurt"
 			popSound(sndPigSqueal)
 		}
-		else if(_stomp && gvPlayer) {
+		else if(_stomp && gvPlayer && _by == gvPlayer) {
 			if(gvPlayer.anim == "stomp" || gvPlayer.anim == "statue"){
 				base.getHurt(_by, 2, _element, _cut, _blast, _stomp)
 				frame = 0.0
@@ -4917,6 +4985,21 @@
 			}
 			else {
 				gvPlayer.vspeed = -8.0
+				frame = 0.0
+				anim = "bounce"
+				popSound(sndPigSnort)
+				popSound(sndSpring)
+			}
+		}
+		else if(_stomp && gvPlayer2 && _by == gvPlayer2) {
+			if(gvPlayer2.anim == "stomp" || gvPlayer2.anim == "statue"){
+				base.getHurt(_by, 2, _element, _cut, _blast, _stomp)
+				frame = 0.0
+				anim = "hurt"
+				popSound(sndPigSqueal)
+			}
+			else {
+				gvPlayer2.vspeed = -8.0
 				frame = 0.0
 				anim = "bounce"
 				popSound(sndPigSnort)
@@ -5009,6 +5092,8 @@
 		if(!active)
 			return
 
+		local target = findPlayer()
+
 		if(hspeed > 0)
 			flip = 0
 		if(hspeed < 0)
@@ -5026,7 +5111,7 @@
 				frame += 0.1
 				walkTimer--
 
-				if(gvPlayer && mode == 1 && fabs(x - gvPlayer.x) < 16 && y < gvPlayer.y && fabs(y - gvPlayer.y) < 128) {
+				if(target && mode == 1 && fabs(x - target.x) < 16 && y < target.y && fabs(y - target.y) < 128) {
 					frame = 0.0
 					anim = "drop"
 				}
@@ -5034,14 +5119,14 @@
 
 			case "sleep":
 				gravity = 0.0
-				if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 64))
+				if(target && inDistance2(target.x, target.y, x, y, 64))
 					waking = true
 				if(waking)
 					frame += 0.2
 				if(frame > an[anim].len() - 2) {
 					vspeed = -3.0
-					if(gvPlayer)
-						accel = 0.1 * (gvPlayer.x <=> x)
+					if(target)
+						accel = 0.1 * (target.x <=> x)
 					frame = 0.0
 					anim = "jump"
 					mode = 0
@@ -5265,9 +5350,7 @@
 			if(y < 0)
 				vspeed += 0.5
 
-			local target = null
-			if(gvPlayer)
-				target = gvPlayer
+			local target = findPlayer()
 
 			if(target != null &&inDistance2(x, y, target.x, target.y, pursuitRange) && !inWater(x, y)) {
 				timer = 240
@@ -5405,6 +5488,20 @@
 				if(gvPlayer.placeFree(gvPlayer.x + 2, gvPlayer.y))
 					gvPlayer.x += 2
 				gvPlayer.hspeed += 0.2
+			}
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
+			if(x > gvPlayer2.x) {
+				if(gvPlayer2.placeFree(gvPlayer2.x - 2, gvPlayer2.y))
+					gvPlayer2.x -= 2
+				gvPlayer2.hspeed -= 0.2
+			}
+
+			if(x < gvPlayer2.x) {
+				if(gvPlayer2.placeFree(gvPlayer2.x + 2, gvPlayer2.y))
+					gvPlayer2.x += 2
+				gvPlayer2.hspeed += 0.2
 			}
 		}
 	}
