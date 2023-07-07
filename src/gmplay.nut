@@ -636,76 +636,78 @@
 			drawRec(26, 26, (game.ps.stamina * 4.0) - 1.0, 3, true)
 
 		//Player 2 stats
-		if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
-		drawSprite(sprMeterBack, 0, 24, 36)
-		for(local i = 0; i < game.maxHealth; i++)
-			drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
-		drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
-		setDrawColor(0xf83810ff)
-		if(game.ps2.health > 0)
-			drawRec(26, 38, (game.ps2.health * 2.0) - 1.0, 3, true)
+		if(gvNumPlayers > 1) {
+			if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
+			drawSprite(sprMeterBack, 0, 24, 36)
+			for(local i = 0; i < game.maxHealth; i++)
+				drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
+			drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
+			setDrawColor(0xf83810ff)
+			if(game.ps2.health > 0)
+				drawRec(26, 38, (game.ps2.health * 2.0) - 1.0, 3, true)
 
-		drawSprite(sprMeterBack, 0, 8, 36)
-		for(local i = 0; i < 6; i++)
-			drawSprite(sprMeterBack, 1, 10 + (i * 2), 36)
-		drawSprite(sprMeterBack, 2, 22, 36)
-		setDrawColor(0xf81038ff)
-		if(game.ps2.berries > 0)
-			drawRec(10, 38, (game.ps2.berries) - 1.0, 3, true)
+			drawSprite(sprMeterBack, 0, 8, 36)
+			for(local i = 0; i < 6; i++)
+				drawSprite(sprMeterBack, 1, 10 + (i * 2), 36)
+			drawSprite(sprMeterBack, 2, 22, 36)
+			setDrawColor(0xf81038ff)
+			if(game.ps2.berries > 0)
+				drawRec(10, 38, (game.ps2.berries) - 1.0, 3, true)
 
-		if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
-		drawSprite(sprMeterBack, 0, 24, 44)
-		for(local i = 0; i < game.ps2.maxEnergy; i++) {
-			drawSprite(sprMeterBack, 1, 26 + (i * 4), 44)
-			drawSprite(sprMeterBack, 1, 28 + (i * 4), 44)
+			if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
+			drawSprite(sprMeterBack, 0, 24, 44)
+			for(local i = 0; i < game.ps2.maxEnergy; i++) {
+				drawSprite(sprMeterBack, 1, 26 + (i * 4), 44)
+				drawSprite(sprMeterBack, 1, 28 + (i * 4), 44)
+			}
+			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
+			setDrawColor(0x1080b0ff)
+			if(game.ps2.energy > 0)
+				drawRec(26, 46, (game.ps2.energy * 4.0) - 1.0, 3, true)
+
+			local elementFrame = 0
+			switch(game.ps2.weapon) {
+				case "normal":
+					elementFrame = 0
+					break
+				case "fire":
+					elementFrame = 1
+					break
+				case "ice":
+					elementFrame = 2
+					break
+				case "air":
+					elementFrame = 3
+					break
+				case "earth":
+					elementFrame = 4
+					break
+				case "water":
+					elementFrame = 5
+					break
+				case "shock":
+					elementFrame = 6
+					break
+				case "dark":
+					elementFrame = 7
+					break
+				case "light":
+					elementFrame = 8
+					break
+			}
+			drawSprite(sprElement, elementFrame, 8, 44)
+
+			if(game.ps2.stamina > game.ps2.maxStamina) game.ps2.stamina = game.ps2.maxStamina
+			drawSprite(sprMeterBack, 0, 24, 52)
+			for(local i = 0; i < game.ps2.maxStamina; i++){
+				drawSprite(sprMeterBack, 1, 26 + (i * 4), 52)
+				drawSprite(sprMeterBack, 1, 28 + (i * 4), 52)
+			}
+			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
+			setDrawColor(0x70a048ff)
+			if(game.ps2.stamina > 0)
+				drawRec(26, 54, (game.ps2.stamina * 4.0) - 1.0, 3, true)
 		}
-		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
-		setDrawColor(0x1080b0ff)
-		if(game.ps2.energy > 0)
-			drawRec(26, 46, (game.ps2.energy * 4.0) - 1.0, 3, true)
-
-		local elementFrame = 0
-		switch(game.ps2.weapon) {
-			case "normal":
-				elementFrame = 0
-				break
-			case "fire":
-				elementFrame = 1
-				break
-			case "ice":
-				elementFrame = 2
-				break
-			case "air":
-				elementFrame = 3
-				break
-			case "earth":
-				elementFrame = 4
-				break
-			case "water":
-				elementFrame = 5
-				break
-			case "shock":
-				elementFrame = 6
-				break
-			case "dark":
-				elementFrame = 7
-				break
-			case "light":
-				elementFrame = 8
-				break
-		}
-		drawSprite(sprElement, elementFrame, 8, 44)
-
-		if(game.ps2.stamina > game.ps2.maxStamina) game.ps2.stamina = game.ps2.maxStamina
-		drawSprite(sprMeterBack, 0, 24, 52)
-		for(local i = 0; i < game.ps2.maxStamina; i++){
-			drawSprite(sprMeterBack, 1, 26 + (i * 4), 52)
-			drawSprite(sprMeterBack, 1, 28 + (i * 4), 52)
-		}
-		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
-		setDrawColor(0x70a048ff)
-		if(game.ps2.stamina > 0)
-			drawRec(26, 54, (game.ps2.stamina * 4.0) - 1.0, 3, true)
 
 		//Draw boss health
 		if(gvBoss) {
