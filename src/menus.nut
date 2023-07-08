@@ -193,7 +193,7 @@ const menuY = 40
 		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
 	},
 	{
-		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], game.playerChar) },
+		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], (game.playerChar2 != 0 && game.playerChar2 != "" ? game.playerChar2 : gvLangObj["menu-commons"]["noone"])) },
 		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
 	},
 	{

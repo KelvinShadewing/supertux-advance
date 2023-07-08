@@ -1027,7 +1027,7 @@
 			camy = c.y - (gvScreenH / 2)
 			if(gvPlayer) gvCamTarget = gvPlayer
 
-			if(config.useBeam)
+			if(config.useBeam && gvNumPlayers == 1)
 				newActor(BeamBug, i.x + 8, i.y - 16)
 			break
 
