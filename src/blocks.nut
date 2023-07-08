@@ -91,6 +91,73 @@
 			}
 		}
 
+		if(gvPlayer2) {
+			if(v == 0) {
+				vspeed = 0
+				if(coins <= 1) {
+					if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
+						gvPlayer2.vspeed = 0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
+					}
+
+					if("anim" in gvPlayer2) if(fabs(gvPlayer2.hspeed) >= 4.5 && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+						gvPlayer2.vspeed = 0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
+					}
+
+					if("anim" in gvPlayer2) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
+						gvPlayer2.vspeed = -2.0
+						deleteActor(id)
+						newActor(WoodChunks, x, y)
+						popSound(sndBump, 0)
+						tileSetSolid(x, y, oldsolid)
+						if(coins > 0) newActor(CoinEffect, x, y - 16)
+						foreach(k, i in gvYetFoundItems) if(i == id)
+							gvFoundItems[k] <- typeof this
+					}
+				}
+				else {
+					if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape)) {
+						gvPlayer2.vspeed = 0
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						popSound(sndBump, 0)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+
+					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						popSound(sndBump, 0)
+						fireWeapon(BoxHit, x, y - 8, 1, id)
+					}
+
+					if("anim" in gvPlayer2) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
+						vspeed = -2
+						coins--
+						newActor(CoinEffect, x, y - 16)
+						popSound(sndBump, 0)
+					}
+				}
+			}
+		}
+
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
 			if(((("altShape" in i && hitTest(shape, i.altShape)) || (!("altShape" in i) && hitTest(shape, i.shape)))) && vspeed == 0) {
 				if(i.blast && !i.box) {
@@ -249,6 +316,35 @@
 
 			if("anim" in gvPlayer) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == "stomp") {
 				gvPlayer.vspeed = -2.0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
+				gvPlayer2.vspeed = 0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+
+			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+				gvPlayer2.vspeed = 0
+				tileSetSolid(x, y, oldsolid)
+				deleteActor(id)
+				newActor(IceChunks, x, y)
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
+
+			if("anim" in gvPlayer2) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
+				gvPlayer2.vspeed = -2.0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
 				newActor(IceChunks, x, y)
@@ -521,6 +617,14 @@
 
 		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 			gvPlayer.vspeed = 0
+			vspeed = -1
+			popSound(sndBump, 0)
+			text = textLineLen(formatInfo(arr), gvTextW)
+			gvInfoBox = text
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
+			gvPlayer2.vspeed = 0
 			vspeed = -1
 			popSound(sndBump, 0)
 			text = textLineLen(formatInfo(arr), gvTextW)

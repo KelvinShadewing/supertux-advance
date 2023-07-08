@@ -783,7 +783,7 @@
 		}
 
 		if(gvNumPlayers > 1) {
-			drawSprite(sprSubItem, 2, gvScreenW - 18, 42)
+			drawSprite(sprSubItem, 1, gvScreenW - 18, 42)
 			switch(game.ps2.subitem) {
 				case "fire":
 					drawSprite(sprFlowerFire, 0, gvScreenW - 18, 42)
