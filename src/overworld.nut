@@ -239,37 +239,11 @@
 			}
 
 			local blockx = gvScreenW - 21
-			if(game.colorswitch[7]) {
-				drawSprite(sprColorBlock, 14 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[6]) {
-				drawSprite(sprColorBlock, 13 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[5]) {
-				drawSprite(sprColorBlock, 11 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[4]) {
-				drawSprite(sprColorBlock, 9 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[3]) {
-				drawSprite(sprColorBlock, 7 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[2]) {
-				drawSprite(sprColorBlock, 5 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[1]) {
-				drawSprite(sprColorBlock, 3 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
-			}
-			if(game.colorswitch[0]) {
-				drawSprite(sprColorBlock, 1 + int(game.turnOffBlocks), blockx, gvScreenH - 21)
-				blockx -= 16
+			for(local i = 7; i >= 0; i--) {
+				if(game.colorswitch[i]) {
+					drawSprite(sprColorBlock, ((i * 2) + 1) + int(game.turnOffBlocks), blockx, gvScreenH - 21)
+					blockx -= 16
+				}
 			}
 		}
 		
