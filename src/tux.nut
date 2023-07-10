@@ -612,7 +612,7 @@
 				}
 
 				//Going into slide
-				if((((!freeDown2 || onPlatform()) && getcon("down", "hold", true, playerNum)) || (getcon("shoot", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crawl") {
+				if((((!freeDown2 || onPlatform()) && getcon("down", "hold", true, playerNum))) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crawl") {
 					if(placeFree(x + 2, y + 1) && !onPlatform() || hspeed >= 1.5) {
 						anim = "dive"
 						frame = 0.0
@@ -737,7 +737,7 @@
 						if(anim == "crawl") c.y += 8
 					}
 					break
-
+	
 				case "ice":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
 						local fx = 6
@@ -769,18 +769,9 @@
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}
 					break
-
-				case "earth":
-					if(getcon("shoot", "press", true, playerNum) && (anim != "hurt")) {
-						anim = "dive"
-						frame = 0.0
-						playSound(sndSlide, 0)
-						if(flip == 0 && hspeed < 2) hspeed = 2
-						if(flip == 1 && hspeed > -2) hspeed = -2
-					}
-					break
 			}
 
+			
 			if(canMove) switch(stats.subitem) {
 				case "fire":
 					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
@@ -984,6 +975,7 @@
 					break
 			}
 
+			print(stats.subitem)
 			if(canMove) switch(stats.subitem) {
 				case "fire":
 					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
