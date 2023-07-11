@@ -454,7 +454,7 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["options-menu"]["joystick2"] },
 		desc = function() { return gvLangObj["options-menu-desc"]["joystick"] },
-		func = function() { menu = meJoybinds2 }
+		func = function() { menu = meJoyBinds2 }
 	},
 	{
 		name = function() {

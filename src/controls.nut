@@ -634,68 +634,134 @@
 		case "jump":
 			if(getkey)
 				output += gvLangObj["key"][config.key.jump.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.jump.tostring()]
+			if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.jump.tostring() in map) {
+					output += map[config.joy.jump.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "shoot":
 			if(getkey)
 				output += gvLangObj["key"][config.key.shoot.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.shoot.tostring()]
+			if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.shoot.tostring() in map) {
+					output += map[config.joy.shoot.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "spec1":
 			if(getkey)
 				output += gvLangObj["key"][config.key.spec1.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.spec1.tostring()]
+			if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.spec1.tostring() in map) {
+					output += map[config.joy.spec1.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "spec2":
 			if(getkey)
 				output += gvLangObj["key"][config.key.spec2.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.spec2.tostring()]
+			if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.spec2.tostring() in map) {
+					output += map[config.joy.spec2.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "swap":
 			if(getkey)
 				output += gvLangObj["key"][config.key.swap.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.swap.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.swap.tostring() in map) {
+					output += map[config.joy.swap.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "pause":
 			if(getkey)
 				output += gvLangObj["key"][config.key.pause.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.pause.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.pause.tostring() in map) {
+					output += map[config.joy.pause.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "accept":
 			if(getkey)
 				output += gvLangObj["key"][config.key.accept.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.accept.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.accept.tostring() in map) {
+					output += map[config.joy.accept.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "leftPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.leftPeek.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.leftPeek.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.leftPeek.tostring() in map) {
+					output += map[config.joy.leftPeek.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "rightPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.rightPeek.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.rightPeek.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.rightPeek.tostring() in map) {
+					output += map[config.joy.rightPeek.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "downPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.downPeek.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.downPeek.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.downPeek.tostring() in map) {
+					output += map[config.joy.downPeek.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 		case "upPeek":
 			if(getkey)
 				output += gvLangObj["key"][config.key.upPeek.tostring()]
-			if(getjoy)
-				output += gvLangObj["joy"][config["joymode"].tolower()][config.joy.upPeek.tostring()]
+						if(getjoy) {
+				local map = gvLangObj["joy"][config["joymode"].tolower()]
+				if(config.joy.upPeek.tostring() in map) {
+					output += map[config.joy.upPeek.tostring()]
+				} else {
+					output += "???"
+				}
+			}
 			break
 	}
 
