@@ -1429,10 +1429,11 @@ gvCharacters.Kiki2 <- {
 					gvIGT = 0
 				}
 			}
-			if(game.check == false) {
+
+			if(game.check == false || game.difficulty > 0) {
 				if(playerNum == 1) game.ps.weapon = "normal"
+				if(playerNum == 2) game.ps2.weapon = "normal"
 			}
-			
 		}
 	}
 
