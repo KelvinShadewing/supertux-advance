@@ -22,11 +22,12 @@
 
 		{"type":"spacing","height":1},
 		{"type":"header","trText":"programmers"},
-		{"type":"normal","text":"Tulip"},
 		{"type":"normal","text":"dtsudo"},
 		{"type":"normal","text":"FrostC"},
+		{"type":"normal","text":"IoIxD"},
 		{"type":"normal","text":"mrkubax10"},
 		{"type":"normal","text":"Kelvin Shadewing"},
+		{"type":"normal","text":"Tulip"},
 		{"type":"normal","text":"Vankata453"},
 
 		{"type":"spacing","height":1},
@@ -96,6 +97,7 @@
 		{"type":"normal","text":"TAD"},
 		{"type":"normal","text":"Ted Kerr"},
 		{"type":"normal","text":"Trex0n"},
+		{"type":"normal","text":"Wansti"},
 		{"type":"normal","text":"wipics"},
 		{"type":"normal","text":"ZhayTee"},
 

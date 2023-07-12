@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.2.18"
+::gvVersion <- "0.2.20 (UNSTABLE)"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -44,6 +44,7 @@
 			false,
 			false
 		] //Color blocks activated by respective switches
+		turnOffBlocks = false,
 		characters = { //List of unlocked characters
 			Tux = true
 			Penny = true
@@ -72,6 +73,18 @@
 		path = "res/map/"
 		bossHealth = 0
 		ps = {
+			health = 0
+			weapon = "normal"
+			subitem = 0
+			canres = false
+			berries = 0
+			maxEnergy = 4
+			maxStamina = 4
+			energy = 4
+			stamina = 4
+			abilities = {}
+		}
+		ps2 = {
 			health = 0
 			weapon = "normal"
 			subitem = 0

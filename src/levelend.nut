@@ -76,14 +76,16 @@
 		levelEndRunner = newActor(LevelEnder, 0, 0)
 
 		if(ghostRecordNew.len() < ghostRecordOld.len() || ghostRecordOld.len() <= 1) {
-			local timeString = ""
-			for(local i = 0; i < ghostRecordNew.len(); i++)
-				timeString += ghostRecordNew[i][0] + "," + ghostRecordNew[i][1] + "\n"
-			
-			if(game.path == "res/map/")
-				fileWrite("ghosts/" + ghostRecordName, timeString)
-			else
-				fileWrite("ghosts/" + game.path + ghostRecordName, timeString)
+			if(gvNumPlayers == 1) { //Second method for storing two-player runs is in the works
+				local timeString = ""
+				for(local i = 0; i < ghostRecordNew.len(); i++)
+					timeString += ghostRecordNew[i][0] + "," + ghostRecordNew[i][1] + "\n"
+				
+				if(game.path == "res/map/")
+					fileWrite("ghosts/" + ghostRecordName, timeString)
+				else
+					fileWrite("ghosts/" + game.path + ghostRecordName, timeString)
+			}
 		}
 
 		saveGame()

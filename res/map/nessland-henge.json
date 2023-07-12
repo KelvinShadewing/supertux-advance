@@ -1828,46 +1828,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":43,
-                 "name":"MoPlat,1,4",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":240,
-                         "y":0
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":840,
-                 "y":4392
-                }, 
-                {
-                 "height":0,
-                 "id":44,
-                 "name":"MoPlat,1,3",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":-304,
-                         "y":0
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1208,
-                 "y":4344
-                }, 
-                {
-                 "height":0,
                  "id":45,
                  "name":"MoPlat,1,2",
                  "polyline":[
@@ -1925,6 +1885,46 @@
                  "width":16,
                  "x":272,
                  "y":4768
+                }, 
+                {
+                 "height":0,
+                 "id":48,
+                 "name":"MoPlat,1,3",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":304,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":904,
+                 "y":4344
+                }, 
+                {
+                 "height":0,
+                 "id":49,
+                 "name":"MoPlat,1,4",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-240,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1080,
+                 "y":4392
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1933,7 +1933,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":48,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "properties":[
         {

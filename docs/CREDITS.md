@@ -12,6 +12,8 @@
 
 [dtsudo](https://github.com/dtsudo) - Bug fixes
 
+[IoIxD](https://github.com/IoIxD) - Overworld block switching
+
 ## Graphics
 
 [Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics, elemental explosions
@@ -127,6 +129,8 @@ Lukas Nystrand - Chippdisko
 [bart](https://opengameart.org/users/bart) - Airship Song
 
 [Spring](https://opengameart.org/users/spring-spring) - Forest Top
+
+[Wansti]() - Forest2\*, Forest3\*
 
 ## Level Contributors
 

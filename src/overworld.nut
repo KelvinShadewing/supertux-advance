@@ -232,7 +232,23 @@
 
 		if(hspeed == 0 && vspeed == 0) drawSpriteZ(2, getroottable()[gvCharacters[game.playerChar]["over"]], 0, x - camx, y - camy)
 		else drawSpriteZ(2, getroottable()[gvCharacters[game.playerChar]["over"]], getFrames() / 8, x - camx, y - camy)
+		if (game.colorswitch.find(true) != null) {
+			if(getcon("spec1", "press")) {
+				game.turnOffBlocks = !game.turnOffBlocks
+				playSound(sndMenuSelect, 0)
+			}
 
+			local blockx = gvScreenW - 21
+			local blocky = gvScreenH - 21
+			for(local i = 7; i >= 0; i--) {
+				if(game.colorswitch[i]) {
+					drawSprite(sprColorBlock, ((i * 2) + 1) + int(game.turnOffBlocks), blockx, blocky)
+					blockx -= 4
+					blocky -= 4
+				}
+			}
+		}
+		
 		gvLevel = level
 	}
 

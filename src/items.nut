@@ -53,7 +53,8 @@
 	function run() {
 		base.run()
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
+		if((gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16))
 		&& timer < 290) {
 			deleteActor(id)
 			newActor(Spark, x, y)
@@ -172,6 +173,12 @@
 			stopSound(sndGulp)
 			playSound(sndGulp, 0)
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16) && game.ps2.berries < 12) {
+			deleteActor(id)
+			game.ps2.berries++
+			stopSound(sndGulp)
+			playSound(sndGulp, 0)
+		}
 
 		if(doesFade) {
 			timer--
@@ -235,7 +242,7 @@
 		}
 	}
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "RedHerring" }
 }
 
 ::FlowerFire <- class extends Actor{
@@ -247,7 +254,7 @@
 
 	function run()
 	{
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
 			if(game.ps.weapon == "normal") {
 				game.ps.weapon = "fire"
@@ -259,11 +266,23 @@
 			popSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "fire"
+			}
+			else {
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.weapon = "fire"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
+		}
 	}
 
 	function draw() { drawSprite(sprFlowerFire, getFrames() / 16, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "FlowerFire" }
 }
 
 ::FlowerIce <- class extends Actor{
@@ -275,7 +294,7 @@
 
 	function run()
 	{
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
 			if(game.ps.weapon == "normal") {
 				game.ps.weapon = "ice"
@@ -287,11 +306,23 @@
 			popSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "ice"
+			}
+			else {
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.weapon = "ice"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
+		}
 	}
 
 	function draw() { drawSprite(sprFlowerIce, getFrames() / 16, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "FlowerIce" }
 }
 
 ::MuffinBlue <- class extends PhysAct {
@@ -357,11 +388,22 @@
 			deleteActor(id)
 			popSound(sndHeal, 0)
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+			if(game.ps2.health < game.maxHealth) {
+				game.ps2.health += 4
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+				}
+			}
+			else if(game.ps2.subitem != "muffinRed" && (game.ps2.subitem == 0 || willwrite)) game.ps2.subitem = "muffinBlue"
+			deleteActor(id)
+			popSound(sndHeal, 0)
+		}
 	}
 
 	function draw() { drawSprite(sprMuffin, 0, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "MuffinBlue" }
 }
 
 ::MuffinRed <- class extends PhysAct {
@@ -424,11 +466,22 @@
 			deleteActor(id)
 			popSound(sndHeal, 0)
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+			if(game.ps2.health < game.maxHealth) {
+				game.ps2.health += 16
+				for(local i = 0; i < 4; i++) {
+					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+				}
+			}
+			else game.ps2.subitem = "muffinRed"
+			deleteActor(id)
+			popSound(sndHeal, 0)
+		}
 	}
 
 	function draw() { drawSprite(sprMuffin, 1, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "MuffinRed" }
 }
 
 ::MuffinEvil <- class extends PhysAct {
@@ -477,18 +530,26 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
-			gvPlayer.hurt = 1
+			gvPlayer.hurt = 4
+			deleteActor(id)
+		}
+
+		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 14)) {
+			if(gvPlayer2.blinking > 0) return
+			if(gvPlayer2.x < x) gvPlayer2.hspeed = -1.0
+			else gvPlayer2.hspeed = 1.0
+			gvPlayer2.hurt = 4
 			deleteActor(id)
 		}
 	}
 
 	function draw() {drawSprite(sprMuffin, 2, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "MuffinEvil" }
 }
 
 ::OneDown <- class extends Actor{
@@ -507,18 +568,18 @@
 		}
 		frame += 0.2
 		drawSprite(spr1down, frame, x - camx, y - camy)
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			gvPlayer.hurt = 16
 		}
 
-		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
 			deleteActor(id)
 			gvPlayer2.hurt = 16
 		}
 	}
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "OneDown" }
 }
 
 ::Darknyan <- class extends PhysAct {
@@ -528,8 +589,9 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		if(gvPlayer) if(gvPlayer.x > x) hspeed = -2
-		else hspeed = 2
+		if(gvPlayer && gvPlayer.x > x) hspeed = 2
+		else if(gvPlayer2 && gvPlayer2.x > x) hspeed = 2
+		else hspeed = -2
 
 		shape = Rec(x, y, 6, 6, 0)
 	}
@@ -556,7 +618,7 @@
 
 	function draw() { drawSprite(sprDarkStar, getFrames() / 10, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Darknyan" }
 }
 
 ::Starnyan <- class extends PhysAct {
@@ -603,7 +665,7 @@
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
 	}
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "Starnyan" }
 }
 
 ::AirFeather <- class extends PhysAct {
@@ -633,7 +695,7 @@
 		y += vspeed
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)){
+		if(gvPlayer && hitTest(shape, gvPlayer.shape)){
 			popSound(sndHeal, 0)
 			if(game.ps.weapon == "normal") {
 				game.ps.weapon = "air"
@@ -645,16 +707,29 @@
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 			deleteActor(id)
 		}
+		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)){
+			popSound(sndHeal, 0)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "air"
+			}
+			else {
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.weapon = "air"
+			}
+			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
+			deleteActor(id)
+		}
 	}
 
 	function draw() { drawSprite(sprAirFeather, frame, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "AirFeather" }
 }
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16) && game.ps.weapon == "air") gvPlayer.stats.stamina++
+		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16) && game.ps.weapon == "air") game.ps.stamina++
+		if(gvPlayer2 && inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 16) && game.ps2.weapon == "air") game.ps2.stamina++
 	}
 
 	function draw() {
@@ -695,6 +770,11 @@
 			playSound(snd1up, 0)
 			deleteActor(id)
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) && !game.ps2.canres) {
+			game.ps2.canres = true
+			playSound(snd1up, 0)
+			deleteActor(id)
+		}
 	}
 
 	function draw() {
@@ -702,7 +782,7 @@
 		else drawSprite(sprMysticDoll, 0, x - camx, y - camy)
 	}
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "OneUp" }
 }
 
 ::MuffinBomb <- class extends PhysAct {
@@ -769,7 +849,7 @@
 
 	function draw() { drawSprite(sprMuffin, 3, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "MuffinBomb" }
 }
 
 ::EarthShell <- class extends Actor{
@@ -781,7 +861,7 @@
 
 	function run()
 	{
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id)
 			if(game.ps.weapon == "normal") {
 				game.ps.weapon = "earth"
@@ -793,11 +873,23 @@
 			popSound(sndHeal, 0)
 			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
 		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "earth"
+			}
+			else {
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.weapon = "earth"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
+		}
 	}
 
 	function draw() { drawSprite(sprEarthShell, getFrames() / 16, x - camx, y - camy) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "EarthShell" }
 }
 
 ::SpecialBall <- class extends Actor {
@@ -811,7 +903,8 @@
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
 			game.secretOrbs[num] = true
 			deleteActor(id)
 			endGoal()
@@ -820,7 +913,7 @@
 
 	function draw() { drawSprite(sprSpecialBall, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, (game.secretOrbs[num] ? 0.5 : 1)) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "SpecialBall" }
 }
 
 ::CoinRing <- class extends Actor {
@@ -932,7 +1025,7 @@
 		}
 	}
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "MagicKey" }
 }
 
 ::CoffeeCup <- class extends Actor{
@@ -941,15 +1034,21 @@
 	}
 
 	function run() {
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
 			deleteActor(id)
 			if(game.ps.subitem != "coffee") game.ps.subitem = "coffee"
 			else gvPlayer.zoomies += 60 * 16
+			popSound(sndGulp, 0)
+		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+			deleteActor(id)
+			if(game.ps2.subitem != "coffee") game.ps2.subitem = "coffee"
+			else gvPlayer2.zoomies += 60 * 16
 			popSound(sndGulp, 0)
 		}
 	}
 
 	function draw() { drawSprite(sprCoffee, getFrames() / 8, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger()) }
 
-	function _typeof() { return "Item" }
+	function _typeof() { return "CoffeeCup" }
 }

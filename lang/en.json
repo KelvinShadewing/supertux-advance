@@ -18,8 +18,8 @@
 
 	"time-attack-menu" : {
 		"world" : "World: %s",
-		"player1" : "Player: %s",
-		"player2" : "Partner: %s",
+		"player1" : "Player 1: %s",
+		"player2" : "Player 2: %s",
 		"start-run" : "Begin Run"
 	},
 
@@ -199,8 +199,8 @@
 	"pause-menu" : {
 		"pause" : "PAUSE",
 		"continue" : "Continue",
-		"character" : "Change Player",
-		"character2" : "Change Partner",
+		"character" : "Change Player 1",
+		"character2" : "Change Player 2",
 		"restart" : "Restart Level",
 		"quit-game" : "Quit Game",
 		"quit-level" : "Quit Level",
@@ -274,7 +274,8 @@
 		"carry-enemies" : 
 		["Remember, you can carry some stunned enemies by holding %s or %s. Hold %s while letting them go to throw them in the air, and hold %s to drop them straight down.", "getConName(\"shoot\")", "getConName(\"spec1\")", "getConName(\"up\")", "getConName(\"down\")"],
 		"switch-player" :
-		"You can change your character from the overworld in the pause menu."
+		"You can change your character from the overworld in the pause menu.",
+		"switch-explanation": ["Hitting the switch in this block will cause various extra blocks to show up throughout the levels, depending on the color of the switch you hit! You can press %s before entering a level to turn them on or off.", "getConName(\"spec1\")"]
 	},
 
 	"devcom" : {
