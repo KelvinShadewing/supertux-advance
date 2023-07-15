@@ -36,6 +36,8 @@
 	sprite = null
 	chargeTimer = 0.0
 	chargePoof = 0.0
+	walkAngle = 0.0
+	dirAngle = 0.0
 	
 
 	an = {
@@ -258,12 +260,12 @@
 		//Rolling
 		slippery = (anim == "ball" || onIce())
 		if(slippery) {
-			if((!placeFree(x, y + 8) || !placeFree(x - hspeed, y + 8)) && (fabs(hspeed) < 16)) {
-				if(placeFree(x + 4, y + 1) && !onPlatform(hspeed)) {
-					hspeed += 0.1
+			if((!placeFree(x, y + 8) || !placeFree(x - hspeed * 2, y + 8)) && (fabs(hspeed) < 16)) {
+				if(placeFree(x + max(4, hspeed), y + 1) && !onPlatform(hspeed)) {
+					hspeed += 0.2
 				}
-				if(placeFree(x - 4, y + 1) && !onPlatform(hspeed)) {
-					hspeed -= 0.1
+				if(placeFree(x + min(-4, hspeed), y + 1) && !onPlatform(hspeed)) {
+					hspeed -= 0.2
 				}
 			}
 		}
@@ -290,6 +292,17 @@
 			gravity = 0.12
 		else
 			gravity = 0.25
+
+		if(resTime > 0) {
+			if(vspeed > 0)
+				gravity = -0.05
+			if(vspeed < 0)
+				gravity = 0.05
+			if(fabs(vspeed) < 0.1) {
+				vspeed = 0.0
+				gravity = 0.0
+			}
+		}
 
 		shape.setPos(x, y)
 		xprev = x
@@ -382,6 +395,28 @@
 			if(hspeed < 0 && !getcon("left", "hold", true, playerNum) && anim != "ball")
 				hspeed += friction / 3.0
 		}
+
+		//Rotation
+		if((fabs(xprev - x) > 1) && anim == "walk") {
+			if((yprev - y) / (xprev - x) < -0.25)
+				dirAngle = -1.0
+			if((yprev - y) / (xprev - x) > 0.25)
+				dirAngle = 1.0
+
+			if(xprev > x)
+				dirAngle *= abs(pointAngle(x, y, xprev, yprev))
+			if(xprev < x)
+				dirAngle *= abs(pointAngle(xprev, yprev, x, y))
+
+			if(dirAngle > 45)
+				dirAngle = 45
+			if(dirAngle < -45)
+				dirAngle = -45
+		}
+		else
+			dirAngle /= 2.0
+
+		walkAngle = (dirAngle + walkAngle) / 2.0
 	}
 
 	function animation() {
@@ -500,7 +535,10 @@
 					if(getcon("up", "hold", true, playerNum)) w = 2.0
 					if(flip == 0) hspeed = w
 					else hspeed = -w
-					anim = "jumpR"
+					if(holding)
+						anim = "jumpU"
+					else
+						anim = "jumpR"
 					frame = 0.0
 				}
 
@@ -601,7 +639,10 @@
 		if(anim in an && an[anim] != null && anim != "hurt")
 			frame = wrap(abs(frame), 0, an[anim].len() - 1)
 
-		if(wasInWater && !nowInWater || nowInWater && !wasInWater) newActor(Splash, x, y)
+		if(wasInWater && !nowInWater || nowInWater && !wasInWater)
+			newActor(Splash, x, y)
+		if(!wasInWater && nowInWater)
+			vspeed /= 8.0
 	}
 
 	function ruNormal() {
@@ -673,6 +714,14 @@
 				else hspeed -= accel
 			}
 
+			if(resTime) {
+				if(getcon("up", "hold", true, playerNum) && vspeed > -2)
+					vspeed -= 0.2
+				if(getcon("down", "hold", true, playerNum) && vspeed < 2)
+					vspeed += 0.2
+				anim = "jumpR"
+			}
+
 			//Change run animation speed
 			if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
 				if(hspeed >= 2) rspeed += accel / 2.0
@@ -737,17 +786,23 @@
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					if(anim == "stand" || anim == "walk") anim = "jumpT"
 				}
-				else if(canJump > 0 || anim == "ledge" || anim == "monkey") {
+				else if(canJump > 0 || nowInWater) {
 					jumpBuffer = 0
-					if(anim == "climb") vspeed = -3
-					vspeed = -6.4
+					if(anim == "climb" || nowInWater)
+						vspeed = -3
+					else
+						vspeed = -6.4
 					didJump = true
 					canJump = 0
+					animOffset = 0.0
 					if(anim != "hurt") {
-						anim = "jumpR"
+						if(holding)
+							anim = "jumpU"
+						else
+							anim = "jumpR"
 						frame = 0.0
 					}
-					if(!freeDown2 || freeRight && freeLeft) popSound(sndSurgeJump, 0)
+					if(!freeDown2 || (freeRight && freeLeft && !nowInWater)) popSound(sndSurgeJump, 0)
 				}
 				else if(freeDown && anim != "climb" && anim != "ledge" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40 && !didJump) {
 					flip = 0
@@ -766,7 +821,7 @@
 			}
 
 			//Wall slide
-			if((anim == "fall" || anim == "ledge") && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
+			if((anim == "fall" || anim == "jumpR" && vspeed > 0) && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 					if(vspeed > 0.5) vspeed = 0.5
 					if(getFrames() / 4 % 4 == 0) newActor(PoofTiny, x - 4, y + 12)
@@ -791,7 +846,7 @@
 				vspeed /= 2.5
 			}
 
-			if(getcon("down", "hold", true, playerNum) && anim != "hurt" && !freeDown && fabs(hspeed) > 1 && anim != "ball") {
+			if(getcon("down", "hold", true, playerNum) && anim != "hurt" && !placeFree(x - hspeed, y + 2) && fabs(hspeed) > 1 && anim != "ball") {
 				anim = "ball"
 				frame = 0.0
 				popSound(sndSurgeRoll)
@@ -873,9 +928,9 @@
 			yoff = 8
 
 		if(blinking == 0 || anim == "hurt")
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy + yoff, 0, flip, 1, 1, 1)
+			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy + yoff, walkAngle, flip, 1, 1, 1)
 		else
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy + yoff, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy + yoff, walkAngle, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 
 		//Transformation flash
 		if(tftime != -1) {

@@ -1029,6 +1029,7 @@
 					canJump = 0
 					if(anim == "plantMine") shooting = 0
 					if(anim != "hurt") {
+						animOffset = 0.0
 						if(anim != "morphIn") anim = "jump"
 						frame = 0.0
 					}
