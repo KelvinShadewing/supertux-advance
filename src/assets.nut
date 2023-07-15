@@ -554,6 +554,8 @@
 ::sprCrystalBullet <- newSprite("res/gfx/crystal-bullet.png", 16, 7, 0, 0, 8, 5)
 ::sprShieldFire <- newSprite("res/gfx/shield-fire.png", 32, 32, 0, 0, 16, 16)
 ::defShieldFire <- sprShieldFire
+::sprShieldIce <- newSprite("res/gfx/shield-ice.png", 32, 32, 0, 0, 16, 16)
+::defShieldIce <- sprShieldIce
 
 
 

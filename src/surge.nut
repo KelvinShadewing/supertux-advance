@@ -230,7 +230,6 @@
 		freeUp = placeFree(x, y - 1)
 		wasInWater = nowInWater
 		nowInWater = inWater(x, y)
-		if(wasInWater && !nowInWater || nowInWater && !wasInWater) newActor(Splash, x, y)
 
 		base.run()
 
@@ -286,11 +285,9 @@
 				gravity = 0.0
 				vspeed = 0.0
 				break
-			case "hurt":
-				if(nowInWater) vspeed /= 9.0
 				break
 			case "ball":
-				if(hspeed == 0)
+				if(hspeed == 0 || getcon("up", "hold", true, playerNum) && placeFree(x, y - 4))
 					anim = "stand"
 				break
 		}
@@ -694,7 +691,7 @@
 			}
 
 			if(invincible) mspeed += 0.4
-			if(nowInWater) mspeed *= 0.8
+			if(nowInWater) mspeed *= 0.4
 			if(zoomies > 0) mspeed *= 2.0
 
 			//Moving left and right
@@ -709,6 +706,9 @@
 				mspeed *= 1.5
 				accel *= 2.0
 			}
+
+			if(nowInWater)
+				accel *= 0.6
 
 			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
 				if(hspeed > 1)
@@ -979,6 +979,10 @@
 		switch(stats.weapon) {
 			case "fire":
 				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, 0.66)
+				break
+			case "ice":
+				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, 0.66)
+				break
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset)

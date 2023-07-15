@@ -318,12 +318,12 @@
 		}
 
 		if(placeFree(x + hspeed, y)) x += hspeed
-		else if(placeFree(x + hspeed, y - 2)) {
+		else if(placeFree(x, y - 2)) {
 			x += hspeed
 			y += -2
 			vspeed = -1
-		} else if(inWater(x, y)) hspeed = -hspeed
-		else deleteActor(id)
+		}
+		if(!placeFree(x, y)) deleteActor(id)
 
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
