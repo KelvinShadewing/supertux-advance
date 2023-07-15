@@ -38,6 +38,7 @@
 	chargePoof = 0.0
 	walkAngle = 0.0
 	dirAngle = 0.0
+	didAirSpecial = false
 	
 
 	an = {
@@ -205,6 +206,8 @@
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
+		an = clone an
+		damageMultF = clone damageMultF
 		routine = ruNormal
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
@@ -270,9 +273,16 @@
 			}
 		}
 
+		if(vspeed > 0)
+			didJump = false
+		if(nowInWater)
+			gravity = 0.12
+		else
+			gravity = 0.25
+
 		//Anim-based physics
 		switch(anim) {
-			case "shootClimb":
+			case "climb":
 				gravity = 0.0
 				vspeed = 0.0
 				break
@@ -286,13 +296,6 @@
 		}
 
 		//Base movement
-		if(vspeed > 0)
-			didJump = false
-		if(nowInWater)
-			gravity = 0.12
-		else
-			gravity = 0.25
-
 		if(resTime > 0) {
 			if(vspeed > 0)
 				gravity = -0.05
@@ -575,9 +578,9 @@
 					 ||getcon("right", "press", true, playerNum)
 					 ||getcon("up", "press", true, playerNum)
 					 ||getcon("down", "press", true, playerNum))
-						chargeTimer += 0.3
+						chargeTimer += 0.4
 					else
-						chargeTimer += 0.1
+						chargeTimer += 0.2
 				}
 
 				if(chargeTimer > chargeThreshold) {
@@ -658,7 +661,12 @@
 			stats.stamina++
 
 		//After image
-		if(zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, 0, flip, 0, 1, 1])
+		if(zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) {
+			local c = actor[newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, 0, flip, 0, 1, 1])]
+			c.angle = walkAngle
+			if(anim == "ball")
+				c.y += 8
+		}
 
 		//Invincibility
 		if(invincible > 0) invincible--
@@ -911,6 +919,33 @@
 				damageMult = damageMultN
 				break
 		}
+
+		//Attacks
+		if(anim != "jumpR")
+			didAirSpecial = false
+
+		//Air moves
+		if(anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
+			case "fire":
+				anim = "ball"
+				vspeed = -1.0
+				if(flip == 0)
+					hspeed = max(6, hspeed)
+				if(flip == 1)
+					hspeed = min(-6, hspeed)
+				popSound(sndFlame)
+				break
+		}
+		
+		if(anim == "ball" && stats.weapon == "fire") {
+			if(fabs(hspeed) > 2) {
+				if(getFrames() % 4 == 0)
+					fireWeapon(DashFlame, x + hspeed * 2, y + 4 + vspeed, 1, id)
+				damageMultF.fire = 0.0
+			}
+		}
+		else
+			damageMultF.fire = 0.5
 	}
 
 	function draw() {
@@ -920,7 +955,7 @@
 		frame = wrap(frame, 0, an[anim].len() - 1)
 
 		local choffset = 0
-		if(anim == "ball" || anim == "charge" || anim == "jumpR")
+		if(anim == "ball" || anim == "charge")
 			choffset = 6
 
 		local yoff = 0
@@ -938,6 +973,12 @@
 				drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
 				tftime += 0.25
 			} else tftime = -1
+		}
+
+		//Shields
+		switch(stats.weapon) {
+			case "fire":
+				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, 0.66)
 		}
 
 		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset)

@@ -205,6 +205,8 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
+		an = clone an
+		damageMultF = clone damageMultF
 		an.stand = an.standN
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)

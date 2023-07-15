@@ -552,6 +552,8 @@
 ::sprBubble <- newSprite("res/gfx/bubble.png", 8, 8, 0, 0, 4, 4)
 ::defBubble <- sprBubble
 ::sprCrystalBullet <- newSprite("res/gfx/crystal-bullet.png", 16, 7, 0, 0, 8, 5)
+::sprShieldFire <- newSprite("res/gfx/shield-fire.png", 32, 32, 0, 0, 16, 16)
+::defShieldFire <- sprShieldFire
 
 
 
