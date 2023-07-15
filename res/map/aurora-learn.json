@@ -244,7 +244,7 @@
                 {
                  "height":32,
                  "id":266,
-                 "name":"gvPlayer.y = 0",
+                 "name":"myTarget.y = 0",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1572,7 +1572,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":2192,
+                 "x":2096,
                  "y":128
                 }],
          "opacity":1,

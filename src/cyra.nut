@@ -199,7 +199,7 @@ gvCharacters.Kiki2 <- {
 	//Elemental resistances
 	damageMultN = {
 		normal = 1.0
-		fire = 0.5
+		fire = 1.0
 		ice = 1.0
 		earth = 1.0
 		air = 1.0
@@ -213,7 +213,7 @@ gvCharacters.Kiki2 <- {
 	}
 	damageMultF = {
 		normal = 1.0
-		fire = 0.0
+		fire = 0.5
 		ice = 2.0
 		earth = 1.0
 		air = 1.0
@@ -257,7 +257,7 @@ gvCharacters.Kiki2 <- {
 		normal = 1.0
 		fire = 1.0
 		ice = 1.0
-		earth = 0.50
+		earth = 0.5
 		air = 2.0
 		toxic = 1.0
 		shock = 1.0
@@ -271,13 +271,55 @@ gvCharacters.Kiki2 <- {
 		normal = 1.0
 		fire = 1.0
 		ice = 1.0
-		earth = 1.5
+		earth = 1.0
 		air = 1.0
 		toxic = 1.0
 		shock = 0.5
-		water = 1.0
+		water = 2.0
 		light = 1.0
 		dark = 1.0
+		cut = 0.5
+		blast = 1.0
+	}
+	damageMultW = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 2.0
+		water = 0.5
+		light = 1.0
+		dark = 1.0
+		cut = 0.5
+		blast = 1.0
+	}
+	damageMultL = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 0.5
+		dark = 2.0
+		cut = 0.5
+		blast = 1.0
+	}
+	damageMultD = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 2.0
+		dark = 0.5
 		cut = 0.5
 		blast = 1.0
 	}

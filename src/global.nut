@@ -111,6 +111,10 @@
 		ice = "sprTuxIce"
 		air = "sprTuxAir"
 		earth = "sprTuxEarth"
+		shock = "sprTux"
+		water = "sprTux"
+		light = "sprTux"
+		dark = "sprTux"
 		pick = [40, 41]
 	}
 	Penny = {
@@ -123,6 +127,10 @@
 		ice = "sprPennyIce"
 		air = "sprPennyAir"
 		earth = "sprPennyEarth"
+		shock = "sprPenny"
+		water = "sprPenny"
+		light = "sprPenny"
+		dark = "sprPenny"
 		pick = [40, 41]
 	}
 	// Lutris = {
@@ -147,6 +155,10 @@
 		ice = "sprKonqiIce"
 		air = "sprKonqiAir"
 		earth = "sprKonqiEarth"
+		shock = "sprKonqi"
+		water = "sprKonqi"
+		light = "sprKonqi"
+		dark = "sprKonqi"
 		pick = [8, 52]
 	}
 	Katie = {
@@ -159,6 +171,10 @@
 		ice = "sprKatieIce"
 		air = "sprKatieAir"
 		earth = "sprKatieEarth"
+		shock = "sprKatie"
+		water = "sprKatie"
+		light = "sprKatie"
+		dark = "sprKatie"
 		pick = [8, 52]
 	}
 	Midi = {
@@ -171,6 +187,10 @@
 		ice = "sprMidi"
 		air = "sprMidi"
 		earth = "sprMidi"
+		shock = "sprMidi"
+		water = "sprMidi"
+		light = "sprMidi"
+		dark = "sprMidi"
 		pick = [177, 239]
 	}
 	Kiki = {
@@ -183,7 +203,27 @@
 		ice = "sprKiki"
 		air = "sprKiki"
 		earth = "sprKiki"
+		shock = "sprKiki"
+		water = "sprKiki"
+		light = "sprKiki"
+		dark = "sprKiki"
 		pick = [177, 239]
+	}
+	Surge = {
+		name = "Surge the Rabbit"
+		shortname = "Surge"
+		over = "sprSurgeOverworld"
+		doll = "sprSurgeDoll"
+		normal = "sprSurge"
+		fire = "sprSurge"
+		ice = "sprSurge"
+		air = "sprSurge"
+		earth = "sprSurge"
+		shock = "sprSurge"
+		water = "sprSurge"
+		light = "sprSurge"
+		dark = "sprSurge"
+		pick = [48, 51]
 	}
 }
 

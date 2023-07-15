@@ -210,6 +210,62 @@
 		cut = 1.5
 		blast = 0.5
 	}
+	damageMultS = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 0.5
+		water = 2.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.5
+		blast = 0.5
+	}
+	damageMultW = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 2.0
+		water = 0.5
+		light = 1.0
+		dark = 1.0
+		cut = 1.5
+		blast = 0.5
+	}
+	damageMultL = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 0.5
+		dark = 2.0
+		cut = 1.5
+		blast = 0.5
+	}
+	damageMultD = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 1.0
+		water = 1.0
+		light = 2.0
+		dark = 0.5
+		cut = 1.5
+		blast = 0.5
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -230,9 +286,12 @@
 	}
 
 	function physics() {
-		if(vspeed > 0) didJump = false
-		if(nowInWater) gravity = 0.12
-		else gravity = 0.25
+		if(vspeed > 0)
+			didJump = false
+		if(nowInWater)
+			gravity = 0.12
+		else
+			gravity = 0.25
 		
 		switch(anim) {
 			case "walk":
@@ -383,22 +442,30 @@
 		//Movement
 		if((!placeFree(x, y + 1) || onPlatform())) {
 			if(anim == "ball") {
-				if(hspeed > 0 && !getcon("right", "hold", true, playerNum)) hspeed -= friction / 3.0
-				if(hspeed < 0 && !getcon("left", "hold", true, playerNum)) hspeed += friction / 3.0
+				if(hspeed > 0 && !getcon("right", "hold", true, playerNum))
+					hspeed -= friction / 3.0
+				if(hspeed < 0 && !getcon("left", "hold", true, playerNum))
+					hspeed += friction / 3.0
 			} else {
 				if(hspeed > 0) {
-					if((!(mspeed > 2 && getcon("right", "hold", true, playerNum)) || anim == "hurt" || !canMove) && !nowInWater) hspeed -= friction
-					else if(nowInWater || resTime > 0) hspeed -= friction / 3.0
+					if((!(mspeed > 2 && getcon("right", "hold", true, playerNum)) || anim == "hurt" || !canMove) && !nowInWater)
+						hspeed -= friction
+					else if(nowInWater || resTime > 0)
+						hspeed -= friction / 3.0
 				}
 				if(hspeed < 0) {
-					if((!(mspeed > 2 && getcon("left", "hold", true, playerNum)) || anim == "hurt" || !canMove) && !nowInWater) hspeed += friction
-					else if(nowInWater || resTime > 0) hspeed += friction / 3.0
+					if((!(mspeed > 2 && getcon("left", "hold", true, playerNum)) || anim == "hurt" || !canMove) && !nowInWater)
+						hspeed += friction
+					else if(nowInWater || resTime > 0)
+						hspeed += friction / 3.0
 				}
 			}
 		}
 		else {
-			if(hspeed > 0 && !getcon("right", "hold", true, playerNum)) hspeed -= friction / 3.0
-			if(hspeed < 0 && !getcon("left", "hold", true, playerNum)) hspeed += friction / 3.0
+			if(hspeed > 0 && !getcon("right", "hold", true, playerNum))
+				hspeed -= friction / 3.0
+			if(hspeed < 0 && !getcon("left", "hold", true, playerNum))
+				hspeed += friction / 3.0
 		}
 
 		if(nowInWater || resTime > 0) {
@@ -499,9 +566,6 @@
 				}
 				else
 					anim = "walk"
-
-				
-				
 
 				if(anim == "walk") {
 					//Offset frame based on movement speed and if shooting
@@ -722,7 +786,8 @@
 		else if(anim == "win")
 				anim = "stand"
 
-		if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
+		if(anim in an && an[anim] != null && anim != "hurt")
+			frame = wrap(abs(frame), 0, an[anim].len() - 1)
 
 		if(shooting) {
 			shootTimer += 0.25
@@ -1026,8 +1091,7 @@
 			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge") jumpBuffer = 8
 			if(jumpBuffer > 0) jumpBuffer--
 
-			if(!getcon("jump", "hold", true, playerNum) && (vspeed < 0 || anim == "fall") && didJump)
-			{
+			if(!getcon("jump", "hold", true, playerNum) && (vspeed < 0 || anim == "fall") && didJump) {
 				didJump = false
 				vspeed /= 2.5
 			}
@@ -1041,10 +1105,13 @@
 		else rspeed = min(rspeed, abs(hspeed))
 		
 		if(anim != "ledge" && anim != "wall" && !(anim == "fall" && an.fall == an.fallW)) {
-			if((getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed > 0.1 && anim == "slide")) flip = 0
-			if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
+			if((getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed > 0.1 && anim == "slide"))
+				flip = 0
+			if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide"))
+				flip = 1
 		}
 
+		//Damage
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
@@ -1091,6 +1158,18 @@
 				break
 			case "air":
 				damageMult = damageMultA
+				break
+			case "shock":
+				damageMult = damageMultS
+				break
+			case "water":
+				damageMult = damageMultW
+				break
+			case "light":
+				damageMult = damageMultL
+				break
+			case "dark":
+				damageMult = damageMultD
 				break
 			default:
 				damageMult = damageMultN

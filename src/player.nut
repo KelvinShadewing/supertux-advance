@@ -152,7 +152,8 @@
 		}
 
 
-		if(onHazard(x, y)) hurt = ceil(game.maxHealth / 10.0) + game.difficulty
+		//Stage hazards
+		if(onHazard(x, y)) hurt = (ceil(game.maxHealth / 10.0) * damageMult.cut) + game.difficulty
 		if(onDeath(x, y)) die(true)
 
 

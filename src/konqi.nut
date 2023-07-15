@@ -171,6 +171,62 @@
 		cut = 0.25
 		blast = 0.5
 	}
+	damageMultS = {
+		normal = 0.5
+		fire = 0.5
+		ice = 0.5
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 0.0
+		water = 1.0
+		light = 0.5
+		dark = 0.5
+		cut = 0.5
+		blast = 1.0
+	}
+	damageMultW = {
+		normal = 0.5
+		fire = 0.5
+		ice = 0.5
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 1.0
+		water = 0.0
+		light = 0.5
+		dark = 0.5
+		cut = 0.5
+		blast = 1.0
+	}
+	damageMultL = {
+		normal = 0.5
+		fire = 0.5
+		ice = 0.5
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 0.0
+		dark = 1.0
+		cut = 0.5
+		blast = 1.0
+	}
+	damageMultD = {
+		normal = 0.5
+		fire = 0.5
+		ice = 0.5
+		earth = 0.5
+		air = 0.5
+		toxic = 0.5
+		shock = 0.5
+		water = 0.5
+		light = 1.0
+		dark = 0.0
+		cut = 0.5
+		blast = 1.0
+	}
 
 	function run() {
 		base.run()
