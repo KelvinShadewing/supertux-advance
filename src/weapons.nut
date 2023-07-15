@@ -655,13 +655,14 @@
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 12, 4, 0)
 	}
 
 	function run() {
 		if(checkActor(owner)) {
 			x = actor[owner].x + (actor[owner].hspeed * (3.5 - frame * 2.0))
-			y = actor[owner].y + 4 + (actor[owner].vspeed)
+			y += (actor[owner].vspeed) / 2.0
 			flip = actor[owner].flip
 		}
 

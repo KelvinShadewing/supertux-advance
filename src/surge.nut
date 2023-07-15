@@ -348,7 +348,7 @@
 		}
 
 		shape = shapeStand
-		if(anim == "ball" || !placeFree(x, y))
+		if(anim == "ball" || !placeFree(x, y) || anim == "charge")
 			shape = shapeSlide
 		
 		shapeStand.setPos(x, y)
@@ -927,20 +927,20 @@
 		//Air moves
 		if(anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
-				anim = "ball"
 				vspeed = -1.0
 				if(flip == 0)
 					hspeed = max(6, hspeed)
 				if(flip == 1)
 					hspeed = min(-6, hspeed)
 				popSound(sndFlame)
+				didAirSpecial = true
 				break
 		}
 		
-		if(anim == "ball" && stats.weapon == "fire") {
+		if((anim == "ball" || anim == "jumpR" && didAirSpecial) && stats.weapon == "fire") {
 			if(fabs(hspeed) > 2) {
 				if(getFrames() % 4 == 0)
-					fireWeapon(DashFlame, x + hspeed * 2, y + 4 + vspeed, 1, id)
+					fireWeapon(DashFlame, x + hspeed * 2, y + (anim == "ball" ? 4 : -2) + vspeed, 1, id)
 				damageMultF.fire = 0.0
 			}
 		}
