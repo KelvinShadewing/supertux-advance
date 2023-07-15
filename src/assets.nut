@@ -124,6 +124,15 @@
 
 
 
+::sprSurge <- newSprite("res/gfx/surge.png", 32, 32, 0, 0, 16, 19)
+::defSurge <- sprSurge
+::sprSurgeOverworld <- newSprite("res/gfx/surgeO.png", 14, 25, 0, 0, 7, 21)
+::defSurgeOverworld <- sprSurgeOverworld
+::sprSurgeDoll <- newSprite("res/gfx/surge-doll.png", 16, 16, 0, 0, 8, 8)
+::defSurgeDoll <- sprSurgeDoll
+
+
+
 //GUI
 ::sprCursor <- newSprite("res/gfx/cursor.png", 10, 13, 0, 0, 0, 0)
 ::sprHealth <- newSprite("res/gfx/health-icon.png",16, 16, 0, 0, 0, 0)
@@ -543,6 +552,8 @@
 ::sprBubble <- newSprite("res/gfx/bubble.png", 8, 8, 0, 0, 4, 4)
 ::defBubble <- sprBubble
 ::sprCrystalBullet <- newSprite("res/gfx/crystal-bullet.png", 16, 7, 0, 0, 8, 5)
+::sprShieldFire <- newSprite("res/gfx/shield-fire.png", 32, 32, 0, 0, 16, 16)
+::defShieldFire <- sprShieldFire
 
 
 
@@ -665,6 +676,21 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndBlizzardBomb <- loadSound("res/snd/blizzard-bomb.ogg")
 ::sndPigSnort <- loadSound("res/snd/pig_snort.ogg")
 ::sndPigSqueal <- loadSound("res/snd/pig_squeal.ogg")
+::sndSurgeJump <- loadSound("res/snd/surge-jump.ogg")
+::sndSurgeRoll <- loadSound("res/snd/surge-roll.ogg")
+::sndSurgeCharge <- [
+	loadSound("res/snd/surge-charge-0.ogg"),
+	loadSound("res/snd/surge-charge-1.ogg"),
+	loadSound("res/snd/surge-charge-2.ogg"),
+	loadSound("res/snd/surge-charge-3.ogg"),
+	loadSound("res/snd/surge-charge-4.ogg"),
+	loadSound("res/snd/surge-charge-5.ogg"),
+	loadSound("res/snd/surge-charge-6.ogg"),
+	loadSound("res/snd/surge-charge-7.ogg"),
+	loadSound("res/snd/surge-charge-8.ogg"),
+	loadSound("res/snd/surge-charge-9.ogg"),
+	loadSound("res/snd/surge-charge-10.ogg")
+]
 
 
 

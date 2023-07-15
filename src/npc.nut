@@ -201,6 +201,11 @@
 	game.friends["Kiki"] <- true
 }
 
+::freeSurge <- function() {
+	game.characters["Surge"] <- true
+	game.friends["Surge"] <- true
+}
+
 ////////////
 // NPC v2 //
 ////////////
