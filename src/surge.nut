@@ -577,7 +577,7 @@
 					 ||getcon("down", "press", true, playerNum))
 						chargeTimer += 0.4
 					else
-						chargeTimer += 0.2
+						chargeTimer += 0.1
 				}
 
 				if(chargeTimer > chargeThreshold) {
@@ -927,7 +927,8 @@
 		//Air moves
 		if(anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
-				vspeed = -1.0
+				vspeed = 0.0
+				antigrav = 10
 				if(flip == 0)
 					hspeed = max(6, hspeed)
 				if(flip == 1)
@@ -941,6 +942,13 @@
 			if(fabs(hspeed) > 2) {
 				if(getFrames() % 4 == 0)
 					fireWeapon(DashFlame, x + hspeed * 2, y + (anim == "ball" ? 4 : -2) + vspeed, 1, id)
+
+				if(getFrames() % 4 == 0) {
+					local c = actor[newActor(FlameTiny, x - 4 + randInt(8), y - 4 + randInt(8))]
+					c.hspeed = -0.5 + randFloat(1)
+					c.vspeed = -0.5 + randFloat(1)
+				}
+
 				damageMultF.fire = 0.0
 			}
 		}
