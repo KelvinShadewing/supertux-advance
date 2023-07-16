@@ -808,7 +808,7 @@
 			shape.setPos(x, y - 1)
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed >= 0 && v == 0) if(full){
 				gvPlayer.vspeed = -4
-				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -7.5
+				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -9
 				vspeed = 1
 				popSound(sndBump, 0)
 			}
@@ -826,7 +826,7 @@
 			shape.setPos(x, y - 1)
 			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed >= 0 && v == 0) if(full){
 				gvPlayer2.vspeed = -4
-				if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -7.5
+				if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -9
 				vspeed = 1
 				popSound(sndBump, 0)
 			}
