@@ -63,6 +63,7 @@
 					else getHurt(0, i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
+					i.didHit = true
 				}
 			}
 
@@ -1571,7 +1572,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		shape = Rec(x, y, 8, 8, 0)
+		shape = Rec(x, y, 6, 6, 0)
 		sf = randInt(8)
 	}
 

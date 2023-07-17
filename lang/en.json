@@ -690,6 +690,8 @@
 		"Hmm, I wonder if Rad knows why these orbs are so special.",
 		"xtreme-orbs-Kiki" :
 		"I wonder what tools they used to make an ice mural like this last so long.",
+		"xtreme-orbs-Surge" :
+		"Why do I feel oddly ripped off looking at this?",
 
 		"mines-0" :
 		["Hey there, %s! Do you have a moment? If you haven't heard, Nolok robbed the treasury and stole the funds to keep the mines open. If you're able to, could you donate any coins you find? If we can't keep the mine open, we'll have to find fish in the sea and contend with the orcas!", "gvCharacters[game.playerChar].shortname"],

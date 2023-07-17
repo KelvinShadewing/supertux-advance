@@ -932,7 +932,17 @@
 			game.ps.berries--
 	}
 
+	if(game.ps2.berries > 0 && game.ps2.berries >= 12 && game.ps2.health > 0) {
+		if(game.ps2.health < game.maxHealth) {
+			game.ps2.health++
+			game.ps2.berries = 0
+		}
+		else if(game.ps2.berries > 12)
+			game.ps2.berries--
+	}
+
 	if(game.ps.health < 0) game.ps.health = 0
+	if(game.ps2.health < 0) game.ps2.health = 0
 }
 
 ::playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the player and camera at the same time

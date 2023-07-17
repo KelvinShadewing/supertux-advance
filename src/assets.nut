@@ -552,6 +552,9 @@
 ::sprBubble <- newSprite("res/gfx/bubble.png", 8, 8, 0, 0, 4, 4)
 ::defBubble <- sprBubble
 ::sprCrystalBullet <- newSprite("res/gfx/crystal-bullet.png", 16, 7, 0, 0, 8, 5)
+::defCrystalBullet <- sprCrystalBullet
+::sprShieldInsta <- newSprite("res/gfx/shield-insta.png", 32, 32, 0, 0, 16, 16)
+::defShieldInsta <- sprShieldInsta
 ::sprShieldFire <- newSprite("res/gfx/shield-fire.png", 32, 32, 0, 0, 16, 16)
 ::defShieldFire <- sprShieldFire
 ::sprShieldIce <- newSprite("res/gfx/shield-ice.png", 32, 32, 0, 0, 16, 16)
@@ -902,6 +905,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprWoodBox = sprWoodBoxSnow
 	sprIvyGreen = sprMrSnowflake
 	sprIvyRed = sprMrsSnowflake
+	sprMrIceguy = defMrIceguy
 }
 
 ::gfxEnemyForest <- function() {

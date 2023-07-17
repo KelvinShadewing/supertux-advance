@@ -39,6 +39,7 @@
 	walkAngle = 0.0
 	dirAngle = 0.0
 	didAirSpecial = false
+	homingTarget = null
 	
 
 	an = {
@@ -210,8 +211,8 @@
 		damageMultF = clone damageMultF
 		routine = ruNormal
 		anim = "stand"
-		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
+		shapeStand = Rec(x, y, 5, 10, 0, 0, 0)
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4)
 		startx = _x.tofloat()
 		starty = _y.tofloat()
 		an.fall = an.fallN
@@ -577,7 +578,7 @@
 					 ||getcon("down", "press", true, playerNum))
 						chargeTimer += 0.4
 					else
-						chargeTimer += 0.2
+						chargeTimer += 0.1
 				}
 
 				if(chargeTimer > chargeThreshold) {
@@ -799,7 +800,7 @@
 					if(anim == "climb" || nowInWater)
 						vspeed = -3
 					else
-						vspeed = -6.4
+						vspeed = -(6.4 + min(fabs(hspeed) / 4.0, 4.0))
 					didJump = true
 					canJump = 0
 					animOffset = 0.0
@@ -927,7 +928,8 @@
 		//Air moves
 		if(anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
-				vspeed = -1.0
+				vspeed = 0.0
+				antigrav = 10
 				if(flip == 0)
 					hspeed = max(6, hspeed)
 				if(flip == 1)
@@ -935,17 +937,66 @@
 				popSound(sndFlame)
 				didAirSpecial = true
 				break
+			case "ice":
+				local target = null
+				foreach(i in actor) {
+					if(!(i instanceof Enemy))
+						continue
+					if(flip == 0 && i.x < x - 32)
+						continue
+					if(flip == 1 && i.x > x + 32)
+						continue
+					if(!inDistance2(x, y, i.x, i.y, 128))
+						continue
+					if(target == null || distance2(x, y, i.x, i.y) < distance2(x, y, target.x, target.y))
+						target = i
+				}
+
+				if(target != null) {
+					antigrav = 60
+					homingTarget = target.id
+					didAirSpecial = true
+					popSound(sndThrow)
+				}
+				break
+			default:
+				didAirSpecial = true
+				fireWeapon(InstaShield, x, y, 1, id)
+				blinking = max(8, blinking)
 		}
 		
 		if((anim == "ball" || anim == "jumpR" && didAirSpecial) && stats.weapon == "fire") {
 			if(fabs(hspeed) > 2) {
 				if(getFrames() % 4 == 0)
 					fireWeapon(DashFlame, x + hspeed * 2, y + (anim == "ball" ? 4 : -2) + vspeed, 1, id)
+
+				if(getFrames() % 4 == 0) {
+					local c = actor[newActor(FlameTiny, x - 4 + randInt(8), y - 4 + randInt(8))]
+					c.hspeed = -0.5 + randFloat(1)
+					c.vspeed = -0.5 + randFloat(1)
+				}
+
 				damageMultF.fire = 0.0
 			}
 		}
 		else
 			damageMultF.fire = 0.5
+
+		if(stats.weapon == "ice" && checkActor(homingTarget) && antigrav > 0) {
+			local godir = pointAngle(x, y - 16, actor[homingTarget].x, actor[homingTarget].y)
+			hspeed = lendirX(6, godir)
+			vspeed = lendirY(6, godir)
+
+			if(inDistance2(x, y, actor[homingTarget].x, actor[homingTarget].y, 32)) {
+				fireWeapon(InstaShield, x, y, 1, id)
+				blinking = max(8, blinking)
+			}
+		}
+		if(stats.weapon == "ice" && (!checkActor(homingTarget) || hitTest(shape, actor[homingTarget].shape) || anim != "jumpR" || !placeFree(x + hspeed, y + vspeed))) {
+			antigrav = 0
+			homingTarget = null
+			didAirSpecial = false
+		}
 	}
 
 	function draw() {
@@ -961,11 +1012,13 @@
 		local yoff = 0
 		if(anim == "ball")
 			yoff = 8
+		if(anim == "jumpR")
+			yoff = 6
 
 		if(blinking == 0 || anim == "hurt")
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy + yoff, walkAngle, flip, 1, 1, 1)
+			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - 2 - camy + yoff, walkAngle, flip, 1, 1, 1)
 		else
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy + yoff, walkAngle, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - 2 - camy + yoff, walkAngle, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 
 		//Transformation flash
 		if(tftime != -1) {
@@ -978,10 +1031,10 @@
 		//Shields
 		switch(stats.weapon) {
 			case "fire":
-				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, 0.66)
+				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break
 			case "ice":
-				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, 0.66)
+				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break
 		}
 
