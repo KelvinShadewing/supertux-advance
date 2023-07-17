@@ -14,8 +14,8 @@
 
 	function run()
 	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 			foreach(k, i in gvYetFoundItems) if(i == id)
@@ -53,8 +53,8 @@
 	function run() {
 		base.run()
 
-		if((gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16))
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)
 		&& timer < 290) {
 			deleteActor(id)
 			newActor(Spark, x, y)
@@ -101,8 +101,8 @@
 
 	function run()
 	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 5)
 			foreach(k, i in gvYetFoundItems) if(i == id)
@@ -134,8 +134,8 @@
 
 	function run()
 	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y, 10)
 			foreach(k, i in gvYetFoundItems) if(i == id)

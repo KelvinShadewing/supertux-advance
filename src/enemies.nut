@@ -63,6 +63,7 @@
 					else getHurt(0, i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
+					i.didHit = true
 				}
 			}
 
