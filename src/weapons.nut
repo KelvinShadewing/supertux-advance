@@ -683,12 +683,12 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		shape = Rec(x, y, 12, 4, 0)
+		shape = Rec(x, y, 14, 4, 0)
 	}
 
 	function run() {
 		if(checkActor(owner)) {
-			x = actor[owner].x + (actor[owner].hspeed * (3.5 - frame * 2.0))
+			x = actor[owner].x + (actor[owner].hspeed * 2.0)
 			y += (actor[owner].vspeed) / 2.0
 			flip = int(x < actor[owner].x - actor[owner].hspeed)
 		}
@@ -700,7 +700,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(3, sprCyraFireWave, frame, x - camx, y - camy, 0, flip, 0.8, 0.8)
+		drawSpriteZ(3, sprShieldFire, -(frame + 1), x - camx, y - camy, 90, flip * 2, 0.8, 0.8)
 	}
 }
 

@@ -205,8 +205,8 @@
 	function run()
 	{
 		frame += 0.1
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
 			game.redCoins++
@@ -234,8 +234,8 @@
 	{
 		frame += 0.1
 		drawSprite(sprRedHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger())
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
+		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
 			game.redCoins++
