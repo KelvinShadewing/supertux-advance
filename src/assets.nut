@@ -905,6 +905,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprWoodBox = sprWoodBoxSnow
 	sprIvyGreen = sprMrSnowflake
 	sprIvyRed = sprMrsSnowflake
+	sprMrIceguy = defMrIceguy
 }
 
 ::gfxEnemyForest <- function() {

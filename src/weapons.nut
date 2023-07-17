@@ -690,7 +690,7 @@
 		if(checkActor(owner)) {
 			x = actor[owner].x + (actor[owner].hspeed * (3.5 - frame * 2.0))
 			y += (actor[owner].vspeed) / 2.0
-			flip = actor[owner].flip
+			flip = int(x < actor[owner].x - actor[owner].hspeed)
 		}
 
 		shape.setPos(x, y)

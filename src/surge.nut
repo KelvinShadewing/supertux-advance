@@ -212,7 +212,7 @@
 		routine = ruNormal
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 10, 0, 0, 0)
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4)
 		startx = _x.tofloat()
 		starty = _y.tofloat()
 		an.fall = an.fallN
@@ -800,7 +800,7 @@
 					if(anim == "climb" || nowInWater)
 						vspeed = -3
 					else
-						vspeed = -6.4
+						vspeed = -(6.4 + min(fabs(hspeed) / 4.0, 4.0))
 					didJump = true
 					canJump = 0
 					animOffset = 0.0
