@@ -281,7 +281,7 @@
 
 		popSound(sndThrow, 0)
 
-		shape = Cir(x, y, 24.0)
+		shape = Cir(x, y, 16.0)
 	}
 
 	function run() {

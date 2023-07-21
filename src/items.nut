@@ -167,13 +167,13 @@
 
 	function run()
 	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16) && game.ps.berries < 12) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20) && game.ps.berries < 12) {
 			deleteActor(id)
 			game.ps.berries++
 			stopSound(sndGulp)
 			playSound(sndGulp, 0)
 		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16) && game.ps2.berries < 12) {
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 20) && game.ps2.berries < 12) {
 			deleteActor(id)
 			game.ps2.berries++
 			stopSound(sndGulp)
@@ -377,7 +377,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
 			if(game.ps.health < game.maxHealth) {
 				game.ps.health += 4
 				for(local i = 0; i < 4; i++) {
@@ -388,7 +388,7 @@
 			deleteActor(id)
 			popSound(sndHeal, 0)
 		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		else if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
 			if(game.ps2.health < game.maxHealth) {
 				game.ps2.health += 4
 				for(local i = 0; i < 4; i++) {
@@ -455,7 +455,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
 			if(game.ps.health < game.maxHealth) {
 				game.ps.health += 16
 				for(local i = 0; i < 4; i++) {
@@ -466,7 +466,7 @@
 			deleteActor(id)
 			popSound(sndHeal, 0)
 		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		else if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
 			if(game.ps2.health < game.maxHealth) {
 				game.ps2.health += 16
 				for(local i = 0; i < 4; i++) {
@@ -530,7 +530,7 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
+		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
 			if(gvPlayer.blinking > 0) return
 			if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 			else gvPlayer.hspeed = 1.0
@@ -538,7 +538,7 @@
 			deleteActor(id)
 		}
 
-		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 14)) {
+		if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
 			if(gvPlayer2.blinking > 0) return
 			if(gvPlayer2.x < x) gvPlayer2.hspeed = -1.0
 			else gvPlayer2.hspeed = 1.0
@@ -568,12 +568,12 @@
 		}
 		frame += 0.2
 		drawSprite(spr1down, frame, x - camx, y - camy)
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
 			deleteActor(id)
 			gvPlayer.hurt = 16
 		}
 
-		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 10)) {
 			deleteActor(id)
 			gvPlayer2.hurt = 16
 		}
@@ -607,11 +607,11 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) {
 			gvPlayer.hurt = 6
 		}
 
-		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			gvPlayer2.hurt = 6
 		}
 	}
@@ -645,14 +645,14 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) {
 			gvPlayer.invincible = 645
 			deleteActor(id)
 			playMusic(musInvincible, -1)
 			gvLastSong = ""
 		}
 
-		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
 			gvPlayer2.invincible = 645
 			deleteActor(id)
 			playMusic(musInvincible, -1)
@@ -728,8 +728,8 @@
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 16) && game.ps.weapon == "air") game.ps.stamina++
-		if(gvPlayer2 && inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 16) && game.ps2.weapon == "air") game.ps2.stamina++
+		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 20) && game.ps.weapon == "air") game.ps.stamina++
+		if(gvPlayer2 && inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 20) && game.ps2.weapon == "air") game.ps2.stamina++
 	}
 
 	function draw() {
@@ -765,12 +765,12 @@
 		else vspeed /= 2
 		shape.setPos(x, y)
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) && !game.ps.canres) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20) && !game.ps.canres) {
 			game.ps.canres = true
 			playSound(snd1up, 0)
 			deleteActor(id)
 		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) && !game.ps2.canres) {
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20) && !game.ps2.canres) {
 			game.ps2.canres = true
 			playSound(snd1up, 0)
 			deleteActor(id)
@@ -834,13 +834,13 @@
 
 		shape.setPos(x, y)
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 14)) {
+		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
 			if(gvPlayer.blinking > 0) return
 			fireWeapon(ExplodeF, x, y, 0, id)
 			deleteActor(id)
 		}
 
-		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 14)) {
+		if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
 			if(gvPlayer2.blinking > 0) return
 			fireWeapon(ExplodeF, x, y, 0, id)
 			deleteActor(id)
@@ -1034,13 +1034,13 @@
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 16)) {
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
 			deleteActor(id)
 			if(game.ps.subitem != "coffee") game.ps.subitem = "coffee"
 			else gvPlayer.zoomies += 60 * 16
 			popSound(sndGulp, 0)
 		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 16)) {
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 20)) {
 			deleteActor(id)
 			if(game.ps2.subitem != "coffee") game.ps2.subitem = "coffee"
 			else gvPlayer2.zoomies += 60 * 16

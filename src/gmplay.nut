@@ -25,10 +25,14 @@
 	gvExitTimer = 0.0
 	deleteAllActors()
 	if(newLevel) {
-		game.ps.health = game.maxHealth
+		if(game.ps.health <= 0 || game.difficulty < 2)
+			game.ps.health = game.maxHealth
 		game.ps.energy = game.ps.maxEnergy
 		game.ps.stamina = game.ps.maxStamina
-		game.ps.berries = 0
+		if(game.ps2.health <= 0 || game.difficulty < 2)
+			game.ps2.health = game.maxHealth
+		game.ps2.energy = game.ps2.maxEnergy
+		game.ps2.stamina = game.ps2.maxStamina
 		game.levelCoins = 0
 		game.maxCoins = 0
 		game.redCoins = 0
@@ -1491,6 +1495,10 @@
 		case 107:
 			c = newActor(Devine, i.x + 8, i.y - 8, i.name)
 			game.maxEnemies++
+			break
+
+		case 111:
+			c = newActor(Gooey, i.x + 8, i.y - 8, i.name)
 			break
 	}
 

@@ -83,7 +83,8 @@
 			playerNum = 2
 		}
 
-		stats.health = game.maxHealth
+		if(stats.health <= 0 || game.difficulty < 2)
+			stats.health = game.maxHealth
 
 		//Player-specific settings
 	}

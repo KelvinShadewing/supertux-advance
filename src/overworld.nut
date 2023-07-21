@@ -575,11 +575,13 @@
 
 		local blockx = gvScreenW - 21
 		local blocky = gvScreenH - 21
+		local trueCount = 0
 		for(local i = 7; i >= 0; i--) {
 			if(game.colorswitch[i]) {
+				trueCount++
 				drawSprite(sprColorBlock, ((i * 2) + 1) - int(game.turnOffBlocks), blockx, blocky)
 				blockx -= 8
-				blocky -= (i % 2 == 0 ? -8 : 8)
+				blocky -= (trueCount % 2 == 0 ? -8 : 8)
 			}
 		}
 	}

@@ -258,10 +258,15 @@
 ::sprTwangNPC <- newSprite("res/gfx/twang-npc.png", 15, 18, 0, 0, 8, 18)
 ::sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 0, 0, 16, 32)
 ::sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 0, 0, 7, 23)
-::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 21, 37, 0, 0, 10, 37)
 ::sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 0, 0, 5, 16)
 ::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
 ::sprBeam <- newSprite("res/gfx/beam.png", 20, 22, 0, 0, 10, 16)
+
+
+
+//Guests
+::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 21, 37, 0, 0, 10, 37)
+::sprOozeyOozebourne <- newSprite("res/gfx/guests/oozey.png", 16, 16, 0, 0, 8, 8)
 
 
 
@@ -384,6 +389,40 @@
 ::defWaspyBoi <- sprWaspyBoi
 ::sprDevine <- newSprite("res/gfx/devine.png", 16, 16, 0, 0, 8, 8)
 ::defDevine <- sprDevine
+
+::sprGooBlack <- newSprite("res/gfx/goo-black.png", 16, 16, 0, 0, 8, 8)
+::defGooBlack <- sprGooBlack
+::sprGooBlue <- newSprite("res/gfx/goo-blue.png", 16, 16, 0, 0, 8, 8)
+::defGooBlue <- sprGooBlue
+::sprGooBrown <- newSprite("res/gfx/goo-brown.png", 16, 16, 0, 0, 8, 8)
+::defGooBrown <- sprGooBrown
+::sprGooCrimson <- newSprite("res/gfx/goo-crimson.png", 16, 16, 0, 0, 8, 8)
+::defGooCrimson <- sprGooCrimson
+::sprGooCyan <- newSprite("res/gfx/goo-cyan.png", 16, 16, 0, 0, 8, 8)
+::defGooCyan <- sprGooCyan
+::sprGooGray <- newSprite("res/gfx/goo-gray.png", 16, 16, 0, 0, 8, 8)
+::defGooGray <- sprGooGray
+::sprGooGreen <- newSprite("res/gfx/goo-green.png", 16, 16, 0, 0, 8, 8)
+::defGooGreen <- sprGooGreen
+::sprGooIce <- newSprite("res/gfx/goo-ice.png", 16, 16, 0, 0, 8, 8)
+::defGooIce <- sprGooIce
+::sprGooOrange <- newSprite("res/gfx/goo-orange.png", 16, 16, 0, 0, 8, 8)
+::defGooOrange <- sprGooOrange
+::sprGooPink <- newSprite("res/gfx/goo-pink.png", 16, 16, 0, 0, 8, 8)
+::defGooPink <- sprGooPink
+::sprGooPurple <- newSprite("res/gfx/goo-purple.png", 16, 16, 0, 0, 8, 8)
+::defGooPurple <- sprGooPurple
+::sprGooRed <- newSprite("res/gfx/goo-red.png", 16, 16, 0, 0, 8, 8)
+::defGooRed <- sprGooRed
+::sprGooTan <- newSprite("res/gfx/goo-tan.png", 16, 16, 0, 0, 8, 8)
+::defGooTan <- sprGooTan
+::sprGooTeal <- newSprite("res/gfx/goo-teal.png", 16, 16, 0, 0, 8, 8)
+::defGooTeal <- sprGooTeal
+::sprGooWhite <- newSprite("res/gfx/goo-white.png", 16, 16, 0, 0, 8, 8)
+::defGooWhite <- sprGooWhite
+::sprGooYellow <- newSprite("res/gfx/goo-yellow.png", 16, 16, 0, 0, 8, 8)
+::defGooYellow <- sprGooYellow
+
 
 
 //Bosses
@@ -559,6 +598,8 @@
 ::defShieldFire <- sprShieldFire
 ::sprShieldIce <- newSprite("res/gfx/shield-ice.png", 32, 32, 0, 0, 16, 16)
 ::defShieldIce <- sprShieldIce
+::sprShieldAir <- newSprite("res/gfx/shield-air.png", 32, 32, 0, 0, 16, 16)
+::defShieldAir <- sprShieldAir
 
 
 
