@@ -1397,10 +1397,10 @@
 						break
 				}
 
-				drawSpriteZ(2, myAura, an[anim][floor(frame)], x - camx + 1, y - camy, 0, flip, 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
-				drawSpriteZ(2, myAura, an[anim][floor(frame)], x - camx, y - camy + 1, 0, flip, 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
-				drawSpriteZ(2, myAura, an[anim][floor(frame)], x - camx - 1, y - camy, 0, flip, 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
-				drawSpriteZ(2, myAura, an[anim][floor(frame)], x - camx, y - camy - 1, 0, flip, 1, 1, sin(torad(270) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx + 1, y - camy, 0, flip, 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy + 1, 0, flip, 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx - 1, y - camy, 0, flip, 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy - 1, 0, flip, 1, 1, sin(torad(270) + float(getFrames()) / 16.0) * 0.75, auraColor)
 			}
 		}
 		base.draw()
