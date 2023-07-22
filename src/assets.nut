@@ -46,6 +46,8 @@
 ::defLutrisOverworld <- sprLutrisOverworld
 ::sprLutrisDoll <- newSprite("res/gfx/lutrisdoll.png", 16, 20, 0, 0, 8, 8)
 ::defLutrisDoll <- sprLutrisDoll
+::sprLutrisAura <- newSprite("res/gfx/lutris-aura.png", 32, 32, 0, 0, 16, 19)
+::defLutrisAura <- sprLutrisAura
 
 
 

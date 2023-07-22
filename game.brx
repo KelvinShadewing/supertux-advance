@@ -176,8 +176,8 @@ menu = meMain
 game.playerChar = "Tux"
 
 //Testing Midi
-game.playerChar = "Midi"
-gotoTest()
+//game.playerChar = "Midi"
+//gotoTest()
 
 //Load contrib initializers
 if(fileExists("contrib")) {
