@@ -1306,7 +1306,7 @@
 
 	function run() {
 		if(gvPlayer) {
-			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxRedCoins == game.redCoins ){
+			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxRedCoins <= game.redCoins ){
 				deleteActor(id)
 				newActor(Poof, x, y)
 				tileSetSolid(x, y, 0)
@@ -1315,7 +1315,7 @@
 		}
 
 		if(gvPlayer2) {
-			if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) if(game.maxRedCoins == game.redCoins ){
+			if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) if(game.maxRedCoins <= game.redCoins ){
 				deleteActor(id)
 				newActor(Poof, x, y)
 				tileSetSolid(x, y, 0)

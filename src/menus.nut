@@ -338,6 +338,7 @@ const menuY = 40
 		func = function() {
 			if(gvGameMode == gmPause) {
 				if(gvPauseMode) menu = mePauseOver
+				else if(gvTimeAttack) menu = mePauseTimeAttack
 				else menu = mePausePlay
 			}
 			else menu = meMain;
