@@ -602,6 +602,8 @@
 ::defShieldIce <- sprShieldIce
 ::sprShieldAir <- newSprite("res/gfx/shield-air.png", 32, 32, 0, 0, 16, 16)
 ::defShieldAir <- sprShieldAir
+::sprShieldWater <- newSprite("res/gfx/shield-water.png", 32, 32, 0, 0, 16, 16)
+::defShieldWater <- sprShieldWater
 
 
 

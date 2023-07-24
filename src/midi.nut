@@ -661,7 +661,7 @@
 			case "hurt":
 				frame += 0.1
 				if(floor(frame) > 1) {
-					if(nowInWater) anim = "float"
+					if(nowInWater || resTime) anim = "float"
 					else anim = "stand"
 				}
 				break

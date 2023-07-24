@@ -4540,6 +4540,7 @@
 	mspeed = 1.5
 	held = false
 	nodrop = true
+	touchDamage = 4.0
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
