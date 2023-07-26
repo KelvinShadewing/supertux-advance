@@ -49,6 +49,7 @@
 		gvVoidFog = true
 		gvCanWrap = false
 	}
+	gvWarning = 200
 
 	//Reset auto/locked controls
 	autocon = clone(defAutocon)

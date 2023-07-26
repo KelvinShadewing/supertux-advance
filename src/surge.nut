@@ -56,7 +56,7 @@
 		climb = [52, 53, 54, 55, 54, 53]
 		wall = [56, 57]
 		dead = [58, 59]
-		charge = [7, 40, 60, 61, 62, 63]
+		charge = [7, 40, 41, 60, 61, 62, 63]
 		jumpR = [42, 43, 44, 45, 76, 77, 78, 79]
 		jumpU = [64, 65]
 		jumpT = [66, 67]
@@ -633,7 +633,7 @@
 					chargeTimer = 0.0
 				}
 
-				if(frame >= 6)
+				if(frame >= 7)
 					frame -= 4
 				break
 		}
@@ -1016,10 +1016,8 @@
 		frame = wrap(frame, 0, an[anim].len() - 1)
 
 		local choffset = 0
-		if(anim == "ball" || anim == "charge")
+		if(anim == "ball" || anim == "charge" || anim == "jumpR")
 			choffset = 6
-		if(anim == "jumpR")
-			choffset = 2
 
 		local yoff = 0
 		if(anim == "ball")
@@ -1043,14 +1041,26 @@
 		//Shields
 		switch(stats.weapon) {
 			case "fire":
-				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 4 - camy + yoff, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break
 			case "ice":
-				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 4 - camy + yoff, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "air":
+				drawSpriteZ(3, sprShieldAir, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "earth":
+				drawSpriteZ(3, sprExplodeE, getFrames() / 3, x - camx, y - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "water":
+				drawSpriteZ(3, sprShieldWater, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "shock":
+				drawSpriteZ(3, sprShieldShock, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break
 		}
 
-		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset)
+		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset - 4)
 
 		if(debug) {
 			setDrawColor(0x008000ff)

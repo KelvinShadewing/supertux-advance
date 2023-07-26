@@ -499,7 +499,7 @@
                 {
                  "height":5.31813,
                  "id":1205,
-                 "name":"myTarget.hspeed = 0; playerTeleport(myTarget, 2064, 122)",
+                 "name":"myTarget.hspeed = 0; playerTeleport(gvPlayer, 2064, 122); playerTeleport(gvPlayer2, 2064, 122)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -521,7 +521,7 @@
                 {
                  "height":5.31813,
                  "id":1417,
-                 "name":"myTarget.hspeed = 0; playerTeleport(myTarget, 192, 1295)",
+                 "name":"myTarget.hspeed = 0; playerTeleport(gvPlayer, 192, 1295); playerTeleport(gvPlayer2, 192, 1295)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -594,6 +594,17 @@
                  "width":32,
                  "x":176,
                  "y":1248
+                }, 
+                {
+                 "height":32,
+                 "id":1452,
+                 "name":"playerTeleport(myTarget, myTarget.x, myTarget.y + 1)",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":272,
+                 "y":656
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2408,7 +2419,7 @@
          "name":"secret",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":200,
          "x":0,
          "y":0
@@ -2453,12 +2464,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":1452,
+ "nextobjectid":1453,
  "orientation":"orthogonal",
  "properties":[
         {

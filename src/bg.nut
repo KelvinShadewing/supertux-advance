@@ -144,7 +144,7 @@
 }
 
 ::dbgRiverCity <- function() {
-	for(local i = 0; i < 2; i++) {
+	for(local i = 0; i < 3; i++) {
 		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }

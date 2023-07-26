@@ -445,9 +445,12 @@
 			//Sliding acceleration
 			if(slippery) {
 				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
-					if(placeFree(x + 4, y + 1)) hspeed += 0.3
-					if(placeFree(x - 4, y + 1)) hspeed -= 0.3
-					if(freeDown2)vspeed += 1.0
+					if(placeFree(x + 4, y + 1))
+						hspeed += 0.3
+					if(placeFree(x - 4, y + 1))
+						hspeed -= 0.3
+					if(freeDown2 && vspeed >= 0)
+						vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2

@@ -2544,7 +2544,8 @@
 				frame += 0.01 * squishTime
 				if(squishTime >= 180) {
 					die()
-					fireWeapon(ExplodeT2, x, y, 0, id)
+					local c = fireWeapon(ExplodeT2, x, y, 0, id)
+					c.power = 4.0
 				}
 				drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
@@ -5586,7 +5587,8 @@
 		base.constructor(_x, _y, _arr)
 		nocount = true
 		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)
-		if(randInt(100) == 0) sprite = sprOozeyOozebourne
+		if(randInt(50) == 0) sprite = sprOozeyOozebourne
+		if(randInt(50) == 0) sprite = sprRyemanni
 		shape = Rec(x, y, 7, 7, 0)
 		jumpTimer = randInt(180)
 		vspeed = -1.0

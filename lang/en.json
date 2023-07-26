@@ -275,7 +275,16 @@
 		["Remember, you can carry some stunned enemies by holding %s or %s. Hold %s while letting them go to throw them in the air, and hold %s to drop them straight down.", "getConName(\"shoot\")", "getConName(\"spec1\")", "getConName(\"up\")", "getConName(\"down\")"],
 		"switch-player" :
 		"You can change your character from the overworld in the pause menu.",
-		"switch-explanation": ["Hitting the switch in this block will cause various extra blocks to show up throughout the levels, depending on the color of the switch you hit! You can press %s before entering a level to turn them on or off.", "getConName(\"spec1\")"]
+		"switch-explanation" :
+		["Hitting the switch in this block will cause various extra blocks to show up throughout the levels, depending on the color of the switch you hit! You can press %s before entering a level to turn them on or off.", "getConName(\"spec1\")"],
+		"konqi-charge" :
+		["Konqi and Katie can break bricks by ramming into them. Press %s while moving to charge forward. This move costs stamina, so use it carefully.", "getConName(\"spec2\")"],
+		"konqi-stomp" :
+		["Konqi and Katie can also break bricks by stomping on them. Press %s while in the air.", "getConName(\"down\")"],
+		"konqi-defense" :
+		"The dragons have higher defense than the other standard characters. Don't be afraid to throw your weight around!",
+		"konqi-flame" :
+		["You can breathe fire as Konqi or Katie if you have no other element set to your main or sub weapon. Press %s or %s. Even at zero energy, they'll still be able to use a short-range fire attack. Fire blocks like these can be burned by other characters' fire attacks as well.", "getConName(\"shoot\")", "getConName(\"spec1\")"]
 	},
 
 	"devcom" : {
@@ -645,7 +654,7 @@
 		"no-touch-fishy-b" :
 		"You took my fish. >:(",
 		"wood-door" :
-		"Who's idea was it to use wood doors? They freeze themselves to the wall and can't be closed!",
+		"Whose idea was it to use wood doors? They freeze themselves to the wall and can't be closed!",
 		"see-tuckles" :
 		"Have you seen Tuckles? I've never seen a penguin so buff! He doesn't even use a pick for mining. Everything he dug out, he did with his own beak!",
 		"take-duke" :
@@ -696,7 +705,12 @@
 		"mines-0" :
 		["Hey there, %s! Do you have a moment? If you haven't heard, Nolok robbed the treasury and stole the funds to keep the mines open. If you're able to, could you donate any coins you find? If we can't keep the mine open, we'll have to find fish in the sea and contend with the orcas!", "gvCharacters[game.playerChar].shortname"],
 		"mines-1" :
-		"Thanks to you, we've been able to keep the mine open a bit longer. Tuckles thinks something big is down under the ice and wants to keep digging. Any chance you could donate more and help us keep going?"
+		"Thanks to you, we've been able to keep the mine open a bit longer. Tuckles thinks something big is down under the ice and wants to keep digging. Any chance you could donate more and help us keep going?",
+
+		"construction-burned-a" :
+		"You shouldn't be climbing buildings under construction. This area is dangerous, you know!",
+		"construction-burned-b" :
+		"Could you please not burn our materials? That'd be great."
 	},
 
 	"level" : {
@@ -732,7 +746,7 @@
 		"nessland-earth" : "Down to Earth",
 		"nessland-mint" : "Minty Greens",
 		"nessland-shells" : "Shells by the Shore",
-		"nessland-situation" : "Fishy Sitation",
+		"nessland-situation" : "Fishy Situation",
 		"nessland-switch" : "Orange Switch Trial"
 	},
 
@@ -1061,18 +1075,18 @@
 			"11" : "(RS)"
 		},
 		"generic" : {
-			"0" : "1",
-			"1" : "2",
-			"2" : "3",
-			"3" : "4",
-			"4" : "5",
-			"5" : "6",
-			"6" : "7",
-			"7" : "8",
-			"8" : "9",
-			"9" : "10",
-			"10" : "11",
-			"11" : "12"
+			"0" : "(1)",
+			"1" : "(2)",
+			"2" : "(3)",
+			"3" : "(4)",
+			"4" : "(5)",
+			"5" : "(6)",
+			"6" : "(7)",
+			"7" : "(8)",
+			"8" : "(9)",
+			"9" : "(10)",
+			"10" : "(11)",
+			"11" : "(12)"
 		}
 	}
 }

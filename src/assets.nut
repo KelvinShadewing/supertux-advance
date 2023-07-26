@@ -269,6 +269,7 @@
 //Guests
 ::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 21, 37, 0, 0, 10, 37)
 ::sprOozeyOozebourne <- newSprite("res/gfx/guests/oozey.png", 16, 16, 0, 0, 8, 8)
+::sprRyemanni <- newSprite("res/gfx/guests/ryemanni.png", 16, 16, 0, 0, 8, 8)
 
 
 
@@ -604,6 +605,8 @@
 ::defShieldAir <- sprShieldAir
 ::sprShieldWater <- newSprite("res/gfx/shield-water.png", 32, 32, 0, 0, 16, 16)
 ::defShieldWater <- sprShieldWater
+::sprShieldShock <- newSprite("res/gfx/shield-shock.png", 32, 32, 0, 0, 16, 16)
+::defShieldShock <- sprShieldShock
 
 
 
