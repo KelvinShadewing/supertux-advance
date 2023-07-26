@@ -25,10 +25,14 @@
 	gvExitTimer = 0.0
 	deleteAllActors()
 	if(newLevel) {
-		game.ps.health = game.maxHealth
+		if(game.ps.health <= 0 || game.difficulty < 2)
+			game.ps.health = game.maxHealth
 		game.ps.energy = game.ps.maxEnergy
 		game.ps.stamina = game.ps.maxStamina
-		game.ps.berries = 0
+		if(game.ps2.health <= 0 || game.difficulty < 2)
+			game.ps2.health = game.maxHealth
+		game.ps2.energy = game.ps2.maxEnergy
+		game.ps2.stamina = game.ps2.maxStamina
 		game.levelCoins = 0
 		game.maxCoins = 0
 		game.redCoins = 0
@@ -45,6 +49,7 @@
 		gvVoidFog = true
 		gvCanWrap = false
 	}
+	gvWarning = 200
 
 	//Reset auto/locked controls
 	autocon = clone(defAutocon)
@@ -560,8 +565,31 @@
 
 	if(gvInfoBox == "") {
 		//Draw near-sighted stat bars
-		if(config.nearbars && gvPlayer)
-				drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, (1.0 / game.ps.maxStamina) * game.ps.stamina, (1.0 / game.ps.maxEnergy) * game.ps.energy)
+		if(config.nearbars) {
+			if(!gvSplitScreen) {
+				if(gvPlayer)
+					drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, (1.0 / game.ps.maxStamina) * game.ps.stamina, (1.0 / game.ps.maxEnergy) * game.ps.energy)
+
+				if(gvPlayer2)
+					drawFloatingStats(gvPlayer2.x - camx0, gvPlayer2.y - camy0, (1.0 / game.maxHealth) * game.ps2.health, (1.0 / game.ps2.maxStamina) * game.ps2.stamina, (1.0 / game.ps2.maxEnergy) * game.ps2.energy)
+			}
+			else {
+				if(gvSwapScreen) {
+					if(gvPlayer)
+						drawFloatingStats(gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, (1.0 / game.maxHealth) * game.ps.health, (1.0 / game.ps.maxStamina) * game.ps.stamina, (1.0 / game.ps.maxEnergy) * game.ps.energy)
+
+					if(gvPlayer2)
+						drawFloatingStats(gvPlayer2.x - camx2, gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, (1.0 / game.ps2.maxStamina) * game.ps2.stamina, (1.0 / game.ps2.maxEnergy) * game.ps2.energy)
+				}
+				else {
+					if(gvPlayer)
+						drawFloatingStats(gvPlayer.x - camx1, gvPlayer.y - camy1, (1.0 / game.maxHealth) * game.ps.health, (1.0 / game.ps.maxStamina) * game.ps.stamina, (1.0 / game.ps.maxEnergy) * game.ps.energy)
+
+					if(gvPlayer2)
+						drawFloatingStats(gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, (1.0 / game.ps2.maxStamina) * game.ps2.stamina, (1.0 / game.ps2.maxEnergy) * game.ps2.energy)
+				}
+			}
+		}
 
 		//Draw stats
 		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
@@ -1491,6 +1519,10 @@
 		case 107:
 			c = newActor(Devine, i.x + 8, i.y - 8, i.name)
 			game.maxEnemies++
+			break
+
+		case 111:
+			c = newActor(Gooey, i.x + 8, i.y - 8, i.name)
 			break
 	}
 

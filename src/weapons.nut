@@ -281,7 +281,7 @@
 
 		popSound(sndThrow, 0)
 
-		shape = Cir(x, y, 24.0)
+		shape = Cir(x, y, 16.0)
 	}
 
 	function run() {
@@ -684,14 +684,18 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 14, 4, 0)
+		flip = -1
 	}
 
 	function run() {
 		if(checkActor(owner)) {
 			x = actor[owner].x + (actor[owner].hspeed * 2.0)
 			y += (actor[owner].vspeed) / 2.0
-			flip = int(x < actor[owner].x - actor[owner].hspeed)
+			if(flip == -1)
+				flip = int(x < actor[owner].x - actor[owner].hspeed)
 		}
+		else
+			flip = 0
 
 		shape.setPos(x, y)
 		frame += 0.25

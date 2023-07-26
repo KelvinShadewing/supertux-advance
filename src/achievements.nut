@@ -74,7 +74,7 @@
 	}
 
 	blastOff = function() {
-		return gvPlayer && gvPlayer.y < 0 && gvPlayer.hspeed <= -5
+		return gvPlayer && gvPlayer.y < 0 && gvPlayer.hspeed <= -10
 	}
 }
 

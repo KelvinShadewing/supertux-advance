@@ -73,7 +73,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -140,7 +140,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -1306,7 +1306,7 @@
 
 	function run() {
 		if(gvPlayer) {
-			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxRedCoins == game.redCoins ){
+			if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) if(game.maxRedCoins <= game.redCoins ){
 				deleteActor(id)
 				newActor(Poof, x, y)
 				tileSetSolid(x, y, 0)
@@ -1315,7 +1315,7 @@
 		}
 
 		if(gvPlayer2) {
-			if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) if(game.maxRedCoins == game.redCoins ){
+			if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) if(game.maxRedCoins <= game.redCoins ){
 				deleteActor(id)
 				newActor(Poof, x, y)
 				tileSetSolid(x, y, 0)

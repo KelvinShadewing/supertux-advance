@@ -34,13 +34,16 @@
 	}
 
 	function physics() {
-		if(placeFree(x, y + (0 <=> gravity)) && !phantom) vspeed += gravity
-		if(placeFree(x, y + vspeed)) y += vspeed
-		else {
-			vspeed /= 2
-			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
-			if(placeFree(x, y + vspeed)) y += vspeed
+		if(placeFree(x, y + gravity) && !phantom) vspeed += gravity
+		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
+		else if(!(onPlatform() && vspeed >= 0)) {
+			for(local i = 1; i < 8; i++) {
+				if(placeFree(x, y + (vspeed / i))) {
+					y += (vspeed / i)
+					break
+				}
+			}
+			vspeed = 0
 		}
 
 		if(hspeed != 0) {
@@ -52,9 +55,9 @@
 			} else {
 				local didstep = false
 				for(local i = 1; i <= max(8, abs(hspeed)); i++){ //Try to move up hill
-					if(placeFree(x + hspeed, y - ((gravity <=> 0) * i))) {
+					if(placeFree(x + hspeed, y - (i))) {
 						x += hspeed
-						y -= ((gravity <=> 0) * i)
+						y -= (i)
 						if(i > 2) {
 							if(hspeed > 0) hspeed -= 0.2
 							if(hspeed < 0) hspeed += 0.2

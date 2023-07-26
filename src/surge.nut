@@ -56,7 +56,7 @@
 		climb = [52, 53, 54, 55, 54, 53]
 		wall = [56, 57]
 		dead = [58, 59]
-		charge = [7, 40, 60, 61, 62, 63]
+		charge = [7, 40, 41, 60, 61, 62, 63]
 		jumpR = [42, 43, 44, 45, 76, 77, 78, 79]
 		jumpU = [64, 65]
 		jumpT = [66, 67]
@@ -458,7 +458,7 @@
 				}
 
 				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0)) {
-					if(vspeed >= 0) anim = "fall"
+					if(vspeed >= 0) anim = "jumpT"
 					else anim = "jumpU"
 					frame = 0.0
 				}
@@ -531,9 +531,15 @@
 
 				if(floor(frame) > 1) {
 					vspeed = -6.0
-					if(getcon("down", "hold", true, playerNum)) vspeed = -4.0
+					if(getcon("down", "hold", true, playerNum))
+						vspeed = -4.0
 					local w = 4.0
-					if(getcon("up", "hold", true, playerNum)) w = 2.0
+					if(getcon("up", "hold", true, playerNum)) {
+						w = 1.0
+						vspeed = -7.0
+					}
+					else if(getcon("down", "hold", true, playerNum))
+						w = 6.0
 					if(flip == 0) hspeed = w
 					else hspeed = -w
 					if(holding)
@@ -627,7 +633,7 @@
 					chargeTimer = 0.0
 				}
 
-				if(frame >= 6)
+				if(frame >= 7)
 					frame -= 4
 				break
 		}
@@ -766,7 +772,7 @@
 				local felloff = true
 				if(atLadder()) felloff = false
 				if(felloff) {
-					anim = "fall"
+					anim = "jumpT"
 					frame = 0.0
 					if(getcon("up", "hold", true, playerNum)) vspeed = -3.0
 				}
@@ -788,6 +794,9 @@
 			}
 
 			//Jumping
+			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge") jumpBuffer = 8
+			if(jumpBuffer > 0) jumpBuffer--
+
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
 				if((onPlatform() || onPlatform(8) || onPlatform(-8)) && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum)) {
 					y++
@@ -800,7 +809,7 @@
 					if(anim == "climb" || nowInWater)
 						vspeed = -3
 					else
-						vspeed = -(6.4 + min(fabs(hspeed) / 4.0, 4.0))
+						vspeed = -(6.0 + min(fabs(hspeed) / 6.0, 4.0))
 					didJump = true
 					canJump = 0
 					animOffset = 0.0
@@ -846,9 +855,6 @@
 					flip = 1
 				}
 			} else an["fall"] = an["fallN"]
-
-			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge") jumpBuffer = 8
-			if(jumpBuffer > 0) jumpBuffer--
 
 			if(!getcon("jump", "hold", true, playerNum) && (vspeed < 0 || anim == "fall") && didJump) {
 				didJump = false
@@ -926,7 +932,7 @@
 			didAirSpecial = false
 
 		//Air moves
-		if(anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
+		if(canMove && anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
 				vspeed = 0.0
 				antigrav = 10
@@ -948,6 +954,8 @@
 						continue
 					if(!inDistance2(x, y, i.x, i.y, 128))
 						continue
+					if(i instanceof Ouchin && !invincible)
+						continue
 					if(target == null || distance2(x, y, i.x, i.y) < distance2(x, y, target.x, target.y))
 						target = i
 				}
@@ -956,6 +964,7 @@
 					antigrav = 60
 					homingTarget = target.id
 					didAirSpecial = true
+					jumpBuffer = 0
 					popSound(sndThrow)
 				}
 				break
@@ -982,6 +991,7 @@
 		else
 			damageMultF.fire = 0.5
 
+		//Homing attack
 		if(stats.weapon == "ice" && checkActor(homingTarget) && antigrav > 0) {
 			local godir = pointAngle(x, y - 16, actor[homingTarget].x, actor[homingTarget].y)
 			hspeed = lendirX(6, godir)
@@ -1006,7 +1016,7 @@
 		frame = wrap(frame, 0, an[anim].len() - 1)
 
 		local choffset = 0
-		if(anim == "ball" || anim == "charge")
+		if(anim == "ball" || anim == "charge" || anim == "jumpR")
 			choffset = 6
 
 		local yoff = 0
@@ -1031,14 +1041,26 @@
 		//Shields
 		switch(stats.weapon) {
 			case "fire":
-				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break
 			case "ice":
-				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 2 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				drawSpriteZ(3, sprShieldIce, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "air":
+				drawSpriteZ(3, sprShieldAir, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "earth":
+				drawSpriteZ(3, sprExplodeE, getFrames() / 3, x - camx, y - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "water":
+				drawSpriteZ(3, sprShieldWater, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
+				break
+			case "shock":
+				drawSpriteZ(3, sprShieldShock, getFrames() / 3, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break
 		}
 
-		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset)
+		drawLight(sprLightBasic, 0, x - camx, y - camy + choffset - 4)
 
 		if(debug) {
 			setDrawColor(0x008000ff)

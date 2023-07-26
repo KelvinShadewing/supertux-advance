@@ -36,6 +36,7 @@
 	blast = false
 	cut = false
 	dead = false
+	hitBy = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -59,7 +60,8 @@
 				if(i.owner == id) continue
 
 				if(hitTest(shape, i.shape)) {
-					if(gvPlayer) getHurt(gvPlayer, i.power, i.element, i.cut, i.blast)
+					hitBy = i
+					if(checkActor(i.owner)) getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
 					else getHurt(0, i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
@@ -70,7 +72,7 @@
 			if(gvPlayer && health > 0) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if("invincible" in gvPlayer && gvPlayer.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming) {
+					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming && gvPlayer.holding != id) {
 						if(!squish) {
 							if(getcon("jump", "hold", false, 1)) gvPlayer.vspeed = -8.0
 							else gvPlayer.vspeed = -4.0
@@ -88,7 +90,7 @@
 			if(gvPlayer2 && health > 0) {
 				if(hitTest(shape, gvPlayer2.shape) && !frozen) { //8 for player radius
 					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming) {
+					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming && gvPlayer2.holding != id) {
 						if(!squish) {
 							if(getcon("jump", "hold", false, 1)) gvPlayer2.vspeed = -8.0
 							else gvPlayer2.vspeed = -4.0
@@ -177,7 +179,7 @@
 		target.hurt = touchDamage * target.damageMult[element] * (cut ? target.damageMult["cut"] : 1) * (blast ? target.damageMult["blast"] : 1)
 	}
 
-	function holdMe(throwH = 2.0, throwV = 2.0) {
+	function holdMe(throwF = 2.0) {
 		if(frozen)
 			return
 
@@ -198,7 +200,7 @@
 				held = false
 			else if(hitTest(shape, target.shape)
 			&& (getcon("shoot", "hold", false, target.playerNum) || getcon("spec1", "hold", false, target.playerNum))
-			&& (target.holding == 0|| target.holding == id) && hspeed == 0) {
+			&& (target.holding == 0 || target.holding == id)) {
 				y = target.y
 				flip = target.flip
 				if(flip == 0) x = target.x + 10
@@ -222,7 +224,7 @@
 			}
 
 			//escape from solid
-			if(!placeFree(x, y)) {
+			if(!placeFree(x, y) && held) {
 				local escapedir = target.x <=> x
 				y = target.y
 				if(!placeFree(x, y + 1) && placeFree(x, y - 1)) y--
@@ -242,10 +244,27 @@
 					while(!placeFree(x, y)) x += escapedir
 				}
 
-				if(getcon("up", "hold", false, target.playerNum) && held)
-					vspeed = -throwV
+				local throwH = x <=> target.x
+				local throwV = 0
+				if(getcon("up", "hold", false, target.playerNum) && held){
+					throwV = -1
+					if(!getcon("left", "hold", false, target.playerNum) && !getcon("right", "hold", true, target.playerNum))
+						throwH = 0
+				}
+				if(getcon("down", "hold", false, target.playerNum) && held){
+					throwV = 1
+					if(!getcon("left", "hold", false, target.playerNum) && !getcon("right", "hold", true, target.playerNum))
+						throwH = 0
+				}
+				if(getcon("left", "hold", false, target.playerNum) && held)
+					throwH = -1
+				if(getcon("right", "hold", false, target.playerNum) && held)
+					throwH = 1
 
-				if(!getcon("down", "hold", false, target.playerNum)) hspeed = -throwH * (target.x <=> x)
+				local throwD = pointAngle(0, 0, throwH, throwV)
+
+				hspeed = lendirX(throwF, throwD)
+				vspeed = lendirY(throwF, throwD)
 			}
 			held = false
 		}
@@ -451,7 +470,7 @@
 			return
 		}
 
-		if("anim" in _by) {
+		if("inMelee" in _by) {
 			if(_by.inMelee && hitTest(shape, _by.shape)) {
 				local c = newActor(DeadNME, x, y)
 				if(smart) actor[c].sprite = sprGradcap
@@ -2525,7 +2544,8 @@
 				frame += 0.01 * squishTime
 				if(squishTime >= 180) {
 					die()
-					fireWeapon(ExplodeT2, x, y, 0, id)
+					local c = fireWeapon(ExplodeT2, x, y, 0, id)
+					c.power = 4.0
 				}
 				drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
@@ -2614,7 +2634,7 @@
 	smart = false
 	moving = false
 	element = "fire"
-	touchDamage = 2.0
+	touchDamage = 4.0
 	sharpTop = true
 	sharpSide = true
 
@@ -4521,6 +4541,7 @@
 	mspeed = 1.5
 	held = false
 	nodrop = true
+	touchDamage = 4.0
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -5526,4 +5547,196 @@
 			shape.draw()
 		}
 	}
+}
+
+::Gooey <- class extends Enemy {
+	sprite = null
+	touchDamage = 0
+	damageMult = {
+		normal = 0
+		fire = 0
+		ice = 0
+		earth = 0
+		air = 0
+		toxic = 0
+		shock = 0
+		water = 0
+		light = 0
+		dark = 0
+		cut = 0
+		blast = 0
+		stomp = 0
+		star = 0
+	}
+
+	an = {
+		stand = [0, 1]
+		crouch = [5]
+		jump = [2, 3]
+		fall = [4, 5]
+	}
+	anim = "stand"
+
+	gravity = 0.05
+	jumpTimer = 180
+	frame = 0.0
+	nocount = true
+	flip = 0
+
+	constructor(_x, _y, _arr) {
+		base.constructor(_x, _y, _arr)
+		nocount = true
+		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)
+		if(randInt(50) == 0) sprite = sprOozeyOozebourne
+		if(randInt(50) == 0) sprite = sprRyemanni
+		shape = Rec(x, y, 7, 7, 0)
+		jumpTimer = randInt(180)
+		vspeed = -1.0
+	}
+
+	function run() {
+		base.run()
+		if(!active)
+			return
+
+		switch(anim) {
+			case "stand":
+				frame += 0.1
+
+			case "crouch":
+				if(jumpTimer < 5)
+					anim = "crouch"
+				else
+					anim = "stand"
+
+				if(vspeed < -1) {
+					frame = 0.0
+					anim = "jump"
+				}
+
+				if(vspeed > 1) {
+					frame = 0.0
+					anim = "fall"
+				}
+
+				break
+
+			case "jump":
+				if(frame < 1 || vspeed > 0)
+					frame += 0.1
+
+				if(held)
+					frame = 1
+
+				if(frame >= 2 && !held) {
+					frame = 0.0
+					anim = "fall"
+				}
+
+				break
+
+			case "fall":
+				if(!placeFree(x, y + 2))
+					frame += 0.2
+
+				if(held)
+					anim = "jump"
+
+				if(frame >= 2) {
+					anim = "stand"
+					frame = 0.0
+				}
+
+				break
+		}
+
+		if(jumpTimer > 0)
+			jumpTimer--
+
+		if(!placeFree(x, y + 1)) {
+			vspeed = 0
+
+			if(jumpTimer <= 0 && !held) {
+				vspeed = -1.0 - randFloat(3.0)
+				hspeed = randFloat(4.0) - 2.0
+				jumpTimer = randInt(180) + 240
+			}
+		}
+
+		holdMe(5)
+
+		if(x > xprev && fabs(x - xprev) > 0.5)
+			flip = 0
+		if(x < xprev && fabs(x - xprev) > 0.5)
+			flip = 1
+	}
+
+	function draw() {
+		if(!active)
+			return
+		
+		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+
+		if(debug)
+			drawText(font, x - camx + 16, y - 8 - camy, anim + "(" + vspeed + ")")
+	}
+
+	function physics() {
+		xprev = x
+		yprev = y
+
+		if(vspeed > 8)
+			vspeed = 8.0
+
+		if(x < 0) {
+			vspeed = -2.0
+			hspeed = 2.0
+		}
+
+		if(x > gvMap.w) {
+			vspeed = -2.0
+			hspeed = -2.0
+		}
+
+		if(!placeFree(x, y - 1))
+			vspeed = 1.0
+
+		if(placeFree(x, y + 1))
+			vspeed += 0.1
+		else
+			hspeed -= (hspeed <=> 0) * 0.1
+		if(placeFree(x, y + vspeed))
+			y += vspeed
+		else
+			vspeed /= 2.0
+
+		local didstep = false
+		for(local i = 0; i <= 8; i++) {
+			if(placeFree(x + hspeed, y - i)) {
+				x += hspeed
+				y -= i
+				didstep = true
+				break
+			}
+		}
+
+		if(!didstep)
+			hspeed /= 2.0
+
+		shape.setPos(x, y)
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_blast) {
+			local angle = pointAngle(hitBy.x, hitBy.y, x, y)
+			hspeed = lendirX(hitBy.power + 1.0, angle)
+			vspeed = lendirY(hitBy.power + 1.0, angle) - 2.0
+		}
+	}
+
+	function hurtInvinc() {}
+
+	function hurtPlayer(target = null) {}
+
+	function _typeof() { return "Gooey" }
 }

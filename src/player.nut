@@ -83,7 +83,8 @@
 			playerNum = 2
 		}
 
-		stats.health = game.maxHealth
+		if(stats.health <= 0 || game.difficulty < 2)
+			stats.health = game.maxHealth
 
 		//Player-specific settings
 	}
@@ -160,12 +161,12 @@
 		//Leave level
 		if(x < 4) {
 			x = 4
-			if(getcon("left", "hold", false, playerNum) && !endMode) gvExitTimer += 1.0
+			if(getcon("left", "hold", false, playerNum) && !endMode && !gvTimeAttack) gvExitTimer += 1.0
 			gvExitSide = 0
 		}
 		if(x > gvMap.w - 4) {
 			x = gvMap.w - 4
-			if(getcon("right", "hold", false, playerNum) && !endMode) gvExitTimer += 1.0
+			if(getcon("right", "hold", false, playerNum) && !endMode && !gvTimeAttack) gvExitTimer += 1.0
 			gvExitSide = 1
 		}
 

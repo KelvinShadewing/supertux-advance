@@ -445,9 +445,12 @@
 			//Sliding acceleration
 			if(slippery) {
 				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
-					if(placeFree(x + 4, y + 1)) hspeed += 0.3
-					if(placeFree(x - 4, y + 1)) hspeed -= 0.3
-					if(freeDown2)vspeed += 1.0
+					if(placeFree(x + 4, y + 1))
+						hspeed += 0.3
+					if(placeFree(x - 4, y + 1))
+						hspeed -= 0.3
+					if(freeDown2 && vspeed >= 0)
+						vspeed += 1.0
 					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
@@ -1348,6 +1351,8 @@
 }
 
 ::Lutris <- class extends Tux {
+	myAura = sprLutrisAura
+
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 
@@ -1356,6 +1361,52 @@
 		mySprIce = sprLutris
 		mySprAir = sprLutris
 		mySprEarth = sprLutris
+
+		myAura = sprLutrisAura
+	}
+
+	function draw() {
+		if(!hidden) {
+			//Aura
+			local auraColor = 0xffffffff
+			if(stats.weapon != "normal") {
+				switch(stats.weapon) {
+					case "fire":
+						auraColor = 0xf84000ff
+						break
+					case "ice":
+						auraColor = 0x80d0f8ff
+						break
+					case "air":
+						auraColor = 0x00a060ff
+						break
+					case "earth":
+						auraColor = 0x705020ff
+						break
+					case "shock":
+						auraColor = 0xf8f800ff
+						break
+					case "water":
+						auraColor = 0x5050c0ff
+						break
+					case "light":
+						auraColor = 0xf8f8b0ff
+						break
+					case "dark":
+						auraColor = 0x201020ff
+						break
+					default:
+						auraColor = 0xffffffff
+						break
+				}
+
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx + 1, y - camy, 0, flip, 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy + 1, 0, flip, 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx - 1, y - camy, 0, flip, 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy - 1, 0, flip, 1, 1, sin(torad(270) + float(getFrames()) / 16.0) * 0.75, auraColor)
+			}
+		}
+		base.draw()
 	}
 
 	function _typeof() { return "Lutris" }
