@@ -537,6 +537,10 @@
 ::defExplodeA <- sprExplodeA
 ::sprExplodeE <- newSprite("res/gfx/explodeE.png", 32, 32, 0, 0, 16, 20)
 ::defExplodeE <- sprExplodeE
+::sprExplodeW <- newSprite("res/gfx/explodeW.png", 32, 32, 0, 0, 16, 16)
+::defExplodeW <- sprExplodeW
+::sprExplodeW2 <- newSprite("res/gfx/explodeW2.png", 64, 64, 0, 0, 32, 32)
+::defExplodeW2 <- sprExplodeW2
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png", 16, 4, 0, 0, 0, 0)
 ::defWaterSurface <- sprWaterSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
@@ -607,6 +611,10 @@
 ::defShieldWater <- sprShieldWater
 ::sprShieldShock <- newSprite("res/gfx/shield-shock.png", 32, 32, 0, 0, 16, 16)
 ::defShieldShock <- sprShieldShock
+::sprWaterball <- newSprite("res/gfx/water-ball-small.png", 8, 8, 0, 0, 4, 4)
+::defWaterball <- sprWaterball
+::sprWaterBomb <- newSprite("res/gfx/water-ball.png", 18, 18, 0, 0, 9, 9)
+::defWaterBomb <- sprWaterBomb
 
 
 
@@ -744,6 +752,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	loadSound("res/snd/surge-charge-9.ogg"),
 	loadSound("res/snd/surge-charge-10.ogg")
 ]
+::sndSplash <- loadSound("res/snd/splash.ogg")
 
 
 

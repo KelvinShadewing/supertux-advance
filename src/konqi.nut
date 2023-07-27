@@ -816,6 +816,7 @@
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.vspeed = -0.5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -841,6 +842,7 @@
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -867,6 +869,7 @@
 						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -882,6 +885,31 @@
 						anim = "stand"
 						newActor(Poof, x, y - 8)
 						newActor(Poof, x, y + 8)
+					}
+					break
+
+				case "water":
+					if(getcon("shoot", "press", true, playerNum) && anim != "stomp" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(WaterBomb, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.hspeed += hspeed
+						c.vspeed = -0.5
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+
+						c.hspeed += hspeed / 1.5
 					}
 					break
 
@@ -927,6 +955,7 @@
 						local c = fireWeapon(FireballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -953,6 +982,7 @@
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -979,6 +1009,7 @@
 						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -1010,6 +1041,7 @@
 							local c = fireWeapon(Fireball, x + fx, y, 1, id)
 							if(!flip) c.hspeed = 5
 							else c.hspeed = -5
+							c.hspeed += hspeed
 							playSound(sndFireball, 0)
 							if(getcon("up", "hold", true, playerNum)) {
 								c.vspeed = -2.5
