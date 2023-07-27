@@ -5675,7 +5675,7 @@
 		if(!active)
 			return
 		
-		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + (7 * flip), x - camx, y - camy, 0, flip)
 
 		if(debug)
 			drawText(font, x - camx + 16, y - 8 - camy, anim + "(" + vspeed + ")")
