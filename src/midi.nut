@@ -652,6 +652,7 @@
 					else hspeed = -w
 					anim = "jump"
 					frame = 0.0
+					canJump = 0
 				}
 
 				if(!freeLeft) flip = 0
@@ -1237,7 +1238,7 @@
 
 	function ruBall() {
 		//Controls
-		if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 			canJump = 16
 		}
 		else {

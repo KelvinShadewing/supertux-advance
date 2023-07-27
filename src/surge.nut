@@ -547,6 +547,8 @@
 					else
 						anim = "jumpR"
 					frame = 0.0
+
+					canJump = 0
 				}
 
 				if(!freeLeft) flip = 0
@@ -679,7 +681,7 @@
 		inMelee = (anim == "ball" || anim == "jumpR" || anim == "charge")
 
 		//Controls
-		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
+		if((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
 			canJump = 16
 		}
 		else {

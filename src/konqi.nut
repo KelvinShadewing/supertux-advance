@@ -407,6 +407,7 @@
 						else hspeed = -w
 						anim = "jumpU"
 						frame = 0.0
+						canJump = 0
 					}
 					break
 
@@ -504,7 +505,7 @@
 				stats.stamina += 0.05
 
 			//Controls
-			if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+			if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.2
 			}
