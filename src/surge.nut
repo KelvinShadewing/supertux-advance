@@ -65,6 +65,7 @@
 		fallW = [56]
 		crawl = [72, 73, 47, 75, 74, 73]
 		win = [51]
+		fly = [80, 81, 82, 83]
 	}
 	animOffset = 0.0
 
@@ -238,9 +239,11 @@
 			stats.energy += 1.0 / 30.0
 
 		if(!freeDown2 && stats.stamina < stats.maxStamina)
-			stats.stamina++
+			stats.stamina += 0.25
 
 		if(getcon("swap", "press", true, playerNum)) swapitem()
+
+		magnetic = stats.weapon == "shock"
 	}
 
 	function physics() {
@@ -275,7 +278,7 @@
 
 		if(vspeed > 0)
 			didJump = false
-		if(nowInWater)
+		if(nowInWater || anim == "fly")
 			gravity = 0.12
 		else
 			gravity = 0.25
@@ -291,6 +294,9 @@
 				if(hspeed == 0 || getcon("up", "hold", true, playerNum) && placeFree(x, y - 4))
 					anim = "stand"
 				break
+			case "fly":
+				if(vspeed > (getcon("down", "hold", true, playerNum) ? 4 : 2))
+					vspeed -= 0.2
 		}
 
 		//Base movement
@@ -638,6 +644,24 @@
 				if(frame >= 7)
 					frame -= 4
 				break
+
+			case "fly":
+				if(stats.stamina > 0) {
+					frame += 0.5
+					stats.stamina -= 0.01 * (1 + game.difficulty)
+					if(getcon("jump", "hold", true, playerNum) || getcon("up", "hold", true, playerNum)) {
+						vspeed = max(-2, vspeed - 0.2)
+						stats.stamina -= 0.01 * (1 + game.difficulty)
+					}
+				}
+				else {
+					animOffset = 4
+					frame += 0.1
+				}
+
+				if(!placeFree(x, y + 1) && vspeed >= 0)
+					anim = "stand"
+				break
 		}
 
 		if(endMode && hspeed == 0)
@@ -659,12 +683,6 @@
 		if(firetime > 0) {
 			firetime--
 		}
-
-		if(firetime <= 0 && stats.energy < stats.maxEnergy)
-			stats.energy += 1.0 / 30.0
-
-		if(!freeDown2 && stats.stamina < stats.maxStamina)
-			stats.stamina++
 
 		//After image
 		if(zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) {
@@ -934,7 +952,7 @@
 			didAirSpecial = false
 
 		//Air moves
-		if(canMove && anim == "jumpR" && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
+		if(canMove && (anim == "jumpR" || anim == "jumpU" && stats.weapon == "air") && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
 				vspeed = 0.0
 				antigrav = 10
@@ -945,6 +963,7 @@
 				popSound(sndFlame)
 				didAirSpecial = true
 				break
+
 			case "ice":
 				local target = null
 				foreach(i in actor) {
@@ -970,6 +989,21 @@
 					popSound(sndThrow)
 				}
 				break
+
+			case "shock":
+				fireWeapon(ExplodeT2, x, y, 1, id)
+				vspeed = -6.0
+				didJump = true
+				canJump = 0
+				didAirSpecial = true
+				blinking = max(8, blinking)
+				break
+
+			case "air":
+				anim = "fly"
+				didAirSpecial = true
+				break
+
 			default:
 				didAirSpecial = true
 				fireWeapon(InstaShield, x, y, 1, id)

@@ -601,6 +601,14 @@
 				case 10:
 					newActor(EarthShell, x, y - 16)
 					break
+
+				case 11:
+					newActor(ShockBulb, x, y - 16)
+					break
+				
+				case 12:
+					newActor(WaterLily, x, y - 16)
+					break
 			}
 		}
 
