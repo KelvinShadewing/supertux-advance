@@ -856,7 +856,7 @@
                  "gid":230,
                  "height":16,
                  "id":42,
-                 "name":"sprPenguinBuilder,1,watchActor,34,construction-burned-a,construction-burned-b",
+                 "name":"sprPenguinBuilderNPC,1,watchActor,34,construction-burned-a,construction-burned-b",
                  "rotation":0,
                  "type":"",
                  "visible":true,

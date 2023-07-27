@@ -539,7 +539,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 24.0)
+		shape = Cir(x, y, 8.0)
 		altShape = Cir(x, y, 2.0)
 	}
 
@@ -548,6 +548,7 @@
 
 		if(frame >= 5) deleteActor(id)
 		if(altShape.r < 16) altShape.r++
+		if(shape.r < 24) shape.r++
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {

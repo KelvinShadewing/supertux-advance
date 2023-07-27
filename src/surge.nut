@@ -306,12 +306,13 @@
 				gravity = 1.0
 				if(!placeFree(x, y + 2)) {
 					blinking = max(blinking, 8)
-					fireWeapon(StompPoof, x + 4, y + 8, 1, id)
-					fireWeapon(StompPoof, x - 4, y + 8, 1, id)
+					fireWeapon(StompPoof, x + 4, y + 10, 1, id)
+					fireWeapon(StompPoof, x - 4, y + 10, 1, id)
 					popSound(sndBump)
 					anim = "jumpR"
 					didAirSpecial = false
 					vspeed = -4
+					canJump = 0
 				}
 		}
 
@@ -722,6 +723,9 @@
 			if(canJump > 0) canJump--
 		}
 
+		if(anim == "stomp")
+			canJump = 0
+
 		onWall = (anim == "wall" || an[anim] == an["fallW"])
 
 		if(canMove) {
@@ -968,7 +972,7 @@
 			didAirSpecial = false
 
 		//Air moves
-		if(canMove && (anim == "jumpR" || anim == "jumpU" && stats.weapon == "air") && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
+		if(canMove && (anim == "jumpR" || (anim == "jumpU" || anim == "jumpT" || anim == "fall") && stats.weapon == "air" && !onPlatform()) && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
 				vspeed = 0.0
 				antigrav = 10
