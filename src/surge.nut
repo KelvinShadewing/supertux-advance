@@ -66,6 +66,7 @@
 		crawl = [72, 73, 47, 75, 74, 73]
 		win = [51]
 		fly = [80, 81, 82, 83]
+		stomp = [70, 71]
 	}
 	animOffset = 0.0
 
@@ -257,7 +258,7 @@
 		if(fabs(hspeed) < friction)
 			hspeed = 0.0
 		if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && !nowInWater)) && antigrav <= 0)
-			vspeed += (vspeed > 5 ? gravity / vspeed : gravity)
+			vspeed += (vspeed > 5 && anim != "stomp" ? gravity / vspeed : gravity)
 		else if(antigrav > 0)
 			antigrav--
 		if(!placeFree(x, y - 1) && vspeed < 0)
@@ -297,6 +298,21 @@
 			case "fly":
 				if(vspeed > (getcon("down", "hold", true, playerNum) ? 4 : 2))
 					vspeed -= 0.2
+				break
+			case "stomp":
+				frame += 0.5
+				hspeed /= 1.25
+				vspeed = max(4, vspeed)
+				gravity = 1.0
+				if(!placeFree(x, y + 2)) {
+					blinking = max(blinking, 8)
+					fireWeapon(StompPoof, x + 4, y + 8, 1, id)
+					fireWeapon(StompPoof, x - 4, y + 8, 1, id)
+					popSound(sndBump)
+					anim = "jumpR"
+					didAirSpecial = false
+					vspeed = -4
+				}
 		}
 
 		//Base movement
@@ -1001,6 +1017,11 @@
 
 			case "air":
 				anim = "fly"
+				didAirSpecial = true
+				break
+
+			case "water":
+				anim = "stomp"
 				didAirSpecial = true
 				break
 
