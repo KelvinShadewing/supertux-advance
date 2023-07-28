@@ -304,10 +304,9 @@
 				hspeed /= 1.25
 				vspeed = max(4, vspeed)
 				gravity = 1.0
-				if(!placeFree(x, y + 2)) {
+				if(!placeFree(x, y + 2) || inWater(x, y + vspeed)) {
 					blinking = max(blinking, 8)
-					fireWeapon(StompPoof, x + 4, y + 10, 1, id)
-					fireWeapon(StompPoof, x - 4, y + 10, 1, id)
+					fireWeapon(ExplodeW, x, y + 8, 1, id)
 					popSound(sndBump)
 					anim = "jumpR"
 					didAirSpecial = false

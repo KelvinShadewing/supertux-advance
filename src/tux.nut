@@ -848,18 +848,18 @@
 					if(getcon("shoot", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 0.25 && getFrames() % 4 == 0 && !holding) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = fireWeapon(Waterball, x + fx, y, 1, id)
+						local c = fireWeapon(Waterball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.hspeed += hspeed
 						c.hspeed += 1.0 - randFloat(2.0)
-						c.vspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 0.5 - randFloat(2.0)
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						if(getcon("down", "hold", true, playerNum)) {
+						if(getcon("down", "hold", true, playerNum) && freeDown2) {
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
@@ -921,18 +921,18 @@
 					if(getcon("spec1", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 0.25 && getFrames() % 4 == 0 && !holding) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = fireWeapon(Waterball, x + fx, y, 1, id)
+						local c = fireWeapon(Waterball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.hspeed += hspeed
 						c.hspeed += 1.0 - randFloat(2.0)
-						c.vspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 0.5 - randFloat(2.0)
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
-						if(getcon("down", "hold", true, playerNum)) {
+						if(getcon("down", "hold", true, playerNum) && freeDown2) {
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
