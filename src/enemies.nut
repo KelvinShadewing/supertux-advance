@@ -978,6 +978,11 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(!active) return
 		if(held) return
+		if(_element == "water") {
+			squish = false
+			squishTime = 0
+			return
+		}
 		if(_element == "ice") {
 			hurtIce()
 			return
@@ -1093,6 +1098,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "water" || _mag == 0)
+			return
 		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
 			hurtFire()
 	}
@@ -1215,6 +1222,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "water" || _mag == 0)
+			return
 		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
 			hurtFire()
 	}
@@ -1320,6 +1329,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "water" || _mag == 0)
+			return
 		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
 			hurtFire()
 	}
@@ -1557,6 +1568,8 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "water" || _mag == 0)
+			return
 		if(("anim" in _by && _by.anim == "slide" && _by.stats.weapon == "earth") || (!_stomp || !_by.swimming))
 			hurtFire()
 	}
@@ -2379,6 +2392,12 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "water") {
+			squish = false
+			squishTime = 0
+			chasing = false
+			return
+		}
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -2398,6 +2417,9 @@
 		if(squish) return
 
 		if(!_stomp) vspeed = -2.0
+
+		if(!squish)
+			frame = 0.0
 
 		squish = true
 	}
@@ -2742,7 +2764,7 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_element == "ice") {
+		if(_element == "ice" || _element == "water") {
 			hurtIce()
 			return
 		}
@@ -4842,6 +4864,12 @@
 		base.draw()
 	}
 
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_element == "water" || _mag == 0)
+			return
+		base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
+	}
+
 	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
@@ -5675,7 +5703,7 @@
 		if(!active)
 			return
 		
-		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + (7 * flip), x - camx, y - camy, 0, flip)
 
 		if(debug)
 			drawText(font, x - camx + 16, y - 8 - camy, anim + "(" + vspeed + ")")

@@ -4,6 +4,8 @@
 
 ::Coin <- class extends Actor{
 	frame = 0.0
+	hspeed = 0.0
+	vspeed = 0.0
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -28,6 +30,18 @@
 				gvFoundItems[k] <- typeof this
 		}
 		frame += 0.2
+
+		hspeed /= 1.01
+		vspeed /= 1.01
+
+		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
+			local speed = 100.0 / max(1, distance2(x, y, gvPlayer.x, gvPlayer.y))
+			hspeed = lendirX(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+			vspeed = lendirY(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+		}
+
+		x += hspeed
+		y += vspeed
 	}
 
 	function draw() { drawSprite(sprCoin, frame, x - camx, y - camy) }
@@ -1051,4 +1065,84 @@
 	function draw() { drawSprite(sprCoffee, getFrames() / 8, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger()) }
 
 	function _typeof() { return "CoffeeCup" }
+}
+
+::ShockBulb <- class extends Actor{
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+	}
+
+	function run()
+	{
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps.weapon == "normal") {
+				game.ps.weapon = "shock"
+			}
+			else {
+				game.ps.subitem = game.ps.weapon
+				game.ps.weapon = "shock"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
+		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "shock"
+			}
+			else {
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.weapon = "shock"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
+		}
+	}
+
+	function draw() { drawSprite(sprShockBulb, getFrames() / 16, x - camx, y - camy) }
+
+	function _typeof() { return "ShockBulb" }
+}
+
+::WaterLily <- class extends Actor{
+
+	constructor(_x, _y, _arr = null)
+	{
+		base.constructor(_x, _y)
+	}
+
+	function run()
+	{
+		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps.weapon == "normal") {
+				game.ps.weapon = "water"
+			}
+			else {
+				game.ps.subitem = game.ps.weapon
+				game.ps.weapon = "water"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer.rawin("tftime")) gvPlayer.tftime = 0
+		}
+		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			deleteActor(id)
+			if(game.ps2.weapon == "normal") {
+				game.ps2.weapon = "water"
+			}
+			else {
+				game.ps2.subitem = game.ps2.weapon
+				game.ps2.weapon = "water"
+			}
+			popSound(sndHeal, 0)
+			if(gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0
+		}
+	}
+
+	function draw() { drawSprite(sprWaterLily, getFrames() / 16, x - camx, y - camy) }
+
+	function _typeof() { return "WaterLily" }
 }

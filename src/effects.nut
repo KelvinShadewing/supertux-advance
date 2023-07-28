@@ -121,6 +121,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
+		popSound(sndSplash)
 	}
 
 	function run() {

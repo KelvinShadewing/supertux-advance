@@ -631,7 +631,7 @@
 
 			case "fall":
 				fallTimer++
-				frame += 0.25
+				frame += 0.1 + ((1.0 / 64.0) * vspeed)
 				if((!placeFree(x, y + 4) || !placeFree(x - hspeed, y + 4) || onPlatform()) && vspeed >= 0) {
 					anim = "stand"
 					frame = 0.0
@@ -652,6 +652,7 @@
 					else hspeed = -w
 					anim = "jump"
 					frame = 0.0
+					canJump = 0
 				}
 
 				if(!freeLeft) flip = 0
@@ -1237,7 +1238,7 @@
 
 	function ruBall() {
 		//Controls
-		if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 			canJump = 16
 		}
 		else {
@@ -1523,7 +1524,7 @@
 		local nutType = "normal"
 		if(hand == 0) nutType = stats.weapon
 		if(hand == 1) nutType = stats.subitem
-		if(!["normal", "fire", "ice", "air", "earth", "shock"].find(nutType)) nutType = "normal"
+		if(!["normal", "fire", "ice", "air", "earth", "shock", "water"].find(nutType)) nutType = "normal"
 
 		if(getcon("up", "hold", true, playerNum) && (getcon("left", "hold", true, playerNum) || getcon("right", "hold", true, playerNum))) shootDir = 2
 		else if(getcon("down", "hold", true, playerNum) && (getcon("left", "hold", true, playerNum) || getcon("right", "hold", true, playerNum))) shootDir = 3

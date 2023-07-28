@@ -1521,6 +1521,14 @@
 			game.maxEnemies++
 			break
 
+		case 109:
+			c = newActor(ItemBlock, i.x + 8, i.y - 8, 12)
+			break
+
+		case 110:
+			c = newActor(ItemBlock, i.x + 8, i.y - 8, 11)
+			break
+
 		case 111:
 			c = newActor(Gooey, i.x + 8, i.y - 8, i.name)
 			break

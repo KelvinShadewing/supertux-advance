@@ -539,7 +539,7 @@
 		stopSound(sndExplodeF)
 		playSound(sndExplodeF, 0)
 
-		shape = Cir(x, y, 24.0)
+		shape = Cir(x, y, 8.0)
 		altShape = Cir(x, y, 2.0)
 	}
 
@@ -548,6 +548,7 @@
 
 		if(frame >= 5) deleteActor(id)
 		if(altShape.r < 16) altShape.r++
+		if(shape.r < 24) shape.r++
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
@@ -1272,6 +1273,9 @@
 			case "earth":
 				t = ExplodeE
 				break
+			case "water":
+				t = ExplodeW
+				break
 		}
 		if(exPower == 2) {
 			switch(exElement) {
@@ -1281,6 +1285,10 @@
 					break
 				case "fire":
 					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
+					c.power = 2
+					break
+				case "water":
+					c = fireWeapon(ExplodeW2, x, y, alignment, owner)
 					c.power = 2
 					break
 				default:
@@ -1359,6 +1367,27 @@
 					c = fireWeapon(ExplodeI2, x, y, alignment, owner)
 					c.power = 4
 					break
+				case "water":
+					c = fireWeapon(ExplodeW2, x, y, alignment, owner)
+					c.power = 4
+					c = fireWeapon(WaterBomb, x - 6, y - 6, alignment, owner)
+					c.power = 4
+					c.hspeed = -2.0
+					c.vspeed = -2.0
+					c = fireWeapon(WaterBomb, x + 6, y - 6, alignment, owner)
+					c.power = 4
+					c.hspeed = 2.0
+					c.vspeed = -2.0
+					c = fireWeapon(WaterBomb, x - 6, y + 6, alignment, owner)
+					c.power = 4
+					c.hspeed = -2.0
+					c.vspeed = 2.0
+					c = fireWeapon(WaterBomb, x + 6, y + 6, alignment, owner)
+					c.power = 4
+					c.hspeed = 2.0
+					c.vspeed = 2.0
+					break
+				
 				default:
 					c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
 					c.power = 4
@@ -1720,5 +1749,207 @@
 
 	function destructor() {
 		fireWeapon(AfterFlame, x + hspeed, y + vspeed, alignment, owner)
+	}
+}
+
+///////////
+// WATER //
+///////////
+
+::Waterball <- class extends WeaponEffect {
+	element = "water"
+	timer = 90
+	piercing = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.99
+			vspeed *= 0.99
+		}
+
+		x += hspeed
+		y += vspeed
+
+		if(!placeFree(x, y)) deleteActor(id)
+
+		if(y > gvMap.h || piercing < 0) deleteActor(id)
+
+		shape.setPos(x, y)
+	}
+
+	function draw()  {
+		drawSpriteEx(sprWaterball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function animation() {}
+}
+
+::ExplodeW <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "water"
+	power = 2
+	blast = true
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		stopSound(sndSplash)
+		playSound(sndSplash, 0)
+
+		shape = Cir(x, y, 8.0)
+		angle = randInt(360)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeW, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::ExplodeW2 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "water"
+	power = 2
+	blast = true
+	altShape = null
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		stopSound(sndSplashBig)
+		playSound(sndSplashBig, 0)
+
+		shape = Cir(x, y, 8.0)
+		altShape = Cir(x, y, 2.0)
+
+		angle = randInt(360)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+		if(altShape.r < 16) altShape.r++
+		if(shape.r < 24) shape.r++
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeW2, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::WaterBomb <- class extends WeaponEffect {
+	timer = 90
+	angle = 0
+	element = "water"
+	power = 1
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 2)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		if(inWater(x, y)) {
+			vspeed *= 0.99
+			hspeed *= 0.99
+		}
+		else
+			vspeed += 0.1
+
+		x += hspeed
+		y += vspeed
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, vspeed) - 90
+
+		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSpriteEx(sprWaterBomb, (getFrames() / 4) % 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+	}
+
+	function destructor() {
+		local c = fireWeapon(ExplodeW, x, y, alignment, owner)
+		c.power = power
 	}
 }

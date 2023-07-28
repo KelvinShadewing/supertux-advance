@@ -376,6 +376,7 @@
 						else hspeed = -w
 						anim = "jumpU"
 						frame = 0.0
+						canJump = 0
 					}
 
 					if(!freeLeft) flip = 0
@@ -477,7 +478,7 @@
 				stats.stamina += 0.05
 
 			//Controls
-			if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+			if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
@@ -784,6 +785,7 @@
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -806,6 +808,7 @@
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -840,6 +843,31 @@
 						if(flip == 1 && hspeed > -2) hspeed = -2
 					}
 					break
+
+				case "water":
+					if(getcon("shoot", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 0.25 && getFrames() % 4 == 0 && !holding) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Waterball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.hspeed += hspeed
+						c.hspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 1.0 - randFloat(2.0)
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy -= 0.25
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
 			}
 
 			if(canMove) switch(stats.subitem) {
@@ -850,6 +878,7 @@
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -872,6 +901,7 @@
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -882,6 +912,31 @@
 							c.hspeed /= 1.5
 						}
 						stats.energy--
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
+
+				case "water":
+					if(getcon("spec1", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 0.25 && getFrames() % 4 == 0 && !holding) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Waterball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.hspeed += hspeed
+						c.hspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 1.0 - randFloat(2.0)
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy -= 0.25
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -1043,6 +1098,40 @@
 						firetime = 60
 					}
 					break
+
+				case "water":
+					if(getcon("shoot", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0.25 && getFrames() % 4 == 0 && !holding) {
+						local c = fireWeapon(Waterball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						c.hspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 1.0 - randFloat(2.0)
+
+						stats.energy -= 0.25
+						firetime = 60
+					}
+					break
 			}
 
 			if(canMove) switch(stats.subitem) {
@@ -1104,6 +1193,40 @@
 						c.vspeed += vspeed / 2
 
 						stats.energy--
+						firetime = 60
+					}
+					break
+
+				case "water":
+					if(getcon("spec1", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0.25 && getFrames() % 4 == 0 && !holding) {
+						local c = fireWeapon(Waterball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						c.hspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 1.0 - randFloat(2.0)
+
+						stats.energy -= 0.25
 						firetime = 60
 					}
 					break
@@ -1253,6 +1376,12 @@
 					sprite = mySprEarth
 					an["stand"] = an["standE"]
 					damageMult = damageMultE
+					break
+
+				default:
+					sprite = mySprNormal
+					an["stand"] = an["standN"]
+					damageMult = damageMultN
 					break
 			}
 
