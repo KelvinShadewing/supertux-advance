@@ -753,6 +753,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	loadSound("res/snd/surge-charge-10.ogg")
 ]
 ::sndSplash <- loadSound("res/snd/splash.ogg")
+::sndSplashBig <- loadSound("res/snd/splash-big.ogg")
 
 
 

@@ -1862,8 +1862,8 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndSplash)
-		playSound(sndSplash, 0)
+		stopSound(sndSplashBig)
+		playSound(sndSplashBig, 0)
 
 		shape = Cir(x, y, 8.0)
 		altShape = Cir(x, y, 2.0)
