@@ -19,7 +19,6 @@
 	inMelee = false
 	canStomp = true //If they can use jumping as an attack
 	stompDamage = 0
-	sprite = sprMidi
 	invincible = 0
 	shapeStand = 0
 	shapeSlide = 0

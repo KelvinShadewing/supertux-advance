@@ -298,6 +298,11 @@
 			case "fly":
 				if(vspeed > (getcon("down", "hold", true, playerNum) ? 4 : 2))
 					vspeed -= 0.2
+
+				if(getcon("spec2", "press", true, playerNum)) {
+					anim = "jumpR"
+					didAirSpecial = false
+				}
 				break
 			case "stomp":
 				frame += 0.5
@@ -1021,6 +1026,7 @@
 			case "air":
 				anim = "fly"
 				didAirSpecial = true
+				popSound(sndFlyAway)
 				break
 
 			case "water":

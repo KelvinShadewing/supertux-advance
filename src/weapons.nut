@@ -1479,7 +1479,7 @@
 		base.constructor(_x, _y, _arr)
 
 		shape = Cir(x, y, 3)
-		bounceShape = Cir(x, y, 8)
+		bounceShape = Rec(x, y, 10, 16, 0)
 		sprite = sprWingNut
 	}
 
