@@ -6,6 +6,7 @@
 	frame = 0.0
 	hspeed = 0.0
 	vspeed = 0.0
+	target = 0
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -35,9 +36,20 @@
 		vspeed /= 1.01
 
 		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
-			local speed = 100.0 / max(1, distance2(x, y, gvPlayer.x, gvPlayer.y))
-			hspeed = lendirX(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
-			vspeed = lendirY(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+			charged = 1
+		}
+		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) {
+			charged = 2
+		}
+
+		if(charged == 1) {
+			if(gvPlayer) {
+				local speed = 100.0 / max(1, distance2(x, y, gvPlayer.x, gvPlayer.y))
+				hspeed += lendirX(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+				vspeed += lendirY(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+			}
+			else 
+				charged = 0
 		}
 
 		x += hspeed

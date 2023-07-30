@@ -987,7 +987,7 @@
 			hurtIce()
 			return
 		}
-		else if(_element == "fire" || _blast) {
+		else if(_element == "fire" || _blast || _element == "shock") {
 			hurtFire()
 			return
 		}
@@ -2398,7 +2398,7 @@
 			chasing = false
 			return
 		}
-		if(_element == "fire") {
+		if(_element == "fire" || _element == "shock" || _blast) {
 			hurtFire()
 			return
 		}
@@ -3403,7 +3403,7 @@
 	pyOffset = 0
 	pid = 0
 	touchDamage = 2.0
-	health = 4.0
+	health = 3.0
 	flip = 0
 	canMoveH = true
 	canMoveV = true
@@ -3420,7 +3420,7 @@
 		earth = 2.0
 		air = 0.5
 		toxic = 1.0
-		shock = 1.0
+		shock = 2.0
 		water = 1.0
 		light = 1.0
 		dark = 1.0

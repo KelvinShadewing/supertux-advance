@@ -189,11 +189,11 @@ const menuY = 40
 		func = function() { cursor = 0; menu = meTimeAttackWorld }
 	},
 	{
-		name = function() { return format(gvLangObj["time-attack-menu"]["player1"], game.playerChar) },
+		name = function() { return format(gvLangObj["time-attack-menu"]["player1"], gvCharacters[game.playerChar].shortname) },
 		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
 	},
 	{
-		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], (game.playerChar2 != 0 && game.playerChar2 != "" ? game.playerChar2 : gvLangObj["menu-commons"]["noone"])) },
+		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], (game.playerChar2 != 0 && game.playerChar2 != "" ? gvCharacters[game.playerChar2].shortname : gvLangObj["menu-commons"]["noone"])) },
 		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
 	},
 	{

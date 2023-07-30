@@ -265,6 +265,8 @@
 		angle = _arr[4]
 		xscale = _arr[5]
 		yscale = _arr[6]
+		if(_arr.len() > 7)
+			alpha = _arr[7]
 		mod = getFrames() % 2
 	}
 

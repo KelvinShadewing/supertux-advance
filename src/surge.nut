@@ -1067,6 +1067,9 @@
 				fireWeapon(InstaShield, x, y, 1, id)
 				blinking = max(8, blinking)
 			}
+
+			if(getFrames() % 2 == 0)
+				newActor(AfterImage, xprev, yprev, [sprExplodeI, randInt(4) + 1, 0, 0, randInt(360), 1, 1, 4])
 		}
 		if(stats.weapon == "ice" && (!checkActor(homingTarget) || hitTest(shape, actor[homingTarget].shape) || anim != "jumpR" || !placeFree(x + hspeed, y + vspeed))) {
 			antigrav = 0

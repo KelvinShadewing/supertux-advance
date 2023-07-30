@@ -1752,9 +1752,9 @@
 	}
 }
 
-///////////
-// WATER //
-///////////
+///////////////////
+// WATER ATTACKS //
+///////////////////
 
 ::Waterball <- class extends WeaponEffect {
 	element = "water"
@@ -1951,5 +1951,51 @@
 	function destructor() {
 		local c = fireWeapon(ExplodeW, x, y, alignment, owner)
 		c.power = power
+	}
+}
+
+///////////////////
+// SHOCK ATTACKS //
+///////////////////
+
+::Shockball <- class extends WeaponEffect {
+	element = "shock"
+	timer = 90
+	piercing = 0
+	power = 1
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		hspeed *= 0.98
+		vspeed *= 0.98
+
+		x += hspeed
+		y += vspeed
+
+		if(y > gvMap.h) deleteActor(id)
+
+		shape.setPos(x, y)
+	}
+
+	function draw()  {
+		drawSpriteEx(sprShockball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function animation() {}
+
+	function destructor() {
+		newActor(Spark, x, y)
 	}
 }

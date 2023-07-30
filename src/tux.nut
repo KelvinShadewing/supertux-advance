@@ -72,6 +72,10 @@
 	mySprIce = null
 	mySprAir = null
 	mySprEarth = null
+	mySprShock = null
+	mySprWater = null
+	mySprLight = null
+	mySprDark = null
 
 	nowInWater = false
 
@@ -223,6 +227,8 @@
 		mySprIce = sprTuxIce
 		mySprAir = sprTuxAir
 		mySprEarth = sprTuxEarth
+		mySprShock = sprTuxShock
+		mySprWater = sprTuxWater
 	}
 
 	function physics() {}
@@ -239,6 +245,8 @@
 			shape = shapeSlide
 			if(anim == "stand" || anim == "walk" || anim == "run") anim = "crawl"
 		}
+
+		magnetic = stats.weapon == "shock"
 
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
@@ -868,6 +876,29 @@
 						if(anim == "crawl") c.y += 8
 					}
 					break
+
+				case "shock":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Shockball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 4
+						else c.hspeed = -4
+						c.hspeed += hspeed
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
 			}
 
 			if(canMove) switch(stats.subitem) {
@@ -937,6 +968,29 @@
 							c.hspeed /= 1.5
 						}
 						stats.energy -= 0.25
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
+
+				case "shock":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Shockball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 4
+						else c.hspeed = -4
+						c.hspeed += hspeed
+						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -1378,6 +1432,18 @@
 					damageMult = damageMultE
 					break
 
+				case "shock":
+					sprite = mySprShock
+					an["stand"] = an["standN"]
+					damageMult = damageMultS
+					break
+
+				case "water":
+					sprite = mySprWater
+					an["stand"] = an["standN"]
+					damageMult = damageMultW
+					break
+
 				default:
 					sprite = mySprNormal
 					an["stand"] = an["standN"]
@@ -1474,6 +1540,8 @@
 		mySprIce = sprPennyIce
 		mySprAir = sprPennyAir
 		mySprEarth = sprPennyEarth
+		mySprShock = sprPenny
+		mySprWater = sprPenny
 	}
 
 	function _typeof() { return "Penny" }
@@ -1490,6 +1558,10 @@
 		mySprIce = sprLutris
 		mySprAir = sprLutris
 		mySprEarth = sprLutris
+		mySprShock = sprLutris
+		mySprWater = sprLutris
+		mySprLight = sprLutris
+		mySprDark = sprLutris
 
 		myAura = sprLutrisAura
 	}

@@ -20,6 +20,12 @@
 						game.maxHealth++
 						if(gvNextLevel == "timeattack-win") startPlay("res/map/" + gvNextLevel + ".json", true, true)
 						else startPlay(game.path + gvNextLevel + ".json", true, true)
+						if(game.difficulty == 0) {
+							if(game.energyBonus <= game.staminaBonus)
+								game.energyBonus++
+							else
+								game.staminaBonus++
+						}
 						gvIGT = 0
 					}
 					else startOverworld(game.world)
