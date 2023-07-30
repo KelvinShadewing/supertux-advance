@@ -112,8 +112,8 @@
 		ice = "sprTuxIce"
 		air = "sprTuxAir"
 		earth = "sprTuxEarth"
-		shock = "sprTux"
-		water = "sprTux"
+		shock = "sprTuxShock"
+		water = "sprTuxWater"
 		light = "sprTux"
 		dark = "sprTux"
 		pick = [40, 41]

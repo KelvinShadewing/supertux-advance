@@ -885,7 +885,7 @@
 						if(!flip) c.hspeed = 4
 						else c.hspeed = -4
 						c.hspeed += hspeed
-						playSound(sndFireball, 0)
+						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -981,7 +981,7 @@
 						if(!flip) c.hspeed = 4
 						else c.hspeed = -4
 						c.hspeed += hspeed
-						playSound(sndFireball, 0)
+						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1186,6 +1186,37 @@
 						firetime = 60
 					}
 					break
+
+				case "shock":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+						local c = fireWeapon(Shockball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndExplodeT, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						stats.energy--
+						firetime = 60
+					}
+					break
 			}
 
 			if(canMove) switch(stats.subitem) {
@@ -1281,6 +1312,37 @@
 						c.vspeed += 1.0 - randFloat(2.0)
 
 						stats.energy -= 0.25
+						firetime = 60
+					}
+					break
+
+				case "shock":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+						local c = fireWeapon(Shockball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndExplodeT, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						stats.energy--
 						firetime = 60
 					}
 					break

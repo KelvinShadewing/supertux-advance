@@ -800,8 +800,8 @@
 		}
 
 		if(_element == "fire") hurtFire()
-		if(_element == "ice") hurtIce()
-		if(_blast) hurtBlast()
+		else if(_element == "ice") hurtIce()
+		else hurtBlast()
 
 		if(icebox != -1) {
 			mapDeleteSolid(icebox)
@@ -1402,7 +1402,7 @@
 		if("anim" in _by) if(_by.anim == "slide" && _by.stats.weapon == "earth") hurtFire()
 		if(_stomp && timer > 30) return
 		if(_element == "fire") hurtFire()
-		if(_element == "normal" || _blast) hurtBlast()
+		if(_element != "water" && _element != "ice") hurtBlast()
 	}
 
 	function hurtFire() {

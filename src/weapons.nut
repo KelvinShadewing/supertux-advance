@@ -1026,6 +1026,46 @@
 	}
 }
 
+::Shockball <- class extends WeaponEffect {
+	element = "shock"
+	timer = 90
+	piercing = 0
+	power = 1
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		hspeed *= 0.98
+		vspeed *= 0.98
+
+		x += hspeed
+		y += vspeed
+
+		shape.setPos(x, y)
+	}
+
+	function draw()  {
+		drawSpriteEx(sprShockball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function animation() {}
+
+	function destructor() {
+		newActor(Spark, x, y)
+	}
+}
+
 ///////////////////
 // EARTH ATTACKS //
 ///////////////////
@@ -1291,6 +1331,10 @@
 					c = fireWeapon(ExplodeW2, x, y, alignment, owner)
 					c.power = 2
 					break
+				case "shock":
+					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
+					c.power = 2
+					break
 				default:
 					c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
 					c.power = 2
@@ -1312,6 +1356,42 @@
 				case "shock":
 					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
 					c.power = 4
+					c = fireWeapon(Shockball, x + 6, y + 6, alignment, owner)
+					c.power = 2
+					c.hspeed = 1.5
+					c.vspeed = 1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x - 6, y + 6, alignment, owner)
+					c.power = 2
+					c.hspeed = -1.5
+					c.vspeed = 1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x + 6, y - 6, alignment, owner)
+					c.power = 2
+					c.hspeed = 1.5
+					c.vspeed = -1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x - 6, y - 6, alignment, owner)
+					c.power = 2
+					c.hspeed = -1.5
+					c.vspeed = -1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x, y + 8, alignment, owner)
+					c.power = 2
+					c.vspeed = 2
+					c.piercing = 4
+					c = fireWeapon(Shockball, x, y - 8, alignment, owner)
+					c.power = 2
+					c.vspeed = -2
+					c.piercing = 4
+					c = fireWeapon(Shockball, x + 8, y, alignment, owner)
+					c.power = 2
+					c.hspeed = 2
+					c.piercing = 4
+					c = fireWeapon(Shockball, x - 8, y, alignment, owner)
+					c.power = 2
+					c.hspeed = -2
+					c.piercing = 4
 					break
 				case "earth":
 					c = fireWeapon(ExplodeE2, x, y, alignment, owner)
@@ -1951,51 +2031,5 @@
 	function destructor() {
 		local c = fireWeapon(ExplodeW, x, y, alignment, owner)
 		c.power = power
-	}
-}
-
-///////////////////
-// SHOCK ATTACKS //
-///////////////////
-
-::Shockball <- class extends WeaponEffect {
-	element = "shock"
-	timer = 90
-	piercing = 0
-	power = 1
-
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y, _arr)
-
-		shape = Rec(x, y, 3, 3, 0)
-	}
-
-	function physics() {
-		//Shrink hitbox
-		timer--
-		if(timer == 0) deleteActor(id)
-		if(!placeFree(x, y))
-			deleteActor(id)
-
-		hspeed *= 0.98
-		vspeed *= 0.98
-
-		x += hspeed
-		y += vspeed
-
-		if(y > gvMap.h) deleteActor(id)
-
-		shape.setPos(x, y)
-	}
-
-	function draw()  {
-		drawSpriteEx(sprShockball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
-	}
-
-	function animation() {}
-
-	function destructor() {
-		newActor(Spark, x, y)
 	}
 }
