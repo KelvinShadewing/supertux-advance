@@ -37,12 +37,15 @@
 		if(placeFree(x, y + gravity) && !phantom) vspeed += gravity
 		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
-			for(local i = 1; i < 8; i++) {
+			for(local i = 2; i < 8; i++) {
 				if(placeFree(x, y + (vspeed / i))) {
 					y += (vspeed / i)
 					break
 				}
 			}
+		}
+
+		if(onPlatform() && vspeed >= 0) {
 			vspeed /= 2
 		}
 
