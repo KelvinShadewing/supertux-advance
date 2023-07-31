@@ -622,6 +622,9 @@
 ::sprWaterBomb <- newSprite("res/gfx/water-ball.png", 18, 18, 0, 0, 9, 9)
 ::defWaterBomb <- sprWaterBomb
 ::sprShockball <- newSprite("res/gfx/shockball.png", 8, 8, 0, 0, 4, 4)
+::defShockball <- sprShockball
+::sprShockBolt <- newSprite("res/gfx/shock-bolt.png", 24, 8, 0, 0, 12, 4)
+::defShockBolt <- sprShockBolt
 
 
 

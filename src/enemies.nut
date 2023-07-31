@@ -5039,6 +5039,7 @@
 				anim = "bounce"
 				popSound(sndPigSnort)
 				popSound(sndSpring)
+				blinking = 10
 			}
 		}
 		else if(_stomp && gvPlayer2 && _by == gvPlayer2) {
@@ -5054,6 +5055,7 @@
 				anim = "bounce"
 				popSound(sndPigSnort)
 				popSound(sndSpring)
+				blinking = 10
 			}
 		}
 	}
@@ -5062,8 +5064,10 @@
 		drawSprite(sprStruffle, (frozen ? 0 : an[anim][wrap(frame, 0, an[anim].len() - 1)]), x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
 		base.draw()
 		
-		if(debug)
+		if(debug) {
 			shape.draw()
+			drawText(font, x + 16 - camx, y - camy, vspeed.tostring())
+		}
 	}
 
 	function die() {
@@ -5611,7 +5615,7 @@
 	nocount = true
 	flip = 0
 
-	constructor(_x, _y, _arr) {
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		nocount = true
 		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)

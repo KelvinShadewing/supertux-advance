@@ -80,8 +80,9 @@
 		base.constructor(_x, _y)
 		frame = randFloat(4)
 		hspeed = randFloat(6.0) - 3.0
-		vspeed = -4.0
+		vspeed = -4.0 - randFloat(2.0)
 		shape = Rec(x, y, 3, 3, 0)
+		timer += randInt(60)
 	}
 
 	function run() {
@@ -89,7 +90,7 @@
 
 		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
 		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)
-		&& timer < 290) {
+		&& timer < 240) {
 			deleteActor(id)
 			newActor(Spark, x, y)
 			game.coins++
