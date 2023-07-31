@@ -298,16 +298,20 @@
 			case "fly":
 				if(vspeed > (getcon("down", "hold", true, playerNum) ? 4 : 2))
 					vspeed -= 0.2
+
+				if(getcon("spec2", "press", true, playerNum)) {
+					anim = "jumpR"
+					didAirSpecial = false
+				}
 				break
 			case "stomp":
 				frame += 0.5
 				hspeed /= 1.25
 				vspeed = max(4, vspeed)
 				gravity = 1.0
-				if(!placeFree(x, y + 2)) {
+				if(!placeFree(x, y + 2) || inWater(x, y + vspeed)) {
 					blinking = max(blinking, 8)
-					fireWeapon(StompPoof, x + 4, y + 10, 1, id)
-					fireWeapon(StompPoof, x - 4, y + 10, 1, id)
+					fireWeapon(ExplodeW, x, y + 8, 1, id)
 					popSound(sndBump)
 					anim = "jumpR"
 					didAirSpecial = false
@@ -1022,6 +1026,7 @@
 			case "air":
 				anim = "fly"
 				didAirSpecial = true
+				popSound(sndFlyAway)
 				break
 
 			case "water":
@@ -1062,6 +1067,9 @@
 				fireWeapon(InstaShield, x, y, 1, id)
 				blinking = max(8, blinking)
 			}
+
+			if(getFrames() % 2 == 0)
+				newActor(AfterImage, xprev, yprev, [sprExplodeI, randInt(4) + 1, 0, 0, randInt(360), 1, 1, 4])
 		}
 		if(stats.weapon == "ice" && (!checkActor(homingTarget) || hitTest(shape, actor[homingTarget].shape) || anim != "jumpR" || !placeFree(x + hspeed, y + vspeed))) {
 			antigrav = 0

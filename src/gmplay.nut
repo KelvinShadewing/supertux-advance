@@ -388,6 +388,12 @@
 			case "earth":
 				drawSprite(getroottable()[gvCharacters[game.playerChar2]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
 				break
+			case "shock":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["shock"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
+			case "water":
+				drawSprite(getroottable()[gvCharacters[game.playerChar2]["water"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+				break
 			default:
 				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
 		}
@@ -409,6 +415,12 @@
 			break
 		case "earth":
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["earth"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
+			break
+		case "shock":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["shock"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
+			break
+		case "water":
+			drawSprite(getroottable()[gvCharacters[game.playerChar]["water"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
 		default:
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)

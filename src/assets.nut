@@ -32,6 +32,10 @@
 ::defTuxAir <- sprTuxAir
 ::sprTuxEarth <- newSprite("res/gfx/tuxearth.png", 32, 32, 0, 0, 16, 19)
 ::defTuxEarth <- sprTuxEarth
+::sprTuxShock <- newSprite("res/gfx/tuxshock.png", 32, 32, 0, 0, 16, 19)
+::defTuxShock <- sprTuxShock
+::sprTuxWater <- newSprite("res/gfx/tuxwater.png", 32, 32, 0, 0, 16, 19)
+::defTuxWater <- sprTuxWater
 ::sprTuxOverworld <- newSprite("res/gfx/tuxO.png", 14, 17, 0, 0, 7, 14)
 ::defTuxOverworld <- sprTuxOverworld
 ::sprTuxDoll <- newSprite("res/gfx/tuxdoll.png", 16, 16, 0, 0, 8, 8)
@@ -294,6 +298,8 @@
 ::defCarlBoom <- sprCarlBoom
 ::sprBlueFish <- newSprite("res/gfx/fishblue.png", 28, 20, 0, 0, 16, 12)
 ::defBlueFish <- sprBlueFish
+::sprBlueFishSnow <- newSprite("res/gfx/fishblue-snow.png", 31, 18, 0, 0, 16, 9)
+::defBlueFishSnow <- sprBlueFishSnow
 ::sprRedFish <- newSprite("res/gfx/fishred.png", 28, 20, 0, 0, 16, 12)
 ::defRedFish <- sprRedFish
 ::sprGreenFish <- newSprite("res/gfx/fishgreen.png", 28, 20, 0, 0, 16, 12)
@@ -615,6 +621,7 @@
 ::defWaterball <- sprWaterball
 ::sprWaterBomb <- newSprite("res/gfx/water-ball.png", 18, 18, 0, 0, 9, 9)
 ::defWaterBomb <- sprWaterBomb
+::sprShockball <- newSprite("res/gfx/shockball.png", 8, 8, 0, 0, 4, 4)
 
 
 
@@ -754,6 +761,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ]
 ::sndSplash <- loadSound("res/snd/splash.ogg")
 ::sndSplashBig <- loadSound("res/snd/splash-big.ogg")
+::sndFlyAway <- loadSound("res/snd/fly-away.ogg")
 
 
 
@@ -964,6 +972,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprIvyGreen = sprMrSnowflake
 	sprIvyRed = sprMrsSnowflake
 	sprMrIceguy = defMrIceguy
+	sprBlueFish = sprBlueFishSnow
 }
 
 ::gfxEnemyForest <- function() {

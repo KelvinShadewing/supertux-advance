@@ -70,7 +70,7 @@
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16\*
 
-[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball\*, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie\*, Penny Overworld\*, Kiki\*, Cyra
+[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball\*, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie\*, Penny Overworld\*, Kiki\*, Cyra, Snow Fish
 
 [Narehop](https://opengameart.org/users/narehop) - Achievement Frame\*
 

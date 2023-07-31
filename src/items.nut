@@ -6,6 +6,7 @@
 	frame = 0.0
 	hspeed = 0.0
 	vspeed = 0.0
+	target = 0
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -34,10 +35,29 @@
 		hspeed /= 1.01
 		vspeed /= 1.01
 
-		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
-			local speed = 100.0 / max(1, distance2(x, y, gvPlayer.x, gvPlayer.y))
-			hspeed = lendirX(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
-			vspeed = lendirY(speed, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)) {
+			target = 1
+		}
+		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)) {
+			target = 2
+		}
+
+		if(target == 1) {
+			if(gvPlayer) {
+				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+			}
+			else 
+				charged = 0
+		}
+
+		if(target == 2) {
+			if(gvPlayer2) {
+				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
+				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
+			}
+			else 
+				charged = 0
 		}
 
 		x += hspeed
@@ -105,6 +125,9 @@
 
 ::Coin5 <- class extends Actor{
 	frame = 0.0
+	hspeed = 0.0
+	vspeed = 0.0
+	target = 0
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -129,6 +152,37 @@
 				gvFoundItems[k] <- typeof this
 		}
 		frame += 0.2
+
+		hspeed /= 1.01
+		vspeed /= 1.01
+
+		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)) {
+			target = 1
+		}
+		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)) {
+			target = 2
+		}
+
+		if(target == 1) {
+			if(gvPlayer) {
+				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+			}
+			else 
+				charged = 0
+		}
+
+		if(target == 2) {
+			if(gvPlayer2) {
+				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
+				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
+			}
+			else 
+				charged = 0
+		}
+
+		x += hspeed
+		y += vspeed
 	}
 
 	function draw() { drawSprite(sprCoin5, frame, x - camx, y - camy) }
@@ -138,6 +192,9 @@
 
 ::Coin10 <- class extends Actor{
 	frame = 0.0
+	hspeed = 0.0
+	vspeed = 0.0
+	target = 0
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -162,6 +219,37 @@
 				gvFoundItems[k] <- typeof this
 		}
 		frame += 0.2
+
+		hspeed /= 1.01
+		vspeed /= 1.01
+
+		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)) {
+			target = 1
+		}
+		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)) {
+			target = 2
+		}
+
+		if(target == 1) {
+			if(gvPlayer) {
+				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
+			}
+			else 
+				charged = 0
+		}
+
+		if(target == 2) {
+			if(gvPlayer2) {
+				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
+				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
+			}
+			else 
+				charged = 0
+		}
+
+		x += hspeed
+		y += vspeed
 	}
 
 	function draw() { drawSprite(sprCoin10, frame, x - camx, y - camy) }

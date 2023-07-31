@@ -43,7 +43,7 @@
 					break
 				}
 			}
-			vspeed = 0
+			vspeed /= 2
 		}
 
 		if(hspeed != 0) {

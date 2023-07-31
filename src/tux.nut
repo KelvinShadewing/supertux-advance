@@ -72,6 +72,10 @@
 	mySprIce = null
 	mySprAir = null
 	mySprEarth = null
+	mySprShock = null
+	mySprWater = null
+	mySprLight = null
+	mySprDark = null
 
 	nowInWater = false
 
@@ -223,6 +227,8 @@
 		mySprIce = sprTuxIce
 		mySprAir = sprTuxAir
 		mySprEarth = sprTuxEarth
+		mySprShock = sprTuxShock
+		mySprWater = sprTuxWater
 	}
 
 	function physics() {}
@@ -239,6 +245,8 @@
 			shape = shapeSlide
 			if(anim == "stand" || anim == "walk" || anim == "run") anim = "crawl"
 		}
+
+		magnetic = stats.weapon == "shock"
 
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
@@ -848,13 +856,36 @@
 					if(getcon("shoot", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 0.25 && getFrames() % 4 == 0 && !holding) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = fireWeapon(Waterball, x + fx, y, 1, id)
+						local c = fireWeapon(Waterball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.hspeed += hspeed
 						c.hspeed += 1.0 - randFloat(2.0)
-						c.vspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 0.5 - randFloat(2.0)
 						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum) && freeDown2) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy -= 0.25
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
+
+				case "shock":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Shockball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 4
+						else c.hspeed = -4
+						c.hspeed += hspeed
+						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -863,7 +894,7 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						stats.energy -= 0.25
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -921,13 +952,36 @@
 					if(getcon("spec1", "hold", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 0.25 && getFrames() % 4 == 0 && !holding) {
 						local fx = 6
 						if(flip == 1) fx = -5
-						local c = fireWeapon(Waterball, x + fx, y, 1, id)
+						local c = fireWeapon(Waterball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.hspeed += hspeed
 						c.hspeed += 1.0 - randFloat(2.0)
-						c.vspeed += 1.0 - randFloat(2.0)
+						c.vspeed += 0.5 - randFloat(2.0)
 						playSound(sndFireball, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						if(getcon("down", "hold", true, playerNum) && freeDown2) {
+							c.vspeed = 2
+							c.hspeed /= 1.5
+						}
+						stats.energy -= 0.25
+						firetime = 60
+						if(anim == "crawl") c.y += 8
+					}
+					break
+
+				case "shock":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
+						local fx = 6
+						if(flip == 1) fx = -5
+						local c = fireWeapon(Shockball, x + fx, y, 1, id)
+						if(!flip) c.hspeed = 4
+						else c.hspeed = -4
+						c.hspeed += hspeed
+						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -936,7 +990,7 @@
 							c.vspeed = 2
 							c.hspeed /= 1.5
 						}
-						stats.energy -= 0.25
+						stats.energy--
 						firetime = 60
 						if(anim == "crawl") c.y += 8
 					}
@@ -1132,6 +1186,37 @@
 						firetime = 60
 					}
 					break
+
+				case "shock":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+						local c = fireWeapon(Shockball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndExplodeT, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						stats.energy--
+						firetime = 60
+					}
+					break
 			}
 
 			if(canMove) switch(stats.subitem) {
@@ -1227,6 +1312,37 @@
 						c.vspeed += 1.0 - randFloat(2.0)
 
 						stats.energy -= 0.25
+						firetime = 60
+					}
+					break
+
+				case "shock":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
+						local c = fireWeapon(Shockball, x, y, 1, id)
+						if(!flip) c.hspeed = 3
+						else c.hspeed = -3
+						playSound(sndExplodeT, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = -3
+							}
+						}
+						if(getcon("down", "hold", true, playerNum)) {
+							c.vspeed = 3
+							if(hspeed != 0) c.hspeed *= 0.75
+							else {
+								c.hspeed = 0
+								c.vspeed = 3
+							}
+						}
+
+						c.hspeed += hspeed / 3
+						c.vspeed += vspeed / 3
+
+						stats.energy--
 						firetime = 60
 					}
 					break
@@ -1378,6 +1494,18 @@
 					damageMult = damageMultE
 					break
 
+				case "shock":
+					sprite = mySprShock
+					an["stand"] = an["standN"]
+					damageMult = damageMultS
+					break
+
+				case "water":
+					sprite = mySprWater
+					an["stand"] = an["standN"]
+					damageMult = damageMultW
+					break
+
 				default:
 					sprite = mySprNormal
 					an["stand"] = an["standN"]
@@ -1474,6 +1602,8 @@
 		mySprIce = sprPennyIce
 		mySprAir = sprPennyAir
 		mySprEarth = sprPennyEarth
+		mySprShock = sprPenny
+		mySprWater = sprPenny
 	}
 
 	function _typeof() { return "Penny" }
@@ -1490,6 +1620,10 @@
 		mySprIce = sprLutris
 		mySprAir = sprLutris
 		mySprEarth = sprLutris
+		mySprShock = sprLutris
+		mySprWater = sprLutris
+		mySprLight = sprLutris
+		mySprDark = sprLutris
 
 		myAura = sprLutrisAura
 	}
