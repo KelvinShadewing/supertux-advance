@@ -5764,6 +5764,8 @@
 			hspeed = lendirX(hitBy.power + 1.0, angle)
 			vspeed = lendirY(hitBy.power + 1.0, angle) - 2.0
 		}
+
+		blinking = 30
 	}
 
 	function hurtInvinc() {}

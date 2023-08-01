@@ -1,4 +1,5 @@
 ::gvPadTypes <- ["XBox", "DInput", "Generic"]
+::gvAutoCon <- false
 
 ::autocon <- { //Has nothing to do with Transformers
 	a = {
@@ -115,31 +116,50 @@
 
 	switch(control) {
 		case "up":
-			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.up)) return true
-			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -deadzone && config.stickactive)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1 && config.stickactive) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1 && config.stickactive) return true
+			if(player == 2 && gvNetPlay) {
+				if(state == "hold" && netconState.up)
+					return true
+				if(state == "press" && netconState.up && !netconState.wasUp)
+					return true
+				if(state == "release" && !netconState.up && netconState.wasUp)
+					return true
 			}
-			if(player == 0) {
-				if(keyfunc(config.key.up)) return true
-				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -deadzone && config.stickactive)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1 && config.stickactive) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1 && config.stickactive) return true
+			else if(gvAutoCon && useauto) {
+				if(state == "hold" && useauto)
+					return autonum.up
+				if(state == "press" && useauto)
+					return autonum.up && !autonum.wasUp
+				if(state == "release" && useauto)
+					return !autonum.up && autonum.wasUp
+			}
+			else {
+				if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.up))
+					return true
+
+				if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+					if(hatfunc(joy.index, js_up) || (state == "hold" && joyY(joy.index) < -deadzone && config.stickactive))
+						return true
+					if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1 && config.stickactive)
+						return true
+					if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1 && config.stickactive)
+						return true
+				}
+
+				if(player == 0) {
+					if(keyfunc(config.key.up))
+						return true
+					for(local i = 0; i < joyCount(); i++) {
+						if(hatfunc(i, js_up) || (state == "hold" && joyY(i) < -deadzone && config.stickactive))
+							return true
+						if(state == "press" && joyAxisPress(i, 1, deadzone) == -1 && config.stickactive)
+							return true
+						if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1 && config.stickactive)
+							return true
+					}
 				}
 			}
-
-			if(state == "hold" && useauto) return autonum.up
-			if(state == "press" && useauto) return autonum.up && !autonum.wasUp
-			if(state == "release" && useauto) return !autonum.up && autonum.wasUp
-
-			if(player == 2 && gvNetPlay) {
-				if(state == "hold" && netconState.up) return true
-				if(state == "press" && netconState.up && !netconState.wasUp) return true
-				if(state == "release" && !netconState.up && netconState.wasUp) return true
-			}
 			break
+
 		case "down":
 			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.down)) return true
 			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {

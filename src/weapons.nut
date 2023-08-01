@@ -1028,7 +1028,7 @@
 
 ::Shockball <- class extends WeaponEffect {
 	element = "shock"
-	timer = 90
+	timer = 120
 	piercing = 0
 	power = 1
 
@@ -1052,6 +1052,24 @@
 		y += vspeed
 
 		shape.setPos(x, y)
+
+		local target = null
+		local tdist = 128.0
+
+		//Find target
+		foreach(i in actor) {
+			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape)) {
+				tdist = distance2(x, y, i.x, i.y)
+				target = i
+			}
+		}
+
+		if(target != null) {
+			hspeed *= 0.98
+			vspeed *= 0.98
+			hspeed += lendirX(0.2, pointAngle(x, y, target.x, target.y))
+			vspeed += lendirY(0.2, pointAngle(x, y, target.x, target.y))
+		}
 	}
 
 	function draw()  {

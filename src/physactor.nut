@@ -43,9 +43,6 @@
 					break
 				}
 			}
-		}
-
-		if(onPlatform() && vspeed >= 0) {
 			vspeed /= 2
 		}
 
