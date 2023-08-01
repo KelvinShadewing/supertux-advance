@@ -34,6 +34,7 @@
 	groundy = 0.0
 	slippery = false
 	accel = 0.2
+	noot = sndNootA
 
 	//Animations
 	an = {
@@ -275,6 +276,9 @@
 			swimming = false
 			shapeStand.h = 12.0
 			slippery = (anim == "dive" || anim == "slide" || onIce())
+
+			if(getcon("spec2", "press", true, playerNum))
+				popSound(noot)
 
 			//Animation states
 			switch(anim) {
@@ -1604,6 +1608,7 @@
 		mySprEarth = sprPennyEarth
 		mySprShock = sprPenny
 		mySprWater = sprPenny
+		noot = sndNootB
 	}
 
 	function _typeof() { return "Penny" }
@@ -1626,6 +1631,8 @@
 		mySprDark = sprLutris
 
 		myAura = sprLutrisAura
+
+		noot = sndDook
 	}
 
 	function draw() {
