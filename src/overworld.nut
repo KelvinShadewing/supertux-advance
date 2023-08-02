@@ -34,10 +34,10 @@
 		game.owx = x
 		game.owy = y
 
-		if(!getcon("left", "hold", true, 0)
-		&& !getcon("right", "hold", true, 0)
-		&& !getcon("up", "hold", true, 0)
-		&& !getcon("down", "hold", true, 0))
+		if(!getcon("left", "hold", false, 0)
+		&& !getcon("right", "hold", false, 0)
+		&& !getcon("up", "hold", false, 0)
+		&& !getcon("down", "hold", false, 0))
 			canmove = true
 
 		local level = ""
@@ -387,6 +387,7 @@
 	gvSplitScreen = false
 	gvYetFoundItems.clear()
 	gvFoundItems.clear()
+	gvAutoCon = false
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
