@@ -42,3 +42,24 @@
 		runner.done = true
 	}
 }
+
+::tlnWalkAndJump <- {
+	"0" : function(runner) {
+		gvAutoCon = true
+		autocon.a.right = true
+	}
+
+	"1" : function(runner) {
+		if(gvPlayer) {
+			if(!gvPlayer.placeFree(gvPlayer.x + 4, gvPlayer.y))
+				autocon.a.jump = true
+			if(!gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 1) && gvPlayer.vspeed > 0)
+				autocon.a.jump = false
+		}
+
+		if(autocon.a.jump && !autocon.a.wasJump)
+			print("jumped")
+
+		runner.step--
+	}
+}

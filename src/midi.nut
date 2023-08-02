@@ -1444,7 +1444,7 @@
 							break
 					}
 
-					if(anim == "climb" && shooting) {
+					if((anim == "climb") && shooting) {
 						drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2) + 1, y - camy, 0, (flip ? 0 : 1), 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
 						drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y - camy + 1, 0, (flip ? 0 : 1), 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
 						drawSpriteZ(2, aura, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2) - 1, y - camy, 0, (flip ? 0 : 1), 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
@@ -1459,8 +1459,12 @@
 				}
 
 				if(blinking == 0 || anim == "hurt") {
-					if(anim == "climb" && shooting) drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y - camy, 0, (flip ? 0 : 1), 1, 1, 1)
-					else drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, 1)
+					if(anim == "climb" && shooting)
+						drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y - camy, 0, (flip ? 0 : 1), 1, 1, 1)
+					else if(anim == "climbWall" && shooting)
+						drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx + (flip ? -2 : 2), y + 1 - camy, 0, flip, 1, 1, 1)
+					else
+						drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, 1)
 				}
 				drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}

@@ -11,7 +11,12 @@
 		shoot = false
 		spec1 = false
 		spec2 = false
-		swapItem = false
+		swap = false
+		accept = false
+		peekLeft = false
+		peekRight = false
+		peekUp = false
+		downPeek = false
 
 		wasUp = false
 		wasDown = false
@@ -21,7 +26,42 @@
 		wasShoot = false
 		wasSpec1 = false
 		wasSpec2 = false
-		wasSwapItem = false
+		wasSwap = false
+		wasAccept = false
+		wasPeekLeft = false
+		wasPeekRight = false
+		wasPeekUp = false
+		wasDownPeek = false
+
+		pressUp = false
+		pressDown = false
+		pressLeft = false
+		pressRight = false
+		pressJump = false
+		pressShoot = false
+		pressSpec1 = false
+		pressSpec2 = false
+		pressSwap = false
+		pressAccept = false
+		pressPeekLeft = false
+		pressPeekRight = false
+		pressPeekUp = false
+		pressDownPeek = false
+
+		releaseUp = false
+		releaseDown = false
+		releaseLeft = false
+		releaseRight = false
+		releaseJump = false
+		releaseShoot = false
+		releaseSpec1 = false
+		releaseSpec2 = false
+		releaseSwap = false
+		releaseAccept = false
+		releasePeekLeft = false
+		releasePeekRight = false
+		releasePeekUp = false
+		releaseDownPeek = false
 	}
 
 	b = {
@@ -33,7 +73,12 @@
 		shoot = false
 		spec1 = false
 		spec2 = false
-		swapItem = false
+		swap = false
+		accept = false
+		peekLeft = false
+		peekRight = false
+		peekUp = false
+		downPeek = false
 
 		wasUp = false
 		wasDown = false
@@ -43,8 +88,131 @@
 		wasShoot = false
 		wasSpec1 = false
 		wasSpec2 = false
-		wasSwapItem = false
+		wasSwap = false
+		wasAccept = false
+		wasPeekLeft = false
+		wasPeekRight = false
+		wasPeekUp = false
+		wasDownPeek = false
+
+		pressUp = false
+		pressDown = false
+		pressLeft = false
+		pressRight = false
+		pressJump = false
+		pressShoot = false
+		pressSpec1 = false
+		pressSpec2 = false
+		pressSwap = false
+		pressAccept = false
+		pressPeekLeft = false
+		pressPeekRight = false
+		pressPeekUp = false
+		pressDownPeek = false
+
+		releaseUp = false
+		releaseDown = false
+		releaseLeft = false
+		releaseRight = false
+		releaseJump = false
+		releaseShoot = false
+		releaseSpec1 = false
+		releaseSpec2 = false
+		releaseSwap = false
+		releaseAccept = false
+		releasePeekLeft = false
+		releasePeekRight = false
+		releasePeekUp = false
+		releaseDownPeek = false
 	}
+}
+
+::updateAutocon <- function() {
+	autocon.a.pressLeft = autocon.a.left && !autocon.a.wasLeft
+	autocon.a.releaseLeft = !autocon.a.left && autocon.a.wasLeft
+	autocon.a.wasLeft = autocon.a.left
+	autocon.a.pressRight = autocon.a.right && !autocon.a.wasRight
+	autocon.a.releaseRight = !autocon.a.right && autocon.a.wasRight
+	autocon.a.wasRight = autocon.a.right
+	autocon.a.pressUp = autocon.a.up && !autocon.a.wasUp
+	autocon.a.releaseUp = !autocon.a.up && autocon.a.wasUp
+	autocon.a.wasUp = autocon.a.up
+	autocon.a.pressDown = autocon.a.down && !autocon.a.wasDown
+	autocon.a.releaseDown = !autocon.a.down && autocon.a.wasDown
+	autocon.a.wasDown = autocon.a.down
+	autocon.a.pressJump = autocon.a.jump && !autocon.a.wasJump
+	autocon.a.releaseJump = !autocon.a.jump && autocon.a.wasJump
+	autocon.a.wasJump = autocon.a.jump
+	autocon.a.pressShoot = autocon.a.shoot && !autocon.a.wasShoot
+	autocon.a.releaseShoot = !autocon.a.shoot && autocon.a.wasShoot
+	autocon.a.wasShoot = autocon.a.shoot
+	autocon.a.pressSpec1 = autocon.a.spec1 && !autocon.a.wasSpec1
+	autocon.a.releaseSpec1 = !autocon.a.spec1 && autocon.a.wasSpec1
+	autocon.a.wasSpec1 = autocon.a.spec1
+	autocon.a.pressSpec2 = autocon.a.spec2 && !autocon.a.wasSpec2
+	autocon.a.releaseSpec2 = !autocon.a.spec2 && autocon.a.wasSpec2
+	autocon.a.wasSpec2 = autocon.a.spec2
+	autocon.a.pressSwap = autocon.a.swap && !autocon.a.wasSwap
+	autocon.a.releaseSwap = !autocon.a.swap && autocon.a.wasSwap
+	autocon.a.wasSwap = autocon.a.swap
+	autocon.a.pressAccept = autocon.a.accept && !autocon.a.wasAccept
+	autocon.a.releaseAccept = !autocon.a.accept && autocon.a.wasAccept
+	autocon.a.wasAccept = autocon.a.accept
+	autocon.a.pressPeekLeft = autocon.a.peekLeft && !autocon.a.wasPeekLeft
+	autocon.a.releasePeekLeft = !autocon.a.peekLeft && autocon.a.wasPeekLeft
+	autocon.a.wasPeekLeft = autocon.a.peekLeft
+	autocon.a.pressPeekRight = autocon.a.peekRight && !autocon.a.wasPeekRight
+	autocon.a.releasePeekRight = !autocon.a.peekRight && autocon.a.wasPeekRight
+	autocon.a.wasPeekRight = autocon.a.peekRight
+	autocon.a.pressDownPeek = autocon.a.downPeek && !autocon.a.wasDownPeek
+	autocon.a.releaseDownPeek = !autocon.a.downPeek && autocon.a.wasDownPeek
+	autocon.a.wasDownPeek = autocon.a.downPeek
+	autocon.a.pressPeekUp = autocon.a.peekUp && !autocon.a.wasPeekUp
+	autocon.a.releasePeekUp = !autocon.a.peekUp && autocon.a.wasPeekUp
+	autocon.a.wasPeekUp = autocon.a.peekUp
+
+	autocon.b.pressLeft = autocon.b.left && !autocon.b.wasLeft
+	autocon.b.releaseLeft = !autocon.b.left && autocon.b.wasLeft
+	autocon.b.wasLeft = autocon.b.left
+	autocon.b.pressRight = autocon.b.right && !autocon.b.wasRight
+	autocon.b.releaseRight = !autocon.b.right && autocon.b.wasRight
+	autocon.b.wasRight = autocon.b.right
+	autocon.b.pressUp = autocon.b.up && !autocon.b.wasUp
+	autocon.b.releaseUp = !autocon.b.up && autocon.b.wasUp
+	autocon.b.wasUp = autocon.b.up
+	autocon.b.pressDown = autocon.b.down && !autocon.b.wasDown
+	autocon.b.releaseDown = !autocon.b.down && autocon.b.wasDown
+	autocon.b.wasDown = autocon.b.down
+	autocon.b.pressJump = autocon.b.jump && !autocon.b.wasJump
+	autocon.b.releaseJump = !autocon.b.jump && autocon.b.wasJump
+	autocon.b.wasJump = autocon.b.jump
+	autocon.b.pressShoot = autocon.b.shoot && !autocon.b.wasShoot
+	autocon.b.releaseShoot = !autocon.b.shoot && autocon.b.wasShoot
+	autocon.b.wasShoot = autocon.b.shoot
+	autocon.b.pressSpec1 = autocon.b.spec1 && !autocon.b.wasSpec1
+	autocon.b.releaseSpec1 = !autocon.b.spec1 && autocon.b.wasSpec1
+	autocon.b.wasSpec1 = autocon.b.spec1
+	autocon.b.pressSpec2 = autocon.b.spec2 && !autocon.b.wasSpec2
+	autocon.b.releaseSpec2 = !autocon.b.spec2 && autocon.b.wasSpec2
+	autocon.b.wasSpec2 = autocon.b.spec2
+	autocon.b.pressSwap = autocon.b.swap && !autocon.b.wasSwap
+	autocon.b.releaseSwap = !autocon.b.swap && autocon.b.wasSwap
+	autocon.b.wasSwap = autocon.b.swap
+	autocon.b.pressAccept = autocon.b.accept && !autocon.b.wasAccept
+	autocon.b.releaseAccept = !autocon.b.accept && autocon.b.wasAccept
+	autocon.b.wasAccept = autocon.b.accept
+	autocon.b.pressPeekLeft = autocon.b.peekLeft && !autocon.b.wasPeekLeft
+	autocon.b.releasePeekLeft = !autocon.b.peekLeft && autocon.b.wasPeekLeft
+	autocon.b.wasPeekLeft = autocon.b.peekLeft
+	autocon.b.pressPeekRight = autocon.b.peekRight && !autocon.b.wasPeekRight
+	autocon.b.releasePeekRight = !autocon.b.peekRight && autocon.b.wasPeekRight
+	autocon.b.wasPeekRight = autocon.b.peekRight
+	autocon.b.pressDownPeek = autocon.b.downPeek && !autocon.b.wasDownPeek
+	autocon.b.releaseDownPeek = !autocon.b.downPeek && autocon.b.wasDownPeek
+	autocon.b.wasDownPeek = autocon.b.downPeek
+	autocon.b.pressPeekUp = autocon.b.peekUp && !autocon.b.wasPeekUp
+	autocon.b.releasePeekUp = !autocon.b.peekUp && autocon.b.wasPeekUp
+	autocon.b.wasPeekUp = autocon.b.peekUp
 }
 
 ::defAutocon <- clone(autocon)
@@ -125,12 +293,12 @@
 					return true
 			}
 			else if(gvAutoCon && useauto) {
-				if(state == "hold" && useauto)
+				if(state == "hold")
 					return autonum.up
-				if(state == "press" && useauto)
-					return autonum.up && !autonum.wasUp
-				if(state == "release" && useauto)
-					return !autonum.up && autonum.wasUp
+				if(state == "press")
+					return autonum.pressUp
+				if(state == "release")
+					return !autonum.releaseUp
 			}
 			else {
 				if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.up))
@@ -161,104 +329,192 @@
 			break
 
 		case "down":
-			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.down)) return true
-			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_down) || (state == "hold" && joyY(joy.index) > deadzone)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1) return true
-			}
-			if(player == 0) {
-				if(keyfunc(config.key.down)) return true
-				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_down) || (state == "hold" && joyY(i) > deadzone)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == 1) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == 1) return true
-				}
-			}
-
-			if(state == "hold" && useauto) return autonum.down
-			if(state == "press" && useauto) return autonum.down && !autonum.wasDown
-			if(state == "release" && useauto) return !autonum.down && autonum.wasDown
-
 			if(player == 2 && gvNetPlay) {
-				if(state == "hold" && netconState.down) return true
-				if(state == "press" && netconState.down && !netconState.wasDown) return true
-				if(state == "release" && !netconState.down && netconState.wasDown) return true
+				if(state == "hold" && netconState.down)
+					return true
+				if(state == "press" && netconState.down && !netconState.wasDown)
+					return true
+				if(state == "release" && !netconState.down && netconState.wasDown)
+					return true
+			}
+			else if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.down
+				if(state == "press")
+					return autonum.pressDown
+				if(state == "release")
+					return !autonum.releaseDown
+			}
+			else {
+				if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.down))
+					return true
+
+				if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+					if(hatfunc(joy.index, js_down) || (state == "hold" && joyY(joy.index) < -deadzone && config.stickactive))
+						return true
+					if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1 && config.stickactive)
+						return true
+					if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1 && config.stickactive)
+						return true
+				}
+
+				if(player == 0) {
+					if(keyfunc(config.key.down))
+						return true
+					for(local i = 0; i < joyCount(); i++) {
+						if(hatfunc(i, js_down) || (state == "hold" && joyY(i) < -deadzone && config.stickactive))
+							return true
+						if(state == "press" && joyAxisPress(i, 1, deadzone) == -1 && config.stickactive)
+							return true
+						if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1 && config.stickactive)
+							return true
+					}
+				}
 			}
 			break
 		case "left":
-			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.left)) return true
-			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -deadzone) && config.stickactive) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == -1 && config.stickactive) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == -1 && config.stickactive) return true
-			}
-			if(player == 0) {
-				if(keyfunc(config.key.left)) return true
-				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -deadzone && config.stickactive)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == -1 && config.stickactive) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == -1 && config.stickactive) return true
-				}
-			}
-
-			if(state == "hold" && useauto) return autonum.left
-			if(state == "press" && useauto) return autonum.left && !autonum.wasUp
-			if(state == "release" && useauto) return !autonum.left && autonum.wasUp
-
 			if(player == 2 && gvNetPlay) {
-				if(state == "hold" && netconState.left) return true
-				if(state == "press" && netconState.left && !netconState.wasUp) return true
-				if(state == "release" && !netconState.left && netconState.wasUp) return true
+				if(state == "hold" && netconState.left)
+					return true
+				if(state == "press" && netconState.left && !netconState.wasLeft)
+					return true
+				if(state == "release" && !netconState.left && netconState.wasLeft)
+					return true
+			}
+			else if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.left
+				if(state == "press")
+					return autonum.pressLeft
+				if(state == "release")
+					return !autonum.releaseLeft
+			}
+			else {
+				if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.left))
+					return true
+
+				if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+					if(hatfunc(joy.index, js_left) || (state == "hold" && joyX(joy.index) < -deadzone && config.stickactive))
+						return true
+					if(state == "press" && joyAxisPress(joy.index, 0, deadzone) == -1 && config.stickactive)
+						return true
+					if(state == "release" && joyAxisRelease(joy.index, 0, deadzone) == -1 && config.stickactive)
+						return true
+				}
+
+				if(player == 0) {
+					if(keyfunc(config.key.left))
+						return true
+					for(local i = 0; i < joyCount(); i++) {
+						if(hatfunc(i, js_left) || (state == "hold" && joyX(i) < -deadzone && config.stickactive))
+							return true
+						if(state == "press" && joyAxisPress(i, 0, deadzone) == -1 && config.stickactive)
+							return true
+						if(state == "release" && joyAxisRelease(i, 0, deadzone) == -1 && config.stickactive)
+							return true
+					}
+				}
 			}
 			break
 		case "right":
-			if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.right)) return true
-			if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
-				try{
-				if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) > deadzone && config.stickactive)) return true
-				if(state == "press" && joyAxisPress(joy.index, 1, deadzone) == 1 && config.stickactive) return true
-				if(state == "release" && joyAxisRelease(joy.index, 1, deadzone) == 1 && config.stickactive) return true
-				}
-				catch(exception) {
-					print(exception)
-					print(typeof joy)
-				}
-			}
-			if(player == 0) {
-				if(keyfunc(config.key.right)) return true
-				for(local i = 0; i < joyCount(); i++) {
-					if(hatfunc(i, js_right) || (state == "hold" && joyX(i) > deadzone && config.stickactive)) return true
-					if(state == "press" && joyAxisPress(i, 1, deadzone) == 1 && config.stickactive) return true
-					if(state == "release" && joyAxisRelease(i, 1, deadzone) == 1 && config.stickactive) return true
-				}
-			}
-
-			if(state == "hold" && useauto) return autonum.right
-			if(state == "press" && useauto) return autonum.right && !autonum.wasUp
-			if(state == "release" && useauto) return !autonum.right && autonum.wasUp
-
 			if(player == 2 && gvNetPlay) {
-				if(state == "hold" && netconState.right) return true
-				if(state == "press" && netconState.right && !netconState.wasUp) return true
-				if(state == "release" && !netconState.right && netconState.wasUp) return true
+				if(state == "hold" && netconState.right)
+					return true
+				if(state == "press" && netconState.right && !netconState.wasRight)
+					return true
+				if(state == "release" && !netconState.right && netconState.wasRight)
+					return true
+			}
+			else if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.right
+				if(state == "press")
+					return autonum.pressRight
+				if(state == "release")
+					return !autonum.releaseRight
+			}
+			else {
+				if(player == 1 || gvNumPlayers == 1) if(keyfunc(config.key.right))
+					return true
+
+				if(player == 2 || gvNumPlayers == 1 || joyCount() > 1) {
+					if(hatfunc(joy.index, js_right) || (state == "hold" && joyX(joy.index) < -deadzone && config.stickactive))
+						return true
+					if(state == "press" && joyAxisPress(joy.index, 0, deadzone) == 1 && config.stickactive)
+						return true
+					if(state == "release" && joyAxisRelease(joy.index, 0, deadzone) == 1 && config.stickactive)
+						return true
+				}
+
+				if(player == 0) {
+					if(keyfunc(config.key.right))
+						return true
+					for(local i = 0; i < joyCount(); i++) {
+						if(hatfunc(i, js_right) || (state == "hold" && joyX(i) < -deadzone && config.stickactive))
+							return true
+						if(state == "press" && joyAxisPress(i, 0, deadzone) == 1 && config.stickactive)
+							return true
+						if(state == "release" && joyAxisRelease(i, 0, deadzone) == 1 && config.stickactive)
+							return true
+					}
+				}
 			}
 			break
 		case "jump":
-			if(keyfunc(config.key.jump) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.jump)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.jump
+				if(state == "press")
+					return autonum.pressJump
+				if(state == "release")
+					return !autonum.releaseJump
+			}
+			else {
+				if(keyfunc(config.key.jump) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.jump)) return true
+			}
 			break
 		case "shoot":
-			if(keyfunc(config.key.shoot) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.shoot)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.shoot
+				if(state == "press")
+					return autonum.pressShoot
+				if(state == "release")
+					return !autonum.releaseShoot
+			}
+			else {
+				if(keyfunc(config.key.shoot) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.shoot)) return true
+			}
 			break
 		case "spec1":
-			if(keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.spec1)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.spec1
+				if(state == "press")
+					return autonum.spec1 && !autonum.wasSpec1
+				if(state == "release")
+					return !autonum.releaseSpec1
+			}
+			else {
+				if(keyfunc(config.key.spec1) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.spec1)) return true
+			}
 			break
 		case "spec2":
-			if(keyfunc(config.key.spec2) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.spec2)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.spec2
+				if(state == "press")
+					return autonum.pressSpec2
+				if(state == "release")
+					return !autonum.releaseSpec2
+			}
+			else {
+				if(keyfunc(config.key.spec2) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.spec2)) return true
+			}
 			break
 		case "pause":
 			if(keyfunc(config.key.pause) && (player == 1 || player == 0)) return true
@@ -269,28 +525,88 @@
 			}
 			break
 		case "swap":
-			if(keyfunc(config.key.swap) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.swap)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.swap
+				if(state == "press")
+					return autonum.pressSwap
+				if(state == "release")
+					return !autonum.releaseSwap
+			}
+			else {
+				if(keyfunc(config.key.swap) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.swap)) return true
+			}
 			break
 		case "accept":
-			if(keyfunc(config.key.accept) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.accept)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.accept
+				if(state == "press")
+					return autonum.pressAccept
+				if(state == "release")
+					return !autonum.releaseAccept
+			}
+			else {
+				if(keyfunc(config.key.accept) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.accept)) return true
+			}
 			break
 		case "leftPeek":
-			if(keyfunc(config.key.leftPeek) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.leftPeek)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.leftPeek
+				if(state == "press")
+					return autonum.pressLeftPeek
+				if(state == "release")
+					return !autonum.releaseLeftPeek
+			}
+			else {
+				if(keyfunc(config.key.leftPeek) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.leftPeek)) return true
+			}
 			break
 		case "rightPeek":
-			if(keyfunc(config.key.rightPeek) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.rightPeek)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.rightPeek
+				if(state == "press")
+					return autonum.pressRightPeek
+				if(state == "release")
+					return !autonum.releaseRightPeek
+			}
+			else {
+				if(keyfunc(config.key.rightPeek) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.rightPeek)) return true
+			}
 			break
 		case "downPeek":
-			if(keyfunc(config.key.downPeek) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.downPeek)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.downPeek
+				if(state == "press")
+					return autonum.pressDownPeek
+				if(state == "release")
+					return !autonum.releaseDownPeek
+			}
+			else {
+				if(keyfunc(config.key.downPeek) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.downPeek)) return true
+			}
 			break
 		case "upPeek":
-			if(keyfunc(config.key.upPeek) && (player == 1 || player == 0)) return true
-			if(joyfunc(joy.index, joy.upPeek)) return true
+			if(gvAutoCon && useauto) {
+				if(state == "hold")
+					return autonum.upPeek
+				if(state == "press")
+					return autonum.pressUpPeek
+				if(state == "release")
+					return !autonum.releaseUpPeek
+			}
+			else {
+				if(keyfunc(config.key.upPeek) && (player == 1 || player == 0)) return true
+				if(joyfunc(joy.index, joy.upPeek)) return true
+			}
 			break
 	}
 

@@ -53,6 +53,7 @@
 
 	//Reset auto/locked controls
 	autocon = clone(defAutocon)
+	gvAutoCon = false
 
 	//Load map to play
 	if(gvMap != 0) gvMap.del()

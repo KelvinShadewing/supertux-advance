@@ -194,6 +194,9 @@ if(fileExists("contrib")) {
 	}
 	*/
 
+	//Update automatic controls
+	updateAutocon()
+
 	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain)
 		togglePause()
 	if(keyPress(k_tick))
