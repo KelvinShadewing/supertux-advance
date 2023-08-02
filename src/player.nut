@@ -31,6 +31,7 @@
 	mouseSprite = sprCursor
 	inMelee = false //In a state where the player damages enemies by touch
 	magnetic = false
+	advancedClimbing = false
 
 	//Physics stats
 	weight = 1.0
@@ -219,7 +220,37 @@
 		//Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
-			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50) {
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50 || (wl.data[tile] - gvMap.solidfid == 79 && advancedClimbing)) {
+				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+				gvMap.shape.kind = 0
+				gvMap.shape.w = 1.0
+				gvMap.shape.h = 12.0
+				if(hitTest(ns, gvMap.shape)) return true
+			}
+		}
+
+		return false
+	}
+
+	function atWallLadder() {
+		//Save current location and move
+		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
+		local cx = floor(x / 16)
+		local cy = floor(y / 16)
+
+		//Check that the solid layer exists
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Check against places in solid layer
+		if(wl != null) {
+			local tile = cx + (cy * wl.width)
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 35 || wl.data[tile] - gvMap.solidfid == 36) {
 				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
 				gvMap.shape.kind = 0
 				gvMap.shape.w = 1.0
@@ -313,7 +344,12 @@
 		}
 	}
 
-	function atZipline(_x = 0, _y = 0) { return ([30, 31, 32, 33, 34].find(tileGetSolid(x + _x, y - shape.h + _y))) }
+	function atZipline(_x = 0, _y = 0) {
+		local found = [31, 32, 33, 34, 35, 39].find(tileGetSolid(x + _x, y - shape.h + _y))
+		if(found != null)
+			found++
+		return found
+	}
 }
 
 ::DeadPlayer <- class extends Actor {

@@ -2737,8 +2737,8 @@
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1)
-				if(smart) drawSprite(sprIvyRed, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSprite(sprIvyGreen, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSprite(sprBlazeborn, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprBlazeborn, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 
@@ -3173,7 +3173,8 @@
 	squishTime = 0.0
 	smart = false
 	moving = false
-	touchDamage = 2.0
+	touchDamage = 4.0
+	element = "toxic"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -5764,6 +5765,8 @@
 			hspeed = lendirX(hitBy.power + 1.0, angle)
 			vspeed = lendirY(hitBy.power + 1.0, angle) - 2.0
 		}
+
+		blinking = 30
 	}
 
 	function hurtInvinc() {}

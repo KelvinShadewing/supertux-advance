@@ -43,6 +43,7 @@
 	hurtThreshold = 4
 	spinAlpha = 0.0
 	hand = 0
+	advancedClimbing = true
 
 	freeDown = false
 	freeDown2 = false
@@ -337,8 +338,8 @@
 				y = (y - y % 16) + 4
 
 				switch(lineType) {
-					case 1: //Flat
-						y = (y - y % 16) + 8
+					default: //Flat
+						y = (y - y % 16) + 4
 						break
 				}
 				break
@@ -724,6 +725,13 @@
 					frame = 0.0
 					animOffset = an.shootClimb[0] - an[anim][0] + min(3, shootTimer)
 				}
+
+				if(anim == "climbWall") {
+					if(!placeFree(x + 4, y))
+						flip = 0
+					if(!placeFree(x - 4, y))
+						flip = 1
+				}
 				break
 
 			case "shootTop":
@@ -895,7 +903,7 @@
 
 	function ruNormal() {
 		//Controls
-		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
+		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || anim == "climbWall" || onPlatform()) {
 			canJump = 16
 		}
 		else {
@@ -927,7 +935,7 @@
 				hspeed = 0
 			}
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
+			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
 				if(hspeed >= 2) {
 					if(slippery) hspeed += accel * 0.2
 					else hspeed += accel * 0.4
@@ -936,7 +944,7 @@
 				else hspeed += accel
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
+			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
 				if(hspeed <= -2) {
 					if(slippery) hspeed -= accel * 0.2
 					else hspeed -= accel * 0.4
@@ -990,8 +998,47 @@
 				if(getcon("left", "press", true, playerNum) && canMove) flip = 1
 			}
 
+			if(anim == "climbWall") {
+				vspeed = 0
+
+				//Ladder controls
+				if(getcon("up", "hold", true, playerNum) && !shooting && placeFree(x, y - 2)) {
+					frame -= climbdir / 8
+					y -= 2
+				}
+
+				if(getcon("down", "hold", true, playerNum) && !shooting && placeFree(x, y + 2)) {
+					frame += climbdir / 8
+					y += 2
+				}
+
+				//Check if still on ladder
+				local felloff = true
+				if(atWallLadder()) felloff = false
+				if(felloff) {
+					anim = "fall"
+					frame = 0.0
+					if(getcon("up", "hold", true, playerNum)) vspeed = -3.0
+				}
+
+				//Change direction
+				if(!freeLeft) flip = 1
+				if(!freeRight) flip = 0
+			}
+
+			//Get on monkeybar
+			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "monkey" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
+				if((atZipline() || atZipline(0, -vspeed)) && y % 16 < 4) {
+					anim = "monkey"
+					frame = 0.0
+					hspeed = 0
+					vspeed = 0
+					y = (y - (y % 16)) + 12
+				}
+			}
+
 			//Get on ladder
-			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
+			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "climb" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 				if(atLadder()) {
 					anim = "climb"
 					frame = 0.0
@@ -1001,14 +1048,14 @@
 				}
 			}
 
-			//Get on monkeybar
-			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-				if((atZipline() || atZipline(0, -vspeed)) && y % 16 < 4) {
-					anim = "monkey"
+			//Get on wall ladder
+			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "climb" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
+				if(atWallLadder()) {
+					anim = "climbWall"
 					frame = 0.0
 					hspeed = 0
 					vspeed = 0
-					y = (y - (y % 16)) + 12
+					x = (x - (x % 16)) + 8
 				}
 			}
 
@@ -1023,8 +1070,11 @@
 				}
 				else if(canJump > 0 || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0
-					if(anim == "climb") vspeed = -3
-					vspeed = -6.4
+					if(!getcon("down", "hold", true, playerNum) || !freeDown2) {
+						if(anim == "climb")
+							vspeed = -3
+						vspeed = -6.4
+					}
 					didJump = true
 					canJump = 0
 					if(anim == "plantMine") shooting = 0
@@ -1033,7 +1083,8 @@
 						if(anim != "morphIn") anim = "jump"
 						frame = 0.0
 					}
-					if(!freeDown2 || freeRight && freeLeft) popSound(sndMidiJump, 0)
+					if(!freeDown2 || freeRight && freeLeft && !getcon("down", "hold", true, playerNum))
+						popSound(sndMidiJump, 0)
 				}
 				else if(freeDown && anim != "climb" && anim != "ledge" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40 && !didJump) {
 					flip = 0
@@ -1105,7 +1156,7 @@
 		}
 		else rspeed = min(rspeed, abs(hspeed))
 		
-		if(anim != "ledge" && anim != "wall" && !(anim == "fall" && an.fall == an.fallW)) {
+		if(anim != "ledge" && anim != "wall" && anim != "climbWall" && !(anim == "fall" && an.fall == an.fallW)) {
 			if((getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed > 0.1 && anim == "slide"))
 				flip = 0
 			if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide"))
@@ -1237,7 +1288,7 @@
 
 	function ruBall() {
 		//Controls
-		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || onPlatform()) && !onWall) {
 			canJump = 16
 		}
 		else {
@@ -1261,7 +1312,7 @@
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
+			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid") {
 				if(hspeed >= 2) {
 					if(onIce(x, y + 1)) hspeed += accel * 0.2
 					else hspeed += accel * 0.4
@@ -1271,7 +1322,7 @@
 				flip = 0
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") {
+			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid") {
 				if(hspeed <= -2) {
 					if(onIce(x, y + 1)) hspeed -= accel * 0.2
 					else hspeed -= accel * 0.4
@@ -1421,6 +1472,8 @@
 			if(debug) {
 				setDrawColor(0x008000ff)
 				shape.draw()
+
+				drawText(font, x - camx + 16, y - camy, tileGetSolid(x, y - shape.h).tostring())
 			}
 
 			local charge1 = sprCharge
@@ -1552,7 +1605,7 @@
 				c.sprite3 = nutSprite3
 			}
 			local d = (flip ? -1 : 1)
-			if(anim == "ledge") d = -d
+			if(anim == "ledge" || anim == "climbWall") d = -d
 
 			switch(shootDir) {
 				case 0:

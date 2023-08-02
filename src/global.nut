@@ -144,6 +144,10 @@
 		ice = "sprLutris"
 		air = "sprLutris"
 		earth = "sprLutris"
+		shock = "sprLutris"
+		water = "sprLutris"
+		light = "sprLutris"
+		dark = "sprLutris"
 		pick = [40, 41]
 	}
 	Konqi = {
@@ -294,7 +298,7 @@
 	}
 	joymode = "XBox"
 	autorun = false
-	stickspeed = true
+	stickspeed = false
 	stickactive = true
 	stickcam = true
 	lang = "en"

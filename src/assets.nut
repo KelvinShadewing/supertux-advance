@@ -765,6 +765,9 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndSplash <- loadSound("res/snd/splash.ogg")
 ::sndSplashBig <- loadSound("res/snd/splash-big.ogg")
 ::sndFlyAway <- loadSound("res/snd/fly-away.ogg")
+::sndNootA <- loadSound("res/snd/noota.ogg")
+::sndNootB <- loadSound("res/snd/nootb.ogg")
+::sndDook <- loadSound("res/snd/dook.ogg")
 
 
 

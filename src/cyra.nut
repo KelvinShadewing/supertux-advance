@@ -11,6 +11,12 @@
 ::defCyraEarth <- sprCyraEarth
 ::sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 0, 0, 32, 33)
 ::defCyraShock <- sprCyraShock
+::sprCyraWater <- newSprite("res/gfx/cyra_gfx/cyrawater.png", 74, 54, 0, 0, 32, 33)
+::defCyraWater <- sprCyraWater
+::sprCyraLight <- newSprite("res/gfx/cyra_gfx/cyralight.png", 74, 54, 0, 0, 32, 33)
+::defCyraLight <- sprCyraLight
+::sprCyraDark <- newSprite("res/gfx/cyra_gfx/cyradark.png", 74, 54, 0, 0, 32, 33)
+::defCyraDark <- sprCyraDark
 ::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 0, 0, 7, 17)
 ::defCyraOverworld <- sprCyraOverworld
 ::sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 0, 0, 8, 8)
@@ -30,6 +36,9 @@
 
 ::sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 0, 0, 14, 12)
 ::defCyraElectricWave <- sprCyraElectricWave
+
+::sprWaterCrescent <- newSprite("res/gfx/water-crescent.png", 32, 16, 0, 0, 16, 8)
+::defWaterCrescent <- sprWaterCrescent
 
 //Sounds
 ::sndCyraSwordSwing <- loadSound("res/snd/cyra_snd/swordswing.ogg")
@@ -62,6 +71,9 @@ gvCharacters.Cyra <- {
 	air = "sprCyraAir"
 	earth = "sprCyraEarth"
 	shock = "sprCyraShock"
+	water = "sprCyraWater"
+	dark = "sprCyraDark"
+	light = "sprCyraLight"
 	pick = [8, 107]
 }
 
@@ -76,6 +88,9 @@ gvCharacters.Kiki2 <- {
 	air = "sprKiki2"
 	earth = "sprKiki2"
 	shock = "sprKiki2"
+	water = "sprKiki2"
+	dark = "sprKiki2"
+	light = "sprKiki2"
 	pick = [8, 107]
 }
 
@@ -168,6 +183,9 @@ gvCharacters.Kiki2 <- {
 	mySprAir = null
 	mySprEarth = null
 	mySprShock = null
+	mySprWater = null
+	mySprLight = null
+	mySprDark = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -190,6 +208,9 @@ gvCharacters.Kiki2 <- {
 		mySprAir = sprCyraAir
 		mySprEarth = sprCyraEarth
 		mySprShock = sprCyraShock
+		mySprWater = sprCyraWater
+		mySprDark = sprCyraDark
+		mySprLight = sprCyraLight
 	}
 
 	function physics() {}
@@ -537,7 +558,6 @@ gvCharacters.Kiki2 <- {
 						else hspeed = -w
 						anim = "jumpU"
 						frame = 0.0
-						canJump = 0
 					}
 
 					if(slashing) {
@@ -559,7 +579,7 @@ gvCharacters.Kiki2 <- {
 					frame += 0.25
 
 					if(floor(frame) > an[anim].len() - 1) {
-						if(stats.weapon == "earth" && getcon("spec1", "hold", true, playerNum)) anim = "slide"
+						if(stats.weapon == "earth" && getcon("spec2", "hold", true, playerNum)) anim = "slide"
 						else anim = "crawl"
 						shape = shapeSlide
 					}
@@ -634,7 +654,7 @@ gvCharacters.Kiki2 <- {
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("spec1", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("spec1", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
+				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("spec2", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("spec2", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
 			}
 
 			if(anim != "climb" && anim != "wall" && !slashing) {
@@ -646,7 +666,7 @@ gvCharacters.Kiki2 <- {
 				stats.stamina += 0.05
 
 			//Controls
-			if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+			if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
 			}
@@ -837,7 +857,7 @@ gvCharacters.Kiki2 <- {
 				}
 
 				//Going into slide
-				if(((getcon("spec1", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crouch" && anim != "crawl") {
+				if(((getcon("spec2", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crouch" && anim != "crawl") {
 					if(placeFree(x + 2, y + 1) || hspeed >= 1.5) {
 						anim = "dive"
 						frame = 0.0
@@ -957,8 +977,8 @@ gvCharacters.Kiki2 <- {
 			}
 			else if(canMove && !slashing) switch(stats.weapon) {
 				case "normal":
-					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && cooldown == 0) {
-						cooldown = 16
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
 						local fx = 6
 						local fy = 0
 						if(anim == "crouch") fy = 6
@@ -973,6 +993,7 @@ gvCharacters.Kiki2 <- {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
 						}
+						stats.energy--
 						slashing = true
 						comboTimer = 30
 						if(comboStep < 3) comboStep++
@@ -1056,7 +1077,7 @@ gvCharacters.Kiki2 <- {
 					break
 
 				case "earth":
-					if(getcon("spec1", "press", true, playerNum) && (anim != "hurt")) {
+					if(getcon("spec2", "press", true, playerNum) && (anim != "hurt")) {
 						anim = "dive"
 						frame = 0.0
 						playSoundChannel(sndSlide, 0, 0)
@@ -1095,10 +1116,230 @@ gvCharacters.Kiki2 <- {
 						if(anim == "crawl") fy = 10
 						if(flip == 1) fx = -5
 						local c = fireWeapon(ElectricWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.hspeed += hspeed
+						playSound(sndCyraElectricSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -5
+							c.hspeed /= 3
+						}
+						stats.energy--
+						firetime = 60
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+
+				case "water":
+					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(WaterCrescent, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
+						playSound(sndCyraTornado, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+			}
+
+
+			if(canMove && anim != "hurt" && getcon("spec1", "press", true, playerNum) && !slashing && freeDown2 && getcon("up", "hold", true, playerNum)) {
+				slashing = true
+				anim = "rollingSlash"
+				local c = fireWeapon(RollingSlash, x, y, 1, id)
+				c.element = stats.subitem
+				slashTimer = 0.0
+				firetime = 60
+			}
+			else if(canMove && !slashing) switch(stats.subitem) {
+				case "normal":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(SwordWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraSwordSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+				case "fire":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(FireballCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraFireSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+
+				case "ice":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(FreezeWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraTornado, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						stats.energy--
+						firetime = 60
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+
+				case "air":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && cooldown == 0) {
+						cooldown = 16
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(SwordWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraTornado, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+
+				case "earth":
+					if(getcon("spec2", "press", true, playerNum) && (anim != "hurt")) {
+						anim = "dive"
+						frame = 0.0
+						playSoundChannel(sndSlide, 0, 0)
+						if(flip == 0 && hspeed < 2) hspeed = 2
+						if(flip == 1 && hspeed > -2) hspeed = -2
+					}
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && cooldown == 0) {
+						cooldown = 16
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(SwordWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraSwordSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -2.5
+							c.hspeed /= 1.5
+						}
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+
+				case "shock":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(ElectricWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 5
+						else c.hspeed = -5
+						c.hspeed += hspeed
 						playSound(sndCyraElectricSwing, 0)
+						if(getcon("up", "hold", true, playerNum)) {
+							c.vspeed = -5
+							c.hspeed /= 3
+						}
+						stats.energy--
+						firetime = 60
+						slashing = true
+						comboTimer = 30
+						if(comboStep < 3) comboStep++
+						else comboStep = 0
+					}
+					break
+
+				case "water":
+					if(getcon("spec1", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0 && cooldown == 0) {
+						cooldown = 8
+						local fx = 6
+						local fy = 0
+						if(anim == "crouch") fy = 6
+						if(anim == "crawl") fy = 10
+						if(flip == 1) fx = -5
+						local c = fireWeapon(WaterCrescent, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 8
+						else c.hspeed = -8
+						c.vspeed = 0
+						playSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1213,6 +1454,16 @@ gvCharacters.Kiki2 <- {
 				anim = "rollingSlash"
 				local c = fireWeapon(RollingSlash, x, y, 1, id)
 				c.element = stats.weapon
+				slashTimer = 0.0
+				firetime = 60
+			}
+			if(canMove && anim != "hurt" && getcon("spec1", "press", true, playerNum) && !slashing) {
+				slashing = true
+				hspeed /= 2.0
+				vspeed /= 2.0
+				anim = "rollingSlash"
+				local c = fireWeapon(RollingSlash, x, y, 1, id)
+				c.element = stats.subitem
 				slashTimer = 0.0
 				firetime = 60
 			}
@@ -1349,6 +1600,21 @@ gvCharacters.Kiki2 <- {
 				case "shock":
 					sprite = mySprShock
 					damageMult = damageMultS
+					break
+
+				case "water":
+					sprite = mySprWater
+					damageMult = damageMultW
+					break
+
+				case "dark":
+					sprite = mySprDark
+					damageMult = damageMultD
+					break
+
+				case "light":
+					sprite = mySprLight
+					damageMult = damageMultL
 					break
 			}
 
@@ -1511,9 +1777,8 @@ gvCharacters.Kiki2 <- {
 		timer--
 		if(timer == 0) deleteActor(id)
 
-		if(!inWater(x, y)) vspeed += 0.1
-
 		x += hspeed
+		y += vspeed
 		if(!placeFree(x, y)) {
 			deleteActor(id)
 		}
@@ -1523,7 +1788,7 @@ gvCharacters.Kiki2 <- {
 			newActor(Poof, x, y)
 		}
 
-		angle = pointAngle(0, 0, hspeed, 0)
+		angle = pointAngle(0, 0, hspeed, vspeed)
 
 		shape.setPos(x, y)
 
@@ -1557,13 +1822,12 @@ gvCharacters.Kiki2 <- {
 		timer--
 		if(timer == 0) deleteActor(id)
 
-		if(!inWater(x, y)) vspeed += 0.1
 		if(getFrames() % 3 == 0) {
 			local c = actor[newActor(FlameTiny, x - 4 + randInt(8), y - 4 + randInt(8))]
 			c.frame = 4
 		}
 		x += hspeed
-		//y += vspeed
+		y += vspeed
 		if(!placeFree(x, y)) {
 			deleteActor(id)
 		}
@@ -1573,13 +1837,13 @@ gvCharacters.Kiki2 <- {
 			newActor(Poof, x, y)
 		}
 
-		angle = pointAngle(0, 0, hspeed, 0)
+		angle = pointAngle(0, 0, hspeed, vspeed)
 
 		shape.setPos(x, y)
 
 	}
 	function draw() {
-		drawSpriteEx(sprCyraFireWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSpriteEx(sprCyraFireWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
@@ -1607,11 +1871,10 @@ gvCharacters.Kiki2 <- {
 		timer--
 		if(timer == 0) deleteActor(id)
 
-		if(!inWater(x, y)) vspeed += 0.1
 		if(getFrames() % 5 == 0) newActor(Glimmer, x - 4 + randInt(8), y - 4 + randInt(8))
 
 		x += hspeed
-		//y += vspeed
+		y += vspeed
 		if(!placeFree(x, y)) {
 			deleteActor(id)
 		}
@@ -1621,13 +1884,13 @@ gvCharacters.Kiki2 <- {
 			newActor(Poof, x, y)
 		}
 
-		angle = pointAngle(0, 0, hspeed, 0)
+		angle = pointAngle(0, 0, hspeed, vspeed)
 
 		shape.setPos(x, y)
 
 	}
 	function draw() {
-		drawSpriteEx(sprCyraFreezeWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSpriteEx(sprCyraFreezeWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
@@ -1637,12 +1900,75 @@ gvCharacters.Kiki2 <- {
 }
 
 
-::ElectricWaveCS <- class extends WeaponEffect {
-	timer = 15
-	angle = 0
+::ElectricWaveCS  <- class extends WeaponEffect {
 	element = "shock"
+	angle = 0
+	timer = 15
+	piercing = 10
 	power = 1
-	blast = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		hspeed *= 0.98
+		vspeed *= 0.98
+
+		x += hspeed
+		y += vspeed
+
+		angle = pointAngle(0, 0, hspeed, vspeed)
+
+		shape.setPos(x, y)
+
+		local target = null
+		local tdist = 128.0
+
+		//Find target
+		foreach(i in actor) {
+			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape)) {
+				tdist = distance2(x, y, i.x, i.y)
+				target = i
+			}
+		}
+
+		if(target != null) {
+			hspeed *= 0.98
+			vspeed *= 0.98
+			hspeed += lendirX(0.8, pointAngle(x, y, target.x, target.y))
+			vspeed += lendirY(0.8, pointAngle(x, y, target.x, target.y))
+		}
+	}
+
+	function draw()  {
+		drawSpriteEx(sprCyraElectricWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function animation() {}
+
+	function destructor() {
+		fireWeapon(ExplodeT, x, y, alignment, owner)
+	}
+}
+
+
+::WaterCrescent <- class extends WeaponEffect {
+	frame = 0.0
+	timer = 50
+	angle = 0
+	element = "water"
+	power = 1
+	blast = false
 	piercing = 10
 
 	constructor(_x, _y, _arr = null) {
@@ -1655,10 +1981,11 @@ gvCharacters.Kiki2 <- {
 		timer--
 		if(timer == 0) deleteActor(id)
 
-		if(!inWater(x, y)) vspeed += 0.1
+		 hspeed *= 0.95
+		 vspeed *= 0.95
 
 		x += hspeed
-		//y += vspeed
+		y += vspeed
 		if(!placeFree(x, y)) {
 			deleteActor(id)
 		}
@@ -1668,18 +1995,18 @@ gvCharacters.Kiki2 <- {
 			newActor(Poof, x, y)
 		}
 
-		angle = pointAngle(0, 0, hspeed, 0)
+		angle = pointAngle(0, 0, hspeed, vspeed)
 
 		shape.setPos(x, y)
 
 	}
 	function draw() {
-		drawSpriteEx(sprCyraElectricWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSpriteEx(sprWaterCrescent, getFrames() / 1, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
-		fireWeapon(ExplodeT, x, y, alignment, owner)
+		fireWeapon(ExplodeW, x, y, alignment, owner)
 	}
 }
 
