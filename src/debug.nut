@@ -99,6 +99,7 @@
 		}
 	}
 	else {
+		//Solid tiles editor
 		local dox = 0
 		local doy = 0
 
@@ -136,8 +137,8 @@
 		if(mouseDown(1)) debugMouseLeft = tileGetSolid(dox, doy)
 		if(mouseWheelY() < 0) debugMouseLeft--
 		if(mouseWheelY() > 0) debugMouseLeft++
-		debugMouseLeft = wrap(debugMouseLeft, 0, (6 * 15) - 1)
-		if(debugMouseLeft == 0) drawSprite(tsSolid, (6 * 15) - 1, mouseX(), mouseY())
+		debugMouseLeft = wrap(debugMouseLeft, 0, (6 * 16) - 1)
+		if(debugMouseLeft == 0) drawSprite(tsSolid, (6 * 16) - 1, mouseX(), mouseY())
 		else drawSprite(tsSolid, debugMouseLeft - 1, mouseX(), mouseY())
 	}
 

@@ -560,9 +560,15 @@
 
 		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
 			if(game.ps.health < game.maxHealth) {
-				game.ps.health += 16
-				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
+				if(game.ps.subitem == "muffinBlue" && game.maxHealth - game.ps.health <= 4) {
+					game.ps.health += 4
+					game.ps.subitem = "muffinRed"
+				}
+				else {
+					game.ps.health += 16
+					for(local i = 0; i < 4; i++) {
+						newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32))
+					}
 				}
 			}
 			else game.ps.subitem = "muffinRed"
@@ -571,9 +577,15 @@
 		}
 		else if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
 			if(game.ps2.health < game.maxHealth) {
-				game.ps2.health += 16
-				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+				if(game.ps2.subitem == "muffinBlue" && game.maxHealth - game.ps2.health <= 4) {
+					game.ps2.health += 4
+					game.ps2.subitem = "muffinRed"
+				}
+				else {
+					game.ps2.health += 16
+					for(local i = 0; i < 4; i++) {
+						newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32))
+					}
 				}
 			}
 			else game.ps2.subitem = "muffinRed"

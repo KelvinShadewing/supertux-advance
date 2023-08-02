@@ -12,11 +12,14 @@
 		if(typeof _arr == "string") arg = split(_arr, ",")
 		if(typeof _arr == "array") arg = _arr
 		myClass = arg[0]
-		if(1 in arg) if(canint(arg[1])) {
+		if(1 in arg && canint(arg[1])) {
 			maxTime = arg[1].tointeger()
 			timer = arg[1].tointeger()
 		}
-		if(2 in arg) if(arg[2] != "0" && arg[2] != "false") infinite = true
+		if(2 in arg && arg[2] != "0" && arg[2] != "false")
+			infinite = true
+
+		if(3 in arg)
 
 		if(myClass in getroottable()) {
 			myob = newActor(getroottable()[myClass], x, y)
