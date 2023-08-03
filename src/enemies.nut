@@ -5002,12 +5002,13 @@
 			if(hspeed < 0)
 				flip = 1
 
-			if(!placeFree(x, y + 16)) {
-				if(placeFree(x + 12, y + 16))
+			if(!placeFree(x, y + 2) || onPlatform(-hspeed)) {
+				if(placeFree(x + 6, y + 16) && !onPlatform(12))
 					hspeed = -hspeed
-				if(placeFree(x - 12, y + 16))
+				if(placeFree(x - 6, y + 16) && !onPlatform(-12))
 					hspeed = -hspeed
 			}
+
 			if(!placeFree(x + hspeed, y - 10))
 				hspeed = -hspeed
 			shape.setPos(x, y)
@@ -5059,6 +5060,58 @@
 				blinking = 10
 			}
 		}
+	}
+
+	function physics() {
+		if(placeFree(x, y + gravity) && !phantom) vspeed += gravity
+		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
+		else if(!(onPlatform() && vspeed >= 0)) {
+			for(local i = 2; i < 8; i++) {
+				if(placeFree(x, y + (vspeed / i))) {
+					y += (vspeed / i)
+					break
+				}
+			}
+			vspeed /= 2
+			if(fabs(vspeed) < 0.1) vspeed = 0.0
+		}
+
+		if(hspeed != 0) {
+			if(placeFree(x + hspeed, y)) { //Try to move straight
+				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
+					y += 1
+				}
+				x += hspeed
+			} else {
+				local didstep = false
+				for(local i = 1; i <= max(8, abs(hspeed)); i++){ //Try to move up hill
+					if(placeFree(x + hspeed, y - (i))) {
+						x += hspeed
+						y -= (i)
+						if(i > 2) {
+							if(hspeed > 0) hspeed -= 0.2
+							if(hspeed < 0) hspeed += 0.2
+						}
+						didstep = true
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
+				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
+			}
+		}
+
+		//Friction
+		if(fabs(hspeed) > friction) {
+			if(hspeed > 0) hspeed -= friction
+			if(hspeed < 0) hspeed += friction
+		} else hspeed = 0
+
+		shape.setPos(x, y)
+		xprev = x
+		yprev = y
 	}
 
 	function draw() {

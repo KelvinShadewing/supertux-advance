@@ -228,7 +228,7 @@
 		"waterjump" :
 		["Hold %s when leaving the water to gain height.", "getConName(\"jump\")"],
 		"noend" :
-		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this, or walk against the edge of the map.",
+		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this, or walk against the edge of the map.\n\nYou can also change characters from the overworld in the pause menu.",
 		"hills" :
 		"Hills are very important! Practice sliding every chance you get.",
 		"pipes" :

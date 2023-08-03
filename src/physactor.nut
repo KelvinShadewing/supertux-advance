@@ -34,8 +34,8 @@
 	}
 
 	function physics() {
-		if(placeFree(x, y + gravity) && !phantom) vspeed += gravity
-		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
+		if(placeFree(x, y + gravity) && !phantom && !(onPlatform() && vspeed >= 0)) vspeed += gravity
+		if(placeFree(x, y + vspeed)) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
 			for(local i = 2; i < 8; i++) {
 				if(placeFree(x, y + (vspeed / i))) {
@@ -44,6 +44,7 @@
 				}
 			}
 			vspeed /= 2
+			if(fabs(vspeed) < 0.1) vspeed = 0.0
 		}
 
 		if(hspeed != 0) {
