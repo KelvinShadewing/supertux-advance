@@ -81,7 +81,10 @@
 				py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 			}
 			else {
-				px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
+				if(config.lookAhead)
+					px = (((gvPlayer.x + gvPlayer2.x) / 2.0) + (((gvPlayer.x - gvPlayer.xprev) + (gvPlayer2.x - gvPlayer2.xprev)) * 16)) - (gvScreenW / 2) + lx
+				else
+					px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
 				py = (((gvPlayer.y + gvPlayer2.y) / 2.0)) - (gvScreenH / 2) + ly
 			}
 		}
@@ -167,7 +170,10 @@
 	}
 
 	{
-		camx0 += (px - camx0) / (config.lookAhead ? 24 : 8)
+		if(gvPlayer && gvPlayer2)
+			camx0 += (px - camx0) / (config.lookAhead ? 16 : 8)
+		else
+			camx0 += (px - camx0) / (config.lookAhead ? 24 : 8)
 		camy0 += (py - camy0) / 8
 	}
 
