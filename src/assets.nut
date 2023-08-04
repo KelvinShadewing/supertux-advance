@@ -724,6 +724,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndExplodeI <- loadSound("res/snd/explodeI.ogg")
 ::sndExplodeT <- loadSound("res/snd/explodeT.ogg")
 ::sndExplodeA <- loadSound("res/snd/explodeA.ogg")
+::sndExplodeA2 <- loadSound("res/snd/explodeA2.ogg")
+::sndExplodeA3 <- loadSound("res/snd/explodeA3.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
 ::sndBell <- loadSound("res/snd/bell.ogg")
 ::sndIcicle <- loadSound("res/snd/icicle.ogg")
@@ -768,6 +770,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndNootA <- loadSound("res/snd/noota.ogg")
 ::sndNootB <- loadSound("res/snd/nootb.ogg")
 ::sndDook <- loadSound("res/snd/dook.ogg")
+::sndWaterball <- loadSound("res/snd/waterball.ogg")
 
 
 
