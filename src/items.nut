@@ -843,8 +843,14 @@
 
 ::FlyRefresh <- class extends Actor{
 	function run() {
-		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 20) && game.ps.weapon == "air") game.ps.stamina++
-		if(gvPlayer2 && inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 20) && game.ps2.weapon == "air") game.ps2.stamina++
+		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 20) && game.ps.weapon == "air" && getFrames() % 8 == 0) {
+			game.ps.stamina++
+			newActor(HealStamina, x - 16 + randInt(32), y - 16 + randInt(32))
+		}
+		if(gvPlayer2 && inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 20) && game.ps2.weapon == "air" && getFrames() % 8 == 0) {
+			game.ps2.stamina++
+			newActor(HealStamina, x - 16 + randInt(32), y - 16 + randInt(32))
+		}
 	}
 
 	function draw() {

@@ -230,6 +230,38 @@
 	function draw() { drawSpriteZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
+::HealMana <- class extends Actor {
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+	function run() {
+		if(frame < 1) frame += 0.02
+		frame += 0.05
+		y -= 0.5
+		if(frame >= 3) deleteActor(id)
+	}
+
+	function draw() { drawSpriteZ(4, sprHealMana, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
+}
+
+::HealStamina <- class extends Actor {
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+	function run() {
+		if(frame < 1) frame += 0.02
+		frame += 0.05
+		y -= 0.5
+		if(frame >= 3) deleteActor(id)
+	}
+
+	function draw() { drawSpriteZ(4, sprHealStamina, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
+}
+
 ::GoldCharge <- class extends Actor {
 	frame = 0.0
 

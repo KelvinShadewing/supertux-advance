@@ -1058,7 +1058,7 @@
 
 		//Find target
 		foreach(i in actor) {
-			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape)) {
+			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape) && !i.notarget) {
 				tdist = distance2(x, y, i.x, i.y)
 				target = i
 			}

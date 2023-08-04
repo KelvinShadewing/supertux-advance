@@ -551,6 +551,10 @@
 ::defWaterSurface <- sprWaterSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 ::defHeal <- sprHeal
+::sprHealMana <- newSprite("res/gfx/heal-mana.png", 7, 7, 0, 0, 3, 3)
+::defHealMana <- sprHealMana
+::sprHealStamina <- newSprite("res/gfx/heal-stamina.png", 7, 7, 0, 0, 3, 3)
+::defHealStamina <- sprHealStamina
 ::sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 0, 0, 12, 16)
 ::defSplash <- sprSplash
 ::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
@@ -960,6 +964,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprExplodeA = defExplodeA
 	sprWaterSurface = defWaterSurface
 	sprHeal = defHeal
+	sprHealStamina = defHealStamina
 	sprSplash = defSplash
 }
 
