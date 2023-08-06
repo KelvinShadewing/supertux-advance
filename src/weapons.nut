@@ -1058,7 +1058,7 @@
 
 		//Find target
 		foreach(i in actor) {
-			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape)) {
+			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape) && !i.notarget) {
 				tdist = distance2(x, y, i.x, i.y)
 				target = i
 			}
@@ -1252,6 +1252,62 @@
 	}
 }
 
+::CrystalBullet <- class extends WeaponEffect {
+	element = "earth"
+	timer = 240
+	piercing = -1
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+		timer += randInt(60)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		if(!placeFree(x, y + 1)) vspeed = -1.2
+		if(!placeFree(x, y - 1)) vspeed = 1
+		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
+		}
+		if(!inWater(x, y)) vspeed += 0.1
+		else {
+			hspeed *= 0.99
+			vspeed *= 0.99
+		}
+
+		xprev = x
+		yprev = y
+		if(placeFree(x, y)) {
+			x += hspeed
+			y += vspeed
+		}
+		if(x != xprev && y != yprev)
+			angle = pointAngle(x, y, xprev, yprev)
+
+		if(y > gvMap.h || piercing == 0) deleteActor(id)
+
+		shape.setPos(x, y)
+	}
+
+	function draw()  {
+		drawSpriteEx(sprCrystalBullet, 0, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+
+	function destructor() {
+		fireWeapon(AfterFlame, x + hspeed, y + vspeed, alignment, owner)
+	}
+}
+
 ////////////////////
 // MIDI'S WEAPONS //
 ////////////////////
@@ -1353,6 +1409,10 @@
 					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
 					c.power = 2
 					break
+				case "air":
+					c = fireWeapon(ExplodeA2, x, y, alignment, owner)
+					c.power = 2
+					break
 				default:
 					c = fireWeapon(t, x - (6 * exPower), y, alignment, owner)
 					c.power = 2
@@ -1434,6 +1494,47 @@
 				case "air":
 					c = fireWeapon(ExplodeA2, x, y, alignment, owner)
 					c.power = 4
+					stopSound(sndExplodeA2)
+					c = fireWeapon(StormTornado, x + 8, y - 4, alignment, owner)
+					c.direction = 22.5
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x + 4, y - 8, alignment, owner)
+					c.direction = 22.5 - 45
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x - 4, y - 8, alignment, owner)
+					c.direction = 22.5 - (45 * 2)
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x - 8, y - 4, alignment, owner)
+					c.direction = 22.5 - (45 * 3)
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x - 8, y + 4, alignment, owner)
+					c.direction = 22.5 - (45 * 4)
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x - 4, y + 8, alignment, owner)
+					c.direction = 22.5 - (45 * 5)
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x + 4, y + 8, alignment, owner)
+					c.direction = 22.5 - (45 * 6)
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
+					c = fireWeapon(StormTornado, x + 8, y + 4, alignment, owner)
+					c.direction = 22.5 - (45 * 7)
+					c.power = 2
+					c.speed = 0.25
+					c.maxTime = 60
 					break
 				case "fire":
 					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
@@ -1715,7 +1816,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		popSound(sndExplodeA, 0)
+		popSound(sndExplodeA2, 0)
 
 		shape = Cir(x, y, 32.0)
 		altShape = Cir(x, y, 8.0)
@@ -1794,59 +1895,45 @@
 	}
 }
 
-::CrystalBullet <- class extends WeaponEffect {
-	element = "earth"
-	timer = 240
+::StormTornado <- class extends WeaponEffect {
 	piercing = -1
-	angle = 0
+	power = 1
+	timer = 0
+	speed = 0.0
+	direction = 0
+	element = "air"
+	solidshape = null
+	hitshape = null
+	maxTime = 300
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-
-		shape = Rec(x, y, 3, 3, 0)
-		timer += randInt(60)
+		hitshape = Cir(x, y, 8)
+		solidshape = Rec(x, y, 1, 1, 0)
+		shape = hitshape
+		popSound(sndExplodeA3)
 	}
 
-	function physics() {
-		//Shrink hitbox
-		timer--
-		if(timer == 0) {
+	function run() {
+		base.run()
+
+		shape = solidshape
+		if(!placeFree(x, y) || timer >= maxTime)
 			deleteActor(id)
-			newActor(Poof, x, y)
-		}
+		shape = hitshape
 
-		if(!placeFree(x, y + 1)) vspeed = -1.2
-		if(!placeFree(x, y - 1)) vspeed = 1
-		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
-			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
-		}
-		if(!inWater(x, y)) vspeed += 0.1
-		else {
-			hspeed *= 0.99
-			vspeed *= 0.99
-		}
+		if(timer >= 30)
+			speed = 4.0
 
-		xprev = x
-		yprev = y
-		if(placeFree(x, y)) {
-			x += hspeed
-			y += vspeed
-		}
-		if(x != xprev && y != yprev)
-			angle = pointAngle(x, y, xprev, yprev)
+		timer++
 
-		if(y > gvMap.h || piercing == 0) deleteActor(id)
-
+		x += lendirX(speed, direction)
+		y += lendirY(speed, direction)
 		shape.setPos(x, y)
 	}
 
-	function draw()  {
-		drawSpriteEx(sprCrystalBullet, 0, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
-	}
-
-	function destructor() {
-		fireWeapon(AfterFlame, x + hspeed, y + vspeed, alignment, owner)
+	function draw() {
+		drawSprite(sprTinyWind, getFrames() / 2, x - camx, y - camy, direction + 90)
 	}
 }
 

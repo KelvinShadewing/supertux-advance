@@ -228,7 +228,7 @@
 		"waterjump" :
 		["Hold %s when leaving the water to gain height.", "getConName(\"jump\")"],
 		"noend" :
-		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this, or walk against the edge of the map.",
+		"Levels that you don't need to complete to move on also do not have normal exits. Use the pause menu to leave areas like this, or walk against the edge of the map.\n\nYou can also change characters from the overworld in the pause menu.",
 		"hills" :
 		"Hills are very important! Practice sliding every chance you get.",
 		"pipes" :
@@ -284,7 +284,9 @@
 		"konqi-defense" :
 		"The dragons have higher defense than the other standard characters. Don't be afraid to throw your weight around!",
 		"konqi-flame" :
-		["You can breathe fire as Konqi or Katie if you have no other element set to your main or sub weapon. Press %s or %s. Even at zero energy, they'll still be able to use a short-range fire attack. Fire blocks like these can be burned by other characters' fire attacks as well.", "getConName(\"shoot\")", "getConName(\"spec1\")"]
+		["You can breathe fire as Konqi or Katie if you have no other element set to your main or sub weapon. Press %s or %s. Even at zero energy, they'll still be able to use a short-range fire attack. Fire blocks like these can be burned by other characters' fire attacks as well.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
+		"fly-refresher" :
+		"Spinning air feathers suspended in tornados will refresh your stamina when in air form. Use these to fly longer over long stretches."
 	},
 
 	"devcom" : {

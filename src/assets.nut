@@ -551,6 +551,10 @@
 ::defWaterSurface <- sprWaterSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 ::defHeal <- sprHeal
+::sprHealMana <- newSprite("res/gfx/heal-mana.png", 7, 7, 0, 0, 3, 3)
+::defHealMana <- sprHealMana
+::sprHealStamina <- newSprite("res/gfx/heal-stamina.png", 7, 7, 0, 0, 3, 3)
+::defHealStamina <- sprHealStamina
 ::sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 0, 0, 12, 16)
 ::defSplash <- sprSplash
 ::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
@@ -724,6 +728,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndExplodeI <- loadSound("res/snd/explodeI.ogg")
 ::sndExplodeT <- loadSound("res/snd/explodeT.ogg")
 ::sndExplodeA <- loadSound("res/snd/explodeA.ogg")
+::sndExplodeA2 <- loadSound("res/snd/explodeA2.ogg")
+::sndExplodeA3 <- loadSound("res/snd/explodeA3.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
 ::sndBell <- loadSound("res/snd/bell.ogg")
 ::sndIcicle <- loadSound("res/snd/icicle.ogg")
@@ -768,6 +774,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndNootA <- loadSound("res/snd/noota.ogg")
 ::sndNootB <- loadSound("res/snd/nootb.ogg")
 ::sndDook <- loadSound("res/snd/dook.ogg")
+::sndWaterball <- loadSound("res/snd/waterball.ogg")
 
 
 
@@ -957,6 +964,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 	sprExplodeA = defExplodeA
 	sprWaterSurface = defWaterSurface
 	sprHeal = defHeal
+	sprHealStamina = defHealStamina
 	sprSplash = defSplash
 }
 

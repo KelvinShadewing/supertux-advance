@@ -999,7 +999,7 @@
 						continue
 					if(!inDistance2(x, y, i.x, i.y, 128))
 						continue
-					if(i instanceof Ouchin && !invincible)
+					if(i.notarget)
 						continue
 					if(target == null || distance2(x, y, i.x, i.y) < distance2(x, y, target.x, target.y))
 						target = i
