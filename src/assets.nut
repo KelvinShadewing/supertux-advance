@@ -635,6 +635,8 @@
 //Platforms
 ::sprPlatformWood <- newSprite("res/gfx/moplat-wood.png", 16, 8, 0, 0, 8, 4)
 ::defPlatformWood <- sprPlatformWood
+::sprPlatformStone <- newSprite("res/gfx/moplat-stone.png", 16, 8, 0, 0, 8, 4)
+::defPlatformStone <- sprPlatformStone
 ::sprBoostRing <- newSprite("res/gfx/boost-ring.png", 12, 32, 0, 0, 6, 16)
 ::defBoostRing <- sprBoostRing
 
@@ -724,6 +726,7 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndHeal <- loadSound("res/snd/heal.ogg")
 ::sndFlap <- loadSound("res/snd/flap.ogg")
 ::sndExplodeF <- loadSound("res/snd/explodeF.ogg")
+::sndExplodeF2 <- loadSound("res/snd/explodeF2.ogg")
 ::sndExplodeN <- loadSound("res/snd/explodeN.ogg")
 ::sndExplodeI <- loadSound("res/snd/explodeI.ogg")
 ::sndExplodeT <- loadSound("res/snd/explodeT.ogg")

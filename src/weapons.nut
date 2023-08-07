@@ -536,8 +536,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		popSound(sndExplodeF2)
 
 		shape = Cir(x, y, 8.0)
 		altShape = Cir(x, y, 2.0)
