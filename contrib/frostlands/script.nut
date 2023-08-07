@@ -128,7 +128,6 @@ print("Loading Frostlands overhauled PT2")
 	sprCoin = sprCoinOG
 	sprCoin5 = sprCoin5OG
 	sprCoin10 = sprCoin10OG
-	sprHealth = sprHealthFL
 	sprEnergy = sprEnergyFl
 	sprSubItem = sprSubItemFL
 	sprColorSwitch = sprColorSwitchFL
