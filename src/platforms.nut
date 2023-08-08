@@ -356,7 +356,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		w = max(1, _arr[2].tofloat())
+		w = max(1, _arr[2].tointeger())
 		if(_arr.len() > 3 && getroottable().rawin(_arr[3])) sprite = getroottable()[_arr[3]]
 		if(_arr.len() > 3 && (_arr[3] == 0 || _arr[3] == "0")) sprite = 0
 		shape = Rec(x, y, w * 8, 4, 0)

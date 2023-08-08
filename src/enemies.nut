@@ -5317,6 +5317,9 @@
 		if(placeFree(x, y - 2) && mode == 1)
 			mode = 0
 
+		if(placeFree(x, y + 1) && !placeFree(x, y - 1) && mode == 0)
+			mode = 1
+
 		if(health <= 0 && anim != "squish") {
 			frame = 0.0
 			anim = "squish"
