@@ -294,7 +294,7 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["pause-menu"]["character2"]},
 		func = function() { pickCharInitialize(2); gvGameMode = pickChar }
-		desc = function() { return game.playerChar }
+		desc = function() { return game.playerChar2 }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["options"] },

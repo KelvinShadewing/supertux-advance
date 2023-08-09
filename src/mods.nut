@@ -5,15 +5,16 @@
 //These tables can have functions added to them that will be iterated through at certain points
 //Names can be arbitrary, and would be best made long and distinct
 
-//Example: modEventNewGame.modByMe <- function() { stuff }
+//Example: ebNewGame.modByMe <- function() { stuff }
+//The 'eb' prefix stands for "Event Buffer"
 
-::modEventNewGame <- {}
-::modEventOverworldStart <- {}
-::modEventOverworldRun <- {}
-::modEventPlayStart <- {}
-::modEventPlayRun <- {}
+::ebNewGame <- {}
+::ebOverworldStart <- {}
+::ebOverworldRun <- {}
+::ebPlayStart <- {}
+::ebPlayRun <- {}
 
-::runModEvent <- function(event) {
+::runModEventBuffer <- function(event) {
 	if(event.len() == 0)
 		return
 
