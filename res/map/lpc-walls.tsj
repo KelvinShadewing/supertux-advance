@@ -1,0 +1,14 @@
+{ "columns":14,
+ "image":"..\/gfx\/lpc-walls.png",
+ "imageheight":224,
+ "imagewidth":224,
+ "margin":0,
+ "name":"lpc-walls",
+ "spacing":0,
+ "tilecount":196,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}
