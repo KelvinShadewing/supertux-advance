@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"..\/gfx\/pumpkinhouse.png",
+ "imageheight":144,
+ "imagewidth":128,
+ "margin":0,
+ "name":"pumpkin",
+ "spacing":0,
+ "tilecount":72,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

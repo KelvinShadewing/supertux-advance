@@ -1,0 +1,14 @@
+{ "columns":5,
+ "image":"..\/gfx\/signpost.png",
+ "imageheight":112,
+ "imagewidth":80,
+ "margin":0,
+ "name":"signpost",
+ "spacing":0,
+ "tilecount":35,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}
