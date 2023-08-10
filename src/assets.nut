@@ -629,6 +629,8 @@
 ::defShockball <- sprShockball
 ::sprShockBolt <- newSprite("res/gfx/shock-bolt.png", 24, 8, 0, 0, 12, 4)
 ::defShockBolt <- sprShockBolt
+::sprStoneBall <- newSprite("res/gfx/stone-ball.png", 16, 16, 0, 0, 8, 8)
+::defStoneBall <- sprStoneBall
 
 
 

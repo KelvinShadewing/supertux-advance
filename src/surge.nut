@@ -239,7 +239,7 @@
 		if(firetime <= 0 && stats.energy < stats.maxEnergy)
 			stats.energy += 1.0 / 30.0
 
-		if(!freeDown2 && stats.stamina < stats.maxStamina)
+		if(!freeDown2 && stats.stamina < stats.maxStamina && (stats.weapon != "earth" || !blinking) && anim != "ball")
 			stats.stamina += 0.25
 
 		if(getcon("swap", "press", true, playerNum)) swapitem()
@@ -614,6 +614,8 @@
 						chargeTimer += 0.4
 					else
 						chargeTimer += 0.1
+					if(didAirSpecial)
+						chargeTimer += 0.2
 				}
 
 				if(chargeTimer > chargeThreshold) {
@@ -624,7 +626,7 @@
 
 				frame += max(0.25, chargeTimer / 8.0)
 				chargePoof += chargeTimer / 16.0
-				if(chargePoof > 1) {
+				if(chargePoof > 1 && !freeDown) {
 					chargePoof -= 1.0
 					local c = actor[newActor(PoofTiny, x, y + 12)]
 					if(flip == 0) {
@@ -640,26 +642,31 @@
 					c.hspeed -= randFloat(1)
 				}
 
-				if((((!freeDown2 || onPlatform()) && getcon("down", "hold", true, playerNum)) ) && anim != "ball" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crawl") {
-					if((placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) && !onPlatform() || hspeed >= 1.5) {
-						anim = "ball"
-						popSound(sndSurgeRoll)
-						if(flip == 0)
-							hspeed = chargeTimer
-						else
-							hspeed = -chargeTimer
-						chargeTimer = 0.0
-					}
-				}
+				// if((((!freeDown2 || onPlatform()) && getcon("down", "hold", true, playerNum)) ) && anim != "ball" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crawl" && !didAirSpecial) {
+				// 	if((placeFree(x + 2, y + 1) || placeFree(x - 2, y + 1)) && !onPlatform() || hspeed >= 1.5) {
+				// 		anim = "ball"
+				// 		popSound(sndSurgeRoll)
+				// 		if(flip == 0)
+				// 			hspeed = chargeTimer
+				// 		else
+				// 			hspeed = -chargeTimer
+				// 		chargeTimer = 0.0
+				// 	}
+				// }
 
-				if(!getcon("spec2", "hold", true, playerNum)) {
+				if(!getcon("spec2", "hold", true, playerNum) && !didAirSpecial || (stats.weapon == "earth" && didAirSpecial && !freeDown)) {
 					anim = "ball"
 					popSound(sndSurgeRoll)
 					if(flip == 0)
-						hspeed = chargeTimer
+						hspeed = max(hspeed, chargeTimer)
 					else
-						hspeed = -chargeTimer
+						hspeed = min(hspeed, -chargeTimer)
 					chargeTimer = 0.0
+				}
+
+				if(didAirSpecial && !getcon("jump", "hold", true, playerNum)) {
+					anim = "jumpR"
+					didAirSpecial = false
 				}
 
 				if(frame >= 7)
@@ -925,11 +932,17 @@
 			if(blinking == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
-				if(stats.health > 0) stats.health -= hurt
-				if(flip == 0) hspeed = -2.0
-				else hspeed = 2.0
-				anim = "hurt"
-				frame = 0.0
+				if(stats.weapon == "earth" && anim == "ball" && stats.stamina > 0) {
+					stats.stamina -= hurt
+					if(stats.stamina < 0) stats.health += stats.stamina
+				}
+				else {
+					if(stats.health > 0) stats.health -= hurt
+					if(flip == 0) hspeed = -2.0
+					else hspeed = 2.0
+					anim = "hurt"
+					frame = 0.0
+				}
 			}
 			hurt = 0
 		}
@@ -972,7 +985,7 @@
 		}
 
 		//Attacks
-		if(anim != "jumpR")
+		if(anim != "jumpR" && anim != "charge")
 			didAirSpecial = false
 
 		//Air moves
@@ -1031,6 +1044,11 @@
 
 			case "water":
 				anim = "stomp"
+				didAirSpecial = true
+				break
+
+			case "earth":
+				anim = "charge"
 				didAirSpecial = true
 				break
 
@@ -1094,10 +1112,10 @@
 		if(anim == "jumpR")
 			yoff = 6
 
-		if(blinking == 0 || anim == "hurt")
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - 2 - camy + yoff, walkAngle, flip, 1, 1, 1)
+		if(anim == "ball" && stats.weapon == "earth")
+			drawSpriteZ(2, sprStoneBall, an[anim][floor(frame)] + animOffset, x - camx, y - camy + 4, walkAngle, flip, 1, 1, (blinking && anim != "hurt" ? wrap(blinking, 0, 10).tofloat() / 10.0 : 1))
 		else
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - 2 - camy + yoff, walkAngle, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - 2 - camy + yoff, walkAngle, flip, 1, 1, (blinking && anim != "hurt" ? wrap(blinking, 0, 10).tofloat() / 10.0 : 1))
 
 		//Transformation flash
 		if(tftime != -1) {
