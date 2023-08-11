@@ -311,7 +311,7 @@
 		"loops" :
 		"KELVIN: Sorry, did you expect this loop to work? Ha! I'm nowhere near good enough to program that... yet.",
 		"contrib" :
-		"FROSTC: Hello! This is the first dev commentary not written by Kelvin.",
+		"FROSTC: Hello! This is the first dev comment not written by Kelvin.",
 		"walldev" :
 		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it",
 		"tnt" :
@@ -369,7 +369,9 @@
 		"Forest-lefttext":
 		"FROSTC: If you played the old version of frostlands, you might be familiar with the name of this level. When making the updated version of frostlands, I had decided to that i would remake the level to the left, and replace it with a better one. which ended up being lost ruins. For some reason, kelvin decided to put the old to the left into the forest world. why? idk! the level sucked. To avoid the forest world having such an awful first level, I remade it from scratch. The remake is what you should be playing now.",
 		"Forest-coinblock":
-		"FROSTC: It was hard to resist the urge to place like a million coins in this block"
+		"FROSTC: It was hard to resist the urge to place like a million coins in this block",
+		"TBR":
+		"FROSTC: Expect a remake of this level in 0.4.0"
 	},
 
 	"npc" : {
