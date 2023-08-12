@@ -3766,7 +3766,8 @@
 		}
 
 		//Getting carried
-		holdMe()
+		if(target)
+			holdMe(min(max(target.hspeed * 1.5, 2), 10))
 
 		if(held) {
 			blinking = 10

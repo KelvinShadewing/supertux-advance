@@ -40,7 +40,7 @@
 	dirAngle = 0.0
 	didAirSpecial = false
 	homingTarget = null
-	
+	shockEffect = null
 
 	an = {
 		stand = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 6, 6, 6, 6, 6, 6, 6, 6, 48, 49, 48, 49, 48, 49, 48, 49, 50, 51, 51, 51, 51, 50, 48]
@@ -988,6 +988,11 @@
 		if(anim != "jumpR" && anim != "charge")
 			didAirSpecial = false
 
+		if(checkActor(shockEffect)) {
+			actor[shockEffect].x = x
+			actor[shockEffect].y = y - (anim == "jumpR" ? 0 : 4)
+		}
+
 		//Air moves
 		if(canMove && (anim == "jumpR" || (anim == "jumpU" || anim == "jumpT" || anim == "fall") && stats.weapon == "air" && !onPlatform()) && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
@@ -1028,8 +1033,12 @@
 				break
 
 			case "shock":
-				fireWeapon(ExplodeT2, x, y, 1, id)
-				vspeed = -6.0
+				shockEffect = fireWeapon(ExplodeT2, x, y, 1, id).id
+				if(!getcon("down", "hold", true, playerNum)) {
+					vspeed = -6.0
+					anim = "jumpU"
+				}
+				actor[shockEffect].blast = false
 				didJump = true
 				canJump = 0
 				didAirSpecial = true
@@ -1054,7 +1063,7 @@
 
 			default:
 				didAirSpecial = true
-				fireWeapon(InstaShield, x, y, 1, id)
+				shockEffect = fireWeapon(InstaShield, x, y, 1, id).id
 				blinking = max(8, blinking)
 		}
 		

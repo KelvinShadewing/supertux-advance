@@ -1013,6 +1013,8 @@
 				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
 			}
 		}
+
+		shape.setPos(x, y)
 	}
 
 	function draw() {

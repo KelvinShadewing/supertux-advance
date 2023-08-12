@@ -1098,11 +1098,6 @@
 		else {
 			swimming = true
 			if(stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.05
-			if(!wasInWater) {
-				wasInWater = true
-				vspeed /= 2.0
-				newActor(Splash, x, y)
-			}
 			an["fall"] = an["fallN"]
 
 			//Animation states

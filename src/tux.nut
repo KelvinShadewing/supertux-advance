@@ -1013,11 +1013,6 @@
 		else {
 			swimming = true
 			shapeStand.h = 6.0
-			if(!wasInWater) {
-				wasInWater = true
-				vspeed /= 2.0
-				newActor(Splash, x, y)
-			}
 			an["fall"] = an["fallN"]
 			if(anim == "fallW") anim = "fallN"
 
