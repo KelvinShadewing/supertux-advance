@@ -244,7 +244,6 @@
 				gvPlayer.vspeed = 0
 				vspeed = -1
 				playSound(sndHeal, 0)
-				game.staminaBonus += 1
 				game.coins -= price
 				game.hasSulphur = 1
 				local c = actor[newActor(SulphurNimbus, 0, y)]
@@ -257,7 +256,6 @@
 				gvPlayer2.vspeed = 0
 				vspeed = -1
 				playSound(sndHeal, 0)
-				game.staminaBonus += 1
 				game.coins -= price
 				game.hasSulphur = 2
 				local c = actor[newActor(SulphurNimbus, 0, y)]
