@@ -1253,3 +1253,120 @@
 
 	function _typeof() { return "WaterLily" }
 }
+
+::SulphurNimbus <- class extends PhysAct {
+	phantom = true
+	target = 0
+	freed = 0
+	gravity = 0.0
+	flip = 0
+	strikeTimer = 0
+	anim = "stand"
+	an = {
+		stand = [0]
+		hurt = [1, 2]
+		fly = [3, 4, 5, 6, 7, 8, 9, 10]
+	}
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 16, 16, 0)
+	}
+
+	function run() {
+		base.run()
+
+		if(freed) {
+			shape.w = 8
+			shape.h = 8
+
+			if(strikeTimer > 0)
+				strikeTimer--
+
+			anim = "fly"
+
+			target = null
+			if((freed == 1 || freed == 2 && !gvPlayer2) && gvPlayer)
+				target = gvPlayer
+			if((freed == 2 || freed == 1 && !gvPlayer) && gvPlayer2)
+				target = gvPlayer2
+
+			if(strikeTimer == 0) {
+				local range = 96
+				foreach(i in actor) {
+					if(i instanceof Enemy && inDistance2(x, y, i.x, i.y, range) && !i.frozen && !i.notarget) {
+						range = distance2(x, y, i.x, i.y)
+						target = i
+					}
+				}
+			}
+
+			if(target != null) {
+				local dir = pointAngle(x, y, target.x, target.y - (target instanceof Enemy ? 0 : 32))
+				local speed = 0.2
+
+				if(target instanceof Enemy) {
+					speed = 0.5
+					if(!target.blinking && hitTest(shape, target.shape)) {
+						strikeTimer = 300
+						target.getHurt(0, 1)
+					}
+				}
+				else {
+					local maxSpeed = distance2(x, y, target.x, target.y) / 16
+					local curSpeed = distance2(0, 0, hspeed, vspeed)
+					if(curSpeed > maxSpeed) {
+						local curDir = pointAngle(0, 0, hspeed, vspeed)
+						hspeed = lendirX(maxSpeed, curDir)
+						vspeed = lendirY(maxSpeed, curDir)
+					}
+					if(inDistance2(x, y, target.x, target.y - 32, 32)) {
+						hspeed /= 1.2
+						vspeed /= 1.2
+					}
+				}
+
+				hspeed += lendirX(speed, dir)
+				vspeed += lendirY(speed, dir)
+			}
+
+			if(hspeed > 0.5)
+				flip = 0
+			if(hspeed < -0.5)
+				flip = 1
+
+			if(levelEndRunner)
+				game.hasSulphur = freed
+			if(!gvPlayer && !gvPlayer2)
+				game.hasSulphur = 0
+		}
+		else {
+			anim = "stand"
+			if(gvPlayer && gvPlayer.inMelee && hitTest(shape, gvPlayer.shape)) {
+				freed = 2
+			}
+
+			if(gvPlayer2 && gvPlayer2.inMelee && hitTest(shape, gvPlayer2.shape)) {
+				freed = 1
+			}
+
+			if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) {
+				if(i.alignment == 1 && hitTest(shape, i.shape)) {
+					freed = true
+					if(checkActor(i.owner))
+						freed = actor[i.owner].playerNum
+					break
+				}
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(4, sprSulphurNimbus, an[anim][wrap(getFrames() / 4, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+		if(!freed)
+			drawSpriteZ(4, sprBirdCage, 0, x - camx, y - camy)
+	}
+
+	function _typeof() { return "SulphurNimbus" }
+}

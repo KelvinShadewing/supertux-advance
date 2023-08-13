@@ -35,7 +35,7 @@
 
 	function physics() {
 		if(placeFree(x, y + gravity) && !phantom && !(onPlatform() && vspeed >= 0)) vspeed += gravity
-		if(placeFree(x, y + vspeed)) y += vspeed
+		if(placeFree(x, y + vspeed) || phantom) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
 			for(local i = 2; i < 8; i++) {
 				if(placeFree(x, y + (vspeed / i))) {
@@ -48,7 +48,9 @@
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(phantom)
+				x += hspeed
+			else if(placeFree(x + hspeed, y)) { //Try to move straight
 				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
 					y += 1
 				}

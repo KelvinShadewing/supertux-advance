@@ -19,6 +19,7 @@
 ::font2A <- newFont(sprFont2A, 32, 0, true, -4)
 ::sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8, 0, 0, 0, 0)
 ::sprTitle <- newSprite("res/gfx/title.png", 220, 55, 0, 0, 110, 0)
+::sprActors <- newSprite("res/gfx/actors.png", 16, 16, 0, 0, 8, 8)
 
 
 
@@ -243,8 +244,10 @@
 ::defBrickBlockSnow <- sprBrickBlockSnow
 ::sprBrickChunks <- newSprite("res/gfx/brickblock-chunks.png", 8, 8, 0, 0, 4, 4)
 ::defBrickChunks <- sprBrickChunks
-::sprBirdCage <- newSprite("res/gfx/birdcage.png", 32, 48, 0, 0, 16, 40)
+::sprBirdCage <- newSprite("res/gfx/birdcage.png", 32, 48, 0, 0, 16, 32)
 ::defBirdCage <- sprBirdCage
+::sprSulphurNimbus <- newSprite("res/gfx/sulphur-nimbus.png", 34, 34, 0, 0, 17, 19)
+::defSulphurNimbus <- sprSulphurNimbus
 
 
 

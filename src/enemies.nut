@@ -3414,7 +3414,7 @@
 	canMoveV = true
 	freezeSprite = sprIceTrapLarge
 	nocount = true
-	blinkMax = 2
+	blinkMax = 30
 	target = null
 	minFreezeTime = 300
 
@@ -3542,7 +3542,7 @@
 			drawSpriteZ(1, sprOwlBrown, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
 			drawSpriteZ(1, sprIceTrapSmall, 0, x - camx, y - camy, 0, 0, 1, 1, 1)
 		}
-		else drawSpriteZ(1, sprOwlBrown, wrap(getFrames() / 4, 1, 4), x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSpriteZ(1, sprOwlBrown, wrap(getFrames() / 4, 1, 4), x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
 	}
 
 	function ruCarry() {

@@ -205,6 +205,22 @@
 		}
 	}
 
+	//Spawn Sulphur
+	if(game.hasSulphur) {
+		if("SulphurNimbus" in actor) {
+			local sulphurList = []
+			foreach(i in actor["SulphurNimbus"])
+				sulphurList.push(i.id)
+			for(local j = 0; j < sulphurList.len(); j++)
+				deleteActor(sulphurList[j])
+		}
+
+		if(gvPlayer) {
+			local c = actor[newActor(SulphurNimbus, gvPlayer.x, gvPlayer.y - 32)]
+			c.freed = game.hasSulphur
+		}
+	}
+
 	//Go through collected items
 	if(game.check) foreach(k, i in gvFoundItems) {
 		print(typeof actor[mapActor[k]])
@@ -1532,6 +1548,10 @@
 		case 107:
 			c = newActor(Devine, i.x + 8, i.y - 8, i.name)
 			game.maxEnemies++
+			break
+
+		case 108:
+			c = newActor(SulphurNimbus, i.x + 8, i.y - 16, i.name)
 			break
 
 		case 109:

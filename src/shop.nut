@@ -211,3 +211,66 @@
 		}
 	}
 }
+
+::ShopBlockSulphur <- class extends Actor {
+	shape = 0
+	full = true
+	v = 0.0
+	vspeed = 0.0
+	soldout = false
+	price = 0
+
+	constructor(_x, _y, _arr = "") {
+		base.constructor(_x, _y)
+
+		shape = Rec(x, y + 2, 8, 8, 0)
+		tileSetSolid(x, y, 1)
+	}
+
+	function run() {
+		if(game.hasSulphur) soldout = true
+		price = 100 + (100 * game.difficulty)
+
+		if(v > 0) {
+			vspeed = 0
+			v = 0
+		}
+		if(v <= -8) {
+			vspeed = 0.5
+		}
+
+		if(gvPlayer) {
+			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
+				gvPlayer.vspeed = 0
+				vspeed = -1
+				playSound(sndHeal, 0)
+				game.staminaBonus += 1
+				game.coins -= price
+				game.hasSulphur = 1
+			}
+		}
+
+		if(gvPlayer2) {
+			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
+				gvPlayer2.vspeed = 0
+				vspeed = -1
+				playSound(sndHeal, 0)
+				game.staminaBonus += 1
+				game.coins -= price
+				game.hasSulphur = 2
+			}
+		}
+
+		v += vspeed
+	}
+
+	function draw() {
+		local pricetag = chint(95).tostring() + price.tostring()
+		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		else {
+			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+			drawSpriteZ(2, sprActors, 108, x - camx, y - camy + v)
+			drawText(font, x - camx - (pricetag.len() * 3), y - 16 - camy, pricetag)
+		}
+	}
+}

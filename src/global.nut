@@ -98,6 +98,7 @@
 			abilities = {}
 		}
 		state = {}
+		hasSulphur = 0
 	}
 }
 
