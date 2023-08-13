@@ -247,6 +247,8 @@
 				game.staminaBonus += 1
 				game.coins -= price
 				game.hasSulphur = 1
+				local c = actor[newActor(SulphurNimbus, 0, y)]
+				c.freed = 1
 			}
 		}
 
@@ -258,6 +260,8 @@
 				game.staminaBonus += 1
 				game.coins -= price
 				game.hasSulphur = 2
+				local c = actor[newActor(SulphurNimbus, 0, y)]
+				c.freed = 2
 			}
 		}
 

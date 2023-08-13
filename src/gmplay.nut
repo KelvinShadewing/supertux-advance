@@ -443,6 +443,14 @@
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 	}
 
+	//Draw Sulphur
+	if(game.hasSulphur) {
+		if(game.playerChar2 != 0 && game.playerChar2 != "")
+			drawSprite(sprSulphurNimbus, SulphurNimbus.an["fly"][wrap(getFrames() / 4, 0, 7)], (game.hasSulphur == 1 ? charx : -charx) + gvScreenW / 2, gvScreenH / 2 - 32)
+		else
+			drawSprite(sprSulphurNimbus, SulphurNimbus.an["fly"][wrap(getFrames() / 4, 0, 7)], gvScreenW / 2, gvScreenH / 2 - 32)
+	}
+
 	local author = gvLangObj["stats"]["author"] + ": " + gvMap.author
 	drawText(font, (gvScreenW / 2) - author.len() * 3, gvScreenH - 64, author)
 
