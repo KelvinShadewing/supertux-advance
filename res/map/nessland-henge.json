@@ -4583,6 +4583,126 @@
                  "width":16,
                  "x":80,
                  "y":3104
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":356,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1760,
+                 "y":800
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":357,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1984,
+                 "y":832
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":358,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2288,
+                 "y":800
+                }, 
+                {
+                 "gid":280,
+                 "height":16,
+                 "id":359,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2624,
+                 "y":768
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":360,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3616,
+                 "y":1216
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":361,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3840,
+                 "y":1216
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":362,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3632,
+                 "y":1104
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":363,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3472,
+                 "y":816
+                }, 
+                {
+                 "gid":297,
+                 "height":16,
+                 "id":367,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":3040
+                }, 
+                {
+                 "gid":298,
+                 "height":16,
+                 "id":368,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3600,
+                 "y":3120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4591,7 +4711,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":356,
+ "nextobjectid":369,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -4602,7 +4722,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"gvHorizon = gvMap.h - (16 * 2)\ndrawBG = dbgForest"
+         "value":"gvHorizon = gvMap.h - (16 * 2)\ndrawBG = dbgForest\nsongPlay(musForestTop)"
         }, 
         {
          "name":"run",
