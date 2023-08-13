@@ -108,11 +108,11 @@
 		}
 
 		if(getFrames() % 4 == 0) {
-			if(health < healthActual) {
+			if(health < round(healthActual)) {
 				stopSound(sndMenuMove)
 				playSound(sndMenuMove, 0)
 			}
-			health += healthActual <=> health
+			health += round(healthActual) <=> health
 		}
 		if(health > 0) if(!gvBoss) gvBoss = this
 
