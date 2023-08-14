@@ -1028,7 +1028,7 @@
 
 			//Get on monkeybar
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "monkey" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-				if((atZipline() || atZipline(0, -vspeed)) && y % 16 < 4) {
+				if((atZipline() || atZipline(0, -vspeed) || atZipline(0, vspeed)) && y % 16 < 4) {
 					anim = "monkey"
 					frame = 0.0
 					hspeed = 0
@@ -1592,7 +1592,12 @@
 
 		local c = null
 		if(routine == ruBall) {
-			c = fireWeapon(WingNut, x, y + 4, 1, id)
+			if(getcon("down", "hold", true, playerNum)) {
+				c = fireWeapon(NutBomb, x, y + 8, 1, id)
+				c.vspeed = 2
+			}
+			else
+				c = fireWeapon(WingNut, x, y + 8, 1, id)
 			c.sprite = wingNutSprite
 		}
 		else if(!(shootDir == 4 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
