@@ -501,7 +501,7 @@
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
 
-			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0 && !getcon("spec2", "hold", true, playerNum))
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0 && !getcon("spec2", "hold", true, playerNum) && !freeDown2)
 				stats.stamina += 0.05
 
 			//Controls

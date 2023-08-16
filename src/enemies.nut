@@ -5734,8 +5734,7 @@
 		base.constructor(_x, _y, _arr)
 		nocount = true
 		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)
-		if(randInt(50) == 0) sprite = sprOozeyOozebourne
-		if(randInt(50) == 0) sprite = sprRyemanni
+		if(randInt(50) == 0) sprite = choose(sprOozeyOozebourne, sprRyemanni, sprGooFox)
 		shape = Rec(x, y, 7, 7, 0)
 		jumpTimer = randInt(180)
 		vspeed = -1.0
@@ -5888,4 +5887,185 @@
 	function hurtPlayer(target = null) {}
 
 	function _typeof() { return "Gooey" }
+}
+
+::Snippin <- class extends Enemy {
+	rolling = false
+	mode = 0
+	sprite = sprSnailBlue
+	direction = 0
+	flip = 0
+	fliph = 0
+
+	an = {
+		crawl = [0, 1]
+		hide = [2, 3]
+		roll = [4, 5, 6, 7]
+		peek = [8, 9, 10, 9, 10, 11]
+	}
+	anim = "crawl"
+	frame = 0.0
+
+	constructor(_x, _y, _arr = 0) {
+		base.constructor(_x, _y, _arr)
+		mode = _arr
+		switch(mode) {
+			case 0:
+				sprite = sprSnailBlue
+				break
+			case 1:
+				sprite = sprSnailRed
+				break
+			case 2:
+				sprite = sprSnailGreen
+				break
+		}
+		shape = Rec(x, y, 4, 4, 0)
+
+		//Stick to nearest surface
+		for(local i = 1; i <= 16; i++) {
+			if(placeFree(x + i, y) && !placeFree(x + i + 1, y)) {
+				x += i
+				return
+			}
+			if(placeFree(x - i, y) && !placeFree(x - i - 1, y)) {
+				x -= i
+				return
+			}
+			if(placeFree(x, y + i) && !placeFree(x, y + i + 1)) {
+				y += i
+				return
+			}
+			if(placeFree(x, y - i) && !placeFree(x, y - i - 1)) {
+				y -= i
+				return
+			}
+		}
+	}
+
+	function run() {
+		if(!active) {
+			local target = findPlayer()
+			if(target) {
+				if(x > target.x) {
+					flip = 2
+					direction = 180
+				}
+				else
+					flip = 0
+			}
+		}
+		base.run()
+	}
+
+	function animation() {
+		switch(anim) {
+			case "crawl":
+				frame = (float(getFrames()) / 12.0) + id
+				break
+		}
+	}
+
+	function physics() {
+		if(rolling || mode == 0)
+			gravity = 0.2
+		else
+			gravity = 0.0
+		vspeed += gravity
+
+		if(placeFree(x, y + vspeed))
+			y += vspeed
+		else
+			vspeed /= 2.0
+
+		//Try to move along current surface
+		if(!rolling) {
+			local didMove = false
+
+			for(local i = 0; i <= (mode > 0 ? 3 : 0); i++) {
+				if(placeFree(x + lendirX(2, direction + (22.5 * i)), y + lendirY(2, direction + (22.5 * i)))) {
+					x += lendirX(1, direction + (22.5 * i))
+					y += lendirY(1, direction + (22.5 * i))
+					direction += (22.5 * i)
+					didMove = true
+					break
+				}
+				else if(placeFree(x + lendirX(2, direction - (22.5 * i)), y + lendirY(2, direction - (22.5 * i)))) {
+					x += lendirX(1, direction - (22.5 * i))
+					y += lendirY(1, direction - (22.5 * i))
+					direction -= (22.5 * i)
+					didMove = true
+					break
+				}
+			}
+
+			if(!didMove && mode > 0) {
+				if(placeFree(x + lendirX(2, direction + (90)), y + lendirY(2, direction + (90))))
+					direction += 90
+				else if(placeFree(x + lendirX(2, direction - (90)), y + lendirY(2, direction - (90))))
+					direction -= 90
+				else if(placeFree(x + lendirX(2, direction - (180)), y + lendirY(2, direction - (180))))
+					direction -= 180
+			}
+			else if(!didMove && mode == 0) {
+				direction += 180
+				flip = int(!flip) * 2
+			}
+
+			if(hspeed > 0)
+				fliph = 0
+			if(hspeed < 0)
+				fliph = 1
+
+			direction %= 360
+
+			//Coming around corner
+			if(mode > 0) {
+				if((direction == 0 || direction == 180) && placeFree(x, y + 1) && placeFree(x, y - 1)) { //Horizontal
+					if(!placeFree(x + 2, y + 2)) {
+						direction = 90
+						flip = 2
+					}
+					if(!placeFree(x - 2, y + 2)) {
+						direction = 90
+						flip = 0
+					}
+					if(!placeFree(x + 2, y - 2)) {
+						direction = -90
+						flip = 0
+					}
+					if(!placeFree(x - 2, y - 2)) {
+						direction = -90
+						flip = 2
+					}
+				}
+				else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 1, y) && placeFree(x - 1, y)) { //Vertical
+					if(!placeFree(x + 2, y + 2)) {
+						direction = 0
+						flip = 0
+					}
+					if(!placeFree(x - 2, y + 2)) {
+						direction = 180
+						flip = 2
+					}
+					if(!placeFree(x + 2, y - 2)) {
+						direction = 0
+						flip = 2
+					}
+					if(!placeFree(x - 2, y - 2)) {
+						direction = 180
+						flip = 0
+					}
+				}
+			}
+
+			shape.setPos(x, y)
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(4, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, direction, (rolling ? fliph : flip))
+		if(debug)
+			drawText(font, x + 8 - camx, y - camy, str(direction))
+	}
 }

@@ -1454,6 +1454,21 @@
 			c = newActor(Owl, i.x + 8, i.y - 8, i.name)
 			break
 
+		case 82:
+			c = newActor(Snippin, i.x + 8, i.y - 8, 0)
+			game.maxEnemies++
+			break
+
+		case 83:
+			c = newActor(Snippin, i.x + 8, i.y - 8, 1)
+			game.maxEnemies++
+			break
+
+		case 84:
+			c = newActor(Snippin, i.x + 8, i.y - 8, 2)
+			game.maxEnemies++
+			break
+
 		case 85:
 			c = newActor(Spawner, i.x + 8, i.y - 8, i.name)
 			break

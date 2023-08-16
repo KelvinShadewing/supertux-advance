@@ -277,6 +277,7 @@
 ::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 21, 37, 0, 0, 10, 37)
 ::sprOozeyOozebourne <- newSprite("res/gfx/guests/oozey.png", 16, 16, 0, 0, 8, 8)
 ::sprRyemanni <- newSprite("res/gfx/guests/ryemanni.png", 16, 16, 0, 0, 8, 8)
+::sprGooFox <- newSprite("res/gfx/guests/goo-fox.png", 16, 16, 0, 0, 8, 8)
 
 
 
@@ -339,10 +340,12 @@
 ::defMrIceguy <- sprMrIceguy
 ::sprMrTurtle <- newSprite("res/gfx/mr-turtle.png", 24, 16, 0, 0, 8, 9)
 ::defMrTurtle <- sprMrTurtle
-::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 8)
+::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 10)
 ::defSnailRed <- sprSnailRed
-::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 8)
+::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 10)
 ::defSnailBlue <- sprSnailBlue
+::sprSnailGreen <- newSprite("res/gfx/snail-green.png", 16, 16, 0, 0, 8, 10)
+::defSnailGreen <- sprSnailGreen
 ::sprMrSnowball <- newSprite("res/gfx/mr-snowball.png", 16, 16, 0, 0, 8, 9)
 ::defMrSnowball <- sprMrSnowball
 ::sprMsSnowball <- newSprite("res/gfx/ms-snowball.png", 16, 16, 0, 0, 8, 9)

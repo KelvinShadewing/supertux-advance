@@ -1596,9 +1596,10 @@
 				c = fireWeapon(NutBomb, x, y + 8, 1, id)
 				c.vspeed = 2
 			}
-			else
+			else {
 				c = fireWeapon(WingNut, x, y + 8, 1, id)
-			c.sprite = wingNutSprite
+				c.sprite = wingNutSprite
+			}
 		}
 		else if(!(shootDir == 4 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
 			if(!freeDown && shootDir == 3 && routine != ruSwim) {
