@@ -278,6 +278,8 @@
 ::sprOozeyOozebourne <- newSprite("res/gfx/guests/oozey.png", 16, 16, 0, 0, 8, 8)
 ::sprRyemanni <- newSprite("res/gfx/guests/ryemanni.png", 16, 16, 0, 0, 8, 8)
 ::sprGooFox <- newSprite("res/gfx/guests/goo-fox.png", 16, 16, 0, 0, 8, 8)
+::sprAmaraNPC <- newSprite("res/gfx/guests/amara-armanita.png", 32, 32, 0, 0, 16, 32)
+::sprPumpkinNPC <- newSprite("res/gfx/guests/pumpkin-npc.png", 32, 32, 0, 0, 16, 32)
 
 
 
@@ -711,8 +713,10 @@ spriteSetBlendMode(sprLightBasic, bm_add)
 spriteSetBlendMode(sprLightFire, bm_add)
 ::sprLightIce <- newSprite("res/gfx/light-ice.png", 128, 128, 0, 0, 64, 64)
 spriteSetBlendMode(sprLightIce, bm_add)
-::sprLightGradient <- newSprite("res/gfx/light-gradient.png", 128, 128, 0, 0, 64, 64)
+::sprLightGradient <- newSprite("res/gfx/light-gradient.png", 64, 64, 0, 0, 32, 32)
 spriteSetBlendMode(sprLightGradient, bm_add)
+::sprLightCeiling <- newSprite("res/gfx/light-ceiling.png", 256, 128, 0, 0, 128, 8)
+spriteSetBlendMode(sprLightCeiling, bm_add)
 
 
 

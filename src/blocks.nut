@@ -881,9 +881,28 @@
 					if(game.ps.health < game.maxHealth) game.ps.health += 4
 					else if(game.ps.subitem == 0) game.ps.subitem = "muffinBlue"
 				}
+
+				if(gvPlayer2) {
+					if(game.ps2.health < game.maxHealth) game.ps2.health += 4
+					else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
+				}
 			}
 
 			timer = 120
+
+			if(gvNumPlayers > 1) {
+				local c = null
+
+				if(gvPlayer && !gvPlayer2) {
+					c = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
+					c.tftime = 0
+				}
+
+				if(!gvPlayer && gvPlayer2) {
+					c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
+					c.tftime = 0
+				}
+			}
 		}
 
 		timer--

@@ -501,7 +501,7 @@
 				if((getcon("left", "hold", true, playerNum) && !getcon("right", "hold", true, playerNum) && anim != "slide" && canMove) || (hspeed < -0.1 && anim == "slide")) flip = 1
 			}
 
-			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0 && !getcon("spec2", "hold", true, playerNum) && !freeDown2)
+			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0 && !getcon("spec2", "hold", true, playerNum))
 				stats.stamina += 0.05
 
 			//Controls
@@ -780,7 +780,8 @@
 			//Attacks
 			if(canMove && (anim == "jumpT" || anim == "jumpU" || anim == "fall") && getcon("down", "press", true, playerNum) && placeFree(x, y + 8)) {
 				hspeed = 0.0
-				vspeed = 4.0
+				if(vspeed < 4)
+					vspeed = 4.0
 				if(stats.weapon == "earth")
 					anim = "statue"
 				else

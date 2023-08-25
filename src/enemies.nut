@@ -4583,13 +4583,6 @@
 		shape.setPos(x, y)
 		if(onGround && vspeed > 2 || health <= 0) {
 			deleteActor(id)
-			fireWeapon(ExplodeF, x, y, 0, 0)
-			local c = fireWeapon(FireballK, x, y - 4, 0, 0)
-			c.hspeed = -2.0 - game.difficulty
-			c.vspeed = -1.5
-			c = fireWeapon(FireballK, x, y - 4, 0, 0)
-			c.hspeed = 2.0 + game.difficulty
-			c.vspeed = -1.5
 		}
 		if(!onGround) vspeed += 0.2
 		else vspeed = 0.0
@@ -4626,6 +4619,19 @@
 			drawLine(x - 8 - camx, y - camy, x + 8 - camx, y - camy)
 			drawLine(x - camx, y - 8 - camy, x - camx, y + 8 - camy)
 		}
+	}
+
+	function die() {
+		base.die()
+		
+		local c = fireWeapon(ExplodeF2, x, y, 0, 0)
+		c.power = 2
+		c = fireWeapon(FireballK, x, y - 4, 0, 0)
+		c.hspeed = -2.0 - game.difficulty
+		c.vspeed = -1.5
+		c = fireWeapon(FireballK, x, y - 4, 0, 0)
+		c.hspeed = 2.0 + game.difficulty
+		c.vspeed = -1.5
 	}
 
 	function _typeof() { return "SkyDive" }
@@ -4899,6 +4905,22 @@
 		base.die()
 		if(target != null)
 			target.canMove = true
+
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		popSound(sndKick, 0)
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 	}
 
 	function physics() {}

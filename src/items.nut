@@ -1264,8 +1264,7 @@
 	anim = "stand"
 	an = {
 		stand = [0]
-		hurt = [1, 2]
-		fly = [3, 4, 5, 6, 7, 8, 9, 10]
+		fly = [1, 2, 3, 4, 5, 6, 7, 8]
 	}
 
 	constructor(_x, _y, _arr = null) {
