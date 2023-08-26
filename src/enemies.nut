@@ -4582,7 +4582,7 @@
 		onGround = !placeFree(x, y + 1)
 		shape.setPos(x, y)
 		if(onGround && vspeed > 2 || health <= 0) {
-			deleteActor(id)
+			die()
 		}
 		if(!onGround) vspeed += 0.2
 		else vspeed = 0.0
