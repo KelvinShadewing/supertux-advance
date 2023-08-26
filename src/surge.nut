@@ -1189,3 +1189,12 @@
 
 	function _typeof(){ return "Surge" }
 }
+
+::Dashie <- class extends Surge {
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		sprite = sprDashie
+	}
+
+	function _typeof(){ return "Dashie" }
+}

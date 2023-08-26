@@ -231,6 +231,22 @@
 		dark = "sprSurge"
 		pick = [48, 51]
 	}
+	Dashie = {
+		name = "Dashie the Cyber Rabbit"
+		shortname = "Dashie"
+		over = "sprDashieOverworld"
+		doll = "sprDashieDoll"
+		normal = "sprDashie"
+		fire = "sprDashie"
+		ice = "sprDashie"
+		air = "sprDashie"
+		earth = "sprDashie"
+		shock = "sprDashie"
+		water = "sprDashie"
+		light = "sprDashie"
+		dark = "sprDashie"
+		pick = [48, 51]
+	}
 }
 
 ::game <- createNewGameObject()

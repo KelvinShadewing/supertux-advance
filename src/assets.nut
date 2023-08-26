@@ -138,6 +138,13 @@
 ::sprSurgeDoll <- newSprite("res/gfx/surge-doll.png", 16, 16, 0, 0, 8, 8)
 ::defSurgeDoll <- sprSurgeDoll
 
+::sprDashie <- newSprite("res/gfx/dashie.png", 32, 32, 0, 0, 16, 19)
+::defDashie <- sprDashie
+::sprDashieOverworld <- newSprite("res/gfx/dashieO.png", 14, 25, 0, 0, 7, 21)
+::defDashieOverworld <- sprDashieOverworld
+::sprDashieDoll <- newSprite("res/gfx/dashie-doll.png", 16, 16, 0, 0, 8, 8)
+::defDashieDoll <- sprDashieDoll
+
 
 
 //GUI
