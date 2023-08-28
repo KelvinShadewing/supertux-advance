@@ -4738,6 +4738,7 @@
 					struggle = 8 + (8 * game.difficulty)
 					frame = 0.0
 					anim = "gulp"
+					popSound(sndGulp)
 					target.canMove = false
 				}
 

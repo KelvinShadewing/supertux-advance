@@ -1476,8 +1476,6 @@
 			if(debug) {
 				setDrawColor(0x008000ff)
 				shape.draw()
-
-				drawText(font, x - camx + 16, y - camy, tileGetSolid(x, y - shape.h).tostring())
 			}
 
 			local charge1 = sprCharge

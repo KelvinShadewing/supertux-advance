@@ -1868,6 +1868,7 @@
 
 		shape = Cir(x, y, 4)
 		frame = randInt(4)
+		popSound(sndBlurp)
 	}
 
 	function run() {
