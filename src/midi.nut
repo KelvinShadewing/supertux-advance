@@ -44,6 +44,7 @@
 	spinAlpha = 0.0
 	hand = 0
 	advancedClimbing = true
+	partnerHang = false
 
 	freeDown = false
 	freeDown2 = false
@@ -1034,6 +1035,16 @@
 					hspeed = 0
 					vspeed = 0
 					y = (y - (y % 16)) + 12
+					partnerHang = false
+				}
+
+				if((playerNum == 1 && gvPlayer2 && gvPlayer2.anim == "fly" && hitTest(shape, gvPlayer2.shape))
+				|| (playerNum == 2 && gvPlayer && gvPlayer.anim == "fly" && hitTest(shape, gvPlayer.shape))) {
+					anim = "monkey"
+					frame = 0.0
+					hspeed = 0
+					vspeed = 0
+					partnerHang = true
 				}
 			}
 

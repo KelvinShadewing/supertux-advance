@@ -4884,14 +4884,6 @@
 	}
 
 	function hurtFire() {
-		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprDeadFish
-		actor[c].vspeed = -0.5
-		actor[c].flip = flip
-		actor[c].hspeed = hspeed
-		if(flip == 1) actor[c].spin = -1
-		else actor[c].spin = 1
-		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
 		newActor(Poof, x + 8, y)

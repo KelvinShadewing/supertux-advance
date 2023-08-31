@@ -35,6 +35,7 @@
 	slippery = false
 	accel = 0.2
 	noot = sndNootA
+	rollspeed = 8.0
 
 	//Animations
 	an = {
@@ -67,6 +68,7 @@
 		die = [50, 51]
 		win = [38]
 	}
+	animOffset = 0
 
 	mySprNormal = null
 	mySprFire = null
@@ -406,7 +408,7 @@
 					break
 
 				case "slide":
-					if(stats.weapon == "earth") slideframe += abs(hspeed / 8.0)
+					if(stats.weapon == "earth") slideframe += abs(hspeed / rollspeed)
 					else slideframe += abs(hspeed / 24.0)
 					frame = slideframe
 
@@ -1515,13 +1517,14 @@
 			if(anim in an && an[anim] != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
 				if(blinking == 0 || anim == "hurt") {
-					drawSpriteZ(2, sprite, an[anim][floor(frame)], x - camx, y - camy, 0, flip, 1, 1, 1)
+					drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, 1)
 				}
-				drawSpriteZ(2, sprite, an[anim][floor(frame)], x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
+				drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, flip, 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
 			if(debug) {
 				setDrawColor(0x008000ff)
 				shape.draw()
+				drawText(font, x + 16 - camx, y - camy, anim)
 			}
 		}
 
@@ -1631,6 +1634,11 @@
 	}
 
 	function draw() {
+		if(anim == "slide" && stats.weapon == "earth")
+			animOffset = (8 * 7) - 2
+		else
+			animOffset = 0
+
 		if(!hidden) {
 			//Aura
 			local auraColor = 0xffffffff
@@ -1665,10 +1673,10 @@
 						break
 				}
 
-				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx + 1, y - camy, 0, flip, 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
-				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy + 1, 0, flip, 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
-				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx - 1, y - camy, 0, flip, 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
-				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy - 1, 0, flip, 1, 1, sin(torad(270) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, x - camx + 1, y - camy, 0, flip, 1, 1, sin(float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, x - camx, y - camy + 1, 0, flip, 1, 1, sin(torad(90) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, x - camx - 1, y - camy, 0, flip, 1, 1, sin(torad(180) + float(getFrames()) / 16.0) * 0.75, auraColor)
+				drawSpriteZ(2, myAura, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, x - camx, y - camy - 1, 0, flip, 1, 1, sin(torad(270) + float(getFrames()) / 16.0) * 0.75, auraColor)
 			}
 		}
 		base.draw()
