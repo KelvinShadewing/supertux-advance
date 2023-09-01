@@ -216,9 +216,12 @@
 				target.holding = 0
 
 				//escape from solid
-				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
+				local escapedir = x <=> target.x
+				y = target.y
+				x = target.x
+				for(local i = 0; i < shape.w; i++) {
+					if(placeFree(x + (i * escapedir), y))
+						x += escapedir
 				}
 				shape.setPos(x, y)
 				held = false
@@ -226,11 +229,13 @@
 
 			//escape from solid
 			if(!placeFree(x, y) && held) {
-				local escapedir = target.x <=> x
+				local escapedir = x <=> target.x
 				y = target.y
-				if(!placeFree(x, y + 1) && placeFree(x, y - 1)) y--
-				if(!placeFree(x, y - 1) && placeFree(x, y + 1)) y++
-				while(!placeFree(x, y)) x += escapedir
+				x = target.x
+				for(local i = 0; i < shape.w; i++) {
+					if(placeFree(x + (i * escapedir), y))
+						x += escapedir
+				}
 			}
 		}
 		
@@ -241,8 +246,13 @@
 
 				//escape from solid
 				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
+					local escapedir = x <=> target.x
+					y = target.y
+					x = target.x
+					for(local i = 0; i < shape.w; i++) {
+						if(placeFree(x + (i * escapedir), y))
+							x += escapedir
+					}
 				}
 
 				local throwH = x <=> target.x
@@ -264,8 +274,8 @@
 
 				local throwD = pointAngle(0, 0, throwH, throwV)
 
-				hspeed = lendirX(throwF, throwD)
-				vspeed = lendirY(throwF, throwD)
+				hspeed = lendirX(throwF, throwD) + (target.hspeed / 2.0)
+				vspeed = lendirY(throwF, throwD) + (target.vspeed / 4.0)
 			}
 			held = false
 		}
@@ -3767,7 +3777,7 @@
 
 		//Getting carried
 		if(target)
-			holdMe(min(max(target.hspeed * 1.5, 2), 10))
+			holdMe(4)
 
 		if(held) {
 			blinking = 10
