@@ -353,13 +353,13 @@
                  "gid":893,
                  "height":16,
                  "id":39,
-                 "name":"",
+                 "name":"nessland-cliffs",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
                  "x":224,
-                 "y":48
+                 "y":192
                 }, 
                 {
                  "gid":893,
@@ -418,7 +418,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":272,
+                 "x":304,
                  "y":192
                 }, 
                 {

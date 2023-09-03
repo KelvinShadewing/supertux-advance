@@ -287,6 +287,7 @@
 ::sprGooFox <- newSprite("res/gfx/guests/goo-fox.png", 16, 16, 0, 0, 8, 8)
 ::sprAmaraNPC <- newSprite("res/gfx/guests/amara-armanita.png", 32, 32, 0, 0, 16, 32)
 ::sprPumpkinNPC <- newSprite("res/gfx/guests/pumpkin-npc.png", 32, 32, 0, 0, 16, 32)
+::sprHarkinNPC <- newSprite("res/gfx/guests/harkin-dove.png", 27, 44, 0, 0, 14, 44)
 
 
 
@@ -413,6 +414,8 @@
 ::defWaspyBoi <- sprWaspyBoi
 ::sprDevine <- newSprite("res/gfx/devine.png", 16, 16, 0, 0, 8, 8)
 ::defDevine <- sprDevine
+::sprShortfuse <- newSprite("res/gfx/shortfuse.png", 12, 12, 0, 0, 6, 8)
+::defShortfuse <- sprShortfuse
 
 ::sprGooBlack <- newSprite("res/gfx/goo-black.png", 16, 16, 0, 0, 8, 8)
 ::defGooBlack <- sprGooBlack
@@ -646,6 +649,8 @@
 ::defShockBolt <- sprShockBolt
 ::sprStoneBall <- newSprite("res/gfx/stone-ball.png", 16, 16, 0, 0, 8, 8)
 ::defStoneBall <- sprStoneBall
+::sprExplodeTiny <- newSprite("res/gfx/explode-tiny.png", 16, 16, 0, 0, 8, 8)
+::defExplodeTiny <- sprExplodeTiny
 
 
 
@@ -654,6 +659,8 @@
 ::defPlatformWood <- sprPlatformWood
 ::sprPlatformStone <- newSprite("res/gfx/moplat-stone.png", 16, 8, 0, 0, 8, 4)
 ::defPlatformStone <- sprPlatformStone
+::sprPlatformBlue <- newSprite("res/gfx/moplat-blue.png", 16, 8, 0, 0, 8, 4)
+::defPlatformBlue <- sprPlatformBlue
 ::sprBoostRing <- newSprite("res/gfx/boost-ring.png", 12, 32, 0, 0, 6, 16)
 ::defBoostRing <- sprBoostRing
 

@@ -1588,6 +1588,10 @@
 		case 111:
 			c = newActor(Gooey, i.x + 8, i.y - 8, i.name)
 			break
+
+		case 112:
+			c = newActor(Shortfuse, i.x + 8, i.y - 8, i.name)
+			break
 	}
 
 	return c

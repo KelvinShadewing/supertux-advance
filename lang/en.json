@@ -591,6 +591,8 @@
 
 		"not-done" :
 		"You've reached the end of what's been completed so far in the main game. Have you played the contrib levels? You should check them out! In the meantime, I've got some more coding and spriting to do. I hope you've enjoyed what you've played so far! If you have, consider giving us a star on GitHub: https://github.com/kelvinshadewing/supertux-advance",
+		"cameo-hotel" :
+		"Welcome to the Cameo Hotel! Here you'll get to meet awesome people from around the inter-erm-the multiverse. Yeah...",
 
 		"pennyton-Tux" :
 		"This is Penny's new town. Sure was nice of her to give so many displaced people a place to stay. I wonder if they'll ever find their way back...",
@@ -685,8 +687,12 @@
 
 		"amara-0" :
 		"Live fast, eat trash, be the good you want to see, and GIVE ME ALL YOUR COFFEE!",
-		"pumpkin-otter-0" :
-		"I'll have dialogue soon.",
+		"pumpkin-otter" :
+		"Hang on, I gotta save the animals!",
+		"pumpkin-otter-PumpkinOtter" :
+		"Wow, I'm so fast, I'm in two places at once!",
+		"harkin-0" :
+		"Howdy haroo and much awoo, with fuzziest hugs from me to you!",
 
 		"twang-1" :
 		"hi",
@@ -760,7 +766,8 @@
 		"nessland-well" : "Fish, Medium Well",
 		"nessland-bedrock" : "Beyond Bedrock",
 		"nessland-crush" : "Rock solid",
-		"nessland-switch" : "Orange Switch Trial"
+		"nessland-switch" : "Orange Switch Trial",
+		"nessland-cliffs" : ""
 	},
 
 	"achi-name" : {

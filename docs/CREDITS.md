@@ -76,6 +76,8 @@
 
 [Serano01](https://github.com/serano01) - Switch Palace BG\*
 
+[BitingChaos](https://opengameart.org/users/bitingchaos)
+
 \*: Contains edits from or made in collaboration with Kelvin Shadewing
 
 ## Sounds
