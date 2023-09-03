@@ -18,13 +18,19 @@
 		if(shape != null && gvPlayer && hitTest(shape, gvPlayer.shape)) {
 			if(!found) {
 				found = true
-				if(!rehide) game.secrets++
+				if(!rehide) {
+					game.secrets++
+					popSound(sndSecret)
+				}
 			}
 		}
 		else if(shape != null && gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 			if(!found) {
 				found = true
-				if(!rehide) game.secrets++
+				if(!rehide) {
+					game.secrets++
+					popSound(sndSecret)
+				}
 			}
 		}
 		else if(rehide) found = false

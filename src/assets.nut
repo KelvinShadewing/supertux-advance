@@ -805,6 +805,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::sndDook <- loadSound("res/snd/dook.ogg")
 ::sndWaterball <- loadSound("res/snd/waterball.ogg")
 ::sndBlurp <- loadSound("res/snd/blurp.ogg")
+::sndSecret <- loadSound("res/snd/secret.ogg")
 
 
 
