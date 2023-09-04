@@ -118,7 +118,10 @@
 		}
 
 		if(scanFound) {
-			if(!rehide && !found) game.secrets++
+			if(!rehide && !found) {
+				game.secrets++
+				popSound(sndSecret)
+			}
 			found = true
 		}
 		else if(rehide) found = false
