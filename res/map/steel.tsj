@@ -1,0 +1,14 @@
+{ "columns":17,
+ "image":"..\/gfx\/steel-interior.png",
+ "imageheight":96,
+ "imagewidth":272,
+ "margin":0,
+ "name":"steel",
+ "spacing":0,
+ "tilecount":102,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}
