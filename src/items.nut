@@ -1103,6 +1103,12 @@
 			playSound(snd1up, 0)
 		}
 
+		if(color == 0 && gvKeyCopper
+		|| color == 1 && gvKeySilver
+		|| color == 2 && gvKeyGold
+		|| color == 3 && gvKeyMythril)
+			deleteActor(id)
+
 		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
 			deleteActor(id)
 			switch(color) {
@@ -1301,7 +1307,7 @@
 			}
 
 			if(target != null) {
-				if(target.blinking)
+				if(target.blinking || randInt(320) == 1)
 					strikeTimer = 30
 
 				local dist = distance2(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Enemy ? 0 : 32))

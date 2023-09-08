@@ -21,7 +21,7 @@
 	stompDamage = 0
 	invincible = 0
 	shapeStand = 0
-	shapeSlide = 0
+	shapeCrawl = 0
 	tftime = -1 //Timer for transformation
 	hidden = false
 	jumpBuffer = 0
@@ -126,6 +126,7 @@
 		pick = [238, 239]
 		moonwalk = [240, 241, 242, 243, 244, 245, 246, 247]
 		win = [239]
+		crawl = [249, 250, 251, 252, 251, 250]
 	}
 	animOffset = 0.0
 
@@ -273,7 +274,7 @@
 		an.stand = an.standN
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
+		shapeCrawl = Rec(x, y, 5, 6, 0, 0, 6)
 		shapeGrip = Rec(x, y, 1, 1)
 		shape = shapeStand
 		startx = _x.tofloat()
@@ -410,11 +411,11 @@
 		}
 
 		shape = shapeStand
-		if(anim == "morphIn" || anim == "ball" || !placeFree(x, y))
-			shape = shapeSlide
+		if(anim == "morphIn" || anim == "ball" || anim == "crawl" || (anim == "stand" && an.stand == an.crouch) || !placeFree(x, y))
+			shape = shapeCrawl
 		
 		shapeStand.setPos(x, y)
-		shapeSlide.setPos(x, y)
+		shapeCrawl.setPos(x, y)
 		if(y > gvMap.h + 16) {
 			die()
 			return
@@ -482,7 +483,7 @@
 			case "stand":
 				frame += 0.1
 				if(zoomies) frame += 0.1
-				if(getcon("down", "hold", true, playerNum)) an.stand = an.crouch
+				if(getcon("down", "hold", true, playerNum) && !shooting) an.stand = an.crouch
 				else if(stats.health <= min(8, game.maxHealth / 4)) {
 					an.stand = an.standW
 					boredom = 0
@@ -501,7 +502,10 @@
 						anim = "skid"
 						rspeed = fabs(hspeed / 1.5)
 					}
-					else anim = "walk"
+					else if(an.stand == an.crouch)
+						anim = "crawl"
+					else
+						anim = "walk"
 				}
 				else if(abs(rspeed) > 0.1) {
 					anim = "walk"
@@ -544,6 +548,17 @@
 							break
 					}
 					animOffset -= 1 //Account for starting frame in sheet
+				}
+				break
+
+			case "crawl":
+				frame += abs(rspeed) / (8 + abs(rspeed))
+				if(!getcon("down", "hold", true, playerNum) || (placeFree(x, y + 4) && fabs(vspeed) > 2)) {
+					shape = shapeStand
+					if(placeFree(x, y))
+						anim = "stand"
+					else
+						shape = shapeCrawl
 				}
 				break
 
@@ -747,7 +762,7 @@
 
 			case "plantMine":
 				frame += 0.25
-				if(hspeed != 0 || vspeed != 0) {
+				if(fabs(hspeed) > 1 || fabs(vspeed) > 1) {
 					anim = "stand"
 					break
 				}
@@ -849,9 +864,12 @@
 
 		//Global actions
 		if(canMove && !holding) {
-			if(getcon("swap", "press", true, playerNum)) swapitem()
-			if(getcon("shoot", "press", true, playerNum)) shootNut(0)
-			if(getcon("spec1", "press", true, playerNum)) shootNut(1)
+			if(getcon("swap", "press", true, playerNum))
+				swapitem()
+			if(getcon("shoot", "press", true, playerNum))
+				shootNut(0)
+			if(getcon("spec1", "press", true, playerNum))
+				shootNut(1)
 
 			if(getcon("shoot", "hold", true, playerNum) && stats.energy > 1) {
 				chargeTimer++
@@ -869,17 +887,28 @@
 					tftime = 0
 			}
 
-			if(getcon("shoot", "release", true, playerNum) && stats.energy > 0 && chargeTimer >= 90) shootNut(0, min(floor(chargeTimer / 90) + 1, stats.energy))
-			if(getcon("spec1", "release", true, playerNum) && stats.energy > 0 && chargeTimer2 >= 90) shootNut(1, min(floor(chargeTimer2 / 90) + 1, stats.energy))
+			if(getcon("shoot", "release", true, playerNum) && stats.energy > 0 && chargeTimer >= 90)
+				shootNut(0, min(floor(chargeTimer / 90) + 1, stats.energy))
+			if(getcon("spec1", "release", true, playerNum) && stats.energy > 0 && chargeTimer2 >= 90)
+				shootNut(1, min(floor(chargeTimer2 / 90) + 1, stats.energy))
 
-			if(!getcon("shoot", "hold", true, playerNum) && anim != "plantMine") chargeTimer = 0
-			if(!getcon("spec1", "hold", true, playerNum) && anim != "plantMine") chargeTimer2 = 0
+			if(!getcon("shoot", "hold", true, playerNum) && anim != "plantMine")
+				chargeTimer = 0
+			if(!getcon("spec1", "hold", true, playerNum) && anim != "plantMine")
+				chargeTimer2 = 0
 
 			if((chargeTimer > 180 || chargeTimer2 > 180) && (getFrames()) % 4 == 0) {
 				newActor(GoldCharge, x - 12 + randInt(24) y - 12 + randInt(24))
 			}
 		}
-		else if(holding) chargeTimer = 0
+		else if(!canMove) {
+			if(getcon("shoot", "release", true, playerNum) && stats.energy > 0 && chargeTimer >= 90)
+				shootNut(0, min(floor(chargeTimer / 90) + 1, stats.energy))
+			if(getcon("spec1", "release", true, playerNum) && stats.energy > 0 && chargeTimer2 >= 90)
+				shootNut(1, min(floor(chargeTimer2 / 90) + 1, stats.energy))
+		}
+		else if(holding)
+			chargeTimer = 0
 
 		//Recharge
 		if(firetime > 0) {
@@ -915,6 +944,9 @@
 
 		if(canMove) {
 			mspeed = 3.5
+			if(anim == "crawl")
+				mspeed = 2.0
+
 			if(config.stickspeed) {
 				local j = null
 				if(playerNum == 1) j = config.joy
@@ -1600,8 +1632,8 @@
 		if(shootDir == 4 && anim == "walk") hspeed = 0
 
 		local c = null
-		if(routine == ruBall) {
-			if(getcon("down", "hold", true, playerNum)) {
+		if(routine == ruBall || anim == "crawl") {
+			if(getcon("down", "hold", true, playerNum) && anim != "crawl") {
 				c = fireWeapon(NutBomb, x, y + 8, 1, id)
 				c.vspeed = 2
 			}
@@ -1610,7 +1642,12 @@
 				c.sprite = wingNutSprite
 			}
 		}
-		else if(!(shootDir == 4 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
+		else if(shootDir == 4 && (!freeDown || onPlatform()) && anim != "plantMine"){
+			frame = 0.0
+			anim = "plantMine"
+			vspeed = 0.0
+		}
+		else if(!(shootDir == 3 && (!freeDown || onPlatform()) && routine == ruNormal && hspeed == 0) && anim != "plantMine") {
 			if(!freeDown && shootDir == 3 && routine != ruSwim) {
 				c = fireWeapon(TopNut, x, y - 2, 1, id)
 				c.sprite = topSprite
@@ -1646,11 +1683,6 @@
 					c.vspeed = 5 + (vspeed / 2)
 					break
 			}
-		}
-		else {
-			frame = 0.0
-			anim = "plantMine"
-			vspeed = 0.0
 		}
 
 		if(c != null) {

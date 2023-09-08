@@ -1756,7 +1756,7 @@
 
 	function destructor() {
 		base.destructor()
-		if(checkActor(owner) && hitTest(bounceShape, actor[owner].shape)) actor[owner].vspeed = -5
+		if(checkActor(owner) && hitTest(bounceShape, actor[owner].shape) && actor[owner].anim == "ball") actor[owner].vspeed = -5
 	}
 }
 
@@ -1843,10 +1843,10 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawSpriteEx(sprTinyWind, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1896,10 +1896,10 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawSpriteEx(sprExplodeA, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -2077,7 +2077,7 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeW, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSpriteZ(6, sprExplodeW, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -2133,7 +2133,7 @@
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeW2, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSpriteZ(6, sprExplodeW2, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)

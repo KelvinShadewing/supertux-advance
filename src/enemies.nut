@@ -5886,6 +5886,8 @@
 			shape.draw()
 		}
 	}
+
+	function _typeof() { return "Devine" }
 }
 
 ::Gooey <- class extends Enemy {
@@ -6261,4 +6263,6 @@
 		if(debug)
 			drawText(font, x + 8 - camx, y - camy, str(direction))
 	}
+
+	function _typeof() { return "Snippin" }
 }
