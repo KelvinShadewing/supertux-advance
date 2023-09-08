@@ -526,6 +526,7 @@
 	v = 0.0
 	vspeed = 0.0
 	item = 0
+	refill = 3600
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -542,6 +543,12 @@
 		}
 
 		if(game.difficulty == 2 && (item == 1 || item == 2)) full = false
+		if(!full && item != 0)
+			refill--
+		if(refill == 0) {
+			full = true
+			refill = 3600
+		}
 
 		if(v <= -8) {
 			vspeed = 1
