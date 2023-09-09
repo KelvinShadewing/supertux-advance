@@ -6267,18 +6267,18 @@
 	function _typeof() { return "Snippin" }
 }
 
-class PeterFlower extends PhysAct {
+::PeterFlower <- class extends PhysAct {
 	frame = 0.0
 	an = {
 		idle = [0, 1]
 		close = [2, 3]
 		chew = [4, 5, 6, 7]
-		spit [3, 2]
+		spit = [3, 2]
 	}
 	anim = "idle"
 	hasPlayer = 0
 
 	constructor(_x, _y, _arr = null) {
-		shape = Rec(x, y, 8, 8, 0)
+		shape = Rec(x, y, 12, 8, 0)
 	}
 }
