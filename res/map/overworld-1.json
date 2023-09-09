@@ -219,7 +219,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -273,8 +273,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":544,
-                 "y":256
+                 "x":560,
+                 "y":272
                 }, 
                 {
                  "gid":898,
@@ -286,7 +286,7 @@
                  "visible":true,
                  "width":16,
                  "x":432,
-                 "y":224
+                 "y":240
                 }, 
                 {
                  "gid":900,
@@ -442,7 +442,7 @@
                  "visible":true,
                  "width":16,
                  "x":432,
-                 "y":176
+                 "y":192
                 }, 
                 {
                  "gid":898,
@@ -477,7 +477,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":256
                 }, 
                 {
@@ -527,6 +527,18 @@
                  "width":16,
                  "x":416,
                  "y":48
+                }, 
+                {
+                 "gid":898,
+                 "height":16,
+                 "id":63,
+                 "name":"nessland-attack",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":448,
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -535,7 +547,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":63,
+ "nextobjectid":64,
  "orientation":"orthogonal",
  "properties":[
         {
