@@ -2503,11 +2503,11 @@
          "source":"rock.tsj"
         }, 
         {
-         "columns":10,
+         "columns":5,
          "firstgid":2164,
          "image":"..\/gfx\/solid.png",
-         "imageheight":144,
-         "imagewidth":160,
+         "imageheight":288,
+         "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,

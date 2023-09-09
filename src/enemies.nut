@@ -4839,7 +4839,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Rec(x, y, 16, 16)
+		shape = Rec(x, y, 12, 12)
 		eatShape = Cir(x, y, 8)
 
 		hspeed = 0.5
@@ -6070,11 +6070,11 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_blast) {
 			local angle = pointAngle(hitBy.x, hitBy.y, x, y)
-			hspeed = lendirX(hitBy.power + 1.0, angle)
-			vspeed = lendirY(hitBy.power + 1.0, angle) - 2.0
+			hspeed = lendirX(_mag + 1.0, angle)
+			vspeed = lendirY(_mag + 1.0, angle) - 2.0
 		}
 
-		blinking = 30
+		blinking = 0
 	}
 
 	function hurtInvinc() {}
@@ -6265,4 +6265,20 @@
 	}
 
 	function _typeof() { return "Snippin" }
+}
+
+class PeterFlower extends PhysAct {
+	frame = 0.0
+	an = {
+		idle = [0, 1]
+		close = [2, 3]
+		chew = [4, 5, 6, 7]
+		spit [3, 2]
+	}
+	anim = "idle"
+	hasPlayer = 0
+
+	constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 8, 8, 0)
+	}
 }
