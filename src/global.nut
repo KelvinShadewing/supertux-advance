@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.2.26 (UNSTABLE)"
+::gvVersion <- "0.2.29 (UNSTABLE)"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -229,6 +229,22 @@
 		water = "sprSurge"
 		light = "sprSurge"
 		dark = "sprSurge"
+		pick = [48, 51]
+	}
+	Dashie = {
+		name = "Dashie the Cyber Rabbit"
+		shortname = "Dashie"
+		over = "sprDashieOverworld"
+		doll = "sprDashieDoll"
+		normal = "sprDashie"
+		fire = "sprDashie"
+		ice = "sprDashie"
+		air = "sprDashie"
+		earth = "sprDashie"
+		shock = "sprDashie"
+		water = "sprDashie"
+		light = "sprDashie"
+		dark = "sprDashie"
 		pick = [48, 51]
 	}
 }

@@ -70,11 +70,13 @@
 
 [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16\*
 
-[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball\*, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie\*, Penny Overworld\*, Kiki\*, Cyra, Snow Fish
+[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball\*, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie\*, Penny Overworld\*, Kiki\*, Cyra, Snow Fish, Gold Bomb
 
 [Narehop](https://opengameart.org/users/narehop) - Achievement Frame\*
 
 [Serano01](https://github.com/serano01) - Switch Palace BG\*
+
+[BitingChaos](https://opengameart.org/users/bitingchaos)
 
 \*: Contains edits from or made in collaboration with Kelvin Shadewing
 

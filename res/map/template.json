@@ -284,7 +284,7 @@
          "value":""
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -296,12 +296,12 @@
          "source":"actors.tsj"
         }, 
         {
-         "firstgid":303,
+         "firstgid":319,
          "source":"grass.tsj"
         }, 
         {
          "columns":9,
-         "firstgid":738,
+         "firstgid":986,
          "image":"..\/gfx\/pipetiles.png",
          "imageheight":192,
          "imagewidth":144,
@@ -313,36 +313,36 @@
          "tilewidth":16
         }, 
         {
-         "firstgid":846,
+         "firstgid":1094,
          "source":"igloo.tsj"
         }, 
         {
-         "firstgid":906,
+         "firstgid":1154,
          "source":"snow.tsj"
         }, 
         {
          "columns":5,
-         "firstgid":1399,
+         "firstgid":1966,
          "image":"..\/gfx\/solid.png",
-         "imageheight":240,
+         "imageheight":288,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":75,
+         "tilecount":90,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
-         "firstgid":1474,
+         "firstgid":2056,
          "source":"goal.tsj"
         }, 
         {
-         "firstgid":1478,
+         "firstgid":2060,
          "source":"cloud.tsj"
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.9",
+ "version":"1.10",
  "width":64
 }

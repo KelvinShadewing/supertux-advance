@@ -131,19 +131,19 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.8.4",
+ "tiledversion":"1.10.1",
  "tileheight":16,
  "tilesets":[
         {
          "columns":26,
          "firstgid":1,
          "image":"..\/gfx\/overworld.png",
-         "imageheight":480,
+         "imageheight":496,
          "imagewidth":416,
          "margin":0,
          "name":"overworld",
          "spacing":0,
-         "tilecount":780,
+         "tilecount":806,
          "tileheight":16,
          "tiles":[
                 {
@@ -772,32 +772,32 @@
         }, 
         {
          "columns":5,
-         "firstgid":781,
+         "firstgid":807,
          "image":"..\/gfx\/solid.png",
-         "imageheight":208,
+         "imageheight":288,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":65,
+         "tilecount":90,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
-         "columns":5,
-         "firstgid":846,
+         "columns":7,
+         "firstgid":897,
          "image":"..\/gfx\/overactors.png",
          "imageheight":16,
-         "imagewidth":80,
+         "imagewidth":112,
          "margin":0,
          "name":"actor",
          "spacing":0,
-         "tilecount":96,
+         "tilecount":7,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.8",
+ "version":"1.10",
  "width":40
 }

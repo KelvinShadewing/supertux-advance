@@ -1,0 +1,14 @@
+{ "columns":10,
+ "image":"..\/gfx\/gryphon-statue.png",
+ "imageheight":80,
+ "imagewidth":160,
+ "margin":0,
+ "name":"gryphon-statue",
+ "spacing":0,
+ "tilecount":50,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

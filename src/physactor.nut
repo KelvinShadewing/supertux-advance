@@ -648,6 +648,51 @@
 							gvMap.shape.h = 2.0
 							if(hitTest(ns, gvMap.shape)) return false
 							break
+
+						case 74: //Plus
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 4.0
+							gvMap.shape.h = 8.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 75: //Small BL
+							gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 12)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 4.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 76: //Small BR
+							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 12)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 4.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 77: //Small TL
+							gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 4)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 4.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 78: //Small TR
+							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 4)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 4.0
+							gvMap.shape.h = 4.0
+							if(hitTest(ns, gvMap.shape)) return false
+							break
 					}
 					else if(cx + i >= 0 && cy <= 0 && wl.data[cx + i] - gvMap.solidfid >= 0) {
 						gvMap.shape.setPos(((cx + i) * 16) + 8, -100)

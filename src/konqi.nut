@@ -780,7 +780,8 @@
 			//Attacks
 			if(canMove && (anim == "jumpT" || anim == "jumpU" || anim == "fall") && getcon("down", "press", true, playerNum) && placeFree(x, y + 8)) {
 				hspeed = 0.0
-				vspeed = 4.0
+				if(vspeed < 4)
+					vspeed = 4.0
 				if(stats.weapon == "earth")
 					anim = "statue"
 				else

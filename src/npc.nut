@@ -204,6 +204,8 @@
 ::freeSurge <- function() {
 	game.characters["Surge"] <- true
 	game.friends["Surge"] <- true
+	game.characters["Dashie"] <- true
+	game.friends["Dashie"] <- true
 }
 
 ////////////

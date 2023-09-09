@@ -526,6 +526,7 @@
 	v = 0.0
 	vspeed = 0.0
 	item = 0
+	refill = 3600
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -542,6 +543,12 @@
 		}
 
 		if(game.difficulty == 2 && (item == 1 || item == 2)) full = false
+		if(!full && item != 0)
+			refill--
+		if(refill == 0) {
+			full = true
+			refill = 3600
+		}
 
 		if(v <= -8) {
 			vspeed = 1
@@ -881,9 +888,28 @@
 					if(game.ps.health < game.maxHealth) game.ps.health += 4
 					else if(game.ps.subitem == 0) game.ps.subitem = "muffinBlue"
 				}
+
+				if(gvPlayer2) {
+					if(game.ps2.health < game.maxHealth) game.ps2.health += 4
+					else if(game.ps2.subitem == 0) game.ps2.subitem = "muffinBlue"
+				}
 			}
 
 			timer = 120
+
+			if(gvNumPlayers > 1) {
+				local c = null
+
+				if(gvPlayer && !gvPlayer2) {
+					c = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
+					c.tftime = 0
+				}
+
+				if(!gvPlayer && gvPlayer2) {
+					c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
+					c.tftime = 0
+				}
+			}
 		}
 
 		timer--

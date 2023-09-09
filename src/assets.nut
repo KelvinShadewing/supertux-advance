@@ -138,6 +138,13 @@
 ::sprSurgeDoll <- newSprite("res/gfx/surge-doll.png", 16, 16, 0, 0, 8, 8)
 ::defSurgeDoll <- sprSurgeDoll
 
+::sprDashie <- newSprite("res/gfx/dashie.png", 32, 32, 0, 0, 16, 19)
+::defDashie <- sprDashie
+::sprDashieOverworld <- newSprite("res/gfx/dashieO.png", 14, 25, 0, 0, 7, 21)
+::defDashieOverworld <- sprDashieOverworld
+::sprDashieDoll <- newSprite("res/gfx/dashie-doll.png", 16, 16, 0, 0, 8, 8)
+::defDashieDoll <- sprDashieDoll
+
 
 
 //GUI
@@ -274,9 +281,14 @@
 
 
 //Guests
-::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 21, 37, 0, 0, 10, 37)
+::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 20, 37, 0, 0, 10, 37)
 ::sprOozeyOozebourne <- newSprite("res/gfx/guests/oozey.png", 16, 16, 0, 0, 8, 8)
 ::sprRyemanni <- newSprite("res/gfx/guests/ryemanni.png", 16, 16, 0, 0, 8, 8)
+::sprGooFox <- newSprite("res/gfx/guests/goo-fox.png", 16, 16, 0, 0, 8, 8)
+::sprAmaraNPC <- newSprite("res/gfx/guests/amara-armanita.png", 32, 32, 0, 0, 16, 32)
+::sprPumpkinNPC <- newSprite("res/gfx/guests/pumpkin-npc.png", 32, 32, 0, 0, 16, 32)
+::sprHarkinNPC <- newSprite("res/gfx/guests/harkin-dove.png", 27, 44, 0, 0, 14, 44)
+::sprMyrMothNPC <- newSprite("res/gfx/guests/myrthemoth.png", 27, 54, 0, 0, 14, 54)
 
 
 
@@ -339,10 +351,12 @@
 ::defMrIceguy <- sprMrIceguy
 ::sprMrTurtle <- newSprite("res/gfx/mr-turtle.png", 24, 16, 0, 0, 8, 9)
 ::defMrTurtle <- sprMrTurtle
-::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 8)
+::sprSnailRed <- newSprite("res/gfx/snail-red.png", 16, 16, 0, 0, 8, 10)
 ::defSnailRed <- sprSnailRed
-::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 8)
+::sprSnailBlue <- newSprite("res/gfx/snail-blue.png", 16, 16, 0, 0, 8, 10)
 ::defSnailBlue <- sprSnailBlue
+::sprSnailGreen <- newSprite("res/gfx/snail-green.png", 16, 16, 0, 0, 8, 10)
+::defSnailGreen <- sprSnailGreen
 ::sprMrSnowball <- newSprite("res/gfx/mr-snowball.png", 16, 16, 0, 0, 8, 9)
 ::defMrSnowball <- sprMrSnowball
 ::sprMsSnowball <- newSprite("res/gfx/ms-snowball.png", 16, 16, 0, 0, 8, 9)
@@ -401,6 +415,8 @@
 ::defWaspyBoi <- sprWaspyBoi
 ::sprDevine <- newSprite("res/gfx/devine.png", 16, 16, 0, 0, 8, 8)
 ::defDevine <- sprDevine
+::sprShortfuse <- newSprite("res/gfx/shortfuse.png", 12, 12, 0, 0, 6, 8)
+::defShortfuse <- sprShortfuse
 
 ::sprGooBlack <- newSprite("res/gfx/goo-black.png", 16, 16, 0, 0, 8, 8)
 ::defGooBlack <- sprGooBlack
@@ -634,6 +650,8 @@
 ::defShockBolt <- sprShockBolt
 ::sprStoneBall <- newSprite("res/gfx/stone-ball.png", 16, 16, 0, 0, 8, 8)
 ::defStoneBall <- sprStoneBall
+::sprExplodeTiny <- newSprite("res/gfx/explode-tiny.png", 16, 16, 0, 0, 8, 8)
+::defExplodeTiny <- sprExplodeTiny
 
 
 
@@ -642,6 +660,8 @@
 ::defPlatformWood <- sprPlatformWood
 ::sprPlatformStone <- newSprite("res/gfx/moplat-stone.png", 16, 8, 0, 0, 8, 4)
 ::defPlatformStone <- sprPlatformStone
+::sprPlatformBlue <- newSprite("res/gfx/moplat-blue.png", 16, 8, 0, 0, 8, 4)
+::defPlatformBlue <- sprPlatformBlue
 ::sprBoostRing <- newSprite("res/gfx/boost-ring.png", 12, 32, 0, 0, 6, 16)
 ::defBoostRing <- sprBoostRing
 
@@ -708,8 +728,10 @@ spriteSetBlendMode(sprLightBasic, bm_add)
 spriteSetBlendMode(sprLightFire, bm_add)
 ::sprLightIce <- newSprite("res/gfx/light-ice.png", 128, 128, 0, 0, 64, 64)
 spriteSetBlendMode(sprLightIce, bm_add)
-::sprLightGradient <- newSprite("res/gfx/light-gradient.png", 128, 128, 0, 0, 64, 64)
+::sprLightGradient <- newSprite("res/gfx/light-gradient.png", 64, 64, 0, 0, 32, 32)
 spriteSetBlendMode(sprLightGradient, bm_add)
+::sprLightCeiling <- newSprite("res/gfx/light-ceiling.png", 256, 128, 0, 0, 128, 8)
+spriteSetBlendMode(sprLightCeiling, bm_add)
 
 
 
@@ -783,6 +805,8 @@ spriteSetBlendMode(sprLightGradient, bm_add)
 ::sndNootB <- loadSound("res/snd/nootb.ogg")
 ::sndDook <- loadSound("res/snd/dook.ogg")
 ::sndWaterball <- loadSound("res/snd/waterball.ogg")
+::sndBlurp <- loadSound("res/snd/blurp.ogg")
+::sndSecret <- loadSound("res/snd/secret.ogg")
 
 
 

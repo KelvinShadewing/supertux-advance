@@ -1103,6 +1103,12 @@
 			playSound(snd1up, 0)
 		}
 
+		if(color == 0 && gvKeyCopper
+		|| color == 1 && gvKeySilver
+		|| color == 2 && gvKeyGold
+		|| color == 3 && gvKeyMythril)
+			deleteActor(id)
+
 		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
 			deleteActor(id)
 			switch(color) {
@@ -1264,8 +1270,7 @@
 	anim = "stand"
 	an = {
 		stand = [0]
-		hurt = [1, 2]
-		fly = [3, 4, 5, 6, 7, 8, 9, 10]
+		fly = [1, 2, 3, 4, 5, 6, 7, 8]
 	}
 
 	constructor(_x, _y, _arr = null) {
@@ -1281,8 +1286,7 @@
 			shape.w = 8
 			shape.h = 8
 
-			if(strikeTimer > 0)
-				strikeTimer--
+			strikeTimer--
 
 			anim = "fly"
 
@@ -1292,7 +1296,7 @@
 			if((freed == 2 || freed == 1 && !gvPlayer) && gvPlayer2)
 				target = gvPlayer2
 
-			if(strikeTimer == 0) {
+			if(strikeTimer >= 0) {
 				local range = 96
 				foreach(i in actor) {
 					if(i instanceof Enemy && inDistance2(x, y, i.x, i.y, range) && !i.frozen && !i.notarget) {
@@ -1303,38 +1307,52 @@
 			}
 
 			if(target != null) {
-				local dir = pointAngle(x, y, target.x, target.y - (target instanceof Enemy ? 0 : 32))
+				if(target.blinking || randInt(320) == 1)
+					strikeTimer = 30
+
+				local dist = distance2(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Enemy ? 0 : 32))
+				local dir = pointAngle(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Enemy ? 0 : 32))
 				local speed = 0.2
+				local maxSpeed = dist / 16
 
 				if(target instanceof Enemy) {
 					speed = 0.5
 					if(!target.blinking && hitTest(shape, target.shape)) {
-						strikeTimer = 300
+						strikeTimer = -1
 						target.getHurt(0, 1)
 					}
 				}
 				else {
-					local maxSpeed = distance2(x, y, target.x, target.y) / 16
 					local curSpeed = distance2(0, 0, hspeed, vspeed)
 					if(curSpeed > maxSpeed) {
 						local curDir = pointAngle(0, 0, hspeed, vspeed)
 						hspeed = lendirX(maxSpeed, curDir)
 						vspeed = lendirY(maxSpeed, curDir)
 					}
-					if(inDistance2(x, y, target.x, target.y - 32, 32)) {
-						hspeed /= 1.2
-						vspeed /= 1.2
+					if(dist <= 16) {
+						hspeed *= 0.98
+						vspeed *= 0.98
 					}
 				}
 
-				hspeed += lendirX(speed, dir)
-				vspeed += lendirY(speed, dir)
+				if(dist > 2) {
+					if(dist > 100) {
+						hspeed = lendirX(maxSpeed, dir)
+						vspeed = lendirY(maxSpeed, dir)
+					}
+					else {
+						hspeed += lendirX(speed, dir)
+						vspeed += lendirY(speed, dir)
+					}
+				}
 			}
 
-			if(hspeed > 0.5)
+			if(hspeed > 1)
 				flip = 0
-			if(hspeed < -0.5)
+			if(hspeed < -1)
 				flip = 1
+			if(target != null && fabs(hspeed) < 1)
+				flip = (target.x > x ? 0 : 1)
 
 			if(levelEndRunner)
 				game.hasSulphur = freed

@@ -184,6 +184,12 @@
 				if(weather == "0") drawWeather = 0
 				else if(weather in getroottable()) drawWeather = getroottable()[weather]
 				dostr("gvLightTarget = " + color)
+
+				if(bg == "0") drawBG2 = 0
+				else if(bg in getroottable()) drawBG2 = getroottable()[bg]
+				if(weather == "0") drawWeather2 = 0
+				else if(weather in getroottable()) drawWeather2 = getroottable()[weather]
+				dostr("gvLightTarget2 = " + color)
 			}
 		}
 		else {

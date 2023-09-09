@@ -16,6 +16,10 @@ You can sign your level by adding an `author` property to the map. Maps made by 
 
 You can have the level run a piece of code once it's done loading. This code will be run after all actors have been created as well. You can do this by going to "Map > Map properties". This will set the Properties panel to focus on the map itself. From here, create a custom property called `code`. By clicking the "..." button on the right side of the text entry field, you can open up a multi-line editor for easier coding.
 
+## Run Code
+
+Levels can also run a piece of code on each frame by giving the map a `run` property. Note that this code will only run during actual play; pausing the game will also halt the code. Keep in mind that the game's frame count will still be incremented, so if your code relies on `getFrames()` for timing, expect things to jump when you unpause.
+
 ## Layers
 
 SuperTux Advance uses four object layers and three tile layers in its levels. Object names are used to make special properties visible from within the editor itself.

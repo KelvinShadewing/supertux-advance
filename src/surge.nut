@@ -393,6 +393,15 @@
 				break
 			case -1:
 				if(vspeed > 0) vspeed = 0
+				if(anim == "stomp") {
+					blinking = max(blinking, 8)
+					fireWeapon(ExplodeW, x, y + 8, 1, id)
+					popSound(sndBump)
+					anim = "jumpR"
+					didAirSpecial = false
+					vspeed = -4
+					canJump = 0
+				}
 				break
 			case -2:
 				if(hspeed > 0) hspeed = 0
@@ -1188,4 +1197,13 @@
 	}
 
 	function _typeof(){ return "Surge" }
+}
+
+::Dashie <- class extends Surge {
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		sprite = sprDashie
+	}
+
+	function _typeof(){ return "Dashie" }
 }

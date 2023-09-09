@@ -216,9 +216,12 @@
 				target.holding = 0
 
 				//escape from solid
-				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
+				local escapedir = x <=> target.x
+				y = target.y
+				x = target.x
+				for(local i = 0; i < shape.w; i++) {
+					if(placeFree(x + (i * escapedir), y))
+						x += escapedir
 				}
 				shape.setPos(x, y)
 				held = false
@@ -226,11 +229,13 @@
 
 			//escape from solid
 			if(!placeFree(x, y) && held) {
-				local escapedir = target.x <=> x
+				local escapedir = x <=> target.x
 				y = target.y
-				if(!placeFree(x, y + 1) && placeFree(x, y - 1)) y--
-				if(!placeFree(x, y - 1) && placeFree(x, y + 1)) y++
-				while(!placeFree(x, y)) x += escapedir
+				x = target.x
+				for(local i = 0; i < shape.w; i++) {
+					if(placeFree(x + (i * escapedir), y))
+						x += escapedir
+				}
 			}
 		}
 		
@@ -241,8 +246,13 @@
 
 				//escape from solid
 				if(!placeFree(x, y)) {
-					local escapedir = target.x <=> x
-					while(!placeFree(x, y)) x += escapedir
+					local escapedir = x <=> target.x
+					y = target.y
+					x = target.x
+					for(local i = 0; i < shape.w; i++) {
+						if(placeFree(x + (i * escapedir), y))
+							x += escapedir
+					}
 				}
 
 				local throwH = x <=> target.x
@@ -264,8 +274,8 @@
 
 				local throwD = pointAngle(0, 0, throwH, throwV)
 
-				hspeed = lendirX(throwF, throwD)
-				vspeed = lendirY(throwF, throwD)
+				hspeed = lendirX(throwF, throwD) + (target.hspeed / 2.0)
+				vspeed = lendirY(throwF, throwD) + (target.vspeed / 4.0)
 			}
 			held = false
 		}
@@ -768,6 +778,22 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(gvPlayer && hitTest(shape, gvPlayer.shape) && _stomp) {
+			if(_mag > 0) die()
+			popSound(sndSquish, 0)
+			if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
+			else gvPlayer.vspeed = -4
+			return
+		}
+
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && _stomp) {
+			if(_mag > 0) die()
+			popSound(sndSquish, 0)
+			if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
+			else gvPlayer2.vspeed = -4
+			return
+		}
+
 		if((_stomp || _element == "normal") && _mag > 0) {
 			newActor(Poof, x, y)
 			die()
@@ -782,22 +808,6 @@
 		if(_element == "ice") {
 			hurtIce()
 			return
-		}
-
-		if(gvPlayer && hitTest(shape, gvPlayer.shape) && _stomp) {
-			newActor(Poof, x, y)
-			if(_mag > 0) die()
-			popSound(sndSquish, 0)
-			if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
-			else gvPlayer.vspeed = -4
-		}
-
-		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && _stomp) {
-			newActor(Poof, x, y)
-			if(_mag > 0) die()
-			popSound(sndSquish, 0)
-			if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
-			else gvPlayer2.vspeed = -4
 		}
 
 		if(_element == "fire") hurtFire()
@@ -825,6 +835,11 @@
 			mapDeleteSolid(icebox)
 			newActor(IceChunks, x, y)
 		}
+	}
+
+	function die() {
+		base.die()
+		newActor(Poof, x, y)
 	}
 
 	function _typeof() { return "OrangeBounce" }
@@ -1027,6 +1042,168 @@
 	function hurtIce() { frozen = 600 }
 
 	function _typeof() { return "CarlBoom" }
+}
+
+::Shortfuse <- class extends Enemy {
+	burnt = false
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	hspeed = 0.0
+	touchDamage = 2.0
+	nocount = true
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 2, 2, 0, 0, 1)
+		if(gvPlayer) if(x > gvPlayer.x) flip = true
+	}
+
+	function run() {
+		base.run()
+
+		if(active) {
+			if(placeFree(x, y + 1) && !held) vspeed += 0.1
+			if(placeFree(x, y + vspeed)) y += vspeed
+			else vspeed /= 2
+
+			if(!squish) {
+				if(y > gvMap.h + 8) die()
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
+
+						if(placeFree(x - 6, y + 14) && !placeFree(x, y + 2)) flip = false
+
+						if(x <= 0) flip = false
+					}
+					else {
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
+						} else flip = true
+
+						if(placeFree(x + 6, y + 14) && !placeFree(x, y + 2)) flip = true
+
+						if(x >= gvMap.w) flip = true
+					}
+				}
+
+				if(frozen) {
+					//Create ice block
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
+					if(icebox == -1 && canice) {
+						if(health > 0) icebox = mapNewSolid(shape)
+					}
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+				}
+			}
+			else {
+				if(held) squishTime += 0.1
+				else squishTime += 1.5
+				frame += 0.002 * squishTime
+				if(getFrames() % 20 == 0) {
+					local c
+					if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
+					else c = actor[newActor(FlameTiny, x + 6, y - 8)]
+					c.vspeed = -0.1
+					c.hspeed = randFloat(0.2) - 0.1
+				}
+
+				if(frozen) {
+					squish = false
+					squishTime = 0
+				}
+
+				//Getting carried
+				holdMe()
+
+				//Move
+				if(placeFree(x + hspeed, y)) x += hspeed
+				else if(placeFree(x + hspeed, y - 2)) {
+					x += hspeed
+					y -= 1.0
+				}
+				if(placeFree(x, y + 1)) friction = 0.0
+				else friction = 0.1
+				if(fabs(hspeed) < 0.1) hspeed = 0.0
+
+				//Explode
+				if(squishTime >= 150) {
+					die()
+					fireWeapon(ExplodeF2, x, y, 0, id)
+					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = 0
+				}
+			}
+
+			shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function draw() {
+		if(squish) drawSprite(sprShortfuse, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else if(frozen) {
+			drawSprite(sprShortfuse, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else drawSprite(sprShortfuse, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+	}
+
+	function hurtBlast() {
+		die()
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		die()
+	}
+
+	function hurtFire() {
+		die()
+	}
+
+	function hurtPlayer(blah = null) {
+		die()
+	}
+
+	function die() {
+		base.die()
+		fireWeapon(ExplodeTiny, x, y, 0, 0)
+	}
+
+	function hurtIce() { frozen = 600 }
+
+	function _typeof() { return "Shortfuse" }
 }
 
 ::BlueFish <- class extends Enemy {
@@ -2026,6 +2203,33 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_by != 0 && hitTest(shape, _by.shape)) {
+			if(_mag > 0) {
+				local c = newActor(DeadNME, x, y)
+				actor[c].sprite = sprFlyAmanita
+				actor[c].vspeed = -abs(_by.hspeed * 1.1)
+				actor[c].hspeed = (_by.hspeed / 16)
+				actor[c].spin = (_by.hspeed * 6)
+				actor[c].angle = 180
+				die()
+				popSound(sndSquish, 0)
+			}
+
+			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum))
+				_by.vspeed = -8
+			else
+				_by.vspeed = -4
+
+
+			if(_by.anim == "jumpT" || _by.anim == "fall") {
+				_by.anim = "jumpU"
+				_by.frame = _by.an["jumpU"][0]
+			}
+		}
+
+		if(_mag <= 0)
+			return
+
 		if(_element == "fire") {
 			hurtFire()
 			return
@@ -2049,32 +2253,6 @@
 			actor[c].angle = 180
 			die()
 			popSound(sndKick)
-		}
-
-		if(_by != 0 && hitTest(shape, _by.shape)) {
-			actor[c].sprite = sprFlyAmanita
-			actor[c].vspeed = -abs(_by.hspeed * 1.1)
-			actor[c].hspeed = (_by.hspeed / 16)
-			actor[c].spin = (_by.hspeed * 6)
-			actor[c].angle = 180
-			die()
-			popSound(sndKick)
-
-			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum)) {
-				_by.vspeed = -8
-				popSound(sndSquish, 0)
-			}
-			else {
-				_by.vspeed = -4
-				popSound(sndSquish, 0)
-			}
-
-			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum)) _by.vspeed = -5
-			else _by.vspeed = -2
-			if(_by.anim == "jumpT" || _by.anim == "fall") {
-				_by.anim = "jumpU"
-				_by.frame = _by.an["jumpU"][0]
-			}
 		}
 	}
 
@@ -3767,7 +3945,7 @@
 
 		//Getting carried
 		if(target)
-			holdMe(min(max(target.hspeed * 1.5, 2), 10))
+			holdMe(4)
 
 		if(held) {
 			blinking = 10
@@ -4582,14 +4760,7 @@
 		onGround = !placeFree(x, y + 1)
 		shape.setPos(x, y)
 		if(onGround && vspeed > 2 || health <= 0) {
-			deleteActor(id)
-			fireWeapon(ExplodeF, x, y, 0, 0)
-			local c = fireWeapon(FireballK, x, y - 4, 0, 0)
-			c.hspeed = -2.0 - game.difficulty
-			c.vspeed = -1.5
-			c = fireWeapon(FireballK, x, y - 4, 0, 0)
-			c.hspeed = 2.0 + game.difficulty
-			c.vspeed = -1.5
+			die()
 		}
 		if(!onGround) vspeed += 0.2
 		else vspeed = 0.0
@@ -4628,6 +4799,19 @@
 		}
 	}
 
+	function die() {
+		base.die()
+		
+		local c = fireWeapon(ExplodeF2, x, y, 0, 0)
+		c.power = 2
+		c = fireWeapon(FireballK, x, y - 4, 0, 0)
+		c.hspeed = -2.0 - game.difficulty
+		c.vspeed = -1.5
+		c = fireWeapon(FireballK, x, y - 4, 0, 0)
+		c.hspeed = 2.0 + game.difficulty
+		c.vspeed = -1.5
+	}
+
 	function _typeof() { return "SkyDive" }
 }
 
@@ -4655,7 +4839,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Rec(x, y, 16, 16)
+		shape = Rec(x, y, 12, 12)
 		eatShape = Cir(x, y, 8)
 
 		hspeed = 0.5
@@ -4732,6 +4916,7 @@
 					struggle = 8 + (8 * game.difficulty)
 					frame = 0.0
 					anim = "gulp"
+					popSound(sndGulp)
 					target.canMove = false
 				}
 
@@ -4877,14 +5062,6 @@
 	}
 
 	function hurtFire() {
-		local c = newActor(DeadNME, x, y)
-		actor[c].sprite = sprDeadFish
-		actor[c].vspeed = -0.5
-		actor[c].flip = flip
-		actor[c].hspeed = hspeed
-		if(flip == 1) actor[c].spin = -1
-		else actor[c].spin = 1
-		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
 		newActor(Poof, x + 8, y)
@@ -4899,6 +5076,22 @@
 		base.die()
 		if(target != null)
 			target.canMove = true
+
+		local c = newActor(DeadNME, x, y)
+		actor[c].sprite = sprDeadFish
+		actor[c].vspeed = -0.5
+		actor[c].flip = flip
+		actor[c].hspeed = hspeed
+		if(flip == 1) actor[c].spin = -1
+		else actor[c].spin = 1
+		actor[c].gravity = 0.02
+		popSound(sndKick, 0)
+		newActor(Poof, x + 8, y)
+		newActor(Poof, x - 8, y)
+		if(randInt(20) == 0) {
+			local a = actor[newActor(MuffinBlue, x, y)]
+			a.vspeed = -2
+		}
 	}
 
 	function physics() {}
@@ -5693,6 +5886,8 @@
 			shape.draw()
 		}
 	}
+
+	function _typeof() { return "Devine" }
 }
 
 ::Gooey <- class extends Enemy {
@@ -5734,8 +5929,7 @@
 		base.constructor(_x, _y, _arr)
 		nocount = true
 		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)
-		if(randInt(50) == 0) sprite = sprOozeyOozebourne
-		if(randInt(50) == 0) sprite = sprRyemanni
+		if(randInt(50) == 0) sprite = choose(sprOozeyOozebourne, sprRyemanni, sprGooFox)
 		shape = Rec(x, y, 7, 7, 0)
 		jumpTimer = randInt(180)
 		vspeed = -1.0
@@ -5876,11 +6070,11 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(_blast) {
 			local angle = pointAngle(hitBy.x, hitBy.y, x, y)
-			hspeed = lendirX(hitBy.power + 1.0, angle)
-			vspeed = lendirY(hitBy.power + 1.0, angle) - 2.0
+			hspeed = lendirX(_mag + 1.0, angle)
+			vspeed = lendirY(_mag + 1.0, angle) - 2.0
 		}
 
-		blinking = 30
+		blinking = 0
 	}
 
 	function hurtInvinc() {}
@@ -5888,4 +6082,203 @@
 	function hurtPlayer(target = null) {}
 
 	function _typeof() { return "Gooey" }
+}
+
+::Snippin <- class extends Enemy {
+	rolling = false
+	mode = 0
+	sprite = sprSnailBlue
+	direction = 0
+	flip = 0
+	fliph = 0
+
+	an = {
+		crawl = [0, 1]
+		hide = [2, 3]
+		roll = [4, 5, 6, 7]
+		peek = [8, 9, 10, 9, 10, 11]
+	}
+	anim = "crawl"
+	frame = 0.0
+
+	constructor(_x, _y, _arr = 0) {
+		base.constructor(_x, _y, _arr)
+		mode = _arr
+		switch(mode) {
+			case 0:
+				sprite = sprSnailBlue
+				break
+			case 1:
+				sprite = sprSnailRed
+				break
+			case 2:
+				sprite = sprSnailGreen
+				break
+		}
+		shape = Rec(x, y, 4, 4, 0)
+
+		//Stick to nearest surface
+		for(local i = 1; i <= 16; i++) {
+			if(placeFree(x + i, y) && !placeFree(x + i + 1, y)) {
+				x += i
+				return
+			}
+			if(placeFree(x - i, y) && !placeFree(x - i - 1, y)) {
+				x -= i
+				return
+			}
+			if(placeFree(x, y + i) && !placeFree(x, y + i + 1)) {
+				y += i
+				return
+			}
+			if(placeFree(x, y - i) && !placeFree(x, y - i - 1)) {
+				y -= i
+				return
+			}
+		}
+	}
+
+	function run() {
+		if(!active) {
+			local target = findPlayer()
+			if(target) {
+				if(x > target.x) {
+					flip = 2
+					direction = 180
+				}
+				else
+					flip = 0
+			}
+		}
+		base.run()
+	}
+
+	function animation() {
+		switch(anim) {
+			case "crawl":
+				frame = (float(getFrames()) / 12.0) + id
+				break
+		}
+	}
+
+	function physics() {
+		if(rolling || mode == 0)
+			gravity = 0.2
+		else
+			gravity = 0.0
+		vspeed += gravity
+
+		if(placeFree(x, y + vspeed))
+			y += vspeed
+		else
+			vspeed /= 2.0
+
+		//Try to move along current surface
+		if(!rolling) {
+			local didMove = false
+
+			for(local i = 0; i <= (mode > 0 ? 3 : 0); i++) {
+				if(placeFree(x + lendirX(2, direction + (22.5 * i)), y + lendirY(2, direction + (22.5 * i)))) {
+					x += lendirX(1, direction + (22.5 * i))
+					y += lendirY(1, direction + (22.5 * i))
+					direction += (22.5 * i)
+					didMove = true
+					break
+				}
+				else if(placeFree(x + lendirX(2, direction - (22.5 * i)), y + lendirY(2, direction - (22.5 * i)))) {
+					x += lendirX(1, direction - (22.5 * i))
+					y += lendirY(1, direction - (22.5 * i))
+					direction -= (22.5 * i)
+					didMove = true
+					break
+				}
+			}
+
+			if(!didMove && mode > 0) {
+				if(placeFree(x + lendirX(2, direction + (90)), y + lendirY(2, direction + (90))))
+					direction += 90
+				else if(placeFree(x + lendirX(2, direction - (90)), y + lendirY(2, direction - (90))))
+					direction -= 90
+				else if(placeFree(x + lendirX(2, direction - (180)), y + lendirY(2, direction - (180))))
+					direction -= 180
+			}
+			else if(!didMove && mode == 0) {
+				direction += 180
+				flip = int(!flip) * 2
+			}
+
+			if(hspeed > 0)
+				fliph = 0
+			if(hspeed < 0)
+				fliph = 1
+
+			direction %= 360
+
+			//Coming around corner
+			if(mode > 0) {
+				if((direction == 0 || direction == 180) && placeFree(x, y + 1) && placeFree(x, y - 1)) { //Horizontal
+					if(!placeFree(x + 2, y + 2)) {
+						direction = 90
+						flip = 2
+					}
+					if(!placeFree(x - 2, y + 2)) {
+						direction = 90
+						flip = 0
+					}
+					if(!placeFree(x + 2, y - 2)) {
+						direction = -90
+						flip = 0
+					}
+					if(!placeFree(x - 2, y - 2)) {
+						direction = -90
+						flip = 2
+					}
+				}
+				else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 1, y) && placeFree(x - 1, y)) { //Vertical
+					if(!placeFree(x + 2, y + 2)) {
+						direction = 0
+						flip = 0
+					}
+					if(!placeFree(x - 2, y + 2)) {
+						direction = 180
+						flip = 2
+					}
+					if(!placeFree(x + 2, y - 2)) {
+						direction = 0
+						flip = 2
+					}
+					if(!placeFree(x - 2, y - 2)) {
+						direction = 180
+						flip = 0
+					}
+				}
+			}
+
+			shape.setPos(x, y)
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(4, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, direction, (rolling ? fliph : flip))
+		if(debug)
+			drawText(font, x + 8 - camx, y - camy, str(direction))
+	}
+
+	function _typeof() { return "Snippin" }
+}
+
+class PeterFlower extends PhysAct {
+	frame = 0.0
+	an = {
+		idle = [0, 1]
+		close = [2, 3]
+		chew = [4, 5, 6, 7]
+		spit [3, 2]
+	}
+	anim = "idle"
+	hasPlayer = 0
+
+	constructor(_x, _y, _arr = null) {
+		shape = Rec(x, y, 8, 8, 0)
+	}
 }
