@@ -6307,7 +6307,8 @@
 					gvPlayer.canMove = false
 					gvPlayer.hurt = 1 + game.difficulty
 					gvPlayer.x = x
-					gvPlayer.y = y - 8
+					gvPlayer.y = y - 16
+					gvPlayer.hidden = true
 				}
 				if(!gvPlayer || holdStrength <= 0) {
 					hasPlayer = 0
@@ -6322,7 +6323,8 @@
 					gvPlayer2.canMove = false
 					gvPlayer2.hurt = 1 + game.difficulty
 					gvPlayer2.x = x
-					gvPlayer2.y = y - 8
+					gvPlayer2.y = y - 16
+					gvPlayer.hidden = true
 				}
 				if(!gvPlayer2 || holdStrength <= 0) {
 					hasPlayer = 0
@@ -6348,8 +6350,10 @@
 
 			case "close":
 				frame += 0.25
-				if(frame >= 2)
+				if(frame >= 2) {
 					anim = "chew"
+					frame = 0.0
+				}
 				break
 
 			case "spit":
@@ -6360,7 +6364,7 @@
 
 			case "chew":
 				frame += 0.25
-				if(hasPlayer == 0) {
+				if(hasPlayer == 0 && frame >= 4) {
 					frame = 0.0
 					anim = "spit"
 				}
