@@ -417,6 +417,8 @@
 ::defDevine <- sprDevine
 ::sprShortfuse <- newSprite("res/gfx/shortfuse.png", 12, 12, 0, 0, 6, 8)
 ::defShortfuse <- sprShortfuse
+::sprPeterFlower <- newSprite("res/gfx/peter.png", 48, 44, 0, 0, 24, 36)
+::defPeterFlower <- sprPeterFlower
 
 ::sprGooBlack <- newSprite("res/gfx/goo-black.png", 16, 16, 0, 0, 8, 8)
 ::defGooBlack <- sprGooBlack

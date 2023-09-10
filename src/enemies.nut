@@ -6277,8 +6277,104 @@
 	}
 	anim = "idle"
 	hasPlayer = 0
+	cooldown = 0
+	holdStrength = 8
 
 	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 12, 8, 0)
 	}
+
+	function run() {
+		switch(hasPlayer) {
+			case 0:
+				if(cooldown > 0) {
+					cooldown--
+					break
+				}
+				if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
+					hasPlayer = 1
+					holdStrength = 16
+				}
+				else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
+					hasPlayer = 2
+					holdStrength = 16
+				}
+				break
+
+			case 1:
+				if(gvPlayer && holdStrength > 0) {
+					gvPlayer.canMove = false
+					gvPlayer.hurt = 1 + game.difficulty
+					gvPlayer.x = x
+					gvPlayer.y = y - 16
+					gvPlayer.hidden = true
+				}
+				if(!gvPlayer || holdStrength <= 0) {
+					hasPlayer = 0
+					if(gvPlayer)
+						gvPlayer.canMove = true
+					cooldown = 180
+				}
+				break
+
+			case 2:
+				if(gvPlayer2 && holdStrength > 0) {
+					gvPlayer2.canMove = false
+					gvPlayer2.hurt = 1 + game.difficulty
+					gvPlayer2.x = x
+					gvPlayer2.y = y - 16
+					gvPlayer.hidden = true
+				}
+				if(!gvPlayer2 || holdStrength <= 0) {
+					hasPlayer = 0
+					if(gvPlayer2)
+						gvPlayer2.canMove = true
+					cooldown = 180
+				}
+				break
+		}
+
+		//Struggle
+		if(hasPlayer > 0 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer)))
+			holdStrength--
+
+		switch(anim) {
+			case "idle":
+				frame += 0.05
+				if(hasPlayer > 0) {
+					frame = 0.0
+					anim = "close"
+				}
+				break
+
+			case "close":
+				frame += 0.25
+				if(frame >= 2) {
+					anim = "chew"
+					frame = 0.0
+				}
+				break
+
+			case "spit":
+				frame += 0.25
+				if(frame >= 2)
+					anim = "idle"
+				break
+
+			case "chew":
+				frame += 0.25
+				if(hasPlayer == 0 && frame >= 4) {
+					frame = 0.0
+					anim = "spit"
+				}
+				break
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(8, sprPeterFlower, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy)
+	}
+
+	function _typeof() { return "PeterFlower" }
 }

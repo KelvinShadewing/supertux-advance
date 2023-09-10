@@ -1150,7 +1150,7 @@
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 					local oldShape = shape
 					shape = shapeGrip
-					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 12) && placeFree(x, y + 4)) {
+					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 10) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 1
@@ -1167,7 +1167,7 @@
 				if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
 					local oldShape = shape
 					shape = shapeGrip
-					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 12) && placeFree(x, y + 4)) {
+					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 10) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 0

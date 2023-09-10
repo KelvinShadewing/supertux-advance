@@ -1592,6 +1592,10 @@
 		case 112:
 			c = newActor(Shortfuse, i.x + 8, i.y - 8, i.name)
 			break
+
+		case 114:
+			c = newActor(PeterFlower, i.x + 8, i.y - 8, i.name)
+			break
 	}
 
 	return c

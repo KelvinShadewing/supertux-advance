@@ -176,8 +176,8 @@ startMain()
 menu = meMain
 game.playerChar = "Tux"
 
-//Testing Surge
-//game.playerChar = "Surge"
+//Testing Midi
+//game.playerChar = "Midi"
 //gotoTest()
 
 //Load contrib initializers
