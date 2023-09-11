@@ -6309,6 +6309,8 @@
 					gvPlayer.x = x
 					gvPlayer.y = y - 16
 					gvPlayer.hidden = true
+					gvPlayer.hspeed = 0
+					gvPlayer.vspeed = 0
 				}
 				if(!gvPlayer || holdStrength <= 0) {
 					hasPlayer = 0
@@ -6324,7 +6326,9 @@
 					gvPlayer2.hurt = 1 + game.difficulty
 					gvPlayer2.x = x
 					gvPlayer2.y = y - 16
-					gvPlayer.hidden = true
+					gvPlayer2.hidden = true
+					gvPlayer2.hspeed = 0
+					gvPlayer2.vspeed = 0
 				}
 				if(!gvPlayer2 || holdStrength <= 0) {
 					hasPlayer = 0
