@@ -206,7 +206,36 @@ const menuY = 40
 ::meTimeAttackWorld <- [
 	/*{
 		name = function() { return gvLangObj["level"]["full-game"] },
-		func = function() { gvTAFullGame = true; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty },
+		func = function() { game.path = "res/map/"; gvTACourse = [
+			"aurora-learn",
+			"aurora-crystal",
+			"aurora-iceguy",
+			"aurora-slip",
+			"aurora-subsea",
+			"aurora-tnt",
+			"aurora-fishy",
+			"aurora-sense",
+			"aurora-branches",
+			"aurora-frozen",
+			"aurora-forest",
+			"aurora-bridge",
+			"aurora-wind",
+			"aurora-steps",
+			"aurora-fort",
+			"nessland-left",
+			"nessland-owl",
+			"nessland-earth",
+			"nessland-mint",
+			"nessland-attack",
+			"nessland-shells",
+			"nessland-henge",
+			"nessland-situation",
+			"nessland-fly",
+			"nessland-cliffs",
+			"nessland-well",
+			"nessland-bedrock",
+			"nessland-crush"
+		]; menu = meDifficulty },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
 	},*/
 	{
@@ -229,6 +258,24 @@ const menuY = 40
 			"aurora-fort"
 		]; menu = meDifficulty }
 	},
+	/*{
+		name = function() { return gvLangObj["level"]["overworld-1"] },
+		func = function() { game.path = "res/map/"; gvTACourse = [
+			"nessland-left",
+			"nessland-owl",
+			"nessland-earth",
+			"nessland-mint",
+			"nessland-attack",
+			"nessland-shells",
+			"nessland-henge",
+			"nessland-situation",
+			"nessland-fly",
+			"nessland-cliffs",
+			"nessland-well",
+			"nessland-bedrock",
+			"nessland-crush"
+		]; menu = meDifficulty }
+	},*/
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] }
 		func = function() { menu = meMain }
