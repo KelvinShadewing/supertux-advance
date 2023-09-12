@@ -452,7 +452,7 @@
                 {
                  "height":384,
                  "id":138,
-                 "name":"endGoal(\"aurora-iceguy\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

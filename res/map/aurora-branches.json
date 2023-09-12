@@ -248,7 +248,7 @@
                 {
                  "height":160,
                  "id":587,
-                 "name":"endGoal(\"aurora-forest\", \"aurora-branches-a\",1)",
+                 "name":"endGoal(1, \"aurora-branches-a\")",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -259,7 +259,7 @@
                 {
                  "height":192,
                  "id":638,
-                 "name":"endGoal(\"aurora-forest\", \"aurora-branches-b\",1)",
+                 "name":"endGoal(1, \"aurora-branches-b\")",
                  "rotation":0,
                  "type":"",
                  "visible":true,

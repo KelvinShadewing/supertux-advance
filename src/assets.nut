@@ -714,6 +714,7 @@
 ::bgDeepForest0 <- loadImage("res/gfx/deep-forest-0.png")
 ::bgDeepForest1 <- loadImage("res/gfx/deep-forest-1.png")
 ::bgDeepForest2 <- loadImage("res/gfx/deep-forest-2.png")
+::bgSunsetMountain <- loadImage("res/gfx/sunset-mountain.png")
 
 
 

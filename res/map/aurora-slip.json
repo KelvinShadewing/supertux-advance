@@ -308,7 +308,7 @@
                 {
                  "height":384,
                  "id":469,
-                 "name":"endGoal(\"aurora-subsea\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

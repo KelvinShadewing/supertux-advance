@@ -358,10 +358,6 @@
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
 ::gvFadeTime <- 0
-::gvNextLevel <- ""
-::gvTimeAttack <- false
-::gvTAStart <- "aurora-learn"
-::gvTAFullGame <- false
 ::gvExitTimer <- 0.0
 ::gvExitSide <- 0
 

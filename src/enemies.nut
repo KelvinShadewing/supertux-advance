@@ -4492,6 +4492,7 @@
 		}
 		if(scanShape == null) scanShape = Rec(x, y + (8000), 24, (8000), 0)
 		shape = Rec(x, y, 15, 8, 0, 0, 8)
+		active = true
 	}
 
 	function run() {
@@ -4509,6 +4510,7 @@
 			gravity = 0.25
 			vspeed = 1.0
 			canFall = false
+			popSound(sndDrop)
 		}
 
 		//Landing
@@ -5039,6 +5041,13 @@
 
 		if(health <= 0)
 			hurtFire()
+
+		if(anim != "normal" && checkActor("DeadPlayer")) foreach(i in actor["DeadPlayer"]) {
+			if(inDistance2(x, y, i.x, i.y, 16)) {
+				i.x = -100
+				i.y = -100
+			}
+		}
 	}
 
 	function draw() {
@@ -6292,6 +6301,7 @@
 					cooldown--
 					break
 				}
+				
 				if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
 					hasPlayer = 1
 					holdStrength = 16
@@ -6300,6 +6310,7 @@
 					hasPlayer = 2
 					holdStrength = 16
 				}
+				
 				break
 
 			case 1:
@@ -6339,6 +6350,13 @@
 				break
 		}
 
+		if(checkActor("DeadPlayer")) foreach(i in actor["DeadPlayer"]) {
+			if(inDistance2(x, y, i.x, i.y, 16)) {
+				i.x = -100
+				i.y = -100
+			}
+		}
+
 		//Struggle
 		if(hasPlayer > 0 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer)))
 			holdStrength--
@@ -6361,7 +6379,7 @@
 				break
 
 			case "spit":
-				frame += 0.25
+				frame += 0.1
 				if(frame >= 2)
 					anim = "idle"
 				break

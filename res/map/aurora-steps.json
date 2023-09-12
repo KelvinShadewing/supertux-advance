@@ -359,7 +359,7 @@
                 {
                  "height":479,
                  "id":1105,
-                 "name":"endGoal(\"aurora-fort\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

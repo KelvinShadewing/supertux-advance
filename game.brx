@@ -65,6 +65,7 @@ donut("src/achievements.nut")
 donut("src/racer.nut")
 donut("src/network.nut")
 donut("src/accessibility.nut")
+donut("src/timeattack.nut")
 
 ////////////////
 //    MAIN    //

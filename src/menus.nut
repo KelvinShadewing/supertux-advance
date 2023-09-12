@@ -211,7 +211,23 @@ const menuY = 40
 	},*/
 	{
 		name = function() { return gvLangObj["level"]["overworld-0"] },
-		func = function() { gvTAFullGame = false; game.path = "res/map/"; gvTAStart = "aurora-learn"; menu = meDifficulty }
+		func = function() { game.path = "res/map/"; gvTACourse = [
+			"aurora-learn",
+			"aurora-crystal",
+			"aurora-iceguy",
+			"aurora-slip",
+			"aurora-subsea",
+			"aurora-tnt",
+			"aurora-fishy",
+			"aurora-sense",
+			"aurora-branches",
+			"aurora-frozen",
+			"aurora-forest",
+			"aurora-bridge",
+			"aurora-wind",
+			"aurora-steps",
+			"aurora-fort"
+		]; menu = meDifficulty }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] }

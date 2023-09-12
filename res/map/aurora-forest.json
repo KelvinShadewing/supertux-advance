@@ -259,7 +259,7 @@
                 {
                  "height":250,
                  "id":884,
-                 "name":"endGoal(\"aurora-frozen\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
