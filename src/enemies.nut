@@ -4750,6 +4750,7 @@
 	held = false
 	nodrop = true
 	touchDamage = 4.0
+	nocount = true
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)

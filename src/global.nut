@@ -343,6 +343,7 @@
 ::gvScreen <- 0
 ::gvPlayScreen <- 0
 ::gvPlayScreen2 <- 0
+::gvTempScreen <- 0
 ::gvTextW <- 0
 ::gvScreenW <- 0
 ::gvScreenH <- 0
