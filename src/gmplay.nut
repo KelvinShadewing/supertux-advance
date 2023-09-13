@@ -519,6 +519,7 @@
 	setDrawTarget(gvPlayScreen)
 	runAmbientLight()
 
+	gvLightBG = false
 	if(drawBG != 0) drawBG()
 	if(drawWeather != 0 && config.weather) drawWeather()
 	camxprev = camx
@@ -527,6 +528,9 @@
 	setDrawTarget(gvTempScreen)
 	setDrawColor(0)
 	clearScreen()
+
+	if(gvLightBG)
+		drawImage(gvPlayScreen, 0, 0)
 
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
@@ -559,6 +563,7 @@
 		setDrawTarget(gvPlayScreen2)
 		runAmbientLight(true)
 
+		gvLightBG = false
 		if(drawBG2 != 0) drawBG2()
 		if(drawWeather2 != 0 && config.weather) drawWeather2()
 		camxprev = camx
@@ -567,6 +572,9 @@
 		setDrawTarget(gvTempScreen)
 		setDrawColor(0)
 		clearScreen()
+
+		if(gvLightBG)
+			drawImage(gvPlayScreen, 0, 0)
 
 		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
 		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
