@@ -29,7 +29,7 @@
 		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
 		print("Found text.json")
 	}
-	startPlay(game.path + gvTAStart + ".json", true, true)
+	startPlay(game.path + gvTACourse[0] + ".json", true, true)
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
 	drawWeather = 0

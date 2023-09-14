@@ -352,7 +352,7 @@
                 {
                  "height":384,
                  "id":366,
-                 "name":"endGoal(\"aurora-slip\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

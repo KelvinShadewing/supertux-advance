@@ -2,6 +2,7 @@
 ::drawBG2 <- 0
 ::gvHorizon <- 0
 ::gvParallaxMap <- 0
+::gvLightBG <- false
 
 ::dbgNone <- function() {
 	setDrawColor(0xff)
@@ -16,6 +17,7 @@
 }
 
 ::dbgCave <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 6; i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgIridia, 0, ((-camx / 8) % 100) + (i * 100), ((-camy / 8) % 56) + (j * 56))
@@ -30,6 +32,7 @@
 }
 
 ::dbgCaveEarth <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 6; i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgCaveEarth0, 0, ((-camx / 8) % 100) + (i * 100), j * 56)
@@ -44,6 +47,7 @@
 }
 
 ::dbgCaveBlue <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 6; i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgCaveBlue0, 0, ((-camx / 8) % 100) + (i * 100), j * 56)
@@ -203,6 +207,7 @@
 }
 
 ::dbgUnderwater <- function() {
+	gvLightBG = true
 	drawSprite(bgUnderwater, 0, 0, (screenH() / 2) - 120)
 }
 
@@ -226,4 +231,11 @@
 	drawRec(0, 0, screenW(), screenH(), true)
 	for(local i = 0; i < 6; i++) drawSprite(bgSwitch1, 0, (-camx / 4 % 84) + (i * 84), 0)
 	for(local i = 0; i < 4; i++) drawSprite(bgSwitch0, 0, (-camx / 2 % 168) + (i * 168), gvMap.h - 400 - camy / 2)
+}
+
+::dbgSunsetMountain <- function() {
+	//drawImage(gvScreen, 0, 0)
+	for(local i = 0; i < 2; i++) {
+		drawImage(bgSunsetMountain, (i * 940) - (camx / 8.0), 0)
+	}
 }

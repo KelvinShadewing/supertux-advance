@@ -721,7 +721,7 @@
                 {
                  "height":224,
                  "id":52,
-                 "name":"endGoal(\"aurora-tnt\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

@@ -187,28 +187,6 @@
          "name":"trigger",
          "objects":[
                 {
-                 "height":80,
-                 "id":139,
-                 "name":"drawBG = dbgCave",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":3712,
-                 "y":16
-                }, 
-                {
-                 "height":80,
-                 "id":140,
-                 "name":"drawBG = dbgAurora",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":3456,
-                 "y":16
-                }, 
-                {
                  "height":25.2121166666667,
                  "id":181,
                  "name":"playerTeleport(myTarget, 960, 256); myTarget.hspeed = 8",
@@ -233,7 +211,7 @@
                 {
                  "height":208,
                  "id":200,
-                 "name":"endGoal(\"aurora-crystal\", \"\", 1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

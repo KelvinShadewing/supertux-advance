@@ -499,7 +499,7 @@
                 {
                  "height":384,
                  "id":1177,
-                 "name":"endGoal(\"aurora-fishy\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

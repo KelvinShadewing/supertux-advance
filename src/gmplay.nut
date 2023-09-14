@@ -519,10 +519,18 @@
 	setDrawTarget(gvPlayScreen)
 	runAmbientLight()
 
+	gvLightBG = false
 	if(drawBG != 0) drawBG()
 	if(drawWeather != 0 && config.weather) drawWeather()
 	camxprev = camx
 	camyprev = camy
+
+	setDrawTarget(gvTempScreen)
+	setDrawColor(0)
+	clearScreen()
+
+	if(gvLightBG)
+		drawImage(gvPlayScreen, 0, 0)
 
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
 	gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
@@ -539,6 +547,9 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
+	setDrawTarget(gvPlayScreen)
+	drawImage(gvTempScreen, 0, 0)
+
 
 
 	//////////////
@@ -552,10 +563,18 @@
 		setDrawTarget(gvPlayScreen2)
 		runAmbientLight(true)
 
+		gvLightBG = false
 		if(drawBG2 != 0) drawBG2()
 		if(drawWeather2 != 0 && config.weather) drawWeather2()
 		camxprev = camx
 		camyprev = camy
+
+		setDrawTarget(gvTempScreen)
+		setDrawColor(0)
+		clearScreen()
+
+		if(gvLightBG)
+			drawImage(gvPlayScreen, 0, 0)
 
 		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
 		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "mg")
@@ -571,6 +590,9 @@
 		if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
+
+		setDrawTarget(gvPlayScreen2)
+		drawImage(gvTempScreen, 0, 0)
 	}
 
 

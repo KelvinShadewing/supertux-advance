@@ -4492,6 +4492,7 @@
 		}
 		if(scanShape == null) scanShape = Rec(x, y + (8000), 24, (8000), 0)
 		shape = Rec(x, y, 15, 8, 0, 0, 8)
+		active = true
 	}
 
 	function run() {
@@ -4509,6 +4510,7 @@
 			gravity = 0.25
 			vspeed = 1.0
 			canFall = false
+			popSound(sndDrop)
 		}
 
 		//Landing
@@ -4748,6 +4750,7 @@
 	held = false
 	nodrop = true
 	touchDamage = 4.0
+	nocount = true
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -5039,6 +5042,13 @@
 
 		if(health <= 0)
 			hurtFire()
+
+		if(anim != "normal" && checkActor("DeadPlayer")) foreach(i in actor["DeadPlayer"]) {
+			if(inDistance2(x, y, i.x, i.y, 16)) {
+				i.x = -100
+				i.y = -100
+			}
+		}
 	}
 
 	function draw() {
@@ -6292,6 +6302,7 @@
 					cooldown--
 					break
 				}
+				
 				if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
 					hasPlayer = 1
 					holdStrength = 16
@@ -6300,6 +6311,7 @@
 					hasPlayer = 2
 					holdStrength = 16
 				}
+				
 				break
 
 			case 1:
@@ -6309,6 +6321,8 @@
 					gvPlayer.x = x
 					gvPlayer.y = y - 16
 					gvPlayer.hidden = true
+					gvPlayer.hspeed = 0
+					gvPlayer.vspeed = 0
 				}
 				if(!gvPlayer || holdStrength <= 0) {
 					hasPlayer = 0
@@ -6324,7 +6338,9 @@
 					gvPlayer2.hurt = 1 + game.difficulty
 					gvPlayer2.x = x
 					gvPlayer2.y = y - 16
-					gvPlayer.hidden = true
+					gvPlayer2.hidden = true
+					gvPlayer2.hspeed = 0
+					gvPlayer2.vspeed = 0
 				}
 				if(!gvPlayer2 || holdStrength <= 0) {
 					hasPlayer = 0
@@ -6333,6 +6349,13 @@
 					cooldown = 180
 				}
 				break
+		}
+
+		if(checkActor("DeadPlayer")) foreach(i in actor["DeadPlayer"]) {
+			if(inDistance2(x, y, i.x, i.y, 16)) {
+				i.x = -100
+				i.y = -100
+			}
 		}
 
 		//Struggle
@@ -6357,7 +6380,7 @@
 				break
 
 			case "spit":
-				frame += 0.25
+				frame += 0.1
 				if(frame >= 2)
 					anim = "idle"
 				break

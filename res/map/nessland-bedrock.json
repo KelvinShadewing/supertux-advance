@@ -355,7 +355,7 @@
                 {
                  "height":152.75,
                  "id":1932,
-                 "name":"endGoal(\"\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

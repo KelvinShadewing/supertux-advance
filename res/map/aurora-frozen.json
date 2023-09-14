@@ -530,7 +530,7 @@
                 {
                  "height":368,
                  "id":412,
-                 "name":"endGoal(\"aurora-bridge\",\"\",1)",
+                 "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,

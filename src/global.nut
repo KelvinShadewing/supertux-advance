@@ -343,6 +343,7 @@
 ::gvScreen <- 0
 ::gvPlayScreen <- 0
 ::gvPlayScreen2 <- 0
+::gvTempScreen <- 0
 ::gvTextW <- 0
 ::gvScreenW <- 0
 ::gvScreenH <- 0
@@ -358,10 +359,6 @@
 ::gvDoIGT <- true
 ::gvWarning <- 360.0
 ::gvFadeTime <- 0
-::gvNextLevel <- ""
-::gvTimeAttack <- false
-::gvTAStart <- "aurora-learn"
-::gvTAFullGame <- false
 ::gvExitTimer <- 0.0
 ::gvExitSide <- 0
 

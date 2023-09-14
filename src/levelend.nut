@@ -37,11 +37,21 @@
 	function _typeof() { return "LevelEnder" }
 }
 
-::endGoal <- function(next = "", unblock = "", speed = 0) {
+::endGoal <- function(speed = 0, unblock = "") {
 	local clearedLevel
 	clearedLevel = gvMap.name
-	gvNextLevel = next
+	
 	if(levelEndRunner == 0){
+		if(gvTimeAttack) {
+			gvTAStep++
+			if(gvTAStep < gvTACourse.len())
+				gvNextLevel = gvTACourse[gvTAStep]
+			else {
+				game.path = "res/map"
+				gvNextLevel = "timeattack-win"
+			}
+		}
+
 		if(gvPlayer) {
 			gvPlayer.canMove = false
 			gvPlayer.endMode = true

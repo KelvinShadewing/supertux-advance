@@ -65,6 +65,7 @@ donut("src/achievements.nut")
 donut("src/racer.nut")
 donut("src/network.nut")
 donut("src/accessibility.nut")
+donut("src/timeattack.nut")
 
 ////////////////
 //    MAIN    //
@@ -136,11 +137,16 @@ if(config.usefilter) setScalingFilter(1)
 gvScreen = newTexture(screenW(), screenH())
 bgPause = newTexture(screenW(), screenH())
 setScalingFilter(0)
+
+gvTempScreen = newTexture(screenW(), screenH())
+textureSetBlendMode(gvTempScreen, bm_blend)
 gvPlayScreen = newTexture(screenW(), screenH())
+textureSetBlendMode(gvPlayScreen, bm_blend)
 gvPlayScreen2 = newTexture(screenW() / 2, screenH())
+textureSetBlendMode(gvPlayScreen2, bm_blend)
 gvLightScreen1 = newTexture(screenW(), screenH())
-gvLightScreen2 = newTexture(screenW(), screenH())
 textureSetBlendMode(gvLightScreen1, bm_mod)
+gvLightScreen2 = newTexture(screenW(), screenH())
 textureSetBlendMode(gvLightScreen2, bm_mod)
 
 //Set up window
