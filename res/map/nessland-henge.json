@@ -4883,6 +4883,18 @@
                  "width":16,
                  "x":3760,
                  "y":1968
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":416,
+                 "name":"0,0,sayChar,floating-island",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1000,
+                 "y":688
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4891,7 +4903,7 @@
          "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":416,
+ "nextobjectid":417,
  "orientation":"orthogonal",
  "properties":[
         {

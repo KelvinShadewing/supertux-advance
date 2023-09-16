@@ -1385,7 +1385,7 @@
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
-						if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
+						//if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break
 					}
 				}

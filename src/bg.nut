@@ -229,7 +229,6 @@
 
 ::dbgCastle <- function() {
 	drawSprite(bgCastle, 0, 0, (screenH() / 2) - 120)
-	drawSprite(bgCastle, 0, 320, (screenH() / 2) - 120)
 }
 
 ::dbgFortMagma <- function() {

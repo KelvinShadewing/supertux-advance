@@ -399,7 +399,7 @@
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
-						if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
+						//if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
 						break
 					}
 				}
@@ -928,7 +928,7 @@
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
-		inMelee = (anim == "ball" && fabs(hspeed) > 4.2)
+		inMelee = (anim == "ball" && fabs(hspeed) > 6)
 	}
 
 	function ruNormal() {
@@ -1512,7 +1512,7 @@
 				drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
 			if(shooting && anim == "walk") drawSpriteZ(2, sprite, an["armShoot"][min(3, shootTimer)], x - camx, y - camy, 0, flip)
-			if(anim == "ball" && fabs(hspeed) > 4.2 && spinAlpha < 1.0) spinAlpha += 0.2
+			if(anim == "ball" && fabs(hspeed) > 6 && spinAlpha < 1.0) spinAlpha += 0.2
 			if(spinAlpha > 0) spinAlpha -= 0.1
 			if(spinAlpha < 0) spinAlpha = 0
 			drawSpriteZ(2, sprBallSpin, floor((hspeed < 0 ? -frame : frame)), x - camx, y + 5 - camy, 0, int(hspeed < 0), 1, 1, spinAlpha)
