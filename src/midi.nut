@@ -328,8 +328,8 @@
 				gravity = 0.0
 				vspeed = 0.0
 				if(shooting) hspeed = 0.0
-				if(hspeed > 1) hspeed = 1.0
-				if(hspeed < -1) hspeed = -1.0
+				if(hspeed > 1.5) hspeed = 1.5
+				if(hspeed < -1.5) hspeed = -1.5
 
 				//Line alignment
 				local lineType = 0
@@ -798,7 +798,7 @@
 					animOffset = an["shootHang"][0] - an[anim][0] + min(3, shootTimer)
 				}
 
-				if(hspeed != 0) frame += 0.1
+				if(hspeed != 0) frame += fabs(hspeed) * 0.1
 
 				if(!atZipline() && !atZipline(0, 1) && !atZipline(0, -1)) anim = "jump"
 

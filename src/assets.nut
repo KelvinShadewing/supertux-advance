@@ -688,8 +688,10 @@
 ::bgRiverCity <- newSprite("res/gfx/rivercity.png", 380, 240, 0, 0, 0, 0)
 ::bgOcean <- newSprite("res/gfx/ocean.png", 480, 8, 0, 0, 0, 0)
 ::bgOceanNight <- newSprite("res/gfx/ocean-night.png", 480, 8, 0, 0, 0, 0)
+::bgOceanSunset <- newSprite("res/gfx/ocean-sunset.png", 480, 8, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
+::bgForest2 <- newSprite("res/gfx/forest-cliff-bg.png", 755, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 640, 240, 0, 0, 0, 0)
 ::bgStarSky <- loadImage("res/gfx/starrysky.png")
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
@@ -810,6 +812,16 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::sndWaterball <- loadSound("res/snd/waterball.ogg")
 ::sndBlurp <- loadSound("res/snd/blurp.ogg")
 ::sndSecret <- loadSound("res/snd/secret.ogg")
+::sndPing <- [
+	loadSound("res/snd/ping-0.ogg"),
+	loadSound("res/snd/ping-1.ogg"),
+	loadSound("res/snd/ping-2.ogg"),
+	loadSound("res/snd/ping-3.ogg"),
+	loadSound("res/snd/ping-4.ogg"),
+	loadSound("res/snd/ping-5.ogg"),
+	loadSound("res/snd/ping-6.ogg"),
+	loadSound("res/snd/ping-7.ogg")
+]
 
 
 

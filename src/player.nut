@@ -156,7 +156,7 @@
 
 
 		//Stage hazards
-		if(onHazard(x, y)) hurt = (ceil(game.maxHealth / 10.0) * damageMult.cut) + game.difficulty
+		if(onHazard(x, y)) hurt = min((ceil(game.maxHealth / 10.0) * damageMult.cut), 4 + (game.difficulty * 2))
 		if(onDeath(x, y)) die(true)
 
 
