@@ -727,7 +727,28 @@
 		"construction-burned-a" :
 		"You shouldn't be climbing buildings under construction. This area is dangerous, you know!",
 		"construction-burned-b" :
-		"Could you please not burn our materials? That'd be great."
+		"Could you please not burn our materials? That'd be great.",
+
+		"floating-island-Tux" :
+		"What in the world could be keeping this island afloat?",
+		"floating-island-Penny" :
+		"I bet Nolok wouldn't have been able to kidnap our friends if I'd built my town on one of these.",
+		"floating-island-Konqi" :
+		"I'd love to live on one of these if I had wings all the time. Why do I feel like I used to have them normally?",
+		"floating-island-Katie" :
+		"Oh dear, first that tall stone tower, and now this island! All these heights are making me dizzy!",
+		"floating-island-Midi" :
+		"Tall trees, floating islands. This place is starting to remind me of home.",
+		"floating-island-Kiki" :
+		"The view from up here is breathtaking! I need to come back with my brush and paint this scene!",
+		"floating-island-Surge" :
+		"Hard to believe they have an island like this but not a single loop.",
+		"floating-island-Dashie" :
+		"I'm betting I could make it up here in under a minute.",
+		"floating-island-Cyra" :
+		"I don't think my world would have some floating islands like that!",
+		"floating-island-Pepper" :
+		"This flying island is starting to remind me of Komona."
 	},
 
 	"level" : {
@@ -770,7 +791,7 @@
 		"nessland-crush" : "Rock Solid",
 		"nessland-switch" : "Orange Switch Trial",
 		"nessland-attack" : "Attack From Above",
-		"nessland-cliffs" : "On Edge"
+		"nessland-cliffs" : "Cliff Notes"
 	},
 
 	"achi-name" : {

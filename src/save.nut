@@ -34,6 +34,7 @@
 	gvLightTarget = 0xffffffff
 	drawWeather = 0
 	gvIGT = 0
+	gvTAStep = 0
 }
 
 ::saveGame <- function() {

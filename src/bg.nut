@@ -64,7 +64,9 @@
 ::dbgForest <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < 3; i++)
-			drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
+			drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
+		for(local i = 0; i < 2; i++)
+			drawSprite(bgForest2, 0, ((-camx / 8) % 755) + (i * 755), gvHorizon - camy - 300 - ((gvHorizon - (camy + gvScreenH)) / 1.25))
 		for(local i = 0; i < 5; i++)
 			drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180 - ((gvHorizon - (camy + gvScreenH)) / 2))
 		for(local i = 0; i < 5; i++)
@@ -167,6 +169,20 @@
 	}
 }
 
+::dbgOceanSunset <- function() {
+	for(local i = 0; i < 2; i++) {
+		for(local j = 0; j < 16; j++) {
+			drawSprite(bgOceanSunset, j, ((-camx / 32) % 480) + (i * 480), j * 8)
+		}
+	}
+
+	for(local i = 0; i < 2; i++) {
+		for(local j = 30; j >= 16; j--) {
+			drawSprite(bgOceanSunset, j, (((-camx) / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
+		}
+	}
+}
+
 ::dbgOceanNight <- function() {
 	dbgStarSky()
 
@@ -213,7 +229,6 @@
 
 ::dbgCastle <- function() {
 	drawSprite(bgCastle, 0, 0, (screenH() / 2) - 120)
-	drawSprite(bgCastle, 0, 320, (screenH() / 2) - 120)
 }
 
 ::dbgFortMagma <- function() {

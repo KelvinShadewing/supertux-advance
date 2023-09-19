@@ -816,7 +816,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
-				popSound(sndBump, 0)
+				popSound(sndPing[randInt(8)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -825,7 +825,7 @@
 				gvPlayer.vspeed = -4
 				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
 				vspeed = 1
-				popSound(sndBump, 0)
+				popSound(sndPing[randInt(8)], 0)
 			}
 		}
 

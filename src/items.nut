@@ -784,30 +784,13 @@
 }
 
 ::AirFeather <- class extends PhysAct {
-	vspeed = -2.0
-	hspeed = 0.0
-	frame = 1.5
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-
-		if(gvPlayer) if(x > gvPlayer.x) frame = 3.5
 		shape = Rec(x, y, 6, 6, 0)
 	}
 
 	function run() {
-		if(vspeed < 0.2) vspeed += 0.05
-
-		if(floor(frame) == 0 || floor(frame) == 2) frame += 0.01
-		else frame += 0.1
-
-		if(frame >= 4.0) frame -= 4.0
-
-		if(floor(frame) == 1) hspeed += 0.1
-		if(floor(frame) == 3) hspeed -= 0.1
-
-		x += hspeed
-		y += vspeed
 		shape.setPos(x, y)
 
 		if(gvPlayer && hitTest(shape, gvPlayer.shape)){
@@ -836,7 +819,7 @@
 		}
 	}
 
-	function draw() { drawSprite(sprAirFeather, frame, x - camx, y - camy) }
+	function draw() { drawSprite(sprAirFeather, getFrames() / 24, x - camx, y - camy) }
 
 	function _typeof() { return "AirFeather" }
 }
