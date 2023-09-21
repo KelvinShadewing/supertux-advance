@@ -573,7 +573,7 @@
 		clearScreen()
 
 		if(gvLightBG)
-			drawImage(gvPlayScreen, 0, 0)
+			drawImage(gvPlayScreen2, 0, 0)
 		if(drawWeather2 != 0 && config.weather) drawWeather2()
 
 		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")

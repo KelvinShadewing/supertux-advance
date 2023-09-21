@@ -885,11 +885,11 @@
 
 				case "shock":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
-						local fx = 6
+						local fx = 5
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Shockball, x + fx, y, 1, id)
-						if(!flip) c.hspeed = 4
-						else c.hspeed = -4
+						if(!flip) c.hspeed = 1
+						else c.hspeed = -1
 						c.hspeed += hspeed
 						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {

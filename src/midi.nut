@@ -789,7 +789,7 @@
 				break
 
 			case "monkey":
-				if(hspeed == 0) {
+				if(hspeed == 0 || partnerHang) {
 					frame = 0.0
 					animOffset = an["hang"][0] - an[anim][0]
 				}
@@ -799,9 +799,24 @@
 					animOffset = an["shootHang"][0] - an[anim][0] + min(3, shootTimer)
 				}
 
-				if(hspeed != 0) frame += fabs(hspeed) * 0.1
+				if(hspeed != 0 && !partnerHang) frame += fabs(hspeed) * 0.1
 
-				if(!atZipline() && !atZipline(0, 1) && !atZipline(0, -1)) anim = "jump"
+				if(partnerHang) {
+					local target = null
+					if(playerNum == 1 && gvPlayer2) target = gvPlayer2
+					if(playerNum == 2 && gvPlayer) target = gvPlayer
+
+					if(target != null && placeFree(target.x, target.y + 24) && target.anim == "fly" && (freeDown || vspeed <= 0)) {
+						x = target.x
+						y = target.y + 24
+						hspeed = target.hspeed
+						vspeed = target.vspeed
+					}
+					else
+						partnerHang = false
+				}
+
+				if(!atZipline() && !atZipline(0, 1) && !atZipline(0, -1) && !partnerHang) anim = "jump"
 
 				break
 		}
@@ -1071,8 +1086,9 @@
 					partnerHang = false
 				}
 
-				if((playerNum == 1 && gvPlayer2 && gvPlayer2.anim == "fly" && hitTest(shape, gvPlayer2.shape))
-				|| (playerNum == 2 && gvPlayer && gvPlayer.anim == "fly" && hitTest(shape, gvPlayer.shape))) {
+				shapeGrip.setPos(x, y - 24)
+				if((playerNum == 1 && gvPlayer2 && gvPlayer2.anim == "fly" && hitTest(shapeGrip, gvPlayer2.shape))
+				|| (playerNum == 2 && gvPlayer && gvPlayer.anim == "fly" && hitTest(shapeGrip, gvPlayer.shape))) {
 					anim = "monkey"
 					frame = 0.0
 					hspeed = 0
