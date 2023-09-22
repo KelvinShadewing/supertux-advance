@@ -685,15 +685,15 @@
                  "y":192
                 }, 
                 {
-                 "height":160,
+                 "height":176,
                  "id":146,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":224,
-                 "x":608,
-                 "y":560
+                 "width":240,
+                 "x":592,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -710,7 +710,7 @@
                 {
                  "height":32,
                  "id":50,
-                 "name":"playerTeleport(myTarget, 2912, 416); gvPlayer.hspeed = -2; drawBG = dbgAurora; gvLightTarget = 0xffffffff",
+                 "name":"playerTeleport(myTarget, 2912, 416); myTarget.hspeed = -2",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -739,6 +739,17 @@
                  "width":32,
                  "x":2896,
                  "y":400
+                }, 
+                {
+                 "height":528,
+                 "id":224,
+                 "name":"TransZone,dbgAurora,0,0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":544,
+                 "x":2656,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2390,7 +2401,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":224,
+ "nextobjectid":225,
  "orientation":"orthogonal",
  "properties":[
         {

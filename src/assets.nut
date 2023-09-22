@@ -178,6 +178,8 @@
 ::defExit <- sprExit
 ::sprIcoSecret <- newSprite("res/gfx/ico-secret.png", 16, 16, 0, 0, 8, 8)
 ::defIcoSecret <- sprIcoSecret
+::sprHerrow <- newSprite("res/gfx/herrow.png", 8, 7, 0, 0, -16, 3)
+::defHerrow <- sprHerrow
 
 ::sprNearRedBack <- newSprite("res/gfx/near-health-back.png", 8, 32, 0, 0, 0, 0)
 ::sprNearGreenBack <- newSprite("res/gfx/near-stamina-back.png", 32, 8, 0, 0, 0, 0)

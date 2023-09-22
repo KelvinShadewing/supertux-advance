@@ -1655,11 +1655,20 @@
 				c.vspeed = 2
 			}
 			else {
-				c = fireWeapon(WingNut, x, y + 8, 1, id)
-				c.sprite = wingNutSprite
+				if(!freeDown && shootDir == 3 && routine != ruSwim) {
+					c = fireWeapon(TopNut, x, y - 2, 1, id)
+					c.sprite = topSprite
+					hspeed = 0
+					anim = "shootTop"
+					c.hspeed = (flip == 0 ? 2 : -2)
+				}
+				else {
+					c = fireWeapon(WingNut, x, y + 8, 1, id)
+					c.sprite = nutSprite
+				}
 			}
 		}
-		else if(shootDir == 4 && (!freeDown || onPlatform()) && anim != "plantMine"){
+		else if(shootDir == 4 && (!freeDown || onPlatform()) && anim != "plantMine" && !nowInWater) {
 			frame = 0.0
 			anim = "plantMine"
 			vspeed = 0.0
