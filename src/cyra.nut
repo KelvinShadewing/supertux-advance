@@ -739,12 +739,14 @@ gvCharacters.Kiki2 <- {
 					}
 
 					if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y - 2)) {
-						frame -= climbdir / 8
+						if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
+							frame -= climbdir / 8
 						x -= 1
 					}
 
 					if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y + 2)) {
-						frame += climbdir / 8
+						if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
+							frame += climbdir / 8
 						x += 1
 					}
 
