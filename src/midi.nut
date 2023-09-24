@@ -753,11 +753,16 @@
 
 			case "shootTop":
 				frame += 0.25
+				animOffset = 0.0
 				if(hspeed != 0 || vspeed != 0) {
 					anim = "stand"
 					break
 				}
-				if(frame >= an[anim].len()) anim = "stand"
+				if(frame >= an[anim].len()) {
+					anim = "stand"
+					if(!placeFree(x, y))
+						anim = "crawl"
+				}
 				rspeed = 0
 				break
 
@@ -1033,14 +1038,27 @@
 					y += 2
 				}
 
+				if(getcon("left", "hold", true, playerNum) && atCrossLadder() && !shooting) if(placeFree(x, y - 2)) {
+					frame -= climbdir / 8
+					x -= 1
+				}
+
+				if(getcon("right", "hold", true, playerNum) && atCrossLadder() && !shooting) if(placeFree(x, y + 2)) {
+					frame += climbdir / 8
+					x += 1
+				}
+
 				//Check if still on ladder
 				local felloff = true
-				if(atLadder()) felloff = false
-				if(felloff) {
-					anim = "fall"
-					frame = 0.0
-					if(getcon("up", "hold", true, playerNum)) vspeed = -3.0
-				}
+					if(atLadder() || atCrossLadder()) felloff = false
+					if(felloff) {
+						anim = "fall"
+						frame = 0.0
+						if(getcon("up", "hold", true, playerNum)) vspeed = -2.5
+					}
+					else if(!atCrossLadder()) {
+						x -= (x % 16 <=> 8)
+					}
 
 				//Change direction
 				if(getcon("right", "press", true, playerNum) && canMove) flip = 0
@@ -1099,12 +1117,12 @@
 
 			//Get on ladder
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "climb" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-				if(atLadder()) {
+				if(atLadder() || atCrossLadder()) {
 					anim = "climb"
 					frame = 0.0
 					hspeed = 0
 					vspeed = 0
-					x = (x - (x % 16)) + 8
+					x = round(x)
 				}
 			}
 
@@ -1167,7 +1185,7 @@
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 					local oldShape = shape
 					shape = shapeGrip
-					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 10) && placeFree(x, y + 4)) {
+					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 14) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 1
@@ -1184,7 +1202,7 @@
 				if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
 					local oldShape = shape
 					shape = shapeGrip
-					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 10) && placeFree(x, y + 4)) {
+					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 14) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 0
@@ -1660,7 +1678,7 @@
 					c.sprite = topSprite
 					hspeed = 0
 					anim = "shootTop"
-					c.hspeed = (flip == 0 ? 2 : -2)
+					c.hspeed = (flip == 0 ? 4 : -4)
 				}
 				else {
 					c = fireWeapon(WingNut, x, y + 8, 1, id)

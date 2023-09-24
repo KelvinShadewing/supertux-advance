@@ -577,13 +577,26 @@
 						y += 2
 					}
 
+					if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y - 2)) {
+						frame -= climbdir / 8
+						x -= 1
+					}
+
+					if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y + 2)) {
+						frame += climbdir / 8
+						x += 1
+					}
+
 					//Check if still on ladder
 					local felloff = true
-					if(atLadder()) felloff = false
+					if(atLadder() || atCrossLadder()) felloff = false
 					if(felloff) {
 						anim = "fall"
 						frame = 0.0
 						if(getcon("up", "hold", true, playerNum)) vspeed = -2.5
+					}
+					else if(!atCrossLadder()) {
+						x -= (x % 16 <=> 8)
 					}
 
 					//Change direction
@@ -593,12 +606,12 @@
 
 				//Get on ladder
 				if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-					if(atLadder()) {
+					if(atLadder() || atCrossLadder()) {
 						anim = "climb"
 						frame = 0.0
 						hspeed = 0
 						vspeed = 0
-						x = (x - (x % 16)) + 8
+						x = round(x)
 					}
 				}
 

@@ -3944,7 +3944,7 @@
 		}
 
 		//Getting carried
-		if(target)
+		if(target && hspeed == 0)
 			holdMe(4)
 
 		if(held) {
