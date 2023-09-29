@@ -1722,12 +1722,32 @@
 			}
 
 			if(y > gvMap.h) {
-				if(vspeed > 0) vspeed = 0
+				if(vspeed > 0)
+					vspeed = 0
 				vspeed -= 0.1
 			}
 
-			if(x > gvMap.w) hspeed = -1.0
-			if(x < 0) hspeed = 1.0
+			if(x > gvMap.w)
+				hspeed = -1.0
+			if(x < 0)
+				hspeed = 1.0
+
+			if(vspeed >= 0 && !placeFree(x, y)) {
+				if(x < xstart)
+					hspeed = 1.0
+				if(x > xstart)
+					hspeed = -1.0
+
+				if(y < ystart && vspeed < 1.0)
+					vspeed = 1.0
+				if(y > ystart && vspeed > -1.0)
+					vspeed = -1.0
+
+				if(!inWater()) {
+					vspeed = -vspeed
+					hspeed *= 2.0
+				}
+			}
 
 
 			x += hspeed
@@ -2104,7 +2124,14 @@
 
 		if(!placeFree(x, y)) {
 			die()
-			if(game.difficulty < 2) newActor(IceChunks, x, y)
+			if(game.difficulty < 2) {
+				if(sprIcicle == defIcicle)
+					newActor(IceChunks, x, y)
+				else {
+					popSound(sndBump)
+					newActor(Poof, x, y)
+				}
+			}
 			else fireWeapon(ExplodeI, x, y, 0, 0)
 		}
 
@@ -2121,7 +2148,12 @@
 		}
 		else if(_element != "ice") {
 			base.getHurt()
-			newActor(IceChunks, x, y)
+			if(sprIcicle == defIcicle)
+					newActor(IceChunks, x, y)
+				else {
+					popSound(sndBump)
+					newActor(Poof, x, y)
+				}
 		}
 	}
 }
@@ -5040,9 +5072,6 @@
 			target.hidden = true
 		}
 
-		if(health <= 0)
-			hurtFire()
-
 		if(anim != "normal" && checkActor("DeadPlayer")) foreach(i in actor["DeadPlayer"]) {
 			if(inDistance2(x, y, i.x, i.y, 16)) {
 				i.x = -100
@@ -6289,10 +6318,13 @@
 	hasPlayer = 0
 	cooldown = 0
 	holdStrength = 8
+	dir = 1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		shape = Rec(x, y, 12, 8, 0)
+		if(_arr != null)
+			dir = int(_arr)
+		shape = Rec(x, y - (4 * dir), 12, 12, 0)
 	}
 
 	function run() {
@@ -6319,15 +6351,17 @@
 					gvPlayer.canMove = false
 					gvPlayer.hurt = 1 + game.difficulty
 					gvPlayer.x = x
-					gvPlayer.y = y - 16
+					gvPlayer.y = y - (16 * dir)
 					gvPlayer.hidden = true
 					gvPlayer.hspeed = 0
 					gvPlayer.vspeed = 0
 				}
 				if(!gvPlayer || holdStrength <= 0) {
 					hasPlayer = 0
-					if(gvPlayer)
+					if(gvPlayer){
 						gvPlayer.canMove = true
+						gvPlayer.vspeed = -4 * dir
+					}
 					cooldown = 180
 				}
 				break
@@ -6344,8 +6378,10 @@
 				}
 				if(!gvPlayer2 || holdStrength <= 0) {
 					hasPlayer = 0
-					if(gvPlayer2)
+					if(gvPlayer2) {
 						gvPlayer2.canMove = true
+						gvPlayer2.vspeed = -4 * dir
+					}
 					cooldown = 180
 				}
 				break
@@ -6396,7 +6432,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(8, sprPeterFlower, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy)
+		drawSpriteZ(8, sprPeterFlower, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], x - camx, y - camy, 0, max(-dir + 1, 0))
 	}
 
 	function _typeof() { return "PeterFlower" }

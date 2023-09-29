@@ -329,6 +329,8 @@
 ::defClamor <- sprClamor
 ::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 4)
 ::defIcicle <- sprIcicle
+::sprPinecone <- newSprite("res/gfx/pinecone.png", 10, 16, 0, 0, 5, 4)
+::defPinecone <- sprPinecone
 ::sprFlyAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
 ::defFlyAmanita <- sprFlyAmanita
 ::sprJumpy <- newSprite("res/gfx/bouncecap.png", 16, 20, 0, 0, 8, 8)
@@ -726,7 +728,7 @@
 
 
 //Weather
-::weRain <- newSprite("res/gfx/rainfall.png", 64, 64, 0, 0, 0, 0)
+::weRain <- newSprite("res/gfx/rainfall.png", 256, 256, 0, 0, 0, 0)
 ::weSnow <- newSprite("res/gfx/snowfall.png", 64, 64, 0, 0, 0, 0)
 
 
@@ -1043,6 +1045,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 
 ::gfxEnemyForest <- function() {
 	sprMrIceguy = sprMrTurtle
+	sprIcicle = sprPinecone
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)

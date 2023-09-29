@@ -1685,7 +1685,11 @@
 			break
 
 		case 114:
-			c = newActor(PeterFlower, i.x + 8, i.y - 8, i.name)
+			c = newActor(PeterFlower, i.x + 8, i.y - 8)
+			break
+
+		case 115:
+			c = newActor(PeterFlower, i.x + 8, i.y - 8, -1)
 			break
 	}
 

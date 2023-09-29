@@ -109,7 +109,7 @@
 		if(zoomies > 0) zoomies--
 		if(resTime > 0) resTime--
 
-		if(resTime > 0 && y > gvMap.h) {
+		if(y > gvMap.h && (resTime > 0  || inWater(x, y))) {
 			y = gvMap.h
 			if(!placeFree(x, y)) {
 				local xrange = 0
@@ -126,6 +126,12 @@
 				}
 			}
 		}
+
+		if(y > gvMap.h + 16 && !inWater(x, y)) {
+			die()
+			return
+		}
+
 		if(y < -100) y = -100.0
 		if(y < 0 && !placeFree(x, y)) {
 			local xrange = 0

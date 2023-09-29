@@ -2,9 +2,9 @@
 ::drawWeather2 <- 0
 
 ::dweRain <- function() {
-	for(local i = 0; i < (screenW() / 64) + 4; i++) {
-		for(local j = 0; j < (screenH() / 64) + 4; j++) {
-			drawSprite(weRain, 0, -(getFrames() * 2 % 64) + (i * 64) - (camx % 64), ((getFrames() * 3) % 64) + (j * 64) - 64 - (camy % 64))
+	for(local i = 0; i < (screenW() / 256) + 4; i++) {
+		for(local j = 0; j < (screenH() / 256) + 4; j++) {
+			drawSprite(weRain, 0, -(getFrames() * 1 % 256) + (i * 256) - (camx % 256), ((getFrames() * 8) % 256) + (j * 256) - 256 - (camy % 256))
 		}
 	}
 }
