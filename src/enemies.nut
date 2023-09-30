@@ -296,7 +296,7 @@
 	}
 }
 
-::DeadNME <- class extends Actor {
+::DeadNME <- class extends PhysAct {
 	sprite = 0
 	frame = 0
 	hspeed = 0.0
@@ -309,12 +309,21 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		vspeed = -3.0
+		shape = Rec(x, y, 8, 8, 0)
 	}
 
 	function run() {
 		vspeed += gravity
-		x += hspeed
-		y += vspeed
+		if(inWater(x, y)) {
+			x += hspeed / 4.0
+			y += vspeed / 4.0
+			if(vspeed > 4)
+				vspeed -= gravity * 2.0
+		}
+		else {
+			x += hspeed
+			y += vspeed
+		}
 		angle += spin
 		if(y > gvMap.h + 32) deleteActor(id)
 	}
@@ -1053,6 +1062,7 @@
 	hspeed = 0.0
 	touchDamage = 2.0
 	nocount = true
+	explodeX = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
@@ -1061,6 +1071,11 @@
 	}
 
 	function run() {
+		if(gvPlayer && hitTest(shape, gvPlayer.shape))
+			explodeX = gvPlayer.hspeed
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+			explodeX = gvPlayer2.hspeed
+
 		base.run()
 
 		if(active) {
@@ -1198,7 +1213,11 @@
 
 	function die() {
 		base.die()
-		fireWeapon(ExplodeTiny, x, y, 0, 0)
+		fireWeapon(ExplodeTiny, x + explodeX, y, 0, 0)
+		if(gvPlayer && hitTest(shape, gvPlayer.shape))
+			gvPlayer.hspeed = -explodeX
+		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+			gvPlayer2.hspeed = -explodeX
 	}
 
 	function hurtIce() { frozen = 600 }
@@ -1285,12 +1304,11 @@
 	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
-		actor[c].vspeed = -0.5
+		actor[c].vspeed = -4.0
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
-		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
 		newActor(Poof, x + 8, y)
@@ -1409,12 +1427,11 @@
 	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
-		actor[c].vspeed = -0.5
+		actor[c].vspeed = -4.0
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
-		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
 		newActor(Poof, x + 8, y)
@@ -1520,12 +1537,11 @@
 		}
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprJellyFish
-		actor[c].vspeed = -0.2
+		actor[c].vspeed = -3.0
 		actor[c].flip = fliph + (flipv * 2)
 		actor[c].hspeed = hspeed / 2
 		if(fliph == 1) actor[c].spin = -1
 		else actor[c].spin = 1
-		actor[c].gravity = 0.01
 		die()
 		popSound(sndKick, 0)
 		newActor(Poof, x, y)
@@ -1775,12 +1791,11 @@
 	function hurtFire() {
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
-		actor[c].vspeed = -0.5
+		actor[c].vspeed = -4.0
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
-		actor[c].gravity = 0.02
 		die()
 		popSound(sndKick, 0)
 		newActor(Poof, x + 8, y)
@@ -5118,12 +5133,11 @@
 
 		local c = newActor(DeadNME, x, y)
 		actor[c].sprite = sprDeadFish
-		actor[c].vspeed = -0.5
+		actor[c].vspeed = -4.0
 		actor[c].flip = flip
 		actor[c].hspeed = hspeed
 		if(flip == 1) actor[c].spin = -1
 		else actor[c].spin = 1
-		actor[c].gravity = 0.02
 		popSound(sndKick, 0)
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
@@ -5370,7 +5384,6 @@
 		actor[c].frame = 3
 		if(flip == 1) actor[c].spin = 0.5
 		else actor[c].spin = -0.5
-		actor[c].gravity = 0.2
 		popSound(sndKick, 0)
 		if(randInt(20) == 0) {
 			local a = actor[newActor(MuffinBlue, x, y)]

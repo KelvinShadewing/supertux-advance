@@ -576,6 +576,86 @@
 	}
 }
 
+::ExplodeF3 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "fire"
+	power = 2
+	blast = true
+	altShape = null
+	didbloom = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeF2)
+
+		shape = Cir(x, y, 8.0)
+		altShape = Cir(x, y, 2.0)
+		for(local i = 0; i < 16; i++) {
+			local d = actor[newActor(FlameTiny, x + lendirX(randInt(8) + 16, i * 22.5), y + lendirY(randInt(8) + 16, i * 22.5))]
+			d.hspeed = 1.0 - randFloat(2.0)
+			d.vspeed = 1.0 - randFloat(2.0)
+			d.frame = -2.0 - randFloat(4.0)
+		}
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 1 && !didbloom) {
+			didbloom = true
+			local c = null
+			c = fireWeapon(FireballK, x - 6, y - 6, alignment, owner)
+			c.power = 4
+			c.hspeed = -2.0
+			c.vspeed = -2.0
+			c = fireWeapon(FireballK, x + 6, y - 6, alignment, owner)
+			c.power = 4
+			c.hspeed = 2.0
+			c.vspeed = -2.0
+			c = fireWeapon(FireballK, x - 6, y + 6, alignment, owner)
+			c.power = 4
+			c.hspeed = -2.0
+			c.vspeed = 2.0
+			c = fireWeapon(FireballK, x + 6, y + 6, alignment, owner)
+			c.power = 4
+			c.hspeed = 2.0
+			c.vspeed = 2.0
+		}
+
+		if(frame >= 5) deleteActor(id)
+		if(altShape.r < 16) altShape.r++
+		if(shape.r < 24) shape.r++
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ::ExplodeHiddenF <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
@@ -1076,6 +1156,97 @@
 	}
 }
 
+::ExplodeT3 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "shock"
+	power = 2
+	blast = true
+	didbloom = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndCyraElectricSwing, 0)
+
+		shape = Cir(x, y, 24.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 1 && !didbloom) {
+			didbloom = true
+			local c = fireWeapon(Shockball, x + 6, y + 6, alignment, owner)
+					c.power = 2
+					c.hspeed = 1.5
+					c.vspeed = 1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x - 6, y + 6, alignment, owner)
+					c.power = 2
+					c.hspeed = -1.5
+					c.vspeed = 1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x + 6, y - 6, alignment, owner)
+					c.power = 2
+					c.hspeed = 1.5
+					c.vspeed = -1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x - 6, y - 6, alignment, owner)
+					c.power = 2
+					c.hspeed = -1.5
+					c.vspeed = -1.5
+					c.piercing = 4
+					c = fireWeapon(Shockball, x, y + 8, alignment, owner)
+					c.power = 2
+					c.vspeed = 2
+					c.piercing = 4
+					c = fireWeapon(Shockball, x, y - 8, alignment, owner)
+					c.power = 2
+					c.vspeed = -2
+					c.piercing = 4
+					c = fireWeapon(Shockball, x + 8, y, alignment, owner)
+					c.power = 2
+					c.hspeed = 2
+					c.piercing = 4
+					c = fireWeapon(Shockball, x - 8, y, alignment, owner)
+					c.power = 2
+					c.hspeed = -2
+					c.piercing = 4
+		}
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+			}
+		}
+
+		shape.setPos(x, y)
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ::Shockball <- class extends WeaponEffect {
 	element = "shock"
 	timer = 120
@@ -1302,6 +1473,76 @@
 	}
 }
 
+::ExplodeE3 <- class extends WeaponEffect{
+	power = 1
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	blast = true
+	element = "earth"
+	didbloom = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndCrumble)
+		newActor(RockChunks, x, y)
+
+		shape = Cir(x, y, 16.0)
+	}
+
+	function run() {
+		frame += 0.1
+
+		if(frame >= 0.5 && !didbloom) {
+			didbloom = true
+			local c = fireWeapon(EarthballK, x - 6, y - 6, alignment, owner)
+			c.power = 4
+			c.hspeed = -2.0
+			c.vspeed = -2.0
+			c = fireWeapon(EarthballK, x + 6, y - 6, alignment, owner)
+			c.power = 4
+			c.hspeed = 2.0
+			c.vspeed = -2.0
+			c = fireWeapon(EarthballK, x - 6, y + 6, alignment, owner)
+			c.power = 4
+			c.hspeed = -2.0
+			c.vspeed = 2.0
+			c = fireWeapon(EarthballK, x + 6, y + 6, alignment, owner)
+			c.power = 4
+			c.hspeed = 2.0
+			c.vspeed = 2.0
+		}
+
+		if(frame >= 5) deleteActor(id)
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
+		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ::CrystalBullet <- class extends WeaponEffect {
 	element = "earth"
 	timer = 240
@@ -1483,135 +1724,21 @@
 					c.power = 4
 					break
 				case "shock":
-					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
+					c = fireWeapon(ExplodeT3, x, y, alignment, owner)
 					c.power = 4
-					c = fireWeapon(Shockball, x + 6, y + 6, alignment, owner)
-					c.power = 2
-					c.hspeed = 1.5
-					c.vspeed = 1.5
-					c.piercing = 4
-					c = fireWeapon(Shockball, x - 6, y + 6, alignment, owner)
-					c.power = 2
-					c.hspeed = -1.5
-					c.vspeed = 1.5
-					c.piercing = 4
-					c = fireWeapon(Shockball, x + 6, y - 6, alignment, owner)
-					c.power = 2
-					c.hspeed = 1.5
-					c.vspeed = -1.5
-					c.piercing = 4
-					c = fireWeapon(Shockball, x - 6, y - 6, alignment, owner)
-					c.power = 2
-					c.hspeed = -1.5
-					c.vspeed = -1.5
-					c.piercing = 4
-					c = fireWeapon(Shockball, x, y + 8, alignment, owner)
-					c.power = 2
-					c.vspeed = 2
-					c.piercing = 4
-					c = fireWeapon(Shockball, x, y - 8, alignment, owner)
-					c.power = 2
-					c.vspeed = -2
-					c.piercing = 4
-					c = fireWeapon(Shockball, x + 8, y, alignment, owner)
-					c.power = 2
-					c.hspeed = 2
-					c.piercing = 4
-					c = fireWeapon(Shockball, x - 8, y, alignment, owner)
-					c.power = 2
-					c.hspeed = -2
-					c.piercing = 4
 					break
 				case "earth":
-					c = fireWeapon(ExplodeE2, x, y, alignment, owner)
+					c = fireWeapon(ExplodeE3, x, y, alignment, owner)
 					c.power = 4
-					c = fireWeapon(EarthballK, x - 6, y - 6, alignment, owner)
-					c.power = 4
-					c.hspeed = -2.0
-					c.vspeed = -2.0
-					c = fireWeapon(EarthballK, x + 6, y - 6, alignment, owner)
-					c.power = 4
-					c.hspeed = 2.0
-					c.vspeed = -2.0
-					c = fireWeapon(EarthballK, x - 6, y + 6, alignment, owner)
-					c.power = 4
-					c.hspeed = -2.0
-					c.vspeed = 2.0
-					c = fireWeapon(EarthballK, x + 6, y + 6, alignment, owner)
-					c.power = 4
-					c.hspeed = 2.0
-					c.vspeed = 2.0
 					break
 				case "air":
-					c = fireWeapon(ExplodeA2, x, y, alignment, owner)
+					c = fireWeapon(ExplodeA3, x, y, alignment, owner)
 					c.power = 4
 					stopSound(sndExplodeA2)
-					c = fireWeapon(StormTornado, x + 8, y - 4, alignment, owner)
-					c.direction = 22.5
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x + 4, y - 8, alignment, owner)
-					c.direction = 22.5 - 45
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x - 4, y - 8, alignment, owner)
-					c.direction = 22.5 - (45 * 2)
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x - 8, y - 4, alignment, owner)
-					c.direction = 22.5 - (45 * 3)
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x - 8, y + 4, alignment, owner)
-					c.direction = 22.5 - (45 * 4)
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x - 4, y + 8, alignment, owner)
-					c.direction = 22.5 - (45 * 5)
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x + 4, y + 8, alignment, owner)
-					c.direction = 22.5 - (45 * 6)
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
-					c = fireWeapon(StormTornado, x + 8, y + 4, alignment, owner)
-					c.direction = 22.5 - (45 * 7)
-					c.power = 2
-					c.speed = 0.25
-					c.maxTime = 60
 					break
 				case "fire":
-					c = fireWeapon(ExplodeF2, x, y, alignment, owner)
+					c = fireWeapon(ExplodeF3, x, y, alignment, owner)
 					c.power = 4
-					c = fireWeapon(FireballK, x - 6, y - 6, alignment, owner)
-					c.power = 4
-					c.hspeed = -2.0
-					c.vspeed = -2.0
-					c = fireWeapon(FireballK, x + 6, y - 6, alignment, owner)
-					c.power = 4
-					c.hspeed = 2.0
-					c.vspeed = -2.0
-					c = fireWeapon(FireballK, x - 6, y + 6, alignment, owner)
-					c.power = 4
-					c.hspeed = -2.0
-					c.vspeed = 2.0
-					c = fireWeapon(FireballK, x + 6, y + 6, alignment, owner)
-					c.power = 4
-					c.hspeed = 2.0
-					c.vspeed = 2.0
-					for(local i = 0; i < 16; i++) {
-						local d = actor[newActor(FlameTiny, x + lendirX(randInt(8) + 16, i * 22.5), y + lendirY(randInt(8) + 16, i * 22.5))]
-						d.hspeed = 1.0 - randFloat(2.0)
-						d.vspeed = 1.0 - randFloat(2.0)
-						d.frame = -2.0 - randFloat(4.0)
-					}
 					break
 				case "ice":
 					c = fireWeapon(ExplodeI2, x, y, alignment, owner)
@@ -1620,22 +1747,6 @@
 				case "water":
 					c = fireWeapon(ExplodeW2, x, y, alignment, owner)
 					c.power = 4
-					c = fireWeapon(WaterBomb, x - 6, y - 6, alignment, owner)
-					c.power = 4
-					c.hspeed = -2.0
-					c.vspeed = -2.0
-					c = fireWeapon(WaterBomb, x + 6, y - 6, alignment, owner)
-					c.power = 4
-					c.hspeed = 2.0
-					c.vspeed = -2.0
-					c = fireWeapon(WaterBomb, x - 6, y + 6, alignment, owner)
-					c.power = 4
-					c.hspeed = -2.0
-					c.vspeed = 2.0
-					c = fireWeapon(WaterBomb, x + 6, y + 6, alignment, owner)
-					c.power = 4
-					c.hspeed = 2.0
-					c.vspeed = 2.0
 					break
 				
 				default:
@@ -1908,6 +2019,104 @@
 	}
 }
 
+::ExplodeA3 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "air"
+	power = 2
+	blast = true
+	altShape = null
+	didbloom = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeA2, 0)
+
+		shape = Cir(x, y, 32.0)
+		altShape = Cir(x, y, 8.0)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 1.0 && !didbloom) {
+			didbloom = true
+			local c = fireWeapon(StormTornado, x + 8, y - 4, alignment, owner)
+			c.direction = 22.5
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x + 4, y - 8, alignment, owner)
+			c.direction = 22.5 - 45
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x - 4, y - 8, alignment, owner)
+			c.direction = 22.5 - (45 * 2)
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x - 8, y - 4, alignment, owner)
+			c.direction = 22.5 - (45 * 3)
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x - 8, y + 4, alignment, owner)
+			c.direction = 22.5 - (45 * 4)
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x - 4, y + 8, alignment, owner)
+			c.direction = 22.5 - (45 * 5)
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x + 4, y + 8, alignment, owner)
+			c.direction = 22.5 - (45 * 6)
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+			c = fireWeapon(StormTornado, x + 8, y + 4, alignment, owner)
+			c.direction = 22.5 - (45 * 7)
+			c.power = 2
+			c.speed = 0.25
+			c.maxTime = 60
+		}
+
+		if(frame >= 6) deleteActor(id)
+
+		if(gvPlayer) {
+			if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64 + (32 * (power / 2.0))) {
+				if(x > gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.2 * (power / 2.0)
+				if(x < gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.2 * (power / 2.0)
+				if(gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64 + (32 * (power / 2.0))) {
+				if(x > gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.2 * (power / 2.0)
+				if(x < gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.2 * (power / 2.0)
+				if(gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx, y - camy - 8, 0, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
+		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
 ::DragBubble <- class extends WeaponEffect {
 	frame = 0
 	power = 0
@@ -2110,6 +2319,83 @@
 
 	function run() {
 		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+		if(altShape.r < 16) altShape.r++
+		if(shape.r < 24) shape.r++
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(6, sprExplodeW2, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+::ExplodeW3 <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "water"
+	power = 2
+	blast = true
+	altShape = null
+	angle = 0
+	didbloom = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		stopSound(sndSplashBig)
+		playSound(sndSplashBig, 0)
+
+		shape = Cir(x, y, 8.0)
+		altShape = Cir(x, y, 2.0)
+
+		angle = randInt(360)
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(!didbloom && frame >= 1.0) {
+			didbloom = true
+			local c = fireWeapon(WaterBomb, x - 6, y - 6, alignment, owner)
+			c.power = 4
+			c.hspeed = -2.0
+			c.vspeed = -2.0
+			c = fireWeapon(WaterBomb, x + 6, y - 6, alignment, owner)
+			c.power = 4
+			c.hspeed = 2.0
+			c.vspeed = -2.0
+			c = fireWeapon(WaterBomb, x - 6, y + 6, alignment, owner)
+			c.power = 4
+			c.hspeed = -2.0
+			c.vspeed = 2.0
+			c = fireWeapon(WaterBomb, x + 6, y + 6, alignment, owner)
+			c.power = 4
+			c.hspeed = 2.0
+			c.vspeed = 2.0
+		}
 
 		if(frame >= 5) deleteActor(id)
 		if(altShape.r < 16) altShape.r++
