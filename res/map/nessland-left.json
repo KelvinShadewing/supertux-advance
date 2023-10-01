@@ -1968,7 +1968,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)"
+         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",
@@ -2112,12 +2112,12 @@
          "columns":7,
          "firstgid":2257,
          "image":"..\/gfx\/rope.png",
-         "imageheight":32,
+         "imageheight":64,
          "imagewidth":112,
          "margin":0,
          "name":"rope",
          "spacing":0,
-         "tilecount":14,
+         "tilecount":28,
          "tileheight":16,
          "tilewidth":16
         }],
