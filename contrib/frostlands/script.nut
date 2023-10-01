@@ -144,7 +144,7 @@ print("Loading Frostlands overhauled PT2")
 	}
 }
 
-//background shiz
+//custom backgrounds
 
 ::dbgForestF <- function() {
 	for(local i = 0; i < 2; i++) {
