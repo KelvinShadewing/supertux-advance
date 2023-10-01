@@ -753,11 +753,16 @@
 
 			case "shootTop":
 				frame += 0.25
+				animOffset = 0.0
 				if(hspeed != 0 || vspeed != 0) {
 					anim = "stand"
 					break
 				}
-				if(frame >= an[anim].len()) anim = "stand"
+				if(frame >= an[anim].len()) {
+					anim = "stand"
+					if(!placeFree(x, y))
+						anim = "crawl"
+				}
 				rspeed = 0
 				break
 
@@ -789,7 +794,7 @@
 				break
 
 			case "monkey":
-				if(hspeed == 0) {
+				if(hspeed == 0 || partnerHang) {
 					frame = 0.0
 					animOffset = an["hang"][0] - an[anim][0]
 				}
@@ -799,9 +804,24 @@
 					animOffset = an["shootHang"][0] - an[anim][0] + min(3, shootTimer)
 				}
 
-				if(hspeed != 0) frame += fabs(hspeed) * 0.1
+				if(hspeed != 0 && !partnerHang) frame += fabs(hspeed) * 0.1
 
-				if(!atZipline() && !atZipline(0, 1) && !atZipline(0, -1)) anim = "jump"
+				if(partnerHang) {
+					local target = null
+					if(playerNum == 1 && gvPlayer2) target = gvPlayer2
+					if(playerNum == 2 && gvPlayer) target = gvPlayer
+
+					if(target != null && placeFree(target.x, target.y + 24) && target.anim == "fly" && (freeDown || vspeed <= 0)) {
+						x = target.x
+						y = target.y + 24
+						hspeed = target.hspeed
+						vspeed = target.vspeed
+					}
+					else
+						partnerHang = false
+				}
+
+				if(!atZipline() && !atZipline(0, 1) && !atZipline(0, -1) && !partnerHang) anim = "jump"
 
 				break
 		}
@@ -1018,14 +1038,29 @@
 					y += 2
 				}
 
+				if(getcon("left", "hold", true, playerNum) && atCrossLadder() && !shooting) if(placeFree(x, y - 2)) {
+					if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
+						frame -= climbdir / 8
+					x -= 1
+				}
+
+				if(getcon("right", "hold", true, playerNum) && atCrossLadder() && !shooting) if(placeFree(x, y + 2)) {
+					if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
+						frame += climbdir / 8
+					x += 1
+				}
+
 				//Check if still on ladder
 				local felloff = true
-				if(atLadder()) felloff = false
-				if(felloff) {
-					anim = "fall"
-					frame = 0.0
-					if(getcon("up", "hold", true, playerNum)) vspeed = -3.0
-				}
+					if(atLadder() || atCrossLadder()) felloff = false
+					if(felloff) {
+						anim = "fall"
+						frame = 0.0
+						if(getcon("up", "hold", true, playerNum)) vspeed = -2.5
+					}
+					else if(!atCrossLadder()) {
+						x -= (x % 16 <=> 8)
+					}
 
 				//Change direction
 				if(getcon("right", "press", true, playerNum) && canMove) flip = 0
@@ -1071,8 +1106,9 @@
 					partnerHang = false
 				}
 
-				if((playerNum == 1 && gvPlayer2 && gvPlayer2.anim == "fly" && hitTest(shape, gvPlayer2.shape))
-				|| (playerNum == 2 && gvPlayer && gvPlayer.anim == "fly" && hitTest(shape, gvPlayer.shape))) {
+				shapeGrip.setPos(x, y - 24)
+				if((playerNum == 1 && gvPlayer2 && gvPlayer2.anim == "fly" && hitTest(shapeGrip, gvPlayer2.shape))
+				|| (playerNum == 2 && gvPlayer && gvPlayer.anim == "fly" && hitTest(shapeGrip, gvPlayer.shape))) {
 					anim = "monkey"
 					frame = 0.0
 					hspeed = 0
@@ -1083,12 +1119,12 @@
 
 			//Get on ladder
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "climb" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-				if(atLadder()) {
+				if(atLadder() || atCrossLadder()) {
 					anim = "climb"
 					frame = 0.0
 					hspeed = 0
 					vspeed = 0
-					x = (x - (x % 16)) + 8
+					x = round(x)
 				}
 			}
 
@@ -1151,7 +1187,7 @@
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 					local oldShape = shape
 					shape = shapeGrip
-					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 10) && placeFree(x, y + 4)) {
+					if(placeFree(x - 5, y - 16) && !placeFree(x - 5, y - 14) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 1
@@ -1168,7 +1204,7 @@
 				if(!freeRight && !(onIce(x + 8, y) || onIce(x + 8, y - 16))) {
 					local oldShape = shape
 					shape = shapeGrip
-					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 10) && placeFree(x, y + 4)) {
+					if(placeFree(x + 5, y - 16) && !placeFree(x + 5, y - 14) && placeFree(x, y + 4)) {
 						if(!getcon("down", "hold", true, playerNum)) vspeed = 0
 						anim = "ledge"
 						flip = 0
@@ -1639,11 +1675,20 @@
 				c.vspeed = 2
 			}
 			else {
-				c = fireWeapon(WingNut, x, y + 8, 1, id)
-				c.sprite = wingNutSprite
+				if(!freeDown && shootDir == 3 && routine != ruSwim) {
+					c = fireWeapon(TopNut, x, y - 2, 1, id)
+					c.sprite = topSprite
+					hspeed = 0
+					anim = "shootTop"
+					c.hspeed = (flip == 0 ? 4 : -4)
+				}
+				else {
+					c = fireWeapon(WingNut, x, y + 8, 1, id)
+					c.sprite = nutSprite
+				}
 			}
 		}
-		else if(shootDir == 4 && (!freeDown || onPlatform()) && anim != "plantMine"){
+		else if(shootDir == 4 && (!freeDown || onPlatform()) && anim != "plantMine" && !nowInWater) {
 			frame = 0.0
 			anim = "plantMine"
 			vspeed = 0.0

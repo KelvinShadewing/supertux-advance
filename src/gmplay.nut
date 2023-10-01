@@ -573,7 +573,7 @@
 		clearScreen()
 
 		if(gvLightBG)
-			drawImage(gvPlayScreen, 0, 0)
+			drawImage(gvPlayScreen2, 0, 0)
 		if(drawWeather2 != 0 && config.weather) drawWeather2()
 
 		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg")
@@ -581,7 +581,7 @@
 		if(gvMap.name != "shop" && gvVoidFog) for(local i = 0; i < (gvScreenW / 16) + 1; i++) {
 			drawSprite(sprVoid, 0, 0 + (i * 16), gvMap.h - 32 - camy)
 		}
-		foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
+		foreach(i in actor) if("draw" in i && typeof i.draw == "function" && typeof i != "Water") i.draw()
 		drawZList(8)
 		if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 		drawAmbientLight(true)
@@ -646,6 +646,75 @@
 
 					if(gvPlayer2)
 						drawFloatingStats(gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, (1.0 / game.maxHealth) * game.ps2.health, (1.0 / game.ps2.maxStamina) * game.ps2.stamina, (1.0 / game.ps2.maxEnergy) * game.ps2.energy)
+				}
+			}
+		}
+
+		//Fish finder
+		if(checkActor("Herring")) {
+			if(!gvSplitScreen) {
+				if(gvPlayer) {
+					local nearestFish = null
+					foreach(i in actor["Herring"]) {
+						if(nearestFish == null || distance2(i.x, i.y, gvPlayer.x, gvPlayer.y) < distance2(nearestFish.x, nearestFish.y, gvPlayer.x, gvPlayer.y))
+							nearestFish = i
+					}
+
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx0, gvPlayer.y - camy0, pointAngle(gvPlayer.x, gvPlayer.y, nearestFish.x, nearestFish.y))
+				}
+
+				if(gvPlayer2) {
+					local nearestFish = null
+					foreach(i in actor["Herring"]) {
+						if(nearestFish == null || distance2(i.x, i.y, gvPlayer2.x, gvPlayer2.y) < distance2(nearestFish.x, nearestFish.y, gvPlayer2.x, gvPlayer2.y))
+							nearestFish = i
+					}
+
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx0, gvPlayer2.y - camy0, pointAngle(gvPlayer2.x, gvPlayer2.y, nearestFish.x, nearestFish.y))
+				}
+			}
+			else {
+				if(gvSwapScreen) {
+					if(gvPlayer) {
+						local nearestFish = null
+						foreach(i in actor["Herring"]) {
+							if(nearestFish == null || distance2(i.x, i.y, gvPlayer.x, gvPlayer.y) < distance2(nearestFish.x, nearestFish.y, gvPlayer.x, gvPlayer.y))
+								nearestFish = i
+						}
+
+						drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, nearestFish.x, nearestFish.y))
+					}
+
+					if(gvPlayer2) {
+						local nearestFish = null
+						foreach(i in actor["Herring"]) {
+							if(nearestFish == null || distance2(i.x, i.y, gvPlayer2.x, gvPlayer2.y) < distance2(nearestFish.x, nearestFish.y, gvPlayer2.x, gvPlayer2.y))
+								nearestFish = i
+						}
+
+						drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2, gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, nearestFish.x, nearestFish.y))
+					}
+				}
+				else {
+					if(gvPlayer) {
+						local nearestFish = null
+						foreach(i in actor["Herring"]) {
+							if(nearestFish == null || distance2(i.x, i.y, gvPlayer.x, gvPlayer.y) < distance2(nearestFish.x, nearestFish.y, gvPlayer.x, gvPlayer.y))
+								nearestFish = i
+						}
+
+						drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1, gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, nearestFish.x, nearestFish.y))
+					}
+
+					if(gvPlayer2) {
+						local nearestFish = null
+						foreach(i in actor["Herring"]) {
+							if(nearestFish == null || distance2(i.x, i.y, gvPlayer2.x, gvPlayer2.y) < distance2(nearestFish.x, nearestFish.y, gvPlayer2.x, gvPlayer2.y))
+								nearestFish = i
+						}
+
+						drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, nearestFish.x, nearestFish.y))
+					}
 				}
 			}
 		}
@@ -1616,7 +1685,11 @@
 			break
 
 		case 114:
-			c = newActor(PeterFlower, i.x + 8, i.y - 8, i.name)
+			c = newActor(PeterFlower, i.x + 8, i.y - 8)
+			break
+
+		case 115:
+			c = newActor(PeterFlower, i.x + 8, i.y - 8, -1)
 			break
 	}
 

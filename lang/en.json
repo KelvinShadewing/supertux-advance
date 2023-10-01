@@ -286,7 +286,9 @@
 		"konqi-flame" :
 		["You can breathe fire as Konqi or Katie if you have no other element set to your main or sub weapon. Press %s or %s. Even at zero energy, they'll still be able to use a short-range fire attack. Fire blocks like these can be burned by other characters' fire attacks as well.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
 		"fly-refresher" :
-		"Spinning air feathers suspended in tornados will refresh your stamina when in air form. Use these to fly longer over long stretches."
+		"Spinning air feathers suspended in tornados will refresh your stamina when in air form. Use these to fly longer over long stretches.",
+		"trapper-plant" :
+		"Trapper plants and puffranahs will swallow you whole! If they catch you, mash the arrow keys to escape!"
 	},
 
 	"devcom" : {
@@ -791,7 +793,8 @@
 		"nessland-crush" : "Petrichor",
 		"nessland-switch" : "Orange Switch Trial",
 		"nessland-attack" : "Attack From Above",
-		"nessland-cliffs" : "Cliff Notes"
+		"nessland-cliffs" : "Cliff Notes",
+		"nessland-night" : "Black Night Woods"
 	},
 
 	"achi-name" : {

@@ -109,7 +109,7 @@
 		if(zoomies > 0) zoomies--
 		if(resTime > 0) resTime--
 
-		if(resTime > 0 && y > gvMap.h) {
+		if(y > gvMap.h && (resTime > 0  || inWater(x, y))) {
 			y = gvMap.h
 			if(!placeFree(x, y)) {
 				local xrange = 0
@@ -126,6 +126,12 @@
 				}
 			}
 		}
+
+		if(y > gvMap.h + 16 && !inWater(x, y)) {
+			die()
+			return
+		}
+
 		if(y < -100) y = -100.0
 		if(y < 0 && !placeFree(x, y)) {
 			local xrange = 0
@@ -223,8 +229,38 @@
 			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50 || (wl.data[tile] - gvMap.solidfid == 79 && advancedClimbing)) {
 				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
 				gvMap.shape.kind = 0
-				gvMap.shape.w = 1.0
+				gvMap.shape.w = 4.0
 				gvMap.shape.h = 12.0
+				if(hitTest(ns, gvMap.shape)) return true
+			}
+		}
+
+		return false
+	}
+
+	function atCrossLadder() {
+		//Save current location and move
+		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
+		local cx = floor(x / 16)
+		local cy = floor(y / 16)
+
+		//Check that the solid layer exists
+		local wl = null //Working layer
+		for(local i = 0; i < gvMap.data.layers.len(); i++) {
+			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
+				wl = gvMap.data.layers[i]
+				break
+			}
+		}
+
+		//Check against places in solid layer
+		if(wl != null) {
+			local tile = cx + (cy * wl.width)
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 80 || (wl.data[tile] - gvMap.solidfid == 81 && advancedClimbing)) {
+				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
+				gvMap.shape.kind = 0
+				gvMap.shape.w = 8.0
+				gvMap.shape.h = 8.0
 				if(hitTest(ns, gvMap.shape)) return true
 			}
 		}

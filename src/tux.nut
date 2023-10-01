@@ -577,13 +577,28 @@
 						y += 2
 					}
 
+					if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y - 2)) {
+						if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
+							frame -= climbdir / 8
+						x -= 1
+					}
+
+					if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y + 2)) {
+						if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
+							frame += climbdir / 8
+						x += 1
+					}
+
 					//Check if still on ladder
 					local felloff = true
-					if(atLadder()) felloff = false
+					if(atLadder() || atCrossLadder()) felloff = false
 					if(felloff) {
 						anim = "fall"
 						frame = 0.0
 						if(getcon("up", "hold", true, playerNum)) vspeed = -2.5
+					}
+					else if(!atCrossLadder()) {
+						x -= (x % 16 <=> 8)
 					}
 
 					//Change direction
@@ -593,12 +608,12 @@
 
 				//Get on ladder
 				if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
-					if(atLadder()) {
+					if(atLadder() || atCrossLadder()) {
 						anim = "climb"
 						frame = 0.0
 						hspeed = 0
 						vspeed = 0
-						x = (x - (x % 16)) + 8
+						x = round(x)
 					}
 				}
 
@@ -885,11 +900,11 @@
 
 				case "shock":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
-						local fx = 6
+						local fx = 5
 						if(flip == 1) fx = -5
 						local c = fireWeapon(Shockball, x + fx, y, 1, id)
-						if(!flip) c.hspeed = 4
-						else c.hspeed = -4
+						if(!flip) c.hspeed = 1
+						else c.hspeed = -1
 						c.hspeed += hspeed
 						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -1400,10 +1415,6 @@
 		else shape = shapeStand
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
-		if(y > gvMap.h + 16) {
-			die()
-			return
-		}
 		if(y < -100) y = -100.0
 
 		switch(escapeMoPlat(1, 1)) {

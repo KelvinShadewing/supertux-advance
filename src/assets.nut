@@ -178,6 +178,8 @@
 ::defExit <- sprExit
 ::sprIcoSecret <- newSprite("res/gfx/ico-secret.png", 16, 16, 0, 0, 8, 8)
 ::defIcoSecret <- sprIcoSecret
+::sprHerrow <- newSprite("res/gfx/herrow.png", 8, 7, 0, 0, -16, 3)
+::defHerrow <- sprHerrow
 
 ::sprNearRedBack <- newSprite("res/gfx/near-health-back.png", 8, 32, 0, 0, 0, 0)
 ::sprNearGreenBack <- newSprite("res/gfx/near-stamina-back.png", 32, 8, 0, 0, 0, 0)
@@ -327,6 +329,8 @@
 ::defClamor <- sprClamor
 ::sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 0, 0, 5, 4)
 ::defIcicle <- sprIcicle
+::sprPinecone <- newSprite("res/gfx/pinecone.png", 10, 16, 0, 0, 5, 4)
+::defPinecone <- sprPinecone
 ::sprFlyAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 0, 0, 10, 10)
 ::defFlyAmanita <- sprFlyAmanita
 ::sprJumpy <- newSprite("res/gfx/bouncecap.png", 16, 20, 0, 0, 8, 8)
@@ -693,6 +697,9 @@
 ::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
 ::bgForest2 <- newSprite("res/gfx/forest-cliff-bg.png", 755, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 640, 240, 0, 0, 0, 0)
+::bgForestNight0 <- newSprite("res/gfx/forest0-night.png", 128, 180, 0, 0, 0, 0)
+::bgForestNight1 <- newSprite("res/gfx/forest1-night.png", 128, 240, 0, 0, 0, 0)
+::bgWoodedMountainNight <- newSprite("res/gfx/forest-mountain-night.png", 850, 240, 0, 0, 0, 0)
 ::bgStarSky <- loadImage("res/gfx/starrysky.png")
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
 ::bgCastle <- newSprite("res/gfx/castlebg.png", 640, 240, 0, 0, 0, 0)
@@ -721,7 +728,7 @@
 
 
 //Weather
-::weRain <- newSprite("res/gfx/rainfall.png", 64, 64, 0, 0, 0, 0)
+::weRain <- newSprite("res/gfx/rainfall.png", 256, 256, 0, 0, 0, 0)
 ::weSnow <- newSprite("res/gfx/snowfall.png", 64, 64, 0, 0, 0, 0)
 
 
@@ -1038,6 +1045,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 
 ::gfxEnemyForest <- function() {
 	sprMrIceguy = sprMrTurtle
+	sprIcicle = sprPinecone
 }
 
 ::tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 0, 0, 0, 0)
