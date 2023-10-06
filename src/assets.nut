@@ -341,6 +341,8 @@
 ::def1down <- spr1down
 ::sprHaywire <- newSprite("res/gfx/haywire.png", 16, 16, 0, 0, 8, 8)
 ::defHaywire <- sprHaywire
+::sprGoldbomb <- newSprite("res/gfx/goldbomb.png", 16, 16, 0, 0, 8, 8)
+::defGoldbomb <- sprGoldbomb
 ::sprSawblade <- newSprite("res/gfx/sawblade.png", 16, 16, 0, 0, 8, 8)
 ::defSawblade <- sprSawblade
 ::sprLivewire <- newSprite("res/gfx/Livewire.png", 16, 16, 0, 0, 8, 8)
