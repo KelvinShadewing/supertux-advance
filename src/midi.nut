@@ -1680,7 +1680,8 @@
 					c.sprite = topSprite
 					hspeed = 0
 					anim = "shootTop"
-					c.hspeed = (flip == 0 ? 4 : -4)
+					c.hspeed = (flip == 0 ? 4.0 : -4.0)
+					c.vspeed = 2.0
 				}
 				else {
 					c = fireWeapon(WingNut, x, y + 8, 1, id)

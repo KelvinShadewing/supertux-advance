@@ -2672,6 +2672,196 @@
 	function _typeof() { return "Haywire" }
 }
 
+::Goldbomb <- class extends Enemy {
+	squish = 0
+	scared = 0
+	wait = 60
+	anim = "walk"
+	mspeed = 4.0
+	dead = false
+	an = {
+		walk = [0, 1, 2, 3]
+		explode = [4, 4, 5, 5, 5, 5, 6, 7, 6, 7, 6, 7, 6, 7]
+		run = [8, 9, 10, 11]
+		cry = [12, 13]
+		peek = [14, 15]
+	}
+	frame = 0.0
+	flip = 0
+
+	constructor(_x, _y, _arr) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 4, 8, 0)
+		hspeed = choose(1.0, -1.0)
+		mspeed = 4.0 + (game.difficulty * 0.5)
+	}
+
+	function run() {
+		base.run()
+
+		if(!active)
+			return
+
+		local target = findPlayer()
+		if(target != null) {
+			if(inDistance2(target.x, target.y, x, y, 64 + (16 * game.difficulty)))
+				scared = 300
+
+			if(scared && fabs(hspeed) < mspeed)
+				hspeed += 0.1 * (x <=> target.x)
+		}
+
+		if(frozen) {
+					//Create ice block
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape))
+						canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+						canice = false
+					if(icebox == -1 && canice) {
+						if(health > 0) icebox = mapNewSolid(shape)
+					}
+					hspeed = 0
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
+						icebox = -1
+						if(target) if(x > gvPlayer.x) flip = 0
+						else flip = 1
+					}
+				}
+
+		if(scared > 0)
+			scared--
+		if(scared < 0)
+			scared = 0
+	}
+
+	function physics() {
+		if(!active)
+			return
+
+		if(fabs(hspeed) > 1)
+			hspeed *= 0.99
+
+		if(placeFree(x, y + 1)) vspeed += 0.2
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(placeFree(x + hspeed, y))
+			x += hspeed
+		else if(placeFree(x + hspeed, y - 2)) {
+			x += hspeed
+			y -= 2.0
+		}
+		else if((placeFree(x + hspeed, y - 16) || placeFree(x + hspeed, y - 32)) && scared)
+			vspeed = -4.0
+		else if(scared)
+			hspeed /= 2.0
+		else
+			hspeed = -hspeed
+
+		if(hspeed > 0)
+			flip = 0
+		if(hspeed < 0)
+			flip = 1
+
+		shape.setPos(x, y)
+	}
+
+	function animation() {
+		switch(anim) {
+			case "walk":
+				frame += 0.1
+				if(scared)
+					anim = "run"
+				break
+			case "run":
+				if(fabs(hspeed) <= 0.2)
+					anim = "cry"
+				frame += 0.1 * fabs(hspeed)
+				if(!scared) {
+					anim = "peek"
+					frame = 0.0
+				}
+				break
+			case "cry":
+				if(!scared) {
+					frame = 0.0
+					anim = "peek"
+				}
+				if(fabs(hspeed) > 0.2)
+					anim = "run"
+				frame += 0.2
+				break
+			case "peek":
+				hspeed = 0.0
+				frame += 0.1
+				if(frame > 6) {
+					anim = "walk"
+					hspeed = choose(1.0, -1.0)
+				}
+				break
+			case "explode":
+				frame += 0.2
+				if(frame > an["explode"].len() - 1)
+					die()
+				hspeed = 0.0
+				break
+		}
+
+		if(frozen) {
+			frame = 0.0
+			anim = "cry"
+		}
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(dead)
+			return
+
+		if(_element == "fire" || _blast)
+			die()
+		else if(_element == "ice")
+			frozen = 600
+		else if(anim != "explode") {
+			frame = 0.0
+			anim = "explode"
+			popSound(sndFizz)
+		}
+	}
+
+	function die() {
+		base.die()
+		dead = true
+
+		fireWeapon(ExplodeF2, x, y, 0, 0)
+		for(local i = 0; i < 20; i++) {
+			local c = actor[newActor(CoinSmall, x, y)]
+			c.hspeed *= 1.5
+			c.vspeed *= 1.5
+		}
+	}
+
+	function draw() {
+		drawSprite(sprGoldbomb, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+		if(frozen){
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else
+				drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+			
+	}
+
+	function _typeof() { return "Goldbomb" }
+}
+
 ::Sawblade <- class extends PathCrawler {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
