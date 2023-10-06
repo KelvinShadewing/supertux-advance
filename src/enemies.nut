@@ -2711,6 +2711,29 @@
 				hspeed += 0.1 * (x <=> target.x)
 		}
 
+		if(frozen) {
+					//Create ice block
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape))
+						canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+						canice = false
+					if(icebox == -1 && canice) {
+						if(health > 0) icebox = mapNewSolid(shape)
+					}
+					hspeed = 0
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
+						icebox = -1
+						if(target) if(x > gvPlayer.x) flip = 0
+						else flip = 1
+					}
+				}
+
 		if(scared > 0)
 			scared--
 		if(scared < 0)
@@ -2825,8 +2848,15 @@
 
 	function draw() {
 		drawSprite(sprGoldbomb, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
-		if(frozen)
-			drawSprite(sprIceTrapSmall, 0, x - camx, y - camy)
+		if(frozen){
+			if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else
+				drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+			
 	}
 
 	function _typeof() { return "Goldbomb" }
