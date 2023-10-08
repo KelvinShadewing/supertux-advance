@@ -147,6 +147,7 @@ print("Loading Frostlands overhauled PT2")
 //custom backgrounds
 
 ::dbgForestF <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgForestday, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 	}
@@ -159,6 +160,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgAuroraF <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowday, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 	}
@@ -171,12 +173,14 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgNever <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowNever, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
 ::dbgRedmond <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgRedmond, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
@@ -184,6 +188,7 @@ print("Loading Frostlands overhauled PT2")
 
 
 ::dbgSnowPlainF <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowDusk, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
@@ -196,6 +201,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgNightalt <- function() {
+	gvLightBG = true
 	drawSprite(bgSnowstars2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgStarHill, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -206,15 +212,18 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgRace <- function() {
+	gvLightBG = true
 	drawSprite(bgRace, 0, 0, (screenH() / 2) - 120)
 }
 
 
 ::dbgglitch <- function() {
+	gvLightBG = true
 	drawSprite(bgError, 0, 0, (screenH() / 2) - 120)
 }
 
 ::dbgtropicf <- function() {
+	gvLightBG = true
 	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -229,6 +238,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgtropicFS <- function() {
+	gvLightBG = true
 	drawSprite(bgOceanbg, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgOceancloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -243,6 +253,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgtropicNS <- function() {
+	gvLightBG = true
 	drawSprite(bgSnowstars2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgNightcloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -259,6 +270,7 @@ print("Loading Frostlands overhauled PT2")
 
 
 ::dbgOceanF <- function() {
+	gvLightBG = true
 	drawSprite(bgOceanbg, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgOceancloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 60)
@@ -267,6 +279,7 @@ print("Loading Frostlands overhauled PT2")
 }
 
 ::dbgtropicS <- function() {
+	gvLightBG = true
 	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
