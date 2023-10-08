@@ -2412,7 +2412,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgUnderwater\nsongPlay(musDeluge)\nsetLight(0x204080ff)\ngfxEnemySnow()"
+         "value":"drawBG = dbgUnderwater\nsongPlay(musDeluge)\nsetLight(0x6080b0ff)\ngfxEnemySnow()"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",
