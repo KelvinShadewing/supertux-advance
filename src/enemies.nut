@@ -70,6 +70,18 @@
 				}
 			}
 
+			local waterType = inWater(x, y)
+			switch(waterType) {
+				case "lava":
+					frozen = 0
+					health -= 0.2 * damageMult.fire
+					break
+				case "acid":
+					frozen = 0
+					health -= 0.1 * damageMult.toxic
+					break
+			}
+
 			if(gvPlayer && health > 0) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
 					if("invincible" in gvPlayer && gvPlayer.invincible > 0) hurtInvinc()
@@ -2817,6 +2829,9 @@
 			frame = 0.0
 			anim = "cry"
 		}
+
+		if(health <= 0.0)
+			die()
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -6639,4 +6654,147 @@
 	}
 
 	function _typeof() { return "PeterFlower" }
+}
+
+::Granito <- class extends Enemy {
+	frame = 0.0
+	flip = false
+	squish = false
+	squishTime = 0.0
+	smart = false
+	moving = false
+	touchDamage = 0.0
+	health = 0.0
+	w = 8
+	h = 8
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x.tofloat(), _y.tofloat())
+		shape = Rec(x, y, 8, 8, 0)
+
+		smart = bool(_arr)
+	}
+
+	function routine() {}
+	function animation() {}
+	function physics() {}
+
+	function run() {
+		base.run()
+		health = 100
+
+		if(active) {
+			local target = findPlayer()
+			if(!moving) {
+				if(target != null && target && x > target.x) flip = true
+				moving = true
+			}
+
+			if(!squish) {
+				if(placeFree(x, y + 1)) vspeed += 0.1
+				if(placeFree(x, y + vspeed)) y += vspeed
+				else vspeed /= 2
+
+				if(y > gvMap.h + 8) die()
+
+				if(!frozen) {
+					if(flip) {
+						if(placeFree(x - 1, y)) x -= 1.0
+						else if(placeFree(x - 2, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else if(placeFree(x - 1, y - 2)) {
+							x -= 1.0
+							y -= 1.0
+						} else flip = false
+
+						if(smart) if(placeFree(x - 6, y + 14) && !placeFree(x + 2, y + 14)) flip = false
+
+						if(x <= 0) flip = false
+						hspeed = -1.0
+					}
+					else {
+						if(placeFree(x + 1, y)) x += 1.0
+						else if(placeFree(x + 1, y - 1)) {
+							x += 1.0
+							y -= 1.0
+						} else if(placeFree(x + 2, y - 2)) {
+							x += 1.0
+							y -= 1.0
+						} else flip = true
+
+						if(smart) if(placeFree(x + 6, y + 14) && !placeFree(x - 2, y + 14)) flip = true
+
+						if(x >= gvMap.w) flip = true
+						hspeed = 1.0
+					}
+				}
+
+				if(frozen) {
+					//Create ice block
+					local canice = true
+					if(gvPlayer && hitTest(shape, gvPlayer.shape))
+						canice = false
+					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+						canice = false
+					if(icebox == -1 && canice) {
+						if(health > 0) icebox = mapNewSolid(shape)
+					}
+				}
+				else {
+					//Delete ice block
+					if(icebox != -1) {
+						newActor(IceChunks, x, y)
+						mapDeleteSolid(icebox)
+						icebox = -1
+						if(gvPlayer) if(x > gvPlayer.x) flip = true
+						else flip = false
+					}
+				}
+			}
+			else {
+				squishTime += 0.025
+				if(squishTime >= 1) die()
+			}
+
+			if(!squish) shape.setPos(x, y)
+			setDrawColor(0xff0000ff)
+			if(debug) shape.draw()
+		}
+	}
+
+	function draw() {
+		if(!active) return
+
+		if(!squish) {
+			if(frozen) {
+				if(smart) drawSprite(sprGranito, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprGranito, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+				if(frozen <= 120) {
+				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+				}
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else {
+				if(smart) drawSprite(sprGranito, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprGranito, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			}
+		}
+		else {
+			if(smart) drawSprite(sprGranito, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSprite(sprGranito, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		}
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {}
+
+	function hurtblast() {}
+
+	function hurtFire() {}
+
+	function hurtIce() {}
+
+	function _typeof() { return "MoPlat" }
 }

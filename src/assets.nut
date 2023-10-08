@@ -425,6 +425,8 @@
 ::defShortfuse <- sprShortfuse
 ::sprPeterFlower <- newSprite("res/gfx/peter.png", 48, 44, 0, 0, 24, 36)
 ::defPeterFlower <- sprPeterFlower
+::sprGranito <- newSprite("res/gfx/granito.png", 24, 24, 0, 0, 12, 14)
+::defGranito <- sprGranito
 
 ::sprGooBlack <- newSprite("res/gfx/goo-black.png", 16, 16, 0, 0, 8, 8)
 ::defGooBlack <- sprGooBlack
@@ -576,6 +578,10 @@
 ::defExplodeW2 <- sprExplodeW2
 ::sprWaterSurface <- newSprite("res/gfx/watersurface.png", 16, 4, 0, 0, 0, 0)
 ::defWaterSurface <- sprWaterSurface
+::sprLavaSurface <- newSprite("res/gfx/lavasurface.png", 16, 16, 0, 0, 0, 8)
+::defLavaSurface <- sprLavaSurface
+::sprAcidSurface <- newSprite("res/gfx/acidsurface.png", 16, 16, 0, 0, 0, 0)
+::defAcidSurface <- sprAcidSurface
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 ::defHeal <- sprHeal
 ::sprHealMana <- newSprite("res/gfx/heal-mana.png", 7, 7, 0, 0, 3, 3)
@@ -584,6 +590,10 @@
 ::defHealStamina <- sprHealStamina
 ::sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 0, 0, 12, 16)
 ::defSplash <- sprSplash
+::sprAcidSplash <- newSprite("res/gfx/acidsplash.png", 21, 17, 0, 0, 12, 16)
+::defAcidSplash <- sprAcidSplash
+::sprLavaSplash <- newSprite("res/gfx/lavasplash.png", 21, 17, 0, 0, 12, 16)
+::defLavaSplash <- sprLavaSplash
 ::sprBigSpark <- newSprite("res/gfx/hit-yellow.png", 55, 68, 0, 0, 32, 40)
 ::defBigSpark <- sprBigSpark
 ::sprSteelBall <- newSprite("res/gfx/steelball.png", 8, 8, 0, 0, 4, 4)

@@ -378,10 +378,6 @@
 		
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
-		if(y > gvMap.h + 16) {
-			die()
-			return
-		}
 		if(y < -100) y = -100.0
 
 		switch(escapeMoPlat(1, 1)) {
@@ -709,10 +705,10 @@
 		if(anim in an && an[anim] != null && anim != "hurt")
 			frame = wrap(abs(frame), 0, an[anim].len() - 1)
 
-		if(wasInWater && !nowInWater || nowInWater && !wasInWater)
-			newActor(Splash, x, y)
 		if(!wasInWater && nowInWater)
 			vspeed /= 8.0
+		if(wasInWater && !nowInWater)
+			vspeed *= 2.0
 	}
 
 	function ruNormal() {
@@ -972,10 +968,6 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
-		if(stats.health == 0) {
-			die()
-			return
-		}
 
 		//Defensive element
 		switch(stats.weapon) {

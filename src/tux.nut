@@ -28,7 +28,6 @@
 	jumpBuffer = 0
 	rspeed = 0.0 //Run animation speed
 	slideframe = 0.0 //Because using just frame gets screwy for some reason
-	wasInWater = false
 	antigrav = 0
 	groundx = 0.0 //Remember last coordinates over solid ground
 	groundy = 0.0
@@ -256,7 +255,8 @@
 		local freeLeft = placeFree(x - 1, y)
 		local freeRight = placeFree(x + 1, y)
 		local freeUp = placeFree(x, y - 1)
-		local nowInWater = inWater(x, y)
+		wasInWater = nowInWater
+		nowInWater = inWater(x, y)
 		//Checks are done at the beginning and stored here so that they can be
 		//quickly reused. Location checks will likely need to be done multiple
 		//times per frame.
@@ -762,17 +762,6 @@
 				antigrav--
 			if(!freeUp && vspeed < 0)
 				vspeed = 0.0 //If Tux bumped his head
-
-			//Entering water
-			if(nowInWater && !wasInWater) {
-				wasInWater = true
-				vspeed /= 2.0
-				newActor(Splash, x, y)
-			}
-			if(!nowInWater && wasInWater) {
-				wasInWater = false
-				newActor(Splash, x, y)
-			}
 
 			//Landing while sliding
 			if(anim == "slide" && !placeFree(x, y + 1) && vspeed >= 2 && placeFree(x + hspeed, y) && !onPlatform()) {
@@ -1457,10 +1446,6 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
-		if(stats.health == 0) {
-			die()
-			return
-		}
 
 		//Invincibility
 		if(invincible > 0) invincible--

@@ -417,10 +417,6 @@
 		
 		shapeStand.setPos(x, y)
 		shapeCrawl.setPos(x, y)
-		if(y > gvMap.h + 16) {
-			die()
-			return
-		}
 		if(y < -100) y = -100.0
 
 		switch(escapeMoPlat(1, 1)) {
@@ -865,8 +861,6 @@
 				if(an[anim] != null) animOffset -= an[anim][0] //Account for starting frame in sheet
 			}
 		}
-
-		if(wasInWater && !nowInWater || nowInWater && !wasInWater) newActor(Splash, x, y)
 	}
 
 	function run() {
@@ -1260,10 +1254,6 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
-		if(stats.health == 0) {
-			die()
-			return
-		}
 
 		if(nowInWater) {
 			routine = ruSwim
@@ -1354,10 +1344,6 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
-		if(stats.health == 0) {
-			die()
-			return
-		}
 
 		if(!nowInWater && resTime <= 0) {
 			routine = ruNormal
@@ -1464,10 +1450,6 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
-		if(stats.health == 0) {
-			die()
-			return
-		}
 
 		if(resTime > 0) {
 			routine = ruSwim

@@ -243,7 +243,8 @@
 		local freeLeft = placeFree(x - 1, y)
 		local freeRight = placeFree(x + 1, y)
 		local freeUp = placeFree(x, y - 1)
-		local nowInWater = inWater(x, y)
+		wasInWater = nowInWater
+		nowInWater = inWater(x, y)
 		//Checks are done at the beginning and stored here so that they can be
 		//quickly reused. Location checks will likely need to be done multiple
 		//times per frame.
@@ -755,18 +756,6 @@
 				antigrav--
 			if(!freeUp && vspeed < 0)
 				vspeed = 0.0 //If Konqi bumped his head
-
-			//Entering water
-			if(nowInWater && !wasInWater) {
-				wasInWater = true
-				vspeed /= 2.0
-				newActor(Splash, x, y)
-			}
-			if(!nowInWater && wasInWater) {
-				wasInWater = false
-				newActor(Splash, x, y)
-			}
-
 
 			if(anim == "slide" && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
 				//If Konqi hits the ground while sliding
@@ -1502,10 +1491,6 @@
 		else shape = shapeStand
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
-		if(y > gvMap.h + 16) {
-			die()
-			return
-		}
 		if(y < -100) y = -100.0
 
 		switch(escapeMoPlat(1, 1)) {

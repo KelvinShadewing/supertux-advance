@@ -43,6 +43,8 @@
 	friction = 0.1
 	baseFriction = 0.1
 	swimming = false
+	nowInWater = false
+	wasInWater = false
 	onWall = false
 
 	hurt = 0 //How much damage has been taken
@@ -127,7 +129,7 @@
 			}
 		}
 
-		if(y > gvMap.h + 16 && !inWater(x, y)) {
+		if(y > gvMap.h + 16 && !inWater(x, y) || stats.health <= 0) {
 			die()
 			return
 		}
@@ -187,6 +189,9 @@
 
 		if(stats.stamina > stats.maxStamina)
 			stats.stamina = stats.maxStamina
+
+		if(wasInWater && !nowInWater || nowInWater && !wasInWater)
+			newActor(Splash, x, y, (nowInWater ? nowInWater : wasInWater))
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {

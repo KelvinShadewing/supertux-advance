@@ -272,7 +272,7 @@
 						break
 					case "water":
 					if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
-						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
+						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.name)
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
 						break
 					case "secret":
@@ -1694,6 +1694,16 @@
 
 		case 115:
 			c = newActor(PeterFlower, i.x + 8, i.y - 8, -1)
+			break
+
+		case 116:
+			c = newActor(Granito, i.x + 8, i.y - 8, false)
+			game.maxEnemies++
+			break
+
+		case 117:
+			c = newActor(Granito, i.x + 8, i.y - 8, true)
+			game.maxEnemies++
 			break
 	}
 

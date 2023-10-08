@@ -1113,7 +1113,7 @@
 
 		if(actor.rawin("Water")) {
 			foreach(i in actor["Water"]) {
-				if(hitTest(ns, i.shape)) return true
+				if(hitTest(ns, i.shape)) return i.substance
 			}
 		}
 

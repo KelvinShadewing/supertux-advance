@@ -117,11 +117,23 @@
 ::Splash <- class extends Actor {
 	frame = 0.0
 	angle = 0
+	sprite = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		angle = (360 / 8) * randInt(8)
 		popSound(sndSplash)
+		switch(_arr) {
+			case "lava":
+				sprite = sprLavaSplash
+				break
+			case "acid":
+				sprite = sprAcidSplash
+				break
+			default:
+				sprite = sprSplash
+				break
+		}
 	}
 
 	function run() {
@@ -129,7 +141,7 @@
 		if(frame >= 4) deleteActor(id)
 	}
 
-	function draw() { drawSpriteZ(7, sprSplash, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 0.8) }
+	function draw() { drawSpriteZ(7, sprite, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 0.8) }
 }
 
 ::FlameTiny <- class extends Actor {
