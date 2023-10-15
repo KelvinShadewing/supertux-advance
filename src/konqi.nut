@@ -1534,10 +1534,6 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
-		if(stats.health == 0) {
-			die()
-			return
-		}
 
 		//Invincibility
 		if(invincible > 0) invincible--

@@ -13941,7 +13941,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgWoodedMountain\nsongPlay(musForestTop)\nactor[mapActor[359]].health = 10\ngfxEnemyForest()"
+         "value":"drawBG = dbgWoodedMountain\nsongPlay(musForestTop)\nactor[mapActor[359]].health = 10\ngfxEnemyForest()\nsprHerring = sprPumpkin"
         }, 
         {
          "name":"run",

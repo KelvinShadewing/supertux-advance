@@ -522,6 +522,8 @@
 ::defShockBulb <- sprShockBulb
 ::sprWaterLily <- newSprite("res/gfx/water-lily.png", 16, 16, 0, 0, 8, 8)
 ::defWaterLily <- sprWaterLily
+::sprPumpkin <- newSprite("res/gfx/pumpkin.png", 16, 16, 0, 0, 8, 8)
+::defPumpkin <- sprPumpkin
 
 
 
@@ -1009,6 +1011,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 	sprKeyGold = defKeyGold
 	sprKeyMythril = defKeyMythril
 	sprSpecialBall = defSpecialBall
+	sprHerring = defHerring
 
 	sprSpark = defSpark
 	sprGlimmer = defGlimmer
