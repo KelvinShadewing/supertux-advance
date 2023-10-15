@@ -181,8 +181,8 @@
                  "type":"",
                  "visible":true,
                  "width":256,
-                 "x":192,
-                 "y":-0.414732493987245
+                 "x":240,
+                 "y":0
                 }, 
                 {
                  "height":198.5,
@@ -203,8 +203,8 @@
                  "type":"",
                  "visible":true,
                  "width":144,
-                 "x":48,
-                 "y":0
+                 "x":96,
+                 "y":16
                 }, 
                 {
                  "height":229.007,
@@ -215,11 +215,11 @@
                  "visible":true,
                  "width":143.918,
                  "x":112,
-                 "y":112
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -292,7 +292,7 @@
                  "gid":900,
                  "height":16,
                  "id":34,
-                 "name":"",
+                 "name":"nessland-wood",
                  "rotation":0,
                  "type":"",
                  "visible":true,
