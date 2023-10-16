@@ -582,8 +582,12 @@
 ::defWaterSurface <- sprWaterSurface
 ::sprLavaSurface <- newSprite("res/gfx/lavasurface.png", 16, 16, 0, 0, 0, 8)
 ::defLavaSurface <- sprLavaSurface
+::sprLava <- newSprite("res/gfx/lava.png", 16, 16, 0, 0, 0, 8)
+::defLava <- sprLava
 ::sprAcidSurface <- newSprite("res/gfx/acidsurface.png", 16, 16, 0, 0, 0, 0)
 ::defAcidSurface <- sprAcidSurface
+::sprAcid <- newSprite("res/gfx/acid.png", 16, 16, 0, 0, 0, 0)
+::defAcid <- sprAcid
 ::sprHeal <- newSprite("res/gfx/heal.png", 7, 7, 0, 0, 3, 3)
 ::defHeal <- sprHeal
 ::sprHealMana <- newSprite("res/gfx/heal-mana.png", 7, 7, 0, 0, 3, 3)
@@ -786,6 +790,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::sndExplodeA <- loadSound("res/snd/explodeA.ogg")
 ::sndExplodeA2 <- loadSound("res/snd/explodeA2.ogg")
 ::sndExplodeA3 <- loadSound("res/snd/explodeA3.ogg")
+::sndExplodeTiny <- loadSound("res/snd/explode-tiny.ogg")
 ::sndFizz <- loadSound("res/snd/fizz.ogg")
 ::sndBell <- loadSound("res/snd/bell.ogg")
 ::sndIcicle <- loadSound("res/snd/icicle.ogg")

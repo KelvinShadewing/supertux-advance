@@ -1046,7 +1046,7 @@
 
 				//Check if still on ladder
 				local felloff = true
-					if(atLadder() || atCrossLadder()) felloff = false
+					if(atLadder(x, y + 2) || atCrossLadder()) felloff = false
 					if(felloff) {
 						anim = "fall"
 						frame = 0.0
@@ -1135,12 +1135,13 @@
 
 			//Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if((onPlatform() || onPlatform(8) || onPlatform(-8)) && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum)) {
+				if((onPlatform(0, 2) || onPlatform(8, 2) || onPlatform(-8, 2) || !placeFree(x, y + 2)) && getcon("down", "hold", true, playerNum)) {
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					if(anim == "plantMine") shooting = 0
 					if(anim == "stand" || anim == "walk") anim = "jumpT"
+					jumpBuffer = 0
 				}
 				else if(canJump > 0 || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0

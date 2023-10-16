@@ -167,6 +167,50 @@
 	}
 }
 
+::Bubble <- class extends Actor {
+	frame = 0.0
+	angle = 0
+	hspeed = 0.0
+	vspeed = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+
+	function run() {
+		x += hspeed
+		y += vspeed
+		frame += 0.25
+		if(frame >= 6) deleteActor(id)
+	}
+
+	function draw() {
+		drawSpriteZ(6, sprBubble, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+	}
+}
+
+::AcidBubble <- class extends Actor {
+	frame = 0.0
+	angle = 0
+	hspeed = 0.0
+	vspeed = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+
+	function run() {
+		x += hspeed
+		y += vspeed
+		frame += 0.25
+		if(frame >= 6) deleteActor(id)
+	}
+
+	function draw() {
+		drawSpriteZ(6, sprBubble, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1, 0xa0c838ff)
+	}
+}
+
 ::CoinEffect <- class extends Actor {
 	vspeed = -6.0
 	value = 1

@@ -799,8 +799,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		stopSound(sndExplodeF)
-		playSound(sndExplodeF, 0)
+		popSound(sndExplodeTiny)
 
 		shape = Cir(x, y, 8.0)
 	}

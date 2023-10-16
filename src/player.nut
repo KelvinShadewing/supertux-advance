@@ -192,6 +192,10 @@
 
 		if(wasInWater && !nowInWater || nowInWater && !wasInWater)
 			newActor(Splash, x, y, (nowInWater ? nowInWater : wasInWater))
+
+		
+		if(holding != 0 && !checkActor(holding))
+			holding = 0
 	}
 
 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false) {
@@ -213,11 +217,15 @@
 		else blinking--
 	}
 
-	function atLadder() {
+	function atLadder(_x = -1, _y = -1) {
 		//Save current location and move
 		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
-		local cx = floor(x / 16)
-		local cy = floor(y / 16)
+		if(_x != -1)
+			ns.x = _x
+		if(_y != -1)
+			ns.y = _y
+		local cx = floor(ns.x / 16)
+		local cy = floor(ns.y / 16)
 
 		//Check that the solid layer exists
 		local wl = null //Working layer
