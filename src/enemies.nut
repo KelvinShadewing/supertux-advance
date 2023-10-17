@@ -75,6 +75,8 @@
 				case "lava":
 					frozen = 0
 					health -= 0.2 * damageMult.fire
+					if("hurtFire" in this)
+						hurtFire()
 					break
 				case "acid":
 					frozen = 0
