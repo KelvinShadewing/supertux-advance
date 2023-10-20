@@ -4755,6 +4755,7 @@
 	}
 
 	function run() {
+		health = 100
 		base.run()
 
 		if(y < ystart) {
@@ -6203,6 +6204,8 @@
 	}
 
 	function run() {
+		health = 100
+
 		base.run()
 		if(!active)
 			return
