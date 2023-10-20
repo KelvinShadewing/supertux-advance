@@ -554,6 +554,10 @@
 	drawZList(8)
 
 	runAmbientLight()
+
+	if(gvPlayer)
+		drawLight(sprLightBasic, 0, gvPlayer.x - camx, gvPlayer.y - camy - 8)
+
 	drawAmbientLight()
 
 	if(gvLevel != "") {

@@ -40,7 +40,7 @@
 							gvFoundItems[k] <- typeof this
 					}
 
-					if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer && fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.inMelee) && hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -73,7 +73,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer && (fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.inMelee) && hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -107,7 +107,7 @@
 							gvFoundItems[k] <- typeof this
 					}
 
-					if("anim" in gvPlayer2) if(fabs(gvPlayer2.hspeed) >= 4.5 && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer2 && fabs(gvPlayer2.hspeed) >= 4.5 && (gvPlayer2.inMelee) && hitTest(slideshape, gvPlayer2.shape)) {
 						gvPlayer2.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -140,7 +140,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.inMelee)) if(hitTest(slideshape, gvPlayer2.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -397,7 +397,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.inMelee)) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -426,7 +426,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.inMelee)) if(hitTest(slideshape, gvPlayer2.shape)) {
 				gvPlayer2.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)

@@ -275,6 +275,8 @@
 	frame = 0.0
 	shape = 0
 	piercing = -1
+	sprite = 0
+	angle = 0.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -282,6 +284,8 @@
 		popSound(sndThrow, 0)
 
 		shape = Cir(x, y, 16.0)
+
+		sprite = sprShieldInsta
 	}
 
 	function run() {
@@ -303,7 +307,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(4, sprShieldInsta, frame, x - camx, y - camy)
+		drawSpriteZ(4, sprite, frame, x - camx, y - camy, angle)
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)

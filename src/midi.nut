@@ -360,7 +360,7 @@
 		//Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
 		if(slippery) {
-			if(!placeFree(x, y + 8) && (fabs(hspeed) < 6)) {
+			if(!placeFree(x, y + 8) && (fabs(hspeed) < (nowInWater ? 2 : 6))) {
 				if(placeFree(x + 4, y + 1) && !onPlatform(hspeed)) {
 					hspeed += 0.2
 				}
@@ -435,8 +435,12 @@
 		}
 
 		//Set ice friction
-		if(onIce()) friction = 0.01
-		else friction = 0.1
+		if(onIce())
+			friction = 0.01
+		else
+			friction = 0.1
+		if(nowInWater && fabs(hspeed) > 2)
+			hspeed *= 0.98
 
 		//Movement
 		if((!placeFree(x, y + 1) || onPlatform())) {
@@ -970,7 +974,7 @@
 			}
 
 			if(invincible) mspeed += 0.4
-			if(nowInWater) mspeed *= 0.8
+			if(nowInWater) mspeed *= 0.5
 			if(zoomies > 0) mspeed *= 2.0
 
 			//Moving left and right
@@ -1372,7 +1376,7 @@
 			}
 
 			if(invincible) mspeed += 0.4
-			if(nowInWater) mspeed *= 0.8
+			if(nowInWater) mspeed *= 0.5
 			if(zoomies > 0) mspeed *= 2.0
 
 			//Moving left and right

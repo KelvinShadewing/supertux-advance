@@ -75,12 +75,14 @@
 				case "lava":
 					frozen = 0
 					health -= 0.2 * damageMult.fire
-					if("hurtFire" in this)
+					if("hurtFire" in this && health <= 0)
 						hurtFire()
 					break
 				case "acid":
 					frozen = 0
 					health -= 0.1 * damageMult.toxic
+					if("hurtBlast" in this && health <= 0)
+						hurtBlast()
 					break
 			}
 
@@ -124,6 +126,13 @@
 			if(blinking < 0) blinking = 0
 		}
 		else if(isOnScreen()) active = true
+
+		if(health <= 0) {
+			frozen = 0
+			mapDeleteSolid(icebox)
+			die()
+			return
+		}
 	}
 
 	function hurtInvinc() {
@@ -169,12 +178,6 @@
 		health -= damage
 		if(damage > 0) blinking = blinkMax
 
-		if(health <= 0) {
-			frozen = 0
-			mapDeleteSolid(icebox)
-			die()
-			return
-		}
 		if(_element == "ice" && icebox == -1 && freezeTime > 0) {
 			frozen = minFreezeTime + (freezeTime * damageMult["ice"])
 			icebox = mapNewSolid(shape)
@@ -2249,6 +2252,8 @@
 		}
 
 		shape.setPos(x, y)
+		if(health <= 0)
+			die()
 	}
 
 	function draw() {
@@ -5092,6 +5097,8 @@
 	health = 4
 	blinkMax = 30.0
 	freezeSprite = sprIceTrapLarge
+	searchRadius = 160
+	catchRadius = 56
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -5133,7 +5140,7 @@
 					swimTimer = randInt(480) + 120
 				}
 
-				if(target != null && inDistance2(x, y, target.x, target.y, 96)) {
+				if(target != null && inDistance2(x, y, target.x, target.y, searchRadius)) {
 					if(target.x > x)
 						hspeed += 0.1
 					if(target.x < x)
@@ -5147,7 +5154,7 @@
 					swimTimer = 60
 				}
 
-				if(target != null && inDistance2(x, y, target.x, target.y, 56) && fabs(y - target.y) <= 8.0) {
+				if(target != null && inDistance2(x, y, target.x, target.y, catchRadius) && fabs(y - target.y) <= 8.0) {
 					frame = 0.0
 					anim = "inhale"
 				}
@@ -5309,8 +5316,8 @@
 			drawText(font, x - camx, y + 24 - camy, anim + "\n" + frame.tostring() + "\n" + health.tostring())
 
 			setDrawColor(0xf80000ff)
-			drawCircle(x - camx, y - camy, 96, false)
-			drawCircle(x - camx, y - camy, 56, false)
+			drawCircle(x - camx, y - camy, searchRadius, false)
+			drawCircle(x - camx, y - camy, catchRadius, false)
 		}
 
 		base.draw()
@@ -5335,6 +5342,7 @@
 
 	function die() {
 		base.die()
+		target = findPlayer()
 		if(target != null)
 			target.canMove = true
 
@@ -6539,12 +6547,13 @@
 	cooldown = 0
 	holdStrength = 8
 	dir = 1
+	target = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		if(_arr != null)
 			dir = int(_arr)
-		shape = Rec(x, y - (4 * dir), 12, 12, 0)
+		shape = Rec(x, y - (8 * dir), 12, 8, 0)
 	}
 
 	function run() {
@@ -6558,10 +6567,29 @@
 				if(gvPlayer && hitTest(shape, gvPlayer.shape)) {
 					hasPlayer = 1
 					holdStrength = 16
+					if(isOnScreen() && anim == "idle")
+						popSound(sndGulp)
 				}
 				else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 					hasPlayer = 2
 					holdStrength = 16
+					if(isOnScreen() && anim == "idle")
+						popSound(sndGulp)
+				}
+				else foreach(i in actor) {
+					if(i instanceof Enemy && hitTest(shape, i.shape)) {
+						hasPlayer = 3
+						target = i.id
+						if(isOnScreen() && anim == "idle")
+							popSound(sndGulp)
+					}
+					else if(["OneUp", "Starnyan"].find(typeof i) != null && hitTest(shape, i.shape)) {
+						deleteActor(i.id)
+						anim = "close"
+						frame = 0.0
+						if(isOnScreen())
+							popSound(sndGulp)
+					}
 				}
 				
 				break
@@ -6605,6 +6633,19 @@
 					cooldown = 180
 				}
 				break
+
+			case 3:
+				if(checkActor(target) && actor[target].health > 0) {
+					actor[target].x = shape.x
+					actor[target].y = shape.y
+					if(getFrames() % 15 == 0)
+						actor[target].health -= 1.0
+				}
+				else {
+					hasPlayer = 0
+					target = null
+				}
+
 		}
 
 		if(checkActor("DeadPlayer")) foreach(i in actor["DeadPlayer"]) {
@@ -6614,8 +6655,15 @@
 			}
 		}
 
+		if(checkActor("DeadNME")) foreach(i in actor["DeadNME"]) {
+			if(inDistance2(x, y, i.x, i.y, 16)) {
+				i.x = -100
+				i.y = -100
+			}
+		}
+
 		//Struggle
-		if(hasPlayer > 0 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer)))
+		if(hasPlayer > 0 && hasPlayer < 3 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer)))
 			holdStrength--
 
 		switch(anim) {

@@ -1077,7 +1077,47 @@
 				if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt") hspeed -= accel
 				if(getcon("down", "hold", true, playerNum) && vspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt") vspeed += accel
 				if(getcon("up", "hold", true, playerNum) && vspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt") vspeed -= accel
+
+				if(stats.stamina >= 1 && getcon("spec2", "press", true, playerNum)) {
+					local dashdir = 0
+					local dashspd = max(6, distance2(0, 0, hspeed, vspeed))
+
+					if(getcon("left", "hold", true, playerNum)) {
+						if(getcon("up", "hold", true, playerNum))
+							dashdir = 225
+						else if(getcon("down", "hold", true, playerNum))
+							dashdir = 135
+						else
+							dashdir = 180
+					}
+					else if(getcon("right", "hold", true, playerNum)) {
+						if(getcon("up", "hold", true, playerNum))
+							dashdir = -45
+						else if(getcon("down", "hold", true, playerNum))
+							dashdir = 45
+						else
+							dashdir = 0
+					}
+					else if(getcon("up", "hold", true, playerNum))
+						dashdir = -90
+					else if(getcon("down", "hold", true, playerNum))
+						dashdir = 90
+					else
+						dashdir = (flip == 0 ? 0 : 180)
+
+					hspeed = lendirX(dashspd, dashdir)
+					vspeed = lendirY(dashspd, dashdir)
+
+					stats.stamina -= 1.0
+					guardtime = 120
+					local c = actor[fireWeapon(InstaShield, x, y, 1, id).id]
+					c.sprite = sprShieldDash
+					c.angle = dashdir
+					blinking = max(8, blinking)
+				}
 			}
+			if(guardtime <= 0)
+				stats.stamina += 0.05
 
 			//Friction
 			if(hspeed > 0) hspeed -= friction / 2
@@ -1454,7 +1494,7 @@
 		//After image
 		if((zoomies > 0) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
 
-		inMelee = (["slide", "drill"].find(anim) != null)
+		inMelee = (["slide", "drill"].find(anim) != null || swimming && guardtime > 100)
 	}
 
 	function draw() {
