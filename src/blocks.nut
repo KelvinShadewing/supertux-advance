@@ -791,12 +791,18 @@
 	vspeed = 0.0
 	item = 0
 	text = ""
+	note = -1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 9, 0)
 		tileSetSolid(x, y, 1)
+
+		if(canint(_arr))
+			note = int(_arr)
+		note = max(note, -1)
+		note = min(note, 7)
 	}
 
 	function run() {
@@ -816,7 +822,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
-				popSound(sndPing[randInt(8)], 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -825,7 +831,7 @@
 				gvPlayer.vspeed = -4
 				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
 				vspeed = 1
-				popSound(sndPing[randInt(8)], 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 			}
 		}
 
@@ -834,7 +840,7 @@
 			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed < 0 && v == 0) if(full){
 				gvPlayer2.vspeed = 1
 				vspeed = -1
-				popSound(sndBump, 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -843,7 +849,7 @@
 				gvPlayer2.vspeed = -4
 				if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
 				vspeed = 1
-				popSound(sndBump, 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 			}
 		}
 

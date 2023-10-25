@@ -2034,7 +2034,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForestNight\ngvHorizon = (48 * 16)\ngfxEnemyForest()\nsetLight(0x6080e0ff)"
+         "value":"drawBG = dbgForestNight\ngvHorizon = (48 * 16)\ngfxEnemyForest()\nsetLight(0x6080e0ff)\nsongPlay(musSASneak)"
         }, 
         {
          "name":"run",

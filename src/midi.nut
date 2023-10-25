@@ -591,9 +591,9 @@
 						rspeed = fabs(hspeed)
 					}
 					else {
-						if(fabs(rspeed) > 1.4)
+						if(fabs(rspeed) > 1.5)
 							animOffset = 16
-						if(fabs(rspeed) > 3.4)
+						if(fabs(rspeed) >= 3.0)
 							animOffset = 32
 						if(shooting)
 							animOffset += 8
@@ -962,7 +962,7 @@
 		onWall = (anim == "wall" || an[anim] == an["fallW"])
 
 		if(canMove) {
-			mspeed = 3.5
+			mspeed = 3.2
 			if(anim == "crawl")
 				mspeed = 2.0
 

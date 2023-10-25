@@ -6178,6 +6178,8 @@
 		star = 0
 	}
 	notarget = true
+	attacking = false
+	wasHeld = false
 
 	an = {
 		stand = [0, 1]
@@ -6274,7 +6276,17 @@
 			}
 		}
 
+		wasHeld = held
 		holdMe(5)
+
+		if(wasHeld && !held)
+			attacking = true
+
+		if(!placeFree(x, y + 1) || (vspeed == 0 && hspeed == 0))
+			attacking = false
+
+		if(attacking)
+			fireWeapon(MeleeHit, x + hspeed, y + vspeed, 1, id)
 
 		if(x > xprev && fabs(x - xprev) > 0.5)
 			flip = 0
@@ -6286,7 +6298,7 @@
 		if(!active)
 			return
 		
-		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + (7 * flip), x - camx, y - camy, 0, flip)
+		drawSprite(sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + (6 * flip), x - camx, y - camy, 0, flip)
 
 		if(debug)
 			drawText(font, x - camx + 16, y - 8 - camy, anim + "(" + vspeed + ")")
@@ -6641,6 +6653,8 @@
 				if(checkActor(target) && actor[target].health > 0) {
 					actor[target].x = shape.x
 					actor[target].y = shape.y
+					actor[target].hspeed = 0
+					actor[target].vspeed = 0
 					if(getFrames() % 15 == 0)
 						actor[target].health -= 1.0
 				}
