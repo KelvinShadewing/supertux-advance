@@ -40,7 +40,7 @@
 							gvFoundItems[k] <- typeof this
 					}
 
-					if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer && fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.inMelee) && hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -73,7 +73,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer && (fabs(gvPlayer.hspeed) >= 4.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.inMelee) && hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -107,7 +107,7 @@
 							gvFoundItems[k] <- typeof this
 					}
 
-					if("anim" in gvPlayer2) if(fabs(gvPlayer2.hspeed) >= 4.5 && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer2 && fabs(gvPlayer2.hspeed) >= 4.5 && (gvPlayer2.inMelee) && hitTest(slideshape, gvPlayer2.shape)) {
 						gvPlayer2.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -140,7 +140,7 @@
 						fireWeapon(BoxHit, x, y - 8, 1, id)
 					}
 
-					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 4.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.inMelee)) if(hitTest(slideshape, gvPlayer2.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -397,7 +397,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+			if((fabs(gvPlayer.hspeed) >= 3.5 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && (gvPlayer.inMelee)) if(hitTest(slideshape, gvPlayer.shape)) {
 				gvPlayer.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -426,7 +426,7 @@
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
-			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+			if((fabs(gvPlayer2.hspeed) >= 3.5 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && (gvPlayer2.inMelee)) if(hitTest(slideshape, gvPlayer2.shape)) {
 				gvPlayer2.vspeed = 0
 				tileSetSolid(x, y, oldsolid)
 				deleteActor(id)
@@ -791,12 +791,18 @@
 	vspeed = 0.0
 	item = 0
 	text = ""
+	note = -1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
 		shape = Rec(x, y, 8, 9, 0)
 		tileSetSolid(x, y, 1)
+
+		if(canint(_arr))
+			note = int(_arr)
+		note = max(note, -1)
+		note = min(note, 7)
 	}
 
 	function run() {
@@ -816,7 +822,7 @@
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
-				popSound(sndPing[randInt(8)], 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -825,7 +831,7 @@
 				gvPlayer.vspeed = -4
 				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
 				vspeed = 1
-				popSound(sndPing[randInt(8)], 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 			}
 		}
 
@@ -834,7 +840,7 @@
 			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed < 0 && v == 0) if(full){
 				gvPlayer2.vspeed = 1
 				vspeed = -1
-				popSound(sndBump, 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
 
@@ -843,7 +849,7 @@
 				gvPlayer2.vspeed = -4
 				if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
 				vspeed = 1
-				popSound(sndBump, 0)
+				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 			}
 		}
 

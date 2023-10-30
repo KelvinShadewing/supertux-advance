@@ -319,8 +319,12 @@
 ::defBlueFishSnow <- sprBlueFishSnow
 ::sprRedFish <- newSprite("res/gfx/fishred.png", 28, 20, 0, 0, 16, 12)
 ::defRedFish <- sprRedFish
+::sprRedFishSnow <- newSprite("res/gfx/fishred-snow.png", 31, 18, 0, 0, 16, 9)
+::defRedFishSnow <- sprRedFishSnow
 ::sprGreenFish <- newSprite("res/gfx/fishgreen.png", 28, 20, 0, 0, 16, 12)
 ::defGreenFish <- sprGreenFish
+::sprGreenFishSnow <- newSprite("res/gfx/fishgreen-snow.png", 31, 18, 0, 0, 16, 9)
+::defGreenFishSnow <- sprGreenFishSnow
 ::sprDeadFish <- newSprite("res/gfx/deadfish.png", 23, 14, 0, 0, 14, 7)
 ::defDeadFish <- sprDeadFish
 ::sprJellyFish <- newSprite("res/gfx/jellyfish.png", 16, 16, 0, 0, 8, 8)
@@ -654,6 +658,8 @@
 ::defCrystalBullet <- sprCrystalBullet
 ::sprShieldInsta <- newSprite("res/gfx/shield-insta.png", 32, 32, 0, 0, 16, 16)
 ::defShieldInsta <- sprShieldInsta
+::sprShieldDash <- newSprite("res/gfx/shield-dash.png", 32, 32, 0, 0, 12, 16)
+::defShieldDash <- sprShieldDash
 ::sprShieldFire <- newSprite("res/gfx/shield-fire.png", 32, 32, 0, 0, 16, 16)
 ::defShieldFire <- sprShieldFire
 ::sprShieldIce <- newSprite("res/gfx/shield-ice.png", 32, 32, 0, 0, 16, 16)
@@ -712,11 +718,11 @@
 ::bgOceanNight <- newSprite("res/gfx/ocean-night.png", 480, 8, 0, 0, 0, 0)
 ::bgOceanSunset <- newSprite("res/gfx/ocean-sunset.png", 480, 8, 0, 0, 0, 0)
 ::bgForest0 <- newSprite("res/gfx/forest0.png", 128, 180, 0, 0, 0, 0)
-::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, 0)
+::bgForest1 <- newSprite("res/gfx/forest1.png", 128, 240, 0, 0, 0, -4)
 ::bgForest2 <- newSprite("res/gfx/forest-cliff-bg.png", 755, 240, 0, 0, 0, 0)
 ::bgWoodedMountain <- newSprite("res/gfx/woodedmountain.png", 640, 240, 0, 0, 0, 0)
 ::bgForestNight0 <- newSprite("res/gfx/forest0-night.png", 128, 180, 0, 0, 0, 0)
-::bgForestNight1 <- newSprite("res/gfx/forest1-night.png", 128, 240, 0, 0, 0, 0)
+::bgForestNight1 <- newSprite("res/gfx/forest1-night.png", 128, 240, 0, 0, 0, -4)
 ::bgWoodedMountainNight <- newSprite("res/gfx/forest-mountain-night.png", 850, 240, 0, 0, 0, 0)
 ::bgStarSky <- loadImage("res/gfx/starrysky.png")
 ::bgUnderwater <- newSprite("res/gfx/underwaterbg.png", 424, 240, 0, 0, 0, 0)
@@ -1061,6 +1067,8 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 	sprIvyRed = sprMrsSnowflake
 	sprMrIceguy = defMrIceguy
 	sprBlueFish = sprBlueFishSnow
+	sprRedFish = sprRedFishSnow
+	sprGreenFish = sprGreenFishSnow
 }
 
 ::gfxEnemyForest <- function() {

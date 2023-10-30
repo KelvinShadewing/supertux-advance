@@ -1,0 +1,14 @@
+{ "columns":6,
+ "image":"..\/gfx\/woodplat.png",
+ "imageheight":176,
+ "imagewidth":96,
+ "margin":0,
+ "name":"bridge",
+ "spacing":0,
+ "tilecount":66,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

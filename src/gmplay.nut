@@ -1331,7 +1331,7 @@
 			break
 
 		case 30:
-			c = newActor(BounceBlock, i.x + 8, i.y - 8)
+			c = newActor(BounceBlock, i.x + 8, i.y - 8, i.name)
 			break
 
 		case 31:
