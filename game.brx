@@ -135,8 +135,9 @@ gvTextW = floor(screenW() / 6) - 1
 if(config.fullscreen) toggleFullscreen()
 if(config.usefilter) setScalingFilter(1)
 gvScreen = newTexture(screenW(), screenH())
-bgPause = newTexture(screenW(), screenH())
 setScalingFilter(0)
+
+bgPause = newTexture(screenW(), screenH())
 
 gvTempScreen = newTexture(screenW(), screenH())
 textureSetBlendMode(gvTempScreen, bm_blend)

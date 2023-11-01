@@ -1563,3 +1563,106 @@
 		drawSprite(sprCube, 0, x - camx, y - camy)
 	}
 }
+
+::FlipBlock <- class extends Actor {
+	shape = 0
+	slideshape = 0
+	spinning = 0
+	v = 0.0
+	vspeed = 0
+	oldsolid = 0
+	glimmerTimer = 0
+	spintime = 120
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		oldsolid = tileGetSolid(x, y)
+		tileSetSolid(x, y, 1)
+
+		shape = Rec(x, y + 2, 7, 8, 0)
+		slideshape = Rec(x, y - 1, 16, 8, 0)
+	}
+
+	function run() {
+		if(spinning > 0)
+			spinning--
+		if(spinning == 0 && (
+			gvPlayer && !gvPlayer2 && !hitTest(shape, gvPlayer.shape)
+			|| !gvPlayer && gvPlayer2 && !hitTest(shape, gvPlayer2.shape)
+			|| gvPlayer && gvPlayer2 && !hitTest(shape, gvPlayer.shape) && !hitTest(shape, gvPlayer2.shape)
+		))
+			tileSetSolid(x, y, 1)
+		if(gvPlayer) {
+			if(spinning == 0) {
+				if(gvPlayer.vspeed < 0) if(hitTest(shape, gvPlayer.shape) && gvPlayer.y > y + 4) {
+					gvPlayer.vspeed = 0
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+
+				if(fabs(gvPlayer.hspeed) >= 4.5 && (gvPlayer.inMelee) && hitTest(slideshape, gvPlayer.shape)) {
+					gvPlayer.vspeed = 0
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+
+				if("anim" in gvPlayer) if(hitTest(gvPlayer.shape, shape) && gvPlayer.anim == "stomp") {
+					gvPlayer.vspeed = -2.0
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+			}
+		}
+
+		if(gvPlayer2) {
+			if(spinning == 0) {
+				if(gvPlayer2.vspeed < 0) if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.y > y + 4) {
+					gvPlayer2.vspeed = 0
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+
+				if(fabs(gvPlayer2.hspeed) >= 4.5 && (gvPlayer2.inMelee) && hitTest(slideshape, gvPlayer2.shape)) {
+					gvPlayer2.vspeed = 0
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+
+				if("anim" in gvPlayer2) if(hitTest(gvPlayer2.shape, shape) && gvPlayer2.anim == "stomp") {
+					gvPlayer2.vspeed = -2.0
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+			}
+		}
+
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+			if(((("altShape" in i && hitTest(shape, i.altShape)) || (!("altShape" in i) && hitTest(shape, i.shape)))) && spinning == 0) {
+				if(i.blast && !i.box && spinning == 0) {
+					popSound(sndBump, 0)
+					tileSetSolid(x, y, oldsolid)
+					fireWeapon(BoxHit, x, y - 8, 1, id)
+					spinning = spintime
+				}
+			}
+		}
+	}
+
+	function draw() { drawSpriteZ(2, sprFlipBlock, spinning / 5.0, x - 8 - camx, y - 8 - camy + v) }
+
+	function destructor() { fireWeapon(BoxHit, x, y - 8, 1, id) }
+
+	function _typeof() { return "WoodBlock" }
+}

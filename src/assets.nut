@@ -257,6 +257,8 @@
 ::defBirdCage <- sprBirdCage
 ::sprSulphurNimbus <- newSprite("res/gfx/sulphur-nimbus.png", 34, 34, 0, 0, 17, 19)
 ::defSulphurNimbus <- sprSulphurNimbus
+::sprFlipBlock <- newSprite("res/gfx/flip-block.png", 16, 16, 0, 0, 0, 0)
+::defFlipBlock <- sprFlipBlock
 
 
 

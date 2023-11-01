@@ -591,9 +591,9 @@
 						rspeed = fabs(hspeed)
 					}
 					else {
-						if(fabs(rspeed) > 1.5)
+						if(fabs(rspeed) > 1.6)
 							animOffset = 16
-						if(fabs(rspeed) >= 3.0)
+						if(fabs(rspeed) >= 3.2)
 							animOffset = 32
 						if(shooting)
 							animOffset += 8
@@ -962,7 +962,7 @@
 		onWall = (anim == "wall" || an[anim] == an["fallW"])
 
 		if(canMove) {
-			mspeed = 3.2
+			mspeed = 3.5
 			if(anim == "crawl")
 				mspeed = 2.0
 
@@ -1376,7 +1376,7 @@
 			}
 
 			if(invincible) mspeed += 0.4
-			if(nowInWater) mspeed *= 0.5
+			if(nowInWater) mspeed *= 0.7
 			if(zoomies > 0) mspeed *= 2.0
 
 			//Moving left and right

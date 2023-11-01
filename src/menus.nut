@@ -455,7 +455,14 @@ const menuY = 40
 			return format(gvLangObj["options-menu"]["usefilter"], val)
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["usefilter"] },
-		func = function() { config.usefilter = !config.usefilter; fileWrite("config.json", jsonWrite(config)) }
+		func = function() {
+			config.usefilter = !config.usefilter;
+			fileWrite("config.json", jsonWrite(config))
+			setScalingFilter(int(config.usefilter))
+			deleteTexture(gvScreen)
+			gvScreen = newTexture(screenW(), screenH())
+			setScalingFilter(0)
+		}
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },

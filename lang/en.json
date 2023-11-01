@@ -91,7 +91,7 @@
 		"stickspeed" : "Toggle stick controls speed",
 		"stickactive" : "If off, only D-pad will move player",
 		"stickcam" : "Toggle allowing gamepad stick to move camera",
-		"usefilter" : "Bilinear filtering (requires restart)",
+		"usefilter" : "Bilinear filtering",
 		"fullgame" : "All standard worlds from SuperTux Advance",
 		"lookahead" : "Camera stays ahead of player and moves smoothly",
 		"nearbars" : "Health and energy bars appear near the player",

@@ -5713,7 +5713,7 @@
 				if(!placeFree(x, y + 1)) {
 					hspeed = 0.0
 					accel = 0.0
-					anim = "stand"
+					anim = "walk"
 					walkTimer = 10
 				}
 				break
@@ -5779,8 +5779,11 @@
 		if(placeFree(x, y - 2) && mode == 1)
 			mode = 0
 
-		if(placeFree(x, y + 1) && !placeFree(x, y - 1) && mode == 0)
+		if(placeFree(x, y + 1) && !placeFree(x, y - 1) && mode != 1) {
 			mode = 1
+			if(anim != "walk")
+				anim = "walk"
+		}
 
 		if(health <= 0 && anim != "squish") {
 			frame = 0.0
@@ -6598,7 +6601,7 @@
 						if(isOnScreen() && anim == "idle")
 							popSound(sndGulp)
 					}
-					else if(["OneUp", "Starnyan"].find(typeof i) != null && hitTest(shape, i.shape)) {
+					else if(["OneUp", "Starnyan", "MuffinBlue", "MuffinRed", "SulphurNimbus"].find(typeof i) != null && hitTest(shape, i.shape)) {
 						deleteActor(i.id)
 						anim = "close"
 						frame = 0.0

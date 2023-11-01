@@ -1705,6 +1705,10 @@
 			c = newActor(Granito, i.x + 8, i.y - 8, true)
 			game.maxEnemies++
 			break
+
+		case 118:
+			c = newActor(FlipBlock, i.x + 8, i.y - 8, i.name)
+			break
 	}
 
 	return c

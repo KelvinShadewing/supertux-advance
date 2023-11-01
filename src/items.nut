@@ -1164,7 +1164,6 @@
 }
 
 ::ShockBulb <- class extends Actor{
-
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
@@ -1204,7 +1203,6 @@
 }
 
 ::WaterLily <- class extends Actor{
-
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
