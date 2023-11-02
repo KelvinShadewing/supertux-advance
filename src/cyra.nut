@@ -1,5 +1,5 @@
 
-::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 74, 54, 0, 0, 32, 33)
+::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 100, 54, 0, 0, 32, 33)
 ::defCyra <- sprCyra
 ::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 0, 0, 32, 33)
 ::defCyraFire <- sprCyraFire
