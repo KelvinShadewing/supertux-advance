@@ -519,7 +519,7 @@
 						anim = "jumpU"
 				}
 
-				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0) {
+				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0 && !antigrav) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -535,7 +535,7 @@
 
 			case "jumpT":
 				frame += 0.2
-				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0) {
+				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0 && !antigrav) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -550,7 +550,7 @@
 
 			case "fall":
 				frame += 0.25
-				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0) {
+				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0 && !antigrav) {
 					anim = "stand"
 					frame = 0.0
 				}
@@ -1102,7 +1102,7 @@
 
 		//Homing attack
 		if(stats.weapon == "ice" && checkActor(homingTarget) && antigrav > 0) {
-			local godir = pointAngle(x, y - 16, actor[homingTarget].x, actor[homingTarget].y)
+			local godir = pointAngle(x, y, actor[homingTarget].x, actor[homingTarget].y - 8)
 			hspeed = lendirX(6, godir)
 			vspeed = lendirY(6, godir)
 
