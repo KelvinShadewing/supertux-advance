@@ -2139,6 +2139,9 @@
 		if(dy < 0) dy++
 		base.run()
 
+		if(sprIcicle != defIcicle)
+			element = "normal"
+
 		if(gvPlayer && abs(y - gvPlayer.y) < 128 && y < gvPlayer.y && abs(x - gvPlayer.x) < 8 && !counting
 		|| gvPlayer2 && abs(y - gvPlayer2.y) < 128 && y < gvPlayer2.y && abs(x - gvPlayer2.x) < 8 && !counting) {
 			counting = true
@@ -2164,10 +2167,18 @@
 					newActor(Poof, x, y)
 				}
 			}
-			else fireWeapon(ExplodeI, x, y, 0, 0)
+			else if(sprIcicle == defIcicle)
+				fireWeapon(ExplodeI, x, y, 0, 0)
+			else
+				fireWeapon(ExplodeN, x, y, 0, 0)
 		}
 
-		if(vspeed > 0) fireWeapon(AfterIce, x, y, 1, id)
+		if(vspeed > 0) {
+			if(sprIcicle == defIcicle)
+				fireWeapon(AfterIce, x, y, 1, id)
+			else
+				fireWeapon(MeleeHit, x, y, 1, id)
+		}
 	}
 
 	function draw() { drawSprite(sprIcicle, 0, x + (timer % 2) - camx, y - 8 - camy + dy) }

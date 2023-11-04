@@ -37,6 +37,13 @@
 					popSound(sndBlurp)
 				}
 				break
+			case "swamp":
+			case "honey":
+				if("stats" in target && target.stats.weapon == "water")
+					break
+				target.x = (target.x + target.xprev) / 2.0
+				target.y = (target.y + target.yprev) / 2.0
+				break
 		}
 	}
 
@@ -57,6 +64,20 @@
 				}
 				for(local i = 0; i < shape.w / 8; i++) {
 					drawLight(sprLightFire, 0, x - shape.w - floor(camx) + (i * 16) + 8, y - shape.h - camy - 4, (getFrames() / 4) + (i * 15), 0, 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25), 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25))
+				}
+				break
+			case "honey":
+				setDrawColor(0xf8f80060)
+				drawRect(x - shape.w - floor(camx), y - shape.h - camy, (shape.w * 2) - 1, (shape.h * 2) + 2, true)
+				for(local i = 0; i < shape.w / 8; i++) {
+					drawSpriteEx(sprHoneySurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
+				}
+				break
+			case "swamp":
+				setDrawColor(0x68301860)
+				drawRect(x - shape.w - floor(camx), y - shape.h - camy, (shape.w * 2) - 1, (shape.h * 2) + 2, true)
+				for(local i = 0; i < shape.w / 8; i++) {
+					drawSpriteEx(sprSwampSurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
 				}
 				break
 			default:

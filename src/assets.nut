@@ -293,6 +293,7 @@
 ::sprPumpkinNPC <- newSprite("res/gfx/guests/pumpkin-npc.png", 32, 32, 0, 0, 16, 32)
 ::sprHarkinNPC <- newSprite("res/gfx/guests/harkin-dove.png", 27, 44, 0, 0, 14, 44)
 ::sprMyrMothNPC <- newSprite("res/gfx/guests/myrthemoth.png", 27, 54, 0, 0, 14, 54)
+::sprStarwalfNPC <- newSprite("res/gfx/guests/starwalf.png", 26, 42, 0, 0, 18, 42)
 
 
 
@@ -590,6 +591,10 @@
 ::defLavaSurface <- sprLavaSurface
 ::sprLava <- newSprite("res/gfx/lava.png", 16, 16, 0, 0, 0, 8)
 ::defLava <- sprLava
+::sprHoneySurface <- newSprite("res/gfx/honey-surface.png", 16, 4, 0, 0, 0, 0)
+::defHoneySurface <- sprHoneySurface
+::sprSwampSurface <- newSprite("res/gfx/swamp-surface.png", 16, 4, 0, 0, 0, 0)
+::defSwampSurface <- sprSwampSurface
 ::sprAcidSurface <- newSprite("res/gfx/acidsurface.png", 16, 16, 0, 0, 0, 0)
 ::defAcidSurface <- sprAcidSurface
 ::sprAcid <- newSprite("res/gfx/acid.png", 16, 16, 0, 0, 0, 0)

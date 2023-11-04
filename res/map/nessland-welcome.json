@@ -1267,6 +1267,18 @@
                  "width":16,
                  "x":3888,
                  "y":560
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":84,
+                 "name":"sprStarwalfNPC,0.05,sayChar,starwalf",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3904,
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1275,7 +1287,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":84,
+ "nextobjectid":85,
  "orientation":"orthogonal",
  "properties":[
         {

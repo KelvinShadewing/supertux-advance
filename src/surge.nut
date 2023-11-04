@@ -366,6 +366,9 @@
 					}
 				}
 
+				if(fabs(hspeed) >= 4 && anim == "ball")
+					vspeed -= 1.0
+
 				//If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed)) / 2.0
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
@@ -824,13 +827,13 @@
 					y += 2
 				}
 
-				if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y - 2)) {
+				if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x - 2, y)) {
 					if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
 							frame -= climbdir / 8
 					x -= 1
 				}
 
-				if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y + 2)) {
+				if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x + 2, y)) {
 					if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
 							frame += climbdir / 8
 					x += 1

@@ -582,13 +582,13 @@
 						y += 2
 					}
 
-					if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y - 2)) {
+					if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x - 2, y)) {
 						if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
 							frame -= climbdir / 8
 						x -= 1
 					}
 
-					if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x, y + 2)) {
+					if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x + 2, y)) {
 						if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
 							frame += climbdir / 8
 						x += 1
@@ -638,7 +638,7 @@
 						else vspeed = -5.8
 						didJump = true
 						if(stats.weapon != "air") canJump = 0
-						if(anim != "hurt" && anim != "dive" && (stats.weapon != "earth" || anim != "slide")) {
+						if(anim != "hurt" && anim != "dive" && anim != "crouch" && (stats.weapon != "earth" || anim != "slide")) {
 							anim = "jumpU"
 							frame = 0.0
 						}
@@ -666,7 +666,7 @@
 						if(vspeed > -4) vspeed -= 3.0
 						didJump = true
 						if(stats.weapon != "air") canJump = 0
-						if(anim != "hurt" && anim != "dive") {
+						if(anim != "hurt" && anim != "dive" && anim != "crouch") {
 							anim = "jumpU"
 							frame = 0.0
 						}
