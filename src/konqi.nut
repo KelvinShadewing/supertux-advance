@@ -821,7 +821,6 @@
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.vspeed = -0.5
-						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -847,7 +846,6 @@
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -874,7 +872,6 @@
 						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -900,7 +897,7 @@
 						local c = fireWeapon(WaterBomb, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed / 1.5
 						c.hspeed += 1.0 - randFloat(2.0)
 						c.vspeed -= randFloat(2.0)
 						playSound(sndWaterball, 0)
@@ -960,7 +957,6 @@
 						local c = fireWeapon(FireballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -987,7 +983,6 @@
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -1014,7 +1009,6 @@
 						local c = fireWeapon(EarthballK, x + fx, y - 4 + fy, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
 						c.vspeed = -0.5
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
@@ -1040,7 +1034,6 @@
 						local c = fireWeapon(WaterBomb, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
 						c.hspeed += 1.0 - randFloat(2.0)
 						c.vspeed -= randFloat(2.0)
 						playSound(sndWaterball, 0)
@@ -1071,7 +1064,7 @@
 							local c = fireWeapon(Fireball, x + fx, y, 1, id)
 							if(!flip) c.hspeed = 5
 							else c.hspeed = -5
-							c.hspeed += hspeed
+							c.hspeed += hspeed / 1.5
 							playSound(sndFireball, 0)
 							if(getcon("up", "hold", true, playerNum)) {
 								c.vspeed = -2.5
