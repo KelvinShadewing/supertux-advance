@@ -5004,7 +5004,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\nsongPlay(musDisko)"
+         "value":"drawBG = dbgAurora\nsongPlay(musDisko)\ndrawWeather = 0"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",
