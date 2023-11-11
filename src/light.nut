@@ -151,7 +151,8 @@
 
 		if(getroottable().rawin(_arr[0])) sprite = getroottable()[_arr[0]]
 		else deleteActor(id)
-		scale = _arr[1].tofloat()
+		if(1 in _arr)
+			scale = _arr[1].tofloat()
 	}
 
 	function draw() {

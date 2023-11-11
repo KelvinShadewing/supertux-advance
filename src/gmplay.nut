@@ -722,7 +722,7 @@
 		//Draw stats
 		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
 		drawSprite(sprMeterBack, 0, 24, 8)
-		for(local i = 0; i < game.maxHealth; i++)
+		for(local i = 0; i < floor(game.maxHealth); i++)
 			drawSprite(sprMeterBack, 1, 26 + (i * 2), 8)
 		drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 8)
 		setDrawColor(0xf83810ff)
@@ -739,10 +739,7 @@
 
 		if(game.ps.energy > game.ps.maxEnergy) game.ps.energy = game.ps.maxEnergy
 		drawSprite(sprMeterBack, 0, 24, 16)
-		for(local i = 0; i < game.ps.maxEnergy; i++) {
-			drawSprite(sprMeterBack, 1, 26 + (i * 4), 16)
-			drawSprite(sprMeterBack, 1, 28 + (i * 4), 16)
-		}
+		drawSprite(sprMeterBack, 1, 26, 16, 0, 0, game.ps.maxEnergy * 2.0)
 		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxEnergy), 16)
 		setDrawColor(0x1080b0ff)
 		if(game.ps.energy > 0)
@@ -782,10 +779,8 @@
 
 		if(game.ps.stamina > game.ps.maxStamina) game.ps.stamina = game.ps.maxStamina
 		drawSprite(sprMeterBack, 0, 24, 24)
-		for(local i = 0; i < game.ps.maxStamina; i++){
-			drawSprite(sprMeterBack, 1, 26 + (i * 4), 24)
-			drawSprite(sprMeterBack, 1, 28 + (i * 4), 24)
-		}
+		for(local i = 0; i < floor(game.ps.maxStamina); i++)
+		drawSprite(sprMeterBack, 1, 26, 24, 0, 0, game.ps.maxStamina * 2.0)
 		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxStamina), 24)
 		setDrawColor(0x70a048ff)
 		if(game.ps.stamina > 0)
@@ -795,7 +790,7 @@
 		if(gvNumPlayers > 1) {
 			if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
 			drawSprite(sprMeterBack, 0, 24, 36)
-			for(local i = 0; i < game.maxHealth; i++)
+			for(local i = 0; i < floor(game.maxHealth); i++)
 				drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
 			drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
 			setDrawColor(0xf83810ff)
@@ -812,10 +807,8 @@
 
 			if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
 			drawSprite(sprMeterBack, 0, 24, 44)
-			for(local i = 0; i < game.ps2.maxEnergy; i++) {
-				drawSprite(sprMeterBack, 1, 26 + (i * 4), 44)
-				drawSprite(sprMeterBack, 1, 28 + (i * 4), 44)
-			}
+			
+			drawSprite(sprMeterBack, 1, 28, 44, 0, 0, game.ps2.maxEnergy * 2.0)
 			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
 			setDrawColor(0x1080b0ff)
 			if(game.ps2.energy > 0)
@@ -855,10 +848,7 @@
 
 			if(game.ps2.stamina > game.ps2.maxStamina) game.ps2.stamina = game.ps2.maxStamina
 			drawSprite(sprMeterBack, 0, 24, 52)
-			for(local i = 0; i < game.ps2.maxStamina; i++){
-				drawSprite(sprMeterBack, 1, 26 + (i * 4), 52)
-				drawSprite(sprMeterBack, 1, 28 + (i * 4), 52)
-			}
+			drawSprite(sprMeterBack, 1, 26, 52, 0, 0, game.ps2.maxStamina * 2.0)
 			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
 			setDrawColor(0x70a048ff)
 			if(game.ps2.stamina > 0)

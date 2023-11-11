@@ -17,15 +17,19 @@
 					levelEndRunner = 0
 					if(gvNextLevel != "" && gvTimeAttack) {
 						game.check = false
-						game.maxHealth++
 						if(gvNextLevel == "timeattack-win") startPlay("res/map/" + gvNextLevel + ".json", true, true)
 						else startPlay(game.path + gvNextLevel + ".json", true, true)
-						if(game.difficulty == 0) {
-							if(game.energyBonus <= game.staminaBonus)
-								game.energyBonus++
-							else
-								game.staminaBonus++
+						if(game.difficulty == 0 || gvTAStep % game.difficulty == 0) {
+							game.maxHealth++
+							game.ps.health++
+							game.ps2.health++
 						}
+
+						if(game.energyBonus <= game.staminaBonus)
+							game.energyBonus += 1.0 / (game.difficulty + 1)
+						else
+							game.staminaBonus += 1.0 / (game.difficulty + 1)
+						
 						gvIGT = 0
 					}
 					else startOverworld(game.world)

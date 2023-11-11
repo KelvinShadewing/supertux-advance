@@ -24,6 +24,13 @@
 ::sprKiki2 <- newSprite("res/gfx/kiki2.png", 74, 54, 0, 0, 32, 33)
 ::defKiki2 <- sprKiki2
 
+::sprPepper <- newSprite("res/gfx/pepper.png", 100, 54, 0, 0, 32, 33)
+::defPepper <- sprPepper
+::sprPepperOverworld <- newSprite("res/gfx/pepperO.png", 20, 24, 0, 0, 10, 20)
+::defPepperOverworld <- sprPepperOverworld
+::sprPepperDoll <- newSprite("res/gfx/pepperdoll.png", 16, 16, 0, 0, 8, 8)
+::defPepperDoll <- sprPepperDoll
+
 
 ::sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 0, 0, 14, 12)
 ::defCyraSwordWave <- sprCyraSwordWave
@@ -56,8 +63,8 @@
 ::freeCyra <- function() {
 	game.characters["Cyra"] <- true
 	game.friends["Cyra"] <- true
-	game.characters["Kiki2"] <- true
-	game.friends["Kiki2"] <- true
+	game.characters["Pepper"] <- true
+	game.friends["Pepper"] <- true
 }
 
 gvCharacters.Cyra <- {
@@ -77,20 +84,20 @@ gvCharacters.Cyra <- {
 	pick = [8, 107]
 }
 
-gvCharacters.Kiki2 <- {
-	name = "Kiki the Cyber Squirrel (Type B)"
-	shortname = "Kiki"
-	over = "sprKikiOverworld"
-	doll =  "sprKikiDoll"
-	normal = "sprKiki2"
-	fire = "sprKiki2"
-	ice = "sprKiki2"
-	air = "sprKiki2"
-	earth = "sprKiki2"
-	shock = "sprKiki2"
-	water = "sprKiki2"
-	dark = "sprKiki2"
-	light = "sprKiki2"
+gvCharacters.Pepper <- {
+	name = "Chaosah Witch Pepper"
+	shortname = "Pepper"
+	over = "sprPepperOverworld"
+	doll =  "sprPepperDoll"
+	normal = "sprPepper"
+	fire = "sprPepper"
+	ice = "sprPepper"
+	air = "sprPepper"
+	earth = "sprPepper"
+	shock = "sprPepper"
+	water = "sprPepper"
+	dark = "sprPepper"
+	light = "sprPepper"
 	pick = [8, 107]
 }
 
@@ -580,7 +587,7 @@ gvCharacters.Kiki2 <- {
 					frame += 0.25
 
 					if(floor(frame) > an[anim].len() - 1) {
-						if(stats.weapon == "earth" && getcon("spec2", "hold", true, playerNum)) anim = "slide"
+						if(getcon("spec2", "hold", true, playerNum)) anim = "slide"
 						else anim = "crawl"
 						shape = shapeSlide
 					}
@@ -655,7 +662,7 @@ gvCharacters.Kiki2 <- {
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
-				if(((!getcon("down", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (stats.weapon == "earth" && !getcon("spec2", "hold", true, playerNum))) || (stats.weapon == "earth" && !getcon("spec2", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
+				if(((!getcon("spec2", "hold", true, playerNum) || fabs(hspeed) < 0.05) && !freeDown && stats.weapon != "earth") || (fabs(hspeed) < 0.05 && (!getcon("spec2", "hold", true, playerNum))) || (!getcon("spec2", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))) if(anim == "slide" || anim == "dive") anim = "walk"
 			}
 
 			if(anim != "climb" && anim != "wall" && !slashing) {
@@ -873,7 +880,7 @@ gvCharacters.Kiki2 <- {
 				}
 
 				//Going into slide
-				if(((getcon("spec2", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crouch" && anim != "crawl") {
+				if(((getcon("spec2", "hold", true, playerNum))) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crouch" && anim != "crawl") {
 					if(placeFree(x + 2, y + 1) || hspeed >= 1.5) {
 						anim = "dive"
 						frame = 0.0
@@ -910,8 +917,8 @@ gvCharacters.Kiki2 <- {
 			//Movement
 			if(!placeFree(x, y + 2) || onPlatform()) {
 				if(anim == "slide") {
-					if(hspeed > 0) hspeed -= friction / 3.0
-					if(hspeed < 0) hspeed += friction / 3.0
+					if(hspeed > 0) hspeed -= friction / 1.5
+					if(hspeed < 0) hspeed += friction / 1.5
 				} else {
 					if(hspeed > 0) {
 						if(!(mspeed > 2 && getcon("right", "hold", true, playerNum)) || anim == "crawl" || !canMove) hspeed -= friction
@@ -933,12 +940,12 @@ gvCharacters.Kiki2 <- {
 			if(!freeUp && vspeed < 0) vspeed = 0.0 //If Cyra bumped his head
 
 
-			if(anim == "slide" && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
-				//If Cyra hits the ground while sliding
-				if(flip) hspeed -= vspeed / 2.5
-				else hspeed += vspeed / 2.5
-				vspeed = 0
-			}
+			// if(anim == "slide" && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
+			// 	//If Cyra hits the ground while sliding
+			// 	if(flip) hspeed -= vspeed / 2.5
+			// 	else hspeed += vspeed / 2.5
+			// 	vspeed = 0
+			// }
 
 			//Max ground speed
 			if(!freeDown){
@@ -2008,17 +2015,17 @@ gvCharacters.Kiki2 <- {
 }
 
 
-::Kiki2 <- class extends Cyra {
+::Pepper <- class extends Cyra {
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 
-		mySprNormal = sprKiki2
-		mySprFire = sprKiki2
-		mySprIce = sprKiki2
-		mySprAir = sprKiki2
-		mySprEarth = sprKiki2
-		mySprShock = sprKiki2
+		mySprNormal = sprPepper
+		mySprFire = sprPepper
+		mySprIce = sprPepper
+		mySprAir = sprPepper
+		mySprEarth = sprPepper
+		mySprShock = sprPepper
 	}
 
-	function _typeof() { return "Kiki2" }
+	function _typeof() { return "Pepper" }
 }

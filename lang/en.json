@@ -288,7 +288,7 @@
 		"fly-refresher" :
 		"Spinning air feathers suspended in tornados will refresh your stamina when in air form. Use these to fly longer over long stretches.",
 		"trapper-plant" :
-		"Trapper plants and puffranahs will swallow you whole! If they catch you, mash the arrow keys to escape!",
+		"Trapper plants and puffranahs will swallow you whole! If they catch you, mash the buttons to escape!",
 		"tux-dash" :
 		["Pressing %s will do different things depending on your character and location. Try it in many places!", "getConName(\"spec2\")"]
 	},

@@ -999,19 +999,21 @@
 
 		newActor(Glimmer, x + lendirX(r, randInt(360)), y + lendirY(r, randInt(360)))
 
-		if(gvPlayer) {
-			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
-				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
-				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
-				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+		if(alignment == 1) {
+			if(gvPlayer) {
+				if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+					if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+					if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+					if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+				}
 			}
-		}
 
-		if(gvPlayer2) {
-			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
-				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
-				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			if(gvPlayer2) {
+				if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+					if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+					if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+					if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+				}
 			}
 		}
 	}
@@ -1499,19 +1501,19 @@
 
 		if(frame >= 0.5 && !didbloom) {
 			didbloom = true
-			local c = fireWeapon(EarthballK, x - 6, y - 6, alignment, owner)
+			local c = fireWeapon(CrystalBullet, x - 6, y - 6, alignment, owner)
 			c.power = 4
 			c.hspeed = -2.0
 			c.vspeed = -2.0
-			c = fireWeapon(EarthballK, x + 6, y - 6, alignment, owner)
+			c = fireWeapon(CrystalBullet, x + 6, y - 6, alignment, owner)
 			c.power = 4
 			c.hspeed = 2.0
 			c.vspeed = -2.0
-			c = fireWeapon(EarthballK, x - 6, y + 6, alignment, owner)
+			c = fireWeapon(CrystalBullet, x - 6, y + 6, alignment, owner)
 			c.power = 4
 			c.hspeed = -2.0
 			c.vspeed = 2.0
-			c = fireWeapon(EarthballK, x + 6, y + 6, alignment, owner)
+			c = fireWeapon(CrystalBullet, x + 6, y + 6, alignment, owner)
 			c.power = 4
 			c.hspeed = 2.0
 			c.vspeed = 2.0
@@ -1585,6 +1587,8 @@
 			x += hspeed
 			y += vspeed
 		}
+		else deleteActor(id)
+
 		if(x != xprev && y != yprev)
 			angle = pointAngle(x, y, xprev, yprev)
 

@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.2.33 (UNSTABLE)"
+::gvVersion <- "0.2.34 (UNSTABLE)"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -335,6 +335,7 @@
 	completion = false
 	useBeam = false
 	bigItems = false
+	useOutlines = false
 }
 
 ::contribDidRun <- {}

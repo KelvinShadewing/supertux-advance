@@ -2167,10 +2167,16 @@
 					newActor(Poof, x, y)
 				}
 			}
+			else if(game.difficulty == 2) {
+				if(sprIcicle == defIcicle)
+					fireWeapon(ExplodeI, x, y, 0, 0)
+				else
+					fireWeapon(ExplodeN, x, y, 0, 0)
+			}
 			else if(sprIcicle == defIcicle)
-				fireWeapon(ExplodeI, x, y, 0, 0)
-			else
-				fireWeapon(ExplodeN, x, y, 0, 0)
+					fireWeapon(ExplodeI2, x, y, 0, 0)
+				else
+					fireWeapon(ExplodeN3, x, y, 0, 0)
 		}
 
 		if(vspeed > 0) {
@@ -3865,6 +3871,7 @@
 	blinkMax = 30
 	target = null
 	minFreezeTime = 300
+	mspeed = 1.0
 
 	damageMult = {
 		normal = 1.0
@@ -3906,6 +3913,8 @@
 
 		shape = Rec(x, y, 8, 12, 0)
 		routine = ruCarry
+
+		mspeed = 2 + game.difficulty
 	}
 
 	function run() {
@@ -3995,8 +4004,8 @@
 
 	function ruCarry() {
 		if(target != null) {
-			if(x > target.x && hspeed > -3) hspeed -= 0.05
-			if(x < target.x && hspeed < 3) hspeed += 0.05
+			if(x > target.x && hspeed > -mspeed) hspeed -= 0.05
+			if(x < target.x && hspeed < mspeed) hspeed += 0.05
 			if(y > target.y - 64 && vspeed > -1) vspeed -= 0.05
 			if(y < target.y - 64 && vspeed < 1) vspeed += 0.05
 
@@ -5040,7 +5049,7 @@
 		else vspeed = 0.0
 
 		local target = findPlayer()
-		if(target) {
+		if(target && !held) {
 			if(target.x - 16 > x) {
 				accel = 0.11
 				flip = 0
@@ -5078,12 +5087,14 @@
 		
 		local c = fireWeapon(ExplodeF2, x, y, 0, 0)
 		c.power = 2
-		c = fireWeapon(FireballK, x, y - 4, 0, 0)
-		c.hspeed = -2.0 - game.difficulty
-		c.vspeed = -1.5
-		c = fireWeapon(FireballK, x, y - 4, 0, 0)
-		c.hspeed = 2.0 + game.difficulty
-		c.vspeed = -1.5
+		if(game.difficulty >= 2) {
+			c = fireWeapon(FireballK, x, y - 4, 0, 0)
+			c.hspeed = -2.0 - game.difficulty
+			c.vspeed = -1.5
+			c = fireWeapon(FireballK, x, y - 4, 0, 0)
+			c.hspeed = 2.0 + game.difficulty
+			c.vspeed = -1.5
+		}
 	}
 
 	function _typeof() { return "SkyDive" }
@@ -5111,6 +5122,7 @@
 	freezeSprite = sprIceTrapLarge
 	searchRadius = 160
 	catchRadius = 56
+	cooldown = 60
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -5131,7 +5143,7 @@
 		if(target == null)
 			caught = false
 
-		if(target != null && target.hidden)
+		if(target != null && target.hidden || cooldown > 0)
 			target = null
 
 		touchDamage = (anim == "full" ? 1.0 : 0.0)
@@ -5166,10 +5178,13 @@
 					swimTimer = 60
 				}
 
-				if(target != null && inDistance2(x, y, target.x, target.y, catchRadius) && fabs(y - target.y) <= 8.0) {
+				if(target != null && inDistance2(x, y, target.x, target.y, catchRadius) && fabs(y - target.y) <= 8.0 && cooldown <= 0) {
 					frame = 0.0
 					anim = "inhale"
 				}
+
+				if(cooldown > 0)
+					cooldown--
 
 				break
 
@@ -5233,7 +5248,10 @@
 				if(getcon("left", "press", true)
 				|| getcon("right", "press", true)
 				|| getcon("up", "press", true)
-				|| getcon("down", "press"))
+				|| getcon("down", "press")
+				|| getcon("jump", "press", true)
+				|| getcon("shoot", "press", true)
+				|| getcon("spec1", "press"))
 					struggle--
 
 				if(target == null || struggle <= 0) {
@@ -5254,6 +5272,7 @@
 				else {
 					frame = 0.0
 					anim = "normal"
+					cooldown = 60
 				}
 				hspeed /= 1.1
 				
@@ -6694,7 +6713,7 @@
 		}
 
 		//Struggle
-		if(hasPlayer > 0 && hasPlayer < 3 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer)))
+		if(hasPlayer > 0 && hasPlayer < 3 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer) || getcon("jump", "press", true, hasPlayer) || getcon("shoot", "press", true, hasPlayer) || getcon("spec1", "press", true, hasPlayer)))
 			holdStrength--
 
 		switch(anim) {

@@ -773,6 +773,8 @@ spriteSetBlendMode(sprLightFire, bm_add)
 spriteSetBlendMode(sprLightIce, bm_add)
 ::sprLightGradient <- newSprite("res/gfx/light-gradient.png", 64, 64, 0, 0, 32, 32)
 spriteSetBlendMode(sprLightGradient, bm_add)
+::sprLightLarge <- newSprite("res/gfx/light-large.png", 256, 256, 0, 0, 128, 128)
+spriteSetBlendMode(sprLightLarge, bm_add)
 ::sprLightCeiling <- newSprite("res/gfx/light-ceiling.png", 256, 128, 0, 0, 128, 8)
 spriteSetBlendMode(sprLightCeiling, bm_add)
 
