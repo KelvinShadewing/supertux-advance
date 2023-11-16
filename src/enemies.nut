@@ -6667,7 +6667,7 @@
 					gvPlayer2.canMove = false
 					gvPlayer2.hurt = 1 + game.difficulty
 					gvPlayer2.x = x
-					gvPlayer2.y = y - 16
+					gvPlayer2.y = y - (16 * dir)
 					gvPlayer2.hidden = true
 					gvPlayer2.hspeed = 0
 					gvPlayer2.vspeed = 0

@@ -594,6 +594,8 @@
 		setDrawTarget(gvPlayScreen2)
 		drawImage(gvTempScreen, 0, 0)
 	}
+	else
+		runAmbientLight(true)
 
 
 
@@ -808,7 +810,7 @@
 			if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
 			drawSprite(sprMeterBack, 0, 24, 44)
 			
-			drawSprite(sprMeterBack, 1, 28, 44, 0, 0, game.ps2.maxEnergy * 2.0)
+			drawSprite(sprMeterBack, 1, 26, 44, 0, 0, game.ps2.maxEnergy * 2.0)
 			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
 			setDrawColor(0x1080b0ff)
 			if(game.ps2.energy > 0)
@@ -1067,6 +1069,7 @@
 
 	//Unhide players
 	if(gvPlayer && "hidden" in gvPlayer) gvPlayer.hidden = false
+	if(gvPlayer2 && "hidden" in gvPlayer2) gvPlayer2.hidden = false
 
 	//Handle berries
 	if(game.ps.berries > 0 && game.ps.berries >= 12 && game.ps.health > 0) {

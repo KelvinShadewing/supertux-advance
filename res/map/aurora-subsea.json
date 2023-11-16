@@ -2393,6 +2393,17 @@
                  "width":544,
                  "x":2656,
                  "y":0
+                }, 
+                {
+                 "height":272,
+                 "id":226,
+                 "name":"TransZone,dbgUnderwater,0,0x6080b0ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":272,
+                 "x":0,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2401,7 +2412,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":226,
+ "nextobjectid":227,
  "orientation":"orthogonal",
  "properties":[
         {

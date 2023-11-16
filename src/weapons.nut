@@ -776,7 +776,7 @@
 			x = actor[owner].x + (actor[owner].hspeed * 2.0)
 			y += (actor[owner].vspeed) / 2.0
 			if(flip == -1)
-				flip = int(x < actor[owner].x - actor[owner].hspeed)
+				flip = int(actor[owner].hspeed < 0)
 		}
 		else
 			flip = 0
@@ -788,7 +788,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(3, sprShieldFire, -(frame + 1), x - camx, y - camy, 90, flip * 2, 0.8, 0.8)
+		drawSpriteZ(3, sprShieldFire, -floor(frame + 1.0), x - camx, y - camy, 90, flip * 2, 0.8, 0.8)
 	}
 }
 
