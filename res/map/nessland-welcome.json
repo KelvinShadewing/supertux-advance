@@ -1279,6 +1279,18 @@
                  "width":16,
                  "x":3904,
                  "y":448
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":85,
+                 "name":"sprSeleneNPC,0.05,say,selene-kobold",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3840,
+                 "y":560
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1287,7 +1299,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":85,
+ "nextobjectid":86,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -294,6 +294,7 @@
 ::sprHarkinNPC <- newSprite("res/gfx/guests/harkin-dove.png", 27, 44, 0, 0, 14, 44)
 ::sprMyrMothNPC <- newSprite("res/gfx/guests/myrthemoth.png", 27, 54, 0, 0, 14, 54)
 ::sprStarwalfNPC <- newSprite("res/gfx/guests/starwalf.png", 26, 42, 0, 0, 18, 42)
+::sprSeleneNPC <- newSprite("res/gfx/guests/selene-kobold.png", 21, 29, 0, 0, 11, 29)
 
 
 
