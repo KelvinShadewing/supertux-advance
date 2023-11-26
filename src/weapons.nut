@@ -134,7 +134,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightGradient, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightGradient, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -181,7 +181,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeN2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
+		drawLight(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -228,7 +228,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeN3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
+		drawLight(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -366,7 +366,7 @@
 
 	function draw()  {
 		drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function animation() {
@@ -426,7 +426,7 @@
 
 	function draw() {
 		drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
 
@@ -470,7 +470,7 @@
 
 	function draw() {
 		drawSpriteEx(sprFlame, (getFrames() / 4) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 
 	function destructor() {
@@ -520,7 +520,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -572,7 +572,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -652,7 +652,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -832,7 +832,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeTiny, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -895,7 +895,7 @@
 
 	function draw() {
 		drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
@@ -960,7 +960,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeI, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1055,7 +1055,7 @@
 
 	function draw() {
 		drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
 
@@ -1103,7 +1103,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1153,7 +1153,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1244,7 +1244,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1300,7 +1300,7 @@
 
 	function draw()  {
 		drawSpriteEx(sprShockball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function animation() {}
@@ -1355,7 +1355,7 @@
 
 	function draw() {
 		drawSpriteEx(sprRock, 0, x - camx, y - camy, angle, 1, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1421,7 +1421,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1470,7 +1470,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1540,7 +1540,7 @@
 
 	function draw() {
 		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1599,7 +1599,7 @@
 
 	function draw()  {
 		drawSpriteEx(sprCrystalBullet, 0, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1965,7 +1965,7 @@
 		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawSpriteZ(6, sprTinyWind, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -2018,7 +2018,7 @@
 		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -2116,7 +2116,7 @@
 		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx + 8, y - camy, 90, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx, y - camy + 8, 180, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
 		drawSpriteZ(6, sprExplodeA, getFrames() / 2, x - camx - 8, y - camy, 270, 0, sin(max(4, frame) / 2), sin(max(4, frame) / 2), 1)
-		drawLightEx(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightBasic, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -2245,7 +2245,7 @@
 
 	function draw()  {
 		drawSpriteEx(sprWaterball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function animation() {}
@@ -2294,7 +2294,7 @@
 
 	function draw() {
 		drawSpriteZ(6, sprExplodeW, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -2350,7 +2350,7 @@
 
 	function draw() {
 		drawSpriteZ(6, sprExplodeW2, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -2427,7 +2427,7 @@
 
 	function draw() {
 		drawSpriteZ(6, sprExplodeW2, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -2475,7 +2475,7 @@
 
 	function draw() {
 		drawSpriteEx(sprWaterBomb, (getFrames() / 4) % 4, x - camx, y - camy, 0, 1, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 
 	function destructor() {

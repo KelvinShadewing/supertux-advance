@@ -263,7 +263,7 @@
 	function draw() {
 		if(chainpos.len() > 0) for(local i = 0; i < r; i++) {
 			drawSprite(sprFireball, getFrames() / 4, chainpos[i][0] - camx, chainpos[i][1] - camy)
-			drawLightEx(sprLightFire, 0, chainpos[i][0] - camx, chainpos[i][1] - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+			drawLight(sprLightFire, 0, chainpos[i][0] - camx, chainpos[i][1] - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 		}
 
 		if(debug) drawText(font, x - camx, y - camy, wrap(a, 0, 360).tostring())

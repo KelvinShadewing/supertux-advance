@@ -1,3 +1,5 @@
+::gvEnemies <- {}
+
 ::Enemy <- class extends PhysAct {
 	health = 1.0
 	active = false
@@ -133,6 +135,9 @@
 			die()
 			return
 		}
+
+		if(!(id in gvEnemies))
+			gvEnemies[id] <- true
 	}
 
 	function hurtInvinc() {
@@ -310,6 +315,8 @@
 
 	function destructor() {
 		mapDeleteSolid(icebox)
+		if(id in gvEnemies)
+			delete gvEnemies[id]
 	}
 }
 
@@ -1537,7 +1544,7 @@
 
 	function draw() {
 		drawSprite(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -2917,7 +2924,7 @@
 
 	function draw() {
 		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 	}
 }
 
@@ -3218,7 +3225,7 @@
 		}
 		else drawSprite(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
+		drawLight(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -6624,20 +6631,53 @@
 					if(isOnScreen() && anim == "idle")
 						popSound(sndGulp)
 				}
-				else foreach(i in actor) {
-					if(i instanceof Enemy && hitTest(shape, i.shape)) {
+				else foreach(k, i in gvEnemies) {
+					if(checkActor(k) && actor[k] instanceof Enemy && hitTest(shape, actor[k].shape)) {
 						hasPlayer = 3
-						target = i.id
+						target = actor[k].id
 						if(isOnScreen() && anim == "idle")
 							popSound(sndGulp)
 					}
-					else if(["OneUp", "Starnyan", "MuffinBlue", "MuffinRed", "SulphurNimbus"].find(typeof i) != null && hitTest(shape, i.shape)) {
-						deleteActor(i.id)
+				}
+
+				if(checkActor("OneUp")) foreach(i in actor["OneUp"]) if(hitTest(shape, i.shape)){
+					deleteActor(i.id)
 						anim = "close"
 						frame = 0.0
 						if(isOnScreen())
 							popSound(sndGulp)
-					}
+				}
+
+				if(checkActor("Starnyan")) foreach(i in actor["Starnyan"]) if(hitTest(shape, i.shape)){
+					deleteActor(i.id)
+						anim = "close"
+						frame = 0.0
+						if(isOnScreen())
+							popSound(sndGulp)
+				}
+
+				if(checkActor("MuffinBlue")) foreach(i in actor["MuffinBlue"]) if(hitTest(shape, i.shape)){
+					deleteActor(i.id)
+						anim = "close"
+						frame = 0.0
+						if(isOnScreen())
+							popSound(sndGulp)
+				}
+
+				if(checkActor("MuffinRed")) foreach(i in actor["MuffinRed"]) if(hitTest(shape, i.shape)){
+					deleteActor(i.id)
+						anim = "close"
+						frame = 0.0
+						if(isOnScreen())
+							popSound(sndGulp)
+				}
+
+				if(checkActor("SulphurNimbus")) foreach(i in actor["SulphurNimbus"]) if(hitTest(shape, i.shape)){
+					deleteActor(i.id)
+						anim = "close"
+						frame = 0.0
+						if(isOnScreen())
+							popSound(sndGulp)
 				}
 				
 				break

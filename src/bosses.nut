@@ -543,6 +543,14 @@
 	}
 }
 
+::Beehemoth <- class extends Boss {
+	//ATTACK IDEAS:
+	// Fly overhead, dropping dust
+	// Line up on Y axis and charge
+	// Summon waspy or ivy to help fight
+	//
+}
+
 ::Nolok <- class extends Boss {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)

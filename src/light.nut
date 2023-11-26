@@ -6,7 +6,7 @@
 ::gvLight2 <- 0xffffffff
 ::gvLightTarget2 <- 0xffffffff
 
-::drawLight <- function(sprite, frame, x, y, a = 0, f = 0, w = 1.0, h = 1.0) {
+::drawLight <- function(sprite, frame, x, y, a = 0, f = 0, w = 1.0, h = 1.0, p = 1.0) {
 	if(!config.light) return
 	if(gvLightScreen == 0) return
 	if(gvLightScreen == gvLightScreen1 && gvLight == 0xffffffff
@@ -15,20 +15,7 @@
 	local prevTarget = getDrawTarget()
 
 	setDrawTarget(gvLightScreen)
-	drawSprite(sprite, frame, x, y, a, f, w, h)
-	setDrawTarget(prevTarget)
-}
-
-::drawLightEx <- function(sprite, frame, x, y, a, f, w, h) {
-	if(!config.light) return
-	if(gvLightScreen == 0) return
-	if(gvLightScreen == gvLightScreen1 && gvLight == 0xffffffff
-	|| gvLightScreen == gvLightScreen2 && gvLight2 == 0xffffffff) return
-
-	local prevTarget = getDrawTarget()
-
-	setDrawTarget(gvLightScreen)
-	drawSpriteEx(sprite, frame, x, y, a, f, w, h, 1)
+	drawSprite(sprite, frame, x, y, a, f, w, h, p)
 	setDrawTarget(prevTarget)
 }
 
@@ -156,13 +143,14 @@
 	}
 
 	function draw() {
-		if(sprite) drawLightEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, scale, scale)
+		if(sprite) drawLight(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, scale, scale)
 	}
 }
 
 ::FlickerLight <- class extends Actor {
 	sprite = 0
 	scale = 1.0
+	alpha = 1.0
 
 	constructor(_x, _y, _arr) {
 		base.constructor(_x, _y)
@@ -173,8 +161,20 @@
 			scale = _arr[1].tofloat()
 	}
 
+	function run() {
+		local newAlpha = ((0.2 + (randFloat(5.0) / 10.0)) + alpha) / 2.0
+		alpha = (newAlpha + alpha) / 2.0
+		if(alpha < 0.2)
+			alpha = 0.2
+		if(alpha > 1.0)
+			alpha = 1.0
+	}
+
 	function draw() {
-		if(sprite) drawLightEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, (scale * (sin(id + getFrames() / 16.0) / 16.0)) + scale, (scale * (cos(id + getFrames() / 16.0) / 16.0)) + scale)
+		if(sprite) drawLight(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, (scale * (sin(id + getFrames() / 16.0) / 16.0)) + scale, (scale * (cos(id + getFrames() / 16.0) / 16.0)) + scale, alpha)
+
+		if(debug)
+			drawText(font, x + 16 - camx, y - camy, alpha.tostring())
 	}
 }
 

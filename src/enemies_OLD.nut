@@ -718,7 +718,7 @@
 
 // 	function run() {
 // 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-// 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+// 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 // 		frame += 0.2
 
 // 		if(gvPlayer) {
@@ -1241,7 +1241,7 @@
 // 			hspeed *= 0.99
 
 // 			drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
-// 			drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
+// 			drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
 
 // 			if(placeFree(x + hspeed, y)) x += hspeed
 // 			if(placeFree(x, y + vspeed)) y += vspeed
@@ -1957,7 +1957,7 @@
 // 	function run() {
 // 		base.run()
 // 		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
-// 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
+// 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 // 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 // 		shape.setPos(x, y)
 // 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
@@ -2265,7 +2265,7 @@
 // 				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 			}
-// 			drawLightEx(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
+// 			drawLight(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
 
 // 			shape.setPos(x, y)
 // 			setDrawColor(0xff0000ff)

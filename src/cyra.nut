@@ -1799,7 +1799,7 @@ gvCharacters.Pepper <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraSwordWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1848,7 +1848,7 @@ gvCharacters.Pepper <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraFireWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1895,7 +1895,7 @@ gvCharacters.Pepper <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraFreezeWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
@@ -1955,7 +1955,7 @@ gvCharacters.Pepper <- {
 
 	function draw()  {
 		drawSpriteEx(sprCyraElectricWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function animation() {}
@@ -2006,7 +2006,7 @@ gvCharacters.Pepper <- {
 	}
 	function draw() {
 		drawSpriteEx(sprWaterCrescent, getFrames() / 1, x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
 	function destructor() {
