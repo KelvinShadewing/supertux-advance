@@ -160,6 +160,24 @@
 	}
 }
 
+::FlickerLight <- class extends Actor {
+	sprite = 0
+	scale = 1.0
+
+	constructor(_x, _y, _arr) {
+		base.constructor(_x, _y)
+
+		if(getroottable().rawin(_arr[0])) sprite = getroottable()[_arr[0]]
+		else deleteActor(id)
+		if(1 in _arr)
+			scale = _arr[1].tofloat()
+	}
+
+	function draw() {
+		if(sprite) drawLightEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, (scale * (sin(id + getFrames() / 16.0) / 16.0)) + scale, (scale * (cos(id + getFrames() / 16.0) / 16.0)) + scale)
+	}
+}
+
 ::TransZone <- class extends Actor {
 	w = 0.0
 	h = 0.0

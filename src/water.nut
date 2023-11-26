@@ -63,7 +63,7 @@
 					}
 				}
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawLight(sprLightFire, 0, x - shape.w - floor(camx) + (i * 16) + 8, y - shape.h - camy - 4, (getFrames() / 4) + (i * 15), 0, 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25), 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25))
+					drawLight(sprLightFire, i + getFrames() / 8, x - shape.w - floor(camx) + (i * 16) + 8, y - shape.h - camy - 4, (getFrames() / 4) + (i * 15), 0, 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25), 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25))
 				}
 				break
 			case "honey":

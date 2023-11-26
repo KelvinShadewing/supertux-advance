@@ -6232,7 +6232,7 @@
 		base.constructor(_x, _y, _arr)
 		nocount = true
 		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)
-		if(randInt(50) == 0) sprite = choose(sprOozeyOozebourne, sprRyemanni, sprGooFox)
+		if(randInt(20) == 0) sprite = choose(sprOozeyOozebourne, sprRyemanni, sprGooFox)
 		shape = Rec(x, y, 7, 7, 0)
 		jumpTimer = randInt(180)
 		vspeed = -1.0
@@ -6764,9 +6764,25 @@
 	smart = false
 	moving = false
 	touchDamage = 0.0
-	health = 0.0
+	health = 100.0
 	w = 8
 	h = 8
+	damageMult = {
+		normal = 0.0
+		fire = 0.0
+		ice = 0.0
+		earth = 0.0
+		air = 0.0
+		toxic = 0.0
+		shock = 0.0
+		water = 0.0
+		light = 0.0
+		dark = 0.0
+		cut = 0.0
+		blast = 0.0
+		stomp = 0.0
+		star = 0.0
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
