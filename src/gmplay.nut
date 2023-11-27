@@ -11,6 +11,15 @@
 ::gvCanWrap <- false
 ::gvFoundItems <- {}
 ::gvYetFoundItems <- {}
+::gvBarStats <- {
+	health1 = 0.0
+	mana1 = 0.0
+	stamina1 = 0.0
+
+	health2 = 0.0
+	mana2 = 0.0
+	stamina2 = 0.0
+}
 
 ::mapActor <- {} //Stores references to all actors created by the map
 
@@ -629,10 +638,10 @@
 		if(config.nearbars) {
 			if(!gvSplitScreen) {
 				if(gvPlayer)
-					drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * game.ps.health, (1.0 / game.ps.maxStamina) * game.ps.stamina, (1.0 / game.ps.maxEnergy) * game.ps.energy)
+					drawFloatingStats(gvPlayer.x - camx0, gvPlayer.y - camy0, (1.0 / game.maxHealth) * gvBarStats.health1, (1.0 / game.ps.maxStamina) * gvBarStats.stamina1, (1.0 / game.ps.maxEnergy) * gvBarStats.mana1)
 
 				if(gvPlayer2)
-					drawFloatingStats(gvPlayer2.x - camx0, gvPlayer2.y - camy0, (1.0 / game.maxHealth) * game.ps2.health, (1.0 / game.ps2.maxStamina) * game.ps2.stamina, (1.0 / game.ps2.maxEnergy) * game.ps2.energy)
+					drawFloatingStats(gvPlayer2.x - camx0, gvPlayer2.y - camy0, (1.0 / game.maxHealth) * gvBarStats.health2, (1.0 / game.ps2.maxStamina) * gvBarStats.stamina2, (1.0 / game.ps2.maxEnergy) * gvBarStats.mana2)
 			}
 			else {
 				if(gvSwapScreen) {
@@ -721,6 +730,27 @@
 			}
 		}
 
+		//Update stats
+		gvBarStats.health1 = (game.ps.health + gvBarStats.health1) / 2.0
+		if(fabs(game.ps.health - gvBarStats.health1) < 0.1)
+			gvBarStats.health1 = game.ps.health
+		gvBarStats.mana1 = (game.ps.energy + gvBarStats.mana1) / 2.0
+		if(fabs(game.ps.energy - gvBarStats.mana1) < 0.1)
+			gvBarStats.mana1 = game.ps.energy
+		gvBarStats.stamina1 = (game.ps.stamina + gvBarStats.stamina1) / 2.0
+		if(fabs(game.ps.stamina - gvBarStats.stamina1) < 0.1)
+			gvBarStats.stamina1 = game.ps.stamina
+
+		gvBarStats.health2 = (game.ps2.health + gvBarStats.health2) / 2.0
+		if(fabs(game.ps2.health - gvBarStats.health2) < 0.1)
+			gvBarStats.health2 = game.ps2.health
+		gvBarStats.mana2 = (game.ps.energy + gvBarStats.mana2) / 2.0
+		if(fabs(game.ps2.energy - gvBarStats.mana2) < 0.1)
+			gvBarStats.mana2 = game.ps2.energy
+		gvBarStats.stamina2 = (game.ps2.stamina + gvBarStats.stamina2) / 2.0
+		if(fabs(game.ps2.stamina - gvBarStats.stamina2) < 0.1)
+			gvBarStats.stamina2 = game.ps2.stamina
+
 		//Draw stats
 		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
 		drawSprite(sprMeterBack, 0, 24, 8)
@@ -728,8 +758,8 @@
 			drawSprite(sprMeterBack, 1, 26 + (i * 2), 8)
 		drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 8)
 		setDrawColor(0xf83810ff)
-		if(game.ps.health > 0)
-			drawRec(26, 10, (game.ps.health * 2.0) - 1.0, 3, true)
+		if(gvBarStats.health1 > 0)
+			drawRec(26, 10, (gvBarStats.health1 * 2.0) - 1.0, 3, true)
 
 		drawSprite(sprMeterBack, 0, 8, 8)
 		for(local i = 0; i < 6; i++)
@@ -744,8 +774,8 @@
 		drawSprite(sprMeterBack, 1, 26, 16, 0, 0, game.ps.maxEnergy * 2.0)
 		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxEnergy), 16)
 		setDrawColor(0x1080b0ff)
-		if(game.ps.energy > 0)
-			drawRec(26, 18, (game.ps.energy * 4.0) - 1.0, 3, true)
+		if(gvBarStats.mana1 > 0)
+			drawRec(26, 18, (gvBarStats.mana1 * 4.0) - 1.0, 3, true)
 
 		local elementFrame = 0
 		switch(game.ps.weapon) {
@@ -785,8 +815,8 @@
 		drawSprite(sprMeterBack, 1, 26, 24, 0, 0, game.ps.maxStamina * 2.0)
 		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxStamina), 24)
 		setDrawColor(0x70a048ff)
-		if(game.ps.stamina > 0)
-			drawRec(26, 26, (game.ps.stamina * 4.0) - 1.0, 3, true)
+		if(gvBarStats.stamina1 > 0)
+			drawRec(26, 26, (gvBarStats.stamina1 * 4.0) - 1.0, 3, true)
 
 		//Player 2 stats
 		if(gvNumPlayers > 1) {
@@ -796,8 +826,8 @@
 				drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
 			drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
 			setDrawColor(0xf83810ff)
-			if(game.ps2.health > 0)
-				drawRec(26, 38, (game.ps2.health * 2.0) - 1.0, 3, true)
+			if(gvBarStats.health2 > 0)
+				drawRec(26, 38, (gvBarStats.health2 * 2.0) - 1.0, 3, true)
 
 			drawSprite(sprMeterBack, 0, 8, 36)
 			for(local i = 0; i < 6; i++)
@@ -813,8 +843,8 @@
 			drawSprite(sprMeterBack, 1, 26, 44, 0, 0, game.ps2.maxEnergy * 2.0)
 			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
 			setDrawColor(0x1080b0ff)
-			if(game.ps2.energy > 0)
-				drawRec(26, 46, (game.ps2.energy * 4.0) - 1.0, 3, true)
+			if(gvBarStats.mana2 > 0)
+				drawRec(26, 46, (gvBarStats.mana2 * 4.0) - 1.0, 3, true)
 
 			local elementFrame = 0
 			switch(game.ps2.weapon) {
@@ -853,8 +883,8 @@
 			drawSprite(sprMeterBack, 1, 26, 52, 0, 0, game.ps2.maxStamina * 2.0)
 			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
 			setDrawColor(0x70a048ff)
-			if(game.ps2.stamina > 0)
-				drawRec(26, 54, (game.ps2.stamina * 4.0) - 1.0, 3, true)
+			if(gvBarStats.stamina2 > 0)
+				drawRec(26, 54, (gvBarStats.stamina2 * 4.0) - 1.0, 3, true)
 		}
 
 		//Draw boss health
