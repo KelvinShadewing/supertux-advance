@@ -41,6 +41,7 @@
 	didAirSpecial = false
 	homingTarget = null
 	shockEffect = null
+	sideRunning = false
 
 	an = {
 		stand = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 6, 6, 6, 6, 6, 6, 6, 6, 48, 49, 48, 49, 48, 49, 48, 49, 50, 51, 51, 51, 51, 50, 48]
@@ -257,7 +258,7 @@
 
 		if(fabs(hspeed) < friction)
 			hspeed = 0.0
-		if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && !nowInWater)) && antigrav <= 0)
+		if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && !nowInWater)) && antigrav <= 0 && !sideRunning)
 			vspeed += (vspeed > 5 && anim != "stomp" ? gravity / vspeed : gravity)
 		else if(antigrav > 0)
 			antigrav--
@@ -337,6 +338,23 @@
 		yprev = y
 
 		if(placeFree(x, y + vspeed)) y += vspeed
+		else if(sideRunning) {
+			if(!placeFree(x - 4, y)) for(local i = 0; i < abs(vspeed); i++) {
+				if(placeFree(x + i, y + vspeed)) {
+					y += vspeed
+					x += i
+					break
+				}
+			}
+
+			if(!placeFree(x + 4, y)) for(local i = 0; i < abs(vspeed); i++) {
+				if(placeFree(x + i, y + vspeed)) {
+					y += vspeed
+					x += i
+					break
+				}
+			}
+		}
 		else {
 			vspeed /= 2
 			if(fabs(vspeed) < 0.01) vspeed = 0
@@ -366,7 +384,7 @@
 					}
 				}
 
-				if(fabs(hspeed) >= 4 && anim == "ball")
+				if(fabs(hspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev)
 					vspeed -= 1.0
 
 				//If no step was taken, slow down
@@ -433,7 +451,7 @@
 		}
 
 		//Rotation
-		if((fabs(xprev - x) > 1) && anim == "walk") {
+		if((fabs(xprev - x) > 1) && anim == "walk" && !sideRunning) {
 			if((yprev - y) / (xprev - x) < -0.25)
 				dirAngle = -1.0
 			if((yprev - y) / (xprev - x) > 0.25)
@@ -448,6 +466,13 @@
 				dirAngle = 45
 			if(dirAngle < -45)
 				dirAngle = -45
+		}
+		else if(sideRunning) {
+			if(!freeRight)
+				dirAngle = -90
+
+			if(!freeLeft)
+				dirAngle = 90
 		}
 		else
 			dirAngle /= 2.0
@@ -485,6 +510,8 @@
 
 				if(anim == "walk") {
 					//Offset frame based on movement speed
+					if(sideRunning)
+						rspeed = fabs(vspeed)
 					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery)) 
 						anim = "stand"
 					else if(fabs(rspeed) < fabs(hspeed) && !slippery)
@@ -492,17 +519,17 @@
 					
 				}
 
-				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0)) {
+				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0) && !sideRunning) {
 					if(vspeed >= 0) anim = "jumpT"
 					else anim = "jumpU"
 					frame = 0.0
 				}
 
-				if(abs(hspeed) > 2)
+				if(abs(sideRunning ? vspeed : hspeed) > 2)
 					animOffset = 8.0
-				if(abs(hspeed) > 4)
+				if(abs(sideRunning ? vspeed : hspeed) > 4)
 					animOffset = 16.0
-				if(abs(hspeed) > 6.2)
+				if(abs(sideRunning ? vspeed : hspeed) > 6.2)
 					animOffset = 24.0
 
 				if((anim == "stand" || fabs(hspeed) <= 0.2) && getcon("spec2", "hold", true, playerNum)) {
@@ -521,6 +548,8 @@
 					if(holding)
 						anim = "jumpU"
 				}
+				else if(!freeLeft || !freeRight)
+					anim = "walk"
 
 				if((!placeFree(x, y + 4) || !placeFree(x - hspeed * 2, y + 4) || onPlatform()) && vspeed >= 0 && !antigrav) {
 					anim = "stand"
@@ -776,14 +805,32 @@
 			if(nowInWater)
 				accel *= 0.6
 
+			sideRunning = false
+
 			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
-				if(hspeed > 1)
+				if(vspeed <= -4 && ["walk", "stand"].find(anim) != null && !placeFree(x + 2, y) && !placeFree(x + 4, y - 8)) {
+					if(vspeed > -mspeed)
+						vspeed -= accel
+					vspeed += friction * 2.8
+					sideRunning = true
+					if(x == xprev)
+						hspeed = 0
+				}
+				else if(hspeed > 1)
 					hspeed += accel / fabs(hspeed)
 				else hspeed += accel
 			}
 
 			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
-				if(hspeed < -1)
+				if(vspeed <= -4 && ["walk", "stand"].find(anim) != null && !placeFree(x - 2, y) && !placeFree(x - 4, y - 8)) {
+					if(vspeed > -mspeed)
+						vspeed -= accel
+					vspeed += friction * 2.8
+					sideRunning = true
+					if(x == xprev)
+						hspeed = 0
+				}
+				else if(hspeed < -1)
 					hspeed -= accel / fabs(hspeed)
 				else hspeed -= accel
 			}
@@ -1143,7 +1190,7 @@
 		if(anim == "ball" && stats.weapon == "earth")
 			drawSpriteZ(2, sprStoneBall, an[anim][floor(frame)] + animOffset, x - camx, y - camy + 4, walkAngle, flip, 1, 1, (blinking && anim != "hurt" ? wrap(blinking, 0, 10).tofloat() / 10.0 : 1))
 		else
-			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - 2 - camy + yoff, walkAngle, flip, 1, 1, (blinking && anim != "hurt" ? wrap(blinking, 0, 10).tofloat() / 10.0 : 1))
+			drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx + (walkAngle / 20.0), y - 2 - camy + yoff + fabs(walkAngle / 15.0), walkAngle, flip, 1, 1, (blinking && anim != "hurt" ? wrap(blinking, 0, 10).tofloat() / 15.0 : 1))
 
 		//Transformation flash
 		if(tftime != -1) {
@@ -1180,6 +1227,8 @@
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()
+
+			drawText(font, x - camx - 16, y - camy - 16, sideRunning.tostring())
 		}
 	}
 

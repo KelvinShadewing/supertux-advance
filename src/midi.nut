@@ -1672,7 +1672,8 @@
 				}
 				else {
 					c = fireWeapon(WingNut, x, y + 8, 1, id)
-					c.sprite = nutSprite
+					if(routine != ruBall)
+						c.sprite = nutSprite
 				}
 			}
 		}
