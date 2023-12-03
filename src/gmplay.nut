@@ -731,24 +731,24 @@
 		}
 
 		//Update stats
-		gvBarStats.health1 = (game.ps.health + gvBarStats.health1) / 2.0
-		if(fabs(game.ps.health - gvBarStats.health1) < 0.1)
+		gvBarStats.health1 = (game.ps.health + gvBarStats.health1 * 9.0) / 10.0
+		if(fabs(game.ps.health - gvBarStats.health1) < 0.5)
 			gvBarStats.health1 = game.ps.health
-		gvBarStats.mana1 = (game.ps.energy + gvBarStats.mana1) / 2.0
-		if(fabs(game.ps.energy - gvBarStats.mana1) < 0.1)
+		gvBarStats.mana1 = (game.ps.energy + gvBarStats.mana1 * 9.0) / 10.0
+		if(fabs(game.ps.energy - gvBarStats.mana1) < 0.5)
 			gvBarStats.mana1 = game.ps.energy
-		gvBarStats.stamina1 = (game.ps.stamina + gvBarStats.stamina1) / 2.0
-		if(fabs(game.ps.stamina - gvBarStats.stamina1) < 0.1)
+		gvBarStats.stamina1 = (game.ps.stamina + gvBarStats.stamina1 * 9.0) / 10.0
+		if(fabs(game.ps.stamina - gvBarStats.stamina1) < 0.5)
 			gvBarStats.stamina1 = game.ps.stamina
 
-		gvBarStats.health2 = (game.ps2.health + gvBarStats.health2) / 2.0
-		if(fabs(game.ps2.health - gvBarStats.health2) < 0.1)
+		gvBarStats.health2 = (game.ps2.health + gvBarStats.health2 * 9.0) / 10.0
+		if(fabs(game.ps2.health - gvBarStats.health2) < 0.5)
 			gvBarStats.health2 = game.ps2.health
-		gvBarStats.mana2 = (game.ps.energy + gvBarStats.mana2) / 2.0
-		if(fabs(game.ps2.energy - gvBarStats.mana2) < 0.1)
+		gvBarStats.mana2 = (game.ps.energy + gvBarStats.mana2 * 9.0) / 10.0
+		if(fabs(game.ps2.energy - gvBarStats.mana2) < 0.5)
 			gvBarStats.mana2 = game.ps2.energy
-		gvBarStats.stamina2 = (game.ps2.stamina + gvBarStats.stamina2) / 2.0
-		if(fabs(game.ps2.stamina - gvBarStats.stamina2) < 0.1)
+		gvBarStats.stamina2 = (game.ps2.stamina + gvBarStats.stamina2 * 9.0) / 10.0
+		if(fabs(game.ps2.stamina - gvBarStats.stamina2) < 0.5)
 			gvBarStats.stamina2 = game.ps2.stamina
 
 		//Draw stats

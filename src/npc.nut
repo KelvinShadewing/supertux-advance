@@ -208,6 +208,11 @@
 	game.friends["Dashie"] <- true
 }
 
+::freeNeverball <- function() {
+	game.characters["Neverball"] <- true
+	game.friends["Neverball"] <- true
+}
+
 ////////////
 // NPC v2 //
 ////////////

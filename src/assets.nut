@@ -145,6 +145,11 @@
 ::sprDashieDoll <- newSprite("res/gfx/dashie-doll.png", 16, 16, 0, 0, 8, 8)
 ::defDashieDoll <- sprDashieDoll
 
+::sprNeverball <- newSprite("res/gfx/neverball.png", 16, 16, 0, 0, 8, 8)
+::defNeverball <- sprNeverball
+::sprNeverballArrow <- newSprite("res/gfx/neverball-arrow.png", 12, 9, 0, 0, 0, 5)
+::defNeverballArrow <- sprNeverballArrow
+
 
 
 //GUI

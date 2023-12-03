@@ -117,8 +117,8 @@ gvCharacters.Pepper <- {
 	mspeed = 6 //Maximum running speed
 	climbdir = 1.0
 	blinking = 0 //Invincibility frames
-	startx = 0.0
-	starty = 0.0
+	xstart = 0.0
+	ystart = 0.0
 	firetime = 0
 	guardtime = 0
 	hurt = 0
@@ -202,8 +202,8 @@ gvCharacters.Pepper <- {
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
 		shape = shapeStand
 		if(!gvPlayer) gvPlayer = this
-		startx = _x.tofloat()
-		starty = _y.tofloat()
+		xstart = _x.tofloat()
+		ystart = _y.tofloat()
 		stats.energy = stats.maxEnergy
 		an["fall"] = an["fallN"]
 		xprev = x

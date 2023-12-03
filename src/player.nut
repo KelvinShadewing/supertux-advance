@@ -19,6 +19,8 @@
 	resTime = 0
 	endMode = false
 	endSpeed = 0
+	xstart = 0.0
+	ystart = 0.0
 
 	//Ability flags
 	canStomp = false //Mario-like jump attack
@@ -32,6 +34,7 @@
 	inMelee = false //In a state where the player damages enemies by touch
 	magnetic = false
 	advancedClimbing = false
+	invincible = 0
 
 	//Physics stats
 	weight = 1.0
@@ -90,7 +93,8 @@
 		if(stats.health <= 0 || game.difficulty < 2)
 			stats.health = game.maxHealth
 
-		//Player-specific settings
+		xstart = _x
+		ystart = _y
 	}
 
 	function run() {

@@ -1,0 +1,14 @@
+{ "columns":5,
+ "image":"..\/gfx\/solid.png",
+ "imageheight":288,
+ "imagewidth":80,
+ "margin":0,
+ "name":"solid",
+ "spacing":0,
+ "tilecount":90,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

@@ -11,8 +11,8 @@
 	mspeed = 8 //Maximum running speed
 	climbdir = 1.0
 	blinking = 0 //Invincibility frames
-	startx = 0.0
-	starty = 0.0
+	xstart = 0.0
+	ystart = 0.0
 	hurt = 0
 	swimming = false
 	inMelee = false
@@ -216,8 +216,8 @@
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 10, 0, 0, 0)
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4)
-		startx = _x.tofloat()
-		starty = _y.tofloat()
+		xstart = _x.tofloat()
+		ystart = _y.tofloat()
 		an.fall = an.fallN
 		xprev = x
 		yprev = y
@@ -236,12 +236,6 @@
 		nowInWater = inWater(x, y)
 
 		base.run()
-
-		if(firetime <= 0 && stats.energy < stats.maxEnergy)
-			stats.energy += 1.0 / 30.0
-
-		if(!freeDown2 && stats.stamina < stats.maxStamina && (stats.weapon != "earth" || !blinking) && anim != "ball")
-			stats.stamina += 0.25
 
 		if(getcon("swap", "press", true, playerNum)) swapitem()
 

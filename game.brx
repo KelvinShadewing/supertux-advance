@@ -35,6 +35,7 @@ donut("src/konqi.nut")
 donut("src/midi.nut")
 donut("src/surge.nut")
 donut("src/cyra.nut")
+donut("src/neverball.nut")
 donut("src/items.nut")
 donut("src/effects.nut")
 donut("src/enemies.nut")
@@ -184,7 +185,7 @@ menu = meMain
 game.playerChar = "Tux"
 
 //Testing Midi
-//game.playerChar = "Midi"
+//game.playerChar = "Neverball"
 //gotoTest()
 
 //Load contrib initializers

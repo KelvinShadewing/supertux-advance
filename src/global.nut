@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "0.2.36 (UNSTABLE)"
+::gvVersion <- "0.2.37 (UNSTABLE)"
 ::gvMap <- 0
 ::gvGameMode <- 0
 ::gvQuit <- false
@@ -33,6 +33,7 @@
 		bestCoins = {} //Most coins found per level
 		bestEnemies = {} //Most enemies defeated per level
 		bestSecrets = {} //Most secrets found per level
+		bestStrokes = {} //For Neverball
 		igt = 0 //Global IGT, which increments throughout the game's runtime
 		colorswitch = [
 			false,
@@ -246,6 +247,22 @@
 		light = "sprDashie"
 		dark = "sprDashie"
 		pick = [48, 51]
+	}
+	Neverball = {
+		name = "Never Ball"
+		shortname = "Never"
+		over = "sprNeverball"
+		doll = "sprNeverball"
+		normal = "sprNeverball"
+		fire = "sprNeverball"
+		ice = "sprNeverball"
+		air = "sprNeverball"
+		earth = "sprNeverball"
+		shock = "sprNeverball"
+		water = "sprNeverball"
+		light = "sprNeverball"
+		dark = "sprNeverball"
+		pick = [0, 0]
 	}
 }
 

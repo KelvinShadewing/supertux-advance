@@ -11,8 +11,8 @@
 	mspeed = 4 //Maximum running speed
 	climbdir = 1.0
 	blinking = 0 //Invincibility frames
-	startx = 0.0
-	starty = 0.0
+	xstart = 0.0
+	ystart = 0.0
 	firetime = 0
 	guardtime = 0
 	hurt = 0
@@ -218,8 +218,8 @@
 		shapeStand = Rec(x, y, 5, 12, 0, 0, 0)
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6)
 		shape = shapeStand
-		startx = _x.tofloat()
-		starty = _y.tofloat()
+		xstart = _x.tofloat()
+		ystart = _y.tofloat()
 		an.fall = an.fallN
 		xprev = x
 		yprev = y
