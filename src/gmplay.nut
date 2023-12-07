@@ -556,7 +556,8 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
-	//Player ghost overlay
+	//Draw HUD-level elements
+	drawHudList()
 
 	setDrawTarget(gvPlayScreen)
 	drawImage(gvTempScreen, 0, 0)
@@ -601,6 +602,9 @@
 		if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
+
+		//Draw HUD-level elements
+		drawHudList()
 
 		setDrawTarget(gvPlayScreen2)
 		drawImage(gvTempScreen, 0, 0)

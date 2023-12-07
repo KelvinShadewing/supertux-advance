@@ -35,6 +35,7 @@
 	magnetic = false
 	advancedClimbing = false
 	invincible = 0
+	mustSink = false //If the player can die by going too far under water
 
 	//Physics stats
 	weight = 1.0
@@ -115,7 +116,7 @@
 		if(zoomies > 0) zoomies--
 		if(resTime > 0) resTime--
 
-		if(y > gvMap.h && (resTime > 0  || inWater(x, y))) {
+		if(y > gvMap.h && (resTime > 0  || inWater(x, y) && !mustSink)) {
 			y = gvMap.h
 			if(!placeFree(x, y)) {
 				local xrange = 0

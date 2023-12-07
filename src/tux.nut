@@ -249,6 +249,7 @@
 		}
 
 		magnetic = stats.weapon == "shock"
+		mustSink = stats.weapon == "earth"
 
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)

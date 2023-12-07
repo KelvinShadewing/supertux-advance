@@ -30,6 +30,7 @@
 		ball = [0, 1, 2, 3, 4, 5, 6, 7]
 		run = [0, 1, 2, 3, 4, 5, 6, 7]
 	}
+	mustSink = true
 
 	freeDown = false
 	freeDown2 = false
@@ -349,10 +350,12 @@
 	function draw() {
 		drawSpriteZ(2, sprite, frame, x - camx, y - camy)
 		if(stillTime <= 0 && !endMode) {
-			drawSpriteZ(7, sprNeverballArrow, 0, x - camx + lendirX(shotPower * 2.0, shotAngle), y - camy + lendirY(shotPower * 2.0, shotAngle), shotAngle, 0)
 			local strokeWidth = (strokes + 1).tostring().len() * 6
-			drawText(font2, x - strokeWidth - camx, y - 32 - camy, (strokes + 1).tostring())
+			drawTextHUD(font2, x - strokeWidth - camx, y - 32 - camy, (strokes + 1).tostring())
+			drawSpriteHUD(sprNeverballArrow, 0, x - camx + lendirX(shotPower * 2.0, shotAngle), y - camy + lendirY(shotPower * 2.0, shotAngle), shotAngle, 0)
 		}
+		else
+			drawTextHUD(font2, x - strokeWidth - camx, y - 32 - camy, strokes.tostring())
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
 
 		if(debug) {
