@@ -2293,6 +2293,9 @@
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_mag <= 0)
+			return
+
 		if(_by != 0 && hitTest(shape, _by.shape)) {
 			if(_mag > 0) {
 				local c = newActor(DeadNME, x, y)
@@ -2303,6 +2306,7 @@
 				actor[c].angle = 180
 				die()
 				popSound(sndSquish, 0)
+				return
 			}
 
 			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum))
@@ -2316,9 +2320,6 @@
 				_by.frame = _by.an["jumpU"][0]
 			}
 		}
-
-		if(_mag <= 0)
-			return
 
 		if(_element == "fire") {
 			hurtFire()
@@ -2334,9 +2335,8 @@
 			newActor(IceChunks, x, y)
 		}
 
-		local c = newActor(DeadNME, x, y)
-
 		if(!_stomp) {
+			local c = newActor(DeadNME, x, y)
 			actor[c].sprite = sprFlyAmanita
 			actor[c].vspeed = -4.0
 			actor[c].spin = 6

@@ -315,7 +315,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"songPlay(musOverworld)\nif(game.maxHealth < 12) game.maxHealth = 12\nfreeKonqi()\ngvLightTarget = 0xffffffff"
+         "value":"songPlay(musOverworld)\nif(game.maxHealth < 12) game.maxHealth = 12\ngvLightTarget = 0xffffffff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

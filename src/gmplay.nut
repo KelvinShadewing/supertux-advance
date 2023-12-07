@@ -556,6 +556,8 @@
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
 
+	//Player ghost overlay
+
 	setDrawTarget(gvPlayScreen)
 	drawImage(gvTempScreen, 0, 0)
 

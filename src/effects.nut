@@ -52,7 +52,7 @@
 ::Poof <- class extends Actor {
 	frame = 0.0
 	angle = 0
-	depth = 4
+	depth = 7
 	hspeed = 0
 	vspeed = 0
 
@@ -75,6 +75,7 @@
 ::PoofTiny <- class extends Actor {
 	frame = 0.0
 	angle = 0
+	depth = 7
 	hspeed = 0
 	vspeed = 0
 
@@ -90,7 +91,7 @@
 		y += vspeed
 	}
 
-	function draw() { drawSpriteZ(4, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 0.5, 0.5, 1) }
+	function draw() { drawSpriteZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 0.5, 0.5, 1) }
 }
 
 ::Flame <- class extends Actor {

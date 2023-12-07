@@ -150,6 +150,8 @@ gvLightScreen1 = newTexture(screenW(), screenH())
 textureSetBlendMode(gvLightScreen1, bm_mod)
 gvLightScreen2 = newTexture(screenW(), screenH())
 textureSetBlendMode(gvLightScreen2, bm_mod)
+gvScreenGhost = newTexture(screenW(), screenH())
+textureSetBlendMode(gvScreenGhost, bm_blend)
 
 //Set up window
 setWindowTitle("SuperTux Advance")

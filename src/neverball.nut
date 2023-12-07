@@ -56,6 +56,11 @@
 	}
 
 	function physics() {
+		freeDown = placeFree(x, y + 1)
+		freeDown2 = placeFree(x, y + 2)
+		freeLeft = placeFree(x - 1, y)
+		freeRight = placeFree(x + 1, y)
+		freeUp = placeFree(x, y - 1)
 		wasInWater = nowInWater
 		nowInWater = inWater(x, y)
 
@@ -156,8 +161,10 @@
 					vspeed -= 1.0
 
 				//If no step was taken, slow down
-				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed)) / 2.0
-				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
+				if(didstep == false && fabs(hspeed) >= 1)
+					hspeed -= (hspeed / fabs(hspeed)) / 2.0
+				else if(didstep == false && fabs(hspeed) < 1)
+					hspeed = 0
 			}
 		}
 		
@@ -247,7 +254,7 @@
 			if(getcon("right", "hold", true, playerNum) && shotAngle < 0)
 				shotAngle += 2
 
-			if(getcon("up", "hold", true, playerNum) && shotPower < 12)
+			if(getcon("up", "hold", true, playerNum) && shotPower < 14)
 				shotPower += 0.1
 
 			if(getcon("down", "hold", true, playerNum) && shotPower > 1)
@@ -284,21 +291,36 @@
 			if(jumpBuffer > 0) {
 				if((onPlatform(0, 2) || onPlatform(8, 2) || onPlatform(-8, 2) || !placeFree(x, y + 2)) && getcon("down", "hold", true, playerNum)) {
 					y++
-					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					jumpBuffer = 0
 				}
-				else if(freeDown && !placeFree(x - 2, y) && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {
-					vspeed = -4
+				else if(freeDown2 && !placeFree(x - 4, y) && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {
+					vspeed = -6
 					hspeed = 4
-					playSound(sndWallkick, 0)
+					popSound(sndWallkick, 0)
 					jumpBuffer = 0
 				}
-				else if(freeDown && !placeFree(x + 2, y) && tileGetSolid(x + 12, y - 12) != 40 && tileGetSolid(x + 12, y + 12) != 40 && tileGetSolid(x + 12, y) != 40) {
-					vspeed = -4
-					hspeed = 4
-					playSound(sndWallkick, 0)
+				else if(freeDown2 && !placeFree(x + 4, y) && tileGetSolid(x + 12, y - 12) != 40 && tileGetSolid(x + 12, y + 12) != 40 && tileGetSolid(x + 12, y) != 40) {
+					vspeed = -6
+					hspeed = -4
+					popSound(sndWallkick, 0)
 					jumpBuffer = 0
+				}
+			}
+
+			if(getcon("spec2", "hold", true, playerNum) && !freeDown2) {
+				hspeed -= (hspeed <=> 0) * 0.1
+				if(getFrames() % 4 == 0 && hspeed != 0)
+					newActor(PoofTiny, x - ((hspeed <=> 0) * 4), y + 4)
+			}
+
+			if(hspeed == 0 && vspeed == 0 && !placeFree(x, y)) for(local i = -90; i > -450; i--) {
+				for(local j = 0; j < 64; j++) {
+					if(placeFree(x + lendirX(j, i), y + lendirY(j, i))) {
+						x += lendirX(j, i)
+						y += lendirY(j, i)
+						break
+					}
 				}
 			}
 		}
@@ -332,6 +354,10 @@
 			drawText(font2, x - strokeWidth - camx, y - 32 - camy, (strokes + 1).tostring())
 		}
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
+
+		if(debug) {
+			drawText(font2, x - camx, y - 32 - camy, jumpBuffer.tostring())
+		}
 	}
 
 	function _typeof() { return "Neverball" }

@@ -367,6 +367,7 @@
 ::gvScreenH <- 0
 ::gvScreen2W <- 0
 ::gvScreen2H <- 0
+::gvScreenGhost <- 0
 
 //Debug variabls
 ::gvFPS <- 0
