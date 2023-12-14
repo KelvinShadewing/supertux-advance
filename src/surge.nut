@@ -237,6 +237,12 @@
 
 		base.run()
 
+		if(firetime <= 0 && stats.energy < stats.maxEnergy)
+			stats.energy += 1.0 / 30.0
+
+		if(!freeDown2 && stats.stamina < stats.maxStamina && (stats.weapon != "earth" || !blinking) && anim != "ball")
+			stats.stamina += 0.25
+
 		if(getcon("swap", "press", true, playerNum)) swapitem()
 
 		magnetic = stats.weapon == "shock"
