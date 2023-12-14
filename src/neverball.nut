@@ -130,6 +130,8 @@
 			}
 		}
 		else {
+			if(fabs(vspeed) >= 2)
+				popSound(sndNBBounce)
 			vspeed /= (jumpBuffer > 0 ? -1 : (fabs(vspeed) >= 4 ? -2 : 2))
 			if(fabs(vspeed) < 0.01) vspeed = 0
 			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
@@ -266,6 +268,8 @@
 				vspeed = lendirY(shotPower, shotAngle)
 				rspeed = hspeed / 8.0
 				strokes++
+				stillTime = 60
+				popSound(sndNBShoot)
 			}
 		}
 		else {
@@ -354,8 +358,10 @@
 			drawTextHUD(font2, x - strokeWidth - camx, y - 32 - camy, (strokes + 1).tostring())
 			drawSpriteHUD(sprNeverballArrow, 0, x - camx + lendirX(shotPower * 2.0, shotAngle), y - camy + lendirY(shotPower * 2.0, shotAngle), shotAngle, 0)
 		}
-		else
-			drawTextHUD(font2, x - strokeWidth - camx, y - 32 - camy, strokes.tostring())
+		else if(endMode) {
+			local strokeWidth = strokes.tostring().len() * 6
+			drawTextHUD(font2, x - camx - strokeWidth, y - 32 - camy, strokes.tostring())
+		}
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
 
 		if(debug) {

@@ -13,3 +13,5 @@ contrib/secret/*
 contrib/secret/*.*
 .vscode
 .vscode/*
+brux
+*.exe

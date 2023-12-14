@@ -869,6 +869,8 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 	loadSound("res/snd/ping-6.ogg"),
 	loadSound("res/snd/ping-7.ogg")
 ]
+::sndNBShoot <- loadSound("res/snd/nb-switch.ogg")
+::sndNBBounce <- loadSound("res/snd/nb-bumplil.ogg")
 
 
 

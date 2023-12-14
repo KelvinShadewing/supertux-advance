@@ -642,15 +642,15 @@
                  "y":480
                 }, 
                 {
-                 "height":48,
+                 "height":80,
                  "id":208,
                  "name":"endGoal(1)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16,
+                 "width":112,
                  "x":3088,
-                 "y":512
+                 "y":480
                 }],
          "opacity":1,
          "type":"objectgroup",
