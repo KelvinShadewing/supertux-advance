@@ -1246,7 +1246,7 @@
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
-				playSound(sndHurt, 0)
+				popSound(sndHurt, 0)
 				if(stats.health > 0) stats.health -= hurt
 				if(flip == 0) hspeed = -2.0
 				else hspeed = 2.0

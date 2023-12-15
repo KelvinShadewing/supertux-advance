@@ -384,7 +384,7 @@
 					}
 				}
 
-				if(fabs(hspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev)
+				if(fabs(hspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev && anim != "jumpR" && anim != "jumpU")
 					vspeed -= 1.0
 
 				//If no step was taken, slow down
@@ -545,6 +545,11 @@
 				frame += 0.25
 				if(anim == "jumpR") {
 					frame += 0.25
+					if(getcon("spec1", "hold", true, playerNum) && (!freeLeft || !freeRight)) {
+						anim = "walk"
+						sideRunning = true
+						vspeed = min(-4.0, max(-8.0, vspeed * 2.0))
+					}
 					if(holding)
 						anim = "jumpU"
 				}
@@ -807,7 +812,7 @@
 
 			sideRunning = false
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
+			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine") {
 				if(vspeed <= -4 && ["walk", "stand"].find(anim) != null && !placeFree(x + 2, y) && !placeFree(x + 4, y - 8)) {
 					if(vspeed > -mspeed)
 						vspeed -= accel
@@ -821,7 +826,7 @@
 				else hspeed += accel
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
+			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "ball" && anim != "hurt" && anim != "climb" && anim != "skid" && anim != "plantMine") {
 				if(vspeed <= -4 && ["walk", "stand"].find(anim) != null && !placeFree(x - 2, y) && !placeFree(x - 4, y - 8)) {
 					if(vspeed > -mspeed)
 						vspeed -= accel

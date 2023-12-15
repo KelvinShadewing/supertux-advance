@@ -276,7 +276,7 @@
 		"switch-player" :
 		"You can change your character from the overworld in the pause menu.",
 		"switch-explanation" :
-		["Hitting the switch in this block will cause various extra blocks to show up throughout the levels, depending on the color of the switch you hit! You can press %s before entering a level to turn them on or off.", "getConName(\"spec1\")"],
+		["Hitting the letter switch in this level will cause various extra blocks to show up throughout the levels, depending on the color of the switch you hit! You can press %s before entering a level to turn them on or off.", "getConName(\"spec1\")"],
 		"konqi-charge" :
 		["Konqi and Katie can break bricks by ramming into them. Press %s while moving to charge forward. This move costs stamina, so use it carefully.", "getConName(\"spec2\")"],
 		"konqi-stomp" :
