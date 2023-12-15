@@ -475,7 +475,7 @@
                  "gid":230,
                  "height":16,
                  "id":22,
-                 "name":"sprXue,1,sayChar,xue-pt-t,xue-pt-k,xue-pt-m,xue-pt-d",
+                 "name":"sprXue,1,sayChar,xue-pt",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -805,6 +805,18 @@
                  "width":16,
                  "x":4144,
                  "y":416
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":111,
+                 "name":"sprGnu,1,say,gnu-pt",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1360,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -813,7 +825,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":111,
+ "nextobjectid":112,
  "orientation":"orthogonal",
  "properties":[
         {

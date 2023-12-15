@@ -79,17 +79,17 @@
 	function draw() {
 		if(gvPlayer && gvPlayer2 && hitTest(shape, gvPlayer.shape) && hitTest(shape, gvPlayer2.shape)) {
 			if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof gvPlayer) in gvLangObj["npc"] || (argv[3] + "-" + typeof gvPlayer) in gvLangObj["npc"])) drawSprite(sprTalk, 1, gvPlayer.x - camx, gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
-			else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSpriteHUD(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sprite != 0) drawSpriteHUD(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 
 			if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof gvPlayer2) in gvLangObj["npc"] || (argv[3] + "-" + typeof gvPlayer2) in gvLangObj["npc"])) drawSprite(sprTalk, 1, gvPlayer2.x - camx, gvPlayer2.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
-			else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSpriteHUD(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sprite != 0) drawSpriteHUD(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 		}
 		else if(target != null && hitTest(shape, target.shape)) {
 			if(sprite == 0 && sayfunc == "sayChar" && (argv[3] in gvLangObj["npc"] || (argv[3] + typeof target) in gvLangObj["npc"] || (argv[3] + "-" + typeof target) in gvLangObj["npc"])) drawSprite(sprTalk, 1, target.x - camx, target.y - camy - 24 + round(sin(getFrames().tofloat() / 5)))
-			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSprite(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
-			else if(sprite != 0) drawSprite(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sayfunc == "say" && talki > 0 || sayfunc == "sayRand") drawSpriteHUD(sprTalk, 0, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
+			else if(sprite != 0) drawSpriteHUD(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 		}
 
 		if(useflip) drawSpriteEx(sprite, getFrames() * useflip, x - camx, y - camy, 0, flip, 1, 1, 1)

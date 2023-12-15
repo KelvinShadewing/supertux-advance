@@ -442,6 +442,10 @@
 		"Thanks for saving me, chu, but this doesn't mean I'm going to go easy on your brother in the next race.",
 		"xue-pt-Kiki" :
 		"Don't go getting any ideas. Midi's MINE!",
+		"xue-pt-Surge" :
+		"Wow, you're so fast, chu!",
+		"xue-pt-Dashie" :
+		"Are all androids as fast as you, chu?",
 		"xue-pt" :
 		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!",
 
@@ -544,7 +548,7 @@
 		"gnu-pt-3" :
 		"Some mysteries are solved by finding prints, others by making them.",
 		"gnu-pt-4" :
-		"When walking with a fork, thread lightly.",
+		"When running with a fork, thread lightly.",
 		"gnu-pt-5" :
 		"Don't use a cat if you could do more or less.",
 		"gnu-pt-6" :
