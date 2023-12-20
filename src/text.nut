@@ -62,7 +62,7 @@
 	local seconds = (time % 3600).tofloat() / 60.0
 	local minutes = floor(time / 3600)
 
-	local seconds_p1 = ceil(seconds)
+	local seconds_p1 = floor(seconds)
 	local seconds_p2 = (seconds - floor(seconds)) * 1000
 	return format("%02d:%02d.%03d", minutes, seconds_p1, seconds_p2);
 }
