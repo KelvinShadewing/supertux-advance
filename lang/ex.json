@@ -1,405 +1,837 @@
 {
+	"logo" : {
+		"file" : "title.png",
+		"width" : 220,
+		"height" : 55
+	},
+
 	"main-menu" : {
-		"new" : "Birth Fun",
-		"load" : "Carry Fun",
-		"contrib-levels" : "Give Floors",
-		"options" : "Choices",
-		"credits" : "Money",
-		"quit" : "Kill Fun"
+		"new" : "Began Played",
+		"load" : "Salvation Cargo",
+		"time-attack" : "Anytime Attacked",
+		"contrib-levels" : "Contribution Rates",
+		"options" : "COMMENTS",
+		"extras" : "Pay More",
+		"credits" : "Loan",
+		"quit" : "Happy Wedding Anniversary"
+	},
+
+	"time-attack-menu" : {
+		"world" : "Sacred: %s",
+		"player1" : "You do your job 1: %s",
+		"player2" : "You do your job 2: %s",
+		"start-run" : "Star Wirjubg"
+	},
+
+	"extras-menu" : {
+		"achievements" : "To Win",
+		"credits" : "Loan"
 	},
 
 	"new-game-menu" : {
-		"file-exists" : "[EXISTENT PAPER]"
+		"file-exists" : "[THERE IS A FILE]"
+	},
+
+	"load-game-menu" : {
+		"empty" : "There are no records"
 	},
 
 	"contrib-menu" : {
-		"empty" : "[Don't contribute levels]"
+		"empty" : "There are no support fees"
 	},
 
 	"options-menu" : {
-		"difficulty" : "Difficult",
-		"language" : "Bad Words",
-		"keyboard" : "Piano Domination",
-		"joystick" : "Funhouse Domination",
-		"timers" : "Time Travel",
-		"light" : "Stoorms: ",
-		"fullscreen" : "Switch the Screen",
-		"autorun" : "Button Ran Backwards: ",
-		"stickspeed" : "Dominate Fast Trees: "
+		"graphics" : "Image",
+		"input" : "Cooperation",
+		"audio" : "I'm Listening",
+		"difficulty" : "Disappointment",
+		"language" : "Anna",
+		"accessibility" : "Solution",
+		"keyboard" : "Command the Piano",
+		"joystick" : "Watch the Game",
+		"joystick1" : "Watch the Game",
+		"joystick2" : "Watch the Game 2",
+		"cursor" : "Reveal the Rat: %s",
+		"speedrun" : "Gotta Go Fast",
+		"light" : "Good Light: %s",
+		"fullscreen" : "Fill the Window",
+		"stickspeed" : "Speed Control Lever: %s",
+		"stickactive" : "Use a Board: %s",
+		"stickcam" : "Selfie Stick: %s",
+		"usefilter" : "Photo Sifter: %s",
+		"sound-volume" : "Big Shot",
+		"music-volume" : "A Lot of Music",
+		"charsel" : "Choose a Brand",
+		"lookahead" : "A Powerful Camera: %s",
+		"nearbars" : "Myopia Health Network: %s",
+		"weather" : "Valuable Experience: %s",
+		"showkeys" : "Show the Key: %s",
+		"completion" : "Last Post: %s",
+		"usebeam" : "Highway: %s",
+		"joymode" : "Happy Stick Show: %s",
+		"big-items" : "Important: %s"
 	},
 
-	"timers-menu" : {
-		"speedrun-timer-level" : "Floor Time Limit",
-		"speedrun-timer-global" : "World Ends"
+	"options-joymodes" : {
+		"xbox" : "XBox",
+		"dinput" : "XBox (D Mode)",
+		"generic" : "Generic",
+		"psx" : "Playstation"
+	},
+
+	"options-menu-desc" : {
+		"difficulty" : "Change game difficulty",
+		"language" : "Change game language",
+		"keyboard" : "Change keyboard controls",
+		"joystick" : "Change gamepad controls",
+		"cursor" : "Toggle the mouse cursor",
+		"speedrun" : "Options for on-screen timers and controls",
+		"light" : "Toggle light effects",
+		"fullscreen" : "Toggle fullscreen mode",
+		"stickspeed" : "Toggle stick controls speed",
+		"stickactive" : "If off, only D-pad will move player",
+		"stickcam" : "Toggle allowing gamepad stick to move camera",
+		"usefilter" : "Bilinear filtering",
+		"fullgame" : "All standard worlds from SuperTux Advance",
+		"lookahead" : "Camera stays ahead of player and moves smoothly",
+		"nearbars" : "Health and energy bars appear near the player",
+		"weather" : "Turning off weather can help with near-sightedness and recording",
+		"showkeys" : "On-screen controls for speedrun recording",
+		"completion" : "Show remaining coins, enemies, and secrets in level",
+		"usebeam" : "Beam will appear in completed levels to race you",
+		"big-items" : "Increase the size of smaller items"
+	},
+
+	"speedrun-menu" : {
+		"speedrun-timer-level" : "Level Speedrun Timer: %s",
+		"speedrun-timer-global" : "Global Speedrun Timer: %s"
 	},
 
 	"controls-menu" : {
-		"press-key-for" : "Squeeze key of",
-		"press-button-for" : "Pull zipper of",
-		"clear" : "Resist space for transparency.",
-		"up" : "Up",
-		"down" : "Sad",
-		"left" : "Remaining",
-		"right" : "Accurate",
-		"jump" : "Jump",
-		"shoot" : "Injure",
-		"run" : "Flee",
-		"sneak" : "Sneak",
-		"pause" : "Wait",
-		"item-swap" : "Trade",
-		"menu-accept" : "Keep Book",
-		"cam-left-peek" : "Remaining Mountaintop",
-		"cam-right-peek" : "Looks Alright",
-		"cam-down-peek" : "I'm Sad",
-		"cam-up-peek" : "Cheer Up"
+		"press-key-for" : "Press key for %s...",
+		"press-button-for" : "Press button for %s...",
+		"clear" : "Press Backspace to clear.",
+		"peek-axis" : "Move axis for %s",
+		"peek-horizontal" : "horizontal camera movement.",
+		"peek-vertical" : "vertical camera movement",
+		"up" : "Up: %s",
+		"down" : "Down: %s",
+		"left" : "Left: %s",
+		"right" : "Right: %s",
+		"jump" : "Jump: %s",
+		"shoot" : "Shoot: %s",
+		"spec1" : "Alt Fire: %s",
+		"spec2" : "Special: %s",
+		"pause" : "Pause: %s",
+		"item-swap" : "Item Swap: %s",
+		"menu-accept" : "Menu Accept: %s",
+		"cam-left-peek" : "Peek Left: %s",
+		"cam-right-peek" : "Peek Right: %s",
+		"cam-down-peek" : "Peek Down: %s",
+		"cam-up-peek" : "Peek Up: %s",
+		"cam-peek-x" : "Peek X: %s",
+		"cam-peek-y" : "Peek Y: %s",
+		"up-selection" : "Up",
+		"down-selection" : "Down",
+		"left-selection" : "Left",
+		"right-selection" : "Right",
+		"jump-selection" : "Jump",
+		"shoot-selection" : "Shoot",
+		"spec1-selection" : "Special 1",
+		"spec2-selection" : "Special 2",
+		"pause-selection" : "Pause",
+		"item-swap-selection" : "Item Swap",
+		"menu-accept-selection" : "Menu Accept",
+		"cam-left-peek-selection" : "Peek Left",
+		"cam-right-peek-selection" : "Peek Right",
+		"cam-down-peek-selection" : "Peek Down",
+		"cam-up-peek-selection" : "Peek Up",
+		"cam-peek-x-selection" : "Peek X",
+		"cam-peek-y-selection" : "Peek Y"
 	},
 
 	"menu-commons" : {
-		"yes" : "True",
-		"no" : "Wrong",
-		"back" : "Butt",
-		"cancel" : "Canceled",
-		"on" : "On Top",
-		"off" : "Get Off"
+		"yes" : "Yes",
+		"no" : "No",
+		"back" : "Back",
+		"cancel" : "Cancel",
+		"on" : "On",
+		"off" : "Off",
+		"noone" : "No One"
 	},
 
 	"bool" : {
-		"on" : "On Top",
-		"off" : "Get Off"
+		"on" : "On",
+		"off" : "Off"
 	},
 
 	"difficulty-levels" : {
 		"easy" : "Simple",
-		"normal" : "Average",
-		"hard" : "Firm",
-		"super" : "Special Suit"
+		"normal" : "In General",
+		"hard" : "This is Difficult",
+		"super" : "Taxes are High"
+	},
+
+	"credits" : {
+		"starring" : "More Information...",
+		"heroes" : "Our Leaders",
+		"tux" : "Smoking Penguin",
+		"konqi" : "Gliding Dragon",
+		"midi" : "Open Midi Waffles",
+		"directed-by" : "Manager",
+		"programmers" : "Manufacturers",
+		"graphic-artists" : "Planning",
+		"character-designers" : "People Builders",
+		"level-designers" : "Written Confirmation",
+		"level-q-a" : "Level Q/A",
+		"musicians" : "Music Teachers",
+		"sound-engineers" : "Noise Makers",
+		"translators" : "The Storm is a Weapon",
+		"supporters" : "Best Fans Ever",
+		"credits-md" : "The link is at CREDITS.md",
+		"people" : "to the beautiful!",
+		"thank-you-for-playing" : "Thanks for the game!",
+		"tuckles" : "Tuckles loves you!",
+		"additional" : "Added Posts",
+		"mascots" : "Jobs"
 	},
 
 	"pause-menu" : {
-		"continue" : "Go On",
-		"character" : "Redeem Yourself",
-		"restart" : "Reboot Floor",
-		"quit-game" : "Kill Fun",
-		"quit-level" : "Kill Floor",
-		"save" : "Fun Salvation"
+		"pause" : "DO IT",
+		"continue" : "Together",
+		"character" : "Replace a Player 1",
+		"character2" : "Replace a Player 2",
+		"restart" : "Start Using it Again",
+		"quit-game" : "Give Up",
+		"quit-level" : "Break Floor",
+		"save" : "Rescue Tux",
+		"end-run" : "Stop Running",
+		"restart-run" : "Run Again"
+	},
+
+	"stats" : {
+		"author" : "Author",
+		"enemies" : "Enemies",
+		"coins" : "Coins",
+		"secrets" : "Secrets",
+		"time" : "Best Time",
+		"final-time": "Final Time"
 	},
 
 	"info" : {
 		"welcome" :
-		"Welcomed to supertux advance! that message would do went with away what time you are a walked away the originate block.  Press f1 conditionally to you are a will appreciation to look developer commentary.  Press upon near npcs to talked to them.  A several take more than individual thing to said.  Conditionally to you are a look that ? over yours head, it means yours character themself is one thing to said.  Press upon to read it.",
+		["Welcome to SuperTux First! This message will disappear when you cancel. Press F1 to see the developer's response. Click %s after the NPC talks to them. One says more than one. The way you put it, you know what you are talking about. Click %s to read.", "getConName(\"up\")", "getConName(\"up\")"],
 		"tutWall" :
-		"Press jumped the against wall to will that wall jumped.",
+		["Clicking %s on the wall will take you to the wall.", "getConName(\"jump\")"],
 		"tutSlide" :
-		"Press through while running or in that hill to slid.",
+		["Press %s while driving or on a hill.", "getConName(\"down\")"],
 		"waterjump" :
-		"Held jumped what time the leaving watered to gain height.  Mix it the taking ran button to went with even higher.",
+		["Once out of the water, release %s to gain altitude.", "getConName(\"jump\")"],
 		"noend" :
-		"Stories this you are a no needed to completed to movement in also will don't take normal exits.  The used pause menu to left areas appreciation that.",
+		"There is no normal exit for unnecessary levels. To pass the area, use the pause menu or go to the corner of the map.\n\nIn the pause menu you can switch characters from other worlds.",
 		"hills" :
-		"Hills am very important! practiced sliding each chance you are a have.",
+		"Mountains are important! Try to exercise as often as possible.",
 		"pipes" :
-		"Pipes with able to be entered only by falling on.  You are a with able to also held through to funnel yourself onto them.",
+		["Pipes are only placed at the bottom. You can also get %s.", "getConName(\"down\")"],
 		"controls" :
-		"No forgotten to set yours restraints the on choices menu the in main screen! conditionally to you are a exceedingly disaster upon setting them upon, delete yours config. json book.",
+		"Don't forget to adjust the controls in the settings menu on the main screen! Remove the config.json file if it is longer than necessary.",
 		"secrets" :
-		"Secret passages am the world! felt the against wall to reveal them, or watched of enemy movements.",
+		"Passwords are everywhere! Identify enemies by feeling their walls or observing their movements.",
+		"T-reminder" :
+		"Remember (somehow) you don't have to destroy the city to succeed!",
 		"coyotetime" :
-		"You are a take that brief moment after the leaving ground what time you are a with able to still ascend.  Practiced running the off edges and jumping only after yours feet the left ground.",
+		"Once you're out of the country, you don't have much time to travel. When your feet leave the ground, run and jump off the cliff.",
 		"tntex" :
-		"Tnt block burst that below anytime after coming on touching taking individual.",
+		"TNT explodes immediately on contact with bricks.",
 		"chainex" :
-		"Tnt block am also set off by emotions, which with able to led to that sort for rope face what time prolific tnt block am closed to individual another.",
+		"The explosion also releases TNT particles, which creates tension when many TNT particles are close together.",
 		"fireex" :
-		"Fireballs with able to set off tnt blocks, have that flower power and tried it outward!",
+		"Firefighters can open TNT blocks. Make a lamp and try it.",
 		"owplats" :
-		"One-way platforms with able to be dropped through originate by pressing through and jumped upon once.  Conditionally you are a drop in accident, you are a take twice to long to what time moving over an edge to jumped backward upon.",
+		["Press %s and %s at the same time to delete the same media. If you mess up, you go back twice.", "getConName(\"down\")", "getConName(\"jump\")"],
 		"slidewarn" :
-		"Levels appreciation that would do force you are a to slid! (it moving to be replaced taking one thing else the on future. )",
+		"This position is considered fast. Increase in speed. Otherwise you are not alive!",
 		"konqi" :
-		"Konqi with able to breathing fire and the stomp ground, prevent himself ise to speedily to tux.",
+		"Konki can set fire and push the ground away, but his speed is not as fast as Tuks.",
 		"momentum" :
-		"You are a win't lost speedily conditionally to you are a kept running! be sure to the held ran button or the kept stuck pressed the everyone way over, and you are'll kept whatever speedily you are a gain originate sliding.  Icy hills would do speedily you are a upon even conditionally to you are a with able to't slid.",
+		"When you work, don't be lazy! Even if you don't ski, the slopes will keep you up to speed.",
 		"warned" :
-		"You are dangerous..."
+		"You have been warned...",
+		"iceguy" :
+		["Some enemies like Shri. It will take Iceguy some time to get used to it. Click %s or use %s to find them.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
+		"elements-fire-ice" :
+		"Your elemental form not only changes your attacks; Change how elemental damage affects you. Items take double damage and half damage from enemies. For example, ice with fireworks will deal half damage to enemies, and ice flowers will deal half damage.",
+		"iceflower" :
+		"Ice Bolt allows you to freeze enemies in place and reduce damage from ice attacks. Enemies can be trapped or wall jumped safely. Say it quickly!",
+		"tuxdoll" :
+		"Find your fashion doll! This prevents you from getting KOed and losing life.",
+		"altfire" :
+		["If you have items in your wallet, you can use an alternate attack by pressing the %s key.", "getConName(\"spec1\")"],
+		"earthshell" :
+		["Ground cover has a special protective effect. With Tux, you can roll and hit the ball by pressing the %s button on the ground. In Konk, you can avatar and spit rocks by pressing %s. These dust covers make things in your bag more difficult to bump into.", "getConName(\"shoot\")", "getConName(\"down\")"],
+		"subitem" :
+		["If you have an item in your bag, you can use it by pressing %s. Pancakes will come to life, coffee will cheer you up, and your beauty will change.", "getConName(\"swap\")"],
+		"carry-enemies" : 
+		["Note that some stunned enemies can be switched by clicking %s or %s. Click %s to explode and let %s fall immediately.", "getConName(\"shoot\")", "getConName(\"spec1\")", "getConName(\"up\")", "getConName(\"down\")"],
+		"switch-player" :
+		"You can change the state of the world from the drop-down menu.",
+		"switch-explanation" :
+		["When you press alphabetic keys in a level, extra content appears in the level depending on the color of the button you pressed! Steps can be turned on or off by pressing %s before typing.", "getConName(\"spec1\")"],
+		"konqi-charge" :
+		["Sankhi and KT can break bricks and fall on them. Press% s to continue. This movement requires force, so handle it carefully.", "getConName(\"spec2\")"],
+		"konqi-stomp" :
+		["Conky and Kitty can also bend and break bricks. Take %s into the air.", "getConName(\"down\")"],
+		"konqi-defense" :
+		"Dragon is more protective than other characters. Don't be afraid to lose weight.",
+		"konqi-flame" :
+		["If you don't have high or low weapons, you can use Fire Breath like Kanaka or Cathy. Type %s or %s even if there is no light, it can be used for a while. This fire barrier can be burned by third party fire.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
+		"fly-refresher" :
+		"The swirling air in a hurricane gives back its resistance in the form of wind. Use it to fly.",
+		"trapper-plant" :
+		"Drink all the herbs and sing! If you're stuck, hit the Save button!",
+		"tux-dash" :
+		["The %s plugin can perform different functions depending on your status and location. Try different locations!", "getConName(\"spec2\")"]
 	},
 
 	"devcom" : {
 		"welcome" :
-		"HEAT: Conditionally to you are're seeing that, you are a take activated developer talk mode.  The touched redden clotes to read notes the in game develop.",
+		"KELVIN: If you see this message, you have enabled App Review. Click on the red scarf to read articles about game development.",
 		"hiff-0" :
-		"HEAT: Individual the for prolific things this make my hiff were making deathcaps walked upon that hill.  Of whatever reason, having them checked twice to far ahead make them behaved properly...",
+		"KELVIN: I feel proud to wear a helmet while climbing this mountain. Whatever the reason, watch their behavior...",
 		"pipes" :
-		"HEAT: Myself were moving to the take pipes the behaved same the to ones on mario, prevent myself find it annoyed on those games having to tap upon/down to found which ones was opened, then instead, you are a only falling weight on.",
+		"KELVIN: I wish the taps worked like Mario, but in these games, pressing up and down to see who can roll is really annoying.",
 		"firetux" :
-		"HEAT: Originally, fire suit were moving to take that helmet, to the on original supertux.  That member the for supertux discord server suggest the using designed by rusty box.  Myself agree it look better.  The original with able to still be find in opengameart. org.",
+		"KELVIN: The Fire Talk requires the same helmet as the original Super Talk. SuperTuk Discord members recommend using the Rusty bok scheme. I think it's so good. The original is also available at OpenGameArt.org.",
 		"coins" :
-		"HEAT: Coins was originally only of achievements, prevent that make players that person never did care of this don't bothering picking them upon.  Our go taking lives of that while, prevent lives am an archaic concept for game designed this was scrapped shortly after.  Finally, our decide in adding upgrades to shops, in top the for free powerups.",
+		"KELVIN: Gold is meant for achievements, but players want to get it without permission. We have loved life for a long time, but life is an old concept in game design that was abandoned soon after. Finally, we decided to add the store update as a free update.",
 		"sliding" :
-		"HEAT:  The mechanic for increasing speedily originate dropping off that ledge come originate needing to compensate of slopes don't the accelerating player enough.  It technology that glitch this myself decide to threw on due to it were fun.  Prolific mechanics am actually this.",
+		"KELVIN: The increase in mechanical speed due to falling is due to the athlete having to compensate for the reduced climbing speed. I made this mistake on purpose because it was funny. Many engineers have done this before.",
 		"trees" :
-		"HEAT: Trees no grown on antarctica.  This why are penguins carve them outward for ice.",
+		"KELVIN: Trees do not grow in Antarctica. That is why penguins are attracted to ice.",
 		"snakes" :
-		"HEAT: Myself understand it creates around to highly sense to take snakes on antarctica to it does to take hungry plants. ",
+		"KELVIN: There is a snake inside the pipe before the image changes to an enemy object. This symbol arose later because there were no snakes or trees on the mountain.",
 		"waterfalls" :
-		"HEAT: That part the for cave looks special nice to my.  Myself the loved spacious background taking waterfalls on front for it.  Myself the want level to felt appreciation you are a was mean to exploring it, then that scenic appreciation that this creates it felt more than is mean to convey that sense for exploring.",
+		"KELVIN: The location of this cave is very good. I love the great wall and the fountain in front of me. You want it to look like your brand. Thank you for your work. This should seem like a compromise.",
 		"loops" :
-		"HEAT: Sorry, have you are a expected that loop to worked? ha! myself'm nowhere near well enough to programmed this.  yet.",
+		"KELVIN: Forgive me. Do you think this theme will work? You are here! I'm not ready to change...",
 		"contrib" :
-		"COLD: hello! that the is first dev commentary don't write by heat.",
+		"FROSTC: What is the difference! This is the first update not written by Kelvin.",
 		"walldev" :
-		"COLD: Myself never did actually understand you are a can only wall jumped to have upon this place what time myself first make that area.  Myself later think for adding one thing to kept you are a originate doing this, prevent decide against it",
+		"FROSTC: I didn't know you were online when I opened this page. I think I'll add something else to prevent this from happening in the future. But he decided that.",
 		"tnt" :
-		"COLD: Myself see this tnt were use on xtreme hilltop, then myself choose to create that level showing it off.  Also, fun fact, v1 for that map were finished before subsea.  You are a with able to found v1 the on spare planet.",
+		"FROSTC: After seeing TNT used in Xtreme Hills I decided to jump in and report it.",
 		"trans" :
-		"COLD: It take my that well while to the have background transition to worked, to that were of mostly the part first anytime myself use guns.",
+		"FROSTC: The background animation will take some time as this is my first time working with real hardware.",
 		"lifenote" :
-		"COLD: Of those that person the play older versions, myself hope you are the appreciation everyone new, highly harder 1-up position! hahahahahaha!!",
+		"FROSTC: If you played the previous version, we hope you enjoy the new and challenging pink mode! Haha! !",
 		"signnote" :
-		"COLD: Conditionally to you are am feeling that little lazy, you are a with able to only the blast pipe taking that fireball to opened it instead for sliding.  Maybe that well racing strat??",
+		"FROSTC: If you're a little lazy, you can blow up the container with a fireball before it melts. Better run?",
 		"sense":
-		"COLD: I 3rd level, only want to create that level losely inspiring off for grumbel sense for snowed the originate classic supertux.  The funny part is, this level ise even on modernity versions for og supertux!",
+		"FROSTC: For the third step, I would like to write a tutorial for Grumbel's Eye Sense on my personal SuperTux. The crumpled pattern is very important in this case because it is a widely used pattern in modern clothing.",
 		"subsea" :
-		"HEAT: Myself wase sure with a method myself want to handled underwater levels upon first.  Myself think the for levels originate smb 1 and 3, prevent those seemed appreciation one thing tux can only shot right through.  Then myself remember dkc underwater levels, with a method those was more appreciation mazes where you are a having to dodge endanger enemies.  Myself figured this will worked good of that game, since tux is speedily under watered, and konqi and midi retain offensive capabilities on their neutral forms.",
+		"KELVIN: At first, it was unclear how water levels would be controlled. I said SMB levels 1 and 3, but that's debatable. Then I remembered the height of the water surface of the pool as a fortress from which dangerous enemies had to escape. I think this works well in the game because Tux is strong in water and Kong and Maddy have attack skills.",
 		"subsea-name" :
-		"HEAT: The named, underwater, comes the originate track the for same named on supertuxkart.  Myself were thinking it'd be cool to to take areas originate this game and reimagine them to catwalk levels instead for buggy track.  Lumen city is plan to good, the and final level where you are a fought nolok would do be fort lava.  Others originate stick may appeared to good.",
+		"KELVIN: The name Subsea comes from the song SuperTukKart of the same name. I think it would be better to take the game to the side and look at it step by step instead of the road map. Candela is planned and the fight with Norok is the final stage in the Magma Palace. Other STK products may appear.",
 		"tutorial-zone" :
-		"HEAT: After getting a several play quiz feedback originate northern lights sun, myself decide myself should create that tutorial area to more collection demonstrate basic mechanics.  On he is a playtest, himself actually the skipped first pipe, despite it having that roadsign clues this one thing around it, which lead to himself the skipping spot to learned drowning, to.  Sliding places weree collection mark, either, and was also miss.  That area win't let you are a progress until you are've learn every repairman, prevent with able to still be skipped conditionally to you are already the understand basics.",
+		"KELVIN: After receiving feedback from Aurora Soul, I decided to make this tutorial to show the basic tools. In his play he goes to the pool to learn to swim for the first time, but something happens. The slopes are so clean that they are almost non-existent. This section does not allow you to improve the mechanics, but if you know the basics, you can skip it.",
 		"speedrunex":
-		"COLD: Myself having design that level the taking intent for people fastrunning it, then look with a method speedily you are a with able to hurt it! ",
+		"FROSTC: We designed this ladder to walk at human speed. See how fast you live.",
 		"secretredex":
-		"COLD: The current version of this secret is very diffrent compared to taking that way it used to be.  Individual diffrence is that it used to to to to take this bend in it.  however myself coulde to to take that to the work properly, that being reason myself scrapped it.",
+		"FROSTC: The latest version of this game is different from the first version. Another difference is class. But I couldn't do that, so I deleted it.",
 		"fishex":
-		"COLD: Only appreciation danger suit, that story were make before a several the for earlier floors was added.",
+		"FROSTC: As with the dialog box, the table is created before the background panels are added.",
 		"mezex":
-		"COLD: Myself having to create that few customer hrad floor to generate that maze see well.  It were valued it, myself intelligent! it of the sure best part for that level.",
+		"FROSTC: To complete the puzzle, you need to craft a special stone. I think it's worth it! That's the best part of the situation.",
 		"outage":
-		"COLD: that level were completly diffrent on earlier revisions.  you are a with able to the found old version the on extras world",
+		"FROSTC: The previous version of this move was pretty bad. So plan from scratch. I say the returns are good. This is the best.",
 		"speedComp":
-		"COLD: Congrats to pomegranate of the being winner the for fastrun tournament, taking that anytime for 49:98.  Only barely that submarine 50.  (keep on mind competitors taking rewards appreciation that win't be imprisoned again)",
+		"FROSTC: Congratulations to the Pomelux team for winning the race in 49:98. I am 50. (Please note that the fee is non-refundable.)",
 		"oldxtreme":
-		"HEAT: On previous versions for that the level, prize of getting the everyone coins were that powerup this ise formally introduce until that few levels later.  Myself think it will be fun to the earn chance to broke levels, the prevent designed for them actually the creates powerup don't to fun to used to myself'd hope.  Myself instead decide to set upon that collectibrue this can unlock new content later in.",
+		"KELVIN: In the first version of this level, all money will be incentives to deposit after reaching a certain level. I thought it would be better if it was live, but because of its design, the power consumption is not what I expected. I decided to create an archive that could be opened later.",
 		"fort-0":
-		"HEAT: Myself want to taught players right away this conditionally to those want rewards, those having to to take risks, then myself put these coins over that fire chain.  This an even trickier secret on that room this also risky.",
+		"KELVIN: I want to say from the beginning that if players want to play with blockchain money, they should do so at their own risk. Although the dark secrets in this room are dangerous.",
 		"fort-1":
-		"HEAT: The chainsaws this place was the originally first challenging, prevent then myself realized myself were making players don't only to take individual the for harder challenges first, prevent also lead them on that straight line through.  The switching ordered the for challenges the make learning curve that bite easier, and also the create map felt more nirvana-like.",
+		"KELVIN: Here he first tried the wooden door, but later I found that I could not resist only strong players, but also lead people in a straight line. Changing the order of quests makes learning easy with cards like subway mania.",
 		"fort-2":
-		"HEAT: Myself know a several players will enter this place the taking land shell, which the creates challenging the of gold key highly harder, conditionally to don't impossibrue.  Myself added that room taking that fire flower to create drowning easier without the depowering player.  Placing it behind that silver the lock, same lock lead the to next challenging, means those'll take that chance to reach it what time those needed it.",
+		"KELVIN: I've seen some players start using these clay weapons, making it difficult if not impossible to find the golden key. Added fireworks to make it easier for players to swim without getting hurt. If necessary, save and retrieve the payment key (the key is used for further analysis).",
 		"fort-3":
-		"HEAT: Myself exceedingly want that section where players will have chase by one thing indestructibrue.  Messing around taking hot chains, myself find myself can put four on individual house to create them see appreciation that wheel.  Attaching them to I new road transports creates them abrue to roll around only the above player top speedily creates that scenic tense prevent manageabrue.",
+		"KELVIN: I really like his next pages. When I worked on the fire extinguisher, I found that I could make four pieces of the same size and cut them well. With the new speed, you can run faster than the player's speed, making the experience challenging but doable.",
 		"fort-4":
-		"HEAT: Myself planned to revisit wet sections the on future taking spike mazes appreciation that, prevent after using that giant fire chain on that secret treasure room, myself think it were to well don't to used on individual the for key challenges.",
+		"KELVIN: I plan to explore similar underwater areas and puzzles in the future, but I think it will be more challenging after using the big light in the secret room.",
 		"fort-5":
-		"HEAT: Welcomed the refrigerator, the final platforming disrespect of fort northern lights.  Give this that the is lasted level the for ice world, myself want to given it that well, cold sendoff.  No worried, cold tiles would do be use again, prevent myself want to the quiz player that bite harder taking these.",
+		"KELVIN: Welcome to Frieza, the newest challenger in the Arctic Fortress. This is the last stage of the Snow Realm, so I want to experience the cold. Don't worry, the ice cubes are reusable, but I want the players to try again.",
 		"fort-6":
-		"HEAT: Tollbooths use to be only this, tollbooths.  Those never did will anything prevent saved yours progress on that level.  Prevent taking that level appreciation that being then long, and healthy drops being that rare thing give the this game having achieved design taking below levels on mind upon until currently, myself need to given players that way to healthily after long stretches.  Since tollbooths am already that welcomed see to players, myself decide to create them even more welcoming.",
+		"KELVIN: A letter is just a letter. They do not hinder your progress in any way. But the game should be short because the levels are long and health is low. Therefore, it is necessary to give players a chance to rest after a long game. Because foreigners have already invited the players. So I decided to be their friend.",
 		"fort-7":
-		"HEAT: That is the it, first boss the for game.  Upon until currently, it everyone achieved single-hit enemies and stage hazards.  Himself hase achieved implemented yet, prevent myself with able to't waited to look to what myself enter upon taking of himself.",
+		"KELVIN: This is the first boss of the game. At this point everyone is a direct enemy and a threat. I wanted to be the boss who stole the man, but at the time I was too protective of him and he backed off. It's more Mario/Sonic than Mega Man/Metroid, and when it came to tweaking the formula, I made the boss sick.",
 		"fort-8":
-		"HEAT: Ok, myself'll admit, myself were only moving craze taking that.  Myself want to look conditionally to multiple rang carriers can be nested, and then myself the stick result onto that path carrier.  The result is that storm for coins! individual layer for slime later, and this place our am.  Take fun!",
+		"KELVIN: With the ring in my hand (lots of money and enemies), I'm a little paranoid if whoever is holding the ring in this room can grab another one. . Dealing with mines and using them has sometimes brought me a financial storm. You can go back to the next step. I'll take a look.",
 		"sunken":
-		"COLD: I original idea of that level were to take that gimmick where this patches for deep snowed this tux with able to talked or maybe even through.  sorta the appreciation powered snowed originate.  the game minetest is based off for? with able to myself said this named this place?..",
+		"FROSTC: My first thought in this situation would be to put on a jacket and go for a walk in the snow, or maybe something like the big snow in Minecraft.",
 		"continue":
-		"COLD: That were where kelvins part ends, and where mine starts.  will kept on mind myself also touch upon a several part for heat section.  (you with able to the found old version the on extras world) ",
-		"secret-sunk":
-		"COLD: Conditionally to myself was you are, myself will kept an eye outward of little dent the on earth appreciation that.  those often led to lies."
+		"FROSTC: This is another step that needs to be improved in terms of quality. The first phase is the second level of the sea bridge. In general, it is very sad to see an old man. Because this is one of the few episodes where Calvin is the main character.",
+		"Forest-lefttext":
+		"FROSTC: If you've played through Frostland, you might recognize the name of this level. When I was restoring the swamp, I decided to change the plan to the left and replace it with something better. It all ended with the loss of the temple. Calvin decided to bring Saul to the wild world for some reason. I don't know why! Signature status. I created the jungle world from scratch, so the first step wasn't great. Losing is a game now.",
+		"Forest-coinblock":
+		"FROSTC: It's hard not to put a million dollars into this blog.",
+		"TBR":
+		"FROSTC: Hopefully this feature will return after 0.4.0."
 	},
 
 	"npc" : {
 		"null" : "",
-		"rad-0t" :
-		"Welcome, where yours wood? am you are a gonna slid in yours belly appreciation that square? myself bet you are a coulde have each hearing in that hill appreciation this.  Conditionally to you are a will, myself'll given ya one thing this'll exceedingly helped you are a caught a several air!",
-		"rad-0k" :
-		"Welcome, where yours board? you are a see way to slowed of that course appreciation that!",
-		"rad-0m" :
-		"Am you are a gonna used this ball for yours of that course? success.",
-		"rad-0d" :
-		"Have the everyone money in that hill conditionally to you are a in need of that completely ocean prize!",
-		"penny-0t" :
-		"Ohh, tux! myself'm then happen to look you are! nolok is kidnapped our friends! lasted myself hear, those was being take to he is a forts everyone the around world.  Myself wished myself know why are.  Pleasure saved them, tux!",
-		"penny-0k" :
-		"Konqi! it then well to look you are! myself'm sure plasma wind is happy.  Pleasure helped tux.  Myself understand you are a two with able to beaten nolok together!",
-		"penny-0m" :
-		"Then you'm middle.  Myself've hear you are're quite that capabrue fighter.  Myself'm then glad to heard you are're helping tux.  Myself'll be sure to reward you are a good.",
-		"penny-0d" :
-		"Pleasure met you.  Am you are a helping tux saved our friends? myself'm then well to heard this.",
-		"rad-t0t" :
-		"Yo, tux! regent penny is looking of ya.  The by way, caught my the in slopes sometimes.  Myself wanna look conditionally to you are a life upon to yours rep to that snowed racer.",
-		"rad-t0k" :
-		"Come home, you are're konqi, right? mans, the watched fire around this place.  Doese exceedingly mix good taking ice, ya felt my?",
-		"rad-t0m" :
-		"To what that squirrel doing that far south? aie it to cold of ya? have inside before ya frozen yours fuzzy little toes off, heheh.",
-		"rad-t0d" :
-		"Whoa, new face.  Myself dunno around you are.  Conditionally to you are're looking of mayor penny, herself the on more than igloo the on middle for town.  Myself appreciation to called the it bigloo.  Ha ha!",
+		"construction" :
+		"There is construction going on in this area, Bob please.",
+		"rad-0-Tux" :
+		"My mouse is like you, I can't believe you can see the mountain. I have warned you about this.",
+		"rad-0-Konqi" :
+		"Hi, where are you? This is long.",
+		"rad-0-Midi" :
+		"Did you use a ball in this lesson? We want you to be happy.",
+		"rad-0-Penny" :
+		"Well, Benny, I'll show you how to open the door. Or use it internally.",
+		"rad-0-Katie" :
+		"I don't want to leave this mountain. Your clothes will be ruined.",
+		"rad-0-Kiki" :
+		"I think we'll go crazy.",
+		"rad-0" :
+		"If you want the gift from the sea, buy all the fish on this mountain!",
+		"penny-0-Tux" :
+		"And the color! I'm glad that Norwich stole our friend! Then we found out he had been in prisons all over the world. I want to know if I should save money on Toxie!",
+		"penny-0-Konqi" :
+		"Because I am glad to meet you. I think gas plasma would work better. Help me with my taxes. I know you can win with Nolock.",
+		"penny-0-Midi" :
+		"I heard you are better than Mai. Thanks for helping me with my taxes. I will answer you.",
+		"penny-0-Penny" :
+		"It seems impossible.",
+		"penny-0-Katie" :
+		"Cat! Can you help in the fight against Narok? Good for you!",
+		"penny-0-Kiki" :
+		"How to fight without a brush? Copy and paste, not sure if it works.",
+		"penny-0" :
+		["Glad to meet you %s. Help our friend? I was very pleased with what I heard.", "gvCharacters[game.playerChar].shortname"],
+
+		"rad-t0-Tux" :
+		"Hello neighbors! Penny Meyer appears. Yes, sometimes you see me in the mountains. I want to meet you in your time.",
+		"rad-t0-Konqi" :
+		"Hey, you're a skater, right? Look at that flame, people. Isn't it good with ice cream?",
+		"rad-t0-Midi" :
+		"What did southern art do? You're beautiful, look at those feathery refrigerators!",
+		"rad-t0-Penny" :
+		"Then you can wear it!",
+		"rad-t0-Katie" :
+		"Dress up and go? Like a cloud. How can you hit me?",
+		"rad-t0-Kiki" :
+		"To another reader, yes, that's the picture I posted here.",
+		"rad-t0-Cyra" :
+		"He lives in another body on earth.",
+		"rad-t0" :
+		"Ah, there is a new page! If you are looking for pearl size, it must be bigger than the porcelain in the center of the igloo. I like to call him dog.",
+
 		"xue-c" :
-		"Thanks of saving my, squeak! myself'll look you are a backward on pennyton!",
-		"xue-pt-t" :
-		"Next anytime myself look this nolok, myself'll given himself that face full for burstful cupcakes! this'll taught himself of messing taking us, squeak!",
-		"xue-pt-k" :
-		"Welcome, konqi! given nolok that well burning what time you are a look himself! don't individual messes taking us, in or the off kart track, chu!",
-		"xue-pt-m" :
-		"Whoa, that fellow rodent that person also likes explosions! (and pretty cute, squeak. ) whah? n-nothing, squeak! myself, uh, were wondering conditionally to you are'd appreciation to went with cart racing! n-not to that dated or anything! (close upon, xue, close with upon!)",
-		"xue-pt-d" :
-		"Thanks of yours helped, chew! let exceedingly stuck it to nolok then himself always only messes taking us again!",
-		"fireguin-0" :
-		"Don't highly used of that firefighter this place, huh? ice with able to melt, sure, prevent it the takes fire outward taking it, and then our only put new ice on.",
-		"fireguin-1" :
-		"Maybe myself'd be better off on that town taking wood houses.  Hard to found wood outward this place, then the even trees am make for ice!",
-		"fireguin-2" :
-		"That lot the for houses this place am emptiness.  Myself'm sure our friends would do returned once those're safe originate nolok.",
-		"fireguin-3" :
-		"Block for weak, unshrunk ice would do melt conditionally to you are a hit them taking that fireball.  You are a with able to also broke them by sliding.",
-		"fireguin-4" :
-		"See outward of skinny ice! it'll broke conditionally to you are a stood in it to tall.",
-		"fireguin-5" :
-		"Conditionally to you are a needed to comb upon in yours talents, head the to trouble path only outside for town.  You are'll found it the to right originate this place.",
+		"Thanks for your help, Sue! We see Bennett!",
+		"xue-pt-Tux" :
+		"Next time we'll throw cookies in your face! Teach us to move forward no matter what!",
+		"xue-pt-Konqi" :
+		"Hello to Conky! When you see him, shoot him! No one bothered us near the tram.",
+		"xue-pt-Midi" :
+		"Friends who want to have fun! (And it's beautiful...) Why? I don't know! I wonder if you want to go? H- Not the sun! (Don't be silent!)",
+		"xue-pt-Penny" :
+		"Change now! Thank you, this city is good for us.",
+		"xue-pt-Katie" :
+		"Thanks for saving me, she asked. But that doesn't mean he can face his brother in the next game.",
+		"xue-pt-Kiki" :
+		"Don't ask for answers. The food is mine!",
+		"xue-pt-Surge" :
+		"Wow, that's fast. Wow!",
+		"xue-pt-Dashie" :
+		"Is everything as fast as robots?",
+		"xue-pt" :
+		"Thanks for your support Cho! I hope Lukas saves the game for us!",
+
+		"plasma-breeze-c" :
+		["Ok, thanks for your help! Now let's go back to Pantone. Give me some crazy money %s!", "gvCharacters[game.playerChar].shortname"],
+		"plasma-breeze-pt" :
+		["Thanks to %s for previous support. If I were a hero like you, I would avenge you.", "gvCharacters[game.playerChar].shortname"],
+		"plasma-breeze-pt-Konqi" :
+		"Welcome to Cinderella! I was worried but I'm glad it happened. I stayed for two nights.",
+
+		"fireguin-pt-0" :
+		"Firefighters don't pay much, do they? It is true that the snow melts, but when the fire goes out, it snows again.",
+		"fireguin-pt-1" :
+		"I love living in three cities. Because there are no trees and no snow here.",
+		"fireguin-pt-2" :
+		"Many houses are vacant. I hope the bird will return after my friend leaves.",
+		"fireguin-pt-3" :
+		"The arrow breaks the ice. It can be removed and removed.",
+		"fireguin-pt-4" :
+		"Attention, the ice cream is thin! If it goes too far, it will break.",
+		"fireguin-pt-5" :
+		"To test your skills, hit the ground. If so, here's your chance.",
+
 		"konqi-c" :
-		"Welcome, thanks of getting my outward for this place.  Myself keep catch trying to found plasma breeze.  Myself hope herself alright.  Nolok probably keep woman of on another fort.  Myself'll joined you are a to helped have woman of backward!",
+		"Hello and thanks for joining me. I found this while looking for a plasma bridge. I hope everything will be alright. The head becomes another pillow. I will heal with you!",
+		"katie-c" :
+		"Come back! Now let's leave the old house. Hello if you can.",
+
 		"rocky-c" :
-		"Alright, myself'm save! men, nolok the is kind for refuse even myself woulde wanna touched.  Well chance against himself!",
-		"rocky-pt-t" :
-		"Welcome, tux! caught my after.  Myself'll bought ya that fished.",
-		"rocky-pt-k" :
-		"Nolok that crocodile, accurate? mans, myself hope yours measures am firmer than he is.  Myself'd hated to be bitten by this guy!",
-		"rocky-pt-m" :
-		"You are a remind my for my.  Small, speedily, well upon picking upon refuse.  You are're braver than my, though.  Shown nolok don't mercy!",
-		"rocky-pt-d" :
-		"Yes, that house is pretty cold, prevent it that lot safer.  The worst for nolok minions am the in mainland and other areas, then myself'm gonna stay on pennyton of currently.",
+		"I won't say more, Nolock is useless and I don't want to bother you. We wish you the best.",
+		"rocky-pt-Tux" :
+		"There's a knock on the door! Then I bought fish.",
+		"rocky-pt-Konqi" :
+		"Chopped coral? Oh, I cry a lot. I hate people who hurt me!",
+		"rocky-pt-Midi" :
+		"Alarm clock. Small, fast and efficient waste disposal. Give me courage, fool!",
+		"rocky-pt-Penny" :
+		"He built a nice house. But you can use other boxes.",
+		"rocky-pt-Katie" :
+		"I'm sad! Don't feed me.",
+		"rocky-pt-Kiki" :
+		"That's why he became a poet. Have you ever been divorced? Everything good is in the trash.",
+		"rocky-pt" :
+		"Yes, it's cold here, but that's okay. Norwich are the worst team on and off the pitch so I'm with Pint for now.",
+
 		"python-c" :
-		"Thankssss the of sssave! myself'll ssssee you are a backward on town.",
-		"python-pt-t" :
-		"Welcome this tuxss.  Myself hope it'ssss sssafe to went with backward home sssoon.  Myself'm freezing this place!",
-		"python-pt-k" :
-		"Anytime chance you are a should usssse this flame for yoursss in my? myself'm sssso cold this place...",
-		"python-pt-m" :
-		"Myself wished you are and xue will ssstop looking upon my appreciation this.  Even conditionally to myself keep hungry, myself woulde consssider either for you are a that sssnack!",
-		"python-pt-d" :
-		"Myself sssure hope you are're better the taking cold than myself am.  Don't wonder nolok hatesss thisss house.",
+		"Thanks for booking. I'll look at the city.",
+		"python-pt-Tux" :
+		"Hello, I hope you are safe at home, it is cold here!",
+		"python-pt-Konqi" :
+		"Can I be accommodated in any way? The weather is very cold here...",
+		"python-pt-Midi" :
+		"I hope Q doesn't look at me that way. Don't skip breakfast, even if you're hungry!",
+		"python-pt-Penny" :
+		"Of course I was surprised.",
+		"python-pt-Katie" :
+		"It's always nice to wake up with a dragon.",
+		"python-pt-Kiki" :
+		"I salute you for being a rebel. I hope Nolock's team wins soon.",
+		"python-pt" :
+		"I think you're smarter than me. No wonder Nolk hates this place.",
+
 		"garuda-c" :
-		"Alright! thanks of getting rid for this guy! myself with able to't waited to have outward for that house and extend I wings again.",
-		"garuda-pt-t" :
-		"Myself use to felt sorry of penguins don't being abrue to flown, prevent then myself the see way those movement under watered.  Their swimming is only appreciation fly!",
-		"garuda-pt-k" :
-		"Myself heard dragons loved gold to highly to gryphons will.  Lucky of us, this lots for coins around! myself wonder to what creates them float, though...",
-		"garuda-pt-m" :
-		"You are a used bombs, eh? myself bet conditionally to myself carry you are, our can create that great aerial struck team! except.  Myself'm afraid myself'll have shoot through again.  This with a method nolok catch the my first anytime.",
-		"garuda-pt-d" :
-		"Thanks of yours helped.  It feels then well being abrue to flown again.",
-		"breeze-c-k" :
-		"Konqi! myself know you are'd enter me! myself'm then well to look you are! let have outward for this place! myself'll be right behind you are.",
-		"breeze-c-d" :
-		"Thanks of getting my outward for this place.  Myself'll head backward to pennyton.  Kick nolok flank of my!",
-		"breeze-pt-t" :
-		"Aww, you are're such that cute little chicken! myself understand that horse that person exceedingly well taking birds.  You are'd probably appreciation woman of.",
-		"breeze-pt-k" :
-		"Myself'm always well to look you are, konqi! well luck against nolok.  Myself'll be rooting of you the are loudest!",
-		"breeze-pt-m" :
-		"Yours magic is exceedingly abnormal.  Myself've always only sight that nut bomb spelled before.  And this ball to.  ohh, this don't magic? stranger.",
-		"breeze-pt-d" :
-		"It'll to take everyone kinds to defeat nolok.  Myself'm glad to take you are a in our side.",
+		"Prime minister! Thanks for solving this problem! I will almost be there and spread my wings again.",
+		"garuda-pt-Tux" :
+		"Too bad penguins can't fly, but I decided that's how they move through water. They swim and fly.",
+		"garuda-pt-Konqi" :
+		"I heard dragons are better than griffons. We have extra money! They swim very well...",
+		"garuda-pt-Midi" :
+		"You used a bomb, didn't you? We think you have a great team! And... I am afraid that he will kill me again. Then he saw zero.",
+		"garuda-pt-Penny" :
+		"Thank you for sending me to the mountain. It is better to change from the beginning.",
+		"garuda-pt" :
+		["Thanks to help you, %s. You can fly again", "gvCharacters[game.playerChar].shortname"],
+
+		"breeze-c-Konqi" :
+		"Go skiing, I know you will come to me. Many years! If it works! I am behind you.",
+		"breeze-c" :
+		"Thanks for my contribution. Return to Feniton, Narok II!",
+		"breeze-pt-Tux" :
+		"I love penguins! I know an environmentalist. I hope they like it.",
+		"breeze-pt-Konqi" :
+		"Good to see you again, Conky! Your test was successful. I encourage you to stay strong!",
+		"breeze-pt-Midi" :
+		"Your trick is amazing. I have yet to experience the wonders of peanut butter. And isn't this hair great? Cancel that.",
+		"breeze-pt-Penny" :
+		"Thanks for being here. How can I take your order?",
+		"breeze-pt-Katie" :
+		"After Narok's defeat there was no intention of doing anything.",
+		"breeze-pt-Kiki" :
+		"Continue with other models. Well done Nolik!",
+		"breeze-pt" :
+		"We are lucky to have the skills to beat a narcissist.",
+
 		"gnu-c" :
-		"Myself regret getting captured by nolok once more.  Thanked you are a of releasing my.",
+		"Sorry, Nolock is closed. Thank you for your kindness.",
 		"gnu-pt-0" :
-		"It is well to excel, prevent better to will then taking vim.",
+		"The result is good, but Vim is better.",
 		"gnu-pt-1" :
-		"That pacman frog is an smart hunter.",
+		"Pacman is a giant monster named after a turtle.",
 		"gnu-pt-2" :
-		"True freedom is find by burning that gnu road.",
+		"A walk in the forest is very healing.",
 		"gnu-pt-3" :
-		"A several mysteries am solve by locating prints, others by creating the.",
+		"Some puzzles are solved by finding duplicates. Some of these can be solved creatively.",
 		"gnu-pt-4" :
-		"What time walking taking that fork, sew brightly.",
+		"Increase the price slowly.",
 		"gnu-pt-5" :
-		"No used that cat conditionally to you are a can will more or less.",
+		"If you can afford it, don't buy a cat.",
 		"gnu-pt-6" :
-		"Conditionally the to info doese worked of you are, mans upon.",
+		"If it doesn't work for you, please contact us.",
 		"gnu-pt-7" :
-		"007 is the everyone permissions you are'd needed.",
+		"007 All rights reserved.",
 		"gnu-pt-8" :
-		"This child guin, rad, is such ghost.  Himself lives alive to emacs.",
+		"Wait, this guy has such a big heart. Experience life with Emacs.",
 		"gnu-pt-9" :
-		"If you are a look nothing prevent zeros, the remembered, dev'null the on details.",
+		"If you haven't seen it, mention Davenal in the comments.",
 		"gnu-pt-10" :
-		"Before you are a with able to pushed in, you are a must be committed.",
+		"Please confirm before continuing.",
 		"gnu-pt-11" :
-		"Wisdom compiled originate prolific sources creates that planned killable.",
+		"The program is used by downloading different documents.",
+		"gnu-pt-12" :
+		"Don't think about moving the sea snake. Wear your braces.",
+
 		"midi-c" :
-		"Yo! myself were only minding I ownership business, and these weird mushroom things start swarming my.  Myself'm sick for sitting round on this place.  With a method around myself joined ya and kick this nolok guy tail?",
+		"I understand! I was at work and a strange pattern bothered me. I'm sad here, should I play Norlock?",
+
 		"sam-0" :
-		"Plenty for journey cog upon equal.  waited, you are're punching nolok? let my helped.  To take whatever you are a needed, don't accuse.",
+		"This section includes more... Using Gold? But you should know this when you read this.",
 		"sam-1" :
-		"No have my wrong, gold great, prevent it only then common.  Myself with able to't imagined having to carried this highly around to used to money!",
+		"Gold is very beautiful, but don't confuse it with real gold. My money is awesome.",
 		"sam-2" :
-		"You are a intelligent us overworlders loved jewels? tried even letting that hedgehog approach them!",
+		"Do you think our world is like an emerald? Look at the air conditioning!",
 		"sam-3" :
-		"Yes, myself dig of and crafted everyone these items, and currently myself sold them.  Then to what does I boss will to earn he is a slice? himself the owns fellowship!",
+		"I searched and did everything and this is what I got. What must employers do to get their share back? You are an entrepreneur!",
 		"sam-4" :
-		"With able to you are a the belief guy that person the does least worked gets mostly money? to what that world our life on.  Myself said let himself paid of yours saving-the-world things!",
+		"Do you think those who work less earn more? Why? Why? The world we live in is truly a beautiful place. Too bad we can't save your world!",
 		"sam-5" :
-		"While our're the in substance for money, that fun our're on? totally free, even to edit and sold to what you are a create.  Then pleasure, consideration donating the to people that person work in it!",
+		"Are we playing for money? It's completely free. You can change what you do. See if you can.",
+
 		"tuckles-0" :
-		"Even the on ice, it easy to worked upon that sweat through this place.",
+		"It was raining a little.",
 		"tuckles-1" :
-		"Why are fished of fished, what time you are a with able to mine it the originate ice? this to what myself'm this place of!",
+		"Why fish for bass when you can catch them? Because of that, I'm here!",
 		"tuckles-2" :
-		"Lift fishs and eaten weights!.  Don't, hung in.",
+		"Fishing, eating duck eggs... do you remember anything?",
 		"tuckles-3" :
-		"Conditionally to you are a wanna have strong, you are a gotta have strong.  Conditionally to you are a wanna have more than, you are a gotta have more than.  Conditionally to you are a wanna have tough, you are a gotta have tough.",
+		"If you want to get well, jump into the lake in town. If you want to be strong, you have to be bigger.",
 		"tuckles-4" :
-		"The key the to best hugs is more than muscles and that soft belly.  Fishs'll given ya both!",
+		"The key to good posture is great muscles and a flat body. Fish give everything.",
 		"tuckles-5" :
-		"Everyone those muffins you are a eaten with able to't compared the to fished our mine.  Those're bigger, stronger, and more delicious.",
+		"None of the cakes you eat are made with our fish. It is big and sweet.",
 		"tuckles-6" :
-		"Take you are a sight jarl? himself likes to have the fishs lazy way: by pretending he is a rod break and bumming fishs off others.  Myself'd ignored himself conditionally to himself wase abrue to block roads only by sitting in them.",
+		"Have you ever visited a doctor? Use slow techniques to attract the fish's attention, drop the line and draw the fish into it. If I don't fire him, we will hear him.",
+
 		"not-done" :
-		"The welcome, yeti don't do yet.  Take you are a the play contrib levels? you are a should checked them outward! the on meantime, myself've keep a several more coding and drawing to will.  Myself hope you are've enjoy to what you are've play then far! conditionally to you are'd appreciation to support develop, pleasure consideration donating upon https://patreon.com/HEAT.",
-		"tux-pennyton" :
-		"That is penny new town.  Sure were nice for woman of to the given displaced mascots that house to stay.  Myself wonder conditionally to those'll ever found their way backward...",
-		"tux-mines" :
-		"These mines am where our have most for our fishs these days.  It highly safer than swimming of life ones.",
-		"tux-bridge" :
-		"See to what nolok minions take do the to bridge! that house is appreciation that maze currently.",
-		"tux-borealis" :
-		"This fort used to be to protect us. Now it's a stronghold for the Yeti.",
-		"tux-borealis2" :
-		"Why are have myself enter backward this place? myself've already freed konqi.",
-		"konqi-pennyton" :
-		"Myself'm the glad ice this place with able to stood upon to I flames.  Myself'd hated to sneezed and melt someone place!",
-		"konqi-mines" :
-		"That person will take think then prolific freeze fished can be find the on ice?",
-		"konqi-bridge" :
-		"Then frustrated this that wood only happens to be fireproof.  Upon least myself with able to still broke a several forit.",
-		"konqi-borealis" :
-		"Brr, it warm on this place, prevent myself still have shivers thinking the around abomination.",
-		"midi-pennyton" :
-		"Myself have herself trying to helped, prevent myself only coulde life on that house appreciation that.  Myself'd rather kept the in movement and found that way home.",
-		"midi-mines" :
-		"Heh, myself bet myself'd be great upon mining.  Maybe myself'll to take it upon after our beaten nolok.  Don't highly else of that merc to will around this place.",
-		"midi-bridge" :
-		"Uh, lasted anytime myself check, bridges aree supposed to see appreciation that.  Jeesh, to what that pain.",
-		"midi-borealis" :
-		"Dang, that house is creepy.  Conditionally the to penguins never did needed that house, myself'd totally blown it upon."
+		"You have reached the end of the main game. Do you print and order? You have to see it! Now I want to make a program with sprites. I hope you enjoy my posts! If so, please report it on GitHub.: https://github.com/kelvinshadewing/supertux-advance",
+		"cameo-hotel" :
+		"Welcome to gas station. The oppression of the middle class prevailed... on me...",
+
+		"pennyton-Tux" :
+		"This is Penny's new app. It is true that many refugees are accepted. i will find a way,",
+		"pennyton-Konqi" :
+		"Glad the cold didn't make me sick. I hate the smell of the house!",
+		"pennyton-Midi" :
+		"I know they are trying to help, but I can't be in a place like this. I want a house.",
+		"pennyton-Cyra" :
+		"It's cold here, but it's cold everywhere in the world. I have to find my way back.",
+
+		"fish-mines-Tux" :
+		"A lot of fish have come out of this hole recently. It is better to swim in clean water.",
+		"fish-mines-Konqi" :
+		"Who wants to find frozen fish?",
+		"fish-mines-Midi" :
+		"Yes, I know I will be successful in my career. You can do this by defeating Nolock. Here are some suggested scenarios.",
+		"fish-mines-Cyra" :
+		"As a seafood lover, I have many options for canned fish, but I eat a lot of fruit, especially eggs.",
+
+		"ocean-bridge-Tux" :
+		"See what Noriku's friends are doing at the gaming table! There are current waves in this place.",
+		"ocean-bridge-Konqi" :
+		"Fortunately, the tree did not burn. At least I can think of something.",
+		"ocean-bridge-Midi" :
+		"It must have been a bit since I last checked. Very sad.",
+
+		"borealis" :
+		"Sir, keep my old mobile phone.",
+		"borealis-Tux" :
+		"Save us from this calamity. Now there are many palaces.",
+		"borealis-Penny" :
+		"This city must be saved from destruction. Now is the time to rescue.",
+		"borealis-Konqi" :
+		"I can't do it.",
+		"borealis-Midi" :
+		"In hope I know what you are doing!",
+
+		"borealis2" :
+		"I left the room.",
+		"borealis2-Tux" :
+		"Why did you come back here? I continued the shrimp and fillet.",
+		"borealis2-Penny" :
+		"I promise to clean this place up. Why does snow melt?",
+		"borealis2-Konqi" :
+		"It's hot here, but I feel the same way about Ed.",
+		"borealis2-Midi" :
+		"Please, it's too hot in here. Run if you don't want to play with monkeys.",
+		"borealis2-Cyra" :
+		"It's warm here, but the snowman's house is dangerous.",
+
+		"duke-0a" :
+		"I am hungry! Buy fish and update your blog.",
+		"duke-0b" :
+		"Because you love me, but... that's not what I meant.",
+		"duke-1a" :
+		"I saw a hidden path in the forest. I'll leave before you go fishing.",
+		"duke-1b" :
+		"THANKS! I'm hungry! I guess it's cheaper than wood. Who makes snow in the forest?",
+		"duke-2a" :
+		["Hi %s, put the fish in the pond, I'll be right back.", "gvCharacters[game.playerChar].shortname"],
+		"duke-2b" :
+		"That's you!",
+		"no-touch-fishy-a" :
+		"My fish is nothing special.",
+		"no-touch-fishy-b" :
+		"You have fish. >:(",
+		"wood-door" :
+		"Are you wondering who uses wooden doors? They are not killed by leaning against the wall.",
+		"see-tuckles" :
+		"He knows everything. I have never seen a penguin with such muscles! My lines are not working. Write to me!",
+		"take-duke" :
+		"Fishing queen? Just take him to lunch.",
+
+		"bearista-0" :
+		"I've tried enough. Very well and carefully packed. The Book of Power is free.",
+		"bearista-1":
+		"Did you hear coffee doesn't give you power? You will never be bored. He gets tired and collapses.",
+		"bearista-2" :
+		"The sauce does not affect the taste of the coffee. Its taste changes as it ripens, for example, it gets better when the fruit is on the tree. And the brothers were like fools.",
+		"bearista-3" :
+		"Did you know that coffee beans are different from regular coffee beans? There is coffee in the bread. Towels are removable for washing.",
+		"bearista-4" :
+		"Caffeine increases energy and increases chemical stress. If you feel nauseous or tired, start drinking.",
+		"bearista-5" :
+		"Have you seen how coffee works? Each cup contains two coffee beans. The fruit contains a lot of coffee.",
+		"bearista-6" :
+		"Dark beer has less caffeine. Because vegetables are not fully roasted, they contain a lot of caffeine.",
+		"bearista-7" :
+		"Do not drink coffee with lemon. Coffee and coffee are dissolved in a little water or other food. We will not be silent about this polution and if possible we should close my cafe. Ferrets can use synthetics, but cats are hard to avoid.",
+		"bearista-8" :
+		"Coffee drinkers believe that caffeine is toxic. Smaller areas with less bacteria produce caffeine, while higher areas such as mountains have less bacteria, so factories produce caffeine. That's why the taste of coffee varies from country to city.",
+
+		"amara-0" :
+		"Hello fast food, this is the best thing you have said. Give me some coffee!",
+		"pumpkin-otter" :
+		"Hold me, I have to save the pets.",
+		"pumpkin-otter-PumpkinOtter" :
+		"And it's urgent. I'm in both!",
+		"starwalf" :
+		"Maybe I can work with these animals...",
+		"starwalf-PumpkinOtter" :
+		"Are you a chef? I am!",
+		"harkin-0" :
+		"Welcome Haru and Mochio! Please ask me.",
+		"myr-moth-0" :
+		"People of the world! We are blessed with neutrons and pure serpents ~ rejoice!",
+		"selene-kobold" :
+		"You have a face.",
+
+		"twang-1" :
+		"You probably neglected to speak to me before because you assumed, based on the nature of this badly translated language pack, that my previous dialog was just another greeting. However, I have much to tell you, so listen closely. This information is vital, crucial, and absolutely essential for your survival. Are you ready? Here it is... Hi.",
+		
+		"tix-newpeople" :
+		"Many new people have come to us. It's a good start, but I hope people take note.",
+		"blame-nolok-displaced" :
+		"There are many refugees to our country. I think Narok may be the reason. Remember how he used the power of the rod of life. I have a feeling we can destroy this Yggdrasil.",
+
+		"xtreme-orbs-Tux" :
+		"I've seen that ball before. Why was it thrown there?",
+		"xtreme-orbs-Penny" :
+		"How many characters are there on the wall?",
+		"xtreme-orbs-Konqi" :
+		"I think Dragon Field is the most popular. Will the penguins use it again?",
+		"xtreme-orbs-Katie" :
+		"That is why the tuxedo style is so attractive. I mean football!",
+		"xtreme-orbs-Midi" :
+		"The coach knows what the ball is.",
+		"xtreme-orbs-Kiki" :
+		"I want to know how this ice cream is made and how long it lasts.",
+		"xtreme-orbs-Surge" :
+		"Why is this a problem?",
+
+		"mines-0" :
+		["Hello %s. If you haven't heard about it, Norok uses trading resources and mining. Mention that you will be there and send me money if possible. If you can't marry me, find a fish in the sea and hunt for fish.", "gvCharacters[game.playerChar].shortname"],
+		"mines-1" :
+		"Thanks, I'll explain. I think Turkey has something big in the snow and is trying to push it. Is there a way to say goodbye and move on?",
+
+		"construction-burned-a" :
+		"Do not lift during construction. You know this place is scary.",
+		"construction-burned-b" :
+		"Didn't we burn ourselves? I am fine.",
+
+		"floating-island-Tux" :
+		"Why is this island sad?",
+		"floating-island-Penny" :
+		"I stole Nolak and lost it, it was stolen by my friends so I could build a house.",
+		"floating-island-Konqi" :
+		"If I still have wings, I want to keep them. Why am I always like this?",
+		"floating-island-Katie" :
+		"No, it is the first highest mountain on the island. I am weak!",
+		"floating-island-Midi" :
+		"Tall floating trees and boats. The starting point is at home.",
+		"floating-island-Kiki" :
+		"The view is suffocating! I have to take a paint brush and see the place!",
+		"floating-island-Surge" :
+		"It's hard to believe that there are more islands than cities.",
+		"floating-island-Dashie" :
+		"I think I'll be back soon.",
+		"floating-island-Cyra" :
+		"I didn't know that in my country there is an island where you can swim.",
+		"floating-island-Pepper" :
+		"This floating island started as a village."
 	},
 
 	"level" : {
-		"shop" : "Sam's Exchange Pole",
-		"overworld-0" : "Shiny Island",
-		"overworld-1" : "South Pole",
+		"test" : "TEST",
+		"full-game" : "Full Game",
+		"soon" : "Coming soon...",
+		"shop" : "Sam's Trade Post",
+		"overworld-0" : "Aurora Isles",
+		"overworld-1" : "Nessland",
 		"aurora-pennyton" : "Pennyton",
-		"aurora-mines" : "My Fish",
-		"aurora-learn" : "Slopes at School",
-		"aurora-crystal" : "Gem Passed",
-		"aurora-slip" : "Slippery Slid",
-		"aurora-subsea" : "Underwater",
-		"aurora-tnt" : "Danger Suit",
-		"aurora-sense" : "Cold Senses in the Snow",
-		"aurora-frozen" : "Freezer Heaven",
-		"aurora-branches" : "Fork in the Road",
-		"aurora-bridge" : "The Wet Bridge",
-		"aurora-wind" : "Cold Breeze",
-		"aurora-steps" : "Careful Walk",
-		"aurora-xtreme" : "Xtreme Hilltop",
-		"aurora-fort" : "Fort Borealis, Localized Entirely In Your Kitchen",
-		"aurora-switch" : "Red Trade Court"
+		"aurora-mines" : "Fish Mines",
+		"aurora-learn" : "Learning the Slopes",
+		"aurora-crystal" : "Crystal Pass",
+		"aurora-slip" : "Slip and Slide",
+		"aurora-subsea" : "Subsea",
+		"aurora-tnt" : "Tux 'N' Trouble",
+		"aurora-sense" : "Frost's Sense of Snow",
+		"aurora-frozen" : "Frozen Paradise",
+		"aurora-branches" : "Branching Path",
+		"aurora-bridge" : "The Ocean Bridge",
+		"aurora-wind" : "Arctic Wind",
+		"aurora-steps" : "Guarded Steps",
+		"aurora-xtreme" : "Xtreme Hills",
+		"aurora-fort" : "Fort Borealis",
+		"aurora-switch" : "Red Switch Trial",
+		"aurora-iceguy" : "Oh No, More Mr. Iceguy",
+		"aurora-fishy" : "Wishy for Fishy",
+		"aurora-forest" : "Icyfall Forest",
+		"aurora-secret" : "The Cold Summit",
+		"nessland-welcome" : "Nessland Port Town",
+		"nessland-wood" : "Owl's Outpost",
+		"nessland-left" : "To the Left",
+		"nessland-henge" : "Lonehenge",
+		"nessland-owl" : "Owl's Revenge",
+		"nessland-earth" : "Down to Earth",
+		"nessland-mint" : "Minty Greens",
+		"nessland-shells" : "Shells by the Shore",
+		"nessland-situation" : "Fishy Situation",
+		"nessland-fly" : "Fly High, Little Penguin!",
+		"nessland-well" : "Fish, Medium Well",
+		"nessland-bedrock" : "Beyond Bedrock",
+		"nessland-crush" : "Petrichor",
+		"nessland-switch" : "Orange Switch Trial",
+		"nessland-attack" : "Attack From Above",
+		"nessland-cliffs" : "Cliff Notes",
+		"nessland-night" : "Black Night Woods"
+	},
+
+	"achi-name" : {
+		"saveKonqi" : "Koolest Friends",
+		"saveMidi" : "Let's Get Nuts",
+		"over9000" : "It's Over 9000!",
+		"coldGreed" : "Cold-Hearted Greed",
+		"arcticExplorer" : "Arctic Explorer",
+		"snowMoreBaddies" : "Snow More Baddies",
+		"blastOff" : "Blast Off!"
+	},
+
+	"achi-desc" : {
+		"saveKonqi" : "Save Konqi from the Yeti in Fort Borealis",
+		"saveMidi" : "Save Midi from the Ghost Tree in Nessland",
+		"over9000" : "Save up more than 9000 coins",
+		"coldGreed" : "Collect every coin in Aurora Isles",
+		"arcticExplorer" : "Find all secrets in Aurora Isles",
+		"snowMoreBaddies" : "Defeat every enemy in Aurora Isles",
+		"blastOff" : "I think he just lived your dream..."
 	},
 
 	"key" : {
@@ -477,7 +909,7 @@
 		"71" : "Scroll",
 		"72" : "Pause",
 		"73" : "Insert",
-		"74" : "Home",
+		"74" : "Home",What in the world could be keeping this island afloat?
 		"75" : "Pg Up",
 		"76" : "Delete",
 		"77" : "End",
@@ -674,5 +1106,51 @@
 		"282" : "Sleep",
 		"283" : "Wake Up",
 		"284" : "???"
+	},
+
+	"joymode" : "xbox",
+	"joy" : {
+		"xbox" : {
+			"0" : "(A)",
+			"1" : "(B)",
+			"2" : "(X)",
+			"3" : "(Y)",
+			"4" : "(LB)",
+			"5" : "(RB)",
+			"6" : "(<)",
+			"7" : "(>)",
+			"8" : "(O)",
+			"9" : "(LS)",
+			"10" : "(RS)",
+			"11" : "(N/A)"
+		},
+		"dinput" : {
+			"0" : "(X)",
+			"1" : "(A)",
+			"2" : "(B)",
+			"3" : "(Y)",
+			"4" : "(LB)",
+			"5" : "(RB)",
+			"6" : "(LS)",
+			"7" : "(RS)",
+			"8" : "(<)",
+			"9" : "(>)",
+			"10" : "(LS)",
+			"11" : "(RS)"
+		},
+		"generic" : {
+			"0" : "(1)",
+			"1" : "(2)",
+			"2" : "(3)",
+			"3" : "(4)",
+			"4" : "(5)",
+			"5" : "(6)",
+			"6" : "(7)",
+			"7" : "(8)",
+			"8" : "(9)",
+			"9" : "(10)",
+			"10" : "(11)",
+			"11" : "(12)"
+		}
 	}
 }

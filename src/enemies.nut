@@ -172,7 +172,7 @@
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
 		if(blinking > 0) return
 
-		local damage = _mag * damageMult[_element]
+		local damage = _mag * (_element in damageMult ? damageMult[_element] : damageMult["normal"])
 		if(_cut) damage *= damageMult["cut"]
 		if(_blast) damage *= damageMult["blast"]
 		if(_stomp) damage *= damageMult["stomp"]
@@ -2132,6 +2132,7 @@
 	dy = -16
 	nocount = true
 	nodrop = true
+	notarget = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -5934,7 +5935,7 @@
 		if(anim == "squish")
 			return
 
-		local damage = _mag * damageMult[_element]
+		local damage = _mag * (_element in damageMult ? damageMult[_element] : damageMult["normal"])
 		if(_cut) damage *= damageMult["cut"]
 		if(_blast) damage *= damageMult["blast"]
 		if(_stomp) damage *= damageMult["stomp"]

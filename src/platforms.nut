@@ -67,6 +67,8 @@
 			frame = 0.0
 			fspeed = 0.0
 		}
+
+		shape.setPos(x, y)
 	}
 
 	function draw() {
@@ -171,6 +173,8 @@
 			frame = 0.0
 			fspeed = 0.0
 		}
+
+		shape.setPos(x, y)
 	}
 
 	function draw() {

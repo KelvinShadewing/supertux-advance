@@ -52,11 +52,11 @@
 		"joystick1" : "Gamepad Controls",
 		"joystick2" : "Gamepad 2 Controls",
 		"cursor" : "Show Mouse Cursor: %s",
-		"speedrun" : "Speedruning",
+		"speedrun" : "Speedrunning",
 		"light" : "Lighting: %s",
 		"fullscreen" : "Toggle Fullscreen",
 		"stickspeed" : "Stick Controls Speed: %s",
-		"stickactive" : "Use gamepad sticks: %s",
+		"stickactive" : "Use Gamepad Sticks: %s",
 		"stickcam" : "Stick Camera: %s",
 		"usefilter" : "Use Graphics Filter: %s",
 		"sound-volume" : "Sound Volume",
@@ -64,7 +64,7 @@
 		"charsel" : "Select Your Character",
 		"lookahead" : "Dynamic Camera: %s",
 		"nearbars" : "Near-Sighted Healthbars: %s",
-		"weather" : "Weather effects: %s",
+		"weather" : "Weather Effects: %s",
 		"showkeys" : "Show Keys: %s",
 		"completion" : "Completion Stats: %s",
 		"usebeam" : "Race Beam: %s",
@@ -246,7 +246,7 @@
 		"chainex" :
 		"TNT blocks are also set off by explosions, which can lead to a sort of chain reaction when many TNT blocks are close to one another.",
 		"fireex" :
-		"Fireballs can set off TNT blocks, get a fire flower and try it out!",
+		"Fireballs can set off TNT blocks. Get a fire flower and try it out!",
 		"owplats" :
 		["One-way platforms can be dropped down from by pressing %s and %s at once. If you drop on accident, you have twice as long as when going over an edge to jump back up.", "getConName(\"down\")", "getConName(\"jump\")"],
 		"slidewarn" :
@@ -258,11 +258,11 @@
 		"warned" :
 		"You were warned...",
 		"iceguy" :
-		["Some enemies like Mr. Iceguy can be carried when stunned. Simply touch them while holding SHOOT or ALT FIRE to pick them up.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
+		["Some enemies like Mr. Iceguy can be carried when stunned. Simply touch them while holding %s or %s to pick them up.", "getConName(\"shoot\")", "getConName(\"spec1\")"],
 		"elements-fire-ice" :
 		"Your elemental form doesn't just change your attack; it changes how elemental damage affects you. Elements will take double damage from their opposites, and half damage from themselves. For instance, with a fire flower, ice enemies will damage you twice as much, but with an ice flower, they'll do half as much.",
 		"iceflower" :
-		"With the ice flower, you can freeze enemies in place and reduce damage from ice attacks. Frozen enemies are solid and can be stood on safely, or used to wall jump from. You'll also move faster!",
+		"With the ice flower, you can freeze enemies in place and reduce damage from ice attacks. Frozen enemies are solid and can be stood on safely, or used to wall jump from. Some characters also move faster!",
 		"tuxdoll" :
 		"If you find a doll of your character, grab it! It will protect you from KO when you run out of life.",
 		"altfire" :
@@ -309,7 +309,7 @@
 		"trees" :
 		"KELVIN: Trees don't grow in Antarctica. That's why penguins carve them out of ice.",
 		"snakes" :
-		"KELVIN: I know it makes about as much sense to have snakes in Antarctica as it does to have hungry plants. ",
+		"KELVIN: Before we had graphics overrides for enemy sprites, there were snakes in the pipes. The seals were made after since niether snakes nor plants would work in an arctic location.",
 		"waterfalls" :
 		"KELVIN: This part of the cave looks especially nice to me. I love the spacious background with waterfalls in front of it. I wanted the level to feel like you were meant to explore it, so a scene like this that makes it feel big is meant to convey a sense of exploration.",
 		"loops" :
@@ -317,7 +317,7 @@
 		"contrib" :
 		"FROSTC: Hello! This is the first dev comment not written by Kelvin.",
 		"walldev" :
-		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it",
+		"FROSTC: I didn't actually know you could just wall jump to get up here when I first made this area. I later thought of adding something to keep you from doing that, but decided against it.",
 		"tnt" :
 		"FROSTC: I saw that TNT was used in Xtreme hills, so I decided to make a level showing it off.",
 		"trans" :
@@ -335,7 +335,7 @@
 		"tutorial-zone" :
 		"KELVIN: After getting some playtest feedback from Aurora Sol, I decided I should make this tutorial area to more clearly demonstrate basic mechanics. In his playtest, he actually skipped the first pipe, despite it having a sign hinting there's something about it, which led to him skipping the spot to learn swimming, too. Sliding places weren't clearly marked, either, and were also missed. This area won't let you progress until you've learned each mechanic, but can still be skipped if you already know the basics.",
 		"speedrunex":
-		"FROSTC: I had designed this level with the intention of people speedrunning it, so see how fast you can beat it! ",
+		"FROSTC: I had designed this level with the intention of people speedrunning it, so see how fast you can beat it!",
 		"secretredex":
 		"FROSTC: The current version of this secret is very different compared to how it used to be. One difference is that it used to have a bend in it. However I couldn't get that to work properly, that being the reason I scrapped it.",
 		"fishex":
@@ -345,7 +345,7 @@
 		"outage":
 		"FROSTC: The oldest version of this level was awful. Because of that I remade it from the ground up. I would say the remake is pretty good. For sure better then the old one.",
 		"speedComp":
-		"FROSTC: Congrats to Pomelux for being the winner of the speedrun competition, with a time of 49:98. Just barely a sub 50. (keep in mind competitions with rewards like this won't be held again)",
+		"FROSTC: Congrats to Pomelux for being the winner of the speedrun competition, with a time of 49:98. Just barely a sub 50. (Keep in mind competitions with rewards like this won't be held again.)",
 		"oldxtreme":
 		"KELVIN: In previous versions of this level, the prize for getting all the coins was a powerup that isn't formally introduced until a few levels later. I thought it would be fun to earn the chance to break levels, but the design of them actually makes the powerup not as fun to use as I'd hoped. I instead decided to set up a collectible that could unlock new content later on.",
 		"fort-0":
@@ -371,11 +371,11 @@
 		"continue":
 		"FROSTC: This was another level that had to be remade because of it's quality, with the first one being the ocean bridge, which is the level after this. Honestly kinda sad the old one had to go, because it was one of the few levels Kelvin had a large part in making.",
 		"Forest-lefttext":
-		"FROSTC: If you played the old version of frostlands, you might be familiar with the name of this level. When making the updated version of frostlands, I had decided to that i would remake the level to the left, and replace it with a better one. which ended up being lost ruins. For some reason, Kelvin decided to put the old to the left into the forest world. why? idk! the level sucked. To avoid the forest world having such an awful first level, I remade it from scratch. The remake is what you should be playing now.",
+		"FROSTC: If you played the old version of frostlands, you might be familiar with the name of this level. When making the updated version of frostlands, I had decided to that i would remake the level to the left, and replace it with a better one. which ended up being lost ruins. For some reason, Kelvin decided to put the old to the left into the forest world. Why? I don't know! The level sucked. To avoid the forest world having such an awful first level, I remade it from scratch. The remake is what you should be playing now.",
 		"Forest-coinblock":
-		"FROSTC: It was hard to resist the urge to place like a million coins in this block",
+		"FROSTC: It was hard to resist the urge to place like a million coins in this block.",
 		"TBR":
-		"FROSTC: Expect a remake of this level in 0.4.0"
+		"FROSTC: Expect a remake of this level in 0.4.0."
 	},
 
 	"npc" : {
@@ -395,9 +395,9 @@
 		"rad-0-Kiki" :
 		"I guess rolling's as good as sliding down a hill like this. Crazy squirrels...",
 		"rad-0" :
-		"Get all the coins on this hill if you want a totally nautical prize!",
+		"Get all the fish on this hill if you want a totally nautical prize!",
 		"penny-0-Tux" :
-		"Oh, Tux! I'm so happy to see you! Nolok has kidnapped our friends! Last I heard, they were being taken to his forts all around the world. I wish I knew why. Please save them, Tux!",
+		"Oh, Tux! I'm so happy to see you! Nolok has kidnapped our friends! Last I heard, they were being taken to his prisons all around the world. I wish I knew why. Please save them, Tux!",
 		"penny-0-Konqi" :
 		"Konqi! It's so good to see you! I'm sure Plasma Breeze is fine. Please help Tux. I know you two can beat Nolok together!",
 		"penny-0-Midi" :
@@ -435,7 +435,7 @@
 		"xue-pt-Konqi" :
 		"Hey, Konqi! Give Nolok a good torching when you see him! No one messes with us, on or off the kart track, chu!",
 		"xue-pt-Midi" :
-		"Whoa, a fellow rodent who also likes explosions! (And pretty cute, chu...) Whah? N-nothing, chu! I, uh, was wondering if you'd like to go cart racing! N-not as a date or anything! (Shut up, Xue, shut up!)",
+		"Whoa, a fellow rodent who also likes explosions! (And pretty cute, chu...) Whah? N-nothing, chu! I, uh, was wondering if you'd like to go kart racing! N-not as a date or anything! (Shut up, Xue, shut up!)",
 		"xue-pt-Penny" :
 		"Penny! Thank you for building this town for us, chu.",
 		"xue-pt-Katie" :
@@ -448,6 +448,13 @@
 		"Are all androids as fast as you, chu?",
 		"xue-pt" :
 		"Thanks for your help, chu! Let's really stick it to Nolok so he never messes with us again!",
+
+		"plasma-breeze-c" :
+		["Oh, thank goodness you came to rescue me! I'll head back to Pennyton now. Give Nolok a good bucking for me, %s!", "gvCharacters[game.playerChar].shortname"],
+		"plasma-breeze-pt" :
+		["Thanks for your help earlier, %s. I'd lend a hoof if I were a fighter like you.", "gvCharacters[game.playerChar].shortname"],
+		"plasma-breeze-pt-Konqi" :
+		"Hey, Konqi! I was really worried earlier, but I feel a lot better knowing you're on the case. Show Nolok we mean business!",
 
 		"fireguin-pt-0" :
 		"Not much use for a firefighter here, huh? Ice can melt, sure, but it takes the fire out with it, and then we just put new ice in.",
@@ -511,10 +518,6 @@
 		"You use bombs, eh? I bet if I carried you, we could make a great aerial strike team! Except... I'm afraid I'll get shot down again. That's how Nolok caught me the first time.",
 		"garuda-pt-Penny" :
 		"Thanks for putting me up on the hill. Feels good to have a high point to take off from.",
-		"garuda-pt-Katie" :
-		"Excellent work back there. I'll have something more interesting to say when Kelvin writes it.",
-		"garuda-pt-Kiki" :
-		"Hang on, Kelvin needs to write lines for you.",
 		"garuda-pt" :
 		["Thanks for your help, %s. It feels so good being able to fly again.", "gvCharacters[game.playerChar].shortname"],
 
@@ -564,7 +567,7 @@
 		"gnu-pt-11" :
 		"Wisdom compiled from many sources makes a plan executable.",
 		"gnu-pt-12" :
-		"Planning to move from Python to C? Better brace yourself.",
+		"Planning to move from Python to C? Brace yourself.",
 
 		"midi-c" :
 		"Yo! I was just minding my own business, and these weird mushroom things started swarming me. I'm sick of sitting around in here. How's about I join ya and kick that Nolok guy's tail?",
@@ -791,6 +794,7 @@
 		"aurora-iceguy" : "Oh No, More Mr. Iceguy",
 		"aurora-fishy" : "Wishy for Fishy",
 		"aurora-forest" : "Icyfall Forest",
+		"aurora-secret" : "The Cold Summit",
 		"nessland-welcome" : "Nessland Port Town",
 		"nessland-wood" : "Owl's Outpost",
 		"nessland-left" : "To the Left",

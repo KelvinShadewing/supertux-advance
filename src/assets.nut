@@ -218,6 +218,8 @@
 ::defWoodBoxSnow <- sprWoodBoxSnow
 ::sprBoxShop <- newSprite("res/gfx/shopblock.png", 16, 16, 0, 0, 0, 0)
 ::defBoxShop <- sprBoxShop
+::sprBoxChar <- newSprite("res/gfx/charbox.png", 16, 16, 0, 0, 0, 0)
+::defBoxChar <- sprBoxChar
 ::sprIceBlock <- newSprite("res/gfx/iceblock.png", 16, 16, 0, 0, 0, 0)
 ::defIceBlock <- sprIceBlock
 ::sprFishBlock <- newSprite("res/gfx/herringblock.png", 16, 16, 0, 0, 0, 0)

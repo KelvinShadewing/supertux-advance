@@ -688,7 +688,7 @@
 	}
 
 	function draw() {
-		if(full || vspeed < 0) drawSpriteZ(2, sprBoxRed, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+		if(full || vspeed < 0) drawSpriteZ(2, sprBoxRed, (getFrames() / 12) + (x / 16) + (y / 4), x - 8 - camx, y - 8 - camy + v)
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
 	}
 
@@ -745,7 +745,7 @@
 		v += vspeed
 	}
 
-	function draw() { drawSpriteZ(2, sprBoxInfo, getFrames() / 8, x - 8 - camx, y - 8 - camy + v) }
+	function draw() { drawSpriteZ(2, sprBoxInfo, (getFrames() / 12) + (x / 16) + (y / 4), x - 8 - camx, y - 8 - camy + v) }
 
 	function _typeof() { return "InfoBlock" }
 }
@@ -858,7 +858,7 @@
 
 	}
 
-	function draw() { drawSpriteZ(2, sprBoxBounce, getFrames() / 8, x - 8 - camx, y - 8 - camy + v) }
+	function draw() { drawSpriteZ(2, sprBoxBounce, (getFrames() / 12) + (x / 16) + (y / 4), x - 8 - camx, y - 8 - camy + v) }
 
 	function _typeof() { return "BounceBlock" }
 }
@@ -922,7 +922,7 @@
 	}
 
 	function draw() {
-		if(found) drawSprite(sprCheckBell, getFrames() / 8, x - camx, y - camy)
+		if(found) drawSprite(sprCheckBell, (getFrames() / 12) + (x / 16) + (y / 4), x - camx, y - camy)
 		else drawSprite(sprCheckBell, 0, x - camx, y - camy)
 	}
 
@@ -1485,7 +1485,7 @@
 
 	function draw() {
 		if(full || vspeed < 0) {
-			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
+			drawSpriteZ(2, sprBoxChar, (getFrames() / 12) + (x / 16) + (y / 4), x - 8 - camx, y - 8 - camy + v)
 			if(character in gvCharacters) drawSpriteZ(2, getroottable()[gvCharacters[character]["doll"]], 0, x - camx, y - camy + v)
 		}
 		else drawSpriteZ(2, sprBoxEmpty, 0, x - 8 - camx, y - 8 - camy + v)
