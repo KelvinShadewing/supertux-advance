@@ -436,6 +436,8 @@
 ::defWaspyBoi <- sprWaspyBoi
 ::sprDevine <- newSprite("res/gfx/devine.png", 16, 16, 0, 0, 8, 8)
 ::defDevine <- sprDevine
+::sprSnoway <- newSprite("res/gfx/snoway.png", 16, 16, 0, 0, 8, 8)
+::defSnoway <- sprSnoway
 ::sprShortfuse <- newSprite("res/gfx/shortfuse.png", 12, 12, 0, 0, 6, 8)
 ::defShortfuse <- sprShortfuse
 ::sprPeterFlower <- newSprite("res/gfx/peter.png", 48, 44, 0, 0, 24, 36)
@@ -1021,6 +1023,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 	sprWheelerHamster = defWheelerHamster
 	sprIvyGreen = defIvyGreen
 	sprIvyRed = defIvyRed
+	sprDevine = defDevine
 
 	sprNolok = defNolok
 	sprYeti = defYeti
@@ -1089,6 +1092,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 	sprBlueFish = sprBlueFishSnow
 	sprRedFish = sprRedFishSnow
 	sprGreenFish = sprGreenFishSnow
+	sprDevine = sprSnoway
 }
 
 ::gfxEnemyForest <- function() {
