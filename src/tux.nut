@@ -1551,6 +1551,9 @@
 					break
 			}
 
+			if(!config.showTF)
+				sprite = mySprNormal
+
 			if(anim in an && an[anim] != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
 				if(blinking == 0 || anim == "hurt") {
@@ -1679,7 +1682,7 @@
 		if(!hidden) {
 			//Aura
 			local auraColor = 0xffffffff
-			if(stats.weapon != "normal") {
+			if(stats.weapon != "normal" && config.showTF) {
 				switch(stats.weapon) {
 					case "fire":
 						auraColor = 0xf84000ff

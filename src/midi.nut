@@ -1480,7 +1480,7 @@
 				frame = wrap(frame, 0, an[anim].len() - 1)
 
 				//Aura
-				if(stats.weapon != "normal") {
+				if(stats.weapon != "normal" && config.showTF) {
 					switch(stats.weapon) {
 						case "fire":
 							auraColor = 0xf84000ff

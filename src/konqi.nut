@@ -1573,6 +1573,9 @@
 					break
 			}
 
+			if(!config.showTF)
+				sprite = mySprNormal
+
 			if(anim != null && an[anim] != null) {
 				//frame = wrap(frame, 0, an[anim].len() - 1)
 				if(blinking == 0 || anim == "hurt") drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, 1)

@@ -69,7 +69,8 @@
 		"completion" : "Completion Stats: %s",
 		"usebeam" : "Race Beam: %s",
 		"joymode" : "Joystick Display Mode: %s",
-		"big-items" : "Big Items: %s"
+		"big-items" : "Big Items: %s",
+		"show-tf" : "Show Transformations: %s"
 	},
 
 	"options-joymodes" : {
@@ -99,7 +100,8 @@
 		"showkeys" : "On-screen controls for speedrun recording",
 		"completion" : "Show remaining coins, enemies, and secrets in level",
 		"usebeam" : "Beam will appear in completed levels to race you",
-		"big-items" : "Increase the size of smaller items"
+		"big-items" : "Increase the size of smaller items",
+		"show-tf" : "Characters change appearance with elements"
 	},
 
 	"speedrun-menu" : {

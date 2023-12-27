@@ -882,7 +882,7 @@
 	}
 
 	function draw() {
-		if(gvNumPlayers == 1 && gvPlayer) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps.weapon], x - camx, y - camy)
+		if(gvNumPlayers == 1 && gvPlayer) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[(config.showTF ? game.ps.weapon : "normal")], x - camx, y - camy)
 		else drawSprite(sprMysticDoll, 0, x - camx, y - camy)
 	}
 

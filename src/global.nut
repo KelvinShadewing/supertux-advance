@@ -353,6 +353,7 @@
 	useBeam = false
 	bigItems = false
 	useOutlines = false
+	showTF = true
 }
 
 ::contribDidRun <- {}

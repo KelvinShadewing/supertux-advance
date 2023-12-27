@@ -398,7 +398,9 @@
 		charx = 32
 
 		local runAnim = getroottable()[game.playerChar2].an["run"]
-		switch(game.ps2.weapon) {
+		if(!config.showTF)
+			drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
+		else switch(game.ps2.weapon) {
 			case "normal":
 				drawSprite(getroottable()[gvCharacters[game.playerChar2]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], (gvScreenW / 2) - charx, gvScreenH / 2)
 				break
@@ -426,7 +428,9 @@
 	}
 
 	local runAnim = getroottable()[game.playerChar].an["run"]
-	switch(game.ps.weapon) {
+	if(!config.showTF)
+		drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
+	else switch(game.ps.weapon) {
 		case "normal":
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 			break
@@ -1009,7 +1013,7 @@
 
 		//Draw offscreen player
 		if(gvPlayer && gvPlayer.y < -8) {
-			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[game.ps.weapon], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
+			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[(config.showTF ? game.ps.weapon : "normal")], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 
 		//Draw warning sign
@@ -1025,11 +1029,11 @@
 		//Keys
 		local kx = 10
 		if(gvPlayer && "stats" in gvPlayer && gvPlayer.stats.canres) {
-			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[gvPlayer.stats.weapon], gvScreenW - kx, gvScreenH - 16)
+			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[(config.showTF ? gvPlayer.stats.weapon : "normal")], gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvPlayer2 && "stats" in gvPlayer2 && gvPlayer2.stats.canres) {
-			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[gvPlayer2.stats.weapon], gvScreenW - kx, gvScreenH - 16)
+			if(typeof gvPlayer2 in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer2]["doll"]], enWeapons[(config.showTF ? gvPlayer2.stats.weapon : "normal")], gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
 		if(gvKeyCopper) {

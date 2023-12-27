@@ -1206,7 +1206,7 @@
 		}
 
 		//Shields
-		switch(stats.weapon) {
+		if(config.showTF) switch(stats.weapon) {
 			case "fire":
 				drawSpriteZ(3, sprShieldFire, getFrames() / 2, x - camx, y - 4 - camy + choffset, 0, 0, 1, 1, fabs(0.5 - float(getFrames() % 60) / 60.0) * 2.0)
 				break

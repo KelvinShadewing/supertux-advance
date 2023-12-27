@@ -456,12 +456,22 @@ const menuY = 40
 		},
 		desc = function() { return gvLangObj["options-menu-desc"]["usefilter"] },
 		func = function() {
-			config.usefilter = !config.usefilter;
+			config.usefilter = !config.usefilter
 			fileWrite("config.json", jsonWrite(config))
 			setScalingFilter(int(config.usefilter))
 			deleteTexture(gvScreen)
 			gvScreen = newTexture(screenW(), screenH())
 			setScalingFilter(0)
+		}
+	},
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.showTF ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["show-tf"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["show-tf"] },
+		func = function() {
+			config.showTF = !config.showTF
 		}
 	},
 	{
