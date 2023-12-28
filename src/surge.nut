@@ -532,7 +532,7 @@
 				if(abs(sideRunning ? vspeed : hspeed) > 6.2)
 					animOffset = 24.0
 
-				if((anim == "stand" || fabs(hspeed) <= 0.2) && getcon("spec2", "hold", true, playerNum)) {
+				if((anim == "stand" || fabs(hspeed) <= 0.2) && getcon("spec2", "hold", true, playerNum) && canMove) {
 					frame = 0.0
 					animOffset = 0.0
 					anim = "charge"

@@ -1236,6 +1236,10 @@
 	}
 
 	function die() {
+		if(burnt)
+			return
+
+		burnt = true
 		base.die()
 		fireWeapon(ExplodeTiny, x + explodeX, y, 0, 0)
 		if(gvPlayer && hitTest(shape, gvPlayer.shape))

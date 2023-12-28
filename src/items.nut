@@ -47,8 +47,6 @@
 				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
 				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
 			}
-			else 
-				charged = 0
 		}
 
 		if(target == 2) {
@@ -56,8 +54,11 @@
 				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
 				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
 			}
-			else 
-				charged = 0
+		}
+
+		if(target == 0) {
+			hspeed /= 2.0
+			vspeed /= 2.0
 		}
 
 		x += hspeed
@@ -169,8 +170,6 @@
 				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
 				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
 			}
-			else 
-				charged = 0
 		}
 
 		if(target == 2) {
@@ -178,8 +177,11 @@
 				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
 				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
 			}
-			else 
-				charged = 0
+		}
+
+		if(target == 0) {
+			hspeed /= 2.0
+			vspeed /= 2.0
 		}
 
 		x += hspeed
@@ -236,8 +238,6 @@
 				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
 				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y))
 			}
-			else 
-				charged = 0
 		}
 
 		if(target == 2) {
@@ -245,8 +245,11 @@
 				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
 				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y))
 			}
-			else 
-				charged = 0
+		}
+
+		if(target == 0) {
+			hspeed /= 2.0
+			vspeed /= 2.0
 		}
 
 		x += hspeed
