@@ -657,7 +657,7 @@
 					else
 						chargeTimer += 0.1
 					if(didAirSpecial)
-						chargeTimer += 0.2
+						chargeTimer += 0.3
 				}
 
 				if(chargeTimer > chargeThreshold) {

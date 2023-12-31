@@ -767,7 +767,10 @@
 		"floating-island-Cyra" :
 		"I don't think my world would have some floating islands like that!",
 		"floating-island-Pepper" :
-		"This flying island is starting to remind me of Komona."
+		"This flying island is starting to remind me of Komona.",
+
+		"aurora-secret-yelling" :
+		"I swear I heard someone yelling. I can't tell if it's the wind or if someone's yodeling on the peak."
 	},
 
 	"level" : {

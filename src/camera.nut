@@ -87,6 +87,25 @@
 					px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
 				py = (((gvPlayer.y + gvPlayer2.y) / 2.0)) - (gvScreenH / 2) + ly
 			}
+
+			if(typeof gvCamTarget == "CameraGrabber") {
+				local pw = max(gvScreenW, 320)
+				local ph = max(gvScreenH, 240)
+				local ptx = (gvCamTarget.x) - (gvScreenW / 2)
+				local pty = (gvCamTarget.y) - (gvScreenH / 2)
+
+				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 2) {
+					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (gvScreenW / 2) + lx
+					else ptx = (gvPlayer.x + gvPlayer.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 2) + lx
+				}
+				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
+					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
+					else pty = (gvPlayer.y + gvPlayer.vspeed * 8) - (gvScreenH / 2) + ly
+				}
+
+				px = ptx
+				py = pty
+			}
 		}
 		else if(gvPlayer) {
 			if(gvCamTarget == gvPlayer) {

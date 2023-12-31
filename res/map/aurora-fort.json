@@ -796,7 +796,7 @@
                 {
                  "height":144,
                  "id":164,
-                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; gvPlayer.hspeed = 0.0; newActor(BossManager, 0, 0, 525)",
+                 "name":"gvWarning = 0; deleteActor(id); stopMusic(); actor[mapActor[600]].active = true; if(gvPlayer) gvPlayer.hspeed = 0.0; if(gvPlayer2) gvPlayer2.hspeed = 0.0; newActor(BossManager, 0, 0, 525)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
