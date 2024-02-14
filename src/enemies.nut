@@ -4883,6 +4883,11 @@
 	}
 
 	function run() {
+		base.run()
+
+		if(!active)
+			return
+
 		local target = findPlayer()
 		if(target != null)
 			bladesOut = (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)).tointeger() * 4
@@ -4894,10 +4899,10 @@
 
 			//Accelerate towards player
 			if(x - 16 > target.x && hspeed > -mspeed) {
-				hspeed -= 0.2
+				hspeed -= 0.1
 			}
 			if(x + 16 < target.x && hspeed < mspeed) {
-				hspeed += 0.2
+				hspeed += 0.1
 			}
 
 			//Turning animation trigger
@@ -4930,8 +4935,6 @@
 		if(!frozen) frame = getFrames() / 2
 		if(turning > 0) turning -= 0.25
 
-
-		base.run()
 		shape.setPos(x, y)
 	}
 

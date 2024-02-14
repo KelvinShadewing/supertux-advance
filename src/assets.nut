@@ -721,6 +721,7 @@
 ::sprPortalGreen <- newSprite("res/gfx/portal-green.png", 32, 48, 0, 0, 16, 24)
 ::sprPortalYellow <- newSprite("res/gfx/portal-yellow.png", 32, 48, 0, 0, 16, 24)
 ::sprPortalPunkle <- newSprite("res/gfx/portal-punkle.png", 32, 48, 0, 0, 16, 24)
+::sprPortalOrange <- newSprite("res/gfx/portal-orange.png", 32, 48, 0, 0, 16, 24)
 
 
 

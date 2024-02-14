@@ -545,7 +545,7 @@
 				frame += 0.25
 				if(anim == "jumpR") {
 					frame += 0.25
-					if(getcon("spec1", "hold", true, playerNum) && (!freeLeft || !freeRight)) {
+					if(getcon("up", "hold", true, playerNum) && (!freeLeft || !freeRight)) {
 						anim = "walk"
 						sideRunning = true
 						vspeed = min(-4.0, max(-8.0, vspeed * 2.0))
