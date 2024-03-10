@@ -1,0 +1,14 @@
+{ "columns":13,
+ "image":"..\/gfx\/large-boat-tiles.png",
+ "imageheight":160,
+ "imagewidth":208,
+ "margin":0,
+ "name":"large-boat",
+ "spacing":0,
+ "tilecount":130,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

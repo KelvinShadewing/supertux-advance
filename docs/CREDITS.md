@@ -134,6 +134,8 @@ Lukas Nystrand - Chippdisko
 
 [Wansti]() - Forest2\*, Forest3\*
 
+[Hitctrl](https://opengameart.org/users/hitctrl) - Close Yet So Far
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow, The Ocean Bridge, Arctic Wind, Gaurded steps, part of Branching path

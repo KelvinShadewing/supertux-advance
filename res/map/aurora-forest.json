@@ -4393,6 +4393,18 @@
                  "width":16,
                  "x":112,
                  "y":416
+                }, 
+                {
+                 "gid":23,
+                 "height":16,
+                 "id":935,
+                 "name":"noteblock",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":688,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4401,7 +4413,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":935,
+ "nextobjectid":936,
  "orientation":"orthogonal",
  "properties":[
         {

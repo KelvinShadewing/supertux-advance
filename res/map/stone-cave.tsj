@@ -1,11 +1,11 @@
 { "columns":14,
  "image":"..\/gfx\/stone-anismuz.png",
- "imageheight":160,
+ "imageheight":192,
  "imagewidth":224,
  "margin":0,
  "name":"stone-cave",
  "spacing":0,
- "tilecount":140,
+ "tilecount":168,
  "tiledversion":"1.10.1",
  "tileheight":16,
  "tiles":[
@@ -65,7 +65,13 @@
          "colors":[
                 {
                  "color":"#ff0000",
-                 "name":"stone",
+                 "name":"front",
+                 "probability":1,
+                 "tile":-1
+                }, 
+                {
+                 "color":"#00ff00",
+                 "name":"back",
                  "probability":1,
                  "tile":-1
                 }],
@@ -290,6 +296,54 @@
                  "wangid":[1, 0, 1, 0, 1, 1, 1, 1]
                 }, 
                 {
+                 "tileid":94,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":95,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":96,
+                 "wangid":[2, 2, 2, 2, 2, 0, 0, 0]
+                }, 
+                {
+                 "tileid":97,
+                 "wangid":[2, 0, 0, 0, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":108,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":109,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":110,
+                 "wangid":[0, 0, 2, 2, 2, 2, 2, 0]
+                }, 
+                {
+                 "tileid":111,
+                 "wangid":[2, 2, 2, 0, 0, 0, 2, 2]
+                }, 
+                {
+                 "tileid":122,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":123,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":124,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":125,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
                  "tileid":134,
                  "wangid":[0, 0, 1, 0, 0, 0, 1, 0]
                 }, 
@@ -312,6 +366,38 @@
                 {
                  "tileid":139,
                  "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
+                }, 
+                {
+                 "tileid":150,
+                 "wangid":[0, 0, 2, 2, 2, 0, 0, 0]
+                }, 
+                {
+                 "tileid":151,
+                 "wangid":[0, 0, 0, 0, 2, 2, 2, 0]
+                }, 
+                {
+                 "tileid":152,
+                 "wangid":[2, 2, 2, 0, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":153,
+                 "wangid":[2, 2, 2, 2, 2, 0, 2, 2]
+                }, 
+                {
+                 "tileid":164,
+                 "wangid":[2, 2, 2, 0, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":165,
+                 "wangid":[2, 0, 0, 0, 0, 0, 2, 2]
+                }, 
+                {
+                 "tileid":166,
+                 "wangid":[2, 0, 2, 2, 2, 2, 2, 2]
+                }, 
+                {
+                 "tileid":167,
+                 "wangid":[2, 2, 2, 2, 2, 2, 2, 0]
                 }]
         }]
 }

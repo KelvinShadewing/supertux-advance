@@ -1,3 +1,4 @@
+//You guys don't mind me making someone with a portal gun, do you? 👉👈
 ::ShellPortal <- class extends Portal {
 	function draw() {
 		drawSpriteEx(sprPortalBlue, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)

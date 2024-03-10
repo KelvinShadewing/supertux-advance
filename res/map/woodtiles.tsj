@@ -853,6 +853,12 @@
                  "name":"front-horz",
                  "probability":1,
                  "tile":-1
+                }, 
+                {
+                 "color":"#00e9ff",
+                 "name":"interior",
+                 "probability":1,
+                 "tile":-1
                 }],
          "name":"wood",
          "tile":-1,
@@ -1325,6 +1331,30 @@
                 {
                  "tileid":393,
                  "wangid":[0, 0, 0, 0, 0, 0, 0, 2]
+                }, 
+                {
+                 "tileid":970,
+                 "wangid":[0, 5, 0, 5, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":971,
+                 "wangid":[0, 5, 0, 5, 0, 5, 0, 5]
+                }, 
+                {
+                 "tileid":972,
+                 "wangid":[0, 0, 0, 0, 0, 5, 0, 5]
+                }, 
+                {
+                 "tileid":1002,
+                 "wangid":[0, 5, 0, 5, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":1003,
+                 "wangid":[0, 5, 0, 5, 0, 5, 0, 5]
+                }, 
+                {
+                 "tileid":1004,
+                 "wangid":[0, 0, 0, 0, 0, 5, 0, 5]
                 }]
         }]
 }

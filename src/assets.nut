@@ -288,6 +288,7 @@
 ::sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 0, 0, 5, 16)
 ::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
 ::sprBeam <- newSprite("res/gfx/beam.png", 20, 22, 0, 0, 10, 16)
+::sprOwlNPC <- newSprite("res/gfx/owl-npc.png", 32, 32, 0, 0, 16, 32)
 
 
 
@@ -913,6 +914,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::musSASneak <- "res/mus/sa-sneak.ogg"
 ::musForestTop <- "res/mus/forest-top.ogg"
 ::musSAAdventure <- "res/mus/sa-sdventure.ogg"
+::musCloseYetFar <- "res/mus/RPG_Close_Yet_So_Far.ogg"
 
 
 

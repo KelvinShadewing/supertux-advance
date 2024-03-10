@@ -1464,17 +1464,8 @@
          "source":"steampunk-coarse-elements.tsj"
         }, 
         {
-         "columns":13,
          "firstgid":2942,
-         "image":"..\/gfx\/large-boat-tiles.png",
-         "imageheight":160,
-         "imagewidth":208,
-         "margin":0,
-         "name":"large-boat",
-         "spacing":0,
-         "tilecount":130,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"large-boat.tsj"
         }, 
         {
          "firstgid":3072,

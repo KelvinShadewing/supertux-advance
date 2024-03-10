@@ -178,8 +178,16 @@
 		"starring" : "Starring...",
 		"heroes" : "Our Heroes",
 		"tux" : "Tux the Penguin",
+		"penny" : "Penny the Penguin",
+		"lutris" : "Lutris the Otter",
 		"konqi" : "Konqi the Dragon",
+		"katie" : "Katie the Dragon",
 		"midi" : "Midi Waffle the Kholu",
+		"kiki" : "Kiki the Cyber Squirrel",
+		"surge" : "Surge the Rabbit",
+		"dashie" : "Dashie the Cyber Rabbit",
+		"cyra" : "Guardian Cyra",
+		"pepper" : "Chaosa Witch Pepper",
 		"directed-by" : "Directed by",
 		"programmers" : "Programmers",
 		"graphic-artists" : "Graphic Artists",
@@ -224,7 +232,7 @@
 		"welcome" :
 		["Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary. Press %s near NPCs to talk to them. Some have more than one thing to say. If you see a ? over your head, it means your character themself has something to say. Press %s to read it.", "getConName(\"up\")", "getConName(\"up\")"],
 		"tutWall" :
-		["Press %s against the wall to do a wall jump.", "getConName(\"jump\")"],
+		["Press %s against the wall to do a wall jump. You can hold %s or %s to alter your trajectory.", "getConName(\"jump\")", "getConName(\"up\")", "getConName(\"down\")"],
 		"tutSlide" :
 		["Press %s while running or on a hill to slide.", "getConName(\"down\")"],
 		"waterjump" :
@@ -292,7 +300,9 @@
 		"trapper-plant" :
 		"Trapper plants and puffranahs will swallow you whole! If they catch you, mash the buttons to escape!",
 		"tux-dash" :
-		["Pressing %s will do different things depending on your character and location. Try it in many places!", "getConName(\"spec2\")"]
+		["Pressing %s will do different things depending on your character and location. Try it in many places!", "getConName(\"spec2\")"],
+		"noteblock" :
+		"Note blocks will bounce you when you hit them. Hold jump to be bounced higher."
 	},
 
 	"devcom" : {
@@ -770,7 +780,14 @@
 		"This flying island is starting to remind me of Komona.",
 
 		"aurora-secret-yelling" :
-		"I swear I heard someone yelling. I can't tell if it's the wind or if someone's yodeling on the peak."
+		"I swear I heard someone yelling. I can't tell if it's the wind or if someone's yodeling on the peak.",
+
+		"owl-welcome" :
+		"Welcome to the Owlpost!... Yeah, no one actually calls it that.",
+		"owl-territorial" :
+		"A lot of owls in this region are territorial. They haven't taken kindly to all the new people dropping into our world around here.",
+		"owl-library" :
+		"Were you expecting a bigger library? Not all owls are book-hoarding nerds, you know!"
 	},
 
 	"level" : {
@@ -816,7 +833,13 @@
 		"nessland-switch" : "Orange Switch Trial",
 		"nessland-attack" : "Attack From Above",
 		"nessland-cliffs" : "Cliff Notes",
-		"nessland-night" : "Black Night Woods"
+		"nessland-night" : "Black Night Woods",
+		"nessland-secret" : "Loch Genesis"
+	},
+
+	"story" : {
+		"intro" :
+		"It has been several months since Tux defeated Nolok and rescued his love, Penny. Shorty after the battle, following the destruction of the Ghost Tree Staff, strange holes in space began opening up and pulling objects and life forms from other worlds into this one. While the displaced were mostly peaceful, new threats found their way into Tux's world as well.Penny founded a town within the Aurora Isles to house some of the displaced, and for a time, things were peaceful.\n\nThen, without warning, Nolok's army returned and invaded the islands. Many dislpaced were taken from their new homes, hidden away within the strongholds of Nolok's new allies.\n\nNow, Tux and Penny set out to rescue their friends. Along the way, they will meet new allies and new dangers alike. Little do they know that their battle with Nolok has entwined their world's fate with an even grander scheme...\n\n\n\n\n\n\n\nIf you can read this, you don't need glasses."
 	},
 
 	"achi-name" : {

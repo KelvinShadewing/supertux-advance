@@ -764,14 +764,14 @@
 		shape.setPos(x, y)
 
 		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) {
-			gvPlayer.invincible = 645
+			gvPlayer.invincible = 600 + (100 * (4 - game.difficulty))
 			deleteActor(id)
 			playMusic(musInvincible, -1)
 			gvLastSong = ""
 		}
 
 		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
-			gvPlayer2.invincible = 645
+			gvPlayer2.invincible = 600 + (100 * (4 - game.difficulty))
 			deleteActor(id)
 			playMusic(musInvincible, -1)
 			gvLastSong = ""
@@ -1256,6 +1256,7 @@
 		stand = [0]
 		fly = [1, 2, 3, 4, 5, 6, 7, 8]
 	}
+	coin = -1
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -1280,6 +1281,24 @@
 			if((freed == 2 || freed == 1 && !gvPlayer) && gvPlayer2)
 				target = gvPlayer2
 
+			if(coin == -1 && "CoinSmall" in actor && actor["CoinSmall"].len() > 0) {
+				foreach(i in actor["CoinSmall"]) {
+					if(inDistance2(x, y, i.x, i.y, 128))
+						target = i
+
+					if(hitTest(shape, i.shape)) {
+						if(gvPlayer) {
+							i.x = gvPlayer.x
+							i.y = gvPlayer.y
+						}
+						else if(gvPlayer2) {
+							i.x = gvPlayer2.x
+							i.y = gvPLyaer2.y
+						}
+					}
+				}
+			}
+
 			if(strikeTimer >= 0) {
 				local range = 96
 				foreach(i in actor) {
@@ -1291,11 +1310,11 @@
 			}
 
 			if(target != null) {
-				if(target.blinking || randInt(320) == 1)
+				if("blinking" in target && target.blinking || randInt(320) == 1)
 					strikeTimer = 30
 
-				local dist = distance2(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Enemy ? 0 : 32))
-				local dir = pointAngle(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Enemy ? 0 : 32))
+				local dist = distance2(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Player && coin == -1 ? 32 : 0))
+				local dir = pointAngle(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Player && coin == -1 ? 32 : 0))
 				local speed = 0.2
 				local maxSpeed = dist / 16
 
@@ -1353,9 +1372,11 @@
 				freed = 1
 			}
 
-			if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) {
+			if(!freed && "WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) {
 				if(i.alignment == 1 && hitTest(shape, i.shape)) {
 					freed = true
+					if(i.piercing == 0) deleteActor(i.id)
+					else i.piercing--
 					if(checkActor(i.owner))
 						freed = actor[i.owner].playerNum
 					break

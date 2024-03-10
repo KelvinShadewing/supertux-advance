@@ -4764,14 +4764,11 @@
 	nocount = true
 	sprite = 0
 	blinkMax = 60
+	notarget = true
+	normalShape = null
 
-	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y, _arr)
-		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
-		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
-
-		if(randInt(200) == 0) sprite = sprDukeCrusher
-
+	function getFallHeight() {
+		scanShape = null
 		local checkShape = Rec(x, y - 8, 15, 8, 0)
 		shape = checkShape
 		for(local i = 0; i < 1000; i++) {
@@ -4782,7 +4779,19 @@
 			}
 		}
 		if(scanShape == null) scanShape = Rec(x, y + (8000), 24, (8000), 0)
-		shape = Rec(x, y, 15, 8, 0, 0, 8)
+		shape = normalShape
+	}
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
+		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
+
+		if(randInt(200) == 0) sprite = sprDukeCrusher
+
+		normalShape = Rec(x, y, 15, 15, 0, 0, 8)
+		getFallHeight()
+
 		active = true
 	}
 
@@ -4790,10 +4799,14 @@
 		health = 100
 		base.run()
 
+		if(getFrames() % 60 == id % 60)
+			getFallHeight()
+
 		if(y < ystart) {
 			y = ystart
 			vspeed = 0
 			canFall = true
+			getFallHeight()
 		}
 
 		//Detect the player underneath
@@ -5446,6 +5459,7 @@
 	touchDamage = 2
 	friction = 0
 	gravity = 0.1
+	uncapped = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -5534,13 +5548,25 @@
 		if(gvPlayer) flip = int(x > gvPlayer.x)
 		anim = "hurt"
 		frame = 0.0
+
+		if(_element == "air" && uncapped == 0) {
+			uncapped = 16
+			local c = newActor(DeadNME, x, y)
+			actor[c].sprite = sprStruffle
+			actor[c].vspeed = -6.0
+			actor[c].flip = flip
+			actor[c].frame = 23
+			if(flip == 1) actor[c].spin = 16
+			else actor[c].spin = -16
+		}
+
 		if(!_stomp) {
 			base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 			frame = 0.0
 			anim = "hurt"
 			popSound(sndPigSqueal)
 		}
-		else if(_stomp && gvPlayer && _by == gvPlayer) {
+		else if(_stomp && gvPlayer && _by == gvPlayer && uncapped == 0) {
 			if(gvPlayer.anim == "stomp" || gvPlayer.anim == "statue"){
 				base.getHurt(_by, 2, _element, _cut, _blast, _stomp)
 				frame = 0.0
@@ -5556,7 +5582,7 @@
 				blinking = 10
 			}
 		}
-		else if(_stomp && gvPlayer2 && _by == gvPlayer2) {
+		else if(_stomp && gvPlayer2 && _by == gvPlayer2 && uncapped == 0) {
 			if(gvPlayer2.anim == "stomp" || gvPlayer2.anim == "statue"){
 				base.getHurt(_by, 2, _element, _cut, _blast, _stomp)
 				frame = 0.0
@@ -5627,7 +5653,7 @@
 	}
 
 	function draw() {
-		drawSprite(sprStruffle, (frozen ? 0 : an[anim][wrap(frame, 0, an[anim].len() - 1)]), x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
+		drawSprite(sprStruffle, (frozen ? 0 : an[anim][wrap(frame, 0, an[anim].len() - 1)]) + uncapped, x - camx, y - camy, 0, flip, 1, 1, (blinking ? blinking / 10.0 : 1))
 		base.draw()
 		
 		if(debug) {
@@ -5642,7 +5668,7 @@
 		actor[c].sprite = sprStruffle
 		actor[c].vspeed = -4.0
 		actor[c].flip = flip
-		actor[c].frame = 3
+		actor[c].frame = 3 + uncapped
 		if(flip == 1) actor[c].spin = 0.5
 		else actor[c].spin = -0.5
 		popSound(sndKick, 0)

@@ -12,6 +12,42 @@
         {
          "animation":[
                 {
+                 "duration":200,
+                 "tileid":26
+                }, 
+                {
+                 "duration":200,
+                 "tileid":27
+                }, 
+                {
+                 "duration":200,
+                 "tileid":28
+                }, 
+                {
+                 "duration":200,
+                 "tileid":29
+                }, 
+                {
+                 "duration":200,
+                 "tileid":58
+                }, 
+                {
+                 "duration":200,
+                 "tileid":59
+                }, 
+                {
+                 "duration":200,
+                 "tileid":60
+                }, 
+                {
+                 "duration":200,
+                 "tileid":61
+                }],
+         "id":26
+        }, 
+        {
+         "animation":[
+                {
                  "duration":500,
                  "tileid":192
                 }, 
