@@ -292,20 +292,6 @@
 
 
 
-//Guests
-::sprBearistaNPC <- newSprite("res/gfx/guests/bearista.png", 20, 37, 0, 0, 10, 37)
-::sprOozeyOozebourne <- newSprite("res/gfx/guests/oozey.png", 16, 16, 0, 0, 8, 8)
-::sprRyemanni <- newSprite("res/gfx/guests/ryemanni.png", 16, 16, 0, 0, 8, 8)
-::sprGooFox <- newSprite("res/gfx/guests/goo-fox.png", 16, 16, 0, 0, 8, 8)
-::sprAmaraNPC <- newSprite("res/gfx/guests/amara-armanita.png", 32, 32, 0, 0, 16, 32)
-::sprPumpkinNPC <- newSprite("res/gfx/guests/pumpkin-npc.png", 32, 32, 0, 0, 16, 32)
-::sprHarkinNPC <- newSprite("res/gfx/guests/harkin-dove.png", 27, 44, 0, 0, 14, 44)
-::sprMyrMothNPC <- newSprite("res/gfx/guests/myrthemoth.png", 27, 54, 0, 0, 14, 54)
-::sprStarwalfNPC <- newSprite("res/gfx/guests/starwalf.png", 26, 42, 0, 0, 18, 42)
-::sprSeleneNPC <- newSprite("res/gfx/guests/selene-kobold.png", 21, 29, 0, 0, 11, 29)
-
-
-
 //Enemies
 ::sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 0, 0, 8, 0)
 ::defSnake <- sprSnake
@@ -478,6 +464,8 @@
 ::defGooWhite <- sprGooWhite
 ::sprGooYellow <- newSprite("res/gfx/goo-yellow.png", 16, 16, 0, 0, 8, 8)
 ::defGooYellow <- sprGooYellow
+::sprGooFox <- newSprite("res/gfx/goo-fox.png", 16, 16, 0, 0, 8, 8)
+::defGooFox <- sprGooFox
 
 
 

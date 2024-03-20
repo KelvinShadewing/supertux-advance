@@ -1283,7 +1283,7 @@
 
 			if(coin == -1 && "CoinSmall" in actor && actor["CoinSmall"].len() > 0) {
 				foreach(i in actor["CoinSmall"]) {
-					if(inDistance2(x, y, i.x, i.y, 128))
+					if(inDistance2(x, y, i.x, i.y, 256))
 						target = i
 
 					if(hitTest(shape, i.shape)) {
@@ -1316,7 +1316,7 @@
 				local dist = distance2(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Player && coin == -1 ? 32 : 0))
 				local dir = pointAngle(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Player && coin == -1 ? 32 : 0))
 				local speed = 0.2
-				local maxSpeed = dist / 16
+				local maxSpeed = max(dist / 16, target instanceof Player ? 0 : 4)
 
 				if(target instanceof Enemy) {
 					speed = 0.5

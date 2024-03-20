@@ -6272,8 +6272,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		nocount = true
-		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow)
-		if(randInt(20) == 0) sprite = choose(sprOozeyOozebourne, sprRyemanni, sprGooFox)
+		sprite = choose(sprGooBlack, sprGooBlue, sprGooBrown, sprGooCrimson, sprGooCyan, sprGooGray, sprGooGreen, sprGooIce, sprGooOrange, sprGooPink, sprGooPurple, sprGooRed, sprGooTan, sprGooTeal, sprGooWhite, sprGooYellow, sprGooFox)
 		shape = Rec(x, y, 7, 7, 0)
 		jumpTimer = randInt(180)
 		vspeed = -1.0

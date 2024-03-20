@@ -124,7 +124,7 @@
 ::dbgPennyton <- function() {
 	dbgAurora()
 	for(local i = 0; i < 3; i++) drawSprite(bgPennyton1, 0, ((-camx / 4) % 480) + (i * 480), gvHorizon - camy - 96 - ((gvHorizon - (camy + gvScreenH)) / 1.25))
-	if(drawWeather == dweSnow) {
+	if(config.weather && drawWeather == dweSnow) {
 		setDrawColor(0x60606040)
 		drawRec(0, 0, screenW(), screenH(), true)
 		for(local i = 0; i < (screenW() / 32) + 4; i++) {

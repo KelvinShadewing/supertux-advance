@@ -689,41 +689,24 @@
 		"take-duke" :
 		"Are you collecting fish for Duke? Please take him with you. All he does is eat!",
 
-		"bearista-0" :
+		"coffee-shop-0" :
 		"Try some coffee! Perfectly roasted and carefully brewed. Free for heroes.",
-		"bearista-1":
+		"coffee-shop-1":
 		"Did you know that coffee will not actually give you energy? It just makes you unable to feel tired for a while. That's why you crash when it runs out.",
-		"bearista-2" :
+		"coffee-shop-2" :
 		"Coffee's flavor doesn't just come from how it's roasted. Where it grows also changes the taste. For instance, if it grows around fruit trees, it'll get a fruity flavor, and nut trees will give a nutty flavor.",
-		"bearista-3" :
+		"coffee-shop-3" :
 		"Have you noticed decafinated beans look different from regular ones? That's because the caffeine is in the wax coating. They decafinate them by washing the wax off.",
-		"bearista-4" :
+		"coffee-shop-4" :
 		"Caffeine can make you more alert, but also increases chemicals that cause stress. If you start feeling anxious or jumpy, you should cut back on coffee.",
-		"bearista-5" :
+		"coffee-shop-5" :
 		"Did you know that coffee beans actually grow in cherries? There are two beans in each coffee cherry. The fruit itself is also full of caffeine!",
-		"bearista-6" :
+		"coffee-shop-6" :
 		"The darker the roast, the less caffeine in the brew. Green coffee is unroasted and has the most caffeine of all.",
-		"bearista-7" :
+		"coffee-shop-7" :
 		"Please don't drink civet coffee. It comes from civet cats that are wrangled and overfed coffee beans with little water or other food. Please don't support such abuse and boycot civet coffee wherever you can. Artificial civet enzymes exist, but civet farmers have been fighting against this so they can keep trapping cats.",
-		"bearista-8" :
+		"coffee-shop-8" :
 		"Coffee plants use caffeine as a natural pesticide. They produce more caffeine at lower altitudes where there are many bugs, while higher altitudes, like on mountains, will have less bugs, and so the plants make less caffeine. This is also why coffee from different locations have different flavors.",
-
-		"amara-0" :
-		"Live fast, eat trash, be the good you want to see, and GIVE ME ALL YOUR COFFEE!",
-		"pumpkin-otter" :
-		"Hang on, I gotta save the animals!",
-		"pumpkin-otter-PumpkinOtter" :
-		"Wow, I'm so fast, I'm in two places at once!",
-		"starwalf" :
-		"Maybe I can debug my way to those animals...",
-		"starwalf-PumpkinOtter" :
-		"Double Pumpkin?! I'm all for it!",
-		"harkin-0" :
-		"Howdy haroo and much awoo, with fuzziest hugs from me to you!",
-		"myr-moth-0" :
-		"Hello, fellow Earthling, the Void blesses us with sterile neutrinos and phaetons today~ Rejoice!",
-		"selene-kobold" :
-		"Yip, yip! Got shinies?",
 
 		"twang-1" :
 		"hi",

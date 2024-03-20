@@ -421,18 +421,6 @@
                  "y":928
                 }, 
                 {
-                 "gid":230,
-                 "height":16,
-                 "id":5,
-                 "name":"sprBearistaNPC,0.05,say,bearista",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":592,
-                 "y":912
-                }, 
-                {
                  "gid":263,
                  "height":16,
                  "id":6,
@@ -873,18 +861,6 @@
                  "y":880
                 }, 
                 {
-                 "gid":230,
-                 "height":16,
-                 "id":45,
-                 "name":"sprAmaraNPC,0.05,say,amara",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3536,
-                 "y":448
-                }, 
-                {
                  "gid":263,
                  "height":16,
                  "id":46,
@@ -1065,18 +1041,6 @@
                  "y":432
                 }, 
                 {
-                 "gid":230,
-                 "height":16,
-                 "id":61,
-                 "name":"sprPumpkinNPC,0.05,sayChar,pumpkin-otter",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3856,
-                 "y":448
-                }, 
-                {
                  "gid":263,
                  "height":16,
                  "id":62,
@@ -1235,30 +1199,6 @@
                 {
                  "gid":230,
                  "height":16,
-                 "id":75,
-                 "name":"sprHarkinNPC,0.05,say,harkin",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3536,
-                 "y":560
-                }, 
-                {
-                 "gid":230,
-                 "height":16,
-                 "id":76,
-                 "name":"sprKelvinNPC,0.1,say,cameo-hotel",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3432,
-                 "y":880
-                }, 
-                {
-                 "gid":230,
-                 "height":16,
                  "id":83,
                  "name":"sprMyrMothNPC,0.05,say,myr-moth",
                  "rotation":0,
@@ -1266,30 +1206,6 @@
                  "visible":true,
                  "width":16,
                  "x":3888,
-                 "y":560
-                }, 
-                {
-                 "gid":230,
-                 "height":16,
-                 "id":84,
-                 "name":"sprStarwalfNPC,0.05,sayChar,starwalf",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3904,
-                 "y":448
-                }, 
-                {
-                 "gid":230,
-                 "height":16,
-                 "id":85,
-                 "name":"sprSeleneNPC,0.05,say,selene-kobold",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3840,
                  "y":560
                 }],
          "opacity":1,
