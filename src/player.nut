@@ -106,6 +106,7 @@
 			//Skip weapons that don't hurt the player
 			if(i.alignment == 1 && !gvBattleMode) continue
 			if(i.owner == id) continue
+			if(i.box) continue
 
 			if(hitTest(shape, i.shape)) {
 				getHurt(i.power, i.element, i.cut, i.blast)
@@ -119,7 +120,7 @@
 		if(playerNum == 2)
 			otherPlayer = gvPlayer
 
-		if(gvBattleMode && otherPlayer) {
+		if(gvBattleMode && otherPlayer && !blinking) {
 			//Get stomped
 			if(hitTest(shape, otherPlayer.shape)) {
 					if("invincible" in otherPlayer && otherPlayer.invincible > 0) hurt = 10

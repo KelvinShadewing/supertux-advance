@@ -49,6 +49,9 @@ const menuY = 40
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
 				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
+
+			if("draw" in menu[i])
+				menu[i].draw()
 		}
 
 		local textX = (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4)
@@ -76,6 +79,9 @@ const menuY = 40
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
 				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
+
+			if("draw" in menu[i])
+				menu[i].draw()
 		}
 
 		local textX = (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4)
@@ -322,14 +328,38 @@ const menuY = 40
 
 ::meBattleWorld <- [
 	{
-		name = function() { 
-			drawBattlePreview(sprBattleTest)
+		name = function() {
 			return gvLangObj["level"]["battle-test"]
 		}
 		func = function() {
 			startPlay(game.path + "battle-test.json", true, true)
 		}
-	}
+		draw = function() {
+			drawBattlePreview(sprBattleTest)
+		}
+	},
+	{
+		name = function() {
+			return gvLangObj["level"]["battle-castle"]
+		}
+		func = function() {
+			startPlay(game.path + "battle-castle.json", true, true)
+		}
+		draw = function() {
+			drawBattlePreview(sprBattleCastle)
+		}
+	},
+	{
+		name = function() {
+			return gvLangObj["level"]["battle-henge"]
+		}
+		func = function() {
+			startPlay(game.path + "battle-henge.json", true, true)
+		}
+		draw = function() {
+			drawBattlePreview(sprBattleHenge)
+		}
+	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menuLeft = false; gvBattleMode = false; cursor = 0; menu = meMain },
@@ -358,8 +388,13 @@ const menuY = 40
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
 		func = function() {
 			if(gvBattleMode) {
+				gvBattleMode = false
+				local tp1 = game.playerChar
+				local tp2 = game.playerChar2
 				startMain()
 				setMenu(meBattleMode)
+				game.playerChar = tp1
+				game.playerChar2 = tp2
 			}
 			else if(gvTimeAttack) startMain()
 			else startOverworld(game.world)

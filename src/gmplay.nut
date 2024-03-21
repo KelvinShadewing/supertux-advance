@@ -1260,6 +1260,11 @@
 
 			if(config.useBeam && gvNumPlayers == 1)
 				newActor(BeamBug, i.x + 8, i.y - 16)
+
+			if(gvBattleMode && gvPlayer && gvPlayer2) {
+				gvPlayer.blinking = 10
+				gvPlayer2.blinking = 10
+			}
 			break
 
 		case 1:

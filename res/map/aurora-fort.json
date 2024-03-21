@@ -4915,17 +4915,8 @@
          "tilewidth":16
         }, 
         {
-         "columns":14,
          "firstgid":211,
-         "image":"..\/gfx\/tsCastle.png",
-         "imageheight":240,
-         "imagewidth":224,
-         "margin":0,
-         "name":"castle",
-         "spacing":0,
-         "tilecount":210,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"castle.tsj"
         }, 
         {
          "columns":8,

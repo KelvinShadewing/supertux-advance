@@ -52,5 +52,5 @@
 }
 
 ::drawBattlePreview <- function(sprite) {
-	drawSprite(sprite, 0, screenW() - 16 - spriteW(sprite) / 2, screenH() / 2)
+	drawSprite(sprite, 0, screenW() - 16 - spriteW(sprite) / 2, screenH() - 96)
 }

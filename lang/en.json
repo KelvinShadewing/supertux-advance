@@ -824,7 +824,9 @@
 		"nessland-cliffs" : "Cliff Notes",
 		"nessland-night" : "Black Night Woods",
 		"nessland-secret" : "Loch Genesis",
-		"battle-test" : "Battlefield"
+		"battle-test" : "Battlefield",
+		"battle-castle" : "The Old Castle",
+		"battle-henge" : "Longehenge Forest"
 	},
 
 	"story" : {

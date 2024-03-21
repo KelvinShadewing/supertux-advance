@@ -1080,7 +1080,7 @@
 			case "ice":
 				local target = null
 				foreach(i in actor) {
-					if(!(i instanceof Enemy))
+					if(!(i instanceof Enemy || (i == otherPlayer && gvBattleMode)))
 						continue
 					if(flip == 0 && i.x < x - 32)
 						continue
@@ -1088,7 +1088,7 @@
 						continue
 					if(!inDistance2(x, y, i.x, i.y, 128))
 						continue
-					if(i.notarget)
+					if("notarget" in i && i.notarget)
 						continue
 					if(target == null || distance2(x, y, i.x, i.y) < distance2(x, y, target.x, target.y))
 						target = i
