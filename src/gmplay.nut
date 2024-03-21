@@ -786,7 +786,7 @@
 		gvBarStats.health2 = (game.ps2.health + gvBarStats.health2 * 9.0) / 10.0
 		if(fabs(game.ps2.health - gvBarStats.health2) < 0.5)
 			gvBarStats.health2 = game.ps2.health
-		gvBarStats.mana2 = (game.ps.energy + gvBarStats.mana2 * 9.0) / 10.0
+		gvBarStats.mana2 = (game.ps2.energy + gvBarStats.mana2 * 9.0) / 10.0
 		if(fabs(game.ps2.energy - gvBarStats.mana2) < 0.5)
 			gvBarStats.mana2 = game.ps2.energy
 		gvBarStats.stamina2 = (game.ps2.stamina + gvBarStats.stamina2 * 9.0) / 10.0
