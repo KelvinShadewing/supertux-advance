@@ -780,6 +780,11 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 
 
 
+//Battle stages
+::sprBattleTest <- newSprite("res/gfx/previews/battle-test.png", 128, 56, 0, 0, 64, 28)
+
+
+
 //Sounds
 ::sndFireball <- loadSound("res/snd/fireball.ogg")
 ::sndJump <- loadSound("res/snd/jump.ogg")

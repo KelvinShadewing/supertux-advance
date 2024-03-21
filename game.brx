@@ -67,6 +67,7 @@ require("src/racer.nut")
 require("src/network.nut")
 require("src/accessibility.nut")
 require("src/timeattack.nut")
+require("src/battle.nut")
 
 ////////////////
 //    MAIN    //

@@ -8,10 +8,17 @@
 ::cursor <- 0
 ::cursorOffset <- 0
 ::cursorTimer <- 30
+::menuLeft <- false
+const menuPad = 16
 const menuMax = 8 //Maximum number of slots that can be shown on screen
 const fontW = 8
 const fontH = 14
 const menuY = 40
+
+::setMenu <- function(m) {
+	menu = m
+	menuLeft = false
+}
 
 ::textMenu <- function(){
 	//If no menu is loaded
@@ -34,25 +41,25 @@ const menuY = 40
 		if(cursor == i) {
 			//Make current selection blink
 			currFont = font2I
-			drawSprite(font2, 110, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			drawSprite(font2, 115, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(font2, 110, (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
+			drawSprite(font2, 115, (menuLeft ? menuPad : screenW() / 2) + (menuLeft ? menu[i].name().len() * 8 : menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			//Display option description
-			if(menu[i].rawin("desc")){
+			if(menu[i].rawin("desc") && typeof menu[i].desc() == "string" && menu[i].desc() != "" && menu[i].desc() != null){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				if(typeof menu[i].desc() == "string") drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
 		}
 
-		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
+		local textX = (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4)
 		local textY = screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH)
 
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 
 		//Draw scroll indicators
-		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 116, (screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
-		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 111, (screenW() / 2 - 24) + (i * 12), screenH() - menuY)
+		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 116, (menuLeft ? menuPad : screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
+		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 111, (menuLeft ? menuPad : screenW() / 2 - 24) + (i * 12), screenH() - menuY)
 	}
 	//If all items can fit on screen at once
 	else for(local i = 0; i < menu.len(); i++) {
@@ -62,16 +69,16 @@ const menuY = 40
 
 		if(cursor == i) {
 			currFont = font2I
-			drawSprite(font2, 110, (screenW() / 2) - (menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
-			drawSprite(font2, 115, (screenW() / 2) + (menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
-			if(menu[i].rawin("desc")) {
+			drawSprite(font2, 110, (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
+			drawSprite(font2, 115, (menuLeft ? menuPad : screenW() / 2) + (menuLeft ? menu[i].name().len() * 8 : menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
+			if(menu[i].rawin("desc") && typeof menu[i].desc() == "string" && menu[i].desc() != "" && menu[i].desc() != null){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				if(typeof menu[i].desc() == "string") drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
 			}
 		}
 
-		local textX = (screenW() / 2) - (menu[i].name().len() * 4)
+		local textX = (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4)
 		local textY = screenH() - menuY - (menu.len() * fontH) + (i * fontH)
 
 		drawText(currFont, textX, textY, menu[i].name())
@@ -148,6 +155,10 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["main-menu"]["time-attack"] },
 		func = function() { gvTimeAttack = true; menu = meTimeAttack }
+	},
+	{
+		name = function() { return gvLangObj["main-menu"]["battle"] },
+		func = function() { gvTimeAttack = false; menu = meBattleMode }
 	},
 	{
 		name = function() { return gvLangObj["main-menu"]["contrib-levels"] },
@@ -273,13 +284,56 @@ const menuY = 40
 			"nessland-cliffs",
 			"nessland-well",
 			"nessland-bedrock",
-			"nessland-crush"
+			"nessland-crush",
+			"nessland-night"
 		]; menu = meDifficulty }
 	},*/
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] }
 		func = function() { menu = meMain }
 		back = function() { menu = meMain }
+	}
+]
+
+::meBattleMode <- [
+	{
+		name = function() { return gvLangObj["battle-menu"]["start-battle"] },
+		func = function() { cursor = 0; if(game.playerChar2 != 0) {
+			gvBattleMode = true
+			menuLeft = true
+			menu = meBattleWorld }
+		}
+		desc = function() { if(game.playerChar2 == 0) return gvLangObj["battle-menu"]["warning"] }
+	},
+	{
+		name = function() { return format(gvLangObj["time-attack-menu"]["player1"], gvCharacters[game.playerChar].shortname) },
+		func = function() { pickCharInitialize(1, true); gvGameMode = pickChar}
+	},
+	{
+		name = function() { return format(gvLangObj["time-attack-menu"]["player2"], (game.playerChar2 != 0 && game.playerChar2 != "" ? gvCharacters[game.playerChar2].shortname : gvLangObj["menu-commons"]["noone"])) },
+		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { cursor = 0; menu = meMain },
+		back = function() { menu = meMain; }
+	}
+]
+
+::meBattleWorld <- [
+	{
+		name = function() { 
+			drawBattlePreview(sprBattleTest)
+			return gvLangObj["level"]["battle-test"]
+		}
+		func = function() {
+			startPlay(game.path + "battle-test.json", true, true)
+		}
+	}
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menuLeft = false; gvBattleMode = false; cursor = 0; menu = meMain },
+		back = function() { menuLeft = false; gvBattleMode = false; menu = meMain }
 	}
 ]
 
@@ -303,7 +357,11 @@ const menuY = 40
 	{
 		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
 		func = function() {
-			if(gvTimeAttack) startMain()
+			if(gvBattleMode) {
+				startMain()
+				setMenu(meBattleMode)
+			}
+			else if(gvTimeAttack) startMain()
 			else startOverworld(game.world)
 		}
 	}

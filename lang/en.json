@@ -13,7 +13,8 @@
 		"options" : "Options",
 		"extras" : "Extras",
 		"credits" : "Credits",
-		"quit" : "Quit Game"
+		"quit" : "Quit Game",
+		"battle" : "2-Player Battle"
 	},
 
 	"time-attack-menu" : {
@@ -21,6 +22,11 @@
 		"player1" : "Player 1: %s",
 		"player2" : "Player 2: %s",
 		"start-run" : "Begin Run"
+	},
+
+	"battle-menu" : {
+		"start-battle" : "Start Battle",
+		"warning" : "Cannot continue without second player!"
 	},
 
 	"extras-menu" : {
@@ -817,7 +823,8 @@
 		"nessland-attack" : "Attack From Above",
 		"nessland-cliffs" : "Cliff Notes",
 		"nessland-night" : "Black Night Woods",
-		"nessland-secret" : "Loch Genesis"
+		"nessland-secret" : "Loch Genesis",
+		"battle-test" : "Battlefield"
 	},
 
 	"story" : {

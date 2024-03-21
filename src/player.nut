@@ -75,6 +75,7 @@
 	//Misc
 	heldby = 0
 	holding = 0
+	otherPlayer = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -103,14 +104,35 @@
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
 			//Skip weapons that don't hurt the player
-			if(i.alignment == 1) continue
+			if(i.alignment == 1 && !gvBattleMode) continue
 			if(i.owner == id) continue
 
-			if(i.alignment != 1 && i.owner != id && hitTest(shape, i.shape)) {
+			if(hitTest(shape, i.shape)) {
 				getHurt(i.power, i.element, i.cut, i.blast)
 				if(i.piercing == 0) deleteActor(i.id)
 				else i.piercing--
 			}
+		}
+
+		if(playerNum == 1)
+			otherPlayer = gvPlayer2
+		if(playerNum == 2)
+			otherPlayer = gvPlayer
+
+		if(gvBattleMode && otherPlayer) {
+			//Get stomped
+			if(hitTest(shape, otherPlayer.shape)) {
+					if("invincible" in otherPlayer && otherPlayer.invincible > 0) hurt = 10
+					else if(y > otherPlayer.y && vspeed < otherPlayer.vspeed && otherPlayer.canStomp && otherPlayer.placeFree(otherPlayer.x, otherPlayer.y + 2) && blinking == 0 && !otherPlayer.swimming) {
+						if(getcon("jump", "hold", false, otherPlayer.playerNum))
+							otherPlayer.vspeed = -8.0
+						else
+							otherPlayer.vspeed = -4.0
+						hurt = otherPlayer.stompDamage
+					}
+					else if(otherPlayer.inMelee)
+						hurt = 1
+				}
 		}
 
 		if(zoomies > 0) zoomies--
@@ -176,13 +198,13 @@
 		//Leave level
 		if(x < 4) {
 			x = 4
-			if(getcon("left", "hold", false, playerNum) && !endMode && !gvTimeAttack) gvExitTimer += 1.0
+			if(getcon("left", "hold", false, playerNum) && !endMode && !gvTimeAttack && !gvBattleMode) gvExitTimer += 1.0
 			gvExitSide = 0
 			hspeed /= 2.0
 		}
 		if(x > gvMap.w - 4) {
 			x = gvMap.w - 4
-			if(getcon("right", "hold", false, playerNum) && !endMode && !gvTimeAttack) gvExitTimer += 1.0
+			if(getcon("right", "hold", false, playerNum) && !endMode && !gvTimeAttack && !gvBattleMode) gvExitTimer += 1.0
 			gvExitSide = 1
 			hspeed /= 2.0
 		}

@@ -24,6 +24,7 @@
 ::mapActor <- {} //Stores references to all actors created by the map
 
 ::startPlay <- function(level, newLevel = true, skipIntro = false) {
+	menuLeft = false
 	if(!fileExists(level)) return
 
 	//Clear actors and start creating new ones
@@ -505,6 +506,9 @@
 
 	updateCamera()
 
+	if(gvBattleMode)
+		manageBattle()
+
 	//Draw
 	//Separate texture for game world allows post-processing effects without including HUD
 	runActors()
@@ -755,6 +759,18 @@
 				}
 			}
 		}
+
+		//Battle Finder
+		if(gvBattleMode && gvSplitScreen && gvPlayer && gvPlayer2) {
+				if(gvSwapScreen) {
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y))
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2, gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, gvPlayer.x, gvPlayer.y))
+				}
+				else {
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1, gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y))
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, gvPlayer.x, gvPlayer.y))
+				}
+			}
 
 		//Update stats
 		gvBarStats.health1 = (game.ps.health + gvBarStats.health1 * 9.0) / 10.0

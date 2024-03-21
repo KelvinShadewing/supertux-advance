@@ -15,7 +15,16 @@
 				if(timer == 0 || getcon("pause", "press")) {
 					stopChannel(-1)
 					levelEndRunner = 0
-					if(gvNextLevel != "" && gvTimeAttack) {
+					if(gvBattleMode) {
+						gvBattleMode = false
+						local tp1 = game.playerChar
+						local tp2 = game.playerChar2
+						startMain()
+						setMenu(meBattleMode)
+						game.playerChar = tp1
+						game.playerChar2 = tp2
+					}
+					else if(gvNextLevel != "" && gvTimeAttack) {
 						game.check = false
 						if(gvNextLevel == "timeattack-win") startPlay("res/map/" + gvNextLevel + ".json", true, true)
 						else startPlay(game.path + gvNextLevel + ".json", true, true)

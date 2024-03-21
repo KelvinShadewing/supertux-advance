@@ -1660,6 +1660,7 @@
 			if(getcon("down", "hold", true, playerNum) && anim != "crawl") {
 				c = fireWeapon(NutBomb, x, y + 8, 1, id)
 				c.vspeed = 2
+				c.sprite = nutSprite
 			}
 			else {
 				if(!freeDown && shootDir == 3 && routine != ruSwim) {
@@ -1672,7 +1673,7 @@
 				}
 				else {
 					c = fireWeapon(WingNut, x, y + 8, 1, id)
-					if(routine != ruBall)
+					if(routine != ruBall || getcon("down", "hold", true, playerNum))
 						c.sprite = nutSprite
 				}
 			}

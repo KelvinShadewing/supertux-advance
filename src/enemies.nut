@@ -89,7 +89,7 @@
 			}
 
 			if(gvPlayer && health > 0) {
-				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
+				if(hitTest(shape, gvPlayer.shape) && !frozen) {
 					if("invincible" in gvPlayer && gvPlayer.invincible > 0) hurtInvinc()
 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming && gvPlayer.holding != id) {
 						if(!squish) {

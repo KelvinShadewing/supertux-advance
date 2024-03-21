@@ -1841,14 +1841,15 @@
 	bounceShape = null
 	exPower = 1
 	exElement = "normal"
-	sprite = null
+	sprite = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
 		shape = Cir(x, y, 3)
 		bounceShape = Rec(x, y, 10, 16, 0)
-		sprite = sprWingNut
+		if(checkActor(owner) && "wingNutSprite" in actor[owner])
+			sprite = actor[owner].wingNutSprite
 	}
 
 	function run() {
