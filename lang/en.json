@@ -26,7 +26,8 @@
 
 	"battle-menu" : {
 		"start-battle" : "Start Battle",
-		"warning" : "Cannot continue without second player!"
+		"warning" : "Cannot continue without second player!",
+		"health" : "Starting Health: %s"
 	},
 
 	"extras-menu" : {

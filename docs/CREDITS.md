@@ -78,6 +78,8 @@
 
 [BitingChaos](https://opengameart.org/users/bitingchaos)
 
+[Cethiel](https://opengameart.org/users/cethiel) - Desert BG
+
 \*: Contains edits from or made in collaboration with Kelvin Shadewing
 
 ## Sounds

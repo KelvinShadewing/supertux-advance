@@ -14,6 +14,7 @@
 
 ::gmMain <- function()
 {
+	drawBG = dbgOceanMoving
 	setDrawTarget(gvScreen)
 	drawBG()
 	runActors()

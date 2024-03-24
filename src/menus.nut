@@ -320,6 +320,10 @@ const menuY = 40
 		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
 	},
 	{
+		name = function() { return format(gvLangObj["battle-menu"]["health"], str(16 + gvBattleHealth) + " HP") },
+		func = function() { setMenu(meBattleHealth)}
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 0; menu = meMain },
 		back = function() { menu = meMain; }
@@ -332,7 +336,7 @@ const menuY = 40
 			return gvLangObj["level"]["battle-test"]
 		}
 		func = function() {
-			startPlay(game.path + "battle-test.json", true, true)
+			startBattle(game.path + "battle-test.json")
 		}
 		draw = function() {
 			drawBattlePreview(sprBattleTest)
@@ -343,7 +347,7 @@ const menuY = 40
 			return gvLangObj["level"]["battle-castle"]
 		}
 		func = function() {
-			startPlay(game.path + "battle-castle.json", true, true)
+			startBattle(game.path + "battle-castle.json")
 		}
 		draw = function() {
 			drawBattlePreview(sprBattleCastle)
@@ -354,10 +358,45 @@ const menuY = 40
 			return gvLangObj["level"]["battle-henge"]
 		}
 		func = function() {
-			startPlay(game.path + "battle-henge.json", true, true)
+			startBattle(game.path + "battle-henge.json")
 		}
 		draw = function() {
 			drawBattlePreview(sprBattleHenge)
+		}
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menuLeft = false; gvBattleMode = false; cursor = 0; menu = meMain },
+		back = function() { menuLeft = false; gvBattleMode = false; menu = meMain }
+	}
+]
+
+::meBattleHealth <- [
+	{
+		name = function() {
+			return "16 HP"
+		}
+		func = function() {
+			gvBattleHealth = 0
+			setMenu(meBattleMode)
+		}
+	},
+	{
+		name = function() {
+			return "24 HP"
+		}
+		func = function() {
+			gvBattleHealth = 8
+			setMenu(meBattleMode)
+		}
+	},
+	{
+		name = function() {
+			return "32 HP"
+		}
+		func = function() {
+			gvBattleHealth = 16
+			setMenu(meBattleMode)
 		}
 	},
 	{

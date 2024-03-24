@@ -1,4 +1,5 @@
 ::gvBattleMode <- false
+::gvBattleHealth <- 0
 
 ::P2Start <- class extends Actor {
 	function run() {
@@ -43,7 +44,7 @@
 				contribDidRun[folder] <- true
 			}
 
-			startPlay(game.path + level + ".json", true, true)
+			startBattle(game.path + level + ".json")
 		}
 	}
 
@@ -53,4 +54,10 @@
 
 ::drawBattlePreview <- function(sprite) {
 	drawSprite(sprite, 0, screenW() - 16 - spriteW(sprite) / 2, screenH() - 96)
+}
+
+::startBattle <- function(level) {
+	gvBattleMode = true
+	game.maxHealth = 16 + gvBattleHealth
+	startPlay(level, true, true)
 }
