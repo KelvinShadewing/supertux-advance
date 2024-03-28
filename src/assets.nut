@@ -785,6 +785,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::sprBattleTest <- newSprite("res/gfx/previews/battle-test.png", 128, 56, 0, 0, 64, 28)
 ::sprBattleCastle <- newSprite("res/gfx/previews/battle-castle.png", 128, 58, 0, 0, 64, 29)
 ::sprBattleHenge <- newSprite("res/gfx/previews/battle-henge.png", 128, 52, 0, 0, 64, 26)
+::sprBattleDesert <- newSprite("res/gfx/previews/battle-desert.png", 128, 102, 0, 0, 64, 51)
 
 
 

@@ -365,6 +365,17 @@ const menuY = 40
 		}
 	},
 	{
+		name = function() {
+			return gvLangObj["level"]["battle-desert"]
+		}
+		func = function() {
+			startBattle(game.path + "battle-desert.json")
+		}
+		draw = function() {
+			drawBattlePreview(sprBattleDesert)
+		}
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menuLeft = false; gvBattleMode = false; cursor = 0; menu = meMain },
 		back = function() { menuLeft = false; gvBattleMode = false; menu = meMain }

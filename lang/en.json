@@ -827,12 +827,8 @@
 		"nessland-secret" : "Loch Genesis",
 		"battle-test" : "Battlefield",
 		"battle-castle" : "The Old Castle",
-		"battle-henge" : "Longehenge Forest"
-	},
-
-	"story" : {
-		"intro" :
-		"It has been several months since Tux defeated Nolok and rescued his love, Penny. Shorty after the battle, following the destruction of the Ghost Tree Staff, strange holes in space began opening up and pulling objects and life forms from other worlds into this one. While the displaced were mostly peaceful, new threats found their way into Tux's world as well.Penny founded a town within the Aurora Isles to house some of the displaced, and for a time, things were peaceful.\n\nThen, without warning, Nolok's army returned and invaded the islands. Many dislpaced were taken from their new homes, hidden away within the strongholds of Nolok's new allies.\n\nNow, Tux and Penny set out to rescue their friends. Along the way, they will meet new allies and new dangers alike. Little do they know that their battle with Nolok has entwined their world's fate with an even grander scheme...\n\n\n\n\n\n\n\nIf you can read this, you don't need glasses."
+		"battle-henge" : "Longehenge Forest",
+		"battle-desert" : "Dune Sea++"
 	},
 
 	"achi-name" : {

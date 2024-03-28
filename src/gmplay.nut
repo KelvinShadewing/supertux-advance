@@ -34,6 +34,8 @@
 	gvBoss = false
 	gvExitTimer = 0.0
 	deleteAllActors()
+	drawWeather = 0
+	drawWeather2 = 0
 	if(newLevel) {
 		if(game.ps.health <= 0 || game.difficulty < 2)
 			game.ps.health = game.maxHealth

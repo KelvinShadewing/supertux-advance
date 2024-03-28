@@ -34,7 +34,7 @@
 
 [bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
 
-[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG\*
+[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG\*, pots
 
 [SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
 
@@ -79,6 +79,10 @@
 [BitingChaos](https://opengameart.org/users/bitingchaos)
 
 [Cethiel](https://opengameart.org/users/cethiel) - Desert BG
+
+[Revangale](https://opengameart.org/users/revangale) - Palmtree pieces
+
+[Surt](https://opengameart.org/users/surt) - Ruins tiles\*
 
 \*: Contains edits from or made in collaboration with Kelvin Shadewing
 
