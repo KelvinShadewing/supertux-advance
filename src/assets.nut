@@ -19,7 +19,7 @@
 ::font2A <- newFont(sprFont2A, 32, 0, true, -4)
 ::sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8, 0, 0, 0, 0)
 ::sprTitle <- newSprite("res/gfx/title.png", 220, 55, 0, 0, 110, 0)
-::sprActors <- newSprite("res/gfx/actors.png", 16, 16, 0, 0, 8, 8)
+::sprActors <- newSprite("res/gfx/actors.png", 16, 16, 0, 0, 0, 0)
 
 
 
@@ -289,6 +289,7 @@
 ::sprPenguinBuilderNPC <- newSprite("res/gfx/penguin-builder-npc.png", 14, 27, 0, 0, 7, 27)
 ::sprBeam <- newSprite("res/gfx/beam.png", 20, 22, 0, 0, 10, 16)
 ::sprOwlNPC <- newSprite("res/gfx/owl-npc.png", 32, 32, 0, 0, 16, 32)
+::sprMamaBearNPC <- newSprite("res/gfx/mamabear.png", 24, 37, 0, 0, 12, 37)
 
 
 

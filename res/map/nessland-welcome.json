@@ -1207,6 +1207,18 @@
                  "width":16,
                  "x":3888,
                  "y":560
+                }, 
+                {
+                 "gid":230,
+                 "height":16,
+                 "id":86,
+                 "name":"sprMamaBearNPC,0.05,say,coffee-shop",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":592,
+                 "y":912
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1215,7 +1227,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":86,
+ "nextobjectid":87,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1365,11 +1377,11 @@
         {
          "columns":5,
          "firstgid":2842,
-         "image":"..\/gfx\/bearista-sign.png",
+         "image":"..\/gfx\/mamabear-sign.png",
          "imageheight":64,
          "imagewidth":80,
          "margin":0,
-         "name":"bearista-sign",
+         "name":"mamabear-sign",
          "spacing":0,
          "tilecount":20,
          "tileheight":16,

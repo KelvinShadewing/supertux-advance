@@ -752,10 +752,18 @@
 				else hspeed = 0.5
 			}
 
-			if(!placeFree(x, y + 1)) vspeed = -3.0
-			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y)) hspeed = -fabs(hspeed)
-			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y)) hspeed = fabs(hspeed)
+			if(!placeFree(x, y + 1))
+				vspeed = -3.0
+			if(!placeFree(x, y - 1))
+				vspeed = fabs(vspeed)
+			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y))
+				hspeed = -fabs(hspeed)
+			if(!placeFree(x - 2, y - 2) && !placeFree(x - 2, y))
+				hspeed = fabs(hspeed)
 			vspeed += 0.1
+
+			if(inWater(x, y) && vspeed > -4)
+				vspeed -= 0.2
 
 			if(hspeed > 0) flip = 0
 			else flip = 1
