@@ -419,11 +419,11 @@ const menuY = 40
 
 ::mePausePlay <- [
 	{
-		name = function() { return gvLangObj["pause-menu"]["continue"]},
+		name = function() { return gvLangObj["pause-menu"]["continue"] },
 		func = function() { gvGameMode = gmPlay }
 	},
 	{
-		name = function() { return gvLangObj["pause-menu"]["restart"]},
+		name = function() { return gvLangObj["pause-menu"]["restart"] },
 		func = function() {
 			gvIGT = 0;
 			game.check = false;
@@ -435,7 +435,7 @@ const menuY = 40
 		func = function() { menu = meOptions }
 	},
 	{
-		name = function() { return gvLangObj["pause-menu"]["quit-level"]},
+		name = function() { return gvLangObj["pause-menu"]["quit-level"] },
 		func = function() {
 			if(gvBattleMode) {
 				gvBattleMode = false
@@ -454,11 +454,11 @@ const menuY = 40
 
 ::mePauseTimeAttack <- [
 	{
-		name = function() { return gvLangObj["pause-menu"]["continue"]},
+		name = function() { return gvLangObj["pause-menu"]["continue"] },
 		func = function() { gvGameMode = gmPlay }
 	},
 	{
-		name = function() { return gvLangObj["pause-menu"]["restart"]},
+		name = function() { return gvLangObj["pause-menu"]["restart"] },
 		func = function() {
 			gvIGT = 0; game.check = false;
 			startPlay(gvMap.file, true, true)
@@ -469,13 +469,13 @@ const menuY = 40
 		func = function() { menu = meOptions }
 	},
 	{
-		name = function() { return gvLangObj["pause-menu"]["restart-run"]},
+		name = function() { return gvLangObj["pause-menu"]["restart-run"] },
 		func = function() {
 			newTimeAttack()
 		}
 	},
 	{
-		name = function() { return gvLangObj["pause-menu"]["end-run"]},
+		name = function() { return gvLangObj["pause-menu"]["end-run"] },
 		func = function() {
 			if(gvTimeAttack) startMain()
 			else startOverworld(game.world)
@@ -485,7 +485,7 @@ const menuY = 40
 
 ::mePauseOver <- [
 	{
-		name = function() { return gvLangObj["pause-menu"]["continue"]},
+		name = function() { return gvLangObj["pause-menu"]["continue"] },
 		func = function() { gvGameMode = gmOverworld }
 	},
 	{

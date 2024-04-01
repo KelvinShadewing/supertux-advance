@@ -481,6 +481,7 @@
 ::BoostRing <- class extends Actor {
 	shape = null
 	angle = 0
+	power = 0
 	hboost = 0
 	vboost = 0
 	touchTimer1 = 0
@@ -493,14 +494,18 @@
 			_arr = split(_arr, ",")
 		if(typeof _arr == "array") {
 			angle = int(_arr[0])
-			hboost = lendirX(float(_arr[1]), float(_arr[0]))
-			vboost = lendirY(float(_arr[1]), float(_arr[0]))
+			power = int(_arr[1])
+			hboost = lendirX(float(power), float(angle))
+			vboost = lendirY(float(power), float(angle))
 		}
 
 		shape = Cir(x, y, 4)
 	}
 
 	function run() {
+		hboost = lendirX(float(power), float(angle))
+		vboost = lendirY(float(power), float(angle))
+
 		if(gvPlayer && hitTest(shape, gvPlayer.shape) && touchTimer1 == 0) {
 			gvPlayer.x = x
 			gvPlayer.y = y

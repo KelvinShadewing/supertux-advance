@@ -184,15 +184,17 @@
 		return result
 	}
 
-	function placeFree(_x, _y) {
+	function placeFree(_x, _y, s = null) {
 		//Save current location and move
+		if(s == null)
+			s = shape
 		local ns
-		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
-		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)
+		if(typeof s == "Rec") ns = Rec(_x + s.ox, _y + s.oy, s.w, s.h, s.kind)
+		if(typeof s == "Cir") ns = Cir(_x + s.ox, _y + s.oy, s.r)
 		local cx = floor(_x / 16)
 		local cy = floor(_y / 16)
-		local cw = ceil(shape.w / 16)
-		local ch = ceil(shape.h / 16)
+		local cw = ceil(s.w / 16)
+		local ch = ceil(s.h / 16)
 
 		//Check that the solid layer exists
 		local wl = null //Working layer
