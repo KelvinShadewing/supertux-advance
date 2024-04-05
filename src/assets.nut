@@ -555,6 +555,8 @@
 ::defIceTrapLarge <- sprIceTrapLarge
 ::sprIceTrapTall <- newSprite("res/gfx/icetraptall.png", 24, 48, 0, 0, 12, 24)
 ::defIceTrapTall <- sprIceTrapTall
+::sprIceTrapScaled <- newSprite("res/gfx/icetrap-scaled.png", 96, 96, 0, 0, 48, 48)
+::defIceTrapScaled <- sprIceTrapScaled
 ::sprIceChunks <- newSprite("res/gfx/icechunk.png", 12, 12, 0, 0, 6, 6)
 ::defIceChunks <- sprIceChunks
 ::sprTinyWind <- newSprite("res/gfx/tinywind.png", 16, 16, 0, 0, 8, 8)
@@ -787,6 +789,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::sprBattleCastle <- newSprite("res/gfx/previews/battle-castle.png", 128, 58, 0, 0, 64, 29)
 ::sprBattleHenge <- newSprite("res/gfx/previews/battle-henge.png", 128, 52, 0, 0, 64, 26)
 ::sprBattleDesert <- newSprite("res/gfx/previews/battle-desert.png", 128, 102, 0, 0, 64, 51)
+::sprBattleHole <- newSprite("res/gfx/previews/battle-hole.png", 128, 118, 0, 0, 64, 59)
 
 
 

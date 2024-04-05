@@ -376,6 +376,17 @@ const menuY = 40
 		}
 	},
 	{
+		name = function() {
+			return gvLangObj["level"]["battle-hole"]
+		}
+		func = function() {
+			startBattle(game.path + "battle-hole.json")
+		}
+		draw = function() {
+			drawBattlePreview(sprBattleHole)
+		}
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menuLeft = false; gvBattleMode = false; cursor = 0; menu = meMain },
 		back = function() { menuLeft = false; gvBattleMode = false; menu = meMain }
@@ -615,6 +626,21 @@ const menuY = 40
 		desc = function() { return gvLangObj["options-menu-desc"]["show-tf"] },
 		func = function() {
 			config.showTF = !config.showTF
+		}
+	},
+	{
+		name = function() {
+			local val = gvLangObj["menu-commons"][config.splitlock ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["lock-splitscreen"], val)
+		},
+		desc = function() {
+			if(config.splitlock)
+				return gvLangObj["options-menu-desc"]["lock-splitscreen-b"]
+			else
+				return gvLangObj["options-menu-desc"]["lock-splitscreen-a"]
+		},
+		func = function() {
+			config.splitlock = !config.splitlock
 		}
 	},
 	{

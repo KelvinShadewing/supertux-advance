@@ -220,7 +220,7 @@
 		if(stats.stamina > stats.maxStamina)
 			stats.stamina = stats.maxStamina
 
-		if(wasInWater && !nowInWater || nowInWater && !wasInWater)
+		if((wasInWater && !nowInWater || nowInWater && !wasInWater) && abs(vspeed) >= 2)
 			newActor(Splash, x, y, (nowInWater ? nowInWater : wasInWater))
 
 		

@@ -1316,7 +1316,7 @@
 				local dist = distance2(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Player && coin == -1 ? 32 : 0))
 				local dir = pointAngle(x, y, target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0), target.y - (target instanceof Player && coin == -1 ? 32 : 0))
 				local speed = 0.2
-				local maxSpeed = max(dist / 16, target instanceof Player ? 0 : 4)
+				local maxSpeed = max(dist / 16, target instanceof Player ? 0 : 8)
 
 				if(target instanceof Enemy) {
 					speed = 0.5

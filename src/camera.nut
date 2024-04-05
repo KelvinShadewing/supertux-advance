@@ -58,6 +58,15 @@
 	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss)
 		gvSplitScreen = false
 
+	if(config.splitlock) {
+		if(gvPlayer && gvPlayer2) {
+			gvSplitScreen = true
+			gvSwapScreen = false
+		}
+		else
+			gvSplitScreen = false
+	}
+
 	if(gvPlayer) {
 		if(config.stickcam && config.stickactive) {
 			lx = ((joyAxis(config.joy.index, config.joy.xPeek) / js_max.tofloat()) * gvScreenW / 2.5)

@@ -77,7 +77,8 @@
 		"usebeam" : "Race Beam: %s",
 		"joymode" : "Joystick Display Mode: %s",
 		"big-items" : "Big Items: %s",
-		"show-tf" : "Show Transformations: %s"
+		"show-tf" : "Show Transformations: %s",
+		"lock-splitscreen" : "Lock Splitscreen: %s"
 	},
 
 	"options-joymodes" : {
@@ -108,7 +109,9 @@
 		"completion" : "Show remaining coins, enemies, and secrets in level",
 		"usebeam" : "Beam will appear in completed levels to race you",
 		"big-items" : "Increase the size of smaller items",
-		"show-tf" : "Characters change appearance with elements"
+		"show-tf" : "Characters change appearance with elements",
+		"lock-splitscreen-a" : "Camera will split/merge depending on players' distance.",
+		"lock-splitscreen-b" : "Camera will stay split with two players."
 	},
 
 	"speedrun-menu" : {
@@ -828,7 +831,8 @@
 		"battle-test" : "Battlefield",
 		"battle-castle" : "The Old Castle",
 		"battle-henge" : "Longehenge Forest",
-		"battle-desert" : "Dune Sea++"
+		"battle-desert" : "Dune Sea++",
+		"battle-hole" : "Major Ice Hole"
 	},
 
 	"achi-name" : {

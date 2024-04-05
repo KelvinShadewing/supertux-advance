@@ -317,6 +317,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 10: //1/2 BL A
+						case 95:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
 							gvMap.shape.kind = 4
 							gvMap.shape.w = 8.0
@@ -324,6 +325,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 11: //1/2 BL B
+						case 96:
 							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 12)
 							gvMap.shape.kind = 4
 							gvMap.shape.w = 8.0
@@ -336,6 +338,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 12: //1/2 BR B
+						case 97:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
 							gvMap.shape.kind = 3
 							gvMap.shape.w = 8.0
@@ -348,6 +351,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 13: //1/2 BR A
+						case 98:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
 							gvMap.shape.kind = 3
 							gvMap.shape.w = 8.0
@@ -363,6 +367,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 15: //2/1 TL A
+						case 85:
 							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 2
 							gvMap.shape.w = 4.0
@@ -370,6 +375,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 16: //2/1 TR A
+						case 86:
 							gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 1
 							gvMap.shape.w = 4.0
@@ -377,6 +383,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 17: //2/1 BL B
+						case 87:
 							gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 4
 							gvMap.shape.w = 4.0
@@ -384,6 +391,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 18: //2/1 BR B
+						case 88:
 							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 3
 							gvMap.shape.w = 4.0
@@ -391,6 +399,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 19: //45 BL
+						case 94:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 4
 							gvMap.shape.w = 8.0
@@ -398,6 +407,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 20: //2/1 TL B
+						case 90:
 							gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 2
 							gvMap.shape.w = 4.0
@@ -405,6 +415,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 21: //2/1 TR B
+						case 91:
 							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 1
 							gvMap.shape.w = 4.0
@@ -412,6 +423,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 22: //2/1 BL A
+						case 92:
 							gvMap.shape.setPos(((cx + i) * 16) + 12, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 4
 							gvMap.shape.w = 4.0
@@ -419,6 +431,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 23: //2/1 BR A
+						case 93:
 							gvMap.shape.setPos(((cx + i) * 16) + 4, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 3
 							gvMap.shape.w = 4.0
@@ -426,6 +439,7 @@
 							if(hitTest(ns, gvMap.shape)) return false
 							break
 						case 24: //45 BR
+						case 99:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 3
 							gvMap.shape.w = 8.0
@@ -1364,6 +1378,20 @@
 				case 57:
 				case 58:
 				case 59:
+				case 85:
+				case 86:
+				case 87:
+				case 88:
+				case 90:
+				case 91:
+				case 92:
+				case 93:
+				case 94:
+				case 95:
+				case 96:
+				case 97:
+				case 98:
+				case 99:
 					if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
 					if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
 					gvMap.shape.setPos((cx * 16) + 8, (cy * 16))

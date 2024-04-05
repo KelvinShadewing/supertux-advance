@@ -84,6 +84,8 @@
 
 [Surt](https://opengameart.org/users/surt) - Ruins tiles\*
 
+[RustyBox]() - Scaled icecube\*
+
 \*: Contains edits from or made in collaboration with Kelvin Shadewing
 
 ## Sounds

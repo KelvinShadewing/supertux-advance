@@ -4,6 +4,13 @@
 ::gvParallaxMap <- 0
 ::gvLightBG <- false
 
+::getBGLoop <- function(w) {
+	if(w <= 1)
+		return screenW() + 1
+
+	return ciel(screenW() / w) + 1
+}
+
 ::dbgNone <- function() {
 	setDrawColor(0xff)
 	drawRec(0, 0, screenW(), screenH(), true)
@@ -223,13 +230,13 @@
 
 	for(local i = 0; i < 2; i++) {
 		for(local j = 0; j < 16; j++) {
-			drawSprite(bgOceanNight, j, (((-camx - getFrames()) / 64) % 480) + (i * 480), j * 8)
+			drawSprite(bgOceanNight, j, (((-camx + getFrames()) / 64) % 480) - (i * 480), j * 8)
 		}
 	}
 
 	for(local i = 0; i < 2; i++) {
 		for(local j = 30; j >= 16; j--) {
-			drawSprite(bgOceanNight, j, (((-camx - getFrames() * 4) / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
+			drawSprite(bgOceanNight, j, (((-camx + getFrames() * 4) / fabs(31 - j)) * (j / 16.0) % 480) - (i * 480), j * 8)
 		}
 	}
 }

@@ -346,6 +346,7 @@
 	fullscreen = false
 	lookAhead = false
 	weather = true
+	splitlock = false
 	//Accessibility options
 	nearbars = false //Health/energy bars that follow the player
 	showkeys = false

@@ -397,6 +397,7 @@
 	shapeA = 0
 	shapeB = 0
 	canWarp = true
+	canWarp2 = true
 	sprite = sprPortalGray
 	angleA = 0
 	angleB = 0
@@ -449,7 +450,7 @@
 					theta += (angleB - angleA) + 180
 					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
 					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
-					playerTeleport(myTarget, shapeB.x + lendirX(gvPlayer.shape.w, angleB), shapeB.y + lendirY(gvPlayer.shape.h, angleB) - gvPlayer.shape.oy)
+					playerTeleport(gvPlayer, shapeB.x + lendirX(gvPlayer.shape.w, angleB), shapeB.y + lendirY(gvPlayer.shape.h, angleB) - gvPlayer.shape.oy)
 					canWarp = false
 				}
 
@@ -459,12 +460,38 @@
 					theta += (angleA - angleB) + 180
 					gvPlayer.hspeed = lendirX(mag, theta) * 1.5
 					gvPlayer.vspeed = lendirY(mag, theta) * 1.5
-					playerTeleport(myTarget, shapeA.x + lendirX(gvPlayer.shape.w, angleA), shapeA.y + lendirY(gvPlayer.shape.h, angleA) - gvPlayer.shape.oy)
+					playerTeleport(gvPlayer, shapeA.x + lendirX(gvPlayer.shape.w, angleA), shapeA.y + lendirY(gvPlayer.shape.h, angleA) - gvPlayer.shape.oy)
 					canWarp = false
 				}
 			}
 			//If the player has left the portal, allow reentry
 			else if(!hitTest(shapeA, gvPlayer.shape) && !hitTest(shapeB, gvPlayer.shape)) canWarp = true
+		}
+
+		if(gvPlayer2) {
+			if(canWarp2) {
+				if(hitTest(shapeA, gvPlayer2.shape)) {
+					local theta = pointAngle(0, 0, gvPlayer2.hspeed, gvPlayer2.vspeed)
+					local mag = distance2(0, 0, gvPlayer2.hspeed, gvPlayer2.vspeed)
+					theta += (angleB - angleA) + 180
+					gvPlayer2.hspeed = lendirX(mag, theta) * 1.5
+					gvPlayer2.vspeed = lendirY(mag, theta) * 1.5
+					playerTeleport(gvPlayer2, shapeB.x + lendirX(gvPlayer2.shape.w, angleB), shapeB.y + lendirY(gvPlayer2.shape.h, angleB) - gvPlayer2.shape.oy)
+					canWarp2 = false
+				}
+
+				if(hitTest(shapeB, gvPlayer2.shape)) {
+					local theta = pointAngle(0, 0, gvPlayer2.hspeed, gvPlayer2.vspeed)
+					local mag = distance2(0, 0, gvPlayer2.hspeed, gvPlayer2.vspeed)
+					theta += (angleA - angleB) + 180
+					gvPlayer2.hspeed = lendirX(mag, theta) * 1.5
+					gvPlayer2.vspeed = lendirY(mag, theta) * 1.5
+					playerTeleport(gvPlayer2, shapeA.x + lendirX(gvPlayer2.shape.w, angleA), shapeA.y + lendirY(gvPlayer2.shape.h, angleA) - gvPlayer2.shape.oy)
+					canWarp2 = false
+				}
+			}
+			//If the player has left the portal, allow reentry
+			else if(!hitTest(shapeA, gvPlayer2.shape) && !hitTest(shapeB, gvPlayer2.shape)) canWarp2 = true
 		}
 	}
 

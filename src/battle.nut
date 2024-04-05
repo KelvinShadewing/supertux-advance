@@ -18,7 +18,7 @@
 ::addBattleStage <- function(
 	displayName, //Name to show in the menu
 	level, //level file
-	folder, //The contrib/ folder of your world
+	folder, //The folder of your world
 	sprite
 	) {
 	if(displayName in gvLangObj["level"])
@@ -30,21 +30,21 @@
 			return displayName
 		}
 		func = function() {
-			game.path = "contrib/" + folder + "/"
+			game.path = folder
 			gvTACourse = level
 
 			local searchDirExists = false
 			for(local i = 0; i < tileSearchDir.len(); i++) {
-				if(tileSearchDir[i] == "contrib/" + folder + "/gfx") searchDirExists = true
+				if(tileSearchDir[i] == folder + "/gfx") searchDirExists = true
 			}
-			if(!searchDirExists) tileSearchDir.push("contrib/" + folder + "/gfx")
+			if(!searchDirExists) tileSearchDir.push(folder + "/gfx")
 
-			if(fileExists("contrib/" + folder + "/script.nut") && !contribDidRun.rawin(folder)) {
-				donut("contrib/" + folder + "/script.nut")
+			if(fileExists(folder + "/script.nut") && !contribDidRun.rawin(folder)) {
+				donut(folder + "/script.nut")
 				contribDidRun[folder] <- true
 			}
 
-			startBattle(game.path + level + ".json")
+			startBattle(game.path + "/" + level + ".json")
 		}
 	}
 

@@ -180,8 +180,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":256,
-                 "x":240,
+                 "width":240,
+                 "x":256,
                  "y":0
                 }, 
                 {
@@ -202,7 +202,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":144,
+                 "width":160,
                  "x":96,
                  "y":16
                 }, 
@@ -216,10 +216,21 @@
                  "width":143.918,
                  "x":112,
                  "y":128
+                }, 
+                {
+                 "height":64,
+                 "id":64,
+                 "name":"gvLightTarget = 0xffffffff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":80,
+                 "x":256,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -523,7 +534,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":64,
+ "nextobjectid":65,
  "orientation":"orthogonal",
  "properties":[
         {
