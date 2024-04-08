@@ -8,7 +8,7 @@
 	if(w <= 1)
 		return 2
 
-	return ceil(screenW() / w) + 2
+	return ceil(gvScreenW / w) + 2
 }
 
 ::dbgNone <- function() {
@@ -242,13 +242,13 @@
 ::dbgOceanMoving <- function() {
 	dbgStarSky()
 
-	for(local i = 0; i < getBGLoop(bgOceanNight); i++) {
+	for(local i = 0; i <= getBGLoop(bgOceanNight) + 1; i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOceanNight, j, spriteW(bgOceanNight) + (((-camx + getFrames()) / 64) % 480) - (i * 480), j * 8)
 		}
 	}
 
-	for(local i = 0; i < getBGLoop(bgOceanNight); i++) {
+	for(local i = 0; i <= getBGLoop(bgOceanNight) + 1; i++) {
 		for(local j = 30; j >= 16; j--) {
 			drawSprite(bgOceanNight, j, spriteW(bgOceanNight) + (((-camx + getFrames() * 4) / fabs(31 - j)) * (j / 16.0) % 480) - (i * 480), j * 8)
 		}

@@ -21,6 +21,19 @@
 	stamina2 = 0.0
 }
 
+::drawMeter <- function (x, y, m, v, c) {
+	drawSprite(sprMeterBack, 0, x, y)
+	for(local i = 0; i < m; i++)
+		drawSprite(sprMeterBack, 1, x + (i * 2) + 2, y)
+	drawSprite(sprMeterBack, 2, x + (m * 2) + 2, y)
+
+	if(v <= 0)
+		return
+
+	setDrawColor(c)
+	drawRec(x + 2, y + 2, min(v * 2.0, m * 2.0) - 1.0, 3, true)
+}
+
 ::mapActor <- {} //Stores references to all actors created by the map
 
 ::startPlay <- function(level, newLevel = true, skipIntro = false) {
@@ -796,101 +809,48 @@
 			gvBarStats.stamina2 = game.ps2.stamina
 
 		//Draw stats
-		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
-		drawSprite(sprMeterBack, 0, 24, 8)
-		for(local i = 0; i < floor(game.maxHealth); i++)
-			drawSprite(sprMeterBack, 1, 26 + (i * 2), 8)
-		drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 8)
-		setDrawColor(0xf83810ff)
-		if(gvBarStats.health1 > 0)
-			drawRec(26, 10, (gvBarStats.health1 * 2.0) - 1.0, 3, true)
-
-		drawSprite(sprMeterBack, 0, 8, 8)
-		for(local i = 0; i < 6; i++)
-			drawSprite(sprMeterBack, 1, 10 + (i * 2), 8)
-		drawSprite(sprMeterBack, 2, 22, 8)
-		setDrawColor(0xf81038ff)
-		if(game.ps.berries > 0)
-			drawRec(10, 10, (game.ps.berries) - 1.0, 3, true)
-
-		if(game.ps.energy > game.ps.maxEnergy) game.ps.energy = game.ps.maxEnergy
-		drawSprite(sprMeterBack, 0, 24, 16)
-		drawSprite(sprMeterBack, 1, 26, 16, 0, 0, game.ps.maxEnergy * 2.0)
-		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxEnergy), 16)
-		setDrawColor(0x1080b0ff)
-		if(gvBarStats.mana1 > 0)
-			drawRec(26, 18, (gvBarStats.mana1 * 4.0) - 1.0, 3, true)
-
-		local elementFrame = 0
-		switch(game.ps.weapon) {
-			case "normal":
-				elementFrame = 0
-				break
-			case "fire":
-				elementFrame = 1
-				break
-			case "ice":
-				elementFrame = 2
-				break
-			case "air":
-				elementFrame = 3
-				break
-			case "earth":
-				elementFrame = 4
-				break
-			case "water":
-				elementFrame = 5
-				break
-			case "shock":
-				elementFrame = 6
-				break
-			case "dark":
-				elementFrame = 7
-				break
-			case "light":
-				elementFrame = 8
-				break
-		}
-		drawSprite(sprElement, elementFrame, 8, 16)
-
-		if(game.ps.stamina > game.ps.maxStamina) game.ps.stamina = game.ps.maxStamina
-		drawSprite(sprMeterBack, 0, 24, 24)
-		for(local i = 0; i < floor(game.ps.maxStamina); i++)
-		drawSprite(sprMeterBack, 1, 26, 24, 0, 0, game.ps.maxStamina * 2.0)
-		drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxStamina), 24)
-		setDrawColor(0x70a048ff)
-		if(gvBarStats.stamina1 > 0)
-			drawRec(26, 26, (gvBarStats.stamina1 * 4.0) - 1.0, 3, true)
-
-		//Player 2 stats
-		if(gvNumPlayers > 1) {
-			if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
-			drawSprite(sprMeterBack, 0, 24, 36)
-			for(local i = 0; i < floor(game.maxHealth); i++)
-				drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
-			drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
-			setDrawColor(0xf83810ff)
-			if(gvBarStats.health2 > 0)
-				drawRec(26, 38, (gvBarStats.health2 * 2.0) - 1.0, 3, true)
-
-			drawSprite(sprMeterBack, 0, 8, 36)
-			for(local i = 0; i < 6; i++)
-				drawSprite(sprMeterBack, 1, 10 + (i * 2), 36)
-			drawSprite(sprMeterBack, 2, 22, 36)
-			setDrawColor(0xf81038ff)
-			if(game.ps2.berries > 0)
-				drawRec(10, 38, (game.ps2.berries) - 1.0, 3, true)
-
-			if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
-			drawSprite(sprMeterBack, 0, 24, 44)
-			
-			drawSprite(sprMeterBack, 1, 26, 44, 0, 0, game.ps2.maxEnergy * 2.0)
-			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
-			setDrawColor(0x1080b0ff)
-			if(gvBarStats.mana2 > 0)
-				drawRec(26, 46, (gvBarStats.mana2 * 4.0) - 1.0, 3, true)
-
+		if(gvSplitScreen && gvScreenW >= 400) {
 			local elementFrame = 0
+
+			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 8, game.maxHealth, gvBarStats.health1, 0xf83810ff)
+			drawMeter(8 + (gvSwapScreen ? gvScreenW / 2 : 0), 8, 6, game.ps.berries / 2.0, 0xf81038ff)
+			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 16, game.ps.maxEnergy * 2.0, gvBarStats.mana1 * 2.0, 0x1080b0ff)
+			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 24, game.ps.maxStamina * 2.0, gvBarStats.stamina1 * 2.0, 0x70a048ff)
+			switch(game.ps.weapon) {
+				case "normal":
+					elementFrame = 0
+					break
+				case "fire":
+					elementFrame = 1
+					break
+				case "ice":
+					elementFrame = 2
+					break
+				case "air":
+					elementFrame = 3
+					break
+				case "earth":
+					elementFrame = 4
+					break
+				case "water":
+					elementFrame = 5
+					break
+				case "shock":
+					elementFrame = 6
+					break
+				case "dark":
+					elementFrame = 7
+					break
+				case "light":
+					elementFrame = 8
+					break
+			}
+			drawSprite(sprElement, elementFrame, 8 + (gvSwapScreen ? gvScreenW / 2 : 0), 16)
+
+			drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, game.maxHealth, gvBarStats.health2, 0xf83810ff)
+			drawMeter(8 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, 6, game.ps.berries / 2.0, 0xf81038ff)
+			drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 16, game.ps.maxEnergy * 2.0, gvBarStats.mana2 * 2.0, 0x1080b0ff)
+			drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 24, game.ps.maxStamina * 2.0, gvBarStats.stamina2 * 2.0, 0x70a048ff)
 			switch(game.ps2.weapon) {
 				case "normal":
 					elementFrame = 0
@@ -920,15 +880,143 @@
 					elementFrame = 8
 					break
 			}
-			drawSprite(sprElement, elementFrame, 8, 44)
+			drawSprite(sprElement, elementFrame, 8 + (gvSwapScreen ? 0 : gvScreenW / 2), 16)
+		}
+		else {
+			if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
+			drawSprite(sprMeterBack, 0, 24, 8)
+			for(local i = 0; i < floor(game.maxHealth); i++)
+				drawSprite(sprMeterBack, 1, 26 + (i * 2), 8)
+			drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 8)
+			setDrawColor(0xf83810ff)
+			if(gvBarStats.health1 > 0)
+				drawRec(26, 10, (gvBarStats.health1 * 2.0) - 1.0, 3, true)
 
-			if(game.ps2.stamina > game.ps2.maxStamina) game.ps2.stamina = game.ps2.maxStamina
-			drawSprite(sprMeterBack, 0, 24, 52)
-			drawSprite(sprMeterBack, 1, 26, 52, 0, 0, game.ps2.maxStamina * 2.0)
-			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
+			drawSprite(sprMeterBack, 0, 8, 8)
+			for(local i = 0; i < 6; i++)
+				drawSprite(sprMeterBack, 1, 10 + (i * 2), 8)
+			drawSprite(sprMeterBack, 2, 22, 8)
+			setDrawColor(0xf81038ff)
+			if(game.ps.berries > 0)
+				drawRec(10, 10, (game.ps.berries) - 1.0, 3, true)
+
+			if(game.ps.energy > game.ps.maxEnergy) game.ps.energy = game.ps.maxEnergy
+			drawSprite(sprMeterBack, 0, 24, 16)
+			drawSprite(sprMeterBack, 1, 26, 16, 0, 0, game.ps.maxEnergy * 2.0)
+			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxEnergy), 16)
+			setDrawColor(0x1080b0ff)
+			if(gvBarStats.mana1 > 0)
+				drawRec(26, 18, (gvBarStats.mana1 * 4.0) - 1.0, 3, true)
+
+			local elementFrame = 0
+			switch(game.ps.weapon) {
+				case "normal":
+					elementFrame = 0
+					break
+				case "fire":
+					elementFrame = 1
+					break
+				case "ice":
+					elementFrame = 2
+					break
+				case "air":
+					elementFrame = 3
+					break
+				case "earth":
+					elementFrame = 4
+					break
+				case "water":
+					elementFrame = 5
+					break
+				case "shock":
+					elementFrame = 6
+					break
+				case "dark":
+					elementFrame = 7
+					break
+				case "light":
+					elementFrame = 8
+					break
+			}
+			drawSprite(sprElement, elementFrame, 8, 16)
+
+			if(game.ps.stamina > game.ps.maxStamina) game.ps.stamina = game.ps.maxStamina
+			drawSprite(sprMeterBack, 0, 24, 24)
+			for(local i = 0; i < floor(game.ps.maxStamina); i++)
+			drawSprite(sprMeterBack, 1, 26, 24, 0, 0, game.ps.maxStamina * 2.0)
+			drawSprite(sprMeterBack, 2, 26 + (4 * game.ps.maxStamina), 24)
 			setDrawColor(0x70a048ff)
-			if(gvBarStats.stamina2 > 0)
-				drawRec(26, 54, (gvBarStats.stamina2 * 4.0) - 1.0, 3, true)
+			if(gvBarStats.stamina1 > 0)
+				drawRec(26, 26, (gvBarStats.stamina1 * 4.0) - 1.0, 3, true)
+
+			//Player 2 stats
+			if(gvNumPlayers > 1) {
+				if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
+				drawSprite(sprMeterBack, 0, 24, 36)
+				for(local i = 0; i < floor(game.maxHealth); i++)
+					drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
+				drawSprite(sprMeterBack, 2, 26 + (2 * game.maxHealth), 36)
+				setDrawColor(0xf83810ff)
+				if(gvBarStats.health2 > 0)
+					drawRec(26, 38, (gvBarStats.health2 * 2.0) - 1.0, 3, true)
+
+				drawSprite(sprMeterBack, 0, 8, 36)
+				for(local i = 0; i < 6; i++)
+					drawSprite(sprMeterBack, 1, 10 + (i * 2), 36)
+				drawSprite(sprMeterBack, 2, 22, 36)
+				setDrawColor(0xf81038ff)
+				if(game.ps2.berries > 0)
+					drawRec(10, 38, (game.ps2.berries) - 1.0, 3, true)
+
+				if(game.ps2.energy > game.ps2.maxEnergy) game.ps2.energy = game.ps2.maxEnergy
+				drawSprite(sprMeterBack, 0, 24, 44)
+				
+				drawSprite(sprMeterBack, 1, 26, 44, 0, 0, game.ps2.maxEnergy * 2.0)
+				drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxEnergy), 44)
+				setDrawColor(0x1080b0ff)
+				if(gvBarStats.mana2 > 0)
+					drawRec(26, 46, (gvBarStats.mana2 * 4.0) - 1.0, 3, true)
+
+				local elementFrame = 0
+				switch(game.ps2.weapon) {
+					case "normal":
+						elementFrame = 0
+						break
+					case "fire":
+						elementFrame = 1
+						break
+					case "ice":
+						elementFrame = 2
+						break
+					case "air":
+						elementFrame = 3
+						break
+					case "earth":
+						elementFrame = 4
+						break
+					case "water":
+						elementFrame = 5
+						break
+					case "shock":
+						elementFrame = 6
+						break
+					case "dark":
+						elementFrame = 7
+						break
+					case "light":
+						elementFrame = 8
+						break
+				}
+				drawSprite(sprElement, elementFrame, 8, 44)
+
+				if(game.ps2.stamina > game.ps2.maxStamina) game.ps2.stamina = game.ps2.maxStamina
+				drawSprite(sprMeterBack, 0, 24, 52)
+				drawSprite(sprMeterBack, 1, 26, 52, 0, 0, game.ps2.maxStamina * 2.0)
+				drawSprite(sprMeterBack, 2, 26 + (4 * game.ps2.maxStamina), 52)
+				setDrawColor(0x70a048ff)
+				if(gvBarStats.stamina2 > 0)
+					drawRec(26, 54, (gvBarStats.stamina2 * 4.0) - 1.0, 3, true)
+			}
 		}
 
 		//Draw boss health
@@ -970,73 +1058,145 @@
 		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - (config.completion ? 64 : 32))
 		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - (config.completion ? 72 : 38), game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
 		//Draw subitem
-		drawSprite(sprSubItem, 0, gvScreenW - 18, 18)
-		switch(game.ps.subitem) {
-			case "fire":
-				drawSprite(sprFlowerFire, 0, gvScreenW - 18, 18)
-				break
-			case "ice":
-				drawSprite(sprFlowerIce, 0, gvScreenW - 18, 18)
-				break
-			case "air":
-				drawSprite(sprAirFeather, 0, gvScreenW - 18, 18)
-				break
-			case "earth":
-				drawSprite(sprEarthShell, 0, gvScreenW - 18, 18)
-				break
-			case "shock":
-				drawSprite(sprShockBulb, 0, gvScreenW - 18, 18)
-				break
-			case "water":
-				drawSprite(sprWaterLily, 0, gvScreenW - 18, 18)
-				break
-			case "muffinBlue":
-				drawSprite(sprMuffin, 0, gvScreenW - 18, 18)
-				break
-			case "muffinRed":
-				drawSprite(sprMuffin, 1, gvScreenW - 18, 18)
-				break
-			case "star":
-				drawSprite(sprStar, 0, gvScreenW - 18, 18)
-				break
-			case "coffee":
-				drawSprite(sprCoffee, 0, gvScreenW - 18, 17)
-				break
-		}
+		if(gvSplitScreen && gvScreenW >= 400) {
+			drawSprite(sprSubItem, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
+			drawSprite(sprSubItem, 1, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
 
-		if(gvNumPlayers > 1) {
-			drawSprite(sprSubItem, 1, gvScreenW - 18, 42)
-			switch(game.ps2.subitem) {
+			switch(game.ps.subitem) {
 				case "fire":
-					drawSprite(sprFlowerFire, 0, gvScreenW - 18, 42)
+					drawSprite(sprFlowerFire, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "ice":
-					drawSprite(sprFlowerIce, 0, gvScreenW - 18, 42)
+					drawSprite(sprFlowerIce, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "air":
-					drawSprite(sprAirFeather, 0, gvScreenW - 18, 42)
+					drawSprite(sprAirFeather, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "earth":
-					drawSprite(sprEarthShell, 0, gvScreenW - 18, 42)
+					drawSprite(sprEarthShell, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "shock":
-					drawSprite(sprShockBulb, 0, gvScreenW - 18, 42)
+					drawSprite(sprShockBulb, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "water":
-					drawSprite(sprWaterLily, 0, gvScreenW - 18, 42)
+					drawSprite(sprWaterLily, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "muffinBlue":
-					drawSprite(sprMuffin, 0, gvScreenW - 18, 42)
+					drawSprite(sprMuffin, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "muffinRed":
-					drawSprite(sprMuffin, 1, gvScreenW - 18, 42)
+					drawSprite(sprMuffin, 1, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "star":
-					drawSprite(sprStar, 0, gvScreenW - 18, 42)
+					drawSprite(sprStar, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 					break
 				case "coffee":
-					drawSprite(sprCoffee, 0, gvScreenW - 18, 41)
+					drawSprite(sprCoffee, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 17)
 					break
+			}
+
+			switch(game.ps2.subitem) {
+				case "fire":
+					drawSprite(sprFlowerFire, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "ice":
+					drawSprite(sprFlowerIce, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "air":
+					drawSprite(sprAirFeather, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "earth":
+					drawSprite(sprEarthShell, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "shock":
+					drawSprite(sprShockBulb, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "water":
+					drawSprite(sprWaterLily, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "muffinBlue":
+					drawSprite(sprMuffin, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "muffinRed":
+					drawSprite(sprMuffin, 1, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "star":
+					drawSprite(sprStar, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
+					break
+				case "coffee":
+					drawSprite(sprCoffee, 0, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 17)
+					break
+			}
+		}
+		else {
+			drawSprite(sprSubItem, 0, gvScreenW - 18, 18)
+			switch(game.ps.subitem) {
+				case "fire":
+					drawSprite(sprFlowerFire, 0, gvScreenW - 18, 18)
+					break
+				case "ice":
+					drawSprite(sprFlowerIce, 0, gvScreenW - 18, 18)
+					break
+				case "air":
+					drawSprite(sprAirFeather, 0, gvScreenW - 18, 18)
+					break
+				case "earth":
+					drawSprite(sprEarthShell, 0, gvScreenW - 18, 18)
+					break
+				case "shock":
+					drawSprite(sprShockBulb, 0, gvScreenW - 18, 18)
+					break
+				case "water":
+					drawSprite(sprWaterLily, 0, gvScreenW - 18, 18)
+					break
+				case "muffinBlue":
+					drawSprite(sprMuffin, 0, gvScreenW - 18, 18)
+					break
+				case "muffinRed":
+					drawSprite(sprMuffin, 1, gvScreenW - 18, 18)
+					break
+				case "star":
+					drawSprite(sprStar, 0, gvScreenW - 18, 18)
+					break
+				case "coffee":
+					drawSprite(sprCoffee, 0, gvScreenW - 18, 17)
+					break
+			}
+
+			if(gvNumPlayers > 1) {
+				drawSprite(sprSubItem, 1, gvScreenW - 18, 42)
+				switch(game.ps2.subitem) {
+					case "fire":
+						drawSprite(sprFlowerFire, 0, gvScreenW - 18, 42)
+						break
+					case "ice":
+						drawSprite(sprFlowerIce, 0, gvScreenW - 18, 42)
+						break
+					case "air":
+						drawSprite(sprAirFeather, 0, gvScreenW - 18, 42)
+						break
+					case "earth":
+						drawSprite(sprEarthShell, 0, gvScreenW - 18, 42)
+						break
+					case "shock":
+						drawSprite(sprShockBulb, 0, gvScreenW - 18, 42)
+						break
+					case "water":
+						drawSprite(sprWaterLily, 0, gvScreenW - 18, 42)
+						break
+					case "muffinBlue":
+						drawSprite(sprMuffin, 0, gvScreenW - 18, 42)
+						break
+					case "muffinRed":
+						drawSprite(sprMuffin, 1, gvScreenW - 18, 42)
+						break
+					case "star":
+						drawSprite(sprStar, 0, gvScreenW - 18, 42)
+						break
+					case "coffee":
+						drawSprite(sprCoffee, 0, gvScreenW - 18, 41)
+						break
+				}
 			}
 		}
 
