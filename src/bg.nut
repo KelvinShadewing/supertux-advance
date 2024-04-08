@@ -25,13 +25,13 @@
 
 ::dbgCave <- function() {
 	gvLightBG = true
-	for(local i = 0; i < 6; i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgIridia)); i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgIridia, 0, ((-camx / 8) % 100) + (i * 100), ((-camy / 8) % 56) + (j * 56))
 		}
 	}
 
-	for(local i = 0; i < 4; i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgCaveHoles)); i++) {
 		for(local j = 0; j < 4; j++) {
 			drawSprite(bgCaveHoles, 0, ((-camx / 4) % 400) + (i * 400), ((-camy / 4) % 392) + (j * 392))
 		}
@@ -40,13 +40,13 @@
 
 ::dbgCaveEarth <- function() {
 	gvLightBG = true
-	for(local i = 0; i < 6; i++) {
+	for(local i = 0; i < getBGLoop(bgCaveEarth0); i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgCaveEarth0, 0, ((-camx / 8) % 100) + (i * 100), j * 56)
 		}
 	}
 
-	for(local i = 0; i < 4; i++) {
+	for(local i = 0; i < getBGLoop(bgCaveEarth1); i++) {
 		for(local j = 0; j < 4; j++) {
 			drawSprite(bgCaveEarth1, 0, ((-camx / 4) % 512) + (i * 512), 0)
 		}

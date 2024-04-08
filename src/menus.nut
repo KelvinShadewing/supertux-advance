@@ -612,10 +612,7 @@ const menuY = 40
 		func = function() {
 			config.usefilter = !config.usefilter
 			fileWrite("config.json", jsonWrite(config))
-			setScalingFilter(int(config.usefilter))
-			deleteTexture(gvScreen)
-			gvScreen = newTexture(screenW(), screenH())
-			setScalingFilter(0)
+			updateDisplaySettings()
 		}
 	},
 	{
@@ -641,6 +638,68 @@ const menuY = 40
 		},
 		func = function() {
 			config.splitlock = !config.splitlock
+		}
+	},
+	{
+		name = function() {
+			local val = ""
+			switch(config.aspect) {
+				case 0:
+					val = gvLangObj["options-aspects"]["auto"]
+					break
+				case 1:
+					val = gvLangObj["options-aspects"]["full"]
+					break
+				case 2:
+					val = gvLangObj["options-aspects"]["wide"]
+					break
+				case 3:
+					val = gvLangObj["options-aspects"]["ultra"]
+			}
+
+			return format(gvLangObj["options-menu"]["aspect"], val)
+		}
+		func = function() { setMenu(meScreenAspect) }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meOptions }
+		back = function() { menu = meOptions }
+	}
+]
+
+::meScreenAspect <- [
+	{
+		name = function() { return gvLangObj["options-aspects"]["auto"] }
+		func = function() {
+			config.aspect = 0
+			fileWrite("config.json", jsonWrite(config))
+			deleteTexture(gvScreen)
+			updateDisplaySettings()
+		}
+	},
+	{
+		name = function() { return gvLangObj["options-aspects"]["full"] }
+		func = function() {
+			config.aspect = 1
+			fileWrite("config.json", jsonWrite(config))
+			updateDisplaySettings()
+		}
+	},
+	{
+		name = function() { return gvLangObj["options-aspects"]["wide"] }
+		func = function() {
+			config.aspect = 2
+			fileWrite("config.json", jsonWrite(config))
+			updateDisplaySettings()
+		}
+	},
+	{
+		name = function() { return gvLangObj["options-aspects"]["ultra"] }
+		func = function() {
+			config.aspect = 3
+			fileWrite("config.json", jsonWrite(config))
+			updateDisplaySettings()
 		}
 	},
 	{

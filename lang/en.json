@@ -78,7 +78,8 @@
 		"joymode" : "Joystick Display Mode: %s",
 		"big-items" : "Big Items: %s",
 		"show-tf" : "Show Transformations: %s",
-		"lock-splitscreen" : "Lock Splitscreen: %s"
+		"lock-splitscreen" : "Lock Splitscreen: %s",
+		"aspect" : "Aspect Ratio: %s"
 	},
 
 	"options-joymodes" : {
@@ -86,6 +87,13 @@
 		"dinput" : "XBox (D Mode)",
 		"generic" : "Generic",
 		"psx" : "Playstation"
+	},
+
+	"options-aspects" : {
+		"full" : "Fullscreen (4:3)",
+		"wide" : "Widescreen (16:9)",
+		"ultra" : "Ultra Widescreen (21:9)",
+		"auto" : "Detect Aspect"
 	},
 
 	"options-menu-desc" : {

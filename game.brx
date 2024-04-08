@@ -88,8 +88,90 @@ setSoundVolume(config.soundVolume)
 setMusicVolume(config.musicVolume)
 
 //Detect resolution
-local disres = max(320, displayW()).tofloat() / displayH().tofloat()
-setResolution(disres * 240, 240)
+::setDisplayAspect <- function(w) {
+	setResolution(w, 240)
+}
+
+switch(config.aspect) {
+	case 0:
+		local disres = max(320, displayW()).tofloat() / displayH().tofloat()
+		setDisplayAspect(disres * 240)
+		break
+	case 1:
+		setDisplayAspect(320)
+		break
+	case 2:
+		setDisplayAspect(426)
+		break
+	case 3:
+		setDisplayAspect(560)
+		break
+	default:
+		local disres = max(320, displayW()).tofloat() / displayH().tofloat()
+		setDisplayAspect(disres * 240)
+		break
+}
+
+::updateDisplaySettings <- function() {
+	local tempTarget = getDrawTarget()
+	setDrawTarget(0)
+
+	deleteTexture(gvScreen)
+	local w = 320
+	switch(config.aspect) {
+		case 0:
+			local disres = max(320, displayW()).tofloat() / displayH().tofloat()
+			w = disres * 240
+			break
+		case 1:
+			w = 320
+			break
+		case 2:
+			w = 426
+			break
+		case 3:
+			w = 560
+			break
+	}
+	setDisplayAspect(w)
+	setScalingFilter(int(config.usefilter))
+	gvScreen = newTexture(screenW(), screenH())
+	gvScreenW = screenW()
+	setScalingFilter(0)
+
+	gvScreenW = screenW()
+	gvTextW = floor(screenW() / 6) - 1
+
+	deleteTexture(bgPause)
+	bgPause = newTexture(screenW(), screenH())
+
+	deleteTexture(gvTempScreen)
+	gvTempScreen = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvTempScreen, bm_blend)
+
+	deleteTexture(gvPlayScreen)
+	gvPlayScreen = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvPlayScreen, bm_blend)
+
+	deleteTexture(gvPlayScreen2)
+	gvPlayScreen2 = newTexture(screenW() / 2, screenH())
+	textureSetBlendMode(gvPlayScreen2, bm_blend)
+
+	deleteTexture(gvLightScreen1)
+	gvLightScreen1 = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvLightScreen1, bm_mod)
+
+	deleteTexture(gvLightScreen2)
+	gvLightScreen2 = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvLightScreen2, bm_mod)
+
+	deleteTexture(gvScreenGhost)
+	gvScreenGhost = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvScreenGhost, bm_blend)
+
+	setDrawTarget(tempTarget)
+}
+
 
 //Uncomment this function if you want to play at actual GBA resolution
 //setResolution(240, 160)
