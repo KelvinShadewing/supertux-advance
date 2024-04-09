@@ -40,13 +40,13 @@
 
 ::dbgCaveEarth <- function() {
 	gvLightBG = true
-	for(local i = 0; i < getBGLoop(bgCaveEarth0); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgCaveEarth0)); i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgCaveEarth0, 0, ((-camx / 8) % 100) + (i * 100), j * 56)
 		}
 	}
 
-	for(local i = 0; i < getBGLoop(bgCaveEarth1); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgCaveEarth1)); i++) {
 		for(local j = 0; j < 4; j++) {
 			drawSprite(bgCaveEarth1, 0, ((-camx / 4) % 512) + (i * 512), 0)
 		}
@@ -55,13 +55,13 @@
 
 ::dbgCaveBlue <- function() {
 	gvLightBG = true
-	for(local i = 0; i < getBGLoop(bgCaveBlue0); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgCaveBlue0)); i++) {
 		for(local j = 0; j < 6; j++) {
 			drawSprite(bgCaveBlue0, 0, ((-camx / 8) % 100) + (i * 100), j * 56)
 		}
 	}
 
-	for(local i = 0; i < getBGLoop(bgCaveBlue1); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgCaveBlue1)); i++) {
 		for(local j = 0; j < 4; j++) {
 			drawSprite(bgCaveBlue1, 0, ((-camx / 4) % 512) + (i * 512), 0)
 		}
@@ -70,70 +70,70 @@
 
 ::dbgForest <- function() {
 	if(gvMap != 0) {
-		for(local i = 0; i < getBGLoop(bgWoodedMountain); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 			drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < getBGLoop(bgForest2); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForest2)); i++)
 			drawSprite(bgForest2, 0, ((-camx / 8) % 755) + (i * 755), gvHorizon - camy - 300 - ((gvHorizon - (camy + gvScreenH)) / 1.25))
-		for(local i = 0; i < getBGLoop(bgForest0); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForest0)); i++)
 			drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180 - ((gvHorizon - (camy + gvScreenH)) / 2))
-		for(local i = 0; i < getBGLoop(bgForest1); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForest1)); i++)
 			drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), gvHorizon - camy - 240)
 	}
 	else {
-		for(local i = 0; i < getBGLoop(bgWoodedMountain); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 			drawSprite(bgWoodedMountain, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < getBGLoop(bgForest2); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForest2)); i++)
 			drawSprite(bgForest2, 0, ((-camx / 8) % 755) + (i * 755), gvHorizon - camy - 300)
-		for(local i = 0; i < getBGLoop(bgForest0); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForest0)); i++)
 			drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
-		for(local i = 0; i < getBGLoop(bgForest1); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForest1)); i++)
 			drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 240)
 	}
 }
 
 ::dbgForestNight <- function() {
 	if(gvMap != 0) {
-		for(local i = 0; i < getBGLoop(bgWoodedMountainNight); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountainNight)); i++)
 			drawSprite(bgWoodedMountainNight, 0, ((-camx / 16) % 850) + (i * 850), (screenH() / 2) - 120)
-		for(local i = 0; i < getBGLoop(bgForestNight0); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForestNight0)); i++)
 			drawSprite(bgForestNight0, 0, ((-camx / 2) % 128) + (i * 128), gvHorizon - camy - 180 - ((gvHorizon - (camy + gvScreenH)) / 2))
-		for(local i = 0; i < getBGLoop(bgForestNight1); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForestNight1)); i++)
 			drawSprite(bgForestNight1, 0, (-camx % 128) + (i * 128), gvHorizon - camy - 240)
 	}
 	else {
-		for(local i = 0; i < getBGLoop(bgWoodedMountainNight); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountainNight)); i++)
 			drawSprite(bgWoodedMountainNight, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < getBGLoop(bgForestNight0); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForestNight0)); i++)
 			drawSprite(bgForestNight0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
-		for(local i = 0; i < getBGLoop(bgForestNight1); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgForestNight1)); i++)
 			drawSprite(bgForestNight1, 0, (-camx % 128) + (i * 128), screenH() - camy - 240)
 	}
 }
 
 ::dbgDeepForest <- function() {
-	for(local i = 0; i < getBGLoop(bgWoodedMountain); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
-	for(local i = 0; i < getBGLoop(bgDeepForest0); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgDeepForest0)); i++)
 		drawImage(bgDeepForest0, ((-camx / 12) % 160) + (i * 160), 0)
-	for(local i = 0; i < getBGLoop(bgDeepForest1); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgDeepForest1)); i++)
 		drawImage(bgDeepForest1, ((-camx / 8) % 176) + (i * 176), 0)
-	for(local i = 0; i < getBGLoop(bgDeepForest2); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgDeepForest2)); i++)
 		drawImage(bgDeepForest2, ((-camx / 4) % 384) + (i * 384), 0)
 }
 
 ::dbgWoodedMountain <- function() {
-	for(local i = 0; i < getBGLoop(bgWoodedMountain); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
 }
 
 ::dbgAurora <- function() {
-	for(local i = 0; i < getBGLoop(bgAurora); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgAurora)); i++)
 		drawSprite(bgAurora, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 }
 
 ::dbgPennyton <- function() {
 	dbgAurora()
-	for(local i = 0; i < getBGLoop(bgPennyton1); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgPennyton1)); i++)
 		drawSprite(bgPennyton1, 0, ((-camx / 4) % 480) + (i * 480), gvHorizon - camy - 96 - ((gvHorizon - (camy + gvScreenH)) / 1.25))
 	if(config.weather && drawWeather == dweSnow) {
 		setDrawColor(0x60606040)
@@ -144,65 +144,65 @@
 			}
 		}
 	}
-	for(local i = 0; i < getBGLoop(bgPennyton0); i++)
+	for(local i = 0; i < getBGLoop(spriteW(bgPennyton0)); i++)
 		drawSprite(bgPennyton0, 0, ((-camx / 2) % 480) + (i * 480), gvHorizon - camy - 112 - ((gvHorizon - (camy + gvScreenH)) / 1.5))
 }
 
 ::dbgAuroraNight <- function() {
-	for(local i = 0; i < getBGLoop(bgAuroraNight); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgAuroraNight)); i++) {
 		drawSprite(bgAuroraNight, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
 ::dbgIceForest <- function() {
 	if(gvMap != 0) {
-		for(local i = 0; i < getBGLoop(bgIceForest); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest)); i++)
 			drawSprite(bgIceForest, 0, ((-camx / 16) % 640) + (i * 640), 0)
-		for(local i = 0; i < getBGLoop(bgIceForest2); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest2)); i++)
 			drawSprite(bgIceForest2, 0, ((-camx / 8) % 480) + (i * 480), gvHorizon - camy - 192)
-		for(local i = 0; i < getBGLoop(bgIceForest0); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest0)); i++)
 			drawSprite(bgIceForest1, 0, ((-camx / 4) % 640) + (i * 640), gvHorizon - camy - 256)
 		for(local i = 0; i < getBGLoop(bgIceForest1); i++)
 			drawSprite(bgIceForest0, 0, ((-camx / 2) % 800) + (i * 800), gvHorizon - camy - 320)
 	}
 	else {
-		for(local i = 0; i < getBGLoop(bgIceForest); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest)); i++)
 			drawSprite(bgIceForest, 0, ((-camx / 8) % 640) + (i * 640), (screenH() / 2) - 120)
-		for(local i = 0; i < getBGLoop(bgIceForest2); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest2)); i++)
 			drawSprite(bgIceForest2, 0, ((-camx / 8) % 480) + (i * 480), camy - 192)
-		for(local i = 0; i < getBGLoop(bgIceForest0); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest0)); i++)
 			drawSprite(bgForest0, 0, ((-camx / 2) % 128) + (i * 128), screenH() - camy - 180)
-		for(local i = 0; i < getBGLoop(bgIceForest1); i++)
+		for(local i = 0; i < getBGLoop(spriteW(bgIceForest1)); i++)
 			drawSprite(bgForest1, 0, (-camx % 128) + (i * 128), screenH() - camy - 180)
 	}
 }
 
 ::dbgSnowNight <- function() {
-	for(local i = 0; i < getBGLoop(bgSnowNight); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgSnowNight)); i++) {
 		drawSprite(bgSnowNight, 0, ((-camx / 8) % 800) + (i * 800), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgSnowPlain <- function() {
-	for(local i = 0; i < getBGLoop(bgSnowPlain); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgSnowPlain)); i++) {
 		drawSprite(bgSnowPlain, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgRiverCity <- function() {
-	for(local i = 0; i < getBGLoop(bgRiverCity); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgRiverCity)); i++) {
 		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgOcean <- function() {
-	for(local i = 0; i < getBGLoop(bgOcean); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgOcean)); i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOcean, j, ((-camx / 32) % 480) + (i * 480), j * 8)
 		}
 	}
 
-	for(local i = 0; i < getBGLoop(bgOcean); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgOcean)); i++) {
 		for(local j = 30; j >= 16; j--) {
 			drawSprite(bgOcean, j, (((-camx) / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
 		}
@@ -210,13 +210,13 @@
 }
 
 ::dbgOceanSunset <- function() {
-	for(local i = 0; i < getBGLoop(bgOceanSunset); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgOceanSunset)); i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOceanSunset, j, ((-camx / 32) % 480) + (i * 480), j * 8)
 		}
 	}
 
-	for(local i = 0; i < getBGLoop(bgOceanSunset); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgOceanSunset)); i++) {
 		for(local j = 30; j >= 16; j--) {
 			drawSprite(bgOceanSunset, j, (((-camx) / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
 		}
@@ -226,13 +226,13 @@
 ::dbgOceanNight <- function() {
 	dbgStarSky()
 
-	for(local i = 0; i < getBGLoop(bgOceanNight); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgOceanNight)); i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOceanNight, j, ((-camx / 64) % 480) + (i * 480), j * 8)
 		}
 	}
 
-	for(local i = 0; i < getBGLoop(bgOceanNight); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgOceanNight)); i++) {
 		for(local j = 30; j >= 16; j--) {
 			drawSprite(bgOceanNight, j, (((-camx) / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
 		}
@@ -242,13 +242,13 @@
 ::dbgOceanMoving <- function() {
 	dbgStarSky()
 
-	for(local i = 0; i <= getBGLoop(bgOceanNight) + 1; i++) {
+	for(local i = 0; i <= getBGLoop(spriteW(bgOceanNight)) + 1; i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOceanNight, j, spriteW(bgOceanNight) + (((-camx + getFrames()) / 64) % 480) - (i * 480), j * 8)
 		}
 	}
 
-	for(local i = 0; i <= getBGLoop(bgOceanNight) + 1; i++) {
+	for(local i = 0; i <= getBGLoop(spriteW(bgOceanNight)) + 1; i++) {
 		for(local j = 30; j >= 16; j--) {
 			drawSprite(bgOceanNight, j, spriteW(bgOceanNight) + (((-camx + getFrames() * 4) / fabs(31 - j)) * (j / 16.0) % 480) - (i * 480), j * 8)
 		}
@@ -256,7 +256,7 @@
 }
 
 ::dbgStarSky <- function() {
-	for(local i = 0; i < getBGLoop(bgStarSky); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgStarSky)); i++) {
 		drawImage(bgStarSky, (i * 360), (screenH() / 2) - 120)
 	}
 	drawSprite(bgMoon, 0, gvScreenW - 128, 64)
@@ -264,19 +264,19 @@
 
 ::dbgUnderwater <- function() {
 	gvLightBG = true
-	for(local i = 0; i < getBGLoop(bgUnderwater); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgUnderwater)); i++) {
 		drawSprite(bgUnderwater, 0, ((-camx / 8) % spriteW(bgUnderwater)) + (i * spriteW(bgUnderwater)), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgCastle <- function() {
-	for(local i = 0; i < getBGLoop(bgCastle); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgCastle)); i++) {
 		drawSprite(bgCastle, 0, ((-camx / 8) % spriteW(bgCastle)) + (i * spriteW(bgCastle)), (screenH() / 2) - 120)
 	}
 }
 
 ::dbgFortMagma <- function() {
-	for(local i = 0; i < getBGLoop(bgFortMagma); i++) {
+	for(local i = 0; i < getBGLoop(spriteW(bgFortMagma)); i++) {
 		drawSprite(bgFortMagma, 0, ((-camx / 8) % 960) + (i * 960), (screenH() / 2) - 120)
 	}
 }
