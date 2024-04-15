@@ -88,7 +88,6 @@
 		if(i()) {
 			gvUnlockedAchievements[key] <- true
 			newActor(AchiNotice, 16, -16, key)
-			popSound(sndAchievement, 0)
 			fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
 			gvAchievementTimer = 120
 			break
@@ -139,12 +138,16 @@
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y)
 		name = _arr
-		print("Got achievement: " + gvLangObj["achi-name"][name])
+		if(name in gvLangObj["achi-name"])
+			print("Got achievement: " + gvLangObj["achi-name"][name])
+		popSound(sndAchievement, 0)
 	}
 
 	function run(draw = false) {
 		if(draw) {
-			local text = gvLangObj["achi-name"][name]
+			local text = name
+			if(name in gvLangObj["achi-name"])
+				gvLangObj["achi-name"][name]
 			drawSprite(sprAchiFrame, 0, x - 12, y - 5)
 			for(local i = 0; i < text.len(); i++) drawSprite(sprAchiFrame, 1, x + (i * 8), y - 5)
 			drawSprite(sprAchiFrame, 2, x + (text.len() * 8), y - 5)

@@ -948,6 +948,37 @@
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
 		inMelee = (anim == "ball" && fabs(hspeed) > rollMeleeSpeed)
+
+		//Defensive element
+		switch(stats.weapon) {
+			case "fire":
+				damageMult = damageMultF
+				break
+			case "ice":
+				damageMult = damageMultI
+				break
+			case "earth":
+				damageMult = damageMultE
+				break
+			case "air":
+				damageMult = damageMultA
+				break
+			case "shock":
+				damageMult = damageMultS
+				break
+			case "water":
+				damageMult = damageMultW
+				break
+			case "light":
+				damageMult = damageMultL
+				break
+			case "dark":
+				damageMult = damageMultD
+				break
+			default:
+				damageMult = damageMultN
+				break
+		}
 	}
 
 	function ruNormal() {
@@ -1270,37 +1301,6 @@
 		if(resTime > 0) {
 			routine = ruSwim
 			anim = "float"
-		}
-
-		//Defensive element
-		switch(stats.weapon) {
-			case "fire":
-				damageMult = damageMultF
-				break
-			case "ice":
-				damageMult = damageMultI
-				break
-			case "earth":
-				damageMult = damageMultE
-				break
-			case "air":
-				damageMult = damageMultA
-				break
-			case "shock":
-				damageMult = damageMultS
-				break
-			case "water":
-				damageMult = damageMultW
-				break
-			case "light":
-				damageMult = damageMultL
-				break
-			case "dark":
-				damageMult = damageMultD
-				break
-			default:
-				damageMult = damageMultN
-				break
 		}
 	}
 

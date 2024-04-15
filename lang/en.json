@@ -320,7 +320,9 @@
 		"tux-dash" :
 		["Pressing %s will do different things depending on your character and location. Try it in many places!", "getConName(\"spec2\")"],
 		"noteblock" :
-		"Note blocks will bounce you when you hit them. Hold jump to be bounced higher."
+		"Note blocks will bounce you when you hit them. Hold jump to be bounced higher.",
+		"rescued" :
+		"Rescued %s!"
 	},
 
 	"devcom" : {
@@ -519,7 +521,12 @@
 		"rocky-pt-Kiki" :
 		"So you're an artist. Ever made a collage? You can find all sorts of cool stuff in the trash.",
 		"rocky-pt" :
-		"Yeah, this place is pretty cold, but it's a lot safer. The worst of Nolok's minions are on the mainland and other areas, so I'm gonna stay in Pennyton for now.",
+		"Yeah, this place is pretty small, but it's a lot safer. The worst of Nolok's minions are yet to come, though.",
+
+		"tealdeer-c" :
+		"Oh, thank goodness! I'm not meant to be underground!",
+		"tealdeer-pt" :
+		"I can't wait to go home. At least this hotel was good enough to keep us for the time being.",
 
 		"python-c" :
 		"Thankssss for the sssave! I'll ssssee you back in town.",
@@ -788,7 +795,12 @@
 		"owl-territorial" :
 		"A lot of owls in this region are territorial. They haven't taken kindly to all the new people dropping into our world around here.",
 		"owl-library" :
-		"Were you expecting a bigger library? Not all owls are book-hoarding nerds, you know!"
+		"Were you expecting a bigger library? Not all owls are book-hoarding nerds, you know!",
+
+		"lake-guy-0" :
+		"I saw some of Nolok's goons lurking around here a while ago. Maybe they hid something in this lake? It was raining trash earlier, too. What's that about?",
+		"lake-guy-1" :
+		"By the way, building this boat here was a mistake. It's too big for me to get it down the river."
 	},
 
 	"level" : {

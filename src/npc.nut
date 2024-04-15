@@ -146,30 +146,40 @@
 		if(sprite == sprXue) {
 			if(!game.friends.rawin("Xue")) game.friends.Xue <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["xue-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Xue"))
 		}
 		if(sprite == sprGnu) if(!game.friends.rawin("Gnu")) {
 			game.friends.Gnu <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["gnu-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Gnu"))
 		}
 		if(sprite == sprPlasmaBreeze) if(!game.friends.rawin("PlasmaBreeze")) {
 			game.friends.PlasmaBreeze <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["breeze-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Plasma Breeze"))
 		}
 		if(sprite == sprRockyRaccoon) if(!game.friends.rawin("RockyRaccoon")) {
 			game.friends.RockyRaccoon <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["rocky-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Rocky Raccoon"))
 		}
 		if(sprite == sprPygame) if(!game.friends.rawin("Pygame")) {
 			game.friends.Pygame <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["python-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Pygame"))
 		}
 		if(sprite == sprGaruda) if(!game.friends.rawin("Garuda")) {
 			game.friends.Garuda <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["garuda-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Garuda"))
+		}
+		if(sprite == sprTealDeerNPC) if(!game.friends.rawin("TealDeer")) {
+			game.friends.TealDeer <- true
+			text = textLineLen(formatInfo(gvLangObj["npc"]["tealdeer-c"]), gvTextW)
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Teal Deer"))
 		}
 
 		gvInfoBox = text
-		if(actor.rawin("BossDoor")) foreach(i in actor["BossDoor"]) i.opening = true
 	}
 
 	function wantFish() {
