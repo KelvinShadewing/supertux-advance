@@ -14,23 +14,132 @@
 
 [IoIxD](https://github.com/IoIxD) - Overworld block switching
 
+----
+
 ## Graphics
 
-[Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics, elemental explosions
+\*: Contains edits from or made in collaboration with Kelvin Shadewing
 
-[Adam Atomic](http://www.adamatomic.com) - Iridia BG\*
+### [Kelvin Shadewing](http://kelvinshadewing.net)
+Tux - CC-BY-SA 4.0
+Penny - CC-BY-SA 4.0
+Konqi - CC-BY-SA 4.0
+Katie - CC-BY-SA 4.0
+Midi Waffle - CC-BY-SA 4.0
+Cannon Bob - CC-BY-SA 4.0
+Igloo edits - CC-BY-SA 4.0
+Mama Bear - CC-BY-SA 4.0
+Pipe tiles - CC-BY-SA 4.0
+Pipe snake - CC-BY-SA 4.0
+Muffin - CC-BY-SA 4.0
+Deathcap - CC-BY-SA 4.0
+Star nyan - CC-BY-SA 4.0
+Heart - CC-BY-SA 4.0
+Fonts - CC-BY-SA 4.0
+Item blocks - CC-BY-SA 4.0
+Debug graphics - CC-BY-SA 4.0
+Elemental explosions - CC-BY-SA 4.0
 
-[Luke Bunday](http://pixeljoint.com/p/43158.htm) - Anneroy
+**All graphics by Kelvin are CC-BY-SA 4.0**
+acid.png
+acidsplash.png (w/ Jesse McCarthy)
+acidsurface.png
+actors-big.png
+actors.png
+aurora-night.png
+aurora.png
+ball-link.png
+ball-spin.png
+beach-mountains.png
+beam.png
+bearyl.png
+bell-giant.png
+bell.png
+bg-beehive.png
+bg-desert-city-night.png
+bg-desert-city.png
+bg-modern-city.png
+bg-mountain-range.png
+bg-rural-countryside.png
+bg-snowy-city.png
+bg-starry-mountain.png
+bgSnowMountain.png
+bgSnowNight.png
+bgSnowPlain.png
+birdcage.png
+blazeborn.png
+blueforest.png
+boost-ring.png
+boss-door.png
+boss-health.png
+bouncebox.png
+bouncecap.png
+brickblock-chunks.png
+brickblock-snow.png
+brickblock.png
+bubble.png
+coin.png
+konqi-npc.png
+konqi.png
+konqiair.png
+konqidoll.png
+konqiearth.png
+konqifire.png
+konqiice.png
+konqiO.png
+konqishock.png
+konqiwater.png
+midi-aura.png
+midi-npc.png
+midi.png
+mididoll.png
+midiO.png
+muffin.png (w/ FrostC)
+neverball.png
+nofundo-block.png
+noone.png
+penny-npc.png
+penny.png
+pennyair.png
+pennydoll.png
+pennyearth.png
+pennyfire.png
+pennyice.png
+pennyO.png
+solid.png
+tux-npc.png
+tux.png
+tuxair.png
+tuxdoll.png
+tuxearth.png
+tuxfire.png
+tuxfirehat.png
+tuxice.png
+tuxO.png
+tuxshock.png
+tuxwater.png
 
-[thekingphoenix](https://opengameart.org/content/tileset-platform-forest) - Forest Decorations
 
-[Nemysis](https://opengameart.org/users/nemisys) - Sign post
+### [Adam Atomic](http://www.adamatomic.com)
+blue-cave-bg-0.png\* - CC0
 
-[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles\*, Tornado\*
+### [Luke Bunday](http://pixeljoint.com/p/43158.htm)
+* Anneroy - CC-BY-SA 4.0
 
-[TheNess](https://opengameart.org/users/theness) - Forest parallax
+### [thekingphoenix](https://opengameart.org/users/thekingphoenix)
+* Forest Decorations - CC0
 
-[RodHakGames](https://opengameart.org/users/rodhakgames) - Portals\*
+### [Nemysis](https://opengameart.org/users/nemisys)
+* Sign post\* - CC-BY-SA 3.0
+
+### [devnewton](https://opengameart.org/users/devnewton)
+* Tornado\* - CC-BY-SA 4.0
+
+### [TheNess](https://opengameart.org/users/theness)
+* Forest parallax - CC-BY-SA 3.0
+
+### [RodHakGames](https://opengameart.org/users/rodhakgames)
+* Portals\* - CC0
 
 [bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
 
@@ -58,13 +167,15 @@
 
 [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection\*
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel\*, end gate\*
+[bluecarrot16](https://opengameart.org/users/bluecarrot16) - barrel.png\*
+endgate.png\*
 
 [Kutejnikov](https://opengameart.org/users/kutejnikov) - Shipwreck tiles
 
 [Nushio](http://opengameart.org/users/nushio) - LPC Terrain 2
 
-[Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy) - Splash
+[Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy)
+splash.png
 
 [UbuntuJackson](https://github.com/UbuntuJackson) - UFO\*, snow tiles redesign\*
 
@@ -84,9 +195,8 @@
 
 [Surt](https://opengameart.org/users/surt) - Ruins tiles\*
 
-[RustyBox]() - Scaled icecube\*
-
-\*: Contains edits from or made in collaboration with Kelvin Shadewing
+### [RustyBox]()
+* Scaled icecube\* - CC-BY-SA 4.0
 
 ## Sounds
 

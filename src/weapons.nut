@@ -1314,6 +1314,53 @@
 // EARTH ATTACKS //
 ///////////////////
 
+::Earthball <- class extends WeaponEffect {
+	element = "earth"
+	timer = 90
+	piercing = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		if(!placeFree(x, y + 1)) vspeed = -1.2
+		if(!placeFree(x, y - 1)) vspeed = 1
+		if(!placeFree(x + 1, y) || !placeFree(x - 1, y)) {
+			if(placeFree(x + 1, y) || placeFree(x - 1, y)) vspeed = -1
+		}
+		vspeed += 0.1
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x, y - 2)) {
+			x += hspeed
+			y += -2
+			vspeed = -1
+		}
+		if(!placeFree(x, y)) deleteActor(id)
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h || piercing < 0) deleteActor(id)
+
+		shape.setPos(x, y)
+	}
+
+	function draw()  {
+		drawSpriteEx(sprRock, 0, x - camx, y - camy, getFrames() * (hspeed <=> 0) * 15, 0, 0.5, 0.5, 1)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+	}
+}
+
 ::EarthballK <- class extends WeaponEffect {
 	timer = 90
 	angle = 0
@@ -1922,6 +1969,61 @@
 /////////////////
 // AIR ATTACKS //
 /////////////////
+
+::Airball <- class extends WeaponEffect {
+	element = "air"
+	timer = 90
+	piercing = 0
+	scale = 0.0
+	angle = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Rec(x, y, 3, 3, 0)
+	}
+
+	function physics() {
+		//Shrink hitbox
+		timer--
+		if(timer == 0) deleteActor(id)
+		if(!placeFree(x, y))
+			deleteActor(id)
+
+		vspeed *= 0.99
+		hspeed *= 0.99
+
+		if(placeFree(x + hspeed, y)) x += hspeed
+		else if(placeFree(x, y - 2)) {
+			x += hspeed
+			y += -2
+			vspeed = -1
+		}
+		if(!placeFree(x, y)) deleteActor(id)
+
+		if(placeFree(x, y + vspeed)) y += vspeed
+		else vspeed /= 2
+
+		if(y > gvMap.h || piercing < 0) deleteActor(id)
+
+		shape.setPos(x, y)
+
+		if(scale < 1)
+			scale += 0.1
+
+		if(inWater(x, y))
+			angle = pointAngle(0, 0, hspeed, vspeed) - 90
+		else {
+			angle = 0
+			vspeed += 0.05
+		}
+	}
+
+	function draw()  {
+		drawSpriteEx(sprTinyWind, getFrames() / 4, x - camx, y - camy, angle, 0, scale, scale, 1)
+		drawLight(sprLightBasic, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+	}
+}
 
 ::ExplodeA <- class extends WeaponEffect{
 	frame = 0.0

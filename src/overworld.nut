@@ -560,7 +560,7 @@
 
 	drawAmbientLight()
 
-	if(gvLevel != "") {
+	if(gvLevel != "" && gvLevel in gvLangObj["level"]) {
 		drawText(font2, (screenW() / 2) - (gvLangObj["level"][gvLevel].len() * 4), 8, gvLangObj["level"][gvLevel])
 		if(game.bestTime.rawin(gvLevel + "-" + game.playerChar)) {
 			local pb = formatTime(game.bestTime[gvLevel + "-" + game.playerChar])
