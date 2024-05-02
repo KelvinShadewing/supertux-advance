@@ -271,7 +271,7 @@
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
-			drawSpriteZ(2, sprActors, 108, x - camx, y - camy + v)
+			drawSpriteZ(2, sprActors, 108, x - camx - 8, y - camy + v - 8)
 			drawText(font, x - camx - (pricetag.len() * 3), y - 16 - camy, pricetag)
 		}
 	}

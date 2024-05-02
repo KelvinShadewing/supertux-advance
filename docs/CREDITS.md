@@ -1,5 +1,7 @@
 # Credits
 
+// This file is currently undergoing renovation to be more clear on licensing, also switching to filenames instead of titles.
+
 ## Code
 
 [Kelvin Shadewing](http://kelvinshadewing.net)
@@ -53,6 +55,7 @@ ball-spin.png
 beach-mountains.png
 beam.png
 bearyl.png
+beehemoth.png
 bell-giant.png
 bell.png
 bg-beehive.png
