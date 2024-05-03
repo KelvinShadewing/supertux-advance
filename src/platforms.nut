@@ -288,7 +288,7 @@
 	function run() {
 		local dorun = true
 		//Check for conditions that should hold the object in place
-		if(actor[obj].rawin("frozen")) if(actor[obj].frozen > 0) dorun = false
+		if(checkActor(obj) && actor[obj].rawin("frozen") && actor[obj].frozen > 0) dorun = false
 		if(dorun) base.run()
 
 		if(checkActor(obj)) {
