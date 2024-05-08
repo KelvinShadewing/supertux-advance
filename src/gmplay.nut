@@ -808,6 +808,9 @@
 		if(fabs(game.ps2.stamina - gvBarStats.stamina2) < 0.5)
 			gvBarStats.stamina2 = game.ps2.stamina
 
+		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
+		if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
+
 		//Draw stats
 		if(gvSplitScreen && gvScreenW >= 400) {
 			local elementFrame = 0
@@ -883,7 +886,6 @@
 			drawSprite(sprElement, elementFrame, 8 + (gvSwapScreen ? 0 : gvScreenW / 2), 16)
 		}
 		else {
-			if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
 			drawSprite(sprMeterBack, 0, 24, 8)
 			for(local i = 0; i < floor(game.maxHealth); i++)
 				drawSprite(sprMeterBack, 1, 26 + (i * 2), 8)
@@ -951,7 +953,6 @@
 
 			//Player 2 stats
 			if(gvNumPlayers > 1) {
-				if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
 				drawSprite(sprMeterBack, 0, 24, 36)
 				for(local i = 0; i < floor(game.maxHealth); i++)
 					drawSprite(sprMeterBack, 1, 26 + (i * 2), 36)
