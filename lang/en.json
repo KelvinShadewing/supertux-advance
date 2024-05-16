@@ -800,7 +800,10 @@
 		"lake-guy-0" :
 		"I saw some of Nolok's goons lurking around here a while ago. Maybe they hid something in this lake? It was raining trash earlier, too. What's that about?",
 		"lake-guy-1" :
-		"By the way, building this boat here was a mistake. It's too big for me to get it down the river."
+		"By the way, building this boat here was a mistake. It's too big for me to get it down the river.",
+
+		"larry-0" :
+		"I'm cooler than a cucumber."
 	},
 
 	"level" : {

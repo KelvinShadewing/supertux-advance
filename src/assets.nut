@@ -292,6 +292,7 @@
 ::sprMamaBearNPC <- newSprite("res/gfx/mamabear.png", 24, 37, 0, 0, 12, 37)
 ::sprTealDeerNPC <- newSprite("res/gfx/tealdeer.png", 30, 46, 0, 0, 15, 46)
 ::sprTigerNPC <- newSprite("res/gfx/npc-tiger.png", 21, 44, 0, 0, 12, 44)
+::sprLarryNPC <- newSprite("res/gfx/npc-larry.png", 32, 32, 0, 0, 16, 32)
 
 
 
