@@ -252,7 +252,7 @@
 
 	if(player == 1 || player == 0) {
 		joy = clone(config.joy)
-		if(gvNumPlayers == 1 || gvGameMode != gmPlay) joy.index = config.joy2.index
+		if(gvNumPlayers == 1 || gvGameMode != gmPlay) joy.index = config.joy.index
 		autonum = autocon.a
 	}
 	if(player == 2) {
@@ -771,8 +771,8 @@
 					joy.jump = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.jump = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.jump = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -782,8 +782,8 @@
 					joy.shoot = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.shoot = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.shoot = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -793,8 +793,8 @@
 					joy.spec1 = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.spec1 = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.spec1 = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -804,8 +804,8 @@
 					joy.spec2 = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.spec2 = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.spec2 = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -815,8 +815,8 @@
 					joy.pause = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.pause = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.pause = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -826,8 +826,8 @@
 					joy.swap = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.swap = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.swap = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -837,8 +837,8 @@
 					joy.accept = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.accept = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.accept = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -848,8 +848,8 @@
 					joy.leftPeek = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.leftPeek = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.leftPeek = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -859,8 +859,8 @@
 					joy.rightPeek = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.rightPeek = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.rightPeek = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -870,8 +870,8 @@
 					joy.downPeek = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.downPeek = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.downPeek = joyPressAny(joy.index)
 					done = true
 				}
 				break
@@ -881,8 +881,8 @@
 					joy.upPeek = -1
 					done = true
 				}
-				if(joyPressAny(0) != -1) {
-					joy.upPeek = joyPressAny(0)
+				if(joyPressAny(joy.index) != -1) {
+					joy.upPeek = joyPressAny(joy.index)
 					done = true
 				}
 				break

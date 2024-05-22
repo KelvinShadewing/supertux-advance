@@ -50,12 +50,8 @@
 	drawWeather = 0
 	drawWeather2 = 0
 	if(newLevel) {
-		if(game.ps.health <= 0 || game.difficulty < 2)
-			game.ps.health = game.maxHealth
 		game.ps.energy = game.ps.maxEnergy
 		game.ps.stamina = game.ps.maxStamina
-		if(game.ps2.health <= 0 || game.difficulty < 2)
-			game.ps2.health = game.maxHealth
 		game.ps2.energy = game.ps2.maxEnergy
 		game.ps2.stamina = game.ps2.maxStamina
 		game.levelCoins = 0
@@ -254,7 +250,7 @@
 				if(actor[mapActor[k]].item != 0)
 					break
 				actor[mapActor[k]].full = false
-				game.levelCoins++
+				game.levelCoins += actor[mapActor[k]].coins
 				break
 			case "Coin":
 				deleteActor(mapActor[k])
@@ -851,7 +847,7 @@
 			drawSprite(sprElement, elementFrame, 8 + (gvSwapScreen ? gvScreenW / 2 : 0), 16)
 
 			drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, game.maxHealth, gvBarStats.health2, 0xf83810ff)
-			drawMeter(8 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, 6, game.ps.berries / 2.0, 0xf81038ff)
+			drawMeter(8 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, 6, game.ps2.berries / 2.0, 0xf81038ff)
 			drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 16, game.ps.maxEnergy * 2.0, gvBarStats.mana2 * 2.0, 0x1080b0ff)
 			drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 24, game.ps.maxStamina * 2.0, gvBarStats.stamina2 * 2.0, 0x70a048ff)
 			switch(game.ps2.weapon) {
@@ -1436,7 +1432,14 @@
 
 		case 2:
 			c = newActor(ItemBlock, i.x + 8, i.y - 8, 0)
-			game.maxCoins++
+			if(canint(i.name)) {
+				actor[c].coins = int(i.name)
+				game.maxCoins += int(i.name)
+			}
+			else {
+				actor[c].coins = 1
+				game.maxCoins++
+			}
 			break
 
 		case 3:

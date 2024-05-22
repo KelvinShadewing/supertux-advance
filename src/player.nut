@@ -92,7 +92,7 @@
 			playerNum = 2
 		}
 
-		if(stats.health <= 0 || game.difficulty < 2)
+		if(stats.health <= 0 || game.difficulty < 1)
 			stats.health = game.maxHealth
 
 		xstart = _x
@@ -211,8 +211,8 @@
 		}
 
 		//Stats
-		stats.maxEnergy = 4 + game.energyBonus - game.difficulty
-		stats.maxStamina = 4 + game.staminaBonus - game.difficulty
+		stats.maxEnergy = 4 + game.energyBonus
+		stats.maxStamina = 4 + game.staminaBonus
 
 		if(stats.energy > stats.maxEnergy)
 			stats.energy = stats.maxEnergy
@@ -452,17 +452,13 @@
 		vspeed += 0.1
 		y += vspeed
 		timer--
-		if(timer == 0) {
-			if(!gvPlayer && !gvPlayer2) {
-				startPlay(gvMap.file, true, true)
-				if(game.check == false) {
-					gvIGT = 0
-				}
-			}
+		if(timer == 0 && !gvPlayer && !gvPlayer2) {
+			startPlay(gvMap.file, true, true)
 
-			if(game.check == false || game.difficulty > 0) {
+			if(game.check == false) {
 				if(playerNum == 1) game.ps.weapon = "normal"
 				if(playerNum == 2) game.ps2.weapon = "normal"
+				gvIGT = 0
 			}
 		}
 	}

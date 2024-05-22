@@ -74,14 +74,6 @@ require("src/battle.nut")
 ////////////////
 
 if(fileExists("config.json")) config = mergeTable(config, jsonRead(fileRead("config.json")))
-if(joyCount() > 1) {
-	config.joy.index = 1
-	config.joy2.index = 0
-}
-else {
-	config.joy.index = 1
-	config.joy2.index = 0
-}
 
 //Set volume
 setSoundVolume(config.soundVolume)
@@ -258,6 +250,15 @@ if(fileExists("contrib")) {
 		fileWrite("config.json", jsonWrite(config))
 	}
 	*/
+
+	if(joyCount() > 1 && game.playerChar2 != "") {
+		config.joy.index = 0
+		config.joy2.index = 1
+	}
+	else {
+		config.joy.index = 0
+		config.joy2.index = 0
+	}
 
 	//Update automatic controls
 	updateAutocon()

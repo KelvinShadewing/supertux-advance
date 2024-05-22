@@ -15,9 +15,8 @@
 	if(gvGameMode == gmPlay) {
 		if(actor.rawin("DeadPlayer") && actor["DeadPlayer"].len() > 0 && !gvPlayer && !gvPlayer2) {
 			startPlay(gvMap.file, true, true)
-			if(game.check == false || game.difficulty > 0) {
-				if(game.check == false)
-					gvIGT = 0
+			if(game.check == false) {
+				gvIGT = 0
 				game.ps.weapon = "normal"
 				game.ps2.weapon = "normal"
 			}

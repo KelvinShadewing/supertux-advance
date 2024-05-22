@@ -92,7 +92,7 @@
             0, 0, 0, 0, 559, 613, 0, 0, 0, 0, 0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 241, 295, 293, 242, 243, 717, 267, 268, 268, 269, 691, 241, 294, 242, 293, 243, 0, 0, 0, 0,
             0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 717, 0, 0, 0, 0, 215, 191, 295, 293, 293, 243, 611, 768, 768, 768, 560, 613, 241, 242, 242, 294, 243, 0, 0, 0, 0,
             0, 0, 0, 559, 613, 0, 0, 0, 0, 0, 0, 0, 0, 0, 717, 0, 0, 0, 0, 267, 268, 268, 268, 268, 269, 163, 163, 163, 163, 717, 215, 191, 295, 242, 295, 243, 0, 0, 0, 0,
-            0, 0, 0, 717, 0, 0, 0, 0, 0, 904, 0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 717, 267, 268, 268, 268, 268, 269, 0, 0, 0, 0,
+            0, 0, 0, 717, 0, 0, 0, 0, 0, 914, 0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 717, 267, 268, 268, 268, 268, 269, 0, 0, 0, 0,
             0, 0, 0, 717, 0, 0, 0, 0, 0, 704, 0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 0, 0, 189, 0, 0, 0, 0, 559, 768, 613, 0, 0, 189, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 717, 0, 189, 0, 0, 0, 730, 0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 271, 0, 0, 717, 0, 0, 0, 0, 0, 297, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 611, 561, 0, 0, 0, 0, 705, 0, 0, 0, 0, 717, 0, 0, 0, 0, 0, 329, 0, 0, 0, 0, 0, 559, 613, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -218,7 +218,7 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":2,
                  "name":"aurora-learn",
@@ -230,7 +230,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":3,
                  "name":"aurora-crystal",
@@ -242,7 +242,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":4,
                  "name":"aurora-slip",
@@ -254,7 +254,7 @@
                  "y":336
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":6,
                  "name":"aurora-tnt",
@@ -266,7 +266,7 @@
                  "y":352
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":7,
                  "name":"aurora-sense",
@@ -278,7 +278,7 @@
                  "y":352
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":8,
                  "name":"aurora-branches",
@@ -290,7 +290,7 @@
                  "y":288
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":9,
                  "name":"aurora-frozen",
@@ -302,7 +302,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":10,
                  "name":"aurora-bridge",
@@ -314,7 +314,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":11,
                  "name":"aurora-steps",
@@ -326,7 +326,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":899,
+                 "gid":909,
                  "height":16,
                  "id":12,
                  "name":"overworld-1,0,0",
@@ -338,7 +338,7 @@
                  "y":32
                 }, 
                 {
-                 "gid":900,
+                 "gid":910,
                  "height":16,
                  "id":16,
                  "name":"shop",
@@ -350,7 +350,7 @@
                  "y":48
                 }, 
                 {
-                 "gid":900,
+                 "gid":910,
                  "height":16,
                  "id":19,
                  "name":"aurora-mines",
@@ -362,7 +362,7 @@
                  "y":336
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":20,
                  "name":"aurora-fort",
@@ -374,7 +374,7 @@
                  "y":80
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":21,
                  "name":"aurora-subsea",
@@ -386,7 +386,7 @@
                  "y":368
                 }, 
                 {
-                 "gid":900,
+                 "gid":910,
                  "height":16,
                  "id":22,
                  "name":"aurora-pennyton",
@@ -398,7 +398,7 @@
                  "y":64
                 }, 
                 {
-                 "gid":897,
+                 "gid":907,
                  "height":16,
                  "id":23,
                  "name":"",
@@ -410,7 +410,7 @@
                  "y":64
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":24,
                  "name":"aurora-wind",
@@ -422,7 +422,7 @@
                  "y":96
                 }, 
                 {
-                 "gid":900,
+                 "gid":910,
                  "height":16,
                  "id":25,
                  "name":"aurora-switch",
@@ -434,7 +434,7 @@
                  "y":288
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":36,
                  "name":"aurora-iceguy",
@@ -446,7 +446,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":37,
                  "name":"aurora-forest",
@@ -458,7 +458,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":898,
+                 "gid":908,
                  "height":16,
                  "id":39,
                  "name":"aurora-fishy",
@@ -470,7 +470,7 @@
                  "y":368
                 }, 
                 {
-                 "gid":901,
+                 "gid":911,
                  "height":16,
                  "id":43,
                  "name":"aurora-branches-b",
@@ -482,7 +482,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":901,
+                 "gid":911,
                  "height":16,
                  "id":44,
                  "name":"aurora-branches-a",
@@ -494,7 +494,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":901,
+                 "gid":911,
                  "height":16,
                  "id":46,
                  "name":"aurora-fort",
@@ -506,7 +506,7 @@
                  "y":48
                 }, 
                 {
-                 "gid":902,
+                 "gid":912,
                  "height":16,
                  "id":48,
                  "name":"Deathcap,1",
@@ -518,7 +518,7 @@
                  "y":176
                 }, 
                 {
-                 "gid":900,
+                 "gid":910,
                  "height":16,
                  "id":50,
                  "name":"aurora-xtreme",
@@ -530,7 +530,7 @@
                  "y":208
                 }, 
                 {
-                 "gid":900,
+                 "gid":910,
                  "height":16,
                  "id":52,
                  "name":"aurora-secret",
@@ -540,6 +540,30 @@
                  "width":16,
                  "x":384,
                  "y":48
+                }, 
+                {
+                 "gid":911,
+                 "height":16,
+                 "id":53,
+                 "name":"aurora-forest",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":480,
+                 "y":208
+                }, 
+                {
+                 "gid":911,
+                 "height":16,
+                 "id":54,
+                 "name":"aurora-frozen",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":464,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -548,7 +572,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":53,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1200,18 +1224,18 @@
          "columns":5,
          "firstgid":807,
          "image":"..\/gfx\/solid.png",
-         "imageheight":288,
+         "imageheight":320,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":90,
+         "tilecount":100,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":7,
-         "firstgid":897,
+         "firstgid":907,
          "image":"..\/gfx\/overactors.png",
          "imageheight":16,
          "imagewidth":112,
@@ -1224,7 +1248,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":904,
+         "firstgid":914,
          "image":"..\/gfx\/colorswitches-small.png",
          "imageheight":48,
          "imagewidth":64,

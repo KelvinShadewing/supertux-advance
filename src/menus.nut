@@ -120,9 +120,9 @@ const menuY = 40
 		popSound(sndMenuMove, 0)
 	}
 
-	if(getcon("down", "hold") || getcon("up", "hold")) cursorTimer--
+	if(getcon("down", "hold", false, 1) || getcon("up", "hold", false, 1) || getcon("down", "hold", false, 2) || getcon("up", "hold", false, 2)) cursorTimer--
 
-	if(getcon("jump", "press") || getcon("accept", "press")) {
+	if(getcon("jump", "press", false, 1) || getcon("accept", "press", false, 1) || getcon("jump", "press", false, 2) || getcon("accept", "press", false, 2)) {
 		if(menu[cursor].rawin("disabled") && menu[cursor].disabled == true) return;
 		popSound(sndMenuSelect, 0)
 		menu[cursor].func()

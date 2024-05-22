@@ -527,6 +527,7 @@
 	vspeed = 0.0
 	item = 0
 	refill = 3600
+	coins = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -555,7 +556,8 @@
 			switch(item){
 				case 0:
 					newActor(CoinEffect, x, y - 16)
-					foreach(k, i in gvYetFoundItems) if(i == id)
+					coins--
+					if(coins <= 1) foreach(k, i in gvYetFoundItems) if(i == id)
 						gvFoundItems[k] <- typeof this
 					break
 
@@ -621,7 +623,8 @@
 
 		if(gvPlayer && hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 			gvPlayer.vspeed = 0
-			full = false
+			if(coins <= 1)
+				full = false
 			vspeed = -2
 			popSound(sndBump, 0)
 			fireWeapon(BoxHit, x, y - 8, 1, id)

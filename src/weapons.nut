@@ -1650,7 +1650,7 @@
 	}
 
 	function destructor() {
-		fireWeapon(AfterFlame, x + hspeed, y + vspeed, alignment, owner)
+		fireWeapon(AfterEarth, x + hspeed, y + vspeed, alignment, owner)
 	}
 }
 
