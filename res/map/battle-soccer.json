@@ -310,7 +310,7 @@
         {
          "name":"run",
          "type":"string",
-         "value":"if(gvPlayer) {\n\tgvPlayer.invincible = 1\n}\n\nif(gvPlayer2) {\n\tgvPlayer2.invincible = 1\n}\n\nif(levelEnder == 0 && hitTest(gvMap.meta.ball.shape, gvMap.meta.goal1.shape)) {\n\tfireWeapon(ExplodeN2, gvMap.meta.ball.x, gvMap.meta.ball.y, 0, 0)\n\tgvMap.meta.ball.x = gvMap.w \/ 2\n\tgvMap.meta.ball.y = 0\n\tgvMap.meta.ball.hspeed = 0\n\tgvMap.meta.ball.vspeed = 0\n\tgame.ps2.health--\n}\n\nif(levelEndRunner == 0 && hitTest(gvMap.meta.ball.shape, gvMap.meta.goal2.shape)) {\n\tfireWeapon(ExplodeN2, gvMap.meta.ball.x, gvMap.meta.ball.y, 0, 0)\n\tgvMap.meta.ball.x = gvMap.w \/ 2\n\tgvMap.meta.ball.y = 0\n\tgvMap.meta.ball.hspeed = 0\n\tgvMap.meta.ball.vspeed = 0\n\tgame.ps.health--\n}"
+         "value":"if(gvPlayer) {\n\tgvPlayer.invincible = 1\n}\n\nif(gvPlayer2) {\n\tgvPlayer2.invincible = 1\n}\n\nif(levelEndRunner == 0 && hitTest(gvMap.meta.ball.shape, gvMap.meta.goal1.shape)) {\n\tfireWeapon(ExplodeN2, gvMap.meta.ball.x, gvMap.meta.ball.y, 0, 0)\n\tgvMap.meta.ball.x = gvMap.w \/ 2\n\tgvMap.meta.ball.y = 0\n\tgvMap.meta.ball.hspeed = 0\n\tgvMap.meta.ball.vspeed = 0\n\tgame.ps2.health--\n}\n\nif(levelEndRunner == 0 && hitTest(gvMap.meta.ball.shape, gvMap.meta.goal2.shape)) {\n\tfireWeapon(ExplodeN2, gvMap.meta.ball.x, gvMap.meta.ball.y, 0, 0)\n\tgvMap.meta.ball.x = gvMap.w \/ 2\n\tgvMap.meta.ball.y = 0\n\tgvMap.meta.ball.hspeed = 0\n\tgvMap.meta.ball.vspeed = 0\n\tgame.ps.health--\n}"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",
