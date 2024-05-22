@@ -302,6 +302,10 @@
 	function ruIdle() {
 		hspeed = 0.0
 		anim = anIdle
+		if(eventTimer < 30 && eventTimer > 5 && eventStage != 1)
+			anim = anCheer
+		if(eventTimer == 30 && eventStage != 1)
+			popSound(sndGrowl)
 		eventTimer--
 		if(eventTimer == 0) {
 			switch(eventStage) {

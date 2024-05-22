@@ -30,6 +30,9 @@
 	if(v <= 0)
 		return
 
+	if(v > m)
+		v = m
+
 	setDrawColor(c)
 	drawRec(x + 2, y + 2, min(v * 2.0, m * 2.0) - 1.0, 3, true)
 }
@@ -290,11 +293,13 @@
 						actor[c].code = obj.name
 						actor[c].w = obj.width / 2
 						actor[c].h = obj.height / 2
+						mapActor[obj.id] <- actor[c].id
 						break
 					case "water":
 					if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.name)
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
+						mapActor[obj.id] <- actor[c].id
 						break
 					case "secret":
 						if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
@@ -302,6 +307,7 @@
 						c.dw = obj.width / 16
 						c.dh = obj.height / 16
 						c.shape = Rec(c.x + (c.dw * 8), c.y + (c.dh * 8), -4 + (c.dw * 8), -4 + (c.dh * 8), 5)
+						mapActor[obj.id] <- actor[c].id
 						break
 				}
 			}
@@ -773,13 +779,25 @@
 
 		//Battle Finder
 		if(gvBattleMode && gvSplitScreen && gvPlayer && gvPlayer2) {
-				if(gvSwapScreen) {
-					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y))
-					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2, gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, gvPlayer.x, gvPlayer.y))
+				local target1
+				local target2
+				if(checkActor("SoccerBall")) {
+					foreach(i in actor["SoccerBall"]) {
+						target1 = i
+						target2 = i
+					}
 				}
 				else {
-					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1, gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, gvPlayer2.x, gvPlayer2.y))
-					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, gvPlayer.x, gvPlayer.y))
+					target1 = gvPlayer
+					target2 = gvPlayer2
+				}
+				if(gvSwapScreen) {
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1 + (gvScreenW / 2), gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, target2.x, target2.y))
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2, gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, target1.x, target1.y))
+				}
+				else {
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer.x - camx1, gvPlayer.y - camy1, pointAngle(gvPlayer.x, gvPlayer.y, target2.x, target2.y))
+					drawSprite(sprHerrow, getFrames() / 16, gvPlayer2.x - camx2 + (gvScreenW / 2), gvPlayer2.y - camy2, pointAngle(gvPlayer2.x, gvPlayer2.y, target1.x, target1.y))
 				}
 			}
 

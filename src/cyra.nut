@@ -1571,6 +1571,11 @@ gvCharacters.Pepper <- {
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
+
+
+		//Invincibility
+		if(invincible > 0) invincible--
+		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 	}
 
 	function draw() {
@@ -1621,10 +1626,6 @@ gvCharacters.Pepper <- {
 					damageMult = damageMultL
 					break
 			}
-
-			//Invincibility
-			if(invincible > 0) invincible--
-			if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
 			if(anim != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)

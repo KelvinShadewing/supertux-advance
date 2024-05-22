@@ -74,7 +74,7 @@
 		if(fabs(hspeed) < friction)
 			hspeed = 0.0
 		if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && !nowInWater)) && antigrav <= 0 && !sideRunning)
-			vspeed += (vspeed > 5 && anim != "stomp" ? gravity / vspeed : gravity)
+			vspeed += (vspeed > 5 ? gravity / vspeed : gravity)
 		else if(antigrav > 0)
 			antigrav--
 		if(!placeFree(x, y - 1) && vspeed < 0)
@@ -90,7 +90,7 @@
 			}
 		}
 
-		if(nowInWater || anim == "fly")
+		if(nowInWater)
 			gravity = 0.12
 		else
 			gravity = 0.25
@@ -160,7 +160,7 @@
 					}
 				}
 
-				if(fabs(hspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev)
+				if(fabs(hspeed) >= 4 && (!placeFree(x + hspeed, y)) && y < yprev)
 					vspeed -= 1.0
 
 				//If no step was taken, slow down

@@ -387,6 +387,17 @@ const menuY = 40
 		}
 	},
 	{
+		name = function() {
+			return gvLangObj["level"]["battle-soccer"]
+		}
+		func = function() {
+			startBattle(game.path + "battle-soccer.json")
+		}
+		draw = function() {
+			drawBattlePreview(sprBattleSoccer)
+		}
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menuLeft = false; gvBattleMode = false; cursor = 0; menu = meMain },
 		back = function() { menuLeft = false; gvBattleMode = false; menu = meMain }

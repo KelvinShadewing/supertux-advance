@@ -195,6 +195,21 @@
 	}
 }
 
+::dbgStadium <- function() {
+	for(local i = 0; i < getBGLoop(spriteW(bgRiverCity)); i++) {
+		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
+	}
+
+	if(gvMap != 0) {
+		for(local i = 0; i < getBGLoop(spriteW(bgStadium)); i++)
+			drawSprite(bgStadium, 0, ((-camx / 2.0) % 320) + (i * 320), gvHorizon - camy)
+	}
+	else {
+		for(local i = 0; i < getBGLoop(spriteW(bgStadium)); i++)
+			drawSprite(bgStadium, 0, ((-camx / 2.0) % 320) + (i * 320), screenH() - camy)
+	}
+}
+
 ::dbgOcean <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgOcean)); i++) {
 		for(local j = 0; j < 16; j++) {

@@ -68,6 +68,7 @@ require("src/network.nut")
 require("src/accessibility.nut")
 require("src/timeattack.nut")
 require("src/battle.nut")
+require("src/soccer.nut")
 
 ////////////////
 //    MAIN    //

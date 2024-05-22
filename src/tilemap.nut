@@ -99,6 +99,7 @@
 	solidLayer = null //Tile layer used for collision checking
 	plat = null //List of platforms
 	infinite = false
+	meta = null
 
 	constructor(filename) {
 		tileset = []
@@ -107,6 +108,7 @@
 		geo = []
 		data = {}
 		anim = {}
+		meta = {}
 
 		if(fileExists(filename)) {
 			data = jsonRead(fileRead(filename))

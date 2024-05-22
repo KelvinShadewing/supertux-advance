@@ -534,6 +534,8 @@
 ::defWaterLily <- sprWaterLily
 ::sprPumpkin <- newSprite("res/gfx/pumpkin.png", 16, 16, 0, 0, 8, 8)
 ::defPumpkin <- sprPumpkin
+::sprSoccerBall <- newSprite("res/gfx/soccerball.png", 16, 16, 0, 0, 8, 8)
+::defSoccerBall <- sprSoccerBall
 
 
 
@@ -694,6 +696,8 @@
 ::defStoneBall <- sprStoneBall
 ::sprExplodeTiny <- newSprite("res/gfx/explode-tiny.png", 16, 16, 0, 0, 8, 8)
 ::defExplodeTiny <- sprExplodeTiny
+::sprFireDash <- newSprite("res/gfx/firedash.png", 16, 32, 0, 0, 8, 16)
+::defFireDash <- sprFireDash
 
 
 
@@ -762,6 +766,7 @@
 ::bgDeepForest2 <- loadImage("res/gfx/deep-forest-2.png")
 ::bgSunsetMountain <- loadImage("res/gfx/sunset-mountain.png")
 ::bgDesert <- newSprite("res/gfx/desertbg.png", 480, 1, 0, 0, 0, 0)
+::bgStadium <- newSprite("res/gfx/bg_stadium.png", 320, 280, 0, 0, 0, 280)
 
 
 
@@ -793,6 +798,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 ::sprBattleHenge <- newSprite("res/gfx/previews/battle-henge.png", 128, 52, 0, 0, 64, 26)
 ::sprBattleDesert <- newSprite("res/gfx/previews/battle-desert.png", 128, 102, 0, 0, 64, 51)
 ::sprBattleHole <- newSprite("res/gfx/previews/battle-hole.png", 128, 118, 0, 0, 64, 59)
+::sprBattleSoccer <- newSprite("res/gfx/previews/battle-soccer.png", 128, 20, 0, 0, 64, 10)
 
 
 

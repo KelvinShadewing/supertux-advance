@@ -201,6 +201,9 @@ splash.png
 ### [RustyBox]()
 * Scaled icecube\* - CC-BY-SA 4.0
 
+### [bcsilva](https://opengameart.org/users/bcsilva)
+* bg_stadium.png - CC-BY 3.0
+
 ## Sounds
 
 [SuperTux](https://github.com/supertux/supertux) - Sounds (shoot, jump, hurt, slide, coin, trampoline)
