@@ -631,7 +631,8 @@
 		}
 		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
 			gvPlayer2.vspeed = 0
-			full = false
+			if(coins <= 1)
+				full = false
 			vspeed = -2
 			popSound(sndBump, 0)
 			fireWeapon(BoxHit, x, y - 8, 1, id)
