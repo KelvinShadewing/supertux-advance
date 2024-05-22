@@ -564,6 +564,18 @@
                  "width":16,
                  "x":464,
                  "y":192
+                }, 
+                {
+                 "gid":911,
+                 "height":16,
+                 "id":55,
+                 "name":"aurora-fort",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":352,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -572,7 +584,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":55,
+ "nextobjectid":56,
  "orientation":"orthogonal",
  "properties":[
         {
