@@ -268,12 +268,12 @@
 		//Rolling
 		slippery = (anim == "ball" || onIce())
 		if(slippery) {
-			if((!placeFree(x, y + 8) || !placeFree(x - hspeed * 2, y + 8)) && (fabs(hspeed) < 16)) {
+			if((!placeFree(x, y + 8) || !placeFree(x - hspeed * 2, y + 8)) && (fabs(hspeed) < 12)) {
 				if(placeFree(x + max(4, hspeed), y + 1) && !onPlatform(hspeed)) {
-					hspeed += 0.2
+					hspeed += 0.05
 				}
 				if(placeFree(x + min(-4, hspeed), y + 1) && !onPlatform(hspeed)) {
-					hspeed -= 0.2
+					hspeed -= 0.05
 				}
 			}
 		}
