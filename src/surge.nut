@@ -363,6 +363,8 @@
 		}
 
 		if(hspeed != 0) {
+			wasOnGround = (!placeFree(x, y + 2) || onPlatform())
+
 			if(placeFree(x + hspeed, y)) { //Try to move straight
 				x += hspeed
 				if(wasOnGround) for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(8, abs(hspeed * 3))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
@@ -392,8 +394,6 @@
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
-
-		wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
 		shape = shapeStand
 		if(anim == "ball" || !placeFree(x, y) || anim == "charge")

@@ -385,6 +385,8 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
+				wasOnGround = (!placeFree(x, y + 2) || onPlatform())
+
 				x += hspeed
 				if(wasOnGround) for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(8, abs(hspeed * 3))) && placeFree(x, y + 1) && !nowInWater && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
@@ -410,8 +412,6 @@
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
-
-		wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
 		shape = shapeStand
 		if(anim == "morphIn" || anim == "ball" || anim == "crawl" || (anim == "stand" && an.stand == an.crouch) || !placeFree(x, y))
