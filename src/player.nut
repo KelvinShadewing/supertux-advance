@@ -50,6 +50,7 @@
 	nowInWater = false
 	wasInWater = false
 	onWall = false
+	wasOnGround = false
 
 	hurt = 0 //How much damage has been taken
 	hurtType = "normal"

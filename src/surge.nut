@@ -364,10 +364,10 @@
 
 		if(hspeed != 0) {
 			if(placeFree(x + hspeed, y)) { //Try to move straight
-				for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(6, abs(hspeed))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
+				x += hspeed
+				if(wasOnGround) for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(8, abs(hspeed * 3))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
-				x += hspeed
 			} else {
 				local didstep = false
 				for(local i = 1; i <= 8; i++){ //Try to move up hill
@@ -392,6 +392,8 @@
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
+
+		wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
 		shape = shapeStand
 		if(anim == "ball" || !placeFree(x, y) || anim == "charge")
@@ -762,10 +764,6 @@
 				c.y += 8
 		}
 
-		//Invincibility
-		if(invincible > 0) invincible--
-		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
-
 		inMelee = (anim == "ball" || anim == "jumpR" || anim == "charge")
 
 		//Controls
@@ -1023,6 +1021,10 @@
 		}
 		else hurt = 0
 		if(blinking > 0) blinking--
+
+		//Invincibility
+		if(invincible > 0) invincible--
+		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
 		//Defensive element
 		switch(stats.weapon) {
