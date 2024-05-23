@@ -307,7 +307,7 @@
 						c.dw = obj.width / 16
 						c.dh = obj.height / 16
 						c.shape = Rec(c.x + (c.dw * 8), c.y + (c.dh * 8), -4 + (c.dw * 8), -4 + (c.dh * 8), 5)
-						mapActor[obj.id] <- actor[c].id
+						mapActor[obj.id] <- c.id
 						break
 				}
 			}
