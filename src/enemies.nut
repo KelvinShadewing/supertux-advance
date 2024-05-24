@@ -1833,6 +1833,7 @@
 		shape = Rec(x, y, 6, 6, 0)
 		sf = randInt(8)
 		rev = choose(1, -1)
+		touchDamage = 1 + game.difficulty
 	}
 
 	function run() {

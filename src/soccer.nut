@@ -17,12 +17,15 @@
 	}
 
 	function routine() {
-		if(!freeDown)
+		if(!freeDown2)
 			rspeed = hspeed
 		frame += rspeed / 8
 
 		if(gvPlayer && hitTest(gvPlayer.shape, shape)) {
 			local dir = pointAngle(gvPlayer.x, gvPlayer.y, x, y)
+
+			if(distance2(hspeed, vspeed, gvPlayer.hspeed, gvPlayer.vspeed) > 2)
+				popSound(sndBlurp)
 
 			if(int(hspeed <=> 0) != int(x <=> gvPlayer.x))
 				hspeed = gvPlayer.hspeed
@@ -37,6 +40,9 @@
 
 		if(gvPlayer2 && hitTest(gvPlayer2.shape, shape)) {
 			local dir = pointAngle(gvPlayer2.x, gvPlayer2.y, x, y)
+
+			if(distance2(hspeed, vspeed, gvPlayer2.hspeed, gvPlayer2.vspeed) > 2)
+				popSound(sndBlurp)
 
 			if(int(hspeed <=> 0) != int(x <=> gvPlayer2.x))
 				hspeed = gvPlayer2.hspeed
@@ -125,8 +131,8 @@
 		}
 		else {
 			if(fabs(vspeed) >= 2)
-				popSound(sndNBBounce)
-			vspeed /= -2.0
+				popSound(sndBlurp)
+			vspeed /= -1.5
 			if(fabs(vspeed) < 0.01) vspeed = 0
 			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
@@ -160,6 +166,17 @@
 					hspeed = 0
 			}
 		}
+
+		//Escape when stuck
+		if(hspeed == 0 && vspeed == 0 && !placeFree(x, y)) for(local i = -90; i > -450; i--) {
+			for(local j = 0; j < 64; j++) {
+				if(placeFree(x + lendirX(j, i), y + lendirY(j, i))) {
+					x += lendirX(j, i)
+					y += lendirY(j, i)
+					break
+				}
+			}
+		}
 		
 		shape.setPos(x, y)
 		if(y < -100) y = -100.0
@@ -180,7 +197,7 @@
 		}
 
 		//Movement
-		if((!placeFree(x, y + 1) || onPlatform())) {
+		if((!placeFree(x, y + 2) || onPlatform())) {
 			if(hspeed > 0)
 				hspeed -= friction
 			if(hspeed < 0)

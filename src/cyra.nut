@@ -1502,7 +1502,7 @@ gvCharacters.Pepper <- {
 
 			if(placeFree(x + hspeed, y)) { //Try to move straight
 				x += hspeed
-				if(wasOnGround) for(local i = 0; i < max(8, abs(hspeed * 3)); i++) if(!placeFree(x, y + max(8, abs(hspeed * 3))) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
+				if(wasOnGround) for(local i = 0; i < min(max(8, abs(hspeed * 3)), 12); i++) if(!placeFree(x, y + min(max(8, abs(hspeed * 3)), 12) - i) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 			} else {

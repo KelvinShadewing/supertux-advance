@@ -428,6 +428,8 @@
 		"I guess rolling's as good as sliding down a hill like this. Crazy squirrels...",
 		"rad-0" :
 		"Get all the fish on this hill if you want a totally nautical prize!",
+		"rad-1" :
+		"I hope you're a good swimmer, because the currents here are killer. But I know there's an orb hidden underwater here.",
 		"penny-0-Tux" :
 		"Oh, Tux! I'm so happy to see you! Nolok has kidnapped our friends! Last I heard, they were being taken to his prisons all around the world. I wish I knew why. Please save them, Tux!",
 		"penny-0-Konqi" :
@@ -803,7 +805,10 @@
 		"By the way, building this boat here was a mistake. It's too big for me to get it down the river.",
 
 		"larry-0" :
-		"I'm cooler than a cucumber."
+		"I'm cooler than a cucumber.",
+
+		"loch-clue" :
+		"Have you been to Loch Genesis? It's the smaller lake to the east. I hear the caves there are really something!"
 	},
 
 	"level" : {
@@ -851,6 +856,7 @@
 		"nessland-cliffs" : "Cliff Notes",
 		"nessland-night" : "Black Night Woods",
 		"nessland-secret" : "Loch Genesis",
+		"nessland-xtreme" : "Xtreme Undertow",
 		"battle-test" : "Battlefield",
 		"battle-castle" : "The Old Castle",
 		"battle-henge" : "Longehenge Forest",
