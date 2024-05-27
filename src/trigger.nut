@@ -7,17 +7,54 @@
 	if(myTarget == null)
 		return
 
-	if(h > 0 && myTarget.hspeed < h)
-		myTarget.hspeed += f
+	if(h > 0 && myTarget.ehspeed < h)
+		myTarget.ehspeed += f
 
-	if(h < 0 && myTarget.hspeed > h)
-		myTarget.hspeed -= f
+	if(h < 0 && myTarget.ehspeed > h)
+		myTarget.ehspeed -= f
 
-	if(v > 0 && myTarget.vspeed < v)
-		myTarget.vspeed += f
+	if(v > 0 && myTarget.evspeed < v)
+		myTarget.evspeed += f
 
-	if(v < 0 && myTarget.vspeed > v)
-		myTarget.vspeed -= f
+	if(v < 0 && myTarget.evspeed > v)
+		myTarget.evspeed -= f
+}
+
+::trigStep <- function(h = 0, v = 0) {
+	if(myTarget == null)
+		return
+
+	if(myTarget.placeFree(myTarget.x + h, myTarget.y))
+		myTarget.x += h
+	else for(local i = 1; i <= 4; i++) {
+		if(myTarget.placeFree(myTarget.x + h, myTarget.y + i) && !myTarget.placeFree(myTarget.x + h, myTarget.y - i)) {
+			myTarget.x += h
+			myTarget.y += i
+			break
+		}
+
+		if(myTarget.placeFree(myTarget.x + h, myTarget.y - i) && !myTarget.placeFree(myTarget.x + h, myTarget.y + i)) {
+			myTarget.x += h
+			myTarget.y -= i
+			break
+		}
+	}
+
+	if(myTarget.placeFree(myTarget.x, myTarget.y + v))
+		myTarget.y += v
+	else for(local i = 1; i <= 4; i++) {
+		if(myTarget.placeFree(myTarget.x + i, myTarget.y + v) && !myTarget.placeFree(myTarget.x - i, myTarget.y + v)) {
+			myTarget.x += i
+			myTarget.y += v
+			break
+		}
+
+		if(myTarget.placeFree(myTarget.x - i, myTarget.y + v) && !myTarget.placeFree(myTarget.x + i, myTarget.y + v)) {
+			myTarget.x -= i
+			myTarget.y += v
+			break
+		}
+	}
 }
 
 ::Trigger <- class extends Actor {

@@ -110,6 +110,7 @@
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
+		base.physics()
 
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else if(sideRunning) {

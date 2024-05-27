@@ -8,7 +8,6 @@
 		pennyton = 0
 		fishmines = 0
 	}
-	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
 	startPlay("res/map/aurora-pennyton.json", true, true)
 }
 
@@ -24,7 +23,6 @@
 	gvDoIGT = true
 	game.difficulty = newdif
 	game.path = path
-	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
 	if(fileExists(path + "/text.json")) {
 		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
 		print("Found text.json")

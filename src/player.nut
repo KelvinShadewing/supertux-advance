@@ -21,6 +21,8 @@
 	endSpeed = 0
 	xstart = 0.0
 	ystart = 0.0
+	ehspeed = 0.0 //Environmental hspeed
+	evspeed = 0.0 //Environmental vspeed
 
 	//Ability flags
 	canStomp = false //Mario-like jump attack
@@ -98,6 +100,59 @@
 
 		xstart = _x
 		ystart = _y
+	}
+
+	function physics() {
+		if(ehspeed > 0)
+			ehspeed -= friction
+		if(ehspeed < 0)
+			ehspeed += friction
+		if(fabs(ehspeed) < friction)
+			ehspeed = 0.0
+
+		if(evspeed > 0)
+			evspeed -= friction
+		if(evspeed < 0)
+			evspeed += friction
+		if(fabs(evspeed) < friction)
+			evspeed = 0.0
+
+		if(placeFree(x, y + evspeed)) y += evspeed
+		else {
+			evspeed /= 2
+			if(fabs(evspeed) < 0.01) evspeed = 0
+			if(placeFree(x, y + evspeed)) y += evspeed
+		}
+
+		if(ehspeed != 0) {
+			wasOnGround = (!placeFree(x, y + 2) || onPlatform())
+
+			if(placeFree(x + ehspeed, y)) { //Try to move straight
+				x += ehspeed
+				if(wasOnGround) for(local i = 0; i < min(max(8, abs(ehspeed * 3)), 12); i++) if(!placeFree(x, y + min(max(8, abs(ehspeed * 3)), 12) - i) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(ehspeed) && !onPlatform(ehspeed, -1)) {
+					y += 1
+				}
+			} else {
+				local didstep = false
+				for(local i = 1; i <= 8; i++){ //Try to move up hill
+					if(placeFree(x + ehspeed, y - i)) {
+						x += ehspeed
+						y -= i
+						if(i > 2) {
+							if(ehspeed > 0) ehspeed -= 0.2
+							if(ehspeed < 0) ehspeed += 0.2
+						}
+						didstep = true
+						//if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
+						break
+					}
+				}
+
+				//If no step was taken, slow down
+				if(didstep == false && fabs(ehspeed) >= 1) ehspeed -= (ehspeed / fabs(ehspeed))
+				else if(didstep == false && fabs(ehspeed) < 1) ehspeed = 0
+			}
+		}
 	}
 
 	function run() {

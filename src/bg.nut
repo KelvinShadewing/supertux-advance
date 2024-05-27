@@ -3,6 +3,9 @@
 ::gvHorizon <- 0
 ::gvParallaxMap <- 0
 ::gvLightBG <- false
+::gvWobbleTexture <- newTexture(426, 240)
+textureSetBlendMode(gvWobbleTexture, bm_blend)
+::sprWobbleTexture <- newSpriteFT(gvWobbleTexture, 426, 1, 0, 0, 0, 0)
 
 ::getBGLoop <- function(w) {
 	if(w <= 1)
@@ -211,6 +214,8 @@
 }
 
 ::dbgOcean <- function() {
+	gvLightBG = true
+
 	for(local i = 0; i < getBGLoop(spriteW(bgOcean)); i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOcean, j, ((-camx / 32) % 480) + (i * 480), j * 8)
@@ -220,6 +225,46 @@
 	for(local i = 0; i < getBGLoop(spriteW(bgOcean)); i++) {
 		for(local j = 30; j >= 16; j--) {
 			drawSprite(bgOcean, j, (((-camx) / fabs(31 - j)) * (j / 16.0) % 480) + (i * 480), j * 8)
+		}
+	}
+}
+
+::dbgOceanHorizon <- function() {
+	dbgOcean()
+
+	local v = max(gvHorizon - camy, (gvHorizon - camy) / (gvMap.h / 64.0))
+
+	setDrawColor(0x31599cff)
+	drawRec(0, max(v + 240, 0), gvScreenW, 240, true)
+
+	local tex = getDrawTarget()
+	setDrawTarget(gvWobbleTexture)
+	drawSprite(bgUnderwaterLight, 0, 0, 0)
+	setDrawTarget(tex)
+
+	for(local i = 0; i < getBGLoop(spriteW(bgUnderwater)); i++) {
+		for(local j = 0; j < 240; j++) {
+			drawSprite(sprWobbleTexture, j, ((-camx / 4) % spriteW(bgUnderwater)) - 2 + (i * spriteW(bgUnderwater)) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5) * 2.0, v + j)
+		}
+	}
+}
+
+::dbgOceanHorizonNight <- function() {
+	dbgOceanNight()
+
+	local v = max(gvHorizon - camy, (gvHorizon - camy) / (gvMap.h / 64.0))
+
+	setDrawColor(0x20ff)
+	drawRec(0, max(v + 240, 0), gvScreenW, 240, true)
+
+	local tex = getDrawTarget()
+	setDrawTarget(gvWobbleTexture)
+	drawSprite(bgUnderwater, 0, 0, 0)
+	setDrawTarget(tex)
+
+	for(local i = 0; i < getBGLoop(spriteW(bgUnderwater)); i++) {
+		for(local j = 0; j < 240; j++) {
+			drawSprite(sprWobbleTexture, j, ((-camx / 4) % spriteW(bgUnderwater)) - 2 + (i * spriteW(bgUnderwater)) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5) * 2.0, v + j)
 		}
 	}
 }
@@ -279,8 +324,15 @@
 
 ::dbgUnderwater <- function() {
 	gvLightBG = true
+	local tex = getDrawTarget()
+	setDrawTarget(gvWobbleTexture)
+	drawSprite(bgUnderwater, 0, 0, 0)
+	setDrawTarget(tex)
+
 	for(local i = 0; i < getBGLoop(spriteW(bgUnderwater)); i++) {
-		drawSprite(bgUnderwater, 0, ((-camx / 8) % spriteW(bgUnderwater)) + (i * spriteW(bgUnderwater)), (screenH() / 2) - 120)
+		for(local j = 0; j < 240; j++) {
+			drawSprite(sprWobbleTexture, j, ((-camx / 4) % spriteW(bgUnderwater)) - 2 + (i * spriteW(bgUnderwater)) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5) * 2.0, j)
+		}
 	}
 }
 
