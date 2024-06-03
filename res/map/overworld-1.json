@@ -526,18 +526,6 @@
                  "width":16,
                  "x":112,
                  "y":96
-                }, 
-                {
-                 "gid":908,
-                 "height":16,
-                 "id":66,
-                 "name":"soon",
-                 "rotation":0,
-                 "type":"",
-                 "visible":false,
-                 "width":16,
-                 "x":528,
-                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
