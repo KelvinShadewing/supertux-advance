@@ -2622,6 +2622,8 @@
 	}
 
 	function hurtPlayer(target) {
+		if(target == 0 || target == false || target == null)
+			return
 		if(blinking || squish && !chasing) return
 		target.hurt = touchDamage * target.damageMult[element]
 	}
@@ -4202,6 +4204,8 @@
 	}
 
 	function hurtPlayer(pt) {
+		if(target == 0 || target == false || target == null)
+			return
 		if(held) return
 		if(slideTimer > 0 && hspeed != 0 && routine == ruSlide) return
 
