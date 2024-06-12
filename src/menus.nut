@@ -820,12 +820,12 @@ const menuY = 40
 		name = function() { return gvLangObj["options-menu"]["sound-volume"] },
 		desc = function() {
 			if(getcon("left", "press") && getSoundVolume() > 0) {
-				config.soundVolume -= 4
+				config.soundVolume -= 2
 				setSoundVolume(config.soundVolume)
 				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getSoundVolume() < 128) {
-				config.soundVolume += 4
+				config.soundVolume += 2
 				setSoundVolume(config.soundVolume)
 				popSound(sndMenuMove, 0)
 			}

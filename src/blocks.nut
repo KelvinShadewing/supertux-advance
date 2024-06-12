@@ -800,7 +800,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 
-		shape = Rec(x, y, 8, 9, 0)
+		shape = Rec(x, y, 8, 10, 0, 0, -1)
 		tileSetSolid(x, y, 1)
 
 		if(canint(_arr))
@@ -823,7 +823,7 @@
 
 		if(gvPlayer) {
 			shape.setPos(x, y + 2)
-			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(full){
+			if(hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
@@ -831,17 +831,20 @@
 			}
 
 			shape.setPos(x, y - 1)
-			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed >= 0 && v == 0) if(full){
+			if(hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed >= 0 && v == 0 && full){
 				gvPlayer.vspeed = -4
 				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
 				vspeed = 1
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
+				gvPlayer.canJump = 0
+				gvPlayer.didJump = false
+				gvPlayer.jumpBuffer = 0
 			}
 		}
 
 		if(gvPlayer2) {
 			shape.setPos(x, y + 2)
-			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed < 0 && v == 0) if(full){
+			if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
 				gvPlayer2.vspeed = 1
 				vspeed = -1
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
@@ -849,11 +852,14 @@
 			}
 
 			shape.setPos(x, y - 1)
-			if(hitTest(shape, gvPlayer2.shape)) if(gvPlayer2.vspeed >= 0 && v == 0) if(full){
+			if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed >= 0 && v == 0 && full){
 				gvPlayer2.vspeed = -4
 				if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
 				vspeed = 1
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
+				gvPlayer2.canJump = 0
+				gvPlayer2.didJump = false
+				gvPlayer2.jumpBuffer = 0
 			}
 		}
 
