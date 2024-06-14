@@ -202,8 +202,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":160,
-                 "x":96,
+                 "width":112,
+                 "x":144,
                  "y":16
                 }, 
                 {
@@ -227,10 +227,21 @@
                  "width":80,
                  "x":256,
                  "y":80
+                }, 
+                {
+                 "height":96,
+                 "id":67,
+                 "name":"gvLightTarget = 0x80c0e0ff",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":96,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -519,10 +530,10 @@
                  "gid":908,
                  "height":16,
                  "id":65,
-                 "name":"soon",
+                 "name":"nessland-hive",
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":16,
                  "x":112,
                  "y":96
@@ -534,7 +545,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":67,
+ "nextobjectid":68,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -262,10 +262,14 @@
 				c.hspeed = randFloat(0.5) - 0.25
 			}
 		}
+		shape.w = r * 8
+		shape.h = r * 8
 	}
 
 	function draw() {
 		if(chainpos.len() > 0) for(local i = 0; i < r; i++) {
+			if(!(i in chainpos))
+				break
 			drawSprite(sprFireball, i + getFrames() / 4, chainpos[i][0] - camx, chainpos[i][1] - camy)
 			drawLight(sprLightFire, 0, chainpos[i][0] - camx, chainpos[i][1] - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 		}
