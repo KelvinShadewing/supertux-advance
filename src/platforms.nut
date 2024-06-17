@@ -244,7 +244,7 @@
 		if(!isOnScreen()) return
 
 		if(r > 0) for(local i = 0; i < r; i++) {
-			hb.setPos(x + (i * 8) * cos((2 * pi) + (a / 60.0 - i * s / 45.0)), y + (i * 8) * sin((2 * pi) + (a / 60.0 - i * s / 45.0)))
+			hb.setPos(x + lendirX(i * 8, a), y + lendirY(i * 8, a))
 			chainpos.push([hb.x, hb.y])
 
 			if((i - 1) % 2 == 0) {
@@ -262,8 +262,8 @@
 				c.hspeed = randFloat(0.5) - 0.25
 			}
 		}
-		shape.w = r * 8
-		shape.h = r * 8
+		shape.w = max(1, r * 8)
+		shape.h = max(1, r * 8)
 	}
 
 	function draw() {

@@ -3,21 +3,36 @@
 	if(target.x > x && target.hspeed > -1 && getcon("down", "hold", false, target.playerNum)) target.hspeed -= 0.25
 }
 
-::trigCurrent <- function(h = 0, v = 0, f = 0.5) {
+::trigCurrent <- function(h = 0, v = 0, f = 0.5, eforce = false) {
 	if(myTarget == null)
 		return
 
-	if(h > 0 && myTarget.ehspeed < h)
-		myTarget.ehspeed += f
+	if(eforce){
+		if(h > 0 && myTarget.ehspeed < h)
+			myTarget.ehspeed += f
 
-	if(h < 0 && myTarget.ehspeed > h)
-		myTarget.ehspeed -= f
+		if(h < 0 && myTarget.ehspeed > h)
+			myTarget.ehspeed -= f
 
-	if(v > 0 && myTarget.evspeed < v)
-		myTarget.evspeed += f
+		if(v > 0 && myTarget.evspeed < v)
+			myTarget.evspeed += f
 
-	if(v < 0 && myTarget.evspeed > v)
-		myTarget.evspeed -= f
+		if(v < 0 && myTarget.evspeed > v)
+			myTarget.evspeed -= f
+	}
+	else {
+		if(h > 0 && myTarget.hspeed < h)
+			myTarget.hspeed += f
+
+		if(h < 0 && myTarget.hspeed > h)
+			myTarget.hspeed -= f
+
+		if(v > 0 && myTarget.vspeed < v)
+			myTarget.vspeed += f
+
+		if(v < 0 && myTarget.vspeed > v)
+			myTarget.vspeed -= f
+	}
 }
 
 ::trigStep <- function(h = 0, v = 0) {

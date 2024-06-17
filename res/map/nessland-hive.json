@@ -756,7 +756,7 @@
                  "gid":263,
                  "height":16,
                  "id":26,
-                 "name":"FireChain,8,0,0.5",
+                 "name":"FireChain,8,0,-0.5",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -780,7 +780,7 @@
                  "gid":263,
                  "height":16,
                  "id":28,
-                 "name":"FireChain,8,180,0.5",
+                 "name":"FireChain,8,180,-0.5",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -823,7 +823,7 @@
         {
          "name":"run",
          "type":"string",
-         "value":"if(getFrames() % 4 == 0) {\n\tif(getFrames() \/ 360 % 2 == 0) {\n\t\tif(actor[mapActor[26]].r < 32) actor[mapActor[26]].r++\n\t\tif(actor[mapActor[28]].r < 32) actor[mapActor[28]].r++\n\t\tif(actor[mapActor[27]].r > 2) actor[mapActor[27]].r--\n\t\tif(actor[mapActor[29]].r > 2) actor[mapActor[29]].r--\n\t}\n\telse {\n\t\tif(actor[mapActor[27]].r < 32) actor[mapActor[27]].r++\n\t\tif(actor[mapActor[29]].r < 32) actor[mapActor[29]].r++\n\t\tif(actor[mapActor[26]].r > 2) actor[mapActor[26]].r--\n\t\tif(actor[mapActor[28]].r > 2) actor[mapActor[28]].r--\n\t}\n}"
+         "value":"if(getFrames() % 4 == 0) {\n\tif(getFrames() \/ 720 % 2 == 0) {\n\t\tif(actor[mapActor[26]].r < 32) actor[mapActor[26]].r++\n\t\tif(actor[mapActor[28]].r < 32) actor[mapActor[28]].r++\n\t\tif(actor[mapActor[27]].r > -32) actor[mapActor[27]].r--\n\t\tif(actor[mapActor[29]].r > -32) actor[mapActor[29]].r--\n\t}\n\telse {\n\t\tif(actor[mapActor[27]].r < 32) actor[mapActor[27]].r++\n\t\tif(actor[mapActor[29]].r < 32) actor[mapActor[29]].r++\n\t\tif(actor[mapActor[26]].r > -32) actor[mapActor[26]].r--\n\t\tif(actor[mapActor[28]].r > -32) actor[mapActor[28]].r--\n\t}\n}\n\nactor[mapActor[26]].s = sin(getFrames() \/ 360.0)\nactor[mapActor[28]].s = sin(getFrames() \/ 360.0)\nactor[mapActor[27]].s = sin(getFrames() \/ 360.0)\nactor[mapActor[29]].s = sin(getFrames() \/ 360.0)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

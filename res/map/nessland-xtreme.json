@@ -1049,7 +1049,7 @@
                 {
                  "height":1568,
                  "id":37,
-                 "name":"trigCurrent(0, 3, 0.2)",
+                 "name":"trigCurrent(0, 3, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1060,7 +1060,7 @@
                 {
                  "height":320,
                  "id":38,
-                 "name":"trigCurrent(-4)",
+                 "name":"trigCurrent(-4, 0, 0.5, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1071,7 +1071,7 @@
                 {
                  "height":160,
                  "id":39,
-                 "name":"trigCurrent(-2, 0, 0.2)",
+                 "name":"trigCurrent(-2, 0, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1082,7 +1082,7 @@
                 {
                  "height":384,
                  "id":40,
-                 "name":"trigCurrent(-3, 0, 0.2)",
+                 "name":"trigCurrent(-3, 0, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1093,7 +1093,7 @@
                 {
                  "height":192,
                  "id":41,
-                 "name":"trigCurrent(3, 0, 0.2)",
+                 "name":"trigCurrent(3, 0, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1104,7 +1104,7 @@
                 {
                  "height":816,
                  "id":42,
-                 "name":"trigCurrent(0, -3, 0.2)",
+                 "name":"trigCurrent(0, -3, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1115,7 +1115,7 @@
                 {
                  "height":320,
                  "id":43,
-                 "name":"trigCurrent(0, 3, 0.2)",
+                 "name":"trigCurrent(0, 3, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1126,7 +1126,7 @@
                 {
                  "height":352,
                  "id":44,
-                 "name":"trigCurrent(0, -3, 0.2)",
+                 "name":"trigCurrent(0, -3, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1137,7 +1137,7 @@
                 {
                  "height":176,
                  "id":77,
-                 "name":"trigCurrent(3, 0, 0.2)",
+                 "name":"trigCurrent(3, 0, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1148,7 +1148,7 @@
                 {
                  "height":464,
                  "id":129,
-                 "name":"trigCurrent(2, 0, 0.2)",
+                 "name":"trigCurrent(2, 0, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1159,7 +1159,7 @@
                 {
                  "height":448,
                  "id":130,
-                 "name":"trigCurrent(0, -2, 0.2)",
+                 "name":"trigCurrent(0, -2, 0.2, true)",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1188,6 +1188,7 @@
          "color":"#0055ff",
          "draworder":"topdown",
          "id":4,
+         "locked":true,
          "name":"water",
          "objects":[
                 {
