@@ -44,10 +44,13 @@ const menuY = 40
 			drawSprite(font2, 110, (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			drawSprite(font2, 115, (menuLeft ? menuPad : screenW() / 2) + (menuLeft ? menu[i].name().len() * 8 : menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			//Display option description
-			if(menu[i].rawin("desc") && typeof menu[i].desc() == "string" && menu[i].desc() != "" && menu[i].desc() != null){
+			local d = ""
+			if(menu[i].rawin("desc"))
+				d = menu[i].desc()
+			if(typeof d == "string" && d != "" && d != null){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				drawText(font, (screenW() / 2) - (d.len() * 3), screenH() - fontH - 8, d)
 			}
 
 			if("draw" in menu[i])
@@ -74,10 +77,13 @@ const menuY = 40
 			currFont = font2I
 			drawSprite(font2, 110, (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4) - 16, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
 			drawSprite(font2, 115, (menuLeft ? menuPad : screenW() / 2) + (menuLeft ? menu[i].name().len() * 8 : menu[i].name().len() * 4) + 7, screenH() - menuY - (menu.len() * fontH) + (i * fontH))
-			if(menu[i].rawin("desc") && typeof menu[i].desc() == "string" && menu[i].desc() != "" && menu[i].desc() != null){
+			local d = ""
+			if(menu[i].rawin("desc"))
+				d = menu[i].desc()
+			if(typeof d == "string" && d != "" && d != null){
 				setDrawColor(0x00000080)
 				drawRec(0, screenH() - fontH - 10, screenW(), 12, true)
-				drawText(font, (screenW() / 2) - (menu[i].desc().len() * 3), screenH() - fontH - 8, menu[i].desc())
+				drawText(font, (screenW() / 2) - (d.len() * 3), screenH() - fontH - 8, d)
 			}
 
 			if("draw" in menu[i])
@@ -820,12 +826,12 @@ const menuY = 40
 		name = function() { return gvLangObj["options-menu"]["sound-volume"] },
 		desc = function() {
 			if(getcon("left", "press") && getSoundVolume() > 0) {
-				config.soundVolume -= 2
+				config.soundVolume -= 8
 				setSoundVolume(config.soundVolume)
 				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getSoundVolume() < 128) {
-				config.soundVolume += 2
+				config.soundVolume += 8
 				setSoundVolume(config.soundVolume)
 				popSound(sndMenuMove, 0)
 			}
@@ -844,12 +850,12 @@ const menuY = 40
 		name = function() { return gvLangObj["options-menu"]["music-volume"] },
 		desc = function() {
 			if(getcon("left", "press") && getMusicVolume() > 0) {
-				config.musicVolume -= 4
+				config.musicVolume -= 8
 				setMusicVolume(config.musicVolume)
 				popSound(sndMenuMove, 0)
 			}
 			if(getcon("right", "press") && getMusicVolume() < 128) {
-				config.musicVolume += 4
+				config.musicVolume += 8
 				setMusicVolume(config.musicVolume)
 				popSound(sndMenuMove, 0)
 			}
