@@ -99,7 +99,7 @@
 			abilities = {}
 		}
 		state = {}
-		hasSulphur = 0
+		hasPidgin = 0
 	}
 }
 

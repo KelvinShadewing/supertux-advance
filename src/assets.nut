@@ -262,8 +262,8 @@
 ::defBrickChunks <- sprBrickChunks
 ::sprBirdCage <- newSprite("res/gfx/birdcage.png", 32, 48, 0, 0, 16, 32)
 ::defBirdCage <- sprBirdCage
-::sprSulphurNimbus <- newSprite("res/gfx/sulphur-nimbus.png", 34, 34, 0, 0, 17, 19)
-::defSulphurNimbus <- sprSulphurNimbus
+::sprAttackPidgin <- newSprite("res/gfx/attack-pidgin.png", 21, 28, 0, 0, 10, 14)
+::defAttackPidgin <- sprAttackPidgin
 ::sprFlipBlock <- newSprite("res/gfx/flip-block.png", 16, 16, 0, 0, 0, 0)
 ::defFlipBlock <- sprFlipBlock
 

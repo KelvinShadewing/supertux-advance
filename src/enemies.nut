@@ -6621,7 +6621,7 @@
 							popSound(sndGulp)
 				}
 
-				if(checkActor("SulphurNimbus")) foreach(i in actor["SulphurNimbus"]) if(hitTest(shape, i.shape)){
+				if(checkActor("AttackPidgin")) foreach(i in actor["AttackPidgin"]) if(hitTest(shape, i.shape)){
 					deleteActor(i.id)
 						anim = "close"
 						frame = 0.0

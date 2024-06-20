@@ -230,18 +230,18 @@
 	}
 
 	//Spawn Sulphur
-	if(game.hasSulphur) {
-		if("SulphurNimbus" in actor) {
+	if(game.hasPidgin) {
+		if("AttackPidgin" in actor) {
 			local sulphurList = []
-			foreach(i in actor["SulphurNimbus"])
+			foreach(i in actor["AttackPidgin"])
 				sulphurList.push(i.id)
 			for(local j = 0; j < sulphurList.len(); j++)
 				deleteActor(sulphurList[j])
 		}
 
 		if(gvPlayer) {
-			local c = actor[newActor(SulphurNimbus, gvPlayer.x, gvPlayer.y - 32)]
-			c.freed = game.hasSulphur
+			local c = actor[newActor(AttackPidgin, gvPlayer.x, gvPlayer.y - 32)]
+			c.freed = game.hasPidgin
 		}
 	}
 
@@ -475,11 +475,11 @@
 	}
 
 	//Draw Sulphur
-	if(game.hasSulphur) {
+	if(game.hasPidgin) {
 		if(game.playerChar2 != 0 && game.playerChar2 != "")
-			drawSprite(sprSulphurNimbus, SulphurNimbus.an["fly"][wrap(getFrames() / 4, 0, 7)], (game.hasSulphur == 1 ? charx : -charx) + gvScreenW / 2, gvScreenH / 2 - 32)
+			drawSprite(sprAttackPidgin, AttackPidgin.an["fly"][wrap(getFrames() / 4, 0, 7)], (game.hasPidgin == 1 ? charx : -charx) + gvScreenW / 2, gvScreenH / 2 - 32)
 		else
-			drawSprite(sprSulphurNimbus, SulphurNimbus.an["fly"][wrap(getFrames() / 4, 0, 7)], gvScreenW / 2, gvScreenH / 2 - 32)
+			drawSprite(sprAttackPidgin, AttackPidgin.an["fly"][wrap(getFrames() / 4, 0, 7)], gvScreenW / 2, gvScreenH / 2 - 32)
 	}
 
 	local author = gvLangObj["stats"]["author"] + ": " + gvMap.author
@@ -1919,7 +1919,7 @@
 			break
 
 		case 108:
-			c = newActor(SulphurNimbus, i.x + 8, i.y - 16, i.name)
+			c = newActor(AttackPidgin, i.x + 8, i.y - 16, i.name)
 			break
 
 		case 109:

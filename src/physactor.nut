@@ -477,6 +477,7 @@
 						case 38: //One Way
 						case 50:
 						case 51:
+						case 82:
 							local nps
 							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
 							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
@@ -1284,6 +1285,7 @@
 				case 38:
 				case 50:
 				case 51:
+				case 82:
 					gvMap.shape.setPos(x, y + 4)
 					gvMap.shape.kind = 0
 					gvMap.shape.w = 8.0

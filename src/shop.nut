@@ -228,7 +228,7 @@
 	}
 
 	function run() {
-		if(game.hasSulphur) soldout = true
+		if(game.hasPidgin) soldout = true
 		price = 100 + (50 * game.difficulty)
 
 		if(v > 0) {
@@ -245,8 +245,8 @@
 				vspeed = -1
 				playSound(sndHeal, 0)
 				game.coins -= price
-				game.hasSulphur = 1
-				local c = actor[newActor(SulphurNimbus, 0, y)]
+				game.hasPidgin = 1
+				local c = actor[newActor(AttackPidgin, 0, y)]
 				c.freed = 1
 			}
 		}
@@ -257,8 +257,8 @@
 				vspeed = -1
 				playSound(sndHeal, 0)
 				game.coins -= price
-				game.hasSulphur = 2
-				local c = actor[newActor(SulphurNimbus, 0, y)]
+				game.hasPidgin = 2
+				local c = actor[newActor(AttackPidgin, 0, y)]
 				c.freed = 2
 			}
 		}

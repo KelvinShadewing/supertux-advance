@@ -1244,7 +1244,7 @@
 	function _typeof() { return "WaterLily" }
 }
 
-::SulphurNimbus <- class extends PhysAct {
+::AttackPidgin <- class extends PhysAct {
 	phantom = true
 	target = 0
 	freed = 0
@@ -1358,9 +1358,9 @@
 				flip = (target.x > x ? 0 : 1)
 
 			if(levelEndRunner)
-				game.hasSulphur = freed
+				game.hasPidgin = freed
 			if(!gvPlayer && !gvPlayer2)
-				game.hasSulphur = 0
+				game.hasPidgin = 0
 		}
 		else {
 			anim = "stand"
@@ -1386,10 +1386,10 @@
 	}
 
 	function draw() {
-		drawSpriteZ(4, sprSulphurNimbus, an[anim][wrap(getFrames() / 4, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+		drawSpriteZ(4, sprAttackPidgin, an[anim][wrap(getFrames() / 4, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
 		if(!freed)
 			drawSpriteZ(4, sprBirdCage, 0, x - camx, y - camy)
 	}
 
-	function _typeof() { return "SulphurNimbus" }
+	function _typeof() { return "AttackPidgin" }
 }

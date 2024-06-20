@@ -325,7 +325,7 @@
 		//Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
-			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50 || (wl.data[tile] - gvMap.solidfid == 79 && advancedClimbing)) {
+			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50 || (wl.data[tile] - gvMap.solidfid == 79 && advancedClimbing) || (wl.data[tile] - gvMap.solidfid == 81 && advancedClimbing) || (wl.data[tile] - gvMap.solidfid == 82 && advancedClimbing)) {
 				gvMap.shape.setPos((cx * 16) + 8, (cy * 16) + 8)
 				gvMap.shape.kind = 0
 				gvMap.shape.w = 4.0
