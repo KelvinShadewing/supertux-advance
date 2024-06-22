@@ -1728,7 +1728,7 @@
 			c.exElement = nutType
 			c.exPower = _power
 			stats.energy -= _power
-			firetime = 90
+			firetime = max(firetime, 90 * _power)
 		}
 
 		if(_hand == 0)
@@ -1778,7 +1778,7 @@
 				}
 			}
 
-			if(game.check == false || game.difficulty > 0) {
+			if(game.check == false) {
 				if(playerNum == 1) game.ps.weapon = "normal"
 				if(playerNum == 2) game.ps2.weapon = "normal"
 			}

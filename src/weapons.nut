@@ -608,7 +608,7 @@
 	function run() {
 		frame += 0.2
 
-		if(frame >= 1 && !didbloom) {
+		if(frame >= 2 && !didbloom) {
 			didbloom = true
 			local c = null
 			c = fireWeapon(FireballK, x - 6, y - 6, alignment, owner)
@@ -1181,7 +1181,7 @@
 	function run() {
 		frame += 0.2
 
-		if(frame >= 1 && !didbloom) {
+		if(frame >= 2 && !didbloom) {
 			didbloom = true
 			local c = fireWeapon(Shockball, x + 6, y + 6, alignment, owner)
 					c.power = 2
@@ -1546,7 +1546,7 @@
 	function run() {
 		frame += 0.1
 
-		if(frame >= 0.5 && !didbloom) {
+		if(frame >= 2 && !didbloom) {
 			didbloom = true
 			local c = fireWeapon(CrystalBullet, x - 6, y - 6, alignment, owner)
 			c.power = 4
@@ -1799,7 +1799,7 @@
 					c.power = 4
 					break
 				case "water":
-					c = fireWeapon(ExplodeW2, x, y, alignment, owner)
+					c = fireWeapon(ExplodeW3, x, y, alignment, owner)
 					c.power = 4
 					break
 				
@@ -2151,7 +2151,7 @@
 	function run() {
 		frame += 0.2
 
-		if(frame >= 1.0 && !didbloom) {
+		if(frame >= 2 && !didbloom) {
 			didbloom = true
 			local c = fireWeapon(StormTornado, x + 8, y - 4, alignment, owner)
 			c.direction = 22.5
@@ -2487,7 +2487,7 @@
 	function run() {
 		frame += 0.2
 
-		if(!didbloom && frame >= 1.0) {
+		if(!didbloom && frame >= 2) {
 			didbloom = true
 			local c = fireWeapon(WaterBomb, x - 6, y - 6, alignment, owner)
 			c.power = 4
