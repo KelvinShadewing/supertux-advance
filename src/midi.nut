@@ -1253,7 +1253,7 @@
 				}
 			} else an["fall"] = an["fallN"]
 
-			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge") jumpBuffer = 8
+			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && !getcon("down", "hold", true, playerNum)) jumpBuffer = 8
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(!getcon("jump", "hold", true, playerNum) && (vspeed < 0 || anim == "fall") && didJump) {
@@ -1386,7 +1386,9 @@
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid") {
+			if(getcon("right", "hold", true, playerNum)
+			&& hspeed < mspeed
+			&& anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid") {
 				if(hspeed >= 2) {
 					if(onIce(x, y + 1)) hspeed += accel * 0.2
 					else hspeed += accel * 0.4
@@ -1396,7 +1398,9 @@
 				flip = 0
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid") {
+			if(getcon("left", "hold", true, playerNum)
+			&& hspeed > -mspeed
+			&& anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid") {
 				if(hspeed <= -2) {
 					if(onIce(x, y + 1)) hspeed -= accel * 0.2
 					else hspeed -= accel * 0.4
@@ -1424,7 +1428,7 @@
 				}
 			}
 
-			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown) jumpBuffer = 8
+			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && !getcon("down", "hold", true, playerNum)) jumpBuffer = 8
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(!getcon("jump", "hold", true, playerNum) && (vspeed < 0 || anim == "fall") && didJump)

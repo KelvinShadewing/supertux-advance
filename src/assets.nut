@@ -768,6 +768,7 @@
 ::bgSunsetMountain <- loadImage("res/gfx/sunset-mountain.png")
 ::bgDesert <- newSprite("res/gfx/desertbg.png", 480, 1, 0, 0, 0, 0)
 ::bgStadium <- newSprite("res/gfx/bg_stadium.png", 320, 280, 0, 0, 0, 280)
+::bgHive <- newSprite("res/gfx/bg-beehive.png", 258, 172, 0, 0, 0, 0)
 
 
 

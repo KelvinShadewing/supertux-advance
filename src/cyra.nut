@@ -870,7 +870,7 @@ gvCharacters.Pepper <- {
 					an["fall"] = an["fallN"]
 				}
 
-				if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown) jumpBuffer = 8
+				if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && !getcon("down", "hold", true, playerNum)) jumpBuffer = 8
 				if(jumpBuffer > 0) jumpBuffer--
 
 				if(getcon("jump", "release", true, playerNum) && vspeed < 0 && didJump)

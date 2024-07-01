@@ -6014,6 +6014,10 @@
 				if(placeFree(x, y + vspeed)) y += vspeed
 				flip = (hspeed < 0).tointeger()
 			}
+
+			if(inWater(x, y + 16) && vspeed > -4)
+				vspeed -= 0.2
+
 			shape.setPos(x, y)
 		}
 	}

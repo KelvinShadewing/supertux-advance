@@ -372,3 +372,12 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 			drawSprite(bgDesert, j, (i * 480) - 8 - (camx / 8 % 480) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5), j)
 	}
 }
+
+::dbgHive <- function() {
+	gvLightBG = true
+	for(local i = 0; i < getBGLoop(spriteW(bgHive)); i++) {
+		for(local j = 0; j < 6; j++) {
+			drawSprite(bgHive, 0, ((-camx / 2) % 258) + (i * 258), ((-camy / 2) % 172) + (j * 172))
+		}
+	}
+}

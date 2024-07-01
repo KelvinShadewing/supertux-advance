@@ -919,7 +919,7 @@
 			}
 
 			//Jumping
-			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge") jumpBuffer = 8
+			if(getcon("jump", "press", true, playerNum) && jumpBuffer <= 0 && freeDown && anim != "ledge" && !getcon("down", "hold", true, playerNum)) jumpBuffer = 8
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
