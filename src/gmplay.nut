@@ -1759,6 +1759,7 @@
 
 		case 70:
 			c = newActor(Herring, i.x + 8, i.y - 8)
+			game.maxRedCoins++
 			break
 
 		case 71:

@@ -241,3 +241,59 @@
 ::NPCv2 <- class extends PhysAct {
 
 }
+
+//////////////////
+// SPECIAL NPCS //
+//////////////////
+
+::RallyPoint <- class extends PhysAct {
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr = null)
+		shape = Cir(x, y, 8)
+		if(canint(_arr))
+			shape.r = float(_arr)
+	}
+
+	function _typeof() { return "RallyPoint" }
+}
+
+::BeeHostage <- class extends PathCrawler {
+	rx = 0
+	ry = 0
+	freed = false
+	anim = "stand"
+	an = {
+		stand = [0]
+		fly = [1, 2]
+	}
+	flip = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+	}
+
+	function run() {
+		base.run()
+		if(hspeed > 0)
+			flip = 0
+		if(hspeed < 0)
+			flip = 1
+	}
+
+	function routine() {
+		if(rx == 0 && ry == 0 && checkActor("RallyPoint"))
+			foreach(i in actor["RallyPoint"]) {
+
+			}
+	}
+
+	function pathEnd() {
+		moving = false
+	}
+
+	function draw() {
+		drawSpriteZ(4, sprBeeHostage, an[anim][wrap(getFrames() / 4, 0, an[anim].len() - 1)], x - camx, y - camy, 0, flip)
+		if(!freed)
+			drawSpriteZ(4, sprBirdCage, 0, x - camx, y - camy)
+	}
+}

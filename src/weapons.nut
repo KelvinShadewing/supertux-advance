@@ -1980,7 +1980,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		shape = Rec(x, y, 3, 3, 0)
+		shape = Rec(x, y, 6, 6, 0)
 	}
 
 	function physics() {

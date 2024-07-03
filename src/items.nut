@@ -305,7 +305,6 @@
 	{
 	base.constructor(_x, _y)
 		frame = randFloat(4)
-		game.maxRedCoins++
 	}
 
 	function run()

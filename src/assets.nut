@@ -224,6 +224,8 @@
 ::defIceBlock <- sprIceBlock
 ::sprFishBlock <- newSprite("res/gfx/herringblock.png", 16, 16, 0, 0, 0, 0)
 ::defFishBlock <- sprFishBlock
+::sprHoneyLock <- newSprite("res/gfx/honey-lock.png", 16, 16, 0, 0, 0, 0)
+::defHoneyLock <- sprHoneyLock
 ::sprWoodChunks <- newSprite("res/gfx/woodchunks.png", 8, 8, 0, 0, 4, 4)
 ::defWoodChunks <- sprWoodChunks
 ::sprBoxInfo <- newSprite("res/gfx/infobox.png", 16, 16, 0, 0, 0, 0)
@@ -266,6 +268,8 @@
 ::defAttackPidgin <- sprAttackPidgin
 ::sprFlipBlock <- newSprite("res/gfx/flip-block.png", 16, 16, 0, 0, 0, 0)
 ::defFlipBlock <- sprFlipBlock
+::sprBeeHostage <- newSprite("res/gfx/bee-hostage.png", 20, 27, 0, 0, 10, 14)
+::defBeeHostage <- sprBeeHostage
 
 
 
@@ -498,6 +502,8 @@
 ::defHerring <- sprHerring
 ::sprRedHerring <- newSprite("res/gfx/redherring.png", 16, 16, 0, 0, 8, 8)
 ::defRedHerring <- sprRedHerring
+::sprHoneyCrystal <- newSprite("res/gfx/honey-crystal.png", 16, 16, 0, 0, 8, 8)
+::defHoneyCrystal <- sprHoneyCrystal
 ::sprFlowerFire <- newSprite("res/gfx/fireflower.png", 16, 16, 0, 0, 8, 8)
 ::defFlowerFire <- sprFlowerFire
 ::sprFlowerIce <- newSprite("res/gfx/iceflower.png", 16, 16, 0, 0, 8, 8)

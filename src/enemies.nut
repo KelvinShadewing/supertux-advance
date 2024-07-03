@@ -1776,6 +1776,9 @@
 				}
 			}
 
+			if(!placeFree(x, y + 1))
+				vspeed = -fabs(vspeed)
+
 
 			x += hspeed
 			y += vspeed

@@ -80,7 +80,94 @@
 		return inDistance2(x, y, _x, _y, _r)
 	}
 
+	function hitLine(x1, y1, x2, y2) {
+		// Vector AB
+		local ABx = x2 - x1
+		local ABy = y2 - y1
+		
+		// Vector AC
+		local ACx = x - x1
+		local ACy = y - y1
+		
+		// Compute the dot product AB ⋅ AC
+		local dotProduct = ABx * ACx + ABy * ACy
+		
+		// Compute the squared length of AB
+		local lenABsq = ABx * ABx + ABy * ABy
+		
+		// Parameter along AB where closest to C
+		local parameter = dotProduct / lenABsq
+		
+		// Clamp parameter to lie between 0 and 1
+		parameter = math.min(math.max(parameter, 0), 1)
+		
+		// Closest point on the line segment to the circle center
+		local closestX = x1 + parameter * ABx
+		local closestY = y1 + parameter * ABy
+		
+		// Calculate distance squared between closest point and circle center
+		local distanceSq = (x - closestX) * (x - closestX) + (y - closestY) * (y - closestY)
+		
+		// Check if the distance squared is less than or equal to the circle's radius squared
+		return distanceSq <= r * r
+	}
+
 	function _typeof() { return "Cir" }
+}
+
+::Poly <- class {
+	x = 0
+	y = 0
+	vertices = null
+	
+	// Constructor
+	constructor(_x, _y, _vertices) {
+		x = _x
+		y = _y
+		vertices = _vertices
+	}
+	
+	function pointIn(px, py) {
+		local intersections = 0
+		print(typeof vertices)
+		local numVertices = vertices.len()
+
+		if(numVertices == 0)
+			return false
+
+		if(numVertices == 1)
+			return (vertices[0][0] + x == px && vertices [0][1] + y == py)
+		
+		// Iterate through each edge of the polygon
+		for (local i = 0; i < numVertices; i++) {
+			local x1 = vertices[i][0] + x
+			local y1 = vertices[i][1] + y
+			local x2 = vertices[(i + 1) % numVertices][0] + x
+			local y2 = vertices[(i + 1) % numVertices][1] + y
+			
+			// Check if the point is exactly on an edge
+			if ((py == y1 && py == y2) &&
+				(px > min(x1, x2) && px < max(x1, x2))) {
+				return true
+			}
+			
+			// Check for intersection with horizontal ray from point
+			if ((py > min(y1, y2)) && (py <= max(y1, y2)) &&
+				(px <= max(x1, x2)) &&
+				(y1 != y2)) {
+				
+				local xIntersect = (py - y1) * (x2 - x1) / (y2 - y1) + x1
+				if (x1 == x2 || px <= xIntersect) {
+					intersections++
+				}
+			}
+		}
+		
+		// If intersections are odd, point is inside the polygon
+		return (intersections % 2) != 0
+	}
+
+	function _typeof() { return "Poly" }
 }
 
 ::hitTest <- function(a, b) {
@@ -262,20 +349,32 @@
 		case "Cir": //Circle
 			switch(typeof b) {
 				case "Rec":
-					local hx = a.x
-					local hy = a.y
-
-					//Find closest point
-					if(a.x < b.x - b.w) hx = b.x - b.w
-					if(a.x > b.x + b.w) hx = b.x + b.w
-
-					if(a.y < b.y - b.h) hy = b.y - b.h
-					if(a.y > b.y + b.h) hy = b.y + b.h
-
-					//Check distance
-					if(inDistance2(a.x, a.y, hx, hy, a.r)) return true
+					return hitTest(b, a)
 					break
+
 					//Still need to check for collisions with slopes and liquid
+
+				case "Poly":
+					// Check if any vertex of the polygon is inside the circle
+					for (local i = 0; i < b.vertices.len(); i++) {
+						local vertex = b.vertices[i]
+						if (a.pointIn(vertex[0], vertex[1])) {
+							return true
+						}
+					}
+					
+					// Check if the circle's center is inside the polygon
+					if (b.pointIn(a.x, a.y)) {
+						return true
+					}
+					
+					// Check for edge intersections
+					
+					return false
+					break
+
+				case "Cir":
+					return inDistance2(a.x, a.y, b.x, b.y, a.r + b.r)
 
 				default:
 					return false

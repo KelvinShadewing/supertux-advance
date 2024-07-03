@@ -1477,6 +1477,7 @@
 				}
 			}
 		}
+		else routine()
 	}
 
 	//Dummy functions

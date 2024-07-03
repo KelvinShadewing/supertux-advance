@@ -42,6 +42,7 @@
 	homingTarget = null
 	shockEffect = null
 	sideRunning = false
+	tricking = false
 
 	an = {
 		stand = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 6, 6, 6, 6, 6, 6, 6, 6, 48, 49, 48, 49, 48, 49, 48, 49, 50, 51, 51, 51, 51, 50, 48]
