@@ -381,7 +381,7 @@
 	gvPlayer2 = false
 	deleteAllActors()
 	gvIGT = 0
-	autocon = clone(defAutocon)
+	autocon = deepClone(defAutocon)
 	gfxReset()
 	gvLightScreen = gvLightScreen1
 	gvSplitScreen = false
@@ -534,7 +534,7 @@
 	print("End level code")
 
 	//Reset auto/locked controls
-	autocon = clone(defAutocon)
+	autocon = deepClone(defAutocon)
 
 	update()
 }

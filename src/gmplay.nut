@@ -76,7 +76,7 @@
 	gvWarning = 200
 
 	//Reset auto/locked controls
-	autocon = clone(defAutocon)
+	autocon = deepClone(defAutocon)
 	gvAutoCon = false
 
 	//Load map to play

@@ -215,7 +215,7 @@
 	autocon.b.wasPeekUp = autocon.b.peekUp
 }
 
-::defAutocon <- clone(autocon)
+::defAutocon <- deepClone(autocon)
 
 ::netconState <- {
 		up = false

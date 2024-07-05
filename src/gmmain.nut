@@ -6,7 +6,7 @@
 	gvGameMode = gmMain
 	actor = {}
 	menu = meMain
-	autocon = clone(defAutocon)
+	autocon = deepClone(defAutocon)
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
 	levelEndRunner = 0

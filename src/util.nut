@@ -62,6 +62,10 @@
 }
 
 ::even <- function(x) {
+	if(typeof x != "integer" && typeof x != "float") {
+		print("I can't even... " + x)
+		return x
+	}
 	return x - (x % 2)
 }
 
@@ -71,4 +75,22 @@
 
 ::inRange <- function(a, b, c) {
 	return (a >= b && a <= c)
+}
+
+::deepClone <- function(obj) {
+	if (typeof obj == "array") {
+		local result = []
+		foreach (item in obj) {
+			result.append(deepClone(item))
+		}
+		return result
+	} else if (typeof obj == "table") {
+		local result = {}
+		foreach (key, value in obj) {
+			result[key] <- deepClone(value)
+		}
+		return result
+	} else {
+		return obj
+	}
 }

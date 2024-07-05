@@ -28,7 +28,7 @@
 			gvPauseMode = false
 			if(gvTimeAttack) menu = mePauseTimeAttack
 			else menu = mePausePlay
-			autocon = clone(defAutocon)
+			autocon = deepClone(defAutocon)
 		}
 	}
 	else if(gvGameMode == gmOverworld){
@@ -38,7 +38,7 @@
 		drawImage(gvScreen, 0, 0)
 		gvPauseMode = true
 		menu = mePauseOver
-		autocon = clone(defAutocon)
+		autocon = deepClone(defAutocon)
 	}
 	else if(gvGameMode == gmPause) {
 		if(gvPauseMode == false) gvGameMode = gmPlay
@@ -55,7 +55,7 @@
 		gvConsoleReturn = gmPlay
 		if(gvTimeAttack) menu = mePauseTimeAttack
 		else menu = mePausePlay
-		autocon = clone(defAutocon)
+		autocon = deepClone(defAutocon)
 	}
 	else if(gvGameMode == gmOverworld){
 		if(gvPlayer) if(gvPlayer.hspeed != 0 || gvPlayer.vspeed != 0) return
@@ -64,7 +64,7 @@
 		drawImage(gvScreen, 0, 0)
 		gvConsoleReturn = gmOverworld
 		menu = mePauseOver
-		autocon = clone(defAutocon)
+		autocon = deepClone(defAutocon)
 	}
 	else if(gvGameMode == gmMain) {
 		gvGameMode = gmConsole

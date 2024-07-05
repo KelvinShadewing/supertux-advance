@@ -9,7 +9,7 @@
 ::gvNetPlay <- false
 
 ::createNewGameObject <- function () {
-	return { //Globals stored in this table will be saved
+	local ngo = { //Globals stored in this table will be saved
 		difficulty = 0
 		file = -1
 		coins = 0
@@ -101,6 +101,8 @@
 		state = {}
 		hasPidgin = 0
 	}
+
+	return ngo
 }
 
 ::gvCharacters <- {
