@@ -223,7 +223,7 @@
 				break
 			}
 		}
-		if(t == -1) {
+		if(t == -1 || data.layers[t].visible == false) {
 			return; //Quit if no tile layer by that name was found
 		}
 
@@ -265,7 +265,7 @@
 				break
 			}
 		}
-		if(t == -1) {
+		if(t == -1 || data.layers[t].visible == false) {
 			return; //Quit if no tile layer by that name was found
 		}
 
@@ -309,6 +309,40 @@
 		for(local i = 0; i < tileset.len(); i++) {
 			deleteSprite(tileset[i])
 		}
+	}
+
+	function setLayerProperty(l, p, v) {
+		//Find layer
+		local t = -1; //Target layer
+		for(local i = 0; i < data.layers.len(); i++) {
+			if(data.layers[i].type == "tilelayer" && data.layers[i].name == l) {
+				t = i
+				break
+			}
+		}
+		if(t == -1 || data.layers[t].visible == false) {
+			return; //Quit if no tile layer by that name was found
+		}
+
+		if(p in data.layers[t])
+			data.layers[t][p] = v
+	}
+
+	function getLayerProperty(l, p) {
+		//Find layer
+		local t = -1; //Target layer
+		for(local i = 0; i < data.layers.len(); i++) {
+			if(data.layers[i].type == "tilelayer" && data.layers[i].name == l) {
+				t = i
+				break
+			}
+		}
+		if(t == -1 || data.layers[t].visible == false) {
+			return; //Quit if no tile layer by that name was found
+		}
+
+		if(p in data.layers[t])
+			return data.layers[t][p]
 	}
 
 	function _typeof() { return "Tilemap" }
