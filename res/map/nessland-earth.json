@@ -302,7 +302,7 @@
          "name":"solid",
          "opacity":0.35,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":372,
          "x":0,
          "y":0

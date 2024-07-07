@@ -121,7 +121,7 @@
          "name":"secret",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":320,
          "x":0,
          "y":0
@@ -1678,12 +1678,12 @@
          "columns":5,
          "firstgid":2010,
          "image":"..\/gfx\/solid.png",
-         "imageheight":288,
+         "imageheight":320,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":90,
+         "tilecount":100,
          "tileheight":16,
          "tilewidth":16
         }],
