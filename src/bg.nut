@@ -158,6 +158,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 }
 
 ::dbgIceForest <- function() {
+	gvLightBG = true
 	if(gvMap != 0) {
 		for(local i = 0; i < getBGLoop(spriteW(bgIceForest)); i++)
 			drawSprite(bgIceForest, 0, ((-camx / 16) % 640) + (i * 640), 0)

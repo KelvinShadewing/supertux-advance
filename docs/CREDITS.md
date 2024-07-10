@@ -146,7 +146,10 @@ blue-cave-bg-0.png\* - CC0
 
 [bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
 
-[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG\*, pots
+### [KnoblePersona](https://opengameart.org/users/knoblepersona)
+* pots.png - CC-BY 3.0
+* ocean.png - CC-BY 3.0
+* ocean-night.png\* - CC-BY 3.0
 
 [SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
 
