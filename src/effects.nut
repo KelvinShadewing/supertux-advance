@@ -391,3 +391,18 @@
 		drawSpriteZ(2, sprRock, 4, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
 	}
 }
+
+::MagicJumpFlash <- class extends Actor {
+	frame = 0.0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+	}
+	function run() {
+		if(frame < 1) frame += 0.02
+		frame += 0.25
+		if(frame >= 3) deleteActor(id)
+	}
+
+	function draw() { drawSpriteZ(0, sprMagicJump, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
+}

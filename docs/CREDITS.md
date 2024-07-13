@@ -161,7 +161,9 @@ blue-cave-bg-0.png\* - CC0
 
 [BenCreating](https://opengameart.org/users/bencreating) - Overworld Tiles\*
 
-[Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
+### [Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
+* door-dungeon-face.png - CC-BY 4.0
+* door-dungeon-edge.png - CC-BY 4.0
 
 [Spring](https://opengameart.org/users/spring-spring) - Large flame, waspy boi\*
 

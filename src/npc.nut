@@ -227,19 +227,45 @@
 // NPC v2 //
 ////////////
 
-::npcDef <- {
-	testcap = {
-		sprite = "sprDeathcap"
-		w = 8
-		h = 8
-		anStand = [0]
-		anTalk = [0]
-		anWalk = [0, 1, 2, 3]
+::gvStockRoutines <- {
+	wander = function() {
+		if(hspeed != 0)
+			anim = "walk"
+		else
+			anim = "stand"
+
+		if(!placeFree(x, y + 1) && !onPlatform())
+			anim = "fall"
+
+		
 	}
 }
 
-::NPCv2 <- class extends PhysAct {
+::gvNPCs <- {
+	//NPC definitions go here
+	Test = {
+		name = "Mr. Test"
+		an = {
+			stand = [0]
+		}
+		routine = gvStockRoutines.wander
+	}
+}
 
+::NPC2 <- class extends PhysAct {
+	source = null
+	anim = "stand"
+	timer = 0
+	action = 0
+	flip = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		if(_arr in gvNPCs)
+			source = deepClone(gvNPCs[_arr])
+	}
+
+	function _typeof() { return "NPC2" }
 }
 
 //////////////////

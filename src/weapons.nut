@@ -242,30 +242,47 @@
 	shape = 0
 	cut = true
 	piercing = -1
+	angle = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
 		popSound(sndCyraSwordSwing, 0)
 
-		shape = Cir(x, y, 32.0)
+		shape = Cir(x, y, 12.0)
 	}
 
 	function run() {
 		frame += 0.2
 
-		if(frame >= 5) deleteActor(id)
+		if(frame >= 4.0) deleteActor(id)
+		angle = (frame * (360 / 4.0))
+
 		if(checkActor(owner)) {
-			x = actor[owner].x + actor[owner].hspeed
-			y = actor[owner].y + actor[owner].vspeed
+			if("flip" in actor[owner])
+				angle *= (actor[owner].flip == 0 ? 1 : -1)
+
+			x = actor[owner].x + actor[owner].hspeed + lendirX(16, angle - 90)
+			y = actor[owner].y + actor[owner].vspeed - 8 + lendirY(16, angle - 90)
 			shape.setPos(x, y)
+		}
+
+		switch(element) {
+			case "fire":
+				if(getFrames() % 2 == 0)
+					newActor(FlameTiny, x + lendirX(8, angle - 90) - 4 + randInt(8), y + lendirY(8, angle - 90) - 4 + randInt(8))
+				break
+			case "ice":
+				if(getFrames() % 2 == 0)
+					newActor(Glimmer, x + lendirX(8, angle - 90) - 4 + randInt(8), y + lendirY(8, angle - 90) - 4 + randInt(8))
+				break
 		}
 	}
 
 	function draw() {
 		if(debug) {
 			setDrawColor(0xff0000ff)
-			drawCircle(x - camx, y - camy, shape.r, false)
+			drawCircle(x - camx, y - camy, shape.r, true)
 		}
 	}
 }

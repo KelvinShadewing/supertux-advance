@@ -1,50 +1,49 @@
-
-::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 100, 54, 0, 0, 32, 33)
+::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 100, 54, 32, 33)
 ::defCyra <- sprCyra
-::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 0, 0, 32, 33)
+::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 32, 33)
 ::defCyraFire <- sprCyraFire
-::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 0, 0, 32, 33)
+::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 32, 33)
 ::defCyraIce <- sprCyraIce
-::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 0, 0, 32, 33)
+::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 32, 33)
 ::defCyraAir <- sprCyraAir
-::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 0, 0, 32, 33)
+::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 32, 33)
 ::defCyraEarth <- sprCyraEarth
-::sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 0, 0, 32, 33)
+::sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 32, 33)
 ::defCyraShock <- sprCyraShock
-::sprCyraWater <- newSprite("res/gfx/cyra_gfx/cyrawater.png", 74, 54, 0, 0, 32, 33)
+::sprCyraWater <- newSprite("res/gfx/cyra_gfx/cyrawater.png", 74, 54, 32, 33)
 ::defCyraWater <- sprCyraWater
-::sprCyraLight <- newSprite("res/gfx/cyra_gfx/cyralight.png", 74, 54, 0, 0, 32, 33)
+::sprCyraLight <- newSprite("res/gfx/cyra_gfx/cyralight.png", 74, 54, 32, 33)
 ::defCyraLight <- sprCyraLight
-::sprCyraDark <- newSprite("res/gfx/cyra_gfx/cyradark.png", 74, 54, 0, 0, 32, 33)
+::sprCyraDark <- newSprite("res/gfx/cyra_gfx/cyradark.png", 74, 54, 32, 33)
 ::defCyraDark <- sprCyraDark
-::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 0, 0, 7, 17)
+::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 7, 17)
 ::defCyraOverworld <- sprCyraOverworld
-::sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 0, 0, 8, 8)
+::sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 8, 8)
 ::defCyraDoll <- sprCyraDoll
-::sprKiki2 <- newSprite("res/gfx/kiki2.png", 74, 54, 0, 0, 32, 33)
+::sprKiki2 <- newSprite("res/gfx/kiki2.png", 74, 54, 32, 33)
 ::defKiki2 <- sprKiki2
 
-::sprPepper <- newSprite("res/gfx/pepper.png", 100, 54, 0, 0, 32, 33)
+::sprPepper <- newSprite("res/gfx/pepper.png", 100, 54, 32, 33)
 ::defPepper <- sprPepper
-::sprPepperOverworld <- newSprite("res/gfx/pepperO.png", 20, 24, 0, 0, 10, 20)
+::sprPepperOverworld <- newSprite("res/gfx/pepperO.png", 20, 24, 10, 20)
 ::defPepperOverworld <- sprPepperOverworld
-::sprPepperDoll <- newSprite("res/gfx/pepperdoll.png", 16, 16, 0, 0, 8, 8)
+::sprPepperDoll <- newSprite("res/gfx/pepperdoll.png", 16, 16, 8, 8)
 ::defPepperDoll <- sprPepperDoll
 
 
-::sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 0, 0, 14, 12)
+::sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 14, 12)
 ::defCyraSwordWave <- sprCyraSwordWave
 
-::sprCyraFireWave <- newSprite("res/gfx/cyra_gfx/firewave.png", 28, 24, 0, 0, 14, 12)
+::sprCyraFireWave <- newSprite("res/gfx/cyra_gfx/firewave.png", 28, 24, 14, 12)
 ::defCyraFireWave <- sprCyraFireWave
 
-::sprCyraFreezeWave <- newSprite("res/gfx/cyra_gfx/freezewave.png", 28, 24, 0, 0, 14, 12)
+::sprCyraFreezeWave <- newSprite("res/gfx/cyra_gfx/freezewave.png", 28, 24, 14, 12)
 ::defCyraFreezeWave <- sprCyraFreezeWave
 
-::sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 0, 0, 14, 12)
+::sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 14, 12)
 ::defCyraElectricWave <- sprCyraElectricWave
 
-::sprWaterCrescent <- newSprite("res/gfx/water-crescent.png", 32, 16, 0, 0, 16, 8)
+::sprWaterCrescent <- newSprite("res/gfx/water-crescent.png", 32, 16, 16, 8)
 ::defWaterCrescent <- sprWaterCrescent
 
 //Sounds
@@ -146,6 +145,7 @@ gvCharacters.Pepper <- {
 	slashTimer = 0.0
 	comboStep = 0
 	comboTimer = 0
+	useJumpFlash = false
 
 	//Animations
 	anim = [] //Animation frame delimiters: [start, end, speed]
@@ -355,7 +355,7 @@ gvCharacters.Pepper <- {
 	function run() {
 		base.run()
 
-		inMelee = slashing
+		inMelee = slashing || (anim == "slide")
 
 		//Side checks
 		shapeSlide.setPos(x, y)
@@ -813,23 +813,27 @@ gvCharacters.Pepper <- {
 							frame = 0.0
 						}
 						if(!freeDown2 || freeRight && freeLeft) {
-							if(stats.weapon != "air")
+							if(stats.weapon != "air" || !freeDown2)
 								popSound(sndJump)
 							else
-								popSound(sndFlap)
+								{
+									popSound(sndFlap)
+									if(useJumpFlash)
+										newActor(MagicJumpFlash, x, y + 12)
+								}
 						}
 					}
 					else if(freeDown && anim != "climb" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {
 						flip = 0
 						anim = "wall"
 						frame = 0.0
-						playSound(sndWallkick, 0)
+						popSound(sndWallkick, 0)
 					}
 					else if(freeDown && anim != "climb" && !placeFree(x + 2, y) && anim != "wall" && hspeed >= 0 && tileGetSolid(x + 12, y - 12) != 40 && tileGetSolid(x + 12, y + 12) != 40 && tileGetSolid(x + 12, y) != 40) {
 						flip = 1
 						anim = "wall"
 						frame = 0.0
-						playSound(sndWallkick, 0)
+						popSound(sndWallkick, 0)
 					}
 					else if(floor(stats.stamina) > 0 && stats.weapon == "air" && getcon("jump", "press", true, playerNum)) {
 						if(vspeed > 0) vspeed = 0.0
@@ -841,12 +845,12 @@ gvCharacters.Pepper <- {
 							frame = 0.0
 						}
 						if(stats.weapon != "air") {
-							stopSound(sndJump)
-							playSound(sndJump, 0)
+							popSound(sndJump)
 						}
 						else {
-							stopSound(sndFlap)
-							playSound(sndFlap, 0)
+							popSound(sndFlap)
+							if(useJumpFlash)
+								newActor(MagicJumpFlash, x, y + 12)
 						}
 						stats.stamina--
 					}
@@ -885,14 +889,14 @@ gvCharacters.Pepper <- {
 						anim = "dive"
 						frame = 0.0
 						flip = 0
-						playSoundChannel(sndSlide, 0, 0)
+						popSound(sndSlide)
 					}
 
 					if(placeFree(x - 2, y + 1) || hspeed <= -1.5) {
 						anim = "dive"
 						frame = 0.0
 						flip = 1
-						playSoundChannel(sndSlide, 0, 0)
+						popSound(sndSlide)
 					}
 				}
 
@@ -1000,7 +1004,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraSwordSwing, 0)
+						popSound(sndCyraSwordSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1024,7 +1028,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraFireSwing, 0)
+						popSound(sndCyraFireSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1050,7 +1054,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraTornado, 0)
+						popSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1076,7 +1080,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraTornado, 0)
+						popSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1107,7 +1111,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraSwordSwing, 0)
+						popSound(sndCyraSwordSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1131,7 +1135,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.hspeed += hspeed
-						playSound(sndCyraElectricSwing, 0)
+						popSound(sndCyraElectricSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -5
 							c.hspeed /= 3
@@ -1157,7 +1161,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraTornado, 0)
+						popSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1194,7 +1198,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraSwordSwing, 0)
+						popSound(sndCyraSwordSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1218,7 +1222,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraFireSwing, 0)
+						popSound(sndCyraFireSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1244,7 +1248,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraTornado, 0)
+						popSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1270,7 +1274,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraTornado, 0)
+						popSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1301,7 +1305,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraSwordSwing, 0)
+						popSound(sndCyraSwordSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1325,7 +1329,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
 						c.hspeed += hspeed
-						playSound(sndCyraElectricSwing, 0)
+						popSound(sndCyraElectricSwing, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -5
 							c.hspeed /= 3
@@ -1351,7 +1355,7 @@ gvCharacters.Pepper <- {
 						if(!flip) c.hspeed = 8
 						else c.hspeed = -8
 						c.vspeed = 0
-						playSound(sndCyraTornado, 0)
+						popSound(sndCyraTornado, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1555,7 +1559,7 @@ gvCharacters.Pepper <- {
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
-				playSound(sndHurt, 0)
+				popSound(sndHurt, 0)
 				if(stats.weapon == "earth" && anim == "slide" && stats.stamina > 0) {
 					stats.stamina -= hurt
 					guardtime = 180
@@ -1728,7 +1732,7 @@ gvCharacters.Pepper <- {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		if(!gvPlayer && !gvPlayer2) stopMusic()
-		playSound(sndDie, 0)
+		popSound(sndDie, 0)
 		sprite = _arr[0]
 		anim = _arr[1]
 		playerNum = _arr[2]
@@ -2020,6 +2024,8 @@ gvCharacters.Pepper <- {
 
 
 ::Pepper <- class extends Cyra {
+	useJumpFlash = true
+
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 

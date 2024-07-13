@@ -1964,6 +1964,10 @@
 		case 118:
 			c = newActor(FlipBlock, i.x + 8, i.y - 8, i.name)
 			break
+
+		case 119:
+			c = newActor(SwingingDoor, i.x + 8, i.y, i.name)
+			break
 	}
 
 	return c

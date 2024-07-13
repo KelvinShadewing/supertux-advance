@@ -573,3 +573,104 @@
 
 	function _typeof() { return "BoostRing" }
 }
+
+::SwingingDoor <- class extends PhysAct {
+	lock = 0
+	swing = 0
+	angle = 0.0
+	face = 0
+	edge = 0
+	hitShape = null
+	timer = 0
+
+	constructor(_x, _y, _arr) {
+		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y - 24, 8, 24)
+		hitShape = Rec(x, y - 24, 3, 24)
+		mapNewSolid(hitShape)
+
+		if(_arr != null)
+			_arr = split(_arr, ",")
+		if(_arr.len() >= 1)
+			lock = int(_arr[0])
+		if(_arr.len() >= 2 && _arr[1] in getroottable())
+			face = getroottable()[_arr[1]]
+		else
+			face = sprDoorWoodFace
+		if(_arr.len() >= 3 && _arr[2] in getroottable())
+			edge = getroottable()[_arr[2]]
+		else
+			edge = sprDoorWoodEdge
+	}
+
+	function run() {
+		//Find who's touching the door
+		local target = null
+		if(gvPlayer && hitTest(shape, gvPlayer.shape))
+			target = gvPlayer
+		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+			target = gvPlayer2
+		else if(checkActor("NPC2")) {
+			foreach(i in actor["NPC2"]) {
+				if(hitTest(shape, i.shape)) {
+					target = i
+					break
+				}
+			}
+		}
+
+		timer--
+		if(target != null) {
+			if(lock > 0) {
+				switch (lock) {
+					case 1:
+						if(gvKeyCopper) {
+							lock = 0
+						}
+						break
+					case 2:
+						if(gvKeySilver) {
+							lock = 0
+						}
+						break
+					case 3:
+						if(gvKeyGold) {
+							lock = 0
+						}
+						break
+					case 4:
+						if(gvKeyMythril) {
+							lock = 0
+						}
+						break
+				}
+			}
+			else if(swing == 0) {
+				if(x != target.x)
+					swing = x <=> target.x
+				else
+					swing = target.flip == 0 ? 1 : -1
+			}
+			timer = 15
+		}
+		else if(fabs(angle) == 1 && timer <= 0) {
+			swing = 0
+		}
+
+		angle = wavg(angle, swing, 0.2)
+		if(fabs(swing - angle) < 0.1)
+			angle = swing
+
+		if(angle == 0)
+			hitShape.setPos(x, y - 24)
+		else
+			hitShape.setPos(-1000, 1000)
+	}
+
+	function draw() {
+		drawSprite(face, 0, x - camx, y - camy - 48, 0, angle > 0 ? 0 : 1, fabs(angle))
+		drawSprite(edge, 0, x - camx + (angle * 32), y - camy - 48, 0, 0, 1.0 - fabs(angle))
+		if(lock > 0)
+			drawSprite(sprDoorLocks, lock - 1, x - camx, y - camy - 24)
+	}
+}
