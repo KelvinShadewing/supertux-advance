@@ -214,7 +214,7 @@
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -237,6 +237,9 @@
 
 		for(local i = my; i < my + mh; i++) {
 			for(local j = mx; j < mx + mw; j++) {
+				if(typeof mask == "array" && (mask.len() >= data.layers[t].data.len()) && mask[(i * data.layers[t].width) + j] == 0)
+					continue //If the mask does not have the tile unlocked, skip it
+
 				if(i * data.layers[t].width + j >= data.layers[t].data.len()) return
 				local n = data.layers[t].data[(i * data.layers[t].width) + j]; //Number value of the tile
 				if(n != 0) {
@@ -256,7 +259,7 @@
 		}
 	}
 
-	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, c = 0xffffffff) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -279,6 +282,9 @@
 
 		for(local i = my; i < my + mh; i++) {
 			for(local j = mx; j < mx + mw; j++) {
+				if(typeof mask == "array" && (mask.len() >= data.layers[t].data.len()) && mask[(i * data.layers[t].width) + j] == 0)
+					continue //If the mask does not have the tile unlocked, skip it
+
 				if(i * data.layers[t].width + j >= data.layers[t].data.len()) return
 				local n = data.layers[t].data[(i * data.layers[t].width) + j]; //Number value of the tile
 				if(n != 0) {

@@ -826,6 +826,8 @@
 			if(hitTest(shape, gvPlayer.shape) && gvPlayer.vspeed < 0 && v == 0 && full){
 				gvPlayer.vspeed = 1
 				vspeed = -1
+				foreach(k, i in sndPing)
+					stopSound(sndPing[k])
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
@@ -835,6 +837,8 @@
 				gvPlayer.vspeed = -4
 				if(getcon("jump", "hold", true, 1)) gvPlayer.vspeed = -8
 				vspeed = 1
+				foreach(k, i in sndPing)
+					stopSound(sndPing[k])
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				gvPlayer.canJump = 0
 				gvPlayer.didJump = false
@@ -847,6 +851,8 @@
 			if(hitTest(shape, gvPlayer2.shape) && gvPlayer2.vspeed < 0 && v == 0 && full){
 				gvPlayer2.vspeed = 1
 				vspeed = -1
+				foreach(k, i in sndPing)
+					stopSound(sndPing[k])
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				fireWeapon(BoxHit, x, y - 8, 1, id)
 			}
@@ -856,6 +862,8 @@
 				gvPlayer2.vspeed = -4
 				if(getcon("jump", "hold", true, 2)) gvPlayer2.vspeed = -8
 				vspeed = 1
+				foreach(k, i in sndPing)
+					stopSound(sndPing[k])
 				popSound(sndPing[(note == -1 ? randInt(8) : note)], 0)
 				gvPlayer2.canJump = 0
 				gvPlayer2.didJump = false
@@ -1525,7 +1533,7 @@
 			if((gvPlayer && hitTest(shape, gvPlayer.shape)
 			|| gvPlayer2 && hitTest(shape, gvPlayer2.shape)) && !wasStepped) wasStepped = true
 			if(wasStepped) timer += 2
-			if(timer == 30) {
+			if(timer == 120 / (1 + game.difficulty)) {
 				broken = true
 				tileSetSolid(x, y, oldsolid)
 				timer = 0
@@ -1553,7 +1561,7 @@
 		}
 	}
 
-	function draw() { if(!broken) drawSpriteZ(7, sprCrumbleRock, timer / 8, x - camx, y - camy, 0, 0, 1, 1, alpha) }
+	function draw() { if(!broken) drawSpriteZ(7, sprCrumbleRock, timer / (24 / (1 + game.difficulty)), x - camx, y - camy, 0, 0, 1, 1, alpha) }
 
 	function _typeof() { return "Crumbler" }
 }

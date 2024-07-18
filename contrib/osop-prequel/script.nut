@@ -5,17 +5,17 @@ print("Loaded extras world")
 ::musHellRevenge <- "contrib/osop-prequel/mus/HellishRevenge.ogg"
 
 //NPCs
-::sprMona<- newSprite("contrib/osop-prequel/gfx/mona.png", 18, 21, 0, 0, 9, 21)
-::sprHubot <- newSprite("contrib/osop-prequel/gfx/hubot-v2.png", 26, 41, 0, 0, 13, 42)
-::sprYumi <- newSprite("contrib/osop-prequel/gfx/yumi.png", 24, 34, 0, 0, 12, 36)
+::sprMona<- newSprite("contrib/osop-prequel/gfx/mona.png", 18, 21, 9, 21)
+::sprHubot <- newSprite("contrib/osop-prequel/gfx/hubot-v2.png", 26, 41, 13, 42)
+::sprYumi <- newSprite("contrib/osop-prequel/gfx/yumi.png", 24, 34, 12, 36)
 
 //Backgrounds
-::bgSpace<- newSprite("contrib/osop-prequel/gfx/space-back.png", 424, 240, 0, 0, 0, 0)
-::bgSpaceStars <- newSprite("contrib/osop-prequel/gfx/space-stars.png", 272, 160, 0, 0, 0, 0)
+::bgSpace<- newSprite("contrib/osop-prequel/gfx/space-back.png", 424, 240, 0, 0)
+::bgSpaceStars <- newSprite("contrib/osop-prequel/gfx/space-stars.png", 272, 160, 0, 0)
 
 //Load Lifebar
-::sprHealthOSoP <- newSprite("contrib/osop-prequel/gfx/osop-health.png", 16, 16, 0, 0, 0, 0)
-::sprEnergyOSoP <- newSprite("contrib/osop-prequel/gfx/osop-energy.png", 16, 16, 0, 0, 0, 0)
+::sprHealthOSoP <- newSprite("contrib/osop-prequel/gfx/osop-health.png", 16, 16, 0, 0)
+::sprEnergyOSoP <- newSprite("contrib/osop-prequel/gfx/osop-energy.png", 16, 16, 0, 0)
 
 ::gfxOverrideOSoP <- function(never = false) {
 	sprHealth = sprHealthOSoP
@@ -44,7 +44,4 @@ print("Loaded Frostlands")
 freeKonqi()
 freeMidi()
 freeCyra()
-freePenny()
-freeKatie()
-freeKiki()
-freeGDBot()
+freeSurge()

@@ -495,18 +495,12 @@
 					frame += 0.1
 				frame += abs(rspeed) / (8 + abs(rspeed))
 
-				if(flip == 0 && hspeed < 0 && !endMode && !(getcon("left", "hold", true, playerNum) && fabs(hspeed) < 2.0)) {
-					if(!slippery)
-						hspeed += 0.2
-					else
-						hspeed += 0.1
+				if(flip == 0 && hspeed < 0 && !endMode) {
+					hspeed += 0.1
 					anim = "skid"
 				}
-				else if(flip == 1 && hspeed > 0 && !endMode && !(getcon("right", "hold", true, playerNum) && fabs(hspeed) < 2.0)) {
-					if(!slippery)
-						hspeed -= 0.2
-					else
-						hspeed -= 0.1
+				else if(flip == 1 && hspeed > 0 && !endMode) {
+					hspeed -= 0.1
 					anim = "skid"
 				}
 				else
@@ -535,6 +529,9 @@
 					animOffset = 16.0
 				if(abs(sideRunning ? vspeed : hspeed) > 6.2)
 					animOffset = 24.0
+
+				if(anim == "skid")
+					animOffset = 0.0
 
 				if((anim == "stand" || fabs(hspeed) <= 0.2) && getcon("spec2", "hold", true, playerNum) && canMove) {
 					frame = 0.0

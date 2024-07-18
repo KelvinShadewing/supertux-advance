@@ -42,7 +42,7 @@
 								print("Found text.json")
 							}
 							if(fileExists("contrib/" + contribFolder + "/script.nut")) if(!contribDidRun.rawin(contribFolder)) {
-								donut("contrib/" + contribFolder + "/script.nut")
+								require("contrib/" + contribFolder + "/script.nut")
 								contribDidRun[contribFolder] <- true
 							}
 							if(fileExists("save/" + contribFolder + ".json")) loadGame(contribFolder)

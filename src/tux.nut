@@ -45,7 +45,7 @@
 		standA = [0, 1, 2, 3]
 		standE = [0, 1, 2, 3]
 		walk = [8, 9, 10, 11, 12, 13, 14, 15]
-		run = [16, 17, 18, 19, 20, 21, 22, 23]
+		run = [16, 16, 17, 17, 18, 19, 20, 20, 21, 21, 22, 23]
 		dive = [24, 25]
 		slide = [26, 27, 28, 29]
 		hurt = [30, 31]
@@ -325,7 +325,7 @@
 					else anim = "run"
 
 					if(anim == "skid") frame += 0.2
-					else if(stats.weapon == "ice") frame += abs(rspeed) / 16
+					else if(stats.weapon == "ice") frame += abs(rspeed) / 12
 					else frame += abs(rspeed) / 8
 					if(abs(rspeed) < 2 && anim != "skid") anim = "walk"
 
