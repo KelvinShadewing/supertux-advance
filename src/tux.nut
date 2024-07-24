@@ -736,8 +736,10 @@
 			//Movement
 			if(!freeDown2 || onPlatform()) {
 				if(anim == "slide") {
-					if(hspeed > 0) hspeed -= friction / 3.0
-					if(hspeed < 0) hspeed += friction / 3.0
+					if(stats.weapon != "ice") {
+						if(hspeed > 0) hspeed -= friction / 3.0
+						if(hspeed < 0) hspeed += friction / 3.0
+					}
 				} else {
 					if(hspeed > 0) {
 						if(!(mspeed > 2 && getcon("right", "hold", true, playerNum)) || anim == "crawl" || !canMove) hspeed -= friction
@@ -1090,12 +1092,15 @@
 						break
 
 					case "air":
+					case "ice":
 						if((anim == "jumpT" || anim == "jumpU" || anim == "fall") && anim != "hurt") {
 							anim = "dive"
 							frame = 0.0
 							playSound(sndSlide, 0)
-							if(flip == 0 && hspeed < 2) hspeed = 2
-							if(flip == 1 && hspeed > -2) hspeed = -2
+							if(stats.weapon != "ice") {
+								if(flip == 0 && hspeed < 2) hspeed = 2
+								if(flip == 1 && hspeed > -2) hspeed = -2
+							}
 						}
 						break
 

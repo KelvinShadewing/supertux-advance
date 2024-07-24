@@ -43,6 +43,8 @@
 	shockEffect = null
 	sideRunning = false
 	tricking = false
+	shapeHydro = null
+	hydroplaning = false
 
 	an = {
 		stand = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 6, 6, 6, 6, 6, 6, 6, 6, 48, 49, 48, 49, 48, 49, 48, 49, 50, 51, 51, 51, 51, 50, 48]
@@ -217,6 +219,7 @@
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 10, 0, 0, 0)
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4)
+		shapeHydro = Rec(x, y, 2, 2, 0, 0, 10)
 		xstart = _x.tofloat()
 		ystart = _y.tofloat()
 		an.fall = an.fallN
@@ -322,6 +325,27 @@
 				}
 		}
 
+		//Hydroplane
+		hydroplaning = false
+		shapeHydro.setPos(x + hspeed, y + vspeed)
+		if(abs(hspeed) > 4) {
+			local oldShape = shape
+			shape = shapeHydro
+			if(inWater()) {
+				shape = oldShape
+				shape.setPos(x, y)
+				if(!inWater()) {
+					hydroplaning = true
+					shape = shapeHydro
+					while(inWater()) {
+						y--
+						shapeHydro.setPos(x + hspeed, y + vspeed)
+					}
+				}
+			}
+			shape = oldShape
+		}
+
 		//Base movement
 		if(resTime > 0) {
 			if(vspeed > 0)
@@ -365,7 +389,7 @@
 		}
 
 		if(hspeed != 0) {
-			wasOnGround = (!placeFree(x, y + 2) || onPlatform())
+			wasOnGround = ((!placeFree(x, y + 2) || onPlatform()) && !hydroplaning)
 
 			if(placeFree(x + hspeed, y)) { //Try to move straight
 				x += hspeed
@@ -517,7 +541,7 @@
 					
 				}
 
-				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0) && !sideRunning) {
+				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0) && !sideRunning && !hydroplaning) {
 					if(vspeed >= 0) anim = "jumpT"
 					else anim = "jumpU"
 					frame = 0.0
@@ -766,7 +790,7 @@
 		inMelee = (anim == "ball" || anim == "jumpR" || anim == "charge")
 
 		//Controls
-		if((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) {
+		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
 			canJump = 16
 		}
 		else {
@@ -921,7 +945,7 @@
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if((onPlatform() || onPlatform(8) || onPlatform(-8)) && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum)) {
+				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum)) {
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
@@ -929,8 +953,15 @@
 				}
 				else if(canJump > 0 || nowInWater) {
 					jumpBuffer = 0
-					if(anim == "climb" || nowInWater)
-						vspeed = -3
+					if(anim == "climb" || nowInWater) {
+						vspeed = -4
+						if(anim == "climb") {
+							if(getcon("left", "hold", true, playerNum))
+								hspeed = -2
+							if(getcon("right", "hold", true, playerNum))
+								hspeed = 2
+						}
+					}
 					else
 						vspeed = -(6.0 + min(fabs(hspeed) / 6.0, 4.0))
 					didJump = true
@@ -1233,8 +1264,9 @@
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()
+			shapeHydro.draw()
 
-			drawText(font, x - camx - 16, y - camy - 16, sideRunning.tostring())
+			drawText(font, x - camx - 16, y - camy - 32, hydroplaning.tostring())
 		}
 	}
 

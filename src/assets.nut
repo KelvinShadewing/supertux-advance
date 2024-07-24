@@ -974,135 +974,14 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 }
 
 ::gfxReset <- function() {
-	sprTux = defTux
-	sprTuxFire = defTuxFire
-	sprTuxIce = defTuxIce
-	sprTuxAir = defTuxAir
-	sprTuxEarth = defTuxEarth
-	sprTuxOverworld = defTuxOverworld
-	sprTuxDoll = defTuxDoll
-
-	sprKonqi = defKonqi
-	sprKonqiFire = defKonqiFire
-	sprKonqiIce = defKonqiIce
-	sprKonqiAir = defKonqiAir
-	sprKonqiEarth = defKonqiEarth
-	sprKonqiOverworld = defKonqiOverworld
-	sprKonqiDoll = defKonqiDoll
-
-	sprMidi = defMidi
-	sprMidiOverworld = defMidiOverworld
-	sprMidiDoll = defMidiDoll
-	sprMidiAura = defMidiAura
-
-	sprKiki = defKiki
-	sprKikiOverworld = defKikiOverworld
-	sprKikiDoll = defKikiDoll
-	sprKikiAura = defKikiAura
-
-	sprLevels = defLevels
-	sprSubItem = defSubItem
-	sprWarning = defWarning
-
-	sprVoid = defVoid
-	sprBoxIce = defBoxIce
-	sprBoxItem = defBoxItem
-	sprBoxRed = defBoxRed
-	sprBoxEmpty = defBoxEmpty
-	sprSpring = defSpring
-	sprSpringD = defSpringD
-	sprWoodBox = defWoodBox
-	sprIceBlock = defIceBlock
-	sprFishBlock = defFishBlock
-	sprWoodChunks = defWoodChunks
-	sprBoxInfo = defBoxInfo
-	sprKelvinScarf = defKelvinScarf
-	sprBoxBounce = defBoxBounce
-	sprCheckBell = defCheckBell
-	sprTNT = defTNT
-	sprC4 = defC4
-	sprColorBlock = defColorBlock
-	sprColorSwitch = defColorSwitch
-	sprLockBlock = defLockBlock
-	sprBossDoor = defBossDoor
-	sprCrumbleRock = defCrumbleRock
-
-	sprSnake = defSnake
-	sprDeathcap = defDeathcap
-	sprGradcap = defGradcap
-	sprOrangeBounce = defOrangeBounce
-	sprCannon = defCannon
-	sprOuchin = defOuchin
-	sprCarlBoom = defCarlBoom
-	sprBlueFish = defBlueFish
-	sprRedFish = defRedFish
-	sprGreenFish = defGreenFish
-	sprDeadFish = defDeadFish
-	sprJellyFish = defJellyFish
-	sprClamor = defClamor
-	sprIcicle = defIcicle
-	sprFlyAmanita = defFlyAmanita
-	sprJumpy = defJumpy
-	sprDarkStar = defDarkStar
-	sprHaywire = defHaywire
-	sprSawblade = defSawblade
-	sprLivewire = defLivewire
-	sprBlazeborn = defBlazeborn
-	sprSpikeCap = defSpikeCap
-	sprTallCap = defTallCap
-	sprSmartTallCap = defSmartTallCap
-	sprCaptainMorel = defCaptainMorel
-	sprSnowCaptain = defSnowCaptain
-	sprBearyl = defBearyl
-	sprWheelerHamster = defWheelerHamster
-	sprIvyGreen = defIvyGreen
-	sprIvyRed = defIvyRed
-	sprDevine = defDevine
-
-	sprNolok = defNolok
-	sprYeti = defYeti
-
-	sprMuffin = defMuffin
-	sprStar = defStar
-	sprCoin = defCoin
-	sprCoin5 = defCoin5
-	sprCoin10 = defCoin10
-	sprHerring = defHerring
-	sprFlowerFire = defFlowerFire
-	sprFlowerIce = defFlowerIce
-	sprAirFeather = defAirFeather
-	sprEarthShell = defEarthShell
-	sprFlyRefresh = defFlyRefresh
-	sprBerry = defBerry
-	sprKeyCopper = defKeyCopper
-	sprKeySilver = defKeySilver
-	sprKeyGold = defKeyGold
-	sprKeyMythril = defKeyMythril
-	sprSpecialBall = defSpecialBall
-	sprHerring = defHerring
-
-	sprSpark = defSpark
-	sprGlimmer = defGlimmer
-	sprFireball = defFireball
-	sprIceball = defIceball
-	sprPoof = defPoof
-	sprFlame = defFlame
-	sprFlameTiny = defFlameTiny
-	sprIceTrapLarge = defIceTrapLarge
-	sprIceTrapSmall = defIceTrapSmall
-	sprIceTrapTall = defIceTrapTall
-	sprIceChunks = defIceChunks
-	sprTinyWind = defTinyWind
-	sprTFflash = defTFflash
-	sprExplodeF = defExplodeF
-	sprExplodeI = defExplodeI
-	sprExplodeN = defExplodeN
-	sprExplodeT = defExplodeT
-	sprExplodeA = defExplodeA
-	sprWaterSurface = defWaterSurface
-	sprHeal = defHeal
-	sprHealStamina = defHealStamina
-	sprSplash = defSplash
+	foreach(key, i in getroottable()) {
+		if(key.len() > 4 && key.slice(0, 3) == "spr") {
+			local defspr = "def" + key.slice(3)
+			if(defspr in getroottable()) {
+				getroottable()[key] = getroottable()[defspr]
+			}
+		}
+	}
 }
 
 ::gfxEnemySnow <- function() {
@@ -1127,6 +1006,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 	sprRedFish = sprRedFishSnow
 	sprGreenFish = sprGreenFishSnow
 	sprDevine = sprSnoway
+	sprBrickBlock = sprBrickBlockSnow
 }
 
 ::gfxEnemyForest <- function() {

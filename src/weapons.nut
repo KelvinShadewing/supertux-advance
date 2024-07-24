@@ -1989,10 +1989,12 @@
 
 ::Airball <- class extends WeaponEffect {
 	element = "air"
-	timer = 90
+	timer = 120
 	piercing = 0
 	scale = 0.0
 	angle = 0
+	bounced = false
+	gravity = 0.05
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -2016,7 +2018,15 @@
 			y += -2
 			vspeed = -1
 		}
-		if(!placeFree(x, y)) deleteActor(id)
+		if(!placeFree(x, y)) {
+			if(bounced)
+				deleteActor(id)
+			else {
+				bounced = true
+				x -= hspeed
+				hspeed = -hspeed
+			}
+		}
 
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
@@ -2032,7 +2042,7 @@
 			angle = pointAngle(0, 0, hspeed, vspeed) - 90
 		else {
 			angle = 0
-			vspeed += 0.05
+			vspeed += gravity
 		}
 	}
 

@@ -1076,13 +1076,13 @@ gvCharacters.Pepper <- {
 						if(anim == "crouch") fy = 6
 						if(anim == "crawl") fy = 10
 						if(flip == 1) fx = -5
-						local c = fireWeapon(SwordWaveCS, x + fx, y - 4 + fy, 1, id)
-						if(!flip) c.hspeed = 8
-						else c.hspeed = -8
+						local c = fireWeapon(AirWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 4
+						else c.hspeed = -4
 						c.vspeed = 0
-						popSound(sndCyraTornado, 0)
+						popSound(sndExplodeA, 0)
 						if(getcon("up", "hold", true, playerNum)) {
-							c.vspeed = -2.5
+							c.vspeed = -2.0
 							c.hspeed /= 1.5
 						}
 						slashing = true
@@ -1270,13 +1270,13 @@ gvCharacters.Pepper <- {
 						if(anim == "crouch") fy = 6
 						if(anim == "crawl") fy = 10
 						if(flip == 1) fx = -5
-						local c = fireWeapon(SwordWaveCS, x + fx, y - 4 + fy, 1, id)
-						if(!flip) c.hspeed = 8
-						else c.hspeed = -8
+						local c = fireWeapon(AirWaveCS, x + fx, y - 4 + fy, 1, id)
+						if(!flip) c.hspeed = 4
+						else c.hspeed = -4
 						c.vspeed = 0
-						popSound(sndCyraTornado, 0)
+						popSound(sndExplodeA, 0)
 						if(getcon("up", "hold", true, playerNum)) {
-							c.vspeed = -2.5
+							c.vspeed = -2.0
 							c.hspeed /= 1.5
 						}
 						slashing = true
@@ -1657,7 +1657,7 @@ gvCharacters.Pepper <- {
 		if(tftime != -1) {
 			if(tftime < 4) {
 				if(!hidden)
-					drawSpriteZ(1, sprTFflash, tftime, x - camx, y - camy)
+					drawSpriteZ(2, sprTFflash, tftime, x - camx, y - camy - 4)
 				tftime += 0.25
 			} else tftime = -1
 		}
@@ -1807,6 +1807,52 @@ gvCharacters.Pepper <- {
 	}
 	function draw() {
 		drawSpriteEx(sprCyraSwordWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
+	}
+
+	function destructor() {
+		popSound(sndBump)
+		newActor(Poof, x, y)
+	}
+}
+
+::AirWaveCS <- class extends WeaponEffect{
+	timer = 30
+	angle = 0
+	element = "air"
+	power = 1
+	shape = 0
+	blast = true
+	piercing = 10
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		shape = Cir(x, y, 6)
+	}
+
+	function run() {
+		timer--
+		if(timer == 0) deleteActor(id)
+
+		x += hspeed
+		y += vspeed
+		if(!placeFree(x, y)) {
+			deleteActor(id)
+		}
+
+		if(y > gvMap.h) {
+			deleteActor(id)
+			newActor(Poof, x, y)
+		}
+
+		angle = pointAngle(0, 0, hspeed, vspeed)
+
+		shape.setPos(x, y)
+
+	}
+	function draw() {
+		drawSpriteEx(sprExplodeA, getFrames(), x - camx, y - camy, angle - 90, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 

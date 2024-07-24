@@ -5005,15 +5005,16 @@
 		local target = findPlayer()
 		if(target && !held) {
 			if(target.x - 16 > x) {
-				accel = 0.11
+				accel = 0.2
 				flip = 0
 			}
 			if(target.x + 16 < x) {
-				accel = -0.11
+				accel = -0.2
 				flip = 1
 			}
 		}
-		hspeed += accel
+		if(vspeed > 0.2 || onGround)
+			hspeed += accel
 		if(hspeed > mspeed) hspeed = mspeed
 		if(hspeed < -mspeed) hspeed = -mspeed
 		if(placeFree(x + hspeed, y)) x += hspeed
@@ -5486,7 +5487,7 @@
 			else actor[c].spin = -16
 		}
 
-		if(!_stomp) {
+		if(!_stomp || (uncapped && _mag > 0)) {
 			base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 			frame = 0.0
 			anim = "hurt"
