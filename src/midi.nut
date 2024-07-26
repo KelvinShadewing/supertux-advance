@@ -1184,9 +1184,15 @@
 				else if(canJump > 0 || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0
 					if(!getcon("down", "hold", true, playerNum) || !freeDown2) {
-						if(anim == "climb")
-							vspeed = -3
-						vspeed = -6.4
+						if(anim == "climb") {
+							vspeed = -5
+							if(getcon("left", "hold", true, playerNum))
+								hspeed = -2
+							if(getcon("right", "hold", true, playerNum))
+								hspeed = 2
+						}
+						else
+							vspeed = -6.4
 					}
 					didJump = true
 					canJump = 0
@@ -1419,8 +1425,14 @@
 				}
 				else if(canJump > 0 && placeFree(x, y - 2)) {
 					jumpBuffer = 0
-					if(anim == "climb") vspeed = -3
-					if(nowInWater) vspeed = -4.0
+					if(anim == "climb") {
+						vspeed = -5
+						if(getcon("left", "hold", true, playerNum))
+							hspeed = -2
+						if(getcon("right", "hold", true, playerNum))
+							hspeed = 2
+					}
+					else if(nowInWater) vspeed = -4.0
 					else vspeed = -6.4
 					didJump = true
 					if(stats.weapon != "air") canJump = 0

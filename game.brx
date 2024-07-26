@@ -258,7 +258,10 @@ if(fileExists("contrib")) {
 		config.joy2.index = 1
 	}
 	else {
-		config.joy.index = 0
+		if(gvNumPlayers > 1)
+			config.joy.index = 1
+		else
+			config.joy.index = 0
 		config.joy2.index = 0
 	}
 

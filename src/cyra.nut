@@ -803,7 +803,7 @@ gvCharacters.Pepper <- {
 					}
 					else if(canJump > 0) {
 						jumpBuffer = 0
-						if(anim == "climb") vspeed = -3
+						if(anim == "climb") vspeed = -5
 						else if(stats.weapon == "air" || nowInWater) vspeed = -5.0
 						else vspeed = -5.8
 						didJump = true

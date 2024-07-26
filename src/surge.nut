@@ -954,7 +954,7 @@
 				else if(canJump > 0 || nowInWater) {
 					jumpBuffer = 0
 					if(anim == "climb" || nowInWater) {
-						vspeed = -4
+						vspeed = -5
 						if(anim == "climb") {
 							if(getcon("left", "hold", true, playerNum))
 								hspeed = -2
