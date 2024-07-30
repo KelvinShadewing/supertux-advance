@@ -53,6 +53,7 @@
 				if(frozen == 0) {
 					mapDeleteSolid(icebox)
 					newActor(IceChunks, x, y)
+					icebox = -1
 				}
 			}
 
@@ -180,11 +181,14 @@
 		if(frozen && _element == "ice")
 			damage = 0.0
 
-		health -= damage
+		if(_element != "ice" || health - damage > 0)
+			health -= damage
+		else if(_element == "ice" && health - damage <= 0)
+			health = 0.1
 		if(damage > 0) blinking = blinkMax
 
 		if(_element == "ice" && icebox == -1 && freezeTime > 0) {
-			frozen = minFreezeTime + (freezeTime * damageMult["ice"])
+			frozen = round(minFreezeTime + (freezeTime * damageMult["ice"]))
 			icebox = mapNewSolid(shape)
 		}
 
@@ -194,6 +198,7 @@
 
 			frozen = 0
 			mapDeleteSolid(icebox)
+			icebox = -1
 		}
 	}
 
@@ -6108,7 +6113,7 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		shape = Rec(x, y, 8, 6, 0)
+		shape = Rec(x, y, 12, 8, 0, 0, -2)
 		hspeed = 0.5
 	}
 
