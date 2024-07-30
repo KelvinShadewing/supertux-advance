@@ -393,6 +393,7 @@
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(world)
 	game.world = world
+	drawBG = dbgNone
 
 	//Get tiles used to mark actors
 	local actset = -1
@@ -506,7 +507,14 @@
 					case "trigger":
 						local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-						actor[c].code = obj.name
+						if("properties" in obj)
+							foreach(i in obj.properties) {
+								if(i.name == "code") {
+									actor[c].code = i.value
+								}
+							}
+						else
+							actor[c].code = obj.name
 						actor[c].w = obj.width / 2
 						actor[c].h = obj.height / 2
 						break
@@ -542,10 +550,15 @@
 ::gmOverworld <- function() {
 	setDrawTarget(gvScreen)
 
+	drawBG()
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
+	for(local i = 0; i <= 100; i++)
+		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg" + str(i))
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
 	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
-	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid")
+	for(local i = 0; i <= 100; i++)
+		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i))
+	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid", 0.5)
 
 	//Actor types are explicitly called this way to ensure the player is drawn on top
 	//This was made before Z drawing was implemented, so it's not perfect

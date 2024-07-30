@@ -290,7 +290,14 @@
 						if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Trigger, obj.x + (obj.width / 2), obj.y + (obj.height / 2))
 						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, obj.height / 2, 0)
-						actor[c].code = obj.name
+						if("properties" in obj)
+							foreach(i in obj.properties) {
+								if(i.name == "code") {
+									actor[c].code = i.value
+								}
+							}
+						else
+							actor[c].code = obj.name
 						actor[c].w = obj.width / 2
 						actor[c].h = obj.height / 2
 						mapActor[obj.id] <- actor[c].id
@@ -577,17 +584,17 @@
 	drawZList(8)
 	if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 	drawAmbientLight()
-	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", 1, 1, 1, gvLight)
+	if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", -1, 1, 1, gvLight)
 	else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg")
 	for(local i = 0; i <= 100; i++) {
 		if(config.light)
-			gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i), 1, 1, 1, gvLight)
+			gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i), -1, 1, 1, gvLight)
 		else
 			gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i))
 	}
 	if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
-	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
+	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid", 0.5)
 
 	//Draw HUD-level elements
 	drawHudList()
@@ -632,17 +639,17 @@
 		drawZList(8)
 		if(actor.rawin("Water")) foreach(i in actor["Water"]) { i.draw() }
 		drawAmbientLight(true)
-		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", 1, 1, 1, gvLight2)
+		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg", -1, 1, 1, gvLight2)
 		else gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg")
 		for(local i = 0; i <= 100; i++) {
 		if(config.light)
-				gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i), 1, 1, 1, gvLight)
+				gvMap.drawTilesMod(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i), -1, 1, 1, gvLight)
 			else
 				gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i))
 		}
 		if(actor.rawin("SecretWall")) foreach(i in actor["SecretWall"]) { i.draw() }
 		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
-		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid")
+		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16), floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid", 0.5)
 
 		//Draw HUD-level elements
 		drawHudList()
@@ -1968,6 +1975,9 @@
 		case 119:
 			c = newActor(SwingingDoor, i.x + 8, i.y, i.name)
 			break
+
+		case 120:
+			c = newActor(SideCrusher, i.x + 8, i.y - 8, i.name)
 	}
 
 	return c

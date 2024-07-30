@@ -4783,6 +4783,162 @@
 	function _typeof() { return "Crusher" }
 }
 
+::SideCrusher <- class extends Enemy {
+	damageMult = {
+		normal = 0.0
+		fire = 0.0
+		ice = 0.0
+		earth = 0.0
+		air = 0.0
+		toxic = 0.0
+		shock = 0.0
+		water = 0.0
+		light = 0.0
+		dark = 0.0
+		cut = 0.0
+		blast = 0.0
+		stomp = 0.0
+		star = 0.0
+	}
+	platform = null
+	gravity = 0
+	scanShapeR = null
+	scanShapeL = null
+	waiting = 0
+	canFall = true
+	sharpSide = true
+	touchDamage = 2
+	nocount = true
+	sprite = 0
+	blinkMax = 60
+	notarget = true
+	normalShape = null
+	moving = 0
+
+	function getFallHeight() {
+		scanShapeR = null
+		scanShapeL = null
+		local checkShape = Rec(x, y - 8, 15, 8, 0)
+		shape = checkShape
+		for(local i = 0; i < 1000; i++) {
+			checkShape.setPos(x + (i * 16), y + 8)
+			if(!placeFree(checkShape.x, checkShape.y)) {
+				scanShapeR = Rec(x + (i * 8), y, 8 + (i * 8), 24, 0)
+				break
+			}
+		}
+		for(local i = 0; i < 1000; i++) {
+			checkShape.setPos(x - (i * 16), y + 8)
+			if(!placeFree(checkShape.x, checkShape.y)) {
+				scanShapeL = Rec(x - (i * 8), y, 8 + (i * 8), 24, 0)
+				break
+			}
+		}
+		if(scanShapeR == null) scanShapeR = Rec(x + 8000, y , 8000, 16, 0)
+		if(scanShapeL == null) scanShapeL = Rec(x - 8000, y , 8000, 16, 0)
+		shape = normalShape
+	}
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
+		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
+
+		if(randInt(200) == 0) sprite = sprDukeCrusher
+
+		normalShape = Rec(x, y, 14, 8, 0, 0, 8)
+		getFallHeight()
+		xstart = x
+
+		active = true
+		friction = 0
+	}
+
+	function run() {
+		health = 100
+		base.run()
+
+		if(getFrames() % 60 == id % 60)
+			getFallHeight()
+
+		if(x == xstart && moving == 0) {
+			hspeed = 0
+			canFall = true
+		}
+
+		//Detect the player underneath
+		if(placeFree(x + 2, y)){
+			if(gvPlayer && hitTest(gvPlayer.shape, scanShapeR) && gvPlayer.x > x + (16 + gvPlayer.shape.w) && canFall
+			|| gvPlayer2 && hitTest(gvPlayer2.shape, scanShapeR) && gvPlayer2.x > x + (16 + gvPlayer2.shape.w) && canFall) {
+				hspeed = 1.0
+				moving = 1
+				canFall = false
+				popSound(sndDrop)
+			}
+		}
+
+		if(placeFree(x - 2, y)){
+			if(gvPlayer && hitTest(gvPlayer.shape, scanShapeL) && gvPlayer.x < x - (16 + gvPlayer.shape.w) && canFall
+			|| gvPlayer2 && hitTest(gvPlayer2.shape, scanShapeL) && gvPlayer2.x < x - (16 + gvPlayer2.shape.w) && canFall) {
+				hspeed = 1.0
+				moving = -1
+				canFall = false
+				popSound(sndDrop)
+			}
+		}
+
+		//Landing
+		if(!placeFree(x + moving, y) && waiting == 0) {
+			if(hspeed != 0) {
+				newActor(Poof, x + (12 * moving), y - 12, 7)
+				newActor(Poof, x + (12 * moving), y + 12, 7)
+				fireWeapon(ExplodeHiddenF, x + (12 * moving), y, 0, id)
+			}
+			waiting = 60
+			moving = 0
+			hspeed = 0
+		}
+
+		if(waiting > 0) {
+			waiting--
+			if(waiting == 0) {
+				x = round(x)
+				if(x > xstart)
+					hspeed = -1
+				if(x < xstart)
+					hspeed = 1
+			}
+		}
+
+		//Attach platform
+		hspeed += moving * 0.25
+		platform.x = x
+		platform.y = y - 12
+		platform.hspeed = hspeed
+		platform.moving = false
+
+		//Speed limit
+		if(hspeed > 16) hspeed = 16.0
+		if(hspeed < -16) hspeed = -16.0
+		if(abs(hspeed) > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
+	}
+
+	function draw() {
+		if(sprite) drawSpriteZ(6, sprite, (vspeed > 0).tointeger(), x - camx, y - camy)
+		else drawSpriteZ(6, sprBearyl, (vspeed > 0).tointeger(), x - camx, y - camy)
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			shape.draw()
+		}
+	}
+
+	function hurtInvinc() {}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {}
+
+	function _typeof() { return "Crusher" }
+}
+
 ::Wheeler <- class extends Enemy {
 	touchDamage = 2
 	sharpSide = true

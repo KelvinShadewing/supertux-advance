@@ -35,6 +35,7 @@
 	accel = 0.2
 	noot = sndNootA
 	rollspeed = 8.0
+	useJumpFlash = false
 
 	//Animations
 	an = {
@@ -642,8 +643,11 @@
 						if(!freeDown2 || freeRight && freeLeft) {
 							if(stats.weapon != "air")
 								popSound(sndJump)
-							else
+							else {
+								if(useJumpFlash)
+										newActor(MagicJumpFlash, x, y + 12)
 								popSound(sndFlap)
+							}
 						}
 					}
 					else if(freeDown && anim != "climb" && !placeFree(x - 2, y) && anim != "wall" && hspeed <= 0 && tileGetSolid(x - 12, y - 12) != 40 && tileGetSolid(x - 12, y + 12) != 40 && tileGetSolid(x - 12, y) != 40) {
@@ -672,8 +676,9 @@
 							playSound(sndJump, 0)
 						}
 						else {
-							stopSound(sndFlap)
-							playSound(sndFlap, 0)
+							if(useJumpFlash)
+									newActor(MagicJumpFlash, x, y + 12)
+							popSound(sndFlap)
 						}
 						stats.stamina--
 					}
@@ -1889,6 +1894,7 @@
 
 ::Lutris <- class extends Tux {
 	myAura = sprLutrisAura
+	useJumpFlash = true
 
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)

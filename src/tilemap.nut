@@ -214,7 +214,7 @@
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -223,7 +223,7 @@
 				break
 			}
 		}
-		if(t == -1 || data.layers[t].visible == false) {
+		if(t == -1) {
 			return; //Quit if no tile layer by that name was found
 		}
 
@@ -246,10 +246,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + round(j * data.tilewidth * sx), y +round (i * data.tileheight * sy), data.layers[t].opacity * a)
-								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + round(j * data.tilewidth * sx), y +round (i * data.tileheight * sy), (a == -1 ? data.layers[t].opacity : a))
+								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a))
 							}
-							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a)
+							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a))
 							k = -1
 							break
 						}
@@ -259,7 +259,7 @@
 		}
 	}
 
-	function drawTilesMod(x, y, mx, my, mw, mh, l, a = 1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTilesMod(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -268,7 +268,8 @@
 				break
 			}
 		}
-		if(t == -1 || data.layers[t].visible == false) {
+
+		if(t == -1) {
 			return; //Quit if no tile layer by that name was found
 		}
 
@@ -291,10 +292,10 @@
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), data.layers[t].opacity * a, c)
-								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a, c)
+								if(tileset[k] == anim[n].sprite) anim[n].draw(x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), (a == -1 ? data.layers[t].opacity : a), c)
+								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a), c)
 							}
-							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, data.layers[t].opacity * a, c)
+							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a), c)
 							k = -1
 							break
 						}
@@ -326,7 +327,7 @@
 				break
 			}
 		}
-		if(t == -1 || data.layers[t].visible == false) {
+		if(t == -1) {
 			return; //Quit if no tile layer by that name was found
 		}
 
@@ -343,7 +344,7 @@
 				break
 			}
 		}
-		if(t == -1 || data.layers[t].visible == false) {
+		if(t == -1) {
 			return; //Quit if no tile layer by that name was found
 		}
 
