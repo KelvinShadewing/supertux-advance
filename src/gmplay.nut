@@ -1417,37 +1417,44 @@
 ::createPlatformActors <- function(n, i, c) {
 	switch(n) {
 		case 0:
-			gvNumPlayers = 0
-			if(!gvPlayer && getroottable().rawin(game.playerChar)) {
-				if(game.check == false) {
-					c = actor[newActor(getroottable()[game.playerChar], i.x + 8, i.y - 16)]
-				}
-				else {
-					c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
-				}
-				gvNumPlayers++
+			if(gvPlayAsBeam) {
+				c = actor[newActor(BeamBug, i.x + 8, i.y - 16)]
+				gvNumPlayers = 0
+				gvCamTarget = c
 			}
-
-			if(game.playerChar2 != "" && !gvPlayer2 && getroottable().rawin(game.playerChar2)) {
-				if(game.check == false) {
-					c = actor[newActor(getroottable()[game.playerChar2], i.x + 8, i.y - 16)]
+			else {
+				gvNumPlayers = 0
+				if(!gvPlayer && getroottable().rawin(game.playerChar)) {
+					if(game.check == false) {
+						c = actor[newActor(getroottable()[game.playerChar], i.x + 8, i.y - 16)]
+					}
+					else {
+						c = actor[newActor(getroottable()[game.playerChar], game.chx, game.chy)]
+					}
+					gvNumPlayers++
 				}
-				else {
-					c = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
+
+				if(game.playerChar2 != "" && !gvPlayer2 && getroottable().rawin(game.playerChar2)) {
+					if(game.check == false) {
+						c = actor[newActor(getroottable()[game.playerChar2], i.x + 8, i.y - 16)]
+					}
+					else {
+						c = actor[newActor(getroottable()[game.playerChar2], game.chx, game.chy)]
+					}
+					gvNumPlayers++
 				}
-				gvNumPlayers++
-			}
 
-			camx = c.x - (gvScreenW / 2)
-			camy = c.y - (gvScreenH / 2)
-			if(gvPlayer) gvCamTarget = gvPlayer
+				camx = c.x - (gvScreenW / 2)
+				camy = c.y - (gvScreenH / 2)
+				if(gvPlayer) gvCamTarget = gvPlayer
 
-			if(config.useBeam && gvNumPlayers == 1)
-				newActor(BeamBug, i.x + 8, i.y - 16)
+				if(config.useBeam && gvNumPlayers == 1)
+					newActor(BeamBug, i.x + 8, i.y - 16)
 
-			if(gvBattleMode && gvPlayer && gvPlayer2) {
-				gvPlayer.blinking = 10
-				gvPlayer2.blinking = 10
+				if(gvBattleMode && gvPlayer && gvPlayer2) {
+					gvPlayer.blinking = 10
+					gvPlayer2.blinking = 10
+				}
 			}
 			break
 

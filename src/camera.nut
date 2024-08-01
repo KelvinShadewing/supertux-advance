@@ -192,7 +192,11 @@
 			px = (gvCamTarget.x) - (gvScreenW / 2)
 			py = (gvCamTarget.y) - (gvScreenH / 2)
 		}
-	} else {
+	} else if(typeof gvCamTarget == "BeamBug") {
+		px = (gvCamTarget.x) - (gvScreenW / 2)
+		py = (gvCamTarget.y) - (gvScreenH / 2)
+	}
+	else {
 		px = camx0
 		py = camy0
 	}
@@ -361,6 +365,10 @@
 	if(gvPlayer) gvCamTarget = gvPlayer
 	else if(gvPlayer2) gvCamTarget = gvPlayer2
 	if(gvPlayer2) gvCamTarget2 = gvPlayer2
+	if(gvNumPlayers == 0 && checkActor("BeamBug")) {
+		foreach(i in actor["BeamBug"])
+			gvCamTarget = i
+	}
 }
 
 ::CameraGrabber <- class extends Actor {

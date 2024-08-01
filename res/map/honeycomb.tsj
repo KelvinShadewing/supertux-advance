@@ -1,11 +1,11 @@
 { "columns":20,
  "image":"..\/gfx\/honeycomb.png",
- "imageheight":272,
+ "imageheight":336,
  "imagewidth":320,
  "margin":0,
  "name":"honeycomb",
  "spacing":0,
- "tilecount":340,
+ "tilecount":420,
  "tiledversion":"1.10.1",
  "tileheight":16,
  "tiles":[

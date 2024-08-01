@@ -271,6 +271,23 @@
 				game.check = false
 				gvDoIGT = true
 				drawWeather = 0
+
+				gvPlayAsBeam = false
+
+				startPlay(game.path + level + ".json")
+			}
+		}
+		if(getcon("spec2", "press") && (
+			fileExists("ghosts/" + level + "." + game.playerChar + ".gst"
+			|| fileExists("ghosts/" + game.path + level + "." + game.playerChar + ".gst"))
+		)) {
+			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
+				game.check = false
+				gvDoIGT = true
+				drawWeather = 0
+
+				gvPlayAsBeam = true
+
 				startPlay(game.path + level + ".json")
 			}
 		}

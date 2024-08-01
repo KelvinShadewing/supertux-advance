@@ -1,6 +1,7 @@
 ::ghostRecordOld <- null
 ::ghostRecordNew <- null
 ::ghostRecordName <- ""
+::gvPlayAsBeam <- false
 
 ::loadGhostFile <- function(filename) {
 	if(!fileExists(filename)) return [[0,0]]
@@ -22,6 +23,7 @@
 ::BeamBug <- class extends Actor {
 	step = 0
 	xprev = 0
+	yprev = 0
 	lightTrail = null
 	flip = 0
 	turn = 0
@@ -37,6 +39,7 @@
 		lightTrail[0] = [x, y]
 
 		xprev = x
+		yprev = y
 		x = ghostRecordOld[step][0]
 		y = ghostRecordOld[step][1]
 		if(step < ghostRecordOld.len() - 1)
@@ -47,6 +50,9 @@
 		if(x < xprev)
 			flip = 1
 		turn = floor(min(fabs(x - xprev) / 1.5, 3)) * 2
+
+		if(gvNumPlayers == 0)
+			gvCamTarget = this
 	}
 
 	function draw() {
