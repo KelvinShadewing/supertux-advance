@@ -40,6 +40,7 @@
 	dead = false
 	hitBy = null
 	notarget = false //If the enemy is ignored by homing attacks
+	heavy = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1965,7 +1966,6 @@
 					local c = actor[newActor(CannonBob, x - 4, y - 4)]
 					c.hspeed = ((target.x - x) / 48)
 					local d = (y - target.y) / 64
-					if(d > 2) d = 2
 					if(y > target.y) c.vspeed -= d
 					newActor(Poof, x - 4, y - 4)
 				}
@@ -1973,7 +1973,6 @@
 					local c = actor[newActor(CannonBob, x + 4, y - 4)]
 					c.hspeed = ((target.x - x) / 48)
 					local d = (y - target.y) / 64
-					if(d > 2) d = 2
 					if(y > target.y) c.vspeed -= d
 					newActor(Poof, x + 4, y - 4)
 				}
@@ -1981,7 +1980,6 @@
 					local c = actor[newActor(CannonBob, x, y - 4)]
 					c.hspeed = ((target.x - x) / 48)
 					local d = (y - target.y) / 64
-					if(d > 2) d = 2
 					if(y > target.y) c.vspeed -= d
 					newActor(Poof, x, y - 4)
 				}
@@ -2001,6 +1999,7 @@
 	vspeed = -4
 	sprite = 0
 	touchDamage = 2.0
+	heavy = true
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -2044,8 +2043,6 @@
 
 			if(canice)
 				if(health > 0) icebox = mapNewSolid(shape)
-
-
 		}
 	}
 
@@ -4689,7 +4686,7 @@
 	waiting = 0
 	canFall = true
 	sharpSide = true
-	touchDamage = 2
+	touchDamage = 4
 	nocount = true
 	sprite = 0
 	blinkMax = 60
@@ -4709,6 +4706,8 @@
 		}
 		if(scanShape == null) scanShape = Rec(x, y + (8000), 24, (8000), 0)
 		shape = normalShape
+
+		touchDamage = 2 * (game.difficulty + 1)
 	}
 
 	constructor(_x, _y, _arr = null) {
@@ -4812,7 +4811,7 @@
 	waiting = 0
 	canFall = true
 	sharpSide = true
-	touchDamage = 2
+	touchDamage = 4
 	nocount = true
 	sprite = 0
 	blinkMax = 60
@@ -4823,7 +4822,7 @@
 	function getFallHeight() {
 		scanShapeR = null
 		scanShapeL = null
-		local checkShape = Rec(x, y - 8, 15, 8, 0)
+		local checkShape = Rec(x, y, 4, 4, 0)
 		shape = checkShape
 		for(local i = 0; i < 1000; i++) {
 			checkShape.setPos(x + (i * 16), y + 8)
@@ -4839,9 +4838,11 @@
 				break
 			}
 		}
-		if(scanShapeR == null) scanShapeR = Rec(x + 8000, y , 8000, 16, 0)
-		if(scanShapeL == null) scanShapeL = Rec(x - 8000, y , 8000, 16, 0)
+		if(scanShapeR == null) scanShapeR = Rec(x + 8000, y , 8000, 24, 0)
+		if(scanShapeL == null) scanShapeL = Rec(x - 8000, y , 8000, 24, 0)
 		shape = normalShape
+
+		touchDamage = 2 * (game.difficulty + 1)
 	}
 
 	constructor(_x, _y, _arr = null) {
@@ -4851,7 +4852,7 @@
 
 		if(randInt(200) == 0) sprite = sprDukeCrusher
 
-		normalShape = Rec(x, y, 14, 8, 0, 0, 8)
+		normalShape = Rec(x, y, 14, 6, 0, 0, 8)
 		getFallHeight()
 		xstart = x
 
@@ -4934,6 +4935,8 @@
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			shape.draw()
+			scanShapeL.draw()
+			scanShapeR.draw()
 		}
 	}
 

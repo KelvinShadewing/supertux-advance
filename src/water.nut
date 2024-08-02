@@ -41,6 +41,7 @@
 			case "honey":
 				if("stats" in target && target.stats.weapon == "water")
 					break
+
 				target.x = (target.x + target.xprev) / 2.0
 				target.y = (target.y + target.yprev) / 2.0
 				break

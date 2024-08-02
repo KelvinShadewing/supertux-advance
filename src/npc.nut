@@ -293,9 +293,12 @@
 		fly = [1, 2]
 	}
 	flip = 0
+	shape = null
+	moving = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
+		shape = Rec(x, y, 16, 16, 0)
 	}
 
 	function run() {
@@ -304,17 +307,40 @@
 			flip = 0
 		if(hspeed < 0)
 			flip = 1
-	}
 
-	function routine() {
-		if(rx == 0 && ry == 0 && checkActor("RallyPoint"))
+		if(rx == 0 && ry == 0 && checkActor("RallyPoint")) {
 			foreach(i in actor["RallyPoint"]) {
-
+				rx = i.x
+				ry = i.y
+				break
 			}
+		}
+		
+		if(!freed && checkActor("WeaponEffect")) {
+			foreach(i in actor["WeaponEffect"]) {
+				if(hitTest(shape, i.shape)) {
+					freed = true
+					anim = "fly"
+					moving = true
+					if(i.piercing == 0) deleteActor(i.id)
+					else i.piercing--
+					speed = 2.0
+					break
+				}
+			}
+		}
+
+		if(freed && !moving) {
+			hspeed += lendirX(0.1, pointAngle(x, y, rx - 32 + randInt(64), ry - 32 + randInt(64)))
+			vspeed += lendirY(0.1, pointAngle(x, y, rx - 32 + randInt(64), ry - 32 + randInt(64)))
+			x += hspeed
+			y += vspeed
+		}
 	}
 
 	function pathEnd() {
 		moving = false
+		newActor(Herring, x, y)
 	}
 
 	function draw() {

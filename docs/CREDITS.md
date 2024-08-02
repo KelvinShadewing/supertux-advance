@@ -44,7 +44,6 @@ Elemental explosions - CC-BY-SA 4.0
 
 **All graphics by Kelvin are CC-BY-SA 4.0**
 acid.png
-acidsplash.png (w/ Jesse McCarthy)
 acidsurface.png
 actors-big.png
 actors.png
@@ -81,7 +80,33 @@ brickblock-chunks.png
 brickblock-snow.png
 brickblock.png
 bubble.png
+carrot-ko.png
+carstop.png
+chainlink.png
+charbox.png
+charcursor.png
+charge.png
+charge-air.png
+charge-dark.png
+charge-earth.png
+charge-fire.png
+charge-ice.png
+charge-light.png
+charge-shock.png
+charge-water.png
+charsel.png
+clamor.png
+coffee-cup.png
 coin.png
+coin-small.png
+color-cycle-blocks.png
+colorswitches.png
+colorswitches-small.png
+colorswitches-small-pf.png
+crumble-ice.png
+crumble-rock.png
+crystal.png
+crystal-bullet.png
 konqi-npc.png
 konqi.png
 konqiair.png
@@ -110,10 +135,26 @@ pennyfire.png
 pennyice.png
 pennyO.png
 solid.png
+shield.png
+shield-air.png
+shield-dash.png
+shield-fire.png
+shield-ice.png
+shield-insta.png
+shield-shock.png
+shield-water.png
+shiveriken.png
+shockball.png
+shockbolt.png
+shockbulb.png
+shopblock.png
+shortfuse.png
+skull.png
+smartcap.png
+tinyflame.png
 tux-npc.png
 tux.png
 tuxair.png
-tuxdoll.png
 tuxearth.png
 tuxfire.png
 tuxfirehat.png
@@ -130,84 +171,139 @@ blue-cave-bg-0.png\* - CC0
 * Anneroy - CC-BY-SA 4.0
 
 ### [thekingphoenix](https://opengameart.org/users/thekingphoenix)
-* Forest Decorations - CC0
+* forestdeco.png - CC0
 
 ### [Nemysis](https://opengameart.org/users/nemisys)
-* Sign post\* - CC-BY-SA 3.0
+* signpost.png\* - CC-BY-SA 3.0
 
 ### [devnewton](https://opengameart.org/users/devnewton)
-* Tornado\* - CC-BY-SA 4.0
+* explodeA.png\* - CC-BY-SA 4.0
 
 ### [TheNess](https://opengameart.org/users/theness)
-* Forest parallax - CC-BY-SA 3.0
+* forest0.png - CC-BY-SA 3.0
+* forest0-night.png - CC-BY-SA 3.0
+* forest1.png - CC-BY-SA 3.0
+* forest1-night.png - CC-BY-SA 3.0
 
 ### [RodHakGames](https://opengameart.org/users/rodhakgames)
 * Portals\* - CC0
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
+### [bluecarrot16](https://opengameart.org/users/bluecarrot16)
+* palmtrees.png\* - CC-BY-SA 3.0
+* barrel.png\* - CC-BY-SA 3.0
+* endgate.png\* - CC-BY-SA 3.0
+* large-boat-tiles.png\* - CC-BY-SA 3.0
 
 ### [KnoblePersona](https://opengameart.org/users/knoblepersona)
 * pots.png - CC-BY 3.0
 * ocean.png - CC-BY 3.0
 * ocean-night.png\* - CC-BY 3.0
 
-[SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
+### [SugarMoonWitch](https://opengameart.org/users/tearoost)
+* underwaterbg.png\* - CC-BY 4.0
+* underwaterbg-light.png\* - CC-BY 4.0
 
-[Soluna Software](https://opengameart.org/users/soluna-software)-  STA Logo Upper Half\*
+### [Soluna Software](https://opengameart.org/users/soluna-software)
+* title.png (upper half)\* - CC-BY 3.0
 
-[ZiNGOT Games](https://opengameart.org/users/zingot) - STA Logo Lower Half\*
+### [ZiNGOT Games](https://opengameart.org/users/zingot)
+* title.png (lower half)\* - CC-BY 4.0
 
-[Iaavis](https://opengameart.org/users/laavis) - 2D Pixel City Pack\*
+### [Iaavis](https://opengameart.org/users/laavis)
+* citytiles.png\* - CC-BY 4.0
 
-[BenCreating](https://opengameart.org/users/bencreating) - Overworld Tiles\*
+### [BenCreating](https://opengameart.org/users/bencreating)
+* overworld.png\* - CC-BY-SA 3.0
 
 ### [Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
+* bg-moon.png - CC-BY 4.0
 * door-dungeon-face.png - CC-BY 4.0
 * door-dungeon-edge.png - CC-BY 4.0
 
-[Spring](https://opengameart.org/users/spring-spring) - Large flame, waspy boi\*
+### [Spring](https://opengameart.org/users/spring-spring) - Large flame, waspy boi\*
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin\*, strawberry muffin\*, bomb muffin\*, Haywire\*, Tux doll\*, Orange\*, Darknyan, Livewire, Blazeborn
+### [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw)
+* muffin.png (strawberry, toxic, bomb)\* - CC-BY-SA 4.0
+* haywire.png\* - CC-BY-SA 4.0
+* tuxdoll.png\* - CC-BY-SA 4.0
+* orange.png\* - CC-BY-SA 4.0
+* darknyan.png - CC-BY-SA 4.0
+* livewire.png - CC-BY-SA 4.0
+* twang-npc.png - CC-BY-SA 4.0
 
-[TheCheeseWeez]() - Mega muffin\*
+### [TheCheeseWeez]()
+* megamuffin.png\* - CC-BY-SA 4.0
 
-[Neorice](https://www.deviantart.com/neoriceisgood) - Rock tiles\*, sand tiles\*
+### [Neorice](https://www.deviantart.com/neoriceisgood)
+* sand.png\* CC0
+* rocktiles.png\* CC0
 
-[XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection\*
+### [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11)
+* minetest-campfire.png\* CC-BY-SA 3.0
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - barrel.png\*
-endgate.png\*
+### [Kutejnikov](https://opengameart.org/users/kutejnikov)
+* shipwreck.png\* - CC0
 
-[Kutejnikov](https://opengameart.org/users/kutejnikov) - Shipwreck tiles
+### [Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy)
+* splash.png - CC-BY 3.0
+* acidsplash.png\* - CC-BY 3.0
 
-[Nushio](http://opengameart.org/users/nushio) - LPC Terrain 2
+### [UbuntuJackson](https://github.com/UbuntuJackson)
+ufo.png\* CC-BY-SA 4.0
+tsSnow.png\* CC-BY-SA 4.0
 
-[Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy)
-splash.png
+### [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/)
+rpg16.png\* CC-BY-SA 4.0
 
-[UbuntuJackson](https://github.com/UbuntuJackson) - UFO\*, snow tiles redesign\*
+### [Crystalized Sun](https://www.deviantart.com/crystalizedsun/)
+* mr-snowball.png\* - CC-BY-SA 4.0
+* ms-snowball.png\* - CC-BY-SA 4.0
+* og-jumpy.png\* - CC-BY-SA 4.0
+* snowspike.png\* - CC-BY-SA 4.0
+* snowman.png\* - CC-BY-SA 4.0
+* snowoman.png\* - CC-BY-SA 4.0
+* wheelblade.png\* - CC-BY-SA 4.0
+* hamsterwheel.png - CC-BY-SA 4.0
+* katie.png\* - CC-BY-SA 4.0
+* pennyO.png\* - CC-BY-SA 4.0
+* kiki.png\* - CC-BY-SA 4.0
+* cyra.png - CC-BY-SA 4.0
+* fishblue-snow.png - CC-BY-SA 4.0
+* fishgreen-snow.png - CC-BY-SA 4.0
+* fishred-snow.png - CC-BY-SA 4.0
+* goldbomb.png - CC-BY-SA 4.0
+* pepper.png\* - CC-BY-SA 4.0
+* crystallo.png\* - CC-BY-SA 4.0
 
-[Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16\*
+### [Narehop](https://opengameart.org/users/narehop)
+* achievement-frame.png\* - CC-BY 4.0
 
-[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball\*, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie\*, Penny Overworld\*, Kiki\*, Cyra, Snow Fish, Gold Bomb, Pepper
+### [Serano01](https://github.com/serano01)
+* bg-switch-palace-0.png - CC-BY-SA 3.0
+* bg-switch-palace-1.png - CC-BY-SA 3.0
 
-[Narehop](https://opengameart.org/users/narehop) - Achievement Frame\*
+### [BitingChaos](https://opengameart.org/users/bitingchaos)
+* explode-tiny.png - CC0
 
-[Serano01](https://github.com/serano01) - Switch Palace BG\*
+### [Cethiel](https://opengameart.org/users/cethiel)
+* desertbg.png\* - CC0
 
-[BitingChaos](https://opengameart.org/users/bitingchaos)
+### [Revangale](https://opengameart.org/users/revangale)
+* palmtree-pieces.png\* CC-BY-SA 3.0
 
-[Cethiel](https://opengameart.org/users/cethiel) - Desert BG
-
-[Revangale](https://opengameart.org/users/revangale) - Palmtree pieces
-
-[Surt](https://opengameart.org/users/surt) - Ruins tiles\*
+### [Surt](https://opengameart.org/users/surt)
+* igloo.png\* GPL 3.0
+* ruins-tiles.png\* CC0
 
 ### [RustyBox]()
 * Scaled icecube\* - CC-BY-SA 4.0
 
 ### [bcsilva](https://opengameart.org/users/bcsilva)
 * bg_stadium.png - CC-BY 3.0
+
+### [Jetrel](https://opengameart.org/users/jetrel)
+* castlebg.png - CC0
+* tsCastle.png\* - CC0
 
 ## Sounds
 
