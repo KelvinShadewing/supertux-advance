@@ -677,11 +677,11 @@
 	}
 }
 
-::ExplodeHiddenF <- class extends WeaponEffect{
+::ExplodeHidden <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
-	element = "fire"
+	element = "normal"
 	power = 2
 	blast = true
 

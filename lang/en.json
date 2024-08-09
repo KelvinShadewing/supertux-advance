@@ -810,7 +810,10 @@
 		"I'm cooler than a cucumber.",
 
 		"loch-clue" :
-		"Have you been to Loch Genesis? It's the smaller lake to the east. I hear the caves there are really something!"
+		"Have you been to Loch Genesis? It's the smaller lake to the east. I hear the caves there are really something!",
+
+		"bee-help" :
+		"Please help us! The Waspy Bois have taken over our hive, and the queen is missing! Their leader has taken refuge in our hive's center. If you can save my friends, they can get you the honey crystals to open the grand hall."
 	},
 
 	"level" : {

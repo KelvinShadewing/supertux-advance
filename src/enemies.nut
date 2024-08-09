@@ -4713,6 +4713,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
+		platform.shape = Rec(x, y, 16, 16, 0)
 		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
 
 		if(randInt(200) == 0) sprite = sprDukeCrusher
@@ -4725,10 +4726,9 @@
 
 	function run() {
 		health = 100
+		platform.shape.setPos(x, -1000)
 		base.run()
-
-		if(getFrames() % 60 == id % 60)
-			getFallHeight()
+		platform.shape.setPos(x, y)
 
 		if(y < ystart) {
 			y = ystart
@@ -4753,7 +4753,7 @@
 			if(vspeed > 0) {
 				newActor(Poof, x - 12, y + 12, 7)
 				newActor(Poof, x + 12, y + 12, 7)
-				fireWeapon(ExplodeHiddenF, x, y + 12, 0, id)
+				fireWeapon(ExplodeHidden, x, y + 12, 0, id)
 			}
 			vspeed = 0
 		}
@@ -4764,7 +4764,15 @@
 		}
 
 		//Attach platform
-		platform.y = y - 12
+		platform.y = y
+		touchDamage = max(0, min(4, vspeed))
+		if(vspeed == 0) {
+			if(gvPlayer && y > gvPlayer.y && hitTest(shape, gvPlayer.shape))
+				gvPlayer.y = y + 1
+
+			if(gvPlayer2 && y > gvPlayer2.y && hitTest(shape, gvPlayer2.shape))
+				gvPlayer2.y = y + 1
+		}
 
 		//Speed limit
 		if(vspeed > 16) vspeed = 16.0
@@ -4848,6 +4856,7 @@
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		platform = actor[newActor(MoPlat, x, y, [[[0, 0], [0, 0]], 0, 2, 0])]
+		platform.shape = Rec(x, y, 16, 16, 0)
 		if(_arr != null && getroottable().rawin(_arr)) sprite = getroottable()[_arr]
 
 		if(randInt(200) == 0) sprite = sprDukeCrusher
@@ -4898,7 +4907,7 @@
 			if(hspeed != 0) {
 				newActor(Poof, x + (12 * moving), y - 12, 7)
 				newActor(Poof, x + (12 * moving), y + 12, 7)
-				fireWeapon(ExplodeHiddenF, x + (12 * moving), y, 0, id)
+				fireWeapon(ExplodeHidden, x + (12 * moving), y, 0, id)
 			}
 			waiting = 60
 			moving = 0
@@ -4917,16 +4926,24 @@
 		}
 
 		//Attach platform
+		y = ystart
 		hspeed += moving * 0.25
 		platform.x = x
-		platform.y = y - 12
+		platform.y = y
 		platform.hspeed = hspeed
+		platform.vspeed = 0
 		platform.moving = false
 
 		//Speed limit
-		if(hspeed > 16) hspeed = 16.0
-		if(hspeed < -16) hspeed = -16.0
+		if(hspeed > 8) hspeed = 8.0
+		if(hspeed < -8) hspeed = -8.0
 		if(abs(hspeed) > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
+
+		//Set damage value
+		touchDamage = 0
+		if(hspeed > 0 && !placeFree(x + 1, y)
+		|| hspeed < 0 && !placeFree(x - 1, y))
+			touchDamage = 4
 	}
 
 	function draw() {
@@ -4937,6 +4954,18 @@
 			shape.draw()
 			scanShapeL.draw()
 			scanShapeR.draw()
+
+			if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 128)) {
+				local tx = toRange(x, gvPlayer.shape.x - gvPlayer.shape.w, gvPlayer.shape.x + gvPlayer.shape.w)
+				local ty = toRange(y, gvPlayer.shape.y - gvPlayer.shape.h, gvPlayer.shape.y + gvPlayer.shape.h)
+
+				drawCircle(tx - camx, ty - camy, 2, true)
+
+				local slopeA = pointAngle(0, 0, fabs(x - tx), fabs(y - ty))
+				local slopeB = pointAngle(0, 0, platform.shape.w, platform.shape.h)
+
+				drawText(font, x - 16 - camx, y - 64 - camy, str(round(slopeA)) + "\n" + str(round(slopeB)))
+			}
 		}
 	}
 

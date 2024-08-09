@@ -271,7 +271,7 @@
 			if(!(i in chainpos))
 				break
 			drawSprite(sprFireball, i + getFrames() / 4, chainpos[i][0] - camx, chainpos[i][1] - camy)
-			drawLight(sprLightFire, 0, chainpos[i][0] - camx, chainpos[i][1] - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+			drawLight(sprLightFire, i + getFrames() / 8.0, chainpos[i][0] - camx, chainpos[i][1] - camy, getFrames() + (i * 8), 0, fabs(sin((i * 8.0) + getFrames() / 16.0)), fabs(sin((i * 8.0) + getFrames() / 16.0)), 0.5)
 		}
 
 		if(debug) drawText(font, x - camx, y - camy, wrap(a, 0, 360).tostring())
@@ -364,11 +364,10 @@
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		w = max(1, _arr[2].tointeger())
+		w = max(1, int(_arr[2]))
 		if(_arr.len() > 3 && getroottable().rawin(_arr[3])) sprite = getroottable()[_arr[3]]
 		if(_arr.len() > 3 && (_arr[3] == 0 || _arr[3] == "0")) sprite = 0
 		shape = Rec(x, y, w * 8, 4, 0)
-		//mapNewSolid(shape)
 	}
 
 	function run() {
@@ -388,10 +387,6 @@
 			setDrawColor(0x008080ff)
 			shape.draw()
 		}
-	}
-
-	function destructor() {
-		//mapDeleteSolid(shape)
 	}
 
 	function _typeof() { return "MoPlat" }

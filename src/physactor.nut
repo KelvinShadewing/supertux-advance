@@ -137,11 +137,13 @@
 		foreach(i in actor["MoPlat"]) {
 			if(hitTest(shape, i.shape)) {
 				//Get angle between actors
-				local angle = pointAngle(x - hspeed, y - vspeed, i.x, i.y)
-				local slopeA = fabs(lendirY(1.0, angle))
+				local tx = toRange(i.x + hspeed, shape.x - shape.w, shape.x + shape.w)
+				local ty = toRange(i.y + vspeed, shape.y - shape.h, shape.y + shape.h)
+				
+				local slopeA = pointAngle(0, 0, fabs(i.x - tx), fabs(i.y - ty))
 
 				//Get slope across platform
-				local slopeB = 8.0 / (i.w * 8.0)
+				local slopeB = pointAngle(0, 0, i.shape.w, i.shape.h)
 
 				//Get pushed by platform
 				if(placeFree(x + i.hspeed, y + i.vspeed)) {
@@ -150,29 +152,26 @@
 				}
 
 				//Move out of platform box
-				if(x - hspeed + shape.w > i.x - (i.w * 8.0) && x - hspeed + shape.w < i.x + (i.w * 8.0)
-				|| x - hspeed - shape.w > i.x - (i.w * 8.0) && x - hspeed - shape.w < i.x + (i.w * 8.0)
-				|| x - hspeed > i.x - (i.w * 8.0) && x - hspeed < i.x + (i.w * 8.0)
-				|| slopeA >= slopeB) {
+				if(slopeA >= slopeB) {
 					if(y < i.y) {
-						if(placeFree(x, i.y - shape.h - shape.oy - 4)) y = i.y - shape.h - shape.oy - 4
+						if(placeFree(x, i.y - shape.h - shape.oy - i.shape.h)) y = i.y - shape.h - shape.oy - i.shape.h
 						result = -1
 						if(useDown && placeFree(x + i.hspeed, y + i.vspeed)) y += i.vspeed
 					}
 					else {
-						if(placeFree(x, i.y + shape.h - shape.oy + 4)) y = i.y + shape.h - shape.oy + 4
+						if(placeFree(x, i.y + shape.h - shape.oy + i.shape.h)) y = i.y + shape.h - shape.oy + i.shape.h
 						result = 1
 						if(useUp && placeFree(x + i.hspeed, y + i.vspeed)) y += i.vspeed
 					}
 				}
 				else {
 					if(x < i.x) {
-						if(placeFree(i.x - (i.w * 8) - shape.w - shape.ox, y)) x = i.x - (i.w * 8) - shape.w - shape.ox
+						if(placeFree(i.x - (i.shape.w) - shape.w - shape.ox, y)) x = i.x - (i.w * 8) - shape.w - shape.ox
 						result = -2
 						if(useLeft && placeFree(x + i.hspeed, y + i.vspeed)) x += i.hspeed
 					}
 					else {
-						if(placeFree(i.x + (i.w * 8) + shape.w - shape.ox, y)) x = i.x + (i.w * 8) + shape.w - shape.ox
+						if(placeFree(i.x + (i.shape.w) + shape.w - shape.ox, y)) x = i.x + (i.w * 8) + shape.w - shape.ox
 						result = 2
 						if(useRight && placeFree(x + i.hspeed, y + i.vspeed)) x += i.hspeed
 					}

@@ -378,7 +378,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	gvLightBG = true
 	for(local i = 0; i < getBGLoop(spriteW(bgHive)); i++) {
 		for(local j = 0; j < 6; j++) {
-			drawSprite(bgHive, 0, ((-camx / 2) % 258) + (i * 258), ((-camy / 2) % 172) + (j * 172))
+			drawSprite(bgHive, 0, ((-camx / 4) % 258) + (i * 258), ((-camy / 4) % 172) + (j * 172))
 		}
 	}
 }

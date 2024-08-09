@@ -74,7 +74,27 @@
 }
 
 ::inRange <- function(a, b, c) {
+	if(b > c) {
+		local d = b
+		b = c
+		c = d
+	}
 	return (a >= b && a <= c)
+}
+
+::toRange <- function(a, b, c) {
+	if(b > c) {
+		local d = b
+		b = c
+		c = d
+	}
+
+	if(a < b)
+		a = b
+	if(a > c)
+		a = c
+
+	return a
 }
 
 ::deepClone <- function(obj) {

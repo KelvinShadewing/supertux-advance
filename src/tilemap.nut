@@ -214,52 +214,7 @@
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
-		//Find layer
-		local t = -1; //Target layer
-		for(local i = 0; i < data.layers.len(); i++) {
-			if(data.layers[i].type == "tilelayer" && data.layers[i].name == l) {
-				t = i
-				break
-			}
-		}
-		if(t == -1) {
-			return; //Quit if no tile layer by that name was found
-		}
-
-		//Make sure values are in range
-		if(data.layers[t].width < mx + mw) mw = data.layers[t].width - mx
-		if(data.layers[t].height < my + mh) mh = data.layers[t].height - my
-		if(mx < 0) mx = 0
-		if(my < 0) my = 0
-		if(mx > data.layers[t].width) mx = data.layers[t].width
-		if(my > data.layers[t].height) my = data.layers[t].height
-
-		for(local i = my; i < my + mh; i++) {
-			for(local j = mx; j < mx + mw; j++) {
-				if(typeof mask == "array" && (mask.len() >= data.layers[t].data.len()) && mask[(i * data.layers[t].width) + j] == 0)
-					continue //If the mask does not have the tile unlocked, skip it
-
-				if(i * data.layers[t].width + j >= data.layers[t].data.len()) return
-				local n = data.layers[t].data[(i * data.layers[t].width) + j]; //Number value of the tile
-				if(n != 0) {
-					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
-						if(n >= data.tilesets[k].firstgid) {
-							if(anim.rawin(n)) {
-								if(tileset[k] == anim[n].sprite) anim[n].draw(x + round(j * data.tilewidth * sx), y +round (i * data.tileheight * sy), (a == -1 ? data.layers[t].opacity : a))
-								else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a))
-							}
-							else drawSpriteEx(tileset[k], n - data.tilesets[k].firstgid, x + round(j * data.tilewidth * sx), y + round(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a))
-							k = -1
-							break
-						}
-					}
-				}
-			}
-		}
-	}
-
-	function drawTilesMod(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
@@ -271,6 +226,18 @@
 
 		if(t == -1) {
 			return; //Quit if no tile layer by that name was found
+		}
+
+		//Adjust for parallax
+		if("parallaxx" in data.layers[t] && data.layers[t].parallaxx != 0) {
+			mx *= data.layers[t].parallaxx
+			mx = floor(mx)
+			x *= data.layers[t].parallaxx
+		}
+		if("parallaxy" in data.layers[t] && data.layers[t].parallaxy != 0) {
+			my *= data.layers[t].parallaxy
+			my = floor(my)
+			y *= data.layers[t].parallaxy
 		}
 
 		//Make sure values are in range
