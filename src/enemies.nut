@@ -6561,6 +6561,7 @@
 	direction = 0
 	flip = 0
 	fliph = 0
+	checkshape = null
 
 	an = {
 		crawl = [0, 1]
@@ -6586,6 +6587,7 @@
 				break
 		}
 		shape = Rec(x, y, 4, 4, 0)
+		checkshape = Rec(x, y, 3, 3, 0)
 
 		//Stick to nearest surface
 		for(local i = 1; i <= 16; i++) {
@@ -6632,37 +6634,46 @@
 	}
 
 	function physics() {
-		if(rolling || mode == 0)
+		if(rolling || mode == 0 || (placeFree(x + 1, y) && placeFree(x - 1, y) && placeFree(x, y + 1) && placeFree(x, y - 1)))
 			gravity = 0.2
 		else
 			gravity = 0.0
-		vspeed += gravity
+		
+		hspeed += lendirX(gravity, direction + (flip == 0 ? 90 : -90))
+		vspeed += lendirY(gravity, direction + (flip == 0 ? 90 : -90))
 
-		if(placeFree(x, y + vspeed))
+		if(placeFree(x + hspeed, y + vspeed)) {
 			y += vspeed
-		else
+			x += hspeed
+		}
+		else {
 			vspeed /= 2.0
+			hspeed /= 2.0
+		}
 
 		//Try to move along current surface
 		if(!rolling) {
 			local didMove = false
 
+			local oldshape = shape
+			shape = checkshape
 			for(local i = 0; i <= (mode > 0 ? 3 : 0); i++) {
-				if(placeFree(x + lendirX(2, direction + (22.5 * i)), y + lendirY(2, direction + (22.5 * i)))) {
-					x += lendirX(1, direction + (22.5 * i))
-					y += lendirY(1, direction + (22.5 * i))
-					direction += (22.5 * i)
+				if(placeFree(x + lendirX(2, direction + (15 * i)), y + lendirY(2, direction + (15 * i)))) {
+					x += lendirX(1, direction + (15 * i))
+					y += lendirY(1, direction + (15 * i))
+					direction += (15 * i)
 					didMove = true
 					break
 				}
-				else if(placeFree(x + lendirX(2, direction - (22.5 * i)), y + lendirY(2, direction - (22.5 * i)))) {
-					x += lendirX(1, direction - (22.5 * i))
-					y += lendirY(1, direction - (22.5 * i))
-					direction -= (22.5 * i)
+				else if(placeFree(x + lendirX(2, direction - (15 * i)), y + lendirY(2, direction - (15 * i)))) {
+					x += lendirX(1, direction - (15 * i))
+					y += lendirY(1, direction - (15 * i))
+					direction -= (15 * i)
 					didMove = true
 					break
 				}
 			}
+			shape = oldshape
 
 			if(!didMove && mode > 0) {
 				if(placeFree(x + lendirX(2, direction + (90)), y + lendirY(2, direction + (90))))
@@ -6683,6 +6694,9 @@
 				fliph = 1
 
 			direction %= 360
+			local sidecounts = int(!placeFree(x, y + 4)) + int(!placeFree(x, y - 4)) + int(!placeFree(x + 4, y)) + int(!placeFree(x - 4, y))
+			if(sidecounts == 1)
+				direction = round(direction / 90.0) * 90
 
 			//Coming around corner
 			if(mode > 0) {
@@ -6730,8 +6744,9 @@
 
 	function draw() {
 		drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, direction, (rolling ? fliph : flip))
-		if(debug)
+		if(debug) {
 			drawText(font, x + 8 - camx, y - camy, str(direction))
+		}
 
 		base.draw()
 	}

@@ -235,9 +235,9 @@ startMain()
 menu = meMain
 game.playerChar = "Tux"
 
-//Testing Midi
+//Testing
 //game.playerChar = "Neverball"
-//gotoTest()
+gotoTest()
 
 //Load contrib initializers
 if(fileExists("contrib")) {
