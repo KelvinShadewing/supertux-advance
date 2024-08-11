@@ -1312,18 +1312,6 @@
                  "y":1760
                 }, 
                 {
-                 "gid":305,
-                 "height":16,
-                 "id":31,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":784,
-                 "y":1728
-                }, 
-                {
                  "height":352,
                  "id":33,
                  "name":"TransZone,dbgWoodedMountain,0,0x80c0e0ff",
@@ -2503,6 +2491,42 @@
                  "width":16,
                  "x":224,
                  "y":640
+                }, 
+                {
+                 "gid":282,
+                 "height":16,
+                 "id":162,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":976,
+                 "y":1664
+                }, 
+                {
+                 "gid":282,
+                 "height":16,
+                 "id":163,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1456,
+                 "y":1296
+                }, 
+                {
+                 "gid":282,
+                 "height":16,
+                 "id":164,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":736,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2511,7 +2535,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":162,
+ "nextobjectid":165,
  "orientation":"orthogonal",
  "properties":[
         {

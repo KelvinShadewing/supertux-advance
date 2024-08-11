@@ -6561,7 +6561,7 @@
 	direction = 0
 	flip = 0
 	fliph = 0
-	checkshape = null
+	angle = 0
 
 	an = {
 		crawl = [0, 1]
@@ -6587,7 +6587,6 @@
 				break
 		}
 		shape = Rec(x, y, 4, 4, 0)
-		checkshape = Rec(x, y, 3, 3, 0)
 
 		//Stick to nearest surface
 		for(local i = 1; i <= 16; i++) {
@@ -6634,13 +6633,16 @@
 	}
 
 	function physics() {
-		if(rolling || mode == 0 || (placeFree(x + 1, y) && placeFree(x - 1, y) && placeFree(x, y + 1) && placeFree(x, y - 1)))
+		if(rolling || (placeFree(x + 1, y) && placeFree(x - 1, y) && placeFree(x, y + 1) && placeFree(x, y - 1)))
 			gravity = 0.2
 		else
 			gravity = 0.0
 		
 		hspeed += lendirX(gravity, direction + (flip == 0 ? 90 : -90))
 		vspeed += lendirY(gravity, direction + (flip == 0 ? 90 : -90))
+
+		if(abs(vspeed) > 1 || abs(hspeed) > 1)
+			direction = (flip == 0 ? 0 : 180)
 
 		if(placeFree(x + hspeed, y + vspeed)) {
 			y += vspeed
@@ -6654,38 +6656,32 @@
 		//Try to move along current surface
 		if(!rolling) {
 			local didMove = false
+			local mspeed = 0.5 + (mode * 0.5)
 
-			local oldshape = shape
-			shape = checkshape
-			for(local i = 0; i <= (mode > 0 ? 3 : 0); i++) {
-				if(placeFree(x + lendirX(2, direction + (15 * i)), y + lendirY(2, direction + (15 * i)))) {
-					x += lendirX(1, direction + (15 * i))
-					y += lendirY(1, direction + (15 * i))
+			for(local i = 0; i <= 6; i++) {
+				if(placeFree(x + lendirX(1, direction + (15 * i)), y + lendirY(1, direction + (15 * i)))) {
+					x += lendirX(mspeed, direction + (15 * i))
+					y += lendirY(mspeed, direction + (15 * i))
 					direction += (15 * i)
 					didMove = true
 					break
 				}
-				else if(placeFree(x + lendirX(2, direction - (15 * i)), y + lendirY(2, direction - (15 * i)))) {
-					x += lendirX(1, direction - (15 * i))
-					y += lendirY(1, direction - (15 * i))
+				else if(placeFree(x + lendirX(1, direction - (15 * i)), y + lendirY(1, direction - (15 * i)))) {
+					x += lendirX(mspeed, direction - (15 * i))
+					y += lendirY(mspeed, direction - (15 * i))
 					direction -= (15 * i)
 					didMove = true
 					break
 				}
 			}
-			shape = oldshape
 
-			if(!didMove && mode > 0) {
-				if(placeFree(x + lendirX(2, direction + (90)), y + lendirY(2, direction + (90))))
+			if(!didMove) {
+				if(placeFree(x + lendirX(1, direction + (90)), y + lendirY(1, direction + (90))))
 					direction += 90
 				else if(placeFree(x + lendirX(2, direction - (90)), y + lendirY(2, direction - (90))))
 					direction -= 90
 				else if(placeFree(x + lendirX(2, direction - (180)), y + lendirY(2, direction - (180))))
 					direction -= 180
-			}
-			else if(!didMove && mode == 0) {
-				direction += 180
-				flip = int(!flip) * 2
 			}
 
 			if(hspeed > 0)
@@ -6699,47 +6695,105 @@
 				direction = round(direction / 90.0) * 90
 
 			//Coming around corner
-			if(mode > 0) {
-				if((direction == 0 || direction == 180) && placeFree(x, y + 1) && placeFree(x, y - 1)) { //Horizontal
-					if(!placeFree(x + 2, y + 2)) {
-						direction = 90
-						flip = 2
-					}
-					if(!placeFree(x - 2, y + 2)) {
-						direction = 90
-						flip = 0
-					}
-					if(!placeFree(x + 2, y - 2)) {
-						direction = -90
-						flip = 0
-					}
-					if(!placeFree(x - 2, y - 2)) {
-						direction = -90
-						flip = 2
-					}
+			if((direction == 0 || direction == 180) && placeFree(x, y + 1) && placeFree(x, y - 1)) { //Horizontal
+				if(!placeFree(x + 2, y + 2)) {
+					direction = 90
+					flip = 2
+					y++
 				}
-				else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 1, y) && placeFree(x - 1, y)) { //Vertical
-					if(!placeFree(x + 2, y + 2)) {
-						direction = 0
-						flip = 0
+				if(!placeFree(x - 2, y + 2)) {
+					direction = 90
+					flip = 0
+					y++
+				}
+				if(!placeFree(x + 2, y - 2)) {
+					direction = -90
+					flip = 0
+				}
+				if(!placeFree(x - 2, y - 2)) {
+					direction = -90
+					flip = 2
+				}
+			}
+			else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 1, y) && placeFree(x - 1, y)) { //Vertical
+				if(!placeFree(x + 2, y + 2)) {
+					direction = 0
+					flip = 0
+				}
+				if(!placeFree(x - 2, y + 2)) {
+					direction = 180
+					flip = 2
+				}
+				if(!placeFree(x + 2, y - 2)) {
+					direction = 0
+					flip = 2
+				}
+				if(!placeFree(x - 2, y - 2)) {
+					direction = 180
+					flip = 0
+				}
+			}
+
+			//Stuck in wall
+			if(!placeFree(x, y)) {
+				for(local i = 0; i < 64; i++) {
+					if(placeFree(x + i / 2.0, y)) {
+						x += i / 2.0
+						break
 					}
-					if(!placeFree(x - 2, y + 2)) {
-						direction = 180
-						flip = 2
+					if(placeFree(x - i / 2.0, y)) {
+						x -= i / 2.0
+						break
 					}
-					if(!placeFree(x + 2, y - 2)) {
-						direction = 0
-						flip = 2
+					if(placeFree(x, y + i / 2.0)) {
+						y += i / 2.0
+						break
 					}
-					if(!placeFree(x - 2, y - 2)) {
-						direction = 180
-						flip = 0
+					if(placeFree(x, y + i / 2.0)) {
+						y -= i / 2.0
+						break
+					}
+					if(placeFree(x + i / 2.0, y + i / 2.0)) {
+						x += i / 2.0
+						y += i / 2.0
+						break
+					}
+					if(placeFree(x - i / 2.0, y + i / 2.0)) {
+						x -= i / 2.0
+						y += i / 2.0
+						break
+					}
+					if(placeFree(x + i / 2.0, y - i / 2.0)) {
+						x += i / 2.0
+						y -= i / 2.0
+						break
+					}
+					if(placeFree(x - i / 2.0, y - i / 2.0)) {
+						x -= i / 2.0
+						y -= i / 2.0
+						break
 					}
 				}
 			}
 
 			shape.setPos(x, y)
+
+			angle = pointAngle(x, y, xprev, yprev) + 180
+			xprev = x
+			yprev = y
 		}
+		
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking)
+			return
+		blinking = 30
+
+		if(_stomp) {
+
+		}
+		else base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 	}
 
 	function draw() {
