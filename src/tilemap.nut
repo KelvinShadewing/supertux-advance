@@ -228,6 +228,19 @@
 			return; //Quit if no tile layer by that name was found
 		}
 
+		//Correct for layer offsets
+		if("offsetx" in data.layers[t]) {
+			mx -= data.layers[t].offsetx
+			x += data.layers[t].offsetx
+		}
+		mx = floor(mx / tilew)
+
+		if("offsety" in data.layers[t]) {
+			my -= data.layers[t].offsety
+			y += data.layers[t].offsety
+		}
+		my = floor(my / tilew)
+
 		//Adjust for parallax
 		if("parallaxx" in data.layers[t] && data.layers[t].parallaxx != 0) {
 			mx *= data.layers[t].parallaxx
@@ -260,9 +273,9 @@
 						if(n >= data.tilesets[k].firstgid) {
 							if(anim.rawin(n)) {
 								if(tileset[k] == anim[n].sprite) anim[n].draw(x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), (a == -1 ? data.layers[t].opacity : a), c)
-								else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a), c)
+								else drawSprite(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a), c)
 							}
-							else drawSpriteExMod(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a), c)
+							else drawSprite(tileset[k], n - data.tilesets[k].firstgid, x + floor(j * data.tilewidth * sx), y + floor(i * data.tileheight * sy), 0, 0, sx, sy, (a == -1 ? data.layers[t].opacity : a), c)
 							k = -1
 							break
 						}

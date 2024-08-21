@@ -568,14 +568,14 @@
 	setDrawTarget(gvScreen)
 
 	drawBG()
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
+	gvMap.drawTiles(-camx, -camy, camx, camy, (screenW() / 16) + 5, (screenH() / 16) + 2, "bg")
 	for(local i = 0; i <= 100; i++)
-		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg" + str(i))
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
-	gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
+		gvMap.drawTiles(floor(-camx), floor(-camy), camx - 3, camy, (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "bg" + str(i))
+	gvMap.drawTiles(-camx, -camy, camx, camy, (screenW() / 16) + 5, (screenH() / 16) + 2, "mg")
+	gvMap.drawTiles(-camx, -camy, camx, camy, (screenW() / 16) + 5, (screenH() / 16) + 2, "fg")
 	for(local i = 0; i <= 100; i++)
-		gvMap.drawTiles(floor(-camx), floor(-camy), floor(camx / 16) - 3, floor(camy / 16), (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i))
-	if(debug) gvMap.drawTiles(-camx, -camy, floor(camx / 16), floor(camy / 16), (screenW() / 16) + 5, (screenH() / 16) + 2, "solid", 0.5)
+		gvMap.drawTiles(floor(-camx), floor(-camy), camx - 3, camy, (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i))
+	if(debug) gvMap.drawTiles(-camx, -camy, camx, camy, (screenW() / 16) + 5, (screenH() / 16) + 2, "solid", 0.5)
 
 	//Actor types are explicitly called this way to ensure the player is drawn on top
 	//This was made before Z drawing was implemented, so it's not perfect

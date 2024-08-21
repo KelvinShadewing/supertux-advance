@@ -237,7 +237,7 @@ game.playerChar = "Tux"
 
 //Testing
 //game.playerChar = "Neverball"
-gotoTest()
+//gotoTest()
 
 //Load contrib initializers
 if(fileExists("contrib")) {

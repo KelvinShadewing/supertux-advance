@@ -43,8 +43,8 @@
 		local light = 0
 		if(gvLightScreen == gvLightScreen1) light = gvLight
 		if(gvLightScreen == gvLightScreen2) light = gvLight2
-		if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha, 1, 1, light)
-		else gvMap.drawTiles(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha)
+		if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), x, y, dw, dh, "secret", alpha, 1, 1, light)
+		else gvMap.drawTiles(floor(-camx), floor(-camy), x, y, dw, dh, "secret", alpha)
 		if(debug) {
 			drawText(font, x + 2 - camx, y + 2 - camy, "X: " + x + "\nY: " + y + "\nW: " + dw + "\nH: " + dh + "\nA: " + alpha)
 			setDrawColor(0xffffffff)
@@ -133,8 +133,8 @@
 	function draw() {
 		//Draw secret tiles
 		for(local i = 0; i < shape.len(); i++) {
-			if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), dx[i] / 16, dy[i] / 16, dw[i], dh[i], "secret", alpha, 1, 1, gvLight)
-			else gvMap.drawTiles(floor(-camx), floor(-camy), dx[i] / 16, dy[i] / 16, dw[i], dh[i], "secret", alpha)
+			if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha, 1, 1, gvLight)
+			else gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha)
 		}
 
 		if(debug) {

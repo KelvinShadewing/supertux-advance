@@ -6562,6 +6562,7 @@
 	flip = 0
 	fliph = 0
 	angle = 0
+	trail = null
 
 	an = {
 		crawl = [0, 1]
@@ -6569,6 +6570,24 @@
 		roll = [4, 5, 6, 7]
 		peek = [8, 9, 10, 9, 10, 11]
 	}
+
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 0.0
+		shock = 1.0
+		water = 1.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 0.0
+		star = 10.0
+	}
+
 	anim = "crawl"
 	frame = 0.0
 
@@ -6587,6 +6606,8 @@
 				break
 		}
 		shape = Rec(x, y, 4, 4, 0)
+
+		trail = array(16, clone([_x, _y]))
 
 		//Stick to nearest surface
 		for(local i = 1; i <= 16; i++) {
@@ -6633,7 +6654,7 @@
 	}
 
 	function physics() {
-		if(rolling || (placeFree(x + 1, y) && placeFree(x - 1, y) && placeFree(x, y + 1) && placeFree(x, y - 1)))
+		if(rolling || (placeFree(x + 2, y) && placeFree(x - 2, y) && placeFree(x, y + 2) && placeFree(x, y - 2)))
 			gravity = 0.2
 		else
 			gravity = 0.0
@@ -6676,7 +6697,7 @@
 			}
 
 			if(!didMove) {
-				if(placeFree(x + lendirX(1, direction + (90)), y + lendirY(1, direction + (90))))
+				if(placeFree(x + lendirX(2, direction + (90)), y + lendirY(2, direction + (90))))
 					direction += 90
 				else if(placeFree(x + lendirX(2, direction - (90)), y + lendirY(2, direction - (90))))
 					direction -= 90
@@ -6695,7 +6716,7 @@
 				direction = round(direction / 90.0) * 90
 
 			//Coming around corner
-			if((direction == 0 || direction == 180) && placeFree(x, y + 1) && placeFree(x, y - 1)) { //Horizontal
+			if((direction == 0 || direction == 180) && placeFree(x, y + 2) && placeFree(x, y - 2)) { //Horizontal
 				if(!placeFree(x + 2, y + 2)) {
 					direction = 90
 					flip = 2
@@ -6715,7 +6736,7 @@
 					flip = 2
 				}
 			}
-			else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 1, y) && placeFree(x - 1, y)) { //Vertical
+			else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 2, y) && placeFree(x - 2, y)) { //Vertical
 				if(!placeFree(x + 2, y + 2)) {
 					direction = 0
 					flip = 0
@@ -6776,12 +6797,32 @@
 				}
 			}
 
+			if(flip == 2 && !placeFree(x - lendirX(1, direction - 90), y - lendirY(1, direction - 90)))
+				flip = 0
+
+			if(flip == 0 && !placeFree(x - lendirX(1, direction + 90), y - lendirY(1, direction + 90)))
+				flip = 2
+
 			shape.setPos(x, y)
 
-			angle = pointAngle(x, y, xprev, yprev) + 180
+			for(local i = trail.len() - 1; i > 0; i--)
+				trail[i] = trail[i - 1]
+			trail[0] = [x, y]
+
+			local xav = 0
+			local yav = 0
+			for(local i = 0; i < trail.len(); i++) {
+				xav += trail[i][0]
+				yav += trail[i][1]
+			}
+			xav /= float(trail.len())
+			yav /= float(trail.len())
+
+			angle = pointAngle(x, y, xav, yav) + 180
 			xprev = x
 			yprev = y
 		}
+		else base.physics()
 		
 	}
 
@@ -6797,7 +6838,7 @@
 	}
 
 	function draw() {
-		drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, direction, (rolling ? fliph : flip))
+		drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, angle, (rolling ? fliph : flip))
 		if(debug) {
 			drawText(font, x + 8 - camx, y - camy, str(direction))
 		}
