@@ -1,29 +1,29 @@
-::camx <- 0
-::camy <- 0
-::camxprev <- 0
-::camyprev <- 0
+camx <- 0
+camy <- 0
+camxprev <- 0
+camyprev <- 0
 
-::camx0 <- 0
-::camy0 <- 0
-::camxprev0 <- 0
-::camyprev0 <- 0
+camx0 <- 0
+camy0 <- 0
+camxprev0 <- 0
+camyprev0 <- 0
 
-::camx1 <- 0
-::camy1 <- 0
-::camx1prev <- 0
-::camy1prev <- 0
+camx1 <- 0
+camy1 <- 0
+camx1prev <- 0
+camy1prev <- 0
 
-::camx2 <- 0
-::camy2 <- 0
-::camx2prev <- 0
-::camy2prev <- 0
+camx2 <- 0
+camy2 <- 0
+camx2prev <- 0
+camy2prev <- 0
 
-::gvCamTarget <- false
-::gvCamTarget2 <- false
-::gvSplitScreen <- false
-::gvSwapScreen <- false
+gvCamTarget <- false
+gvCamTarget2 <- false
+gvSplitScreen <- false
+gvSwapScreen <- false
 
-::updateCamera <- function() {
+updateCamera <- function() {
 	if(typeof gvMap != "Tilemap")
 		return
 
@@ -371,7 +371,7 @@
 	}
 }
 
-::CameraGrabber <- class extends Actor {
+CameraGrabber <- class extends Actor {
 	w = 0
 	h = 0
 	lock = false
@@ -474,7 +474,7 @@
 	function _typeof() { return "CameraGrabber" }
 }
 
-::CameraBlock <- class extends PhysAct {
+CameraBlock <- class extends PhysAct {
 	w = 0
 	h = 0
 	shape = null

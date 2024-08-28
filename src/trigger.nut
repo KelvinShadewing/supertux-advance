@@ -1,9 +1,9 @@
-::pipeFunnel <- function(target) {
+pipeFunnel <- function(target) {
 	if(target.x < x && target.hspeed < 1 && getcon("down", "hold", false, target.playerNum)) target.hspeed += 0.25
 	if(target.x > x && target.hspeed > -1 && getcon("down", "hold", false, target.playerNum)) target.hspeed -= 0.25
 }
 
-::trigCurrent <- function(h = 0, v = 0, f = 0.5, eforce = false) {
+trigCurrent <- function(h = 0, v = 0, f = 0.5, eforce = false) {
 	if(myTarget == null)
 		return
 
@@ -35,7 +35,7 @@
 	}
 }
 
-::trigStep <- function(h = 0, v = 0) {
+trigStep <- function(h = 0, v = 0) {
 	if(myTarget == null)
 		return
 
@@ -72,7 +72,7 @@
 	}
 }
 
-::Trigger <- class extends Actor {
+Trigger <- class extends Actor {
 	code = ""
 	shape = 0
 	w = 0.0
@@ -92,7 +92,7 @@
 	function _typeof() { return "Trigger" }
 }
 
-::joinPlayers <- function(target) {
+joinPlayers <- function(target) {
 	if(target == gvPlayer && gvPlayer2) {
 		gvPlayer2.x = gvPlayer.x
 		gvPlayer2.y = gvPlayer.y

@@ -1,4 +1,4 @@
-::RacerTree <- class extends Actor {
+RacerTree <- class extends Actor {
 	shape = null
 
 	constructor(_x, _y, _arr){

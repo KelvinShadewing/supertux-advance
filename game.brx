@@ -50,7 +50,6 @@ require("src/blocks.nut")
 require("src/overworld.nut")
 require("src/secret.nut")
 require("src/npc.nut")
-require("src/npc2.nut")
 require("src/languagemenu.nut")
 require("src/contriblevels.nut")
 require("src/save.nut")
@@ -82,7 +81,7 @@ setSoundVolume(config.soundVolume)
 setMusicVolume(config.musicVolume)
 
 //Detect resolution
-::setDisplayAspect <- function(w) {
+setDisplayAspect <- function(w) {
 	setResolution(w, 240)
 }
 
@@ -106,7 +105,7 @@ switch(config.aspect) {
 		break
 }
 
-::updateDisplaySettings <- function() {
+updateDisplaySettings <- function() {
 	local tempTarget = getDrawTarget()
 	setDrawTarget(0)
 
@@ -244,7 +243,7 @@ if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
 }
 
-::gameCycle <- function() {
+gameCycle <- function() {
 	/*
 	if(keyPress(k_f11)) {
 		toggleFullscreen()
@@ -275,12 +274,12 @@ if(fileExists("contrib")) {
 	gvGameMode()
 }
 
-::gameRender <- function() {
+gameRender <- function() {
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
 }
 
-::gameExit <- function() {}
+gameExit <- function() {}
 
 while(!getQuit() && !gvQuit) {
 	gameCycle()

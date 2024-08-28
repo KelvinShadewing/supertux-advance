@@ -2,7 +2,7 @@
 | TUX ACTOR |
 \*=========*/
 
-::Tux <- class extends Player {
+Tux <- class extends Player {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
 	frame = 0.0
@@ -1875,7 +1875,7 @@
 	function _typeof(){ return "Tux" }
 }
 
-::Penny <- class extends Tux {
+Penny <- class extends Tux {
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 
@@ -1892,7 +1892,7 @@
 	function _typeof() { return "Penny" }
 }
 
-::Lutris <- class extends Tux {
+Lutris <- class extends Tux {
 	myAura = sprLutrisAura
 	useJumpFlash = true
 

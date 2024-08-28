@@ -1,4 +1,4 @@
-::ShopBlockHealth <- class extends Actor {
+ShopBlockHealth <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -49,7 +49,7 @@
 	}
 }
 
-::ShopBlockEnergy <- class extends Actor {
+ShopBlockEnergy <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -101,7 +101,7 @@
 	}
 }
 
-::ShopBlockStamina <- class extends Actor {
+ShopBlockStamina <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -153,7 +153,7 @@
 	}
 }
 
-::ShopBlockWorld <- class extends Actor {
+ShopBlockWorld <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -212,7 +212,7 @@
 	}
 }
 
-::ShopBlockSulphur <- class extends Actor {
+ShopBlockSulphur <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0

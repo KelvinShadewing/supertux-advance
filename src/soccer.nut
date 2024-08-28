@@ -1,4 +1,4 @@
-::SoccerBall <- class extends PhysAct {
+SoccerBall <- class extends PhysAct {
 	freeDown = false
 	freeDown2 = false
 	freeLeft = false

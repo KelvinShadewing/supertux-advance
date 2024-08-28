@@ -2,7 +2,7 @@
 | KONQI ACTOR |
 \*===========*/
 
-::Konqi <- class extends Player {
+Konqi <- class extends Player {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
 	friction = 0.1
@@ -760,8 +760,8 @@
 
 			if(fabs(hspeed) < friction)
 				hspeed = 0.0
-			if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && (stats.weapon != "air" || getcon("down", "hold", true, playerNum)) && !nowInWater)) && antigrav <= 0)
-				vspeed += (vspeed > 5 ? gravity / vspeed : gravity)
+			if((placeFree(x, y + 2) || vspeed < 0) && (vspeed < 2 || (vspeed < 16 && ((stats.weapon != "air" || anim == "stomp" || anim == "statue") || getcon("down", "hold", true, playerNum)) && !nowInWater)) && antigrav <= 0)
+				vspeed += (vspeed > 5 && anim != "stomp" && anim != "statue" ? gravity / vspeed : gravity)
 			else if(antigrav > 0)
 				antigrav--
 			if(!freeUp && vspeed < 0)
@@ -1693,7 +1693,7 @@
 	function _typeof(){ return "Konqi" }
 }
 
-::Katie <- class extends Konqi {
+Katie <- class extends Konqi {
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y, _arr)
 

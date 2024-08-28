@@ -1,4 +1,4 @@
-::Boss <- class extends Enemy {
+Boss <- class extends Enemy {
 	health = 40
 	phantom = false //Allows the boss to phase through walls in their intro
 	active = false
@@ -67,7 +67,7 @@
 	function _typeof() { return "Boss" }
 }
 
-::BossManager <- class extends Actor {
+BossManager <- class extends Actor {
 	bossTotal = 0
 	health = 0
 	healthTotal = 0
@@ -122,7 +122,7 @@
 	function destructor() { gvBoss = false }
 }
 
-::Yeti <- class extends Boss {
+Yeti <- class extends Boss {
 	//Animations
 	anIdle = [0.0, 7.0, "idle"]
 	anWalk = [8.0, 15.0, "walk"]
@@ -509,7 +509,7 @@
 	function _typeof() { return "Boss" }
 }
 
-::YetiShock <- class extends Actor {
+YetiShock <- class extends Actor {
 	shape = null
 	timer = 0
 	speed = 1.0
@@ -547,7 +547,7 @@
 	}
 }
 
-::Beehemoth <- class extends Boss {
+Beehemoth <- class extends Boss {
 	//ATTACK IDEAS:
 	// Fly overhead, dropping dust
 	// Line up on Y axis and charge
@@ -555,7 +555,7 @@
 	//
 }
 
-::Nolok <- class extends Boss {
+Nolok <- class extends Boss {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		shape = Rec(x, y, 8, 20, 0)

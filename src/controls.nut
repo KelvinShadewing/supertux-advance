@@ -1,7 +1,7 @@
-::gvPadTypes <- ["XBox", "DInput", "Generic"]
-::gvAutoCon <- false
+gvPadTypes <- ["XBox", "DInput", "Generic"]
+gvAutoCon <- false
 
-::autocon <- { //Has nothing to do with Transformers
+autocon <- { //Has nothing to do with Transformers
 	a = {
 		up = false
 		down = false
@@ -127,7 +127,7 @@
 	}
 }
 
-::updateAutocon <- function() {
+updateAutocon <- function() {
 	autocon.a.pressLeft = autocon.a.left && !autocon.a.wasLeft
 	autocon.a.releaseLeft = !autocon.a.left && autocon.a.wasLeft
 	autocon.a.wasLeft = autocon.a.left
@@ -215,9 +215,9 @@
 	autocon.b.wasPeekUp = autocon.b.peekUp
 }
 
-::defAutocon <- deepClone(autocon)
+defAutocon <- deepClone(autocon)
 
-::netconState <- {
+netconState <- {
 		up = false
 		down = false
 		left = false
@@ -239,7 +239,7 @@
 		wasSwapItem = false
 }
 
-::getcon <- function(control, state, useauto = false, player = 0) {
+getcon <- function(control, state, useauto = false, player = 0) {
 	local keyfunc = 0
 	local joyfunc = 0
 	local hatfunc = 0
@@ -613,7 +613,7 @@
 	return false
 }
 
-::rebindKeys <- function(newkey) {
+rebindKeys <- function(newkey) {
 	resetDrawTarget()
 	local done = false
 
@@ -744,7 +744,7 @@
 	fileWrite("config.json", jsonWrite(config))
 }
 
-::rebindGamepad <- function(joystep, joypad = 0) {
+rebindGamepad <- function(joystep, joypad = 0) {
 	resetDrawTarget()
 	local done = false
 
@@ -902,7 +902,7 @@
 	fileWrite("config.json", jsonWrite(config))
 }
 
-::rebindJoyPeek <- function(axis, player = 0) {
+rebindJoyPeek <- function(axis, player = 0) {
 	resetDrawTarget()
 
 	local joy = config.joy
@@ -939,7 +939,7 @@
 	fileWrite("config.json", jsonWrite(config))
 }
 
-::getConName <- function(control, getkey = true, getjoy = true) {
+getConName <- function(control, getkey = true, getjoy = true) {
 	local output = ""
 
 	switch(control) {

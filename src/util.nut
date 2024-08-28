@@ -5,7 +5,7 @@
 //These functions may end up being added to the runtime core file.
 //They will be marked as such if this happens.
 
-::mergeTable <- function(a, b) {
+mergeTable <- function(a, b) {
 	if(typeof a == null && typeof b == null) return null
 	if(typeof a == null) return b
 	if(typeof b == null) return a
@@ -25,12 +25,12 @@
 	return nt
 }
 
-::gotoTest <- function() {
+gotoTest <- function() {
 	game.check = false
 	startPlay("res/map/test.json", true, true)
 }
 
-::canint <- function(str) {
+canint <- function(str) {
 	switch(typeof str) {
 		case "float":
 		case "integer":
@@ -52,16 +52,16 @@
 	}
 }
 
-::minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
+minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
 
-::maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }
+maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }
 
-::popSound <- function(sound, repeat = 0) {
+popSound <- function(sound, repeat = 0) {
 	stopSound(sound)
 	playSound(sound, repeat)
 }
 
-::even <- function(x) {
+even <- function(x) {
 	if(typeof x != "integer" && typeof x != "float") {
 		print("I can't even... " + x)
 		return x
@@ -69,11 +69,11 @@
 	return x - (x % 2)
 }
 
-::torad <- function(x) {
+torad <- function(x) {
 	return (float(x) * pi) / 180.0
 }
 
-::inRange <- function(a, b, c) {
+inRange <- function(a, b, c) {
 	if(b > c) {
 		local d = b
 		b = c
@@ -82,7 +82,7 @@
 	return (a >= b && a <= c)
 }
 
-::toRange <- function(a, b, c) {
+toRange <- function(a, b, c) {
 	if(b > c) {
 		local d = b
 		b = c
@@ -97,7 +97,7 @@
 	return a
 }
 
-::deepClone <- function(obj) {
+deepClone <- function(obj) {
 	if (typeof obj == "array") {
 		local result = []
 		foreach (item in obj) {

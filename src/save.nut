@@ -1,4 +1,4 @@
-::newGame <- function(f) {
+newGame <- function(f) {
 	local newdif = game.difficulty
 	game = createNewGameObject()
 	game.file = f
@@ -11,7 +11,7 @@
 	startPlay("res/map/aurora-pennyton.json", true, true)
 }
 
-::newTimeAttack <- function() {
+newTimeAttack <- function() {
 	local path = game.path
 	local newdif = game.difficulty
 	local tempPlayer1 = game.playerChar
@@ -35,11 +35,11 @@
 	gvTAStep = 0
 }
 
-::saveGame <- function() {
+saveGame <- function() {
 	if(game.file != -1) fileWrite("save/" + game.file.tostring() + ".json", jsonWrite(game))
 }
 
-::loadGame <- function(f) {
+loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
 		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
 		//Sanitize removed characters
@@ -57,7 +57,7 @@
 	}
 }
 
-::selectLoadGame <- function() {
+selectLoadGame <- function() {
 	local hasSaveFiles = false
 	meLoadGame = []
 	local dir = lsdir("save")

@@ -1,9 +1,9 @@
-::ghostRecordOld <- null
-::ghostRecordNew <- null
-::ghostRecordName <- ""
-::gvPlayAsBeam <- false
+ghostRecordOld <- null
+ghostRecordNew <- null
+ghostRecordName <- ""
+gvPlayAsBeam <- false
 
-::loadGhostFile <- function(filename) {
+loadGhostFile <- function(filename) {
 	if(!fileExists(filename)) return [[0,0]]
 
 	local file = fileRead(filename)
@@ -20,7 +20,7 @@
 	return output
 }
 
-::BeamBug <- class extends Actor {
+BeamBug <- class extends Actor {
 	step = 0
 	xprev = 0
 	yprev = 0

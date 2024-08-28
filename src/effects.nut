@@ -1,4 +1,4 @@
-::Spark <- class extends Actor {
+Spark <- class extends Actor {
 	frame = 0.0
 	angle = 0
 
@@ -15,7 +15,7 @@
 	function draw() { drawSpriteZ(4, sprSpark, floor(frame), x - camx, y - camy, 45 * randInt(8), 0, 1, 1, 1) }
 }
 
-::BigSpark <- class extends Actor {
+BigSpark <- class extends Actor {
 	frame = 0.0
 	flip = 0
 
@@ -32,7 +32,7 @@
 	function draw() { drawSpriteZ(4, sprBigSpark, floor(frame), x - camx, y - camy, 0, flip, 1, 1, 1) }
 }
 
-::Glimmer <- class extends Actor {
+Glimmer <- class extends Actor {
 	frame = 0.0
 	angle = 0
 
@@ -49,7 +49,7 @@
 	function draw() { drawSpriteZ(4, sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1) }
 }
 
-::Poof <- class extends Actor {
+Poof <- class extends Actor {
 	frame = 0.0
 	angle = 0
 	depth = 7
@@ -72,7 +72,7 @@
 	function draw() { drawSpriteZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
-::PoofTiny <- class extends Actor {
+PoofTiny <- class extends Actor {
 	frame = 0.0
 	angle = 0
 	depth = 7
@@ -94,7 +94,7 @@
 	function draw() { drawSpriteZ(depth, sprPoof, floor(frame), x - camx, y - camy, 0, 0, 0.5, 0.5, 1) }
 }
 
-::Flame <- class extends Actor {
+Flame <- class extends Actor {
 	frame = 0.0
 	angle = 0
 
@@ -115,7 +115,7 @@
 	function _typeof() { return "Flame" }
 }
 
-::Splash <- class extends Actor {
+Splash <- class extends Actor {
 	frame = 0.0
 	angle = 0
 	sprite = null
@@ -145,7 +145,7 @@
 	function draw() { drawSpriteZ(7, sprite, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 0.8) }
 }
 
-::FlameTiny <- class extends Actor {
+FlameTiny <- class extends Actor {
 	frame = 0.0
 	angle = 0
 	hspeed = 0.0
@@ -168,7 +168,7 @@
 	}
 }
 
-::Bubble <- class extends Actor {
+Bubble <- class extends Actor {
 	frame = 0.0
 	angle = 0
 	hspeed = 0.0
@@ -190,7 +190,7 @@
 	}
 }
 
-::AcidBubble <- class extends Actor {
+AcidBubble <- class extends Actor {
 	frame = 0.0
 	angle = 0
 	hspeed = 0.0
@@ -212,7 +212,7 @@
 	}
 }
 
-::CoinEffect <- class extends Actor {
+CoinEffect <- class extends Actor {
 	vspeed = -6.0
 	value = 1
 
@@ -241,7 +241,7 @@
 	}
 }
 
-::IceChunks <- class extends Actor {
+IceChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0
 	vspeed = -3.0
@@ -271,7 +271,7 @@
 	}
 }
 
-::Heal <- class extends Actor {
+Heal <- class extends Actor {
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
@@ -287,7 +287,7 @@
 	function draw() { drawSpriteZ(4, sprHeal, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
-::HealMana <- class extends Actor {
+HealMana <- class extends Actor {
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
@@ -303,7 +303,7 @@
 	function draw() { drawSpriteZ(4, sprHealMana, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
-::HealStamina <- class extends Actor {
+HealStamina <- class extends Actor {
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
@@ -319,7 +319,7 @@
 	function draw() { drawSpriteZ(4, sprHealStamina, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
-::GoldCharge <- class extends Actor {
+GoldCharge <- class extends Actor {
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
@@ -334,7 +334,7 @@
 	function draw() { drawSpriteZ(4, sprGoldCharge, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
-::AfterImage <- class extends Actor {
+AfterImage <- class extends Actor {
 	sprite = 0
 	frame = 0
 	alpha = 1.0
@@ -367,7 +367,7 @@
 	function draw() { drawSpriteZ(depth, sprite, frame, x - camx, y - camy, angle, flip, xscale, yscale, alpha) }
 }
 
-::RockChunks <- class extends Actor {
+RockChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0
 	vspeed = -3.0
@@ -392,7 +392,7 @@
 	}
 }
 
-::MagicJumpFlash <- class extends Actor {
+MagicJumpFlash <- class extends Actor {
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {

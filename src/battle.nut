@@ -1,7 +1,7 @@
-::gvBattleMode <- false
-::gvBattleHealth <- 0
+gvBattleMode <- false
+gvBattleHealth <- 0
 
-::P2Start <- class extends Actor {
+P2Start <- class extends Actor {
 	function run() {
 		if(gvPlayer2) {
 			gvPlayer2.x = x
@@ -11,11 +11,11 @@
 	}
 }
 
-::manageBattle <- function() {
+manageBattle <- function() {
 	if(!gvPlayer || !gvPlayer2) endGoal()
 }
 
-::addBattleStage <- function(
+addBattleStage <- function(
 	displayName, //Name to show in the menu
 	level, //level file
 	folder, //The folder of your world
@@ -52,11 +52,11 @@
 	meBattleWorld.push(tempBack)
 }
 
-::drawBattlePreview <- function(sprite) {
+drawBattlePreview <- function(sprite) {
 	drawSprite(sprite, 0, screenW() - 16 - spriteW(sprite) / 2, screenH() - 96)
 }
 
-::startBattle <- function(level) {
+startBattle <- function(level) {
 	gvBattleMode = true
 	game.maxHealth = 16 + gvBattleHealth
 	startPlay(level, true, true)

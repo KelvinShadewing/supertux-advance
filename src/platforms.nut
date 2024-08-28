@@ -1,4 +1,4 @@
-::Spring <- class extends Actor {
+Spring <- class extends Actor {
 	shape = 0
 	dir = 0
 	frame = 0.0
@@ -96,7 +96,7 @@
 	function _typeof() { return "Spring" }
 }
 
-::SpringD <- class extends Actor {
+SpringD <- class extends Actor {
 	shape = 0
 	dir = 0
 	frame = 0.0
@@ -202,7 +202,7 @@
 	function _typeof() { return "Spring" }
 }
 
-::LevelSinker <- class extends Actor {
+LevelSinker <- class extends Actor {
 	rate = 0.01
 
 	constructor(_x, _y, _arr = null) {
@@ -215,9 +215,9 @@
 	}
 }
 
-::sinkLevel <- function(rate) { newActor(LevelSinker,0, 0, rate) }
+sinkLevel <- function(rate) { newActor(LevelSinker,0, 0, rate) }
 
-::FireChain <- class extends PhysAct {
+FireChain <- class extends PhysAct {
 	r = 0
 	a = 0.0
 	s = 0.0
@@ -278,7 +278,7 @@
 	}
 }
 
-::PathCarrier <- class extends PathCrawler {
+PathCarrier <- class extends PathCrawler {
 	obj = null
 
 	constructor(_x, _y, _arr = null) {
@@ -302,7 +302,7 @@
 	}
 }
 
-::RingCarrier <- class extends Actor {
+RingCarrier <- class extends Actor {
 	r = 0.0 //Radius
 	c = 0.0 //Count
 	s = 0.0 //Speed
@@ -357,7 +357,7 @@
 }
 
 //Moving platform
-::MoPlat <- class extends PathCrawler {
+MoPlat <- class extends PathCrawler {
 	shape = 0
 	w = 1
 	sprite = sprPlatformWood
@@ -392,7 +392,7 @@
 	function _typeof() { return "MoPlat" }
 }
 
-::Portal <- class extends Actor {
+Portal <- class extends Actor {
 	shapeA = 0
 	shapeB = 0
 	canWarp = true
@@ -504,7 +504,7 @@
 	}
 }
 
-::BoostRing <- class extends Actor {
+BoostRing <- class extends Actor {
 	shape = null
 	angle = 0
 	power = 0
@@ -569,7 +569,7 @@
 	function _typeof() { return "BoostRing" }
 }
 
-::SwingingDoor <- class extends PhysAct {
+SwingingDoor <- class extends PhysAct {
 	lock = 0
 	swing = 0
 	angle = 0.0

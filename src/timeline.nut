@@ -1,4 +1,4 @@
-::Timeline <- class extends Actor {
+Timeline <- class extends Actor {
 	sequence = null
 	step = 0
 	done = false
@@ -22,11 +22,11 @@
 	function _typeof() { return "Timeline" }
 }
 
-::runTimeline <- function(sequence) { return newActor(Timeline, 0, 0, sequence) }
+runTimeline <- function(sequence) { return newActor(Timeline, 0, 0, sequence) }
 
-::stopTimeline <- function(tln) { if(typeof tln == "Timeline") deleteActor(tln.id) }
+stopTimeline <- function(tln) { if(typeof tln == "Timeline") deleteActor(tln.id) }
 
-::tlnTest <- {
+tlnTest <- {
 	"0" : function(runner) {
 		print("Started test timeline.")
 	}
@@ -43,7 +43,7 @@
 	}
 }
 
-::tlnWalkAndJump <- {
+tlnWalkAndJump <- {
 	"0" : function(runner) {
 		gvAutoCon = true
 		autocon.a.right = true

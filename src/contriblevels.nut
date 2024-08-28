@@ -1,9 +1,9 @@
-::meContribLevels <- [
+meContribLevels <- [
 
 ]
-::lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
+lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 
-::selectContrib <- function(){
+selectContrib <- function(){
 	meContribLevels = []
 	if(fileExists("contrib")){
 		local contrib = lsdir("contrib")

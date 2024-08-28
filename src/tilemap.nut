@@ -16,9 +16,9 @@
 // TILED MAPS //
 ////////////////
 
-::tileSearchDir <- ["."]
+tileSearchDir <- ["."]
 
-::findFileName <- function(path) {
+findFileName <- function(path) {
 	if(typeof path != "string") return ""
 	if(path.len() == 0) return ""
 
@@ -33,7 +33,7 @@
 // ANIMATED TILE //
 ///////////////////
 
-::AnimTile <- class {
+AnimTile <- class {
 	frameID = null
 	frameList = null
 	frameTime = null
@@ -78,7 +78,7 @@
 // TILEMAP CLASS //
 ///////////////////
 
-::Tilemap <- class {
+Tilemap <- class {
 	data = null
 	tileset = null
 	image = null
@@ -339,18 +339,18 @@
 // FUNCTIONS //
 ///////////////
 
-::mapNewSolid <- function(shape) {
+mapNewSolid <- function(shape) {
 	gvMap.geo.push(shape)
 	return gvMap.geo.len() - 1
 }
 
-::mapDeleteSolid <- function(index) {
+mapDeleteSolid <- function(index) {
 	if(index in gvMap.geo && index >= 0 && index < gvMap.geo.len() && gvMap.geo.len() > 0) {
 		gvMap.geo[index] = null
 	}
 }
 
-::tileSetSolid <- function(tx, ty, st) { //Tile X, tile Y, solid type
+tileSetSolid <- function(tx, ty, st) { //Tile X, tile Y, solid type
 	if(st < 0) return
 	local cx = floor(tx / 16)
 	local cy = floor(ty / 16)
@@ -362,7 +362,7 @@
 	else if(tile >= 0 && tile < gvMap.solidLayer.data.len()) gvMap.solidLayer.data[tile] = gvMap.solidfid + (st - 1)
 }
 
-::tileGetSolid <- function(tx, ty) {
+tileGetSolid <- function(tx, ty) {
 	local tile = floor(tx / 16) + (floor(ty / 16) * gvMap.solidLayer.width)
 
 	if(tile >= 0 && tile < gvMap.solidLayer.data.len()) {
@@ -371,7 +371,7 @@
 	}
 }
 
-::loadTileMapWorld <- function(filename) {
+loadTileMapWorld <- function(filename) {
 	if(!fileExists(filename)) return {}
 
 	local file = jsonRead(fileRead(filename))

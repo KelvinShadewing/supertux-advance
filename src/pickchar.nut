@@ -1,6 +1,6 @@
-::pickCharSettings <- {}
+pickCharSettings <- {}
 
-::pickCharInitialize <- function(playerNum = 1, unlockAll = false) {
+pickCharInitialize <- function(playerNum = 1, unlockAll = false) {
 	//Make ordered list of characters
 	pickCharSettings.charlist <- []
 	foreach(key, i in gvCharacters) {
@@ -41,7 +41,7 @@
 	}
 }
 
-::pickChar <- function() {
+pickChar <- function() {
 
 	local didpick = pickCharSettings.didpick
 	local charslot = pickCharSettings.charslot

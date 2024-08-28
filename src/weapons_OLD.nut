@@ -1,4 +1,4 @@
-::Fireball <- class extends PhysAct {
+Fireball <- class extends PhysAct {
 	timer = 90
 
 	constructor(_x, _y, _arr = null) {
@@ -35,7 +35,7 @@
 	function _typeof() {return "Fireball"}
 }
 
-::Iceball <- class extends PhysAct {
+Iceball <- class extends PhysAct {
 	timer = 90
 
 	constructor(_x, _y, _arr = null) {
@@ -88,7 +88,7 @@
 	function _typeof() {return "Iceball"}
 }
 
-::FlameBreath <- class extends PhysAct {
+FlameBreath <- class extends PhysAct {
 	frame = 0.0
 	angle = 0
 
@@ -114,7 +114,7 @@
 	function _typeof() { return "Fireball" }
 }
 
-::IceBreath <- class extends PhysAct {
+IceBreath <- class extends PhysAct {
 	frame = 0.0
 	angle = 0
 
@@ -139,7 +139,7 @@
 	function _typeof() { return "Iceball" }
 }
 
-::ExplodeF <- class extends Actor{
+ExplodeF <- class extends Actor{
 	frame = 0.0
 	shape = 0
 
@@ -172,7 +172,7 @@
 	function _typeof() { return "ExplodeF" }
 }
 
-::ExplodeN <- class extends Actor{
+ExplodeN <- class extends Actor{
 	frame = 0.0
 	shape = 0
 
@@ -196,7 +196,7 @@
 	function _typeof() { return "ExplodeN" }
 }
 
-::StompPoof <- class extends Actor{
+StompPoof <- class extends Actor{
 	frame = 0.0
 	shape = 0
 
@@ -220,7 +220,7 @@
 }
 
 
-::FireballK <- class extends PhysAct {
+FireballK <- class extends PhysAct {
 	timer = 90
 	angle = 0
 
@@ -261,7 +261,7 @@
 }
 
 //When a fireball spawns in a wall, they die before blocks can respond. This is to mitigate that.
-::AfterFlame <- class extends PhysAct {
+AfterFlame <- class extends PhysAct {
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {
@@ -277,7 +277,7 @@
 	function _typeof() { return "Fireball" }
 }
 
-::AfterIce <- class extends PhysAct {
+AfterIce <- class extends PhysAct {
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {

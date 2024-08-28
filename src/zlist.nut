@@ -1,8 +1,8 @@
-::gvZList <- {}
-::gvHudList <- []
+gvZList <- {}
+gvHudList <- []
 
 //Add a sprite instruction to Z list
-::drawSpriteZ <- function(z, sprite, frame, x, y, angle = 0, flip = 0, xscale = 1.0, yscale = 1.0, alpha = 1.0, color = 0xffffffff) {
+drawSpriteZ <- function(z, sprite, frame, x, y, angle = 0, flip = 0, xscale = 1.0, yscale = 1.0, alpha = 1.0, color = 0xffffffff) {
 	//Make sure the depth slot exists
 	if(!gvZList.rawin(z)) gvZList[z] <- array(0)
 
@@ -10,16 +10,16 @@
 	gvZList[z].push([sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color])
 }
 
-::drawSpriteHUD <- function(sprite, frame, x, y, angle = 0, flip = 0, xscale = 1.0, yscale = 1.0, alpha = 1.0, color = 0xffffffff) {
+drawSpriteHUD <- function(sprite, frame, x, y, angle = 0, flip = 0, xscale = 1.0, yscale = 1.0, alpha = 1.0, color = 0xffffffff) {
 	//Insert the instruction
 	gvHudList.push(["sprite", sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color])
 }
 
-::drawTextHUD <- function(font, x, y, text) {
+drawTextHUD <- function(font, x, y, text) {
 	gvHudList.push(["text", font, x, y, text])
 }
 
-::drawSpriteExZ <- function(z, sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color) {
+drawSpriteExZ <- function(z, sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color) {
 	//Make sure the depth slot exists
 	if(!gvZList.rawin(z)) gvZList[z] <- array(0)
 
@@ -27,7 +27,7 @@
 	gvZList[z].push([sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color])
 }
 
-::drawZList <- function(layers) {
+drawZList <- function(layers) {
 	//The argument defines how many layers from 0 to draw
 	for(local i = 0; i <= layers; i++) {
 		if(!gvZList.rawin(i)) continue //If nothing was drawn to that layer, skip it
@@ -44,7 +44,7 @@
 	gvZList.clear() //Empty table for next render
 }
 
-::drawHudList <- function() {
+drawHudList <- function() {
 	if(gvHudList.len() == 0)
 		return
 

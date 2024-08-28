@@ -2,7 +2,7 @@
 | PHYSICS ACTOR |
 \*=============*/
 
-::PhysAct <- class extends Actor{
+PhysAct <- class extends Actor{
 	hspeed = 0.0
 	vspeed = 0.0
 	box = [0, 0, 0, 0]
@@ -1409,7 +1409,7 @@
 	}
 }
 
-::PathCrawler <- class extends PhysAct {
+PathCrawler <- class extends PhysAct {
 	path = null
 	speed = 0.0
 	tx = 0

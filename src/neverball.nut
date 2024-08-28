@@ -1,4 +1,4 @@
-::Neverball <- class extends Player {
+Neverball <- class extends Player {
 	anim = "ball"
 	canJump = true
 	inMelee = false

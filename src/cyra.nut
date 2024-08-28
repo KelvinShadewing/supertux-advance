@@ -1,65 +1,65 @@
-::sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 100, 54, 32, 33)
-::defCyra <- sprCyra
-::sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 32, 33)
-::defCyraFire <- sprCyraFire
-::sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 32, 33)
-::defCyraIce <- sprCyraIce
-::sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 32, 33)
-::defCyraAir <- sprCyraAir
-::sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 32, 33)
-::defCyraEarth <- sprCyraEarth
-::sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 32, 33)
-::defCyraShock <- sprCyraShock
-::sprCyraWater <- newSprite("res/gfx/cyra_gfx/cyrawater.png", 74, 54, 32, 33)
-::defCyraWater <- sprCyraWater
-::sprCyraLight <- newSprite("res/gfx/cyra_gfx/cyralight.png", 74, 54, 32, 33)
-::defCyraLight <- sprCyraLight
-::sprCyraDark <- newSprite("res/gfx/cyra_gfx/cyradark.png", 74, 54, 32, 33)
-::defCyraDark <- sprCyraDark
-::sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 7, 17)
-::defCyraOverworld <- sprCyraOverworld
-::sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 8, 8)
-::defCyraDoll <- sprCyraDoll
-::sprKiki2 <- newSprite("res/gfx/kiki2.png", 74, 54, 32, 33)
-::defKiki2 <- sprKiki2
+sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 100, 54, 32, 33)
+defCyra <- sprCyra
+sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 32, 33)
+defCyraFire <- sprCyraFire
+sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 32, 33)
+defCyraIce <- sprCyraIce
+sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 32, 33)
+defCyraAir <- sprCyraAir
+sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 32, 33)
+defCyraEarth <- sprCyraEarth
+sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 32, 33)
+defCyraShock <- sprCyraShock
+sprCyraWater <- newSprite("res/gfx/cyra_gfx/cyrawater.png", 74, 54, 32, 33)
+defCyraWater <- sprCyraWater
+sprCyraLight <- newSprite("res/gfx/cyra_gfx/cyralight.png", 74, 54, 32, 33)
+defCyraLight <- sprCyraLight
+sprCyraDark <- newSprite("res/gfx/cyra_gfx/cyradark.png", 74, 54, 32, 33)
+defCyraDark <- sprCyraDark
+sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 7, 17)
+defCyraOverworld <- sprCyraOverworld
+sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 8, 8)
+defCyraDoll <- sprCyraDoll
+sprKiki2 <- newSprite("res/gfx/kiki2.png", 74, 54, 32, 33)
+defKiki2 <- sprKiki2
 
-::sprPepper <- newSprite("res/gfx/pepper.png", 100, 54, 32, 33)
-::defPepper <- sprPepper
-::sprPepperOverworld <- newSprite("res/gfx/pepperO.png", 20, 24, 10, 20)
-::defPepperOverworld <- sprPepperOverworld
-::sprPepperDoll <- newSprite("res/gfx/pepperdoll.png", 16, 16, 8, 8)
-::defPepperDoll <- sprPepperDoll
+sprPepper <- newSprite("res/gfx/pepper.png", 100, 54, 32, 33)
+defPepper <- sprPepper
+sprPepperOverworld <- newSprite("res/gfx/pepperO.png", 20, 24, 10, 20)
+defPepperOverworld <- sprPepperOverworld
+sprPepperDoll <- newSprite("res/gfx/pepperdoll.png", 16, 16, 8, 8)
+defPepperDoll <- sprPepperDoll
 
 
-::sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 14, 12)
-::defCyraSwordWave <- sprCyraSwordWave
+sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 14, 12)
+defCyraSwordWave <- sprCyraSwordWave
 
-::sprCyraFireWave <- newSprite("res/gfx/cyra_gfx/firewave.png", 28, 24, 14, 12)
-::defCyraFireWave <- sprCyraFireWave
+sprCyraFireWave <- newSprite("res/gfx/cyra_gfx/firewave.png", 28, 24, 14, 12)
+defCyraFireWave <- sprCyraFireWave
 
-::sprCyraFreezeWave <- newSprite("res/gfx/cyra_gfx/freezewave.png", 28, 24, 14, 12)
-::defCyraFreezeWave <- sprCyraFreezeWave
+sprCyraFreezeWave <- newSprite("res/gfx/cyra_gfx/freezewave.png", 28, 24, 14, 12)
+defCyraFreezeWave <- sprCyraFreezeWave
 
-::sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 14, 12)
-::defCyraElectricWave <- sprCyraElectricWave
+sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 14, 12)
+defCyraElectricWave <- sprCyraElectricWave
 
-::sprWaterCrescent <- newSprite("res/gfx/water-crescent.png", 32, 16, 16, 8)
-::defWaterCrescent <- sprWaterCrescent
+sprWaterCrescent <- newSprite("res/gfx/water-crescent.png", 32, 16, 16, 8)
+defWaterCrescent <- sprWaterCrescent
 
 //Sounds
-::sndCyraSwordSwing <- loadSound("res/snd/cyra_snd/swordswing.ogg")
-::sndCyraFireSwing <- loadSound("res/snd/cyra_snd/firewave.ogg")
-::sndCyraTornado <- loadSound("res/snd/cyra_snd/windswing.ogg")
-::sndCyraElectricSwing <- loadSound("res/snd/electricwave.ogg")
+sndCyraSwordSwing <- loadSound("res/snd/cyra_snd/swordswing.ogg")
+sndCyraFireSwing <- loadSound("res/snd/cyra_snd/firewave.ogg")
+sndCyraTornado <- loadSound("res/snd/cyra_snd/windswing.ogg")
+sndCyraElectricSwing <- loadSound("res/snd/electricwave.ogg")
 
-::gfxCyraReset <- function() {
+gfxCyraReset <- function() {
 	sprCyra = defCyra
 	sprCyraOverworld = defCyraOverworld
 	sprCyraDoll = defCyraDoll
 }
 
 
-::freeCyra <- function() {
+freeCyra <- function() {
 	game.characters["Cyra"] <- true
 	game.friends["Cyra"] <- true
 	game.characters["Pepper"] <- true
@@ -104,7 +104,7 @@ gvCharacters.Pepper <- {
 | CYRA ACTOR |
 \*==========*/
 
-::Cyra <- class extends Player {
+Cyra <- class extends Player {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
 	baseFriction = 0.25
@@ -1720,7 +1720,7 @@ gvCharacters.Pepper <- {
 }
 
 // Note: his death basically ends with him lying down dead.
-::DeadCyra <- class extends Actor {
+DeadCyra <- class extends Actor {
 	hspeed = -2.0
 	vspeed = -2.0
 	timer = 150
@@ -1770,7 +1770,7 @@ gvCharacters.Pepper <- {
 // CYRA'S WEAPONS //
 ////////////////////
 
-::SwordWaveCS <- class extends WeaponEffect{
+SwordWaveCS <- class extends WeaponEffect{
 	timer = 10
 	angle = 0
 	element = "normal"
@@ -1816,7 +1816,7 @@ gvCharacters.Pepper <- {
 	}
 }
 
-::AirWaveCS <- class extends WeaponEffect{
+AirWaveCS <- class extends WeaponEffect{
 	timer = 30
 	angle = 0
 	element = "air"
@@ -1862,7 +1862,7 @@ gvCharacters.Pepper <- {
 	}
 }
 
-::FireballCS <- class extends WeaponEffect {
+FireballCS <- class extends WeaponEffect {
 	timer = 15
 	angle = 0
 	element = "fire"
@@ -1911,7 +1911,7 @@ gvCharacters.Pepper <- {
 }
 
 
-::FreezeWaveCS <- class extends WeaponEffect {
+FreezeWaveCS <- class extends WeaponEffect {
 	timer = 15
 	angle = 0
 	element = "ice"
@@ -1958,7 +1958,7 @@ gvCharacters.Pepper <- {
 }
 
 
-::ElectricWaveCS  <- class extends WeaponEffect {
+ElectricWaveCS  <- class extends WeaponEffect {
 	element = "shock"
 	angle = 0
 	timer = 15
@@ -2020,7 +2020,7 @@ gvCharacters.Pepper <- {
 }
 
 
-::WaterCrescent <- class extends WeaponEffect {
+WaterCrescent <- class extends WeaponEffect {
 	frame = 0.0
 	timer = 50
 	angle = 0
@@ -2069,7 +2069,7 @@ gvCharacters.Pepper <- {
 }
 
 
-::Pepper <- class extends Cyra {
+Pepper <- class extends Cyra {
 	useJumpFlash = true
 
 	constructor(_x, _y, _arr = null){

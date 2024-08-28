@@ -1,32 +1,32 @@
-::drawBG <- 0
-::drawBG2 <- 0
-::gvHorizon <- 0
-::gvParallaxMap <- 0
-::gvLightBG <- false
-::gvWobbleTexture <- newTexture(426, 240)
+drawBG <- 0
+drawBG2 <- 0
+gvHorizon <- 0
+gvParallaxMap <- 0
+gvLightBG <- false
+gvWobbleTexture <- newTexture(426, 240)
 textureSetBlendMode(gvWobbleTexture, bm_blend)
-::sprWobbleTexture <- newSpriteFT(gvWobbleTexture, 426, 1, 0, 0, 0, 0)
+sprWobbleTexture <- newSpriteFT(gvWobbleTexture, 426, 1, 0, 0, 0, 0)
 
-::getBGLoop <- function(w) {
+getBGLoop <- function(w) {
 	if(w <= 1)
 		return 2
 
 	return ceil(gvScreenW / w) + 2
 }
 
-::dbgNone <- function() {
+dbgNone <- function() {
 	setDrawColor(0xff)
 	drawRec(0, 0, screenW(), screenH(), true)
 }
 
-::dbgEcho <- function() {
+dbgEcho <- function() {
 	//drawImage(gvScreen, 0, 0)
 	drawImage(gvPlayScreen, camxprev - camx, camyprev - camy)
 	setDrawColor(0x20)
 	drawRec(0, 0, screenW(), screenH(), true)
 }
 
-::dbgCave <- function() {
+dbgCave <- function() {
 	gvLightBG = true
 	for(local i = 0; i < getBGLoop(spriteW(bgIridia)); i++) {
 		for(local j = 0; j < 6; j++) {
@@ -41,7 +41,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgCaveEarth <- function() {
+dbgCaveEarth <- function() {
 	gvLightBG = true
 	for(local i = 0; i < getBGLoop(spriteW(bgCaveEarth0)); i++) {
 		for(local j = 0; j < 6; j++) {
@@ -56,7 +56,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgCaveBlue <- function() {
+dbgCaveBlue <- function() {
 	gvLightBG = true
 	for(local i = 0; i < getBGLoop(spriteW(bgCaveBlue0)); i++) {
 		for(local j = 0; j < 6; j++) {
@@ -71,7 +71,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgForest <- function() {
+dbgForest <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 			drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
@@ -94,7 +94,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgForestNight <- function() {
+dbgForestNight <- function() {
 	if(gvMap != 0) {
 		for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountainNight)); i++)
 			drawSprite(bgWoodedMountainNight, 0, ((-camx / 16) % 850) + (i * 850), (screenH() / 2) - 120)
@@ -113,7 +113,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgDeepForest <- function() {
+dbgDeepForest <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
 	for(local i = 0; i < getBGLoop(spriteW(bgDeepForest0)); i++)
@@ -124,17 +124,17 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 		drawImage(bgDeepForest2, ((-camx / 4) % 384) + (i * 384), 0)
 }
 
-::dbgWoodedMountain <- function() {
+dbgWoodedMountain <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgWoodedMountain)); i++)
 		drawSprite(bgWoodedMountain, 0, ((-camx / 16) % 640) + (i * 640), (screenH() / 2) - 120)
 }
 
-::dbgAurora <- function() {
+dbgAurora <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgAurora)); i++)
 		drawSprite(bgAurora, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 }
 
-::dbgPennyton <- function() {
+dbgPennyton <- function() {
 	dbgAurora()
 	for(local i = 0; i < getBGLoop(spriteW(bgPennyton1)); i++)
 		drawSprite(bgPennyton1, 0, ((-camx / 4) % 480) + (i * 480), gvHorizon - camy - 96 - ((gvHorizon - (camy + gvScreenH)) / 1.25))
@@ -151,13 +151,13 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 		drawSprite(bgPennyton0, 0, ((-camx / 2) % 480) + (i * 480), gvHorizon - camy - 112 - ((gvHorizon - (camy + gvScreenH)) / 1.5))
 }
 
-::dbgAuroraNight <- function() {
+dbgAuroraNight <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgAuroraNight)); i++) {
 		drawSprite(bgAuroraNight, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
-::dbgIceForest <- function() {
+dbgIceForest <- function() {
 	gvLightBG = true
 	if(gvMap != 0) {
 		for(local i = 0; i < getBGLoop(spriteW(bgIceForest)); i++)
@@ -181,25 +181,25 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgSnowNight <- function() {
+dbgSnowNight <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgSnowNight)); i++) {
 		drawSprite(bgSnowNight, 0, ((-camx / 8) % 800) + (i * 800), (screenH() / 2) - 120)
 	}
 }
 
-::dbgSnowPlain <- function() {
+dbgSnowPlain <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgSnowPlain)); i++) {
 		drawSprite(bgSnowPlain, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
 }
 
-::dbgRiverCity <- function() {
+dbgRiverCity <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgRiverCity)); i++) {
 		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
 }
 
-::dbgStadium <- function() {
+dbgStadium <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgRiverCity)); i++) {
 		drawSprite(bgRiverCity, 0, ((-camx / 8) % 380) + (i * 380), (screenH() / 2) - 120)
 	}
@@ -214,7 +214,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgOcean <- function() {
+dbgOcean <- function() {
 	gvLightBG = true
 
 	for(local i = 0; i < getBGLoop(spriteW(bgOcean)); i++) {
@@ -230,7 +230,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgOceanHorizon <- function() {
+dbgOceanHorizon <- function() {
 	dbgOcean()
 
 	local v = max(gvHorizon - camy, (gvHorizon - camy) / (gvMap.h / 64.0))
@@ -250,7 +250,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgOceanHorizonNight <- function() {
+dbgOceanHorizonNight <- function() {
 	dbgOceanNight()
 
 	local v = max(gvHorizon - camy, (gvHorizon - camy) / (gvMap.h / 64.0))
@@ -270,7 +270,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgOceanSunset <- function() {
+dbgOceanSunset <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgOceanSunset)); i++) {
 		for(local j = 0; j < 16; j++) {
 			drawSprite(bgOceanSunset, j, ((-camx / 32) % 480) + (i * 480), j * 8)
@@ -284,7 +284,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgOceanNight <- function() {
+dbgOceanNight <- function() {
 	dbgStarSky()
 
 	for(local i = 0; i < getBGLoop(spriteW(bgOceanNight)); i++) {
@@ -300,7 +300,7 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgOceanMoving <- function() {
+dbgOceanMoving <- function() {
 	dbgStarSky()
 
 	for(local i = 0; i <= getBGLoop(spriteW(bgOceanNight)) + 1; i++) {
@@ -316,14 +316,14 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgStarSky <- function() {
+dbgStarSky <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgStarSky)); i++) {
 		drawImage(bgStarSky, (i * 360), (screenH() / 2) - 120)
 	}
 	drawSprite(bgMoon, 0, gvScreenW - 128, 64)
 }
 
-::dbgUnderwater <- function() {
+dbgUnderwater <- function() {
 	gvLightBG = true
 	local tex = getDrawTarget()
 	setDrawTarget(gvWobbleTexture)
@@ -337,44 +337,44 @@ textureSetBlendMode(gvWobbleTexture, bm_blend)
 	}
 }
 
-::dbgCastle <- function() {
+dbgCastle <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgCastle)); i++) {
 		drawSprite(bgCastle, 0, ((-camx / 8) % spriteW(bgCastle)) + (i * spriteW(bgCastle)), (screenH() / 2) - 120)
 	}
 }
 
-::dbgFortMagma <- function() {
+dbgFortMagma <- function() {
 	for(local i = 0; i < getBGLoop(spriteW(bgFortMagma)); i++) {
 		drawSprite(bgFortMagma, 0, ((-camx / 8) % 960) + (i * 960), (screenH() / 2) - 120)
 	}
 }
 
-::dbgTheatre <- function() {
+dbgTheatre <- function() {
 	drawSprite(bgCharSel, 0, screenW() / 2, 0)
 }
 
-::dbgSwitchPalace <- function() {
+dbgSwitchPalace <- function() {
 	setDrawColor(0xff)
 	drawRec(0, 0, screenW(), screenH(), true)
 	for(local i = 0; i < 6; i++) drawSprite(bgSwitch1, 0, (-camx / 4 % 84) + (i * 84), 0)
 	for(local i = 0; i < 4; i++) drawSprite(bgSwitch0, 0, (-camx / 2 % 168) + (i * 168), gvMap.h - 400 - camy / 2)
 }
 
-::dbgSunsetMountain <- function() {
+dbgSunsetMountain <- function() {
 	//drawImage(gvScreen, 0, 0)
 	for(local i = 0; i < 2; i++) {
 		drawImage(bgSunsetMountain, (i * 940) - (camx / 8.0), 0)
 	}
 }
 
-::dbgDesert <- function() {
+dbgDesert <- function() {
 	for(local i = 0; i < 2; i++) {
 		for(local j = 0; j < 240; j++)
 			drawSprite(bgDesert, j, (i * 480) - 8 - (camx / 8 % 480) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5), j)
 	}
 }
 
-::dbgHive <- function() {
+dbgHive <- function() {
 	gvLightBG = true
 	for(local i = 0; i < getBGLoop(spriteW(bgHive)); i++) {
 		for(local j = 0; j < 6; j++) {

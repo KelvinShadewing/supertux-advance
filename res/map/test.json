@@ -503,7 +503,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1056,
+                 "x":2176,
                  "y":512
                 }, 
                 {
@@ -2097,6 +2097,18 @@
                  "width":16,
                  "x":976,
                  "y":368
+                }, 
+                {
+                 "gid":299,
+                 "height":16,
+                 "id":558,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2224,
+                 "y":464
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2105,7 +2117,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":558,
+ "nextobjectid":559,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2114,7 +2126,7 @@
          "value":"drawBG = dbgOceanNight\nfreeKonqi()\nfreeMidi()\nfreeCyra()\nfreeSurge()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.11.0",
  "tileheight":16,
  "tilesets":[
         {

@@ -1,6 +1,6 @@
-::levelEndRunner <- 0 //Stores a reference to the currently-active LevelEnder
+levelEndRunner <- 0 //Stores a reference to the currently-active LevelEnder
 
-::LevelEnder <- class extends Actor {
+LevelEnder <- class extends Actor {
 	timer = 180
 
 	constructor(_x, _y, _arr = null) {
@@ -50,7 +50,7 @@
 	function _typeof() { return "LevelEnder" }
 }
 
-::endGoal <- function(speed = 0, unblock = "") {
+endGoal <- function(speed = 0, unblock = "") {
 	local clearedLevel
 	clearedLevel = gvMap.name
 	

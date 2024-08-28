@@ -1,4 +1,4 @@
-::NPC <- class extends Actor {
+NPC <- class extends Actor {
 	shape = 0
 	text = ""
 	useflip = 0
@@ -9,6 +9,7 @@
 	sayfunc = null
 	argv = null
 	target = null
+	nowTalking = false
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -56,18 +57,37 @@
 	}
 
 	function run() {
-		if(gvPlayer && gvPlayer2) {
-			if(distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y)) target = gvPlayer
-			else target = gvPlayer2
+		if(target == null || !nowTalking) {
+			if(gvPlayer && gvPlayer2) {
+				if(distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y)) target = gvPlayer
+				else target = gvPlayer2
+			}
+			else if(gvPlayer) target = gvPlayer
+			else if(gvPlayer2) target = gvPlayer2
 		}
-		else if(gvPlayer) target = gvPlayer
-		else if(gvPlayer2) target = gvPlayer2
 
 		if(target != null && sayfunc != null) {
-			if(gvPlayer && gvPlayer2 && hitTest(shape, gvPlayer.shape) && hitTest(shape, gvPlayer2.shape) && getcon("up", "press", false, 0)) this[sayfunc]()
-			else if(hitTest(shape, target.shape) && getcon("up", "press", false, target.playerNum) && sayfunc != null) this[sayfunc]()
+			if(hitTest(shape, target.shape) && getcon("up", "press", false, target.playerNum) && sayfunc != null) {
+				if(nowTalking) {
+					gvInfoBox = ""
+					nowTalking = false
+					target.canMove = true
+				}
+				else if(gvInfoBox == "") {
+					this[sayfunc]()
+					nowTalking = true
+					target.canMove = false
+				}
+			}
 
-			if(gvInfoBox == text) if(!inDistance2(x, y, target.x, target.y, 32)) gvInfoBox = ""
+			if(gvInfoBox == text) if(!inDistance2(x, y, target.x, target.y, 32)) {
+				gvInfoBox = ""
+			}
+
+			if(nowTalking && (gvInfoBox == "" || gvInfoBox != text)) {
+				target.canMove = true
+				nowTalking = false
+			}
 
 			if(inDistance2(x, y, target.x, target.y, 32)) {
 				if(x > target.x + 2) flip = 1
@@ -197,28 +217,28 @@
 	function _typeof() { return "NPC" }
 }
 
-::freeKonqi <- function() {
+freeKonqi <- function() {
 	game.characters["Konqi"] <- true
 	game.characters["Katie"] <- true
 	game.friends["Konqi"] <- true
 	game.friends["Katie"] <- true
 }
 
-::freeMidi <- function() {
+freeMidi <- function() {
 	game.characters["Midi"] <- true
 	game.friends["Midi"] <- true
 	game.characters["Kiki"] <- true
 	game.friends["Kiki"] <- true
 }
 
-::freeSurge <- function() {
+freeSurge <- function() {
 	game.characters["Surge"] <- true
 	game.friends["Surge"] <- true
 	game.characters["Dashie"] <- true
 	game.friends["Dashie"] <- true
 }
 
-::freeNeverball <- function() {
+freeNeverball <- function() {
 	game.characters["Neverball"] <- true
 	game.friends["Neverball"] <- true
 }
@@ -227,21 +247,45 @@
 // NPC v2 //
 ////////////
 
-::gvStockRoutines <- {
+gvStockRoutines <- {
 	wander = function() {
+		friction = 0
+		gravity = 0.2
+
 		if(hspeed != 0)
 			anim = "walk"
 		else
 			anim = "stand"
 
-		if(!placeFree(x, y + 1) && !onPlatform())
+		if(placeFree(x, y + 1) && !onPlatform())
 			anim = "fall"
 
-		
+		timer--
+		switch(action) {
+			case 0:
+				if(timer == 0) {
+					timer = randInt(900)
+					hspeed = choose(1, -1)
+					action = 1
+				}
+				break
+
+			case 1:
+				if(timer == 0) {
+					timer = randInt(900)
+					hspeed = 0
+					action = 0
+				}
+
+				if(abs(x - xstart) > 256
+				|| (!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 2))
+				|| (placeFree(x + hspeed, y + 4) || !onPlatform(hspeed)))
+					hspeed = -hspeed
+		}
 	}
 }
 
-::gvNPCs <- {
+gvNPCs <- {
 	//NPC definitions go here
 	Test = {
 		name = "Mr. Test"
@@ -249,20 +293,46 @@
 			stand = [0]
 		}
 		routine = gvStockRoutines.wander
+		shape = Rec(0, 0, 8, 8, 0)
+		sprite = 0
+	}
+	Pygame = {
+		name = "Pygame"
+		an = {
+			stand = [0]
+			fall = [1, 2, 3, 4]
+			walk = [8, 9, 10, 11, 12, 13, 14, 15]
+		}
+		routine = gvStockRoutines.wander
+		shape = Rec(0, 0, 16, 16, 0, 0, 4)
+		sprite = sprPygameNPC
 	}
 }
 
-::NPC2 <- class extends PhysAct {
+NPC2 <- class extends PhysAct {
 	source = null
 	anim = "stand"
 	timer = 0
 	action = 0
 	flip = 0
+	sprite = null
+	args = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
-		if(_arr in gvNPCs)
+		if(_arr)
+			args = split(_arr, ",")
+		if(args[0] in gvNPCs)
 			source = deepClone(gvNPCs[_arr])
+
+		if(source) {
+			shape = source.shape
+			routine = source.routine
+			sprite = source.sprite
+		}
+
+		xstart = x
+		ystart = y
 	}
 
 	function _typeof() { return "NPC2" }
@@ -272,7 +342,7 @@
 // SPECIAL NPCS //
 //////////////////
 
-::RallyPoint <- class extends PhysAct {
+RallyPoint <- class extends PhysAct {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr = null)
 		shape = Cir(x, y, 8)
@@ -283,7 +353,7 @@
 	function _typeof() { return "RallyPoint" }
 }
 
-::BeeHostage <- class extends PathCrawler {
+BeeHostage <- class extends PathCrawler {
 	rx = 0
 	ry = 0
 	freed = false

@@ -1,4 +1,4 @@
-::startMain <- function() {
+startMain <- function() {
 	stopMusic()
 	songPlay(musTheme)
 	game = createNewGameObject()
@@ -12,7 +12,7 @@
 	levelEndRunner = 0
 }
 
-::gmMain <- function()
+gmMain <- function()
 {
 	drawBG = dbgOceanMoving
 	setDrawTarget(gvScreen)

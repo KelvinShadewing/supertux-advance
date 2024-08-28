@@ -1,6 +1,6 @@
 //Functions having to do with accessibility features go here
 
-::drawFloatingStats <- function(x, y, red, green, blue) {
+drawFloatingStats <- function(x, y, red, green, blue) {
 	if(red < 1.0) {
 		drawSprite(sprNearRedBack, (red <= 0.25 ? getFrames() / 16 : 0), floor(x) - 24, floor(y) - 16)
 		drawImagePart(imgNearRedFill, floor(x) - 23, floor(y) - 15 + (30 - (30 * red)), 0, 30 - (30 * red), 6, 30 * red)

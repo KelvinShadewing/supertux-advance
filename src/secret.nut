@@ -1,4 +1,4 @@
-::SecretWall <- class extends Actor {
+SecretWall <- class extends Actor {
 	found = false
 	alpha = 1.0
 	dw = 0
@@ -55,7 +55,7 @@
 	function _typeof() { return "SecretWall" }
 }
 
-::SecretJoiner <- class extends Actor {
+SecretJoiner <- class extends Actor {
 	found = false
 	alpha = 1.0
 	dw = null

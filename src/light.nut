@@ -1,12 +1,12 @@
-::gvLightScreen <- 0
-::gvLightScreen1 <- 0
-::gvLightScreen2 <- 0
-::gvLight <- 0xffffffff
-::gvLightTarget <- 0xffffffff
-::gvLight2 <- 0xffffffff
-::gvLightTarget2 <- 0xffffffff
+gvLightScreen <- 0
+gvLightScreen1 <- 0
+gvLightScreen2 <- 0
+gvLight <- 0xffffffff
+gvLightTarget <- 0xffffffff
+gvLight2 <- 0xffffffff
+gvLightTarget2 <- 0xffffffff
 
-::drawLight <- function(sprite, frame, x, y, a = 0, f = 0, w = 1.0, h = 1.0, p = 1.0) {
+drawLight <- function(sprite, frame, x, y, a = 0, f = 0, w = 1.0, h = 1.0, p = 1.0) {
 	if(!config.light) return
 	if(gvLightScreen == 0) return
 	if(gvLightScreen == gvLightScreen1 && gvLight == 0xffffffff
@@ -19,7 +19,7 @@
 	setDrawTarget(prevTarget)
 }
 
-::runAmbientLight <- function(light2 = false) {
+runAmbientLight <- function(light2 = false) {
 	local prevTarget = getDrawTarget()
 
 	if(config.light) {
@@ -103,7 +103,7 @@
 	setDrawTarget(prevTarget)
 }
 
-::drawAmbientLight <- function(light2 = false) {
+drawAmbientLight <- function(light2 = false) {
 	if(!config.light)
 		return
 	if(light2)
@@ -112,24 +112,24 @@
 		drawImage(gvLightScreen, 0, 0)
 }
 
-::setLight <- function(color) {
+setLight <- function(color) {
 	gvLightTarget = color
 	gvLight = color
 	gvLightTarget2 = color
 	gvLight2 = color
 }
 
-::setLight1 <- function(color) {
+setLight1 <- function(color) {
 	gvLightTarget = color
 	gvLight = color
 }
 
-::setLight2 <- function(color) {
+setLight2 <- function(color) {
 	gvLightTarget2 = color
 	gvLight2 = color
 }
 
-::StaticLight <- class extends Actor {
+StaticLight <- class extends Actor {
 	sprite = 0
 	scale = 1.0
 
@@ -147,7 +147,7 @@
 	}
 }
 
-::FlickerLight <- class extends Actor {
+FlickerLight <- class extends Actor {
 	sprite = 0
 	scale = 1.0
 	alpha = 1.0
@@ -178,7 +178,7 @@
 	}
 }
 
-::TransZone <- class extends Actor {
+TransZone <- class extends Actor {
 	w = 0.0
 	h = 0.0
 	color = "0xffffffff"

@@ -5,14 +5,14 @@
 //All weapons will use the same return type
 //Different weapons will have different stats for enemies to react to
 
-::fireWeapon <- function(weapon, x, y, alignment, owner) {
+fireWeapon <- function(weapon, x, y, alignment, owner) {
 	local c = actor[newActor(weapon, x, y, [alignment, owner])]
 	c.alignment = alignment
 	c.owner = owner
 	return c
 }
 
-::WeaponEffect <- class extends PhysAct {
+WeaponEffect <- class extends PhysAct {
 	power = 1
 	element = "normal"
 	cut = false
@@ -38,7 +38,7 @@
 // NORMAL ATTACKS //
 ////////////////////
 
-::MeleeHit <- class extends WeaponEffect {
+MeleeHit <- class extends WeaponEffect {
 	element = "normal"
 	timer = 4
 
@@ -53,7 +53,7 @@
 	}
 }
 
-::BoxHit <- class extends WeaponEffect {
+BoxHit <- class extends WeaponEffect {
 	element = "normal"
 	timer = 4
 	box = true
@@ -72,7 +72,7 @@
 	function draw() { if(debug) drawSprite(sprPoof, 0, x - camx, y - camy - 8) }
 }
 
-::StompPoof <- class extends WeaponEffect{
+StompPoof <- class extends WeaponEffect{
 	power = 1
 	piercing = -1
 	frame = 0.0
@@ -95,7 +95,7 @@
 	function draw() { drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1) }
 }
 
-::ExplodeN <- class extends WeaponEffect{
+ExplodeN <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -142,7 +142,7 @@
 	}
 }
 
-::ExplodeN2 <- class extends WeaponEffect{
+ExplodeN2 <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -189,7 +189,7 @@
 	}
 }
 
-::ExplodeN3 <- class extends WeaponEffect{
+ExplodeN3 <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -236,7 +236,7 @@
 	}
 }
 
-::RollingSlash <- class extends WeaponEffect{
+RollingSlash <- class extends WeaponEffect{
 	power = 2
 	frame = 0.0
 	shape = 0
@@ -287,7 +287,7 @@
 	}
 }
 
-::InstaShield <- class extends WeaponEffect{
+InstaShield <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -336,7 +336,7 @@
 // FIRE ATTACKS //
 //////////////////
 
-::Fireball <- class extends WeaponEffect {
+Fireball <- class extends WeaponEffect {
 	element = "fire"
 	timer = 90
 	piercing = 0
@@ -398,7 +398,7 @@
 	}
 }
 
-::AfterFlame <- class extends WeaponEffect {
+AfterFlame <- class extends WeaponEffect {
 	element = "fire"
 	timer = 2
 
@@ -413,7 +413,7 @@
 	}
 }
 
-::FlameBreath <- class extends WeaponEffect {
+FlameBreath <- class extends WeaponEffect {
 	element = "fire"
 	frame = 0.0
 	angle = 0
@@ -447,7 +447,7 @@
 	}
 }
 
-::FireballK <- class extends WeaponEffect {
+FireballK <- class extends WeaponEffect {
 	timer = 90
 	angle = 0
 	element = "fire"
@@ -496,7 +496,7 @@
 	}
 }
 
-::ExplodeF <- class extends WeaponEffect{
+ExplodeF <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -545,7 +545,7 @@
 	}
 }
 
-::ExplodeF2 <- class extends WeaponEffect{
+ExplodeF2 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -597,7 +597,7 @@
 	}
 }
 
-::ExplodeF3 <- class extends WeaponEffect{
+ExplodeF3 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -677,7 +677,7 @@
 	}
 }
 
-::ExplodeHidden <- class extends WeaponEffect{
+ExplodeHidden <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -723,7 +723,7 @@
 	}
 }
 
-::FuseSpark <- class extends WeaponEffect {
+FuseSpark <- class extends WeaponEffect {
 	element = "fire"
 	power = 0
 	piercing = -1
@@ -741,7 +741,7 @@
 	function draw() { drawSprite(sprFireball, getFrames(), x - camx, y - camy) }
 }
 
-::FuseLine <- class extends PathCrawler {
+FuseLine <- class extends PathCrawler {
 	speed = 0
 	obj = 0
 
@@ -775,7 +775,7 @@
 	}
 }
 
-::DashFlame <- class extends WeaponEffect {
+DashFlame <- class extends WeaponEffect {
 	flip = 0
 	element = "fire"
 	power = 1
@@ -809,7 +809,7 @@
 	}
 }
 
-::ExplodeTiny <- class extends WeaponEffect{
+ExplodeTiny <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -861,7 +861,7 @@
 // ICE ATTACKS //
 /////////////////
 
-::Iceball <- class extends WeaponEffect {
+Iceball <- class extends WeaponEffect {
 	element = "ice"
 	timer = 90
 
@@ -920,7 +920,7 @@
 	}
 }
 
-::AfterIce <- class extends WeaponEffect {
+AfterIce <- class extends WeaponEffect {
 	element = "ice"
 	timer = 2
 
@@ -935,7 +935,7 @@
 	}
 }
 
-::ExplodeI <- class extends WeaponEffect{
+ExplodeI <- class extends WeaponEffect{
 	power = 2
 	frame = 0.0
 	shape = 0
@@ -985,7 +985,7 @@
 	}
 }
 
-::ExplodeI2 <- class extends WeaponEffect{
+ExplodeI2 <- class extends WeaponEffect{
 	power = 2
 	frame = 0.0
 	shape = 0
@@ -1047,7 +1047,7 @@
 	}
 }
 
-::IceBreath <- class extends WeaponEffect {
+IceBreath <- class extends WeaponEffect {
 	element = "ice"
 	frame = 0.0
 	angle = 0
@@ -1080,7 +1080,7 @@
 // SHOCK ATTACKS //
 ///////////////////
 
-::ExplodeT <- class extends WeaponEffect{
+ExplodeT <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -1128,7 +1128,7 @@
 	}
 }
 
-::ExplodeT2 <- class extends WeaponEffect{
+ExplodeT2 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -1178,7 +1178,7 @@
 	}
 }
 
-::ExplodeT3 <- class extends WeaponEffect{
+ExplodeT3 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -1269,7 +1269,7 @@
 	}
 }
 
-::Shockball <- class extends WeaponEffect {
+Shockball <- class extends WeaponEffect {
 	element = "shock"
 	timer = 120
 	piercing = 0
@@ -1331,7 +1331,7 @@
 // EARTH ATTACKS //
 ///////////////////
 
-::Earthball <- class extends WeaponEffect {
+Earthball <- class extends WeaponEffect {
 	element = "earth"
 	timer = 90
 	piercing = 0
@@ -1378,7 +1378,7 @@
 	}
 }
 
-::EarthballK <- class extends WeaponEffect {
+EarthballK <- class extends WeaponEffect {
 	timer = 90
 	angle = 0
 	element = "earth"
@@ -1429,7 +1429,7 @@
 	}
 }
 
-::AfterEarth <- class extends WeaponEffect {
+AfterEarth <- class extends WeaponEffect {
 	element = "earth"
 	timer = 2
 
@@ -1444,7 +1444,7 @@
 	}
 }
 
-::ExplodeE <- class extends WeaponEffect{
+ExplodeE <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -1493,7 +1493,7 @@
 	}
 }
 
-::ExplodeE2 <- class extends WeaponEffect{
+ExplodeE2 <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -1542,7 +1542,7 @@
 	}
 }
 
-::ExplodeE3 <- class extends WeaponEffect{
+ExplodeE3 <- class extends WeaponEffect{
 	power = 1
 	frame = 0.0
 	shape = 0
@@ -1612,7 +1612,7 @@
 	}
 }
 
-::CrystalBullet <- class extends WeaponEffect {
+CrystalBullet <- class extends WeaponEffect {
 	element = "earth"
 	timer = 240
 	piercing = -1
@@ -1675,7 +1675,7 @@
 // MIDI'S WEAPONS //
 ////////////////////
 
-::NutBomb <- class extends WeaponEffect {
+NutBomb <- class extends WeaponEffect {
 	timer = 90
 	element = "normal"
 	power = 0
@@ -1839,7 +1839,7 @@
 	}
 }
 
-::TopNut <- class extends NutBomb {
+TopNut <- class extends NutBomb {
 	timer = 90
 	element = "normal"
 	power = 0
@@ -1896,7 +1896,7 @@
 	}
 }
 
-::WingNut <- class extends NutBomb {
+WingNut <- class extends NutBomb {
 	timer = 16
 	element = "normal"
 	power = 0
@@ -1943,7 +1943,7 @@
 	}
 }
 
-::NutMine <- class extends NutBomb {
+NutMine <- class extends NutBomb {
 	element = "normal"
 	power = 0
 	blast = false
@@ -1987,7 +1987,7 @@
 // AIR ATTACKS //
 /////////////////
 
-::Airball <- class extends WeaponEffect {
+Airball <- class extends WeaponEffect {
 	element = "air"
 	timer = 120
 	piercing = 0
@@ -2052,7 +2052,7 @@
 	}
 }
 
-::ExplodeA <- class extends WeaponEffect{
+ExplodeA <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -2103,7 +2103,7 @@
 	}
 }
 
-::ExplodeA2 <- class extends WeaponEffect{
+ExplodeA2 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -2156,7 +2156,7 @@
 	}
 }
 
-::ExplodeA3 <- class extends WeaponEffect{
+ExplodeA3 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -2254,7 +2254,7 @@
 	}
 }
 
-::DragBubble <- class extends WeaponEffect {
+DragBubble <- class extends WeaponEffect {
 	frame = 0
 	power = 0
 	piercing = -1
@@ -2293,7 +2293,7 @@
 	}
 }
 
-::StormTornado <- class extends WeaponEffect {
+StormTornado <- class extends WeaponEffect {
 	piercing = -1
 	power = 1
 	timer = 0
@@ -2339,7 +2339,7 @@
 // WATER ATTACKS //
 ///////////////////
 
-::Waterball <- class extends WeaponEffect {
+Waterball <- class extends WeaponEffect {
 	element = "water"
 	timer = 90
 	piercing = 0
@@ -2381,7 +2381,7 @@
 	function animation() {}
 }
 
-::ExplodeW <- class extends WeaponEffect{
+ExplodeW <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -2432,7 +2432,7 @@
 	}
 }
 
-::ExplodeW2 <- class extends WeaponEffect{
+ExplodeW2 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -2488,7 +2488,7 @@
 	}
 }
 
-::ExplodeW3 <- class extends WeaponEffect{
+ExplodeW3 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -2565,7 +2565,7 @@
 	}
 }
 
-::WaterBomb <- class extends WeaponEffect {
+WaterBomb <- class extends WeaponEffect {
 	timer = 90
 	angle = 0
 	element = "water"

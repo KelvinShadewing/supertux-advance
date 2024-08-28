@@ -2,7 +2,7 @@
 // SHAPES //
 ////////////
 
-::Rec <- class {
+Rec <- class {
 	x = 0.0
 	y = 0.0
 	w = 0.0
@@ -48,7 +48,7 @@
 	function _typeof() { return "Rec" }
 }
 
-::Cir <- class{
+Cir <- class{
 	x = 0.0
 	y = 0.0
 	r = 0.0
@@ -115,7 +115,7 @@
 	function _typeof() { return "Cir" }
 }
 
-::Poly <- class {
+Poly <- class {
 	x = 0
 	y = 0
 	vertices = null
@@ -170,7 +170,7 @@
 	function _typeof() { return "Poly" }
 }
 
-::hitTest <- function(a, b) {
+hitTest <- function(a, b) {
 	switch(typeof a) {
 		case "Rec":
 			switch(typeof b) {

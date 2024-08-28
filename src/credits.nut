@@ -1,9 +1,9 @@
-::creditsData <- null
-::creditsOffset <- 0
-::creditsTimer <- 0
-::creditsLength <- 0
-::creditsSprites <- []
-::startCredits <- function(folder = "res"){
+creditsData <- null
+creditsOffset <- 0
+creditsTimer <- 0
+creditsLength <- 0
+creditsSprites <- []
+startCredits <- function(folder = "res"){
 	creditsData = jsonRead(fileRead(folder + "/credits.json"))
 	if(creditsData == null) {
 		print("Failed to load credits data.")
@@ -35,7 +35,7 @@
 	creditsLength += 30 //Padding
 }
 
-::gmCredits <- function(){
+gmCredits <- function(){
 	local y=0
 	setDrawTarget(gvScreen)
 	drawSprite(bgCharSel, 0, screenW() / 2, 0)

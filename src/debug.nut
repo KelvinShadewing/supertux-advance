@@ -1,19 +1,19 @@
-::debug <- false
-::debugTickIndex <- 0
-::debugTickSum <- 0
-::debugTickList <- array(64, 0)
-::devcom <- false
-::debugHistory <- []
-::debugCursor <- 0
-::debugMouseLeft <- 1
-::debugMouseRight <- 0
-::debugExt <- {}
+debug <- false
+debugTickIndex <- 0
+debugTickSum <- 0
+debugTickList <- array(64, 0)
+devcom <- false
+debugHistory <- []
+debugCursor <- 0
+debugMouseLeft <- 1
+debugMouseRight <- 0
+debugExt <- {}
 
-::gvDebugConsole <- false
-::gvConIn <- ""
-::gvConOut <- ""
+gvDebugConsole <- false
+gvConIn <- ""
+gvConOut <- ""
 
-::drawDebug <- function() {
+drawDebug <- function() {
 	if(keyPress(k_f12)) {
 		debug = !debug
 		//if(debug) foreach(i in actor) print(typeof i)
@@ -181,7 +181,7 @@
 	foreach (i in debugExt) if(typeof i == "function") i()
 }
 
-::gmConsole <- function() {
+gmConsole <- function() {
 	if(!gvDebugConsole) {
 		if(gvGameMode != gmPause) {
 			setDrawTarget(bgPause)
@@ -235,7 +235,7 @@
 	}
 }
 
-::PolyTest <- class extends Actor {
+PolyTest <- class extends Actor {
 	path = null
 
 	constructor(_x, _y, _arr = null) {
@@ -249,7 +249,7 @@
 	}
 }
 
-::displayKeys <- function() {
+displayKeys <- function() {
 	local offset = (gvNumPlayers == 2 ? 32 : 0)
 	if(!config.showleveligt && !gvTimeAttack) offset -= 16
 	drawSprite(sprDebug, int(getcon("left", "hold", true, 1)), 4, 60 + offset)

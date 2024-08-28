@@ -1,7 +1,7 @@
-::gvPauseMode <- false //Is the player on the overworld instead of normal play
-::gvConsoleReturn <- null
+gvPauseMode <- false //Is the player on the overworld instead of normal play
+gvConsoleReturn <- null
 
-::gmPause <- function() {
+gmPause <- function() {
 	setDrawTarget(gvScreen)
 	drawImage(bgPause, 0, 0)
 	setDrawColor(0x00000080)
@@ -10,7 +10,7 @@
 	textMenu()
 }
 
-::togglePause <- function() {
+togglePause <- function() {
 	cursor = 0
 	if(gvGameMode == gmPlay) {
 		if(actor.rawin("DeadPlayer") && actor["DeadPlayer"].len() > 0 && !gvPlayer && !gvPlayer2) {
@@ -46,7 +46,7 @@
 	}
 }
 
-::toggleConsole <- function() {
+toggleConsole <- function() {
 	cursor = 0
 	if(gvGameMode == gmPlay) {
 		gvGameMode = gmConsole

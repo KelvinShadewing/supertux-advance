@@ -1,8 +1,8 @@
-::meLanguage <- [
+meLanguage <- [
 
 ]
-::languageList <- null
-::selectLanguage <- function() {
+languageList <- null
+selectLanguage <- function() {
 	meLanguage = []
 	if(languageList==null)
 		languageList = jsonRead(fileRead("lang/languages.json"))

@@ -1,6 +1,6 @@
-::gvEnemies <- {}
+gvEnemies <- {}
 
-::Enemy <- class extends PhysAct {
+Enemy <- class extends PhysAct {
 	health = 1.0
 	active = false
 	frozen = 0
@@ -332,7 +332,7 @@
 	}
 }
 
-::DeadNME <- class extends PhysAct {
+DeadNME <- class extends PhysAct {
 	sprite = 0
 	frame = 0
 	hspeed = 0.0
@@ -373,7 +373,7 @@
 // SPECIFIC ENEMIES //
 //////////////////////
 
-::Deathcap <- class extends Enemy {
+Deathcap <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -586,7 +586,7 @@
 	function _typeof() { return "Deathcap" }
 }
 
-::PipeSnake <- class extends Enemy {
+PipeSnake <- class extends Enemy {
 	ystart = 0
 	timer = 30
 	up = false
@@ -723,7 +723,7 @@
 	function _typeof() { return "Snake" }
 }
 
-::OrangeBounce <- class extends Enemy {
+OrangeBounce <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -875,7 +875,7 @@
 	function _typeof() { return "OrangeBounce" }
 }
 
-::CarlBoom <- class extends Enemy {
+CarlBoom <- class extends Enemy {
 	burnt = false
 	frame = 0.0
 	flip = false
@@ -1070,7 +1070,7 @@
 	function _typeof() { return "CarlBoom" }
 }
 
-::Shortfuse <- class extends Enemy {
+Shortfuse <- class extends Enemy {
 	burnt = false
 	frame = 0.0
 	flip = false
@@ -1242,7 +1242,7 @@
 	function _typeof() { return "Shortfuse" }
 }
 
-::BlueFish <- class extends Enemy {
+BlueFish <- class extends Enemy {
 	timer = 0
 	frame = 0.0
 	biting = false
@@ -1339,7 +1339,7 @@
 	function _typeof() { return "BlueFish" }
 }
 
-::RedFish <- class extends Enemy {
+RedFish <- class extends Enemy {
 	timer = 0
 	frame = 0.0
 	biting = false
@@ -1462,7 +1462,7 @@
 	function _typeof() { return "RedFish" }
 }
 
-::JellyFish <- class extends Enemy {
+JellyFish <- class extends Enemy {
 	timer = 0
 	frame = 0.0
 	pump = false
@@ -1567,7 +1567,7 @@
 	function _typeof() { return "Jellyfish" }
 }
 
-::Clamor <- class extends Enemy {
+Clamor <- class extends Enemy {
 	huntdir = 0
 	timer = 0
 	flip = 0
@@ -1636,7 +1636,7 @@
 	function _typeof() { return "Clamor" }
 }
 
-::ClamorPearl <- class extends PhysAct {
+ClamorPearl <- class extends PhysAct {
 	hspeed = 0
 	vspeed = 0
 	timer = 1200
@@ -1674,7 +1674,7 @@
 	function draw() { drawSprite(sprIceball, 0, x - camx, y - camy) }
 }
 
-::GreenFish <- class extends Enemy {
+GreenFish <- class extends Enemy {
 	timer = 120
 	frame = 0.0
 	biting = false
@@ -1829,7 +1829,7 @@
 	function _typeof() { return "GreenFish" }
 }
 
-::Ouchin <- class extends Enemy {
+Ouchin <- class extends Enemy {
 	sf = 0.0
 	sharpTop = true
 	sharpSide = true
@@ -1937,7 +1937,7 @@
 	function hurtIce() { frozen = 600 }
 }
 
-::BadCannon <- class extends Actor {
+BadCannon <- class extends Actor {
 	frame = 3.5
 	timer = 240
 
@@ -1995,7 +1995,7 @@
 	function _typeof() { return "BadCannon" }
 }
 
-::CannonBob <- class extends Enemy {
+CannonBob <- class extends Enemy {
 	vspeed = -4
 	sprite = 0
 	touchDamage = 2.0
@@ -2103,7 +2103,7 @@
 	function _typeof() { return "CannonBob" }
 }
 
-::Icicle <- class extends Enemy {
+Icicle <- class extends Enemy {
 	timer = 30
 	counting = false
 	touchDamage = 2.0
@@ -2194,7 +2194,7 @@
 	}
 }
 
-::FlyAmanita <- class extends Enemy {
+FlyAmanita <- class extends Enemy {
 	range = 0
 	dir = 0.5
 	flip = 0
@@ -2324,7 +2324,7 @@
 	function hurtIce() { frozen = 600 }
 }
 
-::Jumpy <- class extends Enemy {
+Jumpy <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -2441,7 +2441,7 @@
 	}
 }
 
-::Haywire <- class extends Enemy {
+Haywire <- class extends Enemy {
 	burnt = false
 	frame = 0.0
 	flip = false
@@ -2522,7 +2522,7 @@
 					}
 
 					local target = findPlayer()
-					if(target != null) if(inDistance2(x, y, target.x, target.y, 8 + (16 * game.difficulty))) squish = true
+					if(target != null) if(inDistance2(x, y, target.x, target.y, 16 + (32 * game.difficulty))) squish = true
 				}
 
 				local target = findPlayer()
@@ -2576,7 +2576,7 @@
 			else {
 				squishTime += 1.0
 				frame += 0.25
-				if(squishTime >= 180 - (game.difficulty * 30) && !chasing) {
+				if(squishTime >= 240 - (game.difficulty * 30) && !chasing) {
 					chasing = true
 					squishTime = 0
 					popSound(sndFizz, 0)
@@ -2685,7 +2685,7 @@
 	function _typeof() { return "Haywire" }
 }
 
-::Goldbomb <- class extends Enemy {
+Goldbomb <- class extends Enemy {
 	squish = 0
 	scared = 0
 	wait = 60
@@ -2870,7 +2870,7 @@
 	function _typeof() { return "Goldbomb" }
 }
 
-::Sawblade <- class extends PathCrawler {
+Sawblade <- class extends PathCrawler {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 6, 6, 0)
@@ -2890,7 +2890,7 @@
 	}
 }
 
-::Livewire <- class extends Enemy {
+Livewire <- class extends Enemy {
 	burnt = false
 	frame = 0.0
 	flip = false
@@ -3072,7 +3072,7 @@
 	function hurtIce() { frozen = 120 }
 }
 
-::Blazeborn <- class extends Enemy {
+Blazeborn <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -3223,7 +3223,7 @@
 	function _typeof() { return "Blazeborn" }
 }
 
-::Wildcap <- class extends Enemy {
+Wildcap <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -3421,7 +3421,7 @@
 	function _typeof() { return "Wildcap" }
 }
 
-::Tallcap <- class extends Enemy {
+Tallcap <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -3579,7 +3579,7 @@
 	function _typeof() { return "Tallcap" }
 }
 
-::Ivy <- class extends Enemy {
+Ivy <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -3808,7 +3808,7 @@
 // V0.2.0 ENEMIES //
 ////////////////////
 
-::Owl <- class extends Enemy {
+Owl <- class extends Enemy {
 	passenger = null
 	pyOffset = 0
 	pid = 0
@@ -3991,7 +3991,7 @@
 	}
 }
 
-::MrIceguy <- class extends Enemy {
+MrIceguy <- class extends Enemy {
 	element = "ice"
 	slideTimer = 8
 	hurtTimer = 600
@@ -4238,7 +4238,7 @@
 	function _typeof() { return "MrIceguy" }
 }
 
-::SpikeCap <- class extends Enemy {
+SpikeCap <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -4467,7 +4467,7 @@
 	function _typeof() { return "SpikeCap" }
 }
 
-::CaptainMorel <- class extends Enemy {
+CaptainMorel <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -4663,7 +4663,7 @@
 	function _typeof() { return "CaptainMorel" }
 }
 
-::Crusher <- class extends Enemy {
+Crusher <- class extends Enemy {
 	damageMult = {
 		normal = 0.0
 		fire = 0.0
@@ -4795,7 +4795,7 @@
 	function _typeof() { return "Crusher" }
 }
 
-::SideCrusher <- class extends Enemy {
+SideCrusher <- class extends Enemy {
 	damageMult = {
 		normal = 0.0
 		fire = 0.0
@@ -4976,7 +4976,7 @@
 	function _typeof() { return "Crusher" }
 }
 
-::Wheeler <- class extends Enemy {
+Wheeler <- class extends Enemy {
 	touchDamage = 2
 	sharpSide = true
 	sharpTop = true
@@ -5169,7 +5169,7 @@
 	function _typeof() { return "Wheeler" }
 }
 
-::SkyDive <- class extends Enemy {
+SkyDive <- class extends Enemy {
 	flip = 0
 	onGround = false
 	accel = 0.0
@@ -5248,7 +5248,7 @@
 	function _typeof() { return "SkyDive" }
 }
 
-::Puffranah <- class extends Enemy {
+Puffranah <- class extends Enemy {
 	anim = "normal"
 	an = {
 		normal = [0, 1, 2, 3]
@@ -5544,7 +5544,7 @@
 	function physics() {}
 }
 
-::Struffle <- class extends Enemy {
+Struffle <- class extends Enemy {
 	anim = "stand"
 	an = {
 		stand = [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 2, 0, 2]
@@ -5721,7 +5721,7 @@
 	}
 
 	function physics() {
-		if(placeFree(x, y + gravity) && !phantom) vspeed += gravity
+		if(placeFree(x, y + gravity) && !phantom && !onPlatform()) vspeed += gravity
 		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
 			for(local i = 2; i < 8; i++) {
@@ -5799,7 +5799,7 @@
 	}
 }
 
-::Crystallo <- class extends Enemy {
+Crystallo <- class extends Enemy {
 	mode = 0
 	flip = 0
 	sharpSide = true
@@ -6116,7 +6116,7 @@
 	function _typeof() { return "Crystallo" }
 }
 
-::WaspyBoi <- class extends Enemy {
+WaspyBoi <- class extends Enemy {
 	timer = 0
 	frame = 0.0
 	biting = false
@@ -6242,7 +6242,7 @@
 	function _typeof() { return "WaspyBoi" }
 }
 
-::Devine <- class extends Enemy {
+Devine <- class extends Enemy {
 	touchDamage = 2
 	sharpSide = true
 	sharpTop = true
@@ -6347,7 +6347,7 @@
 	function _typeof() { return "Devine" }
 }
 
-::Gooey <- class extends Enemy {
+Gooey <- class extends Enemy {
 	sprite = null
 	touchDamage = 0
 	damageMult = {
@@ -6554,7 +6554,7 @@
 	function _typeof() { return "Gooey" }
 }
 
-::Snippin <- class extends Enemy {
+Snippin <- class extends Enemy {
 	rolling = false
 	mode = 0
 	sprite = sprSnailBlue
@@ -6849,7 +6849,7 @@
 	function _typeof() { return "Snippin" }
 }
 
-::PeterFlower <- class extends PhysAct {
+PeterFlower <- class extends PhysAct {
 	frame = 0.0
 	an = {
 		idle = [0, 1]
@@ -7056,7 +7056,7 @@
 	function _typeof() { return "PeterFlower" }
 }
 
-::Granito <- class extends Enemy {
+Granito <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false

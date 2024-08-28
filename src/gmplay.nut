@@ -2,16 +2,16 @@
 | PLAY MODE |
 \*=========*/
 
-::gvInfoBox <- ""
-::gvInfoLast <- ""
-::gvInfoStep <- 0
-::gvLangObj <- ""
-::gvFadeInTime <- 255
-::gvVoidFog <- true
-::gvCanWrap <- false
-::gvFoundItems <- {}
-::gvYetFoundItems <- {}
-::gvBarStats <- {
+gvInfoBox <- ""
+gvInfoLast <- ""
+gvInfoStep <- 0
+gvLangObj <- ""
+gvFadeInTime <- 255
+gvVoidFog <- true
+gvCanWrap <- false
+gvFoundItems <- {}
+gvYetFoundItems <- {}
+gvBarStats <- {
 	health1 = 0.0
 	mana1 = 0.0
 	stamina1 = 0.0
@@ -21,7 +21,7 @@
 	stamina2 = 0.0
 }
 
-::drawMeter <- function (x, y, m, v, c) {
+drawMeter <- function (x, y, m, v, c) {
 	drawSprite(sprMeterBack, 0, x, y)
 	for(local i = 0; i < m; i++)
 		drawSprite(sprMeterBack, 1, x + (i * 2) + 2, y)
@@ -37,9 +37,9 @@
 	drawRec(x + 2, y + 2, min(v * 2.0, m * 2.0) - 1.0, 3, true)
 }
 
-::mapActor <- {} //Stores references to all actors created by the map
+mapActor <- {} //Stores references to all actors created by the map
 
-::startPlay <- function(level, newLevel = true, skipIntro = false) {
+startPlay <- function(level, newLevel = true, skipIntro = false) {
 	menuLeft = false
 	if(!fileExists(level)) return
 
@@ -411,7 +411,7 @@
 	//update()
 }
 
-::gmLevelStart <- function() {
+gmLevelStart <- function() {
 	setDrawTarget(gvScreen)
 	setDrawColor(0x000000ff)
 	drawRec(0, 0, gvScreenW, gvScreenH, true)
@@ -519,7 +519,7 @@
 	if(getcon("jump", "press") || getcon("shoot", "press") || getcon("pause", "press") || getcon("accept", "press")) gvGameMode = gmPlay
 }
 
-::gmPlay <- function() {
+gmPlay <- function() {
 	//Exit timer
 	if(gvExitTimer > 0)
 		gvExitTimer -= 0.5
@@ -1350,7 +1350,7 @@
 	if(game.ps2.health < 0) game.ps2.health = 0
 }
 
-::playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the player and camera at the same time
+playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the player and camera at the same time
 	if(!target) return
 	if(gvMap == 0) return
 
@@ -1405,7 +1405,7 @@
 	}
 }
 
-::TimeAttackSign <- class extends Actor {
+TimeAttackSign <- class extends Actor {
 	function draw() {
 		local str = gvLangObj["stats"]["final-time"]
 		local time = formatTime(game.igt)
@@ -1414,7 +1414,7 @@
 	}
 }
 
-::createPlatformActors <- function(n, i, c) {
+createPlatformActors <- function(n, i, c) {
 	switch(n) {
 		case 0:
 			if(gvPlayAsBeam) {
@@ -1990,7 +1990,7 @@
 	return c
 }
 
-::createRacerActors <- function(n, i, c) {
+createRacerActors <- function(n, i, c) {
 	switch(n) {
 		case 0:
 			c = newActor(TuxRacer, i.x + 8, i.y - 8)

@@ -1,4 +1,4 @@
-::textLineLen <-  function(_s, _l) {
+textLineLen <-  function(_s, _l) {
 	_s = strip(_s)
 	if (_s.len() == 0) return
 
@@ -29,7 +29,7 @@
 	return newstr
 }
 
-::drawTextLen <-  function(_f, _x, _y, _s, _l) {
+drawTextLen <-  function(_f, _x, _y, _s, _l) {
 	_s = strip(_s)
 	if (_s.len() == 0) return
 
@@ -58,7 +58,7 @@
 	drawText(_f, _x, _y, newstr)
 }
 
-::formatTime <-  function(time) {
+formatTime <-  function(time) {
 	local seconds = (time % 3600).tofloat() / 60.0
 	local minutes = floor(time / 3600)
 
@@ -67,7 +67,7 @@
 	return format("%02d:%02d.%03d", minutes, seconds_p1, seconds_p2);
 }
 
-::formatInfo <- function(info) {
+formatInfo <- function(info) {
 	if(typeof info == "string")
 		return info
 

@@ -1,6 +1,6 @@
-::meAchievements <- []
+meAchievements <- []
 
-::gvAchievements <- {
+gvAchievements <- {
 	saveKonqi = function() {
 		if(game.path != "res/map/") return false
 		return game.characters.rawin("Konqi")
@@ -78,10 +78,10 @@
 	}
 }
 
-::gvUnlockedAchievements <- {}
-::gvAchievementTimer <- 0
+gvUnlockedAchievements <- {}
+gvAchievementTimer <- 0
 
-::checkAchievements <- function() {
+checkAchievements <- function() {
 	if(gvAchievementTimer > 0) gvAchievementTimer--
 	else foreach(key, i in gvAchievements) {
 		if(gvUnlockedAchievements.rawin(key)) continue
@@ -95,7 +95,7 @@
 	}
 }
 
-::selectAchievements <- function() {
+selectAchievements <- function() {
 	meAchievements = []
 
 	foreach(key, i in gvAchievements) {
@@ -129,7 +129,7 @@
 	menu = meAchievements
 }
 
-::AchiNotice <- class extends Actor {
+AchiNotice <- class extends Actor {
 	persistent = true
 	hspeed = 0.0
 	timer = 60
@@ -164,6 +164,6 @@
 	function _typeof() { return "AchiNotice" }
 }
 
-::drawAchievements <- function() {
+drawAchievements <- function() {
 	if(actor.rawin("AchiNotice")) foreach(i in actor["AchiNotice"]) i.run(true)
 }

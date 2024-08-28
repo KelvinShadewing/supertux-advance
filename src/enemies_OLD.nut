@@ -2,7 +2,7 @@
 | ENEMIES |
 \*=======*/
 
-// ::Enemy <- class extends PhysAct {
+// Enemy <- class extends PhysAct {
 // 	health = 1
 // 	hspeed = 0.0
 // 	vspeed = 0.0
@@ -134,7 +134,7 @@
 // 	function _typeof() { return "Enemy" }
 // }
 
-// ::Deathcap <- class extends Enemy {
+// Deathcap <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -309,7 +309,7 @@
 // 	function _typeof() { return "Deathcap" }
 // }
 
-// ::PipeSnake <- class extends Enemy {
+// PipeSnake <- class extends Enemy {
 // 	ystart = 0
 // 	timer = 30
 // 	up = false
@@ -411,7 +411,7 @@
 // 	function _typeof() { return "Snake" }
 // }
 
-// ::Ouchin <- class extends Enemy {
+// Ouchin <- class extends Enemy {
 // 	sf = 0.0
 
 // 	constructor(_x, _y, _arr = null) {
@@ -486,7 +486,7 @@
 
 //Dead enemy effect for enemies that get sent flying,
 //like when hit with a melee attack
-// ::DeadNME <- class extends Actor {
+// DeadNME <- class extends Actor {
 // 	sprite = 0
 // 	frame = 0
 // 	hspeed = 0.0
@@ -511,7 +511,7 @@
 // 	}
 // }
 
-// ::CarlBoom <- class extends Enemy {
+// CarlBoom <- class extends Enemy {
 // 	burnt = false
 // 	frame = 0.0
 // 	flip = false
@@ -703,7 +703,7 @@
 // 	function _typeof() { return "CarlBoom" }
 // }
 
-// ::BadExplode <- class extends Actor{
+// BadExplode <- class extends Actor{
 // 	frame = 0.0
 // 	shape = 0
 
@@ -753,7 +753,7 @@
 // 	function _typeof() { return "BadExplode" }
 // }
 
-// ::OrangeBounce <- class extends Enemy {
+// OrangeBounce <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -846,7 +846,7 @@
 // 	function _typeof() { return "OrangeBounce" }
 // }
 
-// ::BadCannon <- class extends Actor {
+// BadCannon <- class extends Actor {
 // 	frame = 3.5
 // 	timer = 240
 
@@ -899,7 +899,7 @@
 // 	function _typeof() { return "BadCannon" }
 // }
 
-// ::CannonBob <- class extends Enemy {
+// CannonBob <- class extends Enemy {
 // 	vspeed = -4
 // 	sprite = 0
 
@@ -991,7 +991,7 @@
 // 	function _typeof() { return "CannonBob" }
 // }
 
-// ::BlueFish <- class extends Enemy {
+// BlueFish <- class extends Enemy {
 // 	timer = 0
 // 	frame = 0.0
 // 	biting = false
@@ -1072,7 +1072,7 @@
 // 	function _typeof() { return "BlueFish" }
 // }
 
-// ::RedFish <- class extends Enemy {
+// RedFish <- class extends Enemy {
 // 	timer = 0
 // 	frame = 0.0
 // 	biting = false
@@ -1179,7 +1179,7 @@
 // 	function _typeof() { return "RedFish" }
 // }
 
-// ::JellyFish <- class extends Enemy {
+// JellyFish <- class extends Enemy {
 // 	timer = 0
 // 	frame = 0.0
 // 	pump = false
@@ -1275,7 +1275,7 @@
 // 	function _typeof() { return "BlueFish" }
 // }
 
-// ::Clamor <- class extends Enemy {
+// Clamor <- class extends Enemy {
 // 	huntdir = 0
 // 	timer = 0
 // 	flip = 0
@@ -1331,7 +1331,7 @@
 // 	function _typeof() { return "Clamor" }
 // }
 
-// ::ClamorPearl <- class extends PhysAct {
+// ClamorPearl <- class extends PhysAct {
 // 	hspeed = 0
 // 	vspeed = 0
 // 	timer = 1200
@@ -1367,7 +1367,7 @@
 // 	}
 // }
 
-// ::GreenFish <- class extends Enemy {
+// GreenFish <- class extends Enemy {
 // 	timer = 120
 // 	frame = 0.0
 // 	biting = false
@@ -1483,7 +1483,7 @@
 // 	function _typeof() { return "GreenFish" }
 // }
 
-// ::Icicle <- class extends Enemy {
+// Icicle <- class extends Enemy {
 // 	timer = 30
 // 	counting = false
 
@@ -1523,7 +1523,7 @@
 // 	}
 // }
 
-// ::FlyAmanita <- class extends Enemy {
+// FlyAmanita <- class extends Enemy {
 // 	range = 0
 // 	dir = 0.5
 // 	flip = 0
@@ -1633,7 +1633,7 @@
 // 	function hurtIce() { frozen = 600 }
 // }
 
-// ::Jumpy <- class extends Enemy {
+// Jumpy <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -1730,7 +1730,7 @@
 // 	function hurtIce() { frozen = 600 }
 // }
 
-// ::Haywire <- class extends Enemy {
+// Haywire <- class extends Enemy {
 // 	burnt = false
 // 	frame = 0.0
 // 	flip = false
@@ -1948,7 +1948,7 @@
 // 	function _typeof() { return "Haywire" }
 // }
 
-// ::Sawblade <- class extends PathCrawler {
+// Sawblade <- class extends PathCrawler {
 // 	constructor(_x, _y, _arr = null) {
 // 		base.constructor(_x, _y, _arr)
 // 		shape = Rec(x, y, 6, 6, 0)
@@ -1964,7 +1964,7 @@
 // 	}
 // }
 
-// ::BadExplodeS <- class extends Actor {
+// BadExplodeS <- class extends Actor {
 // 	frame = 0.0
 // 	shape = 0
 
@@ -2003,7 +2003,7 @@
 // 	}
 // }
 
-// ::Livewire <- class extends Enemy {
+// Livewire <- class extends Enemy {
 // 	burnt = false
 // 	frame = 0.0
 // 	flip = false
@@ -2163,7 +2163,7 @@
 // 	function hurtIce() { frozen = 120 }
 // }
 
-// ::Blazeborn <- class extends Enemy {
+// Blazeborn <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -2324,7 +2324,7 @@
 // 	function _typeof() { return "Blazeborn" }
 // }
 
-::Wildcap <- class extends Enemy {
+Wildcap <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false

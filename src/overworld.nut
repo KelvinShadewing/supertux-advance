@@ -2,9 +2,9 @@
 // OVERWORLD //
 ///////////////
 
-::gvLevel <- ""
+gvLevel <- ""
 
-::OverPlayer <- class extends PhysAct {
+OverPlayer <- class extends PhysAct {
 	//0 = right
 	//1 = up
 	//2 = left
@@ -241,7 +241,7 @@
 	function _typeof() { return "OverPlayer" }
 }
 
-::StageIcon <- class extends PhysAct {
+StageIcon <- class extends PhysAct {
 	level = ""
 	visible = true
 	raceMode = false
@@ -296,12 +296,12 @@
 	function _typeof() { return "StageIcon" }
 }
 
-::clearAllLevels <- function() {
+clearAllLevels <- function() {
 	if(!actor.rawin("StageIcon")) return
 	foreach(i in actor["StageIcon"]) game.completed[i.level] <- true
 }
 
-::TownIcon <- class extends PhysAct {
+TownIcon <- class extends PhysAct {
 	level = ""
 	visible = true
 	levelName = ""
@@ -329,7 +329,7 @@
 	function _typeof() { return "TownIcon" }
 }
 
-::WorldIcon <- class extends PhysAct {
+WorldIcon <- class extends PhysAct {
 	level = ""
 	world = ""
 	visible = true
@@ -366,7 +366,7 @@
 	function _typeof() { return "WorldIcon" }
 }
 
-::LockIcon <- class extends PhysAct {
+LockIcon <- class extends PhysAct {
 	key = ""
 
 	constructor(_x, _y, _arr = null) {
@@ -390,7 +390,7 @@
 	function _typeof() { return "LockIcon" }
 }
 
-::startOverworld <- function(world) {
+startOverworld <- function(world) {
 	//Clear actors and start creating new ones
 	gvFadeInTime = 255
 	setFPS(60)
@@ -564,7 +564,7 @@
 	update()
 }
 
-::gmOverworld <- function() {
+gmOverworld <- function() {
 	setDrawTarget(gvScreen)
 
 	drawBG()
@@ -670,6 +670,6 @@
 	if(camy < 0) camy = 0
 }
 
-::irisOut <- function() {
+irisOut <- function() {
 
 }

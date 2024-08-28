@@ -2,7 +2,7 @@
 | ITEMS SOURCE |
 \*============*/
 
-::Coin <- class extends Actor{
+Coin <- class extends Actor{
 	frame = 0.0
 	hspeed = 0.0
 	vspeed = 0.0
@@ -70,7 +70,7 @@
 	function _typeof() { return "Coin" }
 }
 
-::CoinSmall <- class extends PhysAct{
+CoinSmall <- class extends PhysAct{
 	frame = 0.0
 	timer = 300
 	gravity = 0.2
@@ -125,7 +125,7 @@
 	function _typeof() { return "CoinSmall" }
 }
 
-::Coin5 <- class extends Actor{
+Coin5 <- class extends Actor{
 	frame = 0.0
 	hspeed = 0.0
 	vspeed = 0.0
@@ -193,7 +193,7 @@
 	function _typeof() { return "Coin5" }
 }
 
-::Coin10 <- class extends Actor{
+Coin10 <- class extends Actor{
 	frame = 0.0
 	hspeed = 0.0
 	vspeed = 0.0
@@ -261,7 +261,7 @@
 	function _typeof() { return "Coin10" }
 }
 
-::Berry <- class extends Actor{
+Berry <- class extends Actor{
 	timer = 300
 	doesFade = false
 
@@ -298,7 +298,7 @@
 	function _typeof() { return "Berry" }
 }
 
-::Herring <- class extends Actor{
+Herring <- class extends Actor{
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null)
@@ -325,7 +325,7 @@
 	function _typeof() { return "Herring" }
 }
 
-::RedHerring <- class extends Actor{
+RedHerring <- class extends Actor{
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null)
@@ -350,7 +350,7 @@
 	function _typeof() { return "RedHerring" }
 }
 
-::FlowerFire <- class extends Actor{
+FlowerFire <- class extends Actor{
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -390,7 +390,7 @@
 	function _typeof() { return "FlowerFire" }
 }
 
-::FlowerIce <- class extends Actor{
+FlowerIce <- class extends Actor{
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -430,7 +430,7 @@
 	function _typeof() { return "FlowerIce" }
 }
 
-::MuffinBlue <- class extends PhysAct {
+MuffinBlue <- class extends PhysAct {
 	flip = false
 	willwrite = false
 
@@ -511,7 +511,7 @@
 	function _typeof() { return "MuffinBlue" }
 }
 
-::MuffinRed <- class extends PhysAct {
+MuffinRed <- class extends PhysAct {
 	flip = false
 
 	constructor(_x, _y, _arr = null) {
@@ -601,7 +601,7 @@
 	function _typeof() { return "MuffinRed" }
 }
 
-::MuffinEvil <- class extends PhysAct {
+MuffinEvil <- class extends PhysAct {
 	flip = false
 
 	constructor(_x, _y, _arr = null) {
@@ -669,7 +669,7 @@
 	function _typeof() { return "MuffinEvil" }
 }
 
-::OneDown <- class extends Actor{
+OneDown <- class extends Actor{
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null)
@@ -699,7 +699,7 @@
 	function _typeof() { return "OneDown" }
 }
 
-::Darknyan <- class extends PhysAct {
+Darknyan <- class extends PhysAct {
 	hspeed = 0
 	vspeed = -3
 
@@ -738,7 +738,7 @@
 	function _typeof() { return "Darknyan" }
 }
 
-::Starnyan <- class extends PhysAct {
+Starnyan <- class extends PhysAct {
 	hspeed = 0
 	vspeed = -4
 
@@ -785,7 +785,7 @@
 	function _typeof() { return "Starnyan" }
 }
 
-::AirFeather <- class extends PhysAct {
+AirFeather <- class extends PhysAct {
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -826,7 +826,7 @@
 	function _typeof() { return "AirFeather" }
 }
 
-::FlyRefresh <- class extends Actor{
+FlyRefresh <- class extends Actor{
 	function run() {
 		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 20) && game.ps.weapon == "air" && getFrames() % 8 == 0) {
 			game.ps.stamina++
@@ -847,7 +847,7 @@
 	function _typeof() { return "FlyRefresh" }
 }
 
-::OneUp <- class extends PhysAct {
+OneUp <- class extends PhysAct {
 	hspeed = 0
 	vspeed = -2
 
@@ -891,7 +891,7 @@
 	function _typeof() { return "OneUp" }
 }
 
-::MuffinBomb <- class extends PhysAct {
+MuffinBomb <- class extends PhysAct {
 	flip = false
 
 	constructor(_x, _y, _arr = null) {
@@ -958,7 +958,7 @@
 	function _typeof() { return "MuffinBomb" }
 }
 
-::EarthShell <- class extends Actor{
+EarthShell <- class extends Actor{
 
 	constructor(_x, _y, _arr = null)
 	{
@@ -998,7 +998,7 @@
 	function _typeof() { return "EarthShell" }
 }
 
-::SpecialBall <- class extends Actor {
+SpecialBall <- class extends Actor {
 	num = 0
 	shape = null
 
@@ -1022,7 +1022,7 @@
 	function _typeof() { return "SpecialBall" }
 }
 
-::CoinRing <- class extends Actor {
+CoinRing <- class extends Actor {
 	r = 0.0 //Radius
 	c = 0.0 //Count
 	s = 0.0 //Speed
@@ -1056,7 +1056,7 @@
 	}
 }
 
-::MagicKey <- class extends Actor {
+MagicKey <- class extends Actor {
 	color = 0
 
 	constructor(_x, _y, _arr = null) {
@@ -1140,7 +1140,7 @@
 	function _typeof() { return "MagicKey" }
 }
 
-::CoffeeCup <- class extends Actor{
+CoffeeCup <- class extends Actor{
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
@@ -1165,7 +1165,7 @@
 	function _typeof() { return "CoffeeCup" }
 }
 
-::ShockBulb <- class extends Actor{
+ShockBulb <- class extends Actor{
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
@@ -1204,7 +1204,7 @@
 	function _typeof() { return "ShockBulb" }
 }
 
-::WaterLily <- class extends Actor{
+WaterLily <- class extends Actor{
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
@@ -1243,7 +1243,7 @@
 	function _typeof() { return "WaterLily" }
 }
 
-::AttackPidgin <- class extends PhysAct {
+AttackPidgin <- class extends PhysAct {
 	phantom = true
 	target = 0
 	freed = 0

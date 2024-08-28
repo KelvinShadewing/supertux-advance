@@ -1,4 +1,4 @@
-::Spawner <- class extends PhysAct {
+Spawner <- class extends PhysAct {
 	myob = -1
 	timer = 60
 	maxTime = 60

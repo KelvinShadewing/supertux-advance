@@ -1,7 +1,7 @@
-::lastMouseX <- mouseX();
-::lastMouseY <- mouseY();
+lastMouseX <- mouseX();
+lastMouseY <- mouseY();
 
-::updateCursor <- function() {
+updateCursor <- function() {
 	if(!config.showcursor) return; //If the cursor is disabled.
 
 	drawSprite(sprCursor, 0, mouseX(), mouseY()) //Draw the cursor.
@@ -19,7 +19,7 @@
 	}
 }
 
-::processCursorInput <- function() {
+processCursorInput <- function() {
 	if(!config.showcursor) return; //If the cursor is disabled.
 
 	local pos = menuItemsPos[(menu.len() > menuMax ? cursor - cursorOffset : cursor)] //Get the position of the currently selected menu item only.

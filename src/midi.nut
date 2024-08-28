@@ -2,7 +2,7 @@
 | MIDI ACTOR |
 \*==========*/
 
-::Midi <- class extends Player {
+Midi <- class extends Player {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
 	frame = 0.0
@@ -1757,7 +1757,7 @@
 	function _typeof(){ return "Midi" }
 }
 
-::DeadMidi <- class extends Actor {
+DeadMidi <- class extends Actor {
 	vspeed = -4.0
 	hspeed = 0.0
 	timer = 150
@@ -1817,7 +1817,7 @@
 	function _typeof() { return "DeadPlayer" }
 }
 
-::Kiki <- class extends Midi {
+Kiki <- class extends Midi {
 	//Replace sprites with Kiki versions as they're made
 	sprite = sprKiki
 	aura = sprKikiAura

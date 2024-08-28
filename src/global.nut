@@ -2,13 +2,13 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-::gvVersion <- "v0.2.44 (UNSTABLE)"
-::gvMap <- 0
-::gvGameMode <- 0
-::gvQuit <- false
-::gvNetPlay <- false
+gvVersion <- "v0.2.44 (UNSTABLE)"
+gvMap <- 0
+gvGameMode <- 0
+gvQuit <- false
+gvNetPlay <- false
 
-::createNewGameObject <- function () {
+createNewGameObject <- function () {
 	local ngo = { //Globals stored in this table will be saved
 		difficulty = 0
 		file = -1
@@ -105,7 +105,7 @@
 	return ngo
 }
 
-::gvCharacters <- {
+gvCharacters <- {
 	Tux = {
 		name = "Tux the Penguin"
 		shortname = "Tux"
@@ -268,11 +268,11 @@
 	}
 }
 
-::game <- createNewGameObject()
-::gvPlayer <- false //Pointer to player actor
-::gvPlayer2 <- false //Pointer to second player
-::gvNumPlayers <- 0 //Number of players at start of level
-::gvBoss <- false //Pointer to boss actor
+game <- createNewGameObject()
+gvPlayer <- false //Pointer to player actor
+gvPlayer2 <- false //Pointer to second player
+gvNumPlayers <- 0 //Number of players at start of level
+gvBoss <- false //Pointer to boss actor
 /*\
  # When characters are unlocked, they will
  # be added to game.characters. Mods can
@@ -280,9 +280,9 @@
  # custom characters playable.
 \*/
 
-::strDifficulty <- []
+strDifficulty <- []
 
-::config <- {
+config <- {
 	key = {
 		up = k_up
 		down = k_down
@@ -360,38 +360,38 @@
 	aspect = 0
 }
 
-::contribDidRun <- {}
+contribDidRun <- {}
 
 //Screen related variables
-::gvScreen <- 0
-::gvPlayScreen <- 0
-::gvPlayScreen2 <- 0
-::gvTempScreen <- 0
-::gvTextW <- 0
-::gvScreenW <- 0
-::gvScreenH <- 0
-::gvScreen2W <- 0
-::gvScreen2H <- 0
-::gvScreenGhost <- 0
+gvScreen <- 0
+gvPlayScreen <- 0
+gvPlayScreen2 <- 0
+gvTempScreen <- 0
+gvTextW <- 0
+gvScreenW <- 0
+gvScreenH <- 0
+gvScreen2W <- 0
+gvScreen2H <- 0
+gvScreenGhost <- 0
 
 //Debug variabls
-::gvFPS <- 0
+gvFPS <- 0
 
 //Misc
-::gvWeather <- 0
-::gvIGT <- 0 //In-game time for the current level
-::gvDoIGT <- true
-::gvWarning <- 360.0
-::gvFadeTime <- 0
-::gvExitTimer <- 0.0
-::gvExitSide <- 0
+gvWeather <- 0
+gvIGT <- 0 //In-game time for the current level
+gvDoIGT <- true
+gvWarning <- 360.0
+gvFadeTime <- 0
+gvExitTimer <- 0.0
+gvExitSide <- 0
 
 //Temporary items
-::gvKeyCopper <- false
-::gvKeySilver <- false
-::gvKeyGold <- false
-::gvKeyMythril <- false
-::enWeapons <- {
+gvKeyCopper <- false
+gvKeySilver <- false
+gvKeyGold <- false
+gvKeyMythril <- false
+enWeapons <- {
 	normal = 0
 	fire = 1
 	ice = 2
@@ -404,4 +404,4 @@
 	toxic = 9
 }
 
-::myTarget <- null
+myTarget <- null

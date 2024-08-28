@@ -6,7 +6,7 @@
 //Base class for all players
 //Child classes will use flags to determine what abilities can be used
 
-::Player <- class extends PhysAct {
+Player <- class extends PhysAct {
 	playerNum = 0
 
 	//Basic variables
@@ -487,7 +487,7 @@
 	}
 }
 
-::DeadPlayer <- class extends Actor {
+DeadPlayer <- class extends Actor {
 	vspeed = -4.0
 	timer = 150
 	sprite = null

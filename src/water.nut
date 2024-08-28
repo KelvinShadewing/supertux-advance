@@ -1,4 +1,4 @@
-::Water <- class extends Actor {
+Water <- class extends Actor {
 	shape = 0
 	substance = "water"
 

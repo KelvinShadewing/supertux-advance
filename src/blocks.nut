@@ -2,7 +2,7 @@
 | BLOCK SOURCE |
 \*============*/
 
-::WoodBlock <- class extends Actor {
+WoodBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	coins = 0
@@ -206,7 +206,7 @@
 	function _typeof() { return "WoodBlock" }
 }
 
-::BrickBlock <- class extends Actor {
+BrickBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	coins = 0
@@ -370,7 +370,7 @@
 	function _typeof() { return "BrickBlock" }
 }
 
-::IceBlock <- class extends Actor {
+IceBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	fireshape = 0
@@ -470,7 +470,7 @@
 	function _typeof() { return "IceBlock" }
 }
 
-::WoodChunks <- class extends Actor {
+WoodChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0
 	vspeed = -3.0
@@ -495,7 +495,7 @@
 	}
 }
 
-::BrickChunks <- class extends Actor {
+BrickChunks <- class extends Actor {
 	h = 0.0
 	v = 0.0
 	vspeed = -3.0
@@ -520,7 +520,7 @@
 	}
 }
 
-::ItemBlock <- class extends Actor {
+ItemBlock <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -649,7 +649,7 @@
 	function _typeof() { return "ItemBlock" }
 }
 
-::TriggerBlock <- class extends Actor {
+TriggerBlock <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -699,7 +699,7 @@
 	function _typeof() { return "TriggerBlock" }
 }
 
-::InfoBlock <- class extends Actor {
+InfoBlock <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -754,7 +754,7 @@
 	function _typeof() { return "InfoBlock" }
 }
 
-::KelvinScarf <- class extends Actor {
+KelvinScarf <- class extends Actor {
 	shape = 0
 	text = ""
 	arr = null
@@ -788,7 +788,7 @@
 	function _typeof() { return "KelvinScarf" }
 }
 
-::BounceBlock <- class extends Actor {
+BounceBlock <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
@@ -881,7 +881,7 @@
 	function _typeof() { return "BounceBlock" }
 }
 
-::Checkpoint <- class extends Actor {
+Checkpoint <- class extends Actor {
 	shape = null
 	found = false
 	timer = 0
@@ -947,7 +947,7 @@
 	function _typeof() { return "Checkpoint" }
 }
 
-::TNT <- class extends Actor {
+TNT <- class extends Actor {
 	shape = null
 	gothit = false
 	hittime = 0.0
@@ -1002,7 +1002,7 @@
 	function _typeof() { return "TNT" }
 }
 
-::C4 <- class extends Actor {
+C4 <- class extends Actor {
 	shape = null
 	gothit = false
 	hittime = 0.0
@@ -1043,7 +1043,7 @@
 	function _typeof() { return "C4" }
 }
 
-::ColorBlock <- class extends Actor {
+ColorBlock <- class extends Actor {
 	color = null
 	filled = 0
 
@@ -1087,7 +1087,7 @@
 }
 
 
-::ColorSwitch <- class extends Actor {
+ColorSwitch <- class extends Actor {
 	color = 0
 	shape = null
 
@@ -1130,7 +1130,7 @@
 	function _typeof() { return "ColorSwitch" }
 }
 
-::EvilBlock <- class extends Actor {
+EvilBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	oldsolid = 0
@@ -1168,7 +1168,7 @@
 	function _typeof() { return "EvilBlock" }
 }
 
-::EvilBlockB <- class extends Actor {
+EvilBlockB <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	oldsolid = 0
@@ -1206,7 +1206,7 @@
 	function _typeof() { return "EvilBlockB" }
 }
 
-::BreakBlock <- class extends Actor {
+BreakBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	tile = 0
@@ -1246,7 +1246,7 @@
 	function _typeof() { return "BreakBlock" }
 }
 
-::LockBlock <- class extends Actor {
+LockBlock <- class extends Actor {
 	color = 0
 	oldsolid = 0
 
@@ -1309,7 +1309,7 @@
 	function _typeof() { return "LockBlock" }
 }
 
-::BossDoor <- class extends Actor {
+BossDoor <- class extends Actor {
 	dy = 0
 	moving = false
 	delay = 0
@@ -1350,7 +1350,7 @@
 	function _typeof() { return "BossDoor" }
 }
 
-::FishBlock <- class extends Actor {
+FishBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 
@@ -1387,7 +1387,7 @@
 	function _typeof() { return "FishBlock" }
 }
 
-::FireBlock <- class extends Actor {
+FireBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	fireshape = 0
@@ -1427,7 +1427,7 @@
 	function _typeof() { return "FireBlock" }
 }
 
-::CharSwapper <- class extends Actor {
+CharSwapper <- class extends Actor {
 	shape = 0
 	full = true
 	character = "Tux"
@@ -1512,7 +1512,7 @@
 	function _typeof() { return "CharSwapper" }
 }
 
-::Crumbler <- class extends Actor {
+Crumbler <- class extends Actor {
 	shape = 0
 	timer = 0
 	oldsolid = 0
@@ -1566,7 +1566,7 @@
 	function _typeof() { return "Crumbler" }
 }
 
-::BuildCube <- class extends PhysAct {
+BuildCube <- class extends PhysAct {
 	held = 0
 
 	constructor(_x, _y, _arr = null) {
@@ -1582,7 +1582,7 @@
 	}
 }
 
-::FlipBlock <- class extends Actor {
+FlipBlock <- class extends Actor {
 	shape = 0
 	slideshape = 0
 	spinning = 0
