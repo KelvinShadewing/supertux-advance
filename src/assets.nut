@@ -119,6 +119,26 @@ sprMidiNPC <- newSprite("res/gfx/midi-npc.png", 32, 32, 16, 32)
 sprMidiAura <- newSprite("res/gfx/midi-aura.png", 32, 32, 16, 19)
 defMidiAura <- sprMidiAura
 
+
+
+sprSurge <- newSprite("res/gfx/surge.png", 32, 32, 16, 19)
+defSurge <- sprSurge
+sprSurgeOverworld <- newSprite("res/gfx/surgeO.png", 14, 25, 7, 21)
+defSurgeOverworld <- sprSurgeOverworld
+sprSurgeDoll <- newSprite("res/gfx/surge-doll.png", 16, 16, 8, 8)
+defSurgeDoll <- sprSurgeDoll
+
+
+
+sprDashie <- newSprite("res/gfx/dashie.png", 32, 32, 16, 19)
+defDashie <- sprDashie
+sprDashieOverworld <- newSprite("res/gfx/dashieO.png", 14, 25, 7, 21)
+defDashieOverworld <- sprDashieOverworld
+sprDashieDoll <- newSprite("res/gfx/dashie-doll.png", 16, 16, 8, 8)
+defDashieDoll <- sprDashieDoll
+
+
+
 sprKiki <- newSprite("res/gfx/kiki.png", 32, 32, 16, 19)
 defKiki <- sprKiki
 sprKikiOverworld <- newSprite("res/gfx/kikiO.png", 16, 21, 8, 17)
@@ -134,6 +154,38 @@ sprNeverball <- newSprite("res/gfx/neverball.png", 16, 16, 8, 8)
 defNeverball <- sprNeverball
 sprNeverballArrow <- newSprite("res/gfx/neverball-arrow.png", 12, 9, 0, 5)
 defNeverballArrow <- sprNeverballArrow
+
+
+
+sprCyra <- newSprite("res/gfx/cyra_gfx/cyra.png", 100, 54, 32, 33)
+defCyra <- sprCyra
+sprCyraFire <- newSprite("res/gfx/cyra_gfx/cyrafire.png", 74, 54, 32, 33)
+defCyraFire <- sprCyraFire
+sprCyraIce <- newSprite("res/gfx/cyra_gfx/cyraice.png", 74, 54, 32, 33)
+defCyraIce <- sprCyraIce
+sprCyraAir <- newSprite("res/gfx/cyra_gfx/cyraair.png", 74, 54, 32, 33)
+defCyraAir <- sprCyraAir
+sprCyraEarth <- newSprite("res/gfx/cyra_gfx/cyraearth.png", 74, 54, 32, 33)
+defCyraEarth <- sprCyraEarth
+sprCyraShock <- newSprite("res/gfx/cyra_gfx/cyrashock.png", 74, 54, 32, 33)
+defCyraShock <- sprCyraShock
+sprCyraWater <- newSprite("res/gfx/cyra_gfx/cyrawater.png", 74, 54, 32, 33)
+defCyraWater <- sprCyraWater
+sprCyraLight <- newSprite("res/gfx/cyra_gfx/cyralight.png", 74, 54, 32, 33)
+defCyraLight <- sprCyraLight
+sprCyraDark <- newSprite("res/gfx/cyra_gfx/cyradark.png", 74, 54, 32, 33)
+defCyraDark <- sprCyraDark
+sprCyraOverworld <- newSprite("res/gfx/cyra_gfx/cyraO.png", 14, 20, 7, 17)
+defCyraOverworld <- sprCyraOverworld
+sprCyraDoll <- newSprite("res/gfx/cyra_gfx/cyradoll.png", 16, 16, 8, 8)
+defCyraDoll <- sprCyraDoll
+
+sprPepper <- newSprite("res/gfx/pepper.png", 100, 54, 32, 33)
+defPepper <- sprPepper
+sprPepperOverworld <- newSprite("res/gfx/pepperO.png", 20, 24, 10, 20)
+defPepperOverworld <- sprPepperOverworld
+sprPepperDoll <- newSprite("res/gfx/pepperdoll.png", 16, 16, 8, 8)
+defPepperDoll <- sprPepperDoll
 
 
 
@@ -255,6 +307,16 @@ sprFlipBlock <- newSprite("res/gfx/flip-block.png", 16, 16)
 defFlipBlock <- sprFlipBlock
 sprBeeHostage <- newSprite("res/gfx/bee-hostage.png", 20, 27, 10, 14)
 defBeeHostage <- sprBeeHostage
+sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 14, 12)
+defCyraSwordWave <- sprCyraSwordWave
+sprCyraFireWave <- newSprite("res/gfx/cyra_gfx/firewave.png", 28, 24, 14, 12)
+defCyraFireWave <- sprCyraFireWave
+sprCyraFreezeWave <- newSprite("res/gfx/cyra_gfx/freezewave.png", 28, 24, 14, 12)
+defCyraFreezeWave <- sprCyraFreezeWave
+sprCyraElectricWave <- newSprite("res/gfx/cyra_gfx/electricwave.png", 28, 24, 14, 12)
+defCyraElectricWave <- sprCyraElectricWave
+sprWaterCrescent <- newSprite("res/gfx/water-crescent.png", 32, 16, 16, 8)
+defWaterCrescent <- sprWaterCrescent
 
 
 
@@ -896,6 +958,10 @@ sndPing <- [
 ]
 sndNBShoot <- loadSound("res/snd/nb-switch.ogg")
 sndNBBounce <- loadSound("res/snd/nb-bumplil.ogg")
+sndCyraSwordSwing <- loadSound("res/snd/cyra_snd/swordswing.ogg")
+sndCyraFireSwing <- loadSound("res/snd/cyra_snd/firewave.ogg")
+sndCyraTornado <- loadSound("res/snd/cyra_snd/windswing.ogg")
+sndCyraElectricSwing <- loadSound("res/snd/electricwave.ogg")
 
 
 

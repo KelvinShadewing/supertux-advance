@@ -33,6 +33,16 @@ SecretWall <- class extends Actor {
 				}
 			}
 		}
+		else if(shape != null && !found && checkActor("BeamBug")) {
+			foreach(i in actor["BeamBug"])
+				if(i.x < shape.x + shape.w && i.x > shape.x - shape.w && i.y < shape.y + shape.h && i.y > shape.y - shape.h) {
+					found = true
+					if(!rehide) {
+						game.secrets++
+						popSound(sndSecret)
+					}
+				}
+		}
 		else if(rehide) found = false
 		if(found && alpha > 0) alpha -= 0.1
 		if(!found && alpha < 1) alpha += 0.1

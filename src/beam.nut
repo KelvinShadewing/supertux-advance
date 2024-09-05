@@ -27,6 +27,7 @@ BeamBug <- class extends Actor {
 	lightTrail = null
 	flip = 0
 	turn = 0
+	xav = 0
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
@@ -49,7 +50,10 @@ BeamBug <- class extends Actor {
 			flip = 0
 		if(x < xprev)
 			flip = 1
-		turn = floor(min(fabs(x - xprev) / 1.5, 3)) * 2
+
+		//xav reduces stuttering
+		xav = wavg(xav, x - xprev, 0.2)
+		turn = floor(min(fabs(xav) / 1.5, 3)) * 2
 
 		if(gvNumPlayers == 0)
 			gvCamTarget = this
@@ -69,6 +73,7 @@ BeamBug <- class extends Actor {
 		}
 
 		drawSprite(sprBeam, turn + ((getFrames() / 2) % 2), x - camx, y - camy + ((getFrames() / 4) % 2), 0, flip)
+		drawLight(sprLightBasic, 0, x - camx, y - camy)
 	}
 
 	function _typeof() { return "BeamBug" }

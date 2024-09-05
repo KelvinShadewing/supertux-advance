@@ -2,20 +2,6 @@
 | SURGE ACTOR |
 \*===========*/
 
-sprSurge <- newSprite("res/gfx/surge.png", 32, 32, 16, 19)
-defSurge <- sprSurge
-sprSurgeOverworld <- newSprite("res/gfx/surgeO.png", 14, 25, 7, 21)
-defSurgeOverworld <- sprSurgeOverworld
-sprSurgeDoll <- newSprite("res/gfx/surge-doll.png", 16, 16, 8, 8)
-defSurgeDoll <- sprSurgeDoll
-
-sprDashie <- newSprite("res/gfx/dashie.png", 32, 32, 16, 19)
-defDashie <- sprDashie
-sprDashieOverworld <- newSprite("res/gfx/dashieO.png", 14, 25, 7, 21)
-defDashieOverworld <- sprDashieOverworld
-sprDashieDoll <- newSprite("res/gfx/dashie-doll.png", 16, 16, 8, 8)
-defDashieDoll <- sprDashieDoll
-
 Surge <- class extends Player {
 	canJump = 16
 	didJump = false //Checks if up speed can be slowed by letting go of jump
