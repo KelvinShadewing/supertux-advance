@@ -442,7 +442,7 @@
                 {
                  "height":112,
                  "id":37,
-                 "name":"lava",
+                 "name":"acid",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -2109,6 +2109,30 @@
                  "width":16,
                  "x":2224,
                  "y":464
+                }, 
+                {
+                 "gid":263,
+                 "height":16,
+                 "id":559,
+                 "name":"NectarBottle",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3776,
+                 "y":336
+                }, 
+                {
+                 "gid":263,
+                 "height":16,
+                 "id":560,
+                 "name":"NectarBottle",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":2240,
+                 "y":496
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2117,7 +2141,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":559,
+ "nextobjectid":561,
  "orientation":"orthogonal",
  "properties":[
         {

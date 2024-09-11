@@ -331,13 +331,13 @@ Surge <- class extends Player {
 		if(abs(hspeed) > 4) {
 			local oldShape = shape
 			shape = shapeHydro
-			if(inWater()) {
+			if(inWater(x, y + 8)) {
 				shape = oldShape
 				shape.setPos(x, y)
-				if(!inWater()) {
+				if(!inWater(x, y)) {
 					hydroplaning = true
 					shape = shapeHydro
-					while(inWater()) {
+					while(inWater(x, y)) {
 						y--
 						shapeHydro.setPos(x + hspeed, y + vspeed)
 					}

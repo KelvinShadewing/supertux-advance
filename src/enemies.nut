@@ -65,8 +65,10 @@ Enemy <- class extends PhysAct {
 				if(i.owner == id) continue
 
 				if(hitTest(shape, i.shape)) {
-					hitBy = i
-					if(checkActor(i.owner)) getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
+					if(checkActor(i.owner)) {
+						getHurt(actor[i.owner], i.power, i.element, i.cut, i.blast)
+						hitBy = i.owner
+					}
 					else getHurt(0, i.power, i.element, i.cut, i.blast)
 					if(i.piercing == 0) deleteActor(i.id)
 					else i.piercing--
@@ -99,6 +101,7 @@ Enemy <- class extends PhysAct {
 							else gvPlayer.vspeed = -4.0
 						}
 						getHurt(gvPlayer, gvPlayer.stompDamage, "normal", false, false, true)
+						hitBy = gvPlayer.id
 					}
 					else if(("anim" in gvPlayer) && blinking == 0 && !sharpSide) {
 						if(gvPlayer.inMelee) getHurt(gvPlayer, 1, "normal", false, false, false)
@@ -117,6 +120,7 @@ Enemy <- class extends PhysAct {
 							else gvPlayer2.vspeed = -4.0
 						}
 						getHurt(gvPlayer2, gvPlayer2.stompDamage, "normal", false, false, true)
+						hitBy = gvPlayer2.id
 					}
 					else if(("anim" in gvPlayer2) && blinking == 0 && !sharpSide) {
 						if(gvPlayer2.inMelee) getHurt(gvPlayer2, 1, "normal", false, false, false)
@@ -169,6 +173,16 @@ Enemy <- class extends PhysAct {
 			if(randInt(4 + game.difficulty) == 0)
 				newActor(CoinSmall, x, y, true)
 		}
+
+		handleKiller()
+	}
+
+	function handleKiller() {
+		//Handle killer
+		if(checkActor(hitBy)) {
+			if(typeof actor[hitBy] == "Gooey")
+				fulfillAchievement("adorableWarfare")
+		}
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -204,6 +218,9 @@ Enemy <- class extends PhysAct {
 	}
 
 	function hurtPlayer(target) {
+		if(target != gvPlayer && target != gvPlayer2 || target == false)
+			return
+
 		if(blinking || squish) return
 		target.hurt = touchDamage * target.damageMult[element] * (cut ? target.damageMult["cut"] : 1) * (blast ? target.damageMult["blast"] : 1)
 	}
@@ -1235,6 +1252,8 @@ Shortfuse <- class extends Enemy {
 			gvPlayer.hspeed = -explodeX
 		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
 			gvPlayer2.hspeed = -explodeX
+
+		handleKiller()
 	}
 
 	function hurtIce() { frozen = 600 }
@@ -2627,6 +2646,8 @@ Haywire <- class extends Enemy {
 	}
 
 	function hurtPlayer(target) {
+		if(target != gvPlayer && target != gvPlayer2 || target == false)
+			return
 		if(target == 0 || target == false || target == null)
 			return
 		if(blinking || squish && !chasing) return
@@ -3574,6 +3595,8 @@ Tallcap <- class extends Enemy {
 		c.vspeed = -1.0
 		newActor(Poof, x, y)
 		popSound(sndSquish, 0)
+
+		handleKiller()
 	}
 
 	function _typeof() { return "Tallcap" }
@@ -4209,6 +4232,8 @@ MrIceguy <- class extends Enemy {
 	}
 
 	function hurtPlayer(pt) {
+		if(target != gvPlayer && target != gvPlayer2 || target == false)
+			return
 		if(target == 0 || target == false || target == null)
 			return
 		if(held) return
@@ -6470,7 +6495,7 @@ Gooey <- class extends Enemy {
 		if(wasHeld && !held)
 			attacking = true
 
-		if(!placeFree(x, y + 1) || (vspeed == 0 && hspeed == 0))
+		if(!placeFree(x, y + 1) && abs(hspeed) < 1)
 			attacking = false
 
 		if(attacking)

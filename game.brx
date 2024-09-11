@@ -69,6 +69,7 @@ require("src/accessibility.nut")
 require("src/timeattack.nut")
 require("src/battle.nut")
 require("src/soccer.nut")
+require("src/objects.nut")
 
 ////////////////
 //    MAIN    //
@@ -236,7 +237,7 @@ game.playerChar = "Tux"
 
 //Testing
 //game.playerChar = "Neverball"
-//gotoTest()
+gotoTest()
 
 //Load contrib initializers
 if(fileExists("contrib")) {

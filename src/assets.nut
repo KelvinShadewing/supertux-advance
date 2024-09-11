@@ -793,6 +793,11 @@ sprPortalOrange <- newSprite("res/gfx/portal-orange.png", 32, 48, 16, 24)
 
 
 
+//Misc Objects
+sprNectarBottle <- newSprite("res/gfx/nectar-bottle.png", 16, 16, 8, 8)
+
+
+
 //Backgrounds
 bgPause <- 0
 bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392)

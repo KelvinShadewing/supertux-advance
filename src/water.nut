@@ -1,11 +1,33 @@
 Water <- class extends Actor {
 	shape = 0
 	substance = "water"
+	currentColor = 0x000000ff
+	newColor = 0x000000ff
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		if(_arr != null && _arr != "")
 			substance = _arr
+
+		//Set substance color
+		switch(substance) {
+			case "acid":
+				newColor = 0x28684860
+				break
+			case "lava":
+				newColor = 0x28684860
+				break
+			case "swamp":
+				newColor = 0x68301860
+				break
+			case "honey":
+				newColor = 0xf8f80060
+				break
+			default:
+				newColor = 0x2020a060
+				break
+		}
+		currentColor = newColor
 	}
 
 	function run() {
@@ -14,6 +36,53 @@ Water <- class extends Actor {
 
 		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
 			handleHits(gvPlayer2)
+
+		switch(substance) {
+			case "acid":
+				newColor = 0x28684860
+				break
+			case "lava":
+				newColor = 0x28684860
+				break
+			case "swamp":
+				newColor = 0x68301860
+				break
+			case "honey":
+				newColor = 0xf8f80060
+				break
+			default:
+				newColor = 0x2020a060
+				break
+		}
+
+		//Update background color
+		if(currentColor != newColor) {
+				//Prevent floats
+				currentColor = currentColor.tointeger()
+				newColor = newColor.tointeger()
+
+				local lr = (currentColor >> 24) & 0xFF
+				local lg = (currentColor >> 16) & 0xFF
+				local lb = (currentColor >> 8) & 0xFF
+				local la = currentColor & 0xFF
+
+				local tr = (newColor >> 24) & 0xFF
+				local tg = (newColor >> 16) & 0xFF
+				local tb = (newColor >> 8) & 0xFF
+				local ta = newColor & 0xFF
+
+				//Fade to color
+				if(lr != tr) lr += (tr <=> lr) * 2
+				if(abs(lr - tr) < 2) lr = tr
+				if(lg != tg) lg += (tg <=> lg) * 2
+				if(abs(lg - tg) < 2) lg = tg
+				if(lb != tb) lb += (tb <=> lb) * 2
+				if(abs(lb - tb) < 2) lb = tb
+				if(la != ta) la += (ta <=> la) * 2
+				if(abs(la - ta) < 2) la = ta
+
+				currentColor = (ceil(lr) << 24) | (ceil(lg) << 16) | (ceil(lb) << 8) | la
+			}
 	}
 
 	function handleHits(target) {
@@ -49,6 +118,9 @@ Water <- class extends Actor {
 	}
 
 	function draw() {
+		setDrawColor(currentColor)
+		drawRect(x - shape.w - floor(camx), y - shape.h - camy, (shape.w * 2) - 1, (shape.h * 2) + 2, true)
+
 		switch(substance) {
 			case "acid":
 				for(local i = 0; i < shape.w / 8; i++) {
@@ -68,22 +140,16 @@ Water <- class extends Actor {
 				}
 				break
 			case "honey":
-				setDrawColor(0xf8f80060)
-				drawRect(x - shape.w - floor(camx), y - shape.h - camy, (shape.w * 2) - 1, (shape.h * 2) + 2, true)
 				for(local i = 0; i < shape.w / 8; i++) {
 					drawSpriteEx(sprHoneySurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
 				}
 				break
 			case "swamp":
-				setDrawColor(0x68301860)
-				drawRect(x - shape.w - floor(camx), y - shape.h - camy, (shape.w * 2) - 1, (shape.h * 2) + 2, true)
 				for(local i = 0; i < shape.w / 8; i++) {
 					drawSpriteEx(sprSwampSurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
 				}
 				break
 			default:
-				setDrawColor(0x2020a060)
-				drawRect(x - shape.w - floor(camx), y - shape.h - camy, (shape.w * 2) - 1, (shape.h * 2) + 2, true)
 				for(local i = 0; i < shape.w / 8; i++) {
 					drawSpriteEx(sprWaterSurface, (getFrames() / 16) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
 				}

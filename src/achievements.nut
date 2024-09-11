@@ -95,6 +95,16 @@ checkAchievements <- function() {
 	}
 }
 
+fulfillAchievement <- function(key = null) {
+	if(!gvLangObj["achi-name"].rawin(key) || (key in gvUnlockedAchievements))
+		return
+
+	gvUnlockedAchievements[key] <- true
+	newActor(AchiNotice, 16, -16, key)
+	fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
+	gvAchievementTimer = 120
+}
+
 selectAchievements <- function() {
 	meAchievements = []
 
@@ -147,7 +157,7 @@ AchiNotice <- class extends Actor {
 		if(draw) {
 			local text = name
 			if(name in gvLangObj["achi-name"])
-				gvLangObj["achi-name"][name]
+				text = gvLangObj["achi-name"][name]
 			drawSprite(sprAchiFrame, 0, x - 12, y - 5)
 			for(local i = 0; i < text.len(); i++) drawSprite(sprAchiFrame, 1, x + (i * 8), y - 5)
 			drawSprite(sprAchiFrame, 2, x + (text.len() * 8), y - 5)

@@ -878,7 +878,8 @@
 		"coldGreed" : "Cold-Hearted Greed",
 		"arcticExplorer" : "Arctic Explorer",
 		"snowMoreBaddies" : "Snow More Baddies",
-		"blastOff" : "Blast Off!"
+		"blastOff" : "Blast Off!",
+		"adorableWarfare" : "Adorable Warfare"
 	},
 
 	"achi-desc" : {
@@ -888,7 +889,8 @@
 		"coldGreed" : "Collect every coin in Aurora Isles",
 		"arcticExplorer" : "Find all secrets in Aurora Isles",
 		"snowMoreBaddies" : "Defeat every enemy in Aurora Isles",
-		"blastOff" : "I think he just lived your dream..."
+		"blastOff" : "I think he just lived your dream...",
+		"adorableWarfare" : "Defeat an enemy with a gooey"
 	},
 
 	"key" : {

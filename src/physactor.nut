@@ -1123,13 +1123,21 @@ PhysAct <- class extends Actor{
 	}
 
 	function inWater(_x = 0, _y = 0) {
+		if(_x == 0)
+			_x = x
+		if(_y == 0)
+			_y = y
+
 		local ns
 		if(typeof shape == "Rec") ns = Rec(_x + shape.ox, _y + shape.oy, shape.w, shape.h, shape.kind)
 		if(typeof shape == "Cir") ns = Cir(_x + shape.ox, _y + shape.oy, shape.r)
 
 		if(actor.rawin("Water")) {
 			foreach(i in actor["Water"]) {
-				if(hitTest(ns, i.shape)) return i.substance
+				if(hitTest(ns, i.shape)) return {
+					id = i.id
+					substance = i.substance
+				}
 			}
 		}
 
