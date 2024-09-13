@@ -131,6 +131,12 @@ Splash <- class extends Actor {
 			case "acid":
 				sprite = sprAcidSplash
 				break
+			case "honey":
+				sprite = sprHoneySplash
+				break
+			case "swamp":
+				sprite = sprSwampSplash
+				break
 			default:
 				sprite = sprSplash
 				break

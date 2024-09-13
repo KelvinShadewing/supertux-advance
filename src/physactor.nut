@@ -1137,6 +1137,7 @@ PhysAct <- class extends Actor{
 				if(hitTest(ns, i.shape)) return {
 					id = i.id
 					substance = i.substance
+					y = i.y - i.shape.h
 				}
 			}
 		}

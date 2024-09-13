@@ -305,7 +305,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 					case "water":
 					if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.name)
-						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2) - 4, 5)
+						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2), 5)
 						mapActor[obj.id] <- actor[c].id
 						break
 					case "secret":

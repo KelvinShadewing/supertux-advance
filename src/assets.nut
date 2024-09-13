@@ -669,6 +669,10 @@ sprHealStamina <- newSprite("res/gfx/heal-stamina.png", 7, 7, 3, 3)
 defHealStamina <- sprHealStamina
 sprSplash <- newSprite("res/gfx/splash.png", 21, 17, 12, 16)
 defSplash <- sprSplash
+sprHoneySplash <- newSprite("res/gfx/honeysplash.png", 21, 17, 12, 16)
+defHoneySplash <- sprHoneySplash
+sprSwampSplash <- newSprite("res/gfx/swampsplash.png", 21, 17, 12, 16)
+defSwampSplash <- sprSwampSplash
 sprAcidSplash <- newSprite("res/gfx/acidsplash.png", 21, 17, 12, 16)
 defAcidSplash <- sprAcidSplash
 sprLavaSplash <- newSprite("res/gfx/lavasplash.png", 21, 17, 12, 16)

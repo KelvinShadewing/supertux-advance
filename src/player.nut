@@ -276,10 +276,11 @@ Player <- class extends PhysAct {
 		if(stats.stamina > stats.maxStamina)
 			stats.stamina = stats.maxStamina
 
-		if((wasInWater && !nowInWater || nowInWater && !wasInWater) && abs(vspeed) >= 2)
-			newActor(Splash, x, y, (nowInWater ? nowInWater : wasInWater))
+		if((wasInWater && !nowInWater || nowInWater && !wasInWater) && abs(vspeed) >= 2) {
+			local liquidBody = (nowInWater ? nowInWater : wasInWater)
+			newActor(Splash, x, liquidBody.y, liquidBody.substance)
+		}
 
-		
 		if(holding != 0 && !checkActor(holding))
 			holding = 0
 	}

@@ -118,32 +118,32 @@ Cir <- class{
 Poly <- class {
 	x = 0
 	y = 0
-	vertices = null
+	points = null
 	
 	// Constructor
-	constructor(_x, _y, _vertices) {
+	constructor(_x, _y, _points) {
 		x = _x
 		y = _y
-		vertices = _vertices
+		points = _points //Array containing coordinate pairs
 	}
 	
 	function pointIn(px, py) {
 		local intersections = 0
-		print(typeof vertices)
-		local numVertices = vertices.len()
+		print(typeof points)
+		local numPoints = points.len()
 
-		if(numVertices == 0)
+		if(numPoints == 0)
 			return false
 
-		if(numVertices == 1)
-			return (vertices[0][0] + x == px && vertices [0][1] + y == py)
+		if(numPoints == 1)
+			return (points[0][0] + x == px && points [0][1] + y == py)
 		
 		// Iterate through each edge of the polygon
-		for (local i = 0; i < numVertices; i++) {
-			local x1 = vertices[i][0] + x
-			local y1 = vertices[i][1] + y
-			local x2 = vertices[(i + 1) % numVertices][0] + x
-			local y2 = vertices[(i + 1) % numVertices][1] + y
+		for (local i = 0; i < numPoints; i++) {
+			local x1 = points[i][0] + x
+			local y1 = points[i][1] + y
+			local x2 = points[(i + 1) % numPoints][0] + x
+			local y2 = points[(i + 1) % numPoints][1] + y
 			
 			// Check if the point is exactly on an edge
 			if ((py == y1 && py == y2) &&
@@ -167,7 +167,74 @@ Poly <- class {
 		return (intersections % 2) != 0
 	}
 
+	function addPoint(px, py) {
+		points.push([px, py])
+	}
+
+	function draw() {
+		for(local i = 0; i < points.len(); i++) {
+			drawLine(points[i].x - camx, points[i].y - camy, points[(i + 1) % points.len()].x - camx, points[(i + 1) % points.len()].y - camy)
+		}
+	}
+
 	function _typeof() { return "Poly" }
+}
+
+Hex <- class {
+	x = 0.0
+	y = 0.0
+	w = 0.0
+	h = 0.0
+	ox = 0.0
+	oy = 0.0
+
+	constructor(_x, _y, _w, _h, _ox = 0.0, _oy = 0.0) {
+		x = _x.tofloat()
+		y = _y.tofloat()
+		w = _w.tofloat()
+		h = _h.tofloat()
+
+		//Prevent zero dimensions
+		//It's important, trust me
+		if(w <= 0) w = 0.1
+		if(h <= 0) h = 0.1
+		ox = _ox.tofloat()
+		oy = _oy.tofloat()
+	}
+
+	function setPos(_x, _y) {
+		x = _x.tofloat() + ox
+		y = _y.tofloat() + oy
+	}
+
+	function draw() {
+		drawRect(x - w - camx, y - h - camy, (w * 2) + 1, (h * 2) + 1, false)
+	}
+
+	function pointIn(_x, _y) {
+		//Check if point is inside the horizontal strip of the hexagon
+		local yBound = h * 0.5
+		if(_y < y - yBound || _y > y + yBound) return false
+		
+		//Check if point is inside the triangle above the hexagon's center
+		local xBound = w * 0.5
+		local xDist = _x - x
+		local yDist = _y - (y - yBound)
+		if(xDist < 0) xDist = -xDist
+		if(yDist < 0) yDist = -yDist
+		if(xDist > yDist) return false
+		
+		//Check if point is inside the triangle below the hexagon's center
+		yDist = _y - (y + yBound)
+		if(xDist < 0) xDist = -xDist
+		if(yDist < 0) yDist = -yDist
+		if(xDist > yDist) return false
+		
+		//If point passes all checks, it is inside the hexagon
+		return true
+	}
+
+	function _typeof() { return "Hex" }
 }
 
 hitTest <- function(a, b) {
@@ -336,7 +403,20 @@ hitTest <- function(a, b) {
 					if(b.y > a.y + a.h) hy = a.y + a.h
 
 					//Check distance
-					if(inDistance2(hx, hy, b.x, b.y, b.r)) return true
+					if(!inDistance2(hx, hy, b.x, b.y, b.r)) return false
+
+					//Check kinds
+					switch(a.kind) {
+						case 1: //Top right
+							if(b.hitLine(a.x - a.w, a.y - a.h, a.x - a.w, a.y + a.h)
+							|| b.hitLine(a.x - a.w, a.y + a.h, a.x + a.w, a.y + a.h)
+							|| b.hitLine(a.x - a.w, a.y - a.h, a.x + a.w, a.y + a.h))
+								return true
+							break
+						
+					}
+
+					return false
 					break
 					//Still need to check for collisions with slopes and liquid
 
@@ -356,8 +436,8 @@ hitTest <- function(a, b) {
 
 				case "Poly":
 					// Check if any vertex of the polygon is inside the circle
-					for (local i = 0; i < b.vertices.len(); i++) {
-						local vertex = b.vertices[i]
+					for (local i = 0; i < b.points.len(); i++) {
+						local vertex = b.points[i]
 						if (a.pointIn(vertex[0], vertex[1])) {
 							return true
 						}

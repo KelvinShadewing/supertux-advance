@@ -132,26 +132,26 @@ Water <- class extends Actor {
 			case "lava":
 				for(local i = 0; i < shape.w / 8; i++) {
 					for(local j = 0; j < shape.h / 8; j++) {
-						drawSprite((j == 0 ? sprLavaSurface : sprLava), (j == 0 ? (getFrames() / 16) + (i * i) : getFrames() / 16), x - shape.w - floor(camx) + (i * 16), y - shape.h - camy + (j * 16), 0, 0, 1, 1, 0.5)
+						drawSprite((j == 0 ? sprLavaSurface : sprLava), (j == 0 ? (getFrames() / 16) + (i * i) : getFrames() / 16), x - shape.w - floor(camx) + (i * 16), y - shape.h - camy + (j * 16) - 4, 0, 0, 1, 1, 0.5)
 					}
 				}
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawLight(sprLightFire, i + getFrames() / 8, x - shape.w - floor(camx) + (i * 16) + 8, y - shape.h - camy - 4, (getFrames() / 4) + (i * 15), 0, 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25), 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25))
+					drawLight(sprLightFire, i + getFrames() / 8, x - shape.w - floor(camx) + (i * 16) + 8, y - shape.h - camy, (getFrames() / 4) + (i * 15), 0, 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25), 0.75 + (sin((getFrames() / 30.0) + (i * 15)) * 0.25))
 				}
 				break
 			case "honey":
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawSpriteEx(sprHoneySurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
+					drawSpriteEx(sprHoneySurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
 				}
 				break
 			case "swamp":
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawSpriteEx(sprSwampSurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
+					drawSpriteEx(sprSwampSurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
 				}
 				break
 			default:
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawSpriteEx(sprWaterSurface, (getFrames() / 16) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy - 4, 0, 0, 1, 1, 0.5)
+					drawSpriteEx(sprWaterSurface, (getFrames() / 16) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
 				}
 				break
 		}

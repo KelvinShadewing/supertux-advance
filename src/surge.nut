@@ -219,7 +219,7 @@ Surge <- class extends Player {
 		anim = "stand"
 		shapeStand = Rec(x, y, 5, 10, 0, 0, 0)
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4)
-		shapeHydro = Rec(x, y, 2, 2, 0, 0, 10)
+		shapeHydro = Rec(x, y, 2, 2, 0, 0, 6)
 		xstart = _x.tofloat()
 		ystart = _y.tofloat()
 		an.fall = an.fallN
@@ -328,10 +328,11 @@ Surge <- class extends Player {
 		//Hydroplane
 		hydroplaning = false
 		shapeHydro.setPos(x + hspeed, y + vspeed)
-		if(abs(hspeed) > 4) {
+		if(abs(hspeed) > 6.2 && abs(vspeed) < 4) {
 			local oldShape = shape
 			shape = shapeHydro
-			if(inWater(x, y + 8)) {
+			local liquidBody = inWater(x, y + 6)
+			if(liquidBody) {
 				shape = oldShape
 				shape.setPos(x, y)
 				if(!inWater(x, y)) {
@@ -341,6 +342,12 @@ Surge <- class extends Player {
 						y--
 						shapeHydro.setPos(x + hspeed, y + vspeed)
 					}
+					vspeed = 0.0
+					canJump = 4
+					if(anim == "jumpR" || anim == "jumpT" || anim == "fall")
+						anim = "stand"
+					if(getFrames() % 4 == 0)
+						newActor(Splash, x, liquidBody.y, liquidBody.substance)
 				}
 			}
 			shape = oldShape
