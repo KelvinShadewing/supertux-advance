@@ -99,7 +99,7 @@ Cir <- class{
 		local parameter = dotProduct / lenABsq
 		
 		// Clamp parameter to lie between 0 and 1
-		parameter = math.min(math.max(parameter, 0), 1)
+		parameter = min(max(parameter, 0), 1)
 		
 		// Closest point on the line segment to the circle center
 		local closestX = x1 + parameter * ABx
@@ -416,7 +416,7 @@ hitTest <- function(a, b) {
 						
 					}
 
-					return false
+					return true
 					break
 					//Still need to check for collisions with slopes and liquid
 
