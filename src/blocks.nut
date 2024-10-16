@@ -743,8 +743,8 @@ InfoBlock <- class extends Actor {
 		}
 
 		if(gvInfoBox == text && (gvPlayer && !gvPlayer2 && !inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)
-			|| gvPlayer2 && !gvPlayer && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)
-			|| gvPlayer && gvPlayer2 &&!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64) && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64))) gvInfoBox = ""
+		|| gvPlayer2 && !gvPlayer && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)
+		|| gvPlayer && gvPlayer2 &&!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64) && !inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64))) gvInfoBox = ""
 
 		v += vspeed
 	}
@@ -1608,7 +1608,8 @@ FlipBlock <- class extends Actor {
 			gvPlayer && !gvPlayer2 && !hitTest(shape, gvPlayer.shape)
 			|| !gvPlayer && gvPlayer2 && !hitTest(shape, gvPlayer2.shape)
 			|| gvPlayer && gvPlayer2 && !hitTest(shape, gvPlayer.shape) && !hitTest(shape, gvPlayer2.shape)
-		))
+			)
+		)
 			tileSetSolid(x, y, 1)
 		if(gvPlayer) {
 			if(spinning == 0) {

@@ -2343,6 +2343,145 @@ FlyAmanita <- class extends Enemy {
 	function hurtIce() { frozen = 600 }
 }
 
+SideAmanita <- class extends Enemy {
+	range = 0
+	dir = 0.5
+	flip = 0
+	touchDamage = 2.0
+
+	constructor(_x, _y, _arr = 0) {
+		base.constructor(_x, _y)
+		if(_arr == "") range = 0
+		else if(typeof _arr == "array") range = _arr[0].tointeger()
+		else range = _arr.tointeger() * 16
+		shape = Rec(x, y, 6, 6, 0)
+		hspeed = 1
+	}
+
+	function physics() {}
+	function animation() {}
+	function routine() {}
+
+	function run() {
+		base.run()
+		hspeed < 0 ? flip = 1 : flip = 0
+
+		if(inDistance2(x, y, x, ystart, 16)) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart)) * dir
+		else if(inDistance2(x, y, x, ystart + range, 16)) vspeed = ((1.0 / 8.0) * distance2(x, y, x, ystart + range)) * dir
+		else vspeed = dir * 2.0
+
+		if(!placeFree(x + hspeed, y))
+			hspeed = -hspeed
+		if(x > gvMap.w)
+			hspeed = -1
+		if(x < 0)
+			hspeed = 1
+		x += hspeed
+
+		vspeed += dir * 0.2
+		if(range == 0) vspeed = 0
+
+		//Change direction
+		if(range > 0) {
+			if(y > ystart + range) dir = -0.5
+			if(y < ystart) dir = 0.5
+		}
+
+		if(range < 0) {
+			if(y > ystart) dir = -0.5
+			if(y < ystart + range) dir = 0.5
+		}
+
+		if(!frozen) {
+			//Delete ice block
+			if(icebox != -1) {
+				mapDeleteSolid(icebox)
+				newActor(IceChunks, x, y)
+				icebox = -1
+			}
+
+			y += vspeed
+		} else {
+			//Create ice block
+			local canice = true
+			if(gvPlayer && hitTest(shape, gvPlayer.shape))
+				canice = false
+			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape))
+				canice = false
+			if(icebox == -1 && canice) {
+				if(health > 0) icebox = mapNewSolid(shape)
+			}
+		}
+
+		shape.setPos(x, y)
+		if(health <= 0)
+			die()
+	}
+
+	function draw() {
+		drawSprite(sprFlyAmanita, frozen ? 0 : getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
+		base.draw()
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(_mag <= 0)
+			return
+
+		if(_by != 0 && hitTest(shape, _by.shape)) {
+			if(_mag > 0) {
+				local c = newActor(DeadNME, x, y)
+				actor[c].sprite = sprFlyAmanita
+				actor[c].vspeed = -abs(_by.hspeed * 1.1)
+				actor[c].hspeed = (_by.hspeed / 16)
+				actor[c].spin = (_by.hspeed * 6)
+				actor[c].angle = 180
+				die()
+				popSound(sndSquish, 0)
+				return
+			}
+
+			if("playerNum" in _by && getcon("jump", "hold", false, _by.playerNum))
+				_by.vspeed = -8
+			else
+				_by.vspeed = -4
+
+
+			if(_by.anim == "jumpT" || _by.anim == "fall") {
+				_by.anim = "jumpU"
+				_by.frame = _by.an["jumpU"][0]
+			}
+		}
+
+		if(_element == "fire") {
+			hurtFire()
+			return
+		}
+		else if(_element == "ice") {
+			hurtIce()
+			return
+		}
+
+		if(icebox != -1) {
+			mapDeleteSolid(icebox)
+			newActor(IceChunks, x, y)
+		}
+
+		if(!_stomp) {
+			local c = newActor(DeadNME, x, y)
+			actor[c].sprite = sprFlyAmanita
+			actor[c].vspeed = -4.0
+			actor[c].spin = 6
+			actor[c].angle = 180
+			die()
+			popSound(sndKick)
+		}
+	}
+
+	hurtFire = Deathcap.hurtFire
+
+	function hurtIce() { frozen = 600 }
+}
+
 Jumpy <- class extends Enemy {
 	frame = 0.0
 	flip = false
@@ -5673,7 +5812,7 @@ Struffle <- class extends Enemy {
 			if(hspeed < 0)
 				flip = 1
 
-			if(!placeFree(x, y + 2) || onPlatform(-hspeed)) {
+			if(!placeFree(x, y + 2) || onPlatform()) {
 				if(placeFree(x + 6, y + 16) && !onPlatform(12))
 					hspeed = -hspeed
 				if(placeFree(x - 6, y + 16) && !onPlatform(-12))
@@ -6563,8 +6702,8 @@ Gooey <- class extends Enemy {
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(_blast) {
-			local angle = pointAngle(hitBy.x, hitBy.y, x, y)
+		if(_blast && _by) {
+			local angle = pointAngle(_by.x, _by.y, x, y)
 			hspeed = lendirX(_mag + 1.0, angle)
 			vspeed = lendirY(_mag + 1.0, angle) - 2.0
 		}

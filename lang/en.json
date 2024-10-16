@@ -322,7 +322,9 @@
 		"noteblock" :
 		"Note blocks will bounce you when you hit them. Hold jump to be bounced higher.",
 		"rescued" :
-		"Rescued %s!"
+		"Rescued %s!",
+		"sticky-walls" :
+		["Some walls can be climbed on. Press %s or %s to climb on them.", "getConName(\"up\")", "getConName(\"down\")"]
 	},
 
 	"devcom" : {

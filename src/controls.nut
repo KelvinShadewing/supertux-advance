@@ -1,5 +1,6 @@
 gvPadTypes <- ["XBox", "DInput", "Generic"]
 gvAutoCon <- false
+gvLastInputType <- 0
 
 autocon <- { //Has nothing to do with Transformers
 	a = {

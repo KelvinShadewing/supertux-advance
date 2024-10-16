@@ -305,7 +305,8 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 					case "water":
 					if("polyline" in obj || "polygon" in obj || "ellipse" in obj) break
 						local c = newActor(Water, obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.name)
-						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2), 5)
+						actor[c].shape = Rec(obj.x + (obj.width / 2), obj.y + (obj.height / 2), obj.width / 2, (obj.height / 2)
+						, 5)
 						mapActor[obj.id] <- actor[c].id
 						break
 					case "secret":
@@ -1985,6 +1986,12 @@ createPlatformActors <- function(n, i, c) {
 
 		case 120:
 			c = newActor(SideCrusher, i.x + 8, i.y - 8, i.name)
+			break
+
+		case 121:
+			c = newActor(SideAmanita, i.x + 8, i.y - 8, i.name)
+			game.maxEnemies++
+			break
 	}
 
 	return c

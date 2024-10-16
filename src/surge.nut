@@ -961,8 +961,9 @@ Surge <- class extends Player {
 				else if(canJump > 0 || nowInWater) {
 					jumpBuffer = 0
 					if(anim == "climb" || nowInWater) {
-						vspeed = -5
+						vspeed = -3
 						if(anim == "climb") {
+							vspeed = -5
 							if(getcon("left", "hold", true, playerNum))
 								hspeed = -2
 							if(getcon("right", "hold", true, playerNum))
