@@ -27,12 +27,21 @@ newTimeAttack <- function() {
 		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
 		print("Found text.json")
 	}
-	startPlay(game.path + gvTACourse[0] + ".json", true, true)
+	if(gvTARandom) {
+		local tempCourse = gvTACourse
+		gvTACourse = []
+		while(tempCourse.len() > 0) {
+			local i = randInt(tempCourse.len())
+			gvTACourse.push(tempCourse[i])
+			tempCourse.remove(i)
+		}
+	}
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
 	drawWeather = 0
 	gvIGT = 0
 	gvTAStep = 0
+	startPlay(game.path + gvTACourse[0] + ".json", true, true)
 }
 
 saveGame <- function() {

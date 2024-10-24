@@ -21,7 +21,8 @@
 		"world" : "World: %s",
 		"player1" : "Player 1: %s",
 		"player2" : "Player 2: %s",
-		"start-run" : "Begin Run"
+		"start-run" : "Begin Run",
+		"random" : "Randomizer"
 	},
 
 	"battle-menu" : {

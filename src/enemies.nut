@@ -6727,6 +6727,7 @@ Snippin <- class extends Enemy {
 	fliph = 0
 	angle = 0
 	trail = null
+	rollTimer = 0
 
 	an = {
 		crawl = [0, 1]
@@ -6813,6 +6814,15 @@ Snippin <- class extends Enemy {
 		switch(anim) {
 			case "crawl":
 				frame = (float(getFrames()) / 12.0) + id
+				break
+			case "hide":
+				frame += 0.25
+				if(frame >= 2) {
+					anim = "roll"
+					frame = 0.0
+				}
+				break
+			case "roll":
 				break
 		}
 	}
@@ -6996,7 +7006,9 @@ Snippin <- class extends Enemy {
 		blinking = 30
 
 		if(_stomp) {
-
+			rolling = true
+			anim = "hide"
+			frame = 0.0
 		}
 		else base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 	}

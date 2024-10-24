@@ -220,6 +220,10 @@ meTimeAttack <- [
 		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
 	},
 	{
+		name = function() { return gvLangObj["time-attack-menu"]["random"] + ": " + gvLangObj["menu-commons"][gvTARandom ? "on" : "off"]}
+		func = function() { gvTARandom = !gvTARandom }
+	},
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 0; menu = meMain },
 		back = function() { menu = meMain }

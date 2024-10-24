@@ -3,6 +3,7 @@ gvTimeAttack <- false
 gvTAStart <- "aurora-learn"
 gvTAStep <- 0
 gvTACourse <- 0
+gvTARandom <- false
 
 addTimeAttackWorld <- function(
 	displayName, //Name to show in the menu
