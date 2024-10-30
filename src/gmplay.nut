@@ -134,6 +134,20 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		return
 	}
 
+	//Randomizer settings
+	if(gvTimeAttack && gvTARandom) {
+		local cl = []
+		foreach(key, i in gvCharacters)
+			cl.push(key)
+
+		game.playerChar = cl[randInt(cl.len())]
+		if(game.playerChar2 != "") {
+			do {
+				game.playerChar2 = cl[randInt(cl.len())]
+			} while (game.playerChar == game.playerChar2)
+		}
+	}
+
 	//Start making actors
 	foreach(i in actlayer.objects) {
 		//Tile actors
@@ -1571,8 +1585,7 @@ createPlatformActors <- function(n, i, c) {
 			break
 
 		case 24:
-			c = actor[newActor(ItemBlock, i.x + 8, i.y - 8)]
-			c.item = 7
+			c = actor[newActor(ItemBlock, i.x + 8, i.y - 8, 7)]
 			break
 
 		case 25:

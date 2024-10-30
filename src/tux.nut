@@ -1192,7 +1192,7 @@ Tux <- class extends Player {
 				if(getcon("down", "hold", true, playerNum) && vspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt") vspeed += accel
 				if(getcon("up", "hold", true, playerNum) && vspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt") vspeed -= accel
 
-				if(stats.stamina >= 1 && getcon("spec2", "press", true, playerNum)) {
+				if(stats.stamina >= (stats.weapon == "water" ? 0.5 : 1) && getcon("spec2", "press", true, playerNum)) {
 					local dashdir = 0
 					local dashspd = max(6, distance2(0, 0, hspeed, vspeed))
 
@@ -1222,7 +1222,7 @@ Tux <- class extends Player {
 					hspeed = lendirX(dashspd, dashdir)
 					vspeed = lendirY(dashspd, dashdir)
 
-					stats.stamina -= 1.0
+					stats.stamina -= (stats.weapon == "water" ? 0.5 : 1)
 					guardtime = 120
 					local c = actor[fireWeapon(InstaShield, x, y, 1, id).id]
 					c.sprite = sprShieldDash

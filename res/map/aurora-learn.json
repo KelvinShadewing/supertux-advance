@@ -1559,10 +1559,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgAurora\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()"
+         "value":"drawBG = dbgAurora\ndrawWeather = 0\nsongPlay(musDisko)\ngfxEnemySnow()\nsetLight(0xffffffff)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.11.0",
  "tileheight":16,
  "tilesets":[
         {

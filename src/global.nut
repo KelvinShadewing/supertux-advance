@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-gvVersion <- "v0.2.44 (UNSTABLE)"
+gvVersion <- "v0.2.45 (UNSTABLE)"
 gvMap <- 0
 gvGameMode <- 0
 gvQuit <- false
@@ -64,7 +64,7 @@ createNewGameObject <- function () {
 		levelEvents = {} //Events that have occured in individual levels
 		friends = {} //List of rescued friend characters
 		playerChar = "Tux" //Current player character
-		playerChar2 = 0
+		playerChar2 = ""
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0

@@ -231,7 +231,7 @@ meTimeAttack <- [
 ]
 
 meTimeAttackWorld <- [
-	/*{
+	{
 		name = function() { return gvLangObj["level"]["full-game"] },
 		func = function() { game.path = "res/map/"; gvTACourse = [
 			"aurora-learn",
@@ -264,7 +264,7 @@ meTimeAttackWorld <- [
 			"nessland-crush"
 		]; menu = meDifficulty },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
-	},*/
+	},
 	{
 		name = function() { return gvLangObj["level"]["overworld-0"] },
 		func = function() { game.path = "res/map/"; gvTACourse = [
