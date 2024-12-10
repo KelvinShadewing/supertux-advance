@@ -53,6 +53,8 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	drawWeather = 0
 	drawWeather2 = 0
 	if(newLevel) {
+		game.ps.health = game.maxHealth
+		game.ps2.health = game.maxHealth
 		game.ps.energy = game.ps.maxEnergy
 		game.ps.stamina = game.ps.maxStamina
 		game.ps2.energy = game.ps2.maxEnergy
@@ -424,6 +426,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	else gvGameMode = gmLevelStart
 
 	//update()
+	flushSprites()
 }
 
 gmLevelStart <- function() {
@@ -1253,7 +1256,7 @@ gmPlay <- function() {
 				stopSound(sndWarning)
 				playSound(sndWarning, 0)
 			}
-			drawSpriteEx(sprWarning, 0, gvScreenW / 2, gvScreenH / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))
+			drawSprite(sprWarning, 0, gvScreenW / 2, gvScreenH / 2, 0, 0, 1, 1, abs(sin(gvWarning / 30.0)))
 			gvWarning += 1.5
 		}
 

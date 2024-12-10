@@ -107,7 +107,7 @@ FlameBreath <- class extends PhysAct {
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSprite(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -132,7 +132,7 @@ IceBreath <- class extends PhysAct {
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSprite(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -153,7 +153,7 @@ ExplodeF <- class extends Actor{
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
@@ -186,7 +186,7 @@ ExplodeN <- class extends Actor{
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
@@ -210,7 +210,7 @@ StompPoof <- class extends Actor{
 	}
 
 	function run() {
-		drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		frame += 0.2
 
 		if(frame >= 4) deleteActor(id)
@@ -250,8 +250,8 @@ FireballK <- class extends PhysAct {
 
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
 
-		if(hspeed > 0) drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
-		else drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		if(hspeed > 0) drawSprite(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSprite(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 
 		shape.setPos(x, y)

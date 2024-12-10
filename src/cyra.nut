@@ -1752,7 +1752,7 @@ SwordWaveCS <- class extends WeaponEffect{
 
 	}
 	function draw() {
-		drawSpriteEx(sprCyraSwordWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprCyraSwordWave, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
@@ -1798,7 +1798,7 @@ AirWaveCS <- class extends WeaponEffect{
 
 	}
 	function draw() {
-		drawSpriteEx(sprExplodeA, getFrames(), x - camx, y - camy, angle - 90, 0, 1, 1, 1)
+		drawSprite(sprExplodeA, getFrames(), x - camx, y - camy, angle - 90, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
@@ -1847,7 +1847,7 @@ FireballCS <- class extends WeaponEffect {
 
 	}
 	function draw() {
-		drawSpriteEx(sprCyraFireWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprCyraFireWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
@@ -1894,7 +1894,7 @@ FreezeWaveCS <- class extends WeaponEffect {
 
 	}
 	function draw() {
-		drawSpriteEx(sprCyraFreezeWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprCyraFreezeWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 
@@ -1954,7 +1954,7 @@ ElectricWaveCS  <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprCyraElectricWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprCyraElectricWave, getFrames() / 2, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -2005,7 +2005,7 @@ WaterCrescent <- class extends WeaponEffect {
 
 	}
 	function draw() {
-		drawSpriteEx(sprWaterCrescent, getFrames() / 1, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprWaterCrescent, getFrames() / 1, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 2.0 / 8.0, 2.0 / 8.0)
 	}
 

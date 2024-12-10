@@ -143,7 +143,7 @@ dbgPennyton <- function() {
 		drawRec(0, 0, screenW(), screenH(), true)
 		for(local i = 0; i < (screenW() / 32) + 4; i++) {
 			for(local j = 0; j < (screenH() / 32) + 4; j++) {
-				drawSpriteEx(weSnow, 0, -(sin(getFrames().tofloat() / 32.0) * 16.0) + (i * 32) - (camx % 32) - 32, ((getFrames() / 2) % 32) + (j * 32) - 32 - (camy % 32), 0, 0, 0.5, 0.5, 1)
+				drawSprite(weSnow, 0, -(sin(getFrames().tofloat() / 32.0) * 16.0) + (i * 32) - (camx % 32) - 32, ((getFrames() / 2) % 32) + (j * 32) - 32 - (camy % 32), 0, 0, 0.5, 0.5, 1)
 			}
 		}
 	}

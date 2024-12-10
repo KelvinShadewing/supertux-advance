@@ -839,8 +839,8 @@ FlyRefresh <- class extends Actor{
 	}
 
 	function draw() {
-		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy - 8, 0, 2, 1, 1, 0.25)
-		drawSpriteEx(sprTinyWind, getFrames() / 8, x - camx, y - camy + 8, 0, 0, 1, 1, 0.25)
+		drawSprite(sprTinyWind, getFrames() / 8, x - camx, y - camy - 8, 0, 2, 1, 1, 0.25)
+		drawSprite(sprTinyWind, getFrames() / 8, x - camx, y - camy + 8, 0, 0, 1, 1, 0.25)
 		drawSprite(sprFlyRefresh, getFrames() / 8, x - camx, y - camy)
 	}
 

@@ -112,8 +112,8 @@ NPC <- class extends Actor {
 			else if(sprite != 0) drawSpriteHUD(sprTalk, 2, x - camx, y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5)))
 		}
 
-		if(useflip) drawSpriteEx(sprite, getFrames() * useflip, x - camx, y - camy, 0, flip, 1, 1, 1)
-		else drawSpriteEx(sprite, flip, x - camx, y - camy, 0, 0, 1, 1, 1)
+		if(useflip) drawSprite(sprite, getFrames() * useflip, x - camx, y - camy, 0, flip, 1, 1, 1)
+		else drawSprite(sprite, flip, x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
 
 	function say() {

@@ -319,7 +319,7 @@ c1 <- class extends Actor {
 		if(frame >= 3) deleteActor(id)
 	}
 
-	function draw() { drawSpriteEx(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
+	function draw() { drawSprite(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
 Towershop <- class extends Actor {
@@ -481,7 +481,7 @@ Blitz <- class extends Enemy {
 		if(smart) myspr = sprBlitz
 		if(frozen) {
 
-			drawSpriteEx(myspr, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			drawSprite(myspr, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -489,8 +489,8 @@ Blitz <- class extends Enemy {
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(squish) drawSpriteEx(myspr, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(myspr, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else if(squish) drawSprite(myspr, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(myspr, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -685,8 +685,8 @@ bsod <- class extends Enemy {
 
 	function draw() {
 		if(frozen) {
-			if(smart) drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-			else drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			if(smart) drawSprite(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSprite(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 			if(frozen <= 120) {
 			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -694,8 +694,8 @@ bsod <- class extends Enemy {
 			}
 			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 		}
-		else if(squish) drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else if(squish) drawSprite(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {

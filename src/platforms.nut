@@ -78,15 +78,15 @@ Spring <- class extends Actor {
 				break
 
 			case 1: //Down
-				drawSpriteEx(sprSpring, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
+				drawSprite(sprSpring, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
 				break
 
 			case 2: //Right
-				drawSpriteEx(sprSpring, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
+				drawSprite(sprSpring, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
 				break
 
 			case 3: //Left
-				drawSpriteEx(sprSpring, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
+				drawSprite(sprSpring, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
 				break
 		}
 
@@ -184,15 +184,15 @@ SpringD <- class extends Actor {
 				break
 
 			case 1: //Down
-				drawSpriteEx(sprSpringD, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
+				drawSprite(sprSpringD, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
 				break
 
 			case 2: //Right
-				drawSpriteEx(sprSpringD, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
+				drawSprite(sprSpringD, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
 				break
 
 			case 3: //Left
-				drawSpriteEx(sprSpringD, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
+				drawSprite(sprSpringD, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
 				break
 		}
 
@@ -495,8 +495,8 @@ Portal <- class extends Actor {
 	}
 
 	function draw() {
-		drawSpriteEx(sprite, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)
-		drawSpriteEx(sprite, getFrames() / 4, shapeB.x - camx, shapeB.y - camy, angleB, 0, 1, 1, 1)
+		drawSprite(sprite, getFrames() / 4, shapeA.x - camx, shapeA.y - camy, angleA, 0, 1, 1, 1)
+		drawSprite(sprite, getFrames() / 4, shapeB.x - camx, shapeB.y - camy, angleB, 0, 1, 1, 1)
 		if(debug) {
 			setDrawColor(color)
 			drawLine(shapeA.x - camx, shapeA.y - camy, shapeB.x - camx, shapeB.y - camy)

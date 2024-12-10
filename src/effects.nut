@@ -169,7 +169,7 @@ FlameTiny <- class extends Actor {
 	}
 
 	function draw() {
-		drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy + 2, 0, 0, (1.0 / 6.0) - (frame / 32.0), (1.0 / 6.0) - (frame / 32.0))
 	}
 }
@@ -270,10 +270,10 @@ IceChunks <- class extends Actor {
 	}
 
 	function draw() {
-		drawSpriteEx(sprIceChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
-		drawSpriteEx(sprIceChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
-		drawSpriteEx(sprIceChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
-		drawSpriteEx(sprIceChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
+		drawSprite(sprIceChunks, 0, x - camx - h - 2, y - camy + v - 2, -a, 0, 1, 1, 1)
+		drawSprite(sprIceChunks, 1, x - camx + h + 2, y - camy + v - 2, a, 0, 1, 1, 1)
+		drawSprite(sprIceChunks, 2, x - camx - h - 2, y - camy + v + 2 + h, -a, 0, 1, 1, 1)
+		drawSprite(sprIceChunks, 3, x - camx + h + 2, y - camy + v + 2 + h, a, 0, 1, 1, 1)
 	}
 }
 

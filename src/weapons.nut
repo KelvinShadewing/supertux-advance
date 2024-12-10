@@ -92,7 +92,7 @@ StompPoof <- class extends WeaponEffect{
 		if(frame >= 4) deleteActor(id)
 	}
 
-	function draw() { drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1) }
+	function draw() { drawSprite(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1) }
 }
 
 ExplodeN <- class extends WeaponEffect{
@@ -133,7 +133,7 @@ ExplodeN <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightGradient, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -180,7 +180,7 @@ ExplodeN2 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeN2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeN2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -227,7 +227,7 @@ ExplodeN3 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeN3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeN3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightGradient, 0, x - camx, y - camy, 0, 0, 1.0 - (frame / 10.0), 1.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -382,7 +382,7 @@ Fireball <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprFireball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
+		drawSprite(sprFireball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -442,7 +442,7 @@ FlameBreath <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
@@ -486,7 +486,7 @@ FireballK <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteEx(sprFlame, (getFrames() / 4) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawSprite(sprFlame, (getFrames() / 4) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 
@@ -536,7 +536,7 @@ ExplodeF <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -588,7 +588,7 @@ ExplodeF2 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -668,7 +668,7 @@ ExplodeF3 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -848,7 +848,7 @@ ExplodeTiny <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeTiny, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeTiny, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -911,7 +911,7 @@ Iceball <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteEx(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
+		drawSprite(sprIceball, getFrames() / 2, x - camx, y - camy, 0, 0, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -976,7 +976,7 @@ ExplodeI <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeI, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprExplodeI, frame, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1071,7 +1071,7 @@ IceBreath <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
@@ -1119,7 +1119,7 @@ ExplodeT <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1169,7 +1169,7 @@ ExplodeT2 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1260,7 +1260,7 @@ ExplodeT3 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1316,7 +1316,7 @@ Shockball <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprShockball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
+		drawSprite(sprShockball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -1373,7 +1373,7 @@ Earthball <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprRock, 0, x - camx, y - camy, getFrames() * (hspeed <=> 0) * 15, 0, 0.5, 0.5, 1)
+		drawSprite(sprRock, 0, x - camx, y - camy, getFrames() * (hspeed <=> 0) * 15, 0, 0.5, 0.5, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 }
@@ -1418,7 +1418,7 @@ EarthballK <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteEx(sprRock, 0, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawSprite(sprRock, 0, x - camx, y - camy, angle, 1, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -1484,7 +1484,7 @@ ExplodeE <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1533,7 +1533,7 @@ ExplodeE2 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
+		drawSprite(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1603,7 +1603,7 @@ ExplodeE3 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSpriteEx(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
+		drawSprite(sprExplodeE, frame, x - camx, y - camy, randInt(360), 0, 2, 2, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1662,7 +1662,7 @@ CrystalBullet <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprCrystalBullet, 0, x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawSprite(sprCrystalBullet, 0, x - camx, y - camy, angle, 0, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -2047,7 +2047,7 @@ Airball <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprTinyWind, getFrames() / 4, x - camx, y - camy, angle, 0, scale, scale, 1)
+		drawSprite(sprTinyWind, getFrames() / 4, x - camx, y - camy, angle, 0, scale, scale, 1)
 		drawLight(sprLightBasic, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 }
@@ -2374,7 +2374,7 @@ Waterball <- class extends WeaponEffect {
 	}
 
 	function draw()  {
-		drawSpriteEx(sprWaterball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
+		drawSprite(sprWaterball, getFrames() / 2, x - camx, y - camy, 0, int(hspeed > 0), 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
@@ -2604,7 +2604,7 @@ WaterBomb <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteEx(sprWaterBomb, (getFrames() / 4) % 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+		drawSprite(sprWaterBomb, (getFrames() / 4) % 4, x - camx, y - camy, 0, 1, 1, 1, 1)
 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 	}
 

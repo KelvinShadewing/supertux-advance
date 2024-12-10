@@ -259,8 +259,8 @@ Yeti <- class extends Boss {
 	}
 
 	function draw() {
-		if(blinking == 0) drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-		else drawSpriteEx(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, max(wrap(blinking / 5.0, 0, 1), (anim == anHurt).tointeger()))
+		if(blinking == 0) drawSprite(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprYeti, frame, x - camx, y - camy, 0, flip.tointeger(), 1, 1, max(wrap(blinking / 5.0, 0, 1), (anim == anHurt).tointeger()))
 		if(debug) {
 			setDrawColor(0x008000ff)
 			shape.draw()

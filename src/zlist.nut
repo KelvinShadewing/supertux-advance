@@ -19,14 +19,6 @@ drawTextHUD <- function(font, x, y, text) {
 	gvHudList.push(["text", font, x, y, text])
 }
 
-drawSpriteExZ <- function(z, sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color) {
-	//Make sure the depth slot exists
-	if(!gvZList.rawin(z)) gvZList[z] <- array(0)
-
-	//Insert the instruction
-	gvZList[z].push([sprite, frame, x, y, angle, flip, xscale, yscale, alpha, color])
-}
-
 drawZList <- function(layers) {
 	//The argument defines how many layers from 0 to draw
 	for(local i = 0; i <= layers; i++) {

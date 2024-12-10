@@ -141,17 +141,17 @@ Water <- class extends Actor {
 				break
 			case "honey":
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawSpriteEx(sprHoneySurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
+					drawSprite(sprHoneySurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
 				}
 				break
 			case "swamp":
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawSpriteEx(sprSwampSurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
+					drawSprite(sprSwampSurface, (getFrames() / 32) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
 				}
 				break
 			default:
 				for(local i = 0; i < shape.w / 8; i++) {
-					drawSpriteEx(sprWaterSurface, (getFrames() / 16) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
+					drawSprite(sprWaterSurface, (getFrames() / 16) + i, x - shape.w - floor(camx) + (i * 16), y - shape.h - camy, 0, 0, 1, 1, 0.5)
 				}
 				break
 		}

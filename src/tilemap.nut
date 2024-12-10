@@ -59,18 +59,18 @@ AnimTile <- class {
 			if(currentTime >= frameTime[i]) {
 				if(i < frameTime.len() - 1) {
 					if(currentTime < frameTime[i + 1]) {
-						drawSpriteExMod(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
+						drawSprite(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
 						return
 					}
 				}
 				else if(currentTime <= frameTime[i] && i == 0) {
-					drawSpriteExMod(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
+					drawSprite(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
 					return
 				}
 			}
 		}
 
-		drawSpriteExMod(sprite, frameList.top(), floor(x), floor(y), 0, 0, 1, 1, alpha, color)
+		drawSprite(sprite, frameList.top(), floor(x), floor(y), 0, 0, 1, 1, alpha, color)
 	}
 }
 
