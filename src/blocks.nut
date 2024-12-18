@@ -536,7 +536,7 @@ ItemBlock <- class extends Actor {
 		shape = Rec(x, y + 2, 8, 8, 0)
 		tileSetSolid(x, y, 1)
 
-		if(gvTARandom && item != 0 && item != null)
+		if(gvTimeAttack && gvTARandomItem && item != 0 && item != null)
 			item = randInt(12) + 1
 	}
 

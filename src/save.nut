@@ -27,7 +27,7 @@ newTimeAttack <- function() {
 		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
 		print("Found text.json")
 	}
-	if(gvTARandom) {
+	if(gvTARandomLevel) {
 		local tempCourse = gvTACourse
 		gvTACourse = []
 		while(tempCourse.len() > 0) {

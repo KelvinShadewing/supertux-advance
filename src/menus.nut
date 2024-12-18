@@ -220,8 +220,16 @@ meTimeAttack <- [
 		func = function() { pickCharInitialize(2, true); gvGameMode = pickChar}
 	},
 	{
-		name = function() { return gvLangObj["time-attack-menu"]["random"] + ": " + gvLangObj["menu-commons"][gvTARandom ? "on" : "off"]}
-		func = function() { gvTARandom = !gvTARandom }
+		name = function() { return gvLangObj["time-attack-menu"]["random-level"] + ": " + gvLangObj["menu-commons"][gvTARandomLevel ? "on" : "off"]}
+		func = function() { gvTARandomLevel = !gvTARandomLevel }
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["random-char"] + ": " + gvLangObj["menu-commons"][gvTARandomChar ? "on" : "off"]}
+		func = function() { gvTARandomChar = !gvTARandomChar }
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["random-item"] + ": " + gvLangObj["menu-commons"][gvTARandomItem ? "on" : "off"]}
+		func = function() { gvTARandomItem = !gvTARandomItem }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
@@ -261,7 +269,8 @@ meTimeAttackWorld <- [
 			"nessland-cliffs",
 			"nessland-well",
 			"nessland-bedrock",
-			"nessland-crush"
+			"nessland-crush",
+			"nessland-night"
 		]; menu = meDifficulty },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
 	},

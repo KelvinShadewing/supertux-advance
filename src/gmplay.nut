@@ -137,7 +137,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	}
 
 	//Randomizer settings
-	if(gvTimeAttack && gvTARandom) {
+	if(gvTimeAttack && gvTARandomChar) {
 		local cl = []
 		foreach(key, i in gvCharacters)
 			cl.push(key)

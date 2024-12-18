@@ -22,7 +22,9 @@
 		"player1" : "Player 1: %s",
 		"player2" : "Player 2: %s",
 		"start-run" : "Begin Run",
-		"random" : "Randomizer"
+		"random-level" : "Level Randomizer",
+		"random-char" : "Character Randomizer",
+		"random-item" : "Item Randomizer"
 	},
 
 	"battle-menu" : {
