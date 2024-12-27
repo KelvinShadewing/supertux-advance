@@ -296,7 +296,7 @@ rpg16.png\* CC-BY-SA 4.0
 * ruins-tiles.png\* CC0
 
 ### [RustyBox]()
-* Scaled icecube\* - CC-BY-SA 4.0
+* icetrap-scaled.png\* - CC-BY-SA 4.0
 
 ### [bcsilva](https://opengameart.org/users/bcsilva)
 * bg_stadium.png - CC-BY 3.0

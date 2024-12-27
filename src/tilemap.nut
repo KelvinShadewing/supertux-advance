@@ -59,18 +59,18 @@ AnimTile <- class {
 			if(currentTime >= frameTime[i]) {
 				if(i < frameTime.len() - 1) {
 					if(currentTime < frameTime[i + 1]) {
-						drawSprite(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
+						drawSprite(sprite, frameList[i], x, y, 0, 0, 1, 1, alpha, color)
 						return
 					}
 				}
 				else if(currentTime <= frameTime[i] && i == 0) {
-					drawSprite(sprite, frameList[i], floor(x), floor(y), 0, 0, 1, 1, alpha, color)
+					drawSprite(sprite, frameList[i], x, y, 0, 0, 1, 1, alpha, color)
 					return
 				}
 			}
 		}
 
-		drawSprite(sprite, frameList.top(), floor(x), floor(y), 0, 0, 1, 1, alpha, color)
+		drawSprite(sprite, frameList.top(), x, y, 0, 0, 1, 1, alpha, color)
 	}
 }
 
@@ -215,6 +215,9 @@ Tilemap <- class {
 	}
 
 	function drawTiles(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
+		x = floor(x)
+		y = floor(y)
+
 		//Find layer
 		local t = -1; //Target layer
 		for(local i = 0; i < data.layers.len(); i++) {

@@ -4119,7 +4119,7 @@ Owl <- class extends Enemy {
 			if(y > target.y - 64 && vspeed > -1) vspeed -= 0.05
 			if(y < target.y - 64 && vspeed < 1) vspeed += 0.05
 
-			if(distance2(x, y, target.x, target.y) <= 96 && y < target.y && abs(x - target.x) < 8 && checkActor(pid)) {
+			if(distance2(x, y, target.x, target.y) <= 96 && y < target.y && abs(x - target.x) < 8 && checkActor(pid) && !frozen) {
 				actor[pid].held = false
 				pid = -1
 				popSound(sndDrop)
@@ -5384,8 +5384,10 @@ SkyDive <- class extends Enemy {
 	}
 
 	function draw() {
-		if(!placeFree(x, y + 4) && !held) drawSprite(sprSkyDive, wrap(getFrames() / 4, 3, 6), x - camx, y - camy, 0, flip)
+		if(!placeFree(x, y + 4) && !held && !frozen) drawSprite(sprSkyDive, wrap(getFrames() / 4, 3, 6), x - camx, y - camy, 0, flip)
 		else drawSprite(sprSkyDive, min(abs(vspeed), 2), x - camx, y - camy, 0, flip)
+
+		base.draw()
 
 		if(debug) {
 			setDrawColor(0xff0000ff)
