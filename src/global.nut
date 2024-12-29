@@ -333,6 +333,7 @@ config <- {
 		yPeek = -1
 	}
 	joymode = "XBox"
+	rumble = true
 	autorun = false
 	stickspeed = false
 	stickactive = true

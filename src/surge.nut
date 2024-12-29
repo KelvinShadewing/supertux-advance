@@ -431,7 +431,7 @@ Surge <- class extends Player {
 		shape = shapeStand
 		if(anim == "ball" || !placeFree(x, y) || anim == "charge")
 			shape = shapeSlide
-		
+
 		shapeStand.setPos(x, y)
 		shapeSlide.setPos(x, y)
 		if(y < -100) y = -100.0
@@ -541,11 +541,11 @@ Surge <- class extends Player {
 					//Offset frame based on movement speed
 					if(sideRunning)
 						rspeed = fabs(vspeed)
-					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery)) 
+					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery))
 						anim = "stand"
 					else if(fabs(rspeed) < fabs(hspeed) && !slippery)
 						rspeed = fabs(hspeed)
-					
+
 				}
 
 				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0) && !sideRunning && !hydroplaning) {
@@ -679,6 +679,9 @@ Surge <- class extends Player {
 
 			case "charge":
 				local chargeThreshold = max(2, ceil(chargeTimer))
+
+				if(config.rumble)
+					joyRumble(playerNum - 1, chargeTimer / 10, chargeTimer / 10, 16)
 
 				if(chargeTimer < 10) {
 					if(getcon("left", "press", true, playerNum)
@@ -1177,7 +1180,7 @@ Surge <- class extends Player {
 				shockEffect = fireWeapon(InstaShield, x, y, 1, id).id
 				blinking = max(8, blinking)
 		}
-		
+
 		if((anim == "ball" || anim == "jumpR" && didAirSpecial) && stats.weapon == "fire") {
 			if(fabs(hspeed) > 2) {
 				if(getFrames() % 4 == 0)

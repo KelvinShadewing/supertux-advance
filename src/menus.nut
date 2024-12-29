@@ -797,6 +797,14 @@ meInput <- [
 	},
 	{
 		name = function() {
+			local val = gvLangObj["menu-commons"][config.rumble ? "on" : "off"]
+			return format(gvLangObj["options-menu"]["rumble"], val)
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["rumble"] },
+		func = function() { config.rumble = !config.rumble; fileWrite("config.json", jsonWrite(config)) }
+	},
+	{
+		name = function() {
 			local val = gvLangObj["menu-commons"][config.showcursor ? "on" : "off"]
 			return format(gvLangObj["options-menu"]["cursor"], val)
 		},
@@ -961,7 +969,7 @@ meKeybinds <- [
 meJoyBinds <- [
 	{
 		name = function() { return format(gvLangObj["options-menu"]["joymode"], config.joymode) },
-		func = function() { 
+		func = function() {
 			local newMode = gvPadTypes.find(config.joymode)
 			if(newMode == null)
 				newMode = 0
@@ -1032,7 +1040,7 @@ meJoyBinds <- [
 meJoyBinds2 <- [
 	{
 		name = function() { return format(gvLangObj["options-menu"]["joymode"], config.joymode) },
-		func = function() { 
+		func = function() {
 			local newMode = gvPadTypes.find(config.joymode)
 			if(newMode == null)
 				newMode = 0
