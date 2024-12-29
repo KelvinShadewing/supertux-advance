@@ -178,7 +178,7 @@ ShopBlockWorld <- class extends Actor {
 
 	function run() {
 		if(game.state[state] >= limit) soldout = true
-		price = (game.state[state] + 1) * basePrice
+		price = (game.state[state] + 1) * basePrice * (1 + (game.difficulty / 2.0))
 
 		if(v > 0) {
 			vspeed = 0
@@ -212,7 +212,7 @@ ShopBlockWorld <- class extends Actor {
 	}
 }
 
-ShopBlockSulphur <- class extends Actor {
+ShopBlockPidgin <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0

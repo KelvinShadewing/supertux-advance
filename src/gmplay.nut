@@ -1385,6 +1385,8 @@ createPlatformActors <- function(n, i, c) {
 				c = actor[newActor(BeamBug, i.x + 8, i.y - 16)]
 				gvNumPlayers = 0
 				gvCamTarget = c
+				camx = c.x - (gvScreenW / 2)
+				camy = c.y - (gvScreenH / 2)
 			}
 			else {
 				gvNumPlayers = 0

@@ -28,10 +28,14 @@ BeamBug <- class extends Actor {
 	flip = 0
 	turn = 0
 	xav = 0
+	hspeed = 0
+	vspeed = 0
 
 	function constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		lightTrail = array(32, clone([_x, _y]))
+		xprev = x
+		yprev = y
 	}
 
 	function run() {
@@ -43,6 +47,8 @@ BeamBug <- class extends Actor {
 		yprev = y
 		x = ghostRecordOld[step][0]
 		y = ghostRecordOld[step][1]
+		hspeed = x - xprev
+		vspeed = y - yprev
 		if(step < ghostRecordOld.len() - 1)
 			step++
 
@@ -74,6 +80,11 @@ BeamBug <- class extends Actor {
 
 		drawSprite(sprBeam, turn + ((getFrames() / 2) % 2), x - camx, y - camy + ((getFrames() / 4) % 2), 0, flip)
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
+
+		if(debug || gvPlayAsBeam) {
+			local s = str(hspeed) + "," + str(vspeed)
+			drawText(font, x - camx - (s.len() * 3), y - camy - 16, s)
+		}
 	}
 
 	function _typeof() { return "BeamBug" }

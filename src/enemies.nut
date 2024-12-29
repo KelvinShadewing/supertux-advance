@@ -6856,7 +6856,13 @@ Snippin <- class extends Enemy {
 			local mspeed = 0.5 + (mode * 0.5)
 
 			for(local i = 0; i <= 6; i++) {
-				if(placeFree(x + lendirX(1, direction + (15 * i)), y + lendirY(1, direction + (15 * i)))) {
+				if(placeFree(x + lendirX(1, direction), y + lendirY(1, direction))) {
+					x += lendirX(mspeed, direction)
+					y += lendirY(mspeed, direction)
+					didMove = true
+					break
+				}
+				else if(placeFree(x + lendirX(1, direction + (15 * i)), y + lendirY(1, direction + (15 * i)))) {
 					x += lendirX(mspeed, direction + (15 * i))
 					y += lendirY(mspeed, direction + (15 * i))
 					direction += (15 * i)

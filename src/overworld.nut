@@ -603,7 +603,7 @@ gmOverworld <- function() {
 	drawText(font2, 24, screenH() - 23, game.coins.tostring())
 
 	if (game.colorswitch.find(true) != null) {
-		if(getcon("spec1", "press")) {
+		if(getcon("swap", "press")) {
 			game.turnOffBlocks = !game.turnOffBlocks
 			playSound(sndMenuSelect, 0)
 		}

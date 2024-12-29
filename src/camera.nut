@@ -193,8 +193,8 @@ updateCamera <- function() {
 			py = (gvCamTarget.y) - (gvScreenH / 2)
 		}
 	} else if(typeof gvCamTarget == "BeamBug") {
-		px = (gvCamTarget.x) - (gvScreenW / 2)
-		py = (gvCamTarget.y) - (gvScreenH / 2)
+		px = (gvCamTarget.x + gvCamTarget.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 2)
+		py = (gvCamTarget.y + gvCamTarget.vspeed * 8) - (gvScreenH / 2)
 	}
 	else {
 		px = camx0
