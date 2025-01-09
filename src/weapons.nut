@@ -605,6 +605,64 @@ ExplodeF3 <- class extends WeaponEffect{
 	power = 2
 	blast = true
 	altShape = null
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr)
+
+		popSound(sndExplodeF2)
+
+		shape = Cir(x, y, 12.0)
+		altShape = Cir(x, y, 2.0)
+		for(local i = 0; i < 16; i++) {
+			local d = actor[newActor(FlameTiny, x + lendirX(randInt(8) + 16, i * 22.5), y + lendirY(randInt(8) + 16, i * 22.5))]
+			d.hspeed = 1.0 - randFloat(2.0)
+			d.vspeed = 1.0 - randFloat(2.0)
+			d.frame = -2.0 - randFloat(4.0)
+		}
+	}
+
+	function run() {
+		frame += 0.2
+
+		if(frame >= 5) deleteActor(id)
+		if(altShape.r < 16) altShape.r++
+		if(shape.r < 36) shape.r++
+
+		if(gvPlayer) {
+			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
+				if(x < gvPlayer.x && gvPlayer.hspeed < 8) gvPlayer.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer.x && gvPlayer.hspeed > -8) gvPlayer.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer.y && gvPlayer.vspeed > -8) gvPlayer.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+
+		if(gvPlayer2) {
+			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5 * (power / 2.0)
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5 * (power / 2.0)
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8 * (power / 2.0)
+			}
+		}
+	}
+
+	function draw() {
+		drawSprite(sprExplodeF3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 2.0 - (frame / 10.0), 2.0 - (frame / 10.0))
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			drawCircle(x - camx, y - camy, shape.r, false)
+		}
+	}
+}
+
+ExplodeF3Bloom <- class extends WeaponEffect{
+	frame = 0.0
+	shape = 0
+	piercing = -1
+	element = "fire"
+	power = 2
+	blast = true
+	altShape = null
 	didbloom = false
 
 	constructor(_x, _y, _arr = null) {
@@ -612,7 +670,7 @@ ExplodeF3 <- class extends WeaponEffect{
 
 		popSound(sndExplodeF2)
 
-		shape = Cir(x, y, 8.0)
+		shape = Cir(x, y, 12.0)
 		altShape = Cir(x, y, 2.0)
 		for(local i = 0; i < 16; i++) {
 			local d = actor[newActor(FlameTiny, x + lendirX(randInt(8) + 16, i * 22.5), y + lendirY(randInt(8) + 16, i * 22.5))]
@@ -648,7 +706,7 @@ ExplodeF3 <- class extends WeaponEffect{
 
 		if(frame >= 5) deleteActor(id)
 		if(altShape.r < 16) altShape.r++
-		if(shape.r < 24) shape.r++
+		if(shape.r < 36) shape.r++
 
 		if(gvPlayer) {
 			if(owner != gvPlayer.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer.x, gvPlayer.y) < 64) {
@@ -668,8 +726,8 @@ ExplodeF3 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSprite(sprExplodeF2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
+		drawSprite(sprExplodeF3, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLight(sprLightFire, getFrames() / 4, x - camx, y - camy, 0, 0, 2.0 - (frame / 10.0), 2.0 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
 			drawCircle(x - camx, y - camy, shape.r, false)
@@ -1808,7 +1866,7 @@ NutBomb <- class extends WeaponEffect {
 					stopSound(sndExplodeA2)
 					break
 				case "fire":
-					c = fireWeapon(ExplodeF3, x, y, alignment, owner)
+					c = fireWeapon(ExplodeF3Bloom, x, y, alignment, owner)
 					c.power = 4
 					break
 				case "ice":

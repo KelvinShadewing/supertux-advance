@@ -589,8 +589,10 @@ ItemBlock <- class extends Actor {
 					break
 
 				case 5:
-					if(game.difficulty >= 2) newActor(MuffinEvil, x, y - 16)
-					else newActor(Starnyan, x, y - 16)
+					if(game.difficulty >= 2)
+						newActor(MuffinEvil, x, y - 16)
+					else
+						newActor(Starnyan, x, y - 16)
 					break
 
 				case 6:
@@ -603,7 +605,10 @@ ItemBlock <- class extends Actor {
 
 				case 8:
 					//1up item
-					newActor(OneUp, x, y - 16)
+					if(game.difficulty >= 3)
+						newActor(Darknyan, x, y - 16)
+					else
+						newActor(OneUp, x, y - 16)
 					break
 
 				case 9:

@@ -533,7 +533,7 @@ Deathcap <- class extends Enemy {
 			popSound(sndFlame, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 			return
@@ -565,7 +565,7 @@ Deathcap <- class extends Enemy {
 			popSound(sndKick, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 		} else popSound(sndSquish, 0)
@@ -593,7 +593,7 @@ Deathcap <- class extends Enemy {
 		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -1002,7 +1002,12 @@ CarlBoom <- class extends Enemy {
 				//Explode
 				if(squishTime >= 150) {
 					die()
-					fireWeapon(ExplodeF2, x, y, 0, id)
+					local ex = ExplodeF2
+					if(game.difficulty == 2)
+						ex = ExplodeF3
+					if(game.difficulty >= 3)
+						ex = ExplodeF3Bloom
+					fireWeapon(ex, x, y, 0, id)
 					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = 0
 				}
 			}
@@ -1074,7 +1079,12 @@ CarlBoom <- class extends Enemy {
 			newActor(IceChunks, x, y)
 		}
 		if(!burnt) {
-			fireWeapon(ExplodeF2, x, y - 1, 2, id)
+			local ex = ExplodeF2
+			if(game.difficulty == 2)
+				ex = ExplodeF3
+			if(game.difficulty >= 3)
+				ex = ExplodeF3Bloom
+			fireWeapon(ex, x, y, 0, id)
 			die()
 			popSound(sndFlame, 0)
 
@@ -1204,7 +1214,12 @@ Shortfuse <- class extends Enemy {
 				//Explode
 				if(squishTime >= 150) {
 					die()
-					fireWeapon(ExplodeF2, x, y, 0, id)
+					local ex = ExplodeF2
+					if(game.difficulty == 2)
+						ex = ExplodeF3
+					if(game.difficulty >= 3)
+						ex = ExplodeF3Bloom
+					fireWeapon(ex, x, y, 0, id)
 					if(gvPlayer) if(gvPlayer.holding == id) gvPlayer.holding = 0
 				}
 			}
@@ -1350,7 +1365,7 @@ BlueFish <- class extends Enemy {
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -1473,7 +1488,7 @@ RedFish <- class extends Enemy {
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -1568,7 +1583,7 @@ JellyFish <- class extends Enemy {
 
 	function hurtFire() {
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 		local c = newActor(DeadNME, x, y)
@@ -1638,7 +1653,7 @@ Clamor <- class extends Enemy {
 	function hurtFire() {
 		if(timer < 30) {
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 			newActor(Poof, x, y - 1)
@@ -1840,7 +1855,7 @@ GreenFish <- class extends Enemy {
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -2636,7 +2651,12 @@ Haywire <- class extends Enemy {
 				if(chasing) squishTime++
 				if(squishTime >= 200 && chasing) {
 					die()
-					fireWeapon(ExplodeF2, x, y - 1, 0, id)
+					local ex = ExplodeF2
+					if(game.difficulty == 2)
+						ex = ExplodeF3
+					if(game.difficulty >= 3)
+						ex = ExplodeF3Bloom
+					fireWeapon(ex, x, y, 0, id)
 				}
 
 				if(y > gvMap.h + 8) die()
@@ -2741,7 +2761,12 @@ Haywire <- class extends Enemy {
 				}
 				if(squishTime >= 300 && chasing) {
 					die()
-					fireWeapon(ExplodeF2, x, y, 0, id)
+					local ex = ExplodeF2
+					if(game.difficulty == 2)
+						ex = ExplodeF3
+					if(game.difficulty >= 3)
+						ex = ExplodeF3Bloom
+					fireWeapon(ex, x, y, 0, id)
 				}
 
 				if(frozen) {
@@ -2832,7 +2857,12 @@ Haywire <- class extends Enemy {
 			newActor(IceChunks, x, y)
 		}
 		if(!burnt) {
-			fireWeapon(ExplodeF2, x, y - 1, 0, id)
+			local ex = ExplodeF2
+			if(game.difficulty == 2)
+				ex = ExplodeF3
+			if(game.difficulty >= 3)
+				ex = ExplodeF3Bloom
+			fireWeapon(ex, x, y, 0, id)
 			die()
 			popSound(sndFlame, 0)
 
@@ -3014,7 +3044,12 @@ Goldbomb <- class extends Enemy {
 		base.die()
 		dead = true
 
-		fireWeapon(ExplodeF2, x, y, 0, 0)
+		local ex = ExplodeF2
+		if(game.difficulty == 2)
+			ex = ExplodeF3
+		if(game.difficulty >= 3)
+			ex = ExplodeF3Bloom
+		fireWeapon(ex, x, y, 0, id)
 		for(local i = 0; i < 20; i++) {
 			local c = actor[newActor(CoinSmall, x, y)]
 			c.hspeed *= 1.5
@@ -3371,7 +3406,12 @@ Blazeborn <- class extends Enemy {
 
 	function hurtFire() {
 		die()
-		fireWeapon(ExplodeF2, x , y, 2, id)
+		local ex = ExplodeF2
+		if(game.difficulty == 2)
+			ex = ExplodeF3
+		if(game.difficulty >= 3)
+			ex = ExplodeF3Bloom
+		fireWeapon(ex, x, y, 0, id)
 		newActor(Flame, x, y - 1)
 	}
 
@@ -3682,7 +3722,8 @@ Tallcap <- class extends Enemy {
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(squish) return
+		if(squish || _mag <= 0)
+			return
 
 		if(_element == "ice") {
 			frozen = 600
@@ -3714,7 +3755,7 @@ Tallcap <- class extends Enemy {
 		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -3893,7 +3934,7 @@ Ivy <- class extends Enemy {
 			popSound(sndFlame, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 			return
@@ -3927,7 +3968,7 @@ Ivy <- class extends Enemy {
 			popSound(sndKick, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 		} else popSound(sndSquish, 0)
@@ -3956,7 +3997,7 @@ Ivy <- class extends Enemy {
 		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -4553,7 +4594,7 @@ SpikeCap <- class extends Enemy {
 				actor[c].flip = flip.tointeger()
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 			return
@@ -4588,7 +4629,7 @@ SpikeCap <- class extends Enemy {
 			popSound(sndKick, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 		} else popSound(sndSquish, 0)
@@ -4621,7 +4662,7 @@ SpikeCap <- class extends Enemy {
 		actor[c].frame = 7
 
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -4760,7 +4801,7 @@ CaptainMorel <- class extends Enemy {
 			popSound(sndFlame, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 			return
@@ -4790,7 +4831,7 @@ CaptainMorel <- class extends Enemy {
 			popSound(sndKick, 0)
 
 			if(randInt(20) == 0) {
-				local a = actor[newActor(MuffinBlue, x, y)]
+				local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 				a.vspeed = -2
 			}
 		} else popSound(sndSquish, 0)
@@ -4817,7 +4858,7 @@ CaptainMorel <- class extends Enemy {
 		popSound(sndFlame, 0)
 
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -5680,7 +5721,7 @@ Puffranah <- class extends Enemy {
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -5702,7 +5743,7 @@ Puffranah <- class extends Enemy {
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -5959,7 +6000,7 @@ Struffle <- class extends Enemy {
 		else actor[c].spin = -0.5
 		popSound(sndKick, 0)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}
@@ -6400,7 +6441,7 @@ WaspyBoi <- class extends Enemy {
 		newActor(Poof, x + 8, y)
 		newActor(Poof, x - 8, y)
 		if(randInt(20) == 0) {
-			local a = actor[newActor(MuffinBlue, x, y)]
+			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)]
 			a.vspeed = -2
 		}
 	}

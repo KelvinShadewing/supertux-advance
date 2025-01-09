@@ -335,6 +335,7 @@ sprTuckles <- newSprite("res/gfx/tuckles.png", 18, 34, 8, 34)
 sprGaruda <- newSprite("res/gfx/garuda.png", 35, 36, 17, 36)
 sprKelvinNPC <- newSprite("res/gfx/npc-kelvin.png", 32, 32, 16, 32)
 sprTwangNPC <- newSprite("res/gfx/twang-npc.png", 19, 20, 10, 20)
+sprRustyboxNPC <- newSprite("rest/gfx/rustybox-npc.png", 16, 20, 8, 20)
 sprDuke <- newSprite("res/gfx/duke.png", 32, 32, 16, 32)
 sprPenguinNPC <- newSprite("res/gfx/penguin-npc.png", 14, 23, 7, 23)
 sprTixNPC <- newSprite("res/gfx/tix.png", 10, 16, 5, 16)
@@ -627,6 +628,8 @@ sprExplodeF <- newSprite("res/gfx/explodeF.png", 24, 24, 12, 12)
 defExplodeF <- sprExplodeF
 sprExplodeF2 <- newSprite("res/gfx/explodeF2.png", 48, 48, 24, 24)
 defExplodeF2 <- sprExplodeF2
+sprExplodeF3 <- newSprite("res/gfx/explodeF3.png", 72, 72, 36, 36)
+defExplodeF3 <- sprExplodeF3
 sprExplodeI <- newSprite("res/gfx/explodeI.png", 30, 30, 15, 15)
 defExplodeI <- sprExplodeI
 sprExplodeN <- newSprite("res/gfx/explodeN.png", 30, 30, 15, 15)

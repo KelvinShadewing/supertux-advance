@@ -995,6 +995,13 @@ Midi <- class extends Player {
 
 		onWall = (anim == "wall" || an[anim] == an["fallW"])
 
+		if(rspeed > 0)
+			rspeed -= 0.1
+		if(rspeed < 0)
+			rspeed += 0.1
+		if(fabs(rspeed) <= 0.1)
+			rspeed = 0.0
+
 		if(canMove) {
 			mspeed = 3.5
 			if(anim == "crawl")
@@ -1050,8 +1057,6 @@ Midi <- class extends Player {
 				else rspeed -= accel
 				if(rspeed > hspeed) rspeed = hspeed
 			}
-			if(rspeed > 0) rspeed -= 0.1
-			if(rspeed < 0) rspeed += 0.1
 			if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
 			if(anim == "slide") rspeed = hspeed
 
