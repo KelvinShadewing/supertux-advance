@@ -1480,12 +1480,20 @@ createPlatformActors <- function(n, i, c) {
 			break
 
 		case 12:
-			c = newActor(Deathcap, i.x + 8, i.y - 8, false)
+			if(game.difficulty >= 3)
+				c = newActor(CaptainMorel, i.x + 8, i.y - 8, i.name)
+			else
+				c = newActor(Deathcap, i.x + 8, i.y - 8, false)
 			game.maxEnemies++
 			break
 
 		case 13:
-			c = newActor(Deathcap, i.x + 8, i.y - 8, true)
+			if(game.difficulty >= 3) {
+				c = newActor(SpikeCap, i.x + 8, i.y - 8, i.name)
+				actor[c].moving = true
+			}
+			else
+				c = newActor(Deathcap, i.x + 8, i.y - 8, true)
 			game.maxEnemies++
 			break
 
@@ -1544,7 +1552,10 @@ createPlatformActors <- function(n, i, c) {
 			break
 
 		case 26:
-			c = newActor(CarlBoom, i.x + 8, i.y - 8)
+			if(game.difficulty >= 3)
+				c = newActor(Haywire, i.x + 8, i.y - 8, i.name)
+			else
+				c = newActor(CarlBoom, i.x + 8, i.y - 8)
 			game.maxEnemies++
 			break
 
@@ -1554,12 +1565,18 @@ createPlatformActors <- function(n, i, c) {
 			break
 
 		case 28:
-			c = newActor(BlueFish, i.x + 8, i.y - 8)
+			if(game.difficulty >= 3)
+				c = newActor(RedFish, i.x + 8, i.y - 8, i.name)
+			else
+				c = newActor(BlueFish, i.x + 8, i.y - 8)
 			game.maxEnemies++
 			break
 
 		case 29:
-			c = newActor(RedFish, i.x + 8, i.y - 8)
+			if(game.difficulty >= 3)
+				c = newActor(GreenFish, i.x + 8, i.y - 8, i.name)
+			else
+				c = newActor(RedFish, i.x + 8, i.y - 8)
 			game.maxEnemies++
 			break
 
@@ -1626,7 +1643,10 @@ createPlatformActors <- function(n, i, c) {
 			break
 
 		case 44:
-			c = newActor(GreenFish, i.x + 8, i.y - 8)
+			if(game.difficulty >= 3)
+				c = newActor(Puffranah, i.x + 8, i.y - 8, i.name)
+			else
+				c = newActor(GreenFish, i.x + 8, i.y - 8)
 			game.maxEnemies++
 			break
 

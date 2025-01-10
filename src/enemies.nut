@@ -2754,7 +2754,7 @@ Haywire <- class extends Enemy {
 			else {
 				squishTime += 1.0
 				frame += 0.25
-				if(squishTime >= 240 - (game.difficulty * 30) && !chasing) {
+				if(squishTime >= 240 - (game.difficulty * 60) && !chasing) {
 					chasing = true
 					squishTime = 0
 					popSound(sndFizz, 0)
@@ -4031,7 +4031,7 @@ Owl <- class extends Enemy {
 		normal = 1.0
 		fire = 2.0
 		ice = 0.0
-		earth = 2.0
+		earth = 3.0
 		air = 0.5
 		toxic = 1.0
 		shock = 2.0
