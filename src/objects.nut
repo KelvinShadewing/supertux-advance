@@ -139,8 +139,8 @@ GrabbableObject <- class extends PhysAct {
 				flip = target.flip
 				if(flip == 0) x = target.x + 10
 				else x = target.x - 10
-				x += target.hspeed
-				y += target.vspeed
+				x += target.hspeed + target.ehspeed
+				y += target.vspeed + target.evspeed
 				held = true
 				target.holding = id
 			}

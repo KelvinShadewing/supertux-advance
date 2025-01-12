@@ -310,11 +310,11 @@ Cyra <- class extends Player {
 			shape = shapeSlide
 			if(anim == "stand" || anim == "walk" || anim == "run") anim = "crawl"
 		}
-		local freeDown = placeFree(x, y + 1)
+		freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
-		local freeLeft = placeFree(x - 1, y)
-		local freeRight = placeFree(x + 1, y)
-		local freeUp = placeFree(x, y - 1)
+		freeLeft = placeFree(x - 1, y)
+		freeRight = placeFree(x + 1, y)
+		freeUp = placeFree(x, y - 1)
 		wasInWater = nowInWater
 		nowInWater = inWater(x, y)
 		//Checks are done at the beginning and stored here so that they can be

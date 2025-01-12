@@ -251,8 +251,8 @@ Enemy <- class extends PhysAct {
 				flip = target.flip
 				if(flip == 0) x = target.x + 10
 				else x = target.x - 10
-				x += target.hspeed
-				y += target.vspeed
+				x += target.hspeed + target.ehspeed
+				y += target.vspeed + target.evspeed
 				held = true
 				target.holding = id
 			}
@@ -7045,8 +7045,9 @@ Snippin <- class extends Enemy {
 			xprev = x
 			yprev = y
 		}
-		else base.physics()
-		
+		else {
+			base.physics()
+		}
 	}
 
 	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
@@ -7055,15 +7056,17 @@ Snippin <- class extends Enemy {
 		blinking = 30
 
 		if(_stomp) {
+			if(!rolling) {
+				anim = "hide"
+				frame = 0.0
+			}
 			rolling = true
-			anim = "hide"
-			frame = 0.0
 		}
 		else base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
 	}
 
 	function draw() {
-		drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, angle, (rolling ? fliph : flip))
+		drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, rolling ? 0 : angle, (rolling ? fliph : flip))
 		if(debug) {
 			drawText(font, x + 8 - camx, y - camy, str(direction))
 		}

@@ -67,7 +67,10 @@ NPC <- class extends Actor {
 		}
 
 		if(target != null && sayfunc != null) {
-			if(hitTest(shape, target.shape) && getcon("up", "press", false, target.playerNum) && sayfunc != null) {
+			if(hitTest(shape, target.shape)
+			&& (getcon("up", "press", false, target.playerNum)
+			|| getcon("jump", "press", false, target.playerNum) && nowTalking)
+			&& sayfunc != null) {
 				if(nowTalking) {
 					gvInfoBox = ""
 					nowTalking = false
@@ -77,6 +80,11 @@ NPC <- class extends Actor {
 					this[sayfunc]()
 					nowTalking = true
 					target.canMove = false
+					target.hspeed = 0
+					if(target.x > x)
+						target.flip = 1
+					if(target.x < x)
+						target.flip = 0
 				}
 			}
 

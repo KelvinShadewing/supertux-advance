@@ -54,6 +54,11 @@ Player <- class extends PhysAct {
 	onWall = false
 	wasOnGround = false
 
+	freeUp = false
+	freeDown = false
+	freeLeft = false
+	freeRight = false
+
 	hurt = 0 //How much damage has been taken
 	hurtType = "normal"
 	damageMult = {
@@ -103,9 +108,9 @@ Player <- class extends PhysAct {
 	}
 
 	function physics() {
-		if(ehspeed > 0)
+		if(ehspeed > 0 && !getcon("right", "hold", true, playerNum))
 			ehspeed -= friction
-		if(ehspeed < 0)
+		if(ehspeed < 0 && !getcon("left", "hold", true, playerNum))
 			ehspeed += friction
 		if(fabs(ehspeed) < friction)
 			ehspeed = 0.0

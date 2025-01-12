@@ -328,7 +328,7 @@ Surge <- class extends Player {
 		//Hydroplane
 		hydroplaning = false
 		shapeHydro.setPos(x + hspeed, y + vspeed)
-		if(abs(hspeed) > 6.2 && abs(vspeed) < 4) {
+		if((fabs(hspeed) > 6.2 || fabs(hspeed) + fabs(ehspeed) > 6.2) && abs(vspeed) < 4) {
 			local oldShape = shape
 			shape = shapeHydro
 			local liquidBody = inWater(x, y + 6)
@@ -419,7 +419,7 @@ Surge <- class extends Player {
 					}
 				}
 
-				if(fabs(hspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev && anim != "jumpR" && anim != "jumpU")
+				if(fabs(hspeed) + fabs(ehspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev && anim != "jumpR" && anim != "jumpU")
 					vspeed -= 1.0
 
 				//If no step was taken, slow down
@@ -543,9 +543,8 @@ Surge <- class extends Player {
 						rspeed = fabs(vspeed)
 					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery))
 						anim = "stand"
-					else if(fabs(rspeed) < fabs(hspeed) && !slippery)
-						rspeed = fabs(hspeed)
-
+					else if(fabs(rspeed) < max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed)) && !slippery)
+						rspeed = max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed))
 				}
 
 				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0) && !sideRunning && !hydroplaning) {
@@ -554,11 +553,11 @@ Surge <- class extends Player {
 					frame = 0.0
 				}
 
-				if(abs(sideRunning ? vspeed : hspeed) > 2)
+				if(sideRunning ? -vspeed : max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed)) > 2)
 					animOffset = 8.0
-				if(abs(sideRunning ? vspeed : hspeed) > 4)
+				if(sideRunning ? -vspeed : max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed)) > 4)
 					animOffset = 16.0
-				if(abs(sideRunning ? vspeed : hspeed) > 6.2)
+				if(sideRunning ? -vspeed : max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed)) > 6.2)
 					animOffset = 24.0
 
 				if(anim == "skid")
@@ -883,12 +882,12 @@ Surge <- class extends Player {
 			if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
 				if(hspeed >= 2) rspeed += accel / 2.0
 				else rspeed += accel
-				if(rspeed < hspeed) rspeed = hspeed
+				if(rspeed < hspeed) rspeed = max(hspeed, hspeed + ehspeed)
 			}
 			if(getcon("left", "hold", true, playerNum) && rspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeLeft || placeFree(x - 1, y - 2)) {
 				if(hspeed <= -2) rspeed += accel / 2.0
 				else rspeed -= accel
-				if(rspeed > hspeed) rspeed = hspeed
+				if(rspeed > hspeed) rspeed = min(hspeed, hspeed + ehspeed)
 			}
 			if(rspeed > 0) rspeed -= 0.1
 			if(rspeed < 0) rspeed += 0.1
