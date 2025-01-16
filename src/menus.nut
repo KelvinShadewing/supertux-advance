@@ -234,6 +234,7 @@ meTimeAttack <- [
 	{
 		name = function() { return gvLangObj["time-attack-menu"]["coin-time"] + ": " + gvLangObj["menu-commons"][gvCoinTimeBonus ? "on" : "off"]}
 		func = function() { gvCoinTimeBonus = !gvCoinTimeBonus }
+		desc = function() { return gvLangObj["options-menu-desc"]["coin-time-bonus"] }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },

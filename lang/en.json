@@ -125,7 +125,8 @@
 		"big-items" : "Increase the size of smaller items",
 		"show-tf" : "Characters change appearance with elements",
 		"lock-splitscreen-a" : "Camera will split/merge depending on players' distance.",
-		"lock-splitscreen-b" : "Camera will stay split with two players."
+		"lock-splitscreen-b" : "Camera will stay split with two players.",
+		"coin-time-bonus" : "Coins reduce run time."
 	},
 
 	"speedrun-menu" : {
