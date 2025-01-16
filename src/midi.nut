@@ -1725,22 +1725,22 @@ Midi <- class extends Player {
 
 			switch(shootDir) {
 				case 0:
-					c.hspeed = (5 * d) + (hspeed / 2)
+					c.hspeed = (5 * d) + (hspeed / 2) + (ehspeed)
 					if(!nowInWater) c.vspeed = -1
 					break
 				case 1:
-					c.vspeed = -5 + (vspeed / 2)
+					c.vspeed = -5 + (vspeed / 2) + (evspeed)
 					break
 				case 2:
-					c.hspeed = (4 * d) + (hspeed / 2)
+					c.hspeed = (4 * d) + (hspeed / 2) + (ehspeed)
 					c.vspeed = -4.5
 					break
 				case 3:
-					c.hspeed = (4 * d) + (hspeed / 2)
-					c.vspeed = 3 + (vspeed / 2)
+					c.hspeed = (4 * d) + (hspeed / 2) + (ehspeed)
+					c.vspeed = 3 + (vspeed / 2) + (evspeed)
 					break
 				case 4:
-					c.vspeed = 5 + (vspeed / 2)
+					c.vspeed = 5 + (vspeed / 2) + (evspeed)
 					break
 			}
 		}

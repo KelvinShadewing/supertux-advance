@@ -262,7 +262,7 @@ BrickBlock <- class extends Actor {
 			if(v == 0) {
 				vspeed = 0
 				if(coins <= 1) {
-						if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed) >= 8 && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
+						if("anim" in gvPlayer) if(fabs(gvPlayer.hspeed + gvPlayer.ehspeed) >= 8 && (gvPlayer.anim == "slide" || gvPlayer.anim == "ball")) if(hitTest(slideshape, gvPlayer.shape)) {
 						gvPlayer.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -286,7 +286,7 @@ BrickBlock <- class extends Actor {
 					}
 				}
 				else {
-					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed) >= 8 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
+					if("anim" in gvPlayer) if((fabs(gvPlayer.hspeed + gvPlayer.ehspeed) >= 8 || (gvPlayer.stats.weapon == "earth" && gvPlayer.vspeed >= 2)) && gvPlayer.anim == "slide") if(hitTest(slideshape, gvPlayer.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -308,7 +308,7 @@ BrickBlock <- class extends Actor {
 			if(v == 0) {
 				vspeed = 0
 				if(coins <= 1) {
-						if("anim" in gvPlayer2) if(fabs(gvPlayer2.hspeed) >= 8 && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
+						if("anim" in gvPlayer2) if(fabs(gvPlayer2.hspeed + gvPlayer2.ehspeed) >= 8 && (gvPlayer2.anim == "slide" || gvPlayer2.anim == "ball")) if(hitTest(slideshape, gvPlayer2.shape)) {
 						gvPlayer2.vspeed = 0
 						deleteActor(id)
 						newActor(WoodChunks, x, y)
@@ -332,7 +332,7 @@ BrickBlock <- class extends Actor {
 					}
 				}
 				else {
-					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed) >= 8 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
+					if("anim" in gvPlayer2) if((fabs(gvPlayer2.hspeed + gvPlayer2.ehspeed) >= 8 || (gvPlayer2.stats.weapon == "earth" && gvPlayer2.vspeed >= 2)) && gvPlayer2.anim == "slide") if(hitTest(slideshape, gvPlayer2.shape)) {
 						vspeed = -2
 						coins--
 						newActor(CoinEffect, x, y - 16)
@@ -644,6 +644,15 @@ ItemBlock <- class extends Actor {
 			vspeed = -2
 			popSound(sndBump, 0)
 			fireWeapon(BoxHit, x, y - 8, 1, id)
+		}
+		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
+			if(((("altShape" in i && hitTest(shape, i.altShape)) || (!("altShape" in i) && hitTest(shape, i.shape)))) && vspeed == 0 && full) {
+				if(coins <= 1)
+				full = false
+				vspeed = -2
+				popSound(sndBump, 0)
+				fireWeapon(BoxHit, x, y - 8, 1, id)
+			}
 		}
 
 		v += vspeed
@@ -1691,5 +1700,5 @@ FlipBlock <- class extends Actor {
 
 	function destructor() { fireWeapon(BoxHit, x, y - 8, 1, id) }
 
-	function _typeof() { return "WoodBlock" }
+	function _typeof() { return "FlipBlock" }
 }

@@ -24,7 +24,8 @@
 		"start-run" : "Begin Run",
 		"random-level" : "Level Randomizer",
 		"random-char" : "Character Randomizer",
-		"random-item" : "Item Randomizer"
+		"random-item" : "Item Randomizer",
+		"coin-time" : "Coin Time Bonus"
 	},
 
 	"battle-menu" : {

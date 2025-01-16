@@ -230,6 +230,7 @@ blue-cave-bg-0.png\* - CC0
 * darknyan.png - CC-BY-SA 4.0
 * livewire.png - CC-BY-SA 4.0
 * twang-npc.png - CC-BY-SA 4.0
+* npc-frostc.png - CC-BY-SA 4.0
 
 ### [TheCheeseWeez]()
 * megamuffin.png\* - CC-BY-SA 4.0

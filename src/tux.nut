@@ -440,7 +440,7 @@ Tux <- class extends Player {
 					break
 
 				case "swimDF":
-				case "swim":
+				case "swimD":
 					anim = "fall"
 					frame = 0.0
 					break
@@ -814,7 +814,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Fireball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -837,7 +837,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Iceball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -860,7 +860,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Earthball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -883,7 +883,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Airball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -906,7 +906,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Waterball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						c.hspeed += 1.0 - randFloat(2.0)
 						c.vspeed += 0.5 - randFloat(2.0)
 						playSound(sndWaterball, 0)
@@ -931,7 +931,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Shockball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 1
 						else c.hspeed = -1
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -956,7 +956,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Fireball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -979,7 +979,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Iceball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -1002,7 +1002,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Earthball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -1025,7 +1025,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Airball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndFireball, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
@@ -1048,7 +1048,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Waterball, x + fx, y - 4, 1, id)
 						if(!flip) c.hspeed = 5
 						else c.hspeed = -5
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						c.hspeed += 1.0 - randFloat(2.0)
 						c.vspeed += 0.5 - randFloat(2.0)
 						playSound(sndWaterball, 0)
@@ -1073,7 +1073,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Shockball, x + fx, y, 1, id)
 						if(!flip) c.hspeed = 4
 						else c.hspeed = -4
-						c.hspeed += hspeed
+						c.hspeed += hspeed + ehspeed
 						playSound(sndExplodeT, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5

@@ -6,6 +6,7 @@ gvTACourse <- 0
 gvTARandomLevel <- false
 gvTARandomChar <- false
 gvTARandomItem <- false
+gvCoinTimeBonus <- false
 
 addTimeAttackWorld <- function(
 	displayName, //Name to show in the menu

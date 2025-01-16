@@ -1263,7 +1263,7 @@ gmPlay <- function() {
 
 	//Draw global IGT
 	if((config.showglobaligt) && levelEndRunner != 1) {
-		local gtd = formatTime(game.igt) //Game time to draw
+		local gtd = formatTime(max(game.igt, 0)) //Game time to draw
 		drawText(font2, (gvScreenW / 2) - (gtd.len() * 4), gvScreenH - 24, gtd)
 	}
 
