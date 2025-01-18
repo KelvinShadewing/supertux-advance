@@ -359,18 +359,6 @@
          "name":"actor",
          "objects":[
                 {
-                 "gid":8,
-                 "height":16,
-                 "id":1878,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":3152,
-                 "y":144
-                }, 
-                {
                  "gid":1,
                  "height":16,
                  "id":1879,
@@ -4161,6 +4149,18 @@
                  "width":16,
                  "x":4768,
                  "y":288
+                }, 
+                {
+                 "gid":65,
+                 "height":16,
+                 "id":2361,
+                 "name":"FlowerFire",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":3152,
+                 "y":192
                 }],
          "opacity":0.64,
          "type":"objectgroup",
@@ -4267,7 +4267,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":2361,
+ "nextobjectid":2362,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -4285,34 +4285,16 @@
  "tileheight":16,
  "tilesets":[
         {
-         "columns":8,
          "firstgid":1,
-         "image":"..\/gfx\/actors.png",
-         "imageheight":256,
-         "imagewidth":128,
-         "margin":0,
-         "name":"actors",
-         "spacing":0,
-         "tilecount":128,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"actors.tsj"
         }, 
         {
          "firstgid":129,
          "source":"grass.tsj"
         }, 
         {
-         "columns":8,
          "firstgid":854,
-         "image":"..\/gfx\/pumpkinhouse.png",
-         "imageheight":144,
-         "imagewidth":128,
-         "margin":0,
-         "name":"igloo",
-         "spacing":0,
-         "tilecount":72,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"pumpkinhouse.tsj"
         }, 
         {
          "columns":5,
@@ -4328,69 +4310,24 @@
          "tilewidth":16
         }, 
         {
-         "columns":14,
          "firstgid":966,
-         "image":"..\/gfx\/forestdeco.png",
-         "imageheight":144,
-         "imagewidth":224,
-         "margin":0,
-         "name":"forestdeco",
-         "spacing":0,
-         "tilecount":126,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"forest-deco.tsj"
         }, 
         {
-         "columns":2,
          "firstgid":1092,
-         "image":"..\/gfx\/goal.png",
-         "imageheight":32,
-         "imagewidth":32,
-         "margin":0,
-         "name":"goal",
-         "spacing":0,
-         "tilecount":4,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"goal.tsj"
         }, 
         {
-         "columns":5,
          "firstgid":1096,
-         "image":"..\/gfx\/solid.png",
-         "imageheight":336,
-         "imagewidth":80,
-         "margin":0,
-         "name":"solid",
-         "spacing":0,
-         "tilecount":105,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"solid.tsj"
         }, 
         {
-         "columns":8,
          "firstgid":1201,
-         "image":"..\/gfx\/spikes.png",
-         "imageheight":48,
-         "imagewidth":128,
-         "margin":0,
-         "name":"spikes",
-         "spacing":0,
-         "tilecount":24,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"spikes.tsj"
         }, 
         {
-         "columns":7,
          "firstgid":1225,
-         "image":"..\/gfx\/rope.png",
-         "imageheight":80,
-         "imagewidth":112,
-         "margin":0,
-         "name":"rope",
-         "spacing":0,
-         "tilecount":35,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"rope.tsj"
         }, 
         {
          "columns":6,
@@ -4406,30 +4343,8 @@
          "tilewidth":16
         }, 
         {
-         "columns":9,
          "firstgid":1332,
-         "image":"..\/gfx\/rocktiles.png",
-         "imageheight":96,
-         "imagewidth":144,
-         "margin":0,
-         "name":"rocktiles",
-         "spacing":0,
-         "tilecount":54,
-         "tileheight":16,
-         "tiles":[
-                {
-                 "animation":[
-                        {
-                         "duration":120,
-                         "tileid":5
-                        }, 
-                        {
-                         "duration":120,
-                         "tileid":14
-                        }],
-                 "id":5
-                }],
-         "tilewidth":16
+         "source":"rock.tsj"
         }],
  "tilewidth":16,
  "type":"map",

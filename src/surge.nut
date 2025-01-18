@@ -799,7 +799,7 @@ Surge <- class extends Player {
 		inMelee = (anim == "ball" || anim == "jumpR" || anim == "charge")
 
 		//Controls
-		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall) {
+		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall && vspeed >= 0) {
 			canJump = 16
 		}
 		else {
@@ -954,7 +954,7 @@ Surge <- class extends Player {
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum)) {
+				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--

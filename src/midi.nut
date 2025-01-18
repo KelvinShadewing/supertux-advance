@@ -986,7 +986,7 @@ Midi <- class extends Player {
 
 	function ruNormal() {
 		//Controls
-		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || anim == "climbWall" || onPlatform()) {
+		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || anim == "climbWall" || onPlatform() && vspeed >= 0) {
 			canJump = 16
 		}
 		else {
@@ -1177,7 +1177,7 @@ Midi <- class extends Player {
 
 			//Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if((onPlatform(0, 2) || onPlatform(8, 2) || onPlatform(-8, 2) || !placeFree(x, y + 2)) && getcon("down", "hold", true, playerNum)) {
+				if((onPlatform(0, 2) || onPlatform(8, 2) || onPlatform(-8, 2) || !placeFree(x, y + 2)) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
@@ -1372,7 +1372,7 @@ Midi <- class extends Player {
 
 	function ruBall() {
 		//Controls
-		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || onPlatform()) && !onWall) {
+		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || onPlatform()) && !onWall && vspeed >= 0) {
 			canJump = 16
 		}
 		else {
