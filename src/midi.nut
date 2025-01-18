@@ -1372,7 +1372,7 @@ Midi <- class extends Player {
 
 	function ruBall() {
 		//Controls
-		if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || onPlatform()) && !onWall && vspeed >= 0) {
+		if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || onPlatform()) && !onWall && vspeed >= 0) {
 			canJump = 16
 		}
 		else {
@@ -1422,7 +1422,7 @@ Midi <- class extends Player {
 
 			//Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum)) {
+				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
@@ -1439,7 +1439,7 @@ Midi <- class extends Player {
 					else if(nowInWater) vspeed = -4.0
 					else vspeed = -6.4
 					didJump = true
-					if(stats.weapon != "air") canJump = 0
+					canJump = 0
 					popSound(sndMidiJump, 0)
 				}
 			}
