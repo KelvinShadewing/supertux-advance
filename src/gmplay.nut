@@ -1329,44 +1329,38 @@ playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the 
 	if(gvNumPlayers == 1) {
 		camx0 = _x.tofloat() - (gvScreenW / 2)
 		camy0 = _y.tofloat() - (gvScreenH / 2)
-
-		if(camx0 > ux) camx = ux
-		if(camx0 < 0) camx = 0
-		if(camy0 > uy) camy = uy
-		if(camy0 < 0) camy = 0
 	}
 
 	if(gvNumPlayers == 2) {
 		if(!gvSplitScreen) {
 			camx0 = _x.tofloat() - (gvScreenW / 2)
 			camy0 = _y.tofloat() - (gvScreenH / 2)
-
-			if(camx0 > ux) camx = ux
-			if(camx0 < 0) camx = 0
-			if(camy0 > uy) camy = uy
-			if(camy0 < 0) camy = 0
 		}
 
 		if(gvPlayer && target == gvPlayer) {
 			camx1 = _x.tofloat() - (gvScreenW / 4)
 			camy1 = _y.tofloat() - (gvScreenH / 2)
-
-			if(camx1 > ux) camx1 = ux
-			if(camx1 < 0) camx1 = 0
-			if(camy1 > uy) camy1 = uy
-			if(camy1 < 0) camy1 = 0
 		}
 
 		if(gvPlayer2 && target == gvPlayer2) {
 			camx2 = _x.tofloat() - (gvScreenW / 4)
 			camy2 = _y.tofloat() - (gvScreenH / 2)
-
-			if(camx2 > ux) camx2 = ux
-			if(camx2 < 0) camx2 = 0
-			if(camy2 > uy) camy2 = uy
-			if(camy2 < 0) camy2 = 0
 		}
 	}
+
+	// Constrain camera
+	if(camx0 > ux) camx0 = ux
+	if(camx0 < 0) camx0 = 0
+	if(camy0 > uy) camy0 = uy
+	if(camy0 < 0) camy0 = 0
+	if(camx1 > ux) camx1 = ux
+	if(camx1 < 0) camx1 = 0
+	if(camy1 > uy) camy1 = uy
+	if(camy1 < 0) camy1 = 0
+	if(camx2 > ux) camx2 = ux
+	if(camx2 < 0) camx2 = 0
+	if(camy2 > uy) camy2 = uy
+	if(camy2 < 0) camy2 = 0
 }
 
 TimeAttackSign <- class extends Actor {

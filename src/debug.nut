@@ -200,6 +200,8 @@ gmConsole <- function() {
 			dostr(gvConIn)
 		} catch (e) {
 			print(e)
+			local fe = split(e, "\n")[0]
+			gvConOut += "\n" + str(fe)
 		}
 		
 		if(debugHistory.len() > 0) debugHistory.pop()
