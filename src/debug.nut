@@ -196,7 +196,12 @@ gmConsole <- function() {
 
 	if(keyPress(k_backspace) && gvConIn.len() > 0) gvConIn = gvConIn.slice(0, -1)
 	if(keyPress(k_enter)) {
-		dostr(gvConIn)
+		try {
+			dostr(gvConIn)
+		} catch (e) {
+			print(e)
+		}
+		
 		if(debugHistory.len() > 0) debugHistory.pop()
 		debugHistory.push(gvConIn)
 		debugHistory.push("")
