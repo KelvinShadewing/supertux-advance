@@ -232,11 +232,6 @@ meTimeAttack <- [
 		func = function() { gvTARandomItem = !gvTARandomItem }
 	},
 	{
-		name = function() { return gvLangObj["time-attack-menu"]["coin-time"] + ": " + gvLangObj["menu-commons"][gvCoinTimeBonus ? "on" : "off"]}
-		func = function() { gvCoinTimeBonus = !gvCoinTimeBonus }
-		desc = function() { return gvLangObj["options-menu-desc"]["coin-time-bonus"] }
-	},
-	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { cursor = 0; menu = meMain },
 		back = function() { menu = meMain }

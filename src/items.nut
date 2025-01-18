@@ -95,8 +95,6 @@ CoinSmall <- class extends PhysAct{
 			deleteActor(id)
 			newActor(Spark, x, y)
 			game.coins++
-			if(gvTimeAttack && gvCoinTimeBonus)
-				game.igt -= 60
 			popSound(sndCoinSmall)
 		}
 		frame += 0.2

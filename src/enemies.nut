@@ -5392,7 +5392,7 @@ SkyDive <- class extends Enemy {
 	function run() {
 		base.run()
 
-		onGround = !placeFree(x, y + 1)
+		onGround = !placeFree(x, y + 1) || onPlatform(0, 1)
 		shape.setPos(x, y)
 		if(onGround && vspeed > 2 || health <= 0) {
 			die()

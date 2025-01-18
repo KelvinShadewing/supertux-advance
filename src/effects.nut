@@ -227,8 +227,6 @@ CoinEffect <- class extends Actor {
 		else if(_arr == 10) value = 10
 		game.levelCoins += value
 		base.constructor(_x, _y)
-		if(gvTimeAttack && gvCoinTimeBonus)
-			game.igt -= 15 * value
 		popSound(sndCoin, 0)
 	}
 

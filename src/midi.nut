@@ -733,7 +733,7 @@ Midi <- class extends Player {
 				break
 
 			case "ball":
-				slideframe += hspeed / 8.0
+				slideframe += (hspeed + ehspeed) / 8.0
 				slideframe = wrap(slideframe, 0, (hspeed < 0 ? 4 : 3))
 				frame = slideframe
 				break
@@ -950,7 +950,7 @@ Midi <- class extends Player {
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
-		inMelee = (anim == "ball" && fabs(hspeed) > rollMeleeSpeed)
+		inMelee = (anim == "ball" && fabs(hspeed + ehspeed) > rollMeleeSpeed)
 
 		//Defensive element
 		switch(stats.weapon) {
@@ -1047,18 +1047,17 @@ Midi <- class extends Player {
 			}
 
 			//Change run animation speed
-			if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
+			if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
 				if(hspeed >= 2) rspeed += accel / 2.0
 				else rspeed += accel
 				if(rspeed < hspeed) rspeed = hspeed
 			}
-			if(getcon("left", "hold", true, playerNum) && rspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeLeft || placeFree(x - 1, y - 2)) {
+			if(getcon("left", "hold", true, playerNum) && rspeed > -mspeed && anim != "wall" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeLeft || placeFree(x - 1, y - 2)) {
 				if(hspeed <= -2) rspeed += accel / 2.0
 				else rspeed -= accel
 				if(rspeed > hspeed) rspeed = hspeed
 			}
 			if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
-			if(anim == "slide") rspeed = hspeed
 
 			//On a ladder
 			if(anim == "climb") {
@@ -1560,10 +1559,10 @@ Midi <- class extends Player {
 				drawSpriteZ(2, sprite, an[anim][floor(frame)] + animOffset, x - camx, y - camy, 0, (anim == "ball" ? 0 : flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
 			if(shooting && anim == "walk") drawSpriteZ(2, sprite, an["armShoot"][min(3, shootTimer)], x - camx, y - camy, 0, flip)
-			if(anim == "ball" && fabs(hspeed) > rollMeleeSpeed && spinAlpha < 1.0) spinAlpha += 0.2
+			if(anim == "ball" && inMelee && spinAlpha < 1.0) spinAlpha += 0.2
 			if(spinAlpha > 0) spinAlpha -= 0.1
 			if(spinAlpha < 0) spinAlpha = 0
-			drawSpriteZ(2, sprBallSpin, floor((hspeed < 0 ? -frame : frame)), x - camx, y + 5 - camy, 0, int(hspeed < 0), 1, 1, spinAlpha)
+			drawSpriteZ(2, sprBallSpin, floor((hspeed + ehspeed < 0 ? -frame : frame)), x - camx, y + 5 - camy, 0, int(hspeed < 0), 1, 1, spinAlpha)
 			if(debug) {
 				setDrawColor(0x008000ff)
 				shape.draw()

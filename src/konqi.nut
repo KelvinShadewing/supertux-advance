@@ -518,6 +518,10 @@ Konqi <- class extends Player {
 				if(canJump > 0) canJump--
 				if(stats.weapon == "air" && stats.stamina < 1 && guardtime <= 0) stats.stamina += 0.02
 			}
+
+			if(rspeed > 0) rspeed -= 0.1
+			if(rspeed < 0) rspeed += 0.1
+
 			if(canMove) {
 				mspeed = 3.0
 				if(config.stickspeed) {
@@ -566,8 +570,6 @@ Konqi <- class extends Player {
 					else rspeed -= accel
 					if(rspeed > hspeed) rspeed = hspeed
 				}
-				if(rspeed > 0) rspeed -= 0.1
-				if(rspeed < 0) rspeed += 0.1
 				if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
 				if(anim == "slide") rspeed = hspeed
 
