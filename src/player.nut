@@ -197,6 +197,11 @@ Player <- class extends PhysAct {
 				}
 		}
 
+		if(invincible) {
+			stats.energy += 1.0
+			stats.stamina += 1.0
+		}
+
 		if(zoomies > 0) zoomies--
 		if(resTime > 0) resTime--
 

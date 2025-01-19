@@ -1028,7 +1028,7 @@ Midi <- class extends Player {
 				hspeed = 0
 			}
 
-			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
+			if(getcon("right", "hold", true, playerNum) && hspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid" && anim != "plantMine" && anim.find("shoot") == null) {
 				if(hspeed >= 2) {
 					if(slippery) hspeed += accel * 0.2
 					else hspeed += accel * 0.4
@@ -1037,7 +1037,7 @@ Midi <- class extends Player {
 				else hspeed += accel
 			}
 
-			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid" && anim != "plantMine" && anim != "shootTop") {
+			if(getcon("left", "hold", true, playerNum) && hspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "climbWall" && anim != "skid" && anim != "plantMine" && anim.find("shoot") == null) {
 				if(hspeed <= -2) {
 					if(slippery) hspeed -= accel * 0.2
 					else hspeed -= accel * 0.4
@@ -1806,14 +1806,15 @@ DeadMidi <- class extends Actor {
 	}
 
 	function draw() {
+
 		if(timer > 120) {
 			drawSprite(sprite, anim[min((150 - timer) / 15, 1)], x - camx, y - camy, 0, flip)
 			drawLight(sprLightBasic, 0, x - camx, y - camy)
 		}
 		else if(timer > 30) for(local i = 0; i < 8; i++) {
-			drawSprite(sprExplodeF, wrap((getFrames() / 4) + i, 1, 4), x + lendirX((120 - timer), (i * 45) + 22.5) - camx, y + lendirY((120 - timer), (i * 45) + 22.5) - camy, 0, randInt(4), min(1, float(timer - 30.0) / 30.0), min(1, float(timer - 30.0) / 30.0))
+			drawSprite(sprExplodeN, wrap((getFrames() / 4) + i, 1, 4), x + lendirX((120 - timer), (i * 45) + 22.5) - camx, y + lendirY((120 - timer), (i * 45) + 22.5) - camy, 0, randInt(4), min(1, float(timer - 30.0) / 30.0), min(1, float(timer - 30.0) / 30.0))
 			drawLight(sprLightFire, 0, x + lendirX((120 - timer), (i * 45) + 22.5) - camx, y + lendirY((120 - timer), (i * 45) + 22.5) - camy, 0, 0, min(0.3 + abs(sin((getFrames() + (i * 45)) / 8.0)) * 0.2, float(timer - 30.0) / 30.0), min(0.3 + abs(sin((getFrames() + (i * 45)) / 8.0)) * 0.2, float(timer - 30.0) / 30.0))
-			drawSprite(sprExplodeF, wrap((getFrames() / 4) + i + 2, 1, 4), x + lendirX((120 - timer) * 0.75, (i * 45)) - camx, y + lendirY((120 - timer) * 0.75, (i * 45)) - camy, 0, randInt(4), min(1, float(timer - 30.0) / 30.0), min(1, float(timer - 30.0) / 30.0))
+			drawSprite(sprExplodeN, wrap((getFrames() / 4) + i + 2, 1, 4), x + lendirX((120 - timer) * 0.75, (i * 45)) - camx, y + lendirY((120 - timer) * 0.75, (i * 45)) - camy, 0, randInt(4), min(1, float(timer - 30.0) / 30.0), min(1, float(timer - 30.0) / 30.0))
 			drawLight(sprLightFire, 0, x + lendirX((120 - timer) * 0.75, (i * 45)) - camx, y + lendirY((120 - timer) * 0.75, (i * 45)) - camy, 0, 0, min(0.3 + abs(sin((getFrames() + (i * 45) + 22.5) / 8.0)) * 0.2, float(timer - 30.0) / 30.0), min(0.3 + abs(sin((getFrames() + (i * 45) + 22.5) / 8.0)) * 0.2, float(timer - 30.0) / 30.0))
 		}
 	}

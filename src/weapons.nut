@@ -898,9 +898,9 @@ ExplodeTiny <- class extends WeaponEffect{
 
 		if(gvPlayer2) {
 			if(owner != gvPlayer2.id) if(floor(frame) <= 1 && distance2(x, y, gvPlayer2.x, gvPlayer2.y) < 64) {
-				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.5
-				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.5
-				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 0.8
+				if(x < gvPlayer2.x && gvPlayer2.hspeed < 8) gvPlayer2.hspeed += 0.8
+				if(x > gvPlayer2.x && gvPlayer2.hspeed > -8) gvPlayer2.hspeed -= 0.8
+				if(y >= gvPlayer2.y && gvPlayer2.vspeed > -8) gvPlayer2.vspeed -= 1.5
 			}
 		}
 	}
@@ -1138,7 +1138,7 @@ IceBreath <- class extends WeaponEffect {
 // SHOCK ATTACKS //
 ///////////////////
 
-ExplodeT <- class extends WeaponEffect{
+ExplodeS <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -1149,7 +1149,7 @@ ExplodeT <- class extends WeaponEffect{
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		popSound(sndExplodeT, 0)
+		popSound(sndExplodeS, 0)
 
 		shape = Cir(x, y, 8.0)
 	}
@@ -1177,7 +1177,7 @@ ExplodeT <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSprite(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeS, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1186,7 +1186,7 @@ ExplodeT <- class extends WeaponEffect{
 	}
 }
 
-ExplodeT2 <- class extends WeaponEffect{
+ExplodeS2 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -1227,7 +1227,7 @@ ExplodeT2 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSprite(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeS2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1236,7 +1236,7 @@ ExplodeT2 <- class extends WeaponEffect{
 	}
 }
 
-ExplodeT3 <- class extends WeaponEffect{
+ExplodeS3 <- class extends WeaponEffect{
 	frame = 0.0
 	shape = 0
 	piercing = -1
@@ -1318,7 +1318,7 @@ ExplodeT3 <- class extends WeaponEffect{
 	}
 
 	function draw() {
-		drawSprite(sprExplodeT2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprExplodeS2, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.5 - (frame / 10.0), 1.5 - (frame / 10.0))
 		if(debug) {
 			setDrawColor(0xff0000ff)
@@ -1800,7 +1800,7 @@ NutBomb <- class extends WeaponEffect {
 				t = ExplodeI
 				break
 			case "shock":
-				t = ExplodeT
+				t = ExplodeS
 				break
 			case "air":
 				t = ExplodeA
@@ -1827,7 +1827,7 @@ NutBomb <- class extends WeaponEffect {
 					c.power = 2
 					break
 				case "shock":
-					c = fireWeapon(ExplodeT2, x, y, alignment, owner)
+					c = fireWeapon(ExplodeS2, x, y, alignment, owner)
 					c.power = 2
 					break
 				case "air":
@@ -1853,7 +1853,7 @@ NutBomb <- class extends WeaponEffect {
 					c.power = 4
 					break
 				case "shock":
-					c = fireWeapon(ExplodeT3, x, y, alignment, owner)
+					c = fireWeapon(ExplodeS3, x, y, alignment, owner)
 					c.power = 4
 					break
 				case "earth":

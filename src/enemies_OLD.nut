@@ -1978,7 +1978,7 @@
 // 	}
 
 // 	function run() {
-// 		drawSprite(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+// 		drawSprite(sprExplodeS, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 // 		frame += 0.1
 
 // 		if(gvPlayer) {

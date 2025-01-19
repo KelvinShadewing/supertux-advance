@@ -81,7 +81,7 @@ BeamBug <- class extends Actor {
 		drawSprite(sprBeam, turn + ((getFrames() / 2) % 2), x - camx, y - camy + ((getFrames() / 4) % 2), 0, flip)
 		drawLight(sprLightBasic, 0, x - camx, y - camy)
 
-		if(debug || gvPlayAsBeam) {
+		if(debug) {
 			local s = str(hspeed) + "," + str(vspeed)
 			drawText(font, x - camx - (s.len() * 3), y - camy - 16, s)
 		}

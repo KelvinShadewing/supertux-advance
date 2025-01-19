@@ -3188,7 +3188,7 @@ Livewire <- class extends Enemy {
 				frame += 0.01 * squishTime
 				if(squishTime >= 180) {
 					die()
-					local c = fireWeapon(ExplodeT2, x, y, 0, id)
+					local c = fireWeapon(ExplodeS2, x, y, 0, id)
 					c.power = 4.0
 				}
 				drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)

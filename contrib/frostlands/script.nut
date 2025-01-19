@@ -713,13 +713,13 @@ bsod <- class extends Enemy {
 		}
 
 		if(_element == "fire") {
-			fireWeapon(ExplodeT, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
+			fireWeapon(ExplodeS, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
 			die()
 			return
 		}
 
 		if(_element == "ice") {
-			fireWeapon(ExplodeT, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
+			fireWeapon(ExplodeS, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
 			die()
 			return
 		}

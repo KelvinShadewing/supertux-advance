@@ -811,6 +811,9 @@ Surge <- class extends Player {
 
 		onWall = (anim == "wall" || an[anim] == an["fallW"])
 
+		if(rspeed > 0) rspeed -= 0.1
+		if(rspeed < 0) rspeed += 0.1
+
 		if(canMove) {
 			mspeed = 6.0
 			if(config.stickspeed) {
@@ -889,8 +892,6 @@ Surge <- class extends Player {
 				else rspeed -= accel
 				if(rspeed > hspeed) rspeed = min(hspeed, hspeed + ehspeed)
 			}
-			if(rspeed > 0) rspeed -= 0.1
-			if(rspeed < 0) rspeed += 0.1
 			if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
 			if(anim == "ball") rspeed = hspeed
 
@@ -1146,7 +1147,7 @@ Surge <- class extends Player {
 				break
 
 			case "shock":
-				shockEffect = fireWeapon(ExplodeT2, x, y, 1, id).id
+				shockEffect = fireWeapon(ExplodeS2, x, y, 1, id).id
 				if(!getcon("down", "hold", true, playerNum)) {
 					vspeed = -6.0
 					anim = "jumpU"

@@ -1961,7 +1961,7 @@ ElectricWaveCS  <- class extends WeaponEffect {
 	function animation() {}
 
 	function destructor() {
-		fireWeapon(ExplodeT, x, y, alignment, owner)
+		fireWeapon(ExplodeS, x, y, alignment, owner)
 	}
 }
 

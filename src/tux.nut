@@ -932,7 +932,7 @@ Tux <- class extends Player {
 						if(!flip) c.hspeed = 1
 						else c.hspeed = -1
 						c.hspeed += hspeed + ehspeed
-						playSound(sndExplodeT, 0)
+						playSound(sndExplodeS, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1074,7 +1074,7 @@ Tux <- class extends Player {
 						if(!flip) c.hspeed = 4
 						else c.hspeed = -4
 						c.hspeed += hspeed + ehspeed
-						playSound(sndExplodeT, 0)
+						playSound(sndExplodeS, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -2.5
 							c.hspeed /= 1.5
@@ -1413,7 +1413,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Shockball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						playSound(sndExplodeT, 0)
+						playSound(sndExplodeS, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -3
 							if(hspeed != 0) c.hspeed *= 0.75
@@ -1604,7 +1604,7 @@ Tux <- class extends Player {
 						local c = fireWeapon(Shockball, x, y, 1, id)
 						if(!flip) c.hspeed = 3
 						else c.hspeed = -3
-						playSound(sndExplodeT, 0)
+						playSound(sndExplodeS, 0)
 						if(getcon("up", "hold", true, playerNum)) {
 							c.vspeed = -3
 							if(hspeed != 0) c.hspeed *= 0.75

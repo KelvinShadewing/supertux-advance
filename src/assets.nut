@@ -640,10 +640,10 @@ sprExplodeN2 <- newSprite("res/gfx/explodeN2.png", 55, 55, 27, 27)
 defExplodeN2 <- sprExplodeN2
 sprExplodeN3 <- newSprite("res/gfx/explodeN3.png", 87, 87, 43, 43)
 defExplodeN3 <- sprExplodeN3
-sprExplodeT <- newSprite("res/gfx/explodeT.png", 32, 32, 16, 16)
-defExplodeT <- sprExplodeT
-sprExplodeT2 <- newSprite("res/gfx/explodeT2.png", 64, 64, 32, 32)
-defExplodeT2 <- sprExplodeT2
+sprExplodeS <- newSprite("res/gfx/explodeS.png", 32, 32, 16, 16)
+defExplodeS <- sprExplodeS
+sprExplodeS2 <- newSprite("res/gfx/explodeS2.png", 64, 64, 32, 32)
+defExplodeS2 <- sprExplodeS2
 sprExplodeA <- newSprite("res/gfx/explodeA.png", 32, 32, 16, 30)
 defExplodeA <- sprExplodeA
 sprExplodeE <- newSprite("res/gfx/explodeE.png", 32, 32, 16, 20)
@@ -908,7 +908,7 @@ sndExplodeF <- loadSound("res/snd/explodeF.ogg")
 sndExplodeF2 <- loadSound("res/snd/explodeF2.ogg")
 sndExplodeN <- loadSound("res/snd/explodeN.ogg")
 sndExplodeI <- loadSound("res/snd/explodeI.ogg")
-sndExplodeT <- loadSound("res/snd/explodeT.ogg")
+sndExplodeS <- loadSound("res/snd/explodeS.ogg")
 sndExplodeA <- loadSound("res/snd/explodeA.ogg")
 sndExplodeA2 <- loadSound("res/snd/explodeA2.ogg")
 sndExplodeA3 <- loadSound("res/snd/explodeA3.ogg")
