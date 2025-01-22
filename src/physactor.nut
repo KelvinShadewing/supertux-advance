@@ -137,8 +137,8 @@ PhysAct <- class extends Actor{
 		foreach(i in actor["MoPlat"]) {
 			if(hitTest(shape, i.shape)) {
 				//Get angle between actors
-				local tx = toRange(i.x + hspeed, shape.x - shape.w, shape.x + shape.w)
-				local ty = toRange(i.y + vspeed, shape.y - shape.h, shape.y + shape.h)
+				local tx = toRange(i.x - hspeed, shape.x - shape.w, shape.x + shape.w)
+				local ty = toRange(i.y - vspeed, shape.y - shape.h, shape.y + shape.h)
 				
 				local slopeA = pointAngle(0, 0, fabs(i.x - tx), fabs(i.y - ty))
 
@@ -154,26 +154,34 @@ PhysAct <- class extends Actor{
 				//Move out of platform box
 				if(slopeA >= slopeB) {
 					if(y < i.y) {
-						if(placeFree(x, i.y - shape.h - shape.oy - i.shape.h)) y = i.y - shape.h - shape.oy - i.shape.h
+						if(placeFree(x, i.y - shape.h - shape.oy - i.shape.h))
+							y = i.y - shape.h - shape.oy - i.shape.h
 						result = -1
-						if(useDown && placeFree(x + i.hspeed, y + i.vspeed)) y += i.vspeed
+						if(useDown && placeFree(x + i.hspeed, y + i.vspeed))
+							y += i.vspeed
 					}
 					else {
-						if(placeFree(x, i.y + shape.h - shape.oy + i.shape.h)) y = i.y + shape.h - shape.oy + i.shape.h
+						if(placeFree(x, i.y + shape.h - shape.oy + i.shape.h))
+							y = i.y + shape.h - shape.oy + i.shape.h
 						result = 1
-						if(useUp && placeFree(x + i.hspeed, y + i.vspeed)) y += i.vspeed
+						if(useUp && placeFree(x + i.hspeed, y + i.vspeed))
+							y += i.vspeed
 					}
 				}
 				else {
 					if(x < i.x) {
-						if(placeFree(i.x - (i.shape.w) - shape.w - shape.ox, y)) x = i.x - (i.w * 8) - shape.w - shape.ox
+						if(placeFree(i.x - (i.shape.w * 8) - shape.w - shape.ox, y))
+							x = i.x - (i.w * 8) - shape.w - shape.ox
 						result = -2
-						if(useLeft && placeFree(x + i.hspeed, y + i.vspeed)) x += i.hspeed
+						if(useLeft && placeFree(x + i.hspeed, y + i.vspeed))
+							x += i.hspeed
 					}
 					else {
-						if(placeFree(i.x + (i.shape.w) + shape.w - shape.ox, y)) x = i.x + (i.w * 8) + shape.w - shape.ox
+						if(placeFree(i.x + (i.shape.w * 8) + shape.w - shape.ox, y))
+							x = i.x + (i.w * 8) + shape.w - shape.ox
 						result = 2
-						if(useRight && placeFree(x + i.hspeed, y + i.vspeed)) x += i.hspeed
+						if(useRight && placeFree(x + i.hspeed, y + i.vspeed))
+							x += i.hspeed
 					}
 
 				}

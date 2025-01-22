@@ -624,108 +624,110 @@ rebindKeys <- function(newkey) {
 		dbgOceanMoving()
 
 		local keyname = ""
+		local tempkey = -1
+		tempkey = keyPressAny()
 		switch(newkey) {
 			case 0:
 				keyname = gvLangObj["controls-menu"]["up-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.up = keyPressAny()
 					done = true
 				}
 				break
 			case 1:
 				keyname = gvLangObj["controls-menu"]["down-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.down = keyPressAny()
 					done = true
 				}
 				break
 			case 2:
 				keyname = gvLangObj["controls-menu"]["left-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.left = keyPressAny()
 					done = true
 				}
 				break
 			case 3:
 				keyname = gvLangObj["controls-menu"]["right-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.right = keyPressAny()
 					done = true
 				}
 				break
 			case 4:
 				keyname = gvLangObj["controls-menu"]["jump-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.jump = keyPressAny()
 					done = true
 				}
 				break
 			case 5:
 				keyname = gvLangObj["controls-menu"]["shoot-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.shoot = keyPressAny()
 					done = true
 				}
 				break
 			case 6:
 				keyname = gvLangObj["controls-menu"]["spec1-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.spec1 = keyPressAny()
 					done = true
 				}
 				break
 			case 7:
 				keyname = gvLangObj["controls-menu"]["spec2-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.spec2 = keyPressAny()
 					done = true
 				}
 				break
 			case 8:
 				keyname = gvLangObj["controls-menu"]["pause-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1) {
 					config.key.pause = keyPressAny()
 					done = true
 				}
 				break
 			case 9:
 				keyname = gvLangObj["controls-menu"]["item-swap-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.swap = keyPressAny()
 					done = true
 				}
 				break
 			case 10:
 				keyname = gvLangObj["controls-menu"]["menu-accept-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.accept = keyPressAny()
 					done = true
 				}
 				break
 			case 11:
 				keyname = gvLangObj["controls-menu"]["cam-left-peek-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.leftPeek = keyPressAny()
 					done = true
 				}
 				break
 			case 12:
 				keyname = gvLangObj["controls-menu"]["cam-right-peek-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.rightPeek = keyPressAny()
 					done = true
 				}
 				break
 			case 13:
 				keyname = gvLangObj["controls-menu"]["cam-down-peek-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.downPeek = keyPressAny()
 					done = true
 				}
 				break
 			case 14:
 				keyname = gvLangObj["controls-menu"]["cam-up-peek-selection"]
-				if(keyPressAny() != -1) {
+				if(tempkey != -1 && tempkey != k_escape) {
 					config.key.upPeek = keyPressAny()
 					done = true
 				}
@@ -734,6 +736,10 @@ rebindKeys <- function(newkey) {
 				done = true
 				break
 		}
+
+		if(tempkey == k_escape)
+			done = true
+
 		local message = format(gvLangObj["controls-menu"]["press-key-for"], keyname)
 
 		setDrawColor(0x00000080)
@@ -763,7 +769,7 @@ rebindGamepad <- function(joystep, joypad = 0) {
 	while(!done) {
 		dbgOceanMoving()
 
-		if(keyPress(k_escape)) done = true
+		if(keyPress(k_escapeape)) done = true
 		local keyname = ""
 		switch(joystep) {
 			case 4:
@@ -919,7 +925,7 @@ rebindJoyPeek <- function(axis, player = 0) {
 	update()
 
 	while(!done) {
-		if(keyPress(k_escape)) done = true
+		if(keyPress(k_escapeape)) done = true
 
 		for(local i = 0; i < 10; i++) {
 			if(abs(joyAxis(joy.index, i)) >= 1000 && abs(joyAxis(joy.index, i)) <= 10000) {

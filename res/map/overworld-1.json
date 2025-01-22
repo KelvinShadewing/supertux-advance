@@ -386,7 +386,7 @@
                  "gid":1069,
                  "height":16,
                  "id":40,
-                 "name":"",
+                 "name":"soon",
                  "rotation":0,
                  "type":"",
                  "visible":false,
@@ -1206,17 +1206,8 @@
                 }]
         }, 
         {
-         "columns":5,
          "firstgid":963,
-         "image":"..\/gfx\/solid.png",
-         "imageheight":336,
-         "imagewidth":80,
-         "margin":0,
-         "name":"solid",
-         "spacing":0,
-         "tilecount":105,
-         "tileheight":16,
-         "tilewidth":16
+         "source":"solid.tsj"
         }, 
         {
          "columns":7,
