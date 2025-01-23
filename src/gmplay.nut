@@ -1189,7 +1189,7 @@ gmPlay <- function() {
 		//Draw level IGT
 		local timey = 0
 		if(gvNumPlayers >= 2 && !gvNetPlay) timey = 32
-		if(gvDoIGT && (config.showleveligt) && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
+		if(gvDoIGT && (config.showleveligt || gvTimeAttack) && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
 
 		//Draw offscreen player
 		if(gvPlayer && gvPlayer.y < -8) {
@@ -1234,7 +1234,7 @@ gmPlay <- function() {
 		}
 		//Other items could be put in the row like this as well
 
-		if(debug || config.showkeys)
+		if(debug || config.showkeys || gvTimeAttack)
 			displayKeys()
 	}
 	else {
@@ -1262,7 +1262,7 @@ gmPlay <- function() {
 	}
 
 	//Draw global IGT
-	if((config.showglobaligt) && levelEndRunner != 1) {
+	if((config.showglobaligt || gvTimeAttack) && levelEndRunner != 1) {
 		local gtd = formatTime(max(game.igt, 0)) //Game time to draw
 		drawText(font2, (gvScreenW / 2) - (gtd.len() * 4), gvScreenH - 24, gtd)
 	}
