@@ -225,30 +225,49 @@ NPC <- class extends Actor {
 	function _typeof() { return "NPC" }
 }
 
+freeCharacter <- function(name) {
+	if(game.characters.len() >= gvCharacters.len() || !(name in gvCharacters))
+		return
+
+	if(!("freed" in game.state))
+		game.state.freed <- {}
+
+	if(name in game.state.freed)
+		return
+	game.state.freed[name] <- true
+
+	if(gvTARandomPlayer && name in gvCharacters) {
+		local nl = []
+		foreach(k, i in gvCharacters)
+			nl.push(k)
+
+		do {
+			name = nl[randInt(nl.len())]
+		} while (name in game.characters)
+	}
+
+	game.friends[name] <- true
+	if(name in gvCharacters)
+		game.characters[name] <- true
+}
+
 freeKonqi <- function() {
-	game.characters["Konqi"] <- true
-	game.characters["Katie"] <- true
-	game.friends["Konqi"] <- true
-	game.friends["Katie"] <- true
+	freeCharacter("Konqi")
+	freeCharacter("Katie")
 }
 
 freeMidi <- function() {
-	game.characters["Midi"] <- true
-	game.friends["Midi"] <- true
-	game.characters["Kiki"] <- true
-	game.friends["Kiki"] <- true
+	freeCharacter("Midi")
+	freeCharacter("Kiki")
 }
 
 freeSurge <- function() {
-	game.characters["Surge"] <- true
-	game.friends["Surge"] <- true
-	game.characters["Dashie"] <- true
-	game.friends["Dashie"] <- true
+	freeCharacter("Surge")
+	freeCharacter("Dashie")
 }
 
 freeNeverball <- function() {
-	game.characters["Neverball"] <- true
-	game.friends["Neverball"] <- true
+	freeCharacter("Neverball")
 }
 
 ////////////

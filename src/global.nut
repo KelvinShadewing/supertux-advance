@@ -46,11 +46,7 @@ createNewGameObject <- function () {
 			false
 		] //Color blocks activated by respective switches
 		turnOffBlocks = false,
-		characters = { //List of unlocked characters
-			Tux = true
-			Penny = true
-			Lutris = true
-		}
+		characters = {} //List of unlocked characters
 		secretOrbs = [
 			false,
 			false,

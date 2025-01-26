@@ -252,7 +252,7 @@ StageIcon <- class extends PhysAct {
 
 		shape = Rec(x, y, 8, 8, 0)
 		level = _arr
-		if(gvTARandomLevel)
+		if(gvTARandomLevel && level in game.ranLevList)
 			level = game.ranLevList[level]
 		levelName = level
 	}
@@ -379,7 +379,7 @@ LockIcon <- class extends PhysAct {
 	}
 
 	function run() {
-		if(game.unblocked.rawin(key) || game.completed.rawin(key)) {
+		if(game.unblocked.rawin(key) || game.completed.rawin(key) || gvTARandomLevel) {
 			tileSetSolid(x, y, 1)
 			deleteActor(id)
 		}

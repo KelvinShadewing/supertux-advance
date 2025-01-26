@@ -824,7 +824,7 @@ Surge <- class extends Player {
 			}
 
 			if(invincible) mspeed += 0.4
-			if(nowInWater) mspeed *= 0.4
+			if(nowInWater && stats.weapon != "water") mspeed *= 0.4
 			if(zoomies > 0) mspeed *= 2.0
 
 			//Moving left and right
@@ -840,7 +840,7 @@ Surge <- class extends Player {
 				accel *= 2.0
 			}
 
-			if(nowInWater)
+			if(nowInWater && stats.weapon != "water")
 				accel *= 0.6
 
 			sideRunning = false
@@ -961,9 +961,9 @@ Surge <- class extends Player {
 					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
 					if(anim == "stand" || anim == "walk") anim = "jumpT"
 				}
-				else if(canJump > 0 || nowInWater) {
+				else if(canJump > 0 || nowInWater && stats.weapon != "water") {
 					jumpBuffer = 0
-					if(anim == "climb" || nowInWater) {
+					if(anim == "climb" || nowInWater && stats.weapon != "water") {
 						vspeed = -3
 						if(anim == "climb") {
 							vspeed = -5

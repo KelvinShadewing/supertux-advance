@@ -1386,7 +1386,7 @@ createPlatformActors <- function(n, i, c) {
 				gvNumPlayers = 0
 
 				//Randomize
-				if(gvTARandomPlayer) {
+				if(gvTARandomPlayer && !gvTimeAttack) {
 					local pl = [] //Get list of player characters
 					foreach(k, i in gvCharacters) {
 						if(k in game.characters)

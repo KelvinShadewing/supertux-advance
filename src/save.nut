@@ -8,6 +8,11 @@ newGame <- function(f) {
 		pennyton = 0
 		fishmines = 0
 	}
+	game.characters = {
+		Tux = true
+		Penny = true
+		Lutris = true
+	}
 
 	if(typeof f == "integer") {
 		game.randPlayer = gvTARandomPlayer
@@ -16,20 +21,25 @@ newGame <- function(f) {
 
 		//Break RNG
 		if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
-			randInt(getFrames())
+			randSeed()
 
-		//Generate random levels list
-		local nl = []
-		while(nl.len() < gvStoryLevelList.len()) {
-			for(local i = 0; i < gvStoryLevelList.len(); i++) {
-				if(randInt(10) == 0 && !(nl.find(gvStoryLevelList[i])))
-					nl.push(gvStoryLevelList[i])
+		if(gvTARandomLevel) {
+			//Generate random levels list
+			local nl = []
+			while(nl.len() < gvStoryLevelList.len()) {
+				foreach(i in gvStoryLevelList) {
+					if(randInt(100) == 0 && !nl.find(i)) {
+						nl.push(i)
+						break
+					}
+				}
 			}
-		}
 
-		//Add list to game file
-		for(local i = 0; i < nl.len(); i++) {
-			game.ranLevList[gvStoryLevelList[i]] <- nl[i]
+			//Add list to game file
+			for(local i = 0; i < nl.len(); i++) {
+				print(nl[i])
+				game.ranLevList[gvStoryLevelList[i]] <- nl[i]
+			}
 		}
 
 		//Set random player characters
@@ -71,6 +81,10 @@ newTimeAttack <- function() {
 		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
 		print("Found text.json")
 	}
+	//Break RNG
+	if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
+		randSeed()
+
 	if(gvTARandomLevel) {
 		local tempCourse = gvTACourse
 		gvTACourse = []
