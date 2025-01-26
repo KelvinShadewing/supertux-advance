@@ -39,7 +39,8 @@
 	},
 
 	"new-game-menu" : {
-		"file-exists" : "[FILE EXISTS]"
+		"file-exists" : "[FILE EXISTS]",
+		"begin" : "Begin Game"
 	},
 
 	"load-game-menu" : {

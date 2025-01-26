@@ -4,7 +4,7 @@ gvTAStart <- "aurora-learn"
 gvTAStep <- 0
 gvTACourse <- 0
 gvTARandomLevel <- false
-gvTARandomChar <- false
+gvTARandomPlayer <- false
 gvTARandomItem <- false
 gvCoinTimeBonus <- false
 

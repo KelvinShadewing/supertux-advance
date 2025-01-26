@@ -8,6 +8,50 @@ newGame <- function(f) {
 		pennyton = 0
 		fishmines = 0
 	}
+
+	if(typeof f == "integer") {
+		game.randPlayer = gvTARandomPlayer
+		game.randItem = gvTARandomItem
+		game.randLevel = gvTARandomLevel
+
+		//Break RNG
+		if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
+			randInt(getFrames())
+
+		//Generate random levels list
+		local nl = []
+		while(nl.len() < gvStoryLevelList.len()) {
+			for(local i = 0; i < gvStoryLevelList.len(); i++) {
+				if(randInt(10) == 0 && !(nl.find(gvStoryLevelList[i])))
+					nl.push(gvStoryLevelList[i])
+			}
+		}
+
+		//Add list to game file
+		for(local i = 0; i < nl.len(); i++) {
+			game.ranLevList[gvStoryLevelList[i]] <- nl[i]
+		}
+
+		//Set random player characters
+		if(gvTARandomPlayer) {
+			game.characters.clear()
+
+			for(local i = 0; i < 3; i++) {
+				local np = ""
+				
+				//Pick a new character
+				while(np == "") foreach(k, j in gvCharacters) {
+					if(randInt(100) == 0 && !(k in game.characters)) {
+						np = k
+						break
+					}
+				}
+
+				game.characters[np] <- true
+			}
+		}
+	}
+
 	startPlay("res/map/aurora-pennyton.json", true, true)
 }
 
@@ -62,6 +106,9 @@ loadGame <- function(f) {
 				}
 			}
 		}
+		gvTARandomLevel = game.rawin("randLevel") ? game.randLevel : false
+		gvTARandomPlayer = game.rawin("randPlayer") ? game.randPlayer : false
+		gvTARandomItem = game.rawin("randItem") ? game.randItem : false
 		startOverworld(game.world)
 	}
 }

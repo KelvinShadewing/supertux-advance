@@ -6801,7 +6801,7 @@ Snippin <- class extends Enemy {
 
 	constructor(_x, _y, _arr = 0) {
 		base.constructor(_x, _y, _arr)
-		mode = _arr
+		mode = int(_arr)
 		switch(mode) {
 			case 0:
 				sprite = sprSnailBlue

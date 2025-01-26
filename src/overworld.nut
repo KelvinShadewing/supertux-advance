@@ -252,6 +252,8 @@ StageIcon <- class extends PhysAct {
 
 		shape = Rec(x, y, 8, 8, 0)
 		level = _arr
+		if(gvTARandomLevel)
+			level = game.ranLevList[level]
 		levelName = level
 	}
 

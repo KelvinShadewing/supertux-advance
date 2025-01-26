@@ -139,7 +139,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	}
 
 	//Randomizer settings
-	if(gvTimeAttack && gvTARandomChar) {
+	if(gvTimeAttack && gvTARandomPlayer) {
 		local cl = []
 		foreach(key, i in gvCharacters)
 			cl.push(key)
@@ -1384,6 +1384,22 @@ createPlatformActors <- function(n, i, c) {
 			}
 			else {
 				gvNumPlayers = 0
+
+				//Randomize
+				if(gvTARandomPlayer) {
+					local pl = [] //Get list of player characters
+					foreach(k, i in gvCharacters) {
+						if(k in game.characters)
+							pl.push(k)
+					}
+
+					game.playerChar = pl[randInt(pl.len())]
+
+					if(game.playerChar2 != "") do {
+						game.playerChar2 = pl[randInt(pl.len())]
+					} while (game.playerChar2 == game.playerChar)
+				}
+
 				if(!gvPlayer && getroottable().rawin(game.playerChar)) {
 					if(game.check == false) {
 						c = actor[newActor(getroottable()[game.playerChar], i.x + 8, i.y - 16)]

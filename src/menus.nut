@@ -224,8 +224,8 @@ meTimeAttack <- [
 		func = function() { gvTARandomLevel = !gvTARandomLevel }
 	},
 	{
-		name = function() { return gvLangObj["time-attack-menu"]["random-char"] + ": " + gvLangObj["menu-commons"][gvTARandomChar ? "on" : "off"]}
-		func = function() { gvTARandomChar = !gvTARandomChar }
+		name = function() { return gvLangObj["time-attack-menu"]["random-char"] + ": " + gvLangObj["menu-commons"][gvTARandomPlayer ? "on" : "off"]}
+		func = function() { gvTARandomPlayer = !gvTARandomPlayer }
 	},
 	{
 		name = function() { return gvLangObj["time-attack-menu"]["random-item"] + ": " + gvLangObj["menu-commons"][gvTARandomItem ? "on" : "off"]}
@@ -241,37 +241,7 @@ meTimeAttack <- [
 meTimeAttackWorld <- [
 	{
 		name = function() { return gvLangObj["level"]["full-game"] },
-		func = function() { game.path = "res/map/"; gvTACourse = [
-			"aurora-learn",
-			"aurora-crystal",
-			"aurora-iceguy",
-			"aurora-slip",
-			"aurora-subsea",
-			"aurora-tnt",
-			"aurora-fishy",
-			"aurora-sense",
-			"aurora-branches",
-			"aurora-frozen",
-			"aurora-forest",
-			"aurora-bridge",
-			"aurora-wind",
-			"aurora-steps",
-			"aurora-fort",
-			"nessland-left",
-			"nessland-attack",
-			"nessland-earth",
-			"nessland-mint",
-			"nessland-owl",
-			"nessland-shells",
-			"nessland-henge",
-			"nessland-situation",
-			"nessland-fly",
-			"nessland-cliffs",
-			"nessland-well",
-			"nessland-bedrock",
-			"nessland-crush",
-			"nessland-night"
-		]; menu = meDifficulty },
+		func = function() { game.path = "res/map/"; gvTACourse = gvStoryLevelList; menu = meDifficulty },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
 	},
 	{
@@ -1234,15 +1204,39 @@ meNewGame <- [
 	}
 ]
 
+meNewGameOptions <- [
+	{
+		name = function() { return gvLangObj["new-game-menu"]["begin"] }
+		func = function() { newGame(game.file) }
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["random-level"] + ": " + gvLangObj["menu-commons"][gvTARandomLevel ? "on" : "off"]}
+		func = function() { gvTARandomLevel = !gvTARandomLevel }
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["random-char"] + ": " + gvLangObj["menu-commons"][gvTARandomPlayer ? "on" : "off"]}
+		func = function() { gvTARandomPlayer = !gvTARandomPlayer }
+	},
+	{
+		name = function() { return gvLangObj["time-attack-menu"]["random-item"] + ": " + gvLangObj["menu-commons"][gvTARandomItem ? "on" : "off"]}
+		func = function() { gvTARandomItem = !gvTARandomItem }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["cancel"] }
+		func = function() { menu = meNewGame }
+		back = function() { menu = meNewGame }
+	}
+]
+
 meOverwrite <- [
 	{
 		name = function() { drawText(font2, screenW() / 2 - (15 * 4), screenH() / 2, "Overwrite save?"); return gvLangObj["menu-commons"]["no"] }
-		func = function() { menu = meNewGame; }
-		back = function() { menu = meNewGame; }
+		func = function() { menu = meNewGame }
+		back = function() { menu = meNewGame }
 	},
 	{
 		name = function() { return gvLangObj["menu-commons"]["yes"] }
-		func = function() { newGame(game.file) }
+		func = function() { cursor = 0; menu = meNewGameOptions }
 	}
 ]
 

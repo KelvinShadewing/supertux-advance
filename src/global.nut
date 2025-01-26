@@ -100,6 +100,10 @@ createNewGameObject <- function () {
 		}
 		state = {}
 		hasPidgin = 0
+		randLevel = false
+		randPlayer = false
+		randItem = false
+		ranLevList = {}
 	}
 
 	return ngo
@@ -406,3 +410,35 @@ enWeapons <- {
 }
 
 myTarget <- null
+
+gvStoryLevelList <- [
+	"aurora-learn",
+	"aurora-crystal",
+	"aurora-iceguy",
+	"aurora-slip",
+	"aurora-subsea",
+	"aurora-tnt",
+	"aurora-fishy",
+	"aurora-sense",
+	"aurora-branches",
+	"aurora-frozen",
+	"aurora-forest",
+	"aurora-bridge",
+	"aurora-wind",
+	"aurora-steps",
+	"aurora-fort",
+	"nessland-left",
+	"nessland-attack",
+	"nessland-earth",
+	"nessland-mint",
+	"nessland-owl",
+	"nessland-shells",
+	"nessland-henge",
+	"nessland-situation",
+	"nessland-fly",
+	"nessland-cliffs",
+	"nessland-well",
+	"nessland-bedrock",
+	"nessland-crush",
+	"nessland-night"
+]
