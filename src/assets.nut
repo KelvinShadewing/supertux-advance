@@ -654,9 +654,9 @@ sprExplodeW2 <- newSprite("res/gfx/explodeW2.png", 64, 64, 32, 32)
 defExplodeW2 <- sprExplodeW2
 sprWaterSurface <- newSprite("res/gfx/watersurface.png", 16, 4)
 defWaterSurface <- sprWaterSurface
-sprLavaSurface <- newSprite("res/gfx/lavasurface.png", 16, 16, 0, 8)
+sprLavaSurface <- newSprite("res/gfx/lavasurface.png", 16, 8, 0, -8)
 defLavaSurface <- sprLavaSurface
-sprLava <- newSprite("res/gfx/lava.png", 16, 16, 0, 8)
+sprLava <- newSprite("res/gfx/lava.png", 16, 16, 0, 0)
 defLava <- sprLava
 sprHoneySurface <- newSprite("res/gfx/honey-surface.png", 16, 4)
 defHoneySurface <- sprHoneySurface

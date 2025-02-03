@@ -769,7 +769,7 @@ rebindGamepad <- function(joystep, joypad = 0) {
 	while(!done) {
 		dbgOceanMoving()
 
-		if(keyPress(k_escapeape)) done = true
+		if(keyPress(k_escape)) done = true
 		local keyname = ""
 		switch(joystep) {
 			case 4:
@@ -925,7 +925,7 @@ rebindJoyPeek <- function(axis, player = 0) {
 	update()
 
 	while(!done) {
-		if(keyPress(k_escapeape)) done = true
+		if(keyPress(k_escape)) done = true
 
 		for(local i = 0; i < 10; i++) {
 			if(abs(joyAxis(joy.index, i)) >= 1000 && abs(joyAxis(joy.index, i)) <= 10000) {

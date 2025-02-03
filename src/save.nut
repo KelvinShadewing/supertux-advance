@@ -22,6 +22,8 @@ newGame <- function(f) {
 		//Break RNG
 		if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
 			randSeed()
+		else
+			randSeed()
 
 		if(gvTARandomLevel) {
 			//Generate random levels list
@@ -84,6 +86,8 @@ newTimeAttack <- function() {
 	//Break RNG
 	if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
 		randSeed()
+	else
+		randSeed(0)
 
 	if(gvTARandomLevel) {
 		local tempCourse = gvTACourse

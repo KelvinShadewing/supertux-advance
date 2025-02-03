@@ -4398,7 +4398,7 @@ MrIceguy <- class extends Enemy {
 
 		if(routine == ruSlide) {
 			if(hspeed != 0) hspeed = 0.0
-			else if(gvPlayer) hspeed = (max(4.0, fabs(gvPlayer.hspeed * 1.5))) * (x <=> gvPlayer.x)
+			else if(_by) hspeed = (max(4.0, fabs(_by.hspeed * 1.5))) * (x <=> _by.x)
 			blinking = blinkMax
 			popSound(sndKick)
 		}
@@ -6771,6 +6771,10 @@ Snippin <- class extends Enemy {
 	angle = 0
 	trail = null
 	rollTimer = 0
+	friction = 0.01
+	slideTimer = 0
+	hurtTimer = 0
+	target = 0
 
 	an = {
 		crawl = [0, 1]
@@ -6866,6 +6870,16 @@ Snippin <- class extends Enemy {
 				}
 				break
 			case "roll":
+				frame += fabs(hspeed) / 8.0
+				break
+			case "peek":
+				frame += 0.1
+				if(frame >= an["peek"].len()) {
+					rolling = false
+					anim = "crawl"
+					x = round(x)
+					y = round(y)
+				}
 				break
 		}
 	}
@@ -6876,23 +6890,23 @@ Snippin <- class extends Enemy {
 		else
 			gravity = 0.0
 		
-		hspeed += lendirX(gravity, direction + (flip == 0 ? 90 : -90))
-		vspeed += lendirY(gravity, direction + (flip == 0 ? 90 : -90))
+		if(!rolling) {
+			hspeed += lendirX(gravity, direction + (flip == 0 ? 90 : -90))
+			vspeed += lendirY(gravity, direction + (flip == 0 ? 90 : -90))
 
-		if(abs(vspeed) > 1 || abs(hspeed) > 1)
+			if(abs(vspeed) > 1 || abs(hspeed) > 1)
 			direction = (flip == 0 ? 0 : 180)
 
-		if(placeFree(x + hspeed, y + vspeed)) {
-			y += vspeed
-			x += hspeed
-		}
-		else {
-			vspeed /= 2.0
-			hspeed /= 2.0
-		}
+			if(placeFree(x + hspeed, y + vspeed)) {
+				y += vspeed
+				x += hspeed
+			}
+			else {
+				vspeed /= 2.0
+				hspeed /= 2.0
+			}
 
 		//Try to move along current surface
-		if(!rolling) {
 			local didMove = false
 			local mspeed = 0.5 + (mode * 0.5)
 
@@ -7047,22 +7061,100 @@ Snippin <- class extends Enemy {
 		}
 		else {
 			base.physics()
+			ruSlide()
 		}
 	}
 
-	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-		if(blinking)
-			return
-		blinking = 30
-
-		if(_stomp) {
-			if(!rolling) {
-				anim = "hide"
-				frame = 0.0
+	function ruSlide() {
+		if(fabs(hspeed) > 0) {
+			if(getFrames() % 4 == 0) {
+				if(hspeed > 0) hspeed -= 0.01
+				if(hspeed < 0) hspeed += 0.01
 			}
-			rolling = true
+
+			if(slideTimer > 0) {
+				slideTimer--
+				touchDamage = 0.0
+			}
+			else touchDamage = 2.0
+			hurtTimer = 600
+
+			if(!placeFree(x, y + 1)) {
+				if(placeFree(x - 2, y + 1)) hspeed -= 0.01
+				if(placeFree(x + 2, y + 1)) hspeed += 0.01
+			}
+
+			local c = fireWeapon(MeleeHit, x + hspeed, y, 1, id)
+			c.power = 2
 		}
-		else base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
+
+		if(fabs(hspeed) < 0.01) {
+			hspeed = 0.0
+			touchDamage = 0.0
+			slideTimer = 8
+			hurtTimer--
+			health = 2.0
+		}
+
+		if(hurtTimer <= 0 && anim != "peek") {
+			frame = 0.0
+			anim = "peek"
+		}
+
+		//Turn around
+		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
+		|| x + hspeed < 0
+		|| x + hspeed > gvMap.w)) {
+			flip = (!flip).tointeger()
+			fireWeapon(StompPoof, x + (10 * (hspeed <=> 0)), y, 0, id)
+			hspeed = -hspeed
+			if(!held && isOnScreen()) popSound(sndIceblock)
+		}
+
+		//Getting carried
+		if(target && hspeed == 0)
+			holdMe(4)
+
+		if(held) {
+			blinking = 10
+			slideTimer = 10
+			vspeed = 0.0
+			hurtTimer = 600
+		}
+	}
+
+	function die() {
+		local c = newActor(DeadNME, x, y)
+			actor[c].sprite = sprite
+			actor[c].vspeed = -4.0
+			actor[c].frame = 2
+			base.die()
+			popSound(sndKick)
+	}
+
+	function routine() {
+		touchDamage = int(!rolling || abs(hspeed) >= 2) * (1 + game.difficulty)
+	}
+
+	function getHurt(_by = 0, _mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
+		if(blinking > 0) return
+		base.getHurt(_by, _mag, _element, _cut, _blast, _stomp)
+
+		if(rolling && hspeed == 0) {
+			if(hspeed != 0) hspeed = 0.0
+			else if(_by) hspeed = (max(4.0, fabs(_by.hspeed * 1.5))) * (x <=> _by.x)
+			blinking = blinkMax
+			popSound(sndKick)
+		}
+		else {
+			hspeed = 0.0
+			hurtTimer = 600
+			rolling = true
+			popSound(sndSquish)
+			if(!_stomp) vspeed = -2.0
+			anim = "hide"
+			frame = 0.0
+		}
 	}
 
 	function draw() {

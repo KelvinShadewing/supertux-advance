@@ -131,8 +131,8 @@ Water <- class extends Actor {
 				break
 			case "lava":
 				for(local i = 0; i < shape.w / 8; i++) {
-					for(local j = 0; j < shape.h / 8; j++) {
-						drawSprite((j == 0 ? sprLavaSurface : sprLava), (j == 0 ? (getFrames() / 16) + (i * i) : getFrames() / 16), x - shape.w - floor(camx) + (i * 16), y - shape.h - camy + (j * 16) - 4, 0, 0, 1, 1, 0.5)
+					for(local j = 0; j <= shape.h / 8; j++) {
+						drawSprite((j == 0 ? sprLavaSurface : sprLava), (j == 0 ? (getFrames() / 16) + (i * i) : getFrames() / 16), x - shape.w - floor(camx) + (i * 16), y - shape.h - camy + ((j - 1) * 16), 0, 0, 1, 1, 0.5)
 					}
 				}
 				for(local i = 0; i < shape.w / 8; i++) {
