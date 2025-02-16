@@ -35,7 +35,7 @@ SecretWall <- class extends Actor {
 		}
 		else if(shape != null && !found && checkActor("BeamBug")) {
 			foreach(i in actor["BeamBug"])
-				if(i.x < shape.x + shape.w && i.x > shape.x - shape.w && i.y < shape.y + shape.h && i.y > shape.y - shape.h) {
+				if(i == gvPlayer && i.x < shape.x + shape.w && i.x > shape.x - shape.w && i.y < shape.y + shape.h && i.y > shape.y - shape.h) {
 					found = true
 					if(!rehide) {
 						game.secrets++
