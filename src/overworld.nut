@@ -379,7 +379,8 @@ LockIcon <- class extends PhysAct {
 	}
 
 	function run() {
-		if(game.unblocked.rawin(key) || game.completed.rawin(key) || gvTARandomLevel) {
+		if(game.unblocked.rawin(key) || game.completed.rawin(key)
+		|| (gvTARandomLevel && (!(key in game.ranLevList) || (game.ranLevList[key] in game.completed)))) {
 			tileSetSolid(x, y, 1)
 			deleteActor(id)
 		}
