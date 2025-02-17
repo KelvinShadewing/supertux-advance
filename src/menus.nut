@@ -241,7 +241,7 @@ meTimeAttack <- [
 meTimeAttackWorld <- [
 	{
 		name = function() { return gvLangObj["level"]["full-game"] },
-		func = function() { game.path = "res/map/"; gvTACourse = gvStoryLevelList; menu = meDifficulty },
+		func = function() { game.path = "res/map/"; gvTACourse = clone(gvStoryLevelList); menu = meDifficulty },
 		desc = function() { return gvLangObj["options-menu-desc"]["fullgame"] }
 	},
 	{

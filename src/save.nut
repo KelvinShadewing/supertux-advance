@@ -18,15 +18,16 @@ newGame <- function(f) {
 		game.randPlayer = gvTARandomPlayer
 		game.randItem = gvTARandomItem
 		game.randLevel = gvTARandomLevel
-		game.ranLevList = {}
 
 		//Break RNG
 		if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
-			randSeed()
+			randSeed(getFrames())
 		else
-			randSeed()
+			randSeed(0)
 
 		if(gvTARandomLevel) {
+			game.ranLevList = {}
+
 			//Generate random levels list
 			local nl = []
 			while(nl.len() < gvStoryLevelList.len()) {
@@ -86,7 +87,7 @@ newTimeAttack <- function() {
 	}
 	//Break RNG
 	if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
-		randSeed()
+		randSeed(getFrames())
 	else
 		randSeed(0)
 
