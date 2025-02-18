@@ -295,6 +295,9 @@ meBattleMode <- [
 		name = function() { return gvLangObj["battle-menu"]["start-battle"] },
 		func = function() { cursor = 0; if(game.playerChar2 != 0) {
 			gvBattleMode = true
+			gvTARandomItem = false
+			gvTARandomLevel = false
+			gvTARandomPlayer = false
 			menuLeft = true
 			menu = meBattleWorld }
 		}
