@@ -1,0 +1,14 @@
+{ "columns":14,
+ "image":"..\/gfx\/forestdeco.png",
+ "imageheight":144,
+ "imagewidth":224,
+ "margin":0,
+ "name":"forest-deco",
+ "spacing":0,
+ "tilecount":126,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

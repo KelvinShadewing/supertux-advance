@@ -16,6 +16,10 @@ You can sign your level by adding an `author` property to the map. Maps made by 
 
 You can have the level run a piece of code once it's done loading. This code will be run after all actors have been created as well. You can do this by going to "Map > Map properties". This will set the Properties panel to focus on the map itself. From here, create a custom property called `code`. By clicking the "..." button on the right side of the text entry field, you can open up a multi-line editor for easier coding.
 
+## Run Code
+
+Levels can also run a piece of code on each frame by giving the map a `run` property. Note that this code will only run during actual play; pausing the game will also halt the code. Keep in mind that the game's frame count will still be incremented, so if your code relies on `getFrames()` for timing, expect things to jump when you unpause.
+
 ## Layers
 
 SuperTux Advance uses four object layers and three tile layers in its levels. Object names are used to make special properties visible from within the editor itself.
@@ -28,9 +32,9 @@ The object layers include:
 
   `gvPlayer.hidden = true` Makes the player invisible. They will automatically become visible again when they leave the trigger zone.
 
-  `pipeFunnel()` This makes the player move towards the middle of the zone when down is held. This is to make pipes easier to enter. Zones with this code are best placed in blocks directly above pipes.
+  `pipeFunnel(myTarget)` This makes the player move towards the middle of the zone when down is held. This is to make pipes easier to enter. Zones with this code are best placed in blocks directly above pipes.
 
-  `playerTeleport( x, y )` This makes the player teleport to the given coordinates `x` and `y`. While you can also change the player's location using the `x` and `y` variables found in `gvPlayer`, this function will also snap the camera, instead of leaving it to move to the player's new location.
+  `playerTeleport(myTarget,  x, y )` This makes the player teleport to the given coordinates `x` and `y`. While you can also change the player's location using the `x` and `y` variables found in `gvPlayer`, this function will also snap the camera, instead of leaving it to move to the player's new location.
 
   `drawBG = bg` Changes the background. Look in `bg.nut` and use the names of the funcitons found there.
 

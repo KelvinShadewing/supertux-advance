@@ -1,0 +1,14 @@
+{ "columns":9,
+ "image":"..\/gfx\/pipetiles.png",
+ "imageheight":192,
+ "imagewidth":144,
+ "margin":0,
+ "name":"pipes",
+ "spacing":0,
+ "tilecount":108,
+ "tiledversion":"1.10.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

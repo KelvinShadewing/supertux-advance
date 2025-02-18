@@ -10,51 +10,66 @@
 |                                 |
 \*===============================*/
 
+setWriteDir(getPrefDir("sta", "supertux-advance"))
+
 //Game source
-donut("src/util.nut")
-donut("src/text.nut")
-donut("src/shapes.nut")
-donut("src/tilemap.nut")
-donut("src/assets.nut")
-donut("src/global.nut")
-donut("src/controls.nut")
-donut("src/menus.nut")
-donut("src/gmmain.nut")
-donut("src/gmplay.nut")
-donut("src/gmpause.nut")
-donut("src/physactor.nut")
-donut("src/player.nut")
-donut("src/tux.nut")
-donut("src/konqi.nut")
-donut("src/items.nut")
-donut("src/effects.nut")
-donut("src/enemies.nut")
-donut("src/bosses.nut")
-donut("src/debug.nut")
-donut("src/bg.nut")
-donut("src/trigger.nut")
-donut("src/water.nut")
-donut("src/levelend.nut")
-donut("src/platforms.nut")
-donut("src/blocks.nut")
-donut("src/weapons.nut")
-donut("src/overworld.nut")
-donut("src/secret.nut")
-donut("src/npc.nut")
-donut("src/languagemenu.nut")
-donut("src/contriblevels.nut")
-donut("src/save.nut")
-donut("src/zlist.nut")
-donut("src/pickchar.nut")
-donut("src/weather.nut")
-donut("src/light.nut")
-donut("src/credits.nut")
-donut("src/cursor.nut")
-donut("src/shop.nut")
-donut("src/timeline.nut")
-donut("src/spawner.nut")
-donut("src/achievements.nut")
-donut("src/racer.nut")
+require("src/util.nut")
+require("src/text.nut")
+require("src/shapes.nut")
+require("src/tilemap.nut")
+require("src/mods.nut")
+require("src/assets.nut")
+require("src/global.nut")
+require("src/physactor.nut")
+require("src/camera.nut")
+require("src/controls.nut")
+require("src/menus.nut")
+require("src/gmmain.nut")
+require("src/beam.nut")
+require("src/gmplay.nut")
+require("src/gmpause.nut")
+require("src/weapons.nut")
+require("src/player.nut")
+require("src/tux.nut")
+require("src/konqi.nut")
+require("src/midi.nut")
+require("src/surge.nut")
+require("src/cyra.nut")
+require("src/neverball.nut")
+require("src/items.nut")
+require("src/effects.nut")
+require("src/enemies.nut")
+require("src/bosses.nut")
+require("src/debug.nut")
+require("src/bg.nut")
+require("src/trigger.nut")
+require("src/water.nut")
+require("src/levelend.nut")
+require("src/platforms.nut")
+require("src/blocks.nut")
+require("src/overworld.nut")
+require("src/secret.nut")
+require("src/npc.nut")
+require("src/languagemenu.nut")
+require("src/contriblevels.nut")
+require("src/save.nut")
+require("src/zlist.nut")
+require("src/pickchar.nut")
+require("src/weather.nut")
+require("src/light.nut")
+require("src/credits.nut")
+require("src/cursor.nut")
+require("src/shop.nut")
+require("src/timeline.nut")
+require("src/spawner.nut")
+require("src/achievements.nut")
+require("src/racer.nut")
+require("src/network.nut")
+require("src/accessibility.nut")
+require("src/timeattack.nut")
+require("src/battle.nut")
+require("src/soccer.nut")
+require("src/objects.nut")
 
 ////////////////
 //    MAIN    //
@@ -67,38 +82,101 @@ setSoundVolume(config.soundVolume)
 setMusicVolume(config.musicVolume)
 
 //Detect resolution
-//Aspects may not perfectly match, so the closest one will be picked
-local disres = displayW().tofloat() / displayH().tofloat()
-local reschoice = 0
-local aspects = [(16.0 / 9.0), (5.0 / 3.0), (4.0 / 3.0)]
-local resdiff = 100 //Arbitrary high starting number
-for(local i = 0; i < aspects.len(); i++) {
-	if(abs(disres - aspects[i]) < resdiff) {
-		resdiff = abs(disres - aspects[i])
-		reschoice = i
-	}
+setDisplayAspect <- function(w) {
+	setResolution(w, 240)
 }
-switch(reschoice) {
+
+switch(config.aspect) {
 	case 0:
-		setResolution(424, 240)
+		local disres = max(320, displayW()).tofloat() / displayH().tofloat()
+		setDisplayAspect(disres * 240)
 		break
 	case 1:
-		setResolution(400, 240)
+		setDisplayAspect(320)
 		break
 	case 2:
-		setResolution(320, 240)
+		setDisplayAspect(426)
 		break
-	//Other resolutions may be supported so default is left separate
+	case 3:
+		setDisplayAspect(560)
+		break
 	default:
-		setResolution(320, 240)
+		local disres = max(320, displayW()).tofloat() / displayH().tofloat()
+		setDisplayAspect(disres * 240)
 		break
 }
+
+updateDisplaySettings <- function() {
+	local tempTarget = getDrawTarget()
+	setDrawTarget(0)
+
+	deleteTexture(gvScreen)
+	local w = 320
+	switch(config.aspect) {
+		case 0:
+			local disres = max(320, displayW()).tofloat() / displayH().tofloat()
+			w = disres * 240
+			break
+		case 1:
+			w = 320
+			break
+		case 2:
+			w = 426
+			break
+		case 3:
+			w = 560
+			break
+	}
+	setDisplayAspect(w)
+	setScalingFilter(int(config.usefilter))
+	gvScreen = newTexture(screenW(), screenH())
+	gvScreenW = screenW()
+	setScalingFilter(0)
+
+	gvScreenW = screenW()
+	gvTextW = floor(screenW() / 6) - 1
+
+	deleteTexture(bgPause)
+	bgPause = newTexture(screenW(), screenH())
+
+	deleteTexture(gvTempScreen)
+	gvTempScreen = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvTempScreen, bm_blend)
+
+	deleteTexture(gvPlayScreen)
+	gvPlayScreen = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvPlayScreen, bm_blend)
+
+	deleteTexture(gvPlayScreen2)
+	gvPlayScreen2 = newTexture(screenW() / 2, screenH())
+	textureSetBlendMode(gvPlayScreen2, bm_blend)
+
+	deleteTexture(gvLightScreen1)
+	gvLightScreen1 = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvLightScreen1, bm_mod)
+
+	deleteTexture(gvLightScreen2)
+	gvLightScreen2 = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvLightScreen2, bm_mod)
+
+	deleteTexture(gvScreenGhost)
+	gvScreenGhost = newTexture(screenW(), screenH())
+	textureSetBlendMode(gvScreenGhost, bm_blend)
+
+	setDrawTarget(tempTarget)
+}
+
 
 //Uncomment this function if you want to play at actual GBA resolution
 //setResolution(240, 160)
+//Uncomment this function if you want to play at actual NDS resolution
+//setResolution(256, 192)
 //Uncomment this function if you want to play at the old resolution
 //setResolution(320, 180)
 
+//The current resolution is stored because these
+//functions will show different results when
+//rendering to a texture.
 gvScreenW = screenW()
 gvScreenH = screenH()
 
@@ -107,11 +185,22 @@ gvTextW = floor(screenW() / 6) - 1
 if(config.fullscreen) toggleFullscreen()
 if(config.usefilter) setScalingFilter(1)
 gvScreen = newTexture(screenW(), screenH())
-bgPause = newTexture(screenW(), screenH())
 setScalingFilter(0)
+
+bgPause = newTexture(screenW(), screenH())
+
+gvTempScreen = newTexture(screenW(), screenH())
+textureSetBlendMode(gvTempScreen, bm_blend)
 gvPlayScreen = newTexture(screenW(), screenH())
-gvLightScreen = newTexture(screenW(), screenH())
-textureSetBlendMode(gvLightScreen, bm_sub)
+textureSetBlendMode(gvPlayScreen, bm_blend)
+gvPlayScreen2 = newTexture(screenW() / 2, screenH())
+textureSetBlendMode(gvPlayScreen2, bm_blend)
+gvLightScreen1 = newTexture(screenW(), screenH())
+textureSetBlendMode(gvLightScreen1, bm_mod)
+gvLightScreen2 = newTexture(screenW(), screenH())
+textureSetBlendMode(gvLightScreen2, bm_mod)
+gvScreenGhost = newTexture(screenW(), screenH())
+textureSetBlendMode(gvScreenGhost, bm_blend)
 
 //Set up window
 setWindowTitle("SuperTux Advance")
@@ -139,13 +228,15 @@ strDifficulty = [
 
 //Load mods
 local modlist = lsdir("mods")
-for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != "..") donut("mods/" + modlist[i])
+for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != ".." && modlist[i].find(".nut") != null) donut("mods/" + modlist[i])
 
 print("Launching SuperTux Advance v." + gvVersion + "...")
 startMain()
 menu = meMain
 game.playerChar = "Tux"
 
+//Testing
+//game.playerChar = "Neverball"
 //gotoTest()
 
 //Load contrib initializers
@@ -153,8 +244,7 @@ if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
 }
 
-while(!getQuit() && !gvQuit) //Entire game happens here
-{
+gameCycle <- function() {
 	/*
 	if(keyPress(k_f11)) {
 		toggleFullscreen()
@@ -162,8 +252,38 @@ while(!getQuit() && !gvQuit) //Entire game happens here
 		fileWrite("config.json", jsonWrite(config))
 	}
 	*/
-	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain) togglePause()
+
+	if(joyCount() > 1 && game.playerChar2 != "") {
+		config.joy.index = 0
+		config.joy2.index = 1
+	}
+	else {
+		if(gvNumPlayers > 1)
+			config.joy.index = 1
+		else
+			config.joy.index = 0
+		config.joy2.index = 0
+	}
+
+	//Update automatic controls
+	updateAutocon()
+
+	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain)
+		togglePause()
+	if(keyPress(k_tick))
+		toggleConsole()
 	gvGameMode()
-	if(keyPress(k_tick)) debugConsole()
+}
+
+gameRender <- function() {
+	resetDrawTarget()
+	drawImage(gvScreen, 0, 0)
+}
+
+gameExit <- function() {}
+
+while(!getQuit() && !gvQuit) {
+	gameCycle()
+	gameRender()
 	update()
 }

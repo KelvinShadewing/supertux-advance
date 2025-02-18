@@ -3,113 +3,113 @@
 print("Loading Frostlands overhauled PT2")
 
 //Enemy
-::sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 0, 0, 8, 9)
-::sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/dumbblitz.png", 16, 16, 0, 0, 8, 9)
-::sprbsod <- newSprite("contrib/frostlands/gfx/enemies/bsod-Sheet.png", 23, 19, 0, 0, 11, 11)
+sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 8, 9)
+sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/dumbblitz.png", 16, 16, 8, 9)
+sprbsod <- newSprite("contrib/frostlands/gfx/enemies/bsod-Sheet.png", 23, 19, 11, 11)
 
 //music
 
-::musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
-::musturn <- "contrib/frostlands/music/ji_turn.ogg"
-::musball <- "contrib/frostlands/music/city-theme.ogg"
-::mussal <- "contrib/frostlands/music/worldmap_old.ogg"
-::musair <- "contrib/frostlands/music/fried-air.ogg"
-::musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
-::musRS <- "contrib/frostlands/music/Rough-Start.ogg"
+musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
+musturn <- "contrib/frostlands/music/ji_turn.ogg"
+musball <- "contrib/frostlands/music/city-theme.ogg"
+mussal <- "contrib/frostlands/music/worldmap_old.ogg"
+musair <- "contrib/frostlands/music/fried-air.ogg"
+musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
+musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
 //visual assets
-::bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240, 0, 0, 0, 0)
-::bgGrassNever <- newSprite("contrib/frostlands/gfx/BG/Bnever.png", 1024, 240, 0, 0, 0, 0)
-::bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 520, 240, 0, 0, 0, 0)
-::bgRace2 <- newSprite("contrib/frostlands/gfx/BG/tuxracer2.png", 520, 240, 0, 0, 0, 0)
-::bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240, 0, 0, 0, 0)
-::sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 0, 0, 3, 3)
-::bgRedmond <- newSprite("contrib/frostlands/gfx/BG/Retro.png", 720, 240, 0, 0, 0, 0)
+bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240)
+bgGrassNever <- newSprite("contrib/frostlands/gfx/BG/Bnever.png", 1024, 240)
+bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 520, 240)
+bgRace2 <- newSprite("contrib/frostlands/gfx/BG/tuxracer2.png", 520, 240)
+bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240)
+sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 3, 3)
+bgRedmond <- newSprite("contrib/frostlands/gfx/BG/Retro.png", 720, 240)
 //snow
-::bgAuroraHill <- newSprite("contrib/frostlands/gfx/BG/hills-aurora1.png", 720, 240, 0, 0, 0, 0)
-::bgAuroraHill1 <- newSprite("contrib/frostlands/gfx/BG/hills-aurora2.png", 720, 240, 0, 0, 0, 0)
-::bgStarHill <- newSprite("contrib/frostlands/gfx/BG/night-hill.png", 720, 240, 0, 0, 0, 0)
-::bgStarHill2 <- newSprite("contrib/frostlands/gfx/BG/night-hill2.png", 720, 240, 0, 0, 0, 0)
-::bgSnowday <- newSprite("contrib/frostlands/gfx/BG/Snow-day.png", 720, 240, 0, 0, 0, 0)
-::bgSnowDusk <- newSprite("contrib/frostlands/gfx/BG/Snow-dusk.png", 720, 240, 0, 0, 0, 0)
-::bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240, 0, 0, 0, 0)
-::bgSnowstars3 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars-moon.png", 720, 240, 0, 0, 0, 0)
-::bgPlainHill <- newSprite("contrib/frostlands/gfx/BG/plain-hill.png", 720, 240, 0, 0, 0, 0)
-::bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240, 0, 0, 0, 0)
+bgAuroraHill <- newSprite("contrib/frostlands/gfx/BG/hills-aurora1.png", 720, 240)
+bgAuroraHill1 <- newSprite("contrib/frostlands/gfx/BG/hills-aurora2.png", 720, 240)
+bgStarHill <- newSprite("contrib/frostlands/gfx/BG/night-hill.png", 720, 240)
+bgStarHill2 <- newSprite("contrib/frostlands/gfx/BG/night-hill2.png", 720, 240)
+bgSnowday <- newSprite("contrib/frostlands/gfx/BG/Snow-day.png", 720, 240)
+bgSnowDusk <- newSprite("contrib/frostlands/gfx/BG/Snow-dusk.png", 720, 240)
+bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240)
+bgSnowstars3 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars-moon.png", 720, 240)
+bgPlainHill <- newSprite("contrib/frostlands/gfx/BG/plain-hill.png", 720, 240)
+bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240)
 //forest
-::bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240, 0, 0, 0, 0)
-::bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240, 0, 0, 0, 0)
-::bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240, 0, 0, 0, 0)
-::bgOceanbg <- newSprite("contrib/frostlands/gfx/BG/ForestFsun.png", 720, 240, 0, 0, 0, 0)
-::bgOceancloud <- newSprite("contrib/frostlands/gfx/BG/OceanCF.png", 720, 240, 0, 0, 0, 0)
+bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240)
+bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240)
+bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240)
+bgOceanbg <- newSprite("contrib/frostlands/gfx/BG/ForestFsun.png", 720, 240)
+bgOceancloud <- newSprite("contrib/frostlands/gfx/BG/OceanCF.png", 720, 240)
 //tropic
-::bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240, 0, 0, 0, 0)
-::bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240, 0, 0, 0, 0)
-::bgFtropic3 <- newSprite("contrib/frostlands/gfx/BG/TropicalF2.png", 720, 240, 0, 0, 0, 0)
-::bgFtropic0 <- newSprite("contrib/frostlands/gfx/BG/TropicalF0.png", 720, 240, 0, 0, 0, 0)
-::bgFtropicM <- newSprite("contrib/frostlands/gfx/BG/tropics-mountans.png", 720, 240, 0, 0, 0, 0)
+bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240)
+bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240)
+bgFtropic3 <- newSprite("contrib/frostlands/gfx/BG/TropicalF2.png", 720, 240)
+bgFtropic0 <- newSprite("contrib/frostlands/gfx/BG/TropicalF0.png", 720, 240)
+bgFtropicM <- newSprite("contrib/frostlands/gfx/BG/tropics-mountans.png", 720, 240)
 
-::bgFtropicSunset <- newSprite("contrib/frostlands/gfx/BG/TropicalSF.png", 720, 240, 0, 0, 0, 0)
-::bgFtropicSunset2 <- newSprite("contrib/frostlands/gfx/BG/TropicalSF2.png", 720, 240, 0, 0, 0, 0)
+bgFtropicSunset <- newSprite("contrib/frostlands/gfx/BG/TropicalSF.png", 720, 240)
+bgFtropicSunset2 <- newSprite("contrib/frostlands/gfx/BG/TropicalSF2.png", 720, 240)
 
-::bgFtropicNight <- newSprite("contrib/frostlands/gfx/BG/TropicalNF.png", 720, 240, 0, 0, 0, 0)
-::bgFtropicNight2 <- newSprite("contrib/frostlands/gfx/BG/TropicalNF2.png", 720, 240, 0, 0, 0, 0)
-::bgNightcloud <- newSprite("contrib/frostlands/gfx/BG/OceanNF.png", 720, 240, 0, 0, 0, 0)
+bgFtropicNight <- newSprite("contrib/frostlands/gfx/BG/TropicalNF.png", 720, 240)
+bgFtropicNight2 <- newSprite("contrib/frostlands/gfx/BG/TropicalNF2.png", 720, 240)
+bgNightcloud <- newSprite("contrib/frostlands/gfx/BG/OceanNF.png", 720, 240)
 
 //NPCS
-::sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 0, 0, 6, 23)
-::sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Rico.png", 18, 46, 0, 0, 9, 46)
-::sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 66, 51, 0, 0, 33, 51)
-::sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 53, 40, 0, 0, 26, 40)
-::sprEmarq <- newSprite("contrib/frostlands/gfx/NPC/evil.png", 60, 52, 0, 0, 30, 52)
-::sprharo <- newSprite("contrib/frostlands/gfx/NPC/harold.png", 44, 43, 0, 0, 22, 43)
-::sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 0, 0, 8, 34)
-::sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 19, 52, 0, 0, 8, 52)
-::sprterryB <- newSprite("contrib/frostlands/gfx/NPC/terry.png", 37, 51, 0, 0, 16, 51)
-::sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 0, 0, 19, 18)
-::sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 0, 0, 9, 16)
-::sprGlitchy <- newSprite("contrib/frostlands/gfx/NPC/Glitchy.png", 37, 51, 0, 0, 16, 51)
-::sprEyet <- newSprite("contrib/frostlands/gfx/NPC/eightman.png", 37, 51, 0, 0, 16, 51)
-::sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 0, 0, 10, 47)
-::sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 0, 0, 8, 33)
-::sprWallBaller <- newSprite("contrib/frostlands/gfx/NPC/wall-crawler.png", 32, 32, 0, 0, 16, 32)
-::sprOceanPants <- newSprite("contrib/frostlands/gfx/NPC/OceanPants.png", 20, 53, 0, 0, 10, 53)
-::sprCone <- newSprite("contrib/frostlands/gfx/NPC/Cone.png", 37, 51, 0, 0, 16, 51)
-::spribot <- newSprite("contrib/frostlands/gfx/NPC/itembot.png", 37, 51, 0, 0, 16, 51)
-::sprfeesh <- newSprite("contrib/frostlands/gfx/NPC/lfish.png", 63, 44, 0, 0, 31, 44)
+sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 6, 23)
+sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Rico.png", 18, 46, 9, 46)
+sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 66, 51, 33, 51)
+sprmarq <- newSprite("contrib/frostlands/gfx/NPC/marqies.png", 53, 40, 26, 40)
+sprEmarq <- newSprite("contrib/frostlands/gfx/NPC/evil.png", 60, 52, 30, 52)
+sprharo <- newSprite("contrib/frostlands/gfx/NPC/harold.png", 44, 43, 22, 43)
+sprTuckles2 <- newSprite("contrib/frostlands/gfx/NPC/tuckles2.png", 18, 34, 8, 34)
+sprFL <- newSprite("contrib/frostlands/gfx/NPC/flameC.png", 19, 52, 8, 52)
+sprterryB <- newSprite("contrib/frostlands/gfx/NPC/terry.png", 37, 51, 16, 51)
+sprNJ <- newSprite("contrib/frostlands/gfx/NPC/ninjarun.png", 19, 18, 19, 18)
+sprPX <- newSprite("contrib/frostlands/gfx/NPC/pix.png", 18, 16, 9, 16)
+sprGlitchy <- newSprite("contrib/frostlands/gfx/NPC/Glitchy.png", 37, 51, 16, 51)
+sprEyet <- newSprite("contrib/frostlands/gfx/NPC/eightman.png", 37, 51, 16, 51)
+sprTheo <- newSprite("contrib/frostlands/gfx/NPC/Theo.png", 21, 47, 10, 47)
+sprMPlayer <- newSprite("contrib/frostlands/gfx/NPC/minetest-player.png", 16, 33, 8, 33)
+sprWallBaller <- newSprite("contrib/frostlands/gfx/NPC/wall-crawler.png", 32, 32, 16, 32)
+sprOceanPants <- newSprite("contrib/frostlands/gfx/NPC/OceanPants.png", 20, 53, 10, 53)
+sprCone <- newSprite("contrib/frostlands/gfx/NPC/Cone.png", 37, 51, 16, 51)
+spribot <- newSprite("contrib/frostlands/gfx/NPC/itembot.png", 37, 51, 16, 51)
+sprfeesh <- newSprite("contrib/frostlands/gfx/NPC/lfish.png", 63, 44, 31, 44)
 
 //OG style
-::sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 0, 0, 8, 8)
-::sprFlowerIceOG <- newSprite("contrib/frostlands/gfx/obj/fl-iceflower.png", 16, 16, 0, 0, 8, 8)
-::sprEarthShellOG <- newSprite("contrib/frostlands/gfx/obj/fl-earthshell.png", 16, 16, 0, 0, 8, 8)
-::sprInfoBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-infobox.png", 16, 16, 0, 0, 0, 0)
-::sprTriggerBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-redbox.png", 16, 16, 0, 0, 0, 0)
-::sprItemBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-itembox.png", 16, 16, 0, 0, 0, 0)
-::sprSnowballOG <- newSprite("contrib/frostlands/gfx/obj/fl-snowball.png", 16, 16, 0, 0, 8, 8)
-::sprStarOG <- newSprite("contrib/frostlands/gfx/obj/fl-star.png", 16, 16, 0, 0, 8, 8)
-::sprDarkOG <- newSprite("contrib/frostlands/gfx/obj/fl-darknyan.png", 16, 16, 0, 0, 8, 8)
-::sprWoodBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodbox.png", 16, 16, 0, 0, 0, 0)
-::sprWoodChunksOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodchunks.png", 8, 8, 0, 0, 4, 4)
-::sprCoinN1 <- newSprite("contrib/frostlands/gfx/obj/coin-n1.png", 16, 16, 0, 0, 8, 8)
-::sprCoinN5 <- newSprite("contrib/frostlands/gfx/obj/coin-n5.png", 16, 16, 0, 0, 8, 8)
-::sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 0, 0, 8, 8)
-::sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16, 0, 0, 0, 0)
-::sprJumpyOG <- newSprite("contrib/frostlands/gfx/enemies/fl-jumpy.png", 16, 25, 0, 0, 8, 8)
-::sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 0, 0, 8, 8)
-::sprCoin5OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin5.png", 16, 16, 0, 0, 8, 8)
-::sprCoin10OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin10.png", 16, 16, 0, 0, 8, 8)
-::sprnewicons <- newSprite("contrib/frostlands/gfx/levelicons.png", 16, 16, 0, 0, 8, 8)
-::sprBellfl <- newSprite("contrib/frostlands/gfx/obj/bell-fl.png", 16, 16, 0, 0, 8, 8)
-::sprFLDevcom <- newSprite("contrib/frostlands/gfx/obj/kelvinscarf.png", 16, 16, 0, 0, 0, 0)
-::sprFLBounce <- newSprite("contrib/frostlands/gfx/obj/fl-bouncebox.png", 16, 16, 0, 0, 0, 0)
+sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 8, 8)
+sprFlowerIceOG <- newSprite("contrib/frostlands/gfx/obj/fl-iceflower.png", 16, 16, 8, 8)
+sprEarthShellOG <- newSprite("contrib/frostlands/gfx/obj/fl-earthshell.png", 16, 16, 8, 8)
+sprInfoBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-infobox.png", 16, 16)
+sprTriggerBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-redbox.png", 16, 16)
+sprItemBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-itembox.png", 16, 16)
+sprSnowballOG <- newSprite("contrib/frostlands/gfx/obj/fl-snowball.png", 16, 16, 8, 8)
+sprStarOG <- newSprite("contrib/frostlands/gfx/obj/fl-star.png", 16, 16, 8, 8)
+sprDarkOG <- newSprite("contrib/frostlands/gfx/obj/fl-darknyan.png", 16, 16, 8, 8)
+sprWoodBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodbox.png", 16, 16)
+sprWoodChunksOG <- newSprite("contrib/frostlands/gfx/obj/fl-woodchunks.png", 8, 8, 4, 4)
+sprCoinN1 <- newSprite("contrib/frostlands/gfx/obj/coin-n1.png", 16, 16, 8, 8)
+sprCoinN5 <- newSprite("contrib/frostlands/gfx/obj/coin-n5.png", 16, 16, 8, 8)
+sprCoinN10 <- newSprite("contrib/frostlands/gfx/obj/coin-n10.png", 16, 16, 8, 8)
+sprEmptyBoxOG <- newSprite("contrib/frostlands/gfx/obj/fl-emptybox.png", 16, 16)
+sprJumpyOG <- newSprite("contrib/frostlands/gfx/enemies/fl-jumpy.png", 16, 25, 8, 8)
+sprCoinOG <- newSprite("contrib/frostlands/gfx/obj/fl-coin.png", 16, 16, 8, 8)
+sprCoin5OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin5.png", 16, 16, 8, 8)
+sprCoin10OG <- newSprite("contrib/frostlands/gfx/obj/fl-coin10.png", 16, 16, 8, 8)
+sprnewicons <- newSprite("contrib/frostlands/gfx/levelicons.png", 16, 16, 8, 8)
+sprBellfl <- newSprite("contrib/frostlands/gfx/obj/bell-fl.png", 16, 16, 8, 8)
+sprFLDevcom <- newSprite("contrib/frostlands/gfx/obj/kelvinscarf.png", 16, 16)
+sprFLBounce <- newSprite("contrib/frostlands/gfx/obj/fl-bouncebox.png", 16, 16)
 
-::sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16, 0, 0, 0, 0)
-::sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16, 0, 0, 0, 0)
-::sprSubItemFL <- newSprite("contrib/frostlands/gfx/fl-itemcard.png", 20, 20, 0, 0, 10, 10)
-::sprColorSwitchFL <- newSprite("contrib/frostlands/gfx/obj/colorswitches.png", 32, 32, 0, 0, 16, 16)
-::sprColorBlockFL <- newSprite("contrib/frostlands/gfx/switchblocks.png", 16, 16, 0, 0, 0, 0)
+sprHealthFL <- newSprite("contrib/frostlands/gfx/fl-health.png", 16, 16)
+sprEnergyFl <- newSprite("contrib/frostlands/gfx/fl-energy.png", 16, 16)
+sprSubItemFL <- newSprite("contrib/frostlands/gfx/fl-itemcard.png", 20, 20, 10, 10)
+sprColorSwitchFL <- newSprite("contrib/frostlands/gfx/obj/colorswitches.png", 32, 32, 16, 16)
+sprColorBlockFL <- newSprite("contrib/frostlands/gfx/switchblocks.png", 16, 16)
 
-::gfxOverrideFL <- function(never = false) {
+gfxOverrideFL <- function(never = false) {
 	sprWoodBox = sprWoodBoxOG
 	sprWoodChunks = sprWoodChunksOG
 
@@ -128,7 +128,6 @@ print("Loading Frostlands overhauled PT2")
 	sprCoin = sprCoinOG
 	sprCoin5 = sprCoin5OG
 	sprCoin10 = sprCoin10OG
-	sprHealth = sprHealthFL
 	sprEnergy = sprEnergyFl
 	sprSubItem = sprSubItemFL
 	sprColorSwitch = sprColorSwitchFL
@@ -142,12 +141,13 @@ print("Loading Frostlands overhauled PT2")
 		sprCoin = sprCoinN1
 		sprCoin5 = sprCoinN5
 		sprCoin10 = sprCoinN10
-		}
+	}
 }
 
-//background shiz
+//custom backgrounds
 
-::dbgForestF <- function() {
+dbgForestF <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgForestday, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 	}
@@ -159,7 +159,8 @@ print("Loading Frostlands overhauled PT2")
 	}
 }
 
-::dbgAuroraF <- function() {
+dbgAuroraF <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowday, 0, ((-camx / 16) % 720) + (i * 720), screenH() - 240)
 	}
@@ -171,20 +172,23 @@ print("Loading Frostlands overhauled PT2")
 	}
 }
 
-::dbgNever <- function() {
+dbgNever <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowNever, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
-::dbgRedmond <- function() {
+dbgRedmond <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgRedmond, 0, ((-camx / 8) % 720) + (i * 720), screenH() - 240)
 	}
 }
 
 
-::dbgSnowPlainF <- function() {
+dbgSnowPlainF <- function() {
+	gvLightBG = true
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgSnowDusk, 0, ((-camx / 16) % 720) + (i * 720), (screenH() / 2) - 120)
 	}
@@ -196,7 +200,8 @@ print("Loading Frostlands overhauled PT2")
 	}
 }
 
-::dbgNightalt <- function() {
+dbgNightalt <- function() {
+	gvLightBG = true
 	drawSprite(bgSnowstars2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgStarHill, 0, ((-camx / 8) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -206,16 +211,19 @@ print("Loading Frostlands overhauled PT2")
 	}
 }
 
-::dbgRace <- function() {
+dbgRace <- function() {
+	gvLightBG = true
 	drawSprite(bgRace, 0, 0, (screenH() / 2) - 120)
 }
 
 
-::dbgglitch <- function() {
+dbgglitch <- function() {
+	gvLightBG = true
 	drawSprite(bgError, 0, 0, (screenH() / 2) - 120)
 }
 
-::dbgtropicf <- function() {
+dbgtropicf <- function() {
+	gvLightBG = true
 	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -229,7 +237,8 @@ print("Loading Frostlands overhauled PT2")
 
 }
 
-::dbgtropicFS <- function() {
+dbgtropicFS <- function() {
+	gvLightBG = true
 	drawSprite(bgOceanbg, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgOceancloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -243,7 +252,8 @@ print("Loading Frostlands overhauled PT2")
 
 }
 
-::dbgtropicNS <- function() {
+dbgtropicNS <- function() {
+	gvLightBG = true
 	drawSprite(bgSnowstars2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgNightcloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -259,7 +269,8 @@ print("Loading Frostlands overhauled PT2")
 
 
 
-::dbgOceanF <- function() {
+dbgOceanF <- function() {
+	gvLightBG = true
 	drawSprite(bgOceanbg, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgOceancloud, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 60)
@@ -267,7 +278,8 @@ print("Loading Frostlands overhauled PT2")
 
 }
 
-::dbgtropicS <- function() {
+dbgtropicS <- function() {
+	gvLightBG = true
 	drawSprite(bgFtropic2, 0, 0, (screenH() / 2) - 120)
 	for(local i = 0; i < 2; i++) {
 		drawSprite(bgFtropic0, 0, ((-camx / 32) % 720) + (i * 720), (screenH() / 2) - 120)
@@ -280,39 +292,43 @@ print("Loading Frostlands overhauled PT2")
 
 //Objec lol 
 
-::Spakle <- class extends Actor{
+Spakle <- class extends Actor{
 	constructor(_x, _y, _arr = null)
 	{
 		base.constructor(_x, _y)
 	}
-		function run() {
-	if(getFrames() % 3 == 0){
-	newActor(c1, x - 16 + randInt(32), y - 16 + randInt(100))
-	}
+
+	function run() {
+		if(getFrames() % 3 == 0){
+			newActor(c1, x - 16 + randInt(32), y - 16 + randInt(100))
+		}
 	}
 }
 
-::c1 <- class extends Actor {
+c1 <- class extends Actor {
 	frame = 0.0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 	}
+
 	function run() {
 		if(frame < 1) frame += 0.02
 		frame += 0.05
 		y -= 0.5
 		if(frame >= 3) deleteActor(id)
-		else drawSpriteEx(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1)
 	}
+
+	function draw() { drawSprite(sprC1, floor(frame), x - camx, y - camy, 0, 0, 1, 1, 1) }
 }
 
-::Towershop <- class extends Actor {
+Towershop <- class extends Actor {
 	shape = 0
 	full = true
 	v = 0.0
 	vspeed = 0.0
 	soldout = false
+	price = 0
 
 	constructor(_x, _y, _arr = "") {
 		base.constructor(_x, _y)
@@ -322,8 +338,8 @@ print("Loading Frostlands overhauled PT2")
 	}
 
 	function run() {
-		if(game.maxHealth >= 5 * 4) soldout = true
-		local price = (game.maxHealth + 1) * (200)
+		if(game.maxHealth >= 4 * 4) soldout = true
+		price = (game.maxHealth + 1) * (200 * (game.difficulty + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -336,18 +352,18 @@ print("Loading Frostlands overhauled PT2")
 		if(gvPlayer) {
 			if(hitTest(shape, gvPlayer.shape)) if(gvPlayer.vspeed < 0 && v == 0) if(!soldout && game.coins >= price) {
 				gvPlayer.vspeed = 0
-				vspeed = 0
+				vspeed = -1
 				playSound(sndHeal, 0)
-				game.health += 4
 				game.maxHealth += 4
 				game.coins -= price
 			}
 		}
 
 		v += vspeed
+	}
 
+	function draw() {
 		local pricetag = chint(95).tostring() + price.tostring()
-
 		if(soldout) drawSpriteZ(2, sprBoxEmpty, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
 		else {
 			drawSpriteZ(2, sprBoxShop, getFrames() / 8, x - 8 - camx, y - 8 - camy + v)
@@ -360,7 +376,7 @@ print("Loading Frostlands overhauled PT2")
 
 //enemies
 
-::Blitz <- class extends Enemy {
+Blitz <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -437,16 +453,6 @@ print("Loading Frostlands overhauled PT2")
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprBlitz, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlitz2, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -457,23 +463,34 @@ print("Loading Frostlands overhauled PT2")
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprBlitz, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprBlitz2, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprBlitz, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprBlitz2, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		local myspr = sprBlitz2
+		if(smart) myspr = sprBlitz
+		if(frozen) {
+
+			drawSprite(myspr, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(squish) drawSprite(myspr, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(myspr, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -571,7 +588,7 @@ print("Loading Frostlands overhauled PT2")
 	function _typeof() { return "Deathcap" }
 }
 
-::bsod <- class extends Enemy {
+bsod <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -643,16 +660,6 @@ print("Loading Frostlands overhauled PT2")
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-
-					if(frozen <= 120) {
-					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
-						else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
-					}
-					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
 					//Delete ice block
@@ -663,23 +670,32 @@ print("Loading Frostlands overhauled PT2")
 						if(gvPlayer) if(x > gvPlayer.x) flip = true
 						else flip = false
 					}
-
-					//Draw
-					if(smart) drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) die()
-				if(smart) drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			if(!squish) shape.setPos(x, y)
 			setDrawColor(0xff0000ff)
 			if(debug) shape.draw()
 		}
+	}
+
+	function draw() {
+		if(frozen) {
+			if(smart) drawSprite(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+			else drawSprite(sprbsod, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+
+			if(frozen <= 120) {
+			if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
+				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+			}
+			else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
+		}
+		else if(squish) drawSprite(sprbsod, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		else drawSprite(sprbsod, wrap(getFrames() / 12, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 	}
 
 	function hurtPlayer(target) {
@@ -697,13 +713,13 @@ print("Loading Frostlands overhauled PT2")
 		}
 
 		if(_element == "fire") {
-			fireWeapon(ExplodeT, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
+			fireWeapon(ExplodeS, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
 			die()
 			return
 		}
 
 		if(_element == "ice") {
-			fireWeapon(ExplodeT, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
+			fireWeapon(ExplodeS, x + randInt(16) - randInt(16) y + randInt(16) - randInt(16), 0, id)
 			die()
 			return
 		}
@@ -774,5 +790,6 @@ print("Loading Frostlands overhauled PT2")
 
 
 //hi kelvin lol
+//Hi, Frost. ;P
 
 print("Loaded Frostlands")

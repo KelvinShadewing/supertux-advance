@@ -1,0 +1,14 @@
+{ "columns":9,
+ "image":"..\/gfx\/treetops.png",
+ "imageheight":112,
+ "imagewidth":144,
+ "margin":0,
+ "name":"treetops",
+ "spacing":0,
+ "tilecount":63,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

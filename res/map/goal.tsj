@@ -1,0 +1,14 @@
+{ "columns":2,
+ "image":"..\/gfx\/goal.png",
+ "imageheight":32,
+ "imagewidth":32,
+ "margin":0,
+ "name":"goal",
+ "spacing":0,
+ "tilecount":4,
+ "tiledversion":"1.9.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.9"
+}

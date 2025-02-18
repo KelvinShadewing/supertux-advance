@@ -1,5 +1,7 @@
 # Credits
 
+// This file is currently undergoing renovation to be more clear on licensing, also switching to filenames instead of titles.
+
 ## Code
 
 [Kelvin Shadewing](http://kelvinshadewing.net)
@@ -12,65 +14,297 @@
 
 [dtsudo](https://github.com/dtsudo) - Bug fixes
 
+[IoIxD](https://github.com/IoIxD) - Overworld block switching
+
+----
+
 ## Graphics
 
-[Kelvin Shadewing](http://kelvinshadewing.net) - Tux, Cannon Bob, Igloo edits, Mama Bear, pipe tiles, pipe snake, muffin, deathcap, star nyan, heart, fonts, item blocks, debug graphics, elemental explosions
+\*: Contains edits from or made in collaboration with Kelvin Shadewing
 
-[Adam Atomic](http://www.adamatomic.com) - Iridia BG
+### [Kelvin Shadewing](http://kelvinshadewing.net)
+Tux - CC-BY-SA 4.0
+Penny - CC-BY-SA 4.0
+Konqi - CC-BY-SA 4.0
+Katie - CC-BY-SA 4.0
+Midi Waffle - CC-BY-SA 4.0
+Cannon Bob - CC-BY-SA 4.0
+Igloo edits - CC-BY-SA 4.0
+Mama Bear - CC-BY-SA 4.0
+Pipe tiles - CC-BY-SA 4.0
+Pipe snake - CC-BY-SA 4.0
+Muffin - CC-BY-SA 4.0
+Deathcap - CC-BY-SA 4.0
+Star nyan - CC-BY-SA 4.0
+Heart - CC-BY-SA 4.0
+Fonts - CC-BY-SA 4.0
+Item blocks - CC-BY-SA 4.0
+Debug graphics - CC-BY-SA 4.0
+Elemental explosions - CC-BY-SA 4.0
 
-[Luke Bunday](http://pixeljoint.com/p/43158.htm) - Anneroy
+**All graphics by Kelvin are CC-BY-SA 4.0**
+acid.png
+acidsurface.png
+actors-big.png
+actors.png
+aurora-night.png
+aurora.png
+ball-link.png
+ball-spin.png
+beach-mountains.png
+beam.png
+bearyl.png
+beehemoth.png
+bell-giant.png
+bell.png
+bg-beehive.png
+bg-desert-city-night.png
+bg-desert-city.png
+bg-modern-city.png
+bg-mountain-range.png
+bg-rural-countryside.png
+bg-snowy-city.png
+bg-starry-mountain.png
+bgSnowMountain.png
+bgSnowNight.png
+bgSnowPlain.png
+birdcage.png
+blazeborn.png
+blueforest.png
+boost-ring.png
+boss-door.png
+boss-health.png
+bouncebox.png
+bouncecap.png
+brickblock-chunks.png
+brickblock-snow.png
+brickblock.png
+bubble.png
+carrot-ko.png
+carstop.png
+chainlink.png
+charbox.png
+charcursor.png
+charge.png
+charge-air.png
+charge-dark.png
+charge-earth.png
+charge-fire.png
+charge-ice.png
+charge-light.png
+charge-shock.png
+charge-water.png
+charsel.png
+clamor.png
+coffee-cup.png
+coin.png
+coin-small.png
+color-cycle-blocks.png
+colorswitches.png
+colorswitches-small.png
+colorswitches-small-pf.png
+crumble-ice.png
+crumble-rock.png
+crystal.png
+crystal-bullet.png
+konqi-npc.png
+konqi.png
+konqiair.png
+konqidoll.png
+konqiearth.png
+konqifire.png
+konqiice.png
+konqiO.png
+konqishock.png
+konqiwater.png
+midi-aura.png
+midi-npc.png
+midi.png
+mididoll.png
+midiO.png
+muffin.png (w/ FrostC)
+neverball.png
+nofundo-block.png
+noone.png
+penny-npc.png
+penny.png
+pennyair.png
+pennydoll.png
+pennyearth.png
+pennyfire.png
+pennyice.png
+pennyO.png
+solid.png
+shield.png
+shield-air.png
+shield-dash.png
+shield-fire.png
+shield-ice.png
+shield-insta.png
+shield-shock.png
+shield-water.png
+shiveriken.png
+shockball.png
+shockbolt.png
+shockbulb.png
+shopblock.png
+shortfuse.png
+skull.png
+smartcap.png
+tinyflame.png
+tux-npc.png
+tux.png
+tuxair.png
+tuxearth.png
+tuxfire.png
+tuxfirehat.png
+tuxice.png
+tuxO.png
+tuxshock.png
+tuxwater.png
 
-[thekingphoenix](https://opengameart.org/content/tileset-platform-forest) - Forest Decorations
 
-[Nemysis](https://opengameart.org/users/nemisys) - Sign post
+### [Adam Atomic](http://www.adamatomic.com)
+blue-cave-bg-0.png\* - CC0
 
-[devnewton](https://opengameart.org/users/devnewton) - Cloud tiles
+### [Luke Bunday](http://pixeljoint.com/p/43158.htm)
+* Anneroy - CC-BY-SA 4.0
 
-[TheNess](https://opengameart.org/users/theness) - Forest parallax
+### [thekingphoenix](https://opengameart.org/users/thekingphoenix)
+* forestdeco.png - CC0
 
-[RodHakGames](https://opengameart.org/users/rodhakgames) - Portals
+### [Nemysis](https://opengameart.org/users/nemisys)
+* signpost.png\* - CC-BY-SA 3.0
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Palm trees
+### [devnewton](https://opengameart.org/users/devnewton)
+* explodeA.png\* - CC-BY-SA 4.0
 
-[KnoblePersona](https://opengameart.org/users/knoblepersona) - Ocean BG
+### [TheNess](https://opengameart.org/users/theness)
+* forest0.png - CC-BY-SA 3.0
+* forest0-night.png - CC-BY-SA 3.0
+* forest1.png - CC-BY-SA 3.0
+* forest1-night.png - CC-BY-SA 3.0
 
-[SugarMoonWitch](http://sugarmoonwitch.com/) - Underwater BG
+### [RodHakGames](https://opengameart.org/users/rodhakgames)
+* Portals\* - CC0
 
-[Soluna Software](https://opengameart.org/users/soluna-software)-  STA Logo Upper Half
+### [bluecarrot16](https://opengameart.org/users/bluecarrot16)
+* palmtrees.png\* - CC-BY-SA 3.0
+* barrel.png\* - CC-BY-SA 3.0
+* endgate.png\* - CC-BY-SA 3.0
+* large-boat-tiles.png\* - CC-BY-SA 3.0
 
-[ZiNGOT Games](https://opengameart.org/users/zingot) - STA Logo Lower Half
+### [KnoblePersona](https://opengameart.org/users/knoblepersona)
+* pots.png - CC-BY 3.0
+* ocean.png - CC-BY 3.0
+* ocean-night.png\* - CC-BY 3.0
 
-[Iaavis](https://opengameart.org/users/laavis) - 2D Pixel City Pack
+### [SugarMoonWitch](https://opengameart.org/users/tearoost)
+* underwaterbg.png\* - CC-BY 4.0
+* underwaterbg-light.png\* - CC-BY 4.0
 
-[BenCreating](https://opengameart.org/users/bencreating) - Overworld Tiles
+### [Soluna Software](https://opengameart.org/users/soluna-software)
+* title.png (upper half)\* - CC-BY 3.0
 
-[Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
+### [ZiNGOT Games](https://opengameart.org/users/zingot)
+* title.png (lower half)\* - CC-BY 4.0
 
-[Spring](https://opengameart.org/users/spring-spring) - Large flame
+### [Iaavis](https://opengameart.org/users/laavis)
+* citytiles.png\* - CC-BY 4.0
 
-[FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Toxic muffin, strawberry muffin, bomb muffin, Haywire, Tux doll, Orange, Darknyan, Livewire, Blazeborn
+### [BenCreating](https://opengameart.org/users/bencreating)
+* overworld.png\* - CC-BY-SA 3.0
 
-[TheCheeseWeez]() - Mega muffin
+### [Lanea Zimmerman](https://opengameart.org/users/sharm) - Moon sprite, street light
+* bg-moon.png - CC-BY 4.0
+* door-dungeon-face.png - CC-BY 4.0
+* door-dungeon-edge.png - CC-BY 4.0
 
-[Neorice](https://www.deviantart.com/neoriceisgood) - Rock tiles (edited), sand tiles (edited)
+### [Spring](https://opengameart.org/users/spring-spring) - Large flame, waspy boi\*
 
-[XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - Pixel Perfection (Minecraft-like tiles, with edits)
+### [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw)
+* muffin.png (strawberry, toxic, bomb)\* - CC-BY-SA 4.0
+* haywire.png\* - CC-BY-SA 4.0
+* tuxdoll.png\* - CC-BY-SA 4.0
+* orange.png\* - CC-BY-SA 4.0
+* darknyan.png - CC-BY-SA 4.0
+* livewire.png - CC-BY-SA 4.0
+* twang-npc.png - CC-BY-SA 4.0
+* npc-frostc.png - CC-BY-SA 4.0
 
-[bluecarrot16](https://opengameart.org/users/bluecarrot16) - Barrel (with edits), end gate (edited from cage)
+### [TheCheeseWeez]()
+* megamuffin.png\* - CC-BY-SA 4.0
 
-[Kutejnikov](https://opengameart.org/users/kutejnikov) - Shipwreck tiles
+### [Neorice](https://www.deviantart.com/neoriceisgood)
+* sand.png\* CC0
+* rocktiles.png\* CC0
 
-[Nushio](http://opengameart.org/users/nushio) - LPC Terrain 2
+### [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11)
+* minetest-campfire.png\* CC-BY-SA 3.0
 
-[Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy) - Splash
+### [Kutejnikov](https://opengameart.org/users/kutejnikov)
+* shipwreck.png\* - CC0
 
-[UbuntuJackson](https://github.com/UbuntuJackson) - UFO, snow tiles redesign
+### [Jesse McCarthy](https://opengameart.org/users/jesse-mccarthy)
+* splash.png - CC-BY 3.0
+* acidsplash.png\* - CC-BY 3.0
 
-[Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/) - RPG16
+### [UbuntuJackson](https://github.com/UbuntuJackson)
+ufo.png\* CC-BY-SA 4.0
+tsSnow.png\* CC-BY-SA 4.0
 
-[Crystalized Sun](https://www.deviantart.com/crystalizedsun/) - Mr. and Ms. Snowball, Snow Jumpy, Spiked Snowball, Snowman, Mecha Wheeler, Hamster Wheeler, Katie, Penny Overworld
+### [Hugues Ross](https://content.minetest.net/users/Hugues%20Ross/)
+rpg16.png\* CC-BY-SA 4.0
 
-[Narehop](https://opengameart.org/users/narehop) - Achievement Frame
+### [Crystalized Sun](https://www.deviantart.com/crystalizedsun/)
+* mr-snowball.png\* - CC-BY-SA 4.0
+* ms-snowball.png\* - CC-BY-SA 4.0
+* og-jumpy.png\* - CC-BY-SA 4.0
+* snowspike.png\* - CC-BY-SA 4.0
+* snowman.png\* - CC-BY-SA 4.0
+* snowoman.png\* - CC-BY-SA 4.0
+* wheelblade.png\* - CC-BY-SA 4.0
+* hamsterwheel.png - CC-BY-SA 4.0
+* katie.png\* - CC-BY-SA 4.0
+* pennyO.png\* - CC-BY-SA 4.0
+* kiki.png\* - CC-BY-SA 4.0
+* cyra.png - CC-BY-SA 4.0
+* fishblue-snow.png - CC-BY-SA 4.0
+* fishgreen-snow.png - CC-BY-SA 4.0
+* fishred-snow.png - CC-BY-SA 4.0
+* goldbomb.png - CC-BY-SA 4.0
+* pepper.png\* - CC-BY-SA 4.0
+* crystallo.png\* - CC-BY-SA 4.0
+
+### [Narehop](https://opengameart.org/users/narehop)
+* achievement-frame.png\* - CC-BY 4.0
+
+### [Serano01](https://github.com/serano01)
+* bg-switch-palace-0.png - CC-BY-SA 3.0
+* bg-switch-palace-1.png - CC-BY-SA 3.0
+
+### [BitingChaos](https://opengameart.org/users/bitingchaos)
+* explode-tiny.png - CC0
+
+### [Cethiel](https://opengameart.org/users/cethiel)
+* desertbg.png\* - CC0
+
+### [Revangale](https://opengameart.org/users/revangale)
+* palmtree-pieces.png\* CC-BY-SA 3.0
+
+### [Surt](https://opengameart.org/users/surt)
+* igloo.png\* GPL 3.0
+* ruins-tiles.png\* CC0
+
+### [RustyBox]()
+* icetrap-scaled.png\* - CC-BY-SA 4.0
+
+### [bcsilva](https://opengameart.org/users/bcsilva)
+* bg_stadium.png - CC-BY 3.0
+
+### [Jetrel](https://opengameart.org/users/jetrel)
+* castlebg.png - CC0
+* tsCastle.png\* - CC0
 
 ## Sounds
 
@@ -81,6 +315,8 @@
 [Little Robot Sound Factory](https://opengameart.org/content/8-bit-sound-effects-library) - Misc sounds
 
 [Subspace Audio](https://opengameart.org/content/512-sound-effects-8-bit-style) - Misc sounds
+
+[Erich Izdepsk](https://opengameart.org/users/digitl) - Electric wave
 
 ## Music
 
@@ -118,9 +354,21 @@ Lukas Nystrand - Chippdisko
 
 [Snabisch](https://opengameart.org/users/snabisch) - In The Forest
 
+[bart](https://opengameart.org/users/bart) - Airship Song
+
+[Spring](https://opengameart.org/users/spring-spring) - Forest Top
+
+[Wansti]() - Forest2\*, Forest3\*
+
+[Hitctrl](https://opengameart.org/users/hitctrl) - Close Yet So Far
+
 ## Level Contributors
 
 [FrostC](https://www.youtube.com/channel/UCy9RpAf9M8icNBRXf3S6rmw) - Slip and Slide, Tux 'N Trouble, Frost's Sense of Snow, The Ocean Bridge, Arctic Wind, Gaurded steps, part of Branching path
+
+[AntumDeluge](https://content.minetest.net/packages/AntumDeluge/sounds/) - Pig Sounds
+
+[Luis Zuno](https://opengameart.org/users/ansimuz) - Cavern Tile Set\*
 
 ## Translators
 
@@ -148,8 +396,6 @@ Click each mascot to learn more about them and the projects they're associated w
 
 [Konqi](https://community.kde.org/Konqi), [Plasma Breeze](https://www.deviantart.com/sheeppony/art/Plasma-Breeze-814699638), [Rocky Raccoon](https://wiki.minix3.org/doku.php?id=mascot), [Tux](https://en.wikipedia.org/wiki/Tux_(mascot)), [Xue](https://docs.xfce.org/)
 
-## Donors
-
-**Contribute 20 USD or more at [Kelvin Shadewing's Ko-Fi](https://ko-fi.com/kelvinshadewing) to be permanantly added to this list!**
+## Additional Supporters
 
 [Blinkehyo](https://www.youtube.com/c/Blinkehyo), [Cosmo Space Dragon](https://www.youtube.com/channel/UCUWmz_daYiPH0YJ-SzLssAg), Hazel Roo, [Kevin Pandaheart](https://www.youtube.com/fichinga), Keyla Otter, [Luke the Foxen](https://www.deviantart.com/lukethefoxen), Neon Blade, Bazzel, [Admiral Spraker](https://www.twitch.tv/adm_spraker), [Nova the Squirrel](https://novasquirrel.com/), tao_de_king

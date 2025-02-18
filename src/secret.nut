@@ -1,4 +1,4 @@
-::SecretWall <- class extends Actor {
+SecretWall <- class extends Actor {
 	found = false
 	alpha = 1.0
 	dw = 0
@@ -15,11 +15,33 @@
 	function run() {
 		if(shape == null && dw != 0 && dh != 0) shape = Rec(x + (dw * 8), y + (dh * 8), -4 + (dw * 8), -4 + (dh * 8), 5)
 
-		if(shape != null && gvPlayer) if(hitTest(shape, gvPlayer.shape)) {
+		if(shape != null && gvPlayer && hitTest(shape, gvPlayer.shape)) {
 			if(!found) {
 				found = true
-				if(!rehide) game.secrets++
+				if(!rehide) {
+					game.secrets++
+					popSound(sndSecret)
+				}
 			}
+		}
+		else if(shape != null && gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
+			if(!found) {
+				found = true
+				if(!rehide) {
+					game.secrets++
+					popSound(sndSecret)
+				}
+			}
+		}
+		else if(shape != null && !found && checkActor("BeamBug")) {
+			foreach(i in actor["BeamBug"])
+				if(i == gvPlayer && i.x < shape.x + shape.w && i.x > shape.x - shape.w && i.y < shape.y + shape.h && i.y > shape.y - shape.h) {
+					found = true
+					if(!rehide) {
+						game.secrets++
+						popSound(sndSecret)
+					}
+				}
 		}
 		else if(rehide) found = false
 		if(found && alpha > 0) alpha -= 0.1
@@ -28,8 +50,11 @@
 	}
 
 	function draw() {
-		if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha, 1, 1, gvLight)
-		else gvMap.drawTiles(floor(-camx), floor(-camy), x / 16, y / 16, dw, dh, "secret", alpha)
+		local light = 0
+		if(gvLightScreen == gvLightScreen1) light = gvLight
+		if(gvLightScreen == gvLightScreen2) light = gvLight2
+		if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), x, y, dw, dh, "secret", alpha, 1, 1, light)
+		else gvMap.drawTiles(floor(-camx), floor(-camy), x, y, dw, dh, "secret", alpha)
 		if(debug) {
 			drawText(font, x + 2 - camx, y + 2 - camy, "X: " + x + "\nY: " + y + "\nW: " + dw + "\nH: " + dh + "\nA: " + alpha)
 			setDrawColor(0xffffffff)
@@ -40,7 +65,7 @@
 	function _typeof() { return "SecretWall" }
 }
 
-::SecretJoiner <- class extends Actor {
+SecretJoiner <- class extends Actor {
 	found = false
 	alpha = 1.0
 	dw = null
@@ -96,9 +121,17 @@
 				if(hitTest(shape[i], gvPlayer.shape)) scanFound = true
 			}
 		}
+		if(gvPlayer2) {
+			for(local i = 0; i < shape.len(); i++) {
+				if(hitTest(shape[i], gvPlayer2.shape)) scanFound = true
+			}
+		}
 
 		if(scanFound) {
-			if(!rehide && !found) game.secrets++
+			if(!rehide && !found) {
+				game.secrets++
+				popSound(sndSecret)
+			}
 			found = true
 		}
 		else if(rehide) found = false
@@ -110,8 +143,8 @@
 	function draw() {
 		//Draw secret tiles
 		for(local i = 0; i < shape.len(); i++) {
-			if(config.light) gvMap.drawTilesMod(floor(-camx), floor(-camy), dx[i] / 16, dy[i] / 16, dw[i], dh[i], "secret", alpha, 1, 1, gvLight)
-			else gvMap.drawTiles(floor(-camx), floor(-camy), dx[i] / 16, dy[i] / 16, dw[i], dh[i], "secret", alpha)
+			if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha, 1, 1, gvLight)
+			else gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha)
 		}
 
 		if(debug) {

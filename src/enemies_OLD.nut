@@ -2,7 +2,7 @@
 | ENEMIES |
 \*=======*/
 
-// ::Enemy <- class extends PhysAct {
+// Enemy <- class extends PhysAct {
 // 	health = 1
 // 	hspeed = 0.0
 // 	vspeed = 0.0
@@ -134,7 +134,7 @@
 // 	function _typeof() { return "Enemy" }
 // }
 
-// ::Deathcap <- class extends Enemy {
+// Deathcap <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -203,8 +203,8 @@
 // 					}
 
 // 					//Draw
-// 					if(smart) drawSpriteEx(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-// 					else drawSpriteEx(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					if(smart) drawSprite(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					else drawSprite(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
 // 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -223,15 +223,15 @@
 // 					}
 
 // 					//Draw
-// 					if(smart) drawSpriteEx(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-// 					else drawSpriteEx(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					if(smart) drawSprite(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					else drawSprite(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
 // 			else {
 // 				squishTime += 0.025
 // 				if(squishTime >= 1) deleteActor(id)
-// 				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-// 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				if(smart) drawSprite(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				else drawSprite(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 			}
 
 // 			shape.setPos(x, y)
@@ -309,7 +309,7 @@
 // 	function _typeof() { return "Deathcap" }
 // }
 
-// ::PipeSnake <- class extends Enemy {
+// PipeSnake <- class extends Enemy {
 // 	ystart = 0
 // 	timer = 30
 // 	up = false
@@ -342,8 +342,8 @@
 // 				icebox = mapNewSolid(shape)
 // 			}
 
-// 			if(flip == 1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-// 			if(flip == -1) drawSpriteEx(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
+// 			if(flip == 1) drawSprite(sprSnake, 1, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+// 			if(flip == -1) drawSprite(sprSnake, 1, floor(x - camx), floor(y - camy) - 8, 0, 2, 1, 1, 1)
 // 			if(frozen <= 120) {
 // 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapTall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy + 16)
 // 				else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
@@ -358,8 +358,8 @@
 // 				icebox = -1
 // 			}
 
-// 			if(flip == 1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
-// 			if(flip == -1) drawSpriteEx(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
+// 			if(flip == 1) drawSprite(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy), 0, 0, 1, 1, 1)
+// 			if(flip == -1) drawSprite(sprSnake, getFrames() / 8, floor(x - camx), floor(y - camy) + 32, 0, 2, 1, 1, 1)
 // 		}
 // 	}
 
@@ -411,7 +411,7 @@
 // 	function _typeof() { return "Snake" }
 // }
 
-// ::Ouchin <- class extends Enemy {
+// Ouchin <- class extends Enemy {
 // 	sf = 0.0
 
 // 	constructor(_x, _y, _arr = null) {
@@ -486,7 +486,7 @@
 
 //Dead enemy effect for enemies that get sent flying,
 //like when hit with a melee attack
-// ::DeadNME <- class extends Actor {
+// DeadNME <- class extends Actor {
 // 	sprite = 0
 // 	frame = 0
 // 	hspeed = 0.0
@@ -507,11 +507,11 @@
 // 		y += vspeed
 // 		angle += spin
 // 		if(y > gvMap.h + 32) deleteActor(id)
-// 		drawSpriteEx(sprite, frame, floor(x - camx), floor(y - camy), angle, flip, 1, 1, 1)
+// 		drawSprite(sprite, frame, floor(x - camx), floor(y - camy), angle, flip, 1, 1, 1)
 // 	}
 // }
 
-// ::CarlBoom <- class extends Enemy {
+// CarlBoom <- class extends Enemy {
 // 	burnt = false
 // 	frame = 0.0
 // 	flip = false
@@ -574,7 +574,7 @@
 // 					}
 
 // 					//Draw
-// 					drawSpriteEx(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					drawSprite(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
 // 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -593,13 +593,13 @@
 // 					}
 
 // 					//Draw
-// 					drawSpriteEx(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					drawSprite(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
 // 			else {
 // 				squishTime += 1.5
 // 				frame += 0.002 * squishTime
-// 				drawSpriteEx(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 				drawSprite(sprCarlBoom, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 // 				if(getFrames() % 20 == 0) {
 // 					local c
 // 					if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
@@ -703,7 +703,7 @@
 // 	function _typeof() { return "CarlBoom" }
 // }
 
-// ::BadExplode <- class extends Actor{
+// BadExplode <- class extends Actor{
 // 	frame = 0.0
 // 	shape = 0
 
@@ -717,8 +717,8 @@
 // 	}
 
 // 	function run() {
-// 		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-// 		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+// 		drawSprite(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+// 		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 // 		frame += 0.2
 
 // 		if(gvPlayer) {
@@ -753,7 +753,7 @@
 // 	function _typeof() { return "BadExplode" }
 // }
 
-// ::OrangeBounce <- class extends Enemy {
+// OrangeBounce <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -793,7 +793,7 @@
 // 			shape.setPos(x, y)
 
 // 			//Draw
-// 			drawSpriteEx(sprOrangeBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 			drawSprite(sprOrangeBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 			if(frozen) {
 // 				//Create ice block
@@ -802,7 +802,7 @@
 // 				}
 
 // 				//Draw
-// 				drawSpriteEx(sprOrangeBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				drawSprite(sprOrangeBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 				if(frozen <= 120) {
 // 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -846,7 +846,7 @@
 // 	function _typeof() { return "OrangeBounce" }
 // }
 
-// ::BadCannon <- class extends Actor {
+// BadCannon <- class extends Actor {
 // 	frame = 3.5
 // 	timer = 240
 
@@ -899,7 +899,7 @@
 // 	function _typeof() { return "BadCannon" }
 // }
 
-// ::CannonBob <- class extends Enemy {
+// CannonBob <- class extends Enemy {
 // 	vspeed = -4
 // 	sprite = 0
 
@@ -915,8 +915,8 @@
 // 		base.run()
 
 // 		if(!frozen) {
-// 			if(hspeed < 0) drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, 1)
-// 			else drawSpriteEx(sprite, getFrames() / 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+// 			if(hspeed < 0) drawSprite(sprite, getFrames() / 4, x - camx, y - camy, 0, 0, 1, 1, 1)
+// 			else drawSprite(sprite, getFrames() / 4, x - camx, y - camy, 0, 1, 1, 1, 1)
 
 // 			vspeed += 0.2
 // 			x += hspeed
@@ -934,8 +934,8 @@
 // 			}
 // 		}
 // 		else {
-// 			if(hspeed < 0) drawSpriteEx(sprite, 4, x - camx, y - camy, 0, 1, 1, 1, 1)
-// 			else drawSpriteEx(sprite, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
+// 			if(hspeed < 0) drawSprite(sprite, 4, x - camx, y - camy, 0, 1, 1, 1, 1)
+// 			else drawSprite(sprite, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
 
 // 			//Create ice block
 // 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
@@ -991,7 +991,7 @@
 // 	function _typeof() { return "CannonBob" }
 // }
 
-// ::BlueFish <- class extends Enemy {
+// BlueFish <- class extends Enemy {
 // 	timer = 0
 // 	frame = 0.0
 // 	biting = false
@@ -1026,10 +1026,10 @@
 // 			}
 
 // 			if(biting) {
-// 				drawSpriteEx(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+// 				drawSprite(sprBlueFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 // 				frame += 0.125
 // 			}
-// 			else drawSpriteEx(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+// 			else drawSprite(sprBlueFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 
 // 			if(y > gvMap.h) {
 // 				if(vspeed > 0) vspeed = 0
@@ -1046,7 +1046,7 @@
 // 	}
 
 // 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
 // 	}
 
 // 	function hurtFire() {
@@ -1072,7 +1072,7 @@
 // 	function _typeof() { return "BlueFish" }
 // }
 
-// ::RedFish <- class extends Enemy {
+// RedFish <- class extends Enemy {
 // 	timer = 0
 // 	frame = 0.0
 // 	biting = false
@@ -1133,10 +1133,10 @@
 // 			}
 
 // 			if(biting) {
-// 				drawSpriteEx(sprRedFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+// 				drawSprite(sprRedFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 // 				frame += 0.125
 // 			}
-// 			else drawSpriteEx(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+// 			else drawSprite(sprRedFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 
 // 			if(y > gvMap.h) {
 // 				if(vspeed > 0) vspeed = 0
@@ -1153,7 +1153,7 @@
 // 	}
 
 // 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
 // 	}
 
 // 	function hurtFire() {
@@ -1179,7 +1179,7 @@
 // 	function _typeof() { return "RedFish" }
 // }
 
-// ::JellyFish <- class extends Enemy {
+// JellyFish <- class extends Enemy {
 // 	timer = 0
 // 	frame = 0.0
 // 	pump = false
@@ -1240,8 +1240,8 @@
 // 			vspeed *= 0.99
 // 			hspeed *= 0.99
 
-// 			drawSpriteEx(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
-// 			drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
+// 			drawSprite(sprJellyFish, frame, x - camx, y - camy, 0, fliph + (flipv * 2), 1, 1, 1)
+// 			drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.25, 0.25)
 
 // 			if(placeFree(x + hspeed, y)) x += hspeed
 // 			if(placeFree(x, y + vspeed)) y += vspeed
@@ -1250,7 +1250,7 @@
 // 	}
 
 // 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
 // 	}
 
 // 	function hurtFire() {
@@ -1275,7 +1275,7 @@
 // 	function _typeof() { return "BlueFish" }
 // }
 
-// ::Clamor <- class extends Enemy {
+// Clamor <- class extends Enemy {
 // 	huntdir = 0
 // 	timer = 0
 // 	flip = 0
@@ -1302,11 +1302,11 @@
 
 // 		if(timer > 0) timer--
 
-// 		drawSpriteEx(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
+// 		drawSprite(sprClamor, (timer < 30).tointeger(), x - camx, y - camy, 0, flip, 1, 1, 1)
 // 	}
 
 // 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
 // 	}
 
 // 	function hurtFire() {
@@ -1331,7 +1331,7 @@
 // 	function _typeof() { return "Clamor" }
 // }
 
-// ::ClamorPearl <- class extends PhysAct {
+// ClamorPearl <- class extends PhysAct {
 // 	hspeed = 0
 // 	vspeed = 0
 // 	timer = 1200
@@ -1367,7 +1367,7 @@
 // 	}
 // }
 
-// ::GreenFish <- class extends Enemy {
+// GreenFish <- class extends Enemy {
 // 	timer = 120
 // 	frame = 0.0
 // 	biting = false
@@ -1435,10 +1435,10 @@
 // 			}
 
 // 			if(biting) {
-// 				drawSpriteEx(sprGreenFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
+// 				drawSprite(sprGreenFish, 4 + frame, x - camx, y - camy, 0, flip, 1, 1, 1)
 // 				frame += 0.125
 // 			}
-// 			else drawSpriteEx(sprGreenFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
+// 			else drawSprite(sprGreenFish, wrap(getFrames() / 16, 0, 3), x - camx, y - camy, 0, flip, 1, 1, 1)
 
 // 			if(y > gvMap.h) {
 // 				if(vspeed > 0) vspeed = 0
@@ -1457,7 +1457,7 @@
 // 	}
 
 // 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {
-// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == 4) hurtFire()
+// 		if(gvPlayer.rawin("anSlide")) if(gvPlayer.anim == gvPlayer.anSlide && game.weapon == "earth") hurtFire()
 // 	}
 
 // 	function hurtFire() {
@@ -1483,7 +1483,7 @@
 // 	function _typeof() { return "GreenFish" }
 // }
 
-// ::Icicle <- class extends Enemy {
+// Icicle <- class extends Enemy {
 // 	timer = 30
 // 	counting = false
 
@@ -1523,7 +1523,7 @@
 // 	}
 // }
 
-// ::FlyAmanita <- class extends Enemy {
+// FlyAmanita <- class extends Enemy {
 // 	range = 0
 // 	dir = 0.5
 // 	flip = 0
@@ -1567,14 +1567,14 @@
 // 			}
 
 // 			y += vspeed
-// 			drawSpriteEx(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
+// 			drawSprite(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
 // 		} else {
 // 			//Create ice block
 // 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 				icebox = mapNewSolid(shape)
 // 			}
 
-// 			drawSpriteEx(sprFlyAmanita, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
+// 			drawSprite(sprFlyAmanita, 0, x - camx, y - camy, 0, flip, 1, 1, 1)
 // 			if(frozen <= 120) {
 // 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
 // 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
@@ -1633,7 +1633,7 @@
 // 	function hurtIce() { frozen = 600 }
 // }
 
-// ::Jumpy <- class extends Enemy {
+// Jumpy <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -1671,7 +1671,7 @@
 // 			shape.setPos(x, y)
 
 // 			//Draw
-// 			drawSpriteEx(sprJumpy, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 			drawSprite(sprJumpy, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 			if(frozen) {
 // 				//Create ice block
@@ -1680,7 +1680,7 @@
 // 				}
 
 // 				//Draw
-// 				drawSpriteEx(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				drawSprite(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 				if(frozen <= 120) {
 // 				if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -1730,7 +1730,7 @@
 // 	function hurtIce() { frozen = 600 }
 // }
 
-// ::Haywire <- class extends Enemy {
+// Haywire <- class extends Enemy {
 // 	burnt = false
 // 	frame = 0.0
 // 	flip = false
@@ -1828,7 +1828,7 @@
 // 					}
 
 // 					//Draw
-// 					drawSpriteEx(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					drawSprite(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
 // 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -1850,7 +1850,7 @@
 
 // 					//Draw
 // 					if(chasing) {
-// 						drawSpriteEx(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 						drawSprite(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 // 						if(getFrames() % 8 == 0) {
 // 							local c
 // 							if(!flip) c = actor[newActor(FlameTiny, x - 6, y - 8)]
@@ -1859,7 +1859,7 @@
 // 							c.hspeed = randFloat(0.2) - 0.1
 // 						}
 // 					}
-// 					else drawSpriteEx(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					else drawSprite(sprHaywire, wrap(getFrames() / 10, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
 // 			else {
@@ -1877,8 +1877,8 @@
 // 					newActor(BadExplode, x, y)
 
 // 				}
-// 				if(!chasing) drawSpriteEx(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
-// 				else drawSpriteEx(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 				if(!chasing) drawSprite(sprHaywire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 				else drawSprite(sprHaywire, wrap(frame, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
 // 				if(frozen) {
 // 					squish = false
@@ -1948,7 +1948,7 @@
 // 	function _typeof() { return "Haywire" }
 // }
 
-// ::Sawblade <- class extends PathCrawler {
+// Sawblade <- class extends PathCrawler {
 // 	constructor(_x, _y, _arr = null) {
 // 		base.constructor(_x, _y, _arr)
 // 		shape = Rec(x, y, 6, 6, 0)
@@ -1957,14 +1957,14 @@
 // 	function run() {
 // 		base.run()
 // 		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
-// 		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
+// 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
 // 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
 // 		shape.setPos(x, y)
 // 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
 // 	}
 // }
 
-// ::BadExplodeS <- class extends Actor {
+// BadExplodeS <- class extends Actor {
 // 	frame = 0.0
 // 	shape = 0
 
@@ -1978,7 +1978,7 @@
 // 	}
 
 // 	function run() {
-// 		drawSpriteEx(sprExplodeT, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+// 		drawSprite(sprExplodeS, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 // 		frame += 0.1
 
 // 		if(gvPlayer) {
@@ -2003,7 +2003,7 @@
 // 	}
 // }
 
-// ::Livewire <- class extends Enemy {
+// Livewire <- class extends Enemy {
 // 	burnt = false
 // 	frame = 0.0
 // 	flip = false
@@ -2065,7 +2065,7 @@
 // 					}
 
 // 					//Draw
-// 					drawSpriteEx(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					drawSprite(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
 // 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2084,7 +2084,7 @@
 // 					}
 
 // 					//Draw
-// 					drawSpriteEx(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					drawSprite(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
 // 			else {
@@ -2104,7 +2104,7 @@
 // 					newActor(BadExplodeS, x + 20, y - 20)
 
 // 				}
-// 				drawSpriteEx(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
+// 				drawSprite(sprLivewire, wrap(frame, 4, 7), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 
 
 // 				if(frozen) {
@@ -2163,7 +2163,7 @@
 // 	function hurtIce() { frozen = 120 }
 // }
 
-// ::Blazeborn <- class extends Enemy {
+// Blazeborn <- class extends Enemy {
 // 	frame = 0.0
 // 	flip = false
 // 	squish = false
@@ -2235,8 +2235,8 @@
 // 					}
 
 // 					//Draw
-// 					if(smart) drawSpriteEx(sprBlazeborn , 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-// 					else drawSpriteEx(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					if(smart) drawSprite(sprBlazeborn , 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					else drawSprite(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
 // 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2255,17 +2255,17 @@
 // 					}
 
 // 					//Draw
-// 					if(smart) drawSpriteEx(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-// 					else drawSpriteEx(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					if(smart) drawSprite(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 					else drawSprite(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
 // 			else {
 // 				squishTime += 0.025
 // 				if(squishTime >= 1)
-// 				if(smart) drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-// 				else drawSpriteEx(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				if(smart) drawSprite(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+// 				else drawSprite(sprDeathcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 			}
-// 			drawLightEx(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
+// 			drawLight(sprLightFire, 0, x - camx, y - camy, randInt(360), 0, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05, 0.5 + sin(getFrames().tofloat() / 2.5) * 0.05)
 
 // 			shape.setPos(x, y)
 // 			setDrawColor(0xff0000ff)
@@ -2324,7 +2324,7 @@
 // 	function _typeof() { return "Blazeborn" }
 // }
 
-::Wildcap <- class extends Enemy {
+Wildcap <- class extends Enemy {
 	frame = 0.0
 	flip = false
 	squish = false
@@ -2393,8 +2393,8 @@
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSprite(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSprite(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 					if(frozen <= 70) {
 					if(floor(frozen / 4) % 2 == 0) drawSprite(sprIceTrapSmall, 0, x - camx - 1 + ((floor(frozen / 4) % 4 == 0).tointeger() * 2), y - camy - 1)
@@ -2413,15 +2413,15 @@
 					}
 
 					//Draw
-					if(smart) drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-					else drawSpriteEx(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					if(smart) drawSprite(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+					else drawSprite(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}
 			}
 			else {
 				squishTime += 0.025
 				if(squishTime >= 1) deleteActor(id)
-				if(smart) drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
-				else drawSpriteEx(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				if(smart) drawSprite(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+				else drawSprite(sprWildcap, floor(4.8 + squishTime), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 			}
 
 			shape.setPos(x, y)

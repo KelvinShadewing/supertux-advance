@@ -1,14 +1,19 @@
-::debug <- false
-::debugTickIndex <- 0
-::debugTickSum <- 0
-::debugTickList <- array(64, 0)
-::devcom <- false
-::debugHistory <- []
-::debugCursor <- 0
-::debugMouseLeft <- 1
-::debugMouseRight <- 0
+debug <- false
+debugTickIndex <- 0
+debugTickSum <- 0
+debugTickList <- array(64, 0)
+devcom <- false
+debugHistory <- []
+debugCursor <- 0
+debugMouseLeft <- 1
+debugMouseRight <- 0
+debugExt <- {}
 
-::drawDebug <- function() {
+gvDebugConsole <- false
+gvConIn <- ""
+gvConOut <- ""
+
+drawDebug <- function() {
 	if(keyPress(k_f12)) {
 		debug = !debug
 		//if(debug) foreach(i in actor) print(typeof i)
@@ -28,15 +33,15 @@
 	fps = debugTickSum / 64
 
 	//Set weapon
-	if(keyPress(k_1)) game.weapon = 0
-	if(keyPress(k_2)) { game.weapon = 1; game.maxEnergy = 4 - game.difficulty + game.fireBonus}
-	if(keyPress(k_3)) { game.weapon = 2; game.maxEnergy = 4 - game.difficulty + game.iceBonus}
-	if(keyPress(k_4)) { game.weapon = 3; game.maxEnergy = 4 - game.difficulty + game.airBonus}
-	if(keyPress(k_5)) { game.weapon = 4; game.maxEnergy = 4 - game.difficulty + game.earthBonus}
-	if(keyPress(k_6)) { gvPlayer.zoomies += 60 * 16}
-	if(keyPress(k_0)) game.maxHealth = 16
-	if(keyPress(k_9)) game.health += 4
-	if(keyPress(k_minus)) game.maxHealth = game.maxHealth - 4
+	if(keyPress(k_1)) {game.ps.weapon = "fire"}
+	if(keyPress(k_2)) {game.ps.weapon = "ice"}
+	if(keyPress(k_3)) {game.ps.weapon = "air"}
+	if(keyPress(k_4)) {game.ps.weapon = "earth"}
+	if(keyPress(k_5)) {game.ps.weapon = "shock"}
+	if(keyPress(k_6)) {game.ps.weapon = "water"}
+	if(keyPress(k_7)) {game.ps.weapon = "dark"}
+	if(keyPress(k_8)) {game.ps.weapon = "light"}
+	if(keyPress(k_minus) && game.maxHealth > 4) game.maxHealth = game.maxHealth - 4
 	if(keyPress(k_equals))  game.maxHealth = game.maxHealth + 4
 	if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
 		if(keyPress(k_k)) {
@@ -46,19 +51,46 @@
 			gvKeyMythril = true
 		}
 	}
-		if(keyDown(k_lctrl) || keyDown(k_rctrl)) {
-		if(keyPress(k_e)) {
-		endGoal()
-		}
-	}
+
+	if((keyDown(k_lctrl) || keyDown(k_rctrl)) && keyPress(k_e)) endGoal()
 
 	//Mouse debug
 	if(keyDown(k_lshift)) {
 		if(gvPlayer && mouseDown(0)) {
-			gvPlayer.x = mouseX() + camx
-			gvPlayer.y = mouseY() + camy
-			gvPlayer.hspeed = 0.0
-			gvPlayer.vspeed = 0.0
+			if(!gvSplitScreen) {
+				gvPlayer.x = mouseX() + camx0
+				gvPlayer.y = mouseY() + camy0
+				gvPlayer.hspeed = 0.0
+				gvPlayer.vspeed = 0.0
+			}
+			else if(gvSwapScreen) {
+				if(mouseX() > screenW() / 2) {
+					gvPlayer.x = (mouseX() - screenW() / 2) + camx1
+					gvPlayer.y = mouseY() + camy1
+					gvPlayer.hspeed = 0.0
+					gvPlayer.vspeed = 0.0
+				}
+				else {
+					gvPlayer2.x = mouseX() + camx2
+					gvPlayer2.y = mouseY() + camy2
+					gvPlayer2.hspeed = 0.0
+					gvPlayer2.vspeed = 0.0
+				}
+			}
+			else {
+				if(mouseX() < screenW() / 2) {
+					gvPlayer.x = mouseX() + camx1
+					gvPlayer.y = mouseY() + camy1
+					gvPlayer.hspeed = 0.0
+					gvPlayer.vspeed = 0.0
+				}
+				else {
+					gvPlayer2.x = (mouseX() - screenW() / 2) + camx2
+					gvPlayer2.y = mouseY() + camy2
+					gvPlayer2.hspeed = 0.0
+					gvPlayer2.vspeed = 0.0
+				}
+			}
 
 			if(gvGameMode == gmOverworld) {
 				gvPlayer.x = (gvPlayer.x - (gvPlayer.x % 16)) + 8
@@ -67,17 +99,56 @@
 		}
 	}
 	else {
-		if(mouseDown(0)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseLeft)
-		if(mouseDown(2)) tileSetSolid(mouseX() + camx, mouseY() + camy, debugMouseRight)
-		if(mouseDown(1)) debugMouseLeft = tileGetSolid(mouseX() + camx, mouseY() + camy)
+		//Solid tiles editor
+		local dox = 0
+		local doy = 0
+
+		if(gvGameMode == gmOverworld) {
+			dox = mouseX() + camx
+			doy = mouseY() + camy
+		}
+		else if(!gvSplitScreen) {
+			dox = mouseX() + camx0
+			doy = mouseY() + camy0
+		}
+		else if(gvSwapScreen) {
+			if(mouseX() > screenW() / 2) {
+				dox = (mouseX() - screenW() / 2) + camx1
+				doy = mouseY() + camy1
+			}
+			else {
+				dox = mouseX() + camx2
+				doy = mouseY() + camy2
+			}
+		}
+		else {
+			if(mouseX() < screenW() / 2) {
+				dox = mouseX() + camx1
+				doy = mouseY() + camy1
+			}
+			else {
+				dox = (mouseX() - screenW() / 2) + camx2
+				doy = mouseY() + camy2
+			}
+		}
+
+		if(mouseDown(0)) tileSetSolid(dox, doy, debugMouseLeft)
+		if(mouseDown(2)) tileSetSolid(dox, doy, debugMouseRight)
+		if(mouseDown(1)) debugMouseLeft = tileGetSolid(dox, doy)
 		if(mouseWheelY() < 0) debugMouseLeft--
 		if(mouseWheelY() > 0) debugMouseLeft++
-		debugMouseLeft = wrap(debugMouseLeft, 0, (5 * 13) - 1)
-		if(debugMouseLeft == 0) drawSprite(tsSolid, (5 * 13) - 1, mouseX(), mouseY())
+		debugMouseLeft = wrap(debugMouseLeft, 0, (6 * 16) - 1)
+		if(debugMouseLeft == 0) {
+			setDrawColor(0xff0000ff)
+			drawLineWide(mouseX() - 8, mouseY() - 8, mouseX() + 8, mouseY() + 8, 2)
+			drawLineWide(mouseX() - 8, mouseY() + 8, mouseX() + 8, mouseY() - 8, 2)
+		}
 		else drawSprite(tsSolid, debugMouseLeft - 1, mouseX(), mouseY())
 	}
 
-	game.canres = true
+	if(gvPlayer && "stats" in gvPlayer) gvPlayer.stats.canres = true
+	if(gvPlayer2 && "stats" in gvPlayer2) gvPlayer2.stats.canres = true
+
 	local message = ""
 
 	if(gvPlayer) {
@@ -89,16 +160,6 @@
 	}
 
 	message += "FPS: " + round(fps) + " (" + getFPS() + ")\n\n\n\n"
-
-	//Debug keys
-	drawSprite(sprDebug, getcon("left", "hold").tointeger(), 4, 60)
-	drawSprite(sprDebug, getcon("up", "hold").tointeger() + 4, 12, 56)
-	drawSprite(sprDebug, getcon("down", "hold").tointeger() + 6, 12, 64)
-	drawSprite(sprDebug, getcon("right", "hold").tointeger() + 2, 20, 60)
-
-	drawSprite(sprDebug, getcon("jump", "hold").tointeger() + 8, 4, 72)
-	drawSprite(sprDebug, getcon("shoot", "hold").tointeger() + 10, 12, 72)
-	drawSprite(sprDebug, getcon("run", "hold").tointeger() + 12, 20, 72)
 
 	message += "HSPD: "
 	if(gvPlayer) message += gvPlayer.hspeed.tostring()
@@ -116,65 +177,72 @@
 	setDrawColor(0xff0000ff)
 	drawLine(mouseX() - 8, mouseY(), mouseX() + 8, mouseY())
 	drawLine(mouseX(), mouseY() - 8, mouseX(), mouseY() + 8)
+
+	foreach (i in debugExt) if(typeof i == "function") i()
 }
 
-::debugConsole <- function() {
-	if(gvGameMode != gmPause) {
-		setDrawTarget(bgPause)
-		drawImage(gvScreen, 0, 0)
-	}
-	resetDrawTarget()
-	update()
-
-	local output = ""
-	local input = ""
-
-	while(!keyPress(k_tick) && !keyPress(k_escape)) {
-		if(keyPress(k_backspace) && input.len() > 0) input = input.slice(0, -1)
-		if(keyPress(k_enter)) {
-			dostr(input)
-			if(debugHistory.len() > 0) debugHistory.pop()
-			debugHistory.push(input)
-			debugHistory.push("")
-			debugCursor = debugHistory.len() - 1
-			if(debugHistory.len() > screenH() / 8) debugHistory.remove(0)
-			input = ""
+gmConsole <- function() {
+	if(!gvDebugConsole) {
+		if(gvGameMode != gmPause) {
+			setDrawTarget(bgPause)
+			drawImage(gvScreen, 0, 0)
 		}
-		local newchar = keyString()
-		if(newchar != "`") input += newchar
-
-		setDrawTarget(gvScreen)
-		drawImage(bgPause, 0, 0)
-		setDrawColor(0x00000080)
-		drawRec(0, 0, screenW(), screenH(), true)
-
-		output = ""
-		for(local i = 0; i < debugHistory.len() - 1; i++) {
-			output += debugHistory[i]
-			output += "\n"
-		}
-		if(input.len() < floor(screenW() / 6)) output += input
-		else output += input.slice(-floor(screenW() / 6))
-		if(floor(getFrames() / 32) % 2 == 0) output += "|"
-		drawText(font, 0, 0, output)
-
 		resetDrawTarget()
-		drawImage(gvScreen, 0, 0)
-		update()
 
-		if(keyPress(k_up) && debugCursor > 0) {
-			debugCursor--
-			input = debugHistory[debugCursor]
-		}
+		gvConOut = ""
+		gvConIn = ""
+		gvDebugConsole = true
+	}
 
-		if(keyPress(k_down) && debugCursor < debugHistory.len() - 1) {
-			debugCursor++
-			input = debugHistory[debugCursor]
+	if(keyPress(k_backspace) && gvConIn.len() > 0) gvConIn = gvConIn.slice(0, -1)
+	if(keyPress(k_enter)) {
+		try {
+			dostr(gvConIn)
+		} catch (e) {
+			print(e)
+			local fe = split(e, "\n")[0]
+			gvConOut += "\n" + str(fe)
 		}
+		
+		if(debugHistory.len() > 0) debugHistory.pop()
+		debugHistory.push(gvConIn)
+		debugHistory.push("")
+		debugCursor = debugHistory.len() - 1
+		if(debugHistory.len() > screenH() / 8) debugHistory.remove(0)
+		gvConIn = ""
+	}
+	local newchar = keyString()
+	if(newchar != "`") gvConIn += newchar
+
+	setDrawTarget(gvScreen)
+	drawImage(bgPause, 0, 0)
+	setDrawColor(0x00000080)
+	drawRec(0, 0, screenW(), screenH(), true)
+
+	gvConOut = ""
+	for(local i = 0; i < debugHistory.len() - 1; i++) {
+		gvConOut += debugHistory[i]
+		gvConOut += "\n"
+	}
+	if(gvConIn.len() < floor(screenW() / 6)) gvConOut += gvConIn
+	else gvConOut += gvConIn.slice(-floor(screenW() / 6))
+	if(floor(getFrames() / 32) % 2 == 0) gvConOut += "|"
+	drawText(font, 0, 0, gvConOut)
+
+	resetDrawTarget()
+
+	if(keyPress(k_up) && debugCursor > 0) {
+		debugCursor--
+		gvConIn = debugHistory[debugCursor]
+	}
+
+	if(keyPress(k_down) && debugCursor < debugHistory.len() - 1) {
+		debugCursor++
+		gvConIn = debugHistory[debugCursor]
 	}
 }
 
-::PolyTest <- class extends Actor {
+PolyTest <- class extends Actor {
 	path = null
 
 	constructor(_x, _y, _arr = null) {
@@ -185,5 +253,35 @@
 	function run() {
 		setDrawColor(0xff0000ff)
 		for(local i = 0; i < path.len() - 1; i++) drawLine(path[i][0] - camx, path[i][1] - camy, path[i + 1][0] - camx, path[i + 1][1] - camy)
+	}
+}
+
+displayKeys <- function() {
+	local offset = (gvNumPlayers == 2 ? 32 : 0)
+	if(!config.showleveligt && !gvTimeAttack) offset -= 16
+	drawSprite(sprDebug, int(getcon("left", "hold", true, 1)), 4, 60 + offset)
+	drawSprite(sprDebug, int(getcon("up", "hold", true, 1)) + 4, 12, 56 + offset)
+	drawSprite(sprDebug, int(getcon("down", "hold", true, 1)) + 6, 12, 64 + offset)
+	drawSprite(sprDebug, int(getcon("right", "hold", true, 1)) + 2, 20, 60 + offset)
+
+	drawSprite(sprDebug, int(getcon("jump", "hold", true, 1)) + 8, 4, 72 + offset)
+	drawSprite(sprDebug, int(getcon("spec2", "hold", true, 1)) + 10, 12, 72 + offset)
+	drawSprite(sprDebug, int(getcon("swap", "hold", true, 1)) + 12, 20, 72 + offset)
+
+	drawSprite(sprDebug, int(getcon("shoot", "hold", true, 1)) + 14, 28, 60 + offset)
+	drawSprite(sprDebug, int(getcon("spec1", "hold", true, 1)) + 16, 28, 68 + offset)
+
+	if(gvNumPlayers == 2) {
+		drawSprite(sprDebug, int(getcon("left", "hold", true, 2)), 4 + 36, 60 + offset)
+		drawSprite(sprDebug, int(getcon("up", "hold", true, 2)) + 4, 12 + 36, 56 + offset)
+		drawSprite(sprDebug, int(getcon("down", "hold", true, 2)) + 6, 12 + 36, 64 + offset)
+		drawSprite(sprDebug, int(getcon("right", "hold", true, 2)) + 2, 20 + 36, 60 + offset)
+
+		drawSprite(sprDebug, int(getcon("jump", "hold", true, 2)) + 8, 4 + 36, 72 + offset)
+		drawSprite(sprDebug, int(getcon("spec2", "hold", true, 2)) + 10, 12 + 36, 72 + offset)
+		drawSprite(sprDebug, int(getcon("swap", "hold", true, 2)) + 12, 20 + 36, 72 + offset)
+
+		drawSprite(sprDebug, int(getcon("shoot", "hold", true, 2)) + 14, 28 + 36, 60 + offset)
+		drawSprite(sprDebug, int(getcon("spec1", "hold", true, 2)) + 16, 28 + 36, 68 + offset)
 	}
 }

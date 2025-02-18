@@ -1,33 +1,118 @@
-::newGame <- function(f) {
+newGame <- function(f) {
 	local newdif = game.difficulty
 	game = createNewGameObject()
 	game.file = f
 	gvDoIGT = false
 	game.difficulty = newdif
-	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
+	game.state = {
+		pennyton = 0
+		fishmines = 0
+	}
+	game.characters = {
+		Tux = true
+		Penny = true
+		Lutris = true
+	}
+
+	if(typeof f == "integer") {
+		game.randPlayer = gvTARandomPlayer
+		game.randItem = gvTARandomItem
+		game.randLevel = gvTARandomLevel
+
+		//Break RNG
+		if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
+			randSeed(getFrames())
+		else
+			randSeed(0)
+
+		if(gvTARandomLevel) {
+			game.ranLevList = {}
+
+			//Generate random levels list
+			local nl = []
+			while(nl.len() < gvStoryLevelList.len()) {
+				foreach(i in gvStoryLevelList) {
+					if(randInt(100) == 0 && !nl.find(i)) {
+						nl.push(i)
+						break
+					}
+				}
+			}
+
+			//Add list to game file
+			for(local i = 0; i < nl.len(); i++) {
+				print(nl[i])
+				game.ranLevList[gvStoryLevelList[i]] <- nl[i]
+			}
+		}
+
+		//Set random player characters
+		if(gvTARandomPlayer) {
+			game.characters.clear()
+
+			for(local i = 0; i < 3; i++) {
+				local np = ""
+				
+				//Pick a new character
+				while(np == "") foreach(k, j in gvCharacters) {
+					if(randInt(100) == 0 && !(k in game.characters)) {
+						np = k
+						break
+					}
+				}
+
+				game.characters[np] <- true
+			}
+		}
+	}
+
 	startPlay("res/map/aurora-pennyton.json", true, true)
 }
 
-::newTimeAttack <- function() {
+newTimeAttack <- function() {
 	local path = game.path
 	local newdif = game.difficulty
+	local tempPlayer1 = game.playerChar
+	local tempPlayer2 = game.playerChar2
 	game = createNewGameObject()
+	game.playerChar = tempPlayer1
+	game.playerChar2 = tempPlayer2
 	game.file = -1
 	gvDoIGT = true
 	game.difficulty = newdif
 	game.path = path
-	if(game.difficulty > 1) game.maxHealth = (4 - game.difficulty) * 4
-	startPlay(game.path + gvTAStart + ".json", true, true)
+	if(fileExists(path + "/text.json")) {
+		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
+		print("Found text.json")
+	}
+	//Break RNG
+	if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
+		randSeed(getFrames())
+	else
+		randSeed(0)
+
+	if(gvTARandomLevel) {
+		local tempCourse = gvTACourse
+		gvTACourse = []
+		while(tempCourse.len() > 0) {
+			local i = randInt(tempCourse.len())
+			gvTACourse.push(tempCourse[i])
+			tempCourse.remove(i)
+		}
+	}
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
 	drawWeather = 0
+	gvIGT = 0
+	gvTAStep = 0
+	startPlay(game.path + gvTACourse[0] + ".json", true, true)
 }
 
-::saveGame <- function() {
+saveGame <- function() {
 	if(game.file != -1) fileWrite("save/" + game.file.tostring() + ".json", jsonWrite(game))
 }
 
-::loadGame <- function(f) {
+loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
 		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
 		//Sanitize removed characters
@@ -35,17 +120,20 @@
 		while(foundMissing) {
 			foundMissing = false
 			foreach(key, i in game.characters) {
-				if(!(i.normal in getroottable())) {
+				if(!(key in gvCharacters)) {
 					delete game.characters[key]
 					foundMissing = true
 				}
 			}
 		}
+		gvTARandomLevel = game.rawin("randLevel") ? game.randLevel : false
+		gvTARandomPlayer = game.rawin("randPlayer") ? game.randPlayer : false
+		gvTARandomItem = game.rawin("randItem") ? game.randItem : false
 		startOverworld(game.world)
 	}
 }
 
-::selectLoadGame <- function() {
+selectLoadGame <- function() {
 	local hasSaveFiles = false
 	meLoadGame = []
 	local dir = lsdir("save")

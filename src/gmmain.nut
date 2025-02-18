@@ -1,4 +1,4 @@
-::startMain <- function() {
+startMain <- function() {
 	stopMusic()
 	songPlay(musTheme)
 	game = createNewGameObject()
@@ -6,28 +6,21 @@
 	gvGameMode = gmMain
 	actor = {}
 	menu = meMain
-	autocon = {
-		up = false
-		down = false
-		left = false
-		right = false
-	}
+	autocon = deepClone(defAutocon)
 	gvLight = 0xffffffff
 	gvLightTarget = 0xffffffff
 	levelEndRunner = 0
 }
 
-::gmMain <- function()
+gmMain <- function()
 {
+	drawBG = dbgOceanMoving
 	setDrawTarget(gvScreen)
 	drawBG()
 	runActors()
 	drawSprite(sprTitle, 0, screenW() / 2, 16)
 	drawDebug()
 
-	drawText(fontC, 0, screenH() - 8, "Brux GDK " + bruxVersion() + " - STA v" + gvVersion + " - " + getOS())
+	drawText(fontC, 0, screenH() - 8, "Brux GDK " + bruxVersion() + " - STA " + gvVersion + " - " + getOS())
 	textMenu()
-
-	resetDrawTarget()
-	drawImage(gvScreen, 0, 0)
 }

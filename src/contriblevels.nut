@@ -1,9 +1,9 @@
-::meContribLevels <- [
+meContribLevels <- [
 
 ]
-::lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
+lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 
-::selectContrib <- function(){
+selectContrib <- function(){
 	meContribLevels = []
 	if(fileExists("contrib")){
 		local contrib = lsdir("contrib")
@@ -27,6 +27,11 @@
 								if(tileSearchDir[i] == "contrib/" + contribFolder + "/gfx") searchDirExists = true
 							}
 							if(!searchDirExists) tileSearchDir.push("contrib/" + contribFolder + "/gfx")
+							searchDirExists = false
+							for(local i = 0; i < tileSearchDir.len(); i++) {
+								if(tileSearchDir[i] == "contrib/" + contribFolder) searchDirExists = true
+							}
+							if(!searchDirExists) tileSearchDir.push("contrib/" + contribFolder)
 							gvDoIGT = false
 							if(fileExists("contrib/" + contribFolder + "/text.json")) {
 								gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("contrib/" + contribFolder + "/text.json")))
@@ -37,7 +42,7 @@
 								print("Found text.json")
 							}
 							if(fileExists("contrib/" + contribFolder + "/script.nut")) if(!contribDidRun.rawin(contribFolder)) {
-								donut("contrib/" + contribFolder + "/script.nut")
+								require("contrib/" + contribFolder + "/script.nut")
 								contribDidRun[contribFolder] <- true
 							}
 							if(fileExists("save/" + contribFolder + ".json")) loadGame(contribFolder)

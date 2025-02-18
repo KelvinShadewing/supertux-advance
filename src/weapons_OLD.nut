@@ -1,4 +1,4 @@
-::Fireball <- class extends PhysAct {
+Fireball <- class extends PhysAct {
 	timer = 90
 
 	constructor(_x, _y, _arr = null) {
@@ -35,7 +35,7 @@
 	function _typeof() {return "Fireball"}
 }
 
-::Iceball <- class extends PhysAct {
+Iceball <- class extends PhysAct {
 	timer = 90
 
 	constructor(_x, _y, _arr = null) {
@@ -78,7 +78,7 @@
 		}
 
 		drawSprite(sprIceball, getFrames() / 2, x - camx, y - camy)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 
 		if(getFrames() % 5 == 0) newActor(Glimmer, x - 4 + randInt(8), y - 4 + randInt(8))
 
@@ -88,7 +88,7 @@
 	function _typeof() {return "Iceball"}
 }
 
-::FlameBreath <- class extends PhysAct {
+FlameBreath <- class extends PhysAct {
 	frame = 0.0
 	angle = 0
 
@@ -107,14 +107,14 @@
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		else drawSprite(sprFlameTiny, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function _typeof() { return "Fireball" }
 }
 
-::IceBreath <- class extends PhysAct {
+IceBreath <- class extends PhysAct {
 	frame = 0.0
 	angle = 0
 
@@ -132,14 +132,14 @@
 		shape.setPos(x, y)
 		if(!placeFree(x, y)) deleteActor(id)
 		if(frame >= 6) deleteActor(id)
-		else drawSpriteEx(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
-		drawLightEx(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
+		else drawSprite(sprGlimmer, floor(frame), x - camx, y - camy, angle, 0, 1, 1, 1)
+		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 1.0 / 8.0, 1.0 / 8.0)
 	}
 
 	function _typeof() { return "Iceball" }
 }
 
-::ExplodeF <- class extends Actor{
+ExplodeF <- class extends Actor{
 	frame = 0.0
 	shape = 0
 
@@ -153,8 +153,8 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawSprite(sprExplodeF, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 1) {
@@ -172,7 +172,7 @@
 	function _typeof() { return "ExplodeF" }
 }
 
-::ExplodeN <- class extends Actor{
+ExplodeN <- class extends Actor{
 	frame = 0.0
 	shape = 0
 
@@ -186,8 +186,8 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
+		drawSprite(sprExplodeN, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 0.75 - (frame / 10.0), 0.75 - (frame / 10.0))
 		frame += 0.2
 
 		if(frame >= 5) deleteActor(id)
@@ -196,7 +196,7 @@
 	function _typeof() { return "ExplodeN" }
 }
 
-::StompPoof <- class extends Actor{
+StompPoof <- class extends Actor{
 	frame = 0.0
 	shape = 0
 
@@ -210,7 +210,7 @@
 	}
 
 	function run() {
-		drawSpriteEx(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
+		drawSprite(sprPoof, frame, x - camx, y - camy, randInt(360), 0, 1, 1, 1)
 		frame += 0.2
 
 		if(frame >= 4) deleteActor(id)
@@ -220,7 +220,7 @@
 }
 
 
-::FireballK <- class extends PhysAct {
+FireballK <- class extends PhysAct {
 	timer = 90
 	angle = 0
 
@@ -250,9 +250,9 @@
 
 		angle = pointAngle(0, 0, hspeed, vspeed) - 90
 
-		if(hspeed > 0) drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
-		else drawSpriteEx(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
-		drawLightEx(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
+		if(hspeed > 0) drawSprite(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 0, 1, 1, 1)
+		else drawSprite(sprFlame, (getFrames() / 8) % 4, x - camx, y - camy, angle, 1, 1, 1, 1)
+		drawLight(sprLightFire, 0, x - camx, y - camy, 0, 0, 1.0 / 4.0, 1.0 / 4.0)
 
 		shape.setPos(x, y)
 	}
@@ -261,7 +261,7 @@
 }
 
 //When a fireball spawns in a wall, they die before blocks can respond. This is to mitigate that.
-::AfterFlame <- class extends PhysAct {
+AfterFlame <- class extends PhysAct {
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {
@@ -277,7 +277,7 @@
 	function _typeof() { return "Fireball" }
 }
 
-::AfterIce <- class extends PhysAct {
+AfterIce <- class extends PhysAct {
 	timer = 4
 
 	constructor(_x, _y, _arr = null) {

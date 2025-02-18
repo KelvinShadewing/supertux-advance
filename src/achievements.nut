@@ -1,6 +1,6 @@
-::meAchievements <- []
+meAchievements <- []
 
-::gvAchievements <- {
+gvAchievements <- {
 	saveKonqi = function() {
 		if(game.path != "res/map/") return false
 		return game.characters.rawin("Konqi")
@@ -74,21 +74,20 @@
 	}
 
 	blastOff = function() {
-		return gvPlayer && gvPlayer.y < 0 && gvPlayer.hspeed <= -5
+		return gvPlayer && gvPlayer.y < 0 && gvPlayer.hspeed <= -20
 	}
 }
 
-::gvUnlockedAchievements <- {}
-::gvAchievementTimer <- 0
+gvUnlockedAchievements <- {}
+gvAchievementTimer <- 0
 
-::checkAchievements <- function() {
+checkAchievements <- function() {
 	if(gvAchievementTimer > 0) gvAchievementTimer--
 	else foreach(key, i in gvAchievements) {
 		if(gvUnlockedAchievements.rawin(key)) continue
 		if(i()) {
 			gvUnlockedAchievements[key] <- true
 			newActor(AchiNotice, 16, -16, key)
-			popSound(sndAchievement, 0)
 			fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
 			gvAchievementTimer = 120
 			break
@@ -96,7 +95,17 @@
 	}
 }
 
-::selectAchievements <- function() {
+fulfillAchievement <- function(key = null) {
+	if(!gvLangObj["achi-name"].rawin(key) || (key in gvUnlockedAchievements))
+		return
+
+	gvUnlockedAchievements[key] <- true
+	newActor(AchiNotice, 16, -16, key)
+	fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
+	gvAchievementTimer = 120
+}
+
+selectAchievements <- function() {
 	meAchievements = []
 
 	foreach(key, i in gvAchievements) {
@@ -130,7 +139,7 @@
 	menu = meAchievements
 }
 
-::AchiNotice <- class extends Actor {
+AchiNotice <- class extends Actor {
 	persistent = true
 	hspeed = 0.0
 	timer = 60
@@ -139,12 +148,16 @@
 	constructor(_x, _y, _arr = null){
 		base.constructor(_x, _y)
 		name = _arr
-		print("Got achievement: " + gvLangObj["achi-name"][name])
+		if(name in gvLangObj["achi-name"])
+			print("Got achievement: " + gvLangObj["achi-name"][name])
+		popSound(sndAchievement, 0)
 	}
 
 	function run(draw = false) {
 		if(draw) {
-			local text = gvLangObj["achi-name"][name]
+			local text = name
+			if(name in gvLangObj["achi-name"])
+				text = gvLangObj["achi-name"][name]
 			drawSprite(sprAchiFrame, 0, x - 12, y - 5)
 			for(local i = 0; i < text.len(); i++) drawSprite(sprAchiFrame, 1, x + (i * 8), y - 5)
 			drawSprite(sprAchiFrame, 2, x + (text.len() * 8), y - 5)
@@ -161,6 +174,6 @@
 	function _typeof() { return "AchiNotice" }
 }
 
-::drawAchievements <- function() {
+drawAchievements <- function() {
 	if(actor.rawin("AchiNotice")) foreach(i in actor["AchiNotice"]) i.run(true)
 }

@@ -1,0 +1,14 @@
+{ "columns":12,
+ "image":"..\/gfx\/igloo.png",
+ "imageheight":80,
+ "imagewidth":192,
+ "margin":0,
+ "name":"igloo",
+ "spacing":0,
+ "tilecount":60,
+ "tiledversion":"1.9.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.9"
+}

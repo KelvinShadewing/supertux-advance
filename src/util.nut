@@ -5,7 +5,7 @@
 //These functions may end up being added to the runtime core file.
 //They will be marked as such if this happens.
 
-::mergeTable <- function(a, b) {
+mergeTable <- function(a, b) {
 	if(typeof a == null && typeof b == null) return null
 	if(typeof a == null) return b
 	if(typeof b == null) return a
@@ -25,12 +25,12 @@
 	return nt
 }
 
-::gotoTest <- function() {
+gotoTest <- function() {
 	game.check = false
 	startPlay("res/map/test.json", true, true)
 }
 
-::canint <- function(str) {
+canint <- function(str) {
 	switch(typeof str) {
 		case "float":
 		case "integer":
@@ -52,42 +52,65 @@
 	}
 }
 
-::minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
+minNum <- function(a, b) { return (a * (a < b)) + (b * (b <= a)) }
 
-::maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }
+maxNum <- function(a, b) { return (a * (a > b)) + (b * (b >= a)) }
 
-::popSound <- function(sound, repeat = 0) {
+popSound <- function(sound, repeat = 0) {
 	stopSound(sound)
 	playSound(sound, repeat)
 }
 
-::addTimeAttackWorld <- function(
-	displayName, //Name to show in the menu
-	folder, //The contrib/ folder of your world
-	level //The first level of the world
-	) {
-	local tempBack = meTimeAttack.pop() //To move back to the end
-	local newSlot = {
-		name = function() { return displayName }
-		func = function() {
-			gvTAFullGame = false
-			game.path = "contrib/" + folder + "/"
-			gvTAStart = level
-			menu = meDifficulty
+even <- function(x) {
+	if(typeof x != "integer" && typeof x != "float") {
+		print("I can't even... " + x)
+		return x
+	}
+	return x - (x % 2)
+}
 
-			local searchDirExists = false
-			for(local i = 0; i < tileSearchDir.len(); i++) {
-				if(tileSearchDir[i] == "contrib/" + folder + "/gfx") searchDirExists = true
-			}
-			if(!searchDirExists) tileSearchDir.push("contrib/" + folder + "/gfx")
+torad <- function(x) {
+	return (float(x) * pi) / 180.0
+}
 
-			if(fileExists("contrib/" + folder + "/script.nut") && !contribDidRun.rawin(folder)) {
-				donut("contrib/" + folder + "/script.nut")
-				contribDidRun[folder] <- true
-			}
-		}
+inRange <- function(a, b, c) {
+	if(b > c) {
+		local d = b
+		b = c
+		c = d
+	}
+	return (a >= b && a <= c)
+}
+
+toRange <- function(a, b, c) {
+	if(b > c) {
+		local d = b
+		b = c
+		c = d
 	}
 
-	meTimeAttack.push(newSlot)
-	meTimeAttack.push(tempBack)
+	if(a < b)
+		a = b
+	if(a > c)
+		a = c
+
+	return a
+}
+
+deepClone <- function(obj) {
+	if (typeof obj == "array") {
+		local result = []
+		foreach (item in obj) {
+			result.append(deepClone(item))
+		}
+		return result
+	} else if (typeof obj == "table") {
+		local result = {}
+		foreach (key, value in obj) {
+			result[key] <- deepClone(value)
+		}
+		return result
+	} else {
+		return obj
+	}
 }

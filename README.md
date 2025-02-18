@@ -25,9 +25,9 @@ You can rebind the controls from the Options menu found on the title screen.
 * Movement: arrow keys
 * Jump: Z
 * Shoot: X
-* Run: left shift
-* Sneak: left control
-* Slide: down (while running)
+* Slide: down (while running, Tux only)
+* Special 1: C
+* Special 2: Left Shift
 
 ## Tips
 

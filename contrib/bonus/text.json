@@ -1,0 +1,24 @@
+{
+	"level" : {
+		"bonus-pipe" : "Pipe Dream",
+		"bonus-jackson" : "Bounce and Blast",
+		"bonus-thread" : "Thread the Needle",
+		"bonus-slide" : "Speed Slide",
+		"bonus-hay" : "Hay You!",
+		"bonus-dash": "Boing Dash",
+		"bonus-nostalgia": "Via Cavernous Nostalgica",
+		"bonus-coffee": "I am Mr.Zoomies",
+		"bonus-king": "King of the Bridge",
+		"bonus-diamond" : "Diamond DOS",
+		"bonus-diamond2" : "Jazzy Jewels",
+		"bonus-diamond-insane" : "Spazzy Spelunking",
+		"world" : "Bonus Island"
+	},
+
+	"npc" : {
+		"kelvin-fish-a" :
+		"I'm hungry. Bring me pumpkins!",
+		"kelvin-fish-b" :
+		"Mmmmm, num num num!"
+	}
+}

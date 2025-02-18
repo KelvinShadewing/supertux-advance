@@ -2,42 +2,122 @@
 	"main-menu" : {
 		"new" : "Nowa gra",
 		"load" : "Wczytaj grę",
+		"time-attack" : "Walka z czasem",
 		"contrib-levels" : "Dodatkowe poziomy",
 		"options" : "Opcje",
+		"extras" : "Dodatki",
 		"quit" : "Wyjdź z gry"
 	},
 
+	"time-attack-menu" : {
+		"world" : "Świat: %s",
+		"player1" : "Gracz 1: %s",
+		"player2" : "Gracz 2: %s",
+		"start-run" : "Rozpocznij bieg"
+	},
+
+	"extras-menu" : {
+		"achievements" : "Osiągnięcia",
+		"credits" : "Autorzy"
+	},
+
+	"new-game-menu" : {
+		"file-exists" : "[PLIK ISTNIEJE]"
+	},
+
+	"load-game-menu" : {
+		"empty" : "Brak dostępnych plików zapisu"
+	},
+
 	"contrib-menu" : {
-		"empty" : "[Brak dodatkowych poziomów]"
+		"empty" : "Brak dodatkowych poziomów"
 	},
 
 	"options-menu" : {
+		"graphics" : "Grafika",
+		"input" : "Wejście",
+		"audio" : "Dźwięk",
 		"difficulty" : "Poziom trudności",
 		"language" : "Język",
+		"keyboard" : "Sterowanie klawiaturą",
+		"joystick" : "Sterowanie kontrolerem",
+		"joystick1" : "Sterowanie pierwszym kontrolerem",
+		"joystick2" : "Sterowanie drugim kontrolerem",
+		"cursor" : "Pokaż kursor myszy: %s",
+		"timers" : "Liczniki do speedrunowania",
+		"light" : "Oświetlenie: %s",
+		"fullscreen" : "Przełącz pełny ekran",
+		"autorun" : "Zamiana przycisku biegania: %s",
+		"stickspeed" : "Szybkość trwałego sterowania: %s",
+		"usefilter" : "Używany filtr graficzny: %s",
+		"sound-volume" : "Głośność dźwięków",
+		"music-volume" : "Głośność muzyki",
+		"charsel" : "Wybierz postać",
+		"lookahead" : "Dynamiczna kamera: %s"
+	},
+
+	"options-menu-desc": {
+		"difficulty" : "Zmień poziom trudności gry",
+		"language" : "Zmień język gry",
 		"keyboard" : "Zmień sterowanie klawiaturą",
 		"joystick" : "Zmień sterowanie kontrolerem",
-		"speedrun" : "Licznik do speedrunowania"
+		"cursor" : "Przełącz kursor myszy",
+		"timers" : "Przełącz liczniki do speedrunowania",
+		"light" : "Przełącz efekty oświetlenia",
+		"fullscreen" : "Przełącz pełny ekran",
+		"autorun" : "Spowolnij kiedy przycisk biegania jest wciśnięty",
+		"stickspeed" : "Przełącz szybkość trwałego sterowania",
+		"usefilter" : "Filtrowanie dwuliniowe (wymaga restartu)",
+		"fullgame" : "Wszystkie standardowe światy z SuperTux Advance",
+		"lookahead" : "Kamera pozostaje przed graczem i porusza się płynnie"
 	},
 	
 	"timers-menu" : {
-		"speedrun-timer-level" : "Licznik speedrunowania poziomu",
-		"speedrun-timer-global" : "Globalny licznik speedrunowania"
+		"speedrun-timer-level" : "Licznik speedrunowania poziomu: %s",
+		"speedrun-timer-global" : "Globalny licznik speedrunowania: %s"
 	},
 
 	"controls-menu" : {
-		"press-key-for" : "Naciśnij klawisz dla",
-		"press-button-for" : "Naciśnij przycisk dla",
-		"up" : "góra",
-		"down" : "dół",
-		"left" : "lewo",
-		"right" : "prawo",
-		"jump" : "skok",
-		"shoot" : "strzelanie",
-		"run" : "bieganie",
-		"sneak" : "skradanie",
-		"pause" : "pauza",
-		"item-swap" : "zmiana przedmiotu",
-		"menu-accept" : "akceptowanie w menu"
+		"press-key-for" : "Naciśnij klawisz dla %s...",
+		"press-button-for" : "Naciśnij przycisk dla %s...",
+		"clear" : "Naciśnij Backspace aby wyczyścić.",
+		"peek-axis" : "Porusz oś dla %s",
+		"peek-horizontal" : "Poziomy ruch kamery.",
+		"peek-vertical" : "Pionowy ruch kamery.",
+		"up" : "Góra: %s",
+		"down" : "Dół: %s",
+		"left" : "Lewo: %s",
+		"right" : "Prawo: %s",
+		"jump" : "Skok: %s",
+		"shoot" : "Strzelanie: %s",
+		"run" : "Bieganie: %s",
+		"sneak" : "Skradanie: %s",
+		"pause" : "Pauza: %s",
+		"item-swap" : "Zmiana przedmiotu: %s",
+		"menu-accept" : "Akceptowanie w menu: %s",
+		"cam-left-peek" : "Zerknij w lewo: %s",
+		"cam-right-peek" : "Zerknij w prawo: %s",
+		"cam-down-peek" : "Zerknij w dół: %s",
+		"cam-up-peek" : "Zerknij w górę: %s",
+		"cam-peek-x" : "Zerkanie w osi X: %s",
+		"cam-peek-y" : "Zerkanie w osi Y: %s",
+		"up-selection" : "Góra",
+		"down-selection" : "Dół",
+		"left-selection" : "Lewo",
+		"right-selection" : "Prawo",
+		"jump-selection" : "Skok",
+		"shoot-selection" : "Strzelanie",
+		"run-selection" : "Bieganie",
+		"sneak-selection" : "Skradanie",
+		"pause-selection" : "Pauza",
+		"item-swap-selection" : "Zmiana przedmiotu",
+		"menu-accept-selection" : "Akceptowanie w menu",
+		"cam-left-peek-selection" : "Zerknij w lewo",
+		"cam-right-peek-selection" : "Zerknij w prawo",
+		"cam-down-peek-selection" : "Zerknij w dół",
+		"cam-up-peek-selection" : "Zerknij w górę",
+		"cam-peek-x-selection" : "Zerkanie w osi X",
+		"cam-peek-y-selection" : "Zerkanie w osi Y"
 	},
 	
 	"menu-commons" : {
@@ -46,7 +126,8 @@
 		"back" : "Powrót",
 		"cancel" : "Anuluj",
 		"on" : "Wł",
-		"off" : "Wył"
+		"off" : "Wył",
+		"noone" : "Żaden"
 	},
 
 	"bool" : {
@@ -61,13 +142,50 @@
 		"super" : "Super Tux"
 	},
 
+	"credits" : {
+		"starring" : "W roli głównej...",
+		"heroes" : "Nasi bohaterowie",
+		"tux" : "Pingwin Tux",
+		"konqi" : "Smok Konqi",
+		"midi" : "Kholu Midi Waffle",
+		"directed-by" : "Zarządzanie",
+		"programmers" : "Programiści",
+		"graphic-artists" : "Graficy",
+		"character-designers" : "Projektanci postaci",
+		"level-designers" : "Projektanci poziomów",
+		"level-q-a" : "Q/A poziomów",
+		"musicians" : "Kompozytorzy",
+		"sound-engineers" : "Inżynierzy dźwięku",
+		"translators" : "Tłumacze",
+		"supporters" : "Najlepsi wspierający",
+		"credits-md" : "Zobacz CREDITS.md po linki",
+		"people" : "do tych wspaniałych osób!",
+		"thank-you-for-playing" : "Dziękuję ci za grę!",
+		"tuckles" : "Tuckles kocha ciebie!",
+		"additional" : "Dodatkowi współtwórcy",
+		"mascots" : "Projektanci maskotek"
+	},
+
 	"pause-menu" : {
+		"pause" : "PAUZA",
 		"continue" : "Kontynuuj",
-		"character" : "Zmień postać",
+		"character" : "Zmień pierwszą postać",
+		"character2" : "Zmień drugą postać",
 		"restart" : "Zrestartuj poziom",
 		"quit-game" : "Wyjdź z gry",
 		"quit-level" : "Opuść poziom",
-		"save" : "Zapisz grę"
+		"save" : "Zapisz grę",
+		"end-run" : "Zakończ bieg",
+		"restart-run " : "Zrestartuj bieg"
+	},
+
+	"stats" : {
+		"author" : "Autor",
+		"enemies" : "Przeciwnicy",
+		"coins" : "Monety",
+		"secrets" : "Sekrety",
+		"time" : "Najlepszy czas",
+		"final-time": "Czas ukończenia"
 	},
 
 	"info" : {
@@ -89,6 +207,8 @@
  		"Nie zapomnij aby ustawić sterowanie w opcjach w menu głównym! Jeżeli naprawdę coś popsujesz ustawiając sterowanie, usuń plik config.json.",
  		"secrets" :
 		"Sekretne przejścia są wszędzie! Oprzyj się o ścianę aby je odsłonić lub oglądaj w jaki sposób poruszają się przeciwnicy.",
+		"T-reminder" :
+		"To jest przypomnienie, że nie musisz przechodzić poziomów z miastami (takich jak ten) aby kontynuować!",
 		"coyotetime" :
 		"Masz krótki moment po opuszczeniu podłoża kiedy możesz jeszcze skoczyć. Trenuj zbieganie z krawędzi i skakanie od razu po tym jak twoje stopy opuszczą podłoże.",
 		"tntex" :
@@ -100,7 +220,21 @@
 		"owplats" :
 		"Możesz zeskoczyć z jednokierunkowych platform naciskając DÓŁ i SKOK w tym samym czasie. Jeżeli zeskoczysz przez przypadek masz dwa razy więcej czasu niż przy spadnięciu z krawędzi, aby wskoczyć z powrotem.",
 		"slidewarn" :
-		"Poziomy takie jak ten zmuszą cię do ślizgania się! (Zostanie to zamienione czymś innym w przyszłości.)"
+		"Poziomy takie jak ten zmuszą cię do ślizgania się! (Zostanie to zamienione czymś innym w przyszłości.)",
+		"konqi" :
+		"Konqi potrafi ziać ogniem i tupać w ziemię ale nie jest tak szybki jak Tux.",
+		"momentum" :
+		"Nie stracisz prędkości jeżeli będziesz kontynuował bieg! Upewnij się żeby trzymać przycisk lub drążek biegu i dzięki temu utrzymasz jakąkolwiek prędkość, którą uzyskałeś przez ślizganie się. Lodowe wzgórza przyśpieszą cię nawet jeżeli nie umiesz się ślizgać.",
+		"warned" :
+		"Zostałeś ostrzeżony...",
+		"iceguy" :
+		"Niektórzy przeciwnicy tacy jak Lodowy blok mogą być przenoszeni gdy są oszołomieni. Po prostu dotknij ich trzymając ATAK aby podnieść.",
+		"elements-fire-ice" :
+		"Twoja forma żywiołu nie zmienia po prostu twojego ataku; dodatkowo zmienia w jaki sposób obrażenia wpływają na ciebie. Przeciwne żywioły zadadzą podwójne obrażenia oraz połowę obrażeń od ich samych. Na przykład z ogniowym kwiatem lodowi przeciwnicy będą zadawać podwójne obrażenia ale z lodowym kwiatem będą zadawali tylko połowę.",
+		"iceflower" :
+		"Z lodowym kwiatem możesz zamrażać przeciwników w miejscu oraz obniżyć obrażenia od lodowych ataków. Zamrożeni przeciwnicy są solidni i można bezpiecznie po nich chodzić lub odbijać się od nich. Dodatkowo będziesz poruszał się szybciej!",
+		"tuxdoll" :
+		"Jeżeli znajdziesz awatar ze swoją postacią, zbierz go! Będzie cię chronił od KO kiedy stracisz całe zdrowie."
 	},
 
 	"devcom" : {
@@ -158,94 +292,157 @@
 
 	"npc" : {
 		"null" : "",
-		"rad-0t" :
+		"construction" :
+		"Ta strefa jest w trakcie budowy. Przepraszamy.",
+		"rad-0-Tux" :
 		"Hej, gdzie jest twoja deska? Czy zamierzasz ślizgać się na swoim brzuczu? Wydaje mi się, że nie dasz rady zebrać wszystkich monet na tym wzgórzu w ten sposób. Jeżeli ci się uda dam ci coś co pomoże ci złapać trochę powietrza!",
-		"rad-0k" :
+		"rad-0-Konqi" :
 		"Hej, gdzie jest twoja deska? Jeździsz zbyt wolno na zjazd taki jak ten!",
-		"rad-0m" :
+		"rad-0-Midi" :
 		"Czy zamierzasz użyć tej piłki na tej zjazd? Powodzenia.",
-		"rad-0d" :
+		"rad-0-Penny" :
+		"Pospiesz się, Penny. Pozwól, że nauczę cię jak rozdrobnić trochę śniegu. Albo po prostu ślizgaj się swoim brzuchu.",
+		"rad-0-Katie" :
+		"Nie próbowałbym ślizgać się z tego wzgórza. Zdecydowanie zniszczysz swoje ubrania.",
+		"rad-0-Kiki" :
+		"Zgaduję, że toczenie się jest tak samo dobre jak ślizganie się ze wzgórza takiego jak to. Szalone wiewiórki...",
+		"rad-0" :
 		"Zdobądź wszystkie monety na tym wzgórzu jeżeli chcesz nautyczną nagrodę!",
-		"penny-0t" :
+		"penny-0-Tux" :
 		"Och, Tux! Bardzo cieszę się, że cię widzę! Nolok porwał naszych przyjaciół! Słyszałam, że zostali zabrani do różnych fortec rozmieszczonych po całym świecie. Chciałabym widzieć dlaczego. Postaraj się ich uratować, Tux!",
-		"penny-0k" :
+		"penny-0-Konqi" :
 		"Konqi! Cieszę się, że cię widzę! Jestem pewna, że Plasma Breeze jest w porządku. Proszę pomóż Tux'owi. Razem uda się wam pokonać Nolok'a!",
-		"penny-0m" :
+		"penny-0-Midi" :
 		"Więc ty jesteś Midi. Słyszałam, że jesteś całkiem zdolnym wojownikiem. Cieszę się, że pomagasz Tux'owi. Upewnię się, że dostaniesz dobrą nagrodę.",
-		"penny-0d" :
+		"penny-0-Penny" :
+		"To... nie wygląda na możliwe.",
+		"penny-0-Katie" :
+		"Katie! Czy też pomagasz nam walczyć z Nolok'iem? Dobrze mieć ciebie na pokładzie.",
+		"penny-0-Kiki" :
+		"W jaki sposób możesz walczyć bez swojego pędzelka? Och, kopiujesz i wklejasz bomby Midi? Nie wiedziałam, że to potrafisz.",
+		"penny-0" :
 		"Miło mi cię poznać. Czy pomagasz Tux'owi uratować naszych przyjaciół? Jestem bardzo zadowolona słysząc to.",
-		"rad-t0t" :
+
+		"rad-t0-Tux" :
 		"Hej, Tux! Prezydent Penny szuka ciebie. Przy okazji, złap mnie kiedyś na stoku. Chciałbym zobaczyć czy dobrze ścigasz się na śniegu.",
-		"rad-t0k" :
+		"rad-t0-Konqi" :
 		"Hej, jesteś Konqi, prawda? Człowieku, uważaj na ogień w okolicy. Lód z tym to nie jest to dobre połączenie.",
-		"rad-t0m" :
+		"rad-t0-Midi" :
 		"Co wiewiórka robi tak daleko na południe? Czy nie jest tutaj zbyt zimno dla ciebie? Wejdź do środka zanim zmarzniesz.",
-		"rad-t0d" :
+		"rad-t0-Penny" :
+		"Hej Penny. Bierzesz sprawy w swoje płetwy? Dobrze dla ciebie!",
+		"rad-t0-Katie" :
+		"Zamierzasz iść na przygodę w sukience? Wygląda na to, że to będzie przeszkadzać. Jesteś odważniejsza ode mnie.",
+		"rad-t0-Kiki" :
+		"Ach, koleżanka artysta. Tak, moją sztuką jest malowanie linii, które zostawiam swoją deską na tych pagórkach.",
+		"rad-t0" :
 		"Wow, nowa twarz. Nie znam ciebie. Jeżeli szukasz Prezydenta Penny, jest ona w największym igloo w środku miasta. Lubię nazywać je dużym iglem.",
+
 		"xue-c" :
 		"Dzięki za uratowanie mnie, czu! Spotkamy się w Pennyton!",
-		"xue-pt-t" :
+		"xue-pt-Tux" :
 		"Następnym razem kiedy spotkam tego Nolok'a, dostanie ode mnie prosto w twarz wybuchającymi ciastami! W ten sposób pokażę mu, za zadzieranie z nami, czu!",
-		"xue-pt-k" :
+		"xue-pt-Konqi" :
 		"Hej, Konqi! Daj Nolok'owi niezłe podpalenie kiedy go spotkasz! Nikt nie zadziera z nami, na czy poza trasą dla go-kartów, czu!",
-		"xue-pt-m" :
+		"xue-pt-Midi" :
 		"Wow, inny gryzoń, który także lubi wybuchy! (i całkiem ładny, czu...) Co? N-nic, czu! Ja, och, zastanawiałam się czy chciałbyś pójść pościgać się go-kartami! N-nie jako randka czy coś takiego! (Ucisz się, Xue, ucisz się!)",
-		"xue-pt-d" :
+		"xue-pt-Penny" :
+		"Penny! Dziękuję ci za zbudowanie tego miasta dla nas, czu.",
+		"xue-pt-Katie" :
+		"Dziękuję ci za uratowanie mnie, czu, ale to nie oznacza, że będę dawała fory twojemu bratu w następnym wyścigu.",
+		"xue-pt-Kiki" :
+		"Nie szukaj pomysłów. Midi jest MÓJ!",
+		"xue-pt" :
 		"Dziękuję ci za twoją pomoc, czu! Pokażmy Nolok'owi, żeby nigdy z nami nie zadzierał!",
-		"fireguin-0" :
+
+		"fireguin-pt-0" :
 		"Nie ma tutaj zbyt dużo zadań dla strażaka, co? Lód może się roztopić, to prawda, ale gasi też ogień.",
-		"fireguin-1" :
+		"fireguin-pt-1" :
 		"Może byłoby mi lepiej w miasteczku z domami z drewna. Ciężko tutaj znaleźć drewno więc nawet drzewa są zrobione z lodu!",
-		"fireguin-2" :
+		"fireguin-pt-2" :
 		"Wiele domów tutaj jest pustych. Jestem pewien, że nasi przyjaciele wrócą kiedy zostaną ocaleni od Nolok'a.",
-		"fireguin-3" :
+		"fireguin-pt-3" :
 		"Niestabilne bloki, cieńki lód roztopi się kiedy uderzysz w niego kulą ognia. Możesz także go rozwalić ślizgając się.",
-		"fireguin-4" :
+		"fireguin-pt-4" :
 		"Uważaj na cieńki lód! Rozwali się gdy będziesz stał na nim zbyt długo.",
-		"fireguin-5" :
+		"fireguin-pt-5" :
 		"Jeżeli chcesz poprawić swoje umiejętności w ślizganiu się, idź do zjazdu poza miastem. Znajdziesz go po prawo od tego miejsca.",
+
 		"konqi-c" :
 		"Hej, dziękuję za wydostanie mnie stąd. Zostałem złapany próbując odnaleźć Plasma Breeze. Mam nadzieję, że ona jest w porządku. Najprawdopodobniej Nolok porwał ją do innej fortecy. Pomogę ci ją uratować!",
+		"katie-c" :
+		"Och, nareszcie! Teraz możemy wydostać się z tej okropnie starej fortecy! Hej, jeżeli potrzebujesz pomocy z pokonywaniem Nolok'a, pozwól że połączymy z tobą siły!",
+
 		"rocky-c" :
 		"W porządku, jestem uratowany! Człowieku, Nolok jest rodzajem śmieci, których nie chciałbym nawet dotykać. Powodzenia w walce z nim!",
-		"rocky-pt-t" :
+		"rocky-pt-Tux" :
 		"Hej, Tux! Złap mnie później. Kupię ci rybę.",
-		"rocky-pt-k" :
+		"rocky-pt-Konqi" :
 		"Nolok jest krokodylem, prawda? Człowieku, mam nadzieję, że twoje łuski są cięższe niż jego. Nie chciałbym, żeby ten facet mnie obgryzał!",
-		"rocky-pt-m" :
+		"rocky-pt-Midi" :
 		"Przypominasz mi mnie. Mały, szybki i dobry w zbieraniu śmieci. Ale jesteś odważniejszy ode mnie. Nie okazuj Nolok'owi żadnej litości!",
-		"rocky-pt-d" :
+		"rocky-pt-Penny" :
+		"Całkiem ładne miasto udało ci się zbudować, jednakże przydałoby się trochę więcej koszy na śmieci.",
+		"rocky-pt-Katie" :
+		"Nie jestem słodka! Nie głaszcz mnie!",
+		"rocky-pt-Kiki" :
+		"Więc jesteś artystą. Czy kiedykolwiek zrobiłaś kolaż? Możesz znaleźć wiele ciekawych rzeczy w śmietnikach.",
+		"rocky-pt" :
 		"Tak, to miejsce jest dość zimne ale jest dużo bezpieczniejsze. Najgorsze miniony Nolok'a są na kontynencie i innych strefach więc mam zamiar na razie zostać w Pennyton.",
+
 		"python-c" :
 		"Dziękuję za ocalenie! Spotkamy się w mieście.",
-		"python-pt-t" :
+		"python-pt-Tux" :
 		"Hej tutaj Tux. Mam nadzieję, że jest bezpiecznie niedługo pójść się do domu. Zamarzam tutaj!",
-		"python-pt-k" :
+		"python-pt-Konqi" :
 		"Czy są jakieś szanse ogrzać mnie twoim płomieniem? Tutaj jest strasznie zimno...",
-		"python-pt-m" :
+		"python-pt-Midi" :
 		"Chciałbym aby ty i Xue nie denerwowali się tak. Nawet jeżeli zrobiłbym się głodny, nie zjadłbym was!",
-		"python-pt-d" :
+		"python-pt-Penny" :
+		"Jestem zaskoczony, że te igla są tak wygodne w środku.",
+		"python-pt-Katie" :
+		"Alwayssss nice to ssssee a dragon when you're cold blooded.",
+		"python-pt-Kiki" :
+		"Będąc tutaj jestem zazdrosny o ciepłokrwistość. Mam nadzieję, że armia Nolok'a zostanie szybko zniszczona.",
+		"python-pt" :
 		"Wydaje mi się, że tobie jest lepiej kiedy jest zimno niż mi. Nie bez powodu Nolok nie lubi tego miejsca.",
+
 		"garuda-c" :
 		"W porządku! Dziękuję za pomoc w pozbyciu się tego człowieka! Nie mogę doczekać się aby wyjść z tego miejsca i rozprostować moje skrzydła.",
-		"garuda-pt-t" :
+		"garuda-pt-Tux" :
 		"Kiedyś było mi przykro z powodu, że pingwiny nie mogą latać ale później zobaczyłem w jaki sposób poruszają się pod wodą. Pływają tak jakby latali!",
-		"garuda-pt-k" :
+		"garuda-pt-Konqi" :
 		"Słyszałem, że smoki uwielbiają złoto tak jak gryfy. Na szczęście dla nas, w okolicy jest dużo monet! Chociaż zastanawiam się co powoduje, że unoszą się...",
-		"garuda-pt-m" :
+		"garuda-pt-Midi" :
 		"Używasz bomb, tak? Wydaje mi się, że gdybym uniósł cię w powietrze moglibyśmy zespół strajku powietrznego! Ale... boję się zostać ponownie zestrzelonym. W ten sposób Nolok złapał mnie pierwszym razem.",
-		"garuda-pt-d" :
+		"garuda-pt-Penny" :
+		"Dziękuję za zaprowadzenie mnie na to wzgórze. Dobrze jest startować z wysokiego punktu.",
+		"garuda-pt-Katie" :
+		"Świetna robota. Będę mieć coś ciekawszego do powiedzenia kiedy Kelvin napisze mi wypowiedź.",
+		"garuda-pt-Kiki" :
+		"Poczekaj, Kelvin musi napisać wypowiedź dla ciebie... a mrkubax10 ją przetłumaczyć ;)",
+		"garuda-pt" :
 		"Dziękuję za twoją pomoc. Czuję się świetne mogąc znów latać.",
-		"breeze-c-k" :
+
+		"breeze-c-Konqi" :
 		"Konqi! Wiedziałam, że po mnie przyjdziesz! Bardzo cieszę się, że cię widzę! Wydostańmy się stąd! Będę za tobą.",
-		"breeze-c-d" :
+		"breeze-c" :
 		"Dziękuję za wydostanie mnie stąd. Będę kierowała się w stronę Pennyton. Kopnij Nolok'a dla mnie!",
-		"breeze-pt-t" :
+		"breeze-pt-Tux" :
 		"Och, jesteś bardzo słodkim, małym pingwinem! Znam klacz, która bardzo lubi ptaki. Pewnie polubiłbyś ją.",
-		"breeze-pt-k" :
+		"breeze-pt-Konqi" :
 		"Zawsze cieszę się kiedy cię spotykam, Konqi! Powodzenia w walce z Nolok'iem. Będę ci kibicowała najgłośniej!",
-		"breeze-pt-d" :
+		"breeze-pt-Midi" :
+		"Twoja magia jest bardzo niezwyczajna. Nigdy nie widziałem czaru w bombie z orzecha. I ta piłka... och, to nie jest magia? Dziwne.",
+		"breeze-pt-Penny" :
+		"Dziękuję za przekazanie mi tutaj miejsca pobytu. Miło mi będzie pomóc tutaj jak tylko mogę.",
+		"breeze-pt-Katie" :
+		"Nie mam nic przeciwko w zabraniu cię na przejażdżkę gdy Nolok zostanie pokonany.",
+		"breeze-pt-Kiki" :
+		"Nie mogę się doczekać kolejnego konkursu sztuki. Powodzenia w walce przeciwko Nolok'owi.",
+		"breeze-pt" :
 		"Każda pomoc jest potrzebna w walce z Nolok'iem. Cieszę się, że jesteś po naszej stronie.",
+
 		"gnu-c" :
 		"Żałuję, że znowu zostałem złapany przez Nolok'a. Dziękuję ci za wypuszczenie mnie.",
 		"gnu-pt-0" :
@@ -272,8 +469,12 @@
 		"Zanim wyślesz swoje zmiany, muszą być zatwierdzone.",
 		"gnu-pt-11" :
 		"Mądrość złożona z wielu źródeł sprawia, że plan jest wykonywalny.",
+		"gnu-pt-12" :
+		"Planujesz przejście na C z Python'a? Lepiej przygotuj się.",
+
 		"midi-c" :
-		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i kopnął tego Nolok'a w ogon?",
+		"Siema! Pilnowałem swojego biznesu kiedy te dziwne rzeczy podobne do grzybów zaczęły pojawiać się tutaj. Nie chce mi się już tutaj siedzieć. Co wy na to żebym dołączył do was i skopał temu Nolok'owi ogon?",
+
 		"sam-0" :
 		"Mnóstwo sprzętu przygodowego na stanie... czekaj, używasz złota? Te rzeczy byłby dużo tańsze gdybyś miał szmaragdy.",
 		"sam-1" :
@@ -286,6 +487,7 @@
 		"Tak, wykopałem i zrobiłem te wszystkie rzeczy i teraz je sprzedaję. Więc co mój szef robi aby dostać swoją część zarobków? On jest właścicielem firmy!",
 		"sam-5" :
 		"Przy okazji kiedy rozmawiamy o pieniądzach, gra w której jesteśmy? Jest darmowa, nawet możesz modyfikować i sprzedawać to co zrobisz, więc weź pod uwagę możliwość przekazania darowizny osobom, które nad nią pracowały!",
+
 		"tuckles-0" :
 		"Nawet pod lodem łatwo jest pracować ciężko.",
 		"tuckles-1" :
@@ -299,29 +501,144 @@
 		"tuckles-5" :
 		"Te wszystkie mufinki, które jesz nie są porównywalne do ryb, które wydobywujemy. Są większe, silniejsze i smaczniejsze.",
 		"tuckles-6" :
-		"Czy widziałeś Duke'a? On lubi zdobywać ryby leniwą metodą: udawając, że jego wędka jest zepsuta oraz wyłudzając ryby od innych. Ignorowałbym go jeżeli nie byłby w stanie blokować dróg siedząc na nich."
+		"Czy widziałeś Duke'a? On lubi zdobywać ryby leniwą metodą: udawając, że jego wędka jest zepsuta oraz wyłudzając ryby od innych. Ignorowałbym go jeżeli nie byłby w stanie blokować dróg siedząc na nich.",
+
+		"not-done" :
+		"Doszedłeś do momentu, który jest końcem tego do dotychczas udało się ukończyć w głównej grze. Czy grałeś już w dodatkowe poziomy? Zdecydowanie powinieneś je zobaczyć! Mam coś bardzo ważnego do zrobienia. Mam nadzieję, że podobało ci się to w co dotychczas grałeś! Jeżeli chcesz, rozważ zostawienie gwiazdki na GitHub'ie: https://github.com/kelvinshadewing/supertux-advance",
+
+		"pennyton-Tux" :
+		"To jest nowe miasto Penny. To zdecydowanie bardzo miło z jej strony dać tylu przesiedlonym osobom miejsce na pobyt. Zastanawiam się czy kiedykolwiek odnajdą drogę powrotną...",
+		"pennyton-Konqi" :
+		"Cieszę się, że lód tutaj może wytrzymać moje płomienie. Bardzo nie chciałbym kichąć i roztopić czyiś dom!",
+		"pennyton-Midi" :
+		"Rozumiem, że ona próbuje pomóc, ale po prostu nie potrafiłbym mieszkać w miejscu takim jak to. Raczej wolałbym iść dalej i próbować znaleźć drogę do domu.",
+
+		"fish-mines-Tux" :
+		"Te kopalnie są miejscem skąd bierzemy większość naszych ryb w dzisiejszych czasach. To jest dużo bezpieczniejsze niż pływanie w poszukiwaniu żywych ryb.",
+		"fish-mines-Konqi" :
+		"Kto by pomyślał, że tak dużo zamrożonych ryb może być znalezionych w lodzie?",
+		"fish-mines-Midi" :
+		"Heh, założę się, że byłbym świetny w kopaniu. Może zajmę się tym po tym jak pokonamy Nolok'a. Nie ma tu zbyt wiele do roboty dla najemnika.",
+
+		"ocean-bridge-Tux" :
+		"Zobacz co miniony Nolok'a zrobiły z tym mostem! Teraz to miejsce wygląda jak labirynt.",
+		"ocean-bridge-Konqi" :
+		"Bardzo frustrującym jest to, że to drewno jest odporne na ogień. Przynajmniej ciągle mogę trochę je zniszczyć.",
+		"ocean-bridge-Midi" :
+		"Uch, ostatnim razem gdy sprawdzałem, mosty nie powinny tak wyglądać. Ech, jaki żal.",
+
+		"borealis" :
+		"Ta forteca została przejęta przez Yeti'ego.",
+		"borealis-Tux" :
+		"Ta forteca była używana do naszej ochrony. Teraz jest twierdzą Yeti'ego.",
+		"borealis-Penny" :
+		"Ta forteca powinna chronić moje miasto a nie trzymać nas w niewoli. Pora się tym zająć.",
+		"borealis-Konqi" :
+		"Mam wrażenie, że coś niemożliwego się wydarzyło.",
+		"borealis-Midi" :
+		"Ty oszuście. Wiem co zrobiłeś. ;3",
+
+		"borealis2" :
+		"Już oczyściliśmy to miejsce.",
+		"borealis2-Tux" :
+		"Dlaczego znów tutaj przyszedłem? Już uwolniłem Konqi'ego oraz Katie.",
+		"borealis2-Penny" :
+		"Jestem pewna, że już oczyściłam to miejsce. Dlaczego kule śnieżne powróciły?",
+		"borealis2-Konqi" :
+		"Brr, nie jest tutaj zimno ale ciągle dostaje dreszczy kiedy myślę o Yeti'm.",
+		"borealis2-Midi" :
+		"Kurcze, to miejsce jest przerażające. Gdyby pingwiny nie potrzebowały tego miejsca, zdecydowanie wysadziłbym je.",
+
+		"duke-0a" :
+		"Jestem strasznie głodny! Jeżeli dasz radę przynieść mi trochę ryb, otworzę to przejście dla ciebie.",
+		"duke-0b" :
+		"Och, dziękuję ci! Zebrałbym je sam ale... nie chce mi się.",
+		"duke-1a" :
+		"Znam sekrentą ścieżkę, która prowadzi wokół lasu. Jeżeli przyniesiesz mi trochę ryb, otworzę ją dla ciebie.",
+		"duke-1b" :
+		"Wielkie dzięki! Umierałem z głodu! Mam nadzieję, że jaskinie są dla ciebie mniej kłopotliwe niż las. Kto w ogóle buduje las z lodu?",
+		"no-touch-fishy-a" :
+		"To jest moja ryba. Tak właściwie jej nie potrzebujesz.",
+		"no-touch-fishy-b" :
+		"Zabrałeś moją rybę. >:(",
+		"wood-door" :
+		"Czyim pomysłem było użycie drewnianych drzwi? Przymarzają do ścian i nie mogą być zamknięte!",
+		"see-tuckles" :
+		"Czy widziałeś Tuckles'a? Nigdy nie miałem okazji spotakać tak napakowanego pingwina! Nie używa nawet kilofa do kopania. Wszystko co wykopał, zrobił to używając swojego dzioba!",
+		"take-duke" :
+		"Czy zbierasz ryby dla Duke'a? Proszę, zabierz go ze sobą. Nie robi nic poza jedzeniem!",
+
+		"bearista-0" :
+		"Spróbuj trochę kawy! Idealnie prażona i starannie warzona. Darmowa dla bohaterów.",
+		"bearista-1":
+		"Czy wiedziałeś, że kawa tak naprawdę nie daje ci energii? Po prostu sprawia, że chwilowo nie czujesz zmęczenia. To dlatego czujesz się bardzo zmęczony kiedy przestanie działać.",
+		"bearista-2" :
+		"Smak kawy nie zależy tylko od tego w jaki sposób jest prażona. Miejsce, w którym rośnie także zmienia smak. Na przykład jeżeli rośnie dookoła drzew owocowych, będzie miała owocowy posmak, drzewa orzechowe dadzą posmak orzechowy.",
+		"bearista-3" :
+		"Czy zauważyłeś, że bezkofeinowe ziarna wyglądają inaczej od tych normalnych? To dlatego, że kofeina jest w powłoce woskowej. Pozbywamy się kofeiny poprzez zmywanie wosku.",
+		"bearista-4" :
+		"Kofeina może sprawić, że jesteś bardziej czujny ale dodatkowo powoduje zwiększanie ilości substancji, które sprawiają stres. Jeżeli zaczniesz czuć się niespokojny lub nadpobudliwy powinieneś ograniczyć kawę.",
+		"bearista-5" :
+		"Czy wiedziałeś, że ziarna kawy rosną wewnątrz wiśni? W każdej z nich są dwa ziarna. Sam owoc też jest pełen kofeiny!",
+		"bearista-6" :
+		"Im ciemniejsze wypalanie, tym mniej kofeiny w naparze. Zielona kawa jest nieprażona i ma najwięcej kofeiny ze wszystkich rodzajów.",
+		"bearista-7" :
+		"Proszę nie pij kawy Kopi luwak. Ona pochodzi od cywet, które są przekarmiane ziarnami kawy i nie dostają za dużo wody lub innego jedzenia. Nie wspieraj takiego wykorzystywania i bojkotuj taką kawę gdy tylko to możliwe. Istnieją sztuczne enzymy cywet ale farmerzy przeciwdziałali wykorzystywaniu ich po to żeby mogli dalej trzymać cywety w niewoli.",
+		"bearista-8" :
+		"Rośliny kawowe używają kofeiny jako naturalnego pestycydu. Produkują więcej kofeiny na niższych wyskościach gdzie jest więcej owadów podczas gdy na wyższych wyskościach jest ich mniej więc rośliny produkują mniej kofeiny. Także z tego powodu kawa z różnych miejsc ma inny smak.",
+
+		"tix-newpeople" :
+		"Wiele nowych osób pojawia się w naszych okolicach. Na początku to było fajne ale mam nadzieję, że nie będzie tu zbyt tłoczno."
 	},
 
 	"level" : {
+		"full-game" : "Pełna gra",
+		"soon" : "Ciąg dalszy nastąpi...",
 		"shop" : "Punkt handlowy Sam'a",
 		"overworld-0" : "Wyspy zorzy polarnej",
-		"overworld-1" : "Antarktyda",
-		"0-t0" : "Pennyton",
-		"0-t1" : "Kopalnie ryb",
-		"0-0" : "Nauka stoków",
-		"0-1" : "Kryształowe przejście",
-		"0-2" : "Ślizganie i zjeżdżanie",
-		"0-3" : "Pod wodą",
-		"0-4" : "Problem z TNT",
-		"0-5" : "Zmysł śniegu Frost'a",
-		"0-x" : "Ekstremalne wzgórza",
-		"0-c" : "Forteca Borealis",
-		"0-6a" : "Mroźny raj",
-		"0-6b" : "Ścieżka się rozdziela",
-		"0-7" : "Oceaniczny most",
-		"0-8" : "Arktyczny wiatr",
-		"0-9" : "Zatopione kroki",
-		"0-s" : "Strefa czerwonego przycisku"
+		"overworld-1" : "Wyspy leśne",
+		"aurora-pennyton" : "Pennyton",
+		"aurora-mines" : "Kopalnie ryb",
+		"aurora-learn" : "Nauka stoków",
+		"aurora-crystal" : "Kryształowe przejście",
+		"aurora-slip" : "Ślizganie i zjeżdżanie",
+		"aurora-subsea" : "Pod wodą",
+		"aurora-tnt" : "Problem z TNT",
+		"aurora-sense" : "Zmysł śniegu Frost'a",
+		"aurora-frozen" : "Mroźny raj",
+		"aurora-branches" : "Ścieżka się rozdziela",
+		"aurora-bridge" : "Oceaniczny most",
+		"aurora-wind" : "Arktyczny wiatr",
+		"aurora-steps" : "Zatopione kroki",
+		"aurora-xtreme" : "Ekstremalne wzgórza",
+		"aurora-fort" : "Forteca Borealis",
+		"aurora-switch" : "Strefa czerwonego przycisku",
+		"aurora-iceguy" : "O nie, więcej Lodowych bloków",
+		"aurora-fishy" : "Rybne życzenie",
+		"aurora-forest" : "Las lodospadów",
+		"nessland-welcome" : "Witaj na wyspach leśnych",
+		"nessland-left" : "W lewo",
+		"nessland-henge" : "Lonehenge"
+	},
+
+	"achi-name" : {
+		"saveKonqi" : "Najlepsi kumple",
+		"saveMidi" : "Zwarjujmy",
+		"over9000" : "Ponad 9000!",
+		"coldGreed" : "Chciwość o zimnym sercu",
+		"arcticExplorer" : "Arktyczny odkrywca",
+		"snowMoreBaddies" : "Śnieży więcej złych",
+		"blastOff" : "Odrzut!"
+	},
+
+	"achi-desc" : {
+		"saveKonqi" : "Uratuj Konqi'ego od Yeti'ego w Fortecy Borealis",
+		"saveMidi" : "Uratuj Midi'ego od Drzewa duchów na Wyspach leśnych",
+		"over9000" : "Zachowaj więcej niż 9000 monet",
+		"coldGreed" : "Zdobądź wszystkie monety na Wyspach zorzy polarnej",
+		"arcticExplorer" : "Znajdź wszystkie sekrety na Wyspach zorzy polarnej",
+		"snowMoreBaddies" : "Pokonaj wszystkich przeciwników na Wyspach zorzy polarnej",
+		"blastOff" : "Myślę, że on spełnił twoje marzenie..."
 	},
 
 	"key" : {

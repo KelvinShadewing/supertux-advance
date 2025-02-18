@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"..\/gfx\/paper-signs.png",
+ "imageheight":128,
+ "imagewidth":128,
+ "margin":0,
+ "name":"paper-signs",
+ "spacing":0,
+ "tilecount":64,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}
