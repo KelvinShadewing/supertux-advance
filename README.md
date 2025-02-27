@@ -14,7 +14,8 @@ We have a Discord server! https://discord.gg/bcyC2Q6a9x
 
 After being humiliated by Tux on the tracks, Nolok decides to get his revenge by kidnapping lots of his friends at once! Tux sets out once more, hoping to finally put an end to Nolok's schemes, only this time, he won't be doing it alone.
 
-## Installation Destructions
+## Installation Destructions 
+<!-- Destructions is not a typo of instructions: https://www.youtube.com/shorts/UeHp-DEkJqo -->
 
 To open the game in the Brux GDK engine for development or contributions, follow the [Brux GDK installation instructions](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` using Brux.
 
