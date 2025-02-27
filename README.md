@@ -14,9 +14,12 @@ We have a Discord server! https://discord.gg/bcyC2Q6a9x
 
 After being humiliated by Tux on the tracks, Nolok decides to get his revenge by kidnapping lots of his friends at once! Tux sets out once more, hoping to finally put an end to Nolok's schemes, only this time, he won't be doing it alone.
 
-## Installation Destructions
+## Installation Destructions 
+<!-- Destructions is not a typo of instructions: https://www.youtube.com/shorts/UeHp-DEkJqo -->
 
-Follow the installation instructions for [Brux GDK](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` with Brux.
+To open the game in the Brux GDK engine for development or contributions, follow the [Brux GDK installation instructions](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` using Brux.
+
+To download and play SuperTux Advance, download and unzip the [latest release from itch.io](https://kelvinshadewing.itch.io/supertux-advance). If on Windows, run the excecutable located at `/sta-0.2.48/sta/sta.exe` by double clicking it. If on linux, navigate to the `sta` subdirectory (e.g., `cd ~/Downloads/sta-0.2.48/sta`), install SDL2 (e.g., `sudo apt install libsdl2*`), then run the `sta` file (i.e., `./sta`).
 
 ## Controls
 
