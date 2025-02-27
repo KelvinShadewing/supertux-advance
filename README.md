@@ -2,7 +2,7 @@
 
 ## Intro
 
-SuperTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://github.com/kelvinshadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speed running in mind, it is not an essential skill; the game can be played and beaten casually.
+SuperTux Advance is a fan game of SuperTux written in Squirrel using [Brux GDK](https://codeberg.org/KelvinShadewing/brux-gdk). The name comes from the graphical style, which uses a lower resolution display and a sprite style similar to Sonic Advance. Gameplay is not a 1 to 1 recreation of SuperTux, nor does it aim to be. It's meant to be a more fast-paced action platformer than a Mario clone. While the gameplay is designed with speed running in mind, it is not an essential skill; the game can be played and beaten casually.
 
 Some assets from SuperTux will be used, with graphics being remixed to match the game's visual style.
 
@@ -17,7 +17,7 @@ After being humiliated by Tux on the tracks, Nolok decides to get his revenge by
 ## Installation Destructions 
 <!-- Destructions is not a typo of instructions: https://www.youtube.com/shorts/UeHp-DEkJqo -->
 
-To open the game in the Brux GDK engine for development or contributions, follow the [Brux GDK installation instructions](https://github.com/kelvinshadewing/brux-gdk), then run `game.brx` using Brux.
+To open the game in the Brux GDK engine for development or contributions, follow the [Brux GDK installation instructions](https://codeberg.org/KelvinShadewing/brux-gdk), then run `game.brx` using Brux.
 
 To download and play SuperTux Advance, download and unzip the [latest release from itch.io](https://kelvinshadewing.itch.io/supertux-advance). If on Windows, run the excecutable located at `/sta-0.2.48/sta/sta.exe` by double clicking it. If on linux, navigate to the `sta` subdirectory (e.g., `cd ~/Downloads/sta-0.2.48/sta`), install SDL2 (e.g., `sudo apt install libsdl2*`), then run the `sta` file (i.e., `./sta`).
 

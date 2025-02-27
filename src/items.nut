@@ -7,18 +7,19 @@ Coin <- class extends Actor{
 	hspeed = 0.0
 	vspeed = 0.0
 	target = 0
+	shape = null
 
-	constructor(_x, _y, _arr = null)
-	{
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
 		frame = randFloat(4)
 		game.maxCoins++
+		shape = Cir(x, y, 8)
 	}
 
-	function run()
-	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
+	function run() {
+		shape.setPos(x, y)
+		if(gvPlayer && hitTest(gvPlayer.shape, shape)
+		|| gvPlayer2 && hitTest(gvPlayer2.shape, shape)) {
 			deleteActor(id)
 			newActor(CoinEffect, x, y)
 			foreach(k, i in gvYetFoundItems) if(i == id)
@@ -299,19 +300,17 @@ Berry <- class extends Actor{
 }
 
 Herring <- class extends Actor{
-	frame = 0.0
+	shape = null
 
-	constructor(_x, _y, _arr = null)
-	{
-	base.constructor(_x, _y)
-		frame = randFloat(4)
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Cir(x, y, 8)
 	}
 
-	function run()
-	{
-		frame += 0.1
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
+	function run() {
+		shape.setPos(x, y)
+		if(gvPlayer && hitTest(gvPlayer.shape, shape)
+		|| gvPlayer2 && hitTest(gvPlayer2.shape, shape)) {
 			deleteActor(id)
 			playSoundChannel(sndFish, 0, 1)
 			game.redCoins++
