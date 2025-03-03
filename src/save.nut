@@ -30,19 +30,20 @@ newGame <- function(f) {
 
 			//Generate random levels list
 			local nl = []
-			while(nl.len() < gvStoryLevelList.len()) {
-				foreach(i in gvStoryLevelList) {
-					if(randInt(100) == 0 && !nl.find(i)) {
-						nl.push(i)
-						break
-					}
-				}
+			foreach(i in gvStoryLevelList) {
+				nl.push(i)
+			}
+
+			local nlr = []
+			while(nl.len() > 0) {
+				local i = randInt(nl.len())
+				nlr.push(nl[i])
+				nl.remove(i)
 			}
 
 			//Add list to game file
-			for(local i = 0; i < nl.len(); i++) {
-				print(nl[i])
-				game.ranLevList[gvStoryLevelList[i]] <- nl[i]
+			for(local i = 0; i < nlr.len(); i++) {
+				game.ranLevList[gvStoryLevelList[i]] <- nlr[i]
 			}
 		}
 
