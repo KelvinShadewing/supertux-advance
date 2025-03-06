@@ -409,6 +409,13 @@ startOverworld <- function(world) {
 	gvFoundItems.clear()
 	gvAutoCon = false
 
+	if(game.characters.len() == 0)
+		game.characters = {
+			Tux = true,
+			Penny = true,
+			Lutris = true
+		}
+
 	//Load map to play
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(world)
