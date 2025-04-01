@@ -152,6 +152,17 @@ Tilemap <- class {
 				local tempspr = findSprite(shortname)
 				//("Temp sprite: " + shortname)
 
+				local tsox = 0
+				local tsoy = 0
+				if("tileoffset" in data.tilesets[i]) {
+					if("x" in data.tilesets[i].tileoffset)
+						tsox = -data.tilesets[i].tileoffset.x
+					//Tiled uses a negative horizontal offset for some reason
+
+					if("y" in data.tilesets[i].tileoffset)
+						tsox = data.tilesets[i].tileoffset.y
+				}
+
 				if(tempspr != 0) {
 					tileset.push(tempspr)
 					print("Found " + shortname)
@@ -159,13 +170,13 @@ Tilemap <- class {
 				else { //Search for file
 					if(fileExists(filename)) {
 						//print("Attempting to add full filename")
-						tileset.push(newSprite(filename, data.tilesets[i].tilewidth, data.tilesets[i].tileheight, 0, data.tilesets[i].tileheight - data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing))
+						tileset.push(newSprite(filename, data.tilesets[i].tilewidth, data.tilesets[i].tileheight, tsox, tsoy, data.tilesets[i].margin, data.tilesets[i].spacing))
 						print("Added tileset " + shortname + ".")
 					}
 					else for(local j = 0; j < tileSearchDir.len(); j++) {
 						if(fileExists(tileSearchDir[j] + "/" + shortname)) {
 							print("Adding " + shortname + " from search path: " + tileSearchDir[j])
-							tileset.push(newSprite(tileSearchDir[j] + "/" + shortname, data.tilesets[i].tilewidth, data.tilesets[i].tileheight, 0, data.tilesets[i].tileheight - data.tileheight, data.tilesets[i].margin, data.tilesets[i].spacing))
+							tileset.push(newSprite(tileSearchDir[j] + "/" + shortname, data.tilesets[i].tilewidth, data.tilesets[i].tileheight, tsox, tsoy, data.tilesets[i].margin, data.tilesets[i].spacing))
 							break
 						}
 					}

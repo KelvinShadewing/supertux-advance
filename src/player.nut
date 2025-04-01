@@ -229,7 +229,7 @@ Player <- class extends PhysAct {
 		}
 
 		if(y < -100) y = -100.0
-		if(y < 0 && !placeFree(x, y)) {
+		if((y < 0 || vspeed == 0 && !onPlatform()) && !placeFree(x, y)) {
 			local xrange = 0
 			while(true) {
 				xrange++
