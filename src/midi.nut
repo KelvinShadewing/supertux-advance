@@ -1177,12 +1177,17 @@ Midi <- class extends Player {
 
 			//Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if((onPlatform(0, 2) || onPlatform(8, 2) || onPlatform(-8, 2) || !placeFree(x, y + 2)) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
+				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
-					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
-					if(anim == "plantMine") shooting = 0
-					if(anim == "stand" || anim == "walk") anim = "jumpT"
+
+					if(!placeFree(x, y) && !placeFree(x, y - 1))
+						y--
+					if(anim == "plantMine")
+						shooting = 0
+					if(anim == "stand" || anim == "walk")
+						anim = "jumpT"
+
 					jumpBuffer = 0
 				}
 				else if(canJump > 0 || anim == "ledge" || anim == "monkey") {

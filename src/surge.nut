@@ -958,8 +958,10 @@ Surge <- class extends Player {
 				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
-					if(!placeFree(x, y) && !placeFree(x, y - 1)) y--
-					if(anim == "stand" || anim == "walk") anim = "jumpT"
+					if(!placeFree(x, y) && !placeFree(x, y - 1))
+						y--
+					if(anim == "stand" || anim == "walk")
+						anim = "jumpT"
 				}
 				else if(canJump > 0 || nowInWater && stats.weapon != "water") {
 					jumpBuffer = 0
