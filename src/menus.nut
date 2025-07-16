@@ -4,13 +4,13 @@
 
 menu <- []
 menuLast <- []
-menuItemsPos <- [] //Positions of all menu items
+menuItemsPos <- [] // Positions of all menu items
 cursor <- 0
 cursorOffset <- 0
 cursorTimer <- 30
 menuLeft <- false
 const menuPad = 16
-const menuMax = 8 //Maximum number of slots that can be shown on screen
+const menuMax = 8 // Maximum number of slots that can be shown on screen
 const fontW = 8
 const fontH = 14
 const menuY = 40
@@ -21,7 +21,7 @@ setMenu <- function(m) {
 }
 
 textMenu <- function(){
-	//If no menu is loaded
+	// If no menu is loaded
 	if(menu == []) return
 
 	if(menu != menuLast) {
@@ -31,19 +31,19 @@ textMenu <- function(){
 	menuLast = menu
 	menuItemsPos = []
 
-	//Draw options
-	//If there are more items than can be displayed at once
+	// Draw options
+	// If there are more items than can be displayed at once
 	if(menu.len() > menuMax) for(local i = cursorOffset; i < cursorOffset + menuMax; i++) {
-		//Detect if menu item is disabled (has no function). Display it with gray font if so.
+		// Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
 		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
 		if(cursor == i) {
-			//Make current selection blink
+			// Make current selection blink
 			currFont = font2I
 			drawSprite(font2, 110, (menuLeft ? menuPad : screenW() / 2) - (menuLeft ? 0 : menu[i].name().len() * 4) - 16, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
 			drawSprite(font2, 115, (menuLeft ? menuPad : screenW() / 2) + (menuLeft ? menu[i].name().len() * 8 : menu[i].name().len() * 4) + 7, screenH() - menuY - (menuMax * fontH) + ((i - cursorOffset) * fontH))
-			//Display option description
+			// Display option description
 			local d = ""
 			if(menu[i].rawin("desc"))
 				d = menu[i].desc()
@@ -63,13 +63,13 @@ textMenu <- function(){
 		drawText(currFont, textX, textY, menu[i].name())
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 
-		//Draw scroll indicators
+		// Draw scroll indicators
 		if(cursorOffset > 0) for(local i = 0; i < 4; i++) drawSprite(font2, 116, (menuLeft ? menuPad : screenW() / 2 - 24) + (i * 12), screenH() - menuY - (fontH * (menuMax + 1)))
 		if(cursorOffset < menu.len() - menuMax) for(local i = 0; i < 4; i++) drawSprite(font2, 111, (menuLeft ? menuPad : screenW() / 2 - 24) + (i * 12), screenH() - menuY)
 	}
-	//If all items can fit on screen at once
+	// If all items can fit on screen at once
 	else for(local i = 0; i < menu.len(); i++) {
-		//Detect if menu item is disabled (has no function). Display it with gray font if so.
+		// Detect if menu item is disabled (has no function). Display it with gray font if so.
 		local currFont = font2
 		if(menu[i].rawin("disabled") && menu[i].disabled == true) { currFont = font2G }
 
@@ -97,44 +97,44 @@ textMenu <- function(){
 		menuItemsPos.append({index = i, x = textX, y = textY, len = menu[i].name().len() * fontW})
 	}
 
-	//Mouse cursor update + left click input check
+	// Mouse cursor update + left click input check
 	updateCursor()
 	if(mouseRelease(0)) processCursorInput()
 
-	//Keyboard input
-	if(getcon("down", "press") || (getcon("down", "hold") && cursorTimer <= 0)) {
+	// Keyboard input
+	if(getcon("down", "press", false, 0, false) || (getcon("down", "hold", false, 0, false) && cursorTimer <= 0)) {
 		cursor++
 		if(cursor >= cursorOffset + menuMax) cursorOffset++
 		if(cursor >= menu.len()) {
 			cursor = 0
 			cursorOffset = 0
 		}
-		if(getcon("down", "press")) cursorTimer = 40
+		if(getcon("down", "press", false, 0, false)) cursorTimer = 40
 		else cursorTimer = 10
 		popSound(sndMenuMove, 0)
 	}
 
-	if(getcon("up", "press") || (getcon("up", "hold") && cursorTimer <= 0)) {
+	if(getcon("up", "press", false, 0, false) || (getcon("up", "hold", false, 0, false) && cursorTimer <= 0)) {
 		cursor--
 		if(cursor < cursorOffset) cursorOffset--
 		if(cursor < 0) {
 			cursor = menu.len() - 1
 			if(menu.len() > menuMax) cursorOffset = menu.len() - menuMax
 		}
-		if(getcon("up", "press")) cursorTimer = 40
+		if(getcon("up", "press", false, 0, false)) cursorTimer = 40
 		else cursorTimer = 10
 		popSound(sndMenuMove, 0)
 	}
 
-	if(getcon("down", "hold", false, 1) || getcon("up", "hold", false, 1) || getcon("down", "hold", false, 2) || getcon("up", "hold", false, 2)) cursorTimer--
+	if(getcon("down", "hold", false, 1, false) || getcon("up", "hold", false, 1, false) || getcon("down", "hold", false, 2, false) || getcon("up", "hold", false, 2, false)) cursorTimer--
 
-	if(getcon("jump", "press", false, 1) || getcon("accept", "press", false, 1) || getcon("jump", "press", false, 2) || getcon("accept", "press", false, 2)) {
+	if(getcon("jump", "press", false, 1, false) || getcon("accept", "press", false, 1, false) || getcon("jump", "press", false, 2, false) || getcon("accept", "press", false, 2, false)) {
 		if(menu[cursor].rawin("disabled") && menu[cursor].disabled == true) return;
 		popSound(sndMenuSelect, 0)
 		menu[cursor].func()
 	}
 
-	if(getcon("pause", "press")) {
+	if(getcon("pause", "press", false, 0, false)) {
 		for(local i = 0; i < menu.len(); i++) {
 				if(menu[i].rawin("back")) {
 					menu[i]["back"]()
@@ -153,8 +153,8 @@ textMenu <- function(){
 	}
 }
 
-//Names are stored as functions because some need to change each time
-//they're brought up again.
+// Names are stored as functions because some need to change each time
+// they're brought up again.
 meMain <- [
 	{
 		name = function() { return gvLangObj["main-menu"]["new"] },
@@ -819,12 +819,12 @@ meAudio <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["sound-volume"] },
 		desc = function() {
-			if(getcon("left", "press") && getSoundVolume() > 0) {
+			if(getcon("left", "press", false, 0, false) && getSoundVolume() > 0) {
 				config.soundVolume -= 8
 				setSoundVolume(config.soundVolume)
 				popSound(sndMenuMove, 0)
 			}
-			if(getcon("right", "press") && getSoundVolume() < 128) {
+			if(getcon("right", "press", false, 0, false) && getSoundVolume() < 128) {
 				config.soundVolume += 8
 				setSoundVolume(config.soundVolume)
 				popSound(sndMenuMove, 0)
@@ -843,12 +843,12 @@ meAudio <- [
 	{
 		name = function() { return gvLangObj["options-menu"]["music-volume"] },
 		desc = function() {
-			if(getcon("left", "press") && getMusicVolume() > 0) {
+			if(getcon("left", "press", false, 0, false) && getMusicVolume() > 0) {
 				config.musicVolume -= 8
 				setMusicVolume(config.musicVolume)
 				popSound(sndMenuMove, 0)
 			}
-			if(getcon("right", "press") && getMusicVolume() < 128) {
+			if(getcon("right", "press", false, 0, false) && getMusicVolume() < 128) {
 				config.musicVolume += 8
 				setMusicVolume(config.musicVolume)
 				popSound(sndMenuMove, 0)
@@ -1244,4 +1244,4 @@ meOverwrite <- [
 ]
 
 meLoadGame <- []
-//This menu is left empty intentionally; it will be created dynamically at runtime.
+// This menu is left empty intentionally; it will be created dynamically at runtime.

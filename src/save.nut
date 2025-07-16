@@ -19,7 +19,7 @@ newGame <- function(f) {
 		game.randItem = gvTARandomItem
 		game.randLevel = gvTARandomLevel
 
-		//Break RNG
+		// Break RNG
 		if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
 			randSeed(getFrames())
 		else
@@ -28,7 +28,7 @@ newGame <- function(f) {
 		if(gvTARandomLevel) {
 			game.ranLevList = {}
 
-			//Generate random levels list
+			// Generate random levels list
 			local nl = []
 			foreach(i in gvStoryLevelList) {
 				nl.push(i)
@@ -41,20 +41,20 @@ newGame <- function(f) {
 				nl.remove(i)
 			}
 
-			//Add list to game file
+			// Add list to game file
 			for(local i = 0; i < nlr.len(); i++) {
 				game.ranLevList[gvStoryLevelList[i]] <- nlr[i]
 			}
 		}
 
-		//Set random player characters
+		// Set random player characters
 		if(gvTARandomPlayer) {
 			game.characters.clear()
 
 			for(local i = 0; i < 3; i++) {
 				local np = ""
 				
-				//Pick a new character
+				// Pick a new character
 				while(np == "") foreach(k, j in gvCharacters) {
 					if(randInt(100) == 0 && !(k in game.characters)) {
 						np = k
@@ -86,7 +86,7 @@ newTimeAttack <- function() {
 		gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead(path + "/text.json")))
 		print("Found text.json")
 	}
-	//Break RNG
+	// Break RNG
 	if(gvTARandomItem || gvTARandomLevel || gvTARandomPlayer)
 		randSeed(getFrames())
 	else
@@ -116,7 +116,7 @@ saveGame <- function() {
 loadGame <- function(f) {
 	if(fileExists("save/" + f.tostring() + ".json")) {
 		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
-		//Sanitize removed characters
+		// Sanitize removed characters
 		local foundMissing = true
 		while(foundMissing) {
 			foundMissing = false

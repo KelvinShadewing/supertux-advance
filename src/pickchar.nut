@@ -1,7 +1,7 @@
 pickCharSettings <- {}
 
 pickCharInitialize <- function(playerNum = 1, unlockAll = false) {
-	//Make ordered list of characters
+	// Make ordered list of characters
 	pickCharSettings.charlist <- []
 	foreach(key, i in gvCharacters) {
 		if(key in game.characters || unlockAll) {
@@ -13,9 +13,9 @@ pickCharInitialize <- function(playerNum = 1, unlockAll = false) {
 
 	if(playerNum == 2) pickCharSettings.charlist.push(["", 0, [0,0], 0])
 
-	//Sort characters
-	//Squirrel tables are sorted by hash, so the list will appear
-	//randomized if this is not done
+	// Sort characters
+	// Squirrel tables are sorted by hash, so the list will appear
+	// randomized if this is not done
 	pickCharSettings.charlist.sort(function(a, b) {
 		if(a[0] > b[0]) return 1
 		if(a[0] < b[0]) return -1
@@ -28,7 +28,7 @@ pickCharInitialize <- function(playerNum = 1, unlockAll = false) {
 	pickCharSettings.player <- playerNum
 	pickCharSettings.mode <- gvGameMode
 
-	//Set cursor to current character
+	// Set cursor to current character
 	for(local i = 0; i < pickCharSettings.charlist.len(); i++) {
 		if(pickCharSettings.charlist[i][0] == game.playerChar) {
 			pickCharSettings.charslot = i
@@ -62,7 +62,7 @@ pickChar <- function() {
 	drawSprite(bgCharSel, 0, screenW() / 2, 0)
 
 	if(!didpick) {
-		//Move selection
+		// Move selection
 		if(getcon("right", "press")) {
 			charslot++
 			popSound(sndMenuMove, 0)
@@ -93,7 +93,7 @@ pickChar <- function() {
 		picktimer--
 	}
 
-	//Draw
+	// Draw
 	drawText(font2, (screenW() / 2) - (gvLangObj["options-menu"]["charsel"].len() * 4), 16, gvLangObj["options-menu"]["charsel"])
 	if(charlist[charslot][0] != "") drawText(font2, (screenW() / 2) - (charlist[charslot][4].len() * 4), 200, charlist[charslot][4])
 	else drawText(font2, (screenW() / 2) - (gvLangObj["menu-commons"]["noone"].len() * 4), 200, gvLangObj["menu-commons"]["noone"])
@@ -102,7 +102,7 @@ pickChar <- function() {
 		else drawSprite(getroottable()[charlist[charslot][1]], charlist[charslot][2][0], screenW() / 2, screenH() - 64)
 	}
 
-	//Show icon list
+	// Show icon list
 	for(local i = 0; i < charlist.len(); i++) {
 		if(charlist[i][0] != "") drawSprite(getroottable()[charlist[i][3]], 0, listx + wrap(i, 0, 16) * 16, 48 + (floor(i / 16) * 16))
 		else drawSprite(sprNoOne, 0, listx + wrap(i, 0, 16) * 16, 48 + (floor(i / 16) * 16))

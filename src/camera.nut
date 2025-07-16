@@ -40,7 +40,7 @@ updateCamera <- function() {
 	local ux = gvMap.w - gvScreenW
 	local uy = gvMap.h - gvScreenH
 
-	//Camera peek
+	// Camera peek
 	local lx = 0
 	local ly = 0
 
@@ -361,7 +361,7 @@ updateCamera <- function() {
 	if(camy2 < 0) camy2 = 0
 
 
-	//Reset camera target
+	// Reset camera target
 	if(gvPlayer) gvCamTarget = gvPlayer
 	else if(gvPlayer2) gvCamTarget = gvPlayer2
 	if(gvPlayer2) gvCamTarget2 = gvPlayer2
@@ -382,7 +382,7 @@ CameraGrabber <- class extends Actor {
 	}
 
 	function run() {
-		if(!gvSplitScreen) { //Single player camera
+		if(!gvSplitScreen) { // Single player camera
 			if((gvPlayer
 			&& gvPlayer.x >= x - w
 			&& gvPlayer.y >= y - h
@@ -397,7 +397,7 @@ CameraGrabber <- class extends Actor {
 				gvCamTarget2 = this
 			}
 		}
-		else { //Multi player camera
+		else { // Multi player camera
 			if(gvPlayer
 			&& gvPlayer.x >= x - w
 			&& gvPlayer.y >= y - h

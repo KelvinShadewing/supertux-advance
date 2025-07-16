@@ -1,4 +1,4 @@
-//Functions having to do with accessibility features go here
+// Functions having to do with accessibility features go here
 
 drawFloatingStats <- function(x, y, red, green, blue) {
 	if(red < 1.0) {

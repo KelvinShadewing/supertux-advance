@@ -24,8 +24,8 @@ Rec <- class {
 		h = _h.tofloat()
 		kind = _kind
 
-		//Prevent zero dimensions
-		//It's important, trust me
+		// Prevent zero dimensions
+		// It's important, trust me
 		if(w <= 0) w = 0.1
 		if(h <= 0) h = 0.1
 		ox = _ox.tofloat()
@@ -124,7 +124,7 @@ Poly <- class {
 	constructor(_x, _y, _points) {
 		x = _x
 		y = _y
-		points = _points //Array containing coordinate pairs
+		points = _points // Array containing coordinate pairs
 	}
 	
 	function pointIn(px, py) {
@@ -194,8 +194,8 @@ Hex <- class {
 		w = _w.tofloat()
 		h = _h.tofloat()
 
-		//Prevent zero dimensions
-		//It's important, trust me
+		// Prevent zero dimensions
+		// It's important, trust me
 		if(w <= 0) w = 0.1
 		if(h <= 0) h = 0.1
 		ox = _ox.tofloat()
@@ -212,11 +212,11 @@ Hex <- class {
 	}
 
 	function pointIn(_x, _y) {
-		//Check if point is inside the horizontal strip of the hexagon
+		// Check if point is inside the horizontal strip of the hexagon
 		local yBound = h * 0.5
 		if(_y < y - yBound || _y > y + yBound) return false
 		
-		//Check if point is inside the triangle above the hexagon's center
+		// Check if point is inside the triangle above the hexagon's center
 		local xBound = w * 0.5
 		local xDist = _x - x
 		local yDist = _y - (y - yBound)
@@ -224,13 +224,13 @@ Hex <- class {
 		if(yDist < 0) yDist = -yDist
 		if(xDist > yDist) return false
 		
-		//Check if point is inside the triangle below the hexagon's center
+		// Check if point is inside the triangle below the hexagon's center
 		yDist = _y - (y + yBound)
 		if(xDist < 0) xDist = -xDist
 		if(yDist < 0) yDist = -yDist
 		if(xDist > yDist) return false
 		
-		//If point passes all checks, it is inside the hexagon
+		// If point passes all checks, it is inside the hexagon
 		return true
 	}
 
@@ -242,24 +242,24 @@ hitTest <- function(a, b) {
 		case "Rec":
 			switch(typeof b) {
 				case "Rec":
-					//Make sure that rectangle bounding boxes are touching
+					// Make sure that rectangle bounding boxes are touching
 					if(abs(a.x - b.x) > abs(a.w + b.w)) return false
 					if(abs(a.y - b.y) > abs(a.h + b.h)) return false
 
-					//kinds
+					// kinds
 					if(a.kind != 0 || b.kind != 0) {
 						switch(a.kind) {
-							case 0: //Rectangle
+							case 0: // Rectangle
 								switch(b.kind) {
 									case 0:
-										//If rectangle/rectangle somehow gets in anyway
+										// If rectangle/rectangle somehow gets in anyway
 										return true
 										break
 									case 1:
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
 
-										//Get slope angle
+										// Get slope angle
 										local a0 = b.h / b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
 										if(a1 > a0) return false
@@ -268,7 +268,7 @@ hitTest <- function(a, b) {
 										if (((a.x + a.w) - (b.x - b.w)) == 0)
 											return false
 
-										//Get slope angle
+										// Get slope angle
 										local a0 = b.h / -b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x + a.w) - (b.x - b.w))
 										if(a1 < a0) return false
@@ -277,7 +277,7 @@ hitTest <- function(a, b) {
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
 
-										//Get slope angle
+										// Get slope angle
 										local a0 = -b.h / b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x - a.w) - (b.x + b.w))
 										if(a1 < a0) return false
@@ -286,7 +286,7 @@ hitTest <- function(a, b) {
 										if (((a.x + a.w) - (b.x - b.w)) == 0)
 											return false
 
-										//Get slope angle
+										// Get slope angle
 										local a0 = -b.h / -b.w
 										local a1 = ((a.y - a.h) - (b.y - b.h)) / ((a.x + a.w) - (b.x - b.w))
 										if(a1 > a0) return false
@@ -298,7 +298,7 @@ hitTest <- function(a, b) {
 								}
 								break
 
-							case 1: //Top right
+							case 1: // Top right
 								switch(b.kind) {
 									case 0:
 									case 1:
@@ -306,7 +306,7 @@ hitTest <- function(a, b) {
 									case 3:
 										if (((a.x - a.w) - (b.x + b.w)) == 0)
 											return false
-										//Get slope angle
+										// Get slope angle
 										local a0 = b.h / b.w
 										local a1 = ((a.y + a.h) - (b.y + b.h)) / ((a.x - a.w) - (b.x + b.w))
 										if(a1 > a0) return false
@@ -318,7 +318,7 @@ hitTest <- function(a, b) {
 								}
 								break
 
-							case 2: //Top left
+							case 2: // Top left
 								switch(b.kind) {
 									case 0:
 										break
@@ -335,7 +335,7 @@ hitTest <- function(a, b) {
 								}
 								break
 
-							case 3: //Bottom right
+							case 3: // Bottom right
 								switch(b.kind) {
 									case 0:
 										break
@@ -352,7 +352,7 @@ hitTest <- function(a, b) {
 								}
 								break
 
-							case 4: //Bottom left
+							case 4: // Bottom left
 								switch(b.kind) {
 									case 0:
 										break
@@ -369,7 +369,7 @@ hitTest <- function(a, b) {
 								}
 								break
 
-							case 5: //Liquid
+							case 5: // Liquid
 								switch(b.kind) {
 									case 0:
 										break
@@ -391,23 +391,23 @@ hitTest <- function(a, b) {
 					return true
 					break
 
-				case "Cir": //Circle
+				case "Cir": // Circle
 					local hx = b.x
 					local hy = b.y
 
-					//Find closest point
+					// Find closest point
 					if(b.x < a.x - a.w) hx = a.x - a.w
 					if(b.x > a.x + a.w) hx = a.x + a.w
 
 					if(b.y < a.y - a.h) hy = a.y - a.h
 					if(b.y > a.y + a.h) hy = a.y + a.h
 
-					//Check distance
+					// Check distance
 					if(!inDistance2(hx, hy, b.x, b.y, b.r)) return false
 
-					//Check kinds
+					// Check kinds
 					switch(a.kind) {
-						case 1: //Top right
+						case 1: // Top right
 							if(b.hitLine(a.x - a.w, a.y - a.h, a.x - a.w, a.y + a.h)
 							|| b.hitLine(a.x - a.w, a.y + a.h, a.x + a.w, a.y + a.h)
 							|| b.hitLine(a.x - a.w, a.y - a.h, a.x + a.w, a.y + a.h))
@@ -418,7 +418,7 @@ hitTest <- function(a, b) {
 
 					return true
 					break
-					//Still need to check for collisions with slopes and liquid
+					// Still need to check for collisions with slopes and liquid
 
 				default:
 					return false
@@ -426,13 +426,13 @@ hitTest <- function(a, b) {
 			}
 			break
 
-		case "Cir": //Circle
+		case "Cir": // Circle
 			switch(typeof b) {
 				case "Rec":
 					return hitTest(b, a)
 					break
 
-					//Still need to check for collisions with slopes and liquid
+					// Still need to check for collisions with slopes and liquid
 
 				case "Poly":
 					// Check if any vertex of the polygon is inside the circle

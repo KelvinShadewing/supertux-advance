@@ -1,6 +1,6 @@
 Boss <- class extends Enemy {
 	health = 40
-	phantom = false //Allows the boss to phase through walls in their intro
+	phantom = false // Allows the boss to phase through walls in their intro
 	active = false
 	routine = null
 	hspeed = 0.0
@@ -37,7 +37,7 @@ Boss <- class extends Enemy {
 		if(active) base.run()
 	}
 
-	//Physics gets a separate function so that it can be inherited by other bosses
+	// Physics gets a separate function so that it can be inherited by other bosses
 	function physics() {}
 	function hitPlayer(target) {
 		target.getHurt(touchDamage, element)
@@ -92,10 +92,10 @@ BossManager <- class extends Actor {
 		if(!actor.rawin("Boss")) deleteActor(id)
 		if(actor["Boss"].len() == 0) deleteActor(id)
 
-		//Recount bosses
+		// Recount bosses
 		bossTotal = actor["Boss"].len()
 
-		//Recount health
+		// Recount health
 		healthActual = 0
 		if(actor["Boss"].len() > 0) foreach(i in actor["Boss"]) {
 			if(i.ready) healthActual += i.health
@@ -123,7 +123,7 @@ BossManager <- class extends Actor {
 }
 
 Yeti <- class extends Boss {
-	//Animations
+	// Animations
 	anIdle = [0.0, 7.0, "idle"]
 	anWalk = [8.0, 15.0, "walk"]
 	anRun = [16.0, 23.0, "run"]
@@ -151,7 +151,7 @@ Yeti <- class extends Boss {
 		stomp = 1.0
 	}
 
-	//Boss specific variables
+	// Boss specific variables
 	health = 40
 	eventTimer = 0
 	eventStage = 0
@@ -174,7 +174,7 @@ Yeti <- class extends Boss {
 	function _typeof() { return "Yeti" }
 
 	function physics() {
-		//Movement
+		// Movement
 		if(placeFree(x + hspeed, y) || phantom) x += hspeed
 		else for(local i = 0; i < fabs(hspeed * 1.5); i++) {
 			if(placeFree(x + hspeed, y - i)) {
@@ -209,7 +209,7 @@ Yeti <- class extends Boss {
 
 		shape.setPos(x, y)
 
-		//Animation
+		// Animation
 		switch(anim) {
 			case anWalk:
 				frame += 0.1
@@ -253,7 +253,7 @@ Yeti <- class extends Boss {
 			if(hspeed < 0) flip = 1
 		}
 
-		//Set damage resistance
+		// Set damage resistance
 		if(routine == ruDizzy) damageMult.stomp = 4.0
 		else damageMult.stomp = 1.0
 	}
@@ -525,7 +525,7 @@ YetiShock <- class extends Actor {
 		timer++
 		if(timer >= 240) deleteActor(id)
 
-		//Damage hitbox
+		// Damage hitbox
 		if(gvPlayer) {
 			shape.setPos(x + (timer * speed), y)
 			if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
@@ -539,7 +539,7 @@ YetiShock <- class extends Actor {
 			if(hitTest(shape, gvPlayer2.shape)) gvPlayer2.hurt = 2
 		}
 
-		//Create effect
+		// Create effect
 		if(timer % 10 == 0) {
 			newActor(BigSpark, x + (timer * speed) + speed, y, 0)
 			newActor(BigSpark, x - (timer * speed) - speed, y, 1)
@@ -548,11 +548,11 @@ YetiShock <- class extends Actor {
 }
 
 Beehemoth <- class extends Boss {
-	//ATTACK IDEAS:
+	// ATTACK IDEAS:
 	// Fly overhead, dropping dust
 	// Line up on Y axis and charge
 	// Summon waspy or ivy to help fight
-	//
+	// 
 }
 
 Nolok <- class extends Boss {

@@ -604,7 +604,7 @@ ItemBlock <- class extends Actor {
 					break
 
 				case 8:
-					//1up item
+					// 1up item
 					if(game.difficulty >= 3)
 						newActor(Darknyan, x, y - 16)
 					else
@@ -992,7 +992,7 @@ TNT <- class extends Actor {
 			}
 		}
 		else {
-			//Hit by player
+			// Hit by player
 			if(gvPlayer && hitTest(shape, gvPlayer.shape) || gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 				gothit = true
 				stopSound(sndFizz)
@@ -1074,8 +1074,8 @@ ColorBlock <- class extends Actor {
 
 	function filltile() {
 		if(game.turnOffBlocks) return
-		//Get solid layer
-		local wl = null //Working layer
+		// Get solid layer
+		local wl = null // Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				wl = gvMap.data.layers[i]
@@ -1083,12 +1083,12 @@ ColorBlock <- class extends Actor {
 			}
 		}
 
-		//Find tile
+		// Find tile
 		local cx = floor(x / 16)
 		local cy = floor(y / 16)
 		local tile = cx + (cy * wl.width)
 
-		//Make tile solid
+		// Make tile solid
 		if(tile >= 0 && tile < wl.data.len()) wl.data[tile] = gvMap.solidfid
 
 		filled = 1
@@ -1238,7 +1238,7 @@ BreakBlock <- class extends Actor {
 		tileSetSolid(x, y, 1)
 		slideshape = Rec(x, y - 1, 12, 8, 0)
 
-		//Get graphic layer
+		// Get graphic layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "fg") {
 				layer = gvMap.data.layers[i]
@@ -1246,12 +1246,12 @@ BreakBlock <- class extends Actor {
 			}
 		}
 
-		//Find tile
+		// Find tile
 		local cx = floor(x / 16)
 		local cy = floor(y / 16)
 		tile = cx + (cy * layer.width)
 
-		//Get solid layer
+		// Get solid layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				solidlayer = gvMap.data.layers[i]

@@ -9,13 +9,13 @@ gvTARandomItem <- false
 gvCoinTimeBonus <- false
 
 addTimeAttackWorld <- function(
-	displayName, //Name to show in the menu
-	list, //List of levels in order they're to be played
-	folder //The contrib/ folder of your world
+	displayName, // Name to show in the menu
+	list, // List of levels in order they're to be played
+	folder // The contrib/ folder of your world
 	) {
 	if(displayName in gvLangObj["level"])
 		displayName = gvLangObj["level"][displayName]
-	local tempBack = meTimeAttackWorld.pop() //To move back to the end
+	local tempBack = meTimeAttackWorld.pop() // To move back to the end
 	local newSlot = {
 		name = function() { return displayName }
 		func = function() {

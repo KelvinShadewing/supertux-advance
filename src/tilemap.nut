@@ -9,8 +9,8 @@
 |                                 |
 \*===============================*/
 
-//TODO:
-//Some SuperTux Advance-specific code exists and should be ported to a separate file
+// TODO:
+// Some SuperTux Advance-specific code exists and should be ported to a separate file
 
 ////////////////
 // TILED MAPS //
@@ -87,17 +87,17 @@ Tilemap <- class {
 	tileh = 0
 	mapw = 0
 	maph = 0
-	geo = null //List of solid shapes added after loading
+	geo = null // List of solid shapes added after loading
 	w = 0
 	h = 0
 	name = ""
 	file = ""
 	author = ""
-	solidfid = 0 //First tile ID for the solid tileset
-	shape = null //Movable shape used for collision checking
-	anim = null //List of animated tiles
-	solidLayer = null //Tile layer used for collision checking
-	plat = null //List of platforms
+	solidfid = 0 // First tile ID for the solid tileset
+	shape = null // Movable shape used for collision checking
+	anim = null // List of animated tiles
+	solidLayer = null // Tile layer used for collision checking
+	plat = null // List of platforms
 	infinite = false
 	meta = null
 
@@ -127,7 +127,7 @@ Tilemap <- class {
 			print("\nLoading map: " + name)
 
 			for(local i = 0; i < data.tilesets.len(); i++) {
-				//Check if tileset is not embedded
+				// Check if tileset is not embedded
 				if("source" in data.tilesets[i])
 				for(local j = 0; j < tileSearchDir.len(); j++) {
 					local sourcefile = findFileName(data.tilesets[i].source)
@@ -141,23 +141,23 @@ Tilemap <- class {
 					else print("Unable to find external tile: " + sourcefile + " in " + tileSearchDir[j])
 				}
 
-				//Extract filename
-				//print("Get filename")
+				// Extract filename
+				// print("Get filename")
 				if(!("image" in data.tilesets[i])) print(jsonWrite(data.tilesets[i]))
 				local filename = data.tilesets[i].image
 				local shortname = findFileName(filename)
-				//print("Full map name: " + filename + ".")
+				// print("Full map name: " + filename + ".")
 				print("Searching for tileset: " + shortname)
 
 				local tempspr = findSprite(shortname)
-				//("Temp sprite: " + shortname)
+				// ("Temp sprite: " + shortname)
 
 				local tsox = 0
 				local tsoy = 0
 				if("tileoffset" in data.tilesets[i]) {
 					if("x" in data.tilesets[i].tileoffset)
 						tsox = -data.tilesets[i].tileoffset.x
-					//Tiled uses a negative horizontal offset for some reason
+					// Tiled uses a negative horizontal offset for some reason
 
 					if("y" in data.tilesets[i].tileoffset)
 						tsox = data.tilesets[i].tileoffset.y
@@ -167,9 +167,9 @@ Tilemap <- class {
 					tileset.push(tempspr)
 					print("Found " + shortname)
 				}
-				else { //Search for file
+				else { // Search for file
 					if(fileExists(filename)) {
-						//print("Attempting to add full filename")
+						// print("Attempting to add full filename")
 						tileset.push(newSprite(filename, data.tilesets[i].tilewidth, data.tilesets[i].tileheight, tsox, tsoy, data.tilesets[i].margin, data.tilesets[i].spacing))
 						print("Added tileset " + shortname + ".")
 					}
@@ -185,17 +185,17 @@ Tilemap <- class {
 				tilef.push(data.tilesets[i].firstgid)
 				if(data.tilesets[i].name == "solid") solidfid = data.tilesets[i].firstgid
 
-				//Add animations
+				// Add animations
 				if(data.tilesets[i].rawin("tiles")) for(local j = 0; j < data.tilesets[i].tiles.len(); j++) {
 					if("animation" in data.tilesets[i].tiles[j]) anim[data.tilesets[i].firstgid + data.tilesets[i].tiles[j].id] <- AnimTile(data.tilesets[i].tiles[j], tileset.top())
 				}
 			}
 
-			//print("Added " + spriteName(tileset[i]) + ".\n")
+			// print("Added " + spriteName(tileset[i]) + ".\n")
 
 			shape = (Rec(0, 0, 8, 8, 0))
 
-			//Assign solid layer
+			// Assign solid layer
 			for(local i = 0; i < data.layers.len(); i++) {
 				if(data.layers[i].type == "tilelayer" && data.layers[i].name == "solid") {
 					solidLayer = data.layers[i]
@@ -203,7 +203,7 @@ Tilemap <- class {
 				}
 			}
 
-			//Load image layers
+			// Load image layers
 			for(local i = 0; i < data.layers.len(); i++) {
 				if(data.layers[i].type == "imagelayer") {
 					local imageSource = findTexture(findFileName(data.layers[i].image))
@@ -225,12 +225,12 @@ Tilemap <- class {
 		else print("Map file " + filename + " does not exist!")
 	}
 
-	function drawTiles(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { //@mx through @mh are the rectangle of tiles that will be drawn
+	function drawTiles(x, y, mx, my, mw, mh, l, a = -1, sx = 1, sy = 1, c = 0xffffffff, mask = null) { // @mx through @mh are the rectangle of tiles that will be drawn
 		x = floor(x)
 		y = floor(y)
 
-		//Find layer
-		local t = -1; //Target layer
+		// Find layer
+		local t = -1; // Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
 			if(data.layers[i].type == "tilelayer" && data.layers[i].name == l) {
 				t = i
@@ -239,10 +239,10 @@ Tilemap <- class {
 		}
 
 		if(t == -1) {
-			return; //Quit if no tile layer by that name was found
+			return; // Quit if no tile layer by that name was found
 		}
 
-		//Correct for layer offsets
+		// Correct for layer offsets
 		if("offsetx" in data.layers[t]) {
 			mx -= data.layers[t].offsetx
 			x += data.layers[t].offsetx
@@ -255,7 +255,7 @@ Tilemap <- class {
 		}
 		my = floor(my / tilew)
 
-		//Adjust for parallax
+		// Adjust for parallax
 		if("parallaxx" in data.layers[t] && data.layers[t].parallaxx != 0) {
 			mx *= data.layers[t].parallaxx
 			mx = floor(mx)
@@ -267,7 +267,7 @@ Tilemap <- class {
 			y *= data.layers[t].parallaxy
 		}
 
-		//Make sure values are in range
+		// Make sure values are in range
 		if(data.layers[t].width < mx + mw) mw = data.layers[t].width - mx
 		if(data.layers[t].height < my + mh) mh = data.layers[t].height - my
 		if(mx < 0) mx = 0
@@ -278,10 +278,10 @@ Tilemap <- class {
 		for(local i = my; i < my + mh; i++) {
 			for(local j = mx; j < mx + mw; j++) {
 				if(typeof mask == "array" && (mask.len() >= data.layers[t].data.len()) && mask[(i * data.layers[t].width) + j] == 0)
-					continue //If the mask does not have the tile unlocked, skip it
+					continue // If the mask does not have the tile unlocked, skip it
 
 				if(i * data.layers[t].width + j >= data.layers[t].data.len()) return
-				local n = data.layers[t].data[(i * data.layers[t].width) + j]; //Number value of the tile
+				local n = data.layers[t].data[(i * data.layers[t].width) + j]; // Number value of the tile
 				if(n != 0) {
 					for(local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if(n >= data.tilesets[k].firstgid) {
@@ -305,7 +305,7 @@ Tilemap <- class {
 	}
 
 	function del() {
-		return //Needs fix on Brux side
+		return // Needs fix on Brux side
 
 		for(local i = 0; i < tileset.len(); i++) {
 			deleteSprite(tileset[i])
@@ -313,8 +313,8 @@ Tilemap <- class {
 	}
 
 	function setLayerProperty(l, p, v) {
-		//Find layer
-		local t = -1; //Target layer
+		// Find layer
+		local t = -1; // Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
 			if(data.layers[i].type == "tilelayer" && data.layers[i].name == l) {
 				t = i
@@ -322,7 +322,7 @@ Tilemap <- class {
 			}
 		}
 		if(t == -1) {
-			return; //Quit if no tile layer by that name was found
+			return; // Quit if no tile layer by that name was found
 		}
 
 		if(p in data.layers[t])
@@ -330,8 +330,8 @@ Tilemap <- class {
 	}
 
 	function getLayerProperty(l, p) {
-		//Find layer
-		local t = -1; //Target layer
+		// Find layer
+		local t = -1; // Target layer
 		for(local i = 0; i < data.layers.len(); i++) {
 			if(data.layers[i].type == "tilelayer" && data.layers[i].name == l) {
 				t = i
@@ -339,7 +339,7 @@ Tilemap <- class {
 			}
 		}
 		if(t == -1) {
-			return; //Quit if no tile layer by that name was found
+			return; // Quit if no tile layer by that name was found
 		}
 
 		if(p in data.layers[t])
@@ -364,7 +364,7 @@ mapDeleteSolid <- function(index) {
 	}
 }
 
-tileSetSolid <- function(tx, ty, st) { //Tile X, tile Y, solid type
+tileSetSolid <- function(tx, ty, st) { // Tile X, tile Y, solid type
 	if(st < 0) return
 	local cx = floor(tx / 16)
 	local cy = floor(ty / 16)

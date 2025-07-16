@@ -16,7 +16,7 @@ gvAchievements <- {
 		return game.coins > 9000
 	}
 
-	coldGreed = function() { //Collect every coin in Aurora Isles
+	coldGreed = function() { // Collect every coin in Aurora Isles
 		if(game.path != "res/map/") return false
 		return (game.allCoins.rawin("aurora-learn")
 		&& game.allCoins.rawin("aurora-crystal")
@@ -35,7 +35,7 @@ gvAchievements <- {
 		&& game.allCoins.rawin("aurora-forest"))
 	}
 
-	arcticExplorer = function() { //Find all secrets in Aurora Isles
+	arcticExplorer = function() { // Find all secrets in Aurora Isles
 		if(game.path != "res/map/") return false
 		return (game.allSecrets.rawin("aurora-learn")
 		&& game.allSecrets.rawin("aurora-slip")
@@ -54,7 +54,7 @@ gvAchievements <- {
 		&& game.allSecrets.rawin("aurora-forest"))
 	}
 
-	snowMoreBaddies = function() { //Defeat every enemy in Aurora Isles
+	snowMoreBaddies = function() { // Defeat every enemy in Aurora Isles
 		if(game.path != "res/map/") return false
 		return (game.allEnemies.rawin("aurora-learn")
 		&& game.allEnemies.rawin("aurora-slip")

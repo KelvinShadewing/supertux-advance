@@ -2,9 +2,9 @@
 | ASSETS |
 \*======*/
 
-//Variables beging with "def" are default backups of sprites so they can be reset
+// Variables beging with "def" are default backups of sprites so they can be reset
 
-//Main sprites
+// Main sprites
 sprFont <- newSprite("res/gfx/font.png", 6, 8)
 font <- newFont(sprFont, 0, 0, true, 0)
 sprFontC <- newSprite("res/gfx/font-cyan.png", 6, 8)
@@ -190,7 +190,7 @@ defPepperDoll <- sprPepperDoll
 
 
 
-//GUI
+// GUI
 sprCursor <- newSprite("res/gfx/cursor.png", 10, 13)
 sprHealth <- newSprite("res/gfx/health-icon.png",16, 16)
 defHealth <- sprHealth
@@ -235,7 +235,7 @@ imgNearBlueFill <- loadImage("res/gfx/near-mana-fill.png")
 sprMeterBack <- newSprite("res/gfx/meter-back.png", 2, 8)
 
 
-//Blocks
+// Blocks
 sprVoid <- newSprite("res/gfx/void.png", 16, 32)
 defVoid <- sprVoid
 sprBoxIce <- newSprite("res/gfx/icebox.png", 16, 16)
@@ -321,7 +321,7 @@ defWaterCrescent <- sprWaterCrescent
 
 
 
-//NPCs
+// NPCs
 sprRadGuin <- newSprite("res/gfx/radguin.png", 22, 32, 16, 32)
 sprPennyNPC <- newSprite("res/gfx/penny-npc.png", 14, 24, 7, 24)
 sprXue <- newSprite("res/gfx/xue.png", 20, 23, 12, 23)
@@ -352,7 +352,7 @@ sprFrostC <- newSprite("res/gfx/npc-frostc.png", 33, 37, 24, 37)
 
 
 
-//Enemies
+// Enemies
 sprSnake <- newSprite("res/gfx/snake.png", 16, 32, 8, 0)
 defSnake <- sprSnake
 sprSealion <- newSprite("res/gfx/sealion.png", 16, 48, 8, 0)
@@ -529,7 +529,7 @@ defGooFox <- sprGooFox
 
 
 
-//Bosses
+// Bosses
 sprNolok <- newSprite("res/gfx/nolok.png", 64, 64, 32, 40)
 defNolok <- sprNolok
 sprYeti <- newSprite("res/gfx/yeti.png", 64, 64, 36, 40)
@@ -537,7 +537,7 @@ defYeti <- sprYeti
 
 
 
-//Items
+// Items
 sprMuffin <- newSprite("res/gfx/muffin.png", 16, 16, 8, 8)
 defMuffin <- sprMuffin
 sprStar <- newSprite("res/gfx/starnyan.png", 16, 16, 8, 8)
@@ -597,7 +597,7 @@ defSoccerBall <- sprSoccerBall
 
 
 
-//Effects
+// Effects
 sprSpark <- newSprite("res/gfx/spark.png", 12, 16, 6, 8)
 defSpark <- sprSpark
 sprGlimmer <- newSprite("res/gfx/glimmer.png", 10, 10, 5, 5)
@@ -767,7 +767,7 @@ defMagicJump <- sprMagicJump
 
 
 
-//Platforms
+// Platforms
 sprPlatformWood <- newSprite("res/gfx/moplat-wood.png", 16, 8, 8, 4)
 defPlatformWood <- sprPlatformWood
 sprPlatformStone <- newSprite("res/gfx/moplat-stone.png", 16, 8, 8, 4)
@@ -779,7 +779,7 @@ defBoostRing <- sprBoostRing
 
 
 
-//Doors
+// Doors
 sprDoorLocks <- newSprite("res/gfx/lock-door.png", 16, 16, 8, 8)
 sprDoorWoodFace <- newSprite("res/gfx/door-wood-face.png", 32, 48)
 defDoorWoodFace <- sprDoorWoodFace
@@ -791,7 +791,7 @@ sprDoorDungeonEdge <- newSprite("res/gfx/door-dungeon-edge.png", 6, 48, 3, 0)
 
 
 
-//Portals
+// Portals
 sprPortalGray <- newSprite("res/gfx/portal-gray.png", 32, 48, 16, 24)
 sprPortalBlue <- newSprite("res/gfx/portal-blue.png", 32, 48, 16, 24)
 sprPortalRed <- newSprite("res/gfx/portal-red.png", 32, 48, 16, 24)
@@ -802,12 +802,12 @@ sprPortalOrange <- newSprite("res/gfx/portal-orange.png", 32, 48, 16, 24)
 
 
 
-//Misc Objects
+// Misc Objects
 sprNectarBottle <- newSprite("res/gfx/nectar-bottle.png", 16, 16, 8, 8)
 
 
 
-//Backgrounds
+// Backgrounds
 bgPause <- 0
 bgCaveHoles <- newSprite("res/gfx/rockgapsBG.png", 400, 392)
 bgIridia <- newSprite("res/gfx/iridia.png", 100, 56)
@@ -854,13 +854,13 @@ bgHive <- newSprite("res/gfx/bg-beehive.png", 258, 172)
 
 
 
-//Weather
+// Weather
 weRain <- newSprite("res/gfx/rainfall.png", 256, 256)
 weSnow <- newSprite("res/gfx/snowfall.png", 64, 64)
 
 
 
-//Lights
+// Lights
 sprLightBasic <- newSprite("res/gfx/light-player-basic.png", 48, 48, 24, 24)
 spriteSetBlendMode(sprLightBasic, bm_add)
 sprLightFire <- newSprite("res/gfx/light-fire.png", 128, 128, 64, 64)
@@ -876,7 +876,7 @@ spriteSetBlendMode(sprLightCeiling, bm_add)
 
 
 
-//Battle stages
+// Battle stages
 sprBattleTest <- newSprite("res/gfx/previews/battle-test.png", 128, 56, 64, 28)
 sprBattleCastle <- newSprite("res/gfx/previews/battle-castle.png", 128, 58, 64, 29)
 sprBattleHenge <- newSprite("res/gfx/previews/battle-henge.png", 128, 52, 64, 26)
@@ -886,7 +886,7 @@ sprBattleSoccer <- newSprite("res/gfx/previews/battle-soccer.png", 128, 20, 64, 
 
 
 
-//Sounds
+// Sounds
 sndFireball <- loadSound("res/snd/fireball.ogg")
 sndJump <- loadSound("res/snd/jump.ogg")
 sndMidiJump <- loadSound("res/snd/midi-jump.ogg")
@@ -979,8 +979,8 @@ sndCyraElectricSwing <- loadSound("res/snd/electricwave.ogg")
 
 
 
-//Music
-gvMusic <- 0 //Stores the current music so that not too many large songs are loaded at once
+// Music
+gvMusic <- 0 // Stores the current music so that not too many large songs are loaded at once
 gvMusicName <- ""
 gvLastSong <- ""
 
@@ -1016,7 +1016,7 @@ musCloseYetFar <- "res/mus/RPG_Close_Yet_So_Far.ogg"
 
 
 
-//Saved separately so that it can be reused frequently
+// Saved separately so that it can be reused frequently
 musInvincible <- loadMusic("res/mus/invincible.ogg")
 
 songPlay <- function(song) {

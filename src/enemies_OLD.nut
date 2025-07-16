@@ -9,14 +9,14 @@
 // 	active = false
 // 	frozen = 0
 // 	icebox = -1
-// 	nocount = false //If enemy is exempt from completion tracking
+// 	nocount = false // If enemy is exempt from completion tracking
 
 // 	function run() {
 // 		base.run()
-// 		//Collision with player
+// 		// Collision with player
 // 		if(active) {
 // 			if(gvPlayer) {
-// 				if(hitTest(shape, gvPlayer.shape) && !frozen) { //8 for player radius
+// 				if(hitTest(shape, gvPlayer.shape) && !frozen) { // 8 for player radius
 // 					if(gvPlayer.invincible > 0) hurtInvinc()
 // 					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)) getHurt()
 // 					else if(gvPlayer.rawin("anSlide")) {
@@ -27,7 +27,7 @@
 // 				}
 // 			}
 
-// 			//Collision with fireball
+// 			// Collision with fireball
 // 			if(actor.rawin("Fireball")) foreach(i in actor["Fireball"]) {
 // 				if(hitTest(shape, i.shape)) {
 // 					hurtFire()
@@ -79,7 +79,7 @@
 // 				if(randInt(50) % 2 == 0) newActor(Glimmer, shape.x - (shape.w + 4) + randInt((shape.w * 2) + 8), shape.y - (shape.h + 4) + randInt((shape.h * 2) + 8))
 // 			}
 
-// 			//Shatter when slid into while frozen
+// 			// Shatter when slid into while frozen
 // 			if(gvPlayer) if(gvPlayer.rawin("anSlide")) {
 // 				if(gvPlayer.anim == gvPlayer.anSlide) {
 // 					shape.setPos(x - 2, y)
@@ -100,16 +100,16 @@
 // 		}
 // 	}
 
-// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {} //Spiked enemies can just call hurtPlayer() here
+// 	function getHurt(_mag = 1, _element = "normal", _cut = false, _blast = false, _stomp = false) {} // Spiked enemies can just call hurtPlayer() here
 
-// 	function hurtPlayer() { //Default player damage
+// 	function hurtPlayer() { // Default player damage
 // 		if(gvPlayer.blinking > 0) return
 // 		if(gvPlayer.x < x) gvPlayer.hspeed = -1.0
 // 		else gvPlayer.hspeed = 1.0
 // 		gvPlayer.hurt = 1
 // 	}
 
-// 	function hurtFire() {} //If the object is hit by a fireball
+// 	function hurtFire() {} // If the object is hit by a fireball
 // 	function hurtIce() {}
 
 // 	function hurtInvinc() {
@@ -197,12 +197,12 @@
 // 				}
 
 // 				if(frozen) {
-// 					//Create ice block
+// 					// Create ice block
 // 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 						icebox = mapNewSolid(shape)
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					if(smart) drawSprite(sprGradcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 					else drawSprite(sprDeathcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
@@ -213,7 +213,7 @@
 // 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 // 				}
 // 				else {
-// 					//Delete ice block
+// 					// Delete ice block
 // 					if(icebox != -1) {
 // 						mapDeleteSolid(icebox)
 // 						newActor(IceChunks, x, y)
@@ -222,7 +222,7 @@
 // 						else flip = false
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					if(smart) drawSprite(sprGradcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 					else drawSprite(sprDeathcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
@@ -337,7 +337,7 @@
 
 // 		shape.setPos(x, y + 16)
 // 		if(frozen) {
-// 			//Create ice block
+// 			// Create ice block
 // 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 				icebox = mapNewSolid(shape)
 // 			}
@@ -351,7 +351,7 @@
 // 			else drawSprite(sprIceTrapTall, 0, x - camx, y - camy + 16)
 // 		}
 // 		else {
-// 			//Delete ice block
+// 			// Delete ice block
 // 			if(icebox != -1) {
 // 				mapDeleteSolid(icebox)
 // 				newActor(IceChunks, x, ystart - 6)
@@ -448,7 +448,7 @@
 // 		}
 
 // 		if(frozen) {
-// 			//Create ice block
+// 			// Create ice block
 // 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 				icebox = mapNewSolid(shape)
 // 			}
@@ -484,8 +484,8 @@
 // 	function hurtIce() { frozen = 600 }
 // }
 
-//Dead enemy effect for enemies that get sent flying,
-//like when hit with a melee attack
+// Dead enemy effect for enemies that get sent flying,
+// like when hit with a melee attack
 // DeadNME <- class extends Actor {
 // 	sprite = 0
 // 	frame = 0
@@ -568,12 +568,12 @@
 // 				}
 
 // 				if(frozen) {
-// 					//Create ice block
+// 					// Create ice block
 // 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 						icebox = mapNewSolid(shape)
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					drawSprite(sprCarlBoom, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
@@ -583,7 +583,7 @@
 // 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 // 				}
 // 				else {
-// 					//Delete ice block
+// 					// Delete ice block
 // 					if(icebox != -1) {
 // 						mapDeleteSolid(icebox)
 // 						newActor(IceChunks, x, y)
@@ -592,7 +592,7 @@
 // 						else flip = false
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					drawSprite(sprCarlBoom, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
@@ -613,7 +613,7 @@
 // 					squishTime = 0
 // 				}
 
-// 				//Get carried
+// 				// Get carried
 // 				if(getcon("shoot", "hold") && gvPlayer) {
 // 					if(hitTest(shape, gvPlayer.shape) && (gvPlayer.held == null || gvPlayer.held == id)) {
 // 						if(gvPlayer.flip == 0) x = gvPlayer.x + 8
@@ -628,7 +628,7 @@
 // 					else if(gvPlayer.held == id) gvPlayer.held = null
 // 				}
 
-// 				//Move
+// 				// Move
 // 				if(placeFree(x + hspeed, y)) x += hspeed
 // 				else if(placeFree(x + hspeed, y - 2)) {
 // 					x += hspeed
@@ -637,7 +637,7 @@
 // 				if(!placeFree(x, y + 1)) hspeed *= 0.9
 // 				if(fabs(hspeed) < 0.1) hspeed = 0.0
 
-// 				//Explode
+// 				// Explode
 // 				if(squishTime >= 150) {
 // 					deleteActor(id)
 // 					newActor(BadExplode, x, y)
@@ -792,16 +792,16 @@
 
 // 			shape.setPos(x, y)
 
-// 			//Draw
+// 			// Draw
 // 			drawSprite(sprOrangeBounce, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 			if(frozen) {
-// 				//Create ice block
+// 				// Create ice block
 // 				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 					icebox = mapNewSolid(shape)
 // 				}
 
-// 				//Draw
+// 				// Draw
 // 				drawSprite(sprOrangeBounce, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 				if(frozen <= 120) {
@@ -811,7 +811,7 @@
 // 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 // 			}
 // 			else {
-// 				//Delete ice block
+// 				// Delete ice block
 // 				if(icebox != -1) {
 // 					mapDeleteSolid(icebox)
 // 					newActor(IceChunks, x, y)
@@ -937,7 +937,7 @@
 // 			if(hspeed < 0) drawSprite(sprite, 4, x - camx, y - camy, 0, 1, 1, 1, 1)
 // 			else drawSprite(sprite, 4, x - camx, y - camy, 0, 0, 1, 1, 1)
 
-// 			//Create ice block
+// 			// Create ice block
 // 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 				icebox = mapNewSolid(shape)
 // 			}
@@ -1108,14 +1108,14 @@
 // 					biting = true
 // 					timer = 240
 
-// 					//Chase player
+// 					// Chase player
 // 					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
 // 					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
 // 					if(y < gvPlayer.y && vspeed < 2) vspeed += 0.02
 // 					if(y > gvPlayer.y && vspeed > -2) vspeed -= 0.02
 
-// 					//Swim harder if far from the player
+// 					// Swim harder if far from the player
 // 					if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 32)) {
 // 						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
 // 						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
@@ -1403,7 +1403,7 @@
 // 				if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 256) && inWater(x, y)) {
 // 					biting = true
 
-// 					//Chase player
+// 					// Chase player
 // 					if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
 // 					if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
 
@@ -1417,7 +1417,7 @@
 // 						vspeed -= 0.2
 // 					}
 
-// 					//Swim harder if far from the player
+// 					// Swim harder if far from the player
 // 					if(!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
 // 						if(x < gvPlayer.x && hspeed < 2) hspeed += 0.02
 // 						if(x > gvPlayer.x && hspeed > -2) hspeed -= 0.02
@@ -1547,7 +1547,7 @@
 // 		vspeed += dir * 0.2
 // 		if(range == 0) vspeed = 0
 
-// 		//Change direction
+// 		// Change direction
 // 		if(range > 0) {
 // 			if(y > ystart + range) dir = -0.5
 // 			if(y < ystart) dir = 0.5
@@ -1559,7 +1559,7 @@
 // 		}
 
 // 		if(!frozen) {
-// 			//Delete ice block
+// 			// Delete ice block
 // 			if(icebox != -1) {
 // 				mapDeleteSolid(icebox)
 // 				newActor(IceChunks, x, y)
@@ -1569,7 +1569,7 @@
 // 			y += vspeed
 // 			drawSprite(sprFlyAmanita, getFrames() / 4, x - camx, y - camy, 0, flip, 1, 1, 1)
 // 		} else {
-// 			//Create ice block
+// 			// Create ice block
 // 			if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 				icebox = mapNewSolid(shape)
 // 			}
@@ -1670,16 +1670,16 @@
 
 // 			shape.setPos(x, y)
 
-// 			//Draw
+// 			// Draw
 // 			drawSprite(sprJumpy, getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 			if(frozen) {
-// 				//Create ice block
+// 				// Create ice block
 // 				if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 					icebox = mapNewSolid(shape)
 // 				}
 
-// 				//Draw
+// 				// Draw
 // 				drawSprite(sprJumpy, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 				if(frozen <= 120) {
@@ -1689,7 +1689,7 @@
 // 				else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 // 			}
 // 			else {
-// 				//Delete ice block
+// 				// Delete ice block
 // 				if(icebox != -1) {
 // 					mapDeleteSolid(icebox)
 // 					newActor(IceChunks, x, y)
@@ -1822,12 +1822,12 @@
 // 				}
 
 // 				if(frozen) {
-// 					//Create ice block
+// 					// Create ice block
 // 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 						icebox = mapNewSolid(shape)
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					drawSprite(sprHaywire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
@@ -1839,7 +1839,7 @@
 // 					squishTime = 0.0
 // 				}
 // 				else {
-// 					//Delete ice block
+// 					// Delete ice block
 // 					if(icebox != -1) {
 // 						mapDeleteSolid(icebox)
 // 						newActor(IceChunks, x, y)
@@ -1848,7 +1848,7 @@
 // 						else flip = false
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					if(chasing) {
 // 						drawSprite(sprHaywire, wrap(getFrames() / 6, 8, 11), x - camx, y - camy, 0, flip.tointeger(), 1, 1, 1)
 // 						if(getFrames() % 8 == 0) {
@@ -1958,7 +1958,7 @@
 // 		base.run()
 // 		drawSprite(sprSawblade, getFrames() / 2, x - camx, y - camy)
 // 		drawLight(sprLightIce, 0, x - camx, y - camy, 0, 0, 0.125, 0.125)
-// 		//drawText(font, x - camx + 16, y - camy, dir.tostring())
+// 		// drawText(font, x - camx + 16, y - camy, dir.tostring())
 // 		shape.setPos(x, y)
 // 		if(gvPlayer) if(hitTest(shape, gvPlayer.shape)) gvPlayer.hurt = 2
 // 	}
@@ -2059,12 +2059,12 @@
 // 				}
 
 // 				if(frozen) {
-// 					//Create ice block
+// 					// Create ice block
 // 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 						icebox = mapNewSolid(shape)
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					drawSprite(sprLivewire, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
 // 					if(frozen <= 120) {
@@ -2074,7 +2074,7 @@
 // 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 // 				}
 // 				else {
-// 					//Delete ice block
+// 					// Delete ice block
 // 					if(icebox != -1) {
 // 						mapDeleteSolid(icebox)
 // 						newActor(IceChunks, x, y)
@@ -2083,7 +2083,7 @@
 // 						else flip = false
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					drawSprite(sprLivewire, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
 // 			}
@@ -2227,14 +2227,14 @@
 // 				}
 
 // 				if(frozen) {
-// 					//Create ice block
+// 					// Create ice block
 // 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 // 						newActor(Flame, x, y - 1)
 // 						deleteActor(id)
 // 						playSound(sndFlame, 0)
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					if(smart) drawSprite(sprBlazeborn , 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 					else drawSprite(sprBlazeborn, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
@@ -2245,7 +2245,7 @@
 // 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 // 				}
 // 				else {
-// 					//Delete ice block
+// 					// Delete ice block
 // 					if(icebox != -1) {
 // 						mapDeleteSolid(icebox)
 // 						newActor(IceChunks, x, y)
@@ -2254,7 +2254,7 @@
 // 						else flip = false
 // 					}
 
-// 					//Draw
+// 					// Draw
 // 					if(smart) drawSprite(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 					else drawSprite(sprBlazeborn, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 // 				}
@@ -2387,12 +2387,12 @@ Wildcap <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						icebox = mapNewSolid(shape)
 					}
 
-					//Draw
+					// Draw
 					if(smart) drawSprite(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 					else drawSprite(sprWildcap, 0, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 
@@ -2403,7 +2403,7 @@ Wildcap <- class extends Enemy {
 					else drawSprite(sprIceTrapSmall, 0, x - camx, y - camy - 1)
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						mapDeleteSolid(icebox)
 						newActor(IceChunks, x, y)
@@ -2412,7 +2412,7 @@ Wildcap <- class extends Enemy {
 						else flip = false
 					}
 
-					//Draw
+					// Draw
 					if(smart) drawSprite(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 					else drawSprite(sprWildcap, wrap(getFrames() / 8, 0, 3), floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
 				}

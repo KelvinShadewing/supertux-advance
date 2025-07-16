@@ -4,40 +4,40 @@
 
 Konqi <- class extends Player {
 	canJump = 16
-	didJump = false //Checks if up speed can be slowed by letting go of jump
+	didJump = false // Checks if up speed can be slowed by letting go of jump
 	friction = 0.1
 	gravity = 0.0
 	frame = 0.0
 	flip = 0
-	canMove = true //If player has control
-	mspeed = 4 //Maximum running speed
+	canMove = true // If player has control
+	mspeed = 4 // Maximum running speed
 	climbdir = 1.0
-	blinking = 0 //Invincibility frames
+	blinking = 0 // Invincibility frames
 	xstart = 0.0
 	ystart = 0.0
 	firetime = 0
 	guardtime = 0
 	hurt = 0
 	swimming = false
-	canStomp = true //If they can use jumping as an attack
+	canStomp = true // If they can use jumping as an attack
 	sprite = sprKonqi
 	invincible = 0
 	shapeStand = 0
 	shapeSlide = 0
-	tftime = -1 //Timer for transformation
+	tftime = -1 // Timer for transformation
 	hidden = false
 	jumpBuffer = 0
-	rspeed = 0.0 //Run animation speed
-	slideframe = 0.0 //Because using just frame gets screwy for some reason
+	rspeed = 0.0 // Run animation speed
+	slideframe = 0.0 // Because using just frame gets screwy for some reason
 	wasInWater = false
 	cooldown = 0
 	antigrav = 0
-	groundx = 0.0 //Remember last coordinates over solid ground
+	groundx = 0.0 // Remember last coordinates over solid ground
 	groundy = 0.0
 	held = null
 	accel = 0.2
 
-	//Animations
+	// Animations
 	anim = ""
 	an = {
 		stand = [0, 1, 2, 3]
@@ -100,7 +100,7 @@ Konqi <- class extends Player {
 	function routine() {}
 	function animation() {}
 
-	//Elemental resistances
+	// Elemental resistances
 	damageMultN = {
 		normal = 0.5
 		fire = 0.5
@@ -231,7 +231,7 @@ Konqi <- class extends Player {
 	function run() {
 		base.run()
 
-		//Side checks
+		// Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
 		if(shape == shapeStand && !placeFree(x, y)) {
@@ -249,11 +249,11 @@ Konqi <- class extends Player {
 		freeUp = placeFree(x, y - 1)
 		wasInWater = nowInWater
 		nowInWater = inWater(x, y)
-		//Checks are done at the beginning and stored here so that they can be
-		//quickly reused. Location checks will likely need to be done multiple
-		//times per frame.
+		// Checks are done at the beginning and stored here so that they can be
+		// quickly reused. Location checks will likely need to be done multiple
+		// times per frame.
 
-		//Recharge
+		// Recharge
 		if(firetime > 0) {
 			firetime--
 		}
@@ -271,7 +271,7 @@ Konqi <- class extends Player {
 			swimming = false
 			shapeStand.h = 12.0
 
-			//Animation states
+			// Animation states
 			switch(anim) {
 				case "stand":
 					if(stats.weapon == "ice" && floor(frame) == 0) frame += 0.01
@@ -488,13 +488,13 @@ Konqi <- class extends Player {
 
 			onWall = (anim == "wall" || an[anim] == an["fallW"])
 
-			//Sliding acceleration
+			// Sliding acceleration
 			if(onIce()) {
 				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && stats.weapon == "ice"))) {
 					if(placeFree(x + 4, y + 1)) hspeed += 0.25
 					if(placeFree(x - 4, y + 1)) hspeed -= 0.25
 					if(freeDown2)vspeed += 1.0
-					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
+					// if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
@@ -509,7 +509,7 @@ Konqi <- class extends Player {
 			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0 && !getcon("spec2", "hold", true, playerNum))
 				stats.stamina += 0.05
 
-			//Controls
+			// Controls
 			if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall && vspeed >= 0) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.2
@@ -537,7 +537,7 @@ Konqi <- class extends Player {
 				if(anim == "crawl") mspeed = 1.0
 				if(zoomies > 0) mspeed *= 2.0
 
-				//Moving left and right
+				// Moving left and right
 				if(zoomies > 0) accel = 0.4
 				else accel = 0.2
 
@@ -559,7 +559,7 @@ Konqi <- class extends Player {
 					else hspeed -= accel
 				}
 
-				//Change run animation speed
+				// Change run animation speed
 				if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
 					if(hspeed >= 2) rspeed += accel / 2.0
 					else rspeed += accel
@@ -573,11 +573,11 @@ Konqi <- class extends Player {
 				if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
 				if(anim == "slide") rspeed = hspeed
 
-				//On a ladder
+				// On a ladder
 				if(anim == "climb") {
 					vspeed = 0
 
-					//Ladder controls
+					// Ladder controls
 					if(getcon("up", "hold", true, playerNum)) if(placeFree(x, y - 2)) {
 						frame -= climbdir / 8
 						y -= 2
@@ -600,7 +600,7 @@ Konqi <- class extends Player {
 						x += 1
 					}
 
-					//Check if still on ladder
+					// Check if still on ladder
 					local felloff = true
 					if(atLadder() || atCrossLadder()) felloff = false
 					if(felloff) {
@@ -612,14 +612,14 @@ Konqi <- class extends Player {
 						x -= (x % 16 <=> 8)
 					}
 
-					//Change direction
+					// Change direction
 					if(getcon("right", "press", true, playerNum) && canMove) flip = 0
 					if(getcon("left", "press", true, playerNum) && canMove) flip = 1
 
-					//Ping-pong animation
+					// Ping-pong animation
 				}
 
-				//Get on ladder
+				// Get on ladder
 				if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 					if(atLadder() || atCrossLadder()) {
 						anim = "climb"
@@ -630,7 +630,7 @@ Konqi <- class extends Player {
 					}
 				}
 
-				//Jumping
+				// Jumping
 				if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
 					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && anim != "statue" && vspeed >= 0) {
 						y++
@@ -695,7 +695,7 @@ Konqi <- class extends Player {
 					}
 				}
 
-				//Wall slide
+				// Wall slide
 				if(anim == "fall" && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 					if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 						if(vspeed > 0.5) vspeed = 0.5
@@ -722,7 +722,7 @@ Konqi <- class extends Player {
 					vspeed /= 2.5
 				}
 
-				//Crawling
+				// Crawling
 				if(getcon("down", "hold", true, playerNum) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "statue" && (!freeDown2 || onPlatform()) && anim != "crouch" && anim != "crawl" && anim != "stomp") {
 					anim = "crouch"
 					frame = 0.0
@@ -732,7 +732,7 @@ Konqi <- class extends Player {
 				if(anim == "crawl") {
 					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y - 6)) anim = "stand"
 					else {
-						//Ping pong animation
+						// Ping pong animation
 						frame += fabs(hspeed / 8.0)
 						shape = shapeSlide
 					}
@@ -742,7 +742,7 @@ Konqi <- class extends Player {
 			}
 			else rspeed = min(rspeed, abs(hspeed))
 
-			//Movement
+			// Movement
 			if(!freeDown2 || onPlatform()) {
 				if(anim == "slide") {
 					if(hspeed > 0) hspeed -= friction / 3.0
@@ -768,16 +768,16 @@ Konqi <- class extends Player {
 			else if(antigrav > 0)
 				antigrav--
 			if(!freeUp && vspeed < 0)
-				vspeed = 0.0 //If Konqi bumped his head
+				vspeed = 0.0 // If Konqi bumped his head
 
 			if(anim == "slide" && !freeDown && vspeed >= 0 && placeFree(x + hspeed, y)) {
-				//If Konqi hits the ground while sliding
+				// If Konqi hits the ground while sliding
 				if(flip) hspeed -= vspeed / 2.5
 				else hspeed += vspeed / 2.5
 				vspeed = 0
 			}
 
-			//Max ground speed
+			// Max ground speed
 			if(!freeDown){
 				if(stats.weapon == "ice") {
 					if(hspeed > 8) hspeed = 8
@@ -789,12 +789,12 @@ Konqi <- class extends Player {
 				}
 			}
 
-			//Gravity cases
+			// Gravity cases
 			if(stats.weapon == "air" || nowInWater) gravity = 0.12
 			else gravity = 0.25
 			if(anim == "climb" || anim == "wall") gravity = 0
 
-			//Attacks
+			// Attacks
 			if(canMove && (anim == "jumpT" || anim == "jumpU" || anim == "fall") && getcon("down", "press", true, playerNum) && placeFree(x, y + 8)) {
 				hspeed = 0.0
 				if(vspeed < 4)
@@ -1097,7 +1097,7 @@ Konqi <- class extends Player {
 
 			if(cooldown > 0) cooldown--
 
-			//Check solid ground position
+			// Check solid ground position
 			if(!placeFree(x, y + 1) && !onPlatform()) {
 				groundx = x
 				groundy = y
@@ -1111,7 +1111,7 @@ Konqi <- class extends Player {
 			if(stats.stamina < stats.maxStamina && guardtime <= 0) stats.stamina += 0.05
 			an["fall"] = an["fallN"]
 
-			//Animation states
+			// Animation states
 			switch(anim) {
 				case "swimF":
 				case "swimU":
@@ -1137,9 +1137,9 @@ Konqi <- class extends Player {
 			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
 				stats.stamina += 0.05
 
-			//Swich swim directions
+			// Swich swim directions
 			if(anim != "hurt") {
-				if(fabs(hspeed) < 0.3 && fabs(vspeed) < 0.2) anim = "fall" //To be replaced with regular swim sprites later
+				if(fabs(hspeed) < 0.3 && fabs(vspeed) < 0.2) anim = "fall" // To be replaced with regular swim sprites later
 				if(fabs(hspeed) > 0.3) anim = "swimF"
 				if(vspeed > 0.2) anim = "swimD"
 				if(vspeed < -0.2) anim = "swimU"
@@ -1147,7 +1147,7 @@ Konqi <- class extends Player {
 				if(fabs(hspeed) > 0.3 && vspeed < -0.2) anim = "swimUF"
 			}
 
-			//Movement
+			// Movement
 			if(canMove) {
 				mspeed = 2.0
 				if(config.stickspeed) {
@@ -1171,7 +1171,7 @@ Konqi <- class extends Player {
 				if(getcon("up", "hold", true, playerNum) && vspeed > -mspeed && anim != "wall" && anim != "slide" && anim != "hurt") vspeed -= accel
 			}
 
-			//Friction
+			// Friction
 			if(hspeed > 0) hspeed -= friction / 2
 			if(hspeed < 0) hspeed += friction / 2
 			if(fabs(hspeed) < friction / 2) hspeed = 0.0
@@ -1180,13 +1180,13 @@ Konqi <- class extends Player {
 			if(fabs(vspeed) < friction / 2) vspeed = 0.0
 			if(vspeed > 4) vspeed -= 0.2
 
-			//Change facing
+			// Change facing
 			if(anim != "climb" && anim != "wall") {
 				if(hspeed > 0.1) flip = 0
 				if(hspeed < -0.1) flip = 1
 			}
 
-			//Attacks
+			// Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
@@ -1450,10 +1450,10 @@ Konqi <- class extends Player {
 			}
 		}
 
-		//Swap item
+		// Swap item
 		if(canMove && getcon("swap", "press", true, playerNum)) swapitem()
 
-		//Base movement
+		// Base movement
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
@@ -1463,21 +1463,21 @@ Konqi <- class extends Player {
 		else {
 			vspeed /= 2
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
 			wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				x += hspeed
 				if(wasOnGround) for(local i = 0; i < min(max(8, abs(hspeed * 3)), 12); i++) if(!placeFree(x, y + min(max(8, abs(hspeed * 3)), 12) - i) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 8; i++){ //Try to move up hill
+				for(local i = 1; i <= 8; i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -1490,7 +1490,7 @@ Konqi <- class extends Player {
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
@@ -1517,7 +1517,7 @@ Konqi <- class extends Player {
 				break
 		}
 
-		//Set ice friction
+		// Set ice friction
 		if(onIce()) friction = 0.01
 		else friction = 0.1
 
@@ -1544,11 +1544,11 @@ Konqi <- class extends Player {
 		else hurt = 0
 		if(blinking > 0) blinking--
 
-		//Invincibility
+		// Invincibility
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
-		//Stomp damage
+		// Stomp damage
 		stompDamage = 2
 		if(anim == "statue") stompDamage = 8
 		if(anim == "stomp") stompDamage = 4
@@ -1589,7 +1589,7 @@ Konqi <- class extends Player {
 				sprite = mySprNormal
 
 			if(anim != null && an[anim] != null) {
-				//frame = wrap(frame, 0, an[anim].len() - 1)
+				// frame = wrap(frame, 0, an[anim].len() - 1)
 				if(blinking == 0 || anim == "hurt") drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, 1)
 				else drawSpriteZ(2, sprite, an[anim][wrap(frame, 0, an[anim].len() - 1)], x - camx, y - camy, 0, int(flip), 1, 1, wrap(blinking, 0, 10).tofloat() / 10.0)
 			}
@@ -1598,11 +1598,11 @@ Konqi <- class extends Player {
 				shape.draw()
 			}
 
-			//After image
+			// After image
 			if((zoomies > 0 || anim == "stomp" || (anim == "statue" && vspeed > 4) || anim == "ram") && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
 		}
 
-		//Transformation flash
+		// Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
 				if(!hidden) drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
@@ -1641,13 +1641,13 @@ Konqi <- class extends Player {
 	}
 
 	function atLadder() {
-		//Save current location and move
+		// Save current location and move
 		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16)
 
-		//Check that the solid layer exists
-		local wl = null //Working layer
+		// Check that the solid layer exists
+		local wl = null // Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				wl = gvMap.data.layers[i]
@@ -1655,7 +1655,7 @@ Konqi <- class extends Player {
 			}
 		}
 
-		//Check against places in solid layer
+		// Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
 			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50) {

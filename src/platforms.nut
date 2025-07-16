@@ -18,19 +18,19 @@ Spring <- class extends Actor {
 			if(hitTest(shape, gvPlayer.shape)) {
 				fspeed = 0.2
 				switch(dir) {
-					case 0: //Up
+					case 0: // Up
 						gvPlayer.vspeed = -power
 						break
 
-					case 1: //Down
+					case 1: // Down
 						gvPlayer.vspeed = power
 						break
 
-					case 2: //Right
+					case 2: // Right
 						gvPlayer.hspeed = (gvPlayer.hspeed > power) ? gvPlayer.hspeed : power
 						break
 
-					case 3: //Left
+					case 3: // Left
 						gvPlayer.hspeed = (gvPlayer.hspeed < -power) ? gvPlayer.hspeed : -power
 						break
 				}
@@ -42,19 +42,19 @@ Spring <- class extends Actor {
 			if(hitTest(shape, gvPlayer2.shape)) {
 				fspeed = 0.2
 				switch(dir) {
-					case 0: //Up
+					case 0: // Up
 						gvPlayer2.vspeed = -power
 						break
 
-					case 1: //Down
+					case 1: // Down
 						gvPlayer2.vspeed = power
 						break
 
-					case 2: //Right
+					case 2: // Right
 						gvPlayer2.hspeed = (gvPlayer2.hspeed > power) ? gvPlayer2.hspeed : power
 						break
 
-					case 3: //Left
+					case 3: // Left
 						gvPlayer2.hspeed = (gvPlayer2.hspeed < -power) ? gvPlayer2.hspeed : -power
 						break
 				}
@@ -72,20 +72,20 @@ Spring <- class extends Actor {
 	}
 
 	function draw() {
-		switch(dir) { //Draw sprite based on direction
-			case 0: //Up
+		switch(dir) { // Draw sprite based on direction
+			case 0: // Up
 				drawSprite(sprSpring, round(frame), x - camx, y - camy)
 				break
 
-			case 1: //Down
+			case 1: // Down
 				drawSprite(sprSpring, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
 				break
 
-			case 2: //Right
+			case 2: // Right
 				drawSprite(sprSpring, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
 				break
 
-			case 3: //Left
+			case 3: // Left
 				drawSprite(sprSpring, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
 				break
 		}
@@ -116,22 +116,22 @@ SpringD <- class extends Actor {
 			if(hitTest(shape, gvPlayer.shape)) {
 				fspeed = 0.2
 				switch(dir) {
-					case 0: //Up Right
+					case 0: // Up Right
 						gvPlayer.vspeed = -power * 0.8
 						gvPlayer.hspeed = power * 0.6
 						break
 
-					case 1: //Down Right
+					case 1: // Down Right
 						gvPlayer.vspeed = power * 0.7
 						gvPlayer.hspeed = power * 0.7
 						break
 
-					case 2: //Down Left
+					case 2: // Down Left
 						gvPlayer.hspeed = -power * 0.7
 						gvPlayer.vspeed = power * 0.7
 						break
 
-					case 3: //Up Left
+					case 3: // Up Left
 						gvPlayer.hspeed = -power * 0.6
 						gvPlayer.vspeed = -power * 0.8
 						break
@@ -144,22 +144,22 @@ SpringD <- class extends Actor {
 			if(hitTest(shape, gvPlayer2.shape)) {
 				fspeed = 0.2
 				switch(dir) {
-					case 0: //Up Right
+					case 0: // Up Right
 						gvPlayer2.vspeed = -power * 0.8
 						gvPlayer2.hspeed = power * 0.6
 						break
 
-					case 1: //Down Right
+					case 1: // Down Right
 						gvPlayer2.vspeed = power * 0.7
 						gvPlayer2.hspeed = power * 0.7
 						break
 
-					case 2: //Down Left
+					case 2: // Down Left
 						gvPlayer2.hspeed = -power * 0.7
 						gvPlayer2.vspeed = power * 0.7
 						break
 
-					case 3: //Up Left
+					case 3: // Up Left
 						gvPlayer2.hspeed = -power * 0.6
 						gvPlayer2.vspeed = -power * 0.8
 						break
@@ -178,20 +178,20 @@ SpringD <- class extends Actor {
 	}
 
 	function draw() {
-		switch(dir) { //Draw sprite based on direction
-			case 0: //Up
+		switch(dir) { // Draw sprite based on direction
+			case 0: // Up
 				drawSprite(sprSpringD, round(frame), x - camx, y - camy)
 				break
 
-			case 1: //Down
+			case 1: // Down
 				drawSprite(sprSpringD, round(frame), x - camx, y - camy, 90, 0, 1, 1, 1)
 				break
 
-			case 2: //Right
+			case 2: // Right
 				drawSprite(sprSpringD, round(frame), x - camx, y - camy, 180, 0, 1, 1, 1)
 				break
 
-			case 3: //Left
+			case 3: // Left
 				drawSprite(sprSpringD, round(frame), x - camx, y - camy, 270, 0, 1, 1, 1)
 				break
 		}
@@ -235,8 +235,8 @@ FireChain <- class extends PhysAct {
 	}
 
 	function run() {
-		//Rotate chain
-		//s = sin(getFrames() / 5.0) * 4.0 //Save for flamethrower animation
+		// Rotate chain
+		// s = sin(getFrames() / 5.0) * 4.0 // Save for flamethrower animation
 		chainpos.clear()
 		shape.setPos(x, y)
 		a += s
@@ -291,7 +291,7 @@ PathCarrier <- class extends PathCrawler {
 
 	function run() {
 		local dorun = true
-		//Check for conditions that should hold the object in place
+		// Check for conditions that should hold the object in place
 		if(checkActor(obj) && actor[obj].rawin("frozen") && actor[obj].frozen > 0) dorun = false
 		if(dorun) base.run()
 
@@ -303,13 +303,13 @@ PathCarrier <- class extends PathCrawler {
 }
 
 RingCarrier <- class extends Actor {
-	r = 0.0 //Radius
-	c = 0.0 //Count
-	s = 0.0 //Speed
-	a = null //Angle
-	l = null //List
-	sa = 0.0 //Start angle
-	g = 0.0 //Growth
+	r = 0.0 // Radius
+	c = 0.0 // Count
+	s = 0.0 // Speed
+	a = null // Angle
+	l = null // List
+	sa = 0.0 // Start angle
+	g = 0.0 // Growth
 
 	constructor(_x, _y, _arr = null) {
 		x = _x
@@ -336,7 +336,7 @@ RingCarrier <- class extends Actor {
 	}
 
 	function run() {
-		local cl = c //Coins left
+		local cl = c // Coins left
 		for(local i = 0; i < c; i++) {
 			if(checkActor(l[i])) {
 				local ins = actor[l[i]]
@@ -356,7 +356,7 @@ RingCarrier <- class extends Actor {
 	}
 }
 
-//Moving platform
+// Moving platform
 MoPlat <- class extends PathCrawler {
 	shape = 0
 	w = 1
@@ -463,7 +463,7 @@ Portal <- class extends Actor {
 					canWarp = false
 				}
 			}
-			//If the player has left the portal, allow reentry
+			// If the player has left the portal, allow reentry
 			else if(!hitTest(shapeA, gvPlayer.shape) && !hitTest(shapeB, gvPlayer.shape)) canWarp = true
 		}
 
@@ -489,7 +489,7 @@ Portal <- class extends Actor {
 					canWarp2 = false
 				}
 			}
-			//If the player has left the portal, allow reentry
+			// If the player has left the portal, allow reentry
 			else if(!hitTest(shapeA, gvPlayer2.shape) && !hitTest(shapeB, gvPlayer2.shape)) canWarp2 = true
 		}
 	}
@@ -599,7 +599,7 @@ SwingingDoor <- class extends PhysAct {
 	}
 
 	function run() {
-		//Find who's touching the door
+		// Find who's touching the door
 		local target = null
 		if(gvPlayer && hitTest(shape, gvPlayer.shape))
 			target = gvPlayer

@@ -1022,11 +1022,11 @@ SpecialBall <- class extends Actor {
 }
 
 CoinRing <- class extends Actor {
-	r = 0.0 //Radius
-	c = 0.0 //Count
-	s = 0.0 //Speed
-	a = 0.0 //Angle
-	l = null //List
+	r = 0.0 // Radius
+	c = 0.0 // Count
+	s = 0.0 // Speed
+	a = 0.0 // Angle
+	l = null // List
 
 	constructor(_x, _y, _arr = null) {
 		x = _x
@@ -1042,7 +1042,7 @@ CoinRing <- class extends Actor {
 	}
 
 	function run() {
-		local cl = c //Coins left
+		local cl = c // Coins left
 		a += s / 60.0
 		for(local i = 0; i < c; i++) {
 			if(checkActor(l[i])) {
@@ -1064,7 +1064,7 @@ MagicKey <- class extends Actor {
 	}
 
 	function run() {
-		//Pickup
+		// Pickup
 		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			deleteActor(id)
 			switch(color) {

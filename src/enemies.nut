@@ -39,7 +39,7 @@ Enemy <- class extends PhysAct {
 	cut = false
 	dead = false
 	hitBy = null
-	notarget = false //If the enemy is ignored by homing attacks
+	notarget = false // If the enemy is ignored by homing attacks
 	heavy = false
 
 	constructor(_x, _y, _arr = null) {
@@ -58,9 +58,9 @@ Enemy <- class extends PhysAct {
 				}
 			}
 
-			//Check for weapon effects
+			// Check for weapon effects
 			if(actor.rawin("WeaponEffect") && !blinking) foreach(i in actor["WeaponEffect"]) {
-				//Skip weapons that don't hurt this enemy
+				// Skip weapons that don't hurt this enemy
 				if(i.alignment == 2) continue
 				if(i.owner == id) continue
 
@@ -112,7 +112,7 @@ Enemy <- class extends PhysAct {
 			}
 
 			if(gvPlayer2 && health > 0) {
-				if(hitTest(shape, gvPlayer2.shape) && !frozen) { //8 for player radius
+				if(hitTest(shape, gvPlayer2.shape) && !frozen) { // 8 for player radius
 					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) hurtInvinc()
 					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming && gvPlayer2.holding != id) {
 						if(!squish) {
@@ -178,7 +178,7 @@ Enemy <- class extends PhysAct {
 	}
 
 	function handleKiller() {
-		//Handle killer
+		// Handle killer
 		if(checkActor(hitBy)) {
 			if(typeof actor[hitBy] == "Gooey")
 				fulfillAchievement("adorableWarfare")
@@ -260,7 +260,7 @@ Enemy <- class extends PhysAct {
 			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
 				target.holding = 0
 
-				//escape from solid
+				// escape from solid
 				local escapedir = x <=> target.x
 				y = target.y
 				x = target.x
@@ -272,7 +272,7 @@ Enemy <- class extends PhysAct {
 				held = false
 			}
 
-			//escape from solid
+			// escape from solid
 			if(!placeFree(x, y) && held) {
 				local escapedir = x <=> target.x
 				y = target.y
@@ -289,7 +289,7 @@ Enemy <- class extends PhysAct {
 				target.holding = 0
 				x += target.hspeed * 2
 
-				//escape from solid
+				// escape from solid
 				if(!placeFree(x, y)) {
 					local escapedir = x <=> target.x
 					y = target.y
@@ -458,7 +458,7 @@ Deathcap <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape))
 						canice = false
@@ -469,7 +469,7 @@ Deathcap <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -650,7 +650,7 @@ PipeSnake <- class extends Enemy {
 
 		shape.setPos(x, y + 16)
 		if(frozen) {
-			//Create ice block
+			// Create ice block
 			local canice = true
 			if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -661,7 +661,7 @@ PipeSnake <- class extends Enemy {
 
 		}
 		else {
-			//Delete ice block
+			// Delete ice block
 			if(icebox != -1) {
 				newActor(IceChunks, x, y)
 				mapDeleteSolid(icebox)
@@ -792,7 +792,7 @@ OrangeBounce <- class extends Enemy {
 			shape.setPos(x, y)
 
 			if(frozen) {
-				//Create ice block
+				// Create ice block
 				local canice = true
 				if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 				if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -803,7 +803,7 @@ OrangeBounce <- class extends Enemy {
 
 			}
 			else {
-				//Delete ice block
+				// Delete ice block
 				if(icebox != -1) {
 					newActor(IceChunks, x, y)
 					mapDeleteSolid(icebox)
@@ -950,7 +950,7 @@ CarlBoom <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -959,7 +959,7 @@ CarlBoom <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -986,10 +986,10 @@ CarlBoom <- class extends Enemy {
 					squishTime = 0
 				}
 
-				//Getting carried
+				// Getting carried
 				holdMe()
 
-				//Move
+				// Move
 				if(placeFree(x + hspeed, y)) x += hspeed
 				else if(placeFree(x + hspeed, y - 2)) {
 					x += hspeed
@@ -999,7 +999,7 @@ CarlBoom <- class extends Enemy {
 				else friction = 0.1
 				if(fabs(hspeed) < 0.1) hspeed = 0.0
 
-				//Explode
+				// Explode
 				if(squishTime >= 150) {
 					die()
 					local ex = ExplodeF2
@@ -1162,7 +1162,7 @@ Shortfuse <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -1171,7 +1171,7 @@ Shortfuse <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -1198,10 +1198,10 @@ Shortfuse <- class extends Enemy {
 					squishTime = 0
 				}
 
-				//Getting carried
+				// Getting carried
 				holdMe()
 
-				//Move
+				// Move
 				if(placeFree(x + hspeed, y)) x += hspeed
 				else if(placeFree(x + hspeed, y - 2)) {
 					x += hspeed
@@ -1211,7 +1211,7 @@ Shortfuse <- class extends Enemy {
 				else friction = 0.1
 				if(fabs(hspeed) < 0.1) hspeed = 0.0
 
-				//Explode
+				// Explode
 				if(squishTime >= 150) {
 					die()
 					local ex = ExplodeF2
@@ -1422,14 +1422,14 @@ RedFish <- class extends Enemy {
 					biting = true
 					timer = 240
 
-					//Chase player
+					// Chase player
 					if(x < target.x && hspeed < 2) hspeed += 0.02
 					if(x > target.x && hspeed > -2) hspeed -= 0.02
 
 					if(y < target.y && vspeed < 2) vspeed += 0.02
 					if(y > target.y && vspeed > -2) vspeed -= 0.02
 
-					//Swim harder if far from the player
+					// Swim harder if far from the player
 					if(inDistance2(x, y, target.x, target.y, 32)) {
 						if(x < target.x && hspeed < 2) hspeed += 0.02
 						if(x > target.x && hspeed > -2) hspeed -= 0.02
@@ -1757,7 +1757,7 @@ GreenFish <- class extends Enemy {
 				if(inDistance2(x, y, target.x, target.y, 256) && inWater(x, y)) {
 					biting = true
 
-					//Chase player
+					// Chase player
 					if(x < target.x && hspeed < 2) hspeed += 0.02
 					if(x > target.x && hspeed > -2) hspeed -= 0.02
 
@@ -1771,7 +1771,7 @@ GreenFish <- class extends Enemy {
 						vspeed -= 0.2
 					}
 
-					//Swim harder if far from the player
+					// Swim harder if far from the player
 					if(!inDistance2(x, y, target.x, target.y, 64)) {
 						if(x < target.x && hspeed < 2) hspeed += 0.02
 						if(x > target.x && hspeed > -2) hspeed -= 0.02
@@ -1935,7 +1935,7 @@ Ouchin <- class extends Enemy {
 		}
 
 		if(frozen) {
-			//Create ice block
+			// Create ice block
 			local canice = true
 			if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 			if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -1944,7 +1944,7 @@ Ouchin <- class extends Enemy {
 			}
 		}
 		else {
-			//Delete ice block
+			// Delete ice block
 			if(icebox != -1) {
 				newActor(IceChunks, x, y)
 				mapDeleteSolid(icebox)
@@ -2067,7 +2067,7 @@ CannonBob <- class extends Enemy {
 			}
 		}
 		else {
-			//Create ice block
+			// Create ice block
 			local canice = true
 
 			if(gvPlayer && icebox == -1 && hitTest(shape, gvPlayer.shape))
@@ -2257,7 +2257,7 @@ FlyAmanita <- class extends Enemy {
 		vspeed += dir * 0.2
 		if(range == 0) vspeed = 0
 
-		//Change direction
+		// Change direction
 		if(range > 0) {
 			if(y > ystart + range) dir = -0.5
 			if(y < ystart) dir = 0.5
@@ -2269,7 +2269,7 @@ FlyAmanita <- class extends Enemy {
 		}
 
 		if(!frozen) {
-			//Delete ice block
+			// Delete ice block
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, y)
@@ -2278,7 +2278,7 @@ FlyAmanita <- class extends Enemy {
 
 			y += vspeed
 		} else {
-			//Create ice block
+			// Create ice block
 			local canice = true
 			if(gvPlayer && hitTest(shape, gvPlayer.shape))
 				canice = false
@@ -2396,7 +2396,7 @@ SideAmanita <- class extends Enemy {
 		vspeed += dir * 0.2
 		if(range == 0) vspeed = 0
 
-		//Change direction
+		// Change direction
 		if(range > 0) {
 			if(y > ystart + range) dir = -0.5
 			if(y < ystart) dir = 0.5
@@ -2408,7 +2408,7 @@ SideAmanita <- class extends Enemy {
 		}
 
 		if(!frozen) {
-			//Delete ice block
+			// Delete ice block
 			if(icebox != -1) {
 				mapDeleteSolid(icebox)
 				newActor(IceChunks, x, y)
@@ -2417,7 +2417,7 @@ SideAmanita <- class extends Enemy {
 
 			y += vspeed
 		} else {
-			//Create ice block
+			// Create ice block
 			local canice = true
 			if(gvPlayer && hitTest(shape, gvPlayer.shape))
 				canice = false
@@ -2542,7 +2542,7 @@ Jumpy <- class extends Enemy {
 			shape.setPos(x, y)
 
 			if(frozen) {
-				//Create ice block
+				// Create ice block
 				local canice = true
 				if(gvPlayer && hitTest(shape, gvPlayer.shape))
 					canice = false
@@ -2553,7 +2553,7 @@ Jumpy <- class extends Enemy {
 				}
 			}
 			else {
-				//Delete ice block
+				// Delete ice block
 				if(icebox != -1) {
 					newActor(IceChunks, x, y)
 					mapDeleteSolid(icebox)
@@ -2719,7 +2719,7 @@ Haywire <- class extends Enemy {
 				else hspeed = 0.0
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape))
 						canice = false
@@ -2730,7 +2730,7 @@ Haywire <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -2739,7 +2739,7 @@ Haywire <- class extends Enemy {
 						else flip = false
 					}
 
-					//Draw
+					// Draw
 					if(chasing) {
 						if(getFrames() % 8 == 0) {
 							local c
@@ -2915,7 +2915,7 @@ Goldbomb <- class extends Enemy {
 		}
 
 		if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape))
 						canice = false
@@ -2927,7 +2927,7 @@ Goldbomb <- class extends Enemy {
 					hspeed = 0
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -3073,7 +3073,7 @@ Sawblade <- class extends PathCrawler {
 
 	function run() {
 		base.run()
-		//drawText(font, x - camx + 16, y - camy, dir.tostring())
+		// drawText(font, x - camx + 16, y - camy, dir.tostring())
 		shape.setPos(x, y)
 		if(gvPlayer && hitTest(shape, gvPlayer.shape)) gvPlayer.getHurt(2 + game.difficulty, "normal", true, false)
 		if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) gvPlayer2.getHurt(2 + game.difficulty, "normal", true, false)
@@ -3164,7 +3164,7 @@ Livewire <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -3173,7 +3173,7 @@ Livewire <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -3343,7 +3343,7 @@ Blazeborn <- class extends Enemy {
 					popSound(sndFlame, 0)
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -3490,7 +3490,7 @@ Wildcap <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -3499,7 +3499,7 @@ Wildcap <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -3688,7 +3688,7 @@ Tallcap <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -3697,7 +3697,7 @@ Tallcap <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -3855,7 +3855,7 @@ Ivy <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape))
 						canice = false
@@ -3866,7 +3866,7 @@ Ivy <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -4082,7 +4082,7 @@ Owl <- class extends Enemy {
 		}
 
 		if(frozen) {
-			//Create ice block
+			// Create ice block
 			local canice = true
 			if(gvPlayer && hitTest(shape, gvPlayer.shape))
 				canice = false
@@ -4093,7 +4093,7 @@ Owl <- class extends Enemy {
 			}
 		}
 		else {
-			//Delete ice block
+			// Delete ice block
 			if(icebox != -1) {
 				newActor(IceChunks, x, y)
 				mapDeleteSolid(icebox)
@@ -4109,7 +4109,7 @@ Owl <- class extends Enemy {
 		canMoveH = !(frozen > 0)
 		canMoveV = !(frozen > 0)
 
-		//Check if owl can move
+		// Check if owl can move
 		if(!placeFree(x + hspeed, y)) canMoveH = false
 		if(!placeFree(x, y + vspeed)) canMoveV = false
 
@@ -4126,7 +4126,7 @@ Owl <- class extends Enemy {
 		if(canMoveV) y += vspeed / 2.0
 		else vspeed = -vspeed / 2.0
 
-		//Attach passenger to talons
+		// Attach passenger to talons
 		if(checkActor(pid)) {
 			passenger.x = x
 			passenger.y = y + pyOffset + 12
@@ -4246,19 +4246,19 @@ MrIceguy <- class extends Enemy {
 		else {
 			vspeed /= 2
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
 					y += 1
 				}
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= max(4, abs(hspeed * 1.5)); i++){ //Try to move up hill
+				for(local i = 1; i <= max(4, abs(hspeed * 1.5)); i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -4271,13 +4271,13 @@ MrIceguy <- class extends Enemy {
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
 
-		//Friction
+		// Friction
 		if(fabs(hspeed) > friction) {
 			if(hspeed > 0) hspeed -= friction
 			if(hspeed < 0) hspeed += friction
@@ -4306,7 +4306,7 @@ MrIceguy <- class extends Enemy {
 		if(flip && hspeed > -1.5) hspeed -= 0.5
 		else if(flip && hspeed < 1.5) hspeed += 0.5
 
-		//Turn around
+		// Turn around
 		if(!held && ((!placeFree(x + hspeed, y + 2) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
 		|| x + hspeed > gvMap.w
@@ -4316,7 +4316,7 @@ MrIceguy <- class extends Enemy {
 		}
 		touchDamage = 2.0
 
-		//Floating in water
+		// Floating in water
 		if(inWater(x, y)) {
 			if(vspeed > -2) vspeed /= 2.0
 			gravity = -0.1
@@ -4363,7 +4363,7 @@ MrIceguy <- class extends Enemy {
 			} else hspeed = 1.0
 		}
 
-		//Turn around
+		// Turn around
 		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
 		|| x + hspeed > gvMap.w)) {
@@ -4373,7 +4373,7 @@ MrIceguy <- class extends Enemy {
 			if(!held && isOnScreen()) popSound(sndIceblock)
 		}
 
-		//Getting carried
+		// Getting carried
 		if(target && hspeed == 0)
 			holdMe(4)
 
@@ -4384,7 +4384,7 @@ MrIceguy <- class extends Enemy {
 			hurtTimer = 600
 		}
 
-		//Floating in water
+		// Floating in water
 		if(inWater(x, y)) {
 			if(vspeed > -2) vspeed /= 2.0
 			hspeed /= 1.01
@@ -4524,7 +4524,7 @@ SpikeCap <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -4533,7 +4533,7 @@ SpikeCap <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -4740,7 +4740,7 @@ CaptainMorel <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape)) canice = false
 					if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)) canice = false
@@ -4749,7 +4749,7 @@ CaptainMorel <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -4942,7 +4942,7 @@ Crusher <- class extends Enemy {
 			getFallHeight()
 		}
 
-		//Detect the player underneath
+		// Detect the player underneath
 		if(gvPlayer && hitTest(gvPlayer.shape, scanShape) && gvPlayer.y > y && canFall
 		|| gvPlayer2 && hitTest(gvPlayer2.shape, scanShape) && gvPlayer2.y > y && canFall) {
 			gravity = 0.25
@@ -4951,7 +4951,7 @@ Crusher <- class extends Enemy {
 			popSound(sndDrop)
 		}
 
-		//Landing
+		// Landing
 		if(!placeFree(x, y + 1) && waiting == 0) {
 			waiting = 60
 			gravity = 0
@@ -4968,7 +4968,7 @@ Crusher <- class extends Enemy {
 			if(waiting == 0) vspeed = -1.0
 		}
 
-		//Attach platform
+		// Attach platform
 		platform.y = y
 		touchDamage = max(0, min(4, vspeed))
 		if(vspeed == 0) {
@@ -4979,7 +4979,7 @@ Crusher <- class extends Enemy {
 				gvPlayer2.y = y + 1
 		}
 
-		//Speed limit
+		// Speed limit
 		if(vspeed > 16) vspeed = 16.0
 		if(vspeed > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
 	}
@@ -5086,7 +5086,7 @@ SideCrusher <- class extends Enemy {
 			canFall = true
 		}
 
-		//Detect the player underneath
+		// Detect the player underneath
 		if(placeFree(x + 2, y)){
 			if(gvPlayer && hitTest(gvPlayer.shape, scanShapeR) && gvPlayer.x > x + (16 + gvPlayer.shape.w) && canFall
 			|| gvPlayer2 && hitTest(gvPlayer2.shape, scanShapeR) && gvPlayer2.x > x + (16 + gvPlayer2.shape.w) && canFall) {
@@ -5107,7 +5107,7 @@ SideCrusher <- class extends Enemy {
 			}
 		}
 
-		//Landing
+		// Landing
 		if(!placeFree(x + moving, y) && waiting == 0) {
 			if(hspeed != 0) {
 				newActor(Poof, x + (12 * moving), y - 12, 7)
@@ -5130,7 +5130,7 @@ SideCrusher <- class extends Enemy {
 			}
 		}
 
-		//Attach platform
+		// Attach platform
 		y = ystart
 		hspeed += moving * 0.25
 		platform.x = x
@@ -5139,12 +5139,12 @@ SideCrusher <- class extends Enemy {
 		platform.vspeed = 0
 		platform.moving = false
 
-		//Speed limit
+		// Speed limit
 		if(hspeed > 8) hspeed = 8.0
 		if(hspeed < -8) hspeed = -8.0
 		if(abs(hspeed) > 4) newActor(AfterImage, x, y, [sprite, 1, 0, 0, 0, 1, 1])
 
-		//Set damage value
+		// Set damage value
 		touchDamage = 0
 		if(hspeed > 0 && !placeFree(x + 1, y)
 		|| hspeed < 0 && !placeFree(x - 1, y))
@@ -5232,7 +5232,7 @@ Wheeler <- class extends Enemy {
 		if(target != null) {
 			flip = (x > target.x).tointeger()
 
-			//Accelerate towards player
+			// Accelerate towards player
 			if(x - 16 > target.x && hspeed > -mspeed) {
 				hspeed -= 0.1
 			}
@@ -5240,7 +5240,7 @@ Wheeler <- class extends Enemy {
 				hspeed += 0.1
 			}
 
-			//Turning animation trigger
+			// Turning animation trigger
 			if(turning < 3 && ( flip == 1 && hspeed > 0 || flip == 0 && hspeed < 0)) turning = 4.0
 		}
 
@@ -5248,7 +5248,7 @@ Wheeler <- class extends Enemy {
 			hspeed = 0
 			vspeed = 0
 
-			//Create ice block
+			// Create ice block
 			local canice = true
 			if(gvPlayer && hitTest(shape, gvPlayer.shape))
 				canice = false
@@ -5265,7 +5265,7 @@ Wheeler <- class extends Enemy {
 		}
 
 
-		//Draw
+		// Draw
 		frame = 0
 		if(!frozen) frame = getFrames() / 2
 		if(turning > 0) turning -= 0.25
@@ -5295,19 +5295,19 @@ Wheeler <- class extends Enemy {
 		else {
 			vspeed /= 2
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
 					y += 1
 				}
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= max(4, abs(hspeed * 1.5)); i++){ //Try to move up hill
+				for(local i = 1; i <= max(4, abs(hspeed * 1.5)); i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -5320,13 +5320,13 @@ Wheeler <- class extends Enemy {
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
 
-		//Friction
+		// Friction
 		if(fabs(hspeed) > friction) {
 			if(hspeed > 0) hspeed -= friction
 			if(hspeed < 0) hspeed += friction
@@ -5341,28 +5341,28 @@ Wheeler <- class extends Enemy {
 		base.die()
 		newActor(Poof, x, y)
 		local c
-		//Top Left
+		// Top Left
 		c = actor[newActor(DeadNME, x, y)]
 		c.sprite = sprWheelerHamster
 		c.hspeed = -1.0
 		c.vspeed = -3.0
 		c.frame = 12
 		c.gravity = 0.1
-		//Top Right
+		// Top Right
 		c = actor[newActor(DeadNME, x, y)]
 		c.sprite = sprWheelerHamster
 		c.hspeed = 1.0
 		c.vspeed = -3.0
 		c.frame = 13
 		c.gravity = 0.1
-		//Bottom Left
+		// Bottom Left
 		c = actor[newActor(DeadNME, x, y)]
 		c.sprite = sprWheelerHamster
 		c.hspeed = -1.0
 		c.vspeed = -1.0
 		c.frame = 14
 		c.gravity = 0.1
-		//Bottom Right
+		// Bottom Right
 		c = actor[newActor(DeadNME, x, y)]
 		c.sprite = sprWheelerHamster
 		c.hspeed = 1.0
@@ -5856,9 +5856,9 @@ Struffle <- class extends Enemy {
 				flip = 1
 
 			if(!placeFree(x, y + 2) || onPlatform()) {
-				if(placeFree(x + 6, y + 16) && !onPlatform(12))
+				if(placeFree(x + 6, y + 16) && !onPlatform(12, 2))
 					hspeed = -hspeed
-				if(placeFree(x - 6, y + 16) && !onPlatform(-12))
+				if(placeFree(x - 6, y + 16) && !onPlatform(-12, 2))
 					hspeed = -hspeed
 			}
 
@@ -5942,14 +5942,14 @@ Struffle <- class extends Enemy {
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
 					y += 1
 				}
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= max(8, abs(hspeed)); i++){ //Try to move up hill
+				for(local i = 1; i <= max(8, abs(hspeed)); i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - (i))) {
 						x += hspeed
 						y -= (i)
@@ -5962,13 +5962,13 @@ Struffle <- class extends Enemy {
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
 
-		//Friction
+		// Friction
 		if(fabs(hspeed) > friction) {
 			if(hspeed > 0) hspeed -= friction
 			if(hspeed < 0) hspeed += friction
@@ -6205,14 +6205,14 @@ Crystallo <- class extends Enemy {
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				for(local i = 0; i < 4; i++) if(!placeFree(x, y + 4) && placeFree(x + hspeed, y + 1) && !inWater() && vspeed >= 0 && !placeFree(x + hspeed, y + 4)) {
 					y += 1
 				}
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= max(8, abs(hspeed)); i++){ //Try to move up hill
+				for(local i = 1; i <= max(8, abs(hspeed)); i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - (i))) {
 						x += hspeed
 						y -= (i)
@@ -6225,13 +6225,13 @@ Crystallo <- class extends Enemy {
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
 		}
 
-		//Friction
+		// Friction
 		if(fabs(hspeed) > friction) {
 			if(hspeed > 0) hspeed -= friction
 			if(hspeed < 0) hspeed += friction
@@ -6243,7 +6243,7 @@ Crystallo <- class extends Enemy {
 	}
 
 	function shootBullets() {
-		//Create crystal bullets
+		// Create crystal bullets
 		local c
 		
 		if(placeFree(x, y - 1)) {
@@ -6385,7 +6385,7 @@ WaspyBoi <- class extends Enemy {
 			if(target != null &&inDistance2(x, y, target.x, target.y, pursuitRange) && !inWater(x, y)) {
 				timer = 240
 
-				//Chase player
+				// Chase player
 				if(x < target.x && hspeed < 2) hspeed += 0.05
 				if(x > target.x && hspeed > -2) hspeed -= 0.05
 
@@ -6821,7 +6821,7 @@ Snippin <- class extends Enemy {
 
 		trail = array(16, clone([_x, _y]))
 
-		//Stick to nearest surface
+		// Stick to nearest surface
 		for(local i = 1; i <= 16; i++) {
 			if(placeFree(x + i, y) && !placeFree(x + i + 1, y)) {
 				x += i
@@ -6906,7 +6906,7 @@ Snippin <- class extends Enemy {
 				hspeed /= 2.0
 			}
 
-		//Try to move along current surface
+		// Try to move along current surface
 			local didMove = false
 			local mspeed = 0.5 + (mode * 0.5)
 
@@ -6952,8 +6952,8 @@ Snippin <- class extends Enemy {
 			if(sidecounts == 1)
 				direction = round(direction / 90.0) * 90
 
-			//Coming around corner
-			if((direction == 0 || direction == 180) && placeFree(x, y + 2) && placeFree(x, y - 2)) { //Horizontal
+			// Coming around corner
+			if((direction == 0 || direction == 180) && placeFree(x, y + 2) && placeFree(x, y - 2)) { // Horizontal
 				if(!placeFree(x + 2, y + 2)) {
 					direction = 90
 					flip = 2
@@ -6973,7 +6973,7 @@ Snippin <- class extends Enemy {
 					flip = 2
 				}
 			}
-			else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 2, y) && placeFree(x - 2, y)) { //Vertical
+			else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 2, y) && placeFree(x - 2, y)) { // Vertical
 				if(!placeFree(x + 2, y + 2)) {
 					direction = 0
 					flip = 0
@@ -6992,7 +6992,7 @@ Snippin <- class extends Enemy {
 				}
 			}
 
-			//Stuck in wall
+			// Stuck in wall
 			if(!placeFree(x, y)) {
 				for(local i = 0; i < 64; i++) {
 					if(placeFree(x + i / 2.0, y)) {
@@ -7101,7 +7101,7 @@ Snippin <- class extends Enemy {
 			anim = "peek"
 		}
 
-		//Turn around
+		// Turn around
 		if(!held && ((!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 4))
 		|| x + hspeed < 0
 		|| x + hspeed > gvMap.w)) {
@@ -7111,7 +7111,7 @@ Snippin <- class extends Enemy {
 			if(!held && isOnScreen()) popSound(sndIceblock)
 		}
 
-		//Getting carried
+		// Getting carried
 		if(target && hspeed == 0)
 			holdMe(4)
 
@@ -7332,7 +7332,7 @@ PeterFlower <- class extends PhysAct {
 			}
 		}
 
-		//Struggle
+		// Struggle
 		if(hasPlayer > 0 && hasPlayer < 3 && (getcon("up", "press", true, hasPlayer) || getcon("down", "press", true, hasPlayer) || getcon("left", "press", true, hasPlayer) || getcon("right", "press", true, hasPlayer) || getcon("jump", "press", true, hasPlayer) || getcon("shoot", "press", true, hasPlayer) || getcon("spec1", "press", true, hasPlayer)))
 			holdStrength--
 
@@ -7467,7 +7467,7 @@ Granito <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					local canice = true
 					if(gvPlayer && hitTest(shape, gvPlayer.shape))
 						canice = false
@@ -7478,7 +7478,7 @@ Granito <- class extends Enemy {
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)

@@ -4,13 +4,13 @@
 
 Tux <- class extends Player {
 	canJump = 16
-	didJump = false //Checks if up speed can be slowed by letting go of jump
+	didJump = false // Checks if up speed can be slowed by letting go of jump
 	frame = 0.0
 	flip = 0
-	canMove = true //If player has control
-	mspeed = 4 //Maximum running speed
+	canMove = true // If player has control
+	mspeed = 4 // Maximum running speed
 	climbdir = 1.0
-	blinking = 0 //Invincibility frames
+	blinking = 0 // Invincibility frames
 	xstart = 0.0
 	ystart = 0.0
 	firetime = 0
@@ -18,18 +18,18 @@ Tux <- class extends Player {
 	hurt = 0
 	swimming = false
 	inMelee = false
-	canStomp = true //If they can use jumping as an attack
+	canStomp = true // If they can use jumping as an attack
 	sprite = sprTux
 	invincible = 0
 	shapeStand = 0
 	shapeSlide = 0
-	tftime = -1 //Timer for transformation
+	tftime = -1 // Timer for transformation
 	hidden = false
 	jumpBuffer = 0
-	rspeed = 0.0 //Run animation speed
-	slideframe = 0.0 //Because using just frame gets screwy for some reason
+	rspeed = 0.0 // Run animation speed
+	slideframe = 0.0 // Because using just frame gets screwy for some reason
 	antigrav = 0
-	groundx = 0.0 //Remember last coordinates over solid ground
+	groundx = 0.0 // Remember last coordinates over solid ground
 	groundy = 0.0
 	slippery = false
 	accel = 0.2
@@ -37,7 +37,7 @@ Tux <- class extends Player {
 	rollspeed = 8.0
 	useJumpFlash = false
 
-	//Animations
+	// Animations
 	an = {
 		stand = [0]
 		standN = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 76, 77, 78, 79, 78, 79, 78, 79, 78, 79, 78, 77, 76]
@@ -82,7 +82,7 @@ Tux <- class extends Player {
 
 	nowInWater = false
 
-	//Elemental resistances
+	// Elemental resistances
 	damageMultN = {
 		normal = 1.0
 		fire = 1.0
@@ -241,7 +241,7 @@ Tux <- class extends Player {
 	function run() {
 		base.run()
 
-		//Side checks
+		// Side checks
 		shapeSlide.setPos(x, y)
 		shapeStand.setPos(x, y)
 		if(shape == shapeStand && !placeFree(x, y)) {
@@ -259,11 +259,11 @@ Tux <- class extends Player {
 		freeUp = placeFree(x, y - 1)
 		wasInWater = nowInWater
 		nowInWater = inWater(x, y)
-		//Checks are done at the beginning and stored here so that they can be
-		//quickly reused. Location checks will likely need to be done multiple
-		//times per frame.
+		// Checks are done at the beginning and stored here so that they can be
+		// quickly reused. Location checks will likely need to be done multiple
+		// times per frame.
 
-		//Recharge
+		// Recharge
 		if(firetime > 0)
 			firetime--
 
@@ -281,7 +281,7 @@ Tux <- class extends Player {
 			shapeStand.h = 12.0
 			slippery = (anim == "dive" || anim == "slide" || onIce())
 
-			//Animation states
+			// Animation states
 			switch(anim) {
 				case "stand":
 					if(stats.weapon == "ice" && floor(frame) == 0) frame += 0.01
@@ -456,7 +456,7 @@ Tux <- class extends Player {
 
 			onWall = (anim == "wall" || an[anim] == an["fallW"])
 
-			//Sliding acceleration
+			// Sliding acceleration
 			if(slippery) {
 				if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && (stats.weapon == "ice" || (stats.weapon == "earth" && anim == "slide"))))) {
 					if(placeFree(x + 4, y + 1))
@@ -465,7 +465,7 @@ Tux <- class extends Player {
 						hspeed -= 0.3
 					if(freeDown2 && vspeed >= 0)
 						vspeed += 1.0
-					//if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
+					// if(!placeFree(x + hspeed, y) && placeFree(x + hspeed, y - abs(hspeed / 2)) && anim == "slide") vspeed -= 0.25
 				}
 				else if(!placeFree(x, y + 8) && (fabs(hspeed) < 8 || (fabs(hspeed) < 12 && vspeed > 0))) vspeed += 0.2
 
@@ -490,7 +490,7 @@ Tux <- class extends Player {
 			if(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
 				stats.stamina += 0.05
 
-			//Controls
+			// Controls
 			if(((!placeFree(x - hspeed, y + 2) && vspeed >= 0) || !placeFree(x, y + 2) || anim == "climb" || onPlatform()) && !onWall && vspeed >= 0) {
 				canJump = 16
 				if(stats.weapon == "air" && stats.stamina < stats.maxStamina) stats.stamina += 0.2
@@ -514,7 +514,7 @@ Tux <- class extends Player {
 				if(anim == "crawl") mspeed = 1.0
 				if(zoomies > 0) mspeed *= 2.0
 
-				//Moving left and right
+				// Moving left and right
 				if(zoomies > 0) accel = 0.4
 				else accel = 0.2
 
@@ -536,7 +536,7 @@ Tux <- class extends Player {
 					else hspeed -= accel
 				}
 
-				//Change run animation speed
+				// Change run animation speed
 				if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "slide" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
 					if(hspeed >= 2) rspeed += accel / 2.0
 					else rspeed += accel
@@ -561,11 +561,11 @@ Tux <- class extends Player {
 				else
 					damageMultF.fire = 0.5
 
-				//On a ladder
+				// On a ladder
 				if(anim == "climb") {
 					vspeed = 0
 
-					//Ladder controls
+					// Ladder controls
 					if(getcon("up", "hold", true, playerNum)) if(placeFree(x, y - 2)) {
 						frame -= climbdir / 8
 						y -= 2
@@ -588,7 +588,7 @@ Tux <- class extends Player {
 						x += 1
 					}
 
-					//Check if still on ladder
+					// Check if still on ladder
 					local felloff = true
 					if(atLadder() || atCrossLadder()) felloff = false
 					if(felloff) {
@@ -600,12 +600,12 @@ Tux <- class extends Player {
 						x -= (x % 16 <=> 8)
 					}
 
-					//Change direction
+					// Change direction
 					if(getcon("right", "press", true, playerNum) && canMove) flip = 0
 					if(getcon("left", "press", true, playerNum) && canMove) flip = 1
 				}
 
-				//Get on ladder
+				// Get on ladder
 				if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 					if(atLadder() || atCrossLadder()) {
 						anim = "climb"
@@ -616,7 +616,7 @@ Tux <- class extends Player {
 					}
 				}
 
-				//Jumping
+				// Jumping
 				if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
 					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 						y++
@@ -685,7 +685,7 @@ Tux <- class extends Player {
 					}
 				}
 
-				//Wall slide
+				// Wall slide
 				if((anim == "fall") && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 					if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 						if(vspeed > 0.5) vspeed = 0.5
@@ -712,7 +712,7 @@ Tux <- class extends Player {
 					vspeed /= 2.5
 				}
 
-				//Going into slide
+				// Going into slide
 				if((((!freeDown2 || onPlatform()) && getcon("down", "hold", true, playerNum)) || (getcon("spec2", "hold", true, playerNum) && stats.weapon == "earth")) && anim != "dive" && anim != "slide" && anim != "jumpU" && anim != "jumpT" && anim != "fall" && anim != "hurt" && anim != "wall" && anim != "crawl") {
 					if(placeFree(x + 2, y + 1) && !onPlatform() || hspeed >= 1.5) {
 						anim = "dive"
@@ -735,7 +735,7 @@ Tux <- class extends Player {
 				if(anim == "crawl") {
 					if((!getcon("down", "hold", true, playerNum)) && placeFree(x, y - 6)) anim = "stand"
 					else {
-						//Ping pong animation
+						// Ping pong animation
 						frame += (hspeed / 8.0)
 						shape = shapeSlide
 					}
@@ -745,7 +745,7 @@ Tux <- class extends Player {
 			}
 			else rspeed = min(rspeed, abs(hspeed))
 
-			//Movement
+			// Movement
 			if(!freeDown2 || onPlatform()) {
 				if(anim == "slide") {
 					if(stats.weapon != "ice") {
@@ -773,9 +773,9 @@ Tux <- class extends Player {
 			else if(antigrav > 0)
 				antigrav--
 			if(!freeUp && vspeed < 0)
-				vspeed = 0.0 //If Tux bumped his head
+				vspeed = 0.0 // If Tux bumped his head
 
-			//Landing while sliding
+			// Landing while sliding
 			if(anim == "slide" && !placeFree(x, y + 1) && vspeed >= 2 && placeFree(x + hspeed, y) && !onPlatform()) {
 				if(flip) hspeed -= vspeed / 2.5
 				else hspeed += vspeed / 2.5
@@ -786,7 +786,7 @@ Tux <- class extends Player {
 				vspeed /= 2
 			}
 
-			//Max ground speed
+			// Max ground speed
 			local speedLimit = 6.0
 			if(!placeFree(x, y + 1)){
 				if(stats.weapon == "ice") {
@@ -801,12 +801,12 @@ Tux <- class extends Player {
 				if(hspeed < -speedLimit) hspeed = -max(speedLimit, hspeed * 0.9)
 			}
 
-			//Gravity cases
+			// Gravity cases
 			if(stats.weapon == "air" || nowInWater) gravity = 0.12
 			else gravity = 0.25
 			if(anim == "climb" || anim == "wall") gravity = 0
 
-			//Attacks
+			// Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy >= 1) {
@@ -1122,7 +1122,7 @@ Tux <- class extends Player {
 				}
 			}
 
-			//Check solid ground position
+			// Check solid ground position
 			if(!placeFree(x, y + 1) && !onPlatform()) {
 				groundx = x
 				groundy = y
@@ -1137,7 +1137,7 @@ Tux <- class extends Player {
 			an["fall"] = an["fallN"]
 			if(anim == "fallW") anim = "fallN"
 
-			//Animation states
+			// Animation states
 			switch(anim) {
 				case "swimF":
 				case "swimU":
@@ -1160,9 +1160,9 @@ Tux <- class extends Player {
 
 			if(anim in an && an[anim] != null && anim != "hurt") frame = wrap(abs(frame), 0, an[anim].len() - 1)
 
-			//Swich swim directions
+			// Swich swim directions
 			if(anim != "hurt") {
-				if(fabs(hspeed) < 0.3 && fabs(vspeed) < 0.2) anim = "fall" //To be replaced with regular swim sprites later
+				if(fabs(hspeed) < 0.3 && fabs(vspeed) < 0.2) anim = "fall" // To be replaced with regular swim sprites later
 				if(fabs(hspeed) > 0.3) anim = "swimF"
 				if(vspeed > 0.2) anim = "swimD"
 				if(vspeed < -0.2) anim = "swimU"
@@ -1170,7 +1170,7 @@ Tux <- class extends Player {
 				if(fabs(hspeed) > 0.3 && vspeed < -0.2) anim = "swimUF"
 			}
 
-			//Movement
+			// Movement
 			if(canMove) {
 				mspeed = 3.0
 				if(config.stickspeed) {
@@ -1234,7 +1234,7 @@ Tux <- class extends Player {
 			if(guardtime <= 0)
 				stats.stamina += 0.05
 
-			//Friction
+			// Friction
 			if(hspeed > 0) hspeed -= friction / 2
 			if(hspeed < 0) hspeed += friction / 2
 			if(fabs(hspeed) < friction / 2) hspeed = 0.0
@@ -1243,13 +1243,13 @@ Tux <- class extends Player {
 			if(fabs(vspeed) < friction / 2) vspeed = 0.0
 			if(vspeed > 4) vspeed -= 0.2
 
-			//Change facing
+			// Change facing
 			if(anim != "climb" && anim != "wall") {
 				if(hspeed > 0.1) flip = 0
 				if(hspeed < -0.1) flip = 1
 			}
 
-			//Attacks
+			// Attacks
 			if(canMove) switch(stats.weapon) {
 				case "fire":
 					if(getcon("shoot", "press", true, playerNum) && anim != "slide" && anim != "hurt" && stats.energy > 0) {
@@ -1635,10 +1635,10 @@ Tux <- class extends Player {
 
 		
 
-		//Swap item
+		// Swap item
 		if(canMove && getcon("swap", "press", true, playerNum)) swapitem()
 
-		//Base movement
+		// Base movement
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
@@ -1648,21 +1648,21 @@ Tux <- class extends Player {
 		else {
 			vspeed /= 2
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
 			wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				x += hspeed
 				if(wasOnGround) for(local i = 0; i < min(max(8, abs(hspeed * 3)), 12); i++) if(!placeFree(x, y + min(max(8, abs(hspeed * 3)), 12) - i) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(hspeed) && !onPlatform(hspeed, -1)) {
 					y += 1
 				}
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 8; i++){ //Try to move up hill
+				for(local i = 1; i <= 8; i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -1671,12 +1671,12 @@ Tux <- class extends Player {
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
-						//if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
@@ -1703,7 +1703,7 @@ Tux <- class extends Player {
 				break
 		}
 
-		//Set ice friction
+		// Set ice friction
 		if(onIce()) friction = 0.01
 		else friction = 0.1
 
@@ -1729,18 +1729,18 @@ Tux <- class extends Player {
 		else hurt = 0
 		if(blinking > 0) blinking--
 
-		//Invincibility
+		// Invincibility
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
-		//After image
+		// After image
 		if((zoomies > 0) && getFrames() % 2 == 0) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)], 0, flip, 0, 1, 1])
 
 		inMelee = (["slide", "drill"].find(anim) != null || swimming && guardtime > 100)
 	}
 
 	function draw() {
-		//Draw
+		// Draw
 		if(!hidden) {
 			switch(stats.weapon) {
 				case "normal":
@@ -1809,7 +1809,7 @@ Tux <- class extends Player {
 			}
 		}
 
-		//Transformation flash
+		// Transformation flash
 		if(tftime != -1) {
 			if(tftime < 4) {
 				if(!hidden) drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
@@ -1821,13 +1821,13 @@ Tux <- class extends Player {
 	}
 
 	function atLadder() {
-		//Save current location and move
+		// Save current location and move
 		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16)
 
-		//Check that the solid layer exists
-		local wl = null //Working layer
+		// Check that the solid layer exists
+		local wl = null // Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				wl = gvMap.data.layers[i]
@@ -1835,7 +1835,7 @@ Tux <- class extends Player {
 			}
 		}
 
-		//Check against places in solid layer
+		// Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
 			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50) {
@@ -1922,7 +1922,7 @@ Lutris <- class extends Tux {
 			animOffset = 0
 
 		if(!hidden) {
-			//Aura
+			// Aura
 			local auraColor = 0xffffffff
 			if(stats.weapon != "normal" && config.showTF) {
 				switch(stats.weapon) {

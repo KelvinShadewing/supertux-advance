@@ -12,7 +12,7 @@
 
 setWriteDir(getPrefDir("sta", "supertux-advance"))
 
-//Game source
+// Game source
 require("src/util.nut")
 require("src/text.nut")
 require("src/shapes.nut")
@@ -77,11 +77,11 @@ require("src/objects.nut")
 
 if(fileExists("config.json")) config = mergeTable(config, jsonRead(fileRead("config.json")))
 
-//Set volume
+// Set volume
 setSoundVolume(config.soundVolume)
 setMusicVolume(config.musicVolume)
 
-//Detect resolution
+// Detect resolution
 setDisplayAspect <- function(w) {
 	setResolution(w, 240)
 }
@@ -167,16 +167,16 @@ updateDisplaySettings <- function() {
 }
 
 
-//Uncomment this function if you want to play at actual GBA resolution
-//setResolution(240, 160)
-//Uncomment this function if you want to play at actual NDS resolution
-//setResolution(256, 192)
-//Uncomment this function if you want to play at the old resolution
-//setResolution(320, 180)
+// Uncomment this function if you want to play at actual GBA resolution
+// setResolution(240, 160)
+// Uncomment this function if you want to play at actual NDS resolution
+// setResolution(256, 192)
+// Uncomment this function if you want to play at the old resolution
+// setResolution(320, 180)
 
-//The current resolution is stored because these
-//functions will show different results when
-//rendering to a texture.
+// The current resolution is stored because these
+// functions will show different results when
+// rendering to a texture.
 gvScreenW = screenW()
 gvScreenH = screenH()
 
@@ -202,7 +202,7 @@ textureSetBlendMode(gvLightScreen2, bm_mod)
 gvScreenGhost = newTexture(screenW(), screenH())
 textureSetBlendMode(gvScreenGhost, bm_blend)
 
-//Set up window
+// Set up window
 setWindowTitle("SuperTux Advance")
 setWindowIcon("icon.png")
 tileSearchDir.push("res")
@@ -211,14 +211,14 @@ tileSearchDir.push("res/map")
 tileSearchDir.push("res/snd")
 setFPS(60)
 
-//Load game text
+// Load game text
 
 gvLangObj = jsonRead(fileRead("lang/en.json"))
 gvLangObj = mergeTable(gvLangObj, jsonRead(fileRead("lang/" + config.lang + ".json")))
 
 if(fileExists("save/_achievements.json")) gvUnlockedAchievements = jsonRead(fileRead("save/_achievements.json"))
 
-//Set difficulty strings
+// Set difficulty strings
 strDifficulty = [
 	gvLangObj["difficulty-levels"]["easy"],
 	gvLangObj["difficulty-levels"]["normal"],
@@ -226,7 +226,7 @@ strDifficulty = [
 	gvLangObj["difficulty-levels"]["super"]
 ]
 
-//Load mods
+// Load mods
 local modlist = lsdir("mods")
 for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != ".." && modlist[i].find(".nut") != null) donut("mods/" + modlist[i])
 
@@ -235,11 +235,11 @@ startMain()
 menu = meMain
 game.playerChar = "Tux"
 
-//Testing
-//game.playerChar = "Neverball"
-//gotoTest()
+// Testing
+// game.playerChar = "Neverball"
+// gotoTest()
 
-//Load contrib initializers
+// Load contrib initializers
 if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
 }
@@ -265,7 +265,7 @@ gameCycle <- function() {
 		config.joy2.index = 0
 	}
 
-	//Update automatic controls
+	// Update automatic controls
 	updateAutocon()
 
 	if(getcon("pause", "press") && (levelEndRunner == 0 || levelEndRunner == 1) && gvGameMode != gmMain)

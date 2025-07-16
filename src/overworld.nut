@@ -5,10 +5,10 @@
 gvLevel <- ""
 
 OverPlayer <- class extends PhysAct {
-	//0 = right
-	//1 = up
-	//2 = left
-	//3 = down
+	// 0 = right
+	// 1 = up
+	// 2 = left
+	// 3 = down
 	canmove = false
 
 	constructor(_x, _y, _arr = null) {
@@ -44,7 +44,7 @@ OverPlayer <- class extends PhysAct {
 		local onstage = false
 		local noclear = false
 
-		if(actor.rawin("StageIcon")) {//Find what level was landed on
+		if(actor.rawin("StageIcon")) {// Find what level was landed on
 			foreach(i in actor["StageIcon"]) {
 				if(hitTest(shape, i.shape)) {
 					level = i.levelName
@@ -54,7 +54,7 @@ OverPlayer <- class extends PhysAct {
 			}
 		}
 
-		if(actor.rawin("TownIcon")) {//Find what level was landed on
+		if(actor.rawin("TownIcon")) {// Find what level was landed on
 			foreach(i in actor["TownIcon"]) {
 				if(hitTest(shape, i.shape)) {
 					level = i.levelName
@@ -65,7 +65,7 @@ OverPlayer <- class extends PhysAct {
 			}
 		}
 
-		if(actor.rawin("WorldIcon")) {//Find what level was landed on
+		if(actor.rawin("WorldIcon")) {// Find what level was landed on
 			foreach(i in actor["WorldIcon"]) {
 				if(hitTest(shape, i.shape)) {
 					level = i.world
@@ -81,18 +81,18 @@ OverPlayer <- class extends PhysAct {
 			if((y - 8) % 16 == 0) vspeed = 0
 		}
 
-		//Movement dir reminder
-		//0 = right
-		//1 = up
-		//2 = left
-		//3 = down
+		// Movement dir reminder
+		// 0 = right
+		// 1 = up
+		// 2 = left
+		// 3 = down
 
 		if((x - 8) % 16 == 0 && (y - 8) % 16 == 0) {
 			local opendirs = 0
 			local nextdir = -1
 
-			//Find next step
-			//game.owd tracks the direction the player came from
+			// Find next step
+			// game.owd tracks the direction the player came from
 			if((hspeed != 0 || vspeed != 0) && !debug) {
 				if(game.owd == 0 && nextdir == -1) {
 					if(!placeFree(x - 16, y)) {
@@ -155,7 +155,7 @@ OverPlayer <- class extends PhysAct {
 				}
 			}
 
-			//Continue moving until place is found
+			// Continue moving until place is found
 			if(level == "" && opendirs == 1) {
 				switch(nextdir) {
 					case 0:
@@ -186,7 +186,7 @@ OverPlayer <- class extends PhysAct {
 				vspeed = 0
 			}
 
-			//Move right
+			// Move right
 			if(canmove && getcon("right", "hold") && !getcon("left", "hold") && (!placeFree(x + 16, y) || debug) && hspeed <= 0 && vspeed == 0) {
 				if(level == "" || game.owd == 0 || game.completed.rawin(level) || noclear) {
 					hspeed = 2
@@ -194,7 +194,7 @@ OverPlayer <- class extends PhysAct {
 				}
 			}
 
-			//Move up
+			// Move up
 			if(canmove && getcon("up", "hold") && !getcon("down", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed >= 0) {
 				if(level == "" || game.owd == 1 || game.completed.rawin(level) || noclear) {
 					vspeed = -2
@@ -202,7 +202,7 @@ OverPlayer <- class extends PhysAct {
 				}
 			}
 
-			//Move left
+			// Move left
 			if(canmove && getcon("left", "hold") && !getcon("right", "hold") && (!placeFree(x - 16, y) || debug) && hspeed >= 0 && vspeed == 0) {
 				if(level == "" || game.owd == 2 || game.completed.rawin(level) || noclear) {
 					hspeed = -2
@@ -210,7 +210,7 @@ OverPlayer <- class extends PhysAct {
 				}
 			}
 
-			//Move down
+			// Move down
 			if(canmove && getcon("down", "hold") && !getcon("up", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed <= 0) {
 				if(level == "" || game.owd == 3 || game.completed.rawin(level) || noclear) {
 					vspeed = 2
@@ -267,7 +267,7 @@ StageIcon <- class extends PhysAct {
 		if(game.allEnemies.rawin(level)) drawSprite(sprLevels, 3, x - camx, y - camy)
 		if(game.allSecrets.rawin(level)) drawSprite(sprLevels, 4, x - camx, y - camy)
 
-		//Selected
+		// Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
@@ -317,7 +317,7 @@ TownIcon <- class extends PhysAct {
 	}
 
 	function run() {
-		//Selected
+		// Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(level != "") {
 				game.check = false
@@ -355,7 +355,7 @@ WorldIcon <- class extends PhysAct {
 			py = arr[2].tointeger()
 		}
 
-		//Selected
+		// Selected
 		if(getcon("jump", "press") || getcon("accept", "press") || getcon("shoot", "press")) {
 			if(gvPlayer) if(hitTest(shape, gvPlayer.shape) && gvPlayer.hspeed == 0 && gvPlayer.vspeed == 0) if(world != "") {
 				game.owx = px
@@ -394,7 +394,7 @@ LockIcon <- class extends PhysAct {
 }
 
 startOverworld <- function(world) {
-	//Clear actors and start creating new ones
+	// Clear actors and start creating new ones
 	gvFadeInTime = 255
 	setFPS(60)
 	gvPlayer = false
@@ -416,13 +416,13 @@ startOverworld <- function(world) {
 			Lutris = true
 		}
 
-	//Load map to play
+	// Load map to play
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(world)
 	game.world = world
 	drawBG = dbgNone
 
-	//Get tiles used to mark actors
+	// Get tiles used to mark actors
 	local actset = -1
 	local tilef = 0
 	for(local i = 0; i < gvMap.tileset.len(); i++) {
@@ -438,7 +438,7 @@ startOverworld <- function(world) {
 		return
 	}
 
-	//Get layer for actors
+	// Get layer for actors
 	local actlayer = -1
 	foreach(i in gvMap.data.layers) {
 		if(i["type"] == "objectgroup" && i["name"] == "actor")
@@ -453,7 +453,7 @@ startOverworld <- function(world) {
 		return
 	}
 
-	//Start making actors
+	// Start making actors
 	foreach(i in actlayer.objects)
 	{
 		local c
@@ -461,8 +461,8 @@ startOverworld <- function(world) {
 		if("gid" in i) {
 			local n = i.gid - tilef
 
-			//Get the tile number and make an actor
-			//according to the image used in actors.png
+			// Get the tile number and make an actor
+			// according to the image used in actors.png
 			switch(n)
 			{
 				case 0:
@@ -506,7 +506,7 @@ startOverworld <- function(world) {
 			}
 		}
 
-		//Rectangle actors
+		// Rectangle actors
 		if(!i.rawin("polygon") && !i.rawin("polyline") && !i.rawin("ellipse") && !i.rawin("point") && !i.rawin("gid")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
@@ -527,7 +527,7 @@ startOverworld <- function(world) {
 
 	for(local i = 0; i < gvMap.data.layers.len(); i++) {
 		if(gvMap.data.layers[i].type == "objectgroup") {
-			local lana = gvMap.data.layers[i].name //Layer name
+			local lana = gvMap.data.layers[i].name // Layer name
 			for(local j = 0; j < gvMap.data.layers[i].objects.len(); j++) {
 				local obj = gvMap.data.layers[i].objects[j]
 				switch(lana) {
@@ -561,14 +561,14 @@ startOverworld <- function(world) {
 		camy = 0
 	}
 
-	//Execute level code
+	// Execute level code
 	print("Running level code...")
 	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
 		if(i.name == "code") dostr(i.value)
 	}
 	print("End level code")
 
-	//Reset auto/locked controls
+	// Reset auto/locked controls
 	autocon = deepClone(defAutocon)
 
 	update()
@@ -587,8 +587,8 @@ gmOverworld <- function() {
 		gvMap.drawTiles(floor(-camx), floor(-camy), camx - 3, camy, (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "fg" + str(i))
 	if(debug) gvMap.drawTiles(-camx, -camy, camx, camy, (screenW() / 16) + 5, (screenH() / 16) + 2, "solid", 0.5)
 
-	//Actor types are explicitly called this way to ensure the player is drawn on top
-	//This was made before Z drawing was implemented, so it's not perfect
+	// Actor types are explicitly called this way to ensure the player is drawn on top
+	// This was made before Z drawing was implemented, so it's not perfect
 	runActors()
 	foreach(i in actor) if("draw" in i && typeof i.draw == "function") i.draw()
 	drawZList(8)
@@ -631,7 +631,7 @@ gmOverworld <- function() {
 		}
 	}
 
-	//Fade from black
+	// Fade from black
 	setDrawColor(gvFadeInTime)
 	drawRec(0, 0, screenW(), screenH(), true)
 	if(gvFadeInTime > 0) gvFadeInTime -= 10
@@ -641,14 +641,14 @@ gmOverworld <- function() {
 
 	game.igt++
 	if(config.showglobaligt) {
-		local gtd = formatTime(game.igt) //Game time to draw
+		local gtd = formatTime(game.igt) // Game time to draw
 		drawText(font2, (screenW() / 2) - (gtd.len() * 4), screenH() - 24, gtd)
 	}
 
 	checkAchievements()
 	drawAchievements()
 
-	//Draw surface to screen
+	// Draw surface to screen
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
 	if(gvFadeTime > 0) {
@@ -656,7 +656,7 @@ gmOverworld <- function() {
 		drawRec(0, 0, screenW(), screenH(), true)
 	}
 
-	//Follow player
+	// Follow player
 	local px = 0
 	local py = 0
 	local ux = gvMap.w - screenW()

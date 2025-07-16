@@ -4,32 +4,32 @@
 
 Midi <- class extends Player {
 	canJump = 16
-	didJump = false //Checks if up speed can be slowed by letting go of jump
+	didJump = false // Checks if up speed can be slowed by letting go of jump
 	frame = 0.0
 	flip = 0
-	canMove = true //If player has control
-	mspeed = 4 //Maximum running speed
+	canMove = true // If player has control
+	mspeed = 4 // Maximum running speed
 	climbdir = 1.0
-	blinking = 0 //Invincibility frames
+	blinking = 0 // Invincibility frames
 	xstart = 0.0
 	ystart = 0.0
 	firetime = 0
 	hurt = 0
 	swimming = false
 	inMelee = false
-	canStomp = true //If they can use jumping as an attack
+	canStomp = true // If they can use jumping as an attack
 	stompDamage = 0
 	invincible = 0
 	shapeStand = 0
 	shapeCrawl = 0
-	tftime = -1 //Timer for transformation
+	tftime = -1 // Timer for transformation
 	hidden = false
 	jumpBuffer = 0
-	rspeed = 0.0 //Run animation speed
-	slideframe = 0.0 //Because using just frame gets screwy for some reason
+	rspeed = 0.0 // Run animation speed
+	slideframe = 0.0 // Because using just frame gets screwy for some reason
 	wasInWater = false
 	antigrav = 0
-	groundx = 0.0 //Remember last coordinates over solid ground
+	groundx = 0.0 // Remember last coordinates over solid ground
 	groundy = 0.0
 	slippery = false
 	accel = 0.2
@@ -105,7 +105,7 @@ Midi <- class extends Player {
 		sit = null
 		sitChair = [174]
 		sitGround = [175]
-		lift = [176, 177] //"Elevator" for you 'murricans
+		lift = [176, 177] // "Elevator" for you 'murricans
 		door = [178, 179]
 		scratch = [180, 181]
 		morphIn = [182, 183]
@@ -332,7 +332,7 @@ Midi <- class extends Player {
 				if(hspeed > 1.5) hspeed = 1.5
 				if(hspeed < -1.5) hspeed = -1.5
 
-				//Line alignment
+				// Line alignment
 				local lineType = 0
 				if(atZipline()) lineType = tileGetSolid(x, y - shape.h)
 				else if(atZipline(0, -1)) lineType = tileGetSolid(x, y - shape.h - 1)
@@ -341,7 +341,7 @@ Midi <- class extends Player {
 				y = (y - y % 16) + 4
 
 				switch(lineType) {
-					default: //Flat
+					default: // Flat
 						y = (y - y % 16) + 4
 						break
 				}
@@ -357,7 +357,7 @@ Midi <- class extends Player {
 		if(!placeFree(x, y - 1) && vspeed < 0)
 			vspeed = 0.0
 
-		//Sliding/ball physics
+		// Sliding/ball physics
 		slippery = (anim == "morphIn" || anim == "ball" || onIce())
 		if(slippery) {
 			if(!placeFree(x, y + 8) && (fabs(hspeed) < (nowInWater ? 2 : 6))) {
@@ -370,7 +370,7 @@ Midi <- class extends Player {
 			}
 		}
 
-		//Base movement
+		// Base movement
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
@@ -380,12 +380,12 @@ Midi <- class extends Player {
 		else {
 			vspeed /= 2
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
 				x += hspeed
@@ -394,7 +394,7 @@ Midi <- class extends Player {
 				}
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 8; i++){ //Try to move up hill
+				for(local i = 1; i <= 8; i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -403,12 +403,12 @@ Midi <- class extends Player {
 							if(hspeed < 0) hspeed += 0.2
 						}
 						didstep = true
-						//if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
 						break
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1) hspeed -= (hspeed / fabs(hspeed))
 				else if(didstep == false && fabs(hspeed) < 1) hspeed = 0
 			}
@@ -437,7 +437,7 @@ Midi <- class extends Player {
 				break
 		}
 
-		//Set ice friction
+		// Set ice friction
 		if(onIce())
 			friction = 0.01
 		else
@@ -445,7 +445,7 @@ Midi <- class extends Player {
 		if(nowInWater && fabs(hspeed) > 2)
 			hspeed *= 0.98
 
-		//Movement
+		// Movement
 		if((!placeFree(x, y + 1) || onPlatform())) {
 			if(anim == "ball") {
 				if(hspeed > 0 && !getcon("right", "hold", true, playerNum))
@@ -551,7 +551,7 @@ Midi <- class extends Player {
 							animOffset = an.shootDF1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 							break
 					}
-					animOffset -= 1 //Account for starting frame in sheet
+					animOffset -= 1 // Account for starting frame in sheet
 				}
 				break
 
@@ -588,7 +588,7 @@ Midi <- class extends Player {
 					anim = "walk"
 
 				if(anim == "walk") {
-					//Offset frame based on movement speed and if shooting
+					// Offset frame based on movement speed and if shooting
 					if((getcon("right", "hold", true, playerNum) && getcon("left", "hold", true, playerNum) || endMode) && ((flip == 0 && hspeed < 0) || (flip == 1 && hspeed > 0)) && fabs(rspeed) <= 1.8 && !shooting && fabs(hspeed) < 2.0) {
 						animOffset = an["moonwalk"][0] - an["walk"][0]
 						rspeed = fabs(hspeed)
@@ -865,7 +865,7 @@ Midi <- class extends Player {
 						animOffset = an.shootAD1[0] + (4 * (shooting - 1)) + min(3, shootTimer)
 						break
 				}
-				if(an[anim] != null) animOffset -= an[anim][0] //Account for starting frame in sheet
+				if(an[anim] != null) animOffset -= an[anim][0] // Account for starting frame in sheet
 			}
 		}
 	}
@@ -884,7 +884,7 @@ Midi <- class extends Player {
 
 		base.run()
 
-		//Global actions
+		// Global actions
 		if(canMove && !holding) {
 			if(getcon("swap", "press", true, playerNum))
 				swapitem()
@@ -932,7 +932,7 @@ Midi <- class extends Player {
 		else if(holding)
 			chargeTimer = 0
 
-		//Recharge
+		// Recharge
 		if(firetime > 0) {
 			firetime--
 		}
@@ -943,16 +943,16 @@ Midi <- class extends Player {
 		if(!freeDown2 && stats.stamina < stats.maxStamina)
 			stats.stamina++
 
-		//After image
+		// After image
 		if(zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) newActor(AfterImage, x, y, [sprite, an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset, 0, flip, 0, 1, 1])
 
-		//Invincibility
+		// Invincibility
 		if(invincible > 0) invincible--
 		if(((invincible % 2 == 0 && invincible > 240) || (invincible % 4 == 0 && invincible > 120) || invincible % 8 == 0) && invincible > 0) newActor(Glimmer, x + 10 - randInt(20), y + 10- randInt(20))
 
 		inMelee = (anim == "ball" && fabs(hspeed + ehspeed) > rollMeleeSpeed)
 
-		//Defensive element
+		// Defensive element
 		switch(stats.weapon) {
 			case "fire":
 				damageMult = damageMultF
@@ -985,7 +985,7 @@ Midi <- class extends Player {
 	}
 
 	function ruNormal() {
-		//Controls
+		// Controls
 		if(!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || anim == "climb" || anim == "climbWall" || onPlatform() && vspeed >= 0) {
 			canJump = 16
 		}
@@ -1018,7 +1018,7 @@ Midi <- class extends Player {
 			if(nowInWater) mspeed *= 0.5
 			if(zoomies > 0) mspeed *= 2.0
 
-			//Moving left and right
+			// Moving left and right
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
 
@@ -1046,7 +1046,7 @@ Midi <- class extends Player {
 				else hspeed -= accel
 			}
 
-			//Change run animation speed
+			// Change run animation speed
 			if(getcon("right", "hold", true, playerNum) && rspeed < mspeed && anim != "wall" && anim != "hurt" && anim != "climb" && anim != "skid") if(freeRight || placeFree(x + 1, y - 2)) {
 				if(hspeed >= 2) rspeed += accel / 2.0
 				else rspeed += accel
@@ -1059,11 +1059,11 @@ Midi <- class extends Player {
 			}
 			if((abs(rspeed) <= 0.5 || hspeed == 0) && !getcon("right", "hold", true, playerNum) && !getcon("left", "hold", true, playerNum)) rspeed = 0.0
 
-			//On a ladder
+			// On a ladder
 			if(anim == "climb") {
 				vspeed = 0
 
-				//Ladder controls
+				// Ladder controls
 				if(getcon("up", "hold", true, playerNum) && !shooting && placeFree(x, y - 2)) {
 					frame -= climbdir / 8
 					y -= 2
@@ -1086,7 +1086,7 @@ Midi <- class extends Player {
 					x += 1
 				}
 
-				//Check if still on ladder
+				// Check if still on ladder
 				local felloff = true
 					if(atLadder(x, y + 2) || atCrossLadder()) felloff = false
 					if(felloff) {
@@ -1098,7 +1098,7 @@ Midi <- class extends Player {
 						x -= (x % 16 <=> 8)
 					}
 
-				//Change direction
+				// Change direction
 				if(getcon("right", "press", true, playerNum) && canMove) flip = 0
 				if(getcon("left", "press", true, playerNum) && canMove) flip = 1
 			}
@@ -1106,7 +1106,7 @@ Midi <- class extends Player {
 			if(anim == "climbWall") {
 				vspeed = 0
 
-				//Ladder controls
+				// Ladder controls
 				if(getcon("up", "hold", true, playerNum) && !shooting && placeFree(x, y - 2)) {
 					frame -= climbdir / 8
 					y -= 2
@@ -1117,7 +1117,7 @@ Midi <- class extends Player {
 					y += 2
 				}
 
-				//Check if still on ladder
+				// Check if still on ladder
 				local felloff = true
 				if(atWallLadder()) felloff = false
 				if(felloff) {
@@ -1126,12 +1126,12 @@ Midi <- class extends Player {
 					if(getcon("up", "hold", true, playerNum)) vspeed = -3.0
 				}
 
-				//Change direction
+				// Change direction
 				if(!freeLeft) flip = 1
 				if(!freeRight) flip = 0
 			}
 
-			//Get on monkeybar
+			// Get on monkeybar
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "monkey" && anim != "climb" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 				if((atZipline() || atZipline(0, -vspeed) || atZipline(0, vspeed)) && y % 16 < 4) {
 					anim = "monkey"
@@ -1153,7 +1153,7 @@ Midi <- class extends Player {
 				}
 			}
 
-			//Get on ladder
+			// Get on ladder
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "climb" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 				if(atLadder() || atCrossLadder()) {
 					anim = "climb"
@@ -1164,7 +1164,7 @@ Midi <- class extends Player {
 				}
 			}
 
-			//Get on wall ladder
+			// Get on wall ladder
 			if(((getcon("down", "hold", true, playerNum) && placeFree(x, y + 2)) || getcon("up", "hold", true, playerNum)) && anim != "hurt" && anim != "climbWall" && anim != "climb" && anim != "monkey" && (vspeed >= 0 || getcon("down", "press", true, playerNum) || getcon("up", "press", true, playerNum))) {
 				if(atWallLadder()) {
 					anim = "climbWall"
@@ -1175,7 +1175,7 @@ Midi <- class extends Player {
 				}
 			}
 
-			//Jumping
+			// Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
 				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
@@ -1230,7 +1230,7 @@ Midi <- class extends Player {
 				}
 			}
 
-			//Wall slide
+			// Wall slide
 			if((anim == "fall" || anim == "ledge") && ((getcon("left", "hold", true, playerNum) && !freeLeft) || (getcon("right", "hold", true, playerNum) && !freeRight))) {
 				if(!freeLeft && !(onIce(x - 8, y) || onIce(x - 8, y - 16))) {
 					local oldShape = shape
@@ -1291,7 +1291,7 @@ Midi <- class extends Player {
 				flip = 1
 		}
 
-		//Damage
+		// Damage
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
@@ -1326,7 +1326,7 @@ Midi <- class extends Player {
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
 
-			//Controls
+			// Controls
 			if(canMove) {
 				mspeed = 1.2
 				if(zoomies) mspeed = 2.4
@@ -1347,7 +1347,7 @@ Midi <- class extends Player {
 					frame = 0.0
 				}
 			}
-		//Hurt
+		// Hurt
 		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) stats.health = 0
 
@@ -1376,7 +1376,7 @@ Midi <- class extends Player {
 	}
 
 	function ruBall() {
-		//Controls
+		// Controls
 		if((!placeFree(x - hspeed, y + 2) || !placeFree(x, y + 2) || onPlatform()) && !onWall && vspeed >= 0) {
 			canJump = 16
 		}
@@ -1397,7 +1397,7 @@ Midi <- class extends Player {
 			if(nowInWater) mspeed *= 0.7
 			if(zoomies > 0) mspeed *= 2.0
 
-			//Moving left and right
+			// Moving left and right
 			if(zoomies > 0) accel = 0.4
 			else accel = 0.2
 
@@ -1425,7 +1425,7 @@ Midi <- class extends Player {
 				flip = 1
 			}
 
-			//Jumping
+			// Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
 				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
@@ -1460,13 +1460,13 @@ Midi <- class extends Player {
 		}
 		else rspeed = min(rspeed, abs(hspeed))
 
-		//Unmorph
+		// Unmorph
 		if(getcon("spec2", "press", true, playerNum) && placeFree(x, y - 8) && anim == "ball") {
 			anim = "morphOut"
 			frame = 0.0
 		}
 
-		//Hurt
+		// Hurt
 		if(onHazard(x, y)) hurt = 1 + game.difficulty
 		if(onDeath(x, y)) stats.health = 0
 
@@ -1507,7 +1507,7 @@ Midi <- class extends Player {
 			if(anim in an && an[anim] != null) {
 				frame = wrap(frame, 0, an[anim].len() - 1)
 
-				//Aura
+				// Aura
 				if(stats.weapon != "normal" && config.showTF) {
 					switch(stats.weapon) {
 						case "fire":
@@ -1624,7 +1624,7 @@ Midi <- class extends Player {
 			if(chargeTimer2 >= 30 && chargeTimer2 < 180)
 				drawSpriteZ(3, charge2, float(getFrames()) / (chargeTimer2 > 90 ? 2 : 4), x - camx, y - camy + choffset, 0, int(!flip))
 
-			//Transformation flash
+			// Transformation flash
 			if(tftime != -1) {
 				if(tftime < 4) {
 					if(!hidden) drawSpriteZ(3, sprTFflash, tftime, x - camx, y - camy)
@@ -1828,7 +1828,7 @@ DeadMidi <- class extends Actor {
 }
 
 Kiki <- class extends Midi {
-	//Replace sprites with Kiki versions as they're made
+	// Replace sprites with Kiki versions as they're made
 	sprite = sprKiki
 	aura = sprKikiAura
 	auraColor = 0xffffffff

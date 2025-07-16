@@ -39,13 +39,13 @@ drawMeter <- function (x, y, m, v, c) {
 	drawRec(x + 2, y + 3, min(v * 2.0, m * 2.0) - 1.0, 0, true)
 }
 
-mapActor <- {} //Stores references to all actors created by the map
+mapActor <- {} // Stores references to all actors created by the map
 
 startPlay <- function(level, newLevel = true, skipIntro = false) {
 	menuLeft = false
 	if(!fileExists(level)) return
 
-	//Clear actors and start creating new ones
+	// Clear actors and start creating new ones
 	setFPS(60)
 	gvPlayer = false
 	gvPlayer2 = false
@@ -79,17 +79,17 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	}
 	gvWarning = 200
 
-	//Reset auto/locked controls
+	// Reset auto/locked controls
 	autocon = deepClone(defAutocon)
 	gvAutoCon = false
 
-	//Load map to play
+	// Load map to play
 	if(gvMap != 0) gvMap.del()
 	gvMap = Tilemap(level)
 
 	gvHorizon = gvMap.h
 
-	//Reset keys
+	// Reset keys
 	if(!game.check) {
 		gvKeyCopper = false
 		gvKeySilver = false
@@ -107,7 +107,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		ghostRecordNew = []
 	}
 
-	//Get tiles used to mark actors
+	// Get tiles used to mark actors
 	local actset = -1
 	local tilef = 0
 	local actnum = -1
@@ -124,7 +124,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		return
 	}
 
-	//Get layer for actors
+	// Get layer for actors
 	local actlayer = -1
 	foreach(i in gvMap.data.layers) {
 		if(i["type"] == "objectgroup" && i["name"] == "actor") {
@@ -138,7 +138,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		return
 	}
 
-	//Randomizer settings
+	// Randomizer settings
 	if(gvTimeAttack && gvTARandomPlayer) {
 		local cl = []
 		foreach(key, i in gvCharacters)
@@ -152,15 +152,15 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		}
 	}
 
-	//Start making actors
+	// Start making actors
 	foreach(i in actlayer.objects) {
-		//Tile actors
+		// Tile actors
 		if(i.rawin("gid")) {
 			local n = i.gid - tilef
 			local c = 0
 
-			//Get the tile number and make an actor
-			//according to the image used in actors.png
+			// Get the tile number and make an actor
+			// according to the image used in actors.png
 			switch(spriteName(gvMap.tileset[actnum])) {
 				case "actors.png":
 					c = createPlatformActors(n, i, c)
@@ -173,7 +173,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 			if(typeof c == "integer") mapActor[i.id] <- c
 			else mapActor[i.id] <- c.id
 
-			//Add saved collectables
+			// Add saved collectables
 			if(mapActor[i.id] in actor) switch(typeof actor[mapActor[i.id]]) {
 				case "WoodBlock":
 				case "BrickBlock":
@@ -190,7 +190,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 			}
 		}
 
-		//Rectangle actors
+		// Rectangle actors
 		if(!i.rawin("polygon") && !i.rawin("polyline") && !i.rawin("ellipse") && !i.rawin("point") && !i.rawin("gid")) if(i.name != "") {
 			local c = 0
 			local arg = split(i.name, ",")
@@ -207,12 +207,12 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 			}
 		}
 
-		//Polygon actors
+		// Polygon actors
 		if(i.rawin("polygon")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
 			if(getroottable().rawin(n)) {
-				//Create polygon to pass to object
+				// Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j <= i.polygon.len(); j++) {
 					if(j == i.polygon.len()) poly.push([i.x + i.polygon[0].x, i.y + i.polygon[0].y])
@@ -228,12 +228,12 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 			}
 		}
 
-		//Polygon actors
+		// Polygon actors
 		if(i.rawin("polyline")) if(i.name != "") {
 			local arg = split(i.name, ",")
 			local n = arg[0]
 			if(getroottable().rawin(n)) {
-				//Create polygon to pass to object
+				// Create polygon to pass to object
 				local poly = []
 				for(local j = 0; j < i.polyline.len(); j++) poly.push([i.x + i.polyline[j].x, i.y + i.polyline[j].y])
 
@@ -247,7 +247,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		}
 	}
 
-	//Spawn Sulphur
+	// Spawn Sulphur
 	if(game.hasPidgin) {
 		if("AttackPidgin" in actor) {
 			local sulphurList = []
@@ -263,7 +263,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		}
 	}
 
-	//Go through collected items
+	// Go through collected items
 	if(game.check) foreach(k, i in gvFoundItems) {
 		print(typeof actor[mapActor[k]])
 		if(k in mapActor && mapActor[k] in actor) switch(i) {
@@ -297,10 +297,10 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		}
 	}
 
-	//Other shape layers
+	// Other shape layers
 	for(local i = 0; i < gvMap.data.layers.len(); i++) {
 		if(gvMap.data.layers[i].type == "objectgroup") {
-			local lana = gvMap.data.layers[i].name //Layer name
+			local lana = gvMap.data.layers[i].name // Layer name
 			for(local j = 0; j < gvMap.data.layers[i].objects.len(); j++) {
 				local obj = gvMap.data.layers[i].objects[j]
 				switch(lana) {
@@ -340,10 +340,10 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		}
 	}
 
-	//Search for secret wall joiners
+	// Search for secret wall joiners
 	for(local i = 0; i < gvMap.data.layers.len(); i++) {
 		if(gvMap.data.layers[i].type == "objectgroup") {
-			local lana = gvMap.data.layers[i].name //Layer name
+			local lana = gvMap.data.layers[i].name // Layer name
 			for(local j = 0; j < gvMap.data.layers[i].objects.len(); j++) {
 				local obj = gvMap.data.layers[i].objects[j]
 				switch(lana) {
@@ -372,12 +372,12 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	}
 
 
-	//If the map loading fails at any point, then it will not change
-	//the mode and simply remain where it was. A message is printed
-	//in the log if the map fails, so users can check why a level
-	//refuses to run.
+	// If the map loading fails at any point, then it will not change
+	// the mode and simply remain where it was. A message is printed
+	// in the log if the map fails, so users can check why a level
+	// refuses to run.
 
-	//Execute level code
+	// Execute level code
 	print("Running level code...")
 	if(gvMap.data.rawin("properties")) foreach(i in gvMap.data.properties) {
 		if(i.name == "code") dostr(i.value)
@@ -394,7 +394,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	setDrawTarget(bgPause)
 	drawImage(gvScreen, 0, 0)
 
-	if(newLevel) { //Iris transition
+	if(newLevel) { // Iris transition
 		setDrawColor(0x000000ff)
 
 		for(local i = 0.0; i <= 100; i += 4.0) {
@@ -423,11 +423,11 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		gvFadeInTime = 255
 	}
 
-	//Switch game mode to play
+	// Switch game mode to play
 	if(skipIntro) gvGameMode = gmPlay
 	else gvGameMode = gmLevelStart
 
-	//update()
+	// update()
 	flushSprites()
 }
 
@@ -501,7 +501,7 @@ gmLevelStart <- function() {
 			drawSprite(getroottable()[gvCharacters[game.playerChar]["normal"]], runAnim[(getFrames() / 4) % runAnim.len()], charx + gvScreenW / 2, gvScreenH / 2)
 	}
 
-	//Draw Sulphur
+	// Draw Sulphur
 	if(game.hasPidgin) {
 		if(game.playerChar2 != 0 && game.playerChar2 != "")
 			drawSprite(sprAttackPidgin, AttackPidgin.an["fly"][wrap(getFrames() / 4, 0, 7)], (game.hasPidgin == 1 ? charx : -charx) + gvScreenW / 2, gvScreenH / 2 - 32)
@@ -540,7 +540,7 @@ gmLevelStart <- function() {
 }
 
 gmPlay <- function() {
-	//Exit timer
+	// Exit timer
 	if(gvExitTimer > 0)
 		gvExitTimer -= 0.5
 	if(gvExitTimer < 0)
@@ -553,10 +553,10 @@ gmPlay <- function() {
 	if(gvBattleMode)
 		manageBattle()
 
-	//Draw
-	//Separate texture for game world allows post-processing effects without including HUD
+	// Draw
+	// Separate texture for game world allows post-processing effects without including HUD
 	runActors()
-	//Run level step code
+	// Run level step code
 	if("properties" in gvMap.data) foreach(i in gvMap.data.properties) {
 		if(i.name == "run") dostr(i.value)
 	}
@@ -616,7 +616,7 @@ gmPlay <- function() {
 	if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 	if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), camx, camy, (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid", 0.5)
 
-	//Draw HUD-level elements
+	// Draw HUD-level elements
 	drawHudList()
 
 	setDrawTarget(gvPlayScreen)
@@ -671,7 +671,7 @@ gmPlay <- function() {
 		if(actor.rawin("SecretJoiner")) foreach(i in actor["SecretJoiner"]) { i.draw() }
 		if(debug) gvMap.drawTiles(floor(-camx), floor(-camy), camx, camy, (gvScreenW / 16) + 5, (gvScreenH / 16) + 2, "solid", 0.5)
 
-		//Draw HUD-level elements
+		// Draw HUD-level elements
 		drawHudList()
 
 		setDrawTarget(gvPlayScreen2)
@@ -682,12 +682,12 @@ gmPlay <- function() {
 
 
 
-	//Resume music after invincibility
+	// Resume music after invincibility
 	if(gvPlayer && gvPlayer2 && "invincible" in gvPlayer && "invincible" in gvPlayer2 && gvPlayer.invincible == 0 && gvPlayer2.invincible == 0
 	|| gvPlayer && !gvPlayer2 && "invincible" in gvPlayer && gvPlayer.invincible == 0
 	|| gvPlayer2 && !gvPlayer && "invincible" in gvPlayer2 && gvPlayer2.invincible == 0) songPlay(gvMusicName)
 
-	//HUDs
+	// HUDs
 	setDrawTarget(gvScreen)
 	if(gvSwapScreen && gvSplitScreen) {
 		drawImage(gvPlayScreen2, 0, 0)
@@ -708,7 +708,7 @@ gmPlay <- function() {
 	}
 
 	if(gvInfoBox == "") {
-		//Draw near-sighted stat bars
+		// Draw near-sighted stat bars
 		if(config.nearbars) {
 			if(!gvSplitScreen) {
 				if(gvPlayer)
@@ -735,7 +735,7 @@ gmPlay <- function() {
 			}
 		}
 
-		//Fish finder
+		// Fish finder
 		if(checkActor("Herring")) {
 			if(!gvSplitScreen) {
 				if(gvPlayer) {
@@ -804,7 +804,7 @@ gmPlay <- function() {
 			}
 		}
 
-		//Battle Finder
+		// Battle Finder
 		if(gvBattleMode && gvSplitScreen && gvPlayer && gvPlayer2) {
 				local target1
 				local target2
@@ -828,7 +828,7 @@ gmPlay <- function() {
 				}
 			}
 
-		//Update stats
+		// Update stats
 		gvBarStats.health1 = (game.ps.health + gvBarStats.health1 * 9.0) / 10.0
 		if(fabs(game.ps.health - gvBarStats.health1) < 0.5)
 			gvBarStats.health1 = game.ps.health
@@ -852,7 +852,7 @@ gmPlay <- function() {
 		if(game.ps.health > game.maxHealth) game.ps.health = game.maxHealth
 		if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
 
-		//Draw stats
+		// Draw stats
 		if(gvSplitScreen && gvScreenW >= 400) {
 			local elementFrame = 0
 
@@ -964,7 +964,7 @@ gmPlay <- function() {
 			}
 			drawSprite(sprElement, elementFrame, 8, 16)
 
-			//Player 2 stats
+			// Player 2 stats
 			if(gvNumPlayers > 1) {
 				drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, game.maxHealth, gvBarStats.health2, 0xf83810ff)
 				drawMeter(8 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, 6, game.ps2.berries / 2.0, 0xf81038ff)
@@ -1005,7 +1005,7 @@ gmPlay <- function() {
 			}
 		}
 
-		//Draw boss health
+		// Draw boss health
 		if(gvBoss) {
 			local fullhearts = floor(game.bossHealth / 4)
 			if(game.bossHealth == 0) fullhearts = 0
@@ -1020,7 +1020,7 @@ gmPlay <- function() {
 			drawSprite(sprBossHealth, 5, gvScreenW - 23, gvScreenH - 96 - (8 * 10))
 		}
 
-		//Draw coins & herrings
+		// Draw coins & herrings
 		drawSprite(sprCoin, 0, 16, gvScreenH - 16)
 		if(game.maxCoins > 0) {
 			if(gvTimeAttack && !config.completion) {
@@ -1040,10 +1040,10 @@ gmPlay <- function() {
 		}
 		else
 			drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
-		//Herrings (redcoins)
+		// Herrings (redcoins)
 		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - (config.completion ? 64 : 32))
 		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - (config.completion ? 72 : 38), game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
-		//Draw subitem
+		// Draw subitem
 		if(gvSplitScreen && gvScreenW >= 400) {
 			drawSprite(sprSubItem, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 			drawSprite(sprSubItem, 1, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
@@ -1186,17 +1186,17 @@ gmPlay <- function() {
 			}
 		}
 
-		//Draw level IGT
+		// Draw level IGT
 		local timey = 0
 		if(gvNumPlayers >= 2 && !gvNetPlay) timey = 32
 		if(gvDoIGT && (config.showleveligt || gvTimeAttack) && levelEndRunner != 1) drawText(font2, 8, 32 + timey, formatTime(gvIGT))
 
-		//Draw offscreen player
+		// Draw offscreen player
 		if(gvPlayer && gvPlayer.y < -8) {
 			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[(config.showTF ? game.ps.weapon : "normal")], gvPlayer.x - camx, 8 - (gvPlayer.y / 4))
 		}
 
-		//Draw warning sign
+		// Draw warning sign
 		if(gvWarning < 180) {
 			if(gvWarning == 0 || gvWarning == 90) {
 				stopSound(sndWarning)
@@ -1206,7 +1206,7 @@ gmPlay <- function() {
 			gvWarning += 1.5
 		}
 
-		//Keys
+		// Keys
 		local kx = 10
 		if(gvPlayer && "stats" in gvPlayer && gvPlayer.stats.canres) {
 			if(typeof gvPlayer in gvCharacters) drawSprite(getroottable()[gvCharacters[typeof gvPlayer]["doll"]], enWeapons[(config.showTF ? gvPlayer.stats.weapon : "normal")], gvScreenW - kx, gvScreenH - 16)
@@ -1232,7 +1232,7 @@ gmPlay <- function() {
 			drawSprite(sprKeyMythril, 0, gvScreenW - kx, gvScreenH - 16)
 			kx += 16
 		}
-		//Other items could be put in the row like this as well
+		// Other items could be put in the row like this as well
 
 		if(debug || config.showkeys || gvTimeAttack)
 			displayKeys()
@@ -1248,7 +1248,7 @@ gmPlay <- function() {
 		drawText(font, 8, 8, gvInfoBox.slice(0, gvInfoStep))
 	}
 
-	//Fade from black
+	// Fade from black
 	setDrawColor(gvFadeInTime)
 	drawRec(0, 0, gvScreenW, gvScreenH, true)
 	if(gvFadeInTime > 0) gvFadeInTime -= 10
@@ -1261,16 +1261,16 @@ gmPlay <- function() {
 		game.igt++
 	}
 
-	//Draw global IGT
+	// Draw global IGT
 	if((config.showglobaligt || gvTimeAttack) && levelEndRunner != 1) {
-		local gtd = formatTime(max(game.igt, 0)) //Game time to draw
+		local gtd = formatTime(max(game.igt, 0)) // Game time to draw
 		drawText(font2, (gvScreenW / 2) - (gtd.len() * 4), gvScreenH - 24, gtd)
 	}
 
 	checkAchievements()
 	drawAchievements()
 
-	//Draw exit timer
+	// Draw exit timer
 	local exside = (gvExitSide ? gvScreenW * 0.9 : gvScreenW * 0.1)
 	if(gvExitTimer > 0) {
 		drawSprite(sprExit, getFrames() / 16, exside, gvScreenH / 2, 0, gvExitSide)
@@ -1280,18 +1280,18 @@ gmPlay <- function() {
 		drawRec((exside) - ((15.0 / 30.0) * gvExitTimer), (gvScreenH / 2) + 13,  ((31.0 / 30.0) * gvExitTimer), 2, true)
 	}
 
-	//Draw surface to screen
+	// Draw surface to screen
 	setDrawTarget(gvScreen)
 	if(gvFadeTime > 0) {
 		setDrawColor(min(255, gvFadeTime * 8))
 		drawRec(0, 0, gvScreenW, gvScreenH, true)
 	}
 
-	//Unhide players
+	// Unhide players
 	if(gvPlayer && "hidden" in gvPlayer) gvPlayer.hidden = false
 	if(gvPlayer2 && "hidden" in gvPlayer2) gvPlayer2.hidden = false
 
-	//Handle berries
+	// Handle berries
 	if(game.ps.berries > 0 && game.ps.berries >= 12 && game.ps.health > 0) {
 		if(game.ps.health < game.maxHealth) {
 			game.ps.health++
@@ -1314,7 +1314,7 @@ gmPlay <- function() {
 	if(game.ps2.health < 0) game.ps2.health = 0
 }
 
-playerTeleport <- function(target = false, _x = 0, _y = 0) { //Used to move the player and camera at the same time
+playerTeleport <- function(target = false, _x = 0, _y = 0) { // Used to move the player and camera at the same time
 	if(!target) return
 	if(gvMap == 0) return
 
@@ -1385,9 +1385,9 @@ createPlatformActors <- function(n, i, c) {
 			else {
 				gvNumPlayers = 0
 
-				//Randomize
+				// Randomize
 				if(gvTARandomPlayer && !gvTimeAttack) {
-					local pl = [] //Get list of player characters
+					local pl = [] // Get list of player characters
 					foreach(k, i in gvCharacters) {
 						if(k in game.characters)
 							pl.push(k)
@@ -1480,7 +1480,7 @@ createPlatformActors <- function(n, i, c) {
 
 		case 10:
 			c = newActor(PipeSnake, i.x, i.y, 1)
-			//Enemies are counted at level creation so ones created indefinitely don't count against achievements
+			// Enemies are counted at level creation so ones created indefinitely don't count against achievements
 			game.maxEnemies++
 			break
 
@@ -1733,7 +1733,7 @@ createPlatformActors <- function(n, i, c) {
 			c = newActor(ColorBlock, i.x, i.y - 16, 7)
 			break
 
-		case 64: //Custom actor gear
+		case 64: // Custom actor gear
 			if(i.name == "") break
 			local arg = split(i.name, ",")
 			local n = arg[0]

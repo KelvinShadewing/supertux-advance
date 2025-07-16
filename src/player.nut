@@ -2,14 +2,14 @@
 // BASE PLAYER CLASS //
 ///////////////////////
 
-//TODO:
-//Base class for all players
-//Child classes will use flags to determine what abilities can be used
+// TODO:
+// Base class for all players
+// Child classes will use flags to determine what abilities can be used
 
 Player <- class extends PhysAct {
 	playerNum = 0
 
-	//Basic variables
+	// Basic variables
 	anim = null
 	sprite = 0
 	frame = 0.0
@@ -21,25 +21,25 @@ Player <- class extends PhysAct {
 	endSpeed = 0
 	xstart = 0.0
 	ystart = 0.0
-	ehspeed = 0.0 //Environmental hspeed
-	evspeed = 0.0 //Environmental vspeed
+	ehspeed = 0.0 // Environmental hspeed
+	evspeed = 0.0 // Environmental vspeed
 
-	//Ability flags
-	canStomp = false //Mario-like jump attack
+	// Ability flags
+	canStomp = false // Mario-like jump attack
 	stompDamage = 1
-	canGroundPound = true //Ground stomp attack
-	canSlide = false //Slide attack
-	canMove = true //Movement unlocked, set to false during cutscenes or when player restrained
+	canGroundPound = true // Ground stomp attack
+	canSlide = false // Slide attack
+	canMove = true // Movement unlocked, set to false during cutscenes or when player restrained
 	held = null
-	useMouse = false //Draw the cursor when playing as this character
+	useMouse = false // Draw the cursor when playing as this character
 	mouseSprite = sprCursor
-	inMelee = false //In a state where the player damages enemies by touch
+	inMelee = false // In a state where the player damages enemies by touch
 	magnetic = false
 	advancedClimbing = false
 	invincible = 0
-	mustSink = false //If the player can die by going too far under water
+	mustSink = false // If the player can die by going too far under water
 
-	//Physics stats
+	// Physics stats
 	weight = 1.0
 	jumpForce = 2.0
 	walkSpeed = 1.0
@@ -59,7 +59,7 @@ Player <- class extends PhysAct {
 	freeLeft = false
 	freeRight = false
 
-	hurt = 0 //How much damage has been taken
+	hurt = 0 // How much damage has been taken
 	hurtType = "normal"
 	damageMult = {
 		normal = 1.0
@@ -75,12 +75,12 @@ Player <- class extends PhysAct {
 		cut = 1.0
 		blast = 1.0
 	}
-	blinking = 0 //Number of iframes remaining
+	blinking = 0 // Number of iframes remaining
 	zoomies = 0
 	stats = null
 	hidden = false
 
-	//Misc
+	// Misc
 	heldby = 0
 	holding = 0
 	otherPlayer = false
@@ -88,7 +88,7 @@ Player <- class extends PhysAct {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 
-		//Figure out which player this is
+		// Figure out which player this is
 		if(!gvPlayer) {
 			gvPlayer = this
 			stats = game.ps
@@ -132,14 +132,14 @@ Player <- class extends PhysAct {
 		if(ehspeed != 0) {
 			wasOnGround = (!placeFree(x, y + 2) || onPlatform())
 
-			if(placeFree(x + ehspeed, y)) { //Try to move straight
+			if(placeFree(x + ehspeed, y)) { // Try to move straight
 				x += ehspeed
 				if(wasOnGround) for(local i = 0; i < min(max(8, abs(ehspeed * 3)), 12); i++) if(!placeFree(x, y + min(max(8, abs(ehspeed * 3)), 12) - i) && placeFree(x, y + 1) && !swimming && vspeed >= 0 && !onPlatform(ehspeed) && !onPlatform(ehspeed, -1)) {
 					y += 1
 				}
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 8; i++){ //Try to move up hill
+				for(local i = 1; i <= 8; i++){ // Try to move up hill
 					if(placeFree(x + ehspeed, y - i)) {
 						x += ehspeed
 						y -= i
@@ -148,12 +148,12 @@ Player <- class extends PhysAct {
 							if(ehspeed < 0) ehspeed += 0.2
 						}
 						didstep = true
-						//if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break
 					}
 				}
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(ehspeed) >= 1) ehspeed -= (ehspeed / fabs(ehspeed))
 				else if(didstep == false && fabs(ehspeed) < 1) ehspeed = 0
 			}
@@ -164,7 +164,7 @@ Player <- class extends PhysAct {
 		base.run()
 
 		if(actor.rawin("WeaponEffect")) foreach(i in actor["WeaponEffect"]) {
-			//Skip weapons that don't hurt the player
+			// Skip weapons that don't hurt the player
 			if(i.alignment == 1 && !gvBattleMode) continue
 			if(i.owner == id) continue
 			if(i.box) continue
@@ -182,7 +182,7 @@ Player <- class extends PhysAct {
 			otherPlayer = gvPlayer
 
 		if(gvBattleMode && otherPlayer && !blinking) {
-			//Get stomped
+			// Get stomped
 			if(hitTest(shape, otherPlayer.shape)) {
 					if("invincible" in otherPlayer && otherPlayer.invincible > 0) hurt = 10
 					else if(y > otherPlayer.y && vspeed < otherPlayer.vspeed && otherPlayer.canStomp && otherPlayer.placeFree(otherPlayer.x, otherPlayer.y + 2) && blinking == 0 && !otherPlayer.swimming) {
@@ -243,7 +243,7 @@ Player <- class extends PhysAct {
 				}
 			}
 		}
-		//escapeSolid()
+		// escapeSolid()
 
 		if(endMode) {
 			if(hspeed < endSpeed && endSpeed > 0 && (placeFree(x + 1, y) || placeFree(x + 1, y - 2))) {
@@ -257,12 +257,12 @@ Player <- class extends PhysAct {
 		}
 
 
-		//Stage hazards
+		// Stage hazards
 		if(onHazard(x, y)) hurt = min((ceil(game.maxHealth / 10.0) * damageMult.cut), 4 + (game.difficulty * 2))
 		if(onDeath(x, y)) die(true)
 
 
-		//Leave level
+		// Leave level
 		if(x < 4) {
 			x = 4
 			if(getcon("left", "hold", false, playerNum) && !endMode && !gvTimeAttack && !gvBattleMode) gvExitTimer += 1.0
@@ -276,7 +276,7 @@ Player <- class extends PhysAct {
 			hspeed /= 2.0
 		}
 
-		//Stats
+		// Stats
 		stats.maxEnergy = 4 + game.energyBonus
 		stats.maxStamina = 4 + game.staminaBonus
 
@@ -315,7 +315,7 @@ Player <- class extends PhysAct {
 	}
 
 	function atLadder(_x = -1, _y = -1) {
-		//Save current location and move
+		// Save current location and move
 		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
 		if(_x != -1)
 			ns.x = _x
@@ -324,8 +324,8 @@ Player <- class extends PhysAct {
 		local cx = floor(ns.x / 16)
 		local cy = floor(ns.y / 16)
 
-		//Check that the solid layer exists
-		local wl = null //Working layer
+		// Check that the solid layer exists
+		local wl = null // Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				wl = gvMap.data.layers[i]
@@ -333,7 +333,7 @@ Player <- class extends PhysAct {
 			}
 		}
 
-		//Check against places in solid layer
+		// Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
 			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 29 || wl.data[tile] - gvMap.solidfid == 50 || (wl.data[tile] - gvMap.solidfid == 79 && advancedClimbing) || (wl.data[tile] - gvMap.solidfid == 81 && advancedClimbing) || (wl.data[tile] - gvMap.solidfid == 82 && advancedClimbing)) {
@@ -349,13 +349,13 @@ Player <- class extends PhysAct {
 	}
 
 	function atCrossLadder() {
-		//Save current location and move
+		// Save current location and move
 		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16)
 
-		//Check that the solid layer exists
-		local wl = null //Working layer
+		// Check that the solid layer exists
+		local wl = null // Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				wl = gvMap.data.layers[i]
@@ -363,7 +363,7 @@ Player <- class extends PhysAct {
 			}
 		}
 
-		//Check against places in solid layer
+		// Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
 			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 80 || (wl.data[tile] - gvMap.solidfid == 81 && advancedClimbing)) {
@@ -379,13 +379,13 @@ Player <- class extends PhysAct {
 	}
 
 	function atWallLadder() {
-		//Save current location and move
+		// Save current location and move
 		local ns = Rec(x + shape.ox, y + shape.oy, shape.w, shape.h, shape.kind)
 		local cx = floor(x / 16)
 		local cy = floor(y / 16)
 
-		//Check that the solid layer exists
-		local wl = null //Working layer
+		// Check that the solid layer exists
+		local wl = null // Working layer
 		for(local i = 0; i < gvMap.data.layers.len(); i++) {
 			if(gvMap.data.layers[i].type == "tilelayer" && gvMap.data.layers[i].name == "solid") {
 				wl = gvMap.data.layers[i]
@@ -393,7 +393,7 @@ Player <- class extends PhysAct {
 			}
 		}
 
-		//Check against places in solid layer
+		// Check against places in solid layer
 		if(wl != null) {
 			local tile = cx + (cy * wl.width)
 			if(tile >= 0 && tile < wl.data.len()) if(wl.data[tile] - gvMap.solidfid == 35 || wl.data[tile] - gvMap.solidfid == 36) {

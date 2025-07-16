@@ -33,7 +33,7 @@ runAmbientLight <- function(light2 = false) {
 				gvLight = (newlight << 8) + 255
 			}
 			if(gvLight != gvLightTarget) {
-				//Prevent floats
+				// Prevent floats
 				gvLight = gvLight.tointeger()
 				gvLightTarget = gvLightTarget.tointeger()
 
@@ -45,7 +45,7 @@ runAmbientLight <- function(light2 = false) {
 				local tg = (gvLightTarget >> 16) & 0xFF
 				local tb = (gvLightTarget >> 8) & 0xFF
 
-				//Fade to color
+				// Fade to color
 				if(lr != tr) lr += (tr <=> lr) * 2
 				if(abs(lr - tr) < 2) lr = tr
 				if(lg != tg) lg += (tg <=> lg) * 2
@@ -67,7 +67,7 @@ runAmbientLight <- function(light2 = false) {
 				gvLight2 = (newlight << 8) + 255
 			}
 			if(gvLight2 != gvLightTarget2) {
-				//Prevent floats
+				// Prevent floats
 				gvLight2 = gvLight2.tointeger()
 				gvLightTarget2 = gvLightTarget2.tointeger()
 
@@ -79,7 +79,7 @@ runAmbientLight <- function(light2 = false) {
 				local tg = (gvLightTarget2 >> 16) & 0xFF
 				local tb = (gvLightTarget2 >> 8) & 0xFF
 
-				//Fade to color
+				// Fade to color
 				if(lr != tr) lr += (tr <=> lr) * 2
 				if(abs(lr - tr) < 2) lr = tr
 				if(lg != tg) lg += (tg <=> lg) * 2

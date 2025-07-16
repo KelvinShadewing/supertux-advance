@@ -26,7 +26,7 @@ GrabbableObject <- class extends PhysAct {
 		if(!placeFree(x, y - 1) && vspeed < 0)
 			vspeed = 0.0
 
-		//Rolling
+		// Rolling
 		if((!placeFree(x, y + 8) || !placeFree(x - hspeed * 2, y + 8)) && (fabs(hspeed) < 16)) {
 			if(placeFree(x + max(4, hspeed), y + 1) && !onPlatform(hspeed)) {
 				hspeed += 0.2
@@ -41,7 +41,7 @@ GrabbableObject <- class extends PhysAct {
 		else
 			gravity = 0.25
 
-		//Base movement
+		// Base movement
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
@@ -51,16 +51,16 @@ GrabbableObject <- class extends PhysAct {
 			vspeed /= -1.5
 			vspeed *= bouncy
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 4; i++){ //Try to move up hill
+				for(local i = 1; i <= 4; i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -76,7 +76,7 @@ GrabbableObject <- class extends PhysAct {
 				if(fabs(hspeed) >= 4 && (!placeFree(x + hspeed, y)) && y < yprev)
 					vspeed -= 1.0
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1)
 					hspeed -= (hspeed / fabs(hspeed)) / 2.0
 				else if(didstep == false && fabs(hspeed) < 1)
@@ -102,7 +102,7 @@ GrabbableObject <- class extends PhysAct {
 				break
 		}
 
-		//Movement
+		// Movement
 		if((!placeFree(x, y + 2) || onPlatform())) {
 			if(hspeed > 0)
 				hspeed -= friction * (onIce() ? 0.5 : 1.0)
@@ -148,7 +148,7 @@ GrabbableObject <- class extends PhysAct {
 			if(target.rawin("anClimb") && target.anim == target.anClimb && held) {
 				target.holding = 0
 
-				//escape from solid
+				// escape from solid
 				local escapedir = x <=> target.x
 				y = target.y
 				x = target.x
@@ -160,7 +160,7 @@ GrabbableObject <- class extends PhysAct {
 				held = false
 			}
 
-			//escape from solid
+			// escape from solid
 			if(!placeFree(x, y) && held) {
 				local escapedir = x <=> target.x
 				y = target.y
@@ -177,7 +177,7 @@ GrabbableObject <- class extends PhysAct {
 				target.holding = 0
 				x += target.hspeed * 2
 
-				//escape from solid
+				// escape from solid
 				if(!placeFree(x, y)) {
 					local escapedir = x <=> target.x
 					y = target.y

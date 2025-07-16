@@ -16,14 +16,14 @@ manageBattle <- function() {
 }
 
 addBattleStage <- function(
-	displayName, //Name to show in the menu
-	level, //level file
-	folder, //The folder of your world
+	displayName, // Name to show in the menu
+	level, // level file
+	folder, // The folder of your world
 	sprite
 	) {
 	if(displayName in gvLangObj["level"])
 		displayName = gvLangObj["level"][displayName]
-	local tempBack = meBattleWorld.pop() //To move back to the end
+	local tempBack = meBattleWorld.pop() // To move back to the end
 	local newSlot = {
 		name = function() { 
 			drawBattlePreview(sprite)

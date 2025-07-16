@@ -32,7 +32,7 @@ startCredits <- function(folder = "res"){
 			if(creditsData["credits"][i]["type"]=="header") creditsLength += 4
 		}
 	}
-	creditsLength += 30 //Padding
+	creditsLength += 30 // Padding
 }
 
 gmCredits <- function(){

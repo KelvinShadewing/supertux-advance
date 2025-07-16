@@ -87,11 +87,11 @@ SecretJoiner <- class extends Actor {
 
 		local idsToDelete = []
 
-		//Iterate through points in polyline
+		// Iterate through points in polyline
 		if("SecretWall" in actor && actor["SecretWall"].len() > 0) for(local i = 0; i < path.len(); i++) {
 			foreach(j in actor["SecretWall"]) {
 				if(j.shape.pointIn(path[i][0], path[i][1])) {
-					//Add the secret wall to the list
+					// Add the secret wall to the list
 					shape.push(j.shape)
 					idsToDelete.push(j.id)
 					if(j.rehide) rehide = true
@@ -106,7 +106,7 @@ SecretJoiner <- class extends Actor {
 
 		print("Found " + idsToDelete.len() + " secrets to delete")
 
-		//Clean up actors
+		// Clean up actors
 		if(idsToDelete.len() > 0) {
 			for(local i = 0; i < idsToDelete.len(); i++) deleteActor(idsToDelete[i])
 			if(!rehide) game.maxSecrets++
@@ -141,20 +141,20 @@ SecretJoiner <- class extends Actor {
 	}
 
 	function draw() {
-		//Draw secret tiles
+		// Draw secret tiles
 		for(local i = 0; i < shape.len(); i++) {
 			if(config.light) gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha, 1, 1, gvLight)
 			else gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha)
 		}
 
 		if(debug) {
-			//Draw path
+			// Draw path
 			for(local i = 0; i < path.len() - 1; i++) {
 				setDrawColor(0xffffffff)
 				drawLine(path[i][0] - camx, path[i][1] - camy, path[i + 1][0] - camx, path[i + 1][1] - camy)
 			}
 
-			//Draw rectangles
+			// Draw rectangles
 			for(local i = 0; i < path.len(); i++) {
 				drawText(font, dx[i] + 2 - camx, dy[i] + 2 - camy, "X: " + dx[i] + "\nY: " + dy[i] + "\nW: " + dw[i] + "\nH: " + dh[i] + "\nA: " + alpha)
 				shape[i].draw()

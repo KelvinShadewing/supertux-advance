@@ -91,7 +91,7 @@ SoccerBall <- class extends PhysAct {
 		if(!placeFree(x, y - 1) && vspeed < 0)
 			vspeed = 0.0
 
-		//Rolling
+		// Rolling
 		if((!placeFree(x, y + 8) || !placeFree(x - hspeed * 2, y + 8)) && (fabs(hspeed) < 16)) {
 			if(placeFree(x + max(4, hspeed), y + 1) && !onPlatform(hspeed)) {
 				hspeed += 0.2
@@ -106,7 +106,7 @@ SoccerBall <- class extends PhysAct {
 		else
 			gravity = 0.25
 
-		//Base movement
+		// Base movement
 		shape.setPos(x, y)
 		xprev = x
 		yprev = y
@@ -134,16 +134,16 @@ SoccerBall <- class extends PhysAct {
 				popSound(sndBlurp)
 			vspeed /= -1.5
 			if(fabs(vspeed) < 0.01) vspeed = 0
-			//if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
 			if(placeFree(x, y + vspeed)) y += vspeed
 		}
 
 		if(hspeed != 0) {
-			if(placeFree(x + hspeed, y)) { //Try to move straight
+			if(placeFree(x + hspeed, y)) { // Try to move straight
 				x += hspeed
 			} else {
 				local didstep = false
-				for(local i = 1; i <= 4; i++){ //Try to move up hill
+				for(local i = 1; i <= 4; i++){ // Try to move up hill
 					if(placeFree(x + hspeed, y - i)) {
 						x += hspeed
 						y -= i
@@ -159,7 +159,7 @@ SoccerBall <- class extends PhysAct {
 				if(fabs(hspeed) >= 4 && (!placeFree(x + hspeed, y)) && y < yprev)
 					vspeed -= 1.0
 
-				//If no step was taken, slow down
+				// If no step was taken, slow down
 				if(didstep == false && fabs(hspeed) >= 1)
 					hspeed -= (hspeed / fabs(hspeed)) / 2.0
 				else if(didstep == false && fabs(hspeed) < 1)
@@ -167,7 +167,7 @@ SoccerBall <- class extends PhysAct {
 			}
 		}
 
-		//Escape when stuck
+		// Escape when stuck
 		if(hspeed == 0 && vspeed == 0 && !placeFree(x, y)) for(local i = -90; i > -450; i--) {
 			for(local j = 0; j < 64; j++) {
 				if(placeFree(x + lendirX(j, i), y + lendirY(j, i))) {
@@ -196,7 +196,7 @@ SoccerBall <- class extends PhysAct {
 				break
 		}
 
-		//Movement
+		// Movement
 		if((!placeFree(x, y + 2) || onPlatform())) {
 			if(hspeed > 0)
 				hspeed -= friction

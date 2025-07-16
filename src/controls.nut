@@ -2,7 +2,7 @@ gvPadTypes <- ["XBox", "DInput", "Generic"]
 gvAutoCon <- false
 gvLastInputType <- 0
 
-autocon <- { //Has nothing to do with Transformers
+autocon <- { // Has nothing to do with Transformers
 	a = {
 		up = false
 		down = false
@@ -240,7 +240,7 @@ netconState <- {
 		wasSwapItem = false
 }
 
-getcon <- function(control, state, useauto = false, player = 0) {
+getcon <- function(control, state, useauto = false, player = 0, skipStickSPeed = false) {
 	local keyfunc = 0
 	local joyfunc = 0
 	local hatfunc = 0
@@ -248,7 +248,7 @@ getcon <- function(control, state, useauto = false, player = 0) {
 	local autonum = null
 
 	local deadzone = 0
-	if(config.stickspeed) deadzone = js_max / 9
+	if(config.stickspeed && !skipStickSPeed) deadzone = js_max / 9
 	else deadzone = int(js_max * 0.9)
 
 	if(player == 1 || player == 0) {

@@ -9,12 +9,12 @@ gvQuit <- false
 gvNetPlay <- false
 
 createNewGameObject <- function () {
-	local ngo = { //Globals stored in this table will be saved
+	local ngo = { // Globals stored in this table will be saved
 		difficulty = 0
 		file = -1
 		coins = 0
 		levelCoins = 0
-		maxCoins = 0 //Total coins in the level
+		maxCoins = 0 // Total coins in the level
 		redCoins = 0
 		maxRedCoins = 0
 		secrets = 0
@@ -24,17 +24,17 @@ createNewGameObject <- function () {
 		maxHealth = 12
 		energyBonus = 0
 		staminaBonus = 0
-		completed = {} //List of completed level names
-		unblocked = {} //List of unblocked obstacles on map
-		allCoins = {} //Levels that the player has gotten all enemies in
-		allEnemies = {} //Levels that the player has beaten all enemies in
-		allSecrets = {} //Levels the player has found all secrets in
-		bestTime = {} //Fastest time for a level
-		bestCoins = {} //Most coins found per level
-		bestEnemies = {} //Most enemies defeated per level
-		bestSecrets = {} //Most secrets found per level
-		bestStrokes = {} //For Neverball
-		igt = 0 //Global IGT, which increments throughout the game's runtime
+		completed = {} // List of completed level names
+		unblocked = {} // List of unblocked obstacles on map
+		allCoins = {} // Levels that the player has gotten all enemies in
+		allEnemies = {} // Levels that the player has beaten all enemies in
+		allSecrets = {} // Levels the player has found all secrets in
+		bestTime = {} // Fastest time for a level
+		bestCoins = {} // Most coins found per level
+		bestEnemies = {} // Most enemies defeated per level
+		bestSecrets = {} // Most secrets found per level
+		bestStrokes = {} // For Neverball
+		igt = 0 // Global IGT, which increments throughout the game's runtime
 		colorswitch = [
 			false,
 			false,
@@ -44,9 +44,9 @@ createNewGameObject <- function () {
 			false,
 			false,
 			false
-		] //Color blocks activated by respective switches
+		] // Color blocks activated by respective switches
 		turnOffBlocks = false,
-		characters = {} //List of unlocked characters
+		characters = {} // List of unlocked characters
 		secretOrbs = [
 			false,
 			false,
@@ -57,15 +57,15 @@ createNewGameObject <- function () {
 			false,
 			false
 		]
-		levelEvents = {} //Events that have occured in individual levels
-		friends = {} //List of rescued friend characters
-		playerChar = "Tux" //Current player character
+		levelEvents = {} // Events that have occured in individual levels
+		friends = {} // List of rescued friend characters
+		playerChar = "Tux" // Current player character
 		playerChar2 = ""
 		world = "res/map/overworld-0.json"
 		owx = 0
 		owy = 0
 		owd = 0
-		check = false //If a checkpoint has been activated
+		check = false // If a checkpoint has been activated
 		chx = 0
 		chy = 0
 		path = "res/map/"
@@ -269,10 +269,10 @@ gvCharacters <- {
 }
 
 game <- createNewGameObject()
-gvPlayer <- false //Pointer to player actor
-gvPlayer2 <- false //Pointer to second player
-gvNumPlayers <- 0 //Number of players at start of level
-gvBoss <- false //Pointer to boss actor
+gvPlayer <- false // Pointer to player actor
+gvPlayer2 <- false // Pointer to second player
+gvNumPlayers <- 0 // Number of players at start of level
+gvBoss <- false // Pointer to boss actor
 /*\
  # When characters are unlocked, they will
  # be added to game.characters. Mods can
@@ -350,8 +350,8 @@ config <- {
 	lookAhead = false
 	weather = true
 	splitlock = false
-	//Accessibility options
-	nearbars = false //Health/energy bars that follow the player
+	// Accessibility options
+	nearbars = false // Health/energy bars that follow the player
 	showkeys = false
 	completion = false
 	useBeam = false
@@ -363,7 +363,7 @@ config <- {
 
 contribDidRun <- {}
 
-//Screen related variables
+// Screen related variables
 gvScreen <- 0
 gvPlayScreen <- 0
 gvPlayScreen2 <- 0
@@ -375,19 +375,19 @@ gvScreen2W <- 0
 gvScreen2H <- 0
 gvScreenGhost <- 0
 
-//Debug variabls
+// Debug variabls
 gvFPS <- 0
 
-//Misc
+// Misc
 gvWeather <- 0
-gvIGT <- 0 //In-game time for the current level
+gvIGT <- 0 // In-game time for the current level
 gvDoIGT <- true
 gvWarning <- 360.0
 gvFadeTime <- 0
 gvExitTimer <- 0.0
 gvExitSide <- 0
 
-//Temporary items
+// Temporary items
 gvKeyCopper <- false
 gvKeySilver <- false
 gvKeyGold <- false

@@ -16,14 +16,14 @@ gvConOut <- ""
 drawDebug <- function() {
 	if(keyPress(k_f12)) {
 		debug = !debug
-		//if(debug) foreach(i in actor) print(typeof i)
+		// if(debug) foreach(i in actor) print(typeof i)
 	}
 	if(keyPress(k_f1)) devcom = !devcom
 
-	//If drawing is disabled, exit
+	// If drawing is disabled, exit
 	if(!debug) return
 
-	//Draw frames per second
+	// Draw frames per second
 	local fps = getFPS()
 	debugTickSum -= debugTickList[debugTickIndex]
 	debugTickSum += fps
@@ -32,7 +32,7 @@ drawDebug <- function() {
 	if(debugTickIndex == 64) debugTickIndex = 0
 	fps = debugTickSum / 64
 
-	//Set weapon
+	// Set weapon
 	if(keyPress(k_1)) {game.ps.weapon = "fire"}
 	if(keyPress(k_2)) {game.ps.weapon = "ice"}
 	if(keyPress(k_3)) {game.ps.weapon = "air"}
@@ -54,7 +54,7 @@ drawDebug <- function() {
 
 	if((keyDown(k_lctrl) || keyDown(k_rctrl)) && keyPress(k_e)) endGoal()
 
-	//Mouse debug
+	// Mouse debug
 	if(keyDown(k_lshift)) {
 		if(gvPlayer && mouseDown(0)) {
 			if(!gvSplitScreen) {
@@ -99,7 +99,7 @@ drawDebug <- function() {
 		}
 	}
 	else {
-		//Solid tiles editor
+		// Solid tiles editor
 		local dox = 0
 		local doy = 0
 

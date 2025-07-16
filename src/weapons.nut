@@ -2,8 +2,8 @@
 // NEW WEAPONS //
 /////////////////
 
-//All weapons will use the same return type
-//Different weapons will have different stats for enemies to react to
+// All weapons will use the same return type
+// Different weapons will have different stats for enemies to react to
 
 fireWeapon <- function(weapon, x, y, alignment, owner) {
 	local c = actor[newActor(weapon, x, y, [alignment, owner])]
@@ -19,8 +19,8 @@ WeaponEffect <- class extends PhysAct {
 	blast = false
 	piercing = 0
 	owner = 0
-	alignment = 0 //0 is neutral, 1 is player, 2 is enemy
-	box = false //If the attack comes from a box
+	alignment = 0 // 0 is neutral, 1 is player, 2 is enemy
+	box = false // If the attack comes from a box
 	didHit = false
 
 	constructor(_x, _y, _arr = null){
@@ -348,7 +348,7 @@ Fireball <- class extends WeaponEffect {
 	}
 
 	function physics() {
-		//Shrink hitbox
+		// Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
 		if(!placeFree(x, y))
@@ -1340,7 +1340,7 @@ Shockball <- class extends WeaponEffect {
 	}
 
 	function physics() {
-		//Shrink hitbox
+		// Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
 		if(!placeFree(x, y))
@@ -1357,7 +1357,7 @@ Shockball <- class extends WeaponEffect {
 		local target = null
 		local tdist = 128.0
 
-		//Find target
+		// Find target
 		foreach(i in actor) {
 			if(i instanceof Enemy && distance2(x, y, i.x, i.y) <= tdist && i.health > 0 && !("squish" in i && i.squish) && !hitTest(shape, i.shape) && !i.notarget) {
 				tdist = distance2(x, y, i.x, i.y)
@@ -1401,7 +1401,7 @@ Earthball <- class extends WeaponEffect {
 	}
 
 	function physics() {
-		//Shrink hitbox
+		// Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
 		if(!placeFree(x, y))
@@ -1685,7 +1685,7 @@ CrystalBullet <- class extends WeaponEffect {
 	}
 
 	function physics() {
-		//Shrink hitbox
+		// Shrink hitbox
 		timer--
 		if(timer == 0) {
 			deleteActor(id)
@@ -2061,7 +2061,7 @@ Airball <- class extends WeaponEffect {
 	}
 
 	function physics() {
-		//Shrink hitbox
+		// Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
 		if(!placeFree(x, y))
@@ -2409,7 +2409,7 @@ Waterball <- class extends WeaponEffect {
 	}
 
 	function physics() {
-		//Shrink hitbox
+		// Shrink hitbox
 		timer--
 		if(timer == 0) deleteActor(id)
 		if(!placeFree(x, y))

@@ -50,17 +50,17 @@ selectContrib <- function(){
 						}
 						desc = function() {
 							if(lastLevelsCounted["contribFolder"] == contribFolder) {
-								//Check if the same world as last frame is selected and if so, return saved data.
+								// Check if the same world as last frame is selected and if so, return saved data.
 								return "Progress: " + lastLevelsCounted["completed"] + "/" + lastLevelsCounted["total"] + " (" + lastLevelsCounted["percentage"] + "%)"
 							}
 
 							local levels = []
 							local completedLevelsCount = 0
 
-							//Get all levels
+							// Get all levels
 							local contribWorldmapData = jsonRead(fileRead("contrib/" + contribFolder + "/" + contribWorldmap))
 
-							//Get tileset for actors
+							// Get tileset for actors
 							local acttiles = null
 							foreach(tile in contribWorldmapData["tilesets"]) {
 								if(tile["name"] == "actor") {
@@ -81,7 +81,7 @@ selectContrib <- function(){
 								}
 							}
 
-							//Get completed levels count
+							// Get completed levels count
 							if(fileExists("save/" + contribFolder + ".json")) {
 								local contribWorldmapSaveData = jsonRead(fileRead("save/" + contribFolder + ".json"))
 								foreach(level, levelCompleted in contribWorldmapSaveData["completed"]) {
@@ -109,7 +109,7 @@ selectContrib <- function(){
 				}
 			)
 	}
-	else //Sort contrib levels
+	else // Sort contrib levels
 	meContribLevels.sort(function(a, b) {
 		if(a.name() > b.name()) return 1
 		if(a.name() < b.name()) return -1

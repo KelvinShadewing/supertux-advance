@@ -170,7 +170,7 @@ NPC <- class extends Actor {
 	}
 
 	function rescueFriend() {
-		//Find who to free based on sprite
+		// Find who to free based on sprite
 		if(sprite == sprXue) {
 			if(!game.friends.rawin("Xue")) game.friends.Xue <- true
 			text = textLineLen(formatInfo(gvLangObj["npc"]["xue-c"]), gvTextW)
@@ -313,7 +313,7 @@ gvStockRoutines <- {
 }
 
 gvNPCs <- {
-	//NPC definitions go here
+	// NPC definitions go here
 	Test = {
 		name = "Mr. Test"
 		an = {

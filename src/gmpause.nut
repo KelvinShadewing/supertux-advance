@@ -1,4 +1,4 @@
-gvPauseMode <- false //Is the player on the overworld instead of normal play
+gvPauseMode <- false // Is the player on the overworld instead of normal play
 gvConsoleReturn <- null
 
 gmPause <- function() {

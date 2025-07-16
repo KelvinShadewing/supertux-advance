@@ -1,13 +1,13 @@
 
-//asset stuffs
+// asset stuffs
 print("Loading Frostlands overhauled PT2")
 
-//Enemy
+// Enemy
 sprBlitz <- newSprite("contrib/frostlands/gfx/enemies/mrblitz.png", 16, 16, 8, 9)
 sprBlitz2 <- newSprite("contrib/frostlands/gfx/enemies/dumbblitz.png", 16, 16, 8, 9)
 sprbsod <- newSprite("contrib/frostlands/gfx/enemies/bsod-Sheet.png", 23, 19, 11, 11)
 
-//music
+// music
 
 musfreeze <- "contrib/frostlands/music/freezingpoint.ogg"
 musturn <- "contrib/frostlands/music/ji_turn.ogg"
@@ -17,7 +17,7 @@ musair <- "contrib/frostlands/music/fried-air.ogg"
 musSUW <- "contrib/frostlands/music/STK-subsea.ogg"
 musRS <- "contrib/frostlands/music/Rough-Start.ogg"
 
-//visual assets
+// visual assets
 bgSnowNever <- newSprite("contrib/frostlands/gfx/BG/Anever.png", 720, 240)
 bgGrassNever <- newSprite("contrib/frostlands/gfx/BG/Bnever.png", 1024, 240)
 bgRace <- newSprite("contrib/frostlands/gfx/BG/tuxracer.png", 520, 240)
@@ -25,7 +25,7 @@ bgRace2 <- newSprite("contrib/frostlands/gfx/BG/tuxracer2.png", 520, 240)
 bgError <- newSprite("contrib/frostlands/gfx/BG/glitch.png", 1140, 240)
 sprC1 <- newSprite("contrib/frostlands/gfx/effects/star1.png", 7, 7, 3, 3)
 bgRedmond <- newSprite("contrib/frostlands/gfx/BG/Retro.png", 720, 240)
-//snow
+// snow
 bgAuroraHill <- newSprite("contrib/frostlands/gfx/BG/hills-aurora1.png", 720, 240)
 bgAuroraHill1 <- newSprite("contrib/frostlands/gfx/BG/hills-aurora2.png", 720, 240)
 bgStarHill <- newSprite("contrib/frostlands/gfx/BG/night-hill.png", 720, 240)
@@ -36,13 +36,13 @@ bgSnowstars2 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars2.png", 720, 240)
 bgSnowstars3 <- newSprite("contrib/frostlands/gfx/BG/Snow-stars-moon.png", 720, 240)
 bgPlainHill <- newSprite("contrib/frostlands/gfx/BG/plain-hill.png", 720, 240)
 bgPlainill2 <- newSprite("contrib/frostlands/gfx/BG/plain-hill1.png", 720, 240)
-//forest
+// forest
 bgForestday <- newSprite("contrib/frostlands/gfx/BG/Forest-1.png", 720, 240)
 bgForesttree1<- newSprite("contrib/frostlands/gfx/BG/forest-2.png", 720, 240)
 bgForesttree2 <- newSprite("contrib/frostlands/gfx/BG/forest-3.png", 720, 240)
 bgOceanbg <- newSprite("contrib/frostlands/gfx/BG/ForestFsun.png", 720, 240)
 bgOceancloud <- newSprite("contrib/frostlands/gfx/BG/OceanCF.png", 720, 240)
-//tropic
+// tropic
 bgFtropic <- newSprite("contrib/frostlands/gfx/BG/TropicalF.png", 720, 240)
 bgFtropic2 <- newSprite("contrib/frostlands/gfx/BG/TropicalFsun.png", 720, 240)
 bgFtropic3 <- newSprite("contrib/frostlands/gfx/BG/TropicalF2.png", 720, 240)
@@ -56,7 +56,7 @@ bgFtropicNight <- newSprite("contrib/frostlands/gfx/BG/TropicalNF.png", 720, 240
 bgFtropicNight2 <- newSprite("contrib/frostlands/gfx/BG/TropicalNF2.png", 720, 240)
 bgNightcloud <- newSprite("contrib/frostlands/gfx/BG/OceanNF.png", 720, 240)
 
-//NPCS
+// NPCS
 sprTinyFireGuinb <- newSprite("contrib/frostlands/gfx/NPC/ash.png", 13, 23, 6, 23)
 sprRKO <- newSprite("contrib/frostlands/gfx/NPC/Rico.png", 18, 46, 9, 46)
 sprmark <- newSprite("contrib/frostlands/gfx/NPC/mark.png", 66, 51, 33, 51)
@@ -78,7 +78,7 @@ sprCone <- newSprite("contrib/frostlands/gfx/NPC/Cone.png", 37, 51, 16, 51)
 spribot <- newSprite("contrib/frostlands/gfx/NPC/itembot.png", 37, 51, 16, 51)
 sprfeesh <- newSprite("contrib/frostlands/gfx/NPC/lfish.png", 63, 44, 31, 44)
 
-//OG style
+// OG style
 sprFlowerFireOG <- newSprite("contrib/frostlands/gfx/obj/fl-fireflower.png", 16, 16, 8, 8)
 sprFlowerIceOG <- newSprite("contrib/frostlands/gfx/obj/fl-iceflower.png", 16, 16, 8, 8)
 sprEarthShellOG <- newSprite("contrib/frostlands/gfx/obj/fl-earthshell.png", 16, 16, 8, 8)
@@ -144,7 +144,7 @@ gfxOverrideFL <- function(never = false) {
 	}
 }
 
-//custom backgrounds
+// custom backgrounds
 
 dbgForestF <- function() {
 	gvLightBG = true
@@ -290,7 +290,7 @@ dbgtropicS <- function() {
 
 }
 
-//Objec lol 
+// Objec lol 
 
 Spakle <- class extends Actor{
 	constructor(_x, _y, _arr = null)
@@ -374,7 +374,7 @@ Towershop <- class extends Actor {
 }
 
 
-//enemies
+// enemies
 
 Blitz <- class extends Enemy {
 	frame = 0.0
@@ -449,13 +449,13 @@ Blitz <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -656,13 +656,13 @@ bsod <- class extends Enemy {
 				}
 
 				if(frozen) {
-					//Create ice block
+					// Create ice block
 					if(gvPlayer) if(icebox == -1 && !hitTest(shape, gvPlayer.shape)) {
 						if(health > 0) icebox = mapNewSolid(shape)
 					}
 				}
 				else {
-					//Delete ice block
+					// Delete ice block
 					if(icebox != -1) {
 						newActor(IceChunks, x, y)
 						mapDeleteSolid(icebox)
@@ -789,7 +789,7 @@ bsod <- class extends Enemy {
 }
 
 
-//hi kelvin lol
-//Hi, Frost. ;P
+// hi kelvin lol
+// Hi, Frost. ;P
 
 print("Loaded Frostlands")

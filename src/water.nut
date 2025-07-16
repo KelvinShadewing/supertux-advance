@@ -9,7 +9,7 @@ Water <- class extends Actor {
 		if(_arr != null && _arr != "")
 			substance = _arr
 
-		//Set substance color
+		// Set substance color
 		switch(substance) {
 			case "acid":
 				newColor = 0x28684860
@@ -55,9 +55,9 @@ Water <- class extends Actor {
 				break
 		}
 
-		//Update background color
+		// Update background color
 		if(currentColor != newColor) {
-				//Prevent floats
+				// Prevent floats
 				currentColor = currentColor.tointeger()
 				newColor = newColor.tointeger()
 
@@ -71,7 +71,7 @@ Water <- class extends Actor {
 				local tb = (newColor >> 8) & 0xFF
 				local ta = newColor & 0xFF
 
-				//Fade to color
+				// Fade to color
 				if(lr != tr) lr += (tr <=> lr) * 2
 				if(abs(lr - tr) < 2) lr = tr
 				if(lg != tg) lg += (tg <=> lg) * 2

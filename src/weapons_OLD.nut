@@ -260,7 +260,7 @@ FireballK <- class extends PhysAct {
 	function _typeof() { return "FireballK" }
 }
 
-//When a fireball spawns in a wall, they die before blocks can respond. This is to mitigate that.
+// When a fireball spawns in a wall, they die before blocks can respond. This is to mitigate that.
 AfterFlame <- class extends PhysAct {
 	timer = 4
 

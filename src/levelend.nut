@@ -1,4 +1,4 @@
-levelEndRunner <- 0 //Stores a reference to the currently-active LevelEnder
+levelEndRunner <- 0 // Stores a reference to the currently-active LevelEnder
 
 LevelEnder <- class extends Actor {
 	timer = 180
@@ -87,7 +87,7 @@ endGoal <- function(speed = 0, unblock = "") {
 		if(!game.bestTime.rawin(clearedLevel)) game.bestTime[clearedLevel] <- gvIGT
 		else if(game.bestTime[clearedLevel] > gvIGT) game.bestTime[clearedLevel] = gvIGT
 
-		//Best stats
+		// Best stats
 		if(!game.bestTime.rawin(clearedLevel + "-" + game.playerChar))
 			game.bestTime[clearedLevel + "-" + game.playerChar] <- gvIGT
 		else if(game.bestTime[clearedLevel + "-" + game.playerChar] > gvIGT)
@@ -123,7 +123,7 @@ endGoal <- function(speed = 0, unblock = "") {
 		levelEndRunner = newActor(LevelEnder, 0, 0)
 
 		if(ghostRecordNew.len() < ghostRecordOld.len() || ghostRecordOld.len() <= 1) {
-			if(gvNumPlayers == 1) { //Second method for storing two-player runs is in the works
+			if(gvNumPlayers == 1) { // Second method for storing two-player runs is in the works
 				local timeString = ""
 				for(local i = 0; i < ghostRecordNew.len(); i++)
 					timeString += ghostRecordNew[i][0] + "," + ghostRecordNew[i][1] + "\n"

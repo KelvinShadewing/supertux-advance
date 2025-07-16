@@ -30,7 +30,7 @@ Spawner <- class extends PhysAct {
 	}
 
 	function run() {
-		//Only be active on screen
+		// Only be active on screen
 		if(!isOnScreen()) return
 
 		if(infinite || !(myob in actor)) {

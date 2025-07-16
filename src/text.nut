@@ -2,7 +2,7 @@ textLineLen <-  function(_s, _l) {
 	_s = strip(_s)
 	if (_s.len() == 0) return
 
-	local newstr = "" //New string being made
+	local newstr = "" // New string being made
 	local curline = ""
 	local words = split(_s, " ")
 
@@ -33,7 +33,7 @@ drawTextLen <-  function(_f, _x, _y, _s, _l) {
 	_s = strip(_s)
 	if (_s.len() == 0) return
 
-	local newstr = "" //New string being made
+	local newstr = "" // New string being made
 	local curline = ""
 	local words = split(_s, " ")
 

@@ -57,7 +57,7 @@ BeamBug <- class extends Actor {
 		if(x < xprev)
 			flip = 1
 
-		//xav reduces stuttering
+		// xav reduces stuttering
 		xav = wavg(xav, x - xprev, 0.2)
 		turn = floor(min(fabs(xav) / 1.5, 3)) * 2
 
@@ -70,7 +70,7 @@ BeamBug <- class extends Actor {
 			return
 
 		for(local i = 31; i > 0; i--) {
-			//Create color
+			// Create color
 			local r = 255
 			local g = max(0, min(255, 128 + (255 - i * 15)))
 			local b = max(0, 255 - i * 15)

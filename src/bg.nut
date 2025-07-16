@@ -20,7 +20,7 @@ dbgNone <- function() {
 }
 
 dbgEcho <- function() {
-	//drawImage(gvScreen, 0, 0)
+	// drawImage(gvScreen, 0, 0)
 	drawImage(gvPlayScreen, camxprev - camx, camyprev - camy)
 	setDrawColor(0x20)
 	drawRec(0, 0, screenW(), screenH(), true)
@@ -361,7 +361,7 @@ dbgSwitchPalace <- function() {
 }
 
 dbgSunsetMountain <- function() {
-	//drawImage(gvScreen, 0, 0)
+	// drawImage(gvScreen, 0, 0)
 	for(local i = 0; i < 2; i++) {
 		drawImage(bgSunsetMountain, (i * 940) - (camx / 8.0), 0)
 	}
