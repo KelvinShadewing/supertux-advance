@@ -853,7 +853,7 @@ gmPlay <- function() {
 		if(game.ps2.health > game.maxHealth) game.ps2.health = game.maxHealth
 
 		// Draw stats
-		if(gvSplitScreen && gvScreenW >= 400) {
+		if(gvSplitScreen) {
 			local elementFrame = 0
 
 			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 8, game.maxHealth, gvBarStats.health1, 0xf83810ff)
@@ -927,10 +927,10 @@ gmPlay <- function() {
 			drawSprite(sprElement, elementFrame, 8 + (gvSwapScreen ? 0 : gvScreenW / 2), 16)
 		}
 		else {
-			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 8, game.maxHealth, gvBarStats.health1, 0xf83810ff)
-			drawMeter(8 + (gvSwapScreen ? gvScreenW / 2 : 0), 8, 6, game.ps.berries / 2.0, 0xf81038ff)
-			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 16, game.ps.maxEnergy * 2.0, gvBarStats.mana1 * 2.0, 0x1080b0ff)
-			drawMeter(24 + (gvSwapScreen ? gvScreenW / 2 : 0), 24, game.ps.maxStamina * 2.0, gvBarStats.stamina1 * 2.0, 0x70a048ff)
+			drawMeter(24, 8, game.maxHealth, gvBarStats.health1, 0xf83810ff)
+			drawMeter(8, 8, 6, game.ps.berries / 2.0, 0xf81038ff)
+			drawMeter(24, 16, game.ps.maxEnergy * 2.0, gvBarStats.mana1 * 2.0, 0x1080b0ff)
+			drawMeter(24, 24, game.ps.maxStamina * 2.0, gvBarStats.stamina1 * 2.0, 0x70a048ff)
 
 			local elementFrame = 0
 			switch(game.ps.weapon) {
@@ -966,10 +966,11 @@ gmPlay <- function() {
 
 			// Player 2 stats
 			if(gvNumPlayers > 1) {
-				drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, game.maxHealth, gvBarStats.health2, 0xf83810ff)
-				drawMeter(8 + (gvSwapScreen ? 0 : gvScreenW / 2), 8, 6, game.ps2.berries / 2.0, 0xf81038ff)
-				drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 16, game.ps.maxEnergy * 2.0, gvBarStats.mana2 * 2.0, 0x1080b0ff)
-				drawMeter(24 + (gvSwapScreen ? 0 : gvScreenW / 2), 24, game.ps.maxStamina * 2.0, gvBarStats.stamina2 * 2.0, 0x70a048ff)
+				local baryOffset = 28;
+				drawMeter(24, 8 + baryOffset, game.maxHealth, gvBarStats.health2, 0xf83810ff)
+				drawMeter(8, 8 + baryOffset, 6, game.ps2.berries / 2.0, 0xf81038ff)
+				drawMeter(24, 16 + baryOffset, game.ps.maxEnergy * 2.0, gvBarStats.mana2 * 2.0, 0x1080b0ff)
+				drawMeter(24, 24 + baryOffset, game.ps.maxStamina * 2.0, gvBarStats.stamina2 * 2.0, 0x70a048ff)
 
 				local elementFrame = 0
 				switch(game.ps2.weapon) {
@@ -1044,7 +1045,7 @@ gmPlay <- function() {
 		if(game.maxRedCoins > 0) drawSprite(sprHerring, 0, 16, gvScreenH - (config.completion ? 64 : 32))
 		if(game.maxRedCoins > 0) drawText(font2, 24, gvScreenH - (config.completion ? 72 : 38), game.redCoins.tostring() + "/" + game.maxRedCoins.tostring())
 		// Draw subitem
-		if(gvSplitScreen && gvScreenW >= 400) {
+		if(gvSplitScreen) {
 			drawSprite(sprSubItem, 0, gvScreenW - 18 - (gvSwapScreen ? 0 : gvScreenW / 2), 18)
 			drawSprite(sprSubItem, 1, gvScreenW - 18 - (gvSwapScreen ? gvScreenW / 2 : 0), 18)
 
