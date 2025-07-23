@@ -22,6 +22,7 @@ gvCamTarget <- false
 gvCamTarget2 <- false
 gvSplitScreen <- false
 gvSwapScreen <- false
+gvSuspendSplitLock <- false
 
 updateCamera <- function() {
 	if(typeof gvMap != "Tilemap")
@@ -58,7 +59,7 @@ updateCamera <- function() {
 	if(!gvPlayer || !gvPlayer2 || gvNetPlay || gvBoss)
 		gvSplitScreen = false
 
-	if(config.splitlock) {
+	if(config.splitlock && !gvSuspendSplitLock) {
 		if(gvPlayer && gvPlayer2) {
 			gvSplitScreen = true
 			gvSwapScreen = false
@@ -66,6 +67,7 @@ updateCamera <- function() {
 		else
 			gvSplitScreen = false
 	}
+	gvSuspendSplitLock = false
 
 	if(gvPlayer) {
 		if(config.stickcam && config.stickactive) {

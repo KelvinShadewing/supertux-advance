@@ -1024,7 +1024,7 @@ gmPlay <- function() {
 		// Draw coins & herrings
 		drawSprite(sprCoin, 0, 16, gvScreenH - 16)
 		if(game.maxCoins > 0) {
-			if(gvTimeAttack && !config.completion) {
+			if(!config.completion) {
 				if(levelEndRunner)
 					drawText(font2, 24, gvScreenH - 23, game.coins.tostring())
 				else

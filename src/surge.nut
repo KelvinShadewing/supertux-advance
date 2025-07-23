@@ -903,23 +903,27 @@ Surge <- class extends Player {
 				if(getcon("up", "hold", true, playerNum)) if(placeFree(x, y - 2)) {
 					frame -= climbdir / 8
 					y -= 2
+					y = round(y)
 				}
 
 				if(getcon("down", "hold", true, playerNum)) if(placeFree(x, y + 2)) {
 					frame += climbdir / 8
 					y += 2
+					y = round(y)
 				}
 
 				if(getcon("left", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x - 2, y)) {
 					if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
 							frame -= climbdir / 8
 					x -= 1
+					x = round(x)
 				}
 
 				if(getcon("right", "hold", true, playerNum) && atCrossLadder()) if(placeFree(x + 2, y)) {
 					if(!getcon("up", "hold", true, playerNum) && !getcon("down", "hold", true, playerNum))
 							frame += climbdir / 8
 					x += 1
+					x = round(x)
 				}
 
 				// Check if still on ladder
@@ -932,6 +936,7 @@ Surge <- class extends Player {
 				}
 				else if(!atCrossLadder()) {
 					x -= (x % 16 <=> 8)
+					x = round(x)
 				}
 
 				// Change direction
