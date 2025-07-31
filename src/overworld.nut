@@ -575,6 +575,9 @@ startOverworld <- function(world) {
 }
 
 gmOverworld <- function() {
+	// Set number of players
+	gvNumPlayers = game.playerChar2 == "" ? 1 : 2
+
 	setDrawTarget(gvScreen)
 
 	drawBG()

@@ -848,7 +848,7 @@ bgDeepForest0 <- loadImage("res/gfx/deep-forest-0.png")
 bgDeepForest1 <- loadImage("res/gfx/deep-forest-1.png")
 bgDeepForest2 <- loadImage("res/gfx/deep-forest-2.png")
 bgSunsetMountain <- loadImage("res/gfx/sunset-mountain.png")
-bgDesert <- newSprite("res/gfx/desertbg.png", 480, 1)
+bgDesert <- newSprite("res/gfx/desertbg.png", 350, 1)
 bgStadium <- newSprite("res/gfx/bg_stadium.png", 320, 280, 0, 280)
 bgHive <- newSprite("res/gfx/bg-beehive.png", 258, 172)
 

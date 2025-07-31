@@ -6330,8 +6330,10 @@ WaspyBoi <- class extends Enemy {
 	flip = 0
 	touchDamage = 2.0
 	health = 2
-	pursuitRange = 128
+	pursuitRange = 100
 	element = "air"
+	targetd = 0
+	mode = "wander"
 
 	damageMult = {
 		normal = 1.0
@@ -6367,43 +6369,93 @@ WaspyBoi <- class extends Enemy {
 			if(!placeFree(x + (hspeed * 2), y)) hspeed = -hspeed
 			if(!placeFree(x, y + (vspeed * 2))) vspeed = -vspeed
 
-			timer--
-			if(timer <= 0) {
-				timer = 240
-				vspeed = -0.5 + randFloat(1)
-				if(hspeed == 0) hspeed = 1
-				else hspeed *= 1 / fabs(hspeed)
-			}
 			if(inWater(x, y)) vspeed -= 0.1
 			vspeed *= 0.99
 
 			if(y < 0)
 				vspeed += 0.5
 
+			if(!frozen) {
+				if(placeFree(x + hspeed, y)) x += hspeed
+				if(placeFree(x, y + vspeed)) y += vspeed
+				flip = (hspeed < 0).tointeger()
+			}
+
 			local target = findPlayer()
 
-			if(target != null &&inDistance2(x, y, target.x, target.y, pursuitRange) && !inWater(x, y)) {
-				timer = 240
+			switch(mode) {
+				case "wander":
+					timer--
+					if(timer <= 0) {
+						timer = 240
+						vspeed = -1.0 + randFloat(2)
+						if(hspeed == 0) hspeed = 1.0
+						else hspeed *= 1.0 / fabs(hspeed)
+					}
 
-				// Chase player
-				if(x < target.x && hspeed < 2) hspeed += 0.05
-				if(x > target.x && hspeed > -2) hspeed -= 0.05
+					if(target && inDistance2(x, y, target.x, target.y, pursuitRange)) {
+						mode = "revup"
+						timer = 60
+					}
+					else {
+						if(placeFree(x + hspeed, y)) x += hspeed
+						if(placeFree(x, y + vspeed)) y += vspeed
+					}
 
-				if(y < target.y && vspeed < 2) vspeed += 0.05
-				if(y > target.y && vspeed > -2) vspeed -= 0.05
+					if(abs(hspeed) > 1.0)
+						hspeed -= (hspeed <=> 0) * 0.2
 
-				if(!inDistance2(x, y, target.x, target.y, 64)) {
-					if(x < target.x && hspeed < 2) hspeed += 0.05
-					if(x > target.x && hspeed > -2) hspeed -= 0.05
+					if(abs(vspeed) > 1.0)
+						vspeed -= (vspeed <=> 0) * 0.2
+					break
 
-					if(y < target.y && vspeed < 2) vspeed += 0.05
-					if(y > target.y && vspeed > -2) vspeed -= 0.05
-				}
+				case "revup":
+					hspeed *= 0.95
+					vspeed *= 0.95
+					timer--
+					if(timer <= 0 && target) {
+						timer = 60
+						mode = "pursue"
+						targetd = pointAngle(x, y, target.x, target.y)
+					}
+					if(target) {
+						flip = int(x > target.x)
+					}
+					if(timer % 10 == 0) {
+						local c = newActor(PoofTiny, x + (flip == 0 ? 8 : -8), y - 8)
+						actor[c].hspeed = 0.5 - randFloat(1.0)
+						actor[c].vspeed = -0.5
+					}
+					break
 
-				pursuitRange = 256
+				case "pursue":
+					if(inDistance2(0, 0, hspeed, vspeed, 4)) {
+						hspeed += lendirX(0.2, targetd)
+						vspeed += lendirY(0.2, targetd)
+					}
+
+					timer--
+					if(timer <= 0 || !placeFree(x + hspeed, y + vspeed)) {
+						timer = 60
+						mode = "wander"
+					}
+
+					if(getFrames() % 2 == 0) {
+						newActor(AfterImage, x, y, [
+							sprWaspyBoi,
+							getFrames() / 4,
+							0,
+							flip,
+							0,
+							1,
+							1,
+						])
+					}
+					break
+
+				default:
+					mode = "wander"
 			}
-			else
-				pursuitRange = 128
 
 			if(y > gvMap.h) {
 				if(vspeed > 0) vspeed = 0
@@ -6412,12 +6464,6 @@ WaspyBoi <- class extends Enemy {
 
 			if(x > gvMap.w) hspeed = -1.0
 			if(x < 0) hspeed = 1.0
-
-			if(!frozen) {
-				if(placeFree(x + hspeed, y)) x += hspeed
-				if(placeFree(x, y + vspeed)) y += vspeed
-				flip = (hspeed < 0).tointeger()
-			}
 
 			if(inWater(x, y + 16) && vspeed > -4)
 				vspeed -= 0.2
@@ -6885,8 +6931,10 @@ Snippin <- class extends Enemy {
 	}
 
 	function physics() {
-		if(rolling || (placeFree(x + 2, y) && placeFree(x - 2, y) && placeFree(x, y + 2) && placeFree(x, y - 2)))
+		if(rolling || (placeFree(x + 2, y) && placeFree(x - 2, y) && placeFree(x, y + 2) && placeFree(x, y - 2))) {
 			gravity = 0.2
+			direction = (flip == 0 ? 0 : 180)
+		}
 		else
 			gravity = 0.0
 		
@@ -6967,28 +7015,34 @@ Snippin <- class extends Enemy {
 				if(!placeFree(x + 2, y - 2)) {
 					direction = -90
 					flip = 0
+					y--
 				}
 				if(!placeFree(x - 2, y - 2)) {
 					direction = -90
 					flip = 2
+					y--
 				}
 			}
 			else if((direction == 90 || direction == 270 || direction == -90) && placeFree(x + 2, y) && placeFree(x - 2, y)) { // Vertical
 				if(!placeFree(x + 2, y + 2)) {
 					direction = 0
 					flip = 0
+					x++
 				}
 				if(!placeFree(x - 2, y + 2)) {
 					direction = 180
 					flip = 2
+					x--
 				}
 				if(!placeFree(x + 2, y - 2)) {
 					direction = 0
 					flip = 2
+					x++
 				}
 				if(!placeFree(x - 2, y - 2)) {
 					direction = 180
 					flip = 0
+					x--
 				}
 			}
 

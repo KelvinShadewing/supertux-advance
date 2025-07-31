@@ -370,7 +370,7 @@ dbgSunsetMountain <- function() {
 dbgDesert <- function() {
 	for(local i = 0; i < 2; i++) {
 		for(local j = 0; j < 240; j++)
-			drawSprite(bgDesert, j, (i * 480) - 8 - (camx / 8 % 480) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5), j)
+			drawSprite(bgDesert, j, (i * 350) - 8 - (camx / 8 % 350) + (sin((j + getFrames() / 4.0) / 8.0) + 0.5), j)
 	}
 }
 

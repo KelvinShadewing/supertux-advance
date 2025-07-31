@@ -236,7 +236,7 @@ menu = meMain
 game.playerChar = "Tux"
 
 // Testing
-// game.playerChar = "Neverball"
+// game.playerChar = "Midi"
 // gotoTest()
 
 // Load contrib initializers
