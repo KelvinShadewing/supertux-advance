@@ -359,6 +359,7 @@ config <- {
 	useOutlines = false
 	showTF = true
 	aspect = 0
+	mapspeed = 2
 }
 
 contribDidRun <- {}

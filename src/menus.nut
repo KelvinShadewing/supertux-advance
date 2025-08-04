@@ -809,9 +809,36 @@ meInput <- [
 		func = function() { config.stickcam = !config.stickcam; fileWrite("config.json", jsonWrite(config)) }
 	},
 	{
+		name = function() {
+			return format(gvLangObj["options-menu"]["mapspeed"], gvLangObj["controls-menu"]["mapspeed"][config.mapspeed.tostring()])
+		},
+		desc = function() { return gvLangObj["options-menu-desc"]["mapspeed"] },
+		func = function() { menu = meMapSpeed }
+	}
+	{
 		name = function() { return gvLangObj["menu-commons"]["back"] },
 		func = function() { menu = meOptions }
 		back = function() { menu = meOptions }
+	}
+]
+
+meMapSpeed <- [
+	{
+		name = function() { return gvLangObj["controls-menu"]["mapspeed"]["1"] },
+		func = function() { config.mapspeed = 1; fileWrite("config.json", jsonWrite(config)); menu = meInput }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["mapspeed"]["2"] },
+		func = function() { config.mapspeed = 2; fileWrite("config.json", jsonWrite(config)); menu = meInput }
+	},
+	{
+		name = function() { return gvLangObj["controls-menu"]["mapspeed"]["4"] },
+		func = function() { config.mapspeed = 4; fileWrite("config.json", jsonWrite(config)); menu = meInput }
+	},
+	{
+		name = function() { return gvLangObj["menu-commons"]["back"] },
+		func = function() { menu = meInput }
+		back = function() { menu = meInput }
 	}
 ]
 

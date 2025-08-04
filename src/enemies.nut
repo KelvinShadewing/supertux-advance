@@ -765,6 +765,7 @@ OrangeBounce <- class extends Enemy {
 			if(target && hspeed == 0) {
 				if(x > target.x) hspeed = -0.5
 				else hspeed = 0.5
+				hspeed *= (1.0 + (game.difficulty))
 			}
 
 			if(!placeFree(x, y + 1))
@@ -6330,7 +6331,7 @@ WaspyBoi <- class extends Enemy {
 	flip = 0
 	touchDamage = 2.0
 	health = 2
-	pursuitRange = 100
+	pursuitRange = 128
 	element = "air"
 	targetd = 0
 	mode = "wander"
@@ -6429,15 +6430,20 @@ WaspyBoi <- class extends Enemy {
 					break
 
 				case "pursue":
-					if(inDistance2(0, 0, hspeed, vspeed, 4)) {
+					if(inDistance2(0, 0, hspeed, vspeed, 6)) {
 						hspeed += lendirX(0.2, targetd)
 						vspeed += lendirY(0.2, targetd)
 					}
 
 					timer--
 					if(timer <= 0 || !placeFree(x + hspeed, y + vspeed)) {
-						timer = 60
+						timer = 240
 						mode = "wander"
+						if(target) {
+							targetd = pointAngle(x, y, target.x, target.y)
+							hspeed = lendirX(1, targetd)
+							vspeed = lendirY(1, targetd)
+						}
 					}
 
 					if(getFrames() % 2 == 0) {

@@ -160,21 +160,21 @@ OverPlayer <- class extends PhysAct {
 				switch(nextdir) {
 					case 0:
 						vspeed = 0
-						hspeed = 2
+						hspeed = config.mapspeed
 						game.owd = 2
 						break
 					case 1:
-						vspeed = -2
+						vspeed = -config.mapspeed
 						hspeed = 0
 						game.owd = 3
 						break
 					case 2:
 						vspeed = 0
-						hspeed = -2
+						hspeed = -config.mapspeed
 						game.owd = 0
 						break
 					case 3:
-						vspeed = 2
+						vspeed = config.mapspeed
 						hspeed = 0
 						game.owd = 1
 						break
@@ -188,32 +188,32 @@ OverPlayer <- class extends PhysAct {
 
 			// Move right
 			if(canmove && getcon("right", "hold") && !getcon("left", "hold") && (!placeFree(x + 16, y) || debug) && hspeed <= 0 && vspeed == 0) {
-				if(level == "" || game.owd == 0 || game.completed.rawin(level) || noclear) {
-					hspeed = 2
+				if(level == "" || game.owd == 0 || game.completed.rawin(level) || noclear || debug) {
+					hspeed = config.mapspeed
 					game.owd = 2
 				}
 			}
 
 			// Move up
 			if(canmove && getcon("up", "hold") && !getcon("down", "hold") && (!placeFree(x, y - 16) || debug) && hspeed == 0 && vspeed >= 0) {
-				if(level == "" || game.owd == 1 || game.completed.rawin(level) || noclear) {
-					vspeed = -2
+				if(level == "" || game.owd == 1 || game.completed.rawin(level) || noclear || debug) {
+					vspeed = -config.mapspeed
 					game.owd = 3
 				}
 			}
 
 			// Move left
 			if(canmove && getcon("left", "hold") && !getcon("right", "hold") && (!placeFree(x - 16, y) || debug) && hspeed >= 0 && vspeed == 0) {
-				if(level == "" || game.owd == 2 || game.completed.rawin(level) || noclear) {
-					hspeed = -2
+				if(level == "" || game.owd == 2 || game.completed.rawin(level) || noclear || debug) {
+					hspeed = -config.mapspeed
 					game.owd = 0
 				}
 			}
 
 			// Move down
 			if(canmove && getcon("down", "hold") && !getcon("up", "hold") && (!placeFree(x, y + 16) || debug) && hspeed == 0 && vspeed <= 0) {
-				if(level == "" || game.owd == 3 || game.completed.rawin(level) || noclear) {
-					vspeed = 2
+				if(level == "" || game.owd == 3 || game.completed.rawin(level) || noclear || debug) {
+					vspeed = config.mapspeed
 					game.owd = 1
 				}
 			}

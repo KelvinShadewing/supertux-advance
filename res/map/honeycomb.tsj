@@ -5,7 +5,7 @@
  "margin":0,
  "name":"honeycomb",
  "spacing":0,
- "tilecount":840,
+ "tilecount":580,
  "tiledversion":"1.11.0",
  "tileheight":16,
  "tiles":[
@@ -23,7 +23,7 @@
         }, 
         {
          "id":251,
-         "probability":0.100000001490116
+         "probability":0.00999999977648258
         }, 
         {
          "id":331,
@@ -86,16 +86,295 @@
          "probability":0.100000001490116
         }, 
         {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }],
+         "id":416
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }],
          "id":417,
          "probability":0.100000001490116
         }, 
         {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }],
          "id":418,
          "probability":0.100000001490116
         }, 
         {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }],
          "id":419,
          "probability":0.100000001490116
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }],
+         "id":436
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }],
+         "id":437
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":438
+                }, 
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }],
+         "id":438
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":439
+                }, 
+                {
+                 "duration":100,
+                 "tileid":416
+                }, 
+                {
+                 "duration":100,
+                 "tileid":417
+                }, 
+                {
+                 "duration":100,
+                 "tileid":418
+                }, 
+                {
+                 "duration":100,
+                 "tileid":419
+                }, 
+                {
+                 "duration":100,
+                 "tileid":436
+                }, 
+                {
+                 "duration":100,
+                 "tileid":437
+                }, 
+                {
+                 "duration":100,
+                 "tileid":438
+                }],
+         "id":439
         }],
  "tilewidth":16,
  "type":"tileset",

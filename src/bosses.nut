@@ -379,9 +379,11 @@ Yeti <- class extends Boss {
 		eventTimer--
 
 		if(anim == anThrow && frame >= anim[0] + 1 && !hasThrown) {
-			local c = actor[newActor(OrangeBounce, x, y - 16)]
+			local c = actor[newActor(health >= 10 * (game.difficulty) ? OrangeBounce : Wheeler, x, y - 16)]
 			if(flip == 0) c.hspeed = 2.0
 			else c.hspeed = -2.0
+			if(health >= 10 * game.difficulty)
+				c.vspeed = -2.0
 			hasThrown = true
 		}
 

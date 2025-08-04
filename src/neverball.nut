@@ -54,6 +54,7 @@ Neverball <- class extends Player {
 		yprev = y
 		damageMult = damageMultN
 		sprite = sprNeverball
+		stats.berries = 12
 	}
 
 	function physics() {
@@ -206,8 +207,11 @@ Neverball <- class extends Player {
 			hspeed = 0
 
 		// Allow aiming
-		if(hspeed == 0 && vspeed == 0)
+		if(hspeed == 0 && vspeed == 0) {
 			stillTime--
+			if(stillTime == 0 && !endMode)
+				stats.health--
+		}
 		else
 			stillTime = 60
 	}
@@ -341,7 +345,15 @@ Neverball <- class extends Player {
 
 	function die(skipres = false) {
 		if(resTime > 0) return
-		stats.health = game.maxHealth
+		stats.health--
+		if(stats.health <= 0) {
+			deleteActor(id)
+			if(playerNum == 1) gvPlayer = false
+			if(playerNum == 2) gvPlayer2 = false
+			newActor(DeadPlayer, x, y, [sprite, an["ball"], playerNum])
+			return
+		}
+
 		blinking = 120
 		hspeed = 0.0
 		vspeed = 0.0
