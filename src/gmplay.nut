@@ -144,11 +144,14 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		foreach(key, i in gvCharacters)
 			cl.push(key)
 
-		game.playerChar = cl[randInt(cl.len())]
+		do{
+			game.playerChar = cl[randInt(cl.len())]
+		} while (game.playerChar == "Neverball")
+
 		if(game.playerChar2 != "") {
 			do {
 				game.playerChar2 = cl[randInt(cl.len())]
-			} while (game.playerChar == game.playerChar2)
+			} while (game.playerChar == game.playerChar2 || game.playerChar == "Neverball")
 		}
 	}
 

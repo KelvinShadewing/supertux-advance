@@ -968,7 +968,7 @@ Surge <- class extends Player {
 					if(anim == "stand" || anim == "walk")
 						anim = "jumpT"
 				}
-				else if(canJump > 0 || nowInWater && stats.weapon != "water") {
+				else if(canJump > 0 && placeFree(x, y - 8) || nowInWater && stats.weapon != "water") {
 					jumpBuffer = 0
 					if(anim == "climb" || nowInWater && stats.weapon != "water") {
 						vspeed = -3

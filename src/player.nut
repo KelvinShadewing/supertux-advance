@@ -219,14 +219,6 @@ Player <- class extends PhysAct {
 						x -= xrange
 						break
 					}
-					if(placeFree(x, y - xrange)) {
-						y -= xrange
-						break
-					}
-					if(placeFree(x, y + xrange)) {
-						y += xrange
-						break
-					}
 				}
 			}
 		}
@@ -247,6 +239,14 @@ Player <- class extends PhysAct {
 				}
 				if(placeFree(x - xrange, y)) {
 					x -= xrange
+					break
+				}
+				if(placeFree(x, y - xrange)) {
+					y -= xrange
+					break
+				}
+				if(placeFree(x, y + xrange)) {
+					y += xrange
 					break
 				}
 			}

@@ -1283,6 +1283,7 @@ BlueFish <- class extends Enemy {
 	biting = false
 	flip = 0
 	touchDamage = 2.0
+	element = "water"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1380,6 +1381,7 @@ RedFish <- class extends Enemy {
 	biting = false
 	flip = 0
 	touchDamage = 2.0
+	element = "water"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1505,6 +1507,22 @@ JellyFish <- class extends Enemy {
 	flipv = 0
 	touchDamage = 2.0
 	element = "shock"
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 0.0
+		water = 2.0
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -1716,6 +1734,7 @@ GreenFish <- class extends Enemy {
 	flip = 0
 	canjump = false
 	touchDamage = 2.0
+	element = "water"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -5479,6 +5498,23 @@ Puffranah <- class extends Enemy {
 	searchRadius = 160
 	catchRadius = 56
 	cooldown = 60
+	element = "water"
+	damageMult = {
+		normal = 1.0
+		fire = 1.0
+		ice = 1.0
+		earth = 1.0
+		air = 1.0
+		toxic = 1.0
+		shock = 2.0
+		water = 0.5
+		light = 1.0
+		dark = 1.0
+		cut = 1.0
+		blast = 1.0
+		stomp = 1.0
+		star = 10.0
+	}
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
