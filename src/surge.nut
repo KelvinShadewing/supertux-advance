@@ -960,7 +960,7 @@ Surge <- class extends Player {
 			if(jumpBuffer > 0) jumpBuffer--
 
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
+				if(onPlatform() && !placeFree(x, y, shapeStand) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
 					if(!placeFree(x, y) && !placeFree(x, y - 1))

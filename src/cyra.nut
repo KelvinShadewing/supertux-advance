@@ -753,7 +753,7 @@ Cyra <- class extends Player {
 						if(!placeFree(x, y) && !placeFree(x, y - 1))
 							y--
 					}
-					else if(canJump > 0) {
+					else if(canJump > 0 && placeFree(x, y, shapeStand)) {
 						jumpBuffer = 0
 						if(anim == "climb") vspeed = -5
 						else if(stats.weapon == "air" || nowInWater) vspeed = -5.0

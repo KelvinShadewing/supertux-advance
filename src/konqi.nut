@@ -637,13 +637,13 @@ Konqi <- class extends Player {
 
 				// Jumping
 				if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && anim != "statue" && vspeed >= 0) {
+					if(onPlatform() && !placeFree(x, y, shapeStand) && getcon("down", "hold", true, playerNum) && anim != "statue" && vspeed >= 0) {
 						y++
 						canJump = 32
 						if(!placeFree(x, y) && !placeFree(x, y - 1))
 							y--
 					}
-					else if(canJump > 0) {
+					else if(canJump > 0 && placeFree(x, y, shapeStand)) {
 						jumpBuffer = 0
 						if(anim == "climb") {
 							vspeed = -5

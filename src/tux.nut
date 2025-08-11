@@ -629,7 +629,7 @@ Tux <- class extends Player {
 						if(!placeFree(x, y) && !placeFree(x, y - 1))
 							y--
 					}
-					else if(canJump > 0 && placeFree(x, y - 2) && (anim != "crawl" && anim != "slide")) {
+					else if(canJump > 0 && (anim != "crawl" && anim != "slide" || placeFree(x, y, shapeStand))) {
 						jumpBuffer = 0
 						if(anim == "climb") {
 							vspeed = -5

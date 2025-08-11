@@ -1198,7 +1198,7 @@ Midi <- class extends Player {
 
 					jumpBuffer = 0
 				}
-				else if(canJump > 0 && (placeFree(x, y - 8) || anim != "crawl") || anim == "ledge" || anim == "monkey") {
+				else if(canJump > 0 && (placeFree(x, y, shapeStand) || anim != "crawl") || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0
 					if(!getcon("down", "hold", true, playerNum) || !freeDown2) {
 						if(anim == "climb") {
