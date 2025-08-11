@@ -138,7 +138,13 @@ loadGame <- function(f) {
 
 selectLoadGame <- function() {
 	local hasSaveFiles = false
-	meLoadGame = []
+	meLoadGame = {
+		size = menuLarge
+		back = function() {
+			menu = meMain
+		}
+		items = []
+	}
 	local dir = lsdir("save")
 	dir.sort()
 
@@ -150,11 +156,11 @@ selectLoadGame <- function() {
 		local o = {}
 		o.name <- function() { return "File " + f }
 		o.func <- function() { loadGame(f) }
-		meLoadGame.push(o)
+		meLoadGame.items.push(o)
 	}
 
 	if(!hasSaveFiles) {
-		meLoadGame.push(
+		meLoadGame.items.push(
 			{
 				name = function() { return gvLangObj["load-game-menu"]["empty"] }
 				disabled = true
@@ -162,7 +168,7 @@ selectLoadGame <- function() {
 		)
 	}
 
-	meLoadGame.push({
+	meLoadGame.items.push({
 		name = function() { return gvLangObj["menu-commons"]["cancel"] }
 		func = function() { cursor = 1; menu = meMain }
 		back = function() { cursor = 1; menu = meMain }

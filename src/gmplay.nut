@@ -42,7 +42,6 @@ drawMeter <- function (x, y, m, v, c) {
 mapActor <- {} // Stores references to all actors created by the map
 
 startPlay <- function(level, newLevel = true, skipIntro = false) {
-	menuLeft = false
 	if(!fileExists(level)) return
 
 	// Clear actors and start creating new ones

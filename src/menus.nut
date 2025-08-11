@@ -161,8 +161,8 @@ textMenu <- function(){
 
 	if(getcon("pause", "press", false, 0, false)) {
 		for(local i = 0; i < menu.items.len(); i++) {
-				if(menu.items[i].rawin("back")) {
-					menu.items[i]["back"]()
+				if(menu.rawin("back")) {
+					menu.back()
 					break
 				}
 		}
@@ -436,9 +436,10 @@ meBattleMode <- {
 		{
 			name = function() {
 				return gvLangObj["battle-menu"]["start-battle"]
+				disabled = (game.playerChar2 == "")
 			}
 			func = function() {
-				if(game.playerChar2 != 0) {
+				if(game.playerChar2 != "") {
 					gvBattleMode = true
 					gvTARandomItem = false
 					gvTARandomLevel = false
@@ -447,9 +448,10 @@ meBattleMode <- {
 				}
 			}
 			desc = function() {
-				if(game.playerChar2 == 0)
+				if(game.playerChar2 == "")
 					return gvLangObj["battle-menu"]["warning"]
 			}
+			disabled = false
 		},
 		{
 			name = function() {
@@ -716,6 +718,7 @@ mePauseTimeAttack <- {
 }
 
 mePauseOver <- {
+	size = menuLarge
 	items = [
 		{
 			name = function() {
@@ -786,7 +789,7 @@ meOptions <- {
 			else if(gvTimeAttack) menu = mePauseTimeAttack
 			else menu = mePausePlay
 		}
-		else menu = meMain;
+		else menu = meMain
 		fileWrite("config.json", jsonWrite(config))
 	}
 	items = [
@@ -1994,5 +1997,5 @@ meOverwrite <- {
 	]
 }
 
-meLoadGame <- []
+meLoadGame <- {}
 // This menu is left empty intentionally; it will be created dynamically at runtime.

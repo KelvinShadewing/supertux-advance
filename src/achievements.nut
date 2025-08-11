@@ -1,4 +1,10 @@
-meAchievements <- []
+meAchievements <- {
+	size = menuLarge
+	back = function() {
+		menu = meExtras
+	}
+	items = []
+}
 
 gvAchievements <- {
 	saveKonqi = function() {
@@ -106,11 +112,17 @@ fulfillAchievement <- function(key = null) {
 }
 
 selectAchievements <- function() {
-	meAchievements = []
+	meAchievements = {
+		size = menuLarge
+		back = function() {
+			menu = meExtras
+		}
+		items = []
+	}
 
 	foreach(key, i in gvAchievements) {
 		local newKey = key
-		if(gvLangObj["achi-name"].rawin(newKey)) meAchievements.push({
+		if(gvLangObj["achi-name"].rawin(newKey)) meAchievements.items.push({
 			name = function() {
 				if(gvUnlockedAchievements.rawin(newKey)) return gvLangObj["achi-name"][newKey]
 				else return "????"
@@ -124,13 +136,13 @@ selectAchievements <- function() {
 		})
 	}
 
-	meAchievements.sort(function(a, b) {
+	meAchievements.items.sort(function(a, b) {
 		if(a.name() > b.name() || a.name()[0] == '?') return 1
 		if(a.name() < b.name()) return -1
 		return 0
 	})
 
-	meAchievements.push({
+	meAchievements.items.push({
 			name = function() { return gvLangObj["menu-commons"]["back"] }
 			func = function() { menu = meExtras }
 			back = function() { menu = meExtras }
