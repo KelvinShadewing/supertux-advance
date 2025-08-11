@@ -1,16 +1,20 @@
-meContribLevels <- [
-
-]
+meContribLevels <- {}
 lastLevelsCounted <- {"contribFolder":null, "completed":null, "total":null, "percentage":null}
 
 selectContrib <- function(){
-	meContribLevels = []
+	meContribLevels = {
+		size = menuSmall
+		back = function() {
+			menu = meMain
+		}
+		items = []
+	}
 	if(fileExists("contrib")){
 		local contrib = lsdir("contrib")
 		foreach(item in contrib){
 			if(item != "." && item != ".." && isdir("contrib/"+item) && fileExists("contrib/"+item+"/info.json")){
 				local data = jsonRead(fileRead("contrib/"+item+"/info.json"))
-				meContribLevels.push(
+				meContribLevels.items.push(
 					{
 						contribFolder = item
 						contribName = data["name"]
@@ -101,8 +105,8 @@ selectContrib <- function(){
 		}
 	}
 
-	if(meContribLevels.len() == 0){
-		meContribLevels.push(
+	if(meContribLevels.items.len() == 0){
+		meContribLevels.items.push(
 				{
 					name = function() { return gvLangObj["contrib-menu"]["empty"] }
 					disabled = true
@@ -110,13 +114,13 @@ selectContrib <- function(){
 			)
 	}
 	else // Sort contrib levels
-	meContribLevels.sort(function(a, b) {
+	meContribLevels.items.sort(function(a, b) {
 		if(a.name() > b.name()) return 1
 		if(a.name() < b.name()) return -1
 		return 0
 	})
 
-	meContribLevels.push(
+	meContribLevels.items.push(
 		{
 			name = function() { return gvLangObj["menu-commons"]["back"] }
 			func = function() { menu = meMain; cursor = 2 }

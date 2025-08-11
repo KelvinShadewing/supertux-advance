@@ -21,6 +21,6 @@ gmMain <- function()
 	drawSprite(sprTitle, 0, screenW() / 2, 16)
 	drawDebug()
 
-	drawText(fontC, 0, screenH() - 8, "Brux GDK " + bruxVersion() + " - STA " + gvVersion + " - " + getOS())
+	drawText(font, 0, screenH() - 8, "~tBrux GDK " + bruxVersion() + " - STA " + gvVersion + " - " + getOS())
 	textMenu()
 }

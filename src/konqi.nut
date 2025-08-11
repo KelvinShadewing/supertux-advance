@@ -643,7 +643,7 @@ Konqi <- class extends Player {
 						if(!placeFree(x, y) && !placeFree(x, y - 1))
 							y--
 					}
-					else if(canJump > 0 && placeFree(x, y - 8)) {
+					else if(canJump > 0) {
 						jumpBuffer = 0
 						if(anim == "climb") {
 							vspeed = -5

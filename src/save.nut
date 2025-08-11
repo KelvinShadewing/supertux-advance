@@ -1,4 +1,5 @@
 newGame <- function(f) {
+	gvBattleMode = false
 	local newdif = game.difficulty
 	game = createNewGameObject()
 	game.file = f
@@ -114,6 +115,7 @@ saveGame <- function() {
 }
 
 loadGame <- function(f) {
+	gvBattleMode = false
 	if(fileExists("save/" + f.tostring() + ".json")) {
 		game = mergeTable(createNewGameObject(), jsonRead(fileRead("save/" + f.tostring() + ".json")))
 		// Sanitize removed characters

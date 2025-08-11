@@ -15,7 +15,7 @@ addTimeAttackWorld <- function(
 	) {
 	if(displayName in gvLangObj["level"])
 		displayName = gvLangObj["level"][displayName]
-	local tempBack = meTimeAttackWorld.pop() // To move back to the end
+	local tempBack = meTimeAttackWorld.items.pop() // To move back to the end
 	local newSlot = {
 		name = function() { return displayName }
 		func = function() {
@@ -36,6 +36,6 @@ addTimeAttackWorld <- function(
 		}
 	}
 
-	meTimeAttackWorld.push(newSlot)
-	meTimeAttackWorld.push(tempBack)
+	meTimeAttackWorld.items.push(newSlot)
+	meTimeAttackWorld.items.push(tempBack)
 }

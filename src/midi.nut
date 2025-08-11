@@ -415,8 +415,11 @@ Midi <- class extends Player {
 		}
 
 		shape = shapeStand
-		if(anim == "morphIn" || anim == "ball" || anim == "crawl" || (anim == "stand" && an.stand == an.crouch) || !placeFree(x, y))
+		if(anim == "morphIn" || anim == "ball" || anim == "crawl" || (anim == "stand" && an.stand == an.crouch) || !placeFree(x, y)) {
 			shape = shapeCrawl
+			if(anim == "stand" && an.stand != an.crouch || anim == "walk")
+				anim = "crawl"
+		}
 		
 		shapeStand.setPos(x, y)
 		shapeCrawl.setPos(x, y)
@@ -1195,7 +1198,7 @@ Midi <- class extends Player {
 
 					jumpBuffer = 0
 				}
-				else if(canJump > 0 && placeFree(x, y - 8) || anim == "ledge" || anim == "monkey") {
+				else if(canJump > 0 && (placeFree(x, y - 8) || anim != "crawl") || anim == "ledge" || anim == "monkey") {
 					jumpBuffer = 0
 					if(!getcon("down", "hold", true, playerNum) || !freeDown2) {
 						if(anim == "climb") {

@@ -209,8 +209,10 @@ Neverball <- class extends Player {
 		// Allow aiming
 		if(hspeed == 0 && vspeed == 0) {
 			stillTime--
-			if(stillTime == 0 && !endMode)
+			if(stillTime == 0 && !endMode && didJump) {
+				didJump = false
 				stats.health--
+			}
 		}
 		else
 			stillTime = 60
@@ -277,6 +279,7 @@ Neverball <- class extends Player {
 				strokes++
 				stillTime = 60
 				popSound(sndNBShoot)
+				didJump = true
 			}
 		}
 		else {
