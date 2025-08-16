@@ -1865,7 +1865,7 @@ createPlatformActors <- function(n, i, c) {
 			break
 
 		case 92:
-			c = newActor(CoffeeCup, i.x + 8, i.y - 8)
+			c = newActor(ItemBlock, i.x + 8, i.y - 8, 13)
 			break
 
 		case 93:

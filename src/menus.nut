@@ -1873,7 +1873,7 @@ meNewGame <- {
 			func = function() {
 				game.file = 0
 				if(fileExists("save/0.json")) menu = meOverwrite
-				else newGame(0)
+				else menu = meNewGameOptions
 			}
 		},
 		{
@@ -1885,7 +1885,7 @@ meNewGame <- {
 			func = function() {
 				game.file = 1
 				if(fileExists("save/1.json")) menu = meOverwrite
-				else newGame(1)
+				else menu = meNewGameOptions
 			}
 		},
 		{
@@ -1897,7 +1897,7 @@ meNewGame <- {
 			func = function() {
 				game.file = 2
 				if(fileExists("save/2.json")) menu = meOverwrite
-				else newGame(2)
+				else menu = meNewGameOptions
 			}
 		},
 		{
@@ -1909,7 +1909,7 @@ meNewGame <- {
 			func = function() {
 				game.file = 3
 				if(fileExists("save/3.json")) menu = meOverwrite
-				else newGame(3)
+				else menu = meNewGameOptions
 			}
 		},
 		{
@@ -1917,7 +1917,7 @@ meNewGame <- {
 				return gvLangObj["menu-commons"]["cancel"]
 			}
 			func = function() {
-				menu = meMain
+				menu = meDifficulty
 			}
 		}
 	]
@@ -1991,7 +1991,7 @@ meOverwrite <- {
 				return gvLangObj["menu-commons"]["yes"]
 			}
 			func = function() {
-				cursor = 0; menu = meNewGameOptions
+				menu = meNewGameOptions
 			}
 		}
 	]

@@ -537,7 +537,7 @@ ItemBlock <- class extends Actor {
 		tileSetSolid(x, y, 1)
 
 		if(gvTARandomItem && item != 0 && item != null)
-			item = randInt(12) + 1
+			item = randInt(13) + 1
 	}
 
 	function run() {
@@ -625,6 +625,10 @@ ItemBlock <- class extends Actor {
 				
 				case 12:
 					newActor(WaterLily, x, y - 16)
+					break
+
+				case 13:
+					newActor(CoffeeCup, x, y - 16)
 					break
 			}
 		}
