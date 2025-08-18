@@ -20,7 +20,7 @@ addTimeAttackWorld <- function(
 		name = function() { return displayName }
 		func = function() {
 			game.path = "contrib/" + folder + "/"
-			gvTACourse = list
+			gvTACourse = clone(list)
 			menu = meDifficulty
 
 			local searchDirExists = false
