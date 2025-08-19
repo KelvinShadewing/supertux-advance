@@ -758,6 +758,10 @@ sprFireDash <- newSprite("res/gfx/firedash.png", 16, 32, 8, 16)
 defFireDash <- sprFireDash
 sprMagicJump <- newSprite("res/gfx/jump-flash.png", 20, 16, 10, 8)
 defMagicJump <- sprMagicJump
+sprChainLink <- newSprite("res/gfx/chain-link.png", 8, 8, 4, 4)
+defChainLink <- sprChainLink
+sprMagnet <- newSprite("res/gfx/magnet.png", 16, 16, 4, 8)
+defMagnet <- sprMagnet
 
 
 
@@ -770,6 +774,8 @@ sprPlatformBlue <- newSprite("res/gfx/moplat-blue.png", 16, 8, 8, 4)
 defPlatformBlue <- sprPlatformBlue
 sprBoostRing <- newSprite("res/gfx/boost-ring.png", 12, 32, 6, 16)
 defBoostRing <- sprBoostRing
+sprUbumper <- newSprite("res/gfx/ubumper.png", 20, 20, 10, 10)
+defUbumper <- sprUbumper
 
 
 

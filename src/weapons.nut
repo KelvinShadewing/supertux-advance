@@ -1259,41 +1259,41 @@ ExplodeS3 <- class extends WeaponEffect{
 		if(frame >= 2 && !didbloom) {
 			didbloom = true
 			local c = fireWeapon(Shockball, x + 6, y + 6, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.hspeed = 1.5
 					c.vspeed = 1.5
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x - 6, y + 6, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.hspeed = -1.5
 					c.vspeed = 1.5
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x + 6, y - 6, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.hspeed = 1.5
 					c.vspeed = -1.5
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x - 6, y - 6, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.hspeed = -1.5
 					c.vspeed = -1.5
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x, y + 8, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.vspeed = 2
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x, y - 8, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.vspeed = -2
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x + 8, y, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.hspeed = 2
-					c.piercing = 4
+					c.piercing = 0
 					c = fireWeapon(Shockball, x - 8, y, alignment, owner)
-					c.power = 2
+					c.power = 1
 					c.hspeed = -2
-					c.piercing = 4
+					c.piercing = 0
 		}
 
 		if(frame >= 5) deleteActor(id)
@@ -2022,6 +2022,8 @@ NutMine <- class extends NutBomb {
 			deleteActor(id)
 			newActor(Poof, x, y)
 		}
+
+		exPower = 1
 
 		if(placeFree(x, y + 2) && !onPlatform()) deleteActor(id)
 

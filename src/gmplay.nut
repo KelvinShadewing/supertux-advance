@@ -1992,6 +1992,13 @@ createPlatformActors <- function(n, i, c) {
 			c = newActor(SideAmanita, i.x + 8, i.y - 8, i.name)
 			game.maxEnemies++
 			break
+
+		case 122:
+			c = newActor(Ubumper, i.x + 8, i.y - 8, i.name)
+			break
+
+		case 123:
+			c = newActor(MagnetChain, i.x + 8, i.y - 8, i.name)
 	}
 
 	return c

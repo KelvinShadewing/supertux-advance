@@ -30,7 +30,6 @@ Player <- class extends PhysAct {
 	canGroundPound = true // Ground stomp attack
 	canSlide = false // Slide attack
 	canMove = true // Movement unlocked, set to false during cutscenes or when player restrained
-	held = null
 	useMouse = false // Draw the cursor when playing as this character
 	mouseSprite = sprCursor
 	inMelee = false // In a state where the player damages enemies by touch
@@ -81,7 +80,7 @@ Player <- class extends PhysAct {
 	hidden = false
 
 	// Misc
-	heldby = 0
+	held = 0
 	holding = 0
 	otherPlayer = false
 

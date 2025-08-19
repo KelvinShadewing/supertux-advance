@@ -669,3 +669,150 @@ SwingingDoor <- class extends PhysAct {
 			drawSprite(sprDoorLocks, lock - 1, x - camx, y - camy - 24)
 	}
 }
+
+Ubumper <- class extends Actor {
+	hitShape = null
+	frame = 0
+	anim = [0, 1, 4, 2, 3, 4, 3]
+	power = 8
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		hitShape = Rec(x, y, 8, 8, 0)
+
+		if(canint(_arr)) {
+			power = float(_arr)
+		}
+	}
+
+	function run() {
+		hitShape.setPos(x, y)
+
+		if(frame >= anim.len())
+			frame = 0
+
+		if(frame > 0)
+			frame += 0.5
+
+		if(frame == 0 && gvPlayer && hitTest(hitShape, gvPlayer.shape)) {
+			local dir = pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+			gvPlayer.hspeed = lendirX(power, dir)
+			gvPlayer.vspeed = lendirY(power, dir)
+
+			frame = 1
+			popSound(sndSpring, 0)
+		}
+
+		if(frame == 0 && gvPlayer2 && hitTest(hitShape, gvPlayer2.shape)) {
+			local dir = pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+			gvPlayer2.hspeed = lendirX(power, dir)
+			gvPlayer2.vspeed = lendirY(power, dir)
+
+			frame = 1
+			popSound(sndSpring, 0)
+		}
+	}
+
+	function draw() {
+		drawSprite(sprUbumper, anim[frame % anim.len()], x - camx, y - camy)
+
+		if(debug) {
+			setDrawColor(0xff0000ff)
+			hitShape.draw()
+		}
+	}
+}
+
+MagnetChain <- class extends Actor {
+	hasPlayer = false
+	hasPlayer2 = false
+	grabTimer = 0
+	grabTimer2 = 0
+	length = 1
+	angle = 0.0
+	speed = 0.0
+	shape = null
+	gravity = false
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+		shape = Cir(x, y, 8)
+
+		_arr = split(_arr, ",")
+		if(_arr.len() > 0)
+			length = int(_arr[0])
+		if(_arr.len() > 1)
+			angle = float(_arr[1])
+		if(_arr.len() > 2)
+			speed = float(_arr[2])
+		if(_arr.len() > 3)
+			gravity = (_arr[3] == "true" || _arr[3] == "1")
+	}
+
+	function run() {
+		if(grabTimer > 0)
+			grabTimer--
+		if(grabTimer2 > 0)
+			grabTimer2--
+
+		local px = x + lendirX((length + 2) * 8, angle) // +2 is to put the player
+		local py = y + lendirY((length + 2) * 8, angle) // at the tip of the magnet
+
+		if(gravity)
+			speed += 0.1 * (px <=> x)
+		angle += speed
+
+		shape.setPos(px, py)
+
+		// Grab players
+		if(gvPlayer && gvPlayer.held == 0 && grabTimer <= 0 && hitTest(shape, gvPlayer.shape)) {
+			gvPlayer.held = id
+			hasPlayer = true
+		}
+
+		if(gvPlayer2 && gvPlayer2.held == 0 && grabTimer2 <= 0 && hitTest(shape, gvPlayer2.shape)) {
+			gvPlayer2.held = id
+			hasPlayer2 = true
+		}
+
+		// Pull players
+		if(gvPlayer && hasPlayer && gvPlayer.held == id) {
+			gvPlayer.x = px
+			gvPlayer.y = py
+			gvPlayer.hspeed = 0
+			gvPlayer.vspeed = 0
+
+			if(getcon("jump", "press", true, 1)) {
+				gvPlayer.held = 0
+				hasPlayer = false
+				grabTimer = 30 // Cooldown before the player can be grabbed again
+				gvPlayer.hspeed = (gvPlayer.x - gvPlayer.xprev) * 2.0
+				gvPlayer.vspeed = (gvPlayer.y - gvPlayer.yprev) * 2.0
+			}
+		}
+
+		if(gvPlayer2 && hasPlayer2 && gvPlayer2.held == id) {
+			gvPlayer2.x = px
+			gvPlayer2.y = py
+			gvPlayer2.hspeed = 0
+			gvPlayer2.vspeed = 0
+
+			if(getcon("jump", "press", true, 2)) {
+				gvPlayer2.held = 0
+				hasPlayer2 = false
+				grabTimer2 = 30
+				gvPlayer2.hspeed = (gvPlayer2.x - gvPlayer2.xprev) * 2.0
+				gvPlayer2.vspeed = (gvPlayer2.y - gvPlayer2.yprev) * 2.0
+			}
+		}
+	}
+
+	function draw() {
+		for(local i = 0; i <= length; i++) {
+			if(i == length)
+				drawSprite(sprMagnet, 0, x + lendirX(i * 8, angle) - camx, y + lendirY(i * 8, angle) - camy, angle, 0, 1, 1, 1)
+			else
+				drawSprite(sprChainLink, 0, x + lendirX(i * 8, angle) - camx, y + lendirY(i * 8, angle) - camy, 0, 0, 1, 1, 1)
+		}
+	}
+}
