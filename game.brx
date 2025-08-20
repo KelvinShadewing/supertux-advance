@@ -236,8 +236,8 @@ menu = meMain
 game.playerChar = "Tux"
 
 // Testing
-// game.playerChar = "Midi"
-// gotoTest()
+ game.playerChar = "Surge"
+ gotoTest()
 
 // Load contrib initializers
 if(fileExists("contrib")) {

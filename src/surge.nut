@@ -67,7 +67,7 @@ Surge <- class extends Player {
 		fall = null
 		fallN = [68, 69]
 		fallW = [56]
-		crawl = [72, 73, 47, 75, 74, 73]
+		crawl = [72, 73, 74, 75, 74, 73]
 		win = [51]
 		fly = [80, 81, 82, 83]
 		stomp = [70, 71]
@@ -429,7 +429,7 @@ Surge <- class extends Player {
 		}
 
 		shape = shapeStand
-		if(anim == "ball" || !placeFree(x, y) || anim == "charge")
+		if(anim == "ball" || !placeFree(x, y) || anim == "charge" || anim == "crawl" || anim == "crouch")
 			shape = shapeSlide
 
 		shapeStand.setPos(x, y)
@@ -522,6 +522,8 @@ Surge <- class extends Player {
 			case "stand":
 			case "skid":
 			case "walk":
+			case "crouch":
+			case "crawl":
 				if(anim == "stand")
 					frame += 0.1
 				frame += abs(rspeed) / (8 + abs(rspeed))
@@ -534,17 +536,22 @@ Surge <- class extends Player {
 					hspeed -= 0.1
 					anim = "skid"
 				}
+				else if((anim == "crouch" || anim == "crawl") && hspeed != 0)
+					anim = "crawl"
 				else
 					anim = "walk"
 
-				if(anim == "walk") {
+				if(anim == "walk" || anim == "crawl") {
 					// Offset frame based on movement speed
 					if(sideRunning)
 						rspeed = fabs(vspeed)
-					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery))
+					if(abs(rspeed) <= 0.1 && (fabs(hspeed) <= 0.1 || slippery) && anim != "crawl")
 						anim = "stand"
 					else if(fabs(rspeed) < max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed)) && !slippery)
 						rspeed = max(fabs(hspeed), fabs(hspeed) + fabs(ehspeed))
+
+					if(!placeFree(x, y, shapeStand))
+						anim = "crawl"
 				}
 
 				if(placeFree(x, y + 8) && !onPlatform() && fabs(vspeed) > 1 && (fabs(hspeed) < 4 || vspeed < 0) && !sideRunning && !hydroplaning) {
@@ -568,6 +575,24 @@ Surge <- class extends Player {
 					animOffset = 0.0
 					anim = "charge"
 					chargeTimer = 0.0
+				}
+
+				if(anim == "crawl" || anim == "crouch") {
+					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y, shapeStand)) {
+						anim = "stand"
+						frame = 0.0
+					}
+
+					if(fabs(hspeed) > 1.5) {
+						anim = "ball"
+						popSound(sndSurgeRoll, 0)
+					}
+				}
+				if(anim == "stand" && (getcon("down", "hold", true, playerNum) && canMove || !placeFree(x, y, shapeStand))) {
+					anim = "crouch"
+				}
+				if(anim == "crouch" && hspeed != 0) {
+					anim = "crawl"
 				}
 				break
 
@@ -816,6 +841,9 @@ Surge <- class extends Player {
 
 		if(canMove) {
 			mspeed = 6.0
+			if(anim == "crawl")
+				mspeed = 1.0
+
 			if(config.stickspeed) {
 				local j = null
 				if(playerNum == 1) j = config.joy
@@ -1033,7 +1061,7 @@ Surge <- class extends Player {
 				vspeed /= 2.5
 			}
 
-			if(getcon("down", "hold", true, playerNum) && anim != "hurt" && !placeFree(x - hspeed, y + 2) && fabs(hspeed) > 1 && anim != "ball") {
+			if(getcon("down", "hold", true, playerNum) && anim != "hurt" && !placeFree(x - hspeed, y + 2) && fabs(hspeed) > 1 && anim != "ball" && anim != "crawl") {
 				anim = "ball"
 				frame = 0.0
 				popSound(sndSurgeRoll)
@@ -1284,7 +1312,7 @@ Surge <- class extends Player {
 			shape.draw()
 			shapeHydro.draw()
 
-			drawText(font, x - camx - 16, y - camy - 32, hydroplaning.tostring())
+			drawText(font, x - camx - 16, y - camy - 32, anim)
 		}
 	}
 
