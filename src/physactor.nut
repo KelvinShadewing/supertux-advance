@@ -228,6 +228,8 @@ PhysAct <- class extends Actor{
 						case 61:
 						case 62:
 						case 63:
+						case 102:
+						case 103:
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 8)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
@@ -489,6 +491,18 @@ PhysAct <- class extends Actor{
 							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
 							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
 							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 4)
+							gvMap.shape.kind = 0
+							gvMap.shape.w = 8.0
+							gvMap.shape.h = 4.0
+							if(nps.y >= shape.y + shape.oy || vspeed > 0) if(hitTest(nps, gvMap.shape) && !hitTest(shape, gvMap.shape) && hitTest(ns, gvMap.shape)) return false
+							break
+
+						case 100: // One Way Bottom
+						case 101:
+							local nps
+							if(typeof shape == "Rec") nps = Rec(shape.x + shape.ox, ns.y, ns.w, ns.h, shape.kind)
+							if(typeof shape == "Cir") nps = Cir(shape.x + shape.ox, ns.y, ns.r)
+							gvMap.shape.setPos(((cx + i) * 16) + 8, ((cy + j) * 16) + 12)
 							gvMap.shape.kind = 0
 							gvMap.shape.w = 8.0
 							gvMap.shape.h = 4.0
@@ -1410,6 +1424,7 @@ PhysAct <- class extends Actor{
 				case 97:
 				case 98:
 				case 99:
+				case 101:
 					if(typeof shape == "Rec") ns = Rec(x, y, shape.w, shape.h, shape.kind)
 					if(typeof shape == "Cir") ns = Cir(x, y, shape.r)
 					gvMap.shape.setPos((cx * 16) + 8, (cy * 16))
@@ -1423,6 +1438,18 @@ PhysAct <- class extends Actor{
 		}
 
 		return false
+	}
+
+	function handleConveyor() {
+		local pc = tileGetSolid(x + shape.ox, y + shape.oy + shape.h + 1) //Points center, left, and right
+		local pl = tileGetSolid(x + shape.ox - shape.w, y + shape.oy + shape.h + 1)
+		local pr = tileGetSolid(x + shape.ox + shape.w, y + shape.oy + shape.h + 1)
+
+		if([pc, pl, pr].find(104) != null && placeFree(x - 2, y))
+			x += 2
+
+		if([pc, pl, pr].find(103) != null && placeFree(x + 2, y))
+			x -= 2
 	}
 }
 

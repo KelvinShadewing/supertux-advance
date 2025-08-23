@@ -762,7 +762,10 @@ sprChainLink <- newSprite("res/gfx/chain-link.png", 8, 8, 4, 4)
 defChainLink <- sprChainLink
 sprMagnet <- newSprite("res/gfx/magnet.png", 16, 16, 4, 8)
 defMagnet <- sprMagnet
-
+sprVineLink <- newSprite("res/gfx/vine-link.png", 8, 8, 4, 4)
+defVineLink <- sprVineLink
+sprVineClaw <- newSprite("res/gfx/vine-claw.png", 16, 16, 4, 8)
+defVineClaw <- sprVineClaw
 
 
 // Platforms
@@ -1079,6 +1082,8 @@ gfxEnemySnow <- function() {
 gfxEnemyForest <- function() {
 	sprMrIceguy = sprMrTurtle
 	sprIcicle = sprPinecone
+	sprChainLink = sprVineLink
+	sprMagnet = sprVineClaw
 }
 
 tsSolid <- newSprite("res/gfx/solid.png", 16, 16)

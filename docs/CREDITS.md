@@ -306,6 +306,9 @@ rpg16.png\* CC-BY-SA 4.0
 * castlebg.png - CC0
 * tsCastle.png\* - CC0
 
+### [VinnNo.0](https://opengameart.org/users/vinnno0)
+* conveyor-full.png - CC0
+
 ## Sounds
 
 [SuperTux](https://github.com/supertux/supertux) - Sounds (shoot, jump, hurt, slide, coin, trampoline)

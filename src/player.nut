@@ -107,6 +107,8 @@ Player <- class extends PhysAct {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(ehspeed > 0 && !getcon("right", "hold", true, playerNum))
 			ehspeed -= friction
 		if(ehspeed < 0 && !getcon("left", "hold", true, playerNum))

@@ -236,8 +236,8 @@ menu = meMain
 game.playerChar = "Tux"
 
 // Testing
- game.playerChar = "Surge"
- gotoTest()
+// game.playerChar = "Surge"
+// gotoTest()
 
 // Load contrib initializers
 if(fileExists("contrib")) {
@@ -245,13 +245,11 @@ if(fileExists("contrib")) {
 }
 
 gameCycle <- function() {
-	/*
 	if(keyPress(k_f11)) {
 		toggleFullscreen()
 		config.fullscreen = !config.fullscreen
 		fileWrite("config.json", jsonWrite(config))
 	}
-	*/
 
 	if(joyCount() > 1 && game.playerChar2 != "") {
 		config.joy.index = 0

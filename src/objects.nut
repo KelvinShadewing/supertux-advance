@@ -11,6 +11,8 @@ GrabbableObject <- class extends PhysAct {
 	bouncy = 1.0
 
 	function physics() {
+		handleConveyor()
+
 		local freeDown = placeFree(x, y + 1)
 		local freeDown2 = placeFree(x, y + 2)
 		local freeLeft = placeFree(x - 1, y)
