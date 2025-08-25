@@ -337,7 +337,9 @@
 		"rescued" :
 		"Rescued %s!",
 		"sticky-walls" :
-		["Some walls can be climbed on. Press %s or %s to climb on them.", "getConName(\"up\")", "getConName(\"down\")"]
+		["Some walls can be climbed on. Press %s or %s to climb on them.", "getConName(\"up\")", "getConName(\"down\")"],
+		"shock-burst" :
+		"Surge and Dashie can use double jump with the shock bulb, which also releases an electric burst. The shock burst can be used without double jumping by holding down."
 	},
 
 	"devcom" : {

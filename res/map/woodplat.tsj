@@ -1,0 +1,14 @@
+{ "columns":6,
+ "image":"..\/gfx\/woodplat.png",
+ "imageheight":192,
+ "imagewidth":96,
+ "margin":0,
+ "name":"woodplat",
+ "spacing":0,
+ "tilecount":72,
+ "tiledversion":"1.11.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

@@ -520,7 +520,10 @@ BoostRing <- class extends Actor {
 			_arr = split(_arr, ",")
 		if(typeof _arr == "array") {
 			angle = int(_arr[0])
-			power = int(_arr[1])
+			if(_arr.len() > 1)
+				power = int(_arr[1])
+			else
+				power = 10
 			hboost = lendirX(float(power), float(angle))
 			vboost = lendirY(float(power), float(angle))
 		}
@@ -678,7 +681,7 @@ Ubumper <- class extends Actor {
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
-		hitShape = Rec(x, y, 8, 8, 0)
+		hitShape = Cir(x, y, 12)
 
 		if(canint(_arr)) {
 			power = float(_arr)
@@ -698,6 +701,7 @@ Ubumper <- class extends Actor {
 			local dir = pointAngle(x, y, gvPlayer.x, gvPlayer.y)
 			gvPlayer.hspeed = lendirX(power, dir)
 			gvPlayer.vspeed = lendirY(power, dir)
+			gvPlayer.didJump = false
 
 			frame = 1
 			popSound(sndSpring, 0)
@@ -707,6 +711,7 @@ Ubumper <- class extends Actor {
 			local dir = pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
 			gvPlayer2.hspeed = lendirX(power, dir)
 			gvPlayer2.vspeed = lendirY(power, dir)
+			gvPlayer2.didJump = false
 
 			frame = 1
 			popSound(sndSpring, 0)

@@ -189,7 +189,7 @@ blue-cave-bg-0.png\* - CC0
 * Portals\* - CC0
 
 ### [bluecarrot16](https://opengameart.org/users/bluecarrot16)
-* palmtrees.png\* - CC-BY-SA 3.0
+* sand-deco.png\* - CC-BY-SA 3.0
 * barrel.png\* - CC-BY-SA 3.0
 * endgate.png\* - CC-BY-SA 3.0
 * large-boat-tiles.png\* - CC-BY-SA 3.0

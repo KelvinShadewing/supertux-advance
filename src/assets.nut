@@ -357,6 +357,8 @@ sprGradcap <- newSprite("res/gfx/smartcap.png", 16, 18, 8, 11)
 defGradcap <- sprGradcap
 sprOrangeBounce <- newSprite("res/gfx/orange.png", 16, 16, 8, 8)
 defOrangeBounce <- sprOrangeBounce
+sprCoconutBounce <- newSprite("res/gfx/coconut-bounce.png", 16, 16, 8, 8)
+defCoconutBounce <- sprCoconutBounce
 sprCannon <- newSprite("res/gfx/cannon.png", 16, 16, 8, 8)
 defCannon <- sprCannon
 sprCannonBob <- newSprite("res/gfx/cannonbob.png", 16, 16, 8, 8)
@@ -387,6 +389,8 @@ sprIcicle <- newSprite("res/gfx/icicle.png", 10, 16, 5, 4)
 defIcicle <- sprIcicle
 sprPinecone <- newSprite("res/gfx/pinecone.png", 10, 16, 5, 4)
 defPinecone <- sprPinecone
+sprCoconut <- newSprite("res/gfx/coconut.png", 16, 16, 8, 4)
+defCoconut <- sprCoconut
 sprFlyAmanita <- newSprite("res/gfx/flyamanita.png", 20, 20, 10, 10)
 defFlyAmanita <- sprFlyAmanita
 sprJumpy <- newSprite("res/gfx/bouncecap.png", 16, 20, 8, 8)
@@ -1084,6 +1088,12 @@ gfxEnemyForest <- function() {
 	sprIcicle = sprPinecone
 	sprChainLink = sprVineLink
 	sprMagnet = sprVineClaw
+}
+
+gfxEnemySand <- function() {
+	gfxEnemyForest()
+	sprIcicle = sprCoconut
+	sprOrangeBounce = sprCoconutBounce
 }
 
 tsSolid <- newSprite("res/gfx/solid.png", 16, 16)

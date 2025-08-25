@@ -45,6 +45,7 @@ Surge <- class extends Player {
 	tricking = false
 	shapeHydro = null
 	hydroplaning = false
+	pseudoBlink = 0
 
 	an = {
 		stand = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 6, 6, 6, 6, 6, 6, 6, 6, 48, 49, 48, 49, 48, 49, 48, 49, 50, 51, 51, 51, 51, 50, 48]
@@ -250,6 +251,9 @@ Surge <- class extends Player {
 		if(getcon("swap", "press", true, playerNum)) swapitem()
 
 		magnetic = stats.weapon == "shock"
+
+		if(pseudoBlink > 0)
+			pseudoBlink--
 	}
 
 	function physics() {
@@ -314,8 +318,8 @@ Surge <- class extends Player {
 				hspeed /= 1.25
 				vspeed = max(4, vspeed)
 				gravity = 1.0
-				if(!placeFree(x, y + 2) || inWater(x, y + vspeed)) {
-					blinking = max(blinking, 8)
+				pseudoBlink = 8
+				if(!placeFree(x, y + 2) || inWater(x, y + vspeed) || hurt) {
 					fireWeapon(ExplodeW, x, y + 8, 1, id)
 					popSound(sndBump)
 					anim = "jumpR"
@@ -419,7 +423,7 @@ Surge <- class extends Player {
 					}
 				}
 
-				if(fabs(hspeed) + fabs(ehspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev && anim != "jumpR" && anim != "jumpU")
+				if(fabs(hspeed) + fabs(ehspeed) >= 4 && (anim == "ball" || !placeFree(x + hspeed, y)) && y < yprev && anim != "jumpR" && anim != "jumpU" && !nowInWater)
 					vspeed -= 1.0
 
 				// If no step was taken, slow down
@@ -446,7 +450,7 @@ Surge <- class extends Player {
 			case -1:
 				if(vspeed > 0) vspeed = 0
 				if(anim == "stomp") {
-					blinking = max(blinking, 8)
+					pseudoBlink = 8
 					fireWeapon(ExplodeW, x, y + 8, 1, id)
 					popSound(sndBump)
 					anim = "jumpR"
@@ -996,9 +1000,9 @@ Surge <- class extends Player {
 					if(anim == "stand" || anim == "walk")
 						anim = "jumpT"
 				}
-				else if(canJump > 0 && placeFree(x, y, shapeStand) || nowInWater && stats.weapon != "water") {
+				else if(canJump > 0 && placeFree(x, y, shapeStand) || nowInWater) {
 					jumpBuffer = 0
-					if(anim == "climb" || nowInWater && stats.weapon != "water") {
+					if(anim == "climb" || nowInWater) {
 						vspeed = -3
 						if(anim == "climb") {
 							vspeed = -5
@@ -1077,6 +1081,8 @@ Surge <- class extends Player {
 		}
 
 		// Damage
+		if(pseudoBlink)
+			hurt = 0
 		if(hurt > 0 && invincible == 0) {
 			if(blinking == 0) {
 				blinking = 60
@@ -1134,7 +1140,7 @@ Surge <- class extends Player {
 		}
 
 		// Attacks
-		if(anim != "jumpR" && anim != "charge")
+		if(!freeDown2 || nowInWater || anim == "wall")
 			didAirSpecial = false
 
 		if(checkActor(shockEffect)) {
@@ -1143,7 +1149,7 @@ Surge <- class extends Player {
 		}
 
 		// Air moves
-		if(canMove && (anim == "jumpR" || (anim == "jumpU" || anim == "jumpT" || anim == "fall") && stats.weapon == "air" && !onPlatform()) && !didAirSpecial && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
+		if(canMove && ((anim == "jumpR" || anim == "jumpU" || anim == "jumpT" || anim == "fall") && !didAirSpecial && !onPlatform()) && getcon("jump", "press", true, playerNum) && !didJump) switch(stats.weapon) {
 			case "fire":
 				vspeed = 0.0
 				antigrav = 10
@@ -1152,6 +1158,7 @@ Surge <- class extends Player {
 				if(flip == 1)
 					hspeed = min(-6, hspeed)
 				popSound(sndFlame)
+				anim = "jumpR"
 				didAirSpecial = true
 				break
 
@@ -1191,7 +1198,7 @@ Surge <- class extends Player {
 				didJump = true
 				canJump = 0
 				didAirSpecial = true
-				blinking = max(8, blinking)
+				pseudoBlink = 16
 				break
 
 			case "air":
@@ -1213,7 +1220,7 @@ Surge <- class extends Player {
 			default:
 				didAirSpecial = true
 				shockEffect = fireWeapon(InstaShield, x, y, 1, id).id
-				blinking = max(8, blinking)
+				pseudoBlink = 8
 		}
 
 		if((anim == "ball" || anim == "jumpR" && didAirSpecial) && stats.weapon == "fire") {
@@ -1241,7 +1248,7 @@ Surge <- class extends Player {
 
 			if(inDistance2(x, y, actor[homingTarget].x, actor[homingTarget].y, 32)) {
 				fireWeapon(InstaShield, x, y, 1, id)
-				blinking = max(8, blinking)
+				pseudoBlink = 8
 			}
 
 			if(getFrames() % 2 == 0)

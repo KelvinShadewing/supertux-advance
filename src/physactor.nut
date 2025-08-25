@@ -34,6 +34,8 @@ PhysAct <- class extends Actor{
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(placeFree(x, y + gravity) && !phantom && !(onPlatform() && vspeed >= 0)) vspeed += gravity
 		if(placeFree(x, y + vspeed) || phantom) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
@@ -1442,14 +1444,16 @@ PhysAct <- class extends Actor{
 
 	function handleConveyor() {
 		local pc = tileGetSolid(x + shape.ox, y + shape.oy + shape.h + 1) //Points center, left, and right
-		local pl = tileGetSolid(x + shape.ox - shape.w, y + shape.oy + shape.h + 1)
-		local pr = tileGetSolid(x + shape.ox + shape.w, y + shape.oy + shape.h + 1)
+		local pl = tileGetSolid(x + shape.ox - shape.w + hspeed, y + shape.oy + shape.h + 1)
+		local pr = tileGetSolid(x + shape.ox + shape.w + hspeed, y + shape.oy + shape.h + 1)
 
-		if([pc, pl, pr].find(104) != null && placeFree(x - 2, y))
-			x += 2
+		local cs = 2
 
-		if([pc, pl, pr].find(103) != null && placeFree(x + 2, y))
-			x -= 2
+		if([pc, pl, pr].find(104) != null && placeFree(x - cs, y))
+			x += cs
+
+		if([pc, pl, pr].find(103) != null && placeFree(x + cs, y))
+			x -= cs
 	}
 }
 

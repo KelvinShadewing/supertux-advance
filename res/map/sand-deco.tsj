@@ -1,0 +1,14 @@
+{ "columns":38,
+ "image":"..\/gfx\/sand-deco.png",
+ "imageheight":384,
+ "imagewidth":608,
+ "margin":0,
+ "name":"sand-deco",
+ "spacing":0,
+ "tilecount":912,
+ "tiledversion":"1.11.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

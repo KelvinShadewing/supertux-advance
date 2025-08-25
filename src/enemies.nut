@@ -747,15 +747,16 @@ OrangeBounce <- class extends Enemy {
 	squishTime = 0.0
 	smart = false
 	touchDamage = 2.0
+	bounceTime = 0
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())
 		shape = Rec(x, y, 6, 6, 0)
-
-		vspeed = -3.0
 	}
 
-	function physics() {}
+	function physics() {
+		handleConveyor()
+	}
 
 	function run() {
 		base.run()
@@ -768,8 +769,13 @@ OrangeBounce <- class extends Enemy {
 				hspeed *= (1.0 + (game.difficulty))
 			}
 
-			if(!placeFree(x, y + 1))
+			if(bounceTime > 0)
+				bounceTime--
+
+			if(!placeFree(x, y + 1)) {
 				vspeed = -3.0
+				bounceTime = 5
+			}
 			if(!placeFree(x, y - 1))
 				vspeed = fabs(vspeed)
 			if(!placeFree(x + 2, y - 2) && !placeFree(x + 2, y))
@@ -820,7 +826,7 @@ OrangeBounce <- class extends Enemy {
 	}
 
 	function draw() {
-		drawSprite(sprOrangeBounce, frozen ? 0 : getFrames() / 8, floor(x - camx), floor(y - camy), 0, flip.tointeger(), 1, 1, 1)
+		drawSprite(sprOrangeBounce, frozen ? 0 : getFrames() / 8, floor(x - camx), floor(y - camy) + (4 * (float(bounceTime) / 5.0)), 0, flip.tointeger(), 1 + (float(bounceTime) / 10.0), 1 - (float(bounceTime) / 20.0), 1)
 
 		base.draw()
 	}
@@ -1890,6 +1896,7 @@ Ouchin <- class extends Enemy {
 	touchDamage = 2
 	rev = 0
 	notarget = true
+	element = "cut"
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -2660,6 +2667,8 @@ Haywire <- class extends Enemy {
 		base.run()
 
 		if(active) {
+			handleConveyor()
+
 			if(placeFree(x, y + 1)) vspeed += 0.2
 			if(placeFree(x, y + vspeed)) y += vspeed
 			else vspeed /= 2
@@ -2967,6 +2976,9 @@ Goldbomb <- class extends Enemy {
 		if(!active)
 			return
 
+		handleConveyor()
+
+
 		if(fabs(hspeed) > 1)
 			hspeed *= 0.99
 
@@ -3145,6 +3157,8 @@ Livewire <- class extends Enemy {
 		base.run()
 
 		if(active) {
+			handleConveyor()
+
 			if(!squish) {
 				if(placeFree(x, y + 1)) vspeed += 0.5
 				if(placeFree(x, y + vspeed)) y += vspeed
@@ -3314,6 +3328,8 @@ Blazeborn <- class extends Enemy {
 		base.run()
 
 		if(active) {
+			handleConveyor()
+
 			if(!moving) if(gvPlayer) if(x > gvPlayer.x) {
 				flip = true
 				moving = true
@@ -4261,6 +4277,8 @@ MrIceguy <- class extends Enemy {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(placeFree(x, y + (0 <=> gravity)) && !phantom) vspeed += gravity
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
@@ -5214,6 +5232,7 @@ Wheeler <- class extends Enemy {
 	minFreezeTime = 600
 	freezeSprite = sprIceTrapSmall
 	frame = 0
+	element = "cut"
 
 	damageMult = {
 		normal = 1.0
@@ -5284,6 +5303,16 @@ Wheeler <- class extends Enemy {
 			icebox = -1
 		}
 
+		// Push away from other wheelers
+		foreach(i in actor["Wheeler"]) {
+			if(i.id != id && hitTest(shape, i.shape)) {
+				local escDist = x <=> i.x
+				if(placeFree(x + escDist, y))
+					x += escDist
+				if(i.placeFree(i.x - escDist, i.y))
+					i.x -= escDist
+			}
+		}
 
 		// Draw
 		frame = 0
@@ -5310,6 +5339,8 @@ Wheeler <- class extends Enemy {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(placeFree(x, y + (0 <=> gravity)) && !phantom) vspeed += gravity
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else {
@@ -5965,6 +5996,8 @@ Struffle <- class extends Enemy {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(placeFree(x, y + gravity) && !phantom && !onPlatform()) vspeed += gravity
 		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
@@ -6228,6 +6261,8 @@ Crystallo <- class extends Enemy {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(placeFree(x, y + gravity) && !phantom) vspeed += gravity
 		if(placeFree(x, y + vspeed) && !(onPlatform() && vspeed >= 0)) y += vspeed
 		else if(!(onPlatform() && vspeed >= 0)) {
@@ -6788,6 +6823,8 @@ Gooey <- class extends Enemy {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		xprev = x
 		yprev = y
 
@@ -6973,6 +7010,8 @@ Snippin <- class extends Enemy {
 	}
 
 	function physics() {
+		handleConveyor()
+
 		if(rolling || (placeFree(x + 2, y) && placeFree(x - 2, y) && placeFree(x, y + 2) && placeFree(x, y - 2))) {
 			gravity = 0.2
 			direction = (flip == 0 ? 0 : 180)
@@ -7516,6 +7555,8 @@ Granito <- class extends Enemy {
 		health = 100
 
 		if(active) {
+			handleConveyor()
+
 			local target = findPlayer()
 			if(!moving) {
 				if(target != null && target && x > target.x) flip = true

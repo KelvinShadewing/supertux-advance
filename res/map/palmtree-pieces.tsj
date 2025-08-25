@@ -1,0 +1,14 @@
+{ "columns":6,
+ "image":"..\/gfx\/palmtree-pieces.png",
+ "imageheight":112,
+ "imagewidth":96,
+ "margin":0,
+ "name":"palmtree-pieces",
+ "spacing":0,
+ "tilecount":42,
+ "tiledversion":"1.11.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

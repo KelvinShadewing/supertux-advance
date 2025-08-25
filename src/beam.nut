@@ -1,5 +1,5 @@
 ghostRecordOld <- null
-ghostRecordNew <- null
+ghostRecordNew <- []
 ghostRecordName <- ""
 gvPlayAsBeam <- false
 

@@ -445,6 +445,8 @@ MuffinBlue <- class extends PhysAct {
 	}
 
 	function run() {
+		handleConveyor()
+
 		if(placeFree(x, y + 1)) {
 			if(inWater(x, y)) vspeed += 0.01
 			else vspeed += 0.2
@@ -523,6 +525,8 @@ MuffinRed <- class extends PhysAct {
 	}
 
 	function run() {
+		handleConveyor()
+
 		if(placeFree(x, y + 1)) {
 			if(inWater(x, y)) vspeed += 0.01
 			else vspeed += 0.2
@@ -613,6 +617,8 @@ MuffinEvil <- class extends PhysAct {
 	}
 
 	function run() {
+		handleConveyor()
+
 		if(placeFree(x, y + 1)) vspeed += 0.2
 		if(placeFree(x, y + vspeed)) y += vspeed
 		else vspeed /= 2
@@ -903,6 +909,8 @@ MuffinBomb <- class extends PhysAct {
 	}
 
 	function run() {
+		handleConveyor()
+
 		if(placeFree(x, y + 1)) {
 			if(inWater(x, y)) vspeed += 0.01
 			else vspeed += 0.2
