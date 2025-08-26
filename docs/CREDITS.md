@@ -41,6 +41,7 @@ Fonts - CC-BY-SA 4.0
 Item blocks - CC-BY-SA 4.0
 Debug graphics - CC-BY-SA 4.0
 Elemental explosions - CC-BY-SA 4.0
+tux-title.png - CC-BY-SA 4.0
 
 **All graphics by Kelvin are CC-BY-SA 4.0**
 acid.png

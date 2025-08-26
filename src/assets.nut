@@ -14,6 +14,7 @@ font2A <- newFont(sprFont2A, 32, 0, true, -4)
 sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8)
 sprTitle <- newSprite("res/gfx/title.png", 220, 55, 110, 0)
 sprActors <- newSprite("res/gfx/actors.png", 16, 16)
+sprTuxTitle <- newSprite("res/gfx/tux-title.png", 155, 213, 155, 213)
 
 
 
