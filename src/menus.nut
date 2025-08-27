@@ -955,6 +955,15 @@ meGraphics <- {
 		},
 		{
 			name = function() {
+				return format(gvLangObj["options-menu"]["scanlines"], gvLangObj["menu-commons"][config.scanlines ? "on" : "off"])
+			}
+			func = function() {
+				config.scanlines = !config.scanlines
+				fileWrite("config.json", jsonWrite(config))
+			}
+		},
+		{
+			name = function() {
 				return gvLangObj["menu-commons"]["back"]
 			}
 			func = function() {

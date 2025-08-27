@@ -821,3 +821,51 @@ MagnetChain <- class extends Actor {
 		}
 	}
 }
+
+Ramp <- class extends Actor {
+	shape = null
+	dir = 0
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y)
+
+		dir = _arr
+
+		switch(dir) {
+			case 0: // Right
+				shape = Rec(x, y, 14, 12, 2)
+				break
+			case 1: // Left
+				shape = Rec(x, y, 14, 12, 1)
+				break
+		}
+	}
+
+	function run() {
+		if(gvPlayer && abs(gvPlayer.hspeed) >= 4 && hitTest(shape, gvPlayer.shape)) {
+			switch(dir) {
+				case 0:
+					gvPlayer.vspeed = min(-gvPlayer.hspeed, gvPlayer.vspeed)
+					break
+				case 1:
+					gvPlayer.vspeed = min(gvPlayer.hspeed, -gvPlayer.vspeed)
+					break
+			}
+		}
+
+		if(gvPlayer2 && abs(gvPlayer2.hspeed) >= 4 && hitTest(shape, gvPlayer2.shape)) {
+			switch(dir) {
+				case 0:
+					gvPlayer2.vspeed = min(-gvPlayer2.hspeed, gvPlayer2.vspeed)
+					break
+				case 1:
+					gvPlayer2.vspeed = min(gvPlayer2.hspeed, -gvPlayer2.vspeed)
+					break
+			}
+		}
+	}
+
+	function draw() {
+		drawSprite(sprRamp, 0, x - camx, y - camy, 0, dir)
+	}
+}

@@ -2576,22 +2576,13 @@ ExplodeW3 <- class extends WeaponEffect{
 
 		if(!didbloom && frame >= 2) {
 			didbloom = true
-			local c = fireWeapon(WaterBomb, x - 6, y - 6, alignment, owner)
-			c.power = 4
-			c.hspeed = -2.0
-			c.vspeed = -2.0
-			c = fireWeapon(WaterBomb, x + 6, y - 6, alignment, owner)
-			c.power = 4
-			c.hspeed = 2.0
-			c.vspeed = -2.0
-			c = fireWeapon(WaterBomb, x - 6, y + 6, alignment, owner)
-			c.power = 4
-			c.hspeed = -2.0
-			c.vspeed = 2.0
-			c = fireWeapon(WaterBomb, x + 6, y + 6, alignment, owner)
-			c.power = 4
-			c.hspeed = 2.0
-			c.vspeed = 2.0
+			local c = null
+			for(local i = 0; i < 9; i++) {
+				c = fireWeapon(Waterball, x + lendirX(8, i * 40), y + lendirY(8, i * 40), alignment, owner)
+				c.hspeed = lendirX(4, i * 40)
+				c.vspeed = lendirY(4, i * 40)
+				c.power = power / 2.0
+			}
 		}
 
 		if(frame >= 5) deleteActor(id)

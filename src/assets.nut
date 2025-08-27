@@ -784,6 +784,8 @@ sprBoostRing <- newSprite("res/gfx/boost-ring.png", 12, 32, 6, 16)
 defBoostRing <- sprBoostRing
 sprUbumper <- newSprite("res/gfx/ubumper.png", 20, 20, 10, 10)
 defUbumper <- sprUbumper
+sprRamp <- newSprite("res/gfx/ramp.png", 32, 24, 16, 16)
+defRamp <- sprRamp
 
 
 

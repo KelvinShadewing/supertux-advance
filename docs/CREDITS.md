@@ -27,7 +27,7 @@ Tux - CC-BY-SA 4.0
 Penny - CC-BY-SA 4.0
 Konqi - CC-BY-SA 4.0
 Katie - CC-BY-SA 4.0
-Midi Waffle - CC-BY-SA 4.0
+Midi Waffle - CC-BY-SA 4.0 / KLPL
 Cannon Bob - CC-BY-SA 4.0
 Igloo edits - CC-BY-SA 4.0
 Mama Bear - CC-BY-SA 4.0
@@ -42,6 +42,8 @@ Item blocks - CC-BY-SA 4.0
 Debug graphics - CC-BY-SA 4.0
 Elemental explosions - CC-BY-SA 4.0
 tux-title.png - CC-BY-SA 4.0
+duke.png - CC-BY-SA 4.0 / KLPL
+duke-crusher.png - CC-BY-SA 4.0 / KLPL
 
 **All graphics by Kelvin are CC-BY-SA 4.0**
 acid.png

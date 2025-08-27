@@ -397,9 +397,8 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	drawImage(gvScreen, 0, 0)
 
 	if(newLevel) { // Iris transition
-		setDrawColor(0x000000ff)
-
 		for(local i = 0.0; i <= 100; i += 4.0) {
+		setDrawColor(0x000000ff)
 			setDrawTarget(gvScreen)
 			drawImage(bgPause, 0, 0)
 
@@ -415,7 +414,19 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 			drawRec(0, 0, gvScreenW, gvScreenH * (di / 2.0), true)
 			drawRec(0, gvScreenH, gvScreenW, -(gvScreenH * (di / 2.0)) - 2, true)
 
+			setDrawTarget(gvScreen)
+
+			if(config.scanlines) {
+				for(local i = 0; i < screenH(); i += 2) {
+					setDrawColor(0x40)
+					drawLine(0, i, screenW(), i)
+					setDrawColor(0xffffff10)
+					drawLine(0, i + 1, screenW(), i + 1)
+				}
+			}
+
 			resetDrawTarget()
+
 			drawImage(gvScreen, 0, 0)
 			update()
 
@@ -1999,6 +2010,15 @@ createPlatformActors <- function(n, i, c) {
 
 		case 123:
 			c = newActor(MagnetChain, i.x + 8, i.y - 8, i.name)
+			break
+
+		case 124:
+			c = newActor(Ramp, i.x + 8, i.y - 8, 0)
+			break
+
+		case 125:
+			c = newActor(Ramp, i.x + 8, i.y - 8, 1)
+			break
 	}
 
 	return c

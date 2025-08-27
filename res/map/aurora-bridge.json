@@ -418,7 +418,7 @@
                  "y":544
                 }, 
                 {
-                 "height":349,
+                 "height":320,
                  "id":1144,
                  "name":"",
                  "rotation":0,
@@ -426,18 +426,18 @@
                  "visible":true,
                  "width":2384.67,
                  "x":5088,
-                 "y":560
+                 "y":544
                 }, 
                 {
-                 "height":349,
+                 "height":320,
                  "id":1145,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2384.67,
-                 "x":8224,
-                 "y":576
+                 "width":1793.01965616046,
+                 "x":8510.98034383954,
+                 "y":544
                 }],
          "opacity":0.97,
          "type":"objectgroup",
@@ -4647,7 +4647,7 @@
          "value":"drawWeather = 0\nsongPlay(musAirship)\ndrawBG = dbgOceanHorizonNight\ngfxEnemySnow()\ngvHorizon = 16 * 34\nsetLight(0x6080e0ff)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tilesets":[
         {

@@ -1996,6 +1996,11 @@ Ouchin <- class extends Enemy {
 	function hurtFire() {}
 
 	function hurtIce() { frozen = 600 }
+
+	function die() {
+		base.die()
+		newActor(CoinSmall, x, y, true)
+	}
 }
 
 BadCannon <- class extends Actor {
