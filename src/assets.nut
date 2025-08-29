@@ -79,6 +79,8 @@ sprKonqiAir <- newSprite("res/gfx/konqiair.png", 32, 32, 16, 19)
 defKonqiAir <- sprKonqiAir
 sprKonqiEarth <- newSprite("res/gfx/konqiearth.png", 32, 32, 16, 19)
 defKonqiEarth <- sprKonqiEarth
+sprKonqiWater <- newSprite("res/gfx/konqiwater.png", 32, 32, 16, 19)
+defKonqiWater <- sprKonqiWater
 sprKonqiOverworld <- newSprite("res/gfx/konqiO.png", 14, 20, 7, 17)
 defKonqiOverworld <- sprKonqiOverworld
 sprKonqiDoll <- newSprite("res/gfx/konqidoll.png", 16, 16, 8, 8)

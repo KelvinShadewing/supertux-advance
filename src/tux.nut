@@ -1187,7 +1187,7 @@ Tux <- class extends Player {
 				}
 
 				if(invincible) mspeed += 0.4
-				if(nowInWater) mspeed *= 0.8
+				if(nowInWater) mspeed *= (stats.weapon == "water" ? 1.5 : 0.8)
 				if(anim == "crawl") mspeed = 1.0
 				if(zoomies > 0) mspeed *= 2.0
 

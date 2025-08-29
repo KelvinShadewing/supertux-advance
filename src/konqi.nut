@@ -75,6 +75,7 @@ Konqi <- class extends Player {
 	mySprIce = null
 	mySprAir = null
 	mySprEarth = null
+	mySprWater = null
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y)
@@ -94,6 +95,7 @@ Konqi <- class extends Player {
 		mySprIce = sprKonqiIce
 		mySprAir = sprKonqiAir
 		mySprEarth = sprKonqiEarth
+		mySprWater = sprKonqiWater
 	}
 
 	function physics() {}
@@ -1587,6 +1589,11 @@ Konqi <- class extends Player {
 				case "earth":
 					sprite = mySprEarth
 					damageMult = damageMultE
+					break
+
+				case "water":
+					sprite = mySprWater
+					damageMult = damageMultW
 					break
 			}
 
