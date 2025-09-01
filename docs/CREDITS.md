@@ -37,15 +37,14 @@ Muffin - CC-BY-SA 4.0
 Deathcap - CC-BY-SA 4.0
 Star nyan - CC-BY-SA 4.0
 Heart - CC-BY-SA 4.0
-Fonts - CC-BY-SA 4.0
 Item blocks - CC-BY-SA 4.0
 Debug graphics - CC-BY-SA 4.0
 Elemental explosions - CC-BY-SA 4.0
 tux-title.png - CC-BY-SA 4.0
-duke.png - CC-BY-SA 4.0 / KLPL
-duke-crusher.png - CC-BY-SA 4.0 / KLPL
+
 
 **All graphics by Kelvin are CC-BY-SA 4.0**
+**Midi and Duke are released under KLPL**
 acid.png
 acidsurface.png
 actors-big.png
@@ -110,6 +109,9 @@ crumble-ice.png
 crumble-rock.png
 crystal.png
 crystal-bullet.png
+duke.png
+duke-crusher.png
+font2.png
 konqi-npc.png
 konqi.png
 konqiair.png
@@ -316,7 +318,8 @@ rpg16.png\* CC-BY-SA 4.0
 
 [SuperTux](https://github.com/supertux/supertux) - Sounds (shoot, jump, hurt, slide, coin, trampoline)
 
-[XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11) - 1up
+### [XSSheep](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1242533-pixel-perfection-now-with-polar-bears-1-11)
+* 1up.ogg - CC-BY-SA 4.0
 
 [Little Robot Sound Factory](https://opengameart.org/content/8-bit-sound-effects-library) - Misc sounds
 
@@ -327,6 +330,9 @@ rpg16.png\* CC-BY-SA 4.0
 ## Music
 
 [Automusic](https://www.youtube.com/watch?v=xPxCaCN_dCQ) - Main Theme
+
+### [Bogart VGM](https://opengameart.org/users/bogart-vgm)
+* retroracing-beach.ogg - CC-BY 4.0
 
 [SubspaceAudio](https://opengameart.org/content/5-chiptunes-action) - "Retro" themes
 
@@ -362,9 +368,16 @@ Lukas Nystrand - Chippdisko
 
 [bart](https://opengameart.org/users/bart) - Airship Song
 
-[Spring](https://opengameart.org/users/spring-spring) - Forest Top
+### [Wolfgang_](https://opengameart.org/users/wolfgang)
+* summer-challenge.ogg - CC-BY 3.0
 
-[Wansti]() - Forest2\*, Forest3\*
+### [Spring](https://opengameart.org/users/spring-spring)
+* forest-top.ogg - CC-BY-SA 4.0
+* mad-bossa.ogg - CC0
+
+### [Wansti]() 
+* forest2.ogg\* - CC-BY-SA 4.0
+* forest3.ogg\* - CC-BY-SA 4.0
 
 [Hitctrl](https://opengameart.org/users/hitctrl) - Close Yet So Far
 

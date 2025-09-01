@@ -191,7 +191,9 @@
 		"cancel" : "Cancel",
 		"on" : "On",
 		"off" : "Off",
-		"noone" : "No One"
+		"noone" : "No One",
+		"a" : "Type A",
+		"b" : "Type B"
 	},
 
 	"bool" : {
@@ -722,7 +724,7 @@
 		"duke-2a" :
 		["Hey, %s, I left one of my fish in the mines. Could you please get it back for me?", "gvCharacters[game.playerChar].shortname"],
 		"duke-2b" :
-		"Thanks for that!",
+		"Aww, it's dirty...",
 		"no-touch-fishy-a" :
 		"That is my fish. You don't actually need it.",
 		"no-touch-fishy-b" :

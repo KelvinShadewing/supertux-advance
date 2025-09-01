@@ -416,14 +416,7 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 
 			setDrawTarget(gvScreen)
 
-			if(config.scanlines) {
-				for(local i = 0; i < screenH(); i += 2) {
-					setDrawColor(0x40)
-					drawLine(0, i, screenW(), i)
-					setDrawColor(0xffffff10)
-					drawLine(0, i + 1, screenW(), i + 1)
-				}
-			}
+			drawCRT()
 
 			resetDrawTarget()
 

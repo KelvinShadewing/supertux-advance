@@ -324,7 +324,7 @@ Surge <- class extends Player {
 					popSound(sndBump)
 					anim = "jumpR"
 					didAirSpecial = false
-					vspeed = -4
+					vspeed = -6
 					canJump = 0
 				}
 		}
@@ -1195,6 +1195,7 @@ Surge <- class extends Player {
 					anim = "jumpU"
 				}
 				actor[shockEffect].blast = false
+				actor[shockEffect].shape.r = 32
 				didJump = true
 				canJump = 0
 				didAirSpecial = true

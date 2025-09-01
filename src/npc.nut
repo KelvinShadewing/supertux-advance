@@ -229,6 +229,9 @@ freeCharacter <- function(name) {
 	if(game.characters.len() >= gvCharacters.len() || !(name in gvCharacters))
 		return
 
+	if(!game.rawin("state"))
+		game.state <- {}
+
 	if(!("freed" in game.state))
 		game.state.freed <- {}
 

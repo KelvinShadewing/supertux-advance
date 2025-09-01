@@ -244,6 +244,22 @@ if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
 }
 
+drawCRT <- function() {
+	if(config.scanlines == 1) {
+		for(local i = 0; i < screenH(); i += 2) {
+			setDrawColor(0x40)
+			drawLine(0, i, screenW(), i)
+			setDrawColor(0xffffff10)
+			drawLine(0, i + 1, screenW(), i + 1)
+		}
+	}
+
+	if(config.scanlines == 2) {
+		for(local i = 0; i <= screenW() / 240; i++)
+			drawSprite(sprCRT, 0, i * 240, 0)
+	}
+}
+
 gameCycle <- function() {
 	if(keyPress(k_f11)) {
 		toggleFullscreen()
@@ -275,16 +291,7 @@ gameCycle <- function() {
 
 gameRender <- function() {
 	setDrawTarget(gvScreen)
-
-	if(config.scanlines) {
-		for(local i = 0; i < screenH(); i += 2) {
-			setDrawColor(0x40)
-			drawLine(0, i, screenW(), i)
-			setDrawColor(0xffffff10)
-			drawLine(0, i + 1, screenW(), i + 1)
-		}
-	}
-
+	drawCRT()
 	resetDrawTarget()
 	drawImage(gvScreen, 0, 0)
 }

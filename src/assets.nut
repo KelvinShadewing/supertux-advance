@@ -15,6 +15,7 @@ sprDebug <- newSprite("res/gfx/debugkeys.png", 8, 8)
 sprTitle <- newSprite("res/gfx/title.png", 220, 55, 110, 0)
 sprActors <- newSprite("res/gfx/actors.png", 16, 16)
 sprTuxTitle <- newSprite("res/gfx/tux-title.png", 155, 213, 155, 213)
+sprCRT <- newSprite("res/gfx/crt.png", 240, 240)
 
 
 
@@ -1025,6 +1026,9 @@ musSASneak <- "res/mus/sa-sneak.ogg"
 musForestTop <- "res/mus/forest-top.ogg"
 musSAAdventure <- "res/mus/sa-sdventure.ogg"
 musCloseYetFar <- "res/mus/RPG_Close_Yet_So_Far.ogg"
+musMadBossa <- "res/mus/mad-bossa.ogg"
+musSummerChallenge <- "res/mus/summer-challenge.ogg"
+musRetroBeach <- "res/mus/retroracing-beach.ogg"
 
 
 

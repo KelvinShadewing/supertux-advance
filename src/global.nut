@@ -165,7 +165,7 @@ gvCharacters <- {
 		air = "sprKonqiAir"
 		earth = "sprKonqiEarth"
 		shock = "sprKonqi"
-		water = "sprKonqi"
+		water = "sprKonqiWater"
 		light = "sprKonqi"
 		dark = "sprKonqi"
 		pick = [8, 52]

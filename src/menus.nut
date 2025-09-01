@@ -955,10 +955,14 @@ meGraphics <- {
 		},
 		{
 			name = function() {
-				return format(gvLangObj["options-menu"]["scanlines"], gvLangObj["menu-commons"][config.scanlines ? "on" : "off"])
+				return format(gvLangObj["options-menu"]["scanlines"], ([
+					gvLangObj["menu-commons"]["off"],
+					gvLangObj["menu-commons"]["a"],
+					gvLangObj["menu-commons"]["b"]
+				])[int(config.scanlines)])
 			}
 			func = function() {
-				config.scanlines = !config.scanlines
+				config.scanlines = (int(config.scanlines) + 1) % 3
 				fileWrite("config.json", jsonWrite(config))
 			}
 		},
