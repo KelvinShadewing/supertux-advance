@@ -2469,10 +2469,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musSAGrass)\ngvHorizon = gvMap.h - (16 * 5)"
+         "value":"drawBG = dbgForest\nsongPlay(musSAGrass)\ngvHorizon = gvMap.h - (16 * 5)\ngfxEnemyForest()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tilesets":[
         {

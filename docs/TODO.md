@@ -25,8 +25,8 @@
 [ ] Building blocks
 [x] Monkey bars
 [x] Side ladders
-[ ] Lava
-[ ] Acid
+[x] Lava
+[x] Acid
 
 ## Enemies
 
@@ -57,6 +57,7 @@
 [ ] Mega Snake
 [ ] Ika Ika
 [ ] Servalot
+[ ] Beehemoth
 
 ## Powerups
 
@@ -67,22 +68,28 @@
 [x] Ice flower
 [x] Air feather
 [x] Earth shell
-[x] Shock Bulb
-[ ] Water Lily
+[x] Shock bulb
+[x] Water lily
+[ ] Light cap
+[ ] Dark shroom
 **KONQI ITEMS**
 [x] Fire flower
 [x] Ice flower
 [x] Air feather
 [x] Earth shell
 [ ] Shock Bulb
-[ ] Water Lily
-**MIDI ITEMS**
+[x] Water Lily
+[ ] Light cap
+[ ] Dark shroom
+**MIDI/KIKI ITEMS**
 [x] Fire flower
 [x] Ice flower
 [x] Air feather
 [x] Earth shell
 [x] Shock Bulb
 [x] Water Lily
+[ ] Light cap
+[ ] Dark shroom
 **PENNY ITEMS**
 [x] Fire flower
 [x] Ice flower
@@ -90,6 +97,8 @@
 [x] Earth shell
 [ ] Shock Bulb
 [ ] Water Lily
+[ ] Light cap
+[ ] Dark shroom
 **KATIE ITEMS**
 [x] Fire flower
 [x] Ice flower
@@ -97,20 +106,17 @@
 [x] Earth shell
 [ ] Shock Bulb
 [ ] Water Lily
-**KIKI ITEMS**
+[ ] Light cap
+[ ] Dark shroom
+**SURGE/Dashie ITEMS**
 [x] Fire flower
 [x] Ice flower
 [x] Air feather
 [x] Earth shell
 [x] Shock Bulb
 [x] Water Lily
-**SURGE ITEMS**
-[x] Fire flower
-[x] Ice flower
-[x] Air feather
-[x] Earth shell
-[x] Shock Bulb
-[x] Water Lily
+[ ] Light cap
+[ ] Dark shroom
 
 ## Misc
 
@@ -118,7 +124,6 @@
 [x] Sub items
 [x] General store
 [?] Fix the infamous slope glitch
-[x] add glow to Blazeborn
 [x] World travel
 [x] In-game timer
 [x] Jump buffering
@@ -127,6 +132,9 @@
 [x] Parallax backgrounds
 [ ] Better solid escape and unisolid platform support
 [x] Apache Beam level best time path recording
+[ ] Contrib world package manager
+[ ] Network battle mode
+[ ] Network ghost mode
 
 ## Bugs to fix
 

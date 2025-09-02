@@ -69,6 +69,9 @@ newGame <- function(f) {
 	}
 
 	startPlay("res/map/aurora-pennyton.json", true, true)
+
+	// Run mod events
+	foreach(i in mebNewGame) i()
 }
 
 newTimeAttack <- function() {
@@ -108,6 +111,9 @@ newTimeAttack <- function() {
 	gvIGT = 0
 	gvTAStep = 0
 	startPlay(game.path + gvTACourse[0] + ".json", true, true)
+
+	// Run mod events
+	foreach(i in mebNewTimeAttack) i()
 }
 
 saveGame <- function() {
@@ -133,6 +139,9 @@ loadGame <- function(f) {
 		gvTARandomPlayer = game.rawin("randPlayer") ? game.randPlayer : false
 		gvTARandomItem = game.rawin("randItem") ? game.randItem : false
 		startOverworld(game.world)
+
+		// Run mod events
+		foreach(i in mebLoadGame) i()
 	}
 }
 

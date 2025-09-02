@@ -747,7 +747,7 @@ Cyra <- class extends Player {
 
 				// Jumping
 				if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
+					if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 						y++
 						canJump = 32
 						if(!placeFree(x, y) && !placeFree(x, y - 1))

@@ -429,6 +429,9 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 		gvFadeInTime = 255
 	}
 
+	//Run mod events
+	foreach(i in mebPlayStart) i()
+
 	// Switch game mode to play
 	if(skipIntro) gvGameMode = gmPlay
 	else gvGameMode = gmLevelStart
@@ -1319,6 +1322,9 @@ gmPlay <- function() {
 
 	if(game.ps.health < 0) game.ps.health = 0
 	if(game.ps2.health < 0) game.ps2.health = 0
+
+	// Run mod events
+	foreach(i in mebPlayRun) i()
 }
 
 playerTeleport <- function(target = false, _x = 0, _y = 0) { // Used to move the player and camera at the same time

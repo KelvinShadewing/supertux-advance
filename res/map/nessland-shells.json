@@ -4881,10 +4881,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgOceanHorizon\ngvHorizon = 16 * 34\ndrawWeather = 0\nsongPlay(musAirship)\nsetLight(0xffffffff)"
+         "value":"drawBG = dbgOceanHorizon\ngvHorizon = 16 * 34\ndrawWeather = 0\nsongPlay(musAirship)\nsetLight(0xffffffff)\ngfxEnemyForest()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tilesets":[
         {

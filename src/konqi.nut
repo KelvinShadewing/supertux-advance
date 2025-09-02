@@ -10,7 +10,7 @@ Konqi <- class extends Player {
 	frame = 0.0
 	flip = 0
 	canMove = true // If player has control
-	mspeed = 4 // Maximum running speed
+	mspeed = 3.5 // Maximum running speed
 	climbdir = 1.0
 	blinking = 0 // Invincibility frames
 	xstart = 0.0
@@ -291,6 +291,15 @@ Konqi <- class extends Player {
 						else anim = "jumpU"
 						frame = 0.0
 					}
+
+					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum)) {
+						anim = "ram"
+						if(flip == 0)
+							hspeed = max(hspeed, 3.0)
+						else
+							hspeed = min(hspeed, -3.0)
+						rspeed = max(rspeed, 3.0)
+					}
 					break
 
 				case "walk":
@@ -304,8 +313,13 @@ Konqi <- class extends Player {
 						frame = 0.0
 					}
 
-					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum))
+					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum)) {
 						anim = "ram"
+						if(flip == 0)
+							hspeed = max(hspeed, 3.0)
+						else
+							hspeed = min(hspeed, -3.0)
+					}
 
 					break
 
@@ -332,8 +346,13 @@ Konqi <- class extends Player {
 						frame = 0.0
 					}
 
-					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum))
+					if(anim != "skid" && canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum)) {
 						anim = "ram"
+						if(flip == 0)
+							hspeed = max(hspeed, 3.0)
+						else
+							hspeed = min(hspeed, -3.0)
+					}
 
 					break
 
@@ -356,6 +375,9 @@ Konqi <- class extends Player {
 						anim = "jumpU"
 						popSound(sndBump)
 					}
+
+					if(flip == 0 && hspeed < 0 || flip == 1 && hspeed > 0)
+						anim = "skid"
 
 					break
 
@@ -521,11 +543,13 @@ Konqi <- class extends Player {
 				if(stats.weapon == "air" && stats.stamina < 1 && guardtime <= 0) stats.stamina += 0.02
 			}
 
-			if(rspeed > 0) rspeed -= 0.1
-			if(rspeed < 0) rspeed += 0.1
+			if(anim != "ram") {
+				if(rspeed > 0) rspeed -= 0.1
+				if(rspeed < 0) rspeed += 0.1
+			}
 
 			if(canMove) {
-				mspeed = 3.0
+				mspeed = 3.5
 				if(config.stickspeed) {
 					local j = null
 					if(playerNum == 1) j = config.joy
@@ -639,7 +663,7 @@ Konqi <- class extends Player {
 
 				// Jumping
 				if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-					if(onPlatform() && !placeFree(x, y, shapeStand) && getcon("down", "hold", true, playerNum) && anim != "statue" && vspeed >= 0) {
+					if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold", true, playerNum) && anim != "statue" && vspeed >= 0) {
 						y++
 						canJump = 32
 						if(!placeFree(x, y) && !placeFree(x, y - 1))
@@ -756,10 +780,10 @@ Konqi <- class extends Player {
 					if(hspeed < 0) hspeed += friction / 3.0
 				} else {
 					if(hspeed > 0) {
-						if(!(mspeed > 2 && getcon("right", "hold", true, playerNum)) || anim == "crawl" || !canMove) hspeed -= friction
+						if(!(mspeed > 2 && getcon("right", "hold", true, playerNum) || anim == "ram") || anim == "crawl" || !canMove) hspeed -= friction
 					}
 					if(hspeed < 0) {
-						if(!(mspeed > 2 && getcon("left", "hold", true, playerNum)) || anim == "crawl" || !canMove) hspeed += friction
+						if(!(mspeed > 2 && getcon("left", "hold", true, playerNum) || anim == "ram") || anim == "crawl" || !canMove) hspeed += friction
 					}
 				}
 			}

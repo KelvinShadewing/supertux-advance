@@ -1968,10 +1968,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)\ngvLightTarget = 0xffffffff\ngvPlayer.flip = 1\nif(gvPlayer2) gvPlayer2.flip = 1"
+         "value":"drawBG = dbgForest\nsongPlay(musSnabForest)\ngvHorizon = gvMap.h - (16 * 5)\ngvLightTarget = 0xffffffff\ngvPlayer.flip = 1\nif(gvPlayer2) gvPlayer2.flip = 1\ngfxEnemyForest()"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tilesets":[
         {

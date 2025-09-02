@@ -1406,10 +1406,10 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgRiverCity\ndrawWeather = 0\ngvVoidFog = false\nsongPlay(musBerrylife)\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprRockyRaccoon && !(\"RockyRaccoon\" in game.friends)) deleteActor(i.id)\n if(i.sprite == sprTealDeerNPC && !(\"TealDeer\" in game.friends)) deleteActor(i.id)\n if(i.sprite == sprGaruda && !(\"Garuda\" in game.friends)) deleteActor(i.id)\n}"
+         "value":"drawBG = dbgRiverCity\ndrawWeather = 0\ngvVoidFog = false\nsongPlay(musBerrylife)\ngfxEnemyForest()\n\nforeach(i in actor[\"NPC\"]) {\n if(i.sprite == sprRockyRaccoon && !(\"RockyRaccoon\" in game.friends)) deleteActor(i.id)\n if(i.sprite == sprTealDeerNPC && !(\"TealDeer\" in game.friends)) deleteActor(i.id)\n if(i.sprite == sprGaruda && !(\"Garuda\" in game.friends)) deleteActor(i.id)\n}"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tilesets":[
         {

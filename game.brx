@@ -226,6 +226,13 @@ strDifficulty = [
 	gvLangObj["difficulty-levels"]["super"]
 ]
 
+// Initialize mod event buffers
+mebNewGame <- {}
+mebLoadGame <- {}
+mebNewTimeAttack <- {}
+mebPlayStart <- {}
+mebPlayRun <- {}
+
 // Load mods
 local modlist = lsdir("mods")
 for(local i = 0; i < modlist.len(); i++) if(modlist[i] != "." && modlist[i] != ".." && modlist[i].find(".nut") != null) donut("mods/" + modlist[i])

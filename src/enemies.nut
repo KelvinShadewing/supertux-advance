@@ -3832,6 +3832,7 @@ Ivy <- class extends Enemy {
 	moving = false
 	touchDamage = 4.0
 	element = "toxic"
+	blinking = 30
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x.tofloat(), _y.tofloat())

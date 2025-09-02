@@ -72,6 +72,7 @@ Midi <- class extends Player {
 		hurtLight = [14, 15]
 		hurtHeavy = [166, 167]
 		walk = [16, 17, 18, 19, 20, 21, 22, 23]
+		jog = [32, 33, 34, 35, 36, 37, 38, 39]
 		run = [48, 49, 50, 51, 52, 53, 54, 55]
 		shootAir = [64, 65, 66, 67]
 		shootTop = [68, 69, 70, 71]
@@ -597,9 +598,9 @@ Midi <- class extends Player {
 						rspeed = fabs(hspeed)
 					}
 					else {
-						if(fabs(rspeed) > 1.6)
+						if(fabs(rspeed) > 2.0)
 							animOffset = 16
-						if(fabs(rspeed) >= 3.2)
+						if(fabs(rspeed) >= 4.0)
 							animOffset = 32
 						if(shooting)
 							animOffset += 8
@@ -1006,7 +1007,7 @@ Midi <- class extends Player {
 			rspeed = 0.0
 
 		if(canMove) {
-			mspeed = 3.5
+			mspeed = 4.0
 			if(anim == "crawl")
 				mspeed = 2.0
 
@@ -1022,8 +1023,12 @@ Midi <- class extends Player {
 			if(zoomies > 0) mspeed *= 2.0
 
 			// Moving left and right
-			if(zoomies > 0) accel = 0.4
-			else accel = 0.2
+			if(abs(hspeed) > 3)
+				accel = 0.2 / fabs(hspeed)
+			else
+				accel = 0.2
+			if(zoomies > 0)
+				accel *= 2.0
 
 			if(anim == "ledge") {
 				mspeed = 0
@@ -1185,7 +1190,7 @@ Midi <- class extends Player {
 
 			// Jumping
 			if(getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
-				if(onPlatform() && !placeFree(x, y + 1) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
+				if(onPlatform() && !placeFree(x, y + 2) && getcon("down", "hold", true, playerNum) && vspeed >= 0) {
 					y++
 					canJump = 32
 
