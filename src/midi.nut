@@ -129,6 +129,7 @@ Midi <- class extends Player {
 		moonwalk = [240, 241, 242, 243, 244, 245, 246, 247]
 		win = [239]
 		crawl = [249, 250, 251, 252, 251, 250]
+		parkour = [256, 257, 258, 259, 260, 261, 262, 263]
 	}
 	animOffset = 0.0
 
@@ -292,7 +293,7 @@ Midi <- class extends Player {
 	function physics() {
 		if(vspeed > 0)
 			didJump = false
-		if(nowInWater)
+		if(nowInWater || anim == "parkour")
 			gravity = 0.12
 		else
 			gravity = 0.25
@@ -636,10 +637,17 @@ Midi <- class extends Player {
 					anim = "jumpT"
 					frame = 0.0
 				}
+
+				if(vspeed < 0 && (!freeLeft && getcon("left", "hold", true, playerNum) || !freeRight && getcon("right", "hold", true, playerNum)) && freeDown2) {
+					anim = "parkour"
+					if(vspeed < -2)
+						vspeed = min(vspeed, -4.0)
+				}
 				break
 
 			case "jumpT":
-				frame += 0.2
+			case "parkour":
+				frame += anim == "parkour" ? 0.4 : 0.2
 				if((!placeFree(x, y + 4) || !placeFree(x - hspeed, y + 4) || onPlatform()) && vspeed >= 0) {
 					anim = "stand"
 					frame = 0.0
@@ -650,7 +658,12 @@ Midi <- class extends Player {
 					frame = 0.0
 				}
 
-				if(vspeed < 0) anim = "jump"
+				if(vspeed < 0 && anim != "parkour") anim = "jump"
+
+				if(anim == "parkour" && (vspeed >= 0 || freeLeft && freeRight)) {
+					anim = "fall"
+					frame = 0.0
+				}
 				break
 
 			case "fall":
@@ -660,7 +673,7 @@ Midi <- class extends Player {
 					anim = "stand"
 					frame = 0.0
 				}
-				if(vspeed < 0) anim = "jump"
+				if(vspeed < 0.5) anim = "jump"
 				break
 
 			case "wall":

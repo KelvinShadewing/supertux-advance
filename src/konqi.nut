@@ -36,6 +36,7 @@ Konqi <- class extends Player {
 	groundy = 0.0
 	held = null
 	accel = 0.2
+	pseudoBlink = 0
 
 	// Animations
 	anim = ""
@@ -378,12 +379,12 @@ Konqi <- class extends Player {
 
 					if(flip == 0 && hspeed < 0 || flip == 1 && hspeed > 0)
 						anim = "skid"
-
 					break
-
 
 				case "stomp":
 					if(frame <= an[anim].len() - 1) frame += 0.2
+					pseudoBlink = 8
+					break
 
 				case "push":
 					break
@@ -1553,7 +1554,7 @@ Konqi <- class extends Player {
 		else friction = 0.1
 
 		if(hurt > 0 && invincible == 0) {
-			if(blinking == 0) {
+			if(blinking == 0 && pseudoBlink == 0) {
 				blinking = 60
 				playSound(sndHurt, 0)
 				if(stats.weapon == "earth" && anim == "statue" && stats.stamina > 0 && frame >= 2) {
@@ -1573,7 +1574,10 @@ Konqi <- class extends Player {
 			hurt = 0
 		}
 		else hurt = 0
-		if(blinking > 0) blinking--
+		if(blinking > 0)
+			blinking--
+		if(pseudoBlink > 0)
+			pseudoBlink--
 
 		// Invincibility
 		if(invincible > 0) invincible--

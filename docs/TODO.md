@@ -128,7 +128,7 @@
 [x] In-game timer
 [x] Jump buffering
 [ ] Mod Tracking (for requirement checks)
-[ ] Mod event buffer
+[x] Mod event buffer
 [x] Parallax backgrounds
 [ ] Better solid escape and unisolid platform support
 [x] Apache Beam level best time path recording
