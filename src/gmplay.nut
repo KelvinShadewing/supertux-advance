@@ -53,6 +53,9 @@ startPlay <- function(level, newLevel = true, skipIntro = false) {
 	deleteAllActors()
 	drawWeather = 0
 	drawWeather2 = 0
+	camxLead0 = 0
+	camxLead1 = 0
+	camxLead2 = 0
 	if(newLevel) {
 		game.ps.health = game.maxHealth
 		game.ps2.health = game.maxHealth

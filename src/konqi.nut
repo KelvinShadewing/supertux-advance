@@ -293,7 +293,7 @@ Konqi <- class extends Player {
 						frame = 0.0
 					}
 
-					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum)) {
+					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum) && !freeDown2) {
 						anim = "ram"
 						if(flip == 0)
 							hspeed = max(hspeed, 3.0)
@@ -314,7 +314,7 @@ Konqi <- class extends Player {
 						frame = 0.0
 					}
 
-					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum)) {
+					if(canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum) && !freeDown2) {
 						anim = "ram"
 						if(flip == 0)
 							hspeed = max(hspeed, 3.0)
@@ -347,7 +347,7 @@ Konqi <- class extends Player {
 						frame = 0.0
 					}
 
-					if(anim != "skid" && canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum)) {
+					if(anim != "skid" && canMove && stats.stamina > 0 && getcon("spec2", "hold", true, playerNum) && !freeDown2) {
 						anim = "ram"
 						if(flip == 0)
 							hspeed = max(hspeed, 3.0)
@@ -762,7 +762,7 @@ Konqi <- class extends Player {
 				}
 
 				if(anim == "crawl") {
-					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y - 6)) anim = "stand"
+					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y, shapeStand)) anim = "stand"
 					else {
 						// Ping pong animation
 						frame += fabs(hspeed / 8.0)

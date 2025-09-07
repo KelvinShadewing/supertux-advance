@@ -252,6 +252,8 @@ sprWoodBox <- newSprite("res/gfx/woodbox.png", 16, 16)
 defWoodBox <- sprWoodBox
 sprWoodBoxSnow <- newSprite("res/gfx/woodbox-snow.png", 16, 16)
 defWoodBoxSnow <- sprWoodBoxSnow
+sprWoodBoxSand <- newSprite("res/gfx/woodbox-sand.png", 16, 16)
+defWoodBoxSand <- sprWoodBoxSand
 sprBoxShop <- newSprite("res/gfx/shopblock.png", 16, 16)
 defBoxShop <- sprBoxShop
 sprBoxChar <- newSprite("res/gfx/charbox.png", 16, 16)
@@ -264,6 +266,8 @@ sprHoneyLock <- newSprite("res/gfx/honey-lock.png", 16, 16)
 defHoneyLock <- sprHoneyLock
 sprWoodChunks <- newSprite("res/gfx/woodchunks.png", 8, 8, 4, 4)
 defWoodChunks <- sprWoodChunks
+sprWoodChunksSand <- newSprite("res/gfx/woodchunks-sand.png", 8, 8, 4, 4)
+defWoodChunksSand <- sprWoodChunksSand
 sprBoxInfo <- newSprite("res/gfx/infobox.png", 16, 16)
 defBoxInfo <- sprBoxInfo
 sprKelvinScarf <- newSprite("res/gfx/kelvinscarf.png", 16, 16)
@@ -596,6 +600,10 @@ sprPumpkin <- newSprite("res/gfx/pumpkin.png", 16, 16, 8, 8)
 defPumpkin <- sprPumpkin
 sprSoccerBall <- newSprite("res/gfx/soccerball.png", 16, 16, 8, 8)
 defSoccerBall <- sprSoccerBall
+sprLightCap <- newSprite("res/gfx/lightcap.png", 16, 16, 8, 8)
+defLightCap <- sprLightCap
+sprDarkCap <- newSprite("res/gfx/darkcap.png", 16, 16, 8, 8)
+defDarkCap <- sprDarkCap
 
 
 
@@ -1103,6 +1111,8 @@ gfxEnemySand <- function() {
 	gfxEnemyForest()
 	sprIcicle = sprCoconut
 	sprOrangeBounce = sprCoconutBounce
+	sprWoodBox = sprWoodBoxSand
+	sprWoodChunks = sprWoodChunksSand
 }
 
 tsSolid <- newSprite("res/gfx/solid.png", 16, 16)

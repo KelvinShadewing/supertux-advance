@@ -843,18 +843,21 @@ DashFlame <- class extends WeaponEffect {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr)
 		shape = Rec(x, y, 14, 4, 0)
-		flip = -1
+		if(checkActor(owner)) {
+			x = actor[owner].x + (actor[owner].shape.w * (actor[owner].hspeed <=> 0) * 2)
+			y = actor[owner].y + (actor[owner].vspeed) / 2.0
+			flip = x < actor[owner].x ? 1 : 0
+		}
+		else {
+			flip = 0
+		}
 	}
 
 	function run() {
 		if(checkActor(owner)) {
-			x = actor[owner].x + (actor[owner].hspeed * 2.0)
+			x = actor[owner].x + (actor[owner].shape.w * (actor[owner].hspeed <=> 0) * 2)
 			y += (actor[owner].vspeed) / 2.0
-			if(flip == -1)
-				flip = int(actor[owner].flip)
 		}
-		else
-			flip = 0
 
 		shape.setPos(x, y)
 		frame += 0.25
@@ -863,7 +866,8 @@ DashFlame <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		drawSpriteZ(3, sprFireDash, frame * 4.0, x - camx, y - camy, 0, flip, 1, 1)
+		if(checkActor(owner))
+			drawSpriteZ(3, sprFireDash, frame * 4.0, actor[owner].x + (actor[owner].shape.w * (actor[owner].hspeed <=> 0) * 2) - camx, actor[owner].y - camy, 0, flip, 1, 1)
 	}
 }
 

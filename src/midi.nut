@@ -647,7 +647,7 @@ Midi <- class extends Player {
 
 			case "jumpT":
 			case "parkour":
-				frame += anim == "parkour" ? 0.4 : 0.2
+				frame += anim == "parkour" ? 0.3 : 0.2
 				if((!placeFree(x, y + 4) || !placeFree(x - hspeed, y + 4) || onPlatform()) && vspeed >= 0) {
 					anim = "stand"
 					frame = 0.0

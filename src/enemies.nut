@@ -92,10 +92,20 @@ Enemy <- class extends PhysAct {
 					break
 			}
 
-			if(gvPlayer && health > 0) {
+			if(gvPlayer && health > 0 && blinking == 0) {
 				if(hitTest(shape, gvPlayer.shape) && !frozen) {
-					if("invincible" in gvPlayer && gvPlayer.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer.y && vspeed < gvPlayer.vspeed && gvPlayer.canStomp && gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2) && blinking == 0 && !sharpTop && !gvPlayer.swimming && gvPlayer.holding != id) {
+					if("invincible" in gvPlayer && gvPlayer.invincible > 0) {
+						newActor(CoinSmall, x, y)
+						hurtInvinc()
+					}
+					else if(y > gvPlayer.y
+						&& vspeed < gvPlayer.vspeed
+						&& gvPlayer.canStomp
+						&& gvPlayer.placeFree(gvPlayer.x, gvPlayer.y + 2)
+						&& blinking == 0
+						&& !sharpTop
+						&& !gvPlayer.swimming
+						&& gvPlayer.holding != id) {
 						if(!squish) {
 							if(getcon("jump", "hold", false, 1)) gvPlayer.vspeed = -8.0
 							else gvPlayer.vspeed = -4.0
@@ -111,10 +121,20 @@ Enemy <- class extends PhysAct {
 				}
 			}
 
-			if(gvPlayer2 && health > 0) {
+			if(gvPlayer2 && health > 0 && blinking == 0) {
 				if(hitTest(shape, gvPlayer2.shape) && !frozen) { // 8 for player radius
-					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) hurtInvinc()
-					else if(y > gvPlayer2.y && vspeed < gvPlayer2.vspeed && gvPlayer2.canStomp && gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2) && blinking == 0 && !sharpTop && !gvPlayer2.swimming && gvPlayer2.holding != id) {
+					if("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) {
+						newActor(CoinSmall, x, y)
+						hurtInvinc()
+					}
+					else if(y > gvPlayer2.y
+						&& vspeed < gvPlayer2.vspeed
+						&& gvPlayer2.canStomp
+						&& gvPlayer2.placeFree(gvPlayer2.x, gvPlayer2.y + 2)
+						&& blinking == 0
+						&& !sharpTop
+						&& !gvPlayer2.swimming
+						&& gvPlayer2.holding != id) {
 						if(!squish) {
 							if(getcon("jump", "hold", false, 1)) gvPlayer2.vspeed = -8.0
 							else gvPlayer2.vspeed = -4.0
@@ -2170,7 +2190,7 @@ CannonBob <- class extends Enemy {
 }
 
 Icicle <- class extends Enemy {
-	timer = 30
+	timer = 5
 	counting = false
 	touchDamage = 2.0
 	element = "ice"
@@ -4974,6 +4994,7 @@ Crusher <- class extends Enemy {
 	}
 
 	function run() {
+		blinking = 10
 		health = 100
 		platform.shape.setPos(x, -1000)
 		base.run()

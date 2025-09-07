@@ -347,7 +347,7 @@ config <- {
 	soundVolume = 64
 	musicVolume = 64
 	fullscreen = false
-	lookAhead = false
+	lookAhead = 0
 	weather = true
 	splitlock = false
 	scanlines = false

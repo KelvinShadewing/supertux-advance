@@ -871,12 +871,18 @@ meGraphics <- {
 		},
 		{
 			name = function() {
-				local val = gvLangObj["menu-commons"][config.lookAhead ? "on" : "off"]
-				return format(gvLangObj["options-menu"]["lookahead"], val)
+				return format(gvLangObj["options-menu"]["lookahead"], ([
+					gvLangObj["menu-commons"]["off"],
+					gvLangObj["menu-commons"]["a"],
+					gvLangObj["menu-commons"]["b"]
+				])[int(config.lookAhead)]);
 			}
-			desc = function() { return gvLangObj["options-menu-desc"]["lookahead"]
+			func = function() {
+				config.lookAhead = (int(config.lookAhead) + 1) % 3;
+				fileWrite("config.json", jsonWrite(config));
 			}
-			func = function() { config.lookAhead = !config.lookAhead }
+			desc = function() { return gvLangObj["options-menu-desc"]["lookahead"];
+			}
 		},
 		{
 			name = function() {

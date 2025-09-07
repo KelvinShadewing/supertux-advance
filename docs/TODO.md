@@ -139,4 +139,4 @@
 ## Bugs to fix
 
 * Carried enemies sometimes get stuck on terrain.
-* Moving fast downhill causes player to leave the ground. urrent fix keeps them on up to a certain speed, but also makes them snap to the ground when falling instead of landing naturally.
+* Moving fast downhill causes player to leave the ground. Current fix keeps them on up to a certain speed, but also makes them snap to the ground when falling instead of landing naturally.

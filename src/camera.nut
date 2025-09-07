@@ -1,32 +1,56 @@
-camx <- 0
-camy <- 0
-camxprev <- 0
-camyprev <- 0
+camx <- 0;
+camy <- 0;
+camxprev <- 0;
+camyprev <- 0;
 
-camx0 <- 0
-camy0 <- 0
-camxprev0 <- 0
-camyprev0 <- 0
+camx0 <- 0;
+camy0 <- 0;
+camxprev0 <- 0;
+camyprev0 <- 0;
 
-camx1 <- 0
-camy1 <- 0
-camx1prev <- 0
-camy1prev <- 0
+camx1 <- 0;
+camy1 <- 0;
+camx1prev <- 0;
+camy1prev <- 0;
 
-camx2 <- 0
-camy2 <- 0
-camx2prev <- 0
-camy2prev <- 0
+camx2 <- 0;
+camy2 <- 0;
+camx2prev <- 0;
+camy2prev <- 0;
 
-gvCamTarget <- false
-gvCamTarget2 <- false
-gvSplitScreen <- false
-gvSwapScreen <- false
-gvSuspendSplitLock <- false
+camxLead0 <- 0; // For type B dynamic camera
+camxLead1 <- 0;
+camxLead2 <- 0;
+
+camxTimer0 <- 0;
+camxTimer1 <- 0;
+camxTimer2 <- 0;
+
+gvCamTarget <- false;
+gvCamTarget2 <- false;
+gvSplitScreen <- false;
+gvSwapScreen <- false;
+gvSuspendSplitLock <- false;
 
 updateCamera <- function() {
 	if(typeof gvMap != "Tilemap")
-		return
+		return;
+
+	// Camera lead timers
+	if(gvPlayer && gvPlayer.x != gvPlayer.xprev || gvPlayer2 && gvPlayer2.x != gvPlayer2.xprev)
+		camxTimer0 = 240;
+	else if(camxTimer0 > 0)
+		camxTimer0--;
+
+	if(gvPlayer && gvPlayer.x != gvPlayer.xprev)
+		camxTimer1 = 240;
+	else if(camxTimer1 > 0)
+		camxTimer1--;
+
+	if(gvPlayer2 && gvPlayer2.x != gvPlayer2.xprev)
+		camxTimer2 = 240;
+	else if(camxTimer2 > 0)
+		camxTimer2--;
 
 	//////////////
 	// Camera 0 //
@@ -92,8 +116,16 @@ updateCamera <- function() {
 				py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 			}
 			else {
-				if(config.lookAhead)
+				if(config.lookAhead == 1)
 					px = (((gvPlayer.x + gvPlayer2.x) / 2.0) + (((gvPlayer.x - gvPlayer.xprev) + (gvPlayer2.x - gvPlayer2.xprev)) * 16)) - (gvScreenW / 2) + lx
+				else if(config.lookAhead == 2) {
+					camxLead0 += gvPlayer.x <=> gvPlayer.xprev
+					if(camxTimer0 == 0)
+						camxLead0 -= camxLead0 <=> 0
+					if(camxLead0 > gvScreenW / 4) camxLead0 = gvScreenW / 4
+					if(camxLead0 < -gvScreenW / 4) camxLead0 = -gvScreenW / 4
+					px = (((gvPlayer.x + gvPlayer2.x) / 2.0) + camxLead0) - (gvScreenW / 2) + lx
+				}
 				else
 					px = (((gvPlayer.x + gvPlayer2.x) / 2.0)) - (gvScreenW / 2) + lx
 				py = (((gvPlayer.y + gvPlayer2.y) / 2.0)) - (gvScreenH / 2) + ly
@@ -125,8 +157,17 @@ updateCamera <- function() {
 					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					if(config.lookAhead) {
+					if(config.lookAhead == 1) {
 						px = (gvCamTarget.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 2) + lx
+						py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 8) - (gvScreenH / 2) + ly
+					}
+					else if(config.lookAhead == 2) {
+						camxLead0 += gvPlayer.x - gvPlayer.xprev
+						if(camxTimer0 == 0)
+							camxLead0 -= camxLead0 <=> 0
+						if(camxLead0 > gvScreenW / 4) camxLead0 = gvScreenW / 4
+						if(camxLead0 < -gvScreenW / 4) camxLead0 = -gvScreenW / 4
+						px = (gvPlayer.x + camxLead0) - (gvScreenW / 2) + lx
 						py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 8) - (gvScreenH / 2) + ly
 					}
 					else {
@@ -161,8 +202,17 @@ updateCamera <- function() {
 					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					if(config.lookAhead){
+					if(config.lookAhead == 1){
 						px = (gvCamTarget.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 2) + lx
+						py = (gvCamTarget.y + (gvPlayer2.y - gvPlayer2.yprev) * 8) - (gvScreenH / 2) + ly
+					}
+					else if(config.lookAhead == 2) {
+						camxLead0 += gvPlayer2.x - gvPlayer2.xprev
+						if(camxTimer0 == 0)
+							camxLead0 -= camxLead0 <=> 0
+						if(camxLead0 > gvScreenW / 4) camxLead0 = gvScreenW / 4
+						if(camxLead0 < -gvScreenW / 4) camxLead0 = -gvScreenW / 4
+						px = (gvPlayer2.x + camxLead0) - (gvScreenW / 2) + lx
 						py = (gvCamTarget.y + (gvPlayer2.y - gvPlayer2.yprev) * 8) - (gvScreenH / 2) + ly
 					}
 					else {
@@ -195,7 +245,7 @@ updateCamera <- function() {
 			py = (gvCamTarget.y) - (gvScreenH / 2)
 		}
 	} else if(typeof gvCamTarget == "BeamBug") {
-		px = (gvCamTarget.x + gvCamTarget.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 2)
+		px = (gvCamTarget.x + gvCamTarget.hspeed * (config.lookAhead == 1 ? 32 : 8)) - (gvScreenW / 2)
 		py = (gvCamTarget.y + gvCamTarget.vspeed * 8) - (gvScreenH / 2)
 	}
 	else {
@@ -205,9 +255,9 @@ updateCamera <- function() {
 
 	{
 		if(gvPlayer && gvPlayer2)
-			camx0 += (px - camx0) / (config.lookAhead ? 16 : 8)
+			camx0 += (px - camx0) / (config.lookAhead == 1 ? 16 : config.lookAhead == 2 ? 2 : 8)
 		else
-			camx0 += (px - camx0) / (config.lookAhead ? 24 : 8)
+			camx0 += (px - camx0) / (config.lookAhead == 1 ? 24 : config.lookAhead == 2 ? 2 : 8)
 		camy0 += (py - camy0) / 8
 	}
 
@@ -242,9 +292,18 @@ updateCamera <- function() {
 					py = (gvCamTarget.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					if(config.lookAhead){
+					if(config.lookAhead == 1){
 						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 32) - (gvScreenW / 4) + lx
 						py = (gvPlayer.y + (gvPlayer.y - gvPlayer.yprev) * 8) - (gvScreenH / 2) + ly
+					}
+					else if(config.lookAhead == 2) {
+						camxLead1 += gvPlayer.x - gvPlayer.xprev
+						if(camxTimer1 == 0)
+							camxLead1 -= camxLead1 <=> 0
+						if(camxLead1 > gvScreenW / 8) camxLead1 = gvScreenW / 8
+						if(camxLead1 < -gvScreenW / 8) camxLead1 = -gvScreenW / 8
+						px = (gvPlayer.x + camxLead1) - (gvScreenW / 4) + lx
+						py = (gvCamTarget.y + (gvPlayer.y - gvPlayer.yprev) * 8) - (gvScreenH / 2) + ly
 					}
 					else {
 						px = (gvPlayer.x + (gvPlayer.x - gvPlayer.xprev) * 8) - (gvScreenW / 4) + lx
@@ -260,7 +319,7 @@ updateCamera <- function() {
 
 				if(gvCamTarget.rawin("w")) if(abs(gvCamTarget.w) > pw / 4) {
 					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer.x - (gvScreenW / 4) + lx
-					else ptx = (gvPlayer.x + gvPlayer.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
+					else ptx = (gvPlayer.x + gvPlayer.hspeed * (config.lookAhead == 1 ? 32 : 8)) - (gvScreenW / 4) + lx
 				}
 				if(gvCamTarget.rawin("h")) if(abs(gvCamTarget.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer.y - (gvScreenH / 2) + ly
@@ -281,7 +340,7 @@ updateCamera <- function() {
 	}
 
 	{
-		camx1 += (px - camx1) / (config.lookAhead ? 24 : 8)
+		camx1 += (px - camx1) / (config.lookAhead == 1 ? 24 : config.lookAhead == 2 ? 2 : 8)
 		camy1 += (py - camy1) / 8
 	}
 
@@ -314,9 +373,18 @@ updateCamera <- function() {
 					py = (gvPlayer2.y) - (gvScreenH / 2) + ly
 				}
 				else {
-					if(config.lookAhead){
+					if(config.lookAhead == 1){
 						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 32) - (gvScreenW / 4) + lx
 						py = (gvPlayer2.y + (gvPlayer2.y - gvPlayer2.yprev) * 8) - (gvScreenH / 2) + ly
+					}
+					else if(config.lookAhead == 2) {
+						camxLead2 += gvPlayer2.x - gvPlayer2.xprev
+						if(camxTimer2 == 0)
+							camxLead2 -= camxLead2 <=> 0
+						if(camxLead2 > gvScreenW / 8) camxLead2 = gvScreenW / 8
+						if(camxLead2 < -gvScreenW / 8) camxLead2 = -gvScreenW / 8
+						px = (gvPlayer2.x + camxLead2) - (gvScreenW / 4) + lx
+						py = (gvCamTarget2.y + (gvPlayer2.y - gvPlayer2.yprev) * 8) - (gvScreenH / 2) + ly
 					}
 					else {
 						px = (gvPlayer2.x + (gvPlayer2.x - gvPlayer2.xprev) * 8) - (gvScreenW / 4) + lx
@@ -332,7 +400,7 @@ updateCamera <- function() {
 
 				if(gvCamTarget2.rawin("w")) if(abs(gvCamTarget2.w) > pw / 4) {
 					if(debug && (mouseDown(0) || mouseDown(1))) ptx = gvPlayer2.x - (gvScreenW / 4) + lx
-					else ptx = (gvPlayer2.x + gvPlayer2.hspeed * (config.lookAhead ? 32 : 8)) - (gvScreenW / 4) + lx
+					else ptx = (gvPlayer2.x + gvPlayer2.hspeed * (config.lookAhead == 1 ? 32 : 8)) - (gvScreenW / 4) + lx
 				}
 				if(gvCamTarget2.rawin("h")) if(abs(gvCamTarget2.h) > ph / 2) {
 					if(debug && (mouseDown(0) || mouseDown(1))) pty = gvPlayer2.y - (gvScreenH / 2) + ly
@@ -353,7 +421,7 @@ updateCamera <- function() {
 	}
 
 	{
-		camx2 += (px - camx2) / (config.lookAhead ? 24 : 8)
+		camx2 += (px - camx2) / (config.lookAhead == 1 ? 24 : config.lookAhead == 2 ? 2 : 8)
 		camy2 += (py - camy2) / 8
 	}
 

@@ -15,7 +15,7 @@ ShopBlockHealth <- class extends Actor {
 
 	function run() {
 		if(game.maxHealth >= 16 * 4) soldout = true
-		price = (game.maxHealth + 1) * (40 * (game.difficulty + 1))
+		price = (game.maxHealth + 1) * (60 * (game.difficulty + 1))
 
 		if(v > 0) {
 			vspeed = 0
@@ -65,7 +65,7 @@ ShopBlockEnergy <- class extends Actor {
 	}
 
 	function run() {
-		if(game.energyBonus >= 16) soldout = true
+		if(game.energyBonus >= 28) soldout = true
 		price = (game.energyBonus + 1) * (500 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {
@@ -117,7 +117,7 @@ ShopBlockStamina <- class extends Actor {
 	}
 
 	function run() {
-		if(game.staminaBonus >= 16) soldout = true
+		if(game.staminaBonus >= 28) soldout = true
 		price = (game.staminaBonus + 1) * (500 * ((game.difficulty.tofloat() / 2) + 1))
 
 		if(v > 0) {

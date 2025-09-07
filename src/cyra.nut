@@ -860,7 +860,7 @@ Cyra <- class extends Player {
 				}
 
 				if(anim == "crawl") {
-					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y - 6)) anim = "stand"
+					if(!getcon("down", "hold", true, playerNum) && placeFree(x, y, shapeStand)) anim = "stand"
 					else {
 						// Ping pong animation
 						frame += (hspeed / 8.0)
