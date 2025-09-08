@@ -1,2 +1,2 @@
-freeKonqi()
-freeMidi()
+freeKonqi();
+freeMidi();

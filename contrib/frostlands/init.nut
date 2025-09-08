@@ -1,9 +1,11 @@
-print("Found Frostlands")
-addTimeAttackWorld("The Frostlands", [
+print("Found Frostlands");
+addTimeAttackWorld(
+	"The Frostlands",
+	[
 		"fw-1",
 		"fw-2",
 		"fw-3",
-		"fw-3b"
+		"fw-3b",
 		"fw-4",
 		"fw-5",
 		"fw-6",
@@ -19,10 +21,11 @@ addTimeAttackWorld("The Frostlands", [
 		"B-2",
 		"B-3"
 	],
-	"frostlands")
+	"frostlands"
+);
 
-gvAchievements.welcomeFrostlands <- function() {
-	return (game.path == "contrib/frostlands/")
-}
+gvAchievements.welcomeFrostlands <- function () {
+	return game.path == "contrib/frostlands/";
+};
 
 // I would have added more achievements but i lack the time to add more aaaaaaaaaaaaaaaaaaaaaaaaaaaaa

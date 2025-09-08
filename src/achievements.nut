@@ -1,10 +1,10 @@
 meAchievements <- {
-	size = menuLarge
+	size = menuLarge,
 	back = function() {
 		menu = meExtras
-	}
+	},
 	items = []
-}
+};
 
 gvAchievements <- {
 	saveKonqi = function() {
@@ -82,7 +82,7 @@ gvAchievements <- {
 	blastOff = function() {
 		return gvPlayer && gvPlayer.y < 0 && gvPlayer.hspeed <= -20
 	}
-}
+};
 
 gvUnlockedAchievements <- {}
 gvAchievementTimer <- 0
@@ -99,7 +99,7 @@ checkAchievements <- function() {
 			break
 		}
 	}
-}
+};
 
 fulfillAchievement <- function(key = null) {
 	if(!gvLangObj["achi-name"].rawin(key) || (key in gvUnlockedAchievements))
@@ -109,32 +109,34 @@ fulfillAchievement <- function(key = null) {
 	newActor(AchiNotice, 16, -16, key)
 	fileWrite("save/_achievements.json", jsonWrite(gvUnlockedAchievements))
 	gvAchievementTimer = 120
-}
+};
 
 selectAchievements <- function() {
 	meAchievements = {
-		size = menuLarge
+		size = menuLarge,
 		back = function() {
-			menu = meExtras
-		}
+			menu = meExtras;
+		},
 		items = []
-	}
+	};
 
 	foreach(key, i in gvAchievements) {
 		local newKey = key
-		if(gvLangObj["achi-name"].rawin(newKey)) meAchievements.items.push({
-			name = function() {
-				if(gvUnlockedAchievements.rawin(newKey)) return gvLangObj["achi-name"][newKey]
-				else return "????"
+		if(gvLangObj["achi-name"].rawin(newKey)) meAchievements.items.push(
+			{
+				name = function() {
+					if(gvUnlockedAchievements.rawin(newKey)) return gvLangObj["achi-name"][newKey]
+					else return "????"
+				},
+				func = function() {},
+				desc = function() {
+					if(gvLangObj["achi-desc"].rawin(newKey)) return gvLangObj["achi-desc"][newKey]
+					else return "????"
+				},
+				disabled = !gvUnlockedAchievements.rawin(newKey)
 			}
-			func = function() {}
-			desc = function() {
-				if(gvLangObj["achi-desc"].rawin(newKey)) return gvLangObj["achi-desc"][newKey]
-				else return "????"
-			}
-			disabled = !gvUnlockedAchievements.rawin(newKey)
-		})
-	}
+		)
+	};
 
 	meAchievements.items.sort(function(a, b) {
 		if(a.name() > b.name() || a.name()[0] == '?') return 1
@@ -143,13 +145,13 @@ selectAchievements <- function() {
 	})
 
 	meAchievements.items.push({
-			name = function() { return gvLangObj["menu-commons"]["back"] }
-			func = function() { menu = meExtras }
+			name = function() { return gvLangObj["menu-commons"]["back"] },
+			func = function() { menu = meExtras },
 			back = function() { menu = meExtras }
 		})
 
 	menu = meAchievements
-}
+};
 
 AchiNotice <- class extends Actor {
 	persistent = true
@@ -184,8 +186,8 @@ AchiNotice <- class extends Actor {
 	}
 
 	function _typeof() { return "AchiNotice" }
-}
+};
 
 drawAchievements <- function() {
 	if(actor.rawin("AchiNotice")) foreach(i in actor["AchiNotice"]) i.run(true)
-}
+};

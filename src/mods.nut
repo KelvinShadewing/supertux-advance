@@ -8,18 +8,16 @@
 // Example: ebNewGame.modByMe <- function() { stuff }
 // The 'eb' prefix stands for "Event Buffer"
 
-ebNewGame <- {}
-ebOverworldStart <- {}
-ebOverworldRun <- {}
-ebPlayStart <- {}
-ebPlayRun <- {}
+ebNewGame <- {};
+ebOverworldStart <- {};
+ebOverworldRun <- {};
+ebPlayStart <- {};
+ebPlayRun <- {};
 
-runModEventBuffer <- function(event) {
-	if(event.len() == 0)
-		return
+runModEventBuffer <- function (event) {
+	if (event.len() == 0) return;
 
-	foreach(i in event) {
-		if(typeof i == "function")
-			i()
+	foreach (i in event) {
+		if (typeof i == "function") i();
 	}
-}
+};

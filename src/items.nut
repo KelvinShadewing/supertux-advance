@@ -2,7 +2,7 @@
 | ITEMS SOURCE |
 \*============*/
 
-Coin <- class extends Actor{
+Coin <- class extends Actor {
 	frame = 0.0;
 	hspeed = 0.0;
 	vspeed = 0.0;
@@ -18,46 +18,68 @@ Coin <- class extends Actor{
 
 	function run() {
 		shape.setPos(x, y);
-		if(gvPlayer && hitTest(gvPlayer.shape, shape)
-		|| gvPlayer2 && hitTest(gvPlayer2.shape, shape)) {
+		if (
+			(gvPlayer && hitTest(gvPlayer.shape, shape)) ||
+			(gvPlayer2 && hitTest(gvPlayer2.shape, shape))
+		) {
 			deleteActor(id);
 			newActor(CoinEffect, x, y);
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
-		}
-		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
-			deleteActor(id);
-			newActor(CoinEffect, x, y);
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
-		}
+			foreach (k, i in gvYetFoundItems)
+				if (i == id) gvFoundItems[k] <- typeof this;
+		} else if ("WeaponEffect" in actor)
+			foreach (i in actor["WeaponEffect"])
+				if (inDistance2(x, y, i.x, i.y, 8) && i.box) {
+					deleteActor(id);
+					newActor(CoinEffect, x, y);
+					foreach (k, i in gvYetFoundItems)
+						if (i == id) gvFoundItems[k] <- typeof this;
+				}
 		frame += 0.2;
 
 		hspeed /= 1.01;
 		vspeed /= 1.01;
 
-		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)) {
+		if (
+			gvPlayer &&
+			gvPlayer.magnetic &&
+			inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)
+		) {
 			target = 1;
-		}
-		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)) {
+		} else if (
+			gvPlayer2 &&
+			gvPlayer2.magnetic &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)
+		) {
 			target = 2;
 		}
 
-		if(target == 1) {
-			if(gvPlayer) {
-				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y));
-				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y));
+		if (target == 1) {
+			if (gvPlayer) {
+				hspeed += lendirX(
+					0.25,
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
+				vspeed += lendirY(
+					0.25,
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
 			}
 		}
 
-		if(target == 2) {
-			if(gvPlayer2) {
-				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y));
-				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y));
+		if (target == 2) {
+			if (gvPlayer2) {
+				hspeed += lendirX(
+					0.25,
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
+				vspeed += lendirY(
+					0.25,
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
 			}
 		}
 
-		if(target == 0) {
+		if (target == 0) {
 			hspeed /= 2.0;
 			vspeed /= 2.0;
 		}
@@ -75,14 +97,13 @@ Coin <- class extends Actor{
 	}
 };
 
-CoinSmall <- class extends PhysAct{
+CoinSmall <- class extends PhysAct {
 	frame = 0.0;
 	timer = 300;
 	gravity = 0.2;
 	friction = 0.05;
 
-	constructor(_x, _y, _arr = null)
-	{
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		frame = randFloat(4);
 		hspeed = randFloat(6.0) - 3.0;
@@ -94,10 +115,12 @@ CoinSmall <- class extends PhysAct{
 	function run() {
 		base.run();
 
-		if((
-			gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
-			|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)
-		) && timer < 290) {
+		if (
+			((gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) ||
+				(gvPlayer2 &&
+					inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20))) &&
+			timer < 290
+		) {
 			deleteActor(id);
 			newActor(Spark, x, y);
 			game.coins++;
@@ -106,38 +129,32 @@ CoinSmall <- class extends PhysAct{
 		frame += 0.2;
 
 		timer--;
-		if(timer == 0)
-			deleteActor(id);
+		if (timer == 0) deleteActor(id);
 
-		if(!placeFree(x, y + 1)) {
+		if (!placeFree(x, y + 1)) {
 			vspeed = -vspeed / 1.5;
 			friction = 0.05;
-		}
-		else
-			friction = 0.0;
-		
-		if(!placeFree(x, y - 1))
-			vspeed = fabs(vspeed);
+		} else friction = 0.0;
 
-		if(!placeFree(x + 1, y))
-			hspeed = -fabs(hspeed);
+		if (!placeFree(x, y - 1)) vspeed = fabs(vspeed);
 
-		if(!placeFree(x - 1, y))
-			hspeed = fabs(hspeed);
+		if (!placeFree(x + 1, y)) hspeed = -fabs(hspeed);
+
+		if (!placeFree(x - 1, y)) hspeed = fabs(hspeed);
 	}
 
 	function draw() {
-		drawSprite((
-				config.bigItems ? sprCoin : sprCoinSmall),
-				getFrames() / 4
-				x - camx,
-				y - camy - (config.bigItems ? 4 : 0),
-				0,
-				0,
-				1,
-				1,
-				(timer > 60 ? 1 : float(timer) / 10
-			));
+		drawSprite(
+			config.bigItems ? sprCoin : sprCoinSmall,
+			getFrames() / 4,
+			x - camx,
+			y - camy - (config.bigItems ? 4 : 0),
+			0,
+			0,
+			1,
+			1,
+			timer > 60 ? 1 : float(timer) / 10
+		);
 	}
 
 	function _typeof() {
@@ -145,61 +162,81 @@ CoinSmall <- class extends PhysAct{
 	}
 };
 
-Coin5 <- class extends Actor{
+Coin5 <- class extends Actor {
 	frame = 0.0;
 	hspeed = 0.0;
 	vspeed = 0.0;
 	target = 0;
 
-	constructor(_x, _y, _arr = null)
-	{
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		frame = randFloat(4);
 		game.maxCoins = game.maxCoins + 5;
 	}
 
-	function run()
-	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
+	function run() {
+		if (
+			(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) ||
+			(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20))
+		) {
 			deleteActor(id);
 			newActor(CoinEffect, x, y, 5);
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
-		}
-		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
-			deleteActor(id);
-			newActor(CoinEffect, x, y, 5);
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
-		}
+			foreach (k, i in gvYetFoundItems)
+				if (i == id) gvFoundItems[k] <- typeof this;
+		} else if ("WeaponEffect" in actor)
+			foreach (i in actor["WeaponEffect"])
+				if (inDistance2(x, y, i.x, i.y, 8) && i.box) {
+					deleteActor(id);
+					newActor(CoinEffect, x, y, 5);
+					foreach (k, i in gvYetFoundItems)
+						if (i == id) gvFoundItems[k] <- typeof this;
+				}
 		frame += 0.2;
 
 		hspeed /= 1.01;
 		vspeed /= 1.01;
 
-		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)) {
+		if (
+			gvPlayer &&
+			gvPlayer.magnetic &&
+			inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)
+		) {
 			target = 1;
-		}
-		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)) {
+		} else if (
+			gvPlayer2 &&
+			gvPlayer2.magnetic &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)
+		) {
 			target = 2;
 		}
 
-		if(target == 1) {
-			if(gvPlayer) {
-				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y));
-				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y));
+		if (target == 1) {
+			if (gvPlayer) {
+				hspeed += lendirX(
+					0.25,
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
+				vspeed += lendirY(
+					0.25,
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
 			}
 		}
 
-		if(target == 2) {
-			if(gvPlayer2) {
-				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y));
-				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y));
+		if (target == 2) {
+			if (gvPlayer2) {
+				hspeed += lendirX(
+					0.25,
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
+				vspeed += lendirY(
+					0.25,
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
 			}
 		}
 
-		if(target == 0) {
+		if (target == 0) {
 			hspeed /= 2.0;
 			vspeed /= 2.0;
 		}
@@ -217,61 +254,81 @@ Coin5 <- class extends Actor{
 	}
 };
 
-Coin10 <- class extends Actor{
+Coin10 <- class extends Actor {
 	frame = 0.0;
 	hspeed = 0.0;
 	vspeed = 0.0;
 	target = 0;
 
-	constructor(_x, _y, _arr = null)
-	{
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		frame = randFloat(4);
 		game.maxCoins = game.maxCoins + 10;
 	}
 
-	function run()
-	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
+	function run() {
+		if (
+			(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) ||
+			(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20))
+		) {
 			deleteActor(id);
 			newActor(CoinEffect, x, y, 10);
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
-		}
-		else if("WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) if(inDistance2(x, y, i.x, i.y, 8) && i.box) {
-			deleteActor(id);
-			newActor(CoinEffect, x, y, 10);
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
-		}
+			foreach (k, i in gvYetFoundItems)
+				if (i == id) gvFoundItems[k] <- typeof this;
+		} else if ("WeaponEffect" in actor)
+			foreach (i in actor["WeaponEffect"])
+				if (inDistance2(x, y, i.x, i.y, 8) && i.box) {
+					deleteActor(id);
+					newActor(CoinEffect, x, y, 10);
+					foreach (k, i in gvYetFoundItems)
+						if (i == id) gvFoundItems[k] <- typeof this;
+				}
 		frame += 0.2;
 
 		hspeed /= 1.01;
 		vspeed /= 1.01;
 
-		if(gvPlayer && gvPlayer.magnetic && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)) {
+		if (
+			gvPlayer &&
+			gvPlayer.magnetic &&
+			inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)
+		) {
 			target = 1;
-		}
-		else if(gvPlayer2 && gvPlayer2.magnetic && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)) {
+		} else if (
+			gvPlayer2 &&
+			gvPlayer2.magnetic &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)
+		) {
 			target = 2;
 		}
 
-		if(target == 1) {
-			if(gvPlayer) {
-				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y));
-				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer.x, gvPlayer.y));
+		if (target == 1) {
+			if (gvPlayer) {
+				hspeed += lendirX(
+					0.25,
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
+				vspeed += lendirY(
+					0.25,
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
 			}
 		}
 
-		if(target == 2) {
-			if(gvPlayer2) {
-				hspeed += lendirX(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y));
-				vspeed += lendirY(0.25, pointAngle(x, y, gvPlayer2.x, gvPlayer2.y));
+		if (target == 2) {
+			if (gvPlayer2) {
+				hspeed += lendirX(
+					0.25,
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
+				vspeed += lendirY(
+					0.25,
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
 			}
 		}
 
-		if(target == 0) {
+		if (target == 0) {
 			hspeed /= 2.0;
 			vspeed /= 2.0;
 		}
@@ -289,41 +346,45 @@ Coin10 <- class extends Actor{
 	}
 };
 
-Berry <- class extends Actor{
+Berry <- class extends Actor {
 	timer = 300;
 	doesFade = false;
 
-	constructor(_x, _y, _arr = null)
-	{
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
-		doesFade = (_arr != null);
+		doesFade = _arr != null;
 	}
 
-	function run()
-	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20) && game.ps.berries < 12) {
+	function run() {
+		if (
+			gvPlayer &&
+			inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20) &&
+			game.ps.berries < 12
+		) {
 			deleteActor(id);
 			game.ps.berries++;
 			stopSound(sndGulp);
 			playSound(sndGulp, 0);
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 20) && game.ps2.berries < 12) {
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 20) &&
+			game.ps2.berries < 12
+		) {
 			deleteActor(id);
 			game.ps2.berries++;
 			stopSound(sndGulp);
 			playSound(sndGulp, 0);
 		}
 
-		if(doesFade) {
+		if (doesFade) {
 			timer--;
-			if(timer <= 0)
-				deleteActor(id);
+			if (timer <= 0) deleteActor(id);
 		}
 	}
 
 	function draw() {
-		drawSprite((
-			config.bigItems ? sprBerryLarge : sprBerry),
+		drawSprite(
+			config.bigItems ? sprBerryLarge : sprBerry,
 			0,
 			x - camx,
 			y - camy + ((getFrames() / 16) % 2 == 0).tointeger(),
@@ -331,8 +392,8 @@ Berry <- class extends Actor{
 			0,
 			1,
 			1,
-			(timer > 60 ? 1 : float(timer) / 10
-		));
+			timer > 60 ? 1 : float(timer) / 10
+		);
 	}
 
 	function _typeof() {
@@ -340,7 +401,7 @@ Berry <- class extends Actor{
 	}
 };
 
-Herring <- class extends Actor{
+Herring <- class extends Actor {
 	shape = null;
 
 	constructor(_x, _y, _arr = null) {
@@ -350,18 +411,25 @@ Herring <- class extends Actor{
 
 	function run() {
 		shape.setPos(x, y);
-		if(gvPlayer && hitTest(gvPlayer.shape, shape)
-		|| gvPlayer2 && hitTest(gvPlayer2.shape, shape)) {
+		if (
+			(gvPlayer && hitTest(gvPlayer.shape, shape)) ||
+			(gvPlayer2 && hitTest(gvPlayer2.shape, shape))
+		) {
 			deleteActor(id);
 			playSoundChannel(sndFish, 0, 1);
 			game.redCoins++;
-			foreach(k, i in gvYetFoundItems) if(i == id)
-				gvFoundItems[k] <- typeof this;
+			foreach (k, i in gvYetFoundItems)
+				if (i == id) gvFoundItems[k] <- typeof this;
 		}
 	}
 
 	function draw() {
-		drawSprite(sprHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger());
+		drawSprite(
+			sprHerring,
+			0,
+			x - camx,
+			y - camy + ((getFrames() / 16) % 2 == 0).tointeger()
+		);
 	}
 
 	function _typeof() {
@@ -369,20 +437,27 @@ Herring <- class extends Actor{
 	}
 };
 
-RedHerring <- class extends Actor{
+RedHerring <- class extends Actor {
 	frame = 0.0;
 
 	constructor(_x, _y, _arr = null) {
-	base.constructor(_x, _y)
+		base.constructor(_x, _y);
 		frame = randFloat(4);
 		game.maxRedCoins++;
 	}
 
 	function run() {
 		frame += 0.1;
-		drawSprite(sprRedHerring, 0, x - camx, y - camy + ((getFrames() / 16) % 2 == 0).tointeger());
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
+		drawSprite(
+			sprRedHerring,
+			0,
+			x - camx,
+			y - camy + ((getFrames() / 16) % 2 == 0).tointeger()
+		);
+		if (
+			(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) ||
+			(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20))
+		) {
 			deleteActor(id);
 			playSoundChannel(sndFish, 0, 1);
 			game.redCoins++;
@@ -394,39 +469,37 @@ RedHerring <- class extends Actor{
 	}
 };
 
-FlowerFire <- class extends Actor{
+FlowerFire <- class extends Actor {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id);
-			if(game.ps.weapon == "normal") {
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "fire";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "fire";
 			}
 
 			popSound(sndHeal, 0);
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
 			deleteActor(id);
-			if(game.ps2.weapon == "normal") {
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "fire";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "fire";
 			}
 
 			popSound(sndHeal, 0);
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -439,37 +512,35 @@ FlowerFire <- class extends Actor{
 	}
 };
 
-FlowerIce <- class extends Actor{
+FlowerIce <- class extends Actor {
 	constructor(_x, _y, _arr = null) {
-		base.constructor(_x, _y)
+		base.constructor(_x, _y);
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
-			deleteActor(id)
-			if(game.ps.weapon == "normal") {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+			deleteActor(id);
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "ice";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "ice";
 			}
-			popSound(sndHeal, 0)
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
-			deleteActor(id)
-			if(game.ps2.weapon == "normal") {
+			popSound(sndHeal, 0);
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
+			deleteActor(id);
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "ice";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "ice";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -490,79 +561,89 @@ MuffinBlue <- class extends PhysAct {
 		base.constructor(_x, _y);
 		shape = Rec(x, y, 6, 7, 0);
 
-		if(gvPlayer && x < gvPlayer.x)
-			flip = true;
+		if (gvPlayer && x < gvPlayer.x) flip = true;
 
-		if(_arr != null)
-			willwrite = _arr;
+		if (_arr != null) willwrite = _arr;
 	}
 
 	function run() {
 		handleConveyor();
 
-		if(placeFree(x, y + 1)) {
-			if(inWater(x, y))
-				vspeed += 0.01;
-			else vspeed
-				+= 0.2;
+		if (placeFree(x, y + 1)) {
+			if (inWater(x, y)) vspeed += 0.01;
+			else vspeed += 0.2;
 		}
 
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 
-		if(y > gvMap.h + 8) deleteActor(id);
+		if (y > gvMap.h + 8) deleteActor(id);
 
-		if(flip) {
-			if(placeFree(x - 1, y)) x -= 1.0;
-			else if(placeFree(x - 2, y - 2)) {
+		if (flip) {
+			if (placeFree(x - 1, y)) x -= 1.0;
+			else if (placeFree(x - 2, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else if(placeFree(x - 1, y - 2)) {
+			} else if (placeFree(x - 1, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
 			} else flip = false;
 
-			if(x <= 0)
-				flip = false;
-		}
-		else {
-			if(placeFree(x + 1, y)) x += 1.0;
-			else if(placeFree(x + 1, y - 1)) {
+			if (x <= 0) flip = false;
+		} else {
+			if (placeFree(x + 1, y)) x += 1.0;
+			else if (placeFree(x + 1, y - 1)) {
 				x += 1.0;
 				y -= 1.0;
-			} else if(placeFree(x + 2, y - 2)) {
+			} else if (placeFree(x + 2, y - 2)) {
 				x += 1.0;
 				y -= 1.0;
 			} else flip = true;
 
-			if(x >= gvMap.w)
-				flip = true;
+			if (x >= gvMap.w) flip = true;
 		}
 
 		shape.setPos(x, y);
 
-		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
-			if(game.ps.health < game.maxHealth) {
+		if (
+			gvPlayer &&
+			(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) ||
+				hitTest(shape, gvPlayer.shape))
+		) {
+			if (game.ps.health < game.maxHealth) {
 				game.ps.health += 4;
-				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32));
+				for (local i = 0; i < 4; i++) {
+					newActor(
+						Heal,
+						gvPlayer.x - 16 + randInt(32),
+						gvPlayer.y - 16 + randInt(32)
+					);
 				}
-			}
-			else if(game.ps.subitem != "muffinRed" && (game.ps.subitem == 0 || willwrite))
+			} else if (
+				game.ps.subitem != "muffinRed" &&
+				(game.ps.subitem == 0 || willwrite)
+			)
 				game.ps.subitem = "muffinBlue";
 			deleteActor(id);
 			popSound(sndHeal, 0);
-		}
-		else if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
-			if(game.ps2.health < game.maxHealth) {
+		} else if (
+			gvPlayer2 &&
+			(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) ||
+				hitTest(shape, gvPlayer2.shape))
+		) {
+			if (game.ps2.health < game.maxHealth) {
 				game.ps2.health += 4;
-				for(local i = 0; i < 4; i++) {
-					newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32));
+				for (local i = 0; i < 4; i++) {
+					newActor(
+						Heal,
+						gvPlayer2.x - 16 + randInt(32),
+						gvPlayer2.y - 16 + randInt(32)
+					);
 				}
-			}
-			else if(game.ps2.subitem != "muffinRed" && (game.ps2.subitem == 0 || willwrite))
+			} else if (
+				game.ps2.subitem != "muffinRed" &&
+				(game.ps2.subitem == 0 || willwrite)
+			)
 				game.ps2.subitem = "muffinBlue";
 			deleteActor(id);
 			popSound(sndHeal, 0);
@@ -585,91 +666,95 @@ MuffinRed <- class extends PhysAct {
 		base.constructor(_x, _y);
 		shape = Rec(x, y, 4, 7, 0);
 
-		if(gvPlayer && x < gvPlayer.x)
-			flip = true;
+		if (gvPlayer && x < gvPlayer.x) flip = true;
 	}
 
 	function run() {
 		handleConveyor();
 
-		if(placeFree(x, y + 1)) {
-			if(inWater(x, y)) vspeed += 0.01;
+		if (placeFree(x, y + 1)) {
+			if (inWater(x, y)) vspeed += 0.01;
 			else vspeed += 0.2;
 		}
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 
-		if(y > gvMap.h + 8)
-			deleteActor(id);
+		if (y > gvMap.h + 8) deleteActor(id);
 
-		if(flip) {
-			if(placeFree(x - 1, y))
-				x -= 1.0;
-			else if(placeFree(x - 2, y - 2)) {
+		if (flip) {
+			if (placeFree(x - 1, y)) x -= 1.0;
+			else if (placeFree(x - 2, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else if(placeFree(x - 1, y - 2)) {
+			} else if (placeFree(x - 1, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else
-				flip = false;
+			} else flip = false;
 
-			if(x <= 0)
-				flip = false;
-		}
-		else {
-			if(placeFree(x + 1, y))
-				x += 1.0;
-			else if(placeFree(x + 1, y - 1)) {
+			if (x <= 0) flip = false;
+		} else {
+			if (placeFree(x + 1, y)) x += 1.0;
+			else if (placeFree(x + 1, y - 1)) {
 				x += 1.0;
 				y -= 1.0;
-			} else if(placeFree(x + 2, y - 2)) {
+			} else if (placeFree(x + 2, y - 2)) {
 				x += 1.0;
 				y -= 1.0;
-			} else
-				flip = true;
+			} else flip = true;
 
-			if(x >= gvMap.w)
-				flip = true;
+			if (x >= gvMap.w) flip = true;
 		}
 
 		shape.setPos(x, y);
 
-		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
-			if(game.ps.health < game.maxHealth) {
-				if(game.ps.subitem == "muffinBlue" && game.maxHealth - game.ps.health <= 4) {
+		if (
+			gvPlayer &&
+			(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) ||
+				hitTest(shape, gvPlayer.shape))
+		) {
+			if (game.ps.health < game.maxHealth) {
+				if (
+					game.ps.subitem == "muffinBlue" &&
+					game.maxHealth - game.ps.health <= 4
+				) {
 					game.ps.health += 4;
 					game.ps.subitem = "muffinRed";
-				}
-				else {
+				} else {
 					game.ps.health += 16;
-					for(local i = 0; i < 4; i++) {
-						newActor(Heal, gvPlayer.x - 16 + randInt(32), gvPlayer.y - 16 + randInt(32));
+					for (local i = 0; i < 4; i++) {
+						newActor(
+							Heal,
+							gvPlayer.x - 16 + randInt(32),
+							gvPlayer.y - 16 + randInt(32)
+						);
 					}
 				}
-			}
-			else
-				game.ps.subitem = "muffinRed";
+			} else game.ps.subitem = "muffinRed";
 			deleteActor(id);
 			popSound(sndHeal, 0);
-		}
-		else if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
-			if(game.ps2.health < game.maxHealth) {
-				if(game.ps2.subitem == "muffinBlue" && game.maxHealth - game.ps2.health <= 4) {
+		} else if (
+			gvPlayer2 &&
+			(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) ||
+				hitTest(shape, gvPlayer2.shape))
+		) {
+			if (game.ps2.health < game.maxHealth) {
+				if (
+					game.ps2.subitem == "muffinBlue" &&
+					game.maxHealth - game.ps2.health <= 4
+				) {
 					game.ps2.health += 4;
 					game.ps2.subitem = "muffinRed";
-				}
-				else {
+				} else {
 					game.ps2.health += 16;
-					for(local i = 0; i < 4; i++) {
-						newActor(Heal, gvPlayer2.x - 16 + randInt(32), gvPlayer2.y - 16 + randInt(32));
+					for (local i = 0; i < 4; i++) {
+						newActor(
+							Heal,
+							gvPlayer2.x - 16 + randInt(32),
+							gvPlayer2.y - 16 + randInt(32)
+						);
 					}
 				}
-			}
-			else
-				game.ps2.subitem = "muffinRed";
+			} else game.ps2.subitem = "muffinRed";
 			deleteActor(id);
 			popSound(sndHeal, 0);
 		}
@@ -691,73 +776,65 @@ MuffinEvil <- class extends PhysAct {
 		base.constructor(_x, _y);
 		shape = Rec(x, y, 4, 7, 0);
 
-		if(gvPlayer && x > gvPlayer.x)
-			flip = true;
+		if (gvPlayer && x > gvPlayer.x) flip = true;
 	}
 
 	function run() {
 		handleConveyor();
 
-		if(placeFree(x, y + 1))
-			vspeed += 0.2;
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x, y + 1)) vspeed += 0.2;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 
-		if(y > gvMap.h + 8) deleteActor(id);
+		if (y > gvMap.h + 8) deleteActor(id);
 
-		if(flip) {
-			if(placeFree(x - 1, y)) x -= 1.0;
-			else if(placeFree(x - 2, y - 2)) {
+		if (flip) {
+			if (placeFree(x - 1, y)) x -= 1.0;
+			else if (placeFree(x - 2, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else if(placeFree(x - 1, y - 2)) {
+			} else if (placeFree(x - 1, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else
-				flip = false;
+			} else flip = false;
 
-			if(x <= 0)
-				flip = false;
-		}
-		else {
-			if(placeFree(x + 1, y))
-				x += 1.0;
-			else if(placeFree(x + 1, y - 1)) {
+			if (x <= 0) flip = false;
+		} else {
+			if (placeFree(x + 1, y)) x += 1.0;
+			else if (placeFree(x + 1, y - 1)) {
 				x += 1.0;
 				y -= 1.0;
-			} else if(placeFree(x + 2, y - 2)) {
+			} else if (placeFree(x + 2, y - 2)) {
 				x += 1.0;
 				y -= 1.0;
-			} else
-				flip = true;
+			} else flip = true;
 
-			if(x >= gvMap.w)
-				flip = true;
+			if (x >= gvMap.w) flip = true;
 		}
 
-		shape.setPos(x, y)
+		shape.setPos(x, y);
 
-		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
-			if(gvPlayer.blinking > 0)
-				return;
-			if(gvPlayer.x < x)
-				gvPlayer.hspeed = -1.0;
-			else
-				gvPlayer.hspeed = 1.0;
+		if (
+			gvPlayer &&
+			(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) ||
+				hitTest(shape, gvPlayer.shape))
+		) {
+			if (gvPlayer.blinking > 0) return;
+			if (gvPlayer.x < x) gvPlayer.hspeed = -1.0;
+			else gvPlayer.hspeed = 1.0;
 
 			gvPlayer.hurt = 4;
 			deleteActor(id);
 		}
 
-		if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
-			if(gvPlayer2.blinking > 0)
-				return;
-			if(gvPlayer2.x < x)
-				gvPlayer2.hspeed = -1.0;
-			else
-				gvPlayer2.hspeed = 1.0;
+		if (
+			gvPlayer2 &&
+			(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) ||
+				hitTest(shape, gvPlayer2.shape))
+		) {
+			if (gvPlayer2.blinking > 0) return;
+			if (gvPlayer2.x < x) gvPlayer2.hspeed = -1.0;
+			else gvPlayer2.hspeed = 1.0;
 
 			gvPlayer2.hurt = 4;
 			deleteActor(id);
@@ -773,29 +850,27 @@ MuffinEvil <- class extends PhysAct {
 	}
 };
 
-OneDown <- class extends Actor{
+OneDown <- class extends Actor {
 	frame = 0.0;
 
-	constructor(_x, _y, _arr = null)
-	{
+	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		frame = randFloat(4);
 	}
 
-	function run()
-	{
-		if(getFrames() % 20 == 0)
+	function run() {
+		if (getFrames() % 20 == 0)
 			newActor(FlameTiny, x - 8 + randInt(16), y - 8 + randInt(16));
 
 		frame += 0.2;
 		drawSprite(spr1down, frame, x - camx, y - camy);
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
 			deleteActor(id);
 			gvPlayer.hurt = 16;
 		}
 
-		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 10)) {
+		if (gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 10)) {
 			deleteActor(id);
 			gvPlayer2.hurt = 16;
 		}
@@ -813,38 +888,31 @@ Darknyan <- class extends PhysAct {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 
-		if(gvPlayer && gvPlayer.x > x)
-			hspeed = 2;
-		else if(gvPlayer2 && gvPlayer2.x > x)
-			hspeed = 2;
-		else
-			hspeed = -2;
+		if (gvPlayer && gvPlayer.x > x) hspeed = 2;
+		else if (gvPlayer2 && gvPlayer2.x > x) hspeed = 2;
+		else hspeed = -2;
 
 		shape = Rec(x, y, 6, 6, 0);
 	}
 
 	function run() {
-		if(!placeFree(x, y + 2))
-			vspeed = -5;
-		if(!placeFree(x + 2, y))
-			hspeed = -2;
-		if(!placeFree(x - 2, y))
-			hspeed = 2;
+		if (!placeFree(x, y + 2)) vspeed = -5;
+		if (!placeFree(x + 2, y)) hspeed = -2;
+		if (!placeFree(x - 2, y)) hspeed = 2;
 		vspeed += 0.2;
 
-		if(placeFree(x + hspeed, y))
-			x += hspeed;
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x + hspeed, y)) x += hspeed;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 		shape.setPos(x, y);
 
-		if(gvPlayer) if(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20))
-			gvPlayer.hurt = 6;
+		if (gvPlayer)
+			if (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20))
+				gvPlayer.hurt = 6;
 
-		if(gvPlayer2) if(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20))
-			gvPlayer2.hurt = 6;
+		if (gvPlayer2)
+			if (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20))
+				gvPlayer2.hurt = 6;
 	}
 
 	function draw() {
@@ -863,40 +931,32 @@ Starnyan <- class extends PhysAct {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 
-		if(gvPlayer && gvPlayer.x > x)
-			hspeed = -2;
-		else
-			hspeed = 2;
+		if (gvPlayer && gvPlayer.x > x) hspeed = -2;
+		else hspeed = 2;
 
 		shape = Rec(x, y, 6, 6, 0);
 	}
 
 	function run() {
-		if(!placeFree(x, y + 2))
-			vspeed = -5;
-		if(!placeFree(x + 2, y))
-			hspeed = -2;
-		if(!placeFree(x - 2, y))
-			hspeed = 2;
+		if (!placeFree(x, y + 2)) vspeed = -5;
+		if (!placeFree(x + 2, y)) hspeed = -2;
+		if (!placeFree(x - 2, y)) hspeed = 2;
 		vspeed += 0.25;
 
-		if(placeFree(x + hspeed, y))
-			x += hspeed;
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x + hspeed, y)) x += hspeed;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 		shape.setPos(x, y);
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) {
-			gvPlayer.invincible = 600 + (100 * (4 - game.difficulty));
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20)) {
+			gvPlayer.invincible = 600 + 100 * (4 - game.difficulty);
 			deleteActor(id);
 			playMusic(musInvincible, -1);
 			gvLastSong = "";
 		}
 
-		if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
-			gvPlayer2.invincible = 600 + (100 * (4 - game.difficulty));
+		if (gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20)) {
+			gvPlayer2.invincible = 600 + 100 * (4 - game.difficulty);
 			deleteActor(id);
 			playMusic(musInvincible, -1);
 			gvLastSong = "";
@@ -914,7 +974,6 @@ Starnyan <- class extends PhysAct {
 };
 
 AirFeather <- class extends PhysAct {
-
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		shape = Rec(x, y, 6, 6, 0);
@@ -923,32 +982,27 @@ AirFeather <- class extends PhysAct {
 	function run() {
 		shape.setPos(x, y);
 
-		if(gvPlayer && hitTest(shape, gvPlayer.shape)){
+		if (gvPlayer && hitTest(shape, gvPlayer.shape)) {
 			popSound(sndHeal, 0);
-			if(game.ps.weapon == "normal") {
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "air";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "air";
 			}
 
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
 			deleteActor(id);
-		}
-		else if(gvPlayer2 && hitTest(shape, gvPlayer2.shape)){
+		} else if (gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 			popSound(sndHeal, 0);
-			if(game.ps2.weapon == "normal") {
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "air";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "air";
 			}
 
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 			deleteActor(id);
 		}
 	}
@@ -962,21 +1016,51 @@ AirFeather <- class extends PhysAct {
 	}
 };
 
-FlyRefresh <- class extends Actor{
+FlyRefresh <- class extends Actor {
 	function run() {
-		if(gvPlayer && inDistance2(gvPlayer.x, gvPlayer.y, x, y, 20) && game.ps.weapon == "air" && getFrames() % 8 == 0) {
+		if (
+			gvPlayer &&
+			inDistance2(gvPlayer.x, gvPlayer.y, x, y, 20) &&
+			game.ps.weapon == "air" &&
+			getFrames() % 8 == 0
+		) {
 			game.ps.stamina++;
 			newActor(HealStamina, x - 16 + randInt(32), y - 16 + randInt(32));
 		}
-		if(gvPlayer2 && inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 20) && game.ps2.weapon == "air" && getFrames() % 8 == 0) {
+		if (
+			gvPlayer2 &&
+			inDistance2(gvPlayer2.x, gvPlayer2.y, x, y, 20) &&
+			game.ps2.weapon == "air" &&
+			getFrames() % 8 == 0
+		) {
 			game.ps2.stamina++;
 			newActor(HealStamina, x - 16 + randInt(32), y - 16 + randInt(32));
 		}
 	}
 
 	function draw() {
-		drawSprite(sprTinyWind, getFrames() / 8, x - camx, y - camy - 8, 0, 2, 1, 1, 0.25);
-		drawSprite(sprTinyWind, getFrames() / 8, x - camx, y - camy + 8, 0, 0, 1, 1, 0.25);
+		drawSprite(
+			sprTinyWind,
+			getFrames() / 8,
+			x - camx,
+			y - camy - 8,
+			0,
+			2,
+			1,
+			1,
+			0.25
+		);
+		drawSprite(
+			sprTinyWind,
+			getFrames() / 8,
+			x - camx,
+			y - camy + 8,
+			0,
+			0,
+			1,
+			1,
+			0.25
+		);
 		drawSprite(sprFlyRefresh, getFrames() / 8, x - camx, y - camy);
 	}
 
@@ -992,35 +1076,36 @@ OneUp <- class extends PhysAct {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 
-		if(gvPlayer && gvPlayer.x > x) hspeed = -1;
+		if (gvPlayer && gvPlayer.x > x) hspeed = -1;
 		else hspeed = 1;
 
 		shape = Rec(x, y, 6, 6, 0);
 	}
 
 	function run() {
-		if(!placeFree(x, y + 1))
-			vspeed = -3;
-		if(!placeFree(x + 1, y))
-			hspeed = -1;
-		if(!placeFree(x - 1, y))
-			hspeed = 1;
-		vspeed += 0.1
+		if (!placeFree(x, y + 1)) vspeed = -3;
+		if (!placeFree(x + 1, y)) hspeed = -1;
+		if (!placeFree(x - 1, y)) hspeed = 1;
+		vspeed += 0.1;
 
-		if(placeFree(x + hspeed, y))
-			x += hspeed;
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x + hspeed, y)) x += hspeed;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 		shape.setPos(x, y);
 
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20) && !game.ps.canres) {
+		if (
+			gvPlayer &&
+			inDistance2(x, y, gvPlayer.x, gvPlayer.y, 20) &&
+			!game.ps.canres
+		) {
 			game.ps.canres = true;
 			playSound(snd1up, 0);
 			deleteActor(id);
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20) && !game.ps2.canres) {
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 20) &&
+			!game.ps2.canres
+		) {
 			game.ps2.canres = true;
 			playSound(snd1up, 0);
 			deleteActor(id);
@@ -1028,15 +1113,14 @@ OneUp <- class extends PhysAct {
 	}
 
 	function draw() {
-		if(gvNumPlayers == 1 && gvPlayer)
+		if (gvNumPlayers == 1 && gvPlayer)
 			drawSprite(
 				getroottable()[gvCharacters[typeof gvPlayer]["doll"]],
-				enWeapons[(config.showTF ? game.ps.weapon : "normal")],
+				enWeapons[config.showTF ? game.ps.weapon : "normal"],
 				x - camx,
 				y - camy
 			);
-		else
-			drawSprite(sprMysticDoll, 0, x - camx, y - camy);
+		else drawSprite(sprMysticDoll, 0, x - camx, y - camy);
 	}
 
 	function _typeof() {
@@ -1051,72 +1135,65 @@ MuffinBomb <- class extends PhysAct {
 		base.constructor(_x, _y);
 		shape = Rec(x, y, 4, 7, 0);
 
-		if(gvPlayer) {
-			if(x > gvPlayer.x)
-				flip = true;
+		if (gvPlayer) {
+			if (x > gvPlayer.x) flip = true;
 		}
 	}
 
 	function run() {
 		handleConveyor();
 
-		if(placeFree(x, y + 1)) {
-			if(inWater(x, y))
-				vspeed += 0.01;
-			else
-				vspeed += 0.2;
+		if (placeFree(x, y + 1)) {
+			if (inWater(x, y)) vspeed += 0.01;
+			else vspeed += 0.2;
 		}
-		if(placeFree(x, y + vspeed))
-			y += vspeed;
-		else
-			vspeed /= 2;
+		if (placeFree(x, y + vspeed)) y += vspeed;
+		else vspeed /= 2;
 
-		if(y > gvMap.h + 8)
-			deleteActor(id);
+		if (y > gvMap.h + 8) deleteActor(id);
 
-		if(flip) {
-			if(placeFree(x - 1, y))
-				x -= 1.0;
-			else if(placeFree(x - 2, y - 2)) {
+		if (flip) {
+			if (placeFree(x - 1, y)) x -= 1.0;
+			else if (placeFree(x - 2, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else if(placeFree(x - 1, y - 2)) {
+			} else if (placeFree(x - 1, y - 2)) {
 				x -= 1.0;
 				y -= 1.0;
-			} else
-				flip = false;
+			} else flip = false;
 
-			if(x <= 0)
-				flip = false;
-		}
-		else {
-			if(placeFree(x + 1, y))
+			if (x <= 0) flip = false;
+		} else {
+			if (placeFree(x + 1, y)) x += 1.0;
+			else if (placeFree(x + 1, y - 1)) {
 				x += 1.0;
-			else if(placeFree(x + 1, y - 1)) {
-				x += 1.0
-				y -= 1.0
-			} else if(placeFree(x + 2, y - 2)) {
-				x += 1.0
-				y -= 1.0
-			} else
-				flip = true;
+				y -= 1.0;
+			} else if (placeFree(x + 2, y - 2)) {
+				x += 1.0;
+				y -= 1.0;
+			} else flip = true;
 
-			if(x >= gvMap.w)
-				flip = true;
+			if (x >= gvMap.w) flip = true;
 		}
 
 		shape.setPos(x, y);
 
-		if(gvPlayer && (inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) || hitTest(shape, gvPlayer.shape))) {
-			if(gvPlayer.blinking > 0)
-				return;
+		if (
+			gvPlayer &&
+			(inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16) ||
+				hitTest(shape, gvPlayer.shape))
+		) {
+			if (gvPlayer.blinking > 0) return;
 			fireWeapon(ExplodeF, x, y, 0, id);
 			deleteActor(id);
 		}
 
-		if(gvPlayer2 && (inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) || hitTest(shape, gvPlayer2.shape))) {
-			if(gvPlayer2.blinking > 0)
-				return;
+		if (
+			gvPlayer2 &&
+			(inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16) ||
+				hitTest(shape, gvPlayer2.shape))
+		) {
+			if (gvPlayer2.blinking > 0) return;
 			fireWeapon(ExplodeF, x, y, 0, id);
 			deleteActor(id);
 		}
@@ -1131,39 +1208,35 @@ MuffinBomb <- class extends PhysAct {
 	}
 };
 
-EarthShell <- class extends Actor{
-	constructor(_x, _y, _arr = null)
-	{
-		base.constructor(_x, _y)
+EarthShell <- class extends Actor {
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y);
 	}
 
-	function run()
-	{
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
-			deleteActor(id)
-			if(game.ps.weapon == "normal") {
+	function run() {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+			deleteActor(id);
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "earth";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "earth";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
 			deleteActor(id);
-			if(game.ps2.weapon == "normal") {
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "earth";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "earth";
 			}
-			popSound(sndHeal, 0)
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			popSound(sndHeal, 0);
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -1187,8 +1260,10 @@ SpecialBall <- class extends Actor {
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)
-		|| gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		if (
+			(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) ||
+			(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16))
+		) {
 			game.secretOrbs[num] = true;
 			deleteActor(id);
 			endGoal();
@@ -1205,7 +1280,7 @@ SpecialBall <- class extends Actor {
 			0,
 			1,
 			1,
-			(game.secretOrbs[num] ? 0.5 : 1)
+			game.secretOrbs[num] ? 0.5 : 1
 		);
 	}
 
@@ -1229,7 +1304,7 @@ CoinRing <- class extends Actor {
 		c = _arr[1].tointeger();
 		s = _arr[2].tofloat();
 		l = [];
-		for(local i = 0; i < c; i++) {
+		for (local i = 0; i < c; i++) {
 			l.push(newActor(Coin, x, y));
 		}
 	}
@@ -1237,15 +1312,13 @@ CoinRing <- class extends Actor {
 	function run() {
 		local cl = c; // Coins left
 		a += s / 60.0;
-		for(local i = 0; i < c; i++) {
-			if(checkActor(l[i])) {
-				actor[l[i]].x = x + r * cos((i * 2 * pi / c) + a);
-				actor[l[i]].y = y + r * sin((i * 2 * pi / c) + a);
-			}
-			else cl--;
+		for (local i = 0; i < c; i++) {
+			if (checkActor(l[i])) {
+				actor[l[i]].x = x + r * cos((i * 2 * pi) / c + a);
+				actor[l[i]].y = y + r * sin((i * 2 * pi) / c + a);
+			} else cl--;
 		}
-		if(cl == 0)
-			deleteActor(id);
+		if (cl == 0) deleteActor(id);
 	}
 };
 
@@ -1254,15 +1327,14 @@ MagicKey <- class extends Actor {
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
-		if(_arr != null)
-			color = _arr.tointeger();
+		if (_arr != null) color = _arr.tointeger();
 	}
 
 	function run() {
 		// Pickup
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) {
 			deleteActor(id);
-			switch(color) {
+			switch (color) {
 				case 0:
 					gvKeyCopper = true;
 					break;
@@ -1282,15 +1354,16 @@ MagicKey <- class extends Actor {
 			playSound(snd1up, 0);
 		}
 
-		if(color == 0 && gvKeyCopper
-		|| color == 1 && gvKeySilver
-		|| color == 2 && gvKeyGold
-		|| color == 3 && gvKeyMythril)
+		if (
+			(color == 0 && gvKeyCopper) ||
+			(color == 1 && gvKeySilver) ||
+			(color == 2 && gvKeyGold) ||
+			(color == 3 && gvKeyMythril)
+		)
 			deleteActor(id);
-
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
+		else if (gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16)) {
 			deleteActor(id);
-			switch(color) {
+			switch (color) {
 				case 0:
 					gvKeyCopper = true;
 					break;
@@ -1312,7 +1385,7 @@ MagicKey <- class extends Actor {
 	}
 
 	function draw() {
-		switch(color) {
+		switch (color) {
 			case 0:
 				drawSprite(sprKeyCopper, getFrames() / 8, x - camx, y - camy);
 				break;
@@ -1336,26 +1409,24 @@ MagicKey <- class extends Actor {
 	}
 };
 
-CoffeeCup <- class extends Actor{
+CoffeeCup <- class extends Actor {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
 			deleteActor(id);
-			if(game.ps.subitem != "coffee")
-				game.ps.subitem = "coffee";
-			else
-				gvPlayer.zoomies += 60 * 16;
+			if (game.ps.subitem != "coffee") game.ps.subitem = "coffee";
+			else gvPlayer.zoomies += 60 * 16;
 			popSound(sndGulp, 0);
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 20)) {
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 20)
+		) {
 			deleteActor(id);
-			if(game.ps2.subitem != "coffee")
-				game.ps2.subitem = "coffee";
-			else
-				gvPlayer2.zoomies += 60 * 16;
+			if (game.ps2.subitem != "coffee") game.ps2.subitem = "coffee";
+			else gvPlayer2.zoomies += 60 * 16;
 			popSound(sndGulp, 0);
 		}
 	}
@@ -1365,45 +1436,44 @@ CoffeeCup <- class extends Actor{
 			sprCoffee,
 			getFrames() / 8,
 			x - camx,
-			y - camy + ((getFrames() / 16) % 2 == 0).tointeger());
+			y - camy + ((getFrames() / 16) % 2 == 0).tointeger()
+		);
 	}
 
 	function _typeof() {
 		return "CoffeeCup";
 	}
-}
+};
 
-ShockBulb <- class extends Actor{
+ShockBulb <- class extends Actor {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id);
-			if(game.ps.weapon == "normal") {
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "shock";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "shock";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
 			deleteActor(id);
-			if(game.ps2.weapon == "normal") {
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "shock";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "shock";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -1422,31 +1492,29 @@ WaterLily <- class extends Actor {
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id);
-			if(game.ps.weapon == "normal") {
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "water";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "water";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
 			deleteActor(id);
-			if(game.ps2.weapon == "normal") {
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "water";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "water";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -1465,31 +1533,29 @@ LightCap <- class extends Actor {
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id);
-			if(game.ps.weapon == "normal") {
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "light";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "light";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
 			deleteActor(id);
-			if(game.ps2.weapon == "normal") {
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "light";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "light";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -1508,31 +1574,29 @@ DarkCap <- class extends Actor {
 	}
 
 	function run() {
-		if(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
+		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 14)) {
 			deleteActor(id);
-			if(game.ps.weapon == "normal") {
+			if (game.ps.weapon == "normal") {
 				game.ps.weapon = "dark";
-			}
-			else {
+			} else {
 				game.ps.subitem = game.ps.weapon;
 				game.ps.weapon = "dark";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer.rawin("tftime"))
-				gvPlayer.tftime = 0;
-		}
-		else if(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)) {
-			deleteActor(id)
-			if(game.ps2.weapon == "normal") {
+			if (gvPlayer.rawin("tftime")) gvPlayer.tftime = 0;
+		} else if (
+			gvPlayer2 &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y + 2, 14)
+		) {
+			deleteActor(id);
+			if (game.ps2.weapon == "normal") {
 				game.ps2.weapon = "dark";
-			}
-			else {
+			} else {
 				game.ps2.subitem = game.ps2.weapon;
 				game.ps2.weapon = "dark";
 			}
 			popSound(sndHeal, 0);
-			if(gvPlayer2.rawin("tftime"))
-				gvPlayer2.tftime = 0;
+			if (gvPlayer2.rawin("tftime")) gvPlayer2.tftime = 0;
 		}
 	}
 
@@ -1554,9 +1618,9 @@ AttackPidgin <- class extends PhysAct {
 	strikeTimer = 0;
 	anim = "stand";
 	an = {
-		stand = [0]
+		stand = [0],
 		fly = [1, 2, 3, 4, 5, 6, 7, 8]
-	}
+	};
 	coin = -1;
 
 	constructor(_x, _y, _arr = null) {
@@ -1568,7 +1632,7 @@ AttackPidgin <- class extends PhysAct {
 	function run() {
 		base.run();
 
-		if(freed) {
+		if (freed) {
 			shape.w = 8;
 			shape.h = 8;
 
@@ -1576,23 +1640,25 @@ AttackPidgin <- class extends PhysAct {
 
 			anim = "fly";
 
-			target = null
-			if((freed == 1 || freed == 2 && !gvPlayer2) && gvPlayer)
+			target = null;
+			if ((freed == 1 || (freed == 2 && !gvPlayer2)) && gvPlayer)
 				target = gvPlayer;
-			if((freed == 2 || freed == 1 && !gvPlayer) && gvPlayer2)
+			if ((freed == 2 || (freed == 1 && !gvPlayer)) && gvPlayer2)
 				target = gvPlayer2;
 
-			if(coin == -1 && "CoinSmall" in actor && actor["CoinSmall"].len() > 0) {
-				foreach(i in actor["CoinSmall"]) {
-					if(inDistance2(x, y, i.x, i.y, 256))
-						target = i;
+			if (
+				coin == -1 &&
+				"CoinSmall" in actor &&
+				actor["CoinSmall"].len() > 0
+			) {
+				foreach (i in actor["CoinSmall"]) {
+					if (inDistance2(x, y, i.x, i.y, 256)) target = i;
 
-					if(hitTest(shape, i.shape)) {
-						if(gvPlayer) {
+					if (hitTest(shape, i.shape)) {
+						if (gvPlayer) {
 							i.x = gvPlayer.x;
 							i.y = gvPlayer.y;
-						}
-						else if(gvPlayer2) {
+						} else if (gvPlayer2) {
 							i.x = gvPlayer2.x;
 							i.y = gvPLyaer2.y;
 						}
@@ -1600,13 +1666,14 @@ AttackPidgin <- class extends PhysAct {
 				}
 			}
 
-			if(strikeTimer >= 0) {
+			if (strikeTimer >= 0) {
 				local range = 96;
-				foreach(i in actor) {
-					if(
-						i instanceof Enemy
-						&& inDistance2(x, y, i.x, i.y, range)
-						&& !i.frozen && !i.notarget
+				foreach (i in actor) {
+					if (
+						i instanceof Enemy &&
+						inDistance2(x, y, i.x, i.y, range) &&
+						!i.frozen &&
+						!i.notarget
 					) {
 						range = distance2(x, y, i.x, i.y);
 						target = i;
@@ -1614,91 +1681,106 @@ AttackPidgin <- class extends PhysAct {
 				}
 			}
 
-			if(target != null) {
-				if("blinking" in target && target.blinking || randInt(320) == 1)
+			if (target != null) {
+				if (
+					("blinking" in target && target.blinking) ||
+					randInt(320) == 1
+				)
 					strikeTimer = 30;
 
 				local dist = distance2(
 					x,
 					y,
-					target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0),
+					target.x +
+						(target instanceof Player
+							? target.flip == 0
+								? -16
+								: 16
+							: 0),
 					target.y - (target instanceof Player && coin == -1 ? 32 : 0)
 				);
 				local dir = pointAngle(
 					x,
 					y,
-					target.x + (target instanceof Player ? (target.flip == 0 ? -16 : 16) : 0),
+					target.x +
+						(target instanceof Player
+							? target.flip == 0
+								? -16
+								: 16
+							: 0),
 					target.y - (target instanceof Player && coin == -1 ? 32 : 0)
 				);
 				local speed = 0.2;
-				local maxSpeed = max(dist / 16, target instanceof Player ? 0 : 8);
+				local maxSpeed = max(
+					dist / 16,
+					target instanceof Player ? 0 : 8
+				);
 
-				if(target instanceof Enemy) {
+				if (target instanceof Enemy) {
 					speed = 0.5;
-					if(!target.blinking && hitTest(shape, target.shape)) {
+					if (!target.blinking && hitTest(shape, target.shape)) {
 						strikeTimer = -1;
 						target.getHurt(0, 1);
 					}
-				}
-				else {
+				} else {
 					local curSpeed = distance2(0, 0, hspeed, vspeed);
-					if(curSpeed > maxSpeed) {
+					if (curSpeed > maxSpeed) {
 						local curDir = pointAngle(0, 0, hspeed, vspeed);
 						hspeed = lendirX(maxSpeed, curDir);
 						vspeed = lendirY(maxSpeed, curDir);
 					}
-					if(dist <= 16) {
+					if (dist <= 16) {
 						hspeed *= 0.98;
 						vspeed *= 0.98;
 					}
 				}
 
-				if(dist > 2) {
-					if(dist > 100) {
+				if (dist > 2) {
+					if (dist > 100) {
 						hspeed = lendirX(maxSpeed, dir);
 						vspeed = lendirY(maxSpeed, dir);
-					}
-					else {
+					} else {
 						hspeed += lendirX(speed, dir);
 						vspeed += lendirY(speed, dir);
 					}
 				}
 			}
 
-			if(hspeed > 1)
-				flip = 0;
-			if(hspeed < -1)
-				flip = 1;
-			if(target != null && fabs(hspeed) < 1)
-				flip = (target.x > x ? 0 : 1);
+			if (hspeed > 1) flip = 0;
+			if (hspeed < -1) flip = 1;
+			if (target != null && fabs(hspeed) < 1) flip = target.x > x ? 0 : 1;
 
-			if(levelEndRunner)
-				game.hasPidgin = freed;
-			if(!gvPlayer && !gvPlayer2)
-				game.hasPidgin = 0;
-		}
-		else {
+			if (levelEndRunner) game.hasPidgin = freed;
+			if (!gvPlayer && !gvPlayer2) game.hasPidgin = 0;
+		} else {
 			anim = "stand";
-			if(gvPlayer && gvPlayer.inMelee && hitTest(shape, gvPlayer.shape)) {
+			if (
+				gvPlayer &&
+				gvPlayer.inMelee &&
+				hitTest(shape, gvPlayer.shape)
+			) {
 				freed = 2;
 			}
 
-			if(gvPlayer2 && gvPlayer2.inMelee && hitTest(shape, gvPlayer2.shape)) {
+			if (
+				gvPlayer2 &&
+				gvPlayer2.inMelee &&
+				hitTest(shape, gvPlayer2.shape)
+			) {
 				freed = 1;
 			}
 
-			if(!freed && "WeaponEffect" in actor) foreach(i in actor["WeaponEffect"]) {
-				if(i.alignment == 1 && hitTest(shape, i.shape)) {
-					freed = true;
-					if(i.piercing == 0)
-						deleteActor(i.id);
-					else
-						i.piercing--;
-					if(checkActor(i.owner));
+			if (!freed && "WeaponEffect" in actor)
+				foreach (i in actor["WeaponEffect"]) {
+					if (i.alignment == 1 && hitTest(shape, i.shape)) {
+						freed = true;
+						if (i.piercing == 0) deleteActor(i.id);
+						else i.piercing--;
+						if (checkActor(i.owner));
 						freed = actor[i.owner].playerNum;
-					break;
+						break;
+					}
 				}
-			}
 		}
 	}
 
@@ -1712,8 +1794,7 @@ AttackPidgin <- class extends PhysAct {
 			0,
 			flip
 		);
-		if(!freed)
-			drawSpriteZ(4, sprBirdCage, 0, x - camx, y - camy);
+		if (!freed) drawSpriteZ(4, sprBirdCage, 0, x - camx, y - camy);
 	}
 
 	function _typeof() {

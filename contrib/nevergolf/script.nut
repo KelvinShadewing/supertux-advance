@@ -1,2 +1,3 @@
-freeNeverball()
-game.playerChar = "Neverball"
+game.characters.clear();
+freeNeverball();
+game.playerChar = "Neverball";

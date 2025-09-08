@@ -1,4 +1,6 @@
-addTimeAttackWorld("Bonus Island", [
+addTimeAttackWorld(
+	"Bonus Island",
+	[
 		"bonus-slide",
 		"bonus-pipe",
 		"bonus-nostalgia",
@@ -9,4 +11,5 @@ addTimeAttackWorld("Bonus Island", [
 		"bonus-king",
 		"bonus-coffee"
 	],
-	"bonus")
+	"bonus"
+);
