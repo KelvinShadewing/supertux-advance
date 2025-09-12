@@ -46,6 +46,7 @@ Surge <- class extends Player {
 	shapeHydro = null;
 	hydroplaning = false;
 	pseudoBlink = 0;
+	stompCount = 0;
 
 	an = {
 		stand = [
@@ -342,7 +343,13 @@ Surge <- class extends Player {
 					popSound(sndBump);
 					anim = "jumpR";
 					didAirSpecial = false;
-					vspeed = -6;
+					vspeed = -6.0 - stompCount;
+					if (stompCount < 8)
+						stompCount++;
+					if (getcon("down", "hold", true, playerNum)) {
+						vspeed = -4.0;
+						stompCount = 0;
+					}
 					canJump = 0;
 				}
 		}
@@ -578,6 +585,9 @@ Surge <- class extends Player {
 
 	function animation() {
 		animOffset = 0.0;
+
+		if (anim != "stomp" && anim != "jumpR")
+			stompCount = 0;
 
 		switch (anim) {
 			case "stand":

@@ -1264,7 +1264,7 @@ SpecialBall <- class extends Actor {
 			(gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 16)) ||
 			(gvPlayer2 && inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 16))
 		) {
-			game.secretOrbs[num] = true;
+			game.secretOrbs[num] <- true;
 			deleteActor(id);
 			endGoal();
 		}

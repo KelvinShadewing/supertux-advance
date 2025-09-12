@@ -39,7 +39,7 @@ createNewGameObject <- function () {
 		colorswitch = [false, false, false, false, false, false, false, false], // Color blocks activated by respective switches
 		turnOffBlocks = false,
 		characters = {}, // List of unlocked characters
-		secretOrbs = [false, false, false, false, false, false, false, false],
+		secretOrbs = {},
 		levelEvents = {}, // Events that have occured in individual levels
 		friends = {}, // List of rescued friend characters
 		playerChar = "Tux", // Current player character

@@ -298,7 +298,7 @@ Midi <- class extends Player {
 
 	function physics() {
 		if (vspeed > 0) didJump = false;
-		if (nowInWater || anim == "parkour") gravity = 0.12;
+		if (nowInWater) gravity = 0.12;
 		else gravity = 0.25;
 
 		switch (anim) {
@@ -762,12 +762,43 @@ Midi <- class extends Player {
 
 				if (vspeed < 0 && anim != "parkour") anim = "jump";
 
-				if (
-					anim == "parkour" &&
-					(vspeed >= 0 || (freeLeft && freeRight))
-				) {
-					anim = "fall";
-					frame = 0.0;
+				if (anim == "parkour") {
+					didJump = false;
+					if (vspeed >= 0 || (freeLeft && freeRight)) {
+						anim = "fall";
+						frame = 0.0;
+					}
+					if (stats.stamina > 0 && vspeed > -3.0) {
+						vspeed -= 0.5;
+						stats.stamina -= 0.5;
+					}
+
+					/*
+					local oldShape = shape;
+					shape = shapeGrip;
+
+					if (
+						placeFree(x - 5, y - 16) &&
+						!placeFree(x - 5, y - 14) &&
+						placeFree(x, y + 4)
+					) {
+						anim = "ledge";
+						flip = 1;
+						vspeed = 0;
+					}
+
+					if (
+						placeFree(x + 5, y - 16) &&
+						!placeFree(x + 5, y - 14) &&
+						placeFree(x, y + 4)
+					) {
+						anim = "ledge";
+						flip = 0;
+						vspeed = 0;
+					}
+
+					shape = oldShape;
+					*/
 				}
 				break;
 
@@ -1116,7 +1147,10 @@ Midi <- class extends Player {
 		if (firetime <= 0 && stats.energy < stats.maxEnergy)
 			stats.energy += 1.0 / 30.0;
 
-		if (!freeDown2 && stats.stamina < stats.maxStamina) stats.stamina++;
+		if (
+			(!freeDown2 || anim == "ledge") &&
+			stats.stamina < stats.maxStamina
+		) stats.stamina++;
 
 		// After image
 		if (zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null)
@@ -1212,7 +1246,7 @@ Midi <- class extends Player {
 			if (zoomies > 0) mspeed *= 2.0;
 
 			// Moving left and right
-			if (abs(hspeed) > 3) accel = 0.2 / fabs(hspeed);
+			if (abs(hspeed) > 3 && !zoomies) accel = 0.2 / fabs(hspeed);
 			else accel = 0.2;
 			if (zoomies > 0) accel *= 2.0;
 

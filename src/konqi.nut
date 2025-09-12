@@ -399,7 +399,7 @@ Konqi <- class extends Player {
 					)
 						hspeed *= 1.05;
 
-					stats.stamina -= 0.1;
+					stats.stamina -= 0.05 + game.difficulty / 50.0;
 					guardtime = 30;
 
 					if (
