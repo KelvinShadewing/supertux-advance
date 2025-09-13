@@ -2056,7 +2056,7 @@ Crumbler <- class extends Actor {
 		base.constructor(_x, _y);
 		oldsolid = tileGetSolid(x, y);
 		tileSetSolid(x, y, 1);
-		shape = Rec(x, y - 1, 8, 8, 0);
+		shape = Rec(x, y - 1, 9, 8, 0);
 	}
 
 	function run() {

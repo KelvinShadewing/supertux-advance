@@ -778,12 +778,7 @@ Surge <- class extends Player {
 
 				if (floor(frame) > 1) {
 					vspeed = -6.0;
-					if (getcon("down", "hold", true, playerNum)) vspeed = -4.0;
 					local w = 4.0;
-					if (getcon("up", "hold", true, playerNum)) {
-						w = 1.0;
-						vspeed = -7.0;
-					} else if (getcon("down", "hold", true, playerNum)) w = 6.0;
 					if (flip == 0) hspeed = w;
 					else hspeed = -w;
 					if (holding) anim = "jumpU";

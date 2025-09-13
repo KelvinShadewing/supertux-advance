@@ -523,11 +523,8 @@ Cyra <- class extends Player {
 					vspeed = 0;
 
 					if (floor(frame) > 1) {
-						vspeed = -5.0;
-						if (getcon("down", "hold", true, playerNum))
-							vspeed = -3.0;
-						local w = 3.0;
-						if (getcon("up", "hold", true, playerNum)) w = 1.5;
+						vspeed = -4.5;
+						local w = 4.0;
 						if (flip == 0) hspeed = w;
 						else hspeed = -w;
 						anim = "jumpU";

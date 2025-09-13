@@ -755,7 +755,7 @@ Midi <- class extends Player {
 					frame = 0.0;
 				}
 
-				if (floor(frame) > an[anim].len() - 1) {
+				if (floor(frame) > an[anim].len() - 1 && anim != "parkour") {
 					anim = "fall";
 					frame = 0.0;
 				}
@@ -822,10 +822,8 @@ Midi <- class extends Player {
 				vspeed = 0;
 
 				if (floor(frame) > 1) {
-					vspeed = -6.0;
-					if (getcon("down", "hold", true, playerNum)) vspeed = -4.0;
+					vspeed = -5.0;
 					local w = 4.0;
-					if (getcon("up", "hold", true, playerNum)) w = 2.0;
 					if (flip == 0) hspeed = w;
 					else hspeed = -w;
 					anim = "jump";

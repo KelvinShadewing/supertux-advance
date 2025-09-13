@@ -400,10 +400,7 @@ Tux <- class extends Player {
 
 					if (floor(frame) > 1) {
 						vspeed = -5.0;
-						if (getcon("down", "hold", true, playerNum))
-							vspeed = -3.0;
-						local w = 3.0;
-						if (getcon("up", "hold", true, playerNum)) w = 1.5;
+						local w = 4.0;
 						if (flip == 0) hspeed = w;
 						else hspeed = -w;
 						anim = "jumpU";
@@ -606,6 +603,7 @@ Tux <- class extends Player {
 
 				// Moving left and right
 				if (zoomies > 0) accel = 0.4;
+				else if (freeDown2) accel = 0.15
 				else accel = 0.2;
 
 				if (
