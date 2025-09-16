@@ -764,13 +764,20 @@ Midi <- class extends Player {
 
 				if (anim == "parkour") {
 					didJump = false;
-					if (vspeed >= 0 || (freeLeft && freeRight)) {
+					if (
+						vspeed >= 0 ||
+						(freeLeft && freeRight) ||
+						(!freeLeft &&
+							!getcon("left", "hold", true, playerNum)) ||
+						(!freeRight &&
+							!getcon("right", "hold", true, playerNum))
+					) {
 						anim = "fall";
 						frame = 0.0;
 					}
-					if (stats.stamina > 0 && vspeed > -3.0) {
+					if (stats.stamina > 0 && vspeed > (zoomies > 0 ? -4.0 : -3.0)) {
 						vspeed -= 0.5;
-						stats.stamina -= 0.5;
+						if (zoomies <= 0) stats.stamina -= 0.5;
 					}
 
 					/*
@@ -1145,10 +1152,8 @@ Midi <- class extends Player {
 		if (firetime <= 0 && stats.energy < stats.maxEnergy)
 			stats.energy += 1.0 / 30.0;
 
-		if (
-			(!freeDown2 || anim == "ledge") &&
-			stats.stamina < stats.maxStamina
-		) stats.stamina++;
+		if ((!freeDown2 || anim == "ledge") && stats.stamina < stats.maxStamina)
+			stats.stamina++;
 
 		// After image
 		if (zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null)
@@ -1591,7 +1596,7 @@ Midi <- class extends Player {
 					flip = 0;
 					anim = "wall";
 					frame = 0.0;
-					playSound(sndWallkick, 0);
+					popSound(sndWallkick, 0);
 					canJump = 0;
 				} else if (
 					freeDown &&
@@ -1608,7 +1613,7 @@ Midi <- class extends Player {
 					flip = 1;
 					anim = "wall";
 					frame = 0.0;
-					playSound(sndWallkick, 0);
+					popSound(sndWallkick, 0);
 					canJump = 0;
 				}
 			}

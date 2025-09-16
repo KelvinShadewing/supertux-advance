@@ -16,6 +16,11 @@
 // TILED MAPS //
 ////////////////
 
+const tile_flip_h = 0x80000000;
+const tile_flip_v = 0x40000000;
+const tile_rot_cw = 0x20000000;
+const tile_mask = 0x1fffffff;
+
 tileSearchDir <- ["."];
 
 findFileName <- function (path) {
@@ -57,7 +62,16 @@ AnimTile <- class {
 		sprite = _sprite;
 	}
 
-	function draw(x, y, alpha, color = 0xffffffff) {
+	function draw(
+		x,
+		y,
+		angle = 0,
+		flip = 0,
+		sx = 1.0,
+		sy = 1.0,
+		alpha = 1.0,
+		color = 0xffffffff
+	) {
 		local currentTime = wrap(getTicks(), 0, frameTime.top());
 		for (local i = 0; i < frameList.len(); i++) {
 			if (currentTime >= frameTime[i]) {
@@ -68,10 +82,10 @@ AnimTile <- class {
 							frameList[i],
 							x,
 							y,
-							0,
-							0,
-							1,
-							1,
+							angle,
+							flip,
+							sx,
+							sy,
 							alpha,
 							color
 						);
@@ -389,44 +403,55 @@ Tilemap <- class {
 
 				if (i * data.layers[t].width + j >= data.layers[t].data.len())
 					return;
-				local n = data.layers[t].data[i * data.layers[t].width + j]; // Number value of the tile
+				local n = int(
+					data.layers[t].data[i * data.layers[t].width + j]
+				); // Number value of the tile
 				if (n != 0) {
+					local nm = n & tile_mask;
+					local offx = 0;
+					local offy = 0;
+					local flip =
+						(n & tile_flip_h ? 1 : 0) | (n & tile_flip_v ? 2 : 0);
+
+					if (n & tile_flip_h) offx = data.tilewidth * sx;
+					if (n & tile_flip_v) offy = data.tileheight * sy;
+					if (n & tile_rot_cw) {
+						local temp = offx;
+						offx = offy;
+						offy = temp;
+						offx -= data.tilewidth * sx;
+					}
+
 					for (local k = data.tilesets.len() - 1; k >= 0; k--) {
-						if (n >= data.tilesets[k].firstgid) {
-							if (anim.rawin(n)) {
-								if (tileset[k] == anim[n].sprite)
-									anim[n].draw(
-										x + floor(j * data.tilewidth * sx),
-										y + floor(i * data.tileheight * sy),
-										a == -1 ? data.layers[t].opacity : a,
-										c
-									);
-								else
-									drawSprite(
-										tileset[k],
-										n - data.tilesets[k].firstgid,
-										x + floor(j * data.tilewidth * sx),
-										y + floor(i * data.tileheight * sy),
-										0,
-										0,
-										sx,
-										sy,
-										a == -1 ? data.layers[t].opacity : a,
-										c
-									);
-							} else
-								drawSprite(
-									tileset[k],
-									n - data.tilesets[k].firstgid,
-									x + floor(j * data.tilewidth * sx),
-									y + floor(i * data.tileheight * sy),
-									0,
-									0,
+						if (nm >= data.tilesets[k].firstgid) {
+							if (
+								anim.rawin(nm) &&
+								tileset[k] == anim[nm].sprite
+							) {
+								anim[nm].draw(
+									x + floor(j * data.tilewidth * sx) + offx,
+									y + floor(i * data.tileheight * sy) + offy,
+									n & tile_rot_cw ? 90 : 0,
+									flip,
 									sx,
 									sy,
 									a == -1 ? data.layers[t].opacity : a,
 									c
 								);
+							} else {
+								drawSprite(
+									tileset[k],
+									n - data.tilesets[k].firstgid,
+									x + floor(j * data.tilewidth * sx) + offx,
+									y + floor(i * data.tileheight * sy) + offy,
+									n & tile_rot_cw ? 90 : 0,
+									flip,
+									sx,
+									sy,
+									a == -1 ? data.layers[t].opacity : a,
+									c
+								);
+							}
 							k = -1;
 							break;
 						}

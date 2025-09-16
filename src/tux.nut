@@ -524,11 +524,11 @@ Tux <- class extends Player {
 				) {
 					if (anim == "slide" || anim == "crawl") {
 						if (
-							getcon("down", "hold", true, playerNum) ||
-							!placeFree(x, y - 8)
+							!getcon("down", "hold", true, playerNum) &&
+							placeFree(x, y - 8, shapeStand)
 						)
-							anim = "crawl";
-						else anim = "walk";
+							anim = "walk";
+						else anim = "crawl";
 					}
 				}
 
@@ -966,7 +966,7 @@ Tux <- class extends Player {
 				if (anim == "crawl") {
 					if (
 						!getcon("down", "hold", true, playerNum) &&
-						placeFree(x, y - 6)
+						placeFree(x, y - 6, shapeStand)
 					)
 						anim = "stand";
 					else {

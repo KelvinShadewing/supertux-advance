@@ -416,7 +416,7 @@ Herring <- class extends Actor {
 			(gvPlayer2 && hitTest(gvPlayer2.shape, shape))
 		) {
 			deleteActor(id);
-			playSoundChannel(sndFish, 0, 1);
+			popSound(sndFish, 0);
 			game.redCoins++;
 			foreach (k, i in gvYetFoundItems)
 				if (i == id) gvFoundItems[k] <- typeof this;
@@ -1257,6 +1257,8 @@ SpecialBall <- class extends Actor {
 		base.constructor(_x, _y);
 		shape = Cir(x, y, 8);
 		num = _arr;
+		if(!(num in game.secretOrbs))
+			game.secretOrbs[num] <- false;
 	}
 
 	function run() {

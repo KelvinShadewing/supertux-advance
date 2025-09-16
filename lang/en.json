@@ -266,7 +266,7 @@
 		"welcome" :
 		["Welcome to SuperTux Advance! This message will go away when you walk away from the block. Press F1 if you would like to see developer commentary. Press %s near NPCs to talk to them. Some have more than one thing to say. If you see a ? over your head, it means your character themself has something to say. Press %s to read it.", "getConName(\"up\")", "getConName(\"up\")"],
 		"tutWall" :
-		["Press %s against the wall to do a wall jump. You can hold %s or %s to alter your trajectory.", "getConName(\"jump\")", "getConName(\"up\")", "getConName(\"down\")"],
+		["Press %s against the wall to do a wall jump.", "getConName(\"jump\")"],
 		"tutSlide" :
 		["Press %s while running or on a hill to slide.", "getConName(\"down\")"],
 		"waterjump" :
