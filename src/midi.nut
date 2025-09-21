@@ -1186,7 +1186,7 @@ Midi <- class extends Player {
 		if (firetime <= 0 && stats.energy < stats.maxEnergy)
 			stats.energy += 1.0 / 30.0;
 
-		if ((!freeDown2 || anim == "ledge") && stats.stamina < stats.maxStamina)
+		if (anim != "parkour" && stats.stamina < stats.maxStamina)
 			stats.stamina++;
 
 		// After image

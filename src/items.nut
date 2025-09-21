@@ -1496,7 +1496,7 @@ CoffeeCup <- class extends Actor {
 		if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y + 2, 20)) {
 			deleteActor(id);
 			if (game.ps.subitem != "coffee") game.ps.subitem = "coffee";
-			else gvPlayer.zoomies += 60 * 16;
+			else gvPlayer.zoomies += 60 * 20;
 			popSound(sndGulp, 0);
 		} else if (
 			gvPlayer2 &&
@@ -1504,7 +1504,7 @@ CoffeeCup <- class extends Actor {
 		) {
 			deleteActor(id);
 			if (game.ps2.subitem != "coffee") game.ps2.subitem = "coffee";
-			else gvPlayer2.zoomies += 60 * 16;
+			else gvPlayer2.zoomies += 60 * 20;
 			popSound(sndGulp, 0);
 		}
 	}
