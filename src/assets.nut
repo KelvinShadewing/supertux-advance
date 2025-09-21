@@ -998,6 +998,7 @@ sndCyraSwordSwing <- loadSound("res/snd/cyra_snd/swordswing.ogg");
 sndCyraFireSwing <- loadSound("res/snd/cyra_snd/firewave.ogg");
 sndCyraTornado <- loadSound("res/snd/cyra_snd/windswing.ogg");
 sndCyraElectricSwing <- loadSound("res/snd/electricwave.ogg");
+sndCannon <- loadSound("res/snd/cannon.ogg");
 
 // Music
 gvMusic <- 0; // Stores the current music so that not too many large songs are loaded at once

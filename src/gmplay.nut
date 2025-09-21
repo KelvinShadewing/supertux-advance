@@ -389,7 +389,7 @@ startPlay <- function (level, newLevel = true, skipIntro = false) {
 							obj.y + obj.height / 2,
 							obj.width / 2,
 							obj.height / 2,
-							5
+							0
 						);
 						mapActor[obj.id] <- actor[c].id;
 						break;
@@ -2193,6 +2193,11 @@ gmPlay <- function () {
 		if (game.ps.health < game.maxHealth) {
 			game.ps.health++;
 			game.ps.berries = 0;
+			if(gvPlayer) newActor(
+				Heal,
+				gvPlayer.x - 16 + randInt(32),
+				gvPlayer.y - 16 + randInt(32)
+			);
 		} else if (game.ps.berries > 12) game.ps.berries--;
 	}
 
@@ -2200,6 +2205,11 @@ gmPlay <- function () {
 		if (game.ps2.health < game.maxHealth) {
 			game.ps2.health++;
 			game.ps2.berries = 0;
+			if(gvPlayer2) newActor(
+				Heal,
+				gvPlayer2.x - 16 + randInt(32),
+				gvPlayer2.y - 16 + randInt(32)
+			);
 		} else if (game.ps2.berries > 12) game.ps2.berries--;
 	}
 
@@ -2725,7 +2735,7 @@ createPlatformActors <- function (n, i, c) {
 			break;
 
 		case 77:
-			c = newActor(SpecialBall, i.x + 8, i.y - 8, i.name.tointeger());
+			c = newActor(SpecialBall, i.x + 8, i.y - 8, i.name);
 			break;
 
 		case 78:

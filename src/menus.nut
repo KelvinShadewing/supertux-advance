@@ -1482,6 +1482,36 @@ meInput <- {
 		},
 		{
 			name = function () {
+				return format(
+					gvLangObj["controls-menu"]["jump-buffer"],
+					config.jumpBuffer.tostring()
+				)
+			},
+			desc = function () {
+				if (
+					getcon("left", "press", false, 0, false) &&
+					config.jumpBuffer > 0
+				) {
+					config.jumpBuffer -= 2;
+					popSound(sndMenuMove, 0);
+					fileWrite("config.json", jsonWrite(config));
+				}
+
+				if (
+					getcon("right", "press", false, 0, false) &&
+					config.jumpBuffer < 60
+				) {
+					config.jumpBuffer += 2;
+					popSound(sndMenuMove, 0);
+					fileWrite("config.json", jsonWrite(config));
+				}
+
+				return gvLangObj["options-menu-desc"]["jump-buffer"];
+			},
+			func = function () {}
+		},
+		{
+			name = function () {
 				return gvLangObj["menu-commons"]["back"];
 			},
 			func = function () {

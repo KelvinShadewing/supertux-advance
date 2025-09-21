@@ -102,6 +102,7 @@ CoinSmall <- class extends PhysAct {
 	timer = 300;
 	gravity = 0.2;
 	friction = 0.05;
+	target = 0;
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
@@ -131,16 +132,89 @@ CoinSmall <- class extends PhysAct {
 		timer--;
 		if (timer == 0) deleteActor(id);
 
-		if (!placeFree(x, y + 1)) {
-			vspeed = -vspeed / 1.5;
-			friction = 0.05;
-		} else friction = 0.0;
+		if (!phantom) {
+			if (!placeFree(x, y + 1)) {
+				vspeed = -vspeed / 1.5;
+				friction = 0.05;
+			} else friction = 0.0;
 
-		if (!placeFree(x, y - 1)) vspeed = fabs(vspeed);
+			if (!placeFree(x, y - 1)) vspeed = fabs(vspeed);
 
-		if (!placeFree(x + 1, y)) hspeed = -fabs(hspeed);
+			if (!placeFree(x + 1, y)) hspeed = -fabs(hspeed);
 
-		if (!placeFree(x - 1, y)) hspeed = fabs(hspeed);
+			if (!placeFree(x - 1, y)) hspeed = fabs(hspeed);
+		}
+
+		if (
+			gvPlayer &&
+			gvPlayer.magnetic &&
+			inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)
+		) {
+			target = 1;
+		} else if (
+			gvPlayer2 &&
+			gvPlayer2.magnetic &&
+			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)
+		) {
+			target = 2;
+		}
+
+		hspeed = clamp(hspeed, -8, 8);
+		vspeed = clamp(vspeed, -8, 8);
+
+		if (target == 1) {
+			gravity = 0.0;
+			phantom = true;
+
+			if (gvPlayer) {
+				hspeed += lendirX(
+					max(distance2(x, y, gvPlayer.x, gvPlayer.y) / 100.0, 0.5),
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
+				vspeed += lendirY(
+					max(distance2(x, y, gvPlayer.x, gvPlayer.y) / 100.0, 0.5),
+					pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+				);
+
+				if (!inDistance2(x, y, gvPlayer.x, gvPlayer.y, 64)) {
+					hspeed = lendirX(
+						10,
+						pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+					);
+					vspeed = lendirY(
+						10,
+						pointAngle(x, y, gvPlayer.x, gvPlayer.y)
+					);
+				}
+			}
+		}
+
+		if (target == 2) {
+			gravity = 0.0;
+			phantom = true;
+
+			if (gvPlayer2) {
+				hspeed += lendirX(
+					max(distance2(x, y, gvPlayer2.x, gvPlayer2.y) / 100.0, 0.5),
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
+				vspeed += lendirY(
+					max(distance2(x, y, gvPlayer2.x, gvPlayer2.y) / 100.0, 0.5),
+					pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+				);
+
+				if (!inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 64)) {
+					hspeed = lendirX(
+						10,
+						pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+					);
+					vspeed = lendirY(
+						10,
+						pointAngle(x, y, gvPlayer2.x, gvPlayer2.y)
+					);
+				}
+			}
+		}
 	}
 
 	function draw() {
@@ -1257,8 +1331,10 @@ SpecialBall <- class extends Actor {
 		base.constructor(_x, _y);
 		shape = Cir(x, y, 8);
 		num = _arr;
-		if(!(num in game.secretOrbs))
-			game.secretOrbs[num] <- false;
+
+		if (typeof game.secretOrbs == "array") game.secretOrbs <- {}; // Sanitize secret orb save file
+
+		if (!(num in game.secretOrbs)) game.secretOrbs[num] <- false;
 	}
 
 	function run() {

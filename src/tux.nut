@@ -55,7 +55,7 @@ Tux <- class extends Player {
 		run = [16, 16, 17, 17, 18, 19, 20, 20, 21, 21, 22, 23],
 		dive = [24, 25],
 		slide = [26, 27, 28, 29],
-		hurt = [30, 31],
+		hurt = [30, 31, 30, 31],
 		jumpU = [32, 33],
 		jumpT = [34, 35],
 		fall = [0],
@@ -450,8 +450,8 @@ Tux <- class extends Player {
 					break;
 
 				case "hurt":
-					frame += 0.1;
-					if (floor(frame) > 1) {
+					frame += 0.2;
+					if (floor(frame) > 3) {
 						anim = "stand";
 						frame = 0.0;
 					}
@@ -914,7 +914,7 @@ Tux <- class extends Player {
 					freeDown &&
 					!getcon("down", "hold", true, playerNum)
 				)
-					jumpBuffer = 8;
+					jumpBuffer = config.jumpBuffer;
 				if (jumpBuffer > 0) jumpBuffer--;
 
 				if (
@@ -2121,10 +2121,32 @@ Tux <- class extends Player {
 
 		if (placeFree(x, y + vspeed)) y += vspeed;
 		else {
-			vspeed /= 2;
-			if (fabs(vspeed) < 0.01) vspeed = 0;
-			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
-			if (placeFree(x, y + vspeed)) y += vspeed;
+			local didstep = false
+
+			//Move side-to-side underwater
+			if(nowInWater) {
+				for(local i = 1; i <= 4; i++) {
+					if(placeFree(x + i, y + vspeed)) {
+						x += i;
+						y += vspeed;
+						didstep = true;
+						break;
+					}
+					else if(placeFree(x - i, y + vspeed)) {
+						x -= i;
+						y += vspeed;
+						didstep = true;
+						break;
+					}
+				}
+			}
+
+			if(!didstep) {
+				vspeed /= 2;
+				if (fabs(vspeed) < 0.01) vspeed = 0;
+				// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+				if (placeFree(x, y + vspeed)) y += vspeed;
+			}
 		}
 
 		if (hspeed != 0) {
@@ -2155,6 +2177,17 @@ Tux <- class extends Player {
 					if (placeFree(x + hspeed, y - i)) {
 						x += hspeed;
 						y -= i;
+						if (i > 2) {
+							if (hspeed > 0) hspeed -= 0.2;
+							if (hspeed < 0) hspeed += 0.2;
+						}
+						didstep = true;
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
+						break;
+					}
+					else if(nowInWater && placeFree(x + hspeed, y + i)) {
+						x += hspeed;
+						y += i;
 						if (i > 2) {
 							if (hspeed > 0) hspeed -= 0.2;
 							if (hspeed < 0) hspeed += 0.2;

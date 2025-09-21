@@ -627,11 +627,9 @@ DeadPlayer <- class extends Actor {
 		if (timer == 0 && !gvPlayer && !gvPlayer2) {
 			startPlay(gvMap.file, true, true);
 
-			if (game.check == false) {
-				if (playerNum == 1) game.ps.weapon = "normal";
-				if (playerNum == 2) game.ps2.weapon = "normal";
-				gvIGT = 0;
-			}
+			if (playerNum == 1) game.ps.weapon = "normal";
+			if (playerNum == 2) game.ps2.weapon = "normal";
+			gvIGT = 0;
 		}
 	}
 

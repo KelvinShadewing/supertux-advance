@@ -1379,7 +1379,7 @@ TNT <- class extends Actor {
 				if (
 					(("altShape" in i && hitTest(fireshape, i.altShape)) ||
 						(!("altShape" in i) && hitTest(fireshape, i.shape))) &&
-					(i.blast || i.element == "fire") &&
+					(i.blast || i.element == "fire" || i.element == "shock") &&
 					i.element != "ice" &&
 					i.element != "water"
 				) {

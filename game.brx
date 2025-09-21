@@ -242,10 +242,6 @@ startMain()
 menu = meMain
 game.playerChar = "Tux"
 
-// Testing
-// game.playerChar = "Surge"
-// gotoTest()
-
 // Load contrib initializers
 if(fileExists("contrib")) {
 	foreach(i in lsdir("contrib")) if(fileExists("contrib/" + i + "/init.nut")) donut("contrib/" + i + "/init.nut")
@@ -304,6 +300,10 @@ gameRender <- function() {
 }
 
 gameExit <- function() {}
+
+// Testing
+// game.playerChar = "Surge"
+// gotoTest()
 
 while(!getQuit() && !gvQuit) {
 	gameCycle()

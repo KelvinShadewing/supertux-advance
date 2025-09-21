@@ -199,12 +199,12 @@ PhysAct <- class extends Actor {
 		foreach (i in actor["MoPlat"]) {
 			if (hitTest(shape, i.shape)) {
 				// Get angle between actors
-				local tx = toRange(
+				local tx = clamp(
 					i.x - hspeed,
 					shape.x - shape.w,
 					shape.x + shape.w
 				);
-				local ty = toRange(
+				local ty = clamp(
 					i.y - vspeed,
 					shape.y - shape.h,
 					shape.y + shape.h
@@ -1826,21 +1826,14 @@ PhysAct <- class extends Actor {
 		if (_x == 0) _x = x;
 		if (_y == 0) _y = y;
 
-		local ns;
-		if (typeof shape == "Rec")
-			ns = Rec(
-				_x + shape.ox,
-				_y + shape.oy,
-				shape.w,
-				shape.h,
-				shape.kind
-			);
-		if (typeof shape == "Cir")
-			ns = Cir(_x + shape.ox, _y + shape.oy, shape.r);
-
 		if (actor.rawin("Water")) {
 			foreach (i in actor["Water"]) {
-				if (hitTest(ns, i.shape))
+				if (
+					_x >= i.x - i.shape.w &&
+					_x <= i.x + i.shape.w &&
+					_y >= i.y - i.shape.h &&
+					_y <= i.y + i.shape.h
+				)
 					return {
 						id = i.id,
 						substance = i.substance,

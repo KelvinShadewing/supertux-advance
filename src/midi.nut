@@ -133,8 +133,8 @@ Midi <- class extends Player {
 		wave = [236, 237],
 		pick = [238, 239],
 		moonwalk = [240, 241, 242, 243, 244, 245, 246, 247],
-		win = [239],
-		crawl = [249, 250, 251, 252, 251, 250],
+		win = [247],
+		crawl = [248, 249, 250, 251, 250, 249],
 		parkour = [256, 257, 258, 259, 260, 261, 262, 263]
 	};
 	animOffset = 0.0;
@@ -393,10 +393,31 @@ Midi <- class extends Player {
 
 		if (placeFree(x, y + vspeed)) y += vspeed;
 		else {
-			vspeed /= 2;
-			if (fabs(vspeed) < 0.01) vspeed = 0;
-			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
-			if (placeFree(x, y + vspeed)) y += vspeed;
+			local didstep = false;
+
+			//Move side-to-side underwater
+			if (nowInWater && (anim != "ball" || vspeed < 0)) {
+				for (local i = 1; i <= 4; i++) {
+					if (placeFree(x + i, y + vspeed)) {
+						x += i;
+						y += vspeed;
+						didstep = true;
+						break;
+					} else if (placeFree(x - i, y + vspeed)) {
+						x -= i;
+						y += vspeed;
+						didstep = true;
+						break;
+					}
+				}
+			}
+
+			if (!didstep) {
+				vspeed /= 2;
+				if (fabs(vspeed) < 0.01) vspeed = 0;
+				// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+				if (placeFree(x, y + vspeed)) y += vspeed;
+			}
 		}
 
 		if (hspeed != 0) {
@@ -433,6 +454,16 @@ Midi <- class extends Player {
 						}
 						didstep = true;
 						// if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
+						break;
+					} else if (nowInWater && placeFree(x + hspeed, y + i)) {
+						h += hspeed;
+						y += i;
+						if (i > 2) {
+							if (hspeed > 0) hspeed -= 0.2;
+							if (hspeed < 0) hspeed += 0.2;
+						}
+						didstep = true;
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break;
 					}
 				}
@@ -775,7 +806,10 @@ Midi <- class extends Player {
 						anim = "fall";
 						frame = 0.0;
 					}
-					if (stats.stamina > 0 && vspeed > (zoomies > 0 ? -4.0 : -3.0)) {
+					if (
+						stats.stamina > 0 &&
+						vspeed > (zoomies > 0 ? -4.0 : -3.0)
+					) {
 						vspeed -= 0.5;
 						if (zoomies <= 0) stats.stamina -= 0.5;
 					}
@@ -1908,7 +1942,7 @@ Midi <- class extends Player {
 				freeDown &&
 				!getcon("down", "hold", true, playerNum)
 			)
-				jumpBuffer = 8;
+				jumpBuffer = config.jumpBuffer;
 			if (jumpBuffer > 0) jumpBuffer--;
 
 			if (
@@ -2469,10 +2503,8 @@ DeadMidi <- class extends Actor {
 				}
 			}
 
-			if (game.check == false) {
-				if (playerNum == 1) game.ps.weapon = "normal";
-				if (playerNum == 2) game.ps2.weapon = "normal";
-			}
+			if (playerNum == 1) game.ps.weapon = "normal";
+			if (playerNum == 2) game.ps2.weapon = "normal";
 		}
 	}
 

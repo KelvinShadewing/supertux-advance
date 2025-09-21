@@ -312,7 +312,7 @@ Neverball <- class extends Player {
 			if (jumpBuffer > 0) jumpBuffer--;
 
 			if (getcon("jump", "press", true, playerNum)) {
-				jumpBuffer = 16;
+				jumpBuffer = config.jumpBuffer;
 				fireWeapon(InstaShield, x, y, 1, id);
 			}
 

@@ -28,7 +28,7 @@ Spawner <- class extends PhysAct {
 
 	function run() {
 		// Only be active on screen
-		if (!isOnScreen()) return;
+		if (!isOnScreen() && infinite) return;
 
 		if (infinite || !(myob in actor)) {
 			timer--;
@@ -37,6 +37,7 @@ Spawner <- class extends PhysAct {
 				if (myClass in getroottable())
 					myob = newActor(getroottable()[myClass], x, y);
 				if ("nocount" in actor[myob]) actor[myob].nocount = true;
+				if ("active" in actor[myob]) actor[myob].active = true;
 			}
 		}
 	}

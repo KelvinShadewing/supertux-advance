@@ -412,26 +412,51 @@ Tilemap <- class {
 					local offy = 0;
 					local flip =
 						(n & tile_flip_h ? 1 : 0) | (n & tile_flip_v ? 2 : 0);
+					local offa = 0;
 
-					if (n & tile_flip_h) offx = data.tilewidth * sx;
-					if (n & tile_flip_v) offy = data.tileheight * sy;
-					if (n & tile_rot_cw) {
-						local temp = offx;
-						offx = offy;
-						offy = temp;
-						offx -= data.tilewidth * sx;
+					switch (n & (tile_flip_h | tile_flip_v | tile_rot_cw)) {
+						case tile_flip_h:
+							offx = tilew * sx;
+							break;
+						case tile_flip_v:
+							offy = tileh * sy;
+							break;
+						case tile_flip_h | tile_flip_v:
+							offx = tilew * sx;
+							offy = tileh * sy;
+							break;
+						case tile_rot_cw:
+							offx = tilew * sx;
+							offy = tileh * sy;
+							offa = 90;
+							break;
+						case tile_rot_cw | tile_flip_h:
+							offa = 90;
+							flip = 2;
+							break;
+						case tile_rot_cw | tile_flip_v:
+							offy = tileh * sy;
+							offa = 270;
+							flip = 0;
+							break;
+						case tile_rot_cw | tile_flip_h | tile_flip_v:
+							offa = 270;
+							flip = 2;
+							offx = tilew * sx;
+							offy = tileh * sy;
+							break;
 					}
 
 					for (local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if (nm >= data.tilesets[k].firstgid) {
 							if (
-								anim.rawin(nm) &&
-								tileset[k] == anim[nm].sprite
+								anim.rawin(n) &&
+								tileset[k] == anim[n].sprite
 							) {
-								anim[nm].draw(
+								anim[n].draw(
 									x + floor(j * data.tilewidth * sx) + offx,
 									y + floor(i * data.tileheight * sy) + offy,
-									n & tile_rot_cw ? 90 : 0,
+									offa,
 									flip,
 									sx,
 									sy,
@@ -441,10 +466,10 @@ Tilemap <- class {
 							} else {
 								drawSprite(
 									tileset[k],
-									n - data.tilesets[k].firstgid,
+									nm - data.tilesets[k].firstgid,
 									x + floor(j * data.tilewidth * sx) + offx,
 									y + floor(i * data.tileheight * sy) + offy,
-									n & tile_rot_cw ? 90 : 0,
+									offa,
 									flip,
 									sx,
 									sy,

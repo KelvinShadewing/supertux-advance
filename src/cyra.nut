@@ -1021,7 +1021,7 @@ Cyra <- class extends Player {
 					freeDown &&
 					!getcon("down", "hold", true, playerNum)
 				)
-					jumpBuffer = 8;
+					jumpBuffer = config.jumpBuffer;
 				if (jumpBuffer > 0) jumpBuffer--;
 
 				if (
@@ -1924,10 +1924,32 @@ Cyra <- class extends Player {
 
 		if (placeFree(x, y + vspeed)) y += vspeed;
 		else {
-			vspeed /= 2;
-			if (fabs(vspeed) < 0.01) vspeed = 0;
-			// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
-			if (placeFree(x, y + vspeed)) y += vspeed;
+			local didstep = false
+
+			//Move side-to-side underwater
+			if(nowInWater) {
+				for(local i = 1; i <= 4; i++) {
+					if(placeFree(x + i, y + vspeed)) {
+						x += i;
+						y += vspeed;
+						didstep = true;
+						break;
+					}
+					else if(placeFree(x - i, y + vspeed)) {
+						x -= i;
+						y += vspeed;
+						didstep = true;
+						break;
+					}
+				}
+			}
+
+			if(!didstep) {
+				vspeed /= 2;
+				if (fabs(vspeed) < 0.01) vspeed = 0;
+				// if(fabs(vspeed) > 1) vspeed -= vspeed / fabs(vspeed)
+				if (placeFree(x, y + vspeed)) y += vspeed;
+			}
 		}
 
 		if (hspeed != 0) {
@@ -1963,6 +1985,17 @@ Cyra <- class extends Player {
 							if (hspeed < 0) hspeed += 0.2;
 						}
 						didstep = true;
+						break;
+					}
+					else if(nowInWater && placeFree(x + hspeed, y + i)) {
+						x += hspeed;
+						y += i;
+						if (i > 2) {
+							if (hspeed > 0) hspeed -= 0.2;
+							if (hspeed < 0) hspeed += 0.2;
+						}
+						didstep = true;
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
 						break;
 					}
 				}
@@ -2247,10 +2280,8 @@ DeadCyra <- class extends Actor {
 				}
 			}
 
-			if (game.check == false || game.difficulty > 0) {
 				if (playerNum == 1) game.ps.weapon = "normal";
 				if (playerNum == 2) game.ps2.weapon = "normal";
-			}
 		}
 	}
 

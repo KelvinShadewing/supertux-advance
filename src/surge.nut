@@ -463,6 +463,17 @@ Surge <- class extends Player {
 						// if(slippery && !swimming && !placeFree(xprev, yprev + 2) && fabs(hspeed) > 4.0) vspeed -= 2.0
 						break;
 					}
+					else if(nowInWater && placeFree(x + hspeed, y + i)) {
+						x += hspeed;
+						y += i;
+						if (i > 2) {
+							if (hspeed > 0) hspeed -= 0.2;
+							if (hspeed < 0) hspeed += 0.2;
+						}
+						didstep = true;
+						// if(slippery && !swimming && !placeFree(xprev, yprev + 2)) vspeed -= 2.0
+						break;
+					}
 				}
 
 				if (
@@ -1180,7 +1191,7 @@ Surge <- class extends Player {
 				anim != "ledge" &&
 				!getcon("down", "hold", true, playerNum)
 			)
-				jumpBuffer = 8;
+				jumpBuffer = config.jumpBuffer;
 			if (jumpBuffer > 0) jumpBuffer--;
 
 			if (getcon("jump", "press", true, playerNum) || jumpBuffer > 0) {
@@ -1258,6 +1269,7 @@ Surge <- class extends Player {
 
 			// Wall slide
 			if (
+				!nowInWater &&
 				(anim == "fall" || (anim == "jumpR" && vspeed > 0)) &&
 				((getcon("left", "hold", true, playerNum) && !freeLeft) ||
 					(getcon("right", "hold", true, playerNum) && !freeRight))

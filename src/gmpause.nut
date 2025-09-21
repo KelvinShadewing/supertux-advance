@@ -25,11 +25,9 @@ togglePause <- function () {
 			!gvPlayer2
 		) {
 			startPlay(gvMap.file, true, true);
-			if (game.check == false) {
-				gvIGT = 0;
-				game.ps.weapon = "normal";
-				game.ps2.weapon = "normal";
-			}
+			gvIGT = 0;
+			game.ps.weapon = "normal";
+			game.ps2.weapon = "normal";
 		} else {
 			gvGameMode = gmPause;
 			setDrawTarget(bgPause);

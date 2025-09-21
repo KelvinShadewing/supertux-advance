@@ -99,7 +99,8 @@ Enemy <- class extends PhysAct {
 			if (gvPlayer && health > 0 && blinking == 0) {
 				if (hitTest(shape, gvPlayer.shape) && !frozen) {
 					if ("invincible" in gvPlayer && gvPlayer.invincible > 0) {
-						newActor(CoinSmall, x, y);
+						local c = newActor(CoinSmall, x, y);
+						actor[c].target = 1;
 						hurtInvinc();
 					} else if (
 						y > gvPlayer.y &&
@@ -141,7 +142,8 @@ Enemy <- class extends PhysAct {
 				if (hitTest(shape, gvPlayer2.shape) && !frozen) {
 					// 8 for player radius
 					if ("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) {
-						newActor(CoinSmall, x, y);
+						local c = newActor(CoinSmall, x, y);
+						actor[c].target = 2;
 						hurtInvinc();
 					} else if (
 						y > gvPlayer2.y &&
@@ -1048,6 +1050,7 @@ OrangeBounce <- class extends Enemy {
 			}
 
 			if (bounceTime > 0) bounceTime--;
+			if (frozen) bounceTime = 0;
 
 			if (!placeFree(x, y + 1)) {
 				vspeed = -3.0;
@@ -1766,7 +1769,8 @@ BlueFish <- class extends Enemy {
 			("anim" in _by &&
 				_by.anim == "slide" &&
 				_by.stats.weapon == "earth") ||
-			!_stomp || !_by.swimming
+			!_stomp ||
+			!_by.swimming
 		)
 			hurtFire();
 	}
@@ -1935,7 +1939,8 @@ RedFish <- class extends Enemy {
 			("anim" in _by &&
 				_by.anim == "slide" &&
 				_by.stats.weapon == "earth") ||
-			!_stomp || !_by.swimming
+			!_stomp ||
+			!_by.swimming
 		)
 			hurtFire();
 	}
@@ -2085,7 +2090,8 @@ JellyFish <- class extends Enemy {
 			("anim" in _by &&
 				_by.anim == "slide" &&
 				_by.stats.weapon == "earth") ||
-			!_stomp || !_by.swimming
+			!_stomp ||
+			!_by.swimming
 		)
 			hurtFire();
 	}
@@ -2425,7 +2431,8 @@ GreenFish <- class extends Enemy {
 			("anim" in _by &&
 				_by.anim == "slide" &&
 				_by.stats.weapon == "earth") ||
-			!_stomp || !_by.swimming
+			!_stomp ||
+			!_by.swimming
 		)
 			hurtFire();
 	}
@@ -2621,26 +2628,40 @@ BadCannon <- class extends Actor {
 			) {
 				if (frame < 1) {
 					local c = actor[newActor(CannonBob, x - 4, y - 4)];
-					c.hspeed = (target.x - x) / 48;
+					c.hspeed = (target.x - x) / 40;
 					local d = (y - target.y) / 64;
 					if (y > target.y) c.vspeed -= d;
 					newActor(Poof, x - 4, y - 4);
+					popSound(sndCannon);
 				}
 				if (frame >= 4) {
 					local c = actor[newActor(CannonBob, x + 4, y - 4)];
-					c.hspeed = (target.x - x) / 48;
+					c.hspeed = (target.x - x) / 40;
 					local d = (y - target.y) / 64;
 					if (y > target.y) c.vspeed -= d;
 					newActor(Poof, x + 4, y - 4);
+					popSound(sndCannon);
 				}
 				if (frame >= 1 && frame <= 4) {
 					local c = actor[newActor(CannonBob, x, y - 4)];
-					c.hspeed = (target.x - x) / 48;
+					c.hspeed = (target.x - x) / 40;
 					local d = (y - target.y) / 64;
 					if (y > target.y) c.vspeed -= d;
 					newActor(Poof, x, y - 4);
+					popSound(sndCannon);
 				}
 				timer = 240;
+			}
+
+			if (
+				timer <= 60 &&
+				timer % 5 == 0 &&
+				inDistance2(x, y, target.x, target.y, 160)
+			) {
+				local c = actor[newActor(PoofTiny, x + 5 - (frame * 2), y - 8)];
+				c.vspeed = -1;
+				c.hspeed = (2 - frame + randFloat(1)) / 4.0;
+				if (timer == 60) popSound(sndFizz);
 			}
 
 			if (timer > 0) timer--;
@@ -6567,12 +6588,12 @@ SideCrusher <- class extends Enemy {
 			scanShapeR.draw();
 
 			if (gvPlayer && inDistance2(x, y, gvPlayer.x, gvPlayer.y, 128)) {
-				local tx = toRange(
+				local tx = clamp(
 					x,
 					gvPlayer.shape.x - gvPlayer.shape.w,
 					gvPlayer.shape.x + gvPlayer.shape.w
 				);
-				local ty = toRange(
+				local ty = clamp(
 					y,
 					gvPlayer.shape.y - gvPlayer.shape.h,
 					gvPlayer.shape.y + gvPlayer.shape.h

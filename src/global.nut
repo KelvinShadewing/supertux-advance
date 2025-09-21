@@ -343,7 +343,8 @@ config <- {
 	useOutlines = false,
 	showTF = true,
 	aspect = 0,
-	mapspeed = 2
+	mapspeed = 2,
+	jumpBuffer = 8
 };
 
 contribDidRun <- {};

@@ -128,7 +128,8 @@
 		"show-tf" : "Characters change appearance with elements",
 		"lock-splitscreen-a" : "Camera will split/merge depending on players' distance.",
 		"lock-splitscreen-b" : "Camera will stay split with two players.",
-		"mapspeed" : "Speed of overworld map movement"
+		"mapspeed" : "Speed of overworld map movement",
+		"jump-buffer" : "Press LEFT or RIGHT to adjust buffer frames"
 	},
 
 	"speedrun-menu" : {
@@ -181,7 +182,8 @@
 			"1" : "Slow",
 			"2" : "Normal",
 			"4" : "Fast"
-		}
+		},
+		"jump-buffer" : "Jump Buffer: %s frames"
 	},
 
 	"menu-commons" : {
@@ -835,7 +837,9 @@
 		"Have you been to Loch Genesis? It's the smaller lake to the east. I hear the caves there are really something!",
 
 		"bee-help" :
-		"Please help us! The Waspy Bois have taken over our hive, and the queen is missing! Their leader has taken refuge in our hive's center. If you can save my friends, they can get you the honey crystals to open the grand hall."
+		"Please help us! The Waspy Bois have taken over our hive, and the queen is missing! Their leader has taken refuge in our hive's center. If you can save my friends, they can get you the honey crystals to open the grand hall.",
+		"bee-honey" :
+		"Notice all the acid pools? They might be scary, but throw a little nectar in, and they turn into honey. Plus, we don't have to barf it up that way!"
 	},
 
 	"level" : {
