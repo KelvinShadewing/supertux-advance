@@ -2281,3 +2281,181 @@ FlipBlock <- class extends Actor {
 		return "FlipBlock";
 	}
 };
+
+ItemGlobe <- class extends Actor {
+	shape = 0;
+	slideshape = 0;
+	item = "";
+	coins = 10;
+	full = true;
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y);
+
+		shape = Rec(x, y + 2, 7, 8, 0);
+		slideshape = Rec(x, y - 1, 16, 8, 0);
+
+		if (_arr != null && _arr != "") {
+			local arg = split(_arr, ",")
+			item = _arr[0];
+		}
+		else item = "Coin";
+
+		if (item == "Coin") {
+			game.maxCoins += coins;
+		}
+	}
+
+	function run() {
+		if (gvPlayer) {
+			
+		}
+
+		if (gvPlayer2) {
+			if (v == 0) {
+				vspeed = 0;
+				if (coins <= 1) {
+					if (gvPlayer2.vspeed < 0)
+						if (
+							hitTest(shape, gvPlayer2.shape) &&
+							gvPlayer2.y > y + 4
+						) {
+							gvPlayer2.vspeed = 0;
+							deleteActor(id);
+							newActor(WoodChunks, x, y);
+							popSound(sndBump, 0);
+							tileSetSolid(x, y, oldsolid);
+							if (coins > 0) newActor(CoinEffect, x, y - 16);
+							fireWeapon(BoxHit, x, y - 8, 1, id);
+							foreach (k, i in gvYetFoundItems)
+								if (i == id) gvFoundItems[k] <- typeof this;
+						}
+
+					if (
+						"anim" in gvPlayer2 &&
+						fabs(gvPlayer2.hspeed) >= 4.5 &&
+						gvPlayer2.inMelee &&
+						hitTest(slideshape, gvPlayer2.shape)
+					) {
+						gvPlayer2.vspeed = 0;
+						deleteActor(id);
+						newActor(WoodChunks, x, y);
+						popSound(sndBump, 0);
+						tileSetSolid(x, y, oldsolid);
+						if (coins > 0) newActor(CoinEffect, x, y - 16);
+						fireWeapon(BoxHit, x, y - 8, 1, id);
+						foreach (k, i in gvYetFoundItems)
+							if (i == id) gvFoundItems[k] <- typeof this;
+					}
+
+					if ("anim" in gvPlayer2)
+						if (
+							hitTest(gvPlayer2.shape, shape) &&
+							gvPlayer2.anim == "stomp"
+						) {
+							gvPlayer2.vspeed = -2.0;
+							deleteActor(id);
+							newActor(WoodChunks, x, y);
+							popSound(sndBump, 0);
+							tileSetSolid(x, y, oldsolid);
+							if (coins > 0) newActor(CoinEffect, x, y - 16);
+							foreach (k, i in gvYetFoundItems)
+								if (i == id) gvFoundItems[k] <- typeof this;
+						}
+				} else {
+					if (gvPlayer2.vspeed < 0)
+						if (hitTest(shape, gvPlayer2.shape)) {
+							gvPlayer2.vspeed = 0;
+							vspeed = -2;
+							coins--;
+							newActor(CoinEffect, x, y - 16);
+							popSound(sndBump, 0);
+							fireWeapon(BoxHit, x, y - 8, 1, id);
+						}
+
+					if ("anim" in gvPlayer2)
+						if (
+							(fabs(gvPlayer2.hspeed) >= 4.5 ||
+								(gvPlayer2.stats.weapon == "earth" &&
+									gvPlayer2.vspeed >= 2)) &&
+							gvPlayer2.inMelee
+						)
+							if (hitTest(slideshape, gvPlayer2.shape)) {
+								vspeed = -2;
+								coins--;
+								newActor(CoinEffect, x, y - 16);
+								popSound(sndBump, 0);
+								fireWeapon(BoxHit, x, y - 8, 1, id);
+							}
+
+					if ("anim" in gvPlayer2)
+						if (
+							hitTest(gvPlayer2.shape, shape) &&
+							gvPlayer2.anim == "stomp"
+						) {
+							vspeed = -2;
+							coins--;
+							newActor(CoinEffect, x, y - 16);
+							popSound(sndBump, 0);
+						}
+				}
+			}
+		}
+
+		if (actor.rawin("WeaponEffect"))
+			foreach (i in actor["WeaponEffect"]) {
+				if (
+					(("altShape" in i && hitTest(shape, i.altShape)) ||
+						(!("altShape" in i) && hitTest(shape, i.shape))) &&
+					vspeed == 0
+				) {
+					if (i.blast && !i.box) {
+						if (coins <= 1) {
+							deleteActor(id);
+							newActor(WoodChunks, x, y);
+							stopSound(sndBump);
+							popSound(sndBump, 0);
+							tileSetSolid(x, y, oldsolid);
+							if (coins > 0) newActor(CoinEffect, x, y - 16);
+							fireWeapon(BoxHit, x, y - 8, 1, id);
+							foreach (k, i in gvYetFoundItems)
+								if (i == id) gvFoundItems[k] <- typeof this;
+							break;
+						} else {
+							vspeed = -2;
+							coins--;
+							newActor(CoinEffect, x, y - 16);
+							stopSound(sndBump);
+							popSound(sndBump, 0);
+							fireWeapon(BoxHit, x, y - 8, 1, id);
+						}
+						if (i.piercing == 0) deleteActor(i.id);
+						else i.piercing--;
+					}
+				}
+			}
+
+		if (v == -8) vspeed = 1;
+		v += vspeed;
+
+		if (coins > 0 && game.difficulty == 0) {
+			if (glimmerTimer > 0) glimmerTimer--;
+			else {
+				glimmerTimer = randInt(30);
+				newActor(Glimmer, x - 8 + randInt(16), y - 8 + randInt(16));
+			}
+		}
+	}
+
+	function draw() {
+		drawSpriteZ(2, sprWoodBox, 0, x - 8 - camx, y - 8 - camy + v);
+	}
+
+	function destructor() {
+		fireWeapon(BoxHit, x, y - 8, 1, id);
+	}
+
+	function _typeof() {
+		return "ItemGlobe";
+	}
+};

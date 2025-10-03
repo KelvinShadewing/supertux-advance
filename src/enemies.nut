@@ -8317,6 +8317,26 @@ Gooey <- class extends Enemy {
 	};
 	anim = "stand";
 
+	spriteList = [
+		sprGooBlack,
+		sprGooBlue,
+		sprGooBrown,
+		sprGooCrimson,
+		sprGooCyan,
+		sprGooGray,
+		sprGooGreen,
+		sprGooIce,
+		sprGooOrange,
+		sprGooPink,
+		sprGooPurple,
+		sprGooRed,
+		sprGooTan,
+		sprGooTeal,
+		sprGooWhite,
+		sprGooYellow,
+		sprGooFox
+	];
+
 	gravity = 0.05;
 	jumpTimer = 180;
 	frame = 0.0;
@@ -8326,25 +8346,7 @@ Gooey <- class extends Enemy {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr);
 		nocount = true;
-		sprite = choose(
-			sprGooBlack,
-			sprGooBlue,
-			sprGooBrown,
-			sprGooCrimson,
-			sprGooCyan,
-			sprGooGray,
-			sprGooGreen,
-			sprGooIce,
-			sprGooOrange,
-			sprGooPink,
-			sprGooPurple,
-			sprGooRed,
-			sprGooTan,
-			sprGooTeal,
-			sprGooWhite,
-			sprGooYellow,
-			sprGooFox
-		);
+		sprite = spriteList[randInt(spriteList.len())];
 		shape = Rec(x, y, 7, 7, 0);
 		jumpTimer = randInt(180);
 		vspeed = -1.0;

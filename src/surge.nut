@@ -224,7 +224,7 @@ Surge <- class extends Player {
 		anim = "stand";
 		shapeStand = Rec(x, y, 5, 10, 0, 0, 0);
 		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4);
-		shapeHydro = Rec(x, y, 2, 2, 0, 0, 6);
+		shapeHydro = Rec(x, y, 2, 2, 0, 0, 8);
 		xstart = _x.tofloat();
 		ystart = _y.tofloat();
 		an.fall = an.fallN;

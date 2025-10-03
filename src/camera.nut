@@ -142,6 +142,9 @@ updateCamera <- function () {
 					if (camxTimer0 == 0) camxLead0 -= camxLead0 <=> 0;
 					if (camxLead0 > gvScreenW / 4) camxLead0 = gvScreenW / 4;
 					if (camxLead0 < -gvScreenW / 4) camxLead0 = -gvScreenW / 4;
+
+					if(gvPlayer && gvPlayer2 && !gvSplitScreen) camxLead0 = 0;
+
 					px =
 						(gvPlayer.x + gvPlayer2.x) / 2.0 +
 						camxLead0 -
@@ -417,6 +420,9 @@ updateCamera <- function () {
 							camxLead1 = gvScreenW / 8;
 						if (camxLead1 < -gvScreenW / 8)
 							camxLead1 = -gvScreenW / 8;
+
+						if(gvPlayer && gvPlayer2 && !gvSplitScreen) camxLead1 = 0;
+
 						px = gvPlayer.x + camxLead1 - gvScreenW / 4 + lx;
 						py =
 							gvCamTarget.y +
@@ -539,6 +545,9 @@ updateCamera <- function () {
 							camxLead2 = gvScreenW / 8;
 						if (camxLead2 < -gvScreenW / 8)
 							camxLead2 = -gvScreenW / 8;
+
+						if(gvPlayer && gvPlayer2 && !gvSplitScreen) camxLead1 = 0;
+
 						px = gvPlayer2.x + camxLead2 - gvScreenW / 4 + lx;
 						py =
 							gvCamTarget2.y +

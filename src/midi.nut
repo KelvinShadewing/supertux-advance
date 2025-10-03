@@ -814,6 +814,9 @@ Midi <- class extends Player {
 						if (zoomies <= 0) stats.stamina -= 0.5;
 					}
 
+					if (floor(x) != floor(xprev))
+						anim = "fall";
+
 					/*
 					local oldShape = shape;
 					shape = shapeGrip;

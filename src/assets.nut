@@ -286,6 +286,9 @@ sprFlipBlock <- newSprite("res/gfx/flip-block.png", 16, 16);
 defFlipBlock <- sprFlipBlock;
 sprBeeHostage <- newSprite("res/gfx/bee-hostage.png", 20, 27, 10, 14);
 defBeeHostage <- sprBeeHostage;
+sprItemGlobe <- newSprite("res/gfx/item-globe.png", 24, 24, 12, 12);
+defItemGlobe <- sprItemGlobe;
+
 sprCyraSwordWave <- newSprite("res/gfx/cyra_gfx/swordwave.png", 28, 24, 14, 12);
 defCyraSwordWave <- sprCyraSwordWave;
 sprCyraFireWave <- newSprite("res/gfx/cyra_gfx/firewave.png", 28, 24, 14, 12);

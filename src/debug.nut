@@ -57,6 +57,13 @@ drawDebug <- function () {
 	if (keyPress(k_8)) {
 		game.ps.weapon = "light";
 	}
+	if (keyPress(k_9)) {
+		game.ps.weapon = "normal";
+	}
+	if (keyPress(k_0)) {
+		game.ps.subitem = "coffee";
+		game.ps2.subitem = "coffee";
+	}
 	if (keyPress(k_minus) && game.maxHealth > 4)
 		game.maxHealth = game.maxHealth - 4;
 	if (keyPress(k_equals)) game.maxHealth = game.maxHealth + 4;

@@ -1218,7 +1218,7 @@ DashFlame <- class extends WeaponEffect {
 	}
 
 	function draw() {
-		if (checkActor(owner))
+		if (checkActor(owner)) {
 			drawSpriteZ(
 				3,
 				sprFireDash,
@@ -1232,6 +1232,19 @@ DashFlame <- class extends WeaponEffect {
 				1,
 				1
 			);
+			drawLight(
+				sprFireDash,
+				frame * 4.0,
+				actor[owner].x +
+					actor[owner].shape.w * (actor[owner].hspeed <=> 0) * 2 -
+					camx,
+				actor[owner].y - camy,
+				0,
+				flip,
+				1,
+				1
+			);
+		}
 	}
 };
 
