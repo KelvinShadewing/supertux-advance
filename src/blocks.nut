@@ -46,7 +46,7 @@ WoodBlock <- class extends Actor {
 
 					if (
 						"anim" in gvPlayer &&
-						fabs(gvPlayer.hspeed) >= 4.5 &&
+						(fabs(gvPlayer.hspeed) >= 4.5 || gvPlayer.vspeed >= 4.5) &&
 						gvPlayer.inMelee &&
 						hitTest(slideshape, gvPlayer.shape)
 					) {
@@ -88,9 +88,7 @@ WoodBlock <- class extends Actor {
 
 					if (
 						"anim" in gvPlayer &&
-						(fabs(gvPlayer.hspeed) >= 4.5 ||
-							(gvPlayer.stats.weapon == "earth" &&
-								gvPlayer.vspeed >= 2)) &&
+						(fabs(gvPlayer.hspeed) >= 4.5 || gvPlayer.vspeed >= 4.5) &&
 						gvPlayer.inMelee &&
 						hitTest(slideshape, gvPlayer.shape)
 					) {
@@ -137,7 +135,7 @@ WoodBlock <- class extends Actor {
 
 					if (
 						"anim" in gvPlayer2 &&
-						fabs(gvPlayer2.hspeed) >= 4.5 &&
+						(fabs(gvPlayer2.hspeed) >= 4.5 || gvPlayer2.vspeed >= 4.5) &&
 						gvPlayer2.inMelee &&
 						hitTest(slideshape, gvPlayer2.shape)
 					) {
@@ -179,9 +177,7 @@ WoodBlock <- class extends Actor {
 
 					if ("anim" in gvPlayer2)
 						if (
-							(fabs(gvPlayer2.hspeed) >= 4.5 ||
-								(gvPlayer2.stats.weapon == "earth" &&
-									gvPlayer2.vspeed >= 2)) &&
+							(fabs(gvPlayer2.hspeed) >= 4.5 || gvPlayer2.vspeed >= 4.5) &&
 							gvPlayer2.inMelee
 						)
 							if (hitTest(slideshape, gvPlayer2.shape)) {
