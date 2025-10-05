@@ -1475,6 +1475,7 @@ Tux <- class extends Player {
 							if (flip == 0 && hspeed < 2) hspeed = 2;
 							if (flip == 1 && hspeed > -2) hspeed = -2;
 						}
+						else popSound(noot);
 						break;
 
 					case "air":
@@ -1493,6 +1494,7 @@ Tux <- class extends Player {
 								if (flip == 1 && hspeed > -2) hspeed = -2;
 							}
 						}
+						else popSound(noot);
 						break;
 
 					default:
