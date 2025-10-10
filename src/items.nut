@@ -147,13 +147,13 @@ CoinSmall <- class extends PhysAct {
 
 		if (
 			gvPlayer &&
-			gvPlayer.magnetic &&
+			(gvPlayer.magnetic || gvPlayer.invincible) &&
 			inDistance2(x, y, gvPlayer.x, gvPlayer.y, 96)
 		) {
 			target = 1;
 		} else if (
 			gvPlayer2 &&
-			gvPlayer2.magnetic &&
+			(gvPlayer2.magnetic || gvPlayer2.invincible) &&
 			inDistance2(x, y, gvPlayer2.x, gvPlayer2.y, 96)
 		) {
 			target = 2;

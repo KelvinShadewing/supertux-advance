@@ -314,7 +314,7 @@
 		"altfire" :
 		["You can use an alternate attack if you have an elemental item in your pocket by pressing %s.", "getConName(\"spec1\")"],
 		"earthshell" :
-		["The earth shell grants special defensive boosts. With Tux, you can roll into a ball and even drop dash if you press %s while landing. As Konqi, you can stomp by pressing %s to become a statue, and can still spit rocks. These earth guarding techniques will cost stamina so you can still shoot with another element in your pocket.", "getConName(\"shoot\")", "getConName(\"down\")"],
+		["The earth shell grants special defensive boosts. With Tux, you can roll into a ball and even drop dash if you press %s while landing. In this form, if you roll and jump, you'll stay rolling.\n\nAs Konqi, you can stomp by pressing %s to become a statue, and can still spit rocks. These earth guarding techniques will cost stamina so you can still shoot with another element in your pocket.", "getConName(\"spec2\")", "getConName(\"down\")"],
 		"subitem" :
 		["If you have an item in your pocket, you can use it by pressing %s. Muffins will heal you, coffee will let you run faster, and element charms will change your form.", "getConName(\"swap\")"],
 		"carry-enemies" : 
@@ -826,7 +826,7 @@
 		"GET OUT!",
 
 		"lake-guy-0" :
-		"I saw some of Nolok's goons lurking around here a while ago. Maybe they hid something in this lake? It was raining trash earlier, too. What's that about?",
+		"I saw some of Nolok's goons lurking around here a while ago. Maybe they hid something in this lake? It was ~graining trash~0 earlier, too. What's that about?",
 		"lake-guy-1" :
 		"By the way, building this boat here was a mistake. It's too big for me to get it down the river.",
 

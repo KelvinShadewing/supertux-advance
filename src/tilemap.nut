@@ -209,7 +209,7 @@ Tilemap <- class {
 					// Tiled uses a negative horizontal offset for some reason
 
 					if ("y" in data.tilesets[i].tileoffset)
-						tsox = data.tilesets[i].tileoffset.y;
+						tsoy = data.tilesets[i].tileoffset.y;
 				}
 
 				if (tempspr != 0) {

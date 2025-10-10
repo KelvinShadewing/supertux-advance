@@ -44,7 +44,7 @@ BigSpark <- class extends Actor {
 
 	function draw() {
 		drawSpriteZ(
-			4,
+			8,
 			sprBigSpark,
 			floor(frame),
 			x - camx,

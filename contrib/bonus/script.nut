@@ -1,2 +1,3 @@
 freeKonqi();
 freeMidi();
+freeSurge();

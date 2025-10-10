@@ -99,8 +99,7 @@ Enemy <- class extends PhysAct {
 			if (gvPlayer && health > 0 && blinking == 0) {
 				if (hitTest(shape, gvPlayer.shape) && !frozen) {
 					if ("invincible" in gvPlayer && gvPlayer.invincible > 0) {
-						local c = newActor(CoinSmall, x, y);
-						actor[c].target = 1;
+						if (!nodrop) newActor(CoinSmall, x, y);
 						hurtInvinc();
 					} else if (
 						y > gvPlayer.y &&
@@ -142,8 +141,7 @@ Enemy <- class extends PhysAct {
 				if (hitTest(shape, gvPlayer2.shape) && !frozen) {
 					// 8 for player radius
 					if ("invincible" in gvPlayer2 && gvPlayer2.invincible > 0) {
-						local c = newActor(CoinSmall, x, y);
-						actor[c].target = 2;
+						if (!nodrop) newActor(CoinSmall, x, y);
 						hurtInvinc();
 					} else if (
 						y > gvPlayer2.y &&
@@ -2658,7 +2656,7 @@ BadCannon <- class extends Actor {
 				timer % 5 == 0 &&
 				inDistance2(x, y, target.x, target.y, 160)
 			) {
-				local c = actor[newActor(PoofTiny, x + 5 - (frame * 2), y - 8)];
+				local c = actor[newActor(PoofTiny, x + 5 - frame * 2, y - 8)];
 				c.vspeed = -1;
 				c.hspeed = (2 - frame + randFloat(1)) / 4.0;
 				if (timer == 60) popSound(sndFizz);
@@ -6318,9 +6316,12 @@ Crusher <- class extends Enemy {
 			waiting = 60;
 			gravity = 0;
 			if (vspeed > 0) {
-				newActor(Poof, x - 12, y + 12, 7);
-				newActor(Poof, x + 12, y + 12, 7);
+				newActor(BigSpark, x - 12, y + 8, 0);
+				newActor(BigSpark, x + 12, y + 8, 1);
 				fireWeapon(ExplodeHidden, x, y + 12, 0, id);
+				local c = fireWeapon(MeleeHit, x, y, 0, id);
+				c.shape = Rec(x, y, 24, 8);
+				c.power = (1 + game.difficulty) * 2;
 			}
 			vspeed = 0;
 		}
@@ -6522,9 +6523,9 @@ SideCrusher <- class extends Enemy {
 		// Landing
 		if (!placeFree(x + moving, y) && waiting == 0) {
 			if (hspeed != 0) {
-				newActor(Poof, x + 12 * moving, y - 12, 7);
-				newActor(Poof, x + 12 * moving, y + 12, 7);
-				fireWeapon(ExplodeHidden, x + 12 * moving, y, 0, id);
+				newActor(BigSpark, x + 12 * moving, y, moving < 0 ? 1 : 0);
+				local c = fireWeapon(ExplodeHidden, x + 12 * moving, y, 0, id);
+				c.power = (1 + game.difficulty) * 2;
 			}
 			waiting = 60;
 			moving = 0;
@@ -8289,6 +8290,7 @@ Devine <- class extends Enemy {
 Gooey <- class extends Enemy {
 	sprite = null;
 	touchDamage = 0;
+	nodrop = true;
 	damageMult = {
 		normal = 0,
 		fire = 0,

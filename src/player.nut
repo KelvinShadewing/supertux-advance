@@ -224,6 +224,8 @@ Player <- class extends PhysAct {
 		if (zoomies > 0) zoomies--;
 		if (resTime > 0) resTime--;
 
+		// This code is basically the same as escapeSolid, but for some reason
+		// it needs to be here or else dropping through unisolids stops working.
 		if (y > gvMap.h && (resTime > 0 || (inWater(x, y) && !mustSink))) {
 			y = gvMap.h;
 			if (!placeFree(x, y)) {

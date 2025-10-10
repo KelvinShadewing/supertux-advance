@@ -468,6 +468,7 @@ startPlay <- function (level, newLevel = true, skipIntro = false) {
 	if (gvMap.data.rawin("properties"))
 		foreach (i in gvMap.data.properties) {
 			if (i.name == "code") dostr(i.value);
+			if (i.name == "init") dostr(i.value);
 			if (i.name == "author") gvMap.author = i.value;
 		}
 	print("End level code");

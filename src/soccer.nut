@@ -183,18 +183,12 @@ SoccerBall <- class extends PhysAct {
 		shape.setPos(x, y);
 		if (y < -100) y = -100.0;
 
-		switch (escapeMoPlat(1, 1)) {
+		switch (escapeMoPlat()) {
 			case 1:
 				if (vspeed < 0) vspeed = 0;
 				break;
-			case 2:
-				if (hspeed < 0) hspeed = 0;
-				break;
 			case -1:
 				if (vspeed > 0) vspeed = 0;
-				break;
-			case -2:
-				if (hspeed > 0) hspeed = 0;
 				break;
 		}
 
