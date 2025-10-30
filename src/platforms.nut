@@ -1184,11 +1184,13 @@ Seat <- class extends Actor {
 			p.vspeed = 0;
 			p.anim = "sit";
 			p.flip = flip;
+			p.canMove = false;
 
 			if (getcon("up", "press", true, p.playerNum) || getcon("jump", "press", true, p.playerNum) || !hitTest(shape, p.shape)) {
 				holding = -1;
 				p.didJump = false;
 				p.anim = "stand";
+				p.canMove = true;
 			}
 		}
 	}
