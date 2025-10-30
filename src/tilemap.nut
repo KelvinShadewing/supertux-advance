@@ -44,6 +44,9 @@ AnimTile <- class {
 	frameList = null;
 	frameTime = null;
 	sprite = null;
+	randomized = false;
+	wx = 0;
+	wy = 0;
 
 	constructor(animList, _sprite) {
 		frameID = animList.id;
@@ -57,6 +60,13 @@ AnimTile <- class {
 					frameTime.push(
 						animList.animation[i].duration + frameTime[i - 1]
 					);
+			}
+			if ("properties" in animList) {
+				foreach (i in animList.properties) {
+					if (i.name == "random") {
+						randomized = true;
+					}
+				}
 			}
 		}
 		sprite = _sprite;
@@ -72,14 +82,18 @@ AnimTile <- class {
 		alpha = 1.0,
 		color = 0xffffffff
 	) {
-		local currentTime = wrap(getTicks(), 0, frameTime.top());
+		local currentTime = wrap(
+			getTicks() + (randomized ? ((wx * wy + wx + wy) * 1337 + 1337) / 2.0 : 0),
+			0,
+			frameTime.top()
+		);
 		for (local i = 0; i < frameList.len(); i++) {
 			if (currentTime >= frameTime[i]) {
 				if (i < frameTime.len() - 1) {
 					if (currentTime < frameTime[i + 1]) {
 						drawSprite(
 							sprite,
-							frameList[i],
+							frameList[(i + 1) % frameList.len()],
 							x,
 							y,
 							angle,
@@ -94,7 +108,7 @@ AnimTile <- class {
 				} else if (currentTime <= frameTime[i] && i == 0) {
 					drawSprite(
 						sprite,
-						frameList[i],
+						frameList[(i + 1) % frameList.len()],
 						x,
 						y,
 						0,
@@ -449,10 +463,9 @@ Tilemap <- class {
 
 					for (local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if (nm >= data.tilesets[k].firstgid) {
-							if (
-								anim.rawin(n) &&
-								tileset[k] == anim[n].sprite
-							) {
+							if (anim.rawin(n) && tileset[k] == anim[n].sprite) {
+								anim[n].wx = j;
+								anim[n].wy = i;
 								anim[n].draw(
 									x + floor(j * data.tilewidth * sx) + offx,
 									y + floor(i * data.tileheight * sy) + offy,

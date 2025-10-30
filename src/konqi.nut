@@ -68,7 +68,9 @@ Konqi <- class extends Player {
 		statue = [52, 53, 54, 55],
 		die = [12, 13],
 		win = [52],
-		ram = [56, 57, 58, 59, 60, 61, 62, 63]
+		ram = [56, 57, 58, 59, 60, 61, 62, 63],
+		sit = null,
+		sitChair = [64]
 	};
 
 	mySprNormal = null;
@@ -81,8 +83,8 @@ Konqi <- class extends Player {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 12, 0, 0, 0);
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6);
+		shapeStand = Rec(x, y, 5, 12, 0, 0, 1);
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 7);
 		shape = shapeStand;
 		if (!gvPlayer) gvPlayer = this;
 		xstart = _x.tofloat();
@@ -97,6 +99,7 @@ Konqi <- class extends Player {
 		mySprAir = sprKonqiAir;
 		mySprEarth = sprKonqiEarth;
 		mySprWater = sprKonqiWater;
+		an.sit = an.sitChair;
 	}
 
 	function physics() {}

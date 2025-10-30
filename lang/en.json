@@ -824,6 +824,8 @@
 		"Were you expecting a bigger library? Not all owls are book-hoarding nerds, you know!",
 		"owl-getout" :
 		"GET OUT!",
+		"owl-landing" :
+		"I love sitting out on this landing when it storms. The rain sounds so relaxing when it hits the roof.",
 
 		"lake-guy-0" :
 		"I saw some of Nolok's goons lurking around here a while ago. Maybe they hid something in this lake? It was ~graining trash~0 earlier, too. What's that about?",
@@ -870,7 +872,7 @@
 		"aurora-forest" : "Icyfall Forest",
 		"aurora-secret" : "The Cold Summit",
 		"nessland-welcome" : "Nessland Port Town",
-		"nessland-wood" : "Owl's Outpost",
+		"nessland-outpost" : "Owl's Outpost",
 		"nessland-left" : "To the Left",
 		"nessland-henge" : "Lonehenge",
 		"nessland-owl" : "Owl's Revenge",

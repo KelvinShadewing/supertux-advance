@@ -712,17 +712,6 @@ meBattleWorld <- {
 		},
 		{
 			name = function () {
-				return gvLangObj["level"]["battle-henge"];
-			},
-			func = function () {
-				startBattle(game.path + "battle-henge.json");
-			},
-			draw = function () {
-				drawBattlePreview(sprBattleHenge);
-			}
-		},
-		{
-			name = function () {
 				return gvLangObj["level"]["battle-desert"];
 			},
 			func = function () {

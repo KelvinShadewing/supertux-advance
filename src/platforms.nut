@@ -1142,3 +1142,54 @@ Ramp <- class extends Actor {
 		drawSprite(sprRamp, 0, x - camx, y - camy, 0, dir);
 	}
 };
+
+Seat <- class extends Actor {
+	shape = null;
+	holding = -1;
+	flip = 0;
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y);
+		shape = Rec(x, y, 4, 4, 0);
+		if (canint(_arr)) flip = int(_arr);
+	}
+
+	function run() {
+		if (!checkActor(holding)) holding = -1;
+		if(holding == -1) {
+			if (getcon("up", "press", true, 1)) {
+				if (gvPlayer && hitTest(shape, gvPlayer.shape)) {
+					holding = gvPlayer.id;
+					gvPlayer.hspeed = 0;
+					gvPlayer.vspeed = 0;
+					gvPlayer.anim = "sit";
+					gvPlayer.flip = flip;
+				}
+			}
+			if (getcon("up", "press", true, 2)) {
+				if (gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
+					holding = gvPlayer2.id;
+					gvPlayer2.hspeed = 0;
+					gvPlayer2.vspeed = 0;
+					gvPlayer2.anim = "sit";
+					gvPlayer2.flip = flip;
+				}
+			}
+		}
+		else {
+			local p = actor[holding];
+			p.x = x;
+			p.y = y - 8;
+			p.hspeed = 0;
+			p.vspeed = 0;
+			p.anim = "sit";
+			p.flip = flip;
+
+			if (getcon("up", "press", true, p.playerNum) || getcon("jump", "press", true, p.playerNum) || !hitTest(shape, p.shape)) {
+				holding = -1;
+				p.didJump = false;
+				p.anim = "stand";
+			}
+		}
+	}
+};

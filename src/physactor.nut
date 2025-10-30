@@ -200,7 +200,7 @@ PhysAct <- class extends Actor {
 				}
 
 				// Move out of platform box
-				for (local j = 0.0; j < 1000; j += 0.25) {
+				for (local j = 0.0; j < 1000; j += 0.1) {
 					// Right
 					shape.setPos(x + j, y);
 					if (!hitTest(shape, i.shape) && placeFree(x + j, y)) {

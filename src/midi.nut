@@ -282,8 +282,8 @@ Midi <- class extends Player {
 		base.constructor(_x, _y);
 		an.stand = an.standN;
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 12, 0, 0, 0);
-		shapeCrawl = Rec(x, y, 5, 6, 0, 0, 6);
+		shapeStand = Rec(x, y, 5, 12, 0, 0, 1);
+		shapeCrawl = Rec(x, y, 5, 6, 0, 0, 7);
 		shapeGrip = Rec(x, y, 1, 1);
 		shape = shapeStand;
 		xstart = _x.tofloat();
@@ -294,6 +294,7 @@ Midi <- class extends Player {
 		routine = ruNormal;
 		damageMult = damageMultN;
 		an = clone an;
+		an.sit = an.sitChair;
 	}
 
 	function physics() {
@@ -806,7 +807,7 @@ Midi <- class extends Player {
 						vspeed > (zoomies > 0 ? -4.0 : -3.0)
 					) {
 						vspeed -= 0.5;
-						if (zoomies <= 0) stats.stamina -= 0.5;
+						if (zoomies <= 0) stats.stamina -= 0.4;
 					}
 
 					if (floor(x) != floor(xprev))
@@ -1500,7 +1501,7 @@ Midi <- class extends Player {
 					partnerHang = false;
 				}
 
-				shapeGrip.setPos(x, y - 24);
+				shapeGrip.setPos(x, y - 28);
 				if (
 					(playerNum == 1 &&
 						gvPlayer2 &&

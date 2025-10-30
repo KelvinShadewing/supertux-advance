@@ -61,6 +61,9 @@ Tux <- class extends Player {
 		fall = [0],
 		fallN = [36, 37],
 		fallW = [48],
+		sit = null,
+		sitGround = [38],
+		sitChair = [39],
 		swimF = [52, 53, 54, 55],
 		swimUF = [56, 57, 58, 59],
 		swimDF = [60, 61, 62, 63],
@@ -222,8 +225,8 @@ Tux <- class extends Player {
 		damageMultF = clone damageMultF;
 		an.stand = an.standN;
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 12, 0, 0, 0);
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6);
+		shapeStand = Rec(x, y, 5, 12, 0, 0, 1);
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 7);
 		shape = shapeStand;
 		xstart = _x.tofloat();
 		ystart = _y.tofloat();
@@ -238,6 +241,7 @@ Tux <- class extends Player {
 		mySprEarth = sprTuxEarth;
 		mySprShock = sprTuxShock;
 		mySprWater = sprTuxWater;
+		an.sit = an.sitChair;
 	}
 
 	function physics() {}

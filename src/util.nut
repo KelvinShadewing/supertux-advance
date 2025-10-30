@@ -104,3 +104,36 @@ deepClone <- function (obj) {
 		return obj;
 	}
 };
+
+ramp <- function (x, start, peak) {
+	x = float(x);
+	if (x > peak) {
+		local t = (start - x) / float(start - peak); // normalized 0->1
+		return t * t; // fast rise
+	} else {
+		local t = x / float(peak); // normalized 1->0
+		return t * t; // slow fall
+	}
+}
+
+function toHex(n, width = 0, uppercase = false) {
+	n = int(n);
+	local hexchars = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+	local chars = array(0);
+
+	do {
+		local digit = n & 0xF;
+		// build in reverse order
+		chars.append(hexchars.slice(digit, digit + 1));
+		n = n >> 4;
+	} while (n > 0);
+
+	while (chars.len() < width)
+		chars.append("0");
+
+	// reverse
+	local out = "";
+	for (local i = chars.len() - 1; i >= 0; i--)
+		out += chars[i];
+	return out;
+}

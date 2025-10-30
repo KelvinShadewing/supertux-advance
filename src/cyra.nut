@@ -118,6 +118,8 @@ Cyra <- class extends Player {
 		jumpT = [34, 35],
 		fall = null,
 		fallN = [36, 37],
+		sit = null,
+		sitChair = [32],
 		crawl = [40, 41, 42, 43, 42, 41],
 		climb = [44, 45, 46, 47, 46, 45],
 		float = [38, 39],
@@ -146,9 +148,9 @@ Cyra <- class extends Player {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 16, 0, 0, 0);
-		shapeClimb = Rec(x, y, 5, 12, 0, 0, 0);
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6);
+		shapeStand = Rec(x, y, 5, 16, 0, 0, 1);
+		shapeClimb = Rec(x, y, 5, 12, 0, 0, 1);
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 7);
 		shape = shapeStand;
 		if (!gvPlayer) gvPlayer = this;
 		xstart = _x.tofloat();
@@ -157,6 +159,7 @@ Cyra <- class extends Player {
 		an["fall"] = an["fallN"];
 		xprev = x;
 		yprev = y;
+		an.sit = an.sitChair;
 
 		mySprNormal = sprCyra;
 		mySprFire = sprCyraFire;

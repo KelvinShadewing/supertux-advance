@@ -75,7 +75,9 @@ Surge <- class extends Player {
 		crawl = [72, 73, 74, 75, 74, 73],
 		win = [51],
 		fly = [80, 81, 82, 83],
-		stomp = [70, 71]
+		stomp = [70, 71],
+		sit = null,
+		sitChair = [88]
 	};
 	animOffset = 0.0;
 
@@ -222,9 +224,9 @@ Surge <- class extends Player {
 		damageMultF = clone damageMultF;
 		routine = ruNormal;
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 10, 0, 0, 0);
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 4);
-		shapeHydro = Rec(x, y, 2, 2, 0, 0, 8);
+		shapeStand = Rec(x, y, 5, 10, 0, 0, 1);
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 5);
+		shapeHydro = Rec(x, y, 2, 2, 0, 0, 9);
 		xstart = _x.tofloat();
 		ystart = _y.tofloat();
 		an.fall = an.fallN;
@@ -233,6 +235,7 @@ Surge <- class extends Player {
 		routine = ruNormal;
 		damageMult = damageMultN;
 		sprite = sprSurge;
+		an.sit = an.sitChair;
 	}
 
 	function run() {

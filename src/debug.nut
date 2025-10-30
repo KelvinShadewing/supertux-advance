@@ -8,6 +8,8 @@ debugCursor <- 0;
 debugMouseLeft <- 1;
 debugMouseRight <- 0;
 debugExt <- {};
+debugBG <- "";
+debugWeather <- "";
 
 gvDebugConsole <- false;
 gvConIn <- "";
@@ -62,7 +64,6 @@ drawDebug <- function () {
 	}
 	if (keyPress(k_0)) {
 		game.ps.subitem = "coffee";
-		game.ps2.subitem = "coffee";
 	}
 	if (keyPress(k_minus) && game.maxHealth > 4)
 		game.maxHealth = game.maxHealth - 4;
@@ -193,8 +194,8 @@ drawDebug <- function () {
 	if (gvMap != 0) message += "Map W: " + gvMap.w + "\n";
 	if (gvMap != 0) message += "Map H: " + gvMap.h + "\n";
 	message += "SRT: " + floor(getTicks() / 1000) + "\n";
-	message += "Enemies: " + game.enemies + "\n";
-	message += "Secrets: " + game.secrets + "\n";
+	message += "Background: " + debugBG + "\n";
+	message += "Weather: " + debugWeather + "\n";
 
 	drawText(font, 0, 32, message);
 

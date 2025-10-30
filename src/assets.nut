@@ -911,6 +911,10 @@ sprBattleSoccer <- newSprite(
 	10
 );
 
+// Card game
+sprCard <- newSprite("res/gfx/cards.png", 32, 32, 16, 16);
+sprCardBoard <- newSprite("res/gfx/card-board.png", 288, 208, 144, 104);
+
 // Sounds
 sndFireball <- loadSound("res/snd/fireball.ogg");
 sndJump <- loadSound("res/snd/jump.ogg");

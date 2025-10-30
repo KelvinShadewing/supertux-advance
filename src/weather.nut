@@ -1,6 +1,9 @@
 drawWeather <- 0;
 drawWeather2 <- 0;
 
+wthLightning <- 0;
+wthLightningLast <- 0;
+
 dweRain <- function () {
 	for (local i = 0; i < screenW() / 256 + 4; i++) {
 		for (local j = 0; j < screenH() / 256 + 4; j++) {
@@ -12,6 +15,48 @@ dweRain <- function () {
 			);
 		}
 	}
+
+	debugWeather = "Rain";
+};
+
+dweStorm <- function () {
+	for (local i = 0; i < screenW() / 256 + 4; i++) {
+		for (local j = 0; j < screenH() / 256 + 4; j++) {
+			drawSprite(
+				weRain,
+				0,
+				-((getFrames() * 1) % 256) + i * 256 - (camx % 256) + (sin(getFrames().tofloat() / 60.0) * 64.0),
+				((getFrames() * 8) % 256) + j * 256 - 256 - (camy % 256)
+			);
+
+			drawSprite(
+				weRain,
+				0,
+				-((getFrames() * 2) % 256) + i * 256 - (camx % 256) + (sin(getFrames().tofloat() / 15.0) * 32.0),
+				((getFrames() * 10) % 256) + j * 256 - 256 - (camy % 256)
+			);
+		}
+	}
+
+	setDrawColor(0x40404040);
+	drawRec(0, 0, screenW(), screenH(), true);
+
+	if(randInt(1000) == 0 && wthLightningLast < getFrames() - 60) {
+		wthLightning = 60;
+		wthLightningLast = getFrames();
+	}
+
+	setDrawColor(0xffffff00 | int(ramp(wthLightning, 60, 50) * 255));
+	drawRec(0, 0, screenW(), screenH(), true);
+
+	if(wthLightning > 0) {
+		wthLightning -= 1;
+	}
+	if(wthLightning < 0) {
+		wthLightning = 0;
+	}
+
+	debugWeather = "Storm\n    Lightning: " + wthLightning + "\n    Ramp: " + ramp(wthLightning, 255, 200) + "\n    Color: 0x" + toHex(0xffffff00 | int(ramp(wthLightning, 60, 50) * 255));
 };
 
 dweSnow <- function () {

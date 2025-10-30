@@ -314,7 +314,7 @@
                  "gid":1071,
                  "height":16,
                  "id":34,
-                 "name":"nessland-wood",
+                 "name":"nessland-outpost",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -566,7 +566,7 @@
          "value":"songPlay(musGrassOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tilesets":[
         {
