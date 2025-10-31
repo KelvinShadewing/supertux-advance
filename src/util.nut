@@ -137,3 +137,9 @@ function toHex(n, width = 0, uppercase = false) {
 		out += chars[i];
 	return out;
 }
+
+function clamp(val, minVal, maxVal) {
+	if (val < minVal) return minVal;
+	if (val > maxVal) return maxVal;
+	return val;
+}
