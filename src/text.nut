@@ -12,7 +12,20 @@ textLineLen <- function (_s, _l) {
 			newstr += "\n";
 			curline = "";
 		} else {
-			if (curline.len() + i.len() + 1 >= _l) {
+			local colorSnip = 0;
+			if(i.find("~") != null) {
+				for(local j = 0; j < i.len(); j++) {
+					if(i[j] == "~") {
+						colorSnip += 1;
+						if(j < i.len() - 1 && i[j+1] == "~") {
+							j += 1; // Skip escaped ~
+						}
+						else colorSnip += 1;
+					}
+				}
+				print("Found ~");
+			}
+			if (curline.len() + i.len() + 1 - colorSnip >= _l || i == "\n") {
 				newstr += curline;
 				curline = "";
 				newstr += "\n";
@@ -27,35 +40,6 @@ textLineLen <- function (_s, _l) {
 	newstr += curline;
 
 	return newstr;
-};
-
-drawTextLen <- function (_f, _x, _y, _s, _l) {
-	_s = strip(_s);
-	if (_s.len() == 0) return;
-
-	local newstr = ""; // New string being made
-	local curline = "";
-	local words = split(_s, " ");
-
-	foreach (i in words) {
-		if (i.len() >= _l) {
-			newstr += i;
-			newstr += "\n";
-			curline = "";
-		} else {
-			if (curline.len() + i.len() + 1 < _l) {
-				curline += i;
-				curline += " ";
-			}
-			if (curline.len() + i.len() + 1 >= _l) {
-				newstr += curline;
-				curline = "";
-				newstr += "\n";
-			}
-		}
-	}
-
-	drawText(_f, _x, _y, newstr);
 };
 
 formatTime <- function (time) {

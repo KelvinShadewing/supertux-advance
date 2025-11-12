@@ -1119,4 +1119,4 @@ gfxEnemySand <- function () {
 	sprWoodChunks = sprWoodChunksSand;
 };
 
-tsSolid <- newSprite("res/gfx/solid.png", 16, 16);
+tsSolid <- newSprite("res/gfx/solid.png", 16, 16, 8, 8);

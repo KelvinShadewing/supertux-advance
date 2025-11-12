@@ -6,8 +6,29 @@
  "name":"rpg16",
  "spacing":0,
  "tilecount":256,
- "tiledversion":"1.11.0",
+ "tiledversion":"1.11.2",
  "tileheight":16,
+ "tiles":[
+        {
+         "animation":[
+                {
+                 "duration":100,
+                 "tileid":80
+                }, 
+                {
+                 "duration":100,
+                 "tileid":96
+                }, 
+                {
+                 "duration":100,
+                 "tileid":112
+                }, 
+                {
+                 "duration":100,
+                 "tileid":128
+                }],
+         "id":80
+        }],
  "tilewidth":16,
  "type":"tileset",
  "version":"1.10"

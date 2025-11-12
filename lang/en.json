@@ -826,6 +826,8 @@
 		"GET OUT!",
 		"owl-landing" :
 		"I love sitting out on this landing when it storms. The rain sounds so relaxing when it hits the roof.",
+		"owl-cook" :
+		"Will you be joining us for dinner? The chef is working on his special rat-tisserie!... Oh, uh, it's not made from talking rats, I promise.",
 
 		"lake-guy-0" :
 		"I saw some of Nolok's goons lurking around here a while ago. Maybe they hid something in this lake? It was ~graining trash~0 earlier, too. What's that about?",
@@ -841,7 +843,20 @@
 		"bee-help" :
 		"Please help us! The Waspy Bois have taken over our hive, and the queen is missing! Their leader has taken refuge in our hive's center. If you can save my friends, they can get you the honey crystals to open the grand hall.",
 		"bee-honey" :
-		"Notice all the acid pools? They might be scary, but throw a little nectar in, and they turn into honey. Plus, we don't have to barf it up that way!"
+		"Notice all the acid pools? They might be scary, but throw a little nectar in, and they turn into honey. Plus, we don't have to barf it up that way!",
+
+		"book-ghost-tree" :
+		"This book describes the Ghost Tree. \n It is said that all worlds have a ghost tree that feeds on the negative cosmic energy expelled by Yggdrasil. If one is damaged, it will reach out to Yggdrasil for additional energy, and could end up causing a dimensional breach.",
+		"book-hero-crystal" :
+		"This book describes the Hero Crystal. \n It is said that the crystal can absorb and store energy siphoned from those who cause distress in others. When the crystal detects an intent to solve this distress, it will release the stored energy to empower the one with such intent. Given the subjective nature of heroism, the crystal may empower one who could be seen as a villain if they are acting selflessly.",
+		"book-nolok" :
+		"Crocodile Tears of a Warlord, a Biography of Nolok. \n Nolok once ruled a vast territory in Australia, where his crocodile minions oppressed the native fairy penguins. After their exodus to the antarctic, Nolok followed them there to continue his reign of terror.",
+		"book-biometals" :
+		"On Biometals \n (This book was found after the convergence. It describes a species found on Midi's homeworld of Kyroda.) \n Biometals are mechanical lifeforms that are named for their behavioral similarities to biological organisms. They eat metal to grow, drink water as a fuel source, and reproduce in hatcheries that can be described as a mix between a hive and a factory. Biometals are attracted to significantly advanced forms of technology, which they will hunt down and consume. For this, they are held responsible for Kyroda's technological stagnation. \n During the Biometal War, biometals were seen taking orders from overseers known as cerebrates, but since their disappearance, the remaining biometals now behave as wild animals. It's believed that a radio frequency could be developed to control, or at least repel biometals, allowing for technological progress to progress without interference. Such a frequency has yet to be discovered.",
+		"book-tuxemon" :
+		"Tuxemon: A Guide to the Species \n (This book was found after the convergence. It describes creatures found in an alternate Earth.) \n Tuxemon are creatures that exhibit a strange nature that appears to be a mix of magical, biological, and digital construction, and coexist with humans. They are captured and trained by humans to battle each other for sport. Trainers use special devices called tarballs to store them, which work by leveraging their semi-digital biology to convert them into data. After achieving a certain level of experience, a tuxemon will undergo ~2a startling metamorphosis~0 into a higher, more powerful form. \n (The name sounds familiar...)",
+		"book-penny" :
+		"Penny's Journal \n Day 1: I've finally found a place to start my new town. There are so many displaced people around here, and I want to give them a place to stay. \n Day 5: The igloos are coming along nicely. I hope everyone likes them. Some of the displaced were able to help and I even got some fellow penguins to lend a flipper. It's so inspiring seeing people come to gether like this. \n Day 12: It's done! We now have enough igloos to host everyone. I couldn't have done it without the help of all my new friends. I know this isn't what they're used to living in, but in time, we'll be able to upgrade everyone to more modern homes. \n Day 20: Nolok is back! His minions attacked the town and kidnapped some of our friends. I've sent word to Tux. Hopefully he can put a stop to Nolok again."
 	},
 
 	"level" : {

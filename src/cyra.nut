@@ -148,9 +148,9 @@ Cyra <- class extends Player {
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 16, 0, 0, 1);
-		shapeClimb = Rec(x, y, 5, 12, 0, 0, 1);
-		shapeSlide = Rec(x, y, 5, 6, 0, 0, 7);
+		shapeStand = Rec(x, y, 5, 16, 0, 0, 0);
+		shapeClimb = Rec(x, y, 5, 12, 0, 0, 0);
+		shapeSlide = Rec(x, y, 5, 6, 0, 0, 6);
 		shape = shapeStand;
 		if (!gvPlayer) gvPlayer = this;
 		xstart = _x.tofloat();

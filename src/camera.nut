@@ -369,6 +369,9 @@ updateCamera <- function () {
 	if (camy0 > uy) camy0 = uy;
 	if (camy0 < 0) camy0 = 0;
 
+	camx0 = round(camx0);
+	camy0 = round(camy0);
+
 	//////////////
 	// Camera 1 //
 	//////////////
@@ -496,6 +499,9 @@ updateCamera <- function () {
 	if (camy1 > uy) camy1 = uy;
 	if (camy1 < 0) camy1 = 0;
 
+	camx1 = round(camx1);
+	camy1 = round(camy1);
+
 	//////////////
 	// Camera 2 //
 	//////////////
@@ -620,6 +626,9 @@ updateCamera <- function () {
 	if (camx2 < 0) camx2 = 0;
 	if (camy2 > uy) camy2 = uy;
 	if (camy2 < 0) camy2 = 0;
+
+	camx2 = round(camx2);
+	camy2 = round(camy2);
 
 	// Reset camera target
 	if (gvPlayer) gvCamTarget = gvPlayer;

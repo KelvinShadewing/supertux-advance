@@ -282,8 +282,8 @@ Midi <- class extends Player {
 		base.constructor(_x, _y);
 		an.stand = an.standN;
 		anim = "stand";
-		shapeStand = Rec(x, y, 5, 12, 0, 0, 1);
-		shapeCrawl = Rec(x, y, 5, 6, 0, 0, 7);
+		shapeStand = Rec(x, y, 5, 12, 0, 0, 0);
+		shapeCrawl = Rec(x, y, 5, 6, 0, 0, 6);
 		shapeGrip = Rec(x, y, 1, 1);
 		shape = shapeStand;
 		xstart = _x.tofloat();
@@ -810,8 +810,7 @@ Midi <- class extends Player {
 						if (zoomies <= 0) stats.stamina -= 0.4;
 					}
 
-					if (floor(x) != floor(xprev))
-						anim = "fall";
+					if (floor(x) != floor(xprev)) anim = "fall";
 
 					/*
 					local oldShape = shape;
@@ -1626,6 +1625,7 @@ Midi <- class extends Player {
 					tileGetSolid(x - 12, y) != 40 &&
 					!didJump
 				) {
+					jumpBuffer = 0;
 					flip = 0;
 					anim = "wall";
 					frame = 0.0;
@@ -1643,6 +1643,7 @@ Midi <- class extends Player {
 					tileGetSolid(x + 12, y) != 40 &&
 					!didJump
 				) {
+					jumpBuffer = 0;
 					flip = 1;
 					anim = "wall";
 					frame = 0.0;
@@ -1841,6 +1842,7 @@ Midi <- class extends Player {
 	}
 
 	function ruBall() {
+		if (anim == "sit") routine = ruNormal;
 		// Controls
 		if (
 			(!placeFree(x - hspeed, y + 2) ||

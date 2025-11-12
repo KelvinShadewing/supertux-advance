@@ -19,7 +19,7 @@
 const tile_flip_h = 0x80000000;
 const tile_flip_v = 0x40000000;
 const tile_rot_cw = 0x20000000;
-const tile_mask = 0x1fffffff;
+const tile_mask = 0xfffffff;
 
 tileSearchDir <- ["."];
 
@@ -43,6 +43,7 @@ AnimTile <- class {
 	frameID = null;
 	frameList = null;
 	frameTime = null;
+	maxTime = 0;
 	sprite = null;
 	randomized = false;
 	wx = 0;
@@ -60,7 +61,10 @@ AnimTile <- class {
 					frameTime.push(
 						animList.animation[i].duration + frameTime[i - 1]
 					);
+				maxTime += animList.animation[i].duration;
 			}
+			frameTime.insert(0, frameTime.len() - 1); // This corrects timing issues
+			frameTime.pop();
 			if ("properties" in animList) {
 				foreach (i in animList.properties) {
 					if (i.name == "random") {
@@ -83,17 +87,23 @@ AnimTile <- class {
 		color = 0xffffffff
 	) {
 		local currentTime = wrap(
-			getTicks() + (randomized ? ((wx * wy + wx + wy) * 1337 + 1337) / 2.0 : 0),
+			getTicks() +
+				(randomized
+					? ((wx * wy + wx * 3 + wy) * 1337 + 1337) / 2.0
+					: 0),
 			0,
-			frameTime.top()
+			maxTime
 		);
 		for (local i = 0; i < frameList.len(); i++) {
 			if (currentTime >= frameTime[i]) {
 				if (i < frameTime.len() - 1) {
-					if (currentTime < frameTime[i + 1]) {
+					if (
+						currentTime < frameTime[(i + 1) % frameList.len()] &&
+						i < frameList.len()
+					) {
 						drawSprite(
 							sprite,
-							frameList[(i + 1) % frameList.len()],
+							frameList[i % frameList.len()],
 							x,
 							y,
 							angle,
@@ -105,16 +115,19 @@ AnimTile <- class {
 						);
 						return;
 					}
-				} else if (currentTime <= frameTime[i] && i == 0) {
+				} else if (
+					currentTime <= frameTime[(i + 1) % frameList.len()] &&
+					(i + 1) % frameList.len() == 0
+				) {
 					drawSprite(
 						sprite,
 						frameList[(i + 1) % frameList.len()],
 						x,
 						y,
-						0,
-						0,
-						1,
-						1,
+						angle,
+						flip,
+						sx,
+						sy,
 						alpha,
 						color
 					);
@@ -138,6 +151,8 @@ Tilemap <- class {
 	tilef = null;
 	tilew = 0;
 	tileh = 0;
+	tilewd = 0;
+	tilehd = 0;
 	mapw = 0;
 	maph = 0;
 	geo = null; // List of solid shapes added after loading
@@ -170,6 +185,8 @@ Tilemap <- class {
 			maph = data.height;
 			tilew = data.tilewidth;
 			tileh = data.tileheight;
+			tilewd = tilew / 2.0;
+			tilehd = tileh / 2.0;
 			w = mapw * tilew;
 			h = maph * tileh;
 
@@ -238,8 +255,8 @@ Tilemap <- class {
 								filename,
 								data.tilesets[i].tilewidth,
 								data.tilesets[i].tileheight,
-								tsox,
-								tsoy,
+								tsox + tilewd,
+								tsoy + tilehd,
 								data.tilesets[i].margin,
 								data.tilesets[i].spacing
 							)
@@ -261,8 +278,8 @@ Tilemap <- class {
 										tileSearchDir[j] + "/" + shortname,
 										data.tilesets[i].tilewidth,
 										data.tilesets[i].tileheight,
-										tsox,
-										tsoy,
+										tsox + tilewd,
+										tsoy + tilehd,
 										data.tilesets[i].margin,
 										data.tilesets[i].spacing
 									)
@@ -354,8 +371,8 @@ Tilemap <- class {
 		mask = null
 	) {
 		// @mx through @mh are the rectangle of tiles that will be drawn
-		x = floor(x);
-		y = floor(y);
+		x = floor(x + tilewd);
+		y = floor(y + tilehd);
 
 		// Find layer
 		local t = -1; // Target layer
@@ -426,47 +443,17 @@ Tilemap <- class {
 					local offy = 0;
 					local flip =
 						(n & tile_flip_h ? 1 : 0) | (n & tile_flip_v ? 2 : 0);
-					local offa = 0;
-
-					switch (n & (tile_flip_h | tile_flip_v | tile_rot_cw)) {
-						case tile_flip_h:
-							offx = tilew * sx;
-							break;
-						case tile_flip_v:
-							offy = tileh * sy;
-							break;
-						case tile_flip_h | tile_flip_v:
-							offx = tilew * sx;
-							offy = tileh * sy;
-							break;
-						case tile_rot_cw:
-							offx = tilew * sx;
-							offy = tileh * sy;
-							offa = 90;
-							break;
-						case tile_rot_cw | tile_flip_h:
-							offa = 90;
-							flip = 2;
-							break;
-						case tile_rot_cw | tile_flip_v:
-							offy = tileh * sy;
-							offa = 270;
-							flip = 0;
-							break;
-						case tile_rot_cw | tile_flip_h | tile_flip_v:
-							offa = 270;
-							flip = 2;
-							offx = tilew * sx;
-							offy = tileh * sy;
-							break;
-					}
+					local offa = n & tile_rot_cw ? 90 : 0;
 
 					for (local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if (nm >= data.tilesets[k].firstgid) {
-							if (anim.rawin(n) && tileset[k] == anim[n].sprite) {
-								anim[n].wx = j;
-								anim[n].wy = i;
-								anim[n].draw(
+							if (
+								anim.rawin(nm) &&
+								tileset[k] == anim[nm].sprite
+							) {
+								anim[nm].wx = j;
+								anim[nm].wy = i;
+								anim[nm].draw(
 									x + floor(j * data.tilewidth * sx) + offx,
 									y + floor(i * data.tileheight * sy) + offy,
 									offa,

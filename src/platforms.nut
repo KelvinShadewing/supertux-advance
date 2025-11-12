@@ -1146,7 +1146,7 @@ Ramp <- class extends Actor {
 Seat <- class extends Actor {
 	shape = null;
 	holding = -1;
-	flip = 0;
+	flip = -1;
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
@@ -1156,7 +1156,7 @@ Seat <- class extends Actor {
 
 	function run() {
 		if (!checkActor(holding)) holding = -1;
-		if(holding == -1) {
+		if (holding == -1) {
 			if (getcon("up", "press", true, 1)) {
 				if (gvPlayer && hitTest(shape, gvPlayer.shape)) {
 					holding = gvPlayer.id;
@@ -1175,18 +1175,21 @@ Seat <- class extends Actor {
 					gvPlayer2.flip = flip;
 				}
 			}
-		}
-		else {
+		} else {
 			local p = actor[holding];
 			p.x = x;
 			p.y = y - 8;
 			p.hspeed = 0;
 			p.vspeed = 0;
 			p.anim = "sit";
-			p.flip = flip;
+			if (flip > -1) p.flip = flip;
 			p.canMove = false;
 
-			if (getcon("up", "press", true, p.playerNum) || getcon("jump", "press", true, p.playerNum) || !hitTest(shape, p.shape)) {
+			if (
+				getcon("up", "press", true, p.playerNum) ||
+				getcon("jump", "press", true, p.playerNum) ||
+				!hitTest(shape, p.shape)
+			) {
 				holding = -1;
 				p.didJump = false;
 				p.anim = "stand";

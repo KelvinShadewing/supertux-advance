@@ -218,7 +218,7 @@ NPC <- class extends Actor {
 					target.x - camx,
 					target.y - camy - 24 + round(sin(getFrames().tofloat() / 5))
 				);
-			else if ((sayfunc == "say" && talki > 0) || sayfunc == "sayRand")
+			else if (talki > 0 || sayfunc == "sayRand")
 				drawSpriteHUD(
 					sprTalk,
 					0,
@@ -229,7 +229,7 @@ NPC <- class extends Actor {
 						4 +
 						round(sin(getFrames().tofloat() / 5))
 				);
-			else if (sprite != 0)
+			else
 				drawSpriteHUD(
 					sprTalk,
 					2,
