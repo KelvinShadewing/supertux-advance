@@ -1,11 +1,22 @@
 meLanguage <- [];
 languageList <- null;
 selectLanguage <- function () {
-	meLanguage = [];
+	meLanguage = {
+		size = menuLarge,
+		back = function () {
+			if (gvGameMode == gmPause) {
+				if (gvPauseMode) menu = mePauseOver;
+				else if (gvTimeAttack) menu = mePauseTimeAttack;
+				else menu = mePausePlay;
+			} else menu = meMain;
+			fileWrite("config.json", jsonWrite(config));
+		},
+		items = []
+	};
 	if (languageList == null)
 		languageList = jsonRead(fileRead("lang/languages.json"));
 	for (local i = 0; i < languageList["languages"].len(); i += 1) {
-		meLanguage.push({
+		meLanguage.items.push({
 			languageIndex = i,
 			name = function () {
 				return languageList["languages"][languageIndex][0];
@@ -36,7 +47,7 @@ selectLanguage <- function () {
 			}
 		});
 	}
-	meLanguage.push({
+	meLanguage.items.push({
 		languageIndex = languageList["languages"].len(),
 		name = function () {
 			return gvLangObj["menu-commons"]["back"];
