@@ -281,12 +281,6 @@ dbgIceForestNight <- function () {
 	}
 };
 
-dbgSnowNight <- function () {
-	for (local i = 0; i < getBGLoop(spriteW(bgSnowNight)); i++) {
-		drawSprite(bgSnowNight, 0, ((-camx / 8) % 800) + i * 800, screenH() / 2 - 120);
-	}
-};
-
 dbgSnowPlain <- function () {
 	dbgOceanGray();
 

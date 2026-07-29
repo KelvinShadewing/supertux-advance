@@ -1328,7 +1328,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowNight\nsongPlay(musDisko)"
+         "value":"drawBG = dbgAuroraNight\nsongPlay(musDisko)"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

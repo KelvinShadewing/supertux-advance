@@ -9607,7 +9607,7 @@
         {
          "name":"code",
          "type":"string",
-         "value":"drawBG = dbgSnowNight\ndrawWeather = dweSnow\nsongPlay(musIceChip)\ngfxEnemySnow()\ngvLightTarget = 0x6080e0ff"
+         "value":"drawBG = dbgAuroraNight\ndrawWeather = dweSnow\nsongPlay(musIceChip)\ngfxEnemySnow()\ngvLightTarget = 0x6080e0ff"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.8.5",
