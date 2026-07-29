@@ -2096,7 +2096,7 @@ EarthballK <- class extends WeaponEffect {
 	element = "earth";
 	power = 1;
 	blast = true;
-	piercing = 0;
+	piercing = -1;
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr);
@@ -3209,46 +3209,15 @@ ExplodeA3 <- class extends WeaponEffect {
 
 		if (frame >= 2 && !didbloom) {
 			didbloom = true;
-			local c = fireWeapon(StormTornado, x + 8, y - 4, alignment, owner);
-			c.direction = 22.5;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x + 4, y - 8, alignment, owner);
-			c.direction = 22.5 - 45;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x - 4, y - 8, alignment, owner);
-			c.direction = 22.5 - 45 * 2;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x - 8, y - 4, alignment, owner);
-			c.direction = 22.5 - 45 * 3;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x - 8, y + 4, alignment, owner);
-			c.direction = 22.5 - 45 * 4;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x - 4, y + 8, alignment, owner);
-			c.direction = 22.5 - 45 * 5;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x + 4, y + 8, alignment, owner);
-			c.direction = 22.5 - 45 * 6;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
-			c = fireWeapon(StormTornado, x + 8, y + 4, alignment, owner);
-			c.direction = 22.5 - 45 * 7;
-			c.power = 2;
-			c.speed = 0.25;
-			c.maxTime = 60;
+			local c = null;
+			for(local i = 0; i < 8; i++) {
+				local d = 22.5 + (45 * i);
+				c = fireWeapon(StormTornado, x + lendirX(16, d), y + lendirY(16, d), alignment, owner)
+				c.direction = d;
+				c.power = 2;
+				c.speed = 0.25;
+				c.maxTime = 60;
+			}
 		}
 
 		if (frame >= 6) deleteActor(id);

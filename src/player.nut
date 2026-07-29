@@ -600,6 +600,9 @@ Player <- class extends PhysAct {
 		local found = [31, 32, 33, 34, 35, 39].find(
 			tileGetSolid(x + _x, y - shape.h + _y)
 		);
+		if(anim != "climb" && found == null) found = [51, 52, 83].find(
+			tileGetSolid(x + _x, y - shape.h + _y)
+		);
 		if (found != null) found++;
 		return found;
 	}

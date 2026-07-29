@@ -267,6 +267,7 @@ Konqi <- class extends Player {
 		if (guardtime > 0 && anim != "statue") guardtime--;
 
 		if (firetime <= 0 && stats.energy < stats.maxEnergy) stats.energy += 1.0 / 60.0;
+		if (invincible > 0) stats.energy += 1.0;
 
 		/////////////
 		// ON LAND //
@@ -1370,7 +1371,10 @@ Konqi <- class extends Player {
 
 			if (anim != "climb") frame = wrap(abs(frame), 0.0, an[anim].len() - 1);
 
-			if (stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0)
+			if (
+				(stats.weapon != "air" && stats.stamina < stats.maxStamina && blinking == 0.0 && guardtime <= 0) ||
+				invincible > 0
+			)
 				stats.stamina += 0.05;
 
 			// Swich swim directions

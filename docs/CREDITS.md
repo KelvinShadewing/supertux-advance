@@ -41,6 +41,8 @@ Item blocks - CC-BY-SA 4.0
 Debug graphics - CC-BY-SA 4.0
 Elemental explosions - CC-BY-SA 4.0
 tux-title.png - CC-BY-SA 4.0
+duke.png - KLPL 1.0
+duke-crusher.png - KLPL 1.0
 
 
 **Midi and Duke are released under KLPL 1.0**
@@ -109,8 +111,6 @@ crumble-ice.png
 crumble-rock.png
 crystal.png
 crystal-bullet.png
-duke.png
-duke-crusher.png
 font2.png
 konqi-npc.png
 konqi.png

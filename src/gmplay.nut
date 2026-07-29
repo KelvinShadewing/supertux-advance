@@ -162,10 +162,10 @@ startPlay <- function (level, newLevel = true, skipIntro = false) {
 			// according to the image used in actors.png
 			switch (spriteName(gvMap.tileset[actnum])) {
 				case "actors.png":
-					c = createPlatformActors(n, i, c);
+					c = createPlatformActors(n, i);
 					break;
 				case "raceactors.png":
-					c = createRacerActors(n, i, c);
+					c = createRacerActors(n, i);
 					break;
 			}
 
@@ -333,15 +333,17 @@ startPlay <- function (level, newLevel = true, skipIntro = false) {
 						break;
 					case "water":
 						if ("polyline" in obj || "polygon" in obj || "ellipse" in obj) break;
-						local c = newActor(Water, obj.x + obj.width / 2, obj.y + obj.height / 2, obj.name);
-						actor[c].shape = Rec(
+						local c = actor[newActor(Water, obj.x + obj.width / 2, obj.y + obj.height / 2, obj.name)];
+						c.shape = Rec(
 							obj.x + obj.width / 2,
 							obj.y + obj.height / 2,
 							obj.width / 2,
 							obj.height / 2,
 							0
 						);
-						mapActor[obj.id] <- actor[c].id;
+						c.baseY = obj.x + obj.height / 2;
+						c.targetHeight = int(obj.height);
+						mapActor[obj.id] <- c.id;
 						break;
 					case "secret":
 						if ("polyline" in obj || "polygon" in obj || "ellipse" in obj) break;
@@ -721,7 +723,7 @@ gmPlay <- function () {
 	if (drawWeather != 0 && config.weather) drawWeather();
 
 	gvMap.drawTiles(floor(-camx), floor(-camy), camx - 48, camy, gvScreenW / 16 + 5, gvScreenH / 16 + 2, "bg");
-	for (local i = 0; i <= 100; i++)
+	for (local i = 0; i <= 100; i++) {
 		gvMap.drawTiles(
 			floor(-camx),
 			floor(-camy),
@@ -731,6 +733,8 @@ gmPlay <- function () {
 			gvScreenH / 16 + 2,
 			"bg" + str(i)
 		);
+		gvMap.drawImageLayer("bg" + str(i), floor(-camx), floor(-camy));
+	}
 	gvMap.drawTiles(floor(-camx), floor(-camy), camx - 48, camy, gvScreenW / 16 + 5, gvScreenH / 16 + 2, "mg");
 	if (gvMap.name != "shop" && gvVoidFog)
 		for (local i = 0; i < gvScreenW / 16 + 1; i++) {
@@ -783,6 +787,8 @@ gmPlay <- function () {
 				gvScreenH / 16 + 2,
 				"fg" + str(i)
 			);
+
+		gvMap.drawImageLayer("fg" + str(i), floor(-camx), floor(-camy));
 	}
 	if (actor.rawin("SecretWall"))
 		foreach (i in actor["SecretWall"]) {
@@ -825,7 +831,7 @@ gmPlay <- function () {
 		if (drawWeather2 != 0 && config.weather) drawWeather2();
 
 		gvMap.drawTiles(floor(-camx), floor(-camy), camx - 48, camy, gvScreenW / 16 + 5, gvScreenH / 16 + 2, "bg");
-		for (local i = 0; i <= 100; i++)
+		for (local i = 0; i <= 100; i++) {
 			gvMap.drawTiles(
 				floor(-camx),
 				floor(-camy),
@@ -835,6 +841,8 @@ gmPlay <- function () {
 				gvScreenH / 16 + 2,
 				"bg" + str(i)
 			);
+			gvMap.drawImageLayer("bg" + str(i), floor(-camx), floor(-camy));
+		}
 		gvMap.drawTiles(floor(-camx), floor(-camy), camx - 48, camy, gvScreenW / 16 + 5, gvScreenH / 16 + 2, "mg");
 		if (gvMap.name != "shop" && gvVoidFog)
 			for (local i = 0; i < gvScreenW / 16 + 1; i++) {
@@ -887,6 +895,8 @@ gmPlay <- function () {
 					gvScreenH / 16 + 2,
 					"fg" + str(i)
 				);
+
+			gvMap.drawImageLayer("fg" + str(i), floor(-camx), floor(-camy));
 		}
 		if (actor.rawin("SecretWall"))
 			foreach (i in actor["SecretWall"]) {
@@ -1767,15 +1777,14 @@ TimeAttackSign <- class extends Actor {
 	}
 };
 
-createPlatformActors <- function (n, i, c) {
+createPlatformActors <- function (n, i) {
+	local c = 0;
 	switch (n) {
 		case 0:
 			if (gvPlayAsBeam) {
 				c = actor[newActor(BeamBug, i.x + 8, i.y - 16)];
 				gvNumPlayers = 0;
 				gvCamTarget = c;
-				camx = c.x - gvScreenW / 2;
-				camy = c.y - gvScreenH / 2;
 			} else {
 				gvNumPlayers = 0;
 
@@ -1812,8 +1821,21 @@ createPlatformActors <- function (n, i, c) {
 					gvNumPlayers++;
 				}
 
-				camx = c.x - gvScreenW / 2;
-				camy = c.y - gvScreenH / 2;
+				if (game.check) {
+					camx0 = c.x - gvScreenW / 2;
+					camy0 = c.y - gvScreenH / 2;
+					camx1 = c.x - gvScreenW / 2;
+					camy1 = c.y - gvScreenH / 2;
+					camx2 = c.x - gvScreenW / 2;
+					camy2 = c.y - gvScreenH / 2;
+				} else {
+					camx0 = i.x + 8 - gvScreenW / 2;
+					camy0 = i.y - 16 - gvScreenH / 2;
+					camx1 = i.x + 8 - gvScreenW / 2;
+					camy1 = i.y - 16 - gvScreenH / 2;
+					camx2 = i.x + 8 - gvScreenW / 2;
+					camy2 = i.y - 16 - gvScreenH / 2;
+				}
 				if (gvPlayer) gvCamTarget = gvPlayer;
 
 				if (config.useBeam && gvNumPlayers == 1) newActor(BeamBug, i.x + 8, i.y - 16);
@@ -2388,7 +2410,8 @@ createPlatformActors <- function (n, i, c) {
 	return c;
 };
 
-createRacerActors <- function (n, i, c) {
+createRacerActors <- function (n, i) {
+	local c = 0;
 	switch (n) {
 		case 0:
 			c = newActor(TuxRacer, i.x + 8, i.y - 8);

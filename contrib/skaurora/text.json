@@ -1,0 +1,27 @@
+{
+	"level" : {
+		"skaurora-learn" : "Relearning the Slopes",
+		"skaurora-crystal" : "Crazy Caves",
+		"skaurora-iceguy" : "Oh No, Way More Mr. Iceguy",
+		"skaurora-slip" : "Slip and Die",
+		"skaurora-subsea" : "Drown",
+		"skaurora-tnt" : "Tux 'N' Terror",
+		"skaurora-fishy" : "Something Smells Fishy",
+		"skaurora-sense" : "Frost's Nonsense",
+		"skaurora-branches" : "Breaking Branches",
+		"skaurora-frozen" : "Brr...",
+		"skaurora-forest" : "Forest of Pain",
+		"skaurora-bridge" : "Bridge Over Troubled Waters",
+		"skaurora-wind" : "It Heckin' Wimdy",
+		"skaurora-steps" : "One Last Step",
+		"skaurora-fort" : "For Boring Alice",
+		"world" : "Super Konqi Advance"
+	},
+
+	"npc" : {
+		"kelvin-fish-a" :
+		"I'm hungry. Bring me pumpkins!",
+		"kelvin-fish-b" :
+		"Mmmmm, num num num!"
+	}
+}

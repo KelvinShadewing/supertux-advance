@@ -6,7 +6,7 @@
  "name":"bricks",
  "spacing":0,
  "tilecount":364,
- "tiledversion":"1.10.1",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tiles":[
         {
@@ -68,6 +68,12 @@
                 {
                  "color":"#00ff00",
                  "name":"back",
+                 "probability":1,
+                 "tile":-1
+                }, 
+                {
+                 "color":"#0000ff",
+                 "name":"ladder",
                  "probability":1,
                  "tile":-1
                 }],
@@ -136,6 +142,10 @@
                  "wangid":[1, 0, 0, 0, 0, 0, 1, 1]
                 }, 
                 {
+                 "tileid":55,
+                 "wangid":[0, 0, 0, 0, 3, 0, 0, 0]
+                }, 
+                {
                  "tileid":56,
                  "wangid":[0, 0, 1, 1, 1, 0, 1, 0]
                 }, 
@@ -180,6 +190,10 @@
                  "wangid":[1, 1, 1, 1, 1, 0, 1, 0]
                 }, 
                 {
+                 "tileid":69,
+                 "wangid":[3, 0, 0, 0, 3, 0, 0, 0]
+                }, 
+                {
                  "tileid":70,
                  "wangid":[1, 1, 1, 0, 0, 0, 1, 0]
                 }, 
@@ -222,6 +236,10 @@
                 {
                  "tileid":80,
                  "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":83,
+                 "wangid":[3, 0, 0, 0, 0, 0, 0, 0]
                 }, 
                 {
                  "tileid":90,

@@ -100,7 +100,8 @@
 		"full" : "Fullscreen (4:3)",
 		"wide" : "Widescreen (16:9)",
 		"ultra" : "Ultra Widescreen (21:9)",
-		"auto" : "Detect Aspect"
+		"auto" : "Detect Aspect",
+		"retro" : "Retro (16:15)"
 	},
 
 	"options-menu-desc" : {

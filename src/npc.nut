@@ -31,12 +31,7 @@ NPC <- class extends Actor {
 				else if (canint(argv[i])) arr.push(argv[i].tointeger());
 				else if (argv[i] == 0) arr.push("");
 				else if (gvLangObj["npc"].rawin(argv[i]))
-					arr.push(
-						textLineLen(
-							formatInfo(gvLangObj["npc"][argv[i]]),
-							gvTextW
-						)
-					);
+					arr.push(textLineLen(formatInfo(gvLangObj["npc"][argv[i]]), gvTextW));
 				else arr.push("");
 			}
 		}
@@ -57,12 +52,7 @@ NPC <- class extends Actor {
 				else if (canint(argv[i])) arr.push(argv[i].tointeger());
 				else if (argv[i] == 0) arr.push("");
 				else if (gvLangObj["npc"].rawin(argv[i]))
-					arr.push(
-						textLineLen(
-							formatInfo(gvLangObj["npc"][argv[i]]),
-							gvTextW
-						)
-					);
+					arr.push(textLineLen(formatInfo(gvLangObj["npc"][argv[i]]), gvTextW));
 				else arr.push("");
 			}
 		}
@@ -71,10 +61,7 @@ NPC <- class extends Actor {
 	function run() {
 		if (target == null || !nowTalking) {
 			if (gvPlayer && gvPlayer2) {
-				if (
-					distance2(x, y, gvPlayer.x, gvPlayer.y) <
-					distance2(x, y, gvPlayer2.x, gvPlayer2.y)
-				)
+				if (distance2(x, y, gvPlayer.x, gvPlayer.y) < distance2(x, y, gvPlayer2.x, gvPlayer2.y))
 					target = gvPlayer;
 				else target = gvPlayer2;
 			} else if (gvPlayer) target = gvPlayer;
@@ -85,8 +72,7 @@ NPC <- class extends Actor {
 			if (
 				hitTest(shape, target.shape) &&
 				(getcon("up", "press", false, target.playerNum) ||
-					(getcon("jump", "press", false, target.playerNum) &&
-						nowTalking)) &&
+					(getcon("jump", "press", false, target.playerNum) && nowTalking)) &&
 				sayfunc != null
 			) {
 				if (nowTalking) {
@@ -121,12 +107,7 @@ NPC <- class extends Actor {
 	}
 
 	function draw() {
-		if (
-			gvPlayer &&
-			gvPlayer2 &&
-			hitTest(shape, gvPlayer.shape) &&
-			hitTest(shape, gvPlayer2.shape)
-		) {
+		if (gvPlayer && gvPlayer2 && hitTest(shape, gvPlayer.shape) && hitTest(shape, gvPlayer2.shape)) {
 			if (
 				sprite == 0 &&
 				sayfunc == "sayChar" &&
@@ -138,32 +119,21 @@ NPC <- class extends Actor {
 					sprTalk,
 					1,
 					gvPlayer.x - camx,
-					gvPlayer.y -
-						camy -
-						24 +
-						round(sin(getFrames().tofloat() / 5))
+					gvPlayer.y - camy - 24 + round(sin(getFrames().tofloat() / 5))
 				);
 			else if ((sayfunc == "say" && talki > 0) || sayfunc == "sayRand")
 				drawSpriteHUD(
 					sprTalk,
 					0,
 					x - camx,
-					y -
-						spriteH(sprite) -
-						camy -
-						4 +
-						round(sin(getFrames().tofloat() / 5))
+					y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5))
 				);
 			else if (sprite != 0)
 				drawSpriteHUD(
 					sprTalk,
 					2,
 					x - camx,
-					y -
-						spriteH(sprite) -
-						camy -
-						4 +
-						round(sin(getFrames().tofloat() / 5))
+					y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5))
 				);
 
 			if (
@@ -177,32 +147,21 @@ NPC <- class extends Actor {
 					sprTalk,
 					1,
 					gvPlayer2.x - camx,
-					gvPlayer2.y -
-						camy -
-						24 +
-						round(sin(getFrames().tofloat() / 5))
+					gvPlayer2.y - camy - 24 + round(sin(getFrames().tofloat() / 5))
 				);
 			else if ((sayfunc == "say" && talki > 0) || sayfunc == "sayRand")
 				drawSpriteHUD(
 					sprTalk,
 					0,
 					x - camx,
-					y -
-						spriteH(sprite) -
-						camy -
-						4 +
-						round(sin(getFrames().tofloat() / 5))
+					y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5))
 				);
 			else if (sprite != 0)
 				drawSpriteHUD(
 					sprTalk,
 					2,
 					x - camx,
-					y -
-						spriteH(sprite) -
-						camy -
-						4 +
-						round(sin(getFrames().tofloat() / 5))
+					y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5))
 				);
 		} else if (target != null && hitTest(shape, target.shape)) {
 			if (
@@ -212,57 +171,30 @@ NPC <- class extends Actor {
 					argv[3] + typeof target in gvLangObj["npc"] ||
 					argv[3] + "-" + typeof target in gvLangObj["npc"])
 			)
-				drawSprite(
-					sprTalk,
-					1,
-					target.x - camx,
-					target.y - camy - 24 + round(sin(getFrames().tofloat() / 5))
-				);
+				drawSprite(sprTalk, 1, target.x - camx, target.y - camy - 24 + round(sin(getFrames().tofloat() / 5)));
 			else if (talki > 0 || sayfunc == "sayRand")
 				drawSpriteHUD(
 					sprTalk,
 					0,
 					x - camx,
-					y -
-						spriteH(sprite) -
-						camy -
-						4 +
-						round(sin(getFrames().tofloat() / 5))
+					y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5))
 				);
 			else
 				drawSpriteHUD(
 					sprTalk,
 					2,
 					x - camx,
-					y -
-						spriteH(sprite) -
-						camy -
-						4 +
-						round(sin(getFrames().tofloat() / 5))
+					y - spriteH(sprite) - camy - 4 + round(sin(getFrames().tofloat() / 5))
 				);
 		}
 
-		if (useflip)
-			drawSprite(
-				sprite,
-				getFrames() * useflip,
-				x - camx,
-				y - camy,
-				0,
-				flip,
-				1,
-				1,
-				1
-			);
+		if (useflip) drawSprite(sprite, getFrames() * useflip, x - camx, y - camy, 0, flip, 1, 1, 1);
 		else drawSprite(sprite, flip, x - camx, y - camy, 0, 0, 1, 1, 1);
 	}
 
 	function say() {
 		if (argv[3] + "-" + talki in gvLangObj["npc"])
-			text = textLineLen(
-				formatInfo(gvLangObj["npc"][argv[3] + "-" + talki]),
-				gvTextW
-			);
+			text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + "-" + talki]), gvTextW);
 		else text = arr[0];
 		gvInfoBox = text;
 		talki++;
@@ -271,10 +203,7 @@ NPC <- class extends Actor {
 
 	function sayRand() {
 		if (argv[3] + "-" + talki in gvLangObj["npc"])
-			text = textLineLen(
-				formatInfo(gvLangObj["npc"][argv[3] + "-" + talki]),
-				gvTextW
-			);
+			text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + "-" + talki]), gvTextW);
 		else text = "";
 		gvInfoBox = text;
 		talki = randInt(arr[1]);
@@ -284,17 +213,10 @@ NPC <- class extends Actor {
 	function sayChar() {
 		text = "";
 		if (argv[3] + typeof target in gvLangObj["npc"])
-			text = textLineLen(
-				formatInfo(gvLangObj["npc"][argv[3] + typeof target]),
-				gvTextW
-			);
+			text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + typeof target]), gvTextW);
 		else if (argv[3] + "-" + typeof target in gvLangObj["npc"])
-			text = textLineLen(
-				formatInfo(gvLangObj["npc"][argv[3] + "-" + typeof target]),
-				gvTextW
-			);
-		else if (argv[3] in gvLangObj["npc"])
-			text = textLineLen(formatInfo(gvLangObj["npc"][argv[3]]), gvTextW);
+			text = textLineLen(formatInfo(gvLangObj["npc"][argv[3] + "-" + typeof target]), gvTextW);
+		else if (argv[3] in gvLangObj["npc"]) text = textLineLen(formatInfo(gvLangObj["npc"][argv[3]]), gvTextW);
 		gvInfoBox = text;
 	}
 
@@ -302,24 +224,21 @@ NPC <- class extends Actor {
 		text = textLineLen(formatInfo(gvLangObj["npc"]["konqi-c"]), gvTextW);
 		gvInfoBox = text;
 		freeKonqi();
-		if (actor.rawin("BossDoor"))
-			foreach (i in actor["BossDoor"]) i.opening = true;
+		if (actor.rawin("BossDoor")) foreach (i in actor["BossDoor"]) i.opening = true;
 	}
 
 	function rescueKatie() {
 		text = textLineLen(formatInfo(gvLangObj["npc"]["katie-c"]), gvTextW);
 		gvInfoBox = text;
 		freeKonqi();
-		if (actor.rawin("BossDoor"))
-			foreach (i in actor["BossDoor"]) i.opening = true;
+		if (actor.rawin("BossDoor")) foreach (i in actor["BossDoor"]) i.opening = true;
 	}
 
 	function rescueMidi() {
 		text = textLineLen(formatInfo(gvLangObj["npc"]["midi-c"]), gvTextW);
 		gvInfoBox = text;
 		freeMidi();
-		if (actor.rawin("BossDoor"))
-			foreach (i in actor["BossDoor"]) i.opening = true;
+		if (actor.rawin("BossDoor")) foreach (i in actor["BossDoor"]) i.opening = true;
 	}
 
 	function rescueFriend() {
@@ -327,96 +246,43 @@ NPC <- class extends Actor {
 		if (sprite == sprXue) {
 			if (!game.friends.rawin("Xue")) game.friends.Xue <- true;
 			text = textLineLen(formatInfo(gvLangObj["npc"]["xue-c"]), gvTextW);
-			newActor(
-				AchiNotice,
-				16,
-				-16,
-				format(gvLangObj["info"]["rescued"], "Xue")
-			);
+			newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Xue"));
 		}
 		if (sprite == sprGnu)
 			if (!game.friends.rawin("Gnu")) {
 				game.friends.Gnu <- true;
-				text = textLineLen(
-					formatInfo(gvLangObj["npc"]["gnu-c"]),
-					gvTextW
-				);
-				newActor(
-					AchiNotice,
-					16,
-					-16,
-					format(gvLangObj["info"]["rescued"], "Gnu")
-				);
+				text = textLineLen(formatInfo(gvLangObj["npc"]["gnu-c"]), gvTextW);
+				newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Gnu"));
 			}
 		if (sprite == sprPlasmaBreeze)
 			if (!game.friends.rawin("PlasmaBreeze")) {
 				game.friends.PlasmaBreeze <- true;
-				text = textLineLen(
-					formatInfo(gvLangObj["npc"]["breeze-c"]),
-					gvTextW
-				);
-				newActor(
-					AchiNotice,
-					16,
-					-16,
-					format(gvLangObj["info"]["rescued"], "Plasma Breeze")
-				);
+				text = textLineLen(formatInfo(gvLangObj["npc"]["breeze-c"]), gvTextW);
+				newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Plasma Breeze"));
 			}
 		if (sprite == sprRockyRaccoon)
 			if (!game.friends.rawin("RockyRaccoon")) {
 				game.friends.RockyRaccoon <- true;
-				text = textLineLen(
-					formatInfo(gvLangObj["npc"]["rocky-c"]),
-					gvTextW
-				);
-				newActor(
-					AchiNotice,
-					16,
-					-16,
-					format(gvLangObj["info"]["rescued"], "Rocky Raccoon")
-				);
+				text = textLineLen(formatInfo(gvLangObj["npc"]["rocky-c"]), gvTextW);
+				newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Rocky Raccoon"));
 			}
 		if (sprite == sprPygame)
 			if (!game.friends.rawin("Pygame")) {
 				game.friends.Pygame <- true;
-				text = textLineLen(
-					formatInfo(gvLangObj["npc"]["python-c"]),
-					gvTextW
-				);
-				newActor(
-					AchiNotice,
-					16,
-					-16,
-					format(gvLangObj["info"]["rescued"], "Pygame")
-				);
+				text = textLineLen(formatInfo(gvLangObj["npc"]["python-c"]), gvTextW);
+				newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Pygame"));
 			}
 		if (sprite == sprGaruda)
 			if (!game.friends.rawin("Garuda")) {
 				game.friends.Garuda <- true;
-				text = textLineLen(
-					formatInfo(gvLangObj["npc"]["garuda-c"]),
-					gvTextW
-				);
-				newActor(
-					AchiNotice,
-					16,
-					-16,
-					format(gvLangObj["info"]["rescued"], "Garuda")
-				);
+				text = textLineLen(formatInfo(gvLangObj["npc"]["garuda-c"]), gvTextW);
+				newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Garuda"));
 			}
 		if (sprite == sprTealDeerNPC)
 			if (!game.friends.rawin("TealDeer")) {
 				game.friends.TealDeer <- true;
-				text = textLineLen(
-					formatInfo(gvLangObj["npc"]["tealdeer-c"]),
-					gvTextW
-				);
-				newActor(
-					AchiNotice,
-					16,
-					-16,
-					format(gvLangObj["info"]["rescued"], "Teal Deer")
-				);
+				text = textLineLen(formatInfo(gvLangObj["npc"]["tealdeer-c"]), gvTextW);
+				newActor(AchiNotice, 16, -16, format(gvLangObj["info"]["rescued"], "Teal Deer"));
 			}
 
 		gvInfoBox = text;
@@ -440,8 +306,7 @@ NPC <- class extends Actor {
 };
 
 freeCharacter <- function (name) {
-	if (game.characters.len() >= gvCharacters.len() || !(name in gvCharacters))
-		return;
+	if (game.characters.len() >= gvCharacters.len() || !(name in gvCharacters)) return;
 
 	if (!game.rawin("state")) game.state <- {};
 
@@ -461,6 +326,12 @@ freeCharacter <- function (name) {
 
 	game.friends[name] <- true;
 	if (name in gvCharacters) game.characters[name] <- true;
+};
+
+freeTux <- function () {
+	freeCharacter("Tux");
+	freeCharacter("Penny");
+	freeCharacter("Lutris");
 };
 
 freeKonqi <- function () {
@@ -515,9 +386,9 @@ gvStockRoutines <- {
 
 				if (
 					abs(x - xstart) > 256 ||
-					(!placeFree(x + hspeed, y) &&
-						!placeFree(x + hspeed, y - 2)) ||
-					placeFree(x + hspeed, y + 4) || !onPlatform(hspeed)
+					(!placeFree(x + hspeed, y) && !placeFree(x + hspeed, y - 2)) ||
+					placeFree(x + hspeed, y + 4) ||
+					!onPlatform(hspeed)
 				)
 					hspeed = -hspeed;
 		}
@@ -639,14 +510,8 @@ BeeHostage <- class extends PathCrawler {
 		}
 
 		if (freed && !moving) {
-			hspeed += lendirX(
-				0.1,
-				pointAngle(x, y, rx - 32 + randInt(64), ry - 32 + randInt(64))
-			);
-			vspeed += lendirY(
-				0.1,
-				pointAngle(x, y, rx - 32 + randInt(64), ry - 32 + randInt(64))
-			);
+			hspeed += lendirX(0.1, pointAngle(x, y, rx - 32 + randInt(64), ry - 32 + randInt(64)));
+			vspeed += lendirY(0.1, pointAngle(x, y, rx - 32 + randInt(64), ry - 32 + randInt(64)));
 			x += hspeed;
 			y += vspeed;
 		}

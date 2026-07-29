@@ -1,8 +1,11 @@
 Water <- class extends Actor {
 	shape = 0;
+	hydroplane = 0;
 	substance = "water";
 	currentColor = 0x000000ff;
 	newColor = 0x000000ff;
+	baseY = 0;
+	targetHeight = 0;
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);

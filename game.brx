@@ -126,6 +126,8 @@ updateDisplaySettings <- function() {
 		case 3:
 			w = 560
 			break
+		case 4:
+			w = 256
 	}
 	setDisplayAspect(w)
 	setScalingFilter(int(config.usefilter))

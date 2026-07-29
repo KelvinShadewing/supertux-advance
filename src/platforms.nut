@@ -766,6 +766,7 @@ BoostRing <- class extends Actor {
 			gvPlayer.y = y;
 			gvPlayer.hspeed = hboost;
 			gvPlayer.vspeed = vboost;
+			gvPlayer.didJump = false;
 			touchTimer1 = 30;
 			popSound(sndWoosh);
 		}
@@ -775,6 +776,7 @@ BoostRing <- class extends Actor {
 			gvPlayer2.y = y;
 			gvPlayer2.hspeed = hboost;
 			gvPlayer2.vspeed = vboost;
+			gvPlayer2.didJump = false;
 			touchTimer2 = 30;
 			popSound(sndWoosh);
 		}

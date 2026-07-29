@@ -1,0 +1,21 @@
+addTimeAttackWorld(
+	"Super Konqi Advance",
+	[
+		"skaurora-learn",
+		"skaurora-crystal",
+		"skaurora-iceguy",
+		"skaurora-slip",
+		"skaurora-subsea",
+		"skaurora-tnt",
+		"skaurora-fishy",
+		"skaurora-sense",
+		"skaurora-branches",
+		"skaurora-frozen",
+		"skaurora-forest",
+		"skaurora-bridge",
+		"skaurora-wind",
+		"skaurora-steps",
+		"skaurora-fort"
+	],
+	"skaurora"
+);

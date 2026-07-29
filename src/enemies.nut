@@ -71,7 +71,7 @@ Enemy <- class extends PhysAct {
 							hitBy = i.owner;
 						} else getHurt(0, i.power, i.element, i.cut, i.blast);
 						if (i.piercing == 0) deleteActor(i.id);
-						else i.piercing--;
+						else if(health > 0) i.piercing--;
 						i.didHit = true;
 					}
 				}
@@ -406,6 +406,8 @@ DeadNME <- class extends PhysAct {
 	spin = 0;
 	flip = 0;
 	gravity = 0.2;
+	edible = false;
+	magnetized = -1;
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y);
@@ -414,7 +416,12 @@ DeadNME <- class extends PhysAct {
 	}
 
 	function run() {
-		vspeed += gravity;
+		if(magnetized > -1 && checkAtor(magnetized)) {
+			local d = pointAngle(x, y, actor[magnetized].x, actor[magnetized].y);
+			hspeed += lendirX(1.0, d);
+			vspeed += lendirY(1.0, d);
+		}
+		else vspeed += gravity;
 		if (inWater(x, y)) {
 			x += hspeed / 4.0;
 			y += vspeed / 4.0;
@@ -424,7 +431,11 @@ DeadNME <- class extends PhysAct {
 			y += vspeed;
 		}
 		angle += spin;
-		if (y > gvMap.h + 32) deleteActor(id);
+		if (y > gvMap.h + 32 || edible && magnetized > -1 && checkActor(magnetized) && hitTest(shape, actor[magnetized].shape)) {
+			if(magnetized > -1 && checkActor(magnetized) && "stats" in actor[magnetized] && "berries" in actor[magnetized].stats)
+				actor[magnetized].stats.berries++;
+			deleteActor(id);
+		}
 	}
 
 	function draw() {
@@ -678,6 +689,7 @@ Deathcap <- class extends Enemy {
 		newActor(Flame, x, y - 1);
 		die();
 		popSound(sndFlame, 0);
+		health = 0;
 
 		if (randInt(20) == 0) {
 			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)];
@@ -819,6 +831,7 @@ PipeSnake <- class extends Enemy {
 		newActor(Flame, x, ystart + 8);
 		die();
 		popSound(sndFlame, 0);
+		health = 0;
 
 		if (icebox != -1) {
 			mapDeleteSolid(icebox);
@@ -1200,6 +1213,7 @@ CarlBoom <- class extends Enemy {
 			fireWeapon(ex, x, y, 0, id);
 			die();
 			popSound(sndFlame, 0);
+			health = 0;
 
 			burnt = true;
 		}
@@ -1370,6 +1384,7 @@ Shortfuse <- class extends Enemy {
 	}
 
 	function hurtFire() {
+		health = 0;
 		die();
 	}
 
@@ -1489,6 +1504,7 @@ BlueFish <- class extends Enemy {
 			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)];
 			a.vspeed = -2;
 		}
+		health = 0;
 	}
 
 	function _typeof() {
@@ -1612,6 +1628,7 @@ RedFish <- class extends Enemy {
 			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)];
 			a.vspeed = -2;
 		}
+		health = 0;
 	}
 
 	function _typeof() {
@@ -1732,6 +1749,7 @@ JellyFish <- class extends Enemy {
 		die();
 		popSound(sndKick, 0);
 		newActor(Poof, x, y);
+		health = 0;
 	}
 
 	function _typeof() {
@@ -1799,6 +1817,7 @@ Clamor <- class extends Enemy {
 			die();
 			popSound(sndFlame, 0);
 		}
+		health = 0;
 	}
 
 	function hurtBlast() {
@@ -1994,6 +2013,7 @@ GreenFish <- class extends Enemy {
 			local a = actor[newActor(game.difficulty >= 3 ? MuffinEvil : MuffinBlue, x, y)];
 			a.vspeed = -2;
 		}
+		health = 0;
 	}
 
 	function _typeof() {

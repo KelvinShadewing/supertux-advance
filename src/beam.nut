@@ -30,6 +30,7 @@ BeamBug <- class extends Actor {
 	xav = 0;
 	hspeed = 0;
 	vspeed = 0;
+	shape = Rec(0, 0, 1, 1, 0);
 
 	constructor(_x, _y, _arr = null) {
 		base.constructor(_x, _y, _arr);
@@ -58,6 +59,8 @@ BeamBug <- class extends Actor {
 		turn = floor(min(fabs(xav) / 1.5, 3)) * 2;
 
 		if (gvNumPlayers == 0) gvCamTarget = this;
+
+		shape.setPos(x, y);
 	}
 
 	function draw() {

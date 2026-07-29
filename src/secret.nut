@@ -13,8 +13,7 @@ SecretWall <- class extends Actor {
 	}
 
 	function run() {
-		if (shape == null && dw != 0 && dh != 0)
-			shape = Rec(x + dw * 8, y + dh * 8, -4 + dw * 8, -4 + dh * 8, 5);
+		if (shape == null && dw != 0 && dh != 0) shape = Rec(x + dw * 8, y + dh * 8, -4 + dw * 8, -4 + dh * 8, 5);
 
 		if (shape != null && gvPlayer && hitTest(shape, gvPlayer.shape)) {
 			if (!found) {
@@ -24,11 +23,7 @@ SecretWall <- class extends Actor {
 					popSound(sndSecret);
 				}
 			}
-		} else if (
-			shape != null &&
-			gvPlayer2 &&
-			hitTest(shape, gvPlayer2.shape)
-		) {
+		} else if (shape != null && gvPlayer2 && hitTest(shape, gvPlayer2.shape)) {
 			if (!found) {
 				found = true;
 				if (!rehide) {
@@ -36,21 +31,14 @@ SecretWall <- class extends Actor {
 					popSound(sndSecret);
 				}
 			}
-		} else if (shape != null && !found && checkActor("BeamBug")) {
-			foreach (i in actor["BeamBug"])
-				if (
-					i == gvPlayer &&
-					i.x < shape.x + shape.w &&
-					i.x > shape.x - shape.w &&
-					i.y < shape.y + shape.h &&
-					i.y > shape.y - shape.h
-				) {
-					found = true;
-					if (!rehide) {
-						game.secrets++;
-						popSound(sndSecret);
-					}
+		} else if (checkActor("BeamBug") && shape != null && hitTest(shape, gvCamTarget.shape)) {
+			if (!found) {
+				found = true;
+				if (!rehide) {
+					game.secrets++;
+					popSound(sndSecret);
 				}
+			}
 		} else if (rehide) found = false;
 		if (found && alpha > 0) alpha -= 0.1;
 		if (!found && alpha < 1) alpha += 0.1;
@@ -61,46 +49,14 @@ SecretWall <- class extends Actor {
 		local light = 0;
 		if (gvLightScreen == gvLightScreen1) light = gvLight;
 		if (gvLightScreen == gvLightScreen2) light = gvLight2;
-		if (config.light)
-			gvMap.drawTiles(
-				floor(-camx),
-				floor(-camy),
-				x,
-				y,
-				dw,
-				dh,
-				"secret",
-				alpha,
-				1,
-				1,
-				light
-			);
-		else
-			gvMap.drawTiles(
-				floor(-camx),
-				floor(-camy),
-				x,
-				y,
-				dw,
-				dh,
-				"secret",
-				alpha
-			);
+		if (config.light) gvMap.drawTiles(floor(-camx), floor(-camy), x, y, dw, dh, "secret", alpha, 1, 1, light);
+		else gvMap.drawTiles(floor(-camx), floor(-camy), x, y, dw, dh, "secret", alpha);
 		if (debug) {
 			drawText(
 				font,
 				x + 2 - camx,
 				y + 2 - camy,
-				"X: " +
-					x +
-					"\nY: " +
-					y +
-					"\nW: " +
-					dw +
-					"\nH: " +
-					dh +
-					"\nA: " +
-					alpha
+				"X: " + x + "\nY: " + y + "\nW: " + dw + "\nH: " + dh + "\nA: " + alpha
 			);
 			setDrawColor(0xffffffff);
 			if (shape != null) shape.draw();
@@ -156,8 +112,7 @@ SecretJoiner <- class extends Actor {
 
 		// Clean up actors
 		if (idsToDelete.len() > 0) {
-			for (local i = 0; i < idsToDelete.len(); i++)
-				deleteActor(idsToDelete[i]);
+			for (local i = 0; i < idsToDelete.len(); i++) deleteActor(idsToDelete[i]);
 			if (!rehide) game.maxSecrets++;
 		}
 	}
@@ -192,42 +147,15 @@ SecretJoiner <- class extends Actor {
 		// Draw secret tiles
 		for (local i = 0; i < shape.len(); i++) {
 			if (config.light)
-				gvMap.drawTiles(
-					floor(-camx),
-					floor(-camy),
-					dx[i],
-					dy[i],
-					dw[i],
-					dh[i],
-					"secret",
-					alpha,
-					1,
-					1,
-					gvLight
-				);
-			else
-				gvMap.drawTiles(
-					floor(-camx),
-					floor(-camy),
-					dx[i],
-					dy[i],
-					dw[i],
-					dh[i],
-					"secret",
-					alpha
-				);
+				gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha, 1, 1, gvLight);
+			else gvMap.drawTiles(floor(-camx), floor(-camy), dx[i], dy[i], dw[i], dh[i], "secret", alpha);
 		}
 
 		if (debug) {
 			// Draw path
 			for (local i = 0; i < path.len() - 1; i++) {
 				setDrawColor(0xffffffff);
-				drawLine(
-					path[i][0] - camx,
-					path[i][1] - camy,
-					path[i + 1][0] - camx,
-					path[i + 1][1] - camy
-				);
+				drawLine(path[i][0] - camx, path[i][1] - camy, path[i + 1][0] - camx, path[i + 1][1] - camy);
 			}
 
 			// Draw rectangles
@@ -236,16 +164,7 @@ SecretJoiner <- class extends Actor {
 					font,
 					dx[i] + 2 - camx,
 					dy[i] + 2 - camy,
-					"X: " +
-						dx[i] +
-						"\nY: " +
-						dy[i] +
-						"\nW: " +
-						dw[i] +
-						"\nH: " +
-						dh[i] +
-						"\nA: " +
-						alpha
+					"X: " + dx[i] + "\nY: " + dy[i] + "\nW: " + dw[i] + "\nH: " + dh[i] + "\nA: " + alpha
 				);
 				shape[i].draw();
 			}

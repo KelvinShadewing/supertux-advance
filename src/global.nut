@@ -183,7 +183,7 @@ gvCharacters <- {
 		water = "sprMidi",
 		light = "sprMidi",
 		dark = "sprMidi",
-		pick = [177, 239]
+		pick = [177, 223]
 	},
 	Kiki = {
 		name = "Kiki the Cyber Squirrel",

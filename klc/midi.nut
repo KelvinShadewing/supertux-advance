@@ -57,12 +57,12 @@ Midi <- class extends Player {
 	an = {
 		stand = null,
 		standB = [
-			0, 0, 0, 0, 0, 0, 0, 0, 238, 238, 238, 238, 238, 238, 238, 238, 0, 0, 0, 0, 180, 181, 180, 181, 180, 181,
+			0, 0, 0, 0, 0, 0, 0, 0, 222, 222, 222, 222, 222, 222, 222, 222, 0, 0, 0, 0, 180, 181, 180, 181, 180, 181,
 			180, 181, 0, 0, 0, 0, 0, 0, 0, 6, 87, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175,
 			175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 175, 87, 6
 		],
 		standN = [1, 2, 3, 4],
-		standW = [204, 204, 204, 205, 206, 206, 206, 207],
+		standW = [188, 188, 188, 189, 190, 190, 190, 191],
 		standHold = [5],
 		crouch = [6],
 		crouchHold = [7],
@@ -116,24 +116,20 @@ Midi <- class extends Player {
 		morphIn = [182, 183],
 		morphOut = [183, 182],
 		ball = [184, 185, 186, 187],
-		ballV = [188, 189, 190, 191],
-		ballD = [192, 193, 194, 195],
-		ballH = [196, 197, 198, 199],
-		ballT = [200, 201, 202, 203],
-		climbWall = [208, 209, 210, 211, 210, 209],
-		ledge = [212],
-		hang = [213],
-		shootHang = [214, 215, 216, 217],
-		monkey = [218, 219, 220, 221, 222, 223],
-		shootClimb = [224, 225, 226, 227],
-		armShoot = [228, 229, 230, 231],
-		landing = [232, 233, 234, 235],
-		wave = [236, 237],
-		pick = [238, 239],
-		moonwalk = [240, 241, 242, 243, 244, 245, 246, 247],
-		win = [255],
-		crawl = [248, 249, 250, 251, 250, 249],
-		parkour = [256, 257, 258, 259, 260, 261, 262, 263]
+		climbWall = [192, 193, 194, 195, 194, 193],
+		ledge = [196],
+		hang = [197],
+		shootHang = [198, 199, 200, 201],
+		monkey = [202, 203, 204, 205, 206, 207],
+		shootClimb = [208, 209, 210, 211],
+		armShoot = [212, 213, 214, 215],
+		landing = [216, 217, 218, 219],
+		wave = [220, 221],
+		pick = [222, 223],
+		moonwalk = [224, 225, 226, 227, 228, 229, 230, 231],
+		win = [239],
+		crawl = [232, 233, 234, 235, 234, 233],
+		parkour = [240, 241, 242, 243, 244, 245, 246, 247]
 	};
 	animOffset = 0.0;
 
@@ -883,7 +879,7 @@ Midi <- class extends Player {
 				break;
 
 			case "ball":
-				slideframe += (hspeed + ehspeed) / 8.0;
+				slideframe += (hspeed + ehspeed) / 8.0 * (flip ? -1 : 1);
 				slideframe = wrap(slideframe, 0, hspeed < 0 ? 4 : 3);
 				frame = slideframe;
 				break;
@@ -1667,7 +1663,7 @@ Midi <- class extends Player {
 		}
 
 		if (canMove) {
-			mspeed = 3.5;
+			mspeed = 4.0;
 			if (config.stickspeed) {
 				local j = null;
 				if (playerNum == 1) j = config.joy;
@@ -1731,8 +1727,8 @@ Midi <- class extends Player {
 						vspeed = -5;
 						if (getcon("left", "hold", true, playerNum)) hspeed = -2;
 						if (getcon("right", "hold", true, playerNum)) hspeed = 2;
-					} else if (nowInWater) vspeed = -4.0;
-					else vspeed = -6.5;
+					} else if (anim == "morphOut") vspeed = -6.5;
+					else vspeed = -5.0;
 					didJump = true;
 					canJump = 0;
 					popSound(sndMidiJump, 0);
@@ -1835,7 +1831,7 @@ Midi <- class extends Player {
 							x - camx + (flip ? -2 : 2) + 1,
 							y - camy,
 							0,
-							flip ? 0 : 1,
+							flip,
 							1,
 							1,
 							sin(float(getFrames()) / 16.0) * 0.75,
@@ -1848,7 +1844,7 @@ Midi <- class extends Player {
 							x - camx + (flip ? -2 : 2),
 							y - camy + 1,
 							0,
-							flip ? 0 : 1,
+							flip,
 							1,
 							1,
 							sin(torad(90) + float(getFrames()) / 16.0) * 0.75,
@@ -1861,7 +1857,7 @@ Midi <- class extends Player {
 							x - camx + (flip ? -2 : 2) - 1,
 							y - camy,
 							0,
-							flip ? 0 : 1,
+							flip,
 							1,
 							1,
 							sin(torad(180) + float(getFrames()) / 16.0) * 0.75,
@@ -1874,7 +1870,7 @@ Midi <- class extends Player {
 							x - camx + (flip ? -2 : 2),
 							y - camy - 1,
 							0,
-							flip ? 0 : 1,
+							flip,
 							1,
 							1,
 							sin(torad(270) + float(getFrames()) / 16.0) * 0.75,
@@ -1888,7 +1884,7 @@ Midi <- class extends Player {
 							x - camx + 1,
 							y - camy,
 							0,
-							anim == "ball" ? 0 : flip,
+							flip,
 							1,
 							1,
 							sin(float(getFrames()) / 16.0) * 0.75,
@@ -1901,7 +1897,7 @@ Midi <- class extends Player {
 							x - camx,
 							y - camy + 1,
 							0,
-							anim == "ball" ? 0 : flip,
+							flip,
 							1,
 							1,
 							sin(torad(90) + float(getFrames()) / 16.0) * 0.75,
@@ -1914,7 +1910,7 @@ Midi <- class extends Player {
 							x - camx - 1,
 							y - camy,
 							0,
-							anim == "ball" ? 0 : flip,
+							flip,
 							1,
 							1,
 							sin(torad(180) + float(getFrames()) / 16.0) * 0.75,
@@ -1927,7 +1923,7 @@ Midi <- class extends Player {
 							x - camx,
 							y - camy - 1,
 							0,
-							anim == "ball" ? 0 : flip,
+							flip,
 							1,
 							1,
 							sin(torad(270) + float(getFrames()) / 16.0) * 0.75,
@@ -1945,7 +1941,7 @@ Midi <- class extends Player {
 							x - camx + (flip ? -2 : 2),
 							y - camy,
 							0,
-							flip ? 0 : 1,
+							flip,
 							1,
 							1,
 							1
@@ -1971,7 +1967,7 @@ Midi <- class extends Player {
 							x - camx,
 							y - camy,
 							0,
-							anim == "ball" ? 0 : flip,
+							flip,
 							1,
 							1,
 							1
@@ -1984,7 +1980,7 @@ Midi <- class extends Player {
 					x - camx,
 					y - camy,
 					0,
-					anim == "ball" ? 0 : flip,
+					flip,
 					1,
 					1,
 					wrap(blinking, 0, 10).tofloat() / 10.0
@@ -1998,11 +1994,11 @@ Midi <- class extends Player {
 			drawSpriteZ(
 				2,
 				sprBallSpin,
-				floor(hspeed + ehspeed < 0 ? -frame : frame),
+				slideframe,
 				x - camx,
 				y + 5 - camy,
 				0,
-				int(hspeed < 0),
+				hspeed < 0 ? 1 : 0,
 				1,
 				1,
 				spinAlpha

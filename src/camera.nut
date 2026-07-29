@@ -753,4 +753,9 @@ CameraBlock <- class extends PhysAct {
 	w = 0;
 	h = 0;
 	shape = null;
+
+	constructor(_x, _y, _arr = null) {
+		base.constructor(_x, _y, _arr);
+		shape = Rec(x, y, w, h, 0);
+	}
 };

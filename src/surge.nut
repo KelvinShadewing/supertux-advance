@@ -338,7 +338,7 @@ Surge <- class extends Player {
 		// Hydroplane
 		hydroplaning = false;
 		shapeHydro.setPos(x + hspeed, y + vspeed);
-		if ((fabs(hspeed) > 6.2 || fabs(hspeed) + fabs(ehspeed) > 6.2) && abs(vspeed) < 4) {
+		if ((fabs(hspeed) > 7.0 || fabs(hspeed) + fabs(ehspeed) > 7.0) && abs(vspeed) < 4) {
 			local oldShape = shape;
 			shape = shapeHydro;
 			local liquidBody = inWater(x, y + 6);
@@ -511,11 +511,8 @@ Surge <- class extends Player {
 
 		// Rotation
 		if (fabs(xprev - x) > 1 && anim == "walk" && !sideRunning) {
-			if ((yprev - y) / (xprev - x) < -0.25) dirAngle = -1.0;
-			if ((yprev - y) / (xprev - x) > 0.25) dirAngle = 1.0;
-
-			if (xprev > x) dirAngle *= abs(pointAngle(x, y, xprev, yprev));
-			if (xprev < x) dirAngle *= abs(pointAngle(xprev, yprev, x, y));
+			if (xprev > x) dirAngle = (pointAngle(x, y, xprev, yprev));
+			if (xprev < x) dirAngle = (pointAngle(xprev, yprev, x, y));
 
 			if (dirAngle > 45) dirAngle = 45;
 			if (dirAngle < -45) dirAngle = -45;
@@ -525,7 +522,7 @@ Surge <- class extends Player {
 			if (!freeLeft) dirAngle = 90;
 		} else dirAngle /= 2.0;
 
-		walkAngle = (dirAngle + walkAngle) / 2.0;
+		walkAngle = lerp(dirAngle, walkAngle, 0.8);
 	}
 
 	function animation() {
@@ -721,7 +718,7 @@ Surge <- class extends Player {
 					)
 						chargeTimer += 0.4;
 					else chargeTimer += 0.1;
-					if (didAirSpecial) chargeTimer += 0.3;
+					if (didAirSpecial) chargeTimer += 0.2;
 				}
 
 				if (chargeTimer > chargeThreshold) {
@@ -813,7 +810,7 @@ Surge <- class extends Player {
 		if (zoomies > 0 && getFrames() % 2 == 0 && an[anim] != null) {
 			local c =
 				actor[
-					newActor(AfterImage, x, y, [
+					newActor(AfterImage, x, y - 2, [
 						sprite,
 						an[anim][wrap(floor(frame), 0, an[anim].len() - 1)] + animOffset,
 						0,
@@ -1253,7 +1250,7 @@ Surge <- class extends Player {
 		if (
 			canMove &&
 			(anim == "jumpR" || anim == "jumpU" || anim == "jumpT" || anim == "fall") &&
-			!didAirSpecial &&
+			(!didAirSpecial || stats.weapon == "air") &&
 			!onPlatform() &&
 			getcon("jump", "press", true, playerNum) &&
 			!didJump
@@ -1312,8 +1309,10 @@ Surge <- class extends Player {
 					break;
 
 				case "water":
-					anim = "stomp";
-					didAirSpecial = true;
+					if(vspeed > -2) {
+						anim = "stomp";
+						didAirSpecial = true;
+					}
 					break;
 
 				case "earth":
