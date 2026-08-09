@@ -157,15 +157,12 @@ selectContrib <- function () {
 						// Get tileset for actors
 						local acttiles = null;
 						foreach (tile in contribWorldmapData["tilesets"]) {
-							if (tile["name"] == "actor") {
+							if (("name" in tile) && tile["name"] == "actor") {
 								acttiles = tile["firstgid"];
 								break;
 							}
 						}
 						if (acttiles == null) {
-							print(
-								"ERROR: Could not find actor tileset in worldmap!"
-							);
 							return "ERROR: Could not find actor tileset in worldmap!";
 						}
 

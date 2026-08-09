@@ -1949,6 +1949,11 @@ createPlatformActors <- function (n, i) {
 
 		case 21:
 			c = newActor(TriggerBlock, i.x + 8, i.y - 8, i.name);
+			if("properties" in i) foreach(j in i.properties) {
+				if(j.name == "code") {
+					actor[c].code = j.value;
+				}
+			}
 			break;
 
 		case 22:

@@ -1,12 +1,12 @@
 { "columns":14,
  "image":"..\/gfx\/stone-anismuz.png",
- "imageheight":192,
+ "imageheight":240,
  "imagewidth":224,
  "margin":0,
  "name":"stone-cave",
  "spacing":0,
- "tilecount":168,
- "tiledversion":"1.10.1",
+ "tilecount":210,
+ "tiledversion":"1.12.2",
  "tileheight":16,
  "tiles":[
         {
@@ -368,14 +368,6 @@
                  "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
                 }, 
                 {
-                 "tileid":150,
-                 "wangid":[0, 0, 2, 2, 2, 0, 0, 0]
-                }, 
-                {
-                 "tileid":151,
-                 "wangid":[0, 0, 0, 0, 2, 2, 2, 0]
-                }, 
-                {
                  "tileid":152,
                  "wangid":[2, 2, 2, 0, 2, 2, 2, 2]
                 }, 
@@ -384,12 +376,36 @@
                  "wangid":[2, 2, 2, 2, 2, 0, 2, 2]
                 }, 
                 {
-                 "tileid":164,
+                 "tileid":154,
+                 "wangid":[2, 0, 2, 0, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":155,
+                 "wangid":[2, 0, 0, 0, 0, 0, 2, 0]
+                }, 
+                {
+                 "tileid":156,
+                 "wangid":[0, 0, 2, 0, 2, 0, 0, 0]
+                }, 
+                {
+                 "tileid":157,
+                 "wangid":[0, 0, 0, 0, 2, 0, 2, 0]
+                }, 
+                {
+                 "tileid":158,
+                 "wangid":[2, 0, 0, 0, 0, 0, 2, 2]
+                }, 
+                {
+                 "tileid":159,
                  "wangid":[2, 2, 2, 0, 0, 0, 0, 0]
                 }, 
                 {
-                 "tileid":165,
-                 "wangid":[2, 0, 0, 0, 0, 0, 2, 2]
+                 "tileid":160,
+                 "wangid":[0, 0, 0, 0, 2, 2, 2, 0]
+                }, 
+                {
+                 "tileid":161,
+                 "wangid":[0, 0, 2, 2, 2, 0, 0, 0]
                 }, 
                 {
                  "tileid":166,
@@ -398,6 +414,50 @@
                 {
                  "tileid":167,
                  "wangid":[2, 2, 2, 2, 2, 2, 2, 0]
+                }, 
+                {
+                 "tileid":199,
+                 "wangid":[0, 0, 2, 0, 2, 0, 2, 0]
+                }, 
+                {
+                 "tileid":200,
+                 "wangid":[2, 0, 2, 0, 0, 0, 2, 0]
+                }, 
+                {
+                 "tileid":201,
+                 "wangid":[2, 0, 2, 0, 2, 0, 0, 0]
+                }, 
+                {
+                 "tileid":202,
+                 "wangid":[2, 0, 0, 0, 2, 0, 2, 0]
+                }, 
+                {
+                 "tileid":203,
+                 "wangid":[2, 0, 2, 0, 2, 0, 2, 0]
+                }, 
+                {
+                 "tileid":204,
+                 "wangid":[0, 0, 2, 0, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":205,
+                 "wangid":[0, 0, 2, 0, 0, 0, 2, 0]
+                }, 
+                {
+                 "tileid":206,
+                 "wangid":[0, 0, 0, 0, 0, 0, 2, 0]
+                }, 
+                {
+                 "tileid":207,
+                 "wangid":[2, 0, 0, 0, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":208,
+                 "wangid":[2, 0, 0, 0, 2, 0, 0, 0]
+                }, 
+                {
+                 "tileid":209,
+                 "wangid":[0, 0, 0, 0, 2, 0, 0, 0]
                 }]
         }]
 }

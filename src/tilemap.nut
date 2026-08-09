@@ -18,8 +18,8 @@
 
 const tile_flip_h = 0x80000000;
 const tile_flip_v = 0x40000000;
-const tile_rot_cw = 0x20000000;
-const tile_mask = 0xfffffff;
+const tile_flip_d = 0x20000000;
+const tile_mask = 0x0fffffff;
 
 tileSearchDir <- ["."];
 
@@ -337,8 +337,22 @@ Tilemap <- class {
 					local nm = n & tile_mask;
 					local offx = 0;
 					local offy = 0;
-					local flip = (n & tile_flip_h ? 1 : 0) | (n & tile_flip_v ? 2 : 0);
-					local offa = n & tile_rot_cw ? 90 : 0;
+					local flip = 0;
+					local offa = 0;
+
+					local h = (n & tile_flip_h) != 0;
+					local v = (n & tile_flip_v) != 0;
+					local d = (n & tile_flip_d) != 0;
+
+					if (!d) {
+						flip = (h ? 1 : 0) | (v ? 2 : 0);
+					} else if (h) {
+						offa = 90;
+						flip = v ? 1 : 0;
+					} else {
+						offa = 270;
+						flip = v ? 0 : 1;
+					}
 
 					for (local k = data.tilesets.len() - 1; k >= 0; k--) {
 						if (nm >= data.tilesets[k].firstgid) {
@@ -381,18 +395,13 @@ Tilemap <- class {
 	function drawImageLayer(l, x, y) {
 		local ox = 0;
 		local oy = 0;
-		for(local i = 0; i < data.layers.len(); i++) {
-			if(data.layers[i].type == "imagelayer") {
-				if("offsetx" in data.layers[i]) ox = data.layers[i].offsetx
-				if("offsety" in data.layers[i]) oy = data.layers[i].offsety
+		for (local i = 0; i < data.layers.len(); i++) {
+			if (data.layers[i].type == "imagelayer") {
+				if ("offsetx" in data.layers[i]) ox = data.layers[i].offsetx;
+				if ("offsety" in data.layers[i]) oy = data.layers[i].offsety;
 			}
 		}
-		if (l in image)
-			drawImage(
-				image[l],
-				x + ox,
-				y + oy
-			);
+		if (l in image) drawImage(image[l], x + ox, y + oy);
 	}
 
 	function del() {

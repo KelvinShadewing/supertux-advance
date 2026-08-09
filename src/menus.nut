@@ -556,7 +556,7 @@ meTimeAttackWorld <- {
 					"aurora-subsea",
 					"aurora-tnt",
 					"aurora-fishy",
-					"aurora-sense",
+					"aurora-frostbite",
 					"aurora-branches",
 					"aurora-frozen",
 					"aurora-forest",

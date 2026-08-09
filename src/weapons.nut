@@ -2802,7 +2802,7 @@ WingNut <- class extends NutBomb {
 			hitTest(bounceShape, actor[owner].shape) &&
 			actor[owner].anim == "ball"
 		)
-			actor[owner].vspeed = -5;
+			actor[owner].vspeed = -5.0;
 	}
 };
 
@@ -3413,6 +3413,18 @@ StormTornado <- class extends WeaponEffect {
 		);
 	}
 };
+
+InhaleTornado <- class extends WeaponEffect {
+	piercing = -1;
+	power = 1;
+	timer = 0;
+	speed = 0.0;
+	direction = 0;
+	element = "air";
+	solidshape = null;
+	hitshape = null;
+	maxTime = 60;
+}
 
 ///////////////////
 // WATER ATTACKS //

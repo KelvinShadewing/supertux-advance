@@ -2,7 +2,7 @@
 | GLOBAL VARIABLES |
 \*================*/
 
-gvVersion <- "v0.2.55";
+gvVersion <- "v0.2.56";
 gvMap <- 0;
 gvGameMode <- 0;
 gvQuit <- false;
@@ -401,7 +401,7 @@ gvStoryLevelList <- [
 	"aurora-subsea",
 	"aurora-tnt",
 	"aurora-fishy",
-	"aurora-sense",
+	"aurora-frostbite",
 	"aurora-branches",
 	"aurora-frozen",
 	"aurora-forest",

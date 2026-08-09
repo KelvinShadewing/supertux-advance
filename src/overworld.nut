@@ -569,7 +569,7 @@ startOverworld <- function (world) {
 		}
 	}
 	if (actset == -1) {
-		print("Map does not use actors.png. No actors to load.");
+		print("Map does not use overactors.png. No actors to load.");
 		return;
 	}
 

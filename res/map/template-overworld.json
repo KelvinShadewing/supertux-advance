@@ -121,8 +121,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":5,
- "nextobjectid":26,
+ "nextlayerid":9,
+ "nextobjectid":57,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -131,19 +131,19 @@
          "value":"songPlay(musOverworld)"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.12.2",
  "tileheight":16,
  "tilesets":[
         {
          "columns":26,
          "firstgid":1,
          "image":"..\/gfx\/overworld.png",
-         "imageheight":496,
+         "imageheight":592,
          "imagewidth":416,
          "margin":0,
          "name":"overworld",
          "spacing":0,
-         "tilecount":806,
+         "tilecount":962,
          "tileheight":16,
          "tiles":[
                 {
@@ -772,20 +772,20 @@
         }, 
         {
          "columns":5,
-         "firstgid":807,
+         "firstgid":963,
          "image":"..\/gfx\/solid.png",
-         "imageheight":288,
+         "imageheight":336,
          "imagewidth":80,
          "margin":0,
          "name":"solid",
          "spacing":0,
-         "tilecount":90,
+         "tilecount":105,
          "tileheight":16,
          "tilewidth":16
         }, 
         {
          "columns":7,
-         "firstgid":897,
+         "firstgid":1068,
          "image":"..\/gfx\/overactors.png",
          "imageheight":16,
          "imagewidth":112,

@@ -6,7 +6,7 @@
  "name":"waterfall",
  "spacing":0,
  "tilecount":32,
- "tiledversion":"1.10.1",
+ "tiledversion":"1.12.2",
  "tileheight":16,
  "tiles":[
         {
@@ -155,5 +155,31 @@
         }],
  "tilewidth":16,
  "type":"tileset",
- "version":"1.10"
+ "version":"1.10",
+ "wangsets":[
+        {
+         "colors":[
+                {
+                 "color":"#ff0000",
+                 "name":"duh",
+                 "probability":1,
+                 "tile":-1
+                }],
+         "name":"Waterfall",
+         "tile":-1,
+         "type":"edge",
+         "wangtiles":[
+                {
+                 "tileid":0,
+                 "wangid":[0, 0, 0, 0, 1, 0, 0, 0]
+                }, 
+                {
+                 "tileid":8,
+                 "wangid":[1, 0, 0, 0, 1, 0, 0, 0]
+                }, 
+                {
+                 "tileid":16,
+                 "wangid":[1, 0, 0, 0, 0, 0, 0, 0]
+                }]
+        }]
 }

@@ -46,6 +46,7 @@ Midi <- class extends Player {
 	advancedClimbing = true;
 	partnerHang = false;
 	rollMeleeSpeed = 5.5;
+	shouldMorph = false;
 
 	freeDown = false;
 	freeDown2 = false;
@@ -803,10 +804,12 @@ Midi <- class extends Player {
 
 				if (floor(frame) > 1) {
 					vspeed = -5.0;
-					local w = 4.0;
-					if (flip == 0) hspeed = w;
-					else hspeed = -w;
+					hspeed = flip == 0 ? 4.0 : -4.0;
 					anim = "jump";
+					if (shouldMorph) {
+						anim = "morphIn";
+						shouldMorph = false;
+					}
 					frame = 0.0;
 					canJump = 0;
 				}
@@ -879,7 +882,7 @@ Midi <- class extends Player {
 				break;
 
 			case "ball":
-				slideframe += (hspeed + ehspeed) / 8.0 * (flip ? -1 : 1);
+				slideframe += ((hspeed + ehspeed) / 8.0) * (flip ? -1 : 1);
 				slideframe = wrap(slideframe, 0, hspeed < 0 ? 4 : 3);
 				frame = slideframe;
 				break;
@@ -1547,7 +1550,8 @@ Midi <- class extends Player {
 
 			if (getcon("spec2", "press", true, playerNum) && anim != "hurt") {
 				if (anim == "ledge") vspeed = -4.0;
-				anim = "morphIn";
+				if (anim == "wall") shouldMorph = true;
+				else anim = "morphIn";
 				frame = 0.0;
 			}
 		} else rspeed = min(rspeed, abs(hspeed));
@@ -1991,18 +1995,7 @@ Midi <- class extends Player {
 			if (anim == "ball" && inMelee && spinAlpha < 1.0) spinAlpha += 0.2;
 			if (spinAlpha > 0) spinAlpha -= 0.1;
 			if (spinAlpha < 0) spinAlpha = 0;
-			drawSpriteZ(
-				2,
-				sprBallSpin,
-				slideframe,
-				x - camx,
-				y + 5 - camy,
-				0,
-				hspeed < 0 ? 1 : 0,
-				1,
-				1,
-				spinAlpha
-			);
+			drawSpriteZ(2, sprBallSpin, slideframe, x - camx, y + 5 - camy, 0, hspeed < 0 ? 1 : 0, 1, 1, spinAlpha);
 			if (debug) {
 				setDrawColor(0x008000ff);
 				shape.draw();
